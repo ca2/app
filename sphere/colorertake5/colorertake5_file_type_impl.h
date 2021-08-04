@@ -47,24 +47,24 @@ namespace colorertake5
       }
 
 
-      string getParameterDescription(const char *name)
+      string getParameterDescription(const ::string &name)
       {
          return paramDescriptionHash[name];
       }
 
-      string getParamValue(const char * name)
+      string getParamValue(const ::string & name)
       {
          string val = paramHash[name];
          if(val.is_empty())
             return getParamDefaultValue(name);
          return val;
       }
-      string getParamDefaultValue(const char * name)
+      string getParamDefaultValue(const ::string & name)
       {
          return paramDefaultHash[name];
       }
 
-      void setParamValue(const char * name, const char * value)
+      void setParamValue(const ::string & name, const ::string & value)
       {
          paramHash.set_at(name, value);
       }
@@ -81,7 +81,7 @@ namespace colorertake5
        *        for example). If nullptr, skipped.
        * @return Computed total filetype priority.
        */
-      double getPriority(const char * fileName, const char * fileContent) const
+      double getPriority(const ::string & fileName, const ::string & fileContent) const
       {
          SMatches match;
          double cur_prior = 0;

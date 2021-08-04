@@ -84,10 +84,10 @@ va_list *Arguments
 
 }
 
-void ns_log(const char * pszLog);
+void ns_log(const ::string & pszLog);
 
 
-void output_debug_string(const char * pszOutputString)
+void output_debug_string(const ::string & pszOutputString)
 {
 
    string strOutputString(pszOutputString);

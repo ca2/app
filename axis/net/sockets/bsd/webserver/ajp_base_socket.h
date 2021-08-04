@@ -58,15 +58,15 @@ namespace sockets
       virtual void OnPacket( const char *buf, memsize sz ) = 0;
 
    protected:
-      uchar get_byte(const char *buf, i32& ptr);
-      bool get_boolean(const char *buf, i32& ptr);
-      i16 get_integer(const char *buf, i32& ptr);
-      string get_string(const char *buf, i32& ptr);
+      uchar get_byte(const ::string &buf, i32& ptr);
+      bool get_boolean(const ::string &buf, i32& ptr);
+      i16 get_integer(const ::string &buf, i32& ptr);
+      string get_string(const ::string &buf, i32& ptr);
 
       void put_byte(char *buf, i32& ptr, uchar zz);
       void put_boolean(char *buf, i32& ptr, bool zz);
       void put_integer(char *buf, i32& ptr, i16 zz);
-      void put_string(char *buf, i32& ptr, const char * psz);
+      void put_string(char *buf, i32& ptr, const ::string & psz);
 
    };
 

@@ -365,7 +365,7 @@ namespace draw2d
       UnselectFont();
    }
 
-   void font::AddGlyphs(const char * pStr)
+   void font::AddGlyphs(const ::string & pStr)
 
    {
       string str(pStr);
@@ -455,7 +455,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca)
+bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i32 ca)
 
 {
 
@@ -495,7 +495,7 @@ bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 c
 }
 
 
-CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl)
+CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i32 ca, LPSIZE32 psizl)
 
 {
 
@@ -525,7 +525,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 }
 
 
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * lprc, ::u32 format)
+CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, RECT32 * lprc, ::u32 format)
 
 {
 

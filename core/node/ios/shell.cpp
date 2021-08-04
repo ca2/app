@@ -13,7 +13,7 @@
 #include "shell.h"
 
 
-bool ios_get_file_image(::image * pimage, const char * psz);
+bool ios_get_file_image(::image * pimage, const ::string & psz);
 
 
 namespace ios
@@ -625,7 +625,7 @@ namespace ios
 ////
 ////                     string strFooPath = m_strShellThemePrefix + "foo." + strExtension;
 ////
-////                     imagekey.m_strPath = (char *)(const char *)strFooPath;
+////                     imagekey.m_strPath = (char *)(const ::string &)strFooPath;
 ////                     imagekey.m_iIcon = 0;
 ////                     imagekey.m_strExtension = "";
 ////
@@ -1171,7 +1171,7 @@ namespace ios
    //            if (strlen(imagekey.m_strPath) <= 0)
    //            {
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const ::string &)lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi16,
    //                  sizeof(shfi16),
@@ -1180,7 +1180,7 @@ namespace ios
    //                  | SHGFI_SMALLICON);
    //               hicon16 = shfi16.hIcon;
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const ::string &)lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi48,
    //                  sizeof(shfi48),
@@ -1253,7 +1253,7 @@ namespace ios
 
 
 
-//      bool ios::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon( oswindow oswindow, const ::string & psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1302,7 +1302,7 @@ namespace ios
 
 
 
-//   e_folder ios::get_folder_type(::object * pobject, const char * pcsz)
+//   e_folder ios::get_folder_type(::object * pobject, const ::string & pcsz)
 //   {
 //
 //      return get_folder_type(papp, ::str::international::utf8_to_unicode(pcsz));
@@ -1817,7 +1817,7 @@ namespace ios
 //
 //         image_key imagekey;
 //
-//         imagekey.m_strPath = (char *) (const char *) "foo";
+//         imagekey.m_strPath = (char *) (const ::string &) "foo";
 //
 //         imagekey.m_strShellThemePrefix = (char *)m_strShellThemePrefix.c_str();
 //
@@ -1994,7 +1994,7 @@ namespace ios
 
    }
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const char * lpcszPath)
+   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcszPath)
    {
 
       string strPath(lpcszPath);

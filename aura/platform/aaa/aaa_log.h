@@ -47,7 +47,7 @@ namespace aura
       void load_flags(const ::property_set & set);
 
 
-      virtual void print(const char * psz, ...);
+      virtual void print(const ::string & psz, ...);
 
 
       virtual ::e_status initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id);
@@ -56,11 +56,11 @@ namespace aura
 
       virtual bool process_init();
 
-      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) override;
+      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFileName, i32 iLine, const ::string & psz) override;
 
       void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
 
-      virtual void success(const char * psz);
+      virtual void success(const ::string & psz);
 
       virtual void set_extended_log(bool bSet = true);
       virtual bool get_extended_log();
@@ -69,7 +69,7 @@ namespace aura
    };
 
 
-   CLASS_DECL_AURA i32 SimpleDebugReport(i32, const char *, i32, const char *, const char * pszFormat, va_list list);
+   CLASS_DECL_AURA i32 SimpleDebugReport(i32, const ::string &, i32, const ::string &, const ::string & pszFormat, va_list list);
 
 
 } // namespace aura

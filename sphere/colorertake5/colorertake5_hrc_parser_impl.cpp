@@ -28,7 +28,7 @@ namespace colorertake5
       errorHandler = eh;
    }
 
-   void HRCParserImpl::loadSource(const char * pszSourceLocation, const char * pszSource)
+   void HRCParserImpl::loadSource(const ::string & pszSourceLocation, const ::string & pszSource)
    {
       string strPreviousSourceLocation = m_strCurrentSourceLocation;
       string strPreviousSource = m_strCurrentSource;
@@ -100,7 +100,7 @@ namespace colorertake5
       }
    }
 
-   file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *firstLine, i32 typeNo)
+   file_type *HRCParserImpl::chooseFileType(const ::string &fileName, const ::string &firstLine, i32 typeNo)
    {
       file_type_impl *best = nullptr;
       double max_prior = 0;
@@ -138,7 +138,7 @@ namespace colorertake5
 
 
 
-   file_type *HRCParserImpl::getFileType(const char *name)
+   file_type *HRCParserImpl::getFileType(const ::string &name)
    {
       if (name == nullptr) return nullptr;
       return fileTypeHash[name];
@@ -164,7 +164,7 @@ namespace colorertake5
       return regionNamesVector.element_at(id);
    }
 
-   class region* HRCParserImpl::getRegion(const char *name)
+   class region* HRCParserImpl::getRegion(const ::string &name)
    {
       if (name == nullptr) return nullptr;
       return getNCRegion(name, false); // regionNamesHash.get(name);
@@ -179,7 +179,7 @@ namespace colorertake5
    // protected methods
 
 
-   void HRCParserImpl::parseHRC(const char * psz)
+   void HRCParserImpl::parseHRC(const ::string & psz)
    {
       xml::document doc(this);
       doc.m_pparseinfo->m_chEscapeValue = '\0';
@@ -965,7 +965,7 @@ namespace colorertake5
 
 
 
-   string HRCParserImpl::qualifyOwnName(const char * name)
+   string HRCParserImpl::qualifyOwnName(const ::string & name)
    {
       if (name == nullptr) return "";
       strsize colon = string(name).find(':');
@@ -989,7 +989,7 @@ namespace colorertake5
    }
 
 
-   bool HRCParserImpl::checkNameExist(const char * name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
+   bool HRCParserImpl::checkNameExist(const ::string & name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors)
    {
       if (qntype == QNT_DEFINE && regionNamesHash[name] == nullptr)
       {
@@ -1031,7 +1031,7 @@ namespace colorertake5
    }
 
 
-   string HRCParserImpl::qualifyForeignName(const char * name, QualifyNameType qntype, bool logErrors)
+   string HRCParserImpl::qualifyForeignName(const ::string & name, QualifyNameType qntype, bool logErrors)
    {
       if (name == nullptr) return "";
       strsize colon = string(name).find(':');
@@ -1071,7 +1071,7 @@ namespace colorertake5
    };
 
 
-   string HRCParserImpl::useEntities(const char * name)
+   string HRCParserImpl::useEntities(const ::string & name)
    {
       strsize copypos = 0;
       strsize epos = 0;
@@ -1121,7 +1121,7 @@ namespace colorertake5
       return newname;
    };
 
-   class region* HRCParserImpl::getNCRegion(const char * name, bool logErrors)
+   class region* HRCParserImpl::getNCRegion(const ::string & name, bool logErrors)
    {
       if (name == nullptr) return nullptr;
       class region *reg = nullptr;
@@ -1140,7 +1140,7 @@ namespace colorertake5
       return reg;
    };
 
-   class region* HRCParserImpl::getNCRegion(__pointer(::xml::node)el, const char * tag)
+   class region* HRCParserImpl::getNCRegion(__pointer(::xml::node)el, const ::string & tag)
    {
       string par = el->attr(tag);
       if (par.is_empty()) return nullptr;

@@ -48,11 +48,11 @@ public:
 
    XfplayerViewLineSelection & GetSelection();
 
-   void get_sel_text(string & strSelText, const char * pszLineSeparator = "\r\n");
-   string get_sel_text(const char * pszLineSeparator = "\r\n");
+   void get_sel_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
+   string get_sel_text(const ::string & pszLineSeparator = "\r\n");
 
-   void get_text(string & strSelText, const char * pszLineSeparator = "\r\n");
-   string get_text(const char * pszLineSeparator = "\r\n");
+   void get_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
+   string get_text(const ::string & pszLineSeparator = "\r\n");
 
 };
 

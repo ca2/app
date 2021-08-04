@@ -223,8 +223,7 @@ namespace draw2d
 
 
 
-   bool graphics::CreateDC(const char * pszDriverName,  const char * pszDeviceName, const char * pszOutput, const void * pInitData)
-
+   bool graphics::CreateDC(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
       UNREFERENCED_PARAMETER(pszDriverName);
@@ -242,7 +241,7 @@ namespace draw2d
    }
 
 
-   bool graphics::CreateIC(const char * pszDriverName,  const char * pszDeviceName, const char * pszOutput, const void * pInitData)
+   bool graphics::CreateIC(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
 
    {
 
@@ -1436,7 +1435,7 @@ namespace draw2d
    }
 
 
-   //bool graphics::text_out(double x, double y, const char * pszString, strsize nCount)
+   //bool graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1453,7 +1452,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::text_out(double x, double y, const char* pszString, strsize nCount)
+   //bool graphics::text_out(double x, double y, const ::string & pszString, strsize nCount)
    //{
 
    //   return text_out(x, y, string(pszString, nCount));
@@ -1549,7 +1548,7 @@ namespace draw2d
    }
 
 
-   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const char * pszString, strsize nCount, i32 * pDxWidths)
+   bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1580,7 +1579,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::TabbedTextOut(double x, double y, const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1636,7 +1635,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::GetOutputTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
    {
 
       UNREFERENCED_PARAMETER(pszString);
@@ -2342,7 +2341,7 @@ namespace draw2d
    }
 
 
-   i32 graphics::StartDoc(const char * pszDocName)
+   i32 graphics::StartDoc(const ::string & pszDocName)
 
    {
 
@@ -4102,7 +4101,7 @@ namespace draw2d
                if ((int) sz.cx > rectClip.width())
                {
 
-                  i = ::str::uni_dec(str, &((const char *)str)[i]) - ((const char *)str);
+                  i = ::str::uni_dec(str, &((const ::string &)str)[i]) - ((const ::string &)str);
 
                   if (i <= 0)
                   {

@@ -1528,7 +1528,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 /*         return pimage;
 
       }
-      catch (const char *text)
+      catch (const ::string &text)
       {
          jpeg_destroy_decompress(&cinfo);
 /*         if(nullptr != pimage)
@@ -1592,7 +1592,7 @@ static int_bool DLL_CALLCONV
             // If we get here, the JPEG code has signaled an error.
             // We need to clean up the JPEG object, close the input file, and return.
             jpeg_destroy_compress(&cinfo);
-            __throw((const char*)nullptr);
+            __throw((const ::string &)nullptr);
          }
 
          // Now we can initialize the JPEG compression object
@@ -1870,7 +1870,7 @@ static int_bool DLL_CALLCONV
          return true;
 
       }
-      catch (const char *text)
+      catch (const ::string &text)
       {
          if(text)
          {

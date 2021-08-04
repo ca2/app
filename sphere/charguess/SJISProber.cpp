@@ -34,7 +34,7 @@ void  nsSJISProber::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsSJISProber::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsSJISProber::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsSMState codingState;
 

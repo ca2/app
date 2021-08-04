@@ -82,7 +82,7 @@ namespace simple_ui
    }
 
 
-   string style::defer_get(const char * pszUrl)
+   string style::defer_get(const ::string & pszUrl)
    {
 
       string str;

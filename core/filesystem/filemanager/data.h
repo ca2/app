@@ -107,7 +107,7 @@ namespace filemanager
 
 
       virtual ::id get_local_machine_id();
-      virtual string get_last_browse_path(::object * pobject, const char * pszDefault = nullptr);
+      virtual string get_last_browse_path(::object * pobject, const ::string & pszDefault = nullptr);
       virtual ::e_status set_last_browse_path(::object * pobject, const ::file::path & path);
 
 

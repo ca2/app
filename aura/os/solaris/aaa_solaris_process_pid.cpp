@@ -3,7 +3,7 @@
 
 
 
-i32 get_process_pid(const char * procNameParam)
+i32 get_process_pid(const ::string & procNameParam)
 {
 
    vsstring procName(procNameParam);

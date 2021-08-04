@@ -19,7 +19,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) department::create_experience2(::object * pobject, const char * pszExperienceLibrary)
+   __pointer(::experience::experience) department::create_experience2(::object * pobject, const ::string & pszExperienceLibrary)
    {
 
       string strId(pszExperienceLibrary);
@@ -112,7 +112,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) department::get_experience2(::object * pobject, const char * pszUinteraction)
+   __pointer(::experience::experience) department::get_experience2(::object * pobject, const ::string & pszUinteraction)
    {
 
       auto & pexperience = m_mapExperience[pszUinteraction];
@@ -130,7 +130,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::frame) department::experience_get_frame2(::object * pobject, const char * pszLibrary, const char * pszFrame)
+   __pointer(::experience::frame) department::experience_get_frame2(::object * pobject, const ::string & pszLibrary, const ::string & pszFrame)
    {
 
       string_array straLibrary;

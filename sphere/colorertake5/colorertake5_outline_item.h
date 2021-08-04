@@ -34,7 +34,7 @@ namespace colorertake5
       }
 
       /** Initializing constructor */
-      OutlineItem(index lno, index pos, index level, const char *token, const class region *region)
+      OutlineItem(index lno, index pos, index level, const ::string &token, const class region *region)
       {
          this->lno = lno;
          this->pos = pos;

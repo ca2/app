@@ -52,7 +52,7 @@ CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::ob
 extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -73,7 +73,7 @@ void unit_test_primitive_var_aura_block();
 #endif
 
 
-void dappy(const char * psz);
+void dappy(const ::string & psz);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -325,7 +325,7 @@ namespace aura
 
 
 
-//   ::acme::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+//   ::acme::library * system::get_library(const ::string & pszLibrary1, bool bOpenCa2)
 //   {
 //
 //      synchronous_lock synchronouslock(m_mutexLibrary);
@@ -2111,7 +2111,7 @@ namespace aura
    //}
 
 
-   //i32 system::_001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args)
+   //i32 system::_001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args)
    //{
 
    //   return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
@@ -2119,7 +2119,7 @@ namespace aura
    //}
 
 
-//   i32 system::_debug_logging_report(i32 iReportType, const char * pszFileName, i32 iLineNumber, const char * pszModuleName, const char * pszFormat,va_list list)
+//   i32 system::_debug_logging_report(i32 iReportType, const ::string & pszFileName, i32 iLineNumber, const ::string & pszModuleName, const ::string & pszFormat,va_list list)
 //   {
 //
 //      if(!m_ptrace || !m_ptrace->m_bExtendedLog)
@@ -2207,7 +2207,7 @@ namespace aura
 
 
 
-   //bool system::assert_failed_line(const char * pszFileName,i32 iLine)
+   //bool system::assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    //{
    //   UNREFERENCED_PARAMETER(pszFileName);
@@ -2217,7 +2217,7 @@ namespace aura
    //}
 
 
-   //bool system::on_assert_failed_line(const char * pszFileName,i32 iLine)
+   //bool system::on_assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    //{
    //   UNREFERENCED_PARAMETER(pszFileName);
@@ -2328,7 +2328,7 @@ namespace aura
    //}
 
 
-   //__pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+   //__pointer(regex) system::create_regular_expression(const ::string & pszStyle, const string& str)
    //{
 
    //   return nullptr;
@@ -2336,7 +2336,7 @@ namespace aura
    //}
 
 
-   //__pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+   //__pointer(regex_context) system::create_regular_expression_context(const ::string & pszStyle, int iCount)
    //{
 
    //   return nullptr;
@@ -2385,7 +2385,7 @@ namespace aura
    //}
 
 
-   //::e_status system::initialize_log(const char * pszId)
+   //::e_status system::initialize_log(const ::string & pszId)
    //{
 
    //   if (m_ptrace)
@@ -2439,7 +2439,7 @@ namespace aura
 //   }
 
 
-//   void system::appa_set_locale(const char * pszLocale, const ::action_context & context)
+//   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
 //   {
 //
 //      //retry_single_lock rsl(mutex(),millis(100),millis(100));
@@ -2457,7 +2457,7 @@ namespace aura
 //   }
 
 
-//   void system::appa_set_schema(const char * pszStyle, const ::action_context & context)
+//   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
 //   {
 //
 //      //retry_single_lock rsl(mutex(),millis(100),millis(100));
@@ -2476,7 +2476,7 @@ namespace aura
 
 
 
-//   bool system::assert_running_global(const char * pszAppName,const char * pszId)
+//   bool system::assert_running_global(const ::string & pszAppName, const ::string & pszId)
 //   {
 //      if(string(pszId).has_char())
 //      {
@@ -2550,7 +2550,7 @@ namespace aura
 //      }
 //   }
 
-//   bool system::assert_running_local(const char * pszAppName,const char * pszId)
+//   bool system::assert_running_local(const ::string & pszAppName, const ::string & pszId)
 //   {
 //      string strAppName(pszAppName);
 //      string strId(pszId);
@@ -2950,7 +2950,7 @@ namespace aura
 //   }
 
 
-//   bool system::map_application_library(const char * pszLibrary)
+//   bool system::map_application_library(const ::string & pszLibrary)
 //   {
 //
 //      ::acme::library library;
@@ -3213,7 +3213,7 @@ namespace aura
    //}
 
 
-   //bool system::on_application_menu_action(const char * pszCommand)
+   //bool system::on_application_menu_action(const ::string & pszCommand)
    //{
 
    //   synchronous_lock synchronouslock(mutex());
@@ -4030,7 +4030,7 @@ namespace aura
    //}
 
 
-   /*void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
+   /*void system::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) const
    {
 
       if (m_ptrace.is_null())
@@ -4676,14 +4676,14 @@ namespace aura
 //
 //   }
 
-   //string system::get_local_mutex_name(const char * pszAppName)
+   //string system::get_local_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
    //   strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
-   //string system::get_local_id_mutex_name(const char * pszAppName, const char * pszId)
+   //string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    //{
    //   string strId(pszId);
    //   string strMutex;
@@ -4691,14 +4691,14 @@ namespace aura
    //   return strMutex;
    //}
 
-   //string system::get_global_mutex_name(const char * pszAppName)
+   //string system::get_global_mutex_name(const ::string & pszAppName)
    //{
    //   string strMutex;
    //   strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
    //   return strMutex;
    //}
 
-   //string system::get_global_id_mutex_name(const char * pszAppName, const char * pszId)
+   //string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    //{
    //   string strId(pszId);
    //   string strMutex;
@@ -5118,7 +5118,7 @@ namespace aura
 
 
 
-   //void system::hist_hist(const char * psz)
+   //void system::hist_hist(const ::string & psz)
    //{
    //}
 
@@ -5155,7 +5155,7 @@ namespace aura
 } // namespace aura
 
 
-//CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//CLASS_DECL_AURA ::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
 //{
 //
 //   string strFolder = pathExe.folder();
@@ -5167,7 +5167,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//CLASS_DECL_AURA bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
 //{
 //
 //   ::file::path path;
@@ -5181,7 +5181,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema)
+//CLASS_DECL_AURA bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
 //{
 //
 //   ::file::path path;
@@ -5193,7 +5193,7 @@ namespace aura
 //}
 //
 //
-//CLASS_DECL_AURA::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration)
+//CLASS_DECL_AURA::file::path get_application_path(string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration)
 //{
 //
 //   ::file::path pathFolder;
@@ -5374,7 +5374,7 @@ namespace aura
 
    //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
-   /*  bool system::on_application_menu_action(const char * pszCommand)
+   /*  bool system::on_application_menu_action(const ::string & pszCommand)
      {
         return ::aura::system::on_application_menu_action(pszCommand);
      }*/
@@ -5670,7 +5670,7 @@ namespace aura
    }
 
 
-   __pointer(::data::node) system::load_xml(const char* pszXml)
+   __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
       __throw(error_interface_only);
@@ -6078,7 +6078,7 @@ namespace aura
    //}
 
 
-   //::acme::library * system::on_get_library(const char* pszLibrary)
+   //::acme::library * system::on_get_library(const ::string & pszLibrary)
    //{
 
    //   __pointer(::acme::library) plibrary;
@@ -6171,8 +6171,8 @@ namespace aura
 
 
 
-   ////bool system::sync_load_url(string& str, const char* pszUrl, ::account::user* puser, ::http::cookies* pcookies)
-   //bool system::sync_load_url(string& str, const char* pszUrl, ::http::cookies* pcookies)
+   ////bool system::sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser, ::http::cookies* pcookies)
+   //bool system::sync_load_url(string& str, const ::string & pszUrl, ::http::cookies* pcookies)
 
    //{
 
@@ -6337,7 +6337,7 @@ namespace aura
    }
 
 
-   //   void system::post_fork_uri(const char * pszUri,application_bias * papplicationbias)
+   //   void system::post_fork_uri(const ::string & pszUri,application_bias * papplicationbias)
    //   {
    //
    //      add_fork_uri(pszUri,papplicationbias);
@@ -6449,7 +6449,7 @@ namespace aura
    //}
 
 
-   //void system::hist_hist(const char* psz)
+   //void system::hist_hist(const ::string & psz)
    //{
 
    //   hist().hist(psz);
@@ -6942,7 +6942,7 @@ namespace aura
    }
 
 
-   //bool system::on_application_menu_action(const char * pszCommand)
+   //bool system::on_application_menu_action(const ::string & pszCommand)
    //{
 
    //   synchronous_lock synchronouslock(mutex());

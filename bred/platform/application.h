@@ -18,7 +18,7 @@ namespace bred
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
+      //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
 
    };
 

@@ -21,7 +21,7 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
 }
 
 
-typedef string(*SALT)(__pointer(::aura::application), const char *, string_array &);
+typedef string(*SALT)(__pointer(::aura::application), const ::string &, string_array &);
 
 
 namespace account
@@ -75,7 +75,7 @@ namespace account
    }
 
 
-//   string user::get_sessid(const char * pszText, bool bInteractive)
+//   string user::get_sessid(const ::string & pszText, bool bInteractive)
 //   {
 //
 //      if(::is_null(this))
@@ -134,7 +134,7 @@ namespace account
 //      return strSessId;
 //   }
 //
-//   void user::set_sessid(const char * pszSessid, const char * pszText)
+//   void user::set_sessid(const ::string & pszSessid, const ::string & pszText)
 //   {
 //      if(pszText == nullptr)
 //      {
@@ -150,7 +150,7 @@ namespace account
 //   }
 
 
-//   string user::get_ca2_server(const char * pszPrefix)
+//   string user::get_ca2_server(const ::string & pszPrefix)
 //   {
 //
 //      string strPrefix(pszPrefix);

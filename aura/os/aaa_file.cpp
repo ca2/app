@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-int_bool file_put_contents(const char * path, const char * contents)
+int_bool file_put_contents(const ::string & path, const ::string & contents)
 {
 
    return file_put_contents(path, contents, strlen(contents));
@@ -9,11 +9,11 @@ int_bool file_put_contents(const char * path, const char * contents)
 }
 
 
-CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
-CLASS_DECL_AURA bool _os_may_have_alias(const char * psz);
+CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz);
 
-bool context::os_resolve_alias(::file::path & path, const char * psz, bool bNoUI, bool bNoMount)
+bool context::os_resolve_alias(::file::path & path, const ::string & psz, bool bNoUI, bool bNoMount)
 {
 
    if (_os_resolve_alias(path, psz, bNoUI, bNoMount))

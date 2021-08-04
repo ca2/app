@@ -127,7 +127,7 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload)
+   inline void script_interface::uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
    {
 
       auto psystem = m_psystem;
@@ -139,7 +139,7 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam)
+   inline void script_interface::uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam)
    {
 
       auto psystem = m_psystem;
@@ -151,7 +151,7 @@ namespace dynamic_source
    }
 
 
-   inline string script_interface::query_get_param(const char* pszUrl, const char* pszKey)
+   inline string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
    {
 
       auto psystem = m_psystem;
@@ -163,7 +163,7 @@ namespace dynamic_source
    }
 
 
-   inline ::payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
+   inline ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
    {
 
       auto psystem = m_psystem;
@@ -175,7 +175,7 @@ namespace dynamic_source
    }
 
 
-   inline void script_interface::dprint(const char* psz)
+   inline void script_interface::dprint(const ::string & psz)
    {
 
       if (m_pmain && m_pmain->m_iDebug > 0)

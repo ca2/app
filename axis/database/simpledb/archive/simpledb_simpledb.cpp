@@ -73,7 +73,7 @@ namespace simpledb
    }
 
 
-   void simpledb::on_set_locale(const char * lpcsz, const ::action_context & context)
+   void simpledb::on_set_locale(const ::string & lpcsz, const ::action_context & context)
    {
 
       if(context.is_user_source())
@@ -88,7 +88,7 @@ namespace simpledb
    }
 
 
-   void simpledb::on_set_schema(const char * lpcsz, const ::action_context & context)
+   void simpledb::on_set_schema(const ::string & lpcsz, const ::action_context & context)
    {
 
       if(context.is_user_source())
@@ -235,7 +235,7 @@ namespace simpledb
 
 
 
-   void simpledb::on_set_keyboard_layout(const char * pszPath, const ::action_context & context)
+   void simpledb::on_set_keyboard_layout(const ::string & pszPath, const ::action_context & context)
    {
 
       if(context.is_user_source())

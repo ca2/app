@@ -31,7 +31,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_BOOT u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -204,7 +204,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
 #ifdef WINDOWS_DESKTOP
 
-bool load_modules_diff(string_array & straOld, string_array & straNew, const char * pszExceptDir)
+bool load_modules_diff(string_array & straOld, string_array & straNew, const ::string & pszExceptDir)
 {
 
    bool bFound;
@@ -312,7 +312,7 @@ int get_current_process_affinity_order()
 
 #undef System
 
-CLASS_DECL_CORE int ui_open_url(const char * pszUrl)
+CLASS_DECL_CORE int ui_open_url(const ::string & pszUrl)
 {
 
    string strUrl(pszUrl);
@@ -338,7 +338,7 @@ CLASS_DECL_CORE bool is_shared_library_busy(const string_array & stra)
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, ::duration durationTimeout)
 {
 
    return false;

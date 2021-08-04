@@ -26,7 +26,7 @@ namespace netserver
 
       virtual void on_send_response();
 
-      virtual void simple_file_server(const char * pszPath, bool bMatter = false);
+      virtual void simple_file_server(const ::string & pszPath, bool bMatter = false);
 
       virtual bool http_filter_response_header(id key, string_array & straValue);
 

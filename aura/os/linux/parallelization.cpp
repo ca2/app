@@ -223,7 +223,7 @@ CLASS_DECL_AURA void main_async_runnable(::object * prunnableParam)
 }
 
 
-::e_status task_set_name(const char * psz)
+::e_status task_set_name(const ::string & psz)
 {
 
    string strName(psz);

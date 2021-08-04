@@ -113,7 +113,7 @@ namespace write_text
 
 
       virtual bool create_pixel_font(
-      const char * pszFacename,
+      const ::string & strFacename,
       double dSize,
       i32 iWeight = 400,
       bool bItalic = false,
@@ -122,8 +122,7 @@ namespace write_text
       double dWidth = 1.0);
 
       virtual bool create_point_font(
-      const char * pszFacename,
-
+      const ::string & strFacename,
       double dSize,
       i32 iWeight = 400,
       bool bItalic = false,
@@ -135,7 +134,7 @@ namespace write_text
 
       font & operator = (const font & font);
 
-      virtual void set_family_name(const char * pszFamilyName);
+      virtual void set_family_name(const ::string & pszFamilyName);
       virtual void set_size(double dSize, ::draw2d::enum_unit = ::draw2d::unit_point);
       virtual void set_bold(bool bBold = true);
       virtual void set_italic(bool bItalic = true);

@@ -23,10 +23,10 @@ point_i32 g_pointLastBottomRight;
 
 
 #define REDRAW_HINTING
-//CLASS_DECL_AURA bool task_set_name(const char *psz);
+//CLASS_DECL_AURA bool task_set_name(const ::string &psz);
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
-//void windowing_output_debug_string(const char * pszDebugString);
+//void windowing_output_debug_string(const ::string & pszDebugString);
 
 #define REDRAW_PROFILE_NORMAL 5
 
@@ -307,7 +307,7 @@ namespace user
    }
 
 
-   bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const char * lpszName)
+   bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
       if(_is_window())
@@ -1913,7 +1913,7 @@ namespace user
    }
 
 
-   //i32 interaction_impl::message_box(const char * pszText,const char * pszCaption,::u32 nType)
+   //i32 interaction_impl::message_box(const ::string & pszText, const ::string & pszCaption,::u32 nType)
 
    //{
    //   UNREFERENCED_PARAMETER(pszText);
@@ -2120,7 +2120,7 @@ namespace user
 //      ::exception::throw_interface_only();
 //   }
 //
-//   void interaction_impl::OnSettingChange(::u32 uFlags,const char * pszSection)
+//   void interaction_impl::OnSettingChange(::u32 uFlags, const ::string & pszSection)
 
 //   {
 //      UNREFERENCED_PARAMETER(uFlags);
@@ -2247,7 +2247,7 @@ namespace user
 //   /////////////////////////////////////////////////////////////////////////////
 //   // Dialog initialization support
 //
-//   bool interaction_impl::ExecuteDlgInit(const char * pszResourceName)
+//   bool interaction_impl::ExecuteDlgInit(const ::string & pszResourceName)
 //
 //   {
 //      UNREFERENCED_PARAMETER(pszResourceName);
@@ -2730,7 +2730,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_window_text(const char * pszString)
+   void interaction_impl::set_window_text(const ::string & pszString)
 
    {
 
@@ -3278,7 +3278,7 @@ namespace user
    //   ::exception::throw_interface_only();
    //}
 
-   //void interaction_impl::SetDlgItemText(i32 nID,const char * pszString)
+   //void interaction_impl::SetDlgItemText(i32 nID, const ::string & pszString)
 
    //{
    //   UNREFERENCED_PARAMETER(nID);

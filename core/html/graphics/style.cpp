@@ -67,7 +67,7 @@ namespace html
    }
 
 
-   ::color::color style::_parse_color(const char * psz)
+   ::color::color style::_parse_color(const ::string & psz)
    {
 
       ::color::color color;
@@ -863,8 +863,10 @@ namespace html
    }
 
 
-   const char * style::parse(html_data * pdata, const char * psz)
+   const char * style::parse(html_data * pdata, const ::string & strParam)
    {
+
+      const char * psz = strParam;
       UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
@@ -1013,7 +1015,7 @@ namespace html
    }
 
 
-   float style::_parse_dimension(const char * pszParam)
+   float style::_parse_dimension(const ::string & pszParam)
    {
 
       string str(pszParam);
@@ -1037,7 +1039,7 @@ namespace html
    }
 
 
-   bool style::_parse_border_width(const char * psz, float & f)
+   bool style::_parse_border_width(const ::string & psz, float & f)
    {
 
       if (::is_null(psz))
@@ -1190,7 +1192,7 @@ namespace html
       return true;
    }
 
-   bool style::_parse_border_color(const char * pszParam, ::color::color & color32)
+   bool style::_parse_border_color(const ::string & pszParam, ::color::color & color32)
    {
 
       if(::is_null(pszParam))

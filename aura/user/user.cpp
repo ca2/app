@@ -752,10 +752,10 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
    CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 

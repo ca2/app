@@ -308,7 +308,7 @@ namespace sockets
 
    void sip_base_client_socket::SendResponseBody()
    {
-      //SendBuf((const char *) response().file().get_data(), response().file().get_size());
+      //SendBuf((const ::string &) response().file().get_data(), response().file().get_size());
    }
 
 
@@ -411,7 +411,7 @@ namespace sockets
       return m_response;
    }
 
-   property & sip_base_client_socket::inattr(const char * pszName)
+   property & sip_base_client_socket::inattr(const ::string & pszName)
    {
       return m_request.attr(pszName);
    }
@@ -421,7 +421,7 @@ namespace sockets
       return m_request.attrs();
    }
 
-   property & sip_base_client_socket::outattr(const char * pszName)
+   property & sip_base_client_socket::outattr(const ::string & pszName)
    {
       return m_response.attr(pszName);
    }
@@ -431,7 +431,7 @@ namespace sockets
       return m_response.attrs();
    }
 
-   property & sip_base_client_socket::inheader(const char * pszName)
+   property & sip_base_client_socket::inheader(const ::string & pszName)
    {
       return m_request.header(pszName);
    }
@@ -441,7 +441,7 @@ namespace sockets
       return m_request.headers();
    }
 
-   property & sip_base_client_socket::outheader(const char * pszName)
+   property & sip_base_client_socket::outheader(const ::string & pszName)
    {
       return m_response.header(pszName);
    }
@@ -459,7 +459,7 @@ namespace sockets
    void sip_base_client_socket::OnHeader(id key, const string & value)
    {
       //sip_base_client_socket::OnHeader(key, value);
-      TRACE("  (request)OnHeader %s: %s\n", (const char *) string(key), (const char *) value);
+      TRACE("  (request)OnHeader %s: %s\n", (const ::string &) string(key), (const ::string &) value);
       if(key == "cookie")
       {
          m_request.cookies().parse_header(value);
@@ -521,7 +521,7 @@ namespace sockets
          }*/
    }
 
-   void sip_base_client_socket::OnData(const char *, size_t)
+   void sip_base_client_socket::OnData(const ::string &, size_t)
    {
    }
 

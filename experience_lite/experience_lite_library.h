@@ -23,7 +23,7 @@
             virtual ~library();
 
 
-            virtual __pointer(::object) alloc(::object * pobject, const char * pszClass, object * p) override;
+            virtual __pointer(::object) alloc(::object * pobject, const ::string & pszClass, object * p) override;
 
 
          };

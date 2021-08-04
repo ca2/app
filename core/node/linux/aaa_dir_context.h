@@ -52,14 +52,14 @@ namespace linux
       virtual ::file::path netseed() override;
 
       // stage in ca2os spalib
-      //  virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
+      //  virtual string matter(const ::string & pcsz, const ::string & lpcsz2 = nullptr);
 
       //virtual ::file::path install();
 //      virtual string matter(const ::string & str);
 //      virtual string matter(const ::string & str, const ::string & str2);
-//      virtual string matter(const char * pcsz, const ::string & str2);
+//      virtual string matter(const ::string & pcsz, const ::string & str2);
 
-//      virtual string matter(const ::string & str, const char * pcsz2);
+//      virtual string matter(const ::string & str, const ::string & pcsz2);
 
 
 //      virtual ::file::path module();

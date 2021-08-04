@@ -27,7 +27,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::object * pobject,const char * pszMessage,const char * pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
+   message_box::message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pobject)
    {
 
@@ -59,7 +59,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_a_button(id id,const char * pszText)
+   void message_box::create_a_button(id id, const ::string & pszText)
    {
 
       create_button(m_tapaA,id,pszText);
@@ -67,7 +67,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_b_button(id id,const char * pszText)
+   void message_box::create_b_button(id id, const ::string & pszText)
    {
 
       create_button(m_tapaB,id,pszText);
@@ -75,7 +75,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_button(__pointer_array(tap) & tapa,id id,const char * pszText)
+   void message_box::create_button(__pointer_array(tap) & tapa,id id, const ::string & pszText)
    {
 
       auto ptap = __new(::simple_ui::tap);
@@ -330,7 +330,7 @@ namespace simple_ui
    }
 
 
-   bool message_box::on_action(const char * pszId)
+   bool message_box::on_action(const ::string & pszId)
    {
 
       if(ansi_compare_ci(pszId,"ok") == 0)
@@ -490,7 +490,7 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const char * pszText, const char * pszCaption,u32 uFlags)
+//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption,u32 uFlags)
 //{
 //
 //   return os_message_box(oswindow, pszText, pszCaption, uFlags, function);
@@ -528,7 +528,7 @@ namespace simple_ui
 //}
 
 
-//i32 ui_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, u32 uFlags, const ::function_arg & function)
+//i32 ui_message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, u32 uFlags, const ::function_arg & function)
 //{
 //
 //   i32 iResult = 0;

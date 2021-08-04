@@ -74,7 +74,7 @@ extern ::app_core * g_pappcore;
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const char * psz, const char ** argv, int iFlags);
+void ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -107,7 +107,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 
 
 #if defined(APPLE_IOS) || defined(_UWP)
-CLASS_DECL_APEX int ui_open_url(const char * psz);
+CLASS_DECL_APEX int ui_open_url(const ::string & psz);
 #endif
 
 
@@ -471,7 +471,7 @@ void application::process_command_line(command_line* pcommandline)
 //}
 
 
-//string application::dialog_box(const char * pszMatter, property_set & propertyset)
+//string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
 //{
 
 //   throw_todo();
@@ -868,7 +868,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 }
 
 
-//::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -876,7 +876,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   if (!get_session() || !psession->userex())
@@ -891,7 +891,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   if (!get_session() || !psession->userex())
@@ -906,7 +906,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -923,7 +923,7 @@ pcreate->m_pcommandline->m_eventReady.SetEvent();
 //}
 
 
-//::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
 //{
 
 //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -1217,7 +1217,7 @@ return bIsUserService && bIsService;
 
 
 
-::file::path command_find_path(const char * pszCommand)
+::file::path command_find_path(const ::string & pszCommand)
 {
 
 #ifdef _UWP
@@ -1255,210 +1255,17 @@ return pszCommand;
 #endif
 
 }
-// #ifdef WINDOWS_DESKTOP
 
 
-//    class open_browser_enum
-//    {
-//    public:
-
-//       string                           m_strWindowEnd;
-//       string                           m_strTopic;
-//       string                           m_strCounterTopic;
-//       oswindow                         m_hwnd;
-//       comparable_array < oswindow >    m_hwndaTopic;
-//       comparable_array < oswindow >    m_hwndaCounterTopic;
-
-//    };
-
-
-//    int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
-//    {
-
-//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
-
-//       string str = ::str::get_window_text_timeout(oswindow, 1000);
-
-//       if (::str::ends_ci(str, penum->m_strWindowEnd))
-//       {
-
-//          penum->m_hwnd = oswindow;
-
-//          return false;
-
-//       }
-
-//       return true;
-
-//    }
-
-
-//    int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
-//    {
-
-//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
-
-//       string str = ::str::get_window_text_timeout(oswindow);
-
-//       if (::str::ends_ci(str, penum->m_strTopic))
-//       {
-
-//          penum->m_hwndaTopic.add(oswindow);
-
-//       }
-
-//       return true;
-
-//    }
-
-
-//    int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
-//    {
-
-//       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
-
-//       string str = ::str::get_window_text_timeout(oswindow, 1000);
-
-//       if (::str::ends_ci(str, penum->m_strCounterTopic))
-//       {
-
-//          penum->m_hwndaCounterTopic.add(oswindow);
-
-//       }
-
-//       return true;
-
-//    }
-
-// #endif
-
-
-
-
-//::file::path application::defer_process_path(::file::path path)
-//{
-
-//   return psystem->defer_process_path(path, this);
-
-//}
-
-
-//::file::path application::full_process_path(::file::path path)
-//{
-
-//   if (!(path & ::file::e_flag_dont_resolve_alias))
-//   {
-
-//      path |= ::file::e_flag_resolve_alias;
-
-//   }
-
-//   return psystem->full_process_path(path, this);
-
-//}
-
-
-
-
-//void application::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
-//{
-
-//   browser(strUrl, "", strProfile, strTarget);
-
-//}
-
-
-//bool application::open_link(string strLink, string strProfile, string strTarget)
-//{
-
-//   if (is_system())
-//   {
-
-//      if (strLink.begins_ci("mailto:"))
-//      {
-
-//         return m_pcontext->m_papexcontext->os().file_open(this, strLink);
-
-//      }
-
-//      open_profile_link(strLink, strProfile, strTarget);
-
-//      return true;
-
-//   }
-//   else
-//   {
-
-//      return psession->open_link(strLink, strProfile, strTarget);
-
-//   }
-
-//   return false;
-
-//}
-
-
-//#ifdef WINDOWS
-//
-//
-//   void application::TermThread(HINSTANCE hInstTerm)
-//   {
-//
-//      ::exception::throw_interface_only();
-//
-//   }
-//
-//
-//#endif
-
-
-bool application::_001OnDDECommand(const char * pcsz)
-
+bool application::_001OnDDECommand(const ::string & str)
 {
 
-::exception::throw_interface_only();
+   ::exception::throw_interface_only();
 
-return false;
+   return false;
 
 }
 
-
-
-/*::user::document *  application::_001OpenDocumentFile(::payload varFile)
-{
-
-::exception::throw_interface_only();
-
-return nullptr;
-
-}*/
-
-
-//void application::_001OnFileNew(::message::message * pmessage)
-//{
-
-//   ::exception::throw_interface_only();
-
-//}
-
-
-//bool application::update_module_paths()
-//{
-
-
-//   if(is_system())
-//   {
-
-//      if(!m_pimpl->update_module_paths())
-//         return false;
-
-
-//   }
-
-//   return true;
-
-
-//}
 
 
 void application::_001CloseApplication()
@@ -1470,38 +1277,9 @@ void application::_001CloseApplication()
 
 
 
-//void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
-//{
-
-//   UNREFERENCED_PARAMETER(nCode);
-
-//}
 
 
-//   void application::show_wait_cursor(bool bShow)
-//   {
-//
-//      if (m_pappimpl.is_null())
-//         return;
-//
-//      m_pappimpl->show_wait_cursor(bShow);
-//
-//
-//   }
-//
-//
-
-//   string CLASS_DECL_APEX application::get_cred(const ::string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
-// {
-
-//  __throw(error_not_implemented);
-
-//}
-
-
-
-
-::e_status application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+::e_status application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
 {
 
 __throw(error_not_implemented);
@@ -1511,7 +1289,7 @@ return false;
 }
 
 
-::e_status application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+::e_status application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
 {
 
 return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -2904,7 +2682,7 @@ return estatus;
 }
 
 
-bool application::system_add_app_install(const char * pszId, const char * pszBuild)
+bool application::system_add_app_install(const ::string & pszId, const ::string & pszBuild)
 {
 
 // cool install
@@ -3016,7 +2794,7 @@ return true;
 }
 
 
-bool application::on_application_menu_action(const char * pszCommand)
+bool application::on_application_menu_action(const ::string & pszCommand)
 {
 
 return false;
@@ -3489,7 +3267,7 @@ return false;
 }
 
 }
-catch (const char * psz)
+catch (const ::string & psz)
 {
 
 if (!strcmp(psz, "You have not logged in! Exiting!"))
@@ -4626,7 +4404,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 }
 
 
-//i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+//i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
 //{
 
 //   UNREFERENCED_PARAMETER(durationTimeOut);
@@ -4640,7 +4418,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 
 
 
-string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
 {
 
 ::exception::throw_interface_only();
@@ -4901,7 +4679,7 @@ localeschema.destroy();
 }
 
 
-bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
+bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate)
 {
 
 return false;
@@ -4919,7 +4697,7 @@ return false;
 
 
 
-//i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//i32 application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //{
 
 //   return -1;
@@ -4982,7 +4760,7 @@ return !is_session() && !is_system();
 
 //}
 
-void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
+void application::post_critical_error_message(const ::string & pszMessage, bool bShowLog)
 {
 
 string strMessage;
@@ -5382,7 +5160,7 @@ __throw(todo, "xml");
 
 //}
 
-//const char * psz = doc.GetChildAttrValue("launch", "app");
+//const ::string & psz = doc.GetChildAttrValue("launch", "app");
 
 //if (psz == nullptr || *psz == '\0')
 //{
@@ -6530,7 +6308,7 @@ string strType = type_name();
 //}
 
 
-//__pointer(::application) application::assert_running(const char * pszAppId)
+//__pointer(::application) application::assert_running(const ::string & pszAppId)
 //{
 
 //   __pointer(::application) papp;
@@ -7005,48 +6783,44 @@ return true;
 bool application::assert_user_logged_in()
 {
 
-const char * pszRequestUrl = nullptr;
+   string strRequestUrl;
 
-string strRequestUrl;
+   if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+   {
 
-if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
-{
+      strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
-strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+   }
 
-pszRequestUrl = strRequestUrl;
+   if (get_session() == nullptr)
+   {
 
-}
+      return false;
 
-if (get_session() == nullptr)
-{
+   }
 
-return false;
+   //if (get_session()->account() == nullptr)
+   //{
 
-}
+   //   return false;
 
-//if (get_session()->account() == nullptr)
-//{
+   //}
 
-//   return false;
+   //if (interactive_get_user() == nullptr)
+   //{
 
-//}
+   //   return false;
 
-//if (interactive_get_user() == nullptr)
-//{
+   //}
 
-//   return false;
-
-//}
-
-return true;
+   return true;
 
 }
 
 
 
 
-string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
+string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
 {
 
 ::payload varFile;
@@ -7061,20 +6835,20 @@ return m_pcontext->m_papexcontext->file().as_string(varFile);
 
 }
 
-//string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+//string application::dir().matter(const ::string & pszMatter,const ::string & pszMatter2)
 //{
 
 //   return dir().matter(pszMatter,pszMatter2);
 
 //}
 
-//bool application::is_inside_time_dir(const char * pszPath)
+//bool application::is_inside_time_dir(const ::string & pszPath)
 //{
 //   return dir().is_inside_time(pszPath);
 //}
 
 
-//bool application::file_is_read_only(const char * pszPath)
+//bool application::file_is_read_only(const ::string & pszPath)
 //{
 
 //   return false;
@@ -7205,7 +6979,7 @@ pnode->show_wait_cursor(true);
 
 
 
-//::draw2d::printer * application::get_printer(const char * pszDeviceName)
+//::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
 //{
 
 //   ::exception::throw_interface_only();
@@ -7230,7 +7004,7 @@ return error_not_implemented;
 }
 
 
-string application::dialog_box(const char* pszMatter, property_set& propertyset)
+string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
 {
 
 __throw(todo, "core and os");
@@ -7254,7 +7028,7 @@ return"";
 
 
 
-//bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
+//bool application::get_temp_file_name_template(string & strRet,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate)
 //{
 
 //   __throw(error_not_implemented);
@@ -7264,7 +7038,7 @@ return"";
 //}
 
 
-//bool application::get_temp_file_name(string & strRet,const char * lpszName,const char * pszExtension)
+//bool application::get_temp_file_name(string & strRet,const ::string & lpszName,const ::string & pszExtension)
 //{
 
 //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
@@ -7335,7 +7109,7 @@ return m_strAppId;
 //}
 
 
-::e_status application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+::e_status application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 {
 
 {
@@ -7385,7 +7159,7 @@ return hotplugin_host_host_starter_start_sync(pszCommandLine, get_application(),
 }
 
 
-::e_status application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+::e_status application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 {
 
 return -1;
@@ -7479,7 +7253,7 @@ return -1;
 //
 //   }
 //
-//   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+//   void application::set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword)
 //   {
 //
 //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
@@ -7701,7 +7475,7 @@ return m_datakey.m_bLocalData;
 //}
 
 
-//bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
+//bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
 //{
 //
 //UNREFERENCED_PARAMETER(nID);
@@ -7747,7 +7521,7 @@ return m_datakey.m_bLocalData;
 //}
 //
 //
-//bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+//bool application::GetResourceData(::u32 nID, const ::string & pcszType, memory& storage)
 //
 //{
 //
@@ -7832,14 +7606,20 @@ return thread::process_window_procedure_exception(e, pmessage);
 
 // handle all the rest
 //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
-const char* nIDP = "Internal Failure";
+const ::string & nIDP = "Internal Failure";
 pmessage->m_lresult = 0;        // sensible default
 if (pmessage->m_id == e_message_command)
 {
-if (pmessage->m_lparam == 0)
-//linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
-nIDP = "Command Failure";
-pmessage->m_lresult = true;        // pretend the command was handled
+
+   if (pmessage->m_lparam == 0)
+   {
+      //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
+      //nIDP = "Command Failure";
+
+   }
+
+   pmessage->m_lresult = true;        // pretend the command was handled
+
 }
 
 if (e.estatus() == error_no_memory)
@@ -7869,7 +7649,7 @@ void application::route_command_message(::message::command* pcommand)
 
 
 /*
-bool application::hex_to_memory(memory & memory, const char * pszHex)
+bool application::hex_to_memory(memory & memory, const ::string & pszHex)
 {
 ::count len = strlen(pszHex);
 ::count count = (len + 1) / 2;
@@ -8261,7 +8041,7 @@ m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
 {
 for (i32 i = 1; i < __argc; i++)
 {
-const char * pszParam = __targv[i];
+const ::string & pszParam = __targv[i];
 bool bFlag = false;
 bool bLast = ((i + 1) == __argc);
 if (pszParam[0] == '-' || pszParam[0] == '/')
@@ -8289,7 +8069,7 @@ CCommandLineInfo::~CCommandLineInfo()
 {
 }
 
-void CCommandLineInfo::ParseParam(const char* pszParam,bool bFlag,bool bLast)
+void CCommandLineInfo::ParseParam(const ::string & pszParam,bool bFlag,bool bLast)
 {
 if (bFlag)
 {
@@ -8304,7 +8084,7 @@ ParseLast(bLast);
 
 /*
 #ifdef UNICODE
-void CCommandLineInfo::ParseParam(const char* pszParam, bool bFlag, bool bLast)
+void CCommandLineInfo::ParseParam(const ::string & pszParam, bool bFlag, bool bLast)
 {
 if (bFlag)
 ParseParamFlag(pszParam);
@@ -8317,7 +8097,7 @@ ParseLast(bLast);
 */
 
 /*
-void CCommandLineInfo::ParseParamFlag(const char* pszParam)
+void CCommandLineInfo::ParseParamFlag(const ::string & pszParam)
 {
 // OLE command switches are case insensitive, while
 // shell command switches are case sensitive
@@ -8348,7 +8128,7 @@ m_bShowSplash = false;
 }
 }
 
-void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
 {
 if (m_strFileName.is_empty())
 m_strFileName = pszParam;
@@ -8361,7 +8141,7 @@ m_strPortName = pszParam;
 }
 
 #ifdef UNICODE
-void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
 {
 if (m_strFileName.is_empty())
 m_strFileName = pszParam;
@@ -8514,7 +8294,7 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //}
 
 
-/*   bool application::open_link(const char * pszLink, const char * pszTarget)
+/*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
 {
 UNREFERENCED_PARAMETER(pszLink);
 UNREFERENCED_PARAMETER(pszTarget);
@@ -8563,19 +8343,19 @@ void application::on_file_open()
 
 
 
-/*void ::apex::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
+/*void ::apex::FormatString1(string & rString, ::u32 nIDS, const ::string & psz1)
 
 {
 __format_strings(rString, nIDS, &psz1, 1);
 
 }
 
-void ::apex::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
+void ::apex::FormatString2(string & rString, ::u32 nIDS, const ::string & psz1,
 
-const char * psz2)
+const ::string & psz2)
 
 {
-const char * rgpsz[2];
+const ::string & rgpsz[2];
 rgpsz[0] = psz1;
 
 rgpsz[1] = psz2;
@@ -8888,7 +8668,7 @@ return true;
 //// application Settings Helpers
 //
 //
-//void application::SetRegistryKey(const char* pszRegistryKey)
+//void application::SetRegistryKey(const ::string & pszRegistryKey)
 //
 //{
 ////ASSERT(m_pszRegistryKey == nullptr);
@@ -8956,7 +8736,7 @@ return true;
 //
 //   // creating it if it doesn't exist.
 //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-//   HKEY application::GetSectionKey(const char* pszSection)
+//   HKEY application::GetSectionKey(const ::string & pszSection)
 //   {
 //
 //      ASSERT(pszSection != nullptr);
@@ -8984,7 +8764,7 @@ return true;
 //
 //#endif
 
-/*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
+/*   ::u32 application::GetProfileInt(const ::string & pszSection, const ::string & pszEntry,
 
 i32 nDefault)
 {
@@ -9022,9 +8802,9 @@ m_pszProfileName);
 }
 }
 
-string application::GetProfileString(const char * pszSection, const char * pszEntry,
+string application::GetProfileString(const ::string & pszSection, const ::string & pszEntry,
 
-const char * pszDefault)
+const ::string & pszDefault)
 
 {
 ASSERT(pszSection != nullptr);
@@ -9079,7 +8859,7 @@ return szT;
 }
 }
 
-bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
+bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
 byte** ppData, ::u32* pBytes)
 {
@@ -9151,7 +8931,7 @@ return true;
 }
 
 
-bool application::WriteProfileInt(const char * pszSection, const char * pszEntry,
+bool application::WriteProfileInt(const ::string & pszSection, const ::string & pszEntry,
 
 i32 nValue)
 {
@@ -9183,9 +8963,9 @@ m_pszProfileName);
 }
 }
 
-bool application::WriteProfileString(const char * pszSection, const char * pszEntry,
+bool application::WriteProfileString(const ::string & pszSection, const ::string & pszEntry,
 
-const char * pszValue)
+const ::string & pszValue)
 
 {
 ASSERT(pszSection != nullptr);
@@ -9239,7 +9019,7 @@ m_pszProfileName);
 }
 }
 
-bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
+bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
 byte * pData, ::u32 nBytes)
 {
@@ -9443,7 +9223,7 @@ pmessage->m_bRet = true;
 //}
 
 
-//bool application::_001OnDDECommand(const char* pcsz)
+//bool application::_001OnDDECommand(const ::string & pcsz)
 
 //{
 //   ::exception::throw_not_implemented();
@@ -9826,7 +9606,7 @@ UNREFERENCED_PARAMETER(pmessage);
 }
 
 
-//::apex::printer* application::get_printer(const char* pszDeviceName)
+//::apex::printer* application::get_printer(const ::string & pszDeviceName)
 //{
 
 //   return nullptr;
@@ -9834,7 +9614,7 @@ UNREFERENCED_PARAMETER(pmessage);
 //}
 
 
-//bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
+//bool application::set_keyboard_layout(const ::string & pszPath, const ::action_context& context)
 //{
 
 //   return psession->keyboard().load_layout(pszPath, context);
@@ -9842,7 +9622,7 @@ UNREFERENCED_PARAMETER(pmessage);
 //}
 
 
-//i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
+//i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
 //{
 
 //   UNREFERENCED_PARAMETER(pszMatter);
@@ -9854,7 +9634,7 @@ UNREFERENCED_PARAMETER(pmessage);
 //}
 
 
-bool application::get_fs_size(string& strSize, const char* pszPath, bool& bPending)
+bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
 {
 
 i64 i64Size;
@@ -9917,7 +9697,7 @@ return true;
 }
 
 
-bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
+bool application::get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending)
 {
 return false;
 //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -9934,7 +9714,7 @@ return false;
 }
 
 
-void application::set_title(const char* pszTitle)
+void application::set_title(const ::string & pszTitle)
 {
 
 auto psession = get_session();
@@ -9970,7 +9750,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //}
 
 
-//oswindow application::get_ca2_app_wnd(const char* psz)
+//oswindow application::get_ca2_app_wnd(const ::string & psz)
 //{
 
 //   UNREFERENCED_PARAMETER(psz);
@@ -9980,7 +9760,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //}
 
 
-//   i32 application::send_simple_command(const char* psz, void* osdataSender)
+//   i32 application::send_simple_command(const ::string & psz, void* osdataSender)
 //   {
 //      string strApp;
 //      string_array stra;
@@ -9998,7 +9778,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //   }
 //
 //
-//   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
+//   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
 //   {
 //#ifdef WINDOWS_DESKTOP
 //      ::::windowing::window * pwindow = (::oswindow) osdata;
@@ -10066,7 +9846,7 @@ void application::ensure_app_interest()
 
 
 /*
-__pointer(::application) application::assert_running(const char * pszAppId)
+__pointer(::application) application::assert_running(const ::string & pszAppId)
 {
 
 
@@ -10189,7 +9969,7 @@ __pointer(::application) application::create_platform(::apex::session* psession)
 }
 
 
-void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
+void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
 {
 
    string strMessage;
@@ -10299,7 +10079,7 @@ string application::as_string(const ::payload & payload)
 }
 
 
-string application::sound_path(const char* psz)
+string application::sound_path(const ::string & psz)
 {
 
    string strFileName = string(psz) + string(".wav");
@@ -10391,7 +10171,7 @@ void application::close(::apex::enum_end eend)
 }
 
 
-__pointer(::extended::future < ::conversation >) application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+__pointer(::extended::future < ::conversation >) application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
 {
 
    auto psystem = get_system()->m_papexsystem;
@@ -10445,7 +10225,7 @@ string application::get_wm_class() const
 #endif
 
 
-void application_on_menu_action(void * pApplication, const char * pszCommand)
+void application_on_menu_action(void * pApplication, const ::string & pszCommand)
 {
    
    auto papplication = (::application *) pApplication;

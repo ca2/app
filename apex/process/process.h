@@ -19,18 +19,18 @@ namespace process
 
 
       process();
-      virtual ~process();
+      ~process() override;
 
 
-      virtual bool create_child_process(const char * pszCmdLine, bool bPiped = false, const char * pszDir = nullptr, ::e_priority epriority = ::priority_none);
+      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::e_priority epriority = ::priority_none);
 
       virtual void wait_until_exit(i32 iWaitMax = 0);
       virtual bool has_exited();
 
-      virtual bool write(const char * psz);
+      virtual bool write(const ::string & psz);
       virtual string read(bool bUntilExit = false);
 
-      virtual bool synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
+      virtual bool synch_elevated(const ::string & pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut);
 
       virtual bool kill();
 

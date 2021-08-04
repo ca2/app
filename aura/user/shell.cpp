@@ -534,20 +534,20 @@ namespace user
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const widechar * pcszPath)
+   shell::e_folder shell::get_folder_type(::object * pobject, const ::wstring & wstrPath)
    {
 
-      string str(pcszPath);
+      string str(wstrPath);
 
       return get_folder_type(pobject, str);
 
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const char * pcszPath)
+   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & strPath)
    {
 
-      wstring wstr(pcszPath);
+      wstring wstr(strPath);
 
       return get_folder_type(pobject, wstr);
 

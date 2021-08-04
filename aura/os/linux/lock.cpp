@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 
-i32 _c_lock_is_active(const char * lpszName)
+i32 _c_lock_is_active(const ::string & lpszName)
 {
 
    i32 * pfd;
@@ -23,7 +23,7 @@ i32 _c_lock_is_active(const char * lpszName)
 }
 
 
-i32 _c_lock(const char * lpszName, void ** pdata)
+i32 _c_lock(const ::string & lpszName, void ** pdata)
 {
 
    i32 fd;
@@ -82,7 +82,7 @@ i32 _c_unlock(void ** pdata)
 
 
 
-string _ca_get_file_name(const char * lpszName, bool bCreate, i32 * pfd)
+string _ca_get_file_name(const ::string & lpszName, bool bCreate, i32 * pfd)
 {
 
    string str(lpszName);

@@ -1,15 +1,15 @@
 #pragma once
 
 
-CLASS_DECL_AURA string url_encode(const char * psz);
+CLASS_DECL_AURA string url_encode(const ::string & psz);
 
 
-CLASS_DECL_AURA string url_decode(const char * psz);
-CLASS_DECL_AURA string url_decode(const char * pszUrl,strsize iLen);
+CLASS_DECL_AURA string url_decode(const ::string & psz);
+CLASS_DECL_AURA string url_decode(const ::string & pszUrl,strsize iLen);
 
 
 
-CLASS_DECL_AURA bool url_query_get_param(string & strParam,const char * pszKey,const char * pszUrl);
+CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & pszKey, const ::string & pszUrl);
 
 
 

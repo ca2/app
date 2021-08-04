@@ -8,7 +8,7 @@
 #include <libproc.h>
 
 
-extern int ansi_count_compare(const char * sz1, const char * sz2, iptr iLen);
+extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr iLen);
 
 ///************************************************************************
 // *
@@ -18,7 +18,7 @@ extern int ansi_count_compare(const char * sz1, const char * sz2, iptr iLen);
 // *
 // *************************************************************************/
 ///*=======================================================================*/
-//int get_process_pid(const char * csProcessName)
+//int get_process_pid(const ::string & csProcessName)
 //{
 ///*=======================================================================*/
 //
@@ -113,7 +113,7 @@ id_array get_pids()
 }
 
 
-id_array module_path_get_pid(const char * csProcessName)
+id_array module_path_get_pid(const ::string & csProcessName)
 {
 
    id_array iaPid;
@@ -176,7 +176,7 @@ string module_path_from_pid(unsigned int uiPid)
 }
 
 //
-//id_array app_get_pid(const char * psz)
+//id_array app_get_pid(const ::string & psz)
 //{
 //
 //   id_array ia;
@@ -432,7 +432,7 @@ string module_path_from_pid(unsigned int uiPid)
 //
 //
 //
-//extern int ansi_count_compare(const char * sz1, const char * sz2, iptr iLen);
+//extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr iLen);
 //
 ///************************************************************************
 // *
@@ -442,7 +442,7 @@ string module_path_from_pid(unsigned int uiPid)
 // *
 // *************************************************************************/
 ///*=======================================================================*/
-//int get_process_pid(const char * csProcessName)
+//int get_process_pid(const ::string & csProcessName)
 //{
 //   /*=======================================================================*/
 //

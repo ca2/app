@@ -154,7 +154,7 @@ CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //   }
 //
 //
-//   bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir,i32 iCa2Priority)
+//   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir,i32 iCa2Priority)
 //   {
 //
 //      if(!::process::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
@@ -331,7 +331,7 @@ CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //   }
 //
 //
-//   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+//   bool process::synch_elevated(const ::string & pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
 //   {
 //
 //

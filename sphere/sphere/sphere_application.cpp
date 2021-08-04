@@ -619,12 +619,12 @@ namespace sphere
    }
 
 
-   void application::launch_app(const char * psz)
+   void application::launch_app(const ::string & psz)
    {
       UNREFERENCED_PARAMETER(psz);
    }
 
-   void application::install_app(const char * psz)
+   void application::install_app(const ::string & psz)
    {
 
       UNREFERENCED_PARAMETER(psz);
@@ -736,7 +736,7 @@ namespace sphere
    }
 
 
-   __pointer(::aura::application) application::application_get(const char * pszAppId, bool bCreate, bool bSynch, application_bias * papplicationbias)
+   __pointer(::aura::application) application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * papplicationbias)
    {
 
       __pointer(::aura::application) papp;
@@ -823,7 +823,7 @@ namespace sphere
    //}
 
 
-   void application::set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle)
+   void application::set_app_title(const ::string & pszType, const ::string & pszAppId, const ::string & pszTitle)
    {
 
       __pointer(::aura::application) papp;

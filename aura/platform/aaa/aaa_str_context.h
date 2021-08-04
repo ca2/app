@@ -101,19 +101,19 @@
 //      inline auto& operator[](const ::id& id) { return m_map[id]; }
 //      inline auto& operator[](const ::id& id)const { return m_map[id]; }
 //
-//      void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz);
+//      void set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const ::string & psz);
 //      string get(const str_context * pcontext, const ::id & id, bool bIdAsDefaultValue = true) const;
 //      string get(const str_context * pcontext,const ::id & id,const ::id & idLocale,const ::id & idSchema,bool bIdAsDefaultValue = true) const;
 //      void get(string_array & stra, const str_context * pcontext, const ::id & id) const;
 //      void _get(string_array & stra, const str_context * pcontext, const ::id & id) const ;
 //
-//      bool load(const char * pszBaseDir);
-//      bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, const char * pszFile);
+//      bool load(const ::string & pszBaseDir);
+//      bool load_uistr_file(const ::id & idLocale, const ::id & idSchema, const ::string & pszFile);
 //
-//      string body(const char * psz);
+//      string body(const ::string & psz);
 //
-//      bool matches(const str_context * pcontext, const ::id & id, const char * psz) const;
-//      bool begins(const str_context * pcontext, const char * psz, const ::id & id) const;
+//      bool matches(const str_context * pcontext, const ::id & id, const ::string & psz) const;
+//      bool begins(const str_context * pcontext, const ::string & psz, const ::id & id) const;
 //      bool begins_eat(const str_context * pcontext, string & str, const ::id & id) const;
 //
 //
@@ -193,7 +193,7 @@
 //         return *m_plocaleschema;
 //      }
 //
-//      inline bool matches(const ::id & id, const char * psz) const
+//      inline bool matches(const ::id & id, const ::string & psz) const
 //      {
 //
 //         return m_pstr->matches(this, id, psz);
@@ -201,7 +201,7 @@
 //      }
 //
 //
-//      inline bool begins(const ::id & id, const char * psz) const
+//      inline bool begins(const ::id & id, const ::string & psz) const
 //      {
 //
 //         return m_pstr->begins(this, __str(id), psz);
@@ -234,9 +234,9 @@
 //
 //      }
 //
-//      //virtual bool match(const regex * pregexp, string_array & stra, const char * psz, id pszExp, id pszRoot);
+//      //virtual bool match(const regex * pregexp, string_array & stra, const ::string & psz, id pszExp, id pszRoot);
 //
-//      virtual bool match(string_array & stra, const char * psz, id pszExp, id pszRoot) const;
+//      virtual bool match(string_array & stra, const ::string & psz, id pszExp, id pszRoot) const;
 //
 //
 //   };

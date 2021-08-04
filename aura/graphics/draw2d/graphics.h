@@ -224,9 +224,9 @@ namespace draw2d
       virtual u32 SetLayout(u32 dwLayout);
 
       // Constructors
-      virtual bool CreateDC(const char * pszDriverName, const char * pszDeviceName, const char * pszOutput, const void * lpInitData);
+      virtual bool CreateDC(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
-      virtual bool CreateIC(const char * pszDriverName, const char * pszDeviceName, const char * pszOutput, const void * lpInitData);
+      virtual bool CreateIC(const ::string & pszDriverName, const ::string & pszDeviceName, const ::string & pszOutput, const void * lpInitData);
 
       virtual bool create_memory_graphics();
       virtual bool CreateCompatibleDC(::draw2d::graphics * pgraphics);
@@ -527,10 +527,10 @@ namespace draw2d
 //      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, hicon hIcon, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
 //#endif
-//      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const char * pszText, ::u32 nFlags,
+//      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, ::u32 nFlags,
 
   //                           bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr);
-//      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const char * pszText, ::u32 nFlags,
+//      virtual bool DrawState(const ::point_f64 & point, const ::size_f64 & ::size_f64, const ::string & pszText, ::u32 nFlags,
 //
 //                             bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //#ifdef WINDOWS_DESKTOP
@@ -766,7 +766,7 @@ namespace draw2d
 
 
       // Text Functions
-      //virtual bool text_out(double x, double y, const char * pszString, strsize nCount);
+      //virtual bool text_out(double x, double y, const ::string & pszString, strsize nCount);
 
       inline bool text_out(const ::point_f64 & point, const block & block)
       {
@@ -776,11 +776,11 @@ namespace draw2d
       }
 
       virtual bool text_out(double x, double y, const block & str);
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const char * pszString, strsize nCount, i32 * lpDxWidths);
+      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * lpDxWidths);
 
       virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * lpDxWidths);
 
-      virtual ::size_f64 TabbedTextOut(double x, double y, const char * pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
+      virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
 
       virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
@@ -833,7 +833,7 @@ namespace draw2d
 
       virtual ::size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
 
-      virtual ::size_f64 GetOutputTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
+      virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * lpnTabStopPositions);
 
       virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions);
 
@@ -857,7 +857,7 @@ namespace draw2d
 
 // #ifdef WINDOWS_DESKTOP
 
-//       virtual u32 GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags);
+//       virtual u32 GetCharacterPlacement(const ::string & pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags);
 
 //       virtual u32 GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags);
 
@@ -934,15 +934,15 @@ namespace draw2d
 //#endif
 
       //// Printer/Device Escape Functions
-      //virtual i32 Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID lpOutData);
+      //virtual i32 Escape(i32 nEscape, i32 nCount, const ::string & pszInData, LPVOID lpOutData);
 
-      //virtual i32 Escape(i32 nEscape, i32 nInputSize, const char * pszInputData, i32 nOutputSize, char * pszOutputData);
+      //virtual i32 Escape(i32 nEscape, i32 nInputSize, const ::string & pszInputData, i32 nOutputSize, char * pszOutputData);
 
-      //virtual i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * pszInputData);
+      //virtual i32 DrawEscape(i32 nEscape, i32 nInputSize, const ::string & pszInputData);
 
 
       // Escape helpers
-      virtual i32 StartDoc(const char * pszDocName);  // old Win3.0 version
+      virtual i32 StartDoc(const ::string & pszDocName);  // old Win3.0 version
 
 
 //#ifdef WINDOWS_DESKTOP

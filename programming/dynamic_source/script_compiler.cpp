@@ -18,14 +18,14 @@
 #include <ctype.h>
 #endif
 
-//::u32 RunSilent(const char* strFunct, const char* strstrParams);
+//::u32 RunSilent(const ::string & strFunct, const ::string & strstrParams);
 
 
 
 namespace dynamic_source
 {
 
-   string escape(const char * pcsz);
+   string escape(const ::string & pcsz);
 
    void add_var_id(string & strResult, strsize & iArroba, string_array & straId, bool bMakeKeyLower = true);
 
@@ -1122,7 +1122,7 @@ namespace dynamic_source
 
    }
 
-   string escape(const char * pcsz)
+   string escape(const ::string & pcsz)
    {
       string str(pcsz);
       str.replace("\\", "\\\\");
@@ -1332,7 +1332,7 @@ namespace dynamic_source
 
    }
 
-   void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
+   void script_compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
    {
 
       string_array stra;
@@ -1699,7 +1699,7 @@ namespace dynamic_source
    }
 
 
-   library & script_compiler::lib(const char * pszLibrary)
+   library & script_compiler::lib(const ::string & pszLibrary)
    {
 
       single_lock slLibrary(&m_mutexLibrary,true);
@@ -2885,7 +2885,7 @@ ch_else:
    }
 
 
-   bool script_compiler::is_id(const char * psz, strsize iLen, const char * pszId, strsize iIdLen, strsize & iIdLenRet)
+   bool script_compiler::is_id(const ::string & psz, strsize iLen, const ::string & pszId, strsize iIdLen, strsize & iIdLenRet)
    {
       if(iLen < iIdLen)
          return false;
@@ -2906,7 +2906,7 @@ ch_else:
       return false;
    }
 
-   const char * script_compiler::next_nonspace(const char * psz)
+   const char * script_compiler::next_nonspace(const ::string & psz)
    {
       while(*psz != '\0' && isspace(*psz))
       {
@@ -3014,7 +3014,7 @@ ch_else:
    }
 
 
-   bool script_compiler::defer_run_persistent(const char *psz)
+   bool script_compiler::defer_run_persistent(const ::string &psz)
    {
       string str(psz);
 
@@ -3174,7 +3174,7 @@ ch_else:
       m_plibraryLib->close();
    }
 
-   string script_compiler::get_ds_print(const char *psz)
+   string script_compiler::get_ds_print(const ::string &psz)
    {
       string strSource(psz);
       string strDest;
@@ -3275,7 +3275,7 @@ ch_else:
    }
 
 
-   void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz)
+   void script_compiler::pstr_set(id pszTopic,id idLocale,id idSchema, const ::string & psz)
    {
 
       synchronous_lock synchronouslock(m_pmanager->mutex());

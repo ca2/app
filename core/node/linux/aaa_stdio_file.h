@@ -24,7 +24,7 @@ namespace linux
       stdio_file();
       virtual ~stdio_file();
 
-      virtual void write_string(const char * psz) override;
+      virtual void write_string(const ::string & psz) override;
 
       virtual char * read_string(char * psz, ::u32 nMax);
 

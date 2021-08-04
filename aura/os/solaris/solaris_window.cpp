@@ -293,7 +293,7 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessag
 }
 
 
-i32 oswindow_data::store_name(const char * psz)
+i32 oswindow_data::store_name(const ::string & psz)
 {
 
    single_lock synchronouslock(&user_mutex(), true);
@@ -745,7 +745,7 @@ public:
    }
 
    using ::os::simple_ui::show_window;
-   i32 show_window(const char * lpText, const char * lpCaption)
+   i32 show_window(const ::string & lpText, const ::string & lpCaption)
    {
 
       ::get_window_rect(::get_desktop_window(), &m_rectDesktop);
@@ -866,7 +866,7 @@ public:
 
 };
 
-i32 message_box_show_xlib(base_application * papp, const char * lpText, const char * lpCaption)
+i32 message_box_show_xlib(base_application * papp, const ::string & lpText, const ::string & lpCaption)
 {
 
    xlib_message_box box(pobject);
@@ -878,7 +878,7 @@ i32 message_box_show_xlib(base_application * papp, const char * lpText, const ch
 
 
 
-i32 WINAPI MessageBoxA_x11(oswindow hWnd, const char * lpText, const char * lpCaption, ::u32 uType)
+i32 WINAPI MessageBoxA_x11(oswindow hWnd, const ::string & lpText, const ::string & lpCaption, ::u32 uType)
 {
 
    base_application * papp = nullptr;
@@ -914,7 +914,7 @@ static void initialize_x11_message_box()
 
 
 
-i32 WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, ::u32 uType)
+i32 WINAPI MessageBoxA(oswindow hWnd, const ::string & lpText, const ::string & lpCaption, ::u32 uType)
 {
 
    message_box_show_xlib(get_application(), lpText, lpCaption);

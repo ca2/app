@@ -79,8 +79,8 @@ namespace introjection
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      void initialize_compiler(const char * pszRepos, const char * pszApp, const char * pszProjectName);
-      void prepare1(const char * lpcszSource,const char * lpcszDest);
+      void initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName);
+      void prepare1(const ::string & lpcszSource, const ::string & lpcszDest);
       void prepare_compile_and_link_environment();
 
       ::acme::library * compile(string str,bool bNew);

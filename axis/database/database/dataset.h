@@ -69,7 +69,7 @@ namespace database
 
       virtual void fill_fields()=0;
 
-      void parse_sql(const char * sql);
+      void parse_sql(const ::string & sql);
 
       dataset(database * pdatabase);
 
@@ -82,11 +82,11 @@ namespace database
 
       virtual ::count num_rows()= 0;
 
-      virtual void open(const char * sql) = 0;
+      virtual void open(const ::string & sql) = 0;
       virtual void open() = 0;
-      virtual bool exec(const char * sql) = 0;
+      virtual bool exec(const ::string & sql) = 0;
       virtual bool exec() = 0;
-      virtual bool query(const char *sql) = 0;
+      virtual bool query(const ::string &sql) = 0;
 
       virtual void close();
 
@@ -111,14 +111,14 @@ namespace database
       virtual ::database::row * proper_row();
 
 
-      //virtual bool set_field_value(const char *f, const ::payload &v);
+      //virtual bool set_field_value(const ::string &f, const ::payload &v);
 
-      virtual class field * field(const char * name);
-      virtual ::payload field_value(const char * name);
+      virtual class field * field(const ::string & name);
+      virtual ::payload field_value(const ::string & name);
       virtual ::payload select_field_value(index iField);
       virtual ::payload field_value_at(index i);
 
-      virtual index field_index(const char * name);
+      virtual index field_index(const ::string & name);
 
       virtual void set_autocommit(bool bAutoCommit) { m_bAutoCommit = bAutoCommit; }
       virtual bool get_autocommit() { return m_bAutoCommit; }
@@ -131,19 +131,19 @@ namespace database
 
       e_dataset get_dataset_state() {return m_edataset; }
 
-      virtual void set_sql(e_sql esql, const char * sql);
+      virtual void set_sql(e_sql esql, const ::string & sql);
 
       virtual void clear_sql(e_sql esql);
 
       virtual string get_sql(e_sql esql);
 
-      virtual __pointer(row_array) query_rows(const char *query);
-      virtual __pointer(payload_array) query_items(const char *query);
-      virtual ::payload query_item(const char *query);
+      virtual __pointer(row_array) query_rows(const ::string &query);
+      virtual __pointer(payload_array) query_items(const ::string &query);
+      virtual ::payload query_item(const ::string &query);
 
-      virtual bool query_rows(__pointer(row_array) & rows, const char *query);
-      virtual bool query_items(__pointer(payload_array) & items, const char *query);
-      virtual bool query_item(::payload & item, const char *query);
+      virtual bool query_rows(__pointer(row_array) & rows, const ::string &query);
+      virtual bool query_items(__pointer(payload_array) & items, const ::string &query);
+      virtual bool query_item(::payload & item, const ::string &query);
 
    };
 

@@ -349,7 +349,7 @@ namespace account
    }
 
 
-   bool view::on_action(const char * pszId)
+   bool view::on_action(const ::string & pszId)
    {
 
       if (!strcmp(pszId, "submit"))

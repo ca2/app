@@ -20,7 +20,7 @@
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::string & pcsz);
 //
 //      virtual void _001EnableShellOpen();
 //      //virtual ::aura::document * _001OpenDocumentFile(::payload varFile);
@@ -89,9 +89,9 @@
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //
-//      virtual ::user::primitive * FindWindow(const char * pszClassName, const char * pszWindowName);
+//      virtual ::user::primitive * FindWindow(const ::string & pszClassName, const ::string & pszWindowName);
 //
-//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
+//      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & pszWindow);
 //
 //
 //      virtual void get_time(struct timeval *point_i32);

@@ -79,7 +79,7 @@ namespace user
 #endif
    }
 
-   void tool_command::SetText(const char *)
+   void tool_command::SetText(const ::string &)
    {
       // ignore it
    }

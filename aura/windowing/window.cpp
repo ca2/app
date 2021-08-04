@@ -237,7 +237,7 @@ namespace windowing
 
 
 
-   void window::set_window_text(const char * pszString)
+   void window::set_window_text(const ::string & pszString)
    {
 
       __throw(error_interface_only);

@@ -71,7 +71,7 @@ namespace filemanager
          }
 
 
-         void tree::parse(const char * pszSource)
+         void tree::parse(const ::string & pszSource)
          {
 
             string str;

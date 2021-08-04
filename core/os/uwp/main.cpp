@@ -19,8 +19,8 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall()
 CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 
 
-//::aura::application *     win_application_create(::aura::application * pappSystem, const char * pszId);
-//::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
+//::aura::application *     win_application_create(::aura::application * pappSystem, const ::string & pszId);
+//::aura::application *     win_instantiate_application(::aura::application * pappSystem, const ::string & pszId);
 //int                     win_application_procedure(::aura::application * pappSystem)
 //::u32 c_cdecl          win_application_thread_proc(LPVOID);
 /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //}
 
 
-//int CLASS_DECL_CORE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+//int CLASS_DECL_CORE ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const ::string & lpCmdLine, int nCmdShow)
 //{
 //   try
 //   {

@@ -45,7 +45,7 @@
 //
 //#endif
 
-//bool linux_g_direct_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge);
+//bool linux_g_direct_app_indicator_new(const ::string & pszId, const ::string & pszIcon, const ::string & pszFolder, user_notify_icon_bridge * pbridge);
 // /void linux_g_direct_app_indicator_term(AppIndicator * pindicator);
 //void linux_g_direct_app_indicator_step(void * pvoidInd);
 
@@ -151,7 +151,7 @@ public:
    virtual ~gnome_appindicator();
 
 
-   virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) override;
+   virtual bool create(const ::string & pszId, const ::string & pszIcon, const ::string & pszFolder, user_notify_icon_bridge * pbridge) override;
    virtual bool init(user_notify_icon_bridge * pbridge);
    virtual void close();
 
@@ -215,7 +215,7 @@ namespace linux
 } // namespace linux
 
 
-bool gnome_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)
+bool gnome_appindicator::create(const ::string & pszId, const ::string & pszIcon, const ::string & pszFolder, user_notify_icon_bridge * pbridge)
 {
 
    m_pindicator = app_indicator_new_with_path(pszId, pszIcon, APP_INDICATOR_CATEGORY_APPLICATION_STATUS, pszFolder);
@@ -438,7 +438,7 @@ namespace user
    pthread_mutex_t g_mutexG;
 
 
-   bool gsettings_set(const char * pszSchema, const char * pszKey, const char * pszValue)
+   bool gsettings_set(const ::string & pszSchema, const ::string & pszKey, const ::string & pszValue)
    {
 
       if(pszSchema == nullptr)
@@ -495,7 +495,7 @@ namespace user
    }
 
 
-   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey)
+   char * gsettings_get_malloc(const ::string & pszSchema, const ::string & pszKey)
    {
 
       if(pszSchema == nullptr)
@@ -565,7 +565,7 @@ namespace user
    GAction * g_pactionWallpaper = nullptr;
 
 
-   bool g_enable_wallpaper_change_notification(const char * pszSchema, const char * pszKey)
+   bool g_enable_wallpaper_change_notification(const ::string & pszSchema, const ::string & pszKey)
    {
 
       if(!g_bGInitialized)
@@ -651,7 +651,7 @@ namespace user
 
 
 
-const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
+const char * linux_g_direct_get_file_icon_path(const ::string & pszPath, int iSize)
 {
 
    GFile * pfile = g_file_new_for_path (pszPath);
@@ -753,7 +753,7 @@ const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
 }
 
 
-const char * linux_g_direct_get_file_content_type(const char * pszPath)
+const char * linux_g_direct_get_file_content_type(const ::string & pszPath)
 {
 
    GFile * pfile = g_file_new_for_path (pszPath);
@@ -792,7 +792,7 @@ const char * linux_g_direct_get_file_content_type(const char * pszPath)
 }
 
 
-int gdk_launch_uri(const char * pszUri, char * pszError, int iBufferSize)
+int gdk_launch_uri(const ::string & pszUri, char * pszError, int iBufferSize)
 {
 
    gboolean ret;

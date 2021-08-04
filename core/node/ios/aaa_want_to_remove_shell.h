@@ -265,7 +265,7 @@ namespace ios
        ::u32 uUnique,
        string & str);
        
-       static int_bool MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
+       static int_bool MoveFile(const ::string & lpExistingFileName, const ::string & lpNewFileName);
        */
    };
    
@@ -469,7 +469,7 @@ namespace ios
     return dwResult;
     }
     
-    inline ::u32 shell::GetTempFileName(const char * lpPathName, const char * lpPrefixString, ::u32 uUnique, string & str)
+    inline ::u32 shell::GetTempFileName(const ::string & lpPathName, const ::string & lpPrefixString, ::u32 uUnique, string & str)
     {
     wstring wstrPathName = gen::international::utf8_to_unicode(lpPathName);
     wstring wstrPrefixString = gen::international::utf8_to_unicode(lpPrefixString);
@@ -484,7 +484,7 @@ namespace ios
     return uiResult;
     }
     
-    inline int_bool shell::MoveFile(const char * lpExistingFileName, const char * lpNewFileName)
+    inline int_bool shell::MoveFile(const ::string & lpExistingFileName, const ::string & lpNewFileName)
     {
     return MoveFile(gen::international::utf8_to_unicode(lpExistingFileName), gen::international::utf8_to_unicode(lpNewFileName));
     }

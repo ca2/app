@@ -26,11 +26,11 @@ namespace colorertake5
           @param region region full qualified name.
           @param rdnew  New region definition to replace old one
       */
-      virtual void  setRegionDefine(const char * region, RegionDefine *rdnew) = 0;
+      virtual void  setRegionDefine(const ::string & region, RegionDefine *rdnew) = 0;
 
 
       RegionDefine *getRegionDefine(class region *region);
-      RegionDefine *getRegionDefine(const char * name);
+      RegionDefine *getRegionDefine(const ::string & name);
 
       string_map< RegionDefine *> regionDefines;
       address_array < RegionDefine * > regionDefinesVector;

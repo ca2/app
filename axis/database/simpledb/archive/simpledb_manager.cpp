@@ -54,7 +54,7 @@ namespace simpledb
       return true;
    }
 
-   bool manager::get_output_internal(const char * pszCommand, memory & memory)
+   bool manager::get_output_internal(const ::string & pszCommand, memory & memory)
    {
       UNREFERENCED_PARAMETER(pszCommand);
       UNREFERENCED_PARAMETER(memory);
@@ -83,7 +83,7 @@ namespace simpledb
 
 
 
-   session * & manager::get_session(const char * pszId)
+   session * & manager::get_session(const ::string & pszId)
    {
       single_lock synchronouslock(&m_mutexSession, true);
       ::simpledb::session * & psession = m_mapSession[pszId];

@@ -112,12 +112,12 @@ namespace user
 
 
       
-      virtual index add_string(const char* pszString, uptr dwItemData = 0);
-      virtual index add_string(const char* pszString, const string& strValue);
+      virtual index add_string(const ::string & pszString, uptr dwItemData = 0);
+      virtual index add_string(const ::string & pszString, const string& strValue);
 
       
       virtual index delete_string(index nIndex);
-      virtual index insert_string(index nIndex, const char* pszString);
+      virtual index insert_string(index nIndex, const ::string & pszString);
 
 
       virtual void reset_content();

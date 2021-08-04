@@ -21,7 +21,7 @@ namespace html
    }
 
 
-   void attribute::set_value(const char * pszValue)
+   void attribute::set_value(const ::string & pszValue)
    {
 
       m_strValue = pszValue;

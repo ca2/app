@@ -502,7 +502,7 @@ namespace linux
 
 
 
-//   void PASCAL file_exception::throw_os_error(::i32 lOsError, const char * pszFileName /* = nullptr */)
+//   void PASCAL file_exception::throw_os_error(::i32 lOsError, const ::string & pszFileName /* = nullptr */)
 
 //   {
 //      if (lOsError != 0)
@@ -510,7 +510,7 @@ namespace linux
 
 //   }
 
-//   void PASCAL file_exception::ThrowErrno(i32 nErrno, const char * pszFileName /* = nullptr */)
+//   void PASCAL file_exception::ThrowErrno(i32 nErrno, const ::string & pszFileName /* = nullptr */)
 
 //   {
 //      if (nErrno != 0)
@@ -739,7 +739,7 @@ namespace linux
    }
 
 
-   void file::SetFilePath(const char * pszNewName)
+   void file::SetFilePath(const ::string & pszNewName)
 
    {
 
@@ -809,7 +809,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-CLASS_DECL_CORE bool vfxResolveShortcut(string & strTarget, const char * pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_CORE bool vfxResolveShortcut(string & strTarget, const ::string & pszSource, __pointer(::user::primitive) puiMessageParentOptional)
 {
 
 

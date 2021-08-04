@@ -135,7 +135,7 @@ namespace ios
          vfxThrowFileexception(::file::exception::type_generic, errno, m_strFileName);
    }
 
-   void stdio_file::write_string(const char * lpsz)
+   void stdio_file::write_string(const ::string & lpsz)
    {
       ASSERT(lpsz != nullptr);
       ASSERT(m_pStream != nullptr);
@@ -204,7 +204,7 @@ namespace ios
       return lpszResult != nullptr;
    }
 
-   /*void stdio_file::write_string(const char * lpsz)
+   /*void stdio_file::write_string(const ::string & lpsz)
     {
     ASSERT(lpsz != nullptr);
     ASSERT(m_pStream != nullptr);

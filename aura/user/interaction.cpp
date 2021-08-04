@@ -920,7 +920,7 @@ namespace user
    }
 
 
-   void interaction::set_place_child_title(const char *pszTitle)
+   void interaction::set_place_child_title(const ::string &pszTitle)
    {
 
       payload("place_child_title") = pszTitle;
@@ -6654,7 +6654,7 @@ namespace user
    }
 
 
-   void interaction::set_window_text(const char * pszString)
+   void interaction::set_window_text(const ::string & pszString)
    {
 
       m_strWindowText = pszString;
@@ -10425,7 +10425,7 @@ namespace user
 
 
 
-   void interaction::OnLinkClick(const char * psz, const char * pszTarget)
+   void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
    {
 
       auto phyperlink = __create_new < ::hyperlink >();
@@ -10609,7 +10609,7 @@ namespace user
 
    
 
-   bool interaction::create_message_queue(const char * lpszName)
+   bool interaction::create_message_queue(const ::string & lpszName)
    {
 
       if (is_window())
@@ -11901,7 +11901,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags)
+   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags)
    //{
 
    //   auto point = psession->get_cursor_position();
@@ -11941,7 +11941,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, ::message::message * pmessage)
+   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, ::message::message * pmessage)
    //{
 
    //   auto pmouse = pmessage->m_pmouse;
@@ -12006,7 +12006,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam)
+   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam)
    //{
 
    //   string strMatterSource(pszMatter);
@@ -15995,7 +15995,7 @@ restart:
    }
 
 
-   bool interaction::on_action(const char* pszId)
+   bool interaction::on_action(const ::string & pszId)
    {
 
       auto pinteractionParent = get_parent();
@@ -16825,7 +16825,7 @@ restart:
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 
-   void control_cmd_ui::SetText(const char*)
+   void control_cmd_ui::SetText(const ::string &)
    {
       // ignore it
    }

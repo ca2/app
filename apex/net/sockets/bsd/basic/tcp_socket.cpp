@@ -2469,12 +2469,15 @@ namespace sockets
       return get_url();
    }
 
-   long tcp_socket::cert_common_name_check(const char * common_name)
+
+   long tcp_socket::cert_common_name_check(const ::string & common_name)
    {
 
       if(!m_bCertCommonNameCheckEnabled)
       {
+
          return X509_V_OK;
+
       }
 
       ::X509 *cert = nullptr;

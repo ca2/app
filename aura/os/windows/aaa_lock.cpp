@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//i32 _c_lock_is_active(const char * lpszName)
+//i32 _c_lock_is_active(const ::string & lpszName)
 //{
 //
 //   HANDLE h;
@@ -16,7 +16,7 @@
 //}
 //
 //
-//i32 _c_lock(const char * lpszName, void ** pdata)
+//i32 _c_lock(const ::string & lpszName, void ** pdata)
 //{
 //
 //   HANDLE hmutex = ::CreateMutexW(nullptr, false, L"Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");

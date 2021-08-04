@@ -14,7 +14,7 @@ static int SSL_UP = 0;
 static char* SSL_CERT = nullptr;
 
 
-void pop3_cert_setup(const char *certfile)
+void pop3_cert_setup(const ::string &certfile)
 {
 	if (SSL_CERT) free(SSL_CERT);
 	SSL_CERT=nullptr;
@@ -57,7 +57,7 @@ pop3sock_t ssl_prepare(const int port)
 
 #endif
 
-pop3sock_t pop3_prepare(const char* servername, const int port, struct sockaddr_in* connection, struct hostent* server){
+pop3sock_t pop3_prepare(const ::string & servername, const int port, struct sockaddr_in* connection, struct hostent* server){
 /* prepares the pop session and returns a socket descriptor */
 pop3sock_t sock;
 struct hostent* hostent_buf;

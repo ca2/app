@@ -296,7 +296,7 @@ namespace aura
 //    }
 
 
-//   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const future & process)
+//   ::e_status system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
 //      auto psession = get_session();
@@ -330,7 +330,7 @@ namespace aura
 //   }
 
 
-//   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
+//   ::e_status system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const future & process)
 //   {
 //
 //      auto psession = get_session();

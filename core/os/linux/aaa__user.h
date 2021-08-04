@@ -29,7 +29,7 @@ enum e_net_wm_state
 };
 
 
-e_net_wm_state net_wm_state(const char * pszText);
+e_net_wm_state net_wm_state(const ::string & pszText);
 const char * net_wm_state_text(e_net_wm_state estate);
 
 

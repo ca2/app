@@ -9,7 +9,7 @@
 //extern thread_pointer < os_thread > t_posthread;
 
 
-int create_process(const char * _cmd_line, int * pprocessId)
+int create_process(const ::string & _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
@@ -123,7 +123,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AURA u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -178,7 +178,7 @@ int get_current_process_affinity_order()
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams,  ::duration durationTimeout )
+bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams,  ::duration durationTimeout )
 {
    
    ::property_set set;

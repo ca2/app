@@ -284,7 +284,7 @@ stop1:
 //
 //
 //
-//i32 bzuncompress(const char * pcszUncompressed, const char * lpcszGzFileCompressed)
+//i32 bzuncompress(const ::string & pcszUncompressed, const ::string & lpcszGzFileCompressed)
 
 //{
 //   if (g_pchGzUncompressBuffer == nullptr)

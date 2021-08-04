@@ -1,6 +1,6 @@
 
 
-int main(int args, const char ** argv)
+int main(int args, const ::string &* argv)
 {
    
    return 0;

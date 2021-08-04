@@ -540,7 +540,7 @@ namespace user
       //virtual ::size_f64 get_total_size() override;
 
       virtual string _001GetItemId(index iStrictItem);
-      virtual index _001GetItemById(const char * pszChar);
+      virtual index _001GetItemById(const ::string & pszChar);
 
    };
 

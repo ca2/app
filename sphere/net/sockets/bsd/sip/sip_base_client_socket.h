@@ -74,7 +74,7 @@ namespace sockets
       /** Callback fires when all http headers have been received. */
       virtual void OnHeaderComplete();
       /** Chunk of http body data recevied. */
-      virtual void OnData(const char *,size_t);
+      virtual void OnData(const ::string &,size_t);
       /** The full request/response body has been received. */
       virtual void OnDataComplete();
 
@@ -100,16 +100,16 @@ namespace sockets
       /** Transfer coding 'chunked' */
       bool IsChunked() { return m_b_chunked; }
 
-      property & inattr(const char * pszName);
+      property & inattr(const ::string & pszName);
       property_set & inattrs();
 
-      property & inheader(const char * pszName);
+      property & inheader(const ::string & pszName);
       property_set & inheaders();
 
-      property & outattr(const char * pszName);
+      property & outattr(const ::string & pszName);
       property_set & outattrs();
 
-      property & outheader(const char * pszName);
+      property & outheader(const ::string & pszName);
       property_set & outheaders();
 
       sip::request & request();

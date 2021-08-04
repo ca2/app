@@ -51,17 +51,17 @@ namespace sockets
       websocket_client();
       websocket_client(const string & url, const ::string & strProtocol);
       //websocket_client(const string & host, port_t port, const string & url);
-      virtual ~websocket_client();
+      ~websocket_client() override;
 
       virtual void InitSSLClient() override;
 
-      virtual ::e_status step() override;
+      ::e_status step() override;
 
-      virtual void OnLine(const string &) override;
+      void OnLine(const string &) override;
 
-      virtual void OnHeaderComplete() override;
+      void OnHeaderComplete() override;
 
-      virtual long cert_common_name_check(const char * common_name) override;
+      long cert_common_name_check(const ::string & common_name) override;
 
       virtual void OnDataComplete() override;
 

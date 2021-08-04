@@ -435,7 +435,7 @@ namespace aura
 {
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto pmessagebox = pobject->__create_new < ::user::message_box >();

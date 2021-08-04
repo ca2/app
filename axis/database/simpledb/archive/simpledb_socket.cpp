@@ -149,7 +149,7 @@ namespace simpledb
       ::sockets::httpd_socket::OnSSLAccept();
    }
 
-   void socket::simple_file_server(const ::file::path & psz,const char * pszRelative)
+   void socket::simple_file_server(const ::file::path & psz, const ::string & pszRelative)
    {
       pointer_array < int_array > rangea;
       if(strlen(inheader("range")) > 0)
@@ -193,7 +193,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::file::path & lpcsz,pointer_array < int_array > * prangea,const char * pszContentType)
+   bool socket::read_file(const ::file::path & lpcsz,pointer_array < int_array > * prangea, const ::string & pszContentType)
    {
       string strExtension = lpcsz.extension();
       string str = strExtension;

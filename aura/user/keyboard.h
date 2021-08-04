@@ -28,21 +28,21 @@ namespace user
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      //bool load_layout(const char * pszPath, const ::action_context & action_context);
+      //bool load_layout(const ::string & pszPath, const ::action_context & action_context);
 
       //string process_key(key * pkey);
 
       //string process_key(::user::enum_key ekey);
 
-      //string process_char(const char * pszChar);
+      //string process_char(const ::string & pszChar);
 
-      //string process_escape(const char * pszChar);
+      //string process_escape(const ::string & pszChar);
 
       //void process_escape(__pointer(::xml::node) pnode, property_set & set);
 
       //string get_current_system_layout();
 
-      //bool initialize(::user::keyboard_layout_id * playoutid, const char * pszPath);
+      //bool initialize(::user::keyboard_layout_id * playoutid, const ::string & pszPath);
 
       virtual void translate_os_key_message(key * pkey);
 

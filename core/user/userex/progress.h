@@ -27,13 +27,13 @@ namespace userex
 
 
       void create_progress();
-      void set_progress_title(const char * pszTitle);
+      void set_progress_title(const ::string & pszTitle);
       virtual void close_progress() override;
 
 
       virtual void redraw() override;
 
-      virtual void defer_show(::user::interaction * puiParent, const char* pszTitle, ::count iStepCount = 0);
+      virtual void defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::count iStepCount = 0);
 
 
    };

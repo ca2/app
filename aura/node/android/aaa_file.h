@@ -77,7 +77,7 @@ namespace android
 
       virtual ::extended::status open(const ::file::path & lpszFileName, const ::file::e_open & eopen) override;
 
-      //virtual bool PASCAL GetStatus(const char * lpszFileName, ::file::file_status& rStatus);
+      //virtual bool PASCAL GetStatus(const ::string & lpszFileName, ::file::file_status& rStatus);
 
       //u64 ReadHuge(void * lpBuffer, u64 dwCount);
       //void WriteHuge(const void * lpBuffer, u64 dwCount);
@@ -112,8 +112,8 @@ namespace android
 
    //   ::e_status PASCAL OsErrorToException(::i32 lOsError);
    //   ::e_status PASCAL ErrnoToException(i32 nErrno);
-   //   void PASCAL ThrowOsError(::object * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
-   //   void PASCAL ThrowErrno(::object * pobject, i32 nErrno, const char * lpszFileName = nullptr);
+   //   void PASCAL ThrowOsError(::object * pobject, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+   //   void PASCAL ThrowErrno(::object * pobject, i32 nErrno, const ::string & lpszFileName = nullptr);
 
 
    //}  // namespace file_exception

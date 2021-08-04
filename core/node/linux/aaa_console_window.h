@@ -25,7 +25,7 @@ namespace linux
       void SetCursorPosition(int y,int x);
       void SetTextColor(int color);
       void SetScreenColor(int color, int iLineStart = 0, int iLineCount = -1);
-      void write(const char * psz);
+      void write(const ::string & psz);
 
    };
 

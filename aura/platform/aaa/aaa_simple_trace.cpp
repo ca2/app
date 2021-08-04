@@ -9,11 +9,11 @@
 #include "trace_category.h"
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
+CLASS_DECL_AURA void __simple_tracev(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args);
 
 
-//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::os_message_box(nullptr, pszMessage, pszTitle, iFlags, function);
@@ -42,13 +42,13 @@ string FormatMessageFromSystem(u32 dwError)
 
 
 extern "C"
-void o_debug_string(const char * psz)
+void o_debug_string(const ::string & psz)
 {
    output_debug_string(psz);
 }
 
 
-CLASS_DECL_AURA void trace(enum_trace_level elevel, const char * pszTag, const char * pszText, const char * pszFile, int iLine)
+CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszText, const ::string & pszFile, int iLine)
 {
 
    strsize iLen;
@@ -192,7 +192,7 @@ simple_trace::~simple_trace()
 }
 
 
-void simple_trace::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void simple_trace::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz)
 {
 
    __simple_tracea(pobject, elevel, pszFunction, pszFile, iLine, psz);

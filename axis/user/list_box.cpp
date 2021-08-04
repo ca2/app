@@ -208,7 +208,7 @@ namespace user
    }
 
 
-   index list_box::add_string(const char* pszString, uptr dwItemData)
+   index list_box::add_string(const ::string & pszString, uptr dwItemData)
    {
 
       m_straList.add(pszString);
@@ -220,7 +220,7 @@ namespace user
    }
 
 
-   index list_box::add_string(const char* pszString, const string& strValue)
+   index list_box::add_string(const ::string & pszString, const string& strValue)
    {
 
       m_straList.add(pszString);
@@ -251,7 +251,7 @@ namespace user
    }
 
 
-   index list_box::insert_string(index iIndex, const char* pszString)
+   index list_box::insert_string(index iIndex, const ::string & pszString)
    {
 
       if (iIndex < 0)

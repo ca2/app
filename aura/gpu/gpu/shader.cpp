@@ -39,7 +39,7 @@ namespace gpu
 
 
 
-   ::e_status shader::create_shader(const char * pszVertex, const char * pszFragment, const char * pszGeometry)
+   ::e_status shader::create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry)
    {
 
 
@@ -54,77 +54,77 @@ namespace gpu
    }
 
 
-   void shader::setBool(const char * pszName, bool value)
+   void shader::setBool(const ::string & pszName, bool value)
    {
 
 
    }
 
 
-   void shader::setInt(const char * pszName, int value)
+   void shader::setInt(const ::string & pszName, int value)
    {
 
 
    }
 
 
-   void shader::setFloat(const char * pszName, float value)
+   void shader::setFloat(const ::string & pszName, float value)
    {
 
 
    }
 
 
-//   void shader::setVec2(const char * pszName, const glm::vec2& value)
+//   void shader::setVec2(const ::string & pszName, const glm::vec2& value)
 //   {
 //
 //   }
 
 
-   void shader::setVec2(const char * pszName, float x, float y)
+   void shader::setVec2(const ::string & pszName, float x, float y)
    {
 
    }
 
 
-//   void shader::setVec3(const char * pszName, const glm::vec3& value)
+//   void shader::setVec3(const ::string & pszName, const glm::vec3& value)
 //   {
 //
 //
 //   }
 
 
-   void shader::setVec3(const char * pszName, float x, float y, float z)
+   void shader::setVec3(const ::string & pszName, float x, float y, float z)
    {
 
    }
 
 
-//   void shader::setVec4(const char * pszName, const glm::vec4& value)
+//   void shader::setVec4(const ::string & pszName, const glm::vec4& value)
 //   {
 //
 //   }
 
 
-   void shader::setVec4(const char * pszName, float x, float y, float z, float w)
+   void shader::setVec4(const ::string & pszName, float x, float y, float z, float w)
    {
 
    }
 
 
-   void shader::setMat2(const char * pszName, const float p[2*2])
+   void shader::setMat2(const ::string & pszName, const float p[2*2])
    {
 
    }
 
 
-   void shader::setMat3(const char * pszName, const float p[3*3])
+   void shader::setMat3(const ::string & pszName, const float p[3*3])
    {
 
    }
 
 
-   void shader::setMat4(const char * pszName, const float p[4*4])
+   void shader::setMat4(const ::string & pszName, const float p[4*4])
    {
 
    }

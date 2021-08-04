@@ -16,7 +16,7 @@ public:
 
    
 
-   trace_category(e_trace_category etracecategory, const char * pszTopicText) :
+   trace_category(e_trace_category etracecategory, const ::string & pszTopicText) :
       m_ecategory(etracecategory),
       m_strTopicText(pszTopicText)
    {

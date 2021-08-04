@@ -21,7 +21,7 @@ void __term_windowing();
 //bool is_verbose();
 
 
-::aura::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const char * pszCmdLine = nullptr, int nShowCmd = e_display_normal);
+::aura::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const ::string & pszCmdLine = nullptr, int nShowCmd = e_display_normal);
 int app_common_term(int iError, ::aura::system * psystem, app_core & appcore);
 
 
@@ -674,7 +674,7 @@ int GetVersion_ex1()
 // __is_valid_address() returns true if the passed parameter is
 // a valid representation of a local or a global atom within a const char *.
 
-//bool __is_valid_atom(const char * psz)
+//bool __is_valid_atom(const ::string & psz)
 //{
 //   return HIWORD(psz) == 0L && __is_valid_atom(ATOM(LOWORD(psz)));
 //}

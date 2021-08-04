@@ -6,11 +6,11 @@ long mm_clipboard_get_file_count();
 
 char ** mm_clipboard_get_filea(long * pc);
 
-void mm_clipboard_set_filea(const char ** psza, long c);
+void mm_clipboard_set_filea(const ::string &* psza, long c);
 
 char * mm_clipboard_get_plain_text();
 
-void mm_clipboard_set_plain_text(const char * psz);
+void mm_clipboard_set_plain_text(const ::string & psz);
 
 
 long macos_clipboard_get_file_count()
@@ -60,7 +60,7 @@ string macos_clipboard_get_plain_text()
 }
 
 
-void macos_clipboard_set_plain_text(const char * pszPlainText)
+void macos_clipboard_set_plain_text(const ::string & pszPlainText)
 {
    
    mm_clipboard_set_plain_text(pszPlainText);

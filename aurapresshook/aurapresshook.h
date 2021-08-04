@@ -7,7 +7,7 @@ extern "C"
 
 void linux_g_direct_init();
 void linux_g_direct_term();
-//void * linux_g_direct_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, struct linux_g_direct_bridge * pi);
+//void * linux_g_direct_app_indicator_new(const ::string & pszId, const ::string & pszIcon, const ::string & pszFolder, struct linux_g_direct_bridge * pi);
 //void linux_g_direct_app_indicator_term(void * pind);
 
 

@@ -784,7 +784,7 @@ namespace aura
 //   }
 //
 //
-//   bool context::http_download(const char* pszUrl, const char* pszFile)
+//   bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 //   {
 //
 //      string strUrl = pszUrl;
@@ -800,7 +800,7 @@ namespace aura
 //   }
 //
 //
-//   string context::http_get(const char* pszUrl)
+//   string context::http_get(const ::string & pszUrl)
 //   {
 //
 //      property_set set;
@@ -850,7 +850,7 @@ namespace aura
 //   }
 //
 //
-//   string context::load_string(const char* psz)
+//   string context::load_string(const ::string & psz)
 //   {
 //
 //      return psz;

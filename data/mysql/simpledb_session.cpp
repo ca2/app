@@ -14,7 +14,7 @@ namespace simpledb
    {
    }
 
-   bool session::open(const char * pszDatabase)
+   bool session::open(const ::string & pszDatabase)
    {
       if(m_pserver != nullptr)
          close();
@@ -39,7 +39,7 @@ namespace simpledb
       return true;
    }
 
-   bool session::query(const char * pszQuery, ::payload & payload)
+   bool session::query(const ::string & pszQuery, ::payload & payload)
    {
       string_array stra;
       property_set set;

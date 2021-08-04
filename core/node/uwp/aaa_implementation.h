@@ -2,7 +2,7 @@
 
 //#define __defer_register_class(fClass) __end_defer_register_class(fClass)
 
-//CLASS_DECL_CORE bool __end_defer_register_class(::i32 fToRegister, const char ** ppszClass);
+//CLASS_DECL_CORE bool __end_defer_register_class(::i32 fToRegister, const ::string &* ppszClass);
 
 
 // Temporary ::map management (locks temp ::map on current thread)
@@ -28,8 +28,8 @@ CLASS_DECL_CORE bool __custom_log_font(::u32 nIDS, LOGFONT* pLogFont);
 CLASS_DECL_CORE bool __get_prop_sheet_font(string & strFace, ::u16& wSize, bool bWizard);
 
 CLASS_DECL_CORE bool __is_combo_box_control(oswindow hWnd, ::u32 nStyle);
-CLASS_DECL_CORE bool __check_center_dialog(const char * lpszResource);
-CLASS_DECL_CORE bool __compare_class_name(oswindow hWnd, const char * lpszClassName);
+CLASS_DECL_CORE bool __check_center_dialog(const ::string & lpszResource);
+CLASS_DECL_CORE bool __compare_class_name(oswindow hWnd, const ::string & lpszClassName);
 CLASS_DECL_CORE oswindow __child_window_from_point(oswindow, POINT32);
 
 // for determining version of COMCTL32.DLL

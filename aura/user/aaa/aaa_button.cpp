@@ -226,7 +226,7 @@ namespace user
 
    }
 
-   //void button::_001SetButtonText(const char * pcszText)
+   //void button::_001SetButtonText(const ::string & pcszText)
 
    //{
    //   m_istrButtonText = pcszText;

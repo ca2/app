@@ -64,7 +64,7 @@ namespace sockets
    }
 
 
-   void Ajp13Socket::ReceiveBody(const char *buf, memsize sz)
+   void Ajp13Socket::ReceiveBody(const ::string &buf, memsize sz)
    {
       if (sz - 2 > m_body_size_left)
       {

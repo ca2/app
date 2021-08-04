@@ -186,7 +186,7 @@ public:
 
 #else
 
-   ::e_status system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+   ::e_status system_construct(const char * pszCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
 
@@ -223,15 +223,15 @@ public:
 
    virtual ::millis get_update_poll_time(const ::id& id);
 
-   virtual ::acme::library* on_get_library(const char* pszLibrary);
+   virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
-   virtual ::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+   virtual ::e_status do_factory_exchange(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual __pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+   virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual __pointer(::acme::library) open_containerized_component_library(const char* pszComponent, const char* pszImplementation);
+   virtual __pointer(::acme::library) open_containerized_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-   virtual ::extended::transport < ::acme::library > do_containerized_factory_exchange(const char* pszComponent, const char* pszImplementation);
+   virtual ::extended::transport < ::acme::library > do_containerized_factory_exchange(const ::string &pszComponent, const ::string &pszImplementation);
 
 
 
@@ -240,7 +240,7 @@ public:
    virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
-   void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const override;
+   void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
    //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
@@ -265,12 +265,12 @@ public:
 #endif
 
 
-   virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const ::string &pszText, const ::string &pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
 
 
 
    template < typename ENUM >
-   inline void set_enum_text(ENUM e, const char* psz)
+   inline void set_enum_text(ENUM e, const ::string &psz)
    {
 
       critical_section_lock synchronouslock(&m_csEnumText);
@@ -294,7 +294,7 @@ public:
 
 
    template < class ENUM >
-   inline ENUM text_enum(ENUM& e, const char* psz, ENUM eDefault = (ENUM)0)
+   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
    {
 
       critical_section_lock lock(&m_csEnumText);
@@ -320,7 +320,7 @@ public:
 
 
    template < class ENUM, ENUM edefault = 0>
-   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const char* psz, ENUM eDefault = edefault)
+   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
    {
 
       return b = text_enum(b.m_evalue, psz, eDefault);
@@ -419,9 +419,8 @@ public:
    virtual void set_task_off(itask_t id);
 
 
-
    static inline ::id id(const ::std::type_info& info);
-   static inline ::id id(const char* psz);
+   static inline ::id id(const char * psz);
    static inline ::id id(const string& str);
    static inline ::id id(i64 i);
    static inline ::id_space& id();
@@ -430,9 +429,9 @@ public:
 
    virtual void check_exit();
 
-   virtual ::regular_expression_pointer create_regular_expression(const char* pszStyle, const string& str);
-   //virtual __pointer(::regular_expression::context) create_regular_expression_context(const char* pszStyle, int iCount);
-   virtual __pointer(::regular_expression::context) get_regular_expression_context(const char* pszStyle);
+   virtual ::regular_expression_pointer create_regular_expression(const ::string &pszStyle, const string& str);
+   //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
+   virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string &pszStyle);
 
    virtual ::regular_expression_pointer create_pcre(const string& str);
    virtual __pointer(::regular_expression::context) get_pcre_context();
@@ -446,7 +445,7 @@ public:
    
    virtual ::e_status on_open_untitled_file();
    
-   virtual ::e_status on_open_file(const char * pszFile);
+   virtual ::e_status on_open_file(const ::string &pszFile);
    
 
 };

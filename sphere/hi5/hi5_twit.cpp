@@ -7,7 +7,7 @@ namespace hi5
 {
 
 
-   string prepare_basic_authentication(::object * pobject, const char * inParam1, const char * inParam2 );
+   string prepare_basic_authentication(::object * pobject, const ::string & inParam1, const ::string & inParam2 );
 
 
    namespace oAuthTwitterApiUrls
@@ -2075,7 +2075,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string twit::prepare_basic_authentication(const char * inParam1, const char * inParam2)
+   string twit::prepare_basic_authentication(const ::string & inParam1, const ::string & inParam2)
    {
       string outStr = inParam1;
       outStr += TWIT_COLON;
@@ -2098,7 +2098,7 @@ namespace hi5
    * @remarks: internal method
    *
    *--*/
-   string twit::build_url( const char * baseUrl, const char * userInfo, bool isUserId )
+   string twit::build_url( const char * baseUrl, const ::string & userInfo, bool isUserId )
    {
       /* Copy base URL */
       string outUrl = baseUrl;

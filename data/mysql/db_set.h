@@ -7,7 +7,7 @@ class CLASS_DECL_AURA db_set :
 {
 public:
    db_server *            db();
-   db_set(db_server * pserver, const char * pszTable);
+   db_set(db_server * pserver, const ::string & pszTable);
    virtual ~db_set();
 
    sqlite::set *    m_pdataset;
@@ -22,7 +22,7 @@ class CLASS_DECL_AURA simpledb_set :
 {
 public:
 
-   simpledb_set(db_server * pserver, const char * pszTable);
+   simpledb_set(db_server * pserver, const ::string & pszTable);
    virtual ~simpledb_set();
 
    db_server *            db();

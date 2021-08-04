@@ -10,7 +10,7 @@
 
 
 
-CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const ::string & pszDll)
 {
 
 
@@ -40,12 +40,12 @@ CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses
 //}
 
 
-char * ns_resolve_alias(const char * psz, bool bNoUI, bool bNoMount);
+char * ns_resolve_alias(const ::string & psz, bool bNoUI, bool bNoMount);
 
 
 #ifndef __APPLE__
 
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+bool context::_os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 {
 
    char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
@@ -66,7 +66,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 #endif
 
 //
-//CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_AURA bool _os_resolve_alias(::object * pobject, ::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);
@@ -74,7 +74,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 //}
 
 
-CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
+CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz)
 {
 
    return true;
@@ -82,7 +82,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
 }
 
 //
-//bool os_is_folder_alias(const char * psz, bool bNoUI, bool bNoMount)
+//bool os_is_folder_alias(const ::string & psz, bool bNoUI, bool bNoMount)
 //{
 //
 //   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
@@ -104,10 +104,10 @@ CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
 #ifndef __APPLE__
 
 
-bool os_is_alias(const char * path);
+bool os_is_alias(const ::string & path);
 
 
-bool context::os_is_alias(const char * path)
+bool context::os_is_alias(const ::string & path)
 {
 
    return ::os_is_alias(path);

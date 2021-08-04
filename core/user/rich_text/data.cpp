@@ -628,7 +628,7 @@ namespace user
       }
 
 
-      void data::_001InsertText(const char * psz, format * pformatParam)
+      void data::_001InsertText(const ::string & psz, format * pformatParam)
       {
 
          string_array straLines;

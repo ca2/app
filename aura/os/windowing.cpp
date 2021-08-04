@@ -35,7 +35,7 @@ CLASS_DECL_ACME message_queue * get_message_queue(itask_t idthread, bool bCreate
 //bool g_bWindowingOutputDebugString = false;
 //
 //
-//void windowing_output_debug_string(const char * pszDebugString)
+//void windowing_output_debug_string(const ::string & pszDebugString)
 //{
 //
 //   if(g_bWindowingOutputDebugString)

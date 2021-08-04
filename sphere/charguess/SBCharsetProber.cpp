@@ -21,7 +21,7 @@
 #include "SBCharsetProber.h"
 
 
-nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsSingleByteCharSetProber::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   unsigned char order;
 

@@ -16,9 +16,9 @@ class JapaneseContextAnalysis
 public:
   JapaneseContextAnalysis() {Reset();};
 
-  void HandleData(const char* aBuf, PR::u32 aLen);
+  void HandleData(const ::string & aBuf, PR::u32 aLen);
 
-  void HandleOneChar(const char* aStr, PR::u32 aCharLen)
+  void HandleOneChar(const ::string & aStr, PR::u32 aCharLen)
   {
     PRInt32 order;
 
@@ -43,8 +43,8 @@ public:
   PRBool GotEnoughData() {return mTotalRel > ENOUGH_REL_THRESHOLD;};
 
 protected:
-  virtual PRInt32 GetOrder(const char* str, PR::u32 *charLen) = 0;
-  virtual PRInt32 GetOrder(const char* str) = 0;
+  virtual PRInt32 GetOrder(const ::string & str, PR::u32 *charLen) = 0;
+  virtual PRInt32 GetOrder(const ::string & str) = 0;
 
   //category counters, each interger counts sequence in its category
   PR::u32 mRelSample[NUM_OF_CATEGORY];
@@ -68,9 +68,9 @@ class SJISContextAnalysis : public JapaneseContextAnalysis
 {
   //SJISContextAnalysis(){};
 protected:
-  PRInt32 GetOrder(const char* str, PR::u32 *charLen);
+  PRInt32 GetOrder(const ::string & str, PR::u32 *charLen);
 
-  PRInt32 GetOrder(const char* str)
+  PRInt32 GetOrder(const ::string & str)
   {
     //We only interested in Hiragana, so first byte is '\202'
     if (*str == '\202' && 
@@ -84,8 +84,8 @@ protected:
 class EUCJPContextAnalysis : public JapaneseContextAnalysis
 {
 protected:
-  PRInt32 GetOrder(const char* str, PR::u32 *charLen);
-  PRInt32 GetOrder(const char* str)
+  PRInt32 GetOrder(const ::string & str, PR::u32 *charLen);
+  PRInt32 GetOrder(const ::string & str)
     //We only interested in Hiragana, so first byte is '\244'
   {
     if (*str == '\244' &&

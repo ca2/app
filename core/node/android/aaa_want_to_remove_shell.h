@@ -271,7 +271,7 @@ namespace android
       ::u32 uUnique,
       string & str);
 
-      static int_bool MoveFile(const char * lpExistingFileName, const char * lpNewFileName);
+      static int_bool MoveFile(const ::string & lpExistingFileName, const ::string & lpNewFileName);
       */
    };
 
@@ -475,7 +475,7 @@ namespace android
    return dwResult;
    }
 
-   inline ::u32 shell::GetTempFileName(const char * lpPathName, const char * lpPrefixString, ::u32 uUnique, string & str)
+   inline ::u32 shell::GetTempFileName(const ::string & lpPathName, const ::string & lpPrefixString, ::u32 uUnique, string & str)
    {
    wstring wstrPathName = ::str::international::utf8_to_unicode(lpPathName);
    wstring wstrPrefixString = ::str::international::utf8_to_unicode(lpPrefixString);
@@ -490,7 +490,7 @@ namespace android
    return uiResult;
    }
 
-   inline int_bool shell::MoveFile(const char * lpExistingFileName, const char * lpNewFileName)
+   inline int_bool shell::MoveFile(const ::string & lpExistingFileName, const ::string & lpNewFileName)
    {
    return MoveFile(::str::international::utf8_to_unicode(lpExistingFileName), ::str::international::utf8_to_unicode(lpNewFileName));
    }

@@ -479,7 +479,7 @@ namespace windowing
    //}
 
 
-   //__pointer(::future < enum_dialog_result >) windowing::message_box(const char *pszMessage, const char *pszTitle, const ::e_message_box &emessagebox)
+   //__pointer(::future < enum_dialog_result >) windowing::message_box(const ::string &pszMessage, const ::string &pszTitle, const ::e_message_box &emessagebox)
    //{
 
    //   return nullptr;
@@ -487,7 +487,7 @@ namespace windowing
    //}
 
 
-   //enum_dialog_result windowing::message_box_timeout(const char *pszMessage, const char *pszTitle, const ::duration &duration,
+   //enum_dialog_result windowing::message_box_timeout(const ::string &pszMessage, const ::string &pszTitle, const ::duration &duration,
    //                                   const ::e_message_box &emessagebox)
    //{
 
@@ -752,7 +752,7 @@ namespace windowing
    }
 
 
-   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const char* pszMatter)
+   wstring windowing::_windows_calc_icon_window_class(::user::interaction* pinteraction, u32 dwDefaultStyle, const ::string & pszMatter)
    {
    
       return "windows_interaction_impl";

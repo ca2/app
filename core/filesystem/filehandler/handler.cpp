@@ -207,7 +207,7 @@ namespace filehandler
    }
 
 
-   __pointer(::data::tree_item) handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
+   __pointer(::data::tree_item) handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_next();
@@ -285,7 +285,7 @@ namespace filehandler
    }
 
 
-   __pointer(::data::tree_item) handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
+   __pointer(::data::tree_item) handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_child_next_or_parent();
@@ -327,7 +327,7 @@ namespace filehandler
    }
 
 
-   void handler::get_extension_app(string_array & straAppId, const char * pszExtension)
+   void handler::get_extension_app(string_array & straAppId, const ::string & pszExtension)
    {
 
       auto ptreeitem = get_extension_tree_item(pszExtension, false);
@@ -351,7 +351,7 @@ namespace filehandler
    }
 
 
-   void handler::get_mime_type_app(string_array & straAppId, const char * pszMimeType)
+   void handler::get_mime_type_app(string_array & straAppId, const ::string & pszMimeType)
    {
 
       auto ptreeitem = get_mime_type_tree_item(pszMimeType, false);

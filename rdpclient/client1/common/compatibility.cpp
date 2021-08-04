@@ -197,7 +197,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 	return args_handled;
 }
 
-int freerdp_client_old_command_line_pre_filter(void* context, int index, int argc, const char ** argv)
+int freerdp_client_old_command_line_pre_filter(void* context, int index, int argc, const ::string &* argv)
 {
 	rdpSettings* settings = (rdpSettings*) context;
 
@@ -386,7 +386,7 @@ int freerdp_detect_old_command_line_syntax(int argc, char** argv, int* count)
 
 	CommandLineClearArgumentsA(old_args);
 
-	status = CommandLineParseArgumentsA(argc, (const char**) argv, old_args, flags, settings,
+	status = CommandLineParseArgumentsA(argc, (const ::string &*) argv, old_args, flags, settings,
 			freerdp_client_old_command_line_pre_filter, nullptr);
 
 	if (status < 0)
@@ -455,7 +455,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 	flags |= COMMAND_LINE_SIGIL_ENABLE_DISABLE;
 	flags |= COMMAND_LINE_SIGIL_NOT_ESCAPED;
 
-	status = CommandLineParseArgumentsA(argc, (const char**) argv, old_args, flags, settings,
+	status = CommandLineParseArgumentsA(argc, (const ::string &*) argv, old_args, flags, settings,
 			freerdp_client_old_command_line_pre_filter, freerdp_client_old_command_line_post_filter);
 
 	if (status == COMMAND_LINE_STATUS_PRINT_VERSION)

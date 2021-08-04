@@ -32,7 +32,7 @@ namespace calculator
    }
 
 
-   //::calculator::matter * parser::parse(const char * psz)
+   //::calculator::matter * parser::parse(const ::string & psz)
    /********************************************/
    /* Parsing functions */
 
@@ -45,7 +45,7 @@ namespace calculator
    */
 
 
-   ::calculator::element* parser::parse(const char * psz)
+   ::calculator::element* parser::parse(const ::string & psz)
    {
       
       ::calculator::element * pelement = nullptr;
@@ -359,7 +359,7 @@ namespace calculator
    }
 
 
-   void parser::syntax_error(const char * psz)
+   void parser::syntax_error(const ::string & psz)
    {
 
       error(string("syntax") + psz);
@@ -367,7 +367,7 @@ namespace calculator
    }
 
 
-   void parser::error(const char * psz)
+   void parser::error(const ::string & psz)
    {
 
       string str;

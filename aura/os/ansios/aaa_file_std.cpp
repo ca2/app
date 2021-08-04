@@ -8,7 +8,7 @@
 
 
 
-FILE *FILE_open(const char *path, const char *attrs, int iShare)
+FILE *FILE_open(const ::string &path, const ::string &attrs, int iShare)
 {
 
 #if defined(WINDOWS)
@@ -169,7 +169,7 @@ filesize FILE_get_size(FILE * str)
 #endif
 
 
-i32 file_touch(const char * psz)
+i32 file_touch(const ::string & psz)
 {
 
    FILE * pfile = ::fopen(psz, "a");

@@ -13,7 +13,7 @@ public:
   /** Creates is_empty string buffer */
   str_buffer(i32 alloc);
   /** Creates string buffer with @ca string */
-  str_buffer(const char *string, i32 s = 0, i32 l = -1);
+  str_buffer(const ::string &string, i32 s = 0, i32 l = -1);
   /** Creates string buffer with @ca string */
   str_buffer(string cstring, i32 s = 0, i32 l = -1);
   /** Creates string buffer with @ca string */
@@ -40,11 +40,11 @@ public:
   /** Appends to this string buffer @ca string. C++ operator+ form. */
   str_buffer &operator+(string string);
   /** Appends to this string buffer @ca string. C++ operator+ form. */
-  str_buffer &operator+(const char *string);
+  str_buffer &operator+(const ::string &string);
   /** Appends to this string buffer @ca string. C++ operator+= form. */
   str_buffer &operator+=(const string &string);
   /** Appends to this string buffer @ca string. C++ operator+= form. */
-  str_buffer &operator+=(const char *string);
+  str_buffer &operator+=(const ::string &string);
 private:
   i32 alloc;
 };

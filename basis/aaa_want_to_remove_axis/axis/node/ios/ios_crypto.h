@@ -15,8 +15,8 @@ namespace ios
       virtual ~crypto();
 
 
-      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
-      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const ::string & pszSalt);
+      virtual bool decrypt(memory & storageDecrypt, const memory & storageEncrypt, const ::string & pszSalt);
 
 
       virtual ::file::path get_crypt_key_file_path();

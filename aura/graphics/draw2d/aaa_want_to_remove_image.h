@@ -35,7 +35,7 @@ public:
 
    static ::mutex * ::mutex();
 
-   virtual bool create_thumbnail(const char * pszPath) override;
+   virtual bool create_thumbnail(const ::string & pszPath) override;
 
    virtual bool create(::object * pobject, color32_t * pcolorref, int w, int h, int scan);
 
@@ -82,10 +82,10 @@ public:
    virtual image get_image(::payload varFile, bool bSync = false) override;
    virtual image matter_image(string strMatter, bool bSync = false) override;
    virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) override;
-   virtual image load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false) override;
+   virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) override;
    virtual image load_matter_icon(string_array & straMatter, string strIcon) override;
    virtual image load_thumbnail(::payload varFile, int w, int h) override;
-   virtual image load_thumbnail(const char * pszPath) override;
+   virtual image load_thumbnail(const ::string & pszPath) override;
    virtual image load_dib(const ::file::path & pathDib) override;
 
 

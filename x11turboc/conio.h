@@ -174,8 +174,8 @@ extern void clrscr (void);
 extern void textmode (int newmode);
 extern int putch (int c);
 extern int getche (void);
-extern int cputs (const char *str);
-extern int cprintf (const char *format, ...);
+extern int cputs (const ::string &str);
+extern int cprintf (const ::string &format, ...);
 extern void delline (void);
 extern void insline (void);
 
@@ -185,8 +185,8 @@ extern void insline (void);
 #undef gettext
 #endif
 static inline char *
-gettextIntl (const char *msgid) { 
-  extern char *gettext (const char *msgid);
+gettextIntl (const ::string &msgid) { 
+  extern char *gettext (const ::string &msgid);
   return (gettext (msgid)); 
 }
 // The following is used to access the TurboC-library's gettext.
@@ -198,7 +198,7 @@ extern int movetext (int left, int top, int right, int bottom, int dleft,
 		     int dtop);
 extern int kbhit (void);
 extern char *cgets (char *s);
-extern char *getpass (const char *prompt);
+extern char *getpass (const ::string &prompt);
 extern void _setcursortype (int cur_t);
 
 // Implementing getch/ungetch is a little tricky, since functions of the same

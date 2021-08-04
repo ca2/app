@@ -41,7 +41,7 @@ namespace ios
 
       virtual bool round_window_become_first_responder() override;
 
-      //virtual bool create_message_queue(::user::interaction * pinteraction,const char * pszName) override;
+      //virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName) override;
 
       static const MESSAGE* PASCAL GetCurrentMessage();
 
@@ -82,12 +82,12 @@ namespace ios
       oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      bool ExecuteDlgInit(const char * lpszResourceName) override;
+      bool ExecuteDlgInit(const ::string & lpszResourceName) override;
       bool ExecuteDlgInit(LPVOID lpResource) override;
 
       using ::user::interaction_impl::create_window;
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate = nullptr) override;
 
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(
@@ -136,7 +136,7 @@ namespace ios
 
 
       // oswindow Text Functions
-      void set_window_text(const char * lpszString) override;
+      void set_window_text(const ::string & lpszString) override;
       //strsize GetWindowText(char * lpszStringBuf, strsize nMaxCount);
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength() override;
@@ -285,7 +285,7 @@ namespace ios
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
       virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true) override;
-      virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
+      virtual void SetDlgItemText(i32 nID, const ::string & lpszString) override;
 
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const override;
@@ -318,8 +318,8 @@ namespace ios
       // oswindow Access Functions
 //      virtual ::user::interaction *  child_window_from_point(POINT_I32 point_i32) override;
   //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags) override;
-      static ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      static ::user::interaction * PASCAL FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+      static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
       virtual ::user::interaction *  GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow() override;
@@ -337,7 +337,7 @@ namespace ios
 
       bool FlashWindow(bool bInvert);
 
-//      virtual i32 message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = e_message_box_ok) override;
+//      virtual i32 message_box(const ::string & lpszText, const ::string & lpszCaption = nullptr, ::u32 nType = e_message_box_ok) override;
 
 
 #if(WINVER >= 0x0500)
@@ -462,8 +462,8 @@ namespace ios
       void OnSpoolerStatus(::u32 nStatus, ::u32 nJobs);
       void OnSysColorChange();
       void OnTimeChange();
-      void OnSettingChange(::u32 uFlags, const char * lpszSection);
-      void OnWinIniChange(const char * lpszSection);
+      void OnSettingChange(::u32 uFlags, const ::string & lpszSection);
+      void OnWinIniChange(const ::string & lpszSection);
 
       // Input message handler member functions
       void OnChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
@@ -594,7 +594,7 @@ namespace ios
       void PrepareForHelp() override;
 
 
-      bool CreateDlg(const char * lpszTemplateName, ::user::interaction * puiParent);
+      bool CreateDlg(const ::string & lpszTemplateName, ::user::interaction * puiParent);
 
 
       CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(i32, WPARAM, LPARAM);
@@ -635,7 +635,7 @@ namespace ios
 
       virtual bool round_window_key_down(::user::enum_key ekey) override;
       virtual bool round_window_key_up(::user::enum_key ekey) override;
-      virtual bool round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd) override;
+      virtual bool round_window_on_text(const ::string & pszText, long iSelBeg, long iSelEnd) override;
       virtual bool round_window_on_sel_text(long iBeg, long iEnd) override;
       virtual long round_window_edit_hit_test(int x, int y) override;
       virtual bool round_window_edit_caret_rect(CGRect * prectangle, long iSel) override;

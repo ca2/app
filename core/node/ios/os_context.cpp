@@ -2,7 +2,7 @@
 #include "_ios.h"
 
 
-bool ns_open_file(const char * );
+bool ns_open_file(const ::string & );
 
 
 namespace ios
@@ -120,7 +120,7 @@ namespace ios
    }
 
 
-   void os_context::terminate_processes_by_title(const char * pszName)
+   void os_context::terminate_processes_by_title(const ::string & pszName)
    {
 //      __throw(error_not_implemented);
       return;
@@ -152,7 +152,7 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_path(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::string & pszName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -168,7 +168,7 @@ namespace ios
    }
 
 
-   bool os_context::get_pid_by_title(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & pszName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -306,7 +306,7 @@ namespace ios
    }
 
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
 //     __throw(error_not_implemented);
@@ -324,7 +324,7 @@ namespace ios
    }
 
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand)
    {
 
 
@@ -341,7 +341,7 @@ namespace ios
    }
 
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand)
    {
 
       //   __throw(error_not_implemented);
@@ -359,7 +359,7 @@ namespace ios
    }
 
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand)
    {
 
 //    __throw(error_not_implemented);
@@ -417,7 +417,7 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
       //   __throw(error_not_implemented);
       return false;
@@ -442,7 +442,7 @@ namespace ios
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       string_array straKey;
@@ -456,7 +456,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       //    __throw(error_not_implemented);
@@ -474,7 +474,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const char * pszCommand, const ::string & pszParam)
    {
       //   __throw(error_not_implemented);
       return false;
@@ -507,7 +507,7 @@ namespace ios
    }
 
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       //    __throw(error_not_implemented);
       return false;
@@ -551,7 +551,7 @@ namespace ios
    }
 
 
-   bool os_context::open_in_ie(const char * pcsz)
+   bool os_context::open_in_ie(const ::string & pcsz)
    {
 
       //    __throw(error_not_implemented);

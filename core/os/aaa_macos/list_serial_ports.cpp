@@ -19,8 +19,8 @@ string cfstring_to_string( CFStringRef cfstring );
 string get_device_path( io_object_t& serial_port );
 string get_class_name( io_object_t& obj );
 io_registry_entry_t get_parent_iousb_device( io_object_t& serial_port );
-string get_string_property( io_object_t& device, const char* property );
-u16 get_int_property( io_object_t& device, const char* property );
+string get_string_property( io_object_t& device, const ::string & property );
+u16 get_int_property( io_object_t& device, const ::string & property );
 string rtrim(const string& str);
 
 string
@@ -114,7 +114,7 @@ get_parent_iousb_device( io_object_t& serial_port )
 }
 
 string
-get_string_property( io_object_t& device, const char* property )
+get_string_property( io_object_t& device, const ::string & property )
 {
    string property_name;
 
@@ -147,7 +147,7 @@ get_string_property( io_object_t& device, const char* property )
 }
 
 u16
-get_int_property( io_object_t& device, const char* property )
+get_int_property( io_object_t& device, const ::string & property )
 {
    u16 result = 0;
 

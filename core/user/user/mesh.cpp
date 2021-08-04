@@ -5952,7 +5952,7 @@ namespace user
 
    }
 
-   index mesh::_001GetItemById(const char * pszChar)
+   index mesh::_001GetItemById(const ::string & pszChar)
    {
 
       ::count c = _001GetItemCount();

@@ -36,7 +36,7 @@ namespace user
       
       virtual ::e_status open_html(const ::string & str) override;
 
-      virtual bool Navigate(const char* pszUrl);
+      virtual bool Navigate(const ::string & pszUrl);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

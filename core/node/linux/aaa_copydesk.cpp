@@ -147,7 +147,7 @@ void clipboard_received_func(GtkClipboard * clipboard, GtkSelectionData * select
 
    clipboard_data * pdata = (clipboard_data *) data;
 
-   string str = (const char *)gtk_selection_data_get_data(selection_data);
+   string str = (const ::string &)gtk_selection_data_get_data(selection_data);
 
    string_array stra;
 
@@ -257,7 +257,7 @@ void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_d
 
    GdkAtom target = gtk_selection_data_get_target(selection_data);
 
-   gtk_selection_data_set(selection_data, target, 8, (const guchar *) (const char *) str);
+   gtk_selection_data_set(selection_data, target, 8, (const guchar *) (const ::string &) str);
 
 
 }

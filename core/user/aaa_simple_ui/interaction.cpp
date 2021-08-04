@@ -421,7 +421,7 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::on_action(const char * pszId)
+//   bool interaction::on_action(const ::string & pszId)
 //   {
 //
 //      ::user::interaction * pinteraction = GetTypedParent < ::user::interaction >();

@@ -30,7 +30,7 @@ void sock_shutdown(void);
 
 int sock_error(void);
 
-sock_t sock_connect(const char * const host, const unsigned int port);
+sock_t sock_connect(const ::string & const host, const unsigned int port);
 int sock_close(const sock_t sock);
 
 int sock_set_blocking(const sock_t sock);
@@ -41,7 +41,7 @@ int sock_is_recoverable(const int error);
 /* checks for an error after connect, return 0 if connect successful */
 int sock_connect_error(const sock_t sock);
 
-int sock_srv_lookup(const char *service, const char *proto,
+int sock_srv_lookup(const ::string &service, const ::string &proto,
 		     const char *domain, char *resulttarget,
 		     int resulttargetlength, int *resultport);
 

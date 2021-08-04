@@ -21,7 +21,7 @@ namespace process
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::e_priority epriority)
    {
 
       if(bPiped)
@@ -39,12 +39,13 @@ namespace process
    }
 
 
-   bool process::write(const char * psz)
+   bool process::write(const ::string & str)
    {
 
-      return m_pipe.m_ppipeIn->write(psz);
+      return m_pipe.m_ppipeIn->write(str);
 
    }
+
 
    string process::read(bool bUntilExit)
    {
@@ -96,7 +97,7 @@ auto tickStart = ::millis::now();
    }
 
 
-   bool process::synch_elevated(const char * pszCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::string & strCmdLine,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
       return false;

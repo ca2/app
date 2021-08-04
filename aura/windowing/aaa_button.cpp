@@ -8,7 +8,7 @@ namespace windowing
 {
 
 
-   button::button(const char *psz, enum_dialog_result edialogresult) :
+   button::button(const ::string &psz, enum_dialog_result edialogresult) :
       m_strLabel(psz),
       m_edialogresult(edialogresult)
    {

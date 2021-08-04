@@ -27,7 +27,7 @@ namespace user
 
 
       virtual void _001SetText(const ::string & str, const ::action_context & action_context);
-      virtual void _001SetText(const char * psz, strsize len, const ::action_context & action_context);
+      virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
 
 
 
@@ -37,7 +37,7 @@ namespace user
 
 
       virtual void _001GetSelText(string & str) const;
-      virtual void _001SetSelText(const char * psz, const ::action_context & action_context);
+      virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
       virtual void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd) const;

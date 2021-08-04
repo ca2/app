@@ -97,14 +97,14 @@ namespace colorertake5
       curLevel = 0;
    }
 
-   void Outliner::clearLine(index lno, const char * line)
+   void Outliner::clearLine(index lno, const ::string & line)
    {
       UNREFERENCED_PARAMETER(lno);
       UNREFERENCED_PARAMETER(line);
       lineIsEmpty = true;
    }
 
-   void Outliner::addRegion(index lno, const char * line, index sx, index ex, class region *region)
+   void Outliner::addRegion(index lno, const ::string & line, index sx, index ex, class region *region)
    {
 
       if(lno < modifiedLine)
@@ -132,7 +132,7 @@ namespace colorertake5
 
    }
 
-   void Outliner::enterScheme(index lno, const char *line, index sx, index ex, class region * region, class scheme * scheme)
+   void Outliner::enterScheme(index lno, const ::string &line, index sx, index ex, class region * region, class scheme * scheme)
    {
       UNREFERENCED_PARAMETER(lno);
       UNREFERENCED_PARAMETER(line);
@@ -144,7 +144,7 @@ namespace colorertake5
       curLevel++;
    }
 
-   void Outliner::leaveScheme(index lno, const char *line, index sx, index ex, class region * region, class scheme * scheme)
+   void Outliner::leaveScheme(index lno, const ::string &line, index sx, index ex, class region * region, class scheme * scheme)
    {
       UNREFERENCED_PARAMETER(lno);
       UNREFERENCED_PARAMETER(line);

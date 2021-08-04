@@ -40,7 +40,7 @@ namespace draw2d
       void OnUpdateFont();
       void OnSetFont();
       i32 GetMegaHeight();
-      void AddGlyphs(const char * pStr);
+      void AddGlyphs(const ::string & pStr);
 
       bool AddGlyph(WCHAR wchar);
       bool AddGlyph(char ch);

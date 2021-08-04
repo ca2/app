@@ -94,7 +94,7 @@ void  nsLatin1Prober::Reset(void)
     mFreqCounter[i] = 0;
 }
 
-PRBool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
+PRBool nsLatin1Prober::FilterWithEnglishLetters(const ::string & aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
@@ -135,7 +135,7 @@ PRBool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, PR::u32 aLen, 
 }
 
 
-nsProbingState nsLatin1Prober::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsLatin1Prober::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   char *newBuf1;
   PR::u32 newLen1;

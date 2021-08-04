@@ -61,7 +61,7 @@
 
                //virtual void set_style(::user::enum_style estyle);
 
-               //virtual enum_style translate_style(const char * pszStyle);
+               //virtual enum_style translate_style(const ::string & pszStyle);
 
                virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 

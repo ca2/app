@@ -27,7 +27,7 @@ namespace android
       {
       }
 
-      //   bool file_system::path::is_equal(const char * lpszFilPathA, const char * lpszFilPathB)
+      //   bool file_system::path::is_equal(const ::string & lpszFilPathA, const ::string & lpszFilPathB)
       //   {
       //      string stra(lpszFilPathA);
       //      string wstrb(lpszFilPathB);
@@ -46,7 +46,7 @@ namespace android
       //   }
       //
       //
-      //   bool file_system::path::eat_end_level(string & str, i32 iLevelCount, const char * lpSeparator)
+      //   bool file_system::path::eat_end_level(string & str, i32 iLevelCount, const ::string & lpSeparator)
       //   {
       //
       //      strsize iLast = str.length() - 1;
@@ -85,7 +85,7 @@ namespace android
       //
       //   }
       //
-      //   bool file_system::path::is_relative(const char * psz)
+      //   bool file_system::path::is_relative(const ::string & psz)
       //   {
       //      string strPath(psz);
       //      if(strPath.find(':') != -1 && strPath.find(':') < 10)

@@ -18,7 +18,7 @@ namespace filehandler
    }
 
 
-   bool library::handles_extension(const char * pszExtension)
+   bool library::handles_extension(const ::string & pszExtension)
    {
 
       string_array stra;
@@ -32,7 +32,7 @@ namespace filehandler
 
    }
 
-   bool library::handles_mime_type(const char * pszMimeType)
+   bool library::handles_mime_type(const ::string & pszMimeType)
    {
 
       string_array stra;
@@ -47,7 +47,7 @@ namespace filehandler
    }
 
 
-   void library::get_extension_app(string_array & straAppId, const char * pszExtension)
+   void library::get_extension_app(string_array & straAppId, const ::string & pszExtension)
    {
 
       if(!handles_extension(pszExtension))
@@ -64,7 +64,7 @@ namespace filehandler
 
    }
 
-   void library::get_mime_type_app(string_array & straAppId, const char * pszMimeType)
+   void library::get_mime_type_app(string_array & straAppId, const ::string & pszMimeType)
    {
 
       if(!handles_mime_type(pszMimeType))

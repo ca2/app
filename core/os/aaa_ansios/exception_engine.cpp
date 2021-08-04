@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
+//const char * callstack::get_dup(const ::string & pszFormat, i32 iSkip, int iCount)
 //{
 //
 //   if (iSkip >= 0)

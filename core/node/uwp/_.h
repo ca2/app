@@ -61,9 +61,9 @@
 //#define WIN_THREAD(pthread) (dynamic_cast < ::_UWP::thread * > (dynamic_cast < ::thread * >(pthread)))
 //
 //
-////CLASS_DECL_CORE void __trace_message(const char * pszPrefix, ::message::message * pmessage);
+////CLASS_DECL_CORE void __trace_message(const ::string & pszPrefix, ::message::message * pmessage);
 //
-////CLASS_DECL_CORE void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
+////CLASS_DECL_CORE void __trace_message(const ::string & pszPrefix, MESSAGE * lpmsg);
 //
 //
 ////CLASS_DECL_CORE void __cdecl __pre_translate_message(::message::message * pmessage);

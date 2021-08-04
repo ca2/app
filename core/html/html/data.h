@@ -28,7 +28,7 @@ public:
    virtual ::e_status     open_html(const ::string & str);
 
 
-   virtual bool open_link(const char * pszPath);
+   virtual bool open_link(const ::string & pszPath);
 
 
    virtual ::user::form * get_form();
@@ -37,7 +37,7 @@ public:
 
    //virtual bool is_locked();
 
-   void load(const char *);
+   void load(const ::string &);
    void implement(::draw2d::graphics_pointer & pgraphics);
    void on_layout(::draw2d::graphics_pointer & pgraphics);
    void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -48,7 +48,7 @@ public:
 
    DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-   image_pointer get_image(const char * pszUrl);
+   image_pointer get_image(const ::string & pszUrl);
    //void load_image_asynch(::html::image::image * pimage);
    //bool load_image(::html::image::image * pimage);
 

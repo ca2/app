@@ -46,7 +46,7 @@ class nsSingleByteCharSetProber : public nsCharSetProber{
 public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
   const char* GetCharSetName() {return mModel->charsetName;};
-  nsProbingState HandleData(const char* aBuf, PR::u32 aLen);
+  nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);
   nsProbingState GetState(void) {return mState;};
   void      Reset(void);
   float     GetConfidence(void);

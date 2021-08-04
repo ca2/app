@@ -247,7 +247,7 @@ namespace user
    }
 
 
-   ::user::enum_style frame::translate_user_style(const char * pszStyle)
+   ::user::enum_style frame::translate_user_style(const ::string & pszStyle)
    {
 
       string strStyle(pszStyle);
@@ -438,7 +438,7 @@ namespace user
    }
 
 
-   bool frame::LoadToolBar(id idToolBar, const char* pszToolBar, u32 dwCtrlStyle, u32 uStyle)
+   bool frame::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
    {
 
       return false;

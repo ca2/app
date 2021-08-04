@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-int _os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+int _os_message_box(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
 {
 
    //convert the strings from char* to CFStringRef
@@ -168,7 +168,7 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
 CLASS_DECL_CORE string message_box_result_to_string(int iResult);
 
 
-::e_status os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+::e_status os_message_box(oswindow window, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
    
    

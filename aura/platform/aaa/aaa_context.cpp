@@ -6,7 +6,7 @@
 extern const char* g_pszServerCa2Cc;
 
 
-string context::get_latest_build_number(const char * pszConfiguration, const char * pszAppId)
+string context::get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId)
 {
 
    string strConfiguration(pszConfiguration);
@@ -899,7 +899,7 @@ string context::get_locale_schema_dir()
 }
 
 
-bool context::http_download(const char * pszUrl, const char * pszFile)
+bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 {
 
    string strUrl = pszUrl;
@@ -915,7 +915,7 @@ bool context::http_download(const char * pszUrl, const char * pszFile)
 }
 
 
-string context::http_get(const char * pszUrl)
+string context::http_get(const ::string & pszUrl)
 {
 
    property_set set;
@@ -965,7 +965,7 @@ string context::sys_get(string strPath, string strDefault)
 }
 
 
-string context::load_string(const char * psz)
+string context::load_string(const ::string & psz)
 {
 
    return psz;

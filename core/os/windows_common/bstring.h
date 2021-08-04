@@ -13,7 +13,7 @@ public:
    bstring() { m_bstr = nullptr; }
    bstring(const OLECHAR * sz) { m_bstr = sys_alloc_string(sz); }
 
-   bstring(const char * psz, int len = -1) { m_bstr = ::is_null(psz) ? nullptr : sys_alloc_string_byte_len(psz, len < 0 ? (::u32) strlen(psz) : len); }
+   bstring(const ::string & psz, int len = -1) { m_bstr = ::is_null(psz) ? nullptr : sys_alloc_string_byte_len(psz, len < 0 ? (::u32) strlen(psz) : len); }
 
    ~bstring() { if(m_bstr) sys_free_string(m_bstr); m_bstr = nullptr; }
 
@@ -23,7 +23,7 @@ public:
 
    BSTR c_str() const { return m_bstr; }
 
-   static BSTR sys_alloc_string_byte_len(const char * psz, strsize i);
+   static BSTR sys_alloc_string_byte_len(const ::string & psz, strsize i);
 
    static BSTR sys_alloc_string(const OLECHAR * sz);
 

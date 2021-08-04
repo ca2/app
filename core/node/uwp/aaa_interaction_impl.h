@@ -57,7 +57,7 @@ namespace uwp
 
       virtual ::user::interaction * get_wnd() const;
 
-      //bool create_message_queue(::user::interaction * pinteraction, const char * pszName);
+      //bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName);
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
 
@@ -122,24 +122,24 @@ namespace uwp
       oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      bool ExecuteDlgInit(const char * lpszResourceName);
+      bool ExecuteDlgInit(const ::string & lpszResourceName);
       bool ExecuteDlgInit(LPVOID lpResource);
 
 
       virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const RECT32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
       virtual bool _native_create_window_ex(::user::system& cs);
 
 
-      //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
+      //virtual bool CreateEx(u32 dwExStyle, const ::string & lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
       //                      int x, int y, int nWidth, int nHeight,
       //                      oswindow hWndParent, id id, LPVOID lpParam = nullptr);
 
-      //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
+      //virtual bool CreateEx(u32 dwExStyle, const ::string & lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
       //                      const RECT32& rectangle,
       //                      ::user::interaction* pParentWnd, id id,
@@ -178,7 +178,7 @@ namespace uwp
 
 
       // Window Text Functions
-      void set_window_text(const char * lpszString) override;
+      void set_window_text(const ::string & lpszString) override;
       //strsize get_window_text(char * lpszStringBuf, strsize nMaxCount) override;
       void get_window_text(string & rString) override;
       //strsize get_window_text_length() override;
@@ -337,7 +337,7 @@ namespace uwp
       virtual ::u32 IsDlgButtonChecked(int nIDButton) const;
       virtual LRESULT SendDlgItemMessage(int nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
       virtual void SetDlgItemInt(int nID, ::u32 nValue, bool bSigned = true);
-      virtual void SetDlgItemText(int nID, const char * lpszString);
+      virtual void SetDlgItemText(int nID, const ::string & lpszString);
 
       // Scrolling Functions
       virtual int GetScrollPos(int nBar) const;
@@ -370,8 +370,8 @@ namespace uwp
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point);
       virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point, ::u32 nFlags);
-      static __pointer(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+      static __pointer(::user::interaction_impl) FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+      static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
       //      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow();
@@ -389,7 +389,7 @@ namespace uwp
 
       bool FlashWindow(bool bInvert);
 
-      //virtual int message_box(const char * lpszText, const char * lpszCaption = nullptr, ::u32 nType = e_message_box_ok);
+      //virtual int message_box(const ::string & lpszText, const ::string & lpszCaption = nullptr, ::u32 nType = e_message_box_ok);
 
 
 #if(WINVER >= 0x0500)
@@ -519,8 +519,8 @@ namespace uwp
       void OnSpoolerStatus(::u32 nStatus, ::u32 nJobs);
       void OnSysColorChange();
       void OnTimeChange();
-      void OnSettingChange(::u32 uFlags, const char * lpszSection);
-      void OnWinIniChange(const char * lpszSection);
+      void OnSettingChange(::u32 uFlags, const ::string & lpszSection);
+      void OnWinIniChange(const ::string & lpszSection);
 
       // Input message handler member functions
       void OnChar(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
@@ -648,7 +648,7 @@ namespace uwp
       friend class frame_window;
 
       // for creating dialogs and dialog-like windows
-      bool CreateDlg(const char * lpszTemplateName, ::user::interaction_impl * pParentWnd);
+      bool CreateDlg(const ::string & lpszTemplateName, ::user::interaction_impl * pParentWnd);
       //bool CreateDlgIndirect(LPCDLGTEMPLATE lpDialogTemplate, ::user::interaction_impl * pParentWnd,
       // HINSTANCE hInst);
 

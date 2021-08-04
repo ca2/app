@@ -256,7 +256,7 @@
       virtual ::e_status os_native_bergedge_start();
 
 
-      virtual bool on_application_menu_action(const char * pszCommand);
+      virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
       virtual void term();
@@ -294,7 +294,7 @@
       virtual ::e_status process_exception(const ::exception::exception & e) override;
 
 
-      //virtual __pointer(::application) assert_running(const char * pszAppId) override;
+      //virtual __pointer(::application) assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running();
 
@@ -306,7 +306,7 @@
 
       virtual bool assert_user_logged_in();
 
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = nullptr);
+      virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr);
 
 
 
@@ -360,8 +360,8 @@
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual ::e_status hotplugin_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual ::e_status hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual ::e_status hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
 
       virtual bool is_local_data() override;
@@ -388,7 +388,7 @@
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual string dialog_box(const char * pszMatter, property_set & propertyset);
+      virtual string dialog_box(const ::string & pszMatter, property_set & propertyset);
 
       virtual void application_menu_update();
 
@@ -442,16 +442,16 @@
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context::message_box;
-      //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();
@@ -461,7 +461,7 @@
       virtual string_array get_categories();
 
       virtual void defer_create_keyboard();
-      //virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
+      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 
 
       virtual bool enable_application_events(::object * pobject, bool bEnable);
@@ -497,7 +497,7 @@
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      //virtual bool on_application_menu_action(const char * pszCommand);
+      //virtual bool on_application_menu_action(const ::string & pszCommand);
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -572,7 +572,7 @@
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      virtual bool system_add_app_install(const char * pszId, const char * pszBuild);
+      virtual bool system_add_app_install(const ::string & pszId, const ::string & pszBuild);
 
       //virtual void TermThread(HINSTANCE hInstTerm);
 
@@ -582,16 +582,16 @@
       //virtual itask_t get_thread_id();
 
 
-      virtual bool _001OnDDECommand(const char * pcsz);
+      virtual bool _001OnDDECommand(const ::string & pcsz);
 
       virtual ::e_status _001InitializeShellOpen();
       virtual void _001OnFileNew(::message::message * pmessage);
 
 
 
-      virtual ::e_status get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
+      virtual ::e_status get_temp_file_name_template(string & str,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate);
 
-      virtual ::e_status get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
+      virtual ::e_status get_temp_file_name(string & str,const ::string & lpszName,const ::string & pszExtension);
 
       inline ::service_handler* service_handler() const { return m_pservicehanlder; }
 
@@ -666,7 +666,7 @@
 
 
 
-      virtual string http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema);
+      virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema);
 
       //virtual void on_update_matter_locator() override;
 
@@ -690,7 +690,7 @@
       virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
       virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
 
-      virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr);
+      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr);
       virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
 
 
@@ -732,7 +732,7 @@
 
       //virtual void play_audio(::payload varFile, bool bSynch = false);
 
-      virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true);
+      virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true);
 
       virtual void show_critical_error_log();
 
@@ -864,7 +864,7 @@
 
       //virtual u32 guess_code_page(const string& str);
 
-      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 fuStyle) override;
+      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message* pmessage) override;
@@ -895,7 +895,7 @@
 
       //virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
 
-      //virtual bool on_application_menu_action(const char* pszCommand) override;
+      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
       //virtual bool on_install() override;
       //virtual bool on_uninstall() override;
@@ -918,7 +918,7 @@
 ////#ifdef WINDOWS
 ////      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
 ////#endif
-//      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
+//      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -927,7 +927,7 @@
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      //bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
+      //bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
 
       //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 
@@ -938,15 +938,15 @@
       virtual void route_command_message(::message::command * pcommand) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-      //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
+      virtual __pointer(::extended::future < ::conversation >) message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
       //void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
-      //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const ::string & pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box(::user::primitive * puiOwner,const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
@@ -963,14 +963,14 @@
 
 
       //virtual bool on_install() override;
-      //virtual bool on_application_menu_action(const char * pszCommand) override;
+      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      //void SetRegistryKey(const char* pszRegistryKey);
+      //void SetRegistryKey(const ::string & pszRegistryKey);
 
       //void SetRegistryKey(::u32 nIDRegistryKey);
 
@@ -1013,7 +1013,7 @@
       //virtual void close(::apex::e_end eend) override; // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      //virtual i32 DoMessageBox(const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
+      //virtual i32 DoMessageBox(const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
 
 
       // Advanced: process async DDE request
@@ -1062,13 +1062,13 @@
 
 
       // helper for message boxes; can work when no application can be found
-      //static i32 ShowAppMessageBox(__pointer(application)pApp,const char * pszPrompt,::u32 nType,::u32 nIDPrompt);
+      //static i32 ShowAppMessageBox(__pointer(application)pApp,const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
 
       //static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
 //#ifdef WINDOWS_DESKTOP
 //      // helpers for registration
-//      HKEY GetSectionKey(const char* pszSection);
+//      HKEY GetSectionKey(const ::string & pszSection);
 //
 //      HKEY GetAppRegistryKey();
 //#endif
@@ -1115,7 +1115,7 @@
 
 
       //      virtual ::apex::file_system & file_system();
-      //virtual bool _001OnDDECommand(const char* pcsz) override;
+      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
 
       //user virtual ::user::document* _001OpenDocumentFile(::payload varFile);
       //virtual bool on_open_document_file(::payload varFile) override;
@@ -1131,7 +1131,7 @@
 
       //::application * psystem;
 
-      //virtual bool set_keyboard_layout(const char* pszPath, const ::action_context& action_context) override;
+      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context& action_context) override;
 
 
       //::experience::department* experience();
@@ -1149,14 +1149,14 @@
 
 
 
-      //virtual string dialog_box(const char* pszMatter, property_set& propertyset) override;
+      //virtual string dialog_box(const ::string & pszMatter, property_set& propertyset) override;
 
-      //virtual i32 track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
+      //virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
 
-      virtual bool get_fs_size(string& strSize, const char* pszPath, bool& bPending);
-      virtual bool get_fs_size(i64& i64Size, const char* pszPath, bool& bPending);
+      virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending);
+      virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending);
 
-      virtual void set_title(const char* pszTitle);
+      virtual void set_title(const ::string & pszTitle);
 
 
       //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
@@ -1172,17 +1172,17 @@
       void ensure_app_interest();
 
 
-      //virtual oswindow get_ca2_app_wnd(const char* psz);
+      //virtual oswindow get_ca2_app_wnd(const ::string & psz);
 
 
       //virtual void request_create(::create * pcreate);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
-      //virtual i32 send_simple_command(const char* psz, void* osdataSender);
-      //virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender);
+      //virtual i32 send_simple_command(const ::string & psz, void* osdataSender);
+      //virtual i32 send_simple_command(void* osdata, const ::string & psz, void* osdataSender);
 
-      //virtual ::apex::printer* get_printer(const char* pszDeviceName) override;
+      //virtual ::apex::printer* get_printer(const ::string & pszDeviceName) override;
 
 
       //virtual void assert_valid() const override;
@@ -1243,7 +1243,7 @@
 
 
       //virtual void construct();
-      //virtual void construct(const char * pszId);
+      //virtual void construct(const ::string & pszId);
 
 
       //virtual void _001OnFileNew();
@@ -1253,7 +1253,7 @@
 
       //__pointer(::application) psystem;
 
-      //virtual __pointer(::application) assert_running(const char * pszAppdId);
+      //virtual __pointer(::application) assert_running(const ::string & pszAppdId);
 
 
 
@@ -1282,7 +1282,7 @@
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
 
 
-      //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
+      //user virtual ::user::document* open_document_file(::object* pobject, const ::string & pszFileName);
 
 
 
@@ -1297,7 +1297,7 @@
 
       //user ::user::document* hold(__pointer(::user::interaction) pinteraction);
 
-      //virtual bool platform_open_by_file_extension(int iEdge,const char * pszPathName,application_bias * papplicationbias = nullptr);
+      //virtual bool platform_open_by_file_extension(int iEdge,const ::string & pszPathName,application_bias * papplicationbias = nullptr);
       //virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
 
 
@@ -1306,7 +1306,7 @@
 
       //      virtual void interactive_credentials(::account::credentials * pcredentials) override;
       //      virtual string get_cred(string & strUsername, string & strPassword, string strToken);
-      //      virtual void set_cred(string strToken, const char * pszUsername, const char * pszPassword) override;
+      //      virtual void set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword) override;
       //      virtual void set_cred_ok(string strToken, bool bOk) override;
 
       //user virtual void erase_document_template(::user::impact_system* pimpactsystem);
@@ -1318,7 +1318,7 @@
       //virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      virtual void report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic);
+      virtual void report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic);
 
 
       virtual ::e_status create_impact_system();
@@ -1333,7 +1333,7 @@
       string get_visual_studio_build();
 
 
-      virtual string sound_path(const char* psz);
+      virtual string sound_path(const ::string & psz);
       virtual string get_default_playlist_path();
 
 
@@ -1359,7 +1359,7 @@
 //
 //CLASS_DECL_APEX ::u32 c_cdecl application_thread_procedure(void * pvoid);
 //
-//typedef __pointer(::application) (*LPFN_instantiate_application)(__pointer(::application) pappParent, const char* pszId);
+//typedef __pointer(::application) (*LPFN_instantiate_application)(__pointer(::application) pappParent, const ::string & pszId);
 //
 //extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
 //

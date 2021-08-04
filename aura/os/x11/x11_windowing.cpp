@@ -49,7 +49,7 @@ public:
    string            m_strResult;
 
 
-   x11Button(const char * psz, const char * pszResult) :
+   x11Button(const ::string & psz, const ::string & pszResult) :
       m_wstrLabel(psz),
       m_strResult(pszResult)
    {

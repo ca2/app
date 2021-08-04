@@ -28,7 +28,7 @@ void  nsUTF8Prober::Reset(void)
   mState = eDetecting;
 }
 
-nsProbingState nsUTF8Prober::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsUTF8Prober::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsSMState codingState;
 

@@ -65,7 +65,7 @@ namespace datetime
 
    }
 
-   //element * parser::parse(const char * psz)
+   //element * parser::parse(const ::string & psz)
 /********************************************/
 /* Parsing functions */
 
@@ -78,7 +78,7 @@ namespace datetime
 */
 
 
-element * parser::parse(const char * psz)
+element * parser::parse(const ::string & psz)
 {
 
    ::datetime::element *node;
@@ -261,11 +261,11 @@ element * parser::expr(::datetime::element * pelement1)
    
 
 
-   void parser::syntax_error(const char * psz)
+   void parser::syntax_error(const ::string & psz)
    {
       error(string("syntax") + psz);
    }
-   void parser::error(const char * psz)
+   void parser::error(const ::string & psz)
    {
       string str;
       str = "error: ";

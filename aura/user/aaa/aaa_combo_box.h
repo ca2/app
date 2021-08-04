@@ -165,7 +165,7 @@ namespace user
 
       i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
       i32 GetItemHeight(index nIndex);
-      index FindStringExact(index nIndexStart, const char * pszFind);
+      index FindStringExact(index nIndexStart, const ::string & pszFind);
 
       i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -178,16 +178,16 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      virtual index AddString(const char * pszString, uptr dwItemData = 0);
-      virtual index AddString(const char* pszString, const string& strValue);
+      virtual index AddString(const ::string & pszString, uptr dwItemData = 0);
+      virtual index AddString(const ::string & pszString, const string& strValue);
 
 
 
       index DeleteString(index nIndex);
-      index InsertString(index nIndex, const char * pszString);
+      index InsertString(index nIndex, const ::string & pszString);
 
       void ResetContent();
-      index Dir(index attr, const char * pszWildCard);
+      index Dir(index attr, const ::string & pszWildCard);
 
 
 

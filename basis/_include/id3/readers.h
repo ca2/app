@@ -121,7 +121,7 @@
 //    {
 //       this->setBuffer(buf, size);
 //    };
-//    ID3_MemoryReader(const char* buf, size_type size_i32)
+//    ID3_MemoryReader(const ::string & buf, size_type size_i32)
 //    {
 //       this->setBuffer(reinterpret_cast<const char_type*>(buf), size);
 //    };

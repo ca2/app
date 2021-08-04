@@ -11,7 +11,7 @@ G_DEFINE_TYPE (ApexApplication, apex_application, GTK_TYPE_APPLICATION)
 
 ApexApplication * g_papexapplication = nullptr;
 
-ApexApplication * apex_application_new (const char * pszAppName, const char * pszProgName)
+ApexApplication * apex_application_new (const ::string & pszAppName, const ::string & pszProgName)
 {
 
    ApexApplication * apex_application;
@@ -176,7 +176,7 @@ void apex_application_class_init (BloatPadClass * pclass)
 }
 
 
-void apex_application_run(const char * pszAppName, const char * pszProgName)
+void apex_application_run(const ::string & pszAppName, const ::string & pszProgName)
 {
 
    g_papexapplication = apex_application_new(pszAppName, pszProgName);

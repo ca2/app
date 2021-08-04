@@ -15,11 +15,11 @@ namespace filehandler
       virtual ~library();
 
 
-      virtual bool handles_extension(const char * pszExtension);
-      virtual bool handles_mime_type(const char * pszMimeType);
+      virtual bool handles_extension(const ::string & pszExtension);
+      virtual bool handles_mime_type(const ::string & pszMimeType);
 
-      virtual void get_extension_app(string_array & straAppId, const char * pszExtension);
-      virtual void get_mime_type_app(string_array & straAppId, const char * pszMimeType);
+      virtual void get_extension_app(string_array & straAppId, const ::string & pszExtension);
+      virtual void get_mime_type_app(string_array & straAppId, const ::string & pszMimeType);
 
 
       // impl

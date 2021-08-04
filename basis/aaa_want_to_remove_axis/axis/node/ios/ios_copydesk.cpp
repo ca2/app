@@ -148,7 +148,7 @@ namespace ios
 
    }
 
-   void copydesk::_set_plain_text(const char * psz)
+   void copydesk::_set_plain_text(const ::string & psz)
    {
 //      ASSERT(m_p->is_window());
 //   //   i32 iLen = 0;

@@ -119,7 +119,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
             string & str = m_strBuffer;
             str.load_string(plist->_001GetColumnText(pdi->iItem));
 
-            pdi->pszText = (char *) (const char *) str;
+            pdi->pszText = (char *) (const ::string &) str;
 
             pdi->cchTextMax = str.get_length();
 
@@ -134,7 +134,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
             string & str = m_strBuffer;
             str.load_string(plist->_001GetColumnText(pdi->lParam));
 
-            pdi->pszText = (char *) (const char *) str;
+            pdi->pszText = (char *) (const ::string &) str;
 
             pdi->cchTextMax = str.get_length();
 

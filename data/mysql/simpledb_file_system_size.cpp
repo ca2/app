@@ -151,7 +151,7 @@ string file_size_table::item::path()
       return m_pitemParent->path() + "\\" + m_strName;
 }
 
-file_size_table::item * file_size_table::item::FindItem(::object * pobject, const char * pszPath, index & iIteration)
+file_size_table::item * file_size_table::item::FindItem(::object * pobject, const ::string & pszPath, index & iIteration)
 {
    string strName;
    string strPath(pszPath);
@@ -179,7 +179,7 @@ file_size_table::item * file_size_table::item::FindItem(::object * pobject, cons
 }
 
 
-index file_size_table::item::FindName(::object * pobject, const char * pszName, index & iIteration)
+index file_size_table::item::FindName(::object * pobject, const ::string & pszName, index & iIteration)
 {
    if(m_bPendingLs)
    {
@@ -241,7 +241,7 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 }
 
 
-bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
 {
    return false;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -285,7 +285,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(i64 & i64Size, const char * pszPath,
        }*/
 }
 
-bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
+bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
 {
    index iIteration = 0;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -297,7 +297,7 @@ bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool 
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending, index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending, index & iIteration)
 {
    single_lock synchronouslock(m_table.mutex(), false);
    if(!synchronouslock.lock(duration::zero()))
@@ -379,7 +379,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 }
 
-bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
+bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
 {
 
 #ifdef WINDOWS_DESKTOP

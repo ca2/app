@@ -26,7 +26,7 @@ namespace android
    }
 
 
-   //bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt)
+   //bool crypto::decrypt(memory & storageDecrypt, const memory & storageEncrypt, const ::string & pszSalt)
    //{
 
    //   memory memOut;
@@ -45,7 +45,7 @@ namespace android
 
    //}
 
-   //bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt)
+   //bool crypto::encrypt(memory & storageEncrypt, const memory & storageDecrypt, const ::string & pszSalt)
    //{
 
    //   memory memOut;

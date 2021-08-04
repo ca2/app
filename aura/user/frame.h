@@ -132,7 +132,7 @@ namespace user
 
       
       virtual bool is_translucid_user_style(enum_style estyle);
-      virtual ::user::enum_style translate_user_style(const char * pszStyle);
+      virtual ::user::enum_style translate_user_style(const ::string & pszStyle);
       virtual ::color::color get_moveable_border_color();
 
       virtual void set_user_style(enum_style estyle);
@@ -161,7 +161,7 @@ namespace user
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 
-      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+      virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
       virtual bool is_frame_window() override;
 

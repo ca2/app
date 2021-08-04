@@ -106,28 +106,28 @@ public:
 
    virtual ::experience::frame * experience_get_frame();
 
-   //virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   //virtual bool LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
-   virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   virtual bool LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   //virtual bool LoadToolBar(::type sptype,id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::type sptype,id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
-   virtual bool LoadToolBar(::type sptype, id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+   virtual bool LoadToolBar(::type sptype, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
 //   template < class TOOLBAR >
-  // bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+  // bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
    template < class TOOLBAR >
-   bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
+   bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
 
 
-//   virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+//   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
 //   {
 //      return LoadToolBar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
 //   }
 
-   virtual bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP) override
+   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP) override
    {
       return LoadToolBar < ::user::toolbar >(idToolBar,pszToolBar,dwCtrlStyle,uStyle);
    }
@@ -262,13 +262,13 @@ public:
 
    virtual void defer_create_notification_icon();
 
-   virtual void call_notification_area_action(const char * pszId);
+   virtual void call_notification_area_action(const ::string & pszId);
 
    //virtual void OnNotifyIconContextMenu(const ::id & idNotifyIcon);
    //virtual void OnNotifyIconLButtonDblClk(const ::id& idNotifyIcon);
    //virtual void OnNotifyIconLButtonDown(const ::id& idNotifyIcon);
 
-   virtual void notification_area_action(const char * pszId);
+   virtual void notification_area_action(const ::string & pszId);
 
    virtual string notification_area_get_xml_menu();
 

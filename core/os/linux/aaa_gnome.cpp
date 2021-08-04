@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   bool gsettings_get(string & str, const char * pszSchema, const char * pszKey)
+   bool gsettings_get(string & str, const ::string & pszSchema, const ::string & pszKey)
    {
 
       char * psz = gsettings_get_malloc(pszSchema, pszKey);

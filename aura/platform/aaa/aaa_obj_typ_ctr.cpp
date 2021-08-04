@@ -7,7 +7,7 @@ i64 g_iObjTypCtr = 0;
 
 critical_section g_csObjTypCtr;
 
-map < const char*, const char*, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
+map < const char*, const ::string &, ::i64, ::i64 > * g_pmapObjTypCtr = nullptr;
 
 void object_type_counter_increment(::matter * pobject)
 {

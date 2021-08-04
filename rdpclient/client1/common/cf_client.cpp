@@ -503,7 +503,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	nullptr
 //};
 
-//static BOOL af_authenticate_raw(freerdp* instance, const char* title,
+//static BOOL af_authenticate_raw(freerdp* instance, const ::string & title,
 //		char** username, char** password, char** domain)
 //{
 //   //PubSub_Subscribe(instance->context->pubSub,"ConnectionResult",(pEventHandler)rdpclient_connection_result);

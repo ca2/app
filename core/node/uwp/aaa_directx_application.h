@@ -145,7 +145,7 @@ namespace uwp
 
       string m_strId;
 
-      directx_application_source(::aura::system * paxissystem,const ::string & strId);
+      directx_application_source(::aura::system * paxissystem, const ::string & strId);
 
    public:
 

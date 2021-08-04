@@ -425,7 +425,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special processing etc
 
-   bool frame_window::LoadAccelTable(const char * pszResourceName)
+   bool frame_window::LoadAccelTable(const ::string & pszResourceName)
    {
 
 
@@ -874,7 +874,7 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+   //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::create * pcreate)
    //{
 
    //   UNREFERENCED_PARAMETER(pszMenuName);
@@ -1010,7 +1010,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
+   bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 
       UNREFERENCED_PARAMETER(puiParent);
@@ -2167,7 +2167,7 @@ namespace user
 
    //         ASSERT(wParam == 0);    // can't have both an ID and a string
 
-   //         psz = (const char *)lParam; // set an explicit string
+   //         psz = (const ::string &)lParam; // set an explicit string
 
 
    //      }
@@ -2240,7 +2240,7 @@ namespace user
 //      ASSERT(m_nIDTracking == m_nIDLastMessage);
 //   }
 
-   //void frame_window::SetMessageText(const char * pszText)
+   //void frame_window::SetMessageText(const ::string & pszText)
 
    //{
    //   send_message(WM_SETMESSAGESTRING, 0, (lparam)pszText);
@@ -2278,7 +2278,7 @@ namespace user
    }
 
 
-   void frame_window::UpdateFrameTitleForDocument(const char * pszDocName)
+   void frame_window::UpdateFrameTitleForDocument(const ::string & pszDocName)
 
    {
 
@@ -2673,7 +2673,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle, u32 uStyle)
+   bool frame_window::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
    {
 
       ::exception::throw_interface_only();

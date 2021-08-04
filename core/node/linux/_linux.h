@@ -10,7 +10,7 @@
 //
 //string get_error_message(::u32 dwError);
 //
-//__pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const char * pszId);
+//__pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const ::string & pszId);
 //
 //
 //
@@ -51,7 +51,7 @@
 //
 //i32 CLASS_DECL_CORE __linux_main(i32 argc, char * argv[]);
 //
-//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
+//CLASS_DECL_CORE void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & pszFileName = nullptr);
 //
 //#include "internal.h"
 //

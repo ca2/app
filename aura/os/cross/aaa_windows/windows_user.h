@@ -67,7 +67,7 @@ typedef int_bool(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
 typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
 typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
-typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
+typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow, const ::string &,HANDLE);
 typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
 
 typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);

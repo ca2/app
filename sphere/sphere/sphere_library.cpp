@@ -34,7 +34,7 @@ namespace sphere
 
    }
 
-   void library::get_extension_app(string_array & straApp, const char * pszExtension)
+   void library::get_extension_app(string_array & straApp, const ::string & pszExtension)
    {
 
       string strExtension(pszExtension);
@@ -54,7 +54,7 @@ namespace sphere
    }
 
 
-   /*   __pointer(::aura::application) library::get_new_app(const char * pszAppId)
+   /*   __pointer(::aura::application) library::get_new_app(const ::string & pszAppId)
       {
 
          if(::str::equals_ci(pszAppId, "calculator"))

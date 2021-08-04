@@ -112,7 +112,7 @@ namespace android
 
    }
 
-   void os_context::terminate_processes_by_title(const char * pszName)
+   void os_context::terminate_processes_by_title(const ::string & pszName)
    {
       ::exception::throw_not_implemented();
       return;
@@ -143,7 +143,7 @@ namespace android
       //  }
    }
 
-   bool os_context::get_pid_by_path(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::string & pszName, ::u32 & dwPid)
    {
       ::u32_array dwa;
       get_all_processes(dwa);
@@ -158,7 +158,7 @@ namespace android
       return false;
    }
 
-   bool os_context::get_pid_by_title(const char * pszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & pszName, ::u32 & dwPid)
    {
       ::u32_array dwa;
       get_all_processes(dwa);
@@ -293,7 +293,7 @@ namespace android
       */
    }
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
 //      ::exception::throw_not_implemented();
@@ -311,7 +311,7 @@ namespace android
    }
 
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
 
@@ -327,7 +327,7 @@ namespace android
 
    }
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       ::exception::throw_not_implemented();
@@ -344,7 +344,7 @@ namespace android
 
    }
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       ::exception::throw_not_implemented();
@@ -401,7 +401,7 @@ namespace android
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
       ::exception::throw_not_implemented();
       return false;
@@ -426,7 +426,7 @@ namespace android
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       string_array straKey;
@@ -439,7 +439,7 @@ namespace android
 
    }
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       ::exception::throw_not_implemented();
@@ -457,7 +457,7 @@ namespace android
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const char * pszCommand, const ::string & pszParam)
    {
       ::exception::throw_not_implemented();
       return false;
@@ -489,7 +489,7 @@ namespace android
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       ::exception::throw_not_implemented();
       return false;
@@ -532,7 +532,7 @@ namespace android
       */
    }
 
-   bool os_context::native_modern_web_browser(const char * lpcsz)
+   bool os_context::native_modern_web_browser(const ::string & lpcsz)
    {
 
       ::exception::throw_not_implemented();
@@ -540,7 +540,7 @@ namespace android
    }
 
 
-   bool os_context::native_full_web_browser(const char * lpcsz)
+   bool os_context::native_full_web_browser(const ::string & lpcsz)
    {
 
       ::exception::throw_not_implemented();

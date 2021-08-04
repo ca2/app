@@ -99,7 +99,7 @@ void html_data::delete_implementation()
 }
 
 
-void html_data::load(const char * psz)
+void html_data::load(const ::string & psz)
 {
 
    m_pcoredata->load(psz);
@@ -180,7 +180,7 @@ html::element* html_data::get_element_by_id(id id)
 }
 
 
-image_pointer html_data::get_image(const char * pszUrl)
+image_pointer html_data::get_image(const ::string & pszUrl)
 {
 
    return m_pcoredata->get_image(pszUrl);
@@ -204,7 +204,7 @@ bool html_data::on_create_interaction(__pointer(::user::interaction) pinteractio
 }
 
 
-bool html_data::open_link(const char * pszPath)
+bool html_data::open_link(const ::string & pszPath)
 {
 
    return m_pcoredata->open_link(pszPath);
@@ -228,7 +228,7 @@ bool html_data::open_document(const ::payload & varFile)
 }
 
 
-//void html_data::on_before_navigate(::payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);

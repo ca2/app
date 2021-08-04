@@ -41,17 +41,17 @@ namespace html
 
       style & operator = (const style & style);
       
-      const char * parse(html_data * pdata, const char * psz);
+      const char * parse(html_data * pdata, const ::string & psz);
 
       static ::color::color parse_color(const ::string & str);
       static float parse_dimension(const ::string & str);
       static bool parse_border_width(const ::string & str, float & f);
       static bool parse_border_color(const ::string & str, ::color::color & color);
 
-      static ::color::color _parse_color(const char * psz);
-      static float _parse_dimension(const char * psz);
-      static bool _parse_border_width(const char * psz, float & f);
-      static bool _parse_border_color(const char * psz, ::color::color & color32);
+      static ::color::color _parse_color(const ::string & psz);
+      static float _parse_dimension(const ::string & psz);
+      static bool _parse_border_width(const ::string & psz, float & f);
+      static bool _parse_border_color(const ::string & psz, ::color::color & color32);
 
       bool get_dimension(bool bParent, id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
       bool get_surround_box(id idName, const ::string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectangle_f32 & rectangle);

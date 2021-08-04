@@ -146,7 +146,7 @@ va_list *Arguments
 
 
 
-VOID WINAPI output_debug_string(const char * pOutputString)
+VOID WINAPI output_debug_string(const ::string & pOutputString)
 {
 
    if(::aura::g_bOutputDebugString)

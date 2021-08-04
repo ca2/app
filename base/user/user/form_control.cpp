@@ -1352,7 +1352,7 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
 
    //{
 

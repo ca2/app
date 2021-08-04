@@ -16,7 +16,7 @@ namespace colorertake5
    public:
 
 
-      ParserFactoryException(const char * pszMessage = nullptr) :
+      ParserFactoryException(const ::string & pszMessage = nullptr) :
          exception(pszMessage)
       {
 

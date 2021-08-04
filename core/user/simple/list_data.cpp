@@ -41,7 +41,7 @@ void simple_list_data::_001GetItemText(::user::mesh_item * pitem)
 }
 
 
-void simple_list_data::set_item_text(index iItem,index iSubItem,const char * pcsz)
+void simple_list_data::set_item_text(index iItem,index iSubItem, const ::string & pcsz)
 {
 
    while(iSubItem >= m_array.get_size())
@@ -54,7 +54,7 @@ void simple_list_data::set_item_text(index iItem,index iSubItem,const char * pcs
 
 }
 
-void simple_list_data::set_item_text(::user::mesh * pmesh,index iItem,index iSubItem,const char * pcsz)
+void simple_list_data::set_item_text(::user::mesh * pmesh,index iItem,index iSubItem, const ::string & pcsz)
 
 {
 

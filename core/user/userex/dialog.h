@@ -23,16 +23,16 @@ public:
 
 
    dialog();
-   dialog(const char * pszMatter, __pointer(::user::interaction) puiParent);
+   dialog(const ::string & pszMatter, __pointer(::user::interaction) puiParent);
    virtual ~dialog();
 
    virtual void on_position_parent_frame();
 
    virtual void EndModalLoop(id nResult);
 
-   virtual bool show(const char * pszMatter = nullptr);
+   virtual bool show(const ::string & pszMatter = nullptr);
 
-   virtual void on_show(const char * pszMatter);
+   virtual void on_show(const ::string & pszMatter);
 
    virtual void do_data_exchange(::user::data_exchange * pdx);
 

@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 
 
-int_bool file_exists_raw(const char * path1)
+int_bool file_exists_raw(const ::string & path1)
 {
 
 #ifdef WINDOWS
@@ -35,7 +35,7 @@ int_bool file_exists_raw(const char * path1)
 
 }
 
-void file_put_contents_raw(const char * path, const char * psz)
+void file_put_contents_raw(const ::string & path, const ::string & psz)
 {
 
    FILE * f = fopen(path, "wb");
@@ -51,7 +51,7 @@ void file_put_contents_raw(const char * path, const char * psz)
 
 }
 
-void file_add_contents_raw(const char * path, const char * psz)
+void file_add_contents_raw(const ::string & path, const ::string & psz)
 {
 
    FILE * f = fopen(path, "ab");
@@ -68,7 +68,7 @@ void file_add_contents_raw(const char * path, const char * psz)
 }
 
 
-void file_beg_contents_raw(const char * path, const char * psz)
+void file_beg_contents_raw(const ::string & path, const ::string & psz)
 {
 
    FILE * f = fopen(path, "rb+");
@@ -120,7 +120,7 @@ void file_beg_contents_raw(const char * path, const char * psz)
 }
 
 
-u64 file_length_raw(const char * path)
+u64 file_length_raw(const ::string & path)
 {
 
 #ifdef WINDOWS
@@ -140,7 +140,7 @@ u64 file_length_raw(const char * path)
 
 
 
-string file_line_dup(const char * path, index iLine)
+string file_line_dup(const ::string & path, index iLine)
 {
 
    string str;
@@ -207,7 +207,7 @@ string file_line_dup(const char * path, index iLine)
 }
 
 
-bool file_set_line_dup(const char * pszPath, index iLine, const char * pszLine)
+bool file_set_line_dup(const ::string & pszPath, index iLine, const ::string & pszLine)
 {
 
    if (iLine < 0)

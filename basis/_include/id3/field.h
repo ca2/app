@@ -48,13 +48,13 @@ public:
    virtual u32        Get() const = 0;
 
    // ASCII string field functions
-   virtual ID3_Field&    operator= (const char* s) = 0;
-   virtual size_t        Set(const char*) = 0;
+   virtual ID3_Field&    operator= (const ::string & s) = 0;
+   virtual size_t        Set(const ::string &) = 0;
    virtual size_t        Get(char*, size_t) const = 0;
    virtual size_t        Get(char*, size_t, size_t) const = 0;
    virtual const char*   GetRawText() const = 0;
    virtual const char*   GetRawTextItem(size_t) const = 0;
-   virtual size_t        Add(const char*) = 0;
+   virtual size_t        Add(const ::string &) = 0;
 
    // Unicode string field functions
    virtual ID3_Field&    operator= (const unicode_t* s) = 0;
@@ -69,8 +69,8 @@ public:
    virtual size_t        Set(const uchar*, size_t) = 0;
    virtual size_t        Get(uchar*, size_t) const = 0;
    virtual const uchar*  GetRawBinary() const = 0;
-   virtual void          FromFile(const char*) = 0;
-   virtual void          ToFile(const char *sInfo) const = 0;
+   virtual void          FromFile(const ::string &) = 0;
+   virtual void          ToFile(const ::string &sInfo) const = 0;
 
    // miscelaneous functions
    virtual ID3_Field&    operator=( const ID3_Field & ) = 0;

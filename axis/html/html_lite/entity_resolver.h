@@ -73,7 +73,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   i32 resolveEntity(const char * pszEntity, string & strChar);
+   i32 resolveEntity(const ::string & pszEntity, string & strChar);
 
 
 };

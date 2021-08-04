@@ -209,7 +209,7 @@ lite_html_tag::~lite_html_tag()
          }
 
          // ... and delegate parsing process
-         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.get_length() - (pszBegin - (const char *) strString));
+         nTemp = (::u32) pcollAttr->parseFromStr(preader, pszBegin, strString.get_length() - (pszBegin - (const ::string &) strString));
 
       }
 

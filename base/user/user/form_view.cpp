@@ -60,7 +60,7 @@ namespace user
    }
 
 
-   bool form_view::Navigate(const char * pszUrl)
+   bool form_view::Navigate(const ::string & pszUrl)
    {
 
       UNREFERENCED_PARAMETER(pszUrl);

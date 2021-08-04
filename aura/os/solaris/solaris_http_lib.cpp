@@ -146,7 +146,7 @@ i32 tiny_http::t_read_buffer (i32 fd, char * buffer, i32 length, void (*callback
 //i32 length;  /* size_i32 of data */
 //i32 *pfd;    /* pointer to variable where to set file descriptor value */
 
-tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * url,  const char * additional_header, querymode mode, char * data, i32 length, i32 * pfd)
+tiny_http::http_retcode tiny_http::t_query(const ::string & command,  const char * url,  const char * additional_header, querymode mode, char * data, i32 length, i32 * pfd)
 {
    i32                  s;
    struct hostent *     hp;
@@ -187,10 +187,10 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
          sprintf(header,
                  "%s http://%.128s:%d/%.256s HTTP/1.0\015\012User-Agent: %s\015\012%s\015\012",
                  command,
-                 (const char *) m_strHttpServer,
+                 (const ::string &) m_strHttpServer,
                  m_iHttpPort,
                  url,
-                 (const char *) m_strUserAgent,
+                 (const ::string &) m_strUserAgent,
                  additional_header
                 );
       }
@@ -200,7 +200,7 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
                  "%s /%.256s HTTP/1.0\015\012User-Agent: %s\015\012%s\015\012",
                  command,
                  url,
-                 (const char *) m_strUserAgent,
+                 (const ::string &) m_strUserAgent,
                  additional_header
                 );
       }
@@ -253,13 +253,13 @@ tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * u
 // i32 overwrite;   /* flag to request to overwrite the ressource if it
 // was already existing */
 //char *type;      /* type of the data, if nullptr default type is used */
-tiny_http::http_retcode tiny_http::t_put(const char * data, i32 length, i32 overwrite, void (*callback)(void *, i32, dword_ptr), void * callback_param)
+tiny_http::http_retcode tiny_http::t_put(const ::string & data, i32 length, i32 overwrite, void (*callback)(void *, i32, dword_ptr), void * callback_param)
 {
    char header[MAXBUF];
    if (m_strContentType.get_length() > 0)
       sprintf(header,"Content-length: %d\015\012Content-type: %.64s\015\012%s",
               length,
-              (const char *) m_strContentType,
+              (const ::string &) m_strContentType,
               overwrite ? "Control: overwrite=1\015\012" : ""
              );
    else
@@ -431,7 +431,7 @@ tiny_http::http_retcode tiny_http::t_delete()
  * and returning the filename to pass to http_get/put/...
  * returns a negative error code or 0 if sucessfully parsed.
  */
-tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
+tiny_http::http_retcode tiny_http::t_parse_url(const ::string & url)
 {
    vsstring strUrl(url);
    if(!strUrl.begins_eat_ci("http://"))
@@ -447,7 +447,7 @@ tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
    {
       if((iFind2 > 0 && iFind1 < iFind2) || iFind2 < 0)
       {
-         m_iHttpPort = atoi(&((const char *)strUrl)[iFind1 + 1]);
+         m_iHttpPort = atoi(&((const ::string &)strUrl)[iFind1 + 1]);
       }
       else
       {
@@ -470,7 +470,7 @@ tiny_http::http_retcode tiny_http::t_parse_url(const char * url)
 
 #ifdef VERBOSE
    fprintf(stderr,"host=(%s), port=%d, filename=(%s)\n",
-           (const char *) m_strHttpServer,m_iHttpPort, (const char *) m_strFileName);
+           (const ::string &) m_strHttpServer,m_iHttpPort, (const ::string &) m_strFileName);
 #endif
    return OK0;
 }

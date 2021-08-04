@@ -83,7 +83,7 @@
 //   if (tree_root) delete tree_root;
 //};
 //
-//EError cregexp::setRELow(const char * expr)
+//EError cregexp::setRELow(const ::string & expr)
 //{
 //
 //   strsize len = ::str::ilen(expr);
@@ -172,7 +172,7 @@
 //   };
 //};
 //
-//EError cregexp::setStructs(SRegInfo *&re, const char * expr, strsize &retPos)
+//EError cregexp::setStructs(SRegInfo *&re, const ::string & expr, strsize &retPos)
 //{
 //   SRegInfo *next, *temp;
 //
@@ -275,7 +275,7 @@
 //
 //         case 'p':  // \p{name}
 //            next->op = ReBkBrackName;
-//            if (!::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return ESYNTAX;
+//            if (!::str::get_curly_content(&((const ::string &)expr)[i+2], br_name)) return ESYNTAX;
 //            blen = br_name.get_length();
 //            if(br_name.get_length() && namedMatches && !namedMatches->getItem(br_name))
 //            {
@@ -445,8 +445,8 @@
 //         };
 //         if (en == -1) return EBRACKETS;
 //         if (comma == -1) comma = en;
-//         next->s = atoi(string(&((const char *)expr)[st], comma-st));
-//         if (comma != en) next->e = atoi(string(&((const char *)expr)[comma+1], en-comma-1));
+//         next->s = atoi(string(&((const ::string &)expr)[st], comma-st));
+//         if (comma != en) next->e = atoi(string(&((const ::string &)expr)[comma+1], en-comma-1));
 //         else next->e = next->s;
 //         if (next->e == -1) return EOP;
 //         next->un.lparam = 0;
@@ -474,7 +474,7 @@
 //            next->op = ReNamedBrackets;
 //            //namedBracket = true;
 //            string br_name;
-//            if(!::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return EBRACKETS;
+//            if(!::str::get_curly_content(&((const ::string &)expr)[i+2], br_name)) return EBRACKETS;
 //
 //            strsize blen = br_name.get_length();
 //            if (blen == 0)
@@ -513,7 +513,7 @@
 //         next->un.lparam = new SRegInfo;
 //         next->un.lparam->parent = next;
 //         strsize endPos;
-//         EError err = setStructs(next->un.lparam, string(&((const char *)expr)[i]), endPos);
+//         EError err = setStructs(next->un.lparam, string(&((const ::string &)expr)[i]), endPos);
 //         if (endPos == ::str::ilen(expr)-i) return EBRACKETS;
 //         if (err) return err;
 //         i += endPos;
@@ -534,7 +534,7 @@
 //      };
 //      if (expr[i] == ')' || expr[i] == ']' || expr[i] == '}') return EBRACKETS;
 //      next->op = ReSymb;
-//      next->un.symbol = new string(::str::get_utf8_char(&((const char *)expr)[i]));
+//      next->un.symbol = new string(::str::get_utf8_char(&((const ::string &)expr)[i]));
 //      i += next->un.symbol->get_length() - 1;
 //   };
 //
@@ -667,10 +667,10 @@
 //{
 //   strsize before = 0;
 //   strsize after  = 0;
-//   if (toParse < end && (::str::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse]) ||
-//                         ((const char *)global_pattern)[toParse] == '_')) after = 1;
-//   if (toParse > 0 && (::str::ch::is_letter_or_digit(&((const char *)global_pattern)[toParse-1]) ||
-//                       ((const char *)global_pattern)[toParse-1] == '_')) before = 1;
+//   if (toParse < end && (::str::ch::is_letter_or_digit(&((const ::string &)global_pattern)[toParse]) ||
+//                         ((const ::string &)global_pattern)[toParse] == '_')) after = 1;
+//   if (toParse > 0 && (::str::ch::is_letter_or_digit(&((const ::string &)global_pattern)[toParse-1]) ||
+//                       ((const ::string &)global_pattern)[toParse-1] == '_')) before = 1;
 //   return before+after == 1;
 //};
 //bool cregexp::isNWordBoundary(strsize &toParse)
@@ -689,22 +689,22 @@
 //   {
 //   case ReAnyChr:
 //      if (toParse >= end) return false;
-//      if (!singleLine && (((const char *)pattern)[toParse] == 0x0A || ((const char *)pattern)[toParse] == 0x0B ||
-//                          ((const char *)pattern)[toParse] == 0x0C || ((const char *)pattern)[toParse] == 0x0D ||
-//                          ((const u8 *)(const char *)pattern)[toParse] == 0x85 ||
-//                          ((const unichar *)(const char *)pattern)[toParse] == 0x2028 ||
-//                          ((const unichar *)(const char *)pattern)[toParse] == 0x2029)) return false;
+//      if (!singleLine && (((const ::string &)pattern)[toParse] == 0x0A || ((const ::string &)pattern)[toParse] == 0x0B ||
+//                          ((const ::string &)pattern)[toParse] == 0x0C || ((const ::string &)pattern)[toParse] == 0x0D ||
+//                          ((const u8 *)(const ::string &)pattern)[toParse] == 0x85 ||
+//                          ((const unichar *)(const ::string &)pattern)[toParse] == 0x2028 ||
+//                          ((const unichar *)(const ::string &)pattern)[toParse] == 0x2029)) return false;
 //      toParse++;
 //      return true;
 //   case ReSoL:
 //      if (multiLine)
 //      {
 //         bool ok = false;
-//         if (toParse && (((const char *)pattern)[toParse-1] == 0x0A || ((const char *)pattern)[toParse-1] == 0x0B ||
-//                         ((const char *)pattern)[toParse-1] == 0x0C || ((const char *)pattern)[toParse-1] == 0x0D ||
-//                         ((const u8 *)(const char *)pattern)[toParse-1] == 0x85 ||
-//                         ((const unichar *)(const char *)pattern)[toParse-1] == 0x2028 ||
-//                         ((const unichar *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
+//         if (toParse && (((const ::string &)pattern)[toParse-1] == 0x0A || ((const ::string &)pattern)[toParse-1] == 0x0B ||
+//                         ((const ::string &)pattern)[toParse-1] == 0x0C || ((const ::string &)pattern)[toParse-1] == 0x0D ||
+//                         ((const u8 *)(const ::string &)pattern)[toParse-1] == 0x85 ||
+//                         ((const unichar *)(const ::string &)pattern)[toParse-1] == 0x2028 ||
+//                         ((const unichar *)(const ::string &)pattern)[toParse-1] == 0x2029)) ok = true;
 //         return (toParse == 0 || ok);
 //      };
 //      return (toParse == 0);
@@ -713,46 +713,46 @@
 //      {
 //         bool ok = false; // ???check
 //         if (toParse && toParse < end &&
-//               (((const char *)pattern)[toParse-1] == 0x0A || ((const char *)pattern)[toParse-1] == 0x0B ||
-//                ((const char *)pattern)[toParse-1] == 0x0C || ((const char *)pattern)[toParse-1] == 0x0D ||
-//                ((const u8 *)(const char *)pattern)[toParse-1] == 0x85 ||
-//                ((const unichar *)(const char *)pattern)[toParse-1] == 0x2028 ||
-//                ((const unichar *)(const char *)pattern)[toParse-1] == 0x2029)) ok = true;
+//               (((const ::string &)pattern)[toParse-1] == 0x0A || ((const ::string &)pattern)[toParse-1] == 0x0B ||
+//                ((const ::string &)pattern)[toParse-1] == 0x0C || ((const ::string &)pattern)[toParse-1] == 0x0D ||
+//                ((const u8 *)(const ::string &)pattern)[toParse-1] == 0x85 ||
+//                ((const unichar *)(const ::string &)pattern)[toParse-1] == 0x2028 ||
+//                ((const unichar *)(const ::string &)pattern)[toParse-1] == 0x2029)) ok = true;
 //         return (toParse == end || ok);
 //      };
 //      return (end == toParse);
 //   case ReDigit:
-//      if (toParse >= end || !::str::ch::is_digit(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || !::str::ch::is_digit(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReNDigit:
-//      if (toParse >= end || ::str::ch::is_digit(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || ::str::ch::is_digit(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReWordSymb:
-//      if (toParse >= end || !(::str::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
-//                              || ((const char *)pattern)[toParse] == '_')) return false;
+//      if (toParse >= end || !(::str::ch::is_letter_or_digit(&((const ::string &)pattern)[toParse])
+//                              || ((const ::string &)pattern)[toParse] == '_')) return false;
 //      toParse++;
 //      return true;
 //   case ReNWordSymb:
-//      if (toParse >= end || ::str::ch::is_letter_or_digit(&((const char *)pattern)[toParse])
-//            || ((const char *)pattern)[toParse] == '_') return false;
+//      if (toParse >= end || ::str::ch::is_letter_or_digit(&((const ::string &)pattern)[toParse])
+//            || ((const ::string &)pattern)[toParse] == '_') return false;
 //      toParse++;
 //      return true;
 //   case ReWSpace:
-//      if (toParse >= end || !::str::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || !::str::ch::is_whitespace(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReNWSpace:
-//      if (toParse >= end || ::str::ch::is_whitespace(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || ::str::ch::is_whitespace(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReUCase:
-//      if (toParse >= end || !::str::ch::is_upper_case(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || !::str::ch::is_upper_case(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReNUCase:
-//      if (toParse >= end || !::str::ch::is_lower_case(&((const char *)pattern)[toParse])) return false;
+//      if (toParse >= end || !::str::ch::is_lower_case(&((const ::string &)pattern)[toParse])) return false;
 //      toParse++;
 //      return true;
 //   case ReWBound:
@@ -761,7 +761,7 @@
 //      return isNWordBoundary(toParse);
 //   case RePreNW:
 //      if (toParse >= end) return true;
-//      return toParse == 0 || !::str::ch::is_letter(&((const char *)pattern)[toParse-1]);
+//      return toParse == 0 || !::str::ch::is_letter(&((const ::string &)pattern)[toParse-1]);
 //#ifdef COLORERMODE
 //   case ReSoScheme:
 //      return (schemeStart == toParse);
@@ -826,11 +826,11 @@
 //         if (toParse >= end) return false;
 //         if (ignoreCase)
 //         {
-//            if (::str::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::str::ch::to_lower_case(*re->un.symbol) &&
-//                  ::str::ch::to_upper_case(&((const char *)pattern)[toParse]) != ::str::ch::to_upper_case(*re->un.symbol))
+//            if (::str::ch::to_lower_case(&((const ::string &)pattern)[toParse]) != ::str::ch::to_lower_case(*re->un.symbol) &&
+//                  ::str::ch::to_upper_case(&((const ::string &)pattern)[toParse]) != ::str::ch::to_upper_case(*re->un.symbol))
 //               return false;
 //         }
-//         else if (::str::get_utf8_char(&((const char *)pattern)[toParse]) != *re->un.symbol) return false;
+//         else if (::str::get_utf8_char(&((const ::string &)pattern)[toParse]) != *re->un.symbol) return false;
 //         toParse++;
 //         break;
 //      case ReMetaSymb:
@@ -850,19 +850,19 @@
 //         {
 //            for(i = 0; i < wlen; i++)
 //            {
-//               if(((const char *)pattern)[toParse+i] != (*re->un.u)[i]) return false;
+//               if(((const ::string &)pattern)[toParse+i] != (*re->un.u)[i]) return false;
 //            };
 //            toParse += wlen;
 //         }
 //         break;
 //      case ReEnum:
 //         if (toParse >= end) return false;
-//         if (!re->un.charclass->in_class(&((const char *)pattern)[toParse])) return false;
+//         if (!re->un.charclass->in_class(&((const ::string &)pattern)[toParse])) return false;
 //         toParse++;
 //         break;
 //      case ReNEnum:
 //         if (toParse >= end) return false;
-//         if (re->un.charclass->in_class(&((const char *)pattern)[toParse])) return false;
+//         if (re->un.charclass->in_class(&((const ::string &)pattern)[toParse])) return false;
 //         toParse++;
 //         break;
 //#ifdef COLORERMODE
@@ -871,7 +871,7 @@
 //         if(backStr.has_char() || !backTrace || sv == -1) return false;
 //         for (i = backTrace->s[sv]; i < backTrace->e[sv]; i++)
 //         {
-//            if (toParse >= end || ((const char *)pattern)[toParse] != backStr[i]) return false;
+//            if (toParse >= end || ((const ::string &)pattern)[toParse] != backStr[i]) return false;
 //            toParse++;
 //         };
 //         break;
@@ -880,7 +880,7 @@
 //         if (backStr.has_char() || !backTrace || sv == -1) return false;
 //         for (i = backTrace->s[sv]; i < backTrace->e[sv]; i++)
 //         {
-//            if (toParse >= end || ::str::ch::to_lower_case(&((const char *)pattern)[toParse]) != ::str::ch::to_lower_case(&((const char *)backStr)[i])) return false;
+//            if (toParse >= end || ::str::ch::to_lower_case(&((const ::string &)pattern)[toParse]) != ::str::ch::to_lower_case(&((const ::string &)backStr)[i])) return false;
 //            toParse++;
 //         };
 //         break;
@@ -897,7 +897,7 @@
 //         if (mt->s == -1 || mt->e == -1) return false;
 //         for (i = mt->s; i < mt->e; i++)
 //         {
-//            if (toParse >= end || &((const char *)pattern)[toParse] != &((const char *)pattern)[i]) return false;
+//            if (toParse >= end || &((const ::string &)pattern)[toParse] != &((const ::string &)pattern)[i]) return false;
 //            toParse++;
 //         };
 //      };
@@ -909,7 +909,7 @@
 //         if (matches->s[sv] == -1 || matches->e[sv] == -1) return false;
 //         for (i = matches->s[sv]; i < matches->e[sv]; i++)
 //         {
-//            if (toParse >= end || &((const char *)pattern)[toParse] != &((const char *)pattern)[i]) return false;
+//            if (toParse >= end || &((const ::string &)pattern)[toParse] != &((const ::string &)pattern)[i]) return false;
 //            toParse++;
 //         };
 //         break;
@@ -1048,9 +1048,9 @@
 //      if (toParse >= end) return false;
 //      if (ignoreCase)
 //      {
-//         if (::str::ch::to_lower_case(&((const char *)global_pattern)[toParse]) != ::str::ch::to_lower_case(firstChar)) return false;
+//         if (::str::ch::to_lower_case(&((const ::string &)global_pattern)[toParse]) != ::str::ch::to_lower_case(firstChar)) return false;
 //      }
-//      else if (&((const char *)global_pattern)[toParse] != firstChar) return false;
+//      else if (&((const ::string &)global_pattern)[toParse] != firstChar) return false;
 //      return true;
 //   };
 //   if (firstMetaChar != ReBadMeta)

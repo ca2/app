@@ -26,7 +26,7 @@ public:
 
 
    itemidlist();
-   itemidlist(const char * pcszPath);
+   itemidlist(const ::string & pcszPath);
    itemidlist(LPCITEMIDLIST pidl, bool bAttach = true);
    itemidlist(const itemidlist & iidl);
    itemidlist(itemidlist && iidl);
@@ -60,14 +60,14 @@ public:
    inline int len() const;
    inline void free();
    string path() const;//Retrieve full path.(only available for full-quality pidl)
-   bool parse(const char * pszPath);
+   bool parse(const ::string & pszPath);
 
    itemidlist operator/(const itemidlist & piidl) const ;//Concat two pidls.
    inline operator LPITEMIDLIST() const { return m_pidl; }
    inline operator LPCITEMIDLIST() const { return (LPCITEMIDLIST)m_pidl; }
    inline operator LPITEMIDLIST*() { return &m_pidl; }
    inline operator LPCITEMIDLIST*() { return (LPCITEMIDLIST*)&m_pidl; }
-   itemidlist & operator=(const char * pszPath);
+   itemidlist & operator=(const ::string & pszPath);
    itemidlist & operator=(const itemidlist & pidl);
    itemidlist & operator=(LPCITEMIDLIST pidl);
    itemidlist & operator/=(const itemidlist & ciidl);//Add a new pidl to tail.
@@ -100,8 +100,8 @@ public:
    static HRESULT _GetUIObjectOf(REFIID riid, LPVOID* ppOut, LPITEMIDLIST pidlf, HWND hWnd);
    static LPITEMIDLIST _copy(LPCITEMIDLIST pidlOrg, int nCount);
    static int _compare(LPCITEMIDLIST pidlf1, LPCITEMIDLIST pidlf2, IShellFolder * psfFolder = nullptr, LPARAM lParam = 0);//return zero means same,non-zero means different.
-   static HRESULT _parse(LPITEMIDLIST &pidl, const char * pcszPath, IShellFolder * psfFolder);
-   static HRESULT _parse(LPITEMIDLIST& pidlf, const char * pcszPath);
+   static HRESULT _parse(LPITEMIDLIST &pidl, const ::string & pcszPath, IShellFolder * psfFolder);
+   static HRESULT _parse(LPITEMIDLIST& pidlf, const ::string & pcszPath);
    static int _overlay_icon_index(IShellFolder * psfFolder, LPCITEMIDLIST pidl);
 
    static string _display_name(STRRET& str, LPCITEMIDLIST pidl);

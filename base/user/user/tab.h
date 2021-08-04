@@ -44,7 +44,7 @@ namespace user
 
          string m_strHint;
 
-         erase_tab_exception(const char * pszHint)
+         erase_tab_exception(const ::string & pszHint)
          {
             m_strHint = pszHint;
          }
@@ -170,13 +170,13 @@ namespace user
       virtual void GetTabClientRect(RECTANGLE_I64 * prectangle);
 
 
-      virtual bool add_tab(const char * pcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_tab(const ::string & pcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_tab(const char * pcsz, id idTab = id(), bool bVisible = true);
+      virtual bool set_tab(const ::string & pcsz, id idTab = id(), bool bVisible = true);
 
-      virtual bool add_image_tab(const char * pcsz, const char * pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
+      virtual bool add_image_tab(const ::string & pcsz, const ::string & pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
 
-      virtual bool set_image_tab(const char * pcsz, const char * pszImage, id idTab = id(), bool bVisible = true);
+      virtual bool set_image_tab(const ::string & pcsz, const ::string & pszImage, id idTab = id(), bool bVisible = true);
 
       virtual bool erase_tab_by_id(id idTab = id());
       virtual void erase_tab(::index iTab, bool bVisible = true);
@@ -186,8 +186,8 @@ namespace user
       virtual bool hide_tab(::index iTab);
 
 
-      virtual bool set_title(::index iTab, const char * psz);
-      virtual bool set_title_by_id(id id, const char * psz);
+      virtual bool set_title(::index iTab, const ::string & psz);
+      virtual bool set_title_by_id(id id, const ::string & psz);
 
 
       virtual index find_child_pane(::user::interaction * pinteraction);
@@ -219,13 +219,13 @@ namespace user
 
       virtual void get_text_id(string_array & stra);
 
-      virtual void get_prefixed_ci_id(string_array & stra, const char * pszPrefix);
-      virtual void get_suffixed_ci_id(string_array & stra, const char * pszSuffix);
-      virtual void get_presuffixed_ci_id(string_array & stra, const char * pszPrefix, const char * pszSuffixed);
+      virtual void get_prefixed_ci_id(string_array & stra, const ::string & pszPrefix);
+      virtual void get_suffixed_ci_id(string_array & stra, const ::string & pszSuffix);
+      virtual void get_presuffixed_ci_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffixed);
 
-      virtual void get_begins_ci_eat_id(string_array & stra, const char * pszPrefix);
-      virtual void get_ends_ci_eat_id(string_array & stra, const char * pszSuffix);
-      virtual void get_begins_ends_ci_eat_id(string_array & stra, const char * pszPrefix, const char * pszSuffixed);
+      virtual void get_begins_ci_eat_id(string_array & stra, const ::string & pszPrefix);
+      virtual void get_ends_ci_eat_id(string_array & stra, const ::string & pszSuffix);
+      virtual void get_begins_ends_ci_eat_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffixed);
 
       virtual void _001ConnectParent(::channel * pchannel);
 

@@ -15,10 +15,10 @@ namespace uwp
       virtual ~file_context();
 
 
-      virtual bool FullPath(string & str, const char * pszFileIn);
+      virtual bool FullPath(string & str, const ::string & pszFileIn);
 
       virtual bool FullPath(wstring & wstrFullPath, const wstring & wstrPath);
-      virtual ::u32 GetFileName(const char * pszPathName, string & str);
+      virtual ::u32 GetFileName(const ::string & pszPathName, string & str);
 
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 

@@ -252,7 +252,7 @@ namespace draw2d
    }
 
 
-   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dHeight, double dRateX, const char * psz)
+   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dHeight, double dRateX, const ::string & psz)
    {
 
       pgraphics->text_out(rectangle.left, rectangle.top, psz);
@@ -264,18 +264,36 @@ namespace draw2d
    }
 
 
-   bool api::open()
+   ::e_status api::initialize(::object * pobject)
    {
 
-      return true;
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
 
-   bool api::close()
+   ::e_status api::destroy()
    {
 
-      return true;
+      auto estatus = ::object::destroy();
+
+      if (!estatus)
+      {
+
+         output_debug_string("::object::destroy returned error at ::draw2d::api::destroy");
+
+      }
+
+      return estatus;
 
    }
 

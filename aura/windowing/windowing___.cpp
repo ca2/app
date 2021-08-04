@@ -80,7 +80,7 @@
 //
 //CLASS_DECL_ACME void x11_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::future & process);
 //
-////::e_status os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
+////::e_status os_message_box(::windowing::window * pwindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::future future)
 ////{
 ////
 ////   x11_message_box(pszMessage, pszTitle, emessagebox, future);

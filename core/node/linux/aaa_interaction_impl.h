@@ -101,11 +101,11 @@ namespace linux
 //      oswindow UnsubclassWindow();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-//      bool ExecuteDlgInit(const char * pszResourceName);
+//      bool ExecuteDlgInit(const ::string & pszResourceName);
 //
 //      bool ExecuteDlgInit(LPVOID pResource);
 
-      //virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName) override;
+      //virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
 
 //      using ::user::interaction_impl::create_window;
 
@@ -188,7 +188,7 @@ namespace linux
 
 
       // oswindow Text Functions
-      void set_window_text(const char * pszString) override;
+      void set_window_text(const ::string & pszString) override;
 
       //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
 
@@ -410,7 +410,7 @@ namespace linux
 //      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
 //      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
 //      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true);
-//      virtual void SetDlgItemText(i32 nID, const char * pszString);
+//      virtual void SetDlgItemText(i32 nID, const ::string & pszString);
 
 
 //      // Scrolling Functions
@@ -443,9 +443,9 @@ namespace linux
 //
 //      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
 //      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, ::u32 nFlags);
-//      static::user::interaction * PASCAL FindWindow(const char * pszClassName, const char * pszWindowName);
+//      static::user::interaction * PASCAL FindWindow(const ::string & pszClassName, const ::string & pszWindowName);
 //
-//      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
+//      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & pszWindow);
 //
 //
 //      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
@@ -460,7 +460,7 @@ namespace linux
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
 
 
-      //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;
+      //virtual i32 message_box(const ::string & pszText, const ::string & pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;
 
 
 

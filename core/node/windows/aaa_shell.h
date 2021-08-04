@@ -64,7 +64,7 @@ namespace windows
 
       virtual ::user::shell::e_folder get_folder_type(::object * pobject, const unichar * pcszPath) override;
 
-      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const char * pcszPath) override;
+      virtual ::user::shell::e_folder get_folder_type(::object * pobject, const ::string & pcszPath) override;
 
 
 

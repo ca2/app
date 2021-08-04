@@ -537,7 +537,7 @@ string app_core::get_command_line()
 }
 
 
-void app_core::set_command_line(const char * psz)
+void app_core::set_command_line(const ::string & psz)
 {
 
    m_strCommandLine = psz;
@@ -897,7 +897,7 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const char * pszMainAppId)
+//CLASS_DECL_AURA int aura_entry_point(int argc, char * argv[], const ::string & pszMainAppId)
 //{
 //
 //   int iResult = 0;
@@ -1010,7 +1010,7 @@ struct heap_test_struct :
 #define new ACME_NEW
 
 
-string_array get_c_args_from_string(const char * psz)
+string_array get_c_args_from_string(const ::string & psz)
 {
 
    string_array stra;
@@ -1132,7 +1132,7 @@ string_array get_c_args_from_string(const char * psz)
 }
 
 
-string_array get_c_args_from_c(const char * psz)
+string_array get_c_args_from_c(const ::string & psz)
 {
 
    string_array stra;
@@ -1254,7 +1254,7 @@ string_array get_c_args_from_c(const char * psz)
 }
 
 
-string_array get_c_args_for_c(const char * psz)
+string_array get_c_args_for_c(const ::string & psz)
 {
 
    string_array stra;
@@ -1419,7 +1419,7 @@ string apple_get_bundle_identifier()
 #endif
 
 
-string transform_to_c_arg(const char * psz)
+string transform_to_c_arg(const ::string & psz)
 {
 
    bool bNeedQuote = false;
@@ -1809,7 +1809,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 }
 
 
-__transport(::aura::application) app_core::get_new_application(::object* pobject, const char* pszAppId)
+__transport(::aura::application) app_core::get_new_application(::object* pobject, const ::string & pszAppId)
 {
 
    __pointer(::aura::application) papp;
@@ -2297,7 +2297,7 @@ const char * get_cube_app_id()
 }
 
 
-void cube_set_app_id(const char * pszAppId)
+void cube_set_app_id(const ::string & pszAppId)
 {
 
    g_pszCubeAppId = pszAppId;

@@ -174,21 +174,21 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   uchar AjpBaseSocket::get_byte(const char *buf, i32& ptr)
+   uchar AjpBaseSocket::get_byte(const ::string &buf, i32& ptr)
    {
       return (uchar)buf[ptr++];
    }
 
 
    // ---------------------------------------------------------------------------
-   bool AjpBaseSocket::get_boolean(const char *buf, i32& ptr)
+   bool AjpBaseSocket::get_boolean(const ::string &buf, i32& ptr)
    {
       return ( (uchar)buf[ptr++] & 1) == 1 ? true : false;
    }
 
 
    // ---------------------------------------------------------------------------
-   i16 AjpBaseSocket::get_integer(const char *buf, i32& ptr)
+   i16 AjpBaseSocket::get_integer(const ::string &buf, i32& ptr)
    {
       i16 n;
       ::memcpy_dup(&n, buf + ptr, 2);
@@ -198,7 +198,7 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   string AjpBaseSocket::get_string(const char *buf, i32& ptr)
+   string AjpBaseSocket::get_string(const ::string &buf, i32& ptr)
    {
       i16 len = get_integer(buf, ptr);
       if (len != -1)
@@ -237,11 +237,11 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_string(char *buf, i32& ptr, const char * psz)
+   void AjpBaseSocket::put_string(char *buf, i32& ptr, const ::string & psz)
    {
       string str(psz);
       put_integer(buf, ptr, (i16)str.get_length() );
-      ::memcpy_dup(buf + ptr, (const char *) str);
+      ::memcpy_dup(buf + ptr, (const ::string &) str);
       ptr += (i32)str.get_length();
       put_byte(buf, ptr, 0);
    }

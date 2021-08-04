@@ -42,7 +42,7 @@ namespace colorertake5
    structure of this line before adding new one.
    @param lno Line number
    */
-   void RegionHandler::clearLine(index lno, const char *line)
+   void RegionHandler::clearLine(index lno, const ::string &line)
    {
       UNREFERENCED_PARAMETER(lno);
       UNREFERENCED_PARAMETER(line);
@@ -57,7 +57,7 @@ namespace colorertake5
    @param ex End X position of region in line
    @param region region information
    */
-   //virtual void RegionHandler::addRegion(i32 lno, const char *line, i32 sx, i32 ex, class region *region) = 0;
+   //virtual void RegionHandler::addRegion(i32 lno, const ::string &line, i32 sx, i32 ex, class region *region) = 0;
 
    /** Informs handler about entering into specified scheme.
    Parameter <code>region</code> is used to specify
@@ -70,7 +70,7 @@ namespace colorertake5
    @param region scheme region information (background)
    @param scheme Additional scheme information
    */
-   //virtual void RegionHandler::enterScheme(i32 lno, const char *line, i32 sx, i32 ex, class region *region, class scheme *scheme) = 0;
+   //virtual void RegionHandler::enterScheme(i32 lno, const ::string &line, i32 sx, i32 ex, class region *region, class scheme *scheme) = 0;
 
    /** Informs handler about leaveing specified scheme.
    Parameter <code>region</code> is used to specify

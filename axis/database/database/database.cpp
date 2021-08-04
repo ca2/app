@@ -38,7 +38,7 @@ namespace database
 
    }
 
-   //::e_status     database::connect(const char * name, const char * host, const char * port,const char * user, const char * pass, const char * sckt, u64 uConnectionFlags)
+   //::e_status     database::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    //{
 
 
@@ -48,7 +48,7 @@ namespace database
    //}
 
 
-   //bool database::exec(const char * pszQuery)
+   //bool database::exec(const ::string & pszQuery)
    //{
 
    //   return false;
@@ -56,7 +56,7 @@ namespace database
    //}
 
 
-   //::payload database::query(const char * pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //::payload database::query(const ::string & pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -64,7 +64,7 @@ namespace database
    //}
 
 
-   //string database::escape(const char * psz)
+   //string database::escape(const ::string & psz)
    //{
 
    //   return psz;
@@ -80,14 +80,14 @@ namespace database
    }*/
 
 
-   //string database::error1(const char * pszPrefix)
+   //string database::error1(const ::string & pszPrefix)
    //{
 
    //   return string(pszPrefix) + " (error)";
 
    //}
 
-   //void database::trace_error1(const char * pszPrefix)
+   //void database::trace_error1(const ::string & pszPrefix)
    //{
    //   //m_pdatabase->add_error_message(error1(pszPrefix));
    //   //TRACE("%s", m_strLastError.c_str());
@@ -111,7 +111,7 @@ namespace database
 
    //}
 
-   __pointer(result_set) database::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(result_set) database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return query_result(pszQuery, iRowCount, iColumnCount);
@@ -133,7 +133,7 @@ namespace database
    //}
 
 
-   //__pointer(row_array) database::query_rows(const char * pszQuery)
+   //__pointer(row_array) database::query_rows(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -150,7 +150,7 @@ namespace database
    //}
 
 
-   //__pointer(row) database::query_row(const char * pszQuery)
+   //__pointer(row) database::query_row(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1);
@@ -167,7 +167,7 @@ namespace database
    //}
 
 
-   //__pointer(payload_array) database::query_items(const char * pszQuery)
+   //__pointer(payload_array) database::query_items(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, -1, 1);
@@ -193,7 +193,7 @@ namespace database
    //}
 
 
-   //::payload database::query_item(const char * pszQuery)
+   //::payload database::query_item(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1, 1);
@@ -210,7 +210,7 @@ namespace database
    //}
 
 
-   //bool database::memory_query_item(get_memory getmemory, const char * pszQuery)
+   //bool database::memory_query_item(get_memory getmemory, const ::string & pszQuery)
    //{
 
    //   ::payload item = query_item(pszQuery);
@@ -227,7 +227,7 @@ namespace database
    //}
 
 /*
-   bool database::query_rows(__pointer(row_array) & rows, const char * pszQuery)
+   bool database::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -246,7 +246,7 @@ namespace database
    }
 
 
-   bool database::query_row(__pointer(row) & row, const char * pszQuery)
+   bool database::query_row(__pointer(row) & row, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -264,7 +264,7 @@ namespace database
 
    }*/
 
-   __pointer(::database::result_set) database::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return nullptr;
@@ -272,7 +272,7 @@ namespace database
    }
 
 
-   //bool database::query_items(__pointer(payload_array) & pitems, const char * pszQuery)
+   //bool database::query_items(__pointer(payload_array) & pitems, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -300,7 +300,7 @@ namespace database
    //}
 
 
-   //bool database::query_item(::payload & item, const char * pszQuery)
+   //bool database::query_item(::payload & item, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1);
@@ -319,7 +319,7 @@ namespace database
    //}
 
 
-   ::payload database::query_table_item(const char* table, const char* item, const char* where, const ::payload& payloadDefault)
+   ::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload& payloadDefault)
    {
 
       ::payload payload;
@@ -337,7 +337,7 @@ namespace database
 
 
 
-   __pointer(row_array) database::query_rows(const char* pszQuery)
+   __pointer(row_array) database::query_rows(const ::string & pszQuery)
    {
 
       __pointer(row_array) prowarray;
@@ -353,7 +353,7 @@ namespace database
    }
 
 
-   __pointer(row) database::query_row(const char* pszQuery)
+   __pointer(row) database::query_row(const ::string & pszQuery)
    {
 
       __pointer(row) prow;
@@ -369,7 +369,7 @@ namespace database
    }
 
 
-   __pointer(payload_array) database::query_items(const char* pszQuery)
+   __pointer(payload_array) database::query_items(const ::string & pszQuery)
    {
 
       __pointer(payload_array) pvara;
@@ -387,7 +387,7 @@ namespace database
    }   
    
    
-   ::payload database::query_item(const char* pszQuery, const ::payload &  payloadDefault)
+   ::payload database::query_item(const ::string & pszQuery, const ::payload &  payloadDefault)
    {
 
       ::payload payload;
@@ -404,7 +404,7 @@ namespace database
    }
 
 
-   bool database::query_table_item(::payload& payload, const char* table, const char* item, const char* where)
+   bool database::query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where)
    {
 
       string strSql;
@@ -419,7 +419,7 @@ namespace database
 
 
 
-   bool database::query_blob(get_memory getmemory, const char* pszQuery)
+   bool database::query_blob(get_memory getmemory, const ::string & pszQuery)
    {
 
       return false;
@@ -427,7 +427,7 @@ namespace database
    }
 
 
-   bool database::query_rows(__pointer(row_array)& rows, const char* pszQuery)
+   bool database::query_rows(__pointer(row_array)& rows, const ::string & pszQuery)
    {
 
 
@@ -435,7 +435,7 @@ namespace database
    }
 
 
-   bool database::query_row(__pointer(row)& rows, const char* pszQuery)
+   bool database::query_row(__pointer(row)& rows, const ::string & pszQuery)
    {
 
       return false;
@@ -443,7 +443,7 @@ namespace database
    }
 
 
-   bool database::query_items(__pointer(payload_array)& items, const char* pszQuery)
+   bool database::query_items(__pointer(payload_array)& items, const ::string & pszQuery)
    {
 
       return false;
@@ -451,7 +451,7 @@ namespace database
    }
 
 
-   bool database::query_item(::payload& item, const char* pszQuery)
+   bool database::query_item(::payload& item, const ::string & pszQuery)
    {
 
       return false;
@@ -462,10 +462,10 @@ namespace database
 
 
 
-   //bool database::database(__pointer(row_array)& rows, const char* pszQuery);
-   //bool database::query_row(__pointer(row)& rows, const char* pszQuery);
-   //bool database::query_items(__pointer(payload_array)& items, const char* pszQuery);
-   //bool database::uery_item(::payload& item, const char* pszQuery);
+   //bool database::database(__pointer(row_array)& rows, const ::string & pszQuery);
+   //bool database::query_row(__pointer(row)& rows, const ::string & pszQuery);
+   //bool database::query_items(__pointer(payload_array)& items, const ::string & pszQuery);
+   //bool database::uery_item(::payload& item, const ::string & pszQuery);
 
 
 
@@ -478,15 +478,15 @@ namespace database
    }
 
 
-   string database::error1(char const* pszPrefix)
+   string database::error1(const ::string & strPrefix)
    {
 
-      return string(pszPrefix) + " (error)";
+      return strPrefix + " (error)";
 
    }
 
 
-   void database::trace_error1(const char* pszPrefix)
+   void database::trace_error1(const ::string & pszPrefix)
    {
 
      //m_strLastError += error1(pszPrefix);
@@ -502,7 +502,7 @@ namespace database
    }
 
 
-   //::payload database::query_table_item(const char* table, const char* item, const char* where, ::payload notfound)
+   //::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, ::payload notfound)
    //{
 
    //   return ::payload();

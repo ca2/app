@@ -9,7 +9,7 @@ CLASS_DECL_CORE::e_status os_shell_initialize();
 
 string get_error_message(::u32 dwError);
 
-::aura::application* win_instantiate_application(::aura::application* pappSystem, const char* pszId);
+::aura::application* win_instantiate_application(::aura::application* pappSystem, const ::string & pszId);
 
 
 #include "android1.h"
@@ -30,8 +30,8 @@ string get_error_message(::u32 dwError);
 
 //#include "host_interaction.h"
 
-//CLASS_DECL_CORE void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_CORE void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
+//CLASS_DECL_CORE void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage);
+//CLASS_DECL_CORE void __trace_message(const ::string & lpszPrefix, MESSAGE * lpmsg);
 
 CLASS_DECL_CORE void __cdecl __pre_translate_message(::message::message* pmessage);
 
@@ -58,7 +58,7 @@ int_bool GetMessage(
 i32 CLASS_DECL_CORE __android_main(i32 argc, char* argv[]);
 
 
-CLASS_DECL_CORE void vfxThrowFileException(::object* pobject, const ::e_status& estatus, ::i32 lOsError, const char* lpszFileName = nullptr);
+CLASS_DECL_CORE void vfxThrowFileException(::object* pobject, const ::e_status& estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
 #include "internal.h"

@@ -154,7 +154,7 @@ namespace apple
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir, ::e_priority epriority)
    {
 
       if(!::process::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
@@ -242,7 +242,7 @@ namespace apple
 
          strFallback = string("DYLD_FALLBACK_LIBRARY_PATH=") + strFallback;
 
-         env.add((char *) (const char *) strFallback);
+         env.add((char *) (const ::string &) strFallback);
 
 #endif
 
@@ -379,7 +379,7 @@ namespace apple
    }
 
 
-   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::string & pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
 #if defined(MACOS)
@@ -523,7 +523,7 @@ namespace apple
 //      for(index i = 0; i < straParam.get_count(); i++)
 //      {
 //
-//         argv.add((char *)(const char *)straParam[i]);
+//         argv.add((char *)(const ::string &)straParam[i]);
 //
 //      }
 //
@@ -539,7 +539,7 @@ namespace apple
       //straParam.add("uid=" + __str(uid));
       for(index i = 0; i < straParam.get_count(); i++)
       {
-         char * psz = (char *)(const char *)straParam[i];
+         char * psz = (char *)(const ::string &)straParam[i];
          argv.add(psz);
 
       }
@@ -792,9 +792,9 @@ auto tickStart = ::millis::now();
       straParam.add("-e");
       straParam.add("'do shell script \"" + string(pszCmdLineParam) + "\" with administrator privileges'");
 
-      argv.add((char *) (const char *) straParam[0]);
-      argv.add((char *) (const char *) straParam[1]);
-      argv.add((char *) (const char *) straParam[2]);
+      argv.add((char *) (const ::string &) straParam[0]);
+      argv.add((char *) (const ::string &) straParam[1]);
+      argv.add((char *) (const ::string &) straParam[2]);
       argv.add(nullptr);
 
 #else

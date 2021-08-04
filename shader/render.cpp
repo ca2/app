@@ -98,7 +98,7 @@ namespace app_shader
    }
 
 
-   void render::defer_load_fragment(const char* pszPathPrefix)
+   void render::defer_load_fragment(const ::string & pszPathPrefix)
    {
 
       if (string(pszPathPrefix) == "default")

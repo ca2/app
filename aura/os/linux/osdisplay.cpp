@@ -15,7 +15,7 @@
 //#define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 //
 //
-//void windowing_output_debug_string(const char * pszDebugString);
+//void windowing_output_debug_string(const ::string & pszDebugString);
 //
 //namespace windowing
 //{
@@ -186,7 +186,7 @@
 //   }
 //
 //
-//   Atom display::intern_atom(const char * pszAtomName, bool bCreate)
+//   Atom display::intern_atom(const ::string & pszAtomName, bool bCreate)
 //   {
 //
 //      if(m_pdisplay == nullptr)

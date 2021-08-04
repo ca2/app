@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "uwp.h"
-int _c_lock_is_active(const char * pszName)
+int _c_lock_is_active(const ::string & pszName)
 {
 
    HANDLE h;
@@ -16,7 +16,7 @@ int _c_lock_is_active(const char * pszName)
 }
 
 
-int _c_lock(const char * pszName, void ** pdata)
+int _c_lock(const ::string & pszName, void ** pdata)
 {
 #ifdef _UWP
    wstring wstrName(pszName);

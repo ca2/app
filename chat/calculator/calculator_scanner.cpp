@@ -36,7 +36,7 @@ namespace calculator
    }
 
 
-   void scanner::initialize(const char * psz)
+   void scanner::initialize(const ::string & psz)
    {
       input          = psz;
       next_input     = input;

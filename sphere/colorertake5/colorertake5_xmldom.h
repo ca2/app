@@ -138,12 +138,12 @@ namespace colorertak5
      /**
       * Parses input stream and creates DOM tree.
       */
-     Document *parse(colorertake5::input_source *is, const char *codepage = 0);
+     Document *parse(colorertake5::input_source *is, const ::string &codepage = 0);
 
      /**
       * Parses input bytes in specified encoding and creates DOM tree.
       */
-     Document *parse(const byte *bytes, i32 get_length, const char *codepage = 0);
+     Document *parse(const byte *bytes, i32 get_length, const ::string &codepage = 0);
 
      /**
       * Deletes all DOM tree structure.

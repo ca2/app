@@ -16,11 +16,11 @@ namespace ios2
    {
    }
 
-   bool printer::open(const char * pszDeviceName)
+   bool printer::open(const ::string & pszDeviceName)
    {
       if(is_opened())
          close();
-//      return OpenPrinter((char *) (const char *) pszDeviceName, &m_hPrinter, nullptr) != false && m_hPrinter != nullptr;
+//      return OpenPrinter((char *) (const ::string &) pszDeviceName, &m_hPrinter, nullptr) != false && m_hPrinter != nullptr;
       return false;
    }
 
@@ -71,9 +71,9 @@ namespace ios2
     //     return false;
       if(m_hdc != nullptr)
          return false;
-//      i32 iSize = DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const char *) pprinter->m_strName, nullptr, nullptr, 0);
+//      i32 iSize = DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const ::string &) pprinter->m_strName, nullptr, nullptr, 0);
   //    m_pdevmode = (DEVMODE *) malloc(iSize);
-    //  if(!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *) (const char *) pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
+    //  if(!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *) (const ::string &) pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       //{
         // __throw(::exception::exception("failed to get printer DocumentProperties"));
          return false;
@@ -105,7 +105,7 @@ namespace ios2
         // return nullptr;
       if(m_hdc != nullptr)
          return nullptr;
-//      m_hdc = ::CreateDC("WINSPOOL", (const char *) m_pdevmode->dmDeviceName, nullptr, m_pdevmode);
+//      m_hdc = ::CreateDC("WINSPOOL", (const ::string &) m_pdevmode->dmDeviceName, nullptr, m_pdevmode);
   //    ::draw2d::graphics_pointer g(this);
     //  g->Attach(m_hdc);
 //      return g.detach();

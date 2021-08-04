@@ -24,7 +24,7 @@ typedef GtkApplicationClass BloatPadClass;
 extern ApexApplication * g_papexapplication;
 
 
-void apex_application_run(const char * pszAppName, const char * pszProgName);
+void apex_application_run(const ::string & pszAppName, const ::string & pszProgName);
 
 
 

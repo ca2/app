@@ -60,7 +60,7 @@ public:
    virtual ::file::path inplace_matter_install(string strAppId, string strPlatform, string strConfiguration);
 
 
-   virtual void set_path_install_folder(const char* pszPath);
+   virtual void set_path_install_folder(const ::string & pszPath);
 
    //virtual ::file::path pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode);
 

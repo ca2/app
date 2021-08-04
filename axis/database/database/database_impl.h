@@ -58,12 +58,12 @@ namespace database
       void* get_handle() override = 0;
 
       ::e_status     connect(
-         const char* name,
-         const char* host = nullptr,
-         const char* port = nullptr,
-         const char* user = nullptr,
-         const char* pass = nullptr,
-         const char* sckt = nullptr,
+         const ::string & name,
+         const ::string & host = nullptr,
+         const ::string & port = nullptr,
+         const ::string & user = nullptr,
+         const ::string & pass = nullptr,
+         const ::string & sckt = nullptr,
          u64 uConnectionFlags = 0) override;
 
       ::e_status     _connect()  override= 0;
@@ -73,7 +73,7 @@ namespace database
       ::e_status     create() override;
       ::e_status     drop() override;
 
-      //virtual string escape(const char * psz);
+      //virtual string escape(const ::string & psz);
 
       //inline __pointer(class transaction) transaction();
 
@@ -83,32 +83,32 @@ namespace database
       bool in_transaction() override;
 
 
-      virtual bool exec(const char* pszQuery) override;
+      virtual bool exec(const ::string & pszQuery) override;
 
 
-      ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) override;
+      ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
 
-      __pointer(result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
-      //inline auto query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
-
-
-      //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      __pointer(row_array) query_rows(const char* pszQuery) override;
-      __pointer(row) query_row(const char* pszQuery) override;
-      __pointer(payload_array) query_items(const char* pszQuery) override;
-      ::payload query_item(const char* pszQuery, const ::payload & payloadDefault = ::payload()) override;
-      bool query_blob(get_memory getmemory, const char* pszQuery) override;
-
-      //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
-      //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
-      //virtual bool query_items(__pointer(payload_array) & items, const char * pszQuery);
-      //virtual bool query_item(::payload & item, const char * pszQuery);
+      __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      //inline auto query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
 
 
-      string escape(const char* psz) override;
+      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      __pointer(row_array) query_rows(const ::string & pszQuery) override;
+      __pointer(row) query_row(const ::string & pszQuery) override;
+      __pointer(payload_array) query_items(const ::string & pszQuery) override;
+      ::payload query_item(const ::string & pszQuery, const ::payload & payloadDefault = ::payload()) override;
+      bool query_blob(get_memory getmemory, const ::string & pszQuery) override;
 
-      string error1(const char* pszPrefix = nullptr) override;
-      void trace_error1(const char* pszPrefix = nullptr) override;
+      //virtual bool query_rows(__pointer(row_array) & rows, const ::string & pszQuery);
+      //virtual bool query_row(__pointer(row) & rows, const ::string & pszQuery);
+      //virtual bool query_items(__pointer(payload_array) & items, const ::string & pszQuery);
+      //virtual bool query_item(::payload & item, const ::string & pszQuery);
+
+
+      string escape(const ::string & psz) override;
+
+      string error1(const ::string & pszPrefix = nullptr) override;
+      void trace_error1(const ::string & pszPrefix = nullptr) override;
 
       ::payload get_insert_id() override;
 

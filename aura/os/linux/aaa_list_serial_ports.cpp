@@ -41,7 +41,7 @@ namespace serial
 //static string read_line(const string& file);
    static string usb_sysfs_hw_string(const string & sysfs_path);
 
-   static string format(const char * format, ...);
+   static string format(const ::string & format, ...);
 
    string_array
    glob(const string_array & patterns)
@@ -239,7 +239,7 @@ namespace serial
 
 
    string
-   format(const char * format, ...)
+   format(const ::string & format, ...)
    {
       va_list ap;
 

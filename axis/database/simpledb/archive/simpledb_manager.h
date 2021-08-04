@@ -41,11 +41,11 @@ namespace simpledb
       
       virtual bool init_thread() override;
 
-      ::simpledb::session * & get_session(const char * pszId);
+      ::simpledb::session * & get_session(const ::string & pszId);
 
       using thread::handle;
       bool handle(socket * psocket);
-      bool get_output_internal(const char * lpcszGet, memory & memeory);
+      bool get_output_internal(const ::string & lpcszGet, memory & memeory);
 
       virtual void message_queue_message_handler(::message::message * pmessage);
 

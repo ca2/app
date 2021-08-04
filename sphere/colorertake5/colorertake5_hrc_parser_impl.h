@@ -19,14 +19,14 @@ namespace colorertake5
 
       void setErrorHandler(ErrorHandler *eh);
 
-      void loadSource(const char * pszSourceLocation, const char * pszSource);
-      file_type *getFileType(const char *name);
+      void loadSource(const ::string & pszSourceLocation, const ::string & pszSource);
+      file_type *getFileType(const ::string &name);
       file_type *enumerateFileTypes(i32 index);
-      file_type *chooseFileType(const char *fileName, const char *firstLine, i32 typeNo = 0);
+      file_type *chooseFileType(const ::string &fileName, const ::string &firstLine, i32 typeNo = 0);
 
       ::count getRegionCount();
       class region *getRegion(i32 id);
-      class region* getRegion(const char *name);
+      class region* getRegion(const ::string &name);
 
       string getVersion();
 
@@ -61,7 +61,7 @@ namespace colorertake5
 
       void loadFileType(file_type *filetype);
 
-      void parseHRC(const char * psz);
+      void parseHRC(const ::string & psz);
       void addPrototype(__pointer(::xml::node)elem);
       void addType(__pointer(::xml::node)elem);
 
@@ -71,14 +71,14 @@ namespace colorertake5
       void loadBlockRegions(SchemeNode *node, __pointer(::xml::node)el);
       void loadRegions(SchemeNode *node, __pointer(::xml::node)el, bool st);
 
-      string qualifyOwnName(const char *name);
-      bool checkNameExist(const char *name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
-      string qualifyForeignName(const char *name, QualifyNameType qntype, bool logErrors);
+      string qualifyOwnName(const ::string &name);
+      bool checkNameExist(const ::string &name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
+      string qualifyForeignName(const ::string &name, QualifyNameType qntype, bool logErrors);
 
       void updateLinks();
-      string useEntities(const char * name);
-      class region *getNCRegion(__pointer(::xml::node)el, const char * tag);
-      class region *getNCRegion(const char *name, bool logErrors);
+      string useEntities(const ::string & name);
+      class region *getNCRegion(__pointer(::xml::node)el, const ::string & tag);
+      class region *getNCRegion(const ::string &name, bool logErrors);
 
 
    };

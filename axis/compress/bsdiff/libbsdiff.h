@@ -19,7 +19,7 @@ BZ_EXTERN bs_offset libbsdiff_search(bs_offset *I,unsigned char *old,bs_offset o
 BZ_EXTERN void libbsdiff_offtout(bs_offset x,unsigned char *buf);
 
 
-BZ_EXTERN int bsdiff(const char * oldfile,const char * newfile,const char * patchfile);
-BZ_EXTERN int bspatch(const char * oldfile,const char * newfile,const char * patchfile);
+BZ_EXTERN int bsdiff(const ::string & oldfile, const ::string & newfile, const ::string & patchfile);
+BZ_EXTERN int bspatch(const ::string & oldfile, const ::string & newfile, const ::string & patchfile);
 
 

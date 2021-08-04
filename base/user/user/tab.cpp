@@ -90,7 +90,7 @@ namespace user
    }
 
 
-   bool tab::set_title(::index iIndex, const char * pcsz)
+   bool tab::set_title(::index iIndex, const ::string & pcsz)
 
    {
 
@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   bool tab::set_title_by_id(id id, const char * pcsz)
+   bool tab::set_title_by_id(id id, const ::string & pcsz)
    {
 
       auto iIndex = id_index(id);
@@ -137,7 +137,7 @@ namespace user
    }
 
 
-   bool tab::set_tab(const char * pcsz, id id, bool bVisible)
+   bool tab::set_tab(const ::string & pcsz, id id, bool bVisible)
    {
 
       return add_tab(pcsz, id, bVisible, true);
@@ -145,7 +145,7 @@ namespace user
    }
 
 
-   bool tab::add_tab(const char * pcsz, id id, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
+   bool tab::add_tab(const ::string & pcsz, id id, bool bVisible, bool bPermanent, ::user::place_holder * pholder)
    {
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
@@ -236,7 +236,7 @@ namespace user
    }
 
 
-   bool tab::set_image_tab(const char * pcszTitle, const char * pszImage, id id, bool bVisible)
+   bool tab::set_image_tab(const ::string & pcszTitle, const ::string & pszImage, id id, bool bVisible)
 
    {
 
@@ -246,7 +246,7 @@ namespace user
    }
 
 
-   bool tab::add_image_tab(const char * pcszTitle, const char * pszImage, id id, bool bVisible, bool bPermanent)
+   bool tab::add_image_tab(const ::string & pcszTitle, const ::string & pszImage, id id, bool bVisible, bool bPermanent)
    {
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
@@ -3766,7 +3766,7 @@ namespace user
    }
 
 
-   void tab::get_prefixed_ci_id(string_array & stra, const char * pszPrefix)
+   void tab::get_prefixed_ci_id(string_array & stra, const ::string & pszPrefix)
    {
 
       get_presuffixed_ci_id(stra, pszPrefix, nullptr);
@@ -3774,7 +3774,7 @@ namespace user
    }
 
 
-   void tab::get_suffixed_ci_id(string_array & stra, const char * pszSuffix)
+   void tab::get_suffixed_ci_id(string_array & stra, const ::string & pszSuffix)
    {
 
       get_presuffixed_ci_id(stra, nullptr, pszSuffix);
@@ -3782,7 +3782,7 @@ namespace user
    }
 
 
-   void tab::get_presuffixed_ci_id(string_array & stra, const char * pszPrefix, const char * pszSuffix)
+   void tab::get_presuffixed_ci_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffix)
    {
 
       string strPrefix(pszPrefix);
@@ -3817,7 +3817,7 @@ namespace user
    }
 
 
-   void tab::get_begins_ci_eat_id(string_array & stra, const char * pszPrefix)
+   void tab::get_begins_ci_eat_id(string_array & stra, const ::string & pszPrefix)
    {
 
       get_begins_ends_ci_eat_id(stra, pszPrefix, nullptr);
@@ -3825,7 +3825,7 @@ namespace user
    }
 
 
-   void tab::get_ends_ci_eat_id(string_array & stra, const char * pszSuffix)
+   void tab::get_ends_ci_eat_id(string_array & stra, const ::string & pszSuffix)
    {
 
       get_begins_ends_ci_eat_id(stra, nullptr, pszSuffix);
@@ -3833,7 +3833,7 @@ namespace user
    }
 
 
-   void tab::get_begins_ends_ci_eat_id(string_array & stra, const char * pszPrefix, const char * pszSuffix)
+   void tab::get_begins_ends_ci_eat_id(string_array & stra, const ::string & pszPrefix, const ::string & pszSuffix)
    {
 
       string strPrefix(pszPrefix);

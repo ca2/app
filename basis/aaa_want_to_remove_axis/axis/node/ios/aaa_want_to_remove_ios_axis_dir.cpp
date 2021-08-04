@@ -112,7 +112,7 @@ namespace ios
             return true; // assume empty string is root_ones directory
          }
 
-         if(thread_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
+         if(thread_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3],".zip",4))
          {
 
             return true;

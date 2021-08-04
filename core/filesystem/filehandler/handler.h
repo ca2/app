@@ -46,12 +46,12 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      __pointer(::data::tree_item) get_extension_tree_item(const char * pszExtension, bool bCreate);
-      __pointer(::data::tree_item) get_mime_type_tree_item(const char * pszMimeType, bool bCreate);
+      __pointer(::data::tree_item) get_extension_tree_item(const ::string & pszExtension, bool bCreate);
+      __pointer(::data::tree_item) get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
 
 
-      virtual void get_extension_app(string_array & straAppId, const char * pszExtension);
-      virtual void get_mime_type_app(string_array & straAppId, const char * pszMimeType);
+      virtual void get_extension_app(string_array & straAppId, const ::string & pszExtension);
+      virtual void get_mime_type_app(string_array & straAppId, const ::string & pszMimeType);
 
 
       //virtual ::stream & write(::stream & stream) const override;

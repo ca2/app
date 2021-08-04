@@ -256,7 +256,7 @@ int_bool main_finalize()
 
 
 
-string normalize_path(const char * lpcszPath)
+string normalize_path(const ::string & lpcszPath)
 {
 
    if(lpcszPath == nullptr)
@@ -360,7 +360,7 @@ string get_system_error_message(u32 dwError)
 
 
 
-//void output_debug_string(const char * psz)
+//void output_debug_string(const ::string & psz)
 //{
 //
 //   ::output_debug_string(wstring(psz));
@@ -389,7 +389,7 @@ string get_system_error_message(u32 dwError)
 //   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 //}
 
-//CLASS_DECL_CORE char* getenv (const char* name)
+//CLASS_DECL_CORE char* getenv (const ::string & name)
 //{
 //   return "";
 //}

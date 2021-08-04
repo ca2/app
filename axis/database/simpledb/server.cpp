@@ -20,7 +20,7 @@ namespace simpledb
    }
 
 
-   ::e_status server::initialize_simpledb_server(::object * pobject, const char * pszDatabase)
+   ::e_status server::initialize_simpledb_server(::object * pobject, const ::string & pszDatabase)
    {
 
       auto estatus = ::database::server::initialize(pobject);
@@ -153,7 +153,7 @@ namespace simpledb
    }
 
 
-   bool server::initialize_user(::database::database * pdatabaseUser, const char * pszUser)
+   bool server::initialize_user(::database::database * pdatabaseUser, const ::string & pszUser)
    {
 
       if (::is_null(pdatabaseUser))

@@ -21,13 +21,13 @@
 
 extern char ** environ;
 
-string_array get_c_args_for_c(const char * psz);
+string_array get_c_args_for_c(const ::string & psz);
 
-string transform_to_c_arg(const char * psz);
+string transform_to_c_arg(const ::string & psz);
 
-int create_process2(const char * _cmd_line, int * pprocessId);
+int create_process2(const ::string & _cmd_line, int * pprocessId);
 
-i32 create_process(const char * pszCommandLine, i32 * pprocessId)
+i32 create_process(const ::string & pszCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -81,7 +81,7 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
 
 
 
-int create_process2(const char * _cmd_line, int * pprocessId)
+int create_process2(const ::string & _cmd_line, int * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
@@ -182,7 +182,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AURA u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -234,7 +234,7 @@ CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const
 
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout )
+bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, ::duration durationTimeout )
 {
    
    property_set set;
@@ -324,7 +324,7 @@ CLASS_DECL_AURA ::file::path core_app_path(string strApp)
 }
 
 
-bool launch_command(const char * const pszCommand)
+bool launch_command(const ::string & const pszCommand)
 {
    
    if (!pszCommand)
@@ -354,7 +354,7 @@ bool launch_command(const char * const pszCommand)
 }
 
 
-bool launch_macos_app(const char * pszAppFolder)
+bool launch_macos_app(const ::string & pszAppFolder)
 {
    
    if (!pszAppFolder)
@@ -373,7 +373,7 @@ bool launch_macos_app(const char * pszAppFolder)
 }
 
 
-bool launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
+bool launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
 {
    
    if (!pszAppFolder)

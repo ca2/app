@@ -50,7 +50,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //   //virtual bool load_image(::payload varFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
-//   //virtual bool load_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
+//   //virtual bool load_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 //
 //
@@ -66,10 +66,10 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual image get_image(::payload varFile, bool bSync = false) = 0;
 //   virtual image matter_image(string strMatter, bool bSync = false) = 0;
 //   virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) = 0;
-//   virtual image load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
+//   virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
 //   virtual image load_thumbnail(::payload varFile, int w, int h) = 0;
-//   virtual image load_thumbnail(const char * pszPath) = 0;
+//   virtual image load_thumbnail(const ::string & pszPath) = 0;
 //   virtual image load_dib(const ::file::path & pathDib) = 0;
 //
 //
@@ -213,7 +213,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel)= 0;
 //   virtual bool transparent_color(::color::color color)= 0;
 //
-//   virtual bool create_thumbnail(const char * pszPath) = 0;
+//   virtual bool create_thumbnail(const ::string & pszPath) = 0;
 //
 //   virtual bool create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;
 //   virtual bool create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)= 0;

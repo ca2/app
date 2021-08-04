@@ -248,7 +248,7 @@ namespace ftp
       return FTP_ERROR;
    }
 
-   long client_socket::cert_common_name_check(const char * common_name)
+   long client_socket::cert_common_name_check(const ::string & common_name)
    {
 
       long l = ::sockets::tcp_socket::cert_common_name_check(common_name);

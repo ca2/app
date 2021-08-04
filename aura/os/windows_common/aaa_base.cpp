@@ -82,7 +82,7 @@ namespace aura
 
 
 
-void output_debug_string(const char * psz)
+void output_debug_string(const ::string & psz)
 {
 
    g_pfnOutputDebugStringA(psz);

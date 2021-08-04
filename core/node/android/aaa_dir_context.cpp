@@ -205,7 +205,7 @@ namespace android
    }
 
 
-   //bool dir_context::rls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
+   //bool dir_context::rls(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
    //{
 
    //   if(::file::system_dir::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -220,7 +220,7 @@ namespace android
    //}
 
 
-   //bool dir_context::rls_pattern(const char * lpcsz, const char * pszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
+   //bool dir_context::rls_pattern(const ::string & lpcsz, const ::string & pszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
    //{
 
 
@@ -354,7 +354,7 @@ namespace android
    //}
 
 
-   //bool dir_context::rls_dir(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
+   //bool dir_context::rls_dir(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
    //{
 
    //   if(::file::system_dir::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
@@ -394,7 +394,7 @@ namespace android
    //      if(pstraPath != nullptr)
    //      {
 
-   //         pstraPath->add((const char *) stra[i]);
+   //         pstraPath->add((const ::string &) stra[i]);
 
    //      }
 
@@ -442,7 +442,7 @@ namespace android
    //}
 
 
-   //bool dir_context::ls_dir(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+   //bool dir_context::ls_dir(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
    //{
 
    //   if(::file::system_dir::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
@@ -482,7 +482,7 @@ namespace android
    //      if(pstraPath != nullptr)
    //      {
 
-   //         pstraPath->add((const char *) stra[i]);
+   //         pstraPath->add((const ::string &) stra[i]);
 
    //      }
 
@@ -500,7 +500,7 @@ namespace android
    //}
 
 
-   //bool dir_context::ls_file(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+   //bool dir_context::ls_file(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
    //{
 
    //   if(::file::system_dir::ls_file(papp,lpcsz,pstraPath,pstraTitle))
@@ -541,7 +541,7 @@ namespace android
    //      if(pstraPath != nullptr)
    //      {
 
-   //         pstraPath->add((const char *) stra[i]);
+   //         pstraPath->add((const ::string &) stra[i]);
 
    //      }
 
@@ -559,7 +559,7 @@ namespace android
    //}
 
 
-   //bool dir_context::ls(const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
+   //bool dir_context::ls(const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
    //{
 
 
@@ -598,7 +598,7 @@ namespace android
    //      if(pstraPath != nullptr)
    //      {
 
-   //         pstraPath->add((const char *) stra[i]);
+   //         pstraPath->add((const ::string &) stra[i]);
 
    //      }
 
@@ -776,7 +776,7 @@ namespace android
 
       }
 
-      if (thread_is_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3], ".zip", 4))
+      if (thread_is_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3], ".zip", 4))
       {
 
          return true;

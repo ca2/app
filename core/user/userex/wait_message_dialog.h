@@ -23,7 +23,7 @@ namespace userex
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_show(const char * pszMatter) override;
+      virtual void on_show(const ::string & pszMatter) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 

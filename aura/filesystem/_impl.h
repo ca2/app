@@ -20,7 +20,7 @@ namespace file
    inline path path::folder() const { return { ::dir::name(*this), m_epath }; }
    inline path path::sibling(const path & path) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
    inline path path::sibling(const ::string & str) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
-   inline path path::sibling(const char * psz) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+   inline path path::sibling(const ::string & psz) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rfind(sep()) + 1)]; }
    inline string path::final_extension() const { return file_final_extension_dup(operator const char * ()); }
    inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
@@ -574,16 +574,16 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 //inline ::file::path operator + (const ::string & str,const ::file::path & path) { return ::file::path(str + string(path)); }
-//inline ::file::path operator + (const char * psz,const ::file::path & path) {  return ::file::path(psz + string(path)); }
+//inline ::file::path operator + (const ::string & psz,const ::file::path & path) {  return ::file::path(psz + string(path)); }
 // xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
 //inline ::file::path operator / (const ::string & str,const ::file::path & path) { ::file::path point_i32(str);  return point / path; }
-//inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path point_i32(psz);  return point / path; }
+//inline ::file::path operator / (const ::string & psz,const ::file::path & path) { ::file::path point_i32(psz);  return point / path; }
 // xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path point_i32(payload.get_file_path());  return point / path; }
 
 
 
 // template < class ARRAY >
-// bool file_put_array(const char * path, ARRAY & a, ::aura::application * papp)
+// bool file_put_array(const ::string & path, ARRAY & a, ::aura::application * papp)
 // {
 
 
@@ -640,7 +640,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 
 // template < class ARRAY >
-// bool file_as_array(ARRAY & a, const char * path, ::aura::application * papp)
+// bool file_as_array(ARRAY & a, const ::string & path, ::aura::application * papp)
 // {
 
 //   try

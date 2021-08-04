@@ -147,7 +147,7 @@ namespace windowing
       virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = nullptr);
 
 
-      virtual void set_window_text(const char * pszString);
+      virtual void set_window_text(const ::string & pszString);
 
       virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
 

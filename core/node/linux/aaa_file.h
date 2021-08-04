@@ -67,13 +67,13 @@ namespace linux
       virtual string GetFileName() const;
       virtual string GetFileTitle() const;
       virtual string GetFilePath() const;
-      virtual void SetFilePath(const char * pszNewName);
+      virtual void SetFilePath(const ::string & pszNewName);
 
 
       virtual ::extended::status open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag) override;
 
 
-      //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
+      //virtual bool PASCAL GetStatus(const ::string & pszFileName, ::file::file_status& rStatus);
 
 
       u64 ReadHuge(void * pBuffer, u64 dwCount);
@@ -113,9 +113,9 @@ namespace linux
 //
 //      ::e_status os_error_to_exception(::i32 lOsError);
 ////      ::e_status PASCAL ErrnoToException(i32 nErrno);
-//      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
+//      void throw_os_error(::i32 lOsError, const ::string & pszFileName = nullptr);
 
-//      //void PASCAL ThrowErrno(__pointer(::aura::application) papp, i32 nErrno, const char * pszFileName = nullptr);
+//      //void PASCAL ThrowErrno(__pointer(::aura::application) papp, i32 nErrno, const ::string & pszFileName = nullptr);
 
 //
 //

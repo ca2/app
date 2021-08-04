@@ -47,7 +47,7 @@
 //
 //   inline Visual * default_visual() { return DefaultVisual(display(), DefaultScreen(display())); }
 //
-//   Atom intern_atom(const char * pszAtomName, bool bCreate);
+//   Atom intern_atom(const ::string & pszAtomName, bool bCreate);
 //
 //   inline auto white_pixel() { return WhitePixel(display(), default_screen()); }
 //   inline auto black_pixel() { return BlackPixel(display(), default_screen()); }

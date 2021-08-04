@@ -60,7 +60,7 @@ public:
    operator EENUM() const;
 
    //string get_name();
-   //void set_by_name(const char * psz);
+   //void set_by_name(const ::string & psz);
 
 };
 
@@ -169,7 +169,7 @@ base_enum<EENUM, edefault>::get_name()
 template <class EENUM, EENUM edefault>
 void
 base_enum<EENUM, edefault>::
-set_by_name(const char * psz)
+set_by_name(const ::string & psz)
 {
    m_evalue = from_name(psz, edefault);
 }*/

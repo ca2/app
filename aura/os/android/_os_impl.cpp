@@ -2,7 +2,7 @@
 #include "_os_impl.h"
 
 
-void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, int iBeg, int iEnd);
+void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, int iBeg, int iEnd);
 void android_edit_on_kill_focus();
 
 
@@ -144,7 +144,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 }
 
 
-void* load_lib(const char* l)
+void* load_lib(const ::string & l)
 {
 
    void* handle = dlopen(l, RTLD_NOW | RTLD_GLOBAL);
@@ -457,7 +457,7 @@ void android_exchange()
 }
 
 
-void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, int iBeg, int iEnd)
+void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, int iBeg, int iEnd)
 {
 
    synchronous_lock synchronouslock(osmutex());

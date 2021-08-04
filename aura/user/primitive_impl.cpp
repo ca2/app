@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const char * lpszName)
+   bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
       ::exception::throw_interface_only();

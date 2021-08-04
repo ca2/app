@@ -19,8 +19,8 @@
 //CLASS_DECL_AURA void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
 //
 //
-////::aura::application *     win_application_create(::aura::application * pappSystem, const char * pszId);
-////::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
+////::aura::application *     win_application_create(::aura::application * pappSystem, const ::string & pszId);
+////::aura::application *     win_instantiate_application(::aura::application * pappSystem, const ::string & pszId);
 ////int                     win_application_procedure(::aura::application * pappSystem)
 ////::u32 c_cdecl          win_application_thread_proc(LPVOID);
 ///////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@
 ////}
 //
 //
-////int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, int nCmdShow)
+////int CLASS_DECL_AURA ca2_main(HINSTANCE hInstance, HINSTANCE hPrevInstance, const ::string & lpCmdLine, int nCmdShow)
 ////{
 ////   try
 ////   {

@@ -55,7 +55,7 @@ namespace uwp
 
       // Operations
       void close();
-      virtual bool FindFile(const char * pstrName = nullptr, ::u32 dwUnused = 0);
+      virtual bool FindFile(const ::string & pstrName = nullptr, ::u32 dwUnused = 0);
       virtual bool FindNextFile();
 
       virtual void CloseContext();

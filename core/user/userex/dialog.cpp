@@ -12,7 +12,7 @@ dialog::dialog()
 
 }
 
-dialog::dialog(const char * pszMatter, __pointer(::user::interaction) puiParent)
+dialog::dialog(const ::string & pszMatter, __pointer(::user::interaction) puiParent)
 {
 
    initialize(puiParent);
@@ -57,7 +57,7 @@ void dialog::on_control_event(::user::control_event * pevent)
 }
 
 
-bool dialog::show(const char * pszMatter)
+bool dialog::show(const ::string & pszMatter)
 {
 
    string strMatter(pszMatter);
@@ -133,7 +133,7 @@ bool dialog::show(const char * pszMatter)
 }
 
 
-void dialog::on_show(const char * pszMatter)
+void dialog::on_show(const ::string & pszMatter)
 {
 
    m_pform->set_need_redraw();

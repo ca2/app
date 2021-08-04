@@ -85,7 +85,7 @@ namespace prompt
                   bOk = true;
 
                }
-               catch(const char * psz)
+               catch(const ::string & psz)
                {
 
                   TRACE("error %s", psz);
@@ -179,7 +179,7 @@ namespace prompt
                   }
 
                }
-               catch(const char * psz)
+               catch(const ::string & psz)
                {
 
                   TRACE("error %s", psz);

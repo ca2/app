@@ -30,8 +30,11 @@ namespace html
    }
 
 
-   void style_sheet::parse(html_data * pdata, const char * psz)
+   void style_sheet::parse(html_data * pdata, const ::string & strParam)
    {
+
+      const char * psz = strParam;
+
       while(*psz != '\0')
       {
          const char * pszStart = psz;

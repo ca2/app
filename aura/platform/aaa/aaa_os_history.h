@@ -10,7 +10,7 @@ public:
    os_history(::object * pobject);
          
    
-   virtual bool hist(const char *psz);
+   virtual bool hist(const ::string &psz);
 
 
 };

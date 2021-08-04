@@ -69,7 +69,7 @@ void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 
 
 #if defined(APPLE_IOS) || defined(_UWP)
-CLASS_DECL_AURA int ui_open_url(const char * psz);
+CLASS_DECL_AURA int ui_open_url(const ::string & psz);
 #endif
 
 
@@ -582,7 +582,7 @@ namespace aura
    }
 
 
-   //::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -590,7 +590,7 @@ namespace aura
    //}
 
 
-   //::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -605,7 +605,7 @@ namespace aura
    //}
 
 
-   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -620,7 +620,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -637,7 +637,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -931,7 +931,7 @@ namespace aura
 
 
 
-//   ::file::path command_find_path(const char * pszCommand)
+//   ::file::path command_find_path(const ::string & pszCommand)
 //   {
 //
 //#ifdef _UWP
@@ -1126,7 +1126,7 @@ namespace aura
 //#endif
 
 
-   //bool application::_001OnDDECommand(const char * pcsz)
+   //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
 
@@ -1227,7 +1227,7 @@ namespace aura
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
    //   __throw(error_not_implemented);
@@ -1237,7 +1237,7 @@ namespace aura
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
    //{
 
    //   return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -1973,7 +1973,7 @@ retry_license:
 //         }
 //
 //      }
-//      catch (const char * psz)
+//      catch (const ::string & psz)
 //      {
 //
 //         if (!strcmp(psz, "You have not logged in! Exiting!"))
@@ -2886,7 +2886,7 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    ////{
 
    ////   UNREFERENCED_PARAMETER(durationTimeOut);
@@ -2903,7 +2903,7 @@ retry_license:
 
 
 
-   //string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+   //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3176,7 +3176,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate)
+   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate)
    //{
 
    //   return false;
@@ -3194,7 +3194,7 @@ retry_license:
 
 
 
-   ////i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   ////i32 application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    ////{
 
    //   return -1;
@@ -3263,7 +3263,7 @@ retry_license:
 
    //}
 //
-//   void application::post_critical_error_message(const char * pszMessage, bool bShowLog)
+//   void application::post_critical_error_message(const ::string & pszMessage, bool bShowLog)
 //   {
 //
 //      string strMessage;
@@ -4985,7 +4985,7 @@ retry_license:
    //}
 
 
-   //__pointer(::aura::application) application::assert_running(const char * pszAppId)
+   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
    //{
 
    //   __pointer(::aura::application) papp;
@@ -5239,7 +5239,7 @@ retry_license:
 
 
 
-   string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
+   string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
       ::payload varFile;
@@ -5256,20 +5256,20 @@ retry_license:
 
    }
 
-   //string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
    //   return dir().matter(pszMatter,pszMatter2);
 
    //}
 
-   //bool application::is_inside_time_dir(const char * pszPath)
+   //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
    //   return dir().is_inside_time(pszPath);
    //}
 
 
-   //bool application::file_is_read_only(const char * pszPath)
+   //bool application::file_is_read_only(const ::string & pszPath)
    //{
 
    //   return false;
@@ -5399,7 +5399,7 @@ retry_license:
 
 
 
-   ::draw2d::printer * application::get_printer(const char * pszDeviceName)
+   ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
       ::exception::throw_interface_only();
@@ -5424,7 +5424,7 @@ retry_license:
    //}
 
 
-   string application::dialog_box(const char* pszMatter, property_set& propertyset)
+   string application::dialog_box(const ::string & pszMatter, property_set& propertyset)
    {
 
       __throw(todo, "core and os");
@@ -5448,7 +5448,7 @@ retry_license:
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
    //   __throw(error_not_implemented);
@@ -5458,7 +5458,7 @@ retry_license:
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet,const char * lpszName,const char * pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
@@ -5532,7 +5532,7 @@ retry_license:
 //
 //
 //
-//   i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   i32 application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      {
@@ -5577,7 +5577,7 @@ retry_license:
 //
 //   }
 //
-//   i32 application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+//   i32 application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
 //   {
 //
 //      return -1;
@@ -5671,7 +5671,7 @@ retry_license:
    //
    //   }
    //
-   //   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+   //   void application::set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword)
    //   {
    //
    //      ::account::set_cred(this,strToken, pszUsername, pszPassword);
@@ -5851,7 +5851,7 @@ namespace aura
    //}
 
 
-   bool application::on_application_menu_action(const char* pszCommand)
+   bool application::on_application_menu_action(const ::string & pszCommand)
    {
 
       if (m_puserinteractionMain != nullptr)
@@ -5953,7 +5953,7 @@ namespace aura
    //}
 
 
-   bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
+   bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
    {
 
       UNREFERENCED_PARAMETER(nID);
@@ -5999,7 +5999,7 @@ namespace aura
    }
 
 
-   //bool application::GetResourceData(::u32 nID, const char* pcszType, memory& storage)
+   //bool application::GetResourceData(::u32 nID, const ::string & pcszType, memory& storage)
 
    //{
 
@@ -6121,7 +6121,7 @@ namespace aura
 
 
    /*
-   bool application::hex_to_memory(memory & memory, const char * pszHex)
+   bool application::hex_to_memory(memory & memory, const ::string & pszHex)
    {
    ::count len = strlen(pszHex);
    ::count count = (len + 1) / 2;
@@ -6541,7 +6541,7 @@ namespace aura
    {
    }
 
-   void CCommandLineInfo::ParseParam(const char* pszParam,bool bFlag,bool bLast)
+   void CCommandLineInfo::ParseParam(const ::string & pszParam,bool bFlag,bool bLast)
    {
    if (bFlag)
    {
@@ -6556,7 +6556,7 @@ namespace aura
 
    /*
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParam(const char* pszParam, bool bFlag, bool bLast)
+   void CCommandLineInfo::ParseParam(const ::string & pszParam, bool bFlag, bool bLast)
    {
    if (bFlag)
    ParseParamFlag(pszParam);
@@ -6569,7 +6569,7 @@ namespace aura
    */
 
    /*
-   void CCommandLineInfo::ParseParamFlag(const char* pszParam)
+   void CCommandLineInfo::ParseParamFlag(const ::string & pszParam)
    {
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
@@ -6600,7 +6600,7 @@ namespace aura
    }
    }
 
-   void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6613,7 +6613,7 @@ namespace aura
    }
 
    #ifdef UNICODE
-   void CCommandLineInfo::ParseParamNotFlag(const char* pszParam)
+   void CCommandLineInfo::ParseParamNotFlag(const ::string & pszParam)
    {
    if (m_strFileName.is_empty())
    m_strFileName = pszParam;
@@ -6766,7 +6766,7 @@ namespace aura
    //}
 
 
-   /*   bool application::open_link(const char * pszLink, const char * pszTarget)
+   /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
    {
    UNREFERENCED_PARAMETER(pszLink);
    UNREFERENCED_PARAMETER(pszTarget);
@@ -6815,14 +6815,14 @@ namespace aura
 
 
 
-   /*void ::aura::FormatString1(string & rString, ::u32 nIDS, const char * psz1)
+   /*void ::aura::FormatString1(string & rString, ::u32 nIDS, const ::string & psz1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::aura::FormatString2(string & rString, ::u32 nIDS, const char * psz1,
+   void ::aura::FormatString2(string & rString, ::u32 nIDS, const ::string & psz1,
 
    const char * psz2)
 
@@ -7146,7 +7146,7 @@ namespace aura
    // application Settings Helpers
 
 
-   void application::SetRegistryKey(const char* pszRegistryKey)
+   void application::SetRegistryKey(const ::string & pszRegistryKey)
 
    {
       //ASSERT(m_pszRegistryKey == nullptr);
@@ -7214,7 +7214,7 @@ namespace aura
 //
 //   // creating it if it doesn't exist.
 //   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-//   HKEY application::GetSectionKey(const char* pszSection)
+//   HKEY application::GetSectionKey(const ::string & pszSection)
 //   {
 //
 //      ASSERT(pszSection != nullptr);
@@ -7243,7 +7243,7 @@ namespace aura
 //
 //#endif
 
-   /*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
+   /*   ::u32 application::GetProfileInt(const ::string & pszSection, const ::string & pszEntry,
 
    i32 nDefault)
    {
@@ -7281,7 +7281,7 @@ namespace aura
    }
    }
 
-   string application::GetProfileString(const char * pszSection, const char * pszEntry,
+   string application::GetProfileString(const ::string & pszSection, const ::string & pszEntry,
 
    const char * pszDefault)
 
@@ -7338,7 +7338,7 @@ namespace aura
    }
    }
 
-   bool application::GetProfileBinary(const char * pszSection, const char * pszEntry,
+   bool application::GetProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
    byte** ppData, ::u32* pBytes)
    {
@@ -7410,7 +7410,7 @@ namespace aura
    }
 
 
-   bool application::WriteProfileInt(const char * pszSection, const char * pszEntry,
+   bool application::WriteProfileInt(const ::string & pszSection, const ::string & pszEntry,
 
    i32 nValue)
    {
@@ -7442,7 +7442,7 @@ namespace aura
    }
    }
 
-   bool application::WriteProfileString(const char * pszSection, const char * pszEntry,
+   bool application::WriteProfileString(const ::string & pszSection, const ::string & pszEntry,
 
    const char * pszValue)
 
@@ -7498,7 +7498,7 @@ namespace aura
    }
    }
 
-   bool application::WriteProfileBinary(const char * pszSection, const char * pszEntry,
+   bool application::WriteProfileBinary(const ::string & pszSection, const ::string & pszEntry,
 
    byte * pData, ::u32 nBytes)
    {
@@ -7689,7 +7689,7 @@ namespace aura
    //}
 
 
-   //bool application::_001OnDDECommand(const char* pcsz)
+   //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
    //   ::exception::throw_not_implemented();
@@ -8059,7 +8059,7 @@ namespace aura
    }
 
 
-   //::aura::printer* application::get_printer(const char* pszDeviceName)
+   //::aura::printer* application::get_printer(const ::string & pszDeviceName)
    //{
 
    //   return nullptr;
@@ -8067,7 +8067,7 @@ namespace aura
    //}
 
 
-   //bool application::set_keyboard_layout(const char* pszPath, const ::action_context& context)
+   //bool application::set_keyboard_layout(const ::string & pszPath, const ::action_context& context)
    //{
 
    //   return psession->keyboard().load_layout(pszPath, context);
@@ -8075,7 +8075,7 @@ namespace aura
    //}
 
 
-   i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
+   i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
    {
 
       UNREFERENCED_PARAMETER(pszMatter);
@@ -8087,7 +8087,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(string& strSize, const char* pszPath, bool& bPending)
+   bool application::get_fs_size(string& strSize, const ::string & pszPath, bool& bPending)
    {
 
       i64 i64Size;
@@ -8150,7 +8150,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(i64& i64Size, const char* pszPath, bool& bPending)
+   bool application::get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -8167,7 +8167,7 @@ namespace aura
    }
 
 
-   void application::set_title(const char* pszTitle)
+   void application::set_title(const ::string & pszTitle)
    {
 
       auto psession = get_session();
@@ -8203,7 +8203,7 @@ namespace aura
    }
 
 
-   //oswindow application::get_ca2_app_wnd(const char* psz)
+   //oswindow application::get_ca2_app_wnd(const ::string & psz)
    //{
 
    //   UNREFERENCED_PARAMETER(psz);
@@ -8213,7 +8213,7 @@ namespace aura
    //}
 //
 //
-//   i32 application::send_simple_command(const char* psz, void* osdataSender)
+//   i32 application::send_simple_command(const ::string & psz, void* osdataSender)
 //   {
 //      string strApp;
 //      string_array stra;
@@ -8231,7 +8231,7 @@ namespace aura
 //   }
 //
 ////
-//   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
+//   i32 application::send_simple_command(void* osdata, const ::string & psz, void* osdataSender)
 //   {
 //#ifdef WINDOWS_DESKTOP
 //      ::::windowing::window * pwindow = (::oswindow) osdata;
@@ -8361,7 +8361,7 @@ namespace aura
    //}
 
 
-   //bool application::platform_open_by_file_extension(int iEdge, const char * pszPathName, application_bias * papplicationbias)
+   //bool application::platform_open_by_file_extension(int iEdge, const ::string & pszPathName, application_bias * papplicationbias)
    //{
 
    //   return psystem->get_platform(iEdge)->open_by_file_extension(pszPathName, papplicationbias);
@@ -8421,7 +8421,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception::exception & e, int iMessageFlags, const char* pszTopic)
+   void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
    {
 
       string strMessage;
@@ -9125,7 +9125,7 @@ namespace aura
    }
 
 
-   string application::sound_path(const char* psz)
+   string application::sound_path(const ::string & psz)
    {
 
       string strFileName = string(psz) + string(".wav");
@@ -9222,7 +9222,7 @@ namespace aura
 //   }
 
 
-   //bool application::on_application_menu_action(const char * pszCommand)
+   //bool application::on_application_menu_action(const ::string & pszCommand)
    //{
 
    //   if (m_puserinteractionMain != nullptr)

@@ -153,7 +153,7 @@ namespace experience
             //}
 
 
-            //frame::e_style frame::translate_style(const char * pszStyle)
+            //frame::e_style frame::translate_style(const ::string & pszStyle)
             //{
 
             //   string strStyle(pszStyle);

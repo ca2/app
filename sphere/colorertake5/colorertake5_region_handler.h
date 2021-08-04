@@ -49,7 +49,7 @@ namespace colorertake5
          structure of this line before adding new one.
          @param lno Line number
          */
-         virtual void clearLine(index lno, const char *line);
+         virtual void clearLine(index lno, const ::string &line);
 
          /** Informs handler about lexical region in line.
          This is a basic method, wich transfer information from
@@ -60,7 +60,7 @@ namespace colorertake5
          @param ex End X position of region in line
          @param region region information
          */
-         virtual void addRegion(index lno, const char *line, strsize sx, strsize ex, class region *region) = 0;
+         virtual void addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region *region) = 0;
 
          /** Informs handler about entering into specified scheme.
          Parameter <code>region</code> is used to specify
@@ -73,7 +73,7 @@ namespace colorertake5
          @param region scheme region information (background)
          @param scheme Additional scheme information
          */
-         virtual void enterScheme(index lno, const char *line, strsize sx, strsize ex, class region *region, class scheme *scheme) = 0;
+         virtual void enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme) = 0;
 
          /** Informs handler about leaveing specified scheme.
          Parameter <code>region</code> is used to specify

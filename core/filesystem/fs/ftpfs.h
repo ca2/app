@@ -59,7 +59,7 @@ public:
    virtual ~ftpfs();
 
 
-   virtual ::e_status initialize_ftpfs(::object * pobject, const char * pszRoot);
+   virtual ::e_status initialize_ftpfs(::object * pobject, const ::string & pszRoot);
 
 
    virtual bool has_subdir(const ::file::path & pszPath) override;
@@ -70,8 +70,8 @@ public:
 
    virtual void defer_initialize(::ftp::client_socket ** client, string strPath);
 
-   //virtual string file_name(const char * pszPath);
-   //virtual string dir_path(const char * psz1, const char * psz2);
+   //virtual string file_name(const ::string & pszPath);
+   //virtual string dir_path(const ::string & psz1, const ::string & psz2);
 
    virtual bool file_move(const ::file::path & pszDst, const ::file::path & pszSrc) override;
 

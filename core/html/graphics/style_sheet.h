@@ -20,7 +20,7 @@ namespace html
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      void parse(html_data * pdocument, const char * psz);
+      void parse(html_data * pdocument, const ::string & psz);
 
       style * rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName);
       const style * rfind(e_tag etag, const ::string & strClass, const ::string & strSubClass, id idName) const;

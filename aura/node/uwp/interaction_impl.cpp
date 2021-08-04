@@ -338,7 +338,7 @@ namespace uwp
    //}
 
 
-   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const char * pszName)
+   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & pszName)
    // {
 
 
@@ -1807,7 +1807,7 @@ return true;
       return ::uwp::interaction_impl::from_handle(hWnd);
       }
       */
-   //int interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
+   //int interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
    //      lpszCaption = papplication->m_strAppName;
@@ -2186,7 +2186,7 @@ return true;
 
    bool gen_GotScrollLines;
 
-   void interaction_impl::OnSettingChange(::u32 uFlags,const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags, const ::string & lpszSection)
    {
       UNUSED_ALWAYS(uFlags);
       UNUSED_ALWAYS(lpszSection);
@@ -2670,7 +2670,7 @@ return true;
    /////////////////////////////////////////////////////////////////////////////
    // Dialog initialization support
 
-   bool interaction_impl::ExecuteDlgInit(const char * lpszResourceName)
+   bool interaction_impl::ExecuteDlgInit(const ::string & lpszResourceName)
    {
       // find resource handle
       LPVOID lpResource = nullptr;
@@ -3580,7 +3580,7 @@ return true;
    }
 
 
-   void interaction_impl::set_window_text(const char * lpszString)
+   void interaction_impl::set_window_text(const ::string & lpszString)
    {
 
       {
@@ -4270,7 +4270,7 @@ return true;
       //::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
 
    }
-   void interaction_impl::SetDlgItemText(int nID,const char * lpszString)
+   void interaction_impl::SetDlgItemText(int nID, const ::string & lpszString)
    {
 
       __throw(todo);
@@ -5066,7 +5066,7 @@ return true;
 
    }
 
-   void interaction_impl::OnWinIniChange(const char *)
+   void interaction_impl::OnWinIniChange(const ::string &)
    {
       Default();
    }
@@ -5114,7 +5114,7 @@ return true;
    { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
    bool frame_window::InModalState() const
    { return m_cModalStack != 0; }
-   void frame_window::set_title(const char * lpszTitle)
+   void frame_window::set_title(const ::string & lpszTitle)
    { m_strTitle = lpszTitle; }
    string frame_window::get_title() const
    { return m_strTitle; }
@@ -5694,7 +5694,7 @@ __STATIC bool CLASS_DECL_AURA __register_with_icon(WNDCLASS* pWndCls,
 }
 
 
-bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const char ** ppszClass)
+bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::string &* ppszClass)
 {
    // mask off all classes that are already registered
    __MODULE_STATE* pModuleState = __get_module_state();

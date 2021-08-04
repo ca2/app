@@ -42,7 +42,7 @@ namespace colorertake5
       * @param region region full qualified name.
       * @param rdnew  New region definition to replace old one
       */
-      void  setRegionDefine(const char * region, RegionDefine *rdnew);
+      void  setRegionDefine(const ::string & region, RegionDefine *rdnew);
 
 
    };

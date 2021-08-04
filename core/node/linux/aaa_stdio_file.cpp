@@ -150,7 +150,7 @@ namespace linux
          ::file::throw_status(error_file, errno, m_path);
    }
 
-   void stdio_file::write_string(const char * psz)
+   void stdio_file::write_string(const ::string & psz)
 
    {
       ASSERT(psz != nullptr);
@@ -238,7 +238,7 @@ namespace linux
 
    }
 
-   /*void stdio_file::write_string(const char * psz)
+   /*void stdio_file::write_string(const ::string & psz)
 
    {
       ASSERT(psz != nullptr);

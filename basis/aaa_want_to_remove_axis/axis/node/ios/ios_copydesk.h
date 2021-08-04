@@ -23,7 +23,7 @@ namespace ios
       virtual i32 _get_file_count();
       virtual void _get_filea(::file::patha & patha);
 
-      virtual void _set_plain_text(const char * psz);
+      virtual void _set_plain_text(const ::string & psz);
       virtual string _get_plain_text();
 
 

@@ -28,7 +28,7 @@ inline ::payload operator + (::payload payload, const ::timeout& timeout)
 }
 
 
-inline ::payload operator + (const char* psz, const ::timeout& timeout)
+inline ::payload operator + (const ::string & psz, const ::timeout& timeout)
 {
 
    return ::payload(psz) + timeout;

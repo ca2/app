@@ -227,7 +227,7 @@ int xdisplay::default_screen()
 }
 
 
-Atom xdisplay::intern_atom(const char * pszAtomName, bool bCreate)
+Atom xdisplay::intern_atom(const ::string & pszAtomName, bool bCreate)
 {
 
    if(m_pdata == nullptr)

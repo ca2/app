@@ -727,7 +727,7 @@ namespace serial
          m_iLine = line_;
          e_what_ = str;
       }
-      explicit io_exception (string file, int line, const char * description)
+      explicit io_exception (string file, int line, const ::string & description)
          : file_(file), line_(line), errno_(0)
       {
          ::string_stream str;
@@ -756,7 +756,7 @@ namespace serial
       const port_not_opened_exception& operator=(port_not_opened_exception);
       string e_what_;
    public:
-      port_not_opened_exception (const char * description)
+      port_not_opened_exception (const ::string & description)
       {
          ::string_stream str;
          str << "port_not_opened_exception " << description << " failed.";

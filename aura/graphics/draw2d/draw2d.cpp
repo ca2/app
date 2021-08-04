@@ -117,14 +117,14 @@ namespace draw2d
 
       }
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
-      if (!m_papi->open())
-      {
+      //if (!m_papi->open())
+      //{
 
-         return false;
+      //   return false;
 
-      }
+      //}
 
       return true;
 
@@ -203,8 +203,6 @@ namespace draw2d
 
          if (m_papi)
          {
-
-            m_papi->close();
 
             m_papi->destroy();
 

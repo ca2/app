@@ -87,7 +87,7 @@ namespace account
       //virtual bool on_windows_move(i32 x, i32 y);
       //virtual bool on_windows_size(i32 cx, i32 cy);
 
-      virtual bool on_action(const char * pszId);
+      virtual bool on_action(const ::string & pszId);
 
       virtual void login_result(::spa_login::e_result eresult);
 
@@ -742,7 +742,7 @@ namespace account
 
 
 
-   bool account::on_action(const char * pszId)
+   bool account::on_action(const ::string & pszId)
    {
 
       if (!strcmp(pszId, "submit"))

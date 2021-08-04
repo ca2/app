@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   void text::_001SetSelText(const char * psz, const ::action_context & context)
+   void text::_001SetSelText(const ::string & psz, const ::action_context & context)
    {
 
       strtext() = psz;
@@ -87,7 +87,7 @@ namespace user
    }
 
 
-   void text::_001SetText(const char * psz, strsize iLen, const ::action_context & context)
+   void text::_001SetText(const ::string & psz, strsize iLen, const ::action_context & context)
    {
 
       _001SetText(string(psz, iLen),context);

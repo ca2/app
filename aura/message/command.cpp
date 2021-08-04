@@ -215,7 +215,7 @@
 //
 //      }
 //
-//      void ::message::command::SetText(const char * pszText, const ::action_context & context)
+//      void ::message::command::SetText(const ::string & pszText, const ::action_context & context)
 //      {
 //
 //         if (m_pmenu != nullptr)

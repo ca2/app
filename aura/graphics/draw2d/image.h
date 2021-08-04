@@ -205,7 +205,7 @@ public:
    virtual bool transparent_color(const ::color::color & color);
 
 
-   virtual bool create_thumbnail(const char * pszPath);
+   virtual bool create_thumbnail(const ::string & pszPath);
 
 
    virtual ::e_status create(::draw2d::graphics* pgraphics);

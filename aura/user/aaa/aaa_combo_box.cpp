@@ -1135,7 +1135,7 @@ namespace user
 
    }
 
-   index combo_box::InsertString(index nIndex, const char * pszString)
+   index combo_box::InsertString(index nIndex, const ::string & pszString)
 
    {
 
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   index combo_box::Dir(index attr, const char * pszWildCard)
+   index combo_box::Dir(index attr, const ::string & pszWildCard)
 
    {
 
@@ -1178,7 +1178,7 @@ namespace user
    }
 
 
-   //index combo_box::FindString(index nStartAfter, const char * pszString)
+   //index combo_box::FindString(index nStartAfter, const ::string & pszString)
 
    //{
 
@@ -1200,7 +1200,7 @@ namespace user
    //}
 
 
-   //index combo_box::SelectString(index nStartAfter, const char * pszString, const ::action_context & context)
+   //index combo_box::SelectString(index nStartAfter, const ::string & pszString, const ::action_context & context)
 
    //{
 
@@ -1278,7 +1278,7 @@ namespace user
 
    }
 
-   index combo_box::FindStringExact(index nIndexStart, const char * pszFind)
+   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
 
    {
 
@@ -1509,7 +1509,7 @@ namespace user
 
 
 
-   index combo_box::AddString(const char * pszString,uptr dwItemData)
+   index combo_box::AddString(const ::string & pszString,uptr dwItemData)
 
    {
 
@@ -1530,7 +1530,7 @@ namespace user
    }
 
 
-   index combo_box::AddString(const char * pszString,const ::string & strValue)
+   index combo_box::AddString(const ::string & pszString, const ::string & strValue)
 
    {
 

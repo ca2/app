@@ -53,7 +53,7 @@ namespace database
    }
 
 
-   ::e_status composite::connect(const char* name, const char* host, const char* port, const char* user, const char* pass, const char* sckt, u64 uConnectionFlags)
+   ::e_status composite::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    {
 
       return m_pdatabase->connect(name, host, port, user, pass, sckt, uConnectionFlags);
@@ -102,7 +102,7 @@ namespace database
 
 
 
-   bool composite::exec(const char* pszQuery)
+   bool composite::exec(const ::string & pszQuery)
    {
 
       return false;
@@ -110,7 +110,7 @@ namespace database
    }
 
 
-   //::payload composite::query(const char * pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //::payload composite::query(const ::string & pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -118,7 +118,7 @@ namespace database
    //}
 
 
-   string composite::escape(const char* psz)
+   string composite::escape(const ::string & psz)
    {
 
       return psz;
@@ -134,7 +134,7 @@ namespace database
    }
 
 
-   string composite::error1(const char* pszPrefix)
+   string composite::error1(const ::string & pszPrefix)
    {
 
       return m_pdatabase->error1(pszPrefix);
@@ -142,7 +142,7 @@ namespace database
    }
 
 
-   void composite::trace_error1(const char* pszPrefix)
+   void composite::trace_error1(const ::string & pszPrefix)
    {
 
       m_pdatabase->trace_error1(pszPrefix);
@@ -182,7 +182,7 @@ namespace database
    }
 
 
-   ::payload composite::get_agent(const char* pszTable, const char* psz, const char* pszUser)
+   ::payload composite::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
    {
 
       return ::payload(::e_type_null);
@@ -191,7 +191,7 @@ namespace database
 
 
    
-   bool composite::query_table_item(::payload& payload, const char* table, const char* item, const char* where)
+   bool composite::query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where)
    {
 
       return m_pdatabase->query_table_item(payload, table, item, where);
@@ -202,7 +202,7 @@ namespace database
 
 
 
-   bool composite::query_rows(__pointer(row_array) & prowaray, const char* pszQuery)
+   bool composite::query_rows(__pointer(row_array) & prowaray, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_rows(prowaray, pszQuery);
@@ -210,7 +210,7 @@ namespace database
    }
 
 
-   bool composite::query_row(__pointer(row) & prow, const char* pszQuery)
+   bool composite::query_row(__pointer(row) & prow, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_row(prow, pszQuery);
@@ -218,7 +218,7 @@ namespace database
    }
 
 
-   bool composite::query_items(__pointer(payload_array) & pvara, const char* pszQuery)
+   bool composite::query_items(__pointer(payload_array) & pvara, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_items(pvara, pszQuery);
@@ -226,7 +226,7 @@ namespace database
    }
 
 
-   bool composite::query_item(::payload & payload, const char* pszQuery)
+   bool composite::query_item(::payload & payload, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_item(payload, pszQuery);
@@ -234,7 +234,7 @@ namespace database
    }
 
 
-   bool composite::query_blob(get_memory getmemory, const char* pszQuery)
+   bool composite::query_blob(get_memory getmemory, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_blob(getmemory, pszQuery);
@@ -242,7 +242,7 @@ namespace database
    }
 
 
-   __pointer(::database::result_set) composite::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) composite::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return m_pdatabase->query_result(pszQuery, iRowCount, iColumnCount);
@@ -250,7 +250,7 @@ namespace database
    }
 
 
-   __pointer(result_set) composite::query(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(result_set) composite::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
       
       return query_result(pszQuery, iRowCount, iColumnCount);

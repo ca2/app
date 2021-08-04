@@ -789,7 +789,7 @@ namespace user
       //}
 
 
-      e_folder windows::get_folder_type(::object * pobject, const char * pcsz)
+      e_folder windows::get_folder_type(::object * pobject, const ::string & pcsz)
 
       {
 

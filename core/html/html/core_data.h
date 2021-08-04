@@ -223,7 +223,7 @@ namespace html
       virtual ::e_status initialize_html_data(html_data * pdata) override;
 
 
-      virtual string process_url(const char * pszUrl);
+      virtual string process_url(const ::string & pszUrl);
       //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
@@ -234,7 +234,7 @@ namespace html
       virtual ::e_status     open_html(const ::string & str) override;
 
 
-      virtual bool open_link(const char* pszPath) override;
+      virtual bool open_link(const ::string & pszPath) override;
 
 
       virtual ::user::form* get_form() override;
@@ -243,7 +243,7 @@ namespace html
 
       //virtual bool is_locked();
 
-      void load(const char*);
+      void load(const ::string &);
       void implement(::draw2d::graphics_pointer & pgraphics);
       void on_layout(::draw2d::graphics_pointer & pgraphics);
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -254,7 +254,7 @@ namespace html
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      image_pointer get_image(const char* pszUrl);
+      image_pointer get_image(const ::string & pszUrl);
       void load_image_asynch(image* pimage);
       bool load_image(image* pimage);
 

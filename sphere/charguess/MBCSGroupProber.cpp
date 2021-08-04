@@ -78,7 +78,7 @@ void  nsMBCSGroupProber::Reset(void)
   mState = eDetecting;
 }
 
-nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsMBCSGroupProber::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsProbingState st;
   PR::u32 i;

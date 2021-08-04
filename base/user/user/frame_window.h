@@ -140,12 +140,12 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool LoadAccelTable(const char * pszResourceName);
+      bool LoadAccelTable(const ::string & pszResourceName);
 
-      //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
+      //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::string & pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
 
 
-      virtual bool LoadFrame(const char * pszMatter,
+      virtual bool LoadFrame(const ::string & pszMatter,
                              //u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
                               u32 dwDefaultStyle = FWS_ADDTOTITLE,
                               ::user::interaction * puiParent = nullptr,
@@ -175,7 +175,7 @@ namespace user
       virtual void InitialFramePosition(bool bForceRestore = false) override;
 
       // to set text of standard status bar
-      //void SetMessageText(const char * pszText);
+      //void SetMessageText(const ::string & pszText);
 
       //void SetMessageText(::u32 nID);
 
@@ -200,8 +200,8 @@ namespace user
       void OnUpdateControlBarMenu(::message::command* pCmdUI);
       bool OnBarCheck(::u32 nID);
 
-      //virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
-      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP) override;
+      //virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
+      virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP) override;
 
       
       virtual void on_command_message(::message::command * pcommand) override;
@@ -226,7 +226,7 @@ namespace user
       virtual void ExitHelpMode() override;
 
 
-      void UpdateFrameTitleForDocument(const char * pszDocName);
+      void UpdateFrameTitleForDocument(const ::string & pszDocName);
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);

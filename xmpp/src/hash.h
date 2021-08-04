@@ -34,13 +34,13 @@ void hash_release(hash_t * const table);
  *  each key can appear only once; the value of any
  *  identical key will be replaced
  */
-int hash_add(hash_t *table, const char * const key, void *data);
+int hash_add(hash_t *table, const ::string & const key, void *data);
 
 /** look up a key in a hash table */
-void *hash_get(hash_t *table, const char *key);
+void *hash_get(hash_t *table, const ::string &key);
 
 /** delete a key from a hash table */
-int hash_drop(hash_t *table, const char *key);
+int hash_drop(hash_t *table, const ::string &key);
 
 /** return the number of keys in a hash */
 int hash_num_keys(hash_t *table);

@@ -649,7 +649,7 @@ void    NP_LOADDS NPP_StreamAsFile(NPP instance, NPStream* stream,
                                    const char* fname);
 void    NP_LOADDS NPP_Print(NPP instance, NPPrint* platformPrint);
 int16_t NP_LOADDS NPP_HandleEvent(NPP instance, void* event);
-void    NP_LOADDS NPP_URLNotify(NPP instance, const char* url,
+void    NP_LOADDS NPP_URLNotify(NPP instance, const ::string & url,
                                 NPReason reason, void* notifyData);
 NPError NP_LOADDS NPP_GetValue(NPP instance, NPPVariable variable, void *value);
 NPError NP_LOADDS NPP_SetValue(NPP instance, NPNVariable variable, void *value);
@@ -657,15 +657,15 @@ NPError NP_LOADDS NPP_SetValue(NPP instance, NPNVariable variable, void *value);
 /* NPN_* functions are provided by the navigator and called by the plugin. */
 void        NP_LOADDS NPN_Version(int* plugin_major, int* plugin_minor,
                                   int* netscape_major, int* netscape_minor);
-NPError     NP_LOADDS NPN_GetURLNotify(NPP instance, const char* url,
+NPError     NP_LOADDS NPN_GetURLNotify(NPP instance, const ::string & url,
                                        const char* target, void* notifyData);
-NPError     NP_LOADDS NPN_GetURL(NPP instance, const char* url,
+NPError     NP_LOADDS NPN_GetURL(NPP instance, const ::string & url,
                                  const char* target);
-NPError     NP_LOADDS NPN_PostURLNotify(NPP instance, const char* url,
+NPError     NP_LOADDS NPN_PostURLNotify(NPP instance, const ::string & url,
                                         const char* target, ::u32 len,
                                         const char* buf, NPBool file,
                                         void* notifyData);
-NPError     NP_LOADDS NPN_PostURL(NPP instance, const char* url,
+NPError     NP_LOADDS NPN_PostURL(NPP instance, const ::string & url,
                                   const char* target, ::u32 len,
                                   const char* buf, NPBool file);
 NPError     NP_LOADDS NPN_RequestRead(NPStream* stream, NPByteRange* rangeList);
@@ -675,7 +675,7 @@ int32_t     NP_LOADDS NPN_Write(NPP instance, NPStream* stream, int32_t len,
                                 void* buffer);
 NPError     NP_LOADDS NPN_DestroyStream(NPP instance, NPStream* stream,
                                         NPReason reason);
-void        NP_LOADDS NPN_Status(NPP instance, const char* message);
+void        NP_LOADDS NPN_Status(NPP instance, const ::string & message);
 const char* NP_LOADDS NPN_UserAgent(NPP instance);
 void*       NP_LOADDS NPN_MemAlloc(::u32 size_i32);
 void        NP_LOADDS NPN_MemFree(void* ptr);
@@ -698,7 +698,7 @@ NPError     NP_LOADDS NPN_GetValueForURL(NPP instance, NPNURLVariable variable,
       const char *url, char **value,
       ::u32 *len);
 NPError     NP_LOADDS NPN_SetValueForURL(NPP instance, NPNURLVariable variable,
-      const char *url, const char *value,
+      const char *url, const ::string &value,
       ::u32 len);
 NPError     NP_LOADDS NPN_GetAuthenticationInfo(NPP instance,
       const char *protocol,

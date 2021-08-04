@@ -172,7 +172,7 @@ namespace hotplugin
 
       virtual void set_ca2_installation_ready(bool bReady = true);
 
-      virtual void set_status(const char * pszStatus);
+      virtual void set_status(const ::string & pszStatus);
 
       virtual void restart_aura_ipc() override;
 

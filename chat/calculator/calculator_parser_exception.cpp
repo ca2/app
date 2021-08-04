@@ -4,7 +4,7 @@
 thread_int_ptr < iptr > t_iAvoidNumericParserException;
 
 
-numeric_parser_exception::numeric_parser_exception(::object * pobject,const ::string & strMessage):
+numeric_parser_exception::numeric_parser_exception(::object * pobject, const ::string & strMessage):
 ::object(pobject),
 ::call_stack(this),
 ::exception::exception(),

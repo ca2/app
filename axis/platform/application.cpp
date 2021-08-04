@@ -98,7 +98,7 @@ namespace axis
    //}
 
 
-   //string application::dialog_box(const char * pszMatter, property_set & propertyset)
+   //string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
    //{
 
    //   throw_todo();
@@ -143,7 +143,7 @@ namespace axis
 
 
 
-   ::file::path command_find_path(const char * pszCommand)
+   ::file::path command_find_path(const ::string & pszCommand)
    {
 
 #ifdef _UWP
@@ -1064,7 +1064,7 @@ namespace axis
 //         }
 //
 //      }
-//      catch (const char * psz)
+//      catch (const ::string & psz)
 //      {
 //
 //         if (!strcmp(psz, "You have not logged in! Exiting!"))
@@ -1574,7 +1574,7 @@ namespace axis
 
 
 
-   //string application::http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
+   //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
    //   ::exception::throw_interface_only();
@@ -1917,7 +1917,7 @@ namespace axis
    //}
 
 
-   //__pointer(::aura::application) application::assert_running(const char * pszAppId)
+   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
    //{
 
    //   __pointer(::aura::application) papp;

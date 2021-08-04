@@ -688,7 +688,7 @@ namespace filemanager
             }*/
          }
 
-         void list_view::parse(const char * pszSource)
+         void list_view::parse(const ::string & pszSource)
 
          {
             m_itema.erase_all();
@@ -799,7 +799,7 @@ namespace filemanager
          }
 
 
-         /*i32 ItemArray::FindAbsolute(const char * pszId)
+         /*i32 ItemArray::FindAbsolute(const ::string & pszId)
 
          {
             for(i32 i = 0; i < this->get_size(); i++)

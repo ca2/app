@@ -606,7 +606,7 @@
 //      pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
 //   }
 //
-//   void control_cmd_ui::SetText(const char *)
+//   void control_cmd_ui::SetText(const ::string &)
 //   {
 //      // ignore it
 //   }

@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 
-int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, const char * pszTitle, u32 uFlags);
+int_bool MessageBoxAForConsole(oswindow interaction_impl, const ::string & psz, const ::string & pszTitle, u32 uFlags);
 
 
-//int_bool (* g_messageboxa)(oswindow interaction_impl, const char * psz, const char * pszTitle, u32 uFlags) = MessageBoxAForConsole;
+//int_bool (* g_messageboxa)(oswindow interaction_impl, const ::string & psz, const ::string & pszTitle, u32 uFlags) = MessageBoxAForConsole;
 
 
 
-int_bool MessageBoxAForConsole(oswindow interaction_impl, const char * psz, const char * pszTitle, u32 uFlags)
+int_bool MessageBoxAForConsole(oswindow interaction_impl, const ::string & psz, const ::string & pszTitle, u32 uFlags)
 {
 
    string strLine;

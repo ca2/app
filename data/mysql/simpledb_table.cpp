@@ -5,7 +5,7 @@ namespace simpledb
 {
 
 
-   table::table(base * pdatabase, const char * pszName) :
+   table::table(base * pdatabase, const ::string & pszName) :
       matter(pdatabase->get_application()),
       m_spfileMeta(pdatabase->get_application()),
       m_spfileFixed(pdatabase->get_application()),

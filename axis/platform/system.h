@@ -75,8 +75,8 @@ namespace axis
       __pointer(::account::user_set)               userset();
 
 
-      //virtual __pointer(regex) create_regular_expression(const char* pszStyle, const string& str) override;
-      //virtual __pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount) override;
+      //virtual __pointer(regex) create_regular_expression(const ::string & pszStyle, const string& str) override;
+      //virtual __pointer(regex_context) create_regular_expression_context(const ::string & pszStyle, int iCount) override;
 
 
       //virtual ::e_status thread_loop() override;

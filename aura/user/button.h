@@ -66,7 +66,7 @@ namespace user
 
 
       button();
-      button(const char * pszName, const ::id & id);
+      button(const ::string & pszName, const ::id & id);
       virtual ~button();
 
 

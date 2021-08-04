@@ -535,7 +535,7 @@ started:
    }
 
 
-   void interprocess_communication::on_ipc_receive(::aura::ipc::rx * prx, const char * pszMessage)
+   void interprocess_communication::on_ipc_receive(::aura::ipc::rx * prx, const ::string & pszMessage)
    {
 
       string str(pszMessage);

@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pcolorref,HANDLE hfile);
-void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
+void * my_open_map(const ::string & psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
 #endif
 
 
@@ -38,7 +38,7 @@ namespace hotplugin
    }
 
 
-   bool host::open_link(const ::string & strLink,const ::string & strTarget)
+   bool host::open_link(const ::string & strLink, const ::string & strTarget)
    {
 
       if(m_pbasecomposer != nullptr)
@@ -354,7 +354,7 @@ namespace hotplugin
    }
 
 
-   i32 host::start_app_install(const char * pszCommandLine)
+   i32 host::start_app_install(const ::string & pszCommandLine)
    {
 
       return start_app_install(pszCommandLine, get_application(), this);
@@ -362,7 +362,7 @@ namespace hotplugin
    }
 
 
-   i32 host::s_start_app_install(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   i32 host::s_start_app_install(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->start_app_install(pszCommandLine, papp, pplugin);
@@ -370,7 +370,7 @@ namespace hotplugin
    }
 
 
-   i32 host::start_app_install(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   i32 host::start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if(m_bHostStarterStart)
@@ -395,7 +395,7 @@ namespace hotplugin
    }
 
 
-   i32 host::s_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
+   i32 host::s_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, host * phost, plugin * pplugin)
    {
 
       return phost->host_starter_start_sync(pszCommandLine, papp, pplugin);
@@ -403,7 +403,7 @@ namespace hotplugin
    }
 
 
-   i32 host::host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin)
+   i32 host::host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin)
    {
 
       if (m_bHostStarterStart)
@@ -450,7 +450,7 @@ namespace hotplugin
    }
 
 
-   void host::set_status(const char * pszStatus)
+   void host::set_status(const ::string & pszStatus)
    {
 
       ::hotplugin::plugin::set_status(pszStatus);

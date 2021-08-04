@@ -75,7 +75,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 //
 //
-//i32 CLASS_DECL_AURA ca2_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const char * lpCmdLine, i32 nCmdShow)
+//i32 CLASS_DECL_AURA ca2_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, const ::string & lpCmdLine, i32 nCmdShow)
 //{
 //   try
 //   {

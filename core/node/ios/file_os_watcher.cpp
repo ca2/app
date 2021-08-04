@@ -159,7 +159,7 @@ namespace file
 
 
 
-//   void os_watch::eraseFile(const char * file)
+//   void os_watch::eraseFile(const ::string & file)
 //   {
 //
 //

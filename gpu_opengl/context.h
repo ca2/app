@@ -56,7 +56,7 @@ namespace opengl
 
       //virtual ::e_status make_current();
 
-      // virtual string load_fragment(const char* pszPath, enum_shader_source& eshadersource);
+      // virtual string load_fragment(const ::string & pszPath, enum_shader_source& eshadersource);
 
       //virtual string get_shader_version_text();
 

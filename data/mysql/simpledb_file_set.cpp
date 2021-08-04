@@ -56,7 +56,7 @@ namespace simpledb
    }
 
 
-   bool file_set::add_search(const char * pszSearchDirectory)
+   bool file_set::add_search(const ::string & pszSearchDirectory)
    {
 
       string_array stra;

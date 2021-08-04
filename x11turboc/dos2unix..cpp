@@ -210,7 +210,7 @@ open_printer (int port)
 
 
 ssize_t
-write_printer (int fd, const char *buf)
+write_printer (int fd, const ::string &buf)
 {
   ssize_t wrote = 0;
   int len = strlen (buf);
@@ -335,7 +335,7 @@ flush_print (char *buf, int port)
 }
 
 void
-print_file (const char *file, int port, int lowlevel_print)
+print_file (const ::string &file, int port, int lowlevel_print)
 {
 /*  int ch;*/
   FILE *f;

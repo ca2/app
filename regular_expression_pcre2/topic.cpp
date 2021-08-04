@@ -116,14 +116,14 @@ namespace regular_expression_pcre2
 //   bool topic::matches(const string& str)
 //   {
 //
-//      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const char*)str, str.get_length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
+//      int c = pcre2_match(m_pc, (PCRE2_SPTR)(const ::string &)str, str.get_length(), 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
 //
 //      return c > 0;
 //
 //   }
 
 //
-//   bool topic::matches(const char* psz, strsize len)
+//   bool topic::matches(const ::string & psz, strsize len)
 //   {
 //
 //      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
@@ -141,7 +141,7 @@ namespace regular_expression_pcre2
 //   }
 //
 //
-//   ::count topic::match_count(const char* psz, strsize len)
+//   ::count topic::match_count(const ::string & psz, strsize len)
 //   {
 //
 //      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);
@@ -159,7 +159,7 @@ namespace regular_expression_pcre2
 //   }
 //
 //
-//   __pointer(::str::range_array) topic::matches_ranges(const char* psz, strsize len)
+//   __pointer(::str::range_array) topic::matches_ranges(const ::string & psz, strsize len)
 //   {
 //
 //      auto c = match_count(psz, len);

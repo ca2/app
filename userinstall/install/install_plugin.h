@@ -4,7 +4,7 @@
 #if defined()
 
 
-i32 installer_start(const char * pszVersion, const char * pszId);
+i32 installer_start(const ::string & pszVersion, const ::string & pszId);
 
 
 namespace install
@@ -81,8 +81,8 @@ namespace install
 
 
 
-      virtual bool hist(const char * pszUrl);
-      virtual void run_start_install(const char * pszType, const char * pszRun, const char * pszLocale, const char * pszSchema);
+      virtual bool hist(const ::string & pszUrl);
+      virtual void run_start_install(const ::string & pszType, const ::string & pszRun, const ::string & pszLocale, const ::string & pszSchema);
 
 
       virtual void start_ca2();
@@ -95,7 +95,7 @@ namespace install
 
       virtual void on_prepare_memory();
 
-      virtual void on_login_result(const ::e_status & estatus, const char * pszResponse);
+      virtual void on_login_result(const ::e_status & estatus, const ::string & pszResponse);
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       

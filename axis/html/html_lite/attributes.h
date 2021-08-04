@@ -24,7 +24,7 @@ public:
    string           m_strValue;
 
 
-   LiteHTMLElemAttr(const char * pszAttribName = nullptr, const char * pszAttribValue = nullptr)
+   LiteHTMLElemAttr(const ::string & pszAttribName = nullptr, const ::string & pszAttribValue = nullptr)
 
    {
       Init();
@@ -232,13 +232,13 @@ private:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   void putValue(::lite_html_reader * preader, const char * pszValue);
+   void putValue(::lite_html_reader * preader, const ::string & pszValue);
 
 
 // Parsing Helpers
 public:
    // parses an attribute/value pair from the given string
-   strsize parseFromStr(::lite_html_reader * preader, const char * pszString);
+   strsize parseFromStr(::lite_html_reader * preader, const ::string & pszString);
 
 
 };
@@ -309,7 +309,7 @@ public:
 // Initialization
 public:
    // parses attribute/value pairs from the given string
-   strsize parseFromStr(::lite_html_reader * papp, const char * pszString, strsize iLen);
+   strsize parseFromStr(::lite_html_reader * papp, const ::string & pszString, strsize iLen);
 
 
 // Attributes
@@ -339,7 +339,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   i32 getIndexFromName(const char * pszAttributeName) const
+   i32 getIndexFromName(const ::string & pszAttributeName) const
 
    {
       ASSERT(__is_valid_string(pszAttributeName));
@@ -382,7 +382,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr operator[](const char * pszIndex) const
+   LiteHTMLElemAttr operator[](const ::string & pszIndex) const
 
    {
       ASSERT(__is_valid_string(pszIndex));
@@ -408,7 +408,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr getAttribute(const char * pszIndex) const
+   LiteHTMLElemAttr getAttribute(const ::string & pszIndex) const
 
    {
       ASSERT(__is_valid_string(pszIndex));
@@ -444,7 +444,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getValueFromName(const char * pszAttributeName) const
+   string getValueFromName(const ::string & pszAttributeName) const
 
    { return ((*this)[pszAttributeName].m_strValue); }
 
@@ -468,7 +468,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr* addAttribute(const char * lpszName, const char * pszValue);
+   LiteHTMLElemAttr* addAttribute(const ::string & lpszName, const ::string & pszValue);
 
 
    /**

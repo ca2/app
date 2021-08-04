@@ -137,7 +137,7 @@ typedef enum sp_error {
  *
  * @param[in]   error   The error code to lookup
  */
-SP_LIBEXPORT(const char*) sp_error_message(sp_error error);
+SP_LIBEXPORT(const ::string &) sp_error_message(sp_error error);
 
 /** @} */
 
@@ -454,7 +454,7 @@ typedef struct sp_session_callbacks {
    * @param[in]  session    Session
    * @param[in]  message    String in UTF-8 format.
    */
-  void (SP_CALLCONV *message_to_user)(sp_session *session, const char *message);
+  void (SP_CALLCONV *message_to_user)(sp_session *session, const ::string &message);
 
   /**
    * Called when processing needs to take place on the main thread.
@@ -514,7 +514,7 @@ typedef struct sp_session_callbacks {
    * @param[in]  session    Session
    * @param[in]  data       Log data
    */
-  void (SP_CALLCONV *log_message)(sp_session *session, const char *data);
+  void (SP_CALLCONV *log_message)(sp_session *session, const ::string &data);
 
   /**
    * End of track.
@@ -611,7 +611,7 @@ typedef struct sp_session_callbacks {
    *        an encrypted token that can be stored safely on disk
    *        instead of storing plaintext passwords.
    */
-  void (SP_CALLCONV *credentials_blob_updated)(sp_session *session, const char *blob);
+  void (SP_CALLCONV *credentials_blob_updated)(sp_session *session, const ::string &blob);
 
   /**
    * Called when the connection state has updated - such as when logging in, going offline, etc.
@@ -762,7 +762,7 @@ SP_LIBEXPORT(sp_error) sp_session_release(sp_session *sess);
  * @return                          One of the following errors, from ::sp_error
  *                                  SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_session_login(sp_session *session, const char *username, const char *password, bool remember_me, const char *blob);
+SP_LIBEXPORT(sp_error) sp_session_login(sp_session *session, const ::string &username, const ::string &password, bool remember_me, const ::string &blob);
 
 
 /**
@@ -801,7 +801,7 @@ SP_LIBEXPORT(int) sp_session_remembered_user(sp_session *session, char *buffer, 
  *
  * @return                   A string representing the login username.
  */
-SP_LIBEXPORT(const char *) sp_session_user_name(sp_session *session);
+SP_LIBEXPORT(const ::string &) sp_session_user_name(sp_session *session);
 
 
 /**
@@ -999,7 +999,7 @@ SP_LIBEXPORT(sp_playlist *) sp_session_starred_create(sp_session *session);
  * @note You need to release the playlist when you are done with it.
  * @see sp_playlist_release()
  */
-SP_LIBEXPORT(sp_playlist *) sp_session_starred_for_user_create(sp_session *session, const char *canonical_username);
+SP_LIBEXPORT(sp_playlist *) sp_session_starred_for_user_create(sp_session *session, const ::string &canonical_username);
 
 /**
  * Return the published container for a given @a canonical_username,
@@ -1013,7 +1013,7 @@ SP_LIBEXPORT(sp_playlist *) sp_session_starred_for_user_create(sp_session *sessi
  *
  * @return Playlist container object, NULL if not logged in.
  */
-SP_LIBEXPORT(sp_playlistcontainer *) sp_session_publishedcontainer_for_user_create(sp_session *session, const char *canonical_username);
+SP_LIBEXPORT(sp_playlistcontainer *) sp_session_publishedcontainer_for_user_create(sp_session *session, const ::string &canonical_username);
 
 
 /**
@@ -1145,7 +1145,7 @@ SP_LIBEXPORT(sp_error) sp_session_is_scrobbling(sp_session *session, sp_social_p
  * @return                     One of the following errors, from ::sp_error
  *                             SP_ERROR_OK
  */
-SP_LIBEXPORT(sp_error) sp_session_set_social_credentials(sp_session *session, sp_social_provider provider, const char* username, const char* password);
+SP_LIBEXPORT(sp_error) sp_session_set_social_credentials(sp_session *session, sp_social_provider provider, const ::string & username, const ::string & password);
 
 /**
  * Set to true if the connection is currently routed over a roamed connectivity
@@ -1272,7 +1272,7 @@ typedef enum {
  * @see sp_link_type()
  * @see sp_link_release()
  */
-SP_LIBEXPORT(sp_link *) sp_link_create_from_string(const char *link);
+SP_LIBEXPORT(sp_link *) sp_link_create_from_string(const ::string &link);
 
 /**
  * Generates a link object from a track
@@ -1686,7 +1686,7 @@ SP_LIBEXPORT(sp_album *) sp_track_album(sp_track *track);
  *                         and no longer than the next call to sp_session_process_events()
  *                         If no metadata is available for the track yet, this function returns empty string.
  */
-SP_LIBEXPORT(const char *) sp_track_name(sp_track *track);
+SP_LIBEXPORT(const ::string &) sp_track_name(sp_track *track);
 
 /**
  * The duration, in milliseconds, of the specified track
@@ -1740,7 +1740,7 @@ SP_LIBEXPORT(int) sp_track_index(sp_track *track);
  *
  * @return                 A track.
  */
-SP_LIBEXPORT(sp_track *) sp_localtrack_create(const char *artist, const char *title, const char *album, int length);
+SP_LIBEXPORT(sp_track *) sp_localtrack_create(const ::string &artist, const ::string &title, const ::string &album, int length);
 
 /**
  * Increase the object count of a track
@@ -1831,7 +1831,7 @@ SP_LIBEXPORT(const byte *) sp_album_cover(sp_album *album, sp_image_size size_i3
  *                         Returned string is valid as long as the album object stays allocated
  *                         and no longer than the next call to sp_session_process_events()
  */
-SP_LIBEXPORT(const char *) sp_album_name(sp_album *album);
+SP_LIBEXPORT(const ::string &) sp_album_name(sp_album *album);
 
 /**
  * Return release year of specified album
@@ -1889,7 +1889,7 @@ SP_LIBEXPORT(sp_error) sp_album_release(sp_album *album);
  *                         Returned string is valid as long as the artist object stays allocated
  *                         and no longer than the next call to sp_session_process_events()
  */
-SP_LIBEXPORT(const char *) sp_artist_name(sp_artist *artist);
+SP_LIBEXPORT(const ::string &) sp_artist_name(sp_artist *artist);
 
 /**
  * Check if the artist object is populated with data
@@ -2032,7 +2032,7 @@ SP_LIBEXPORT(int) sp_albumbrowse_num_copyrights(sp_albumbrowse *alb);
  *                            Returned string is valid as long as the album object stays allocated
  *                            and no longer than the next call to sp_session_process_events()
  */
-SP_LIBEXPORT(const char *) sp_albumbrowse_copyright(sp_albumbrowse *alb, int index);
+SP_LIBEXPORT(const ::string &) sp_albumbrowse_copyright(sp_albumbrowse *alb, int index);
 
 /**
  * Given an album browse object, return number of tracks
@@ -2064,7 +2064,7 @@ SP_LIBEXPORT(sp_track *) sp_albumbrowse_track(sp_albumbrowse *alb, int index);
  *                         Returned string is valid as long as the album object stays allocated
  *                         and no longer than the next call to sp_session_process_events()
  */
-SP_LIBEXPORT(const char *) sp_albumbrowse_review(sp_albumbrowse *alb);
+SP_LIBEXPORT(const ::string &) sp_albumbrowse_review(sp_albumbrowse *alb);
 
 /**
  * Return the time (in ms) that was spent waiting for the Spotify backend to serve the request
@@ -2288,7 +2288,7 @@ SP_LIBEXPORT(sp_artist *) sp_artistbrowse_similar_artist(sp_artistbrowse *arb, i
  *                            Returned string is valid as long as the album object stays allocated
  *                            and no longer than the next call to sp_session_process_events()
  */
-SP_LIBEXPORT(const char *) sp_artistbrowse_biography(sp_artistbrowse *arb);
+SP_LIBEXPORT(const ::string &) sp_artistbrowse_biography(sp_artistbrowse *arb);
 
 /**
  * Return the time (in ms) that was spent waiting for the Spotify backend to serve the request
@@ -2506,7 +2506,7 @@ typedef void SP_CALLCONV search_complete_cb(sp_search *result, void *userdata);
  *
  * @return                Pointer to a search object. To free the object, use sp_search_release()
  */
-SP_LIBEXPORT(sp_search *) sp_search_create(sp_session *session, const char *query, int track_offset, int track_count, int album_offset, int album_count, int artist_offset, int artist_count, int playlist_offset, int playlist_count, sp_search_type search_type, search_complete_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_search *) sp_search_create(sp_session *session, const ::string &query, int track_offset, int track_count, int album_offset, int album_count, int artist_offset, int artist_count, int playlist_offset, int playlist_count, sp_search_type search_type, search_complete_cb *callback, void *userdata);
 
 /**
  * Get load status for the specified search. Before it is loaded, it will behave as an empty search result.
@@ -2595,7 +2595,7 @@ SP_LIBEXPORT(sp_playlist *) sp_search_playlist(sp_search *search, int index);
  *
  * @return                The playlist name at the given index in the given search object
  */
-SP_LIBEXPORT(const char *) sp_search_playlist_name(sp_search *search, int index);
+SP_LIBEXPORT(const ::string &) sp_search_playlist_name(sp_search *search, int index);
 
 /**
  * Return the uri of a playlist at the given index in the given search object
@@ -2605,7 +2605,7 @@ SP_LIBEXPORT(const char *) sp_search_playlist_name(sp_search *search, int index)
  *
  * @return                The playlist uri at the given index in the given search object
  */
-SP_LIBEXPORT(const char *) sp_search_playlist_uri(sp_search *search, int index);
+SP_LIBEXPORT(const ::string &) sp_search_playlist_uri(sp_search *search, int index);
 
 /**
  * Return the image_uri of a playlist at the given index in the given search object
@@ -2615,7 +2615,7 @@ SP_LIBEXPORT(const char *) sp_search_playlist_uri(sp_search *search, int index);
  *
  * @return                The playlist image_uri at the given index in the given search object
  */
-SP_LIBEXPORT(const char *) sp_search_playlist_image_uri(sp_search *search, int index);
+SP_LIBEXPORT(const ::string &) sp_search_playlist_image_uri(sp_search *search, int index);
 
 /**
  * Get the number of artists for the specified search
@@ -2643,7 +2643,7 @@ SP_LIBEXPORT(sp_artist *) sp_search_artist(sp_search *search, int index);
  *
  * @return                The search query for the given search object
  */
-SP_LIBEXPORT(const char *) sp_search_query(sp_search *search);
+SP_LIBEXPORT(const ::string &) sp_search_query(sp_search *search);
 
 /**
  * Return the "Did you mean" query for the given search object
@@ -2652,7 +2652,7 @@ SP_LIBEXPORT(const char *) sp_search_query(sp_search *search);
  *
  * @return                The "Did you mean" query for the given search object, or the empty string if no such info is available
  */
-SP_LIBEXPORT(const char *) sp_search_did_you_mean(sp_search *search);
+SP_LIBEXPORT(const ::string &) sp_search_did_you_mean(sp_search *search);
 
 /**
  * Return the total number of tracks for the search query - regardless of the interval requested at creation.
@@ -2846,7 +2846,7 @@ typedef struct sp_playlist_callbacks {
    * @param[in]  desc       New description
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *description_changed)(sp_playlist *pl, const char *desc, void *userdata);
+  void (SP_CALLCONV *description_changed)(sp_playlist *pl, const ::string &desc, void *userdata);
 
 
   /**
@@ -2867,7 +2867,7 @@ typedef struct sp_playlist_callbacks {
    * @param[in]  message    UTF-8 encoded message
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
    */
-  void (SP_CALLCONV *track_message_changed)(sp_playlist *pl, int position, const char *message, void *userdata);
+  void (SP_CALLCONV *track_message_changed)(sp_playlist *pl, int position, const ::string &message, void *userdata);
 
 
   /**
@@ -2995,7 +2995,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_track_set_seen(sp_playlist *playlist, int ind
  *
  * @return                UTF-8 encoded message, or NULL if no message is present
  */
-SP_LIBEXPORT(const char *) sp_playlist_track_message(sp_playlist *playlist, int index);
+SP_LIBEXPORT(const ::string &) sp_playlist_track_message(sp_playlist *playlist, int index);
 
 /**
  * Return name of given playlist
@@ -3004,7 +3004,7 @@ SP_LIBEXPORT(const char *) sp_playlist_track_message(sp_playlist *playlist, int 
  *
  * @return                The name of the given playlist
  */
-SP_LIBEXPORT(const char *) sp_playlist_name(sp_playlist *playlist);
+SP_LIBEXPORT(const ::string &) sp_playlist_name(sp_playlist *playlist);
 
 /**
  * Rename the given playlist
@@ -3018,7 +3018,7 @@ SP_LIBEXPORT(const char *) sp_playlist_name(sp_playlist *playlist);
  *                        SP_ERROR_INVALID_INDATA
  *                        SP_ERROR_PERMISSION_DENIED
  */
-SP_LIBEXPORT(sp_error) sp_playlist_rename(sp_playlist *playlist, const char *new_name);
+SP_LIBEXPORT(sp_error) sp_playlist_rename(sp_playlist *playlist, const ::string &new_name);
 
 /**
  * Return a pointer to the user for the given playlist
@@ -3074,7 +3074,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_set_autolink_tracks(sp_playlist *playlist, bo
  * @return                    Playlist description or NULL if unset
  *
  */
-SP_LIBEXPORT(const char *) sp_playlist_get_description(sp_playlist *playlist);
+SP_LIBEXPORT(const ::string &) sp_playlist_get_description(sp_playlist *playlist);
 
 
 /**
@@ -3481,7 +3481,7 @@ SP_LIBEXPORT(sp_::u3264) sp_playlistcontainer_playlist_folder_id(sp_playlistcont
  *
  * @return               Pointer to the new playlist. Can be NULL if the operation fails.
  */
-SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_new_playlist(sp_playlistcontainer *pc, const char *name);
+SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_new_playlist(sp_playlistcontainer *pc, const ::string &name);
 
 /**
  * Add an existing playlist at the end of the given playlist container
@@ -3542,7 +3542,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_move_playlist(sp_playlistcontainer *
  * There is no way to rename a playlist folder. Instead you need to erase
  * the folder and recreate it again.
  */
-SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_folder(sp_playlistcontainer *pc, int index, const char *name);
+SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_folder(sp_playlistcontainer *pc, int index, const ::string &name);
 
 
 /**
@@ -3624,7 +3624,7 @@ typedef enum sp_relation_type {
  *
  * @return                   A string representing the canonical username.
  */
-SP_LIBEXPORT(const char *) sp_user_canonical_name(sp_user *user);
+SP_LIBEXPORT(const ::string &) sp_user_canonical_name(sp_user *user);
 
 /**
  * Get a pointer to a string representing the user's displayable username.
@@ -3636,7 +3636,7 @@ SP_LIBEXPORT(const char *) sp_user_canonical_name(sp_user *user);
  *
  * @return                   A string
  */
-SP_LIBEXPORT(const char *) sp_user_display_name(sp_user *user);
+SP_LIBEXPORT(const ::string &) sp_user_display_name(sp_user *user);
 
 /**
  * Get load status for a user object. Before it is loaded, only the user's canonical username
@@ -3732,7 +3732,7 @@ typedef void SP_CALLCONV toplistbrowse_complete_cb(sp_toplistbrowse *result, voi
  *
  * @see ::toplistbrowse_complete_cb
  */
-SP_LIBEXPORT(sp_toplistbrowse *) sp_toplistbrowse_create(sp_session *session, sp_toplisttype type, sp_toplistregion region, const char *username, toplistbrowse_complete_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_toplistbrowse *) sp_toplistbrowse_create(sp_session *session, sp_toplisttype type, sp_toplistregion region, const ::string &username, toplistbrowse_complete_cb *callback, void *userdata);
 
 
 /**
@@ -3881,7 +3881,7 @@ typedef void SP_CALLCONV inboxpost_complete_cb(sp_inbox *result, void *userdata)
  *
  * @return                sp_inbox object if the request has been sent, NULL if request failed to initialize
  */
-SP_LIBEXPORT(sp_inbox *) sp_inbox_post_tracks(sp_session *session, const char *user, sp_track * const *tracks, int num_tracks, const char *message, inboxpost_complete_cb *callback, void *userdata);
+SP_LIBEXPORT(sp_inbox *) sp_inbox_post_tracks(sp_session *session, const ::string &user, sp_track * const *tracks, int num_tracks, const ::string &message, inboxpost_complete_cb *callback, void *userdata);
 
 
 /**
@@ -3926,7 +3926,7 @@ SP_LIBEXPORT(sp_error) sp_inbox_release(sp_inbox *inbox);
  * This might be useful to have available for display somewhere in your
  * user interface.
  */
-SP_LIBEXPORT(const char *) sp_build_id(void);
+SP_LIBEXPORT(const ::string &) sp_build_id(void);
 
 #ifdef __cplusplus
 }

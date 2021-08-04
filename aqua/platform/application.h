@@ -15,7 +15,8 @@ namespace aqua
 
 
       application();
-      virtual ~application();
+      ~application() override;
+
 
       void common_construct();
 

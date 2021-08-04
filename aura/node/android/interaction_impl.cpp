@@ -10,7 +10,7 @@ CLASS_DECL_AURA ::mutex * osmutex();
 extern __pointer(os_local) g_poslocal;
 
 
-void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, int iBeg, int iEnd);
+void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, int iBeg, int iEnd);
 void android_edit_on_kill_focus();
 
 
@@ -462,7 +462,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up android (use create_window_ex instead)
@@ -488,7 +488,7 @@ namespace android
    }
 
 
-   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const char * pszName)
+   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & pszName)
    // {
 
    //    if(m_puserinteraction->is_window())
@@ -1415,7 +1415,7 @@ namespace android
    //   return ::android::interaction_impl::from_handle(oswindow);
    //}
 
-   //i32 interaction_impl::message_box(const char * lpszText,const char * lpszCaption,::u32 nType)
+   //i32 interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption,::u32 nType)
    //{
    //   if(lpszCaption == nullptr)
    //      lpszCaption = papplication->m_strAppName;
@@ -1756,7 +1756,7 @@ namespace android
    bool gen_GotScrollLines;
 
 
-   void interaction_impl::OnSettingChange(::u32 uFlags, const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags, const ::string & lpszSection)
    {
 
       gen_GotScrollLines = false;
@@ -2242,7 +2242,7 @@ namespace android
    //// Dialog initialization support
 
 
-   //bool interaction_impl::ExecuteDlgInit(const char * lpszResourceName)
+   //bool interaction_impl::ExecuteDlgInit(const ::string & lpszResourceName)
    //{
 
    //   // find resource handle
@@ -2956,7 +2956,7 @@ namespace android
    */
 
 
-   void interaction_impl::set_window_text(const char * lpszString)
+   void interaction_impl::set_window_text(const ::string & lpszString)
    {
 
       m_strWindowText = lpszString;
@@ -3665,7 +3665,7 @@ namespace android
 
    }
 
-   void interaction_impl::SetDlgItemText(i32 nID, const char * lpszString)
+   void interaction_impl::SetDlgItemText(i32 nID, const ::string & lpszString)
    {
 
       __throw(error_not_implemented);
@@ -4374,7 +4374,7 @@ namespace android
 
    }
 
-   void interaction_impl::OnWinIniChange(const char *)
+   void interaction_impl::OnWinIniChange(const ::string &)
    {
       Default();
    }
@@ -4425,7 +4425,7 @@ namespace android
    { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
    bool frame_window::InModalState() const
    { return m_cModalStack != 0; }
-   void frame_window::set_title(const char * lpszTitle)
+   void frame_window::set_title(const ::string & lpszTitle)
    { m_strTitle = lpszTitle; }
    string frame_window::get_title() const
    { return m_strTitle; }

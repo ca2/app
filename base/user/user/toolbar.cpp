@@ -1130,7 +1130,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::SetButtonText(index nIndex, const char * pszText)
+   bool toolbar::SetButtonText(index nIndex, const ::string & pszText)
 
    {
       // attempt to lookup string index in map
@@ -1154,7 +1154,7 @@ return { 0,0 };
          // add new string to toolbar list
          string strTemp(str);
          ::exception::throw_not_implemented();
-         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const unichar *)strTemp);
+         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
          if (nString == -1)
             return false;
 
@@ -1740,7 +1740,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::LoadXmlToolBar(const char * pszXml)
+   bool toolbar::LoadXmlToolBar(const ::string & pszXml)
 
    {
 

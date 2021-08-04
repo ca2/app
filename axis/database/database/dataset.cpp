@@ -22,7 +22,7 @@ namespace database
    }
 
 
-   void dataset::set_sql(e_sql esql,const char * pszSql)
+   void dataset::set_sql(e_sql esql, const ::string & pszSql)
    {
 
       switch(esql)
@@ -109,7 +109,7 @@ namespace database
    }
 
 
-   void dataset::parse_sql(const char * sql)
+   void dataset::parse_sql(const ::string & sql)
    {
 
       string fpattern;
@@ -311,7 +311,7 @@ namespace database
    }
 
 
-   index dataset::field_index(const char * name)
+   index dataset::field_index(const ::string & name)
    {
 
       for (index i = 0; i < m_result.m_pfielda->get_count(); i++)
@@ -333,7 +333,7 @@ namespace database
    }
 
 
-   field * dataset::field(const char * name)
+   field * dataset::field(const ::string & name)
    {
 
       for (auto & pfield : m_result.m_pfielda->ptra())
@@ -353,7 +353,7 @@ namespace database
    }
 
 
-   ::payload dataset::field_value(const char * name)
+   ::payload dataset::field_value(const ::string & name)
    {
 
       auto pfield = field(name);
@@ -384,7 +384,7 @@ namespace database
 
    }
 
-   //const ::payload dataset::f_old(const char *f_name)
+   //const ::payload dataset::f_old(const ::string &f_name)
    //{
    //   if (m_edataset != dataset_none)
    //   {
@@ -455,19 +455,19 @@ namespace database
    //}
 
 
-   //void dataset::add_update_sql(const char *upd_sql)
+   //void dataset::add_update_sql(const ::string &upd_sql)
    //{
    //   string s = upd_sql;
    //   update_sql.add(s);
    //}
 
-   //void dataset::add_insert_sql(const char *ins_sql)
+   //void dataset::add_insert_sql(const ::string &ins_sql)
    //{
    //   string s = ins_sql;
    //   insert_sql.add(s);
    //}
 
-   //void dataset::add_delete_sql(const char *del_sql)
+   //void dataset::add_delete_sql(const ::string &del_sql)
    //{
    //   string s = del_sql;
    //   delete_sql.add(s);
@@ -520,7 +520,7 @@ namespace database
    //      return 0;
    //}
 
-   //i32 dataset::fieldIndex(const char *fn)
+   //i32 dataset::fieldIndex(const ::string &fn)
    //{
    //   for (i32 i=0; i < m_fielda.get_size(); i++)
    //   {
@@ -530,7 +530,7 @@ namespace database
    //   return -1;
    //}
 
-   __pointer(row_array) dataset::query_rows(const char * pszQuery)
+   __pointer(row_array) dataset::query_rows(const ::string & pszQuery)
    {
 
       __pointer(row_array) rows;
@@ -547,7 +547,7 @@ namespace database
    }
 
 
-   bool dataset::query_rows(__pointer(row_array) & rows, const char * pszQuery)
+   bool dataset::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
    {
 
       if (!query(pszQuery))
@@ -566,7 +566,7 @@ namespace database
    }
 
 
-   __pointer(payload_array) dataset::query_items(const char * pszQuery)
+   __pointer(payload_array) dataset::query_items(const ::string & pszQuery)
    {
 
       __pointer(payload_array) items;
@@ -583,7 +583,7 @@ namespace database
    }
 
 
-   bool dataset::query_items(__pointer(payload_array) & items, const char * pszQuery)
+   bool dataset::query_items(__pointer(payload_array) & items, const ::string & pszQuery)
    {
 
       if (!query(pszQuery))
@@ -607,7 +607,7 @@ namespace database
    }
 
 
-   ::payload dataset::query_item(const char * pszQuery)
+   ::payload dataset::query_item(const ::string & pszQuery)
    {
 
       ::payload item;
@@ -624,7 +624,7 @@ namespace database
    }
 
 
-   bool dataset::query_item(::payload & item, const char * pszQuery)
+   bool dataset::query_item(::payload & item, const ::string & pszQuery)
    {
 
       if (!query(pszQuery))

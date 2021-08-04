@@ -7,7 +7,7 @@
 
 #pragma once
 
-u32 __start_system_with_file(const char ** psza, int iCount);
-u32 __start_system_with_file(const char * pszFile);
+u32 __start_system_with_file(const ::string &* psza, int iCount);
+u32 __start_system_with_file(const ::string & pszFile);
 
 

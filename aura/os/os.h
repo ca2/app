@@ -15,8 +15,8 @@
 //
 //#include "cross.h"
 //
-////CLASS_DECL_AURA int __c_get_text_length(const char * psz);
-////CLASS_DECL_AURA void __c_get_text(char * pszText, int iLen, const char * psz);
+////CLASS_DECL_AURA int __c_get_text_length(const ::string & psz);
+////CLASS_DECL_AURA void __c_get_text(char * pszText, int iLen, const ::string & psz);
 //
 //
 ///*
@@ -39,18 +39,18 @@
 //
 //CLASS_DECL_AURA int get_processor_count(void);
 //
-//CLASS_DECL_AURA void output_debug_string(const char * psz);
+//CLASS_DECL_AURA void output_debug_string(const ::string & psz);
 //CLASS_DECL_AURA void w_output_debug_string(const widechar * psz);
 //#ifdef __cplusplus
 //CLASS_DECL_AURA void output_debug_string(const widechar * pwsz);
 //#endif
-//CLASS_DECL_AURA void writeln(const char * psz);
+//CLASS_DECL_AURA void writeln(const ::string & psz);
 //
 //
 //#include "time.h"
 //
 //
-//CLASS_DECL_AURA void set_command_line_dup(const char * psz);
+//CLASS_DECL_AURA void set_command_line_dup(const ::string & psz);
 //
 //CLASS_DECL_AURA void get_command_line(char * psz, int iBuffer);
 //

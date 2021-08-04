@@ -28,7 +28,7 @@ typedef void * charguess_det;
 
 
 CLASS_DECL_SPHERE charguess_det CharGuessInit(void);
-CLASS_DECL_SPHERE const char * GuessChardet(charguess_det p, const char *str);
+CLASS_DECL_SPHERE const char * GuessChardet(charguess_det p, const ::string &str);
 CLASS_DECL_SPHERE void CharGuessDestroy(charguess_det p);
 
 

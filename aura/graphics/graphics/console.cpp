@@ -7,7 +7,7 @@
 namespace graphics
 {
 
-   int next_char(char & ch, const char * & psz, int & x, int & y, int cx, int cy)
+   int next_char(char & ch, const char *& psz, int & x, int & y, int cx, int cy)
    {
 
       if (!*psz)
@@ -229,9 +229,12 @@ namespace graphics
 
    }
 
-   void console::write(const char * psz)
+
+   void console::write(const ::string & strParam)
    {
       synchronous_lock synchronouslock(mutex());
+
+      auto psz = strParam.c_str();
       string str;
       //int i2 = 2;
       while (*psz)
@@ -263,10 +266,10 @@ namespace graphics
 
 #ifdef WINDOWS
 
-      string str((const char *)pdata, minimum(strnlen_s((const char *)pdata, (size_t)nCount), nCount));
+      string str((const ::string &)pdata, minimum(strnlen_s((const ::string &)pdata, (size_t)nCount), nCount));
 
 #else
-      string str((const char *)pdata, minimum(strnlen((const char *)pdata, (size_t)nCount), nCount));
+      string str((const ::string &)pdata, minimum(strnlen((const ::string &)pdata, (size_t)nCount), nCount));
 
 #endif
       write(str);

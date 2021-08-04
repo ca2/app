@@ -86,7 +86,7 @@ namespace user
    }
 
 
-   void tab_pane::set_title(const char * pszTitle)
+   void tab_pane::set_title(const ::string & pszTitle)
    {
 
       //string strTitle(pszTitle);

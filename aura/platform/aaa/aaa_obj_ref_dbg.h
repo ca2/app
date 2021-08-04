@@ -18,8 +18,8 @@ class object_reference_count_debug;
 #define REF_DBG_POINTER (::matter *)(::iptr)1
 #define REF_DBG_VAR (::matter *)(::iptr)1
 #define REF_DBG_COMMA_POINTER , REF_DBG_POINTER
-#define OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF ::matter * p, const char *pszObjRefDbg
-#define OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS ::matter * p = ((::matter*)(::iptr)1), const char *pszObjRefDbg = nullptr
+#define OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF ::matter * p, const ::string &pszObjRefDbg
+#define OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS ::matter * p = ((::matter*)(::iptr)1), const ::string &pszObjRefDbg = nullptr
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF , OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS , OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS
 #define OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE(note) , note

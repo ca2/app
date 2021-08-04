@@ -31,10 +31,10 @@ public:
   CharDistributionAnalysis() {Reset();};
 
   //feed a block of data and do distribution analysis
-  void HandleData(const char* aBuf, PR::u32 aLen) {};
+  void HandleData(const ::string & aBuf, PR::u32 aLen) {};
   
   //Feed a character with known length
-  void HandleOneChar(const char* aStr, PR::u32 aCharLen)
+  void HandleOneChar(const ::string & aStr, PR::u32 aCharLen)
   {
     PRInt32 order;
 
@@ -76,7 +76,7 @@ protected:
   //we do not handle character base on its original encoding string, but 
   //convert this encoding string to a number, here called order.
   //This allow multiple encoding of a language to share one frequency table 
-  virtual PRInt32 GetOrder(const char* str) {return -1;};
+  virtual PRInt32 GetOrder(const ::string & str) {return -1;};
   
   //If this flag is set to PR_TRUE, detection is done and conclusion has been made
   PRBool   mDone;
@@ -109,7 +109,7 @@ protected:
   //  first  byte range: 0xc4 -- 0xfe
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xc4)  
       return 94*((unsigned char)str[0]-(unsigned char)0xc4) + (unsigned char)str[1] - (unsigned char)0xa1;
     else
@@ -127,7 +127,7 @@ protected:
   //  first  byte range: 0xb0 -- 0xfe
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xb0)  
       return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
     else
@@ -144,7 +144,7 @@ protected:
   //  first  byte range: 0xb0 -- 0xfe
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xb0 && (unsigned char)str[1] >= (unsigned char)0xa1)  
       return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
     else
@@ -162,7 +162,7 @@ protected:
   //  first  byte range: 0xa4 -- 0xfe
   //  second byte range: 0x40 -- 0x7e , 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xa4)  
       if ((unsigned char)str[1] >= (unsigned char)0xa1)
         return 157*((unsigned char)str[0]-(unsigned char)0xa4) + (unsigned char)str[1] - (unsigned char)0xa1 +63;
@@ -182,7 +182,7 @@ protected:
   //  first  byte range: 0x81 -- 0x9f , 0xe0 -- 0xfe
   //  second byte range: 0x40 -- 0x7e,  0x81 -- oxfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { 
     PRInt32 order;
     if ((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f)  
@@ -207,7 +207,7 @@ protected:
   //  first  byte range: 0xa0 -- 0xfe
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
-  PRInt32 GetOrder(const char* str) 
+  PRInt32 GetOrder(const ::string & str) 
   { if ((unsigned char)*str >= (unsigned char)0xa0)  
       return 94*((unsigned char)str[0]-(unsigned char)0xa1) + (unsigned char)str[1] - (unsigned char)0xa1;
     else

@@ -51,7 +51,7 @@
          }
 
 
-         __pointer(::experience::frame) experience::get_frame(const char * pszSchema)
+         __pointer(::experience::frame) experience::get_frame(const ::string & pszSchema)
          {
 
             string strSchema(pszSchema);

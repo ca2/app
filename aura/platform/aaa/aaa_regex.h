@@ -10,15 +10,15 @@ public:
 
    virtual bool matches(const ::string & str) = 0;
 
-   virtual bool matches(const char * psz, strsize len) = 0;
+   virtual bool matches(const ::string & psz, strsize len) = 0;
 
    virtual ::count match_count(const string& str) = 0;
 
-   virtual ::count match_count(const char* psz, strsize len) = 0;
+   virtual ::count match_count(const ::string & psz, strsize len) = 0;
 
    virtual __pointer(::str::range_array) matches_ranges(const string& str) = 0;
 
-   virtual __pointer(::str::range_array) matches_ranges(const char* psz, strsize len) = 0;
+   virtual __pointer(::str::range_array) matches_ranges(const ::string & psz, strsize len) = 0;
 
    virtual bool replace(string& str, const string& strPrefix, string& strRet) = 0;
 
@@ -28,11 +28,11 @@ public:
 
    //virtual int matches(const string& str, regex_context* pcreContext = nullptr) = 0;
 
-   //virtual int matches(const char* psz, strsize len, regex_context* pcreContext = nullptr) = 0;
+   //virtual int matches(const ::string & psz, strsize len, regex_context* pcreContext = nullptr) = 0;
 
    //virtual void matches(strsize_array& ia, const string& str, regex_context* pcreContext = nullptr) = 0;
 
-   //virtual void matches(strsize_array& ia, const char* psz, strsize len, regex_context* pcreContext = nullptr) = 0;
+   //virtual void matches(strsize_array& ia, const ::string & psz, strsize len, regex_context* pcreContext = nullptr) = 0;
 
    //virtual bool replace(string& str, const string& strPrefix, string& strRet, regex_context* pcreContext = nullptr) = 0;
 

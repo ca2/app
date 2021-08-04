@@ -115,7 +115,7 @@ public:
 
    virtual i32 run();
 
-   void queue(const char * pszKey,const char * psz);
+   void queue(const ::string & pszKey, const ::string & psz);
 
 };
 
@@ -222,7 +222,7 @@ repeat:;
 }
 
 
-void db_str_sync_queue::queue(const char * pszKey,const char * psz)
+void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 {
 
    single_lock synchronouslock(&m_mutex, true);
@@ -257,13 +257,13 @@ db_str_set::~db_str_set()
 
 
 // true if deleted
-bool db_str_set::erase(const char * lpKey)
+bool db_str_set::erase(const ::string & lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
    return false;
 }
 
-bool db_str_set::load(const char * lpKey, string & strValue)
+bool db_str_set::load(const ::string & lpKey, string & strValue)
 {
 
    if(m_pcore->m_pdataserver == nullptr)
@@ -377,7 +377,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
    return true;
 }
 
-bool db_str_set::save(const char * lpKey, const char * lpcsz)
+bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
 {
 
    if(m_pcore->m_pdataserver == nullptr)

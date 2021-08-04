@@ -58,7 +58,7 @@ static glob_t *GlobsOpen[MAX_GLOBS_OPEN];
 //----------------------------------------------------------------------------
 
 int
-findfirst (const char *pathname, struct ffblk *fblk, int attrib)
+findfirst (const ::string &pathname, struct ffblk *fblk, int attrib)
 {
   int i;
   gint Flag;

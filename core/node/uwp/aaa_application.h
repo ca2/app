@@ -48,27 +48,27 @@
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::string & pcsz);
 //      virtual void _001EnableShellOpen();
 ////      virtual ::user::document * _001OpenDocumentFile(::payload varFile);
 //      virtual void _001OnFileNew();
 //
 //      // Loads a cursor resource.
-//      HCURSOR LoadCursor(const char * lpszResourceName) const;
+//      HCURSOR LoadCursor(const ::string & lpszResourceName) const;
 //      HCURSOR LoadCursor(::u32 nIDResource) const;
 //
 //      // Loads a stock cursor resource; for for IDC_* values.
-//      HCURSOR LoadStandardCursor(const char * lpszCursorName) const;
+//      HCURSOR LoadStandardCursor(const ::string & lpszCursorName) const;
 //
 //      // Loads an OEM cursor; for all OCR_* values.
 //      HCURSOR LoadOEMCursor(::u32 nIDCursor) const;
 //
 //      // Loads an icon resource.
-//      HICON LoadIcon(const char * lpszResourceName) const;
+//      HICON LoadIcon(const ::string & lpszResourceName) const;
 //      HICON LoadIcon(::u32 nIDResource) const;
 //
 //      // Loads an icon resource; for stock IDI_ values.
-//      HICON LoadStandardIcon(const char * lpszIconName) const;
+//      HICON LoadStandardIcon(const ::string & lpszIconName) const;
 //
 //      // Loads an OEM icon resource; for all OIC_* values.
 //      HICON LoadOEMIcon(::u32 nIDIcon) const;
@@ -191,14 +191,14 @@
 //      //__pointer(::user::interaction) window_from_os_data_permanent(void * pdata);
 //
 //
-//      //virtual __pointer(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-//      //virtual __pointer(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+//      //virtual __pointer(::user::interaction) FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+//      //virtual __pointer(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual u32 get_thread_id();
 //
-//      //__pointer(::user::printer) get_printer(const char * pszDeviceName);
+//      //__pointer(::user::printer) get_printer(const ::string & pszDeviceName);
 //
 //
 //      void show_wait_cursor(bool bShow);

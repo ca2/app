@@ -18,7 +18,7 @@ namespace database
 
 
       database();
-      virtual ~database();
+      ~database() override;
 
 
    protected:
@@ -42,12 +42,12 @@ namespace database
 
 
       virtual ::e_status     connect(
-      const char * name,
-      const char * host = nullptr,
-      const char * port = nullptr,
-      const char * user = nullptr,
-      const char * pass = nullptr,
-      const char * sckt = nullptr,
+      const ::string & name,
+      const ::string & host = nullptr,
+      const ::string & port = nullptr,
+      const ::string & user = nullptr,
+      const ::string & pass = nullptr,
+      const ::string & sckt = nullptr,
       u64 uConnectionFlags = 0) = 0;
 
       virtual ::e_status     _connect() = 0;
@@ -57,7 +57,7 @@ namespace database
       virtual ::e_status     create() = 0;
       virtual ::e_status     drop() = 0;
 
-      //virtual string escape(const char * psz);
+      //virtual string escape(const ::string & psz);
 
       virtual  __pointer(class transaction) transaction();
 
@@ -66,43 +66,43 @@ namespace database
       virtual bool in_transaction() = 0;
 
 
-      virtual bool exec(const char * pszQuery) = 0;
+      virtual bool exec(const ::string & pszQuery) = 0;
 
 
-      virtual __pointer(result_set) query_result(const char * pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) = 0;
-      virtual __pointer(result_set)  query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+      virtual __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) = 0;
+      virtual __pointer(result_set)  query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
 
 
-      //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      virtual ::payload query_table_item(const char* table, const char* item, const char* where, const ::payload & payload = ::payload());
-      virtual __pointer(row_array) query_rows(const char * pszQuery);
-      virtual __pointer(row) query_row(const char * pszQuery);
-      virtual __pointer(payload_array) query_items(const char * pszQuery);
-      virtual ::payload query_item(const char * pszQuery, const ::payload & payloadDefault = ::payload());
-      //virtual bool query_blob(get_memory getmemory, const char * pszQuery);
+      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload & payload = ::payload());
+      virtual __pointer(row_array) query_rows(const ::string & pszQuery);
+      virtual __pointer(row) query_row(const ::string & pszQuery);
+      virtual __pointer(payload_array) query_items(const ::string & pszQuery);
+      virtual ::payload query_item(const ::string & pszQuery, const ::payload & payloadDefault = ::payload());
+      //virtual bool query_blob(get_memory getmemory, const ::string & pszQuery);
 
 
-      virtual bool query_table_item(::payload& payload, const char* table, const char* item, const char* where);
+      virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where);
 
 
-      virtual bool query_rows(__pointer(row_array)& rows, const char* pszQuery);
-      virtual bool query_row(__pointer(row)& rows, const char* pszQuery);
-      virtual bool query_items(__pointer(payload_array)& items, const char* pszQuery);
-      virtual bool query_item(::payload& item, const char* pszQuery);
-      virtual bool query_blob(get_memory getmemory, const char* pszQuery);
+      virtual bool query_rows(__pointer(row_array)& rows, const ::string & pszQuery);
+      virtual bool query_row(__pointer(row)& rows, const ::string & pszQuery);
+      virtual bool query_items(__pointer(payload_array)& items, const ::string & pszQuery);
+      virtual bool query_item(::payload& item, const ::string & pszQuery);
+      virtual bool query_blob(get_memory getmemory, const ::string & pszQuery);
 
 
 
-      virtual ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) = 0;
+      virtual ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) = 0;
 
 
-      virtual string escape(const char * psz) = 0;
+      virtual string escape(const ::string & psz) = 0;
 
       virtual string add_error_message(const ::string& strErrorMessage);
 
 
-      virtual string error1(const char * pszPrefix = nullptr) = 0;
-      virtual void trace_error1(const char * pszPrefix = nullptr) = 0;
+      virtual string error1(const ::string & strPrefix = nullptr) = 0;
+      virtual void trace_error1(const ::string & strPrefix = nullptr) = 0;
 
       virtual ::payload get_insert_id() = 0;
 

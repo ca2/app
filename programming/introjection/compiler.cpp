@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 
 #ifdef LINUX
-i32 create_process(const char * pszCommandLine, i32 * pprocessId);
+i32 create_process(const ::string & pszCommandLine, i32 * pprocessId);
 #endif
 
 string vs_build(::object * pobject)
@@ -34,7 +34,7 @@ string vs_build(::object * pobject)
 #endif
 
 
-//::u32 RunSilent(const char* strFunct, const char* strstrParams);
+//::u32 RunSilent(const ::string & strFunct, const ::string & strstrParams);
 
 
 namespace introjection
@@ -193,7 +193,7 @@ namespace introjection
    }
 
 
-   void compiler::initialize_compiler(const char * pszRepos, const char * pszApp, const char * pszProjectName)
+   void compiler::initialize_compiler(const ::string & pszRepos, const ::string & pszApp, const ::string & pszProjectName)
    {
 
       m_strRepos = pszRepos;
@@ -449,7 +449,7 @@ namespace introjection
 
 
 
-   void compiler::prepare1(const char * lpcszSource,const char * lpcszDest)
+   void compiler::prepare1(const ::string & lpcszSource, const ::string & lpcszDest)
    {
 
       //auto papplication = get_application();

@@ -64,13 +64,13 @@ i32 CLASS_DECL_CORE __windows_main(::aura::system * psystem, ::create * pmainini
 
 // Sanity checks for ATOMs
 CLASS_DECL_CORE bool __is_valid_atom(ATOM nAtom);
-//CLASS_DECL_CORE bool __is_valid_atom(const char * psz);
+//CLASS_DECL_CORE bool __is_valid_atom(const ::string & psz);
 CLASS_DECL_CORE bool __is_valid_atom(const wchar_t * psz);
 
 
 /////////////////////////////////////////////////////////////////////////////
 // locale-invariant comparison helpers till CRT gets that support
-inline i32 __invariant_stricmp(const char *pszLeft,const char *pszRight)
+inline i32 __invariant_stricmp(const ::string &pszLeft, const ::string &pszRight)
 {
 #ifdef WINDOWS_DESKTOP
    return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
@@ -130,19 +130,19 @@ namespace windows
       i32 function();
    };
 
-   CLASS_DECL_CORE HINSTANCE   load_library(const char * psz);
+   CLASS_DECL_CORE HINSTANCE   load_library(const ::string & psz);
 
    CLASS_DECL_CORE bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
    CLASS_DECL_CORE ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
-   CLASS_DECL_CORE ::u32       get_file_attributes(const char * pFileName);
+   CLASS_DECL_CORE ::u32       get_file_attributes(const ::string & pFileName);
 
    CLASS_DECL_CORE ::u32       get_current_directory(string & str);
    CLASS_DECL_CORE ::u32       get_temp_path(string & str);
-   CLASS_DECL_CORE ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
+   CLASS_DECL_CORE ::i32        reg_query_value(HKEY hkey, const ::string & pszSubKey,string & str);
 
-   CLASS_DECL_CORE HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
+   CLASS_DECL_CORE HICON       extract_icon(HINSTANCE hInst, const ::string & pszExeFileName,::u32 nIconIndex);
 
-   CLASS_DECL_CORE bool        delete_file(const char * pFileName);
+   CLASS_DECL_CORE bool        delete_file(const ::string & pFileName);
 
    //CLASS_DECL_CORE i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
    //CLASS_DECL_CORE void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
@@ -154,7 +154,7 @@ namespace windows
 
 
 
-CLASS_DECL_CORE ::i32 delete_registry_tree_helper(HKEY hParentKey,const ::string & strKeyName);
+CLASS_DECL_CORE ::i32 delete_registry_tree_helper(HKEY hParentKey, const ::string & strKeyName);
 
 
 CLASS_DECL_CORE __pointer(::aura::application) __get_app();

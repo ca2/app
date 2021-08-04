@@ -83,7 +83,7 @@ namespace user
 
       virtual bool start_window_visual();
 
-      virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
+      virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
       
       virtual bool prodevian_update_screen();
 

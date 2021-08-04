@@ -183,7 +183,7 @@ namespace user
 
 
       virtual e_folder get_folder_type(::object * pobject, const widechar * pcszPath);
-      virtual e_folder get_folder_type(::object * pobject, const char * pcszPath);
+      virtual e_folder get_folder_type(::object * pobject, const ::string & pcszPath);
 
       int add_hover_image(int iSize, int iIndex, ::color::color crBk);
 

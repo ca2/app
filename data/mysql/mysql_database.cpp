@@ -198,7 +198,7 @@ namespace mysql
    }
 
 
-   string database::error1(const char* pszPrefix)
+   string database::error1(const ::string & pszPrefix)
    {
       string strPrefix(pszPrefix);
       string strFormat;
@@ -221,7 +221,7 @@ namespace mysql
    }
 
 
-   bool database::exec(const char* pszSql)
+   bool database::exec(const ::string & pszSql)
    {
 
       m_strLastError = "";
@@ -304,7 +304,7 @@ namespace mysql
    }
 
 
-   MYSQL_RES* database::_mysql_query_result(const char* pszSql)
+   MYSQL_RES* database::_mysql_query_result(const ::string & pszSql)
    {
 
       if (!exec(pszSql))
@@ -480,7 +480,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::result_set) database::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszQuery);
@@ -584,7 +584,7 @@ namespace mysql
 
    
 
-   bool database::query_item(::payload & payload, const char* pszSql)
+   bool database::query_item(::payload & payload, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -620,7 +620,7 @@ namespace mysql
    }
 
 
-   bool database::query_blob(memory_base& memory, const char* pszSql)
+   bool database::query_blob(memory_base& memory, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -667,7 +667,7 @@ namespace mysql
    }
 
 
-   bool database::query_items(__pointer(payload_array) & pvara, const char* pszSql)
+   bool database::query_items(__pointer(payload_array) & pvara, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -721,7 +721,7 @@ namespace mysql
    }
 
 
-   bool database::query_row(__pointer(::database::row) & prow, const char* pszSql)
+   bool database::query_row(__pointer(::database::row) & prow, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -769,7 +769,7 @@ namespace mysql
    }
 
 
-   bool database::query_rows(__pointer(::database::row_array) & prowarray, const char* pszQuery)
+   bool database::query_rows(__pointer(::database::row_array) & prowarray, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -786,7 +786,7 @@ namespace mysql
    }
 
 
-   //::payload database::query_table_item(const char* table, const char* item, const char* where, ::payload notfound)
+   //::payload database::query_table_item(const ::string & table, const ::string & item, const ::string & where, ::payload notfound)
    //{
    //   string strSql;
    //   strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
@@ -794,7 +794,7 @@ namespace mysql
    //}
 
 
-   ::payload database::get_agent(const char* pszTable, const char* psz, const char* pszUser)
+   ::payload database::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
    {
       string strSql;
       string strAgent(psz);
@@ -851,7 +851,7 @@ namespace mysql
 
       }
 
-      mysql_real_escape_string((MYSQL*)m_pmysql, psz, (const char*)p, (unsigned long)iLen);
+      mysql_real_escape_string((MYSQL*)m_pmysql, psz, (const ::string &)p, (unsigned long)iLen);
 
       str.release_string_buffer();
 
@@ -860,7 +860,7 @@ namespace mysql
    }
 
 
-   string database::escape(const char* psz)
+   string database::escape(const ::string & psz)
    {
 
       return escape((void*)psz, strlen(psz));

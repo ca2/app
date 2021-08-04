@@ -41,13 +41,13 @@ class nsUniversalDetector {
 public:
    nsUniversalDetector();
    virtual ~nsUniversalDetector();
-   virtual void HandleData(const char* aBuf, PR::u32 aLen);
+   virtual void HandleData(const ::string & aBuf, PR::u32 aLen);
    virtual void DataEnd(void);
    virtual void Reset();
    virtual const char* GetCharset(void);
 
 protected:
-   virtual void Report(const char* aCharset);
+   virtual void Report(const ::string & aCharset);
    nsInputState  mInputState;
    PRBool  mDone;
    PRBool  mInTag;

@@ -31,7 +31,7 @@ namespace write_text
       virtual string default_font_name();
 
 
-      virtual double font_similarity(const char* pszSystem, const char* pszUser);
+      virtual double font_similarity(const ::string & pszSystem, const ::string & pszUser);
 
 
    };

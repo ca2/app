@@ -56,7 +56,7 @@ namespace aura
       }
 
 
-      bool tx::open(const char * pszKey,launcher * plauncher)
+      bool tx::open(const ::string & pszKey,launcher * plauncher)
       {
 
          if(m_oswindow != nullptr)
@@ -128,7 +128,7 @@ namespace aura
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool tx::send(const ::string & pszMessage, duration durationTimeout)
       {
 
          if(!is_tx_ok())
@@ -243,7 +243,7 @@ namespace aura
       }
 
 
-      bool rx::create(const char * pszKey)
+      bool rx::create(const ::string & pszKey)
       {
 
 
@@ -304,7 +304,7 @@ namespace aura
 
 
 
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_ipc_receive(rx * prx, const ::string & pszMessage)
       {
 
          string strMessage(pszMessage);
@@ -454,7 +454,7 @@ namespace aura
             else if(pcds->dwData == 0x80000000)
             {
 
-               string strMessage((const char *)pcds->lpData,pcds->cbData);
+               string strMessage((const ::string &)pcds->lpData,pcds->cbData);
 
                on_ipc_receive(this,strMessage.c_str());
 
@@ -516,7 +516,7 @@ namespace aura
       }
 
 
-      bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool ipc::open_ab(const ::string & pszKey, const ::string & pszModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -549,7 +549,7 @@ namespace aura
 
       }
 
-      bool ipc::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
+      bool ipc::open_ba(const ::string & pszKey, const ::string & pszModule,launcher * plauncher)
       {
 
          m_strChannel = pszKey;

@@ -13,7 +13,7 @@ class ::system * g_psystem = nullptr;
 
 extern const char8_t  * g_pszTopLevelDomainList[];
 
-enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::e_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::string & psz, const ::string & pszTitle, const ::e_message_box & emessagebox);
 
 
 //namespace acme
@@ -410,7 +410,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object* pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::object* pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto presult = __new(::future < ::conversation >);
@@ -498,7 +498,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   ::e_status system::do_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation)
    {
 
       string strComponent(pszComponent);
@@ -637,7 +637,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::acme::library) system::open_component_library(const char* pszComponent, const char* pszImplementation)
+   __pointer(::acme::library) system::open_component_library(const ::string & pszComponent, const ::string & pszImplementation)
    {
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -724,7 +724,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::acme::library) system::open_containerized_component_library(const char* pszComponent, const char* pszImplementation)
+   __pointer(::acme::library) system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
    {
 
       // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -818,7 +818,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       }
 
    
-   ::acme::library * system::on_get_library(const char * pszLibrary)
+   ::acme::library * system::on_get_library(const ::string & pszLibrary)
    {
 
       return nullptr;
@@ -826,7 +826,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::extended::transport < ::acme::library > system::do_containerized_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   ::extended::transport < ::acme::library > system::do_containerized_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation)
    {
 
       string strComponent(pszComponent);
@@ -908,7 +908,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const char* pszStyle, const string& str)
+   ::regular_expression_pointer system::create_regular_expression(const ::string & pszStyle, const string& str)
    {
 
       auto pcontext = get_regular_expression_context(pszStyle);
@@ -934,7 +934,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::regular_expression::context) system::get_regular_expression_context(const char* pszStyle)
+   __pointer(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
    {
 
       __defer_construct_new(m_pmapRegularExpressionContext);
@@ -1292,7 +1292,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   ::e_status system::on_open_file(const char * pszFile)
+   ::e_status system::on_open_file(const ::string & pszFile)
    {
       
       __throw(error_interface_only);
@@ -1351,7 +1351,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void system_on_open_file(void * pSystem, const ::string & pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -1374,7 +1374,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const char * pszFile)
+void system_on_open_file(void * pSystem, const ::string & pszFile)
 {
 
    auto psystem = (class ::system *) pSystem;

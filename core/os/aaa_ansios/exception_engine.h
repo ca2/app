@@ -13,12 +13,12 @@ namespace exception
       void * m_uia[64];
 
 
-      char * stack_trace(iptr iSkip = 0, void * caller_address = nullptr, const char * pszFormat = default_format(), int iCount = -1);
+      char * stack_trace(iptr iSkip = 0, void * caller_address = nullptr, const ::string & pszFormat = default_format(), int iCount = -1);
 
 #if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
 
       void backtrace(void ** pinteraction, int & c);
-      char * stack_trace(void * const * pinteraction, int c, const char * pszFormat = default_format());
+      char * stack_trace(void * const * pinteraction, int c, const ::string & pszFormat = default_format());
 
 #endif
    };

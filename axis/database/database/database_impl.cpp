@@ -21,7 +21,7 @@ namespace database
    }
 
 
-   ::e_status     database_impl::connect(const char* name, const char* host, const char* port, const char* user, const char* pass, const char* sckt, u64 uConnectionFlags)
+   ::e_status     database_impl::connect(const ::string & name, const ::string & host, const ::string & port, const ::string & user, const ::string & pass, const ::string & sckt, u64 uConnectionFlags)
    {
 
       m_strHost = host;
@@ -67,7 +67,7 @@ namespace database
    }
 
 
-   bool database_impl::exec(const char* pszQuery)
+   bool database_impl::exec(const ::string & pszQuery)
    {
 
       return false;
@@ -75,7 +75,7 @@ namespace database
    }
 
 
-   //::payload database_impl::query(const char * pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //::payload database_impl::query(const ::string & pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -83,7 +83,7 @@ namespace database
    //}
 
 
-   string database_impl::escape(const char* psz)
+   string database_impl::escape(const ::string & psz)
    {
 
       return psz;
@@ -107,14 +107,14 @@ namespace database
    }
 
    
-   string database_impl::error1(const char* pszPrefix)
+   string database_impl::error1(const ::string & pszPrefix)
    {
 
       return string(pszPrefix) + " (error)";
 
    }
 
-   void database_impl::trace_error1(const char* pszPrefix)
+   void database_impl::trace_error1(const ::string & pszPrefix)
    {
       m_strLastError += error1(pszPrefix);
    TRACE("%s", m_strLastError.c_str());
@@ -148,7 +148,7 @@ namespace database
    }
 
 
-   __pointer(row_array) database_impl::query_rows(const char* pszQuery)
+   __pointer(row_array) database_impl::query_rows(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -165,7 +165,7 @@ namespace database
    }
 
 
-   __pointer(row) database_impl::query_row(const char* pszQuery)
+   __pointer(row) database_impl::query_row(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery, 1);
@@ -182,7 +182,7 @@ namespace database
    }
 
 
-   __pointer(payload_array) database_impl::query_items(const char* pszQuery)
+   __pointer(payload_array) database_impl::query_items(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery, -1, 1);
@@ -208,7 +208,7 @@ namespace database
    }
 
 
-   bool database_impl::query_blob(get_memory getmemory, const char* pszQuery)
+   bool database_impl::query_blob(get_memory getmemory, const ::string & pszQuery)
    {
 
       return false;
@@ -216,7 +216,7 @@ namespace database
    }
 
 
-   ::payload database_impl::query_item(const char* pszQuery, const ::payload & payloadDefault)
+   ::payload database_impl::query_item(const ::string & pszQuery, const ::payload & payloadDefault)
    {
 
       auto pset = query_result(pszQuery, 1, 1);
@@ -234,7 +234,7 @@ namespace database
 
 
    /*
-      bool database_impl::query_rows(__pointer(row_array) & rows, const char * pszQuery)
+      bool database_impl::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
       {
 
          auto pset = query_result(pszQuery);
@@ -253,7 +253,7 @@ namespace database
       }
 
 
-      bool database_impl::query_row(__pointer(row) & row, const char * pszQuery)
+      bool database_impl::query_row(__pointer(row) & row, const ::string & pszQuery)
       {
 
          auto pset = query_result(pszQuery);
@@ -274,7 +274,7 @@ namespace database
 
 
 
-   ::payload database_impl::get_agent(const char* pszTable, const char* psz, const char* pszUser)
+   ::payload database_impl::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
    {
 
       return ::payload(::e_type_null);
@@ -282,7 +282,7 @@ namespace database
    }
 
 
-   __pointer(::database::result_set) database_impl::query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database_impl::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return nullptr;
@@ -290,7 +290,7 @@ namespace database
    }
 
 
-   //bool database_impl::query_items(__pointer(payload_array) & pitems, const char * pszQuery)
+   //bool database_impl::query_items(__pointer(payload_array) & pitems, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -318,7 +318,7 @@ namespace database
    //}
 
 
-   //bool database_impl::query_item(::payload & item, const char * pszQuery)
+   //bool database_impl::query_item(::payload & item, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1);

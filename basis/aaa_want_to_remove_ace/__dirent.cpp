@@ -31,7 +31,7 @@ extern "C"
       char* name;  /* null-terminated char string */
    };
 
-   DIR* opendir(const char* name)
+   DIR* opendir(const ::string & name)
    {
       DIR* dir = 0;
 

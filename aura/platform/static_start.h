@@ -17,7 +17,7 @@ namespace aura
 
 //#if OBJECT_TYPE_COUNTER
 //
-//   extern map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
+//   extern map < const char*, const ::string &, ::i64, ::i64 >* g_pmapObjTypCtr;
 //
 //#endif
 

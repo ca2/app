@@ -545,7 +545,7 @@ resume_on_exception:
    }
 
 
-   //__pointer(::aura::application) application::assert_running(const char * pszAppId)
+   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
    //{
 
    //   __pointer(::aura::application) papp;
@@ -1157,7 +1157,7 @@ m_millisHeartBeat.Now();
 
 
 
-   string application::matter_as_string(const char * pszMatter,const char * pszMatter2)
+   string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
       ::payload varFile;
@@ -1172,20 +1172,20 @@ m_millisHeartBeat.Now();
 
    }
 
-   //string application::dir().matter(const char * pszMatter,const char * pszMatter2)
+   //string application::dir().matter(const ::string & pszMatter, const ::string & pszMatter2)
    //{
 
    //   return dir().matter(pszMatter,pszMatter2);
 
    //}
 
-   //bool application::is_inside_time_dir(const char * pszPath)
+   //bool application::is_inside_time_dir(const ::string & pszPath)
    //{
    //   return dir().is_inside_time(pszPath);
    //}
 
 
-   //bool application::file_is_read_only(const char * pszPath)
+   //bool application::file_is_read_only(const ::string & pszPath)
    //{
 
    //   return false;
@@ -1298,7 +1298,7 @@ m_millisHeartBeat.Now();
 
 
 
-   ::aura::printer * application::get_printer(const char * pszDeviceName)
+   ::aura::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
       ::exception::throw_interface_only();
@@ -1323,7 +1323,7 @@ m_millisHeartBeat.Now();
 
 
 
-   //bool application::get_temp_file_name_template(string & strRet,const char * lpszName,const char * pszExtension,const char * pszTemplate)
+   //bool application::get_temp_file_name_template(string & strRet, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate)
    //{
 
    //   __throw(error_not_implemented);
@@ -1333,7 +1333,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   //bool application::get_temp_file_name(string & strRet,const char * lpszName,const char * pszExtension)
+   //bool application::get_temp_file_name(string & strRet, const ::string & lpszName, const ::string & pszExtension)
    //{
 
    //   return get_temp_file_name_template(strRet,lpszName,pszExtension,nullptr);
@@ -1429,7 +1429,7 @@ m_millisHeartBeat.Now();
 
 
 
-   //i32 application::message_box(::user::primitive * puiOwner,const char * pszMessage,::u32 fuStyle)
+   //i32 application::message_box(::user::primitive * puiOwner, const ::string & pszMessage,::u32 fuStyle)
    //{
 
    //   return ::message_box(puiOwner->get_safe_handle(),pszMessage,m_strAppName,fuStyle);
@@ -1437,7 +1437,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   //i32 application::message_box(const char * pszMessage,::u32 fuStyle)
+   //i32 application::message_box(const ::string & pszMessage,::u32 fuStyle)
    //{
 
    //   return ::message_box(nullptr,pszMessage,m_strAppName,fuStyle);
@@ -1457,7 +1457,7 @@ m_millisHeartBeat.Now();
 
 
 
-   i32 application::hotplugin_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
+   i32 application::hotplugin_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,hotplugin::host * phost,hotplugin::plugin * pplugin)
    {
 
       {
@@ -1502,7 +1502,7 @@ m_millisHeartBeat.Now();
 
    }
 
-   i32 application::hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
+   i32 application::hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin)
    {
 
       return -1;
@@ -1559,7 +1559,7 @@ m_millisHeartBeat.Now();
 //
 //   }
 //
-//   void application::set_cred(string strToken, const char * pszUsername, const char * pszPassword)
+//   void application::set_cred(string strToken, const ::string & pszUsername, const ::string & pszPassword)
 //   {
 //
 //      ::account::set_cred(this,strToken, pszUsername, pszPassword);

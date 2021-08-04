@@ -26,7 +26,7 @@
 //#include "conio.h"
 
 char *
-getpass (const char *prompt)
+getpass (const ::string &prompt)
 {
   extern char CgetsEchoOff;
   static char str[11];

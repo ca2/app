@@ -24,14 +24,14 @@ namespace simpledb
 
       virtual class ::simpledb::dataset * create_dataset();
 
-      table * get_table(const char * pszName);
-      table * create_table(const char * pszName);
+      table * get_table(const ::string & pszName);
+      table * create_table(const ::string & pszName);
 
 
       // class ::database::database
       virtual class ::database::dataset * create_dataset();
       virtual i32 setErr(i32 err_code);
-      virtual long nextid(const char* sname);
+      virtual long nextid(const ::string & sname);
 
 
 

@@ -5,7 +5,7 @@
 
 string get_error_message(::u32 dwError);
 
-::aura::application *     win_instantiate_application(::aura::application * pappSystem, const char * pszId);
+::aura::application *     win_instantiate_application(::aura::application * pappSystem, const ::string & pszId);
 
 
 //#include "android1.h"

@@ -89,7 +89,7 @@ namespace colorertake5
    };
 
    /** Adds or replaces region definition */
-   void TextHRDMapper::setRegionDefine(const char * name, RegionDefine *rd)
+   void TextHRDMapper::setRegionDefine(const ::string & name, RegionDefine *rd)
    {
       const TextRegion *rd_new = TextRegion::cast(rd);
       string stext;

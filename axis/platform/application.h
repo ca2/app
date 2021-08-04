@@ -122,7 +122,7 @@ namespace axis
 
 
 
-      //virtual string http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema);
+      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema);
 
       //virtual void on_update_matter_locator() override;
 

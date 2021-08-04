@@ -14,7 +14,7 @@
       
 
       os_context();
-      virtual ~os_context();
+      ~os_context() override;
 
 
       virtual string get_command_line();
@@ -22,14 +22,14 @@
       virtual bool reboot();
       virtual bool shutdown(bool bPowerOff);
 
-      virtual void terminate_processes_by_title(const char * lpszName);
+      virtual void terminate_processes_by_title(const ::string & lpszName);
 
 //#ifdef WINDOWS
 //      virtual ::file::path get_module_path(HMODULE hmodule);
 //#endif
 
-      virtual bool get_pid_by_path(const char * lpszName, u32 & dwPid);
-      virtual bool get_pid_by_title(const char * lpszName, u32 & dwPid);
+      virtual bool get_pid_by_path(const ::string & lpszName, u32 & dwPid);
+      virtual bool get_pid_by_title(const ::string & lpszName, u32 & dwPid);
       virtual void get_all_processes(u32_array & dwa);
       virtual ::file::path get_process_path(u32 dwPid);
 
@@ -40,25 +40,25 @@
 
       virtual ::e_status     link_open(string strUrl);
 
-      virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet);
-      virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
-      virtual bool current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet);
-      virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
+      virtual bool local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet);
+      virtual bool local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet);
+      virtual bool current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet);
+      virtual bool current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet);
 
       virtual bool defer_register_ca2_plugin_for_mozilla();
 
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension);
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension);
+      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension);
+      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension);
 
-      virtual bool file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath);
-      virtual bool file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszCommand, const char * pszParam);
-      virtual bool file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
+      virtual bool file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath);
+      virtual bool file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszCommand, const ::string & pszParam);
+      virtual bool file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
 
-      virtual bool native_full_web_browser(const char * pcsz);
+      virtual bool native_full_web_browser(const ::string & pcsz);
 
 
-      virtual bool native_modern_web_browser(const char * pcsz);
+      virtual bool native_modern_web_browser(const ::string & pcsz);
 
 
       virtual ::e_status enable_service();
@@ -83,7 +83,7 @@
 
       virtual bool is_remote_session();
 
-      virtual void set_file_status(const char * pszFileName, const ::file::file_status& status);
+      virtual void set_file_status(const ::string & pszFileName, const ::file::file_status& status);
 
 
       virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr);

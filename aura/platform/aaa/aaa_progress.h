@@ -64,7 +64,7 @@ public:
    virtual void get_scalar(e_scalar escalar, double& d);
    virtual void get_scalar_maximum(e_scalar escalar, double& d);
 
-   virtual void format_status(const char* pszFormat);
+   virtual void format_status(const ::string & pszFormat);
 
    virtual void redraw();
    virtual void step();
@@ -80,7 +80,7 @@ class CLASS_DECL_AURA progress :
 {
 public:
 
-   progress(::user::interaction * puiParent, const char* pszTitle, int iStepCount);
+   progress(::user::interaction * puiParent, const ::string & pszTitle, int iStepCount);
 
    ~progress()
    {

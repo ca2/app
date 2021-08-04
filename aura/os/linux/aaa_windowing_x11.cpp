@@ -1700,8 +1700,8 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
 
 Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * items);
-int wm_test_state(oswindow w, const char * pszNetStateFlag);
-int wm_test_state_raw(oswindow w, const char * pszNetStateFlag);
+int wm_test_state(oswindow w, const ::string & pszNetStateFlag);
+int wm_test_state_raw(oswindow w, const ::string & pszNetStateFlag);
 int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag);
 bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet);
 
@@ -2595,7 +2595,7 @@ int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag)
 }
 
 
-int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
+int wm_test_state_raw(oswindow w, const ::string & pszNetStateFlag)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -2627,7 +2627,7 @@ int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
 }
 
 
-int wm_test_state(oswindow w, const char * pszNetStateFlag)
+int wm_test_state(oswindow w, const ::string & pszNetStateFlag)
 {
 
    synchronous_lock synchronouslock(x11_mutex());
@@ -5242,7 +5242,7 @@ CLASS_DECL_ACME ::thread * x11_get_thread()
 osdisplay_data * x11_main_display();
 
 
-void x11_store_name(oswindow oswindow, const char * pszName)
+void x11_store_name(oswindow oswindow, const ::string & pszName)
 {
 
    string strName(pszName);

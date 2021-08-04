@@ -2534,7 +2534,7 @@ bool image::mult_alpha(const ::point_i32& pointDstParam, const ::size_i32& sizeP
 }
 
 
-bool image::create_thumbnail(const char* psz)
+bool image::create_thumbnail(const ::string & psz)
 {
 
    return false;

@@ -31,7 +31,7 @@ namespace filehandler
 
          item(::object * pobject);
 
-         void parse(const char * pszApp);
+         void parse(const ::string & pszApp);
 
          void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
@@ -47,7 +47,7 @@ namespace filehandler
          list(::object * pobject);
 
 
-         void parse(::filehandler::handler * phandler, const char * pszTopic);
+         void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
          void on_layout(const RECTANGLE_I32 * lpcrect);
          void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics);

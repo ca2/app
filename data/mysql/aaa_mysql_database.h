@@ -37,30 +37,30 @@ namespace mysql
 
       virtual bool initialize();
 
-      virtual bool exec(const char * pszQuery) override;
+      virtual bool exec(const ::string & pszQuery) override;
 
-      virtual __pointer(::database::result_set) query_result(const char * pszQuery, ::count iRowCount  = -1, ::count iColumnCount = -1);
+      virtual __pointer(::database::result_set) query_result(const ::string & pszQuery, ::count iRowCount  = -1, ::count iColumnCount = -1);
 
 
 
       virtual ::count get_affected_rows_count() override;
 
-      virtual ::payload query_item(const char * pszSql, ::payload varDefault = false);
-      virtual bool query_blob(memory_base & memory, const char * pszSql);
-      virtual __pointer(payload_array) query_items(const char * pszSql) override;
-      virtual __pointer(::database::row) query_row(const char * pszSql) override;
-      virtual __pointer(::database::row_array) query_rows(const char * pszSql) override;
+      virtual ::payload query_item(const ::string & pszSql, ::payload varDefault = false);
+      virtual bool query_blob(memory_base & memory, const ::string & pszSql);
+      virtual __pointer(payload_array) query_items(const ::string & pszSql) override;
+      virtual __pointer(::database::row) query_row(const ::string & pszSql) override;
+      virtual __pointer(::database::row_array) query_rows(const ::string & pszSql) override;
 
-      virtual ::payload query_table_item(const char * table, const char * item, const char *where, ::payload notfound = false);
+      virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string &where, ::payload notfound = false);
 
-      virtual ::payload get_agent(const char * pszTable, const char * pszEmail, const char * pszUser);
+      virtual ::payload get_agent(const ::string & pszTable, const ::string & pszEmail, const ::string & pszUser);
 
       virtual string escape(void * p, strsize iLine);
-      virtual string escape(const char * psz);
+      virtual string escape(const ::string & psz);
 
       virtual ::payload get_insert_id();
 
-      virtual string error1(const char * pszPrefix = nullptr) override;
+      virtual string error1(const ::string & pszPrefix = nullptr) override;
 
 
    };

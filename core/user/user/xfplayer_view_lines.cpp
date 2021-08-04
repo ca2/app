@@ -220,7 +220,7 @@ XfplayerViewLineSelection & xfplayer_view_linea::GetSelection()
 }
 
 
-void xfplayer_view_linea::get_sel_text(string & strSelText, const char * pszLineSeparator)
+void xfplayer_view_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
 {
    synchronous_lock synchronouslock(mutex());
    index iLineStart;
@@ -273,7 +273,7 @@ void xfplayer_view_linea::get_sel_text(string & strSelText, const char * pszLine
 
 }
 
-string xfplayer_view_linea::get_sel_text(const char * pszLineSeparator)
+string xfplayer_view_linea::get_sel_text(const ::string & pszLineSeparator)
 {
 
    string strSelText;
@@ -285,7 +285,7 @@ string xfplayer_view_linea::get_sel_text(const char * pszLineSeparator)
 }
 
 
-void xfplayer_view_linea::get_text(string & strText, const char * pszLineSeparator)
+void xfplayer_view_linea::get_text(string & strText, const ::string & pszLineSeparator)
 {
    synchronous_lock synchronouslock(mutex());
    if (line_count() > 0)
@@ -306,7 +306,7 @@ void xfplayer_view_linea::get_text(string & strText, const char * pszLineSeparat
 
 }
 
-string xfplayer_view_linea::get_text(const char * pszLineSeparator)
+string xfplayer_view_linea::get_text(const ::string & pszLineSeparator)
 {
 
    string strText;

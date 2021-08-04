@@ -10,7 +10,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(__pointer(::aura::application), const char * , string_array &);
+//typedef string ( *SALT)(__pointer(::aura::application), const ::string & , string_array &);
 
 namespace hi5
 {
@@ -35,7 +35,7 @@ namespace hi5
       }
 
 
-      ::e_status authorization::initialize_twitter_authorization(::object* pobject, const char* pszAuthorizationUrl, const char* pszForm, bool bAuth, bool bInteractive)
+      ::e_status authorization::initialize_twitter_authorization(::object* pobject, const ::string & pszAuthorizationUrl, const ::string & pszForm, bool bAuth, bool bInteractive)
       {
 
          auto estatus = ::object::initialize(pobject);
@@ -227,7 +227,7 @@ namespace hi5
       }
 
 
-      void authorization::pageMessage(const char * pszMatter, property_set & set)
+      void authorization::pageMessage(const ::string & pszMatter, property_set & set)
       {
 
          ensure_main_document();

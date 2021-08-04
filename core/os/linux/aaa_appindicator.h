@@ -15,7 +15,7 @@ namespace linux
 
       virtual ~appindicator();
 
-      virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) = 0;
+      virtual bool create(const ::string & pszId, const ::string & pszIcon, const ::string & pszFolder, user_notify_icon_bridge * pbridge) = 0;
 
 
    };

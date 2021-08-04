@@ -7,7 +7,7 @@
 
 
 
-i32 _c_lock_is_active(const char * pszName)
+i32 _c_lock_is_active(const ::string & pszName)
 {
 
    i32 * pfd;
@@ -23,7 +23,7 @@ i32 _c_lock_is_active(const char * pszName)
 }
 
 
-i32 _c_lock(const char * pszName, void ** pdata)
+i32 _c_lock(const ::string & pszName, void ** pdata)
 {
 
    i32 fd;
@@ -82,7 +82,7 @@ i32 _c_unlock(void ** pdata)
 
 
 
-vsstring _ca_get_file_name(const char * pszName, bool bCreate, i32 * pfd)
+vsstring _ca_get_file_name(const ::string & pszName, bool bCreate, i32 * pfd)
 {
 
    vsstring str(pszName);

@@ -134,7 +134,7 @@ bool html_view::Refresh2(i32 i)
 }
 
 
-bool html_view::Navigate(const char * pszUrl)
+bool html_view::Navigate(const ::string & pszUrl)
 {
 
    if (!get_document()->on_open_document(pszUrl))

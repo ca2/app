@@ -12,12 +12,13 @@ namespace draw2d
 
 
       api();
-      virtual ~api();
+      ~api() override;
 
 
-      bool open();
+      ::e_status initialize(::object * pobject) override;
 
-      bool close();
+      ::e_status destroy() override;
+
 
       void draw_and_fill_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
@@ -47,7 +48,7 @@ namespace draw2d
       const rectangle_f64 &                 pcrect,
       double                        dRateX,
       double                        dHeight,
-      const char *                  psz);
+      const ::string & str);
 
 
       void embossed_text_out(

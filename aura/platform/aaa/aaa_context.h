@@ -57,11 +57,11 @@ public:
 
 
 
-   virtual bool http_download(const char * pszUrl, const char * pszFile);
+   virtual bool http_download(const ::string & pszUrl, const ::string & pszFile);
    virtual string http_get(const ::string & strUrl, ::property_set & set);
-   virtual string http_get(const char * pszUrl);
+   virtual string http_get(const ::string & pszUrl);
 
-   string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
+   string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
 
    virtual ::file::path defer_make_file_system_url(string str);
    virtual string defer_get_file_title(string str);
@@ -86,19 +86,19 @@ public:
    virtual file_pointer friendly_get_file(::payload varFile, ::u32 nOpenFlags);
 
 
-   virtual bool os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI = false, bool bNoMount = false);
+   virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI = false, bool bNoMount = false);
 
-   //CLASS_DECL_AURA bool os_is_folder_alias(::object * pobject, const char * psz, bool bNoUI = false, bool bNoMount = false);
+   //CLASS_DECL_AURA bool os_is_folder_alias(::object * pobject, const ::string & psz, bool bNoUI = false, bool bNoMount = false);
 
-   virtual bool _os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+   virtual bool _os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
 
-   virtual bool os_is_alias(const char * psz);
+   virtual bool os_is_alias(const ::string & psz);
 
    virtual bool sys_set(string strPath, string strValue);
    virtual string sys_get(string strPath, string strDefault = "");
 
 
-   virtual string load_string(const char * psz);
+   virtual string load_string(const ::string & psz);
 
    virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
    virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;

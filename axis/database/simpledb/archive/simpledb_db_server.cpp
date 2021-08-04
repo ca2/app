@@ -52,7 +52,7 @@ db_server::~db_server()
 }
 
 
-bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const char * pszUser)
+bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::string & pszUser)
 {
 
    if(pmysqldbUser == nullptr)
@@ -351,7 +351,7 @@ bool db_server::load(const ::database::key & key, memory & mem)
 }
 
 
-bool db_server::save(const ::database::key & key, const char * pcsz)
+bool db_server::save(const ::database::key & key, const ::string & pcsz)
 
 {
 

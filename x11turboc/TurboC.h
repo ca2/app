@@ -165,7 +165,7 @@ typedef unsigned long gulong;
 
 #ifdef strcpy
 static inline char *
-strcpyTurbo (char *s1, const char *s2)
+strcpyTurbo (char *s1, const ::string &s2)
 {
   return (strcpy (s1, s2));
 }
@@ -176,7 +176,7 @@ strcpyTurbo (char *s1, const char *s2)
 
 #ifdef strncpy_dup
 static inline char *
-strncpyTurbo (char *s1, const char *s2, size_t n)
+strncpyTurbo (char *s1, const ::string &s2, size_t n)
 {
   return (strncpy_dup (s1, s2, n));
 }
@@ -187,7 +187,7 @@ strncpyTurbo (char *s1, const char *s2, size_t n)
 
 #ifdef strcmp
 static inline i16
-strcmpTurbo (const char *s1, const char *s2)
+strcmpTurbo (const ::string &s1, const ::string &s2)
 {
   return (strcmp (s1, s2));
 }
@@ -198,12 +198,12 @@ strcmpTurbo (const char *s1, const char *s2)
 
 #ifdef strcasecmp
 static inline i16
-strcmpi (const char *s1, const char *s2)
+strcmpi (const ::string &s1, const ::string &s2)
 {
   return (strcasecmp (s1, s2));
 }
 static inline i16
-stricmp (const char *s1, const char *s2)
+stricmp (const ::string &s1, const ::string &s2)
 {
   return (strcasecmp (s1, s2));
 }
@@ -214,7 +214,7 @@ stricmp (const char *s1, const char *s2)
 
 #ifdef strncmp_dup
 static inline i16
-strncmpTurbo (const char *s1, const char *s2, i16 n)
+strncmpTurbo (const ::string &s1, const ::string &s2, i16 n)
 {
   return (strncmp_dup (s1, s2, n));
 }
@@ -225,7 +225,7 @@ strncmpTurbo (const char *s1, const char *s2, i16 n)
 
 #ifdef strncasecmp
 static inline i16
-strncmpi (const char *s1, const char *s2, i16 n)
+strncmpi (const ::string &s1, const ::string &s2, i16 n)
 {
   return (strncasecmp (s1, s2, n));
 }

@@ -103,11 +103,11 @@ namespace aura
       virtual void on_request(::create * pcreate) override;
 
 
-      //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
-      //virtual string dir().matter(const char * pszMatter,const char * pszMatter2);
+      //virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
+      //virtual string dir().matter(const ::string & pszMatter, const ::string & pszMatter2);
 
-      //virtual bool is_inside_time_dir(const char * pszPath);
-      //virtual bool file_is_read_only(const char * pszPath);
+      //virtual bool is_inside_time_dir(const ::string & pszPath);
+      //virtual bool file_is_read_only(const ::string & pszPath);
 
       // Long PhRESSing time
       // time in milliseconds that a pressing is considered a double click
@@ -177,11 +177,11 @@ namespace aura
       virtual void process_term() override;
 
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr) override;
+      virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr) override;
 
       virtual bool open_by_file_extension(::create * pcc) override;
 
-      //__pointer(::aura::application) get_new_application(::object * pobject, const char * pszAppId);
+      //__pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
 
       inline ::apex::savings &                  savings()      { return *m_psavings; }
 
@@ -201,13 +201,13 @@ namespace aura
 
       //virtual void on_erase_user(::account::user * puser);
 
-      virtual bool is_licensed(const char * pszId, bool bInteractive = true) override;
+      virtual bool is_licensed(const ::string & pszId, bool bInteractive = true) override;
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword) override;
 
       //virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       //virtual bool is_key_pressed(::user::enum_key ekey) override;
 
@@ -251,9 +251,9 @@ namespace aura
       //virtual index get_ui_workspace(::user::interaction * pinteraction);
 
 
-      //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);
+      //__pointer(::user::theme) instantiate_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
@@ -341,8 +341,8 @@ namespace aura
       //virtual void check_topic_file_change() override;
 
 
-      void launch_app(const char* psz);
-      void install_app(const char* psz);
+      void launch_app(const ::string & psz);
+      void install_app(const ::string & psz);
 
 
 
@@ -375,11 +375,11 @@ namespace aura
 
 
 
-      virtual void set_app_title(const char* pszAppId, const char* pszTitle) override;
+      virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle) override;
 
       //virtual void term() override;
 
-      //virtual bool open_by_file_extension(const char* pszPathName, ::create* pcreate = nullptr) override;
+      //virtual bool open_by_file_extension(const ::string & pszPathName, ::create* pcreate = nullptr) override;
       //virtual bool open_by_file_extension(::create* pcc) override;
 
       //virtual bool is_session() const override;

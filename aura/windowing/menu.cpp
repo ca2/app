@@ -78,7 +78,7 @@ namespace windowing
    }
 
 
-   menu_item * menu::find_item(const char * pszParent, const char * pszId)
+   menu_item * menu::find_item(const ::string & pszParent, const ::string & pszId)
    {
 
       for (int i = 0; i < m_itema.get_count(); i++)

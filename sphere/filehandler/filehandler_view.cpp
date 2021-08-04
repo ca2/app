@@ -77,7 +77,7 @@ namespace filehandler
    }
 
 
-   void view::item::parse(const char * pszApp)
+   void view::item::parse(const ::string & pszApp)
    {
 
       m_strApp = pszApp;
@@ -85,7 +85,7 @@ namespace filehandler
    }
 
 
-   void view::list::parse(::filehandler::handler * phandler, const char * pszTopic)
+   void view::list::parse(::filehandler::handler * phandler, const ::string & pszTopic)
    {
 
       erase_all();

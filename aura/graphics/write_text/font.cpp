@@ -107,7 +107,7 @@ namespace write_text
    }
 
 
-   bool font::create_pixel_font(const char * pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   bool font::create_pixel_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
 
       m_strFontFamilyName = pszFacename;
@@ -126,7 +126,7 @@ namespace write_text
    }
 
 
-   bool font::create_point_font(const char * pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   bool font::create_point_font(const ::string & pszFacename, double dSize, i32 iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
 
    {
 
@@ -187,7 +187,7 @@ namespace write_text
    }
 
 
-   void font::set_family_name(const char * pszFamilyName)
+   void font::set_family_name(const ::string & pszFamilyName)
    {
 
       m_strFontFamilyName = pszFamilyName;
@@ -763,7 +763,7 @@ namespace write_text
 //      UnselectFont();
 //   }
 //
-//   void font::AddGlyphs(const char * pStr)
+//   void font::AddGlyphs(const ::string & pStr)
 
 //   {
 //      string str(pStr);
@@ -984,7 +984,7 @@ namespace write_text
 } // namespace write_text
 
 
-//bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca)
+//bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i32 ca)
 //
 //{
 //
@@ -1024,7 +1024,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl)
+//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i32 ca, LPSIZE32 psizl)
 //
 //{
 //
@@ -1054,7 +1054,7 @@ namespace write_text
 //}
 //
 //
-//CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * prect, ::u32 format)
+//CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, RECT32 * prect, ::u32 format)
 //
 //{
 //

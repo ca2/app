@@ -71,19 +71,19 @@ namespace filemanager
 
       __pointer(::filemanager::data) create_file_manager_data(::create * pcreate = nullptr);
 
-      //virtual void Initialize(i32 iTemplate, const char * pszMatter);
+      //virtual void Initialize(i32 iTemplate, const ::string & pszMatter);
 
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema);
 
 
-      virtual void InitializeFileManager(const char * pszMatter);
+      virtual void InitializeFileManager(const ::string & pszMatter);
 
 
-      string get_initial_browse_path(const char * pszDefault = nullptr);
+      string get_initial_browse_path(const ::string & pszDefault = nullptr);
 
 
-      virtual void browse(const char * pcsz, const ::action_context & action_context);
+      virtual void browse(const ::string & pcsz, const ::action_context & action_context);
 
       virtual bool browse(__pointer(::file::item) item, const ::action_context & action_context) override;
 
@@ -94,12 +94,12 @@ namespace filemanager
       virtual void on_file_manager_open_folder(__pointer(::file::item)  str, const ::action_context & action_context);
 
       virtual void on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema);
-      virtual void on_file_manager_item_command(const char * pszId, const ::file::item_array & itema);
+      virtual void on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema);
 
       //critical_section * GetItemIdListCriticalSection();
 
       //virtual bool FileManagerBrowse(::file::item * pitem, const ::action_context & action_context);
-      //virtual bool FileManagerBrowse(const char * pcsz, const ::action_context & action_context);
+      //virtual bool FileManagerBrowse(const ::string & pcsz, const ::action_context & action_context);
 
 
       virtual void FileManagerOneLevelUp(const ::action_context & action_context);
@@ -159,11 +159,11 @@ namespace filemanager
 
    CLASS_DECL_CORE string create_manager_id(::object * pobject);
 
-   CLASS_DECL_CORE bool is_valid_manager_id(const char *);
+   CLASS_DECL_CORE bool is_valid_manager_id(const ::string &);
 
-   CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const char *);
+   CLASS_DECL_CORE bool is_valid_filemanager_project_entry(const ::string &);
 
-   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const char * psz, ::aura::context * pcontext);
+   CLASS_DECL_CORE ::file::path filemanager_project_entry(string & strManagerId, const ::string & psz, ::aura::context * pcontext);
 
 
 } // namespace filemanager

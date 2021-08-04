@@ -7,12 +7,12 @@
 
 #if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)
 #undef new
-void * PASCAL no_track_object::operator new(size_t nSize, const char *, i32)
+void * PASCAL no_track_object::operator new(size_t nSize, const ::string &, i32)
 {
    return no_track_object::operator new(nSize);
 }
 #define new DEBUG_NEW
-void PASCAL no_track_object::operator delete(void * pObject, const char *, i32)
+void PASCAL no_track_object::operator delete(void * pObject, const ::string &, i32)
 {
    if (pObject != nullptr)
       ::free(pObject);

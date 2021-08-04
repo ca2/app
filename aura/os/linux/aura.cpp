@@ -40,8 +40,8 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 
 }
 
-//void __clear_mq(const char * pszDebug, itask_t id, bool bClose);
-//void __clear_mq(const char * pszDebug, bool bClose);
+//void __clear_mq(const ::string & pszDebug, itask_t id, bool bClose);
+//void __clear_mq(const ::string & pszDebug, bool bClose);
 
 CLASS_DECL_AURA bool __node_aura_pre_term()
 {

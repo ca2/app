@@ -40,7 +40,7 @@ public:
    static static_setup *         s_psetupList;
 
 
-   static_setup(::static_setup::enum_flag eflag, const char * pszName);
+   static_setup(::static_setup::enum_flag eflag, const ::string & pszName);
 
 
    void construct();
@@ -50,7 +50,7 @@ public:
    bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
+   static static_setup* get_first(::static_setup::enum_flag eflag, const ::string & pszName = nullptr);
 
    virtual ::matter * create_new_object();
    virtual ::aura::application* create_new_application();
@@ -74,7 +74,7 @@ public:
    virtual ::acme::library* new_library() override { return new LIBRARY; }
 
 
-   static_library_factory(const char * pszName = "") :
+   static_library_factory(const ::string & pszName = "") :
       static_setup(flag_library, pszName)
    {
 
@@ -95,7 +95,7 @@ public:
    virtual ::matter * new_object() override { return new OBJECT; }
 
 
-   static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
+   static_object_factory(::static_setup::enum_flag eflag, const ::string & pszName = "") :
       static_setup(eflag, pszName)
    {
 

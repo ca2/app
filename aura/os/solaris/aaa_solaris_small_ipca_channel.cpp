@@ -29,7 +29,7 @@ namespace aura
 
 
 
-      bool tx::open(const char * pszChannel,launcher * plauncher)
+      bool tx::open(const ::string & pszChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -66,7 +66,7 @@ namespace aura
       }
 
 
-      bool tx::send(const char * pszMessage,::u32 tickTimeout)
+      bool tx::send(const ::string & pszMessage,::u32 tickTimeout)
       {
 
          data_struct data;
@@ -100,7 +100,7 @@ namespace aura
          if(!is_tx_ok())
             return false;
 
-         const char * pszMessage = (const char *)pdata;
+         const char * pszMessage = (const ::string &)pdata;
 
          ::count c = len;
 
@@ -169,7 +169,7 @@ namespace aura
       }
 
 
-      bool small_ipc_rx_channel::create(const char * pszChannel)
+      bool small_ipc_rx_channel::create(const ::string & pszChannel)
       {
          m_key = ftok(".",'c');
 
@@ -244,7 +244,7 @@ namespace aura
 
 
 
-      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, const ::string & pszMessage)
       {
       }
 
@@ -258,7 +258,7 @@ namespace aura
 
 
 
-      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel,const char * pszMessage)
+      void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const ::string & pszMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -376,7 +376,7 @@ namespace aura
             if(data.request == 0)
             {
 
-               on_receive(this,(const char *)mem.get_data());
+               on_receive(this,(const ::string &)mem.get_data());
 
             }
             else
@@ -396,7 +396,7 @@ namespace aura
 
 
 
-      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ab(const ::string & pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -421,7 +421,7 @@ namespace aura
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ba(const ::string & pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;

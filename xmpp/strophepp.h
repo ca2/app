@@ -65,28 +65,28 @@ namespace XMPP {
 	Stanza *clone();
 	Stanza *copy();
 	
-	int toText(const char ** const buf, size_t * const buflen);
+	int toText(const ::string &* const buf, size_t * const buflen);
 	Stanza *getChildren();
-	Stanza *getChildByName(const char * const name);
+	Stanza *getChildByName(const ::string & const name);
 	Stanza *getNext();
-        char *getAttribute(const char * const name);
+        char *getAttribute(const ::string & const name);
 	char *getNamespace();
 	char *getText();
 	char *getName();
 	void addChild(Stanza *child);
-	void setNamespace(const char * const ns);
-	void setAttribute(const char * const key, const char * const value);
-	void setName(const char * const name);
-	void setText(const char * const text);
-	void setText(const char * const text, const size_t size);
+	void setNamespace(const ::string & const ns);
+	void setAttribute(const ::string & const key, const ::string & const value);
+	void setName(const ::string & const name);
+	void setText(const ::string & const text);
+	void setText(const ::string & const text, const size_t size);
 	char *getType();
 	char *getId();
 	char *getTo();
 	char *getFrom();
-	void setType(const char * const type);
-	void setId(const char * const id);
-	void setTo(const char * const to);
-	void setFrom(const char * const from);
+	void setType(const ::string & const type);
+	void setId(const ::string & const id);
+	void setTo(const ::string & const to);
+	void setFrom(const ::string & const from);
     };
 
     class Connection {
@@ -104,10 +104,10 @@ namespace XMPP {
 	void operator delete(void *p);
 
 	const char *getJID();
-	void setJID(const char * const jid);
+	void setJID(const ::string & const jid);
 	const char *getPass();
-	void setPass(const char * const pass);
-	bool connectClient(const char * const domain,
+	void setPass(const ::string & const pass);
+	bool connectClient(const ::string & const domain,
 			   xmpp_conn_handler callback,
 			   void * const userdata);
 	void disconnect();

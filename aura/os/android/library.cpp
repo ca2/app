@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 
-CLASS_DECL_AURA void * __node_library_touch(const char * pszPath, string & strMessage)
+CLASS_DECL_AURA void * __node_library_touch(const ::string & pszPath, string & strMessage)
 {
 
    return __node_library_open(pszPath, strMessage);
@@ -10,7 +10,7 @@ CLASS_DECL_AURA void * __node_library_touch(const char * pszPath, string & strMe
 }
 
 
-CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMessage)
+CLASS_DECL_AURA void * __node_library_open(const ::string & pszPath, string & strMessage)
 {
 
    strMessage.Empty();
@@ -37,7 +37,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMes
 
    }
 
-   if (strstr((const char *)strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+   if (strstr((const ::string &)strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
    {
 
       strPath = "lib" + strPath;
@@ -85,7 +85,7 @@ CLASS_DECL_AURA void * __node_library_open(const char * pszPath, string & strMes
 }
 
 
-CLASS_DECL_AURA void * __node_library_open_ca2(const char * pszPath, string & strMessage)
+CLASS_DECL_AURA void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 {
 
    strMessage.Empty();
@@ -129,7 +129,7 @@ CLASS_DECL_AURA bool __node_library_close(void * plibrary)
 }
 
 
-CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+CLASS_DECL_AURA void * __node_library_raw_get(void * plibrary, const ::string & pszEntryName)
 {
 
    return dlsym(plibrary,pszEntryName);

@@ -21,7 +21,7 @@ namespace account
 
       virtual string defer_get_plugin();
 
-      virtual string defer_get(const char * pszUrl);
+      virtual string defer_get(const ::string & pszUrl);
 
       virtual string calc_locale();
       virtual string calc_schema();

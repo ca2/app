@@ -99,7 +99,7 @@ namespace console
    }
 
 
-   void console_composite::write(const char * psz)
+   void console_composite::write(const ::string & psz)
    {
 
       m_pconsole->write(psz);
@@ -114,7 +114,7 @@ namespace console
 
 
 
-void press_any_key_to_exit(const char * pszPrompt)
+void press_any_key_to_exit(const ::string & pszPrompt)
 {
 
 

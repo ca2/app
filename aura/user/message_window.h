@@ -22,7 +22,7 @@ namespace user
       virtual ~message_window();
 
 
-      virtual bool create_message_window(const char * pszName,::user::message_window_listener * plistener = nullptr);
+      virtual bool create_message_window(const ::string & pszName,::user::message_window_listener * plistener = nullptr);
 
       virtual void message_handler(::user::message * pusermessage);
 

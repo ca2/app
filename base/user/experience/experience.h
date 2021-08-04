@@ -31,7 +31,7 @@ namespace experience
 
       virtual void get_frame_list(string_array & stra);
 
-      virtual frame * experience_get_frame(const char * pszSchema);
+      virtual frame * experience_get_frame(const ::string & pszSchema);
 
 
    };

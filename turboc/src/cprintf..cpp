@@ -29,7 +29,7 @@
 static char StringBuffer[1024];
 
 int
-cprintf (const char *format, ...)
+cprintf (const ::string &format, ...)
 {
   va_list ap;
   int ReturnValue = 0;

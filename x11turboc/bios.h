@@ -42,7 +42,7 @@ __BEGIN_DECLS
 #ifdef __linux__
 extern int open_printer (int port);
 #define close_printer(fd)	close(fd)
-extern ssize_t write_printer (int fd, const char *buf);
+extern ssize_t write_printer (int fd, const ::string &buf);
 #endif // __linux__
 extern int biosprint (int cmd, int byte, int port);
 #endif /* __DJGPP__    */
@@ -57,7 +57,7 @@ enum
 #define PRINT_FILE	"./data/print_file.txt"
 
 extern void flush_print (char *buf, int port);
-extern void print_file (const char *file, int port, int lowlevel_print);
+extern void print_file (const ::string &file, int port, int lowlevel_print);
 
 #if 0
 

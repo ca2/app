@@ -118,10 +118,10 @@ namespace console
    }
 
 
-   void console_client::write(const char * psz)
+   void console_client::write(const ::string & str)
    {
 
-      get_console()->write(psz);
+      get_console()->write(str);
 
    }
 

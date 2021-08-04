@@ -37,7 +37,7 @@ namespace filemanager
 
       virtual __pointer(::fs::data) fs_data() override;
 
-      //void schedule_file_size(const char * psz);
+      //void schedule_file_size(const ::string & psz);
 
       virtual void _017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & action_context) override;
       virtual void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;
@@ -132,11 +132,11 @@ namespace filemanager
       virtual void _001GetItemImage(::user::mesh_item * pitem) override;
       virtual void _001GetItemText(::user::mesh_item * pitem) override;
       virtual count _001GetItemCount() override;
-      void _017Browse(const char * pcsz, const ::action_context & action_context);
+      void _017Browse(const ::string & pcsz, const ::action_context & action_context);
 
-      void _017UpdateList(const char * pcsz, const ::action_context & action_context);
+      void _017UpdateList(const ::string & pcsz, const ::action_context & action_context);
 
-      void _017UpdateZipList(const char * pcsz, const ::action_context & action_context);
+      void _017UpdateZipList(const ::string & pcsz, const ::action_context & action_context);
 
 
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);

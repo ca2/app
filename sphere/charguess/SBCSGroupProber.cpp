@@ -78,7 +78,7 @@ void  nsSBCSGroupProber::Reset(void)
 }
 
 //This filter apply to all scripts that does not use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
+PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const ::string & aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
@@ -116,7 +116,7 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PR::u32 
 
 #ifdef  NO_ENGLISH_CONTAMINATION 
 //This filter apply to all scripts that does use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
+PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const ::string & aBuf, PR::u32 aLen, char** newBuf, PR::u32& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
@@ -155,7 +155,7 @@ PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PR::u32 aLe
 }
 #endif //NO_ENGLISH_CONTAMINATION
 
-nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsSBCSGroupProber::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsProbingState st;
   PR::u32 i;

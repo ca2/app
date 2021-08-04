@@ -172,7 +172,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //}
 
 
-void aura_application_main(int argc, char* argv[], const char* pszCommandLine)
+void aura_application_main(int argc, char* argv[], const ::string & pszCommandLine)
 {
 
 

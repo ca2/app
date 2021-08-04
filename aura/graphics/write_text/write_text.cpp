@@ -101,7 +101,7 @@ namespace write_text
    }
 
 
-   font_pointer write_text::point_font(const char * pszFontName, double dFontSize, int iFontWeight)
+   font_pointer write_text::point_font(const ::string & pszFontName, double dFontSize, int iFontWeight)
    {
 
       auto pfont = __create < font >();

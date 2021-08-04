@@ -38,7 +38,7 @@ namespace aura
 
       }
 
-      bool tx::open(const char * pszChannel,launcher * plauncher)
+      bool tx::open(const ::string & pszChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -89,7 +89,7 @@ namespace aura
       }
 
 
-      bool tx::send(const char * pszMessage, duration durationTimeout)
+      bool tx::send(const ::string & pszMessage, duration durationTimeout)
       {
 
          memory m;
@@ -168,7 +168,7 @@ namespace aura
                   }
                   */
 
-         //const char * pszMessage = (const char *)pdata;
+         //const char * pszMessage = (const ::string &)pdata;
 
          ::memcpy_dup(pdata->data,p,iLen);
 
@@ -207,7 +207,7 @@ namespace aura
       }
 
 
-      bool rx::create(const char * pszChannel)
+      bool rx::create(const ::string & pszChannel)
       {
 
 
@@ -284,7 +284,7 @@ namespace aura
       }
 
 
-//      void rx::receiver::on_ipc_receive(rx * prx,const char * pszMessage)
+//      void rx::receiver::on_ipc_receive(rx * prx, const ::string & pszMessage)
 //      {
 //
 //      }
@@ -302,7 +302,7 @@ namespace aura
 //      }
 
 
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_ipc_receive(rx * prx, const ::string & pszMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -461,7 +461,7 @@ namespace aura
 
       }
 
-      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ab(const ::string & pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -486,7 +486,7 @@ namespace aura
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
+      bool ipc::open_ba(const ::string & pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;

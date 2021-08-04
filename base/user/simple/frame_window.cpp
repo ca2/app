@@ -1913,7 +1913,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
    m_id = pusersystem->m_id.to_string() + "::frame";
@@ -2672,7 +2672,7 @@ bool simple_frame_window::is_application_main_window()
 }
 
 
-bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * pszToolBar, u32 dwCtrlStyle, u32 uStyle)
+bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
 {
 
    __composite(::user::toolbar) & ptoolbar = m_toolbarmap[idToolBar];
@@ -2904,7 +2904,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+//bool simple_frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::create * pcreate)
 //{
 //
 //   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
@@ -3034,7 +3034,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //   VERIFY(UnpackDDElParam(WM_DDE_EXECUTE, lParam, &unused, (uptr*)&hData));
 //
 //   // get the command string
-//   const char * psz = (const char *)GlobalLock(hData);
+//   const char * psz = (const ::string &)GlobalLock(hData);
 //
 //   wstring strCommand;
 //   try
@@ -4141,7 +4141,7 @@ void simple_frame_window::on_select_user_style()
 
 
 
-void simple_frame_window::call_notification_area_action(const char * pszId)
+void simple_frame_window::call_notification_area_action(const ::string & pszId)
 {
 
    ::id id(pszId);
@@ -4156,7 +4156,7 @@ void simple_frame_window::call_notification_area_action(const char * pszId)
 }
 
 
-void simple_frame_window::notification_area_action(const char * pszId)
+void simple_frame_window::notification_area_action(const ::string & pszId)
 {
 
    __pointer(::user::interaction) pinteraction = this;

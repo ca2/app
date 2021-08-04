@@ -264,7 +264,7 @@ namespace filemanager
 //   }
 
 
-   string data::get_last_browse_path(::object * pobject, const char * pszDefault)
+   string data::get_last_browse_path(::object * pobject, const ::string & pszDefault)
    {
 
       string strPath;

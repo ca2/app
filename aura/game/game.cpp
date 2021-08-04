@@ -28,7 +28,7 @@ namespace aura
    }
 
 
-   string game::sound_path(const char* psz)
+   string game::sound_path(const ::string & psz)
    {
    
       string strFileName = string(psz) + string(".wav");

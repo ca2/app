@@ -31,16 +31,16 @@ namespace uwp
 
       //using ::file::system_dir::path;
       //virtual class ::file::path & path();
-      //virtual string path(const char * pszFolder,strsize iLenFolder,const char * pszRelative,strsize iLenRelative,const char * psz2,strsize iLen2,bool bUrl);
+      //virtual string path(const ::string & pszFolder,strsize iLenFolder, const ::string & pszRelative,strsize iLenRelative, const ::string & psz2,strsize iLen2,bool bUrl);
 
-      //virtual string relpath(const char * lpcszSource,const char * lpcszRelative,const char * lpcsz2 = nullptr);
-      //virtual bool  ls_pattern(const char * pcsz,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
+      //virtual string relpath(const ::string & lpcszSource, const ::string & lpcszRelative, const ::string & lpcsz2 = nullptr);
+      //virtual bool  ls_pattern(const ::string & pcsz, const ::string & lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr);
       virtual ::file::listing & ls(::file::listing & listing) override;
-      //virtual bool  rls_pattern(const char * pcsz,const char * lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,e_extract eextract = extract_first);
-      //virtual bool  rls(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,e_extract eextract = extract_first);
-      //virtual bool  rls_dir(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
-      //virtual bool  ls_dir(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
-      //virtual bool  ls_file(const char * pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  rls_pattern(const ::string & pcsz, const ::string & lpcszPattern,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,bool_array * pbaIsDir = nullptr,i64_array * piaSize = nullptr,e_extract eextract = extract_first);
+      //virtual bool  rls(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr,e_extract eextract = extract_first);
+      //virtual bool  rls_dir(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr,string_array * pstraRelative = nullptr);
+      //virtual bool  ls_dir(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
+      //virtual bool  ls_file(const ::string & pcsz,string_array * pstraPath = nullptr,string_array * pstraTitle = nullptr);
       virtual bool  is_impl(const ::file::path & path) override;
       //virtual bool  is(const ::string & str);
       virtual bool  name_is(const ::file::path & str);
@@ -52,7 +52,7 @@ namespace uwp
       virtual bool rm( const ::file::path & path, bool bRecursive = true);
 
 
-      //virtual string name(const char * pcsz);
+      //virtual string name(const ::string & pcsz);
       //virtual string name(const ::string & str);
 
       ::file::path userfolder();
@@ -82,9 +82,9 @@ namespace uwp
       //virtual ::file::path userdata();
       ////virtual ::file::path userfolder();
       //virtual ::file::path default_os_user_path_prefix();
-      //virtual ::file::path default_userappdata(const ::string & strPrefix,const ::string & strLogin);
-      //virtual ::file::path default_userdata(const ::string & strPrefix,const ::string & strLogin);
-      //virtual ::file::path default_userfolder(const ::string & strPrefix,const ::string & strLogin);
+      //virtual ::file::path default_userappdata(const ::string & strPrefix, const ::string & strLogin);
+      //virtual ::file::path default_userdata(const ::string & strPrefix, const ::string & strLogin);
+      //virtual ::file::path default_userfolder(const ::string & strPrefix, const ::string & strLogin);
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();
 

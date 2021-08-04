@@ -15,7 +15,7 @@ mutex * user_mutex();
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 
 
-void windowing_output_debug_string(const char * pszDebugString);
+void windowing_output_debug_string(const ::string & pszDebugString);
 
 
 osdisplay_dataptra * osdisplay_data::s_pdataptra = nullptr;
@@ -178,7 +178,7 @@ Atom osdisplay_data::get_window_long_atom(i32 nIndex)
 }
 
 
-Atom osdisplay_data::intern_atom(const char * pszAtomName, bool bCreate)
+Atom osdisplay_data::intern_atom(const ::string & pszAtomName, bool bCreate)
 {
 
    if(m_pdisplay == nullptr)

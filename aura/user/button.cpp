@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   button::button(const char * pszName, const ::id & id)
+   button::button(const ::string & pszName, const ::id & id)
    {
 
       user_button_construct();

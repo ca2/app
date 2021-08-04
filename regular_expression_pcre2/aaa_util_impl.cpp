@@ -53,7 +53,7 @@ bool pcre_util_impl::compile(const string& str)
 }
 
 
-::count pcre_util_impl::matches(const char* psz, strsize len, pcre_context*)
+::count pcre_util_impl::matches(const ::string & psz, strsize len, pcre_context*)
 {
 
    return pcre_code_impl::matches(psz, len);
@@ -69,7 +69,7 @@ __pointer(::str::range_array) pcre_util_impl::matches_ranges(const string& str)
 }
 
 
-__pointer(::str::range_array) pcre_util_impl::matches_ranges(const char* psz, strsize len)
+__pointer(::str::range_array) pcre_util_impl::matches_ranges(const ::string & psz, strsize len)
 {
 
    return pcre_code_impl::matches_ranges(psz, len);

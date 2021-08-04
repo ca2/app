@@ -39,7 +39,7 @@ int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, ::u32 nStyle)
    return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
+int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const ::string & lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];

@@ -37,7 +37,7 @@ numbers:
 
 
 
-      void initialize(const char * psz);
+      void initialize(const ::string & psz);
       void peek();
       void next();
       token * look_ahead();

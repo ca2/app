@@ -74,7 +74,7 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(const char * pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);
+      impact_system(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);
       virtual ~impact_system();
 
 

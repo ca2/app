@@ -351,7 +351,7 @@ namespace install
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const char*)m_phost->m_pbasecomposer->m_strPluginUrl,(i32)m_phost->m_pbasecomposer->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url,(void *)(const ::string &)m_phost->m_pbasecomposer->m_strPluginUrl,(i32)m_phost->m_pbasecomposer->m_strPluginUrl.length());
 
                ensure_tx(::hotplugin::message_set_ready, m_phost->m_memory.get_data(), (i32)m_phost->m_memory.get_size());
 
@@ -759,13 +759,13 @@ namespace install
 
 
 
-   bool plugin::hist(const char * pszUrl)
+   bool plugin::hist(const ::string & pszUrl)
    {
       return open_link(pszUrl, "");
    }
 
 
-   void plugin::run_start_install(const char * pszType, const char * pszInstall, const char * pszLocale, const char * pszSchema)
+   void plugin::run_start_install(const ::string & pszType, const ::string & pszInstall, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       {
@@ -1296,7 +1296,7 @@ run_install:
          if(message == ::hotplugin::message_open_url)
          {
 
-            string strUrl((const char *) pdata, len);
+            string strUrl((const ::string &) pdata, len);
 
             open_link(strUrl, "");
 
@@ -1392,7 +1392,7 @@ run_install:
          if (m_phost->m_memory.get_data() != nullptr && m_phost->m_memory.get_size() > 0)
          {
 
-            strData = string((const char *)m_phost->m_memory.get_data(),m_phost->m_memory.get_size());
+            strData = string((const ::string &)m_phost->m_memory.get_data(),m_phost->m_memory.get_size());
 
          }
          else
@@ -1493,7 +1493,7 @@ retry_get_prompt:
    }
 
 
-   void plugin::on_login_result(const ::e_status & estatus, const char * pszResponse)
+   void plugin::on_login_result(const ::e_status & estatus, const ::string & pszResponse)
    {
 
       if(eresult == ::account::result_auth)

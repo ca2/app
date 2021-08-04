@@ -58,7 +58,7 @@
 #define M01(s1, s2, s5, s8) INTM2(s1, s2, s5, s8)
 
 
-string salt(::ca::application * papp, const char * pszSourceSalt, string_array & straSourceSalt)
+string salt(::ca::application * papp, const ::string & pszSourceSalt, string_array & straSourceSalt)
 {
    string_array straSourceHash; 
    straSourceHash.explode(";", pszSourceSalt); 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef void FN_CAIRO_TEXT(cairo_t *, const char*);
+typedef void FN_CAIRO_TEXT(cairo_t *, const ::string &);
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
@@ -69,8 +69,8 @@ namespace draw2d_cairo
       virtual double get_dpix() override;
 
       // Constructors
-      //bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
-      //bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData) override;
+      //bool CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
+      //bool CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData) override;
       bool CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       bool DeleteDC() override;
@@ -256,9 +256,9 @@ namespace draw2d_cairo
         //             HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
 //                     ::draw2d::brush* pBrush = nullptr) override;
-//      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags,
+//      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags,
 //                     bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
-//      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags,
+//      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags,
 //                     bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 
 
@@ -334,13 +334,13 @@ namespace draw2d_cairo
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      //virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
+      //virtual bool text_out(double x, double y, const ::string & lpszString, strsize nCount) override;
       //virtual bool text_out(double x, double y, const ::string & str) override;
       virtual ::e_status TextOutRaw(double x, double y, const block & block) override;
       ///virtual bool text_out(double x, double y, const ::string & str) override;
-      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const char * lpszString, strsize nCount, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & str, int * lpDxWidths) override;
-//      virtual size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 //      virtual size_f64 TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
@@ -350,25 +350,25 @@ namespace draw2d_cairo
 #else
       virtual bool internal_draw_text(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext = nullptr);
 #endif
-      //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
+      //virtual bool draw_text(const ::string & lpszString, strsize nCount, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
       //virtual bool draw_text_ex(char * lpszString, strsize nCount, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams);
       //virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
       virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
-      size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
+      size_f64 get_text_extent(const ::string & lpszString, strsize nCount, strsize iIndex) override;
+      size_f64 get_text_extent(const ::string & lpszString, strsize nCount) override;
       size_f64 get_text_extent(const block & block) override;
-      bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
-      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
-      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
+      bool _GetTextExtent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex);
+      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex) override;
+      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount) override;
       bool get_text_extent(size_f64 & size_f64, const ::string & str) override;
-      size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
+      size_f64 GetOutputTextExtent(const ::string & lpszString, strsize nCount) override;
       size_f64 GetOutputTextExtent(const ::string & str) override;
-      //size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       //size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
-      size_f64 GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
+      size_f64 GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       size_f64 GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
@@ -381,7 +381,7 @@ namespace draw2d_cairo
 //      i32 GetTextCharacterExtra() override;
 //      i32 SetTextCharacterExtra(i32 nCharExtra) override;
 
-      //xxx      u32 GetCharacterPlacement(const char * lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
+      //xxx      u32 GetCharacterPlacement(const ::string & lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
       //xxx      u32 GetCharacterPlacement(string & str, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
 
 //#if (_WIN32_WINNT >= 0x0500)
@@ -427,12 +427,12 @@ namespace draw2d_cairo
 //#endif
 //
 //      // Printer/Device Escape Functions
-//      virtual i32 Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData) override;
-//      i32 Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData) override;
-//      i32 DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData) override;
+//      virtual i32 Escape(i32 nEscape, i32 nCount, const ::string & lpszInData, LPVOID lpOutData) override;
+//      i32 Escape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData, i32 nOutputSize, char * lpszOutputData) override;
+//      i32 DrawEscape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData) override;
 //
       // Escape helpers
-      //i32 StartDoc(const char * lpszDocName) override;  // old Win3.0 version
+      //i32 StartDoc(const ::string & lpszDocName) override;  // old Win3.0 version
 //xxx      i32 StartDoc(LPDOCINFO lpDocInfo) override;
       i32 StartPage() override;
       i32 EndPage() override;
@@ -563,7 +563,7 @@ namespace draw2d_cairo
       //virtual ::file::path get_font_path(const ::string & strName, int iWeight, bool bItalic) override;
 
 
-      FT_Face ftface(const char* pszFontName, int iWeight, bool bItalic);
+      FT_Face ftface(const ::string & pszFontName, int iWeight, bool bItalic);
 
       //virtual void on_apply_clip_region() override;
 

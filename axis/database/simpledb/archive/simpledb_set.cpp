@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-db_set::db_set(db_server * pserver, const char * pszTable)
+db_set::db_set(db_server * pserver, const ::string & pszTable)
 {
 
    m_pdataserver = pserver;
@@ -36,7 +36,7 @@ db_server * db_set::db()
 
 
 
-simpledb_set::simpledb_set(db_server * pserver, const char * pszTable)
+simpledb_set::simpledb_set(db_server * pserver, const ::string & pszTable)
 {
    m_pdataserver = pserver;
    ::simpledb::database * pdb   = db()->m_pbase;

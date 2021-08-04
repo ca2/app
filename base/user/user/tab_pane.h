@@ -49,7 +49,7 @@ namespace user
 
 
       string get_title();
-      void set_title(const char * pszTitle);
+      void set_title(const ::string & pszTitle);
 
 
       virtual void do_split_layout(::draw2d::graphics_extension & dc, ::draw2d::graphics_pointer & pgraphics);

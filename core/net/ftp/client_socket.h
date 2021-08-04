@@ -117,7 +117,7 @@ namespace ftp
                     unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = "/");
       virtual ~client_socket();
 
-      virtual long cert_common_name_check(const char * common_name) override;
+      virtual long cert_common_name_check(const ::string & common_name) override;
 
       void AttachObserver(notification* pObserver);
       void DetachObserver(notification* pObserver);

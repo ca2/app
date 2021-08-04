@@ -15,18 +15,18 @@ public:
    virtual ~os_object();
 
 
-   jfieldID field_str(const char *psz);
-   jfieldID field_b(const char* psz);
-   jfieldID field_uch(const char* psz);
-   jfieldID field_ch(const char* psz);
-   jfieldID field_sh(const char* psz);
-   jfieldID field_i(const char* psz);
-   jfieldID field_l(const char* psz);
-   jfieldID field_f(const char* psz);
-   jfieldID field_d(const char* psz);
+   jfieldID field_str(const ::string &psz);
+   jfieldID field_b(const ::string & psz);
+   jfieldID field_uch(const ::string & psz);
+   jfieldID field_ch(const ::string & psz);
+   jfieldID field_sh(const ::string & psz);
+   jfieldID field_i(const ::string & psz);
+   jfieldID field_l(const ::string & psz);
+   jfieldID field_f(const ::string & psz);
+   jfieldID field_d(const ::string & psz);
 
 
-   void set_str(jfieldID jfieldid, const char* psz);
+   void set_str(jfieldID jfieldid, const ::string & psz);
 
    string get_str(jfieldID jfieldid);
 
@@ -62,41 +62,41 @@ public:
 
    double get_d(jfieldID jfieldid);
 
-   void set_str(const char* pszField, const char* psz);
+   void set_str(const ::string & pszField, const ::string & psz);
 
-   string get_str(const char* pszField);
+   string get_str(const ::string & pszField);
 
-   void set_b(const char* pszField, bool boolean);
+   void set_b(const ::string & pszField, bool boolean);
 
-   bool get_b(const char* pszField);
+   bool get_b(const ::string & pszField);
 
-   void set_uch(const char* pszField, byte b);
+   void set_uch(const ::string & pszField, byte b);
 
-   byte get_uch(const char* pszField);
+   byte get_uch(const ::string & pszField);
 
-   void set_ch(const char* pszField, char ch);
+   void set_ch(const ::string & pszField, char ch);
 
-   char get_ch(const char* pszField);
+   char get_ch(const ::string & pszField);
 
-   void set_sh(const char* pszField, short sh);
+   void set_sh(const ::string & pszField, short sh);
 
-   short get_sh(const char* pszField);
+   short get_sh(const ::string & pszField);
 
-   void set_i(const char* pszField, int i);
+   void set_i(const ::string & pszField, int i);
 
-   int get_i(const char* pszField);
+   int get_i(const ::string & pszField);
 
-   void set_l(const char* pszField, long long ll);
+   void set_l(const ::string & pszField, long long ll);
 
-   long long get_l(const char* pszField);
+   long long get_l(const ::string & pszField);
 
-   void set_f(const char* pszField, float f);
+   void set_f(const ::string & pszField, float f);
 
-   float get_f(const char* pszField);
+   float get_f(const ::string & pszField);
 
-   void set_d(const char* pszField, double f);
+   void set_d(const ::string & pszField, double f);
 
-   double get_d(const char* pszField);
+   double get_d(const ::string & pszField);
 
 
 };

@@ -9,7 +9,7 @@
 extern thread_int_ptr < os_thread > t_posthread;
 
 
-i32 create_process(const char * _cmd_line, i32 * pprocessId)
+i32 create_process(const ::string & _cmd_line, i32 * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
@@ -87,7 +87,7 @@ i32 iShow)
 
 }
 
-CLASS_DECL_AURA u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_AURA u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    vsstring strCmdLine;
 

@@ -25,7 +25,7 @@
 
 //#ifdef MACOS
 //
-//bool macos_set_user_wallpaper(int iScreen, const char * psz);
+//bool macos_set_user_wallpaper(int iScreen, const ::string & psz);
 //
 ////long long mm_get_user_wallpaper(long long llScreen, char ** ppp);
 ////
@@ -559,7 +559,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::dialog_box(::object * pobject, const char * pszMatter, property_set & propertyset)
+   __pointer(::extended::future < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
    {
 
       auto pbox = pobject->__create_new < class ::userex::message_box >();
@@ -589,7 +589,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto pbox = pobject->__create_new < ::userex::message_box >();
@@ -722,7 +722,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -774,7 +774,7 @@ namespace core
    }
 
 
-   i32 user::track_popup_menu(const char * pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie)
+   i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie)
    {
 
       UNREFERENCED_PARAMETER(pszMatter);
@@ -786,7 +786,7 @@ namespace core
    }
 
 
-   bool user::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
+   bool user::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 
       i64 i64Size;
@@ -849,7 +849,7 @@ namespace core
    }
 
 
-   bool user::get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending)
+   bool user::get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending)
    {
 
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
@@ -946,7 +946,7 @@ namespace core
    }
 
 
-   void  user::AddToRecentFileList(const char * pszPathName)
+   void  user::AddToRecentFileList(const ::string & pszPathName)
 
    {
 
@@ -1829,7 +1829,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box(::user::primitive * puiOwner, const char * pszMessage, ::u32 fuStyle)
+   //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
    //   ::output_debug_string("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -2061,7 +2061,7 @@ namespace core
    }
 
 
-   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 uFlags, ::function_arg function)
+   //::e_status application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

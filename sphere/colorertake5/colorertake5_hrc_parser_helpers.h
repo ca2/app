@@ -60,7 +60,7 @@ namespace colorertake5
       scheme_impl *virtScheme, *substScheme;
       string virtSchemeName, substSchemeName;
 
-      VirtualEntry(const char *scheme, const char *subst)
+      VirtualEntry(const ::string &scheme, const ::string &subst)
       {
          virtScheme = substScheme = nullptr;
          virtSchemeName = (scheme);
@@ -135,7 +135,7 @@ namespace colorertake5
       address_array < SchemeNode * > nodes;
       file_type_impl *fileType;
    public:
-      scheme_impl(const char *sn)
+      scheme_impl(const ::string &sn)
       {
          schemeName = string(sn);
          fileType = nullptr;

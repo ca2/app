@@ -18,7 +18,7 @@
 //      virtual ~application();
 //
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * lpcsz);
+//      bool _001OnDDECommand(const ::string & lpcsz);
 //      virtual void _001EnableShellOpen();
 //      ///virtual ::aura::document *  _001OpenDocumentFile(::payload varFile);
 //      virtual void _001OnFileNew();

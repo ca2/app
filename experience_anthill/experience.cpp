@@ -68,7 +68,7 @@ namespace experience
          }
 
 
-         ::experience::frame * experience::experience_get_frame(const char * pszSchema)
+         ::experience::frame * experience::experience_get_frame(const ::string & pszSchema)
          {
 
             string strSchema(pszSchema);

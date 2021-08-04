@@ -24,30 +24,30 @@ namespace gpu
       virtual ~shader();
 
       
-      virtual ::e_status create_shader(const char * pszVertex, const char * pszFragment, const char * pszGeometry = nullptr);
+      virtual ::e_status create_shader(const ::string & pszVertex, const ::string & pszFragment, const ::string & pszGeometry = nullptr);
 
       virtual void use();
 
-      virtual void setBool(const char * pszName, bool value);
+      virtual void setBool(const ::string & pszName, bool value);
 
-      virtual void setInt(const char * pszName, int value);
+      virtual void setInt(const ::string & pszName, int value);
 
-      virtual void setFloat(const char * pszName, float value);
+      virtual void setFloat(const ::string & pszName, float value);
 
-      //virtual void setVec2(const char * pszName, const glm::vec2& value);
-      virtual void setVec2(const char * pszName, float x, float y);
+      //virtual void setVec2(const ::string & pszName, const glm::vec2& value);
+      virtual void setVec2(const ::string & pszName, float x, float y);
 
-      //virtual void setVec3(const char * pszName, const glm::vec3& value);
-      virtual void setVec3(const char * pszName, float x, float y, float z);
+      //virtual void setVec3(const ::string & pszName, const glm::vec3& value);
+      virtual void setVec3(const ::string & pszName, float x, float y, float z);
 
-      //virtual void setVec4(const char * pszName, const glm::vec4& value);
-      virtual void setVec4(const char * pszName, float x, float y, float z, float w);
+      //virtual void setVec4(const ::string & pszName, const glm::vec4& value);
+      virtual void setVec4(const ::string & pszName, float x, float y, float z, float w);
 
-      virtual void setMat2(const char * pszName, const float p[2*2]);
-      virtual void setMat3(const char * pszName, const float p[3*3]);
-      virtual void setMat4(const char * pszName, const float p[4*4]);
+      virtual void setMat2(const ::string & pszName, const float p[2*2]);
+      virtual void setMat3(const ::string & pszName, const float p[3*3]);
+      virtual void setMat4(const ::string & pszName, const float p[4*4]);
 
-      //virtual shader * create_shader(const char* pszVertex, enum_shader eshader);
+      //virtual shader * create_shader(const ::string & pszVertex, enum_shader eshader);
 
       //static ::e_status shader_compile_errors(GLuint shader, enum_shader eshader, string & strSummary);
 

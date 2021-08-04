@@ -202,7 +202,7 @@ namespace user
 
       virtual bool clear_pending_focus();
 
-      virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName) override;
+      virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
       virtual void set_destroying();
@@ -292,7 +292,7 @@ namespace user
       //virtual oswindow unsubclass_window() override;
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      //virtual bool ExecuteDlgInit(const char * pszResourceName);
+      //virtual bool ExecuteDlgInit(const ::string & pszResourceName);
 
       //virtual bool ExecuteDlgInit(void * pResource);
 
@@ -370,7 +370,7 @@ namespace user
 
 
       // Window Text Functions
-      virtual void set_window_text(const char * pszString) override;
+      virtual void set_window_text(const ::string & pszString) override;
 
       virtual strsize get_window_text(char * pszStringBuf,i32 nMaxCount);
 
@@ -521,7 +521,7 @@ namespace user
       //virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
       //virtual lresult SendDlgItemMessage(i32 nID,::u32 message,wparam wParam = 0,lparam lParam = 0);
       //virtual void SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned = true);
-      //virtual void SetDlgItemText(i32 nID,const char * pszString);
+      //virtual void SetDlgItemText(i32 nID, const ::string & pszString);
 
 
       //virtual i32 GetScrollPos(i32 nBar) const;
@@ -571,7 +571,7 @@ namespace user
 
       bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const char * pszText,const char * pszCaption = nullptr,::u32 nType = e_message_box_ok);
+      //virtual i32 message_box(const ::string & pszText, const ::string & pszCaption = nullptr,::u32 nType = e_message_box_ok);
 
 
 #if(WINVER >= 0x0500)
@@ -643,7 +643,7 @@ namespace user
 
 
       // for creating dialogs and dialog-like windows
-      //virtual bool CreateDlg(const char * pszTemplateName, ::user::interaction_impl * puiParent);
+      //virtual bool CreateDlg(const ::string & pszTemplateName, ::user::interaction_impl * puiParent);
 
       //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE pDialogTemplate, ::user::interaction_impl * puiParent,
 

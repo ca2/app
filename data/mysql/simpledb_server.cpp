@@ -14,7 +14,7 @@ namespace simpledb
    {
    }
 
-   bool server::open(const char * pszDatabase)
+   bool server::open(const ::string & pszDatabase)
    {
       if(m_pbase != nullptr)
          close();
@@ -41,7 +41,7 @@ namespace simpledb
       return true;
    }
 
-   bool server::sql(const char * pszQuery, ::payload & payload)
+   bool server::sql(const ::string & pszQuery, ::payload & payload)
    {
       if(m_pbase == nullptr)
          return false;

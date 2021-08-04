@@ -42,7 +42,7 @@ namespace draw2d_gdiplus
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual bool open(const char * pszDeviceName);
+      virtual bool open(const ::string & pszDeviceName);
       virtual ::draw2d::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();

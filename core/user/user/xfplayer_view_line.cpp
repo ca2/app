@@ -1308,8 +1308,7 @@ bool xfplayer_view_line::IsVisible()
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
-
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1330,7 +1329,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1473,7 +1472,7 @@ void xfplayer_view_line::SetColors(::color32_t color32, ::color::color crOutline
 //#endif
 
 
-void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const char * pcsz, strsize iLen, ::image_pointer & pimageCache)
+void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, strsize iLen, ::image_pointer & pimageCache)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());

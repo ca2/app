@@ -98,7 +98,7 @@ public:
 
    xfplayer_view_line();
    //xfplayer_view_line(const xfplayer_view_line & line);
-   virtual ~xfplayer_view_line();
+   ~xfplayer_view_line() override;
 
    virtual ::e_status initialize_xfplayer_view_line(xfplayer_view_linea * pContainer);
 
@@ -129,7 +129,7 @@ public:
 
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const char * pcsz,
+   const string & str,
 
    i32 left,
    i32 top,
@@ -142,7 +142,7 @@ public:
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    ::image * pimageCache,
-   const char * pcsz,
+   const ::string & str,
 
    i32 iLeft,
    i32 iTop,
@@ -155,8 +155,7 @@ public:
 
    virtual void CacheEmboss(
    ::draw2d::graphics_pointer & pgraphics,
-   const char * pcsz,
-
+   const ::string & str,
    strsize iLen,
    ::image_pointer & imageCache);
 

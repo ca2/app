@@ -271,11 +271,11 @@ namespace sockets
       //using ::object::read;
       virtual int read(void * buf, int n);
       virtual int recv(void * buf, int n);
-      virtual void on_read(const void * buf, memsize n ) override;
+      void on_read(const void * buf, memsize n ) override;
       void OnWrite() override;
 
 
-      virtual long cert_common_name_check(const char * common_name);
+      virtual long cert_common_name_check(const ::string & common_name);
       virtual void enable_cert_common_name_check(bool bEnable = true);
 
       /** SSL; Initialize ssl action_context for a client socket.

@@ -2,7 +2,7 @@
 #include "aura/user/_user.h"
 
 
-//CLASS_DECL_AURA __ message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
+//CLASS_DECL_AURA __ message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
 //{
 //
 //   ::e_status estatus = ::error_failed;

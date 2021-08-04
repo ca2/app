@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #ifdef WINDOWS_DESKTOP
-static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
+static void TraceDDE(const ::string & lpszPrefix, const MSG* pMsg)
 {
    ENSURE_ARG(pMsg != nullptr);
    if (pMsg->message == WM_DDE_EXECUTE)
@@ -17,7 +17,7 @@ static void TraceDDE(const char * lpszPrefix, const MSG* pMsg)
       }
       ASSERT(hCommands != nullptr);
 
-      const char * lpszCommands = (const char *)::GlobalLock(hCommands);
+      const char * lpszCommands = (const ::string &)::GlobalLock(hCommands);
       ENSURE_THROW(lpszCommands != nullptr, __throw(error_no_memory));
 //      ::output_debug_string(::aura::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
       ::GlobalUnlock(hCommands);

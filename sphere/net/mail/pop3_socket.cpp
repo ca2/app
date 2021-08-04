@@ -40,7 +40,7 @@ namespace mail
             {
                m_estate = state_auth_2;
                string str = "USER " + m_ppop3->m_paccount->m_strLogin + "\r\n";
-               Send((const char *) str);
+               Send((const ::string &) str);
             }
          }
 		   break;
@@ -61,7 +61,7 @@ namespace mail
                OnConnect();
             socket_handler()->AddList(GetSocket(), LIST_CALLONCONNECT, false);*/
             string str = "USER " + m_ppop3->m_paccount->m_strLogin + "\r\n";
-            Send((const char *) str);
+            Send((const ::string &) str);
          }
 		   break;
 	   case state_auth_2:
@@ -178,7 +178,7 @@ namespace mail
       m_ppop3->m_id = m_ppop3->m_straId[0];
       string strSend;
       strSend.Format("RETR %s\r\n", m_ppop3->m_straIndex[0]);
-      Send((const char *) strSend);
+      Send((const ::string &) strSend);
       m_ppop3->m_strHeaders.Empty();
       m_ppop3->m_strBody.Empty();
       m_ppop3->m_straId.erase_at(0);

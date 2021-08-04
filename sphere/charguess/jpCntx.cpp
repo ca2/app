@@ -92,7 +92,7 @@ char jp2CharContext[83][83] =
 
 #define MINIMUM_DATA_THRESHOLD  4
 
-void JapaneseContextAnalysis::HandleData(const char* aBuf, PR::u32 aLen)
+void JapaneseContextAnalysis::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   PR::u32 charLen;
   PRInt32 order;
@@ -155,7 +155,7 @@ float  JapaneseContextAnalysis::GetConfidence()
 }
 
 
-PRInt32 SJISContextAnalysis::GetOrder(const char* str, PR::u32 *charLen)
+PRInt32 SJISContextAnalysis::GetOrder(const ::string & str, PR::u32 *charLen)
 {
   //find out current char's byte length
   if (((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f) ||
@@ -172,7 +172,7 @@ PRInt32 SJISContextAnalysis::GetOrder(const char* str, PR::u32 *charLen)
   return -1;
 }
 
-PRInt32 EUCJPContextAnalysis::GetOrder(const char* str, PR::u32 *charLen)
+PRInt32 EUCJPContextAnalysis::GetOrder(const ::string & str, PR::u32 *charLen)
 {
   //find out current char's byte length
   if ((unsigned char)*str == (unsigned char)0x8e ||

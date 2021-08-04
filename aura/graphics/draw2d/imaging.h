@@ -141,7 +141,7 @@ public:
    i32 cx,
    i32 cy);
 
-   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const char * pcsz, i32 len, ::color32_t color32, double dBlend);
+   void AlphaTextOut(::draw2d::graphics * pgraphics, i32 left, i32 top, const ::string & pcsz, i32 len, ::color32_t color32, double dBlend);
 
 
    /*

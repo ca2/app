@@ -25,7 +25,7 @@ int flock(int, int);
 
 
 
-int _c_lock_is_active(const char * lpszName)
+int _c_lock_is_active(const ::string & lpszName)
 {
 
    int * pfd;
@@ -41,7 +41,7 @@ int _c_lock_is_active(const char * lpszName)
 }
 
 
-int _c_lock(const char * lpszName, void ** pdata)
+int _c_lock(const ::string & lpszName, void ** pdata)
 {
 
    int fd;
@@ -100,7 +100,7 @@ int _c_unlock(void ** pdata)
 
 
 
-string _ca_get_file_name(const char * lpszName, bool bCreate, int * pfd)
+string _ca_get_file_name(const ::string & lpszName, bool bCreate, int * pfd)
 {
 
    string str(lpszName);

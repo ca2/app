@@ -162,7 +162,7 @@ namespace draw2d_opengl
       void * get_os_data() const;
 
 
-      bool LoadBitmap(const char * lpszResourceName);
+      bool LoadBitmap(const ::string & lpszResourceName);
       bool LoadBitmap(::u32 nIDResource);
       bool LoadOEMBitmap(::u32 nIDBitmap); // for OBM_/OCR_/OIC_
       bool CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 stride);

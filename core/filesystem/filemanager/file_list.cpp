@@ -958,7 +958,7 @@ namespace filemanager
    }
 
 
-   //void file_list::schedule_file_size(const char * psz)
+   //void file_list::schedule_file_size(const ::string & psz)
    //{
 
    //   UNREFERENCED_PARAMETER(psz);

@@ -394,7 +394,7 @@ i32 image_list::add_icon(::payload varFile, int iItem)
 }
 
 
-i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
+i32 image_list::add_matter_icon(const ::string & pszMatter, int iItem)
 {
 
    auto pcontext = get_context();
@@ -472,7 +472,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 }
 
 
-//i32 image_list::add_matter(const char * pcsz, ::object * pobject, int iItem)
+//i32 image_list::add_matter(const ::string & pcsz, ::object * pobject, int iItem)
 //{
 //
 //   ::file::path path;
@@ -527,7 +527,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 }
 
 
-i32 image_list::add_std_matter(const char * pcsz, int iItem)
+i32 image_list::add_std_matter(const ::string & pcsz, int iItem)
 {
 
    auto pcontext = get_context();

@@ -78,7 +78,7 @@ namespace user
          virtual void _001SetSelFontFormat(const format * pformat, const eattribute & eattribute);
 
          virtual void _001Delete(strsize i1, strsize i2);
-         virtual void _001InsertText(const char * psz, format * pformatParam = nullptr);
+         virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
 
          virtual void _001GetText(string & str) const;
          virtual void _001GetLayoutText(string & str) const;

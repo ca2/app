@@ -144,7 +144,7 @@ namespace axis
       virtual bool process_exception(::exception_pointer e) override;
 
 
-      //virtual __pointer(::aura::application) assert_running(const char * pszAppId) override;
+      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running() override;
 
@@ -156,7 +156,7 @@ namespace axis
 
       virtual bool assert_user_logged_in() override;
 
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = nullptr);
+      virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr);
 
 
 
@@ -200,7 +200,7 @@ namespace axis
       //virtual void set_env_var(const string & payload, const string & value) override;
 
 
-      virtual ::aura::printer * get_printer(const char * pszDeviceName);
+      virtual ::aura::printer * get_printer(const ::string & pszDeviceName);
 
 
       virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon) override;
@@ -214,8 +214,8 @@ namespace axis
       virtual ::user::primitive * window_from_os_data(void * pdata);
 
 
-      virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr) override;
-      virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr) override;
+      virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object* pHint);
 

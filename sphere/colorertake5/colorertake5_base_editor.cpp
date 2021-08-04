@@ -585,28 +585,28 @@ namespace colorertake5
          regionHandlers.element_at(idx)->endParsing(lno);
    }
 
-   void base_editor::clearLine(index lno, const char *line)
+   void base_editor::clearLine(index lno, const ::string &line)
    {
       lrSupport->clearLine(lno, line);
       for(index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->clearLine(lno, line);
    }
 
-   void base_editor::addRegion(index lno, const char *line, strsize sx, strsize ex, class region *region)
+   void base_editor::addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region *region)
    {
       lrSupport->addRegion(lno, line, sx, ex, region);
       for(index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->addRegion(lno, line, sx, ex, region);
    }
 
-   void base_editor::enterScheme(index lno, const char *line, strsize sx, strsize ex, class region *region, class scheme *scheme)
+   void base_editor::enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
    {
       lrSupport->enterScheme(lno, line, sx, ex, region, scheme);
       for(i32 idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->enterScheme(lno, line, sx, ex, region, scheme);
    }
 
-   void base_editor::leaveScheme(index lno, const char *line, strsize sx, strsize ex, class region *region, class scheme *scheme)
+   void base_editor::leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme)
    {
       lrSupport->leaveScheme(lno, line, sx, ex, region, scheme);
       for(i32 idx = 0; idx < regionHandlers.get_size(); idx++)

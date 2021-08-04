@@ -45,7 +45,7 @@
 #define _(str) (__ns_get_text(str))
 
 NSString * __ns_get_text(NSString * str);
-NSString * __ns_get_text(const char * psz);
+NSString * __ns_get_text(const ::string & psz);
 
 
 

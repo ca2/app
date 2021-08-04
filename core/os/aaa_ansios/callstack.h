@@ -15,7 +15,7 @@ namespace ansios
       virtual ~callstack();
 
 
-      virtual const char * get_dup(const char * pszFormat, i32 iSkip, int iCount);
+      virtual const char * get_dup(const ::string & pszFormat, i32 iSkip, int iCount);
 
 
    };

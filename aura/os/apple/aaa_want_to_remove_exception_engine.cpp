@@ -37,7 +37,7 @@ It is provided "as is" without express or implied warranty.
 #include <cxxabi.h>
 #endif
 #ifdef __USE_BFD
-bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine);
+bool resolve_addr_file_func_line(void *address, const ::string & * filename, const ::string &* func, unsigned & iLine);
 void init_resolve_addr_file_func_line();
 static int bfdinit = 0;
 #endif
@@ -1222,7 +1222,7 @@ namespace exception
 #ifdef WINDOWS_DESKTOP
 
 
-   bool engine::stack_trace(CONTEXT * pcontext, uptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(CONTEXT * pcontext, uptr uiSkip, const ::string & pszFormat)
    {
 
       if(!pszFormat)
@@ -1319,7 +1319,7 @@ namespace exception
 
 
 
-   char * engine::stack_trace(iptr uiSkip, void * caller_address, const char * pszFormat, int iCount)
+   char * engine::stack_trace(iptr uiSkip, void * caller_address, const ::string & pszFormat, int iCount)
    {
 
       cslock csl(&m_cs);
@@ -1418,7 +1418,7 @@ namespace exception
 #ifdef WINDOWS_DESKTOP
 
 
-   bool engine::stack_trace(CONTEXT * pcontext, uptr uiSkip, bool bSkip, const char * pszFormat)
+   bool engine::stack_trace(CONTEXT * pcontext, uptr uiSkip, bool bSkip, const ::string & pszFormat)
    {
 
       *_strS = '\0';
@@ -1487,9 +1487,9 @@ namespace exception
    }
 
 #if OSBIT == 32
-   char * engine::stack_trace(::u32 * pinteraction, int c, const char * pszFormat)
+   char * engine::stack_trace(::u32 * pinteraction, int c, const ::string & pszFormat)
 #else
-   char * engine::stack_trace(DWORD64 * pinteraction, int c, const char * pszFormat)
+   char * engine::stack_trace(DWORD64 * pinteraction, int c, const ::string & pszFormat)
 #endif
    {
 
@@ -1532,7 +1532,7 @@ namespace exception
 #if defined(WINDOWS_DESKTOP)
 
 
-   char * engine::get_frame(const char * pszFormat, int & iLine)
+   char * engine::get_frame(const ::string & pszFormat, int & iLine)
    {
 
 
@@ -1663,7 +1663,7 @@ namespace exception
 
    }
 
-   char * engine::stack_trace(void * const * pinteraction, int c, const char * pszFormat)
+   char * engine::stack_trace(void * const * pinteraction, int c, const ::string & pszFormat)
    {
 
       char ** messages = backtrace_symbols(pinteraction, c);
@@ -1767,7 +1767,7 @@ namespace exception
 
    }
 
-   char * engine::stack_trace(void * const * ppui, int c, const char * pszFormat)
+   char * engine::stack_trace(void * const * ppui, int c, const ::string & pszFormat)
    {
 
       char ** messages = backtrace_symbols(ppui, c);
@@ -1940,7 +1940,7 @@ int free_resolve_addr_file_func_line()
 
 }
 
-bool prep_resolve_addr_file_func_line(const char * f)
+bool prep_resolve_addr_file_func_line(const ::string & f)
 {
 
    int i = free_resolve_addr_file_func_line();
@@ -2018,7 +2018,7 @@ void init_resolve_addr_file_func_line()
 
    prep_resolve_addr_file_func_line(ename);
 
-   const char ** point = (const char **) moda;
+   const char ** point = (const ::string &*) moda;
 
    while(*point)
    {
@@ -2035,7 +2035,7 @@ void init_resolve_addr_file_func_line()
 
 }
 
-bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const char * * filename, const char ** func, unsigned & iLine)
+bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, void *address, const ::string & * filename, const ::string &* func, unsigned & iLine)
 {
    long offset = ((long)address) - text->vma;
    if (offset > 0)
@@ -2051,7 +2051,7 @@ bool resolve_addr_file_func_line1(bfd* abfd, asymbol **syms, asection *text, voi
 }
 
 
-bool resolve_addr_file_func_line(void *address, const char * * filename, const char ** func, unsigned & iLine)
+bool resolve_addr_file_func_line(void *address, const ::string & * filename, const ::string &* func, unsigned & iLine)
 {
    int i;
    while(i < bfdcount)

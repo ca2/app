@@ -207,7 +207,7 @@ namespace file_watcher
    }
 
    //--------
-   void os_file_watcher::handle_action(watch_struct* watch, const char * filename, u32 action)
+   void os_file_watcher::handle_action(watch_struct* watch, const ::string & filename, u32 action)
    {
 
       if(!watch)

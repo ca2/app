@@ -238,7 +238,7 @@ namespace html
    }
 
 
-   void core_data::load(const char * psz)
+   void core_data::load(const ::string & psz)
    {
 
       delete_contents();
@@ -514,7 +514,7 @@ namespace html
    }
 
 
-   string core_data::process_url(const char * pszUrl)
+   string core_data::process_url(const ::string & pszUrl)
    {
    
       string strUrl(pszUrl);
@@ -554,7 +554,7 @@ namespace html
    }
 
 
-   image_pointer core_data::get_image(const char* pszUrl)
+   image_pointer core_data::get_image(const ::string & pszUrl)
    {
 
       string strUrl = process_url(pszUrl);
@@ -641,7 +641,7 @@ namespace html
    }
 
 
-   bool core_data::open_link(const char* pszPath)
+   bool core_data::open_link(const ::string & pszPath)
    {
 
       string strPath(pszPath);
@@ -869,7 +869,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(::payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

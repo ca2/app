@@ -8,7 +8,7 @@
 
 
 
-CLASS_DECL_APEX const char* multimedia_get_library_name();
+//CLASS_DECL_APEX const char* multimedia_get_library_name();
 
 
 

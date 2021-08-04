@@ -19,14 +19,14 @@
 namespace colorertake5
 {
 
-void colorer_logger_error(const char *cname, const char *msg, ...);
-void colorer_logger_warn(const char *cname, const char *msg, ...);
-void colorer_logger_trace(const char *cname, const char *msg, ...);
-void colorer_logger_info(const char *cname, const char *msg, ...);
+void colorer_logger_error(const ::string &cname, const ::string &msg, ...);
+void colorer_logger_warn(const ::string &cname, const ::string &msg, ...);
+void colorer_logger_trace(const ::string &cname, const ::string &msg, ...);
+void colorer_logger_info(const ::string &cname, const ::string &msg, ...);
 
-void colorer_logger(i32 level, const char *cname, const char *msg, va_list v);
+void colorer_logger(i32 level, const ::string &cname, const ::string &msg, va_list v);
 
-void colorer_logger_set_target(const char *logfile);
+void colorer_logger_set_target(const ::string &logfile);
 
 }
 

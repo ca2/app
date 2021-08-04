@@ -27,7 +27,7 @@ public:
 
    string GetLocationURL();
    bool Refresh2(i32 i);
-   virtual bool Navigate(const char * pszUrl) override;
+   virtual bool Navigate(const ::string & pszUrl) override;
 
    virtual void on_document_complete(const ::string & strUrl);
 

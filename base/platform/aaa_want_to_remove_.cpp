@@ -26,7 +26,7 @@ namespace base
 
 
 
-   bool extract_sub_string(string& rString, const char* pszFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::string & pszFullString, i32 iSubString, char chSep)
    {
 
       if (pszFullString == nullptr)
@@ -170,7 +170,7 @@ CLASS_DECL_BASE u32 g_tickStartTime = 0;
 
 
 //extern "C"
-CLASS_DECL_BASE void debug_print(const char* pszFormat, ...)
+CLASS_DECL_BASE void debug_print(const ::string & pszFormat, ...)
 {
 
    if (is_ptr_null(pszFormat, 1024))
@@ -235,7 +235,7 @@ void __post_quit_message(i32 nExitCode)
 
 
 
-//CLASS_DECL_BASE PFN_NEW_BASE_LIBRARY get_get_new_aura_library(const char* psz)
+//CLASS_DECL_BASE PFN_NEW_BASE_LIBRARY get_get_new_aura_library(const ::string & psz)
 //{
 //
 //   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
@@ -254,7 +254,7 @@ void __post_quit_message(i32 nExitCode)
 //}
 
 
-CLASS_DECL_BASE::acme::library& get_library(const char* psz)
+CLASS_DECL_BASE::acme::library& get_library(const ::string & psz)
 {
 
    synchronous_lock synchronouslock(psystem->m_mutexLibrary);
@@ -264,7 +264,7 @@ CLASS_DECL_BASE::acme::library& get_library(const char* psz)
 }
 
 
-//CLASS_DECL_BASE void register_get_new_aura_library(const char* psz, PFN_NEW_BASE_LIBRARY pfnNewAuraLibrary)
+//CLASS_DECL_BASE void register_get_new_aura_library(const ::string & psz, PFN_NEW_BASE_LIBRARY pfnNewAuraLibrary)
 //{
 //
 //   synchronous_lock synchronouslock(psystem->m_mutexLibrary);
@@ -274,7 +274,7 @@ CLASS_DECL_BASE::acme::library& get_library(const char* psz)
 //}
 
 
-CLASS_DECL_BASE void register_library(const char* psz, ::acme::library* plibrary)
+CLASS_DECL_BASE void register_library(const ::string & psz, ::acme::library* plibrary)
 {
 
    synchronous_lock synchronouslock(psystem->m_mutexLibrary);

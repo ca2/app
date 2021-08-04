@@ -2,7 +2,7 @@
 #include "acme/const/id.h"
 
 
-numeric_parser_exception::numeric_parser_exception(const char * pszMessage):
+numeric_parser_exception::numeric_parser_exception(const ::string & pszMessage):
    ::exception::exception(error_parsing, pszMessage)
 {
 

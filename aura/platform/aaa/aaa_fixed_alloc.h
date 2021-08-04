@@ -142,8 +142,8 @@ public: \
    void * operator new(size_t) { return s_palloc->Alloc(); } \
    void * operator new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const char *, i32) { return s_palloc->Alloc(); } \
-   void operator delete(void * p, const char *, i32) { s_palloc->Free(p); } \
+   void * operator new(size_t, const ::string &, i32) { return s_palloc->Alloc(); } \
+   void operator delete(void * p, const ::string &, i32) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
 

@@ -22,7 +22,7 @@
 //      }
 //
 //
-//      ::matter * library::new_object(const char * lpszClass)
+//      ::matter * library::new_object(const ::string & lpszClass)
 //      {
 //
 //         if(string(lpszClass) == "experience")

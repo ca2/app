@@ -23,7 +23,7 @@ namespace uwp
       stdio_file();
 
 
-      virtual void write_string(const char * lpsz);
+      virtual void write_string(const ::string & lpsz);
       virtual char * read_string(char * lpsz, ::u32 nMax);
       virtual bool read_string(string & rString);
 

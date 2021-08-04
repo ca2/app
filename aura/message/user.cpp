@@ -68,7 +68,7 @@ namespace message
    }
 
 
-   void create::failed(const char * pcszErrorMessage)
+   void create::failed(const ::string & pcszErrorMessage)
    {
 
       error(pcszErrorMessage);
@@ -76,7 +76,7 @@ namespace message
    }
 
 
-   void create::error(const char * pcszErrorMessage)
+   void create::error(const ::string & pcszErrorMessage)
    {
 
       m_lresult = -1;

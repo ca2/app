@@ -91,7 +91,7 @@ namespace user
       virtual void _001OnTimer(::timer * ptimer);
 
 
-      virtual bool create_message_queue(const char * lpszName);
+      virtual bool create_message_queue(const ::string & lpszName);
 
 
       //virtual void set_config_fps(double dConfigFps);
@@ -381,7 +381,7 @@ namespace user
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
 
-      virtual void set_window_text(const char * pszString);
+      virtual void set_window_text(const ::string & pszString);
 
       virtual strsize get_window_text(char * pszStringBuf,strsize nMaxCount);
 
@@ -400,7 +400,7 @@ namespace user
       virtual bool _001IsPointInside(const ::point_i32 & point);
       virtual ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const char * psz,const char * pszTarget = nullptr);
+      virtual void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr);
 
       virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
@@ -536,16 +536,16 @@ namespace user
 
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point_i32 & point);
+      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
       //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
       //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags,::message::message * pmessage);
+      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
       //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags);
+      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
       //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml,i32 iFlags);
 
 
@@ -742,7 +742,7 @@ namespace user
       virtual index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
 
 
-      //virtual void set_window_text(const char * pszString);
+      //virtual void set_window_text(const ::string & pszString);
 
       //virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context);
       //virtual void _001SetText(const ::string & strText, const ::action_context & action_context);

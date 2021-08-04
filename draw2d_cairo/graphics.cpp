@@ -205,7 +205,7 @@ bool graphics::IsPrinting()
 }
 
 
-//bool graphics::CreateDC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+//bool graphics::CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
 //{
 //
 //    __throw(error_not_supported);
@@ -213,7 +213,7 @@ bool graphics::IsPrinting()
 //}
 
 
-//bool graphics::CreateIC(const char * lpszDriverName, const char * lpszDeviceName, const char * lpszOutput, const void * lpInitData)
+//bool graphics::CreateIC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)
 //{
 //
 //    __throw(error_not_supported);
@@ -1063,7 +1063,7 @@ bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //}
 //
 //
-//bool graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+//bool graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1073,7 +1073,7 @@ bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
 //}
 //
 //
-//bool graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//bool graphics::DrawState(const ::point_f64 & point, const ::size_f64 & size_f64, const ::string & lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1729,7 +1729,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 
 
-//bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const char * lpszString, strsize nCount, int * lpDxWidths)
+//bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & lpszString, strsize nCount, int * lpDxWidths)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1739,7 +1739,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 
 
-//size_f64 graphics::TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1759,7 +1759,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 //
 //
-//size_f64 graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1779,7 +1779,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 
 
-size_f64 graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
@@ -2025,7 +2025,7 @@ bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //
 //
 //// Printer Escape Functions
-//i32 graphics::Escape(i32 nEscape, i32 nCount, const char * lpszInData, LPVOID lpOutData)
+//i32 graphics::Escape(i32 nEscape, i32 nCount, const ::string & lpszInData, LPVOID lpOutData)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2492,7 +2492,7 @@ bool graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 }
 //
 //
-//i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const char * lpszInputData)
+//i32 graphics::DrawEscape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2502,7 +2502,7 @@ bool graphics::poly_bezier(const ::point_f64* lpPoints, count nCount)
 //}
 //
 //
-//i32 graphics::Escape(i32 nEscape, i32 nInputSize, const char * lpszInputData, i32 nOutputSize, char * lpszOutputData)
+//i32 graphics::Escape(i32 nEscape, i32 nInputSize, const ::string & lpszInputData, i32 nOutputSize, char * lpszOutputData)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -3020,7 +3020,7 @@ bool graphics::DeleteDC()
 }
 
 
-//i32 graphics::StartDoc(const char * lpszDocName)
+//i32 graphics::StartDoc(const ::string & lpszDocName)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -3568,7 +3568,7 @@ void graphics::DPtoLP(::size_f64 * psize)
 }
 
 
-//bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rectangle_i32 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+//bool graphics::draw_text(const ::string & lpszString, strsize nCount, const ::rectangle_i32 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 //{
 //
 //    return draw_text(string(lpszString, nCount), rectangle, nFormat);
@@ -3642,7 +3642,7 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
     //pango_layout_set_height(playout, height(rectParam));
 
-    pango_layout_set_text(playout, (const char *)block.m_pdata, block.m_iSize);          // sets the text to be associated with the layout (final arg is length, -1
+    pango_layout_set_text(playout, (const ::string &)block.m_pdata, block.m_iSize);          // sets the text to be associated with the layout (final arg is length, -1
 
     pango_layout_set_font_description(playout, pdesc);            // assign the previous font description to the layout
 
@@ -3742,7 +3742,7 @@ bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rect
 bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
 {
 
-    string str((const char *) block.get_data(), block.get_size());
+    string str((const ::string &) block.get_data(), block.get_size());
 
     str = ::str::q_valid(str);
 
@@ -3913,7 +3913,7 @@ bool graphics::draw_text_ex(const ::string & str, const ::rectangle_f64 & rectan
 }
 
 
-size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
+size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount, strsize iIndex)
 {
 
     size_f64 sz;
@@ -3930,7 +3930,7 @@ size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strs
 }
 
 
-size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
+size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount)
 {
 
     return get_text_extent(lpszString, nCount, -1);
@@ -3941,12 +3941,12 @@ size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
 size_f64 graphics::get_text_extent(const block & block)
 {
 
-    return get_text_extent((const char *) block.get_data(), block.get_size());
+    return get_text_extent((const ::string &) block.get_data(), block.get_size());
 
 }
 
 
-size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
+size_f64 graphics::GetOutputTextExtent(const ::string & lpszString, strsize nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3966,7 +3966,7 @@ size_f64 graphics::GetOutputTextExtent(const ::string & str)
 }
 
 
-bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::get_text_extent(size_f64 & size, const ::string & lpszString, strsize nCount, strsize iIndex)
 {
 
    string str(lpszString, minimum_non_negative(iIndex, nCount));
@@ -4093,7 +4093,7 @@ bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize
 }
 
 
-bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::_GetTextExtent(size_f64 & size, const ::string & lpszString, strsize nCount, strsize iIndex)
 {
 
     if (iIndex < 0)
@@ -4218,7 +4218,7 @@ bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize 
 }
 
 
-bool graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount)
+bool graphics::get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount)
 {
 
     return get_text_extent(size_f64, lpszString, nCount, -1);
@@ -4280,7 +4280,7 @@ bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::
 //}
 
 
-//bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
+//bool graphics::text_out(double x, double y, const ::string & lpszString, strsize nCount)
 //{
 //
 //    return text_out(x, y, string(lpszString, nCount));
@@ -5904,7 +5904,7 @@ bool graphics::flush()
 ////
 ////      s = FcNameUnparse(font);
 ////
-////      string str((const char *)s);
+////      string str((const ::string &)s);
 ////
 ////      int iFind = str.find(":");
 ////
@@ -5920,7 +5920,7 @@ bool graphics::flush()
 ////
 ////         //printf("Filename: %s", file);
 ////
-////         pitem->m_strFile = (const char *)file;
+////         pitem->m_strFile = (const ::string &)file;
 ////
 ////      }
 ////      else
@@ -6124,7 +6124,7 @@ bool graphics::_set(const ::draw2d::matrix & matrix)
 }
 
 
-FT_Face graphics::ftface(const char* pszFontName, int iWeight, bool bItalic)
+FT_Face graphics::ftface(const ::string & pszFontName, int iWeight, bool bItalic)
 {
 
    synchronous_lock synchronouslock(cairo_mutex());

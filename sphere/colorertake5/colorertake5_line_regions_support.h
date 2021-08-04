@@ -88,10 +88,10 @@ namespace colorertake5
       * RegionHandler implementation
       */
       void startParsing(index lno);
-      void clearLine(index lno, const char * line);
-      void addRegion(index lno, const char * line, strsize sx, strsize ex, class region *region);
-      void enterScheme(index lno, const char *line, strsize sx, strsize ex, class region *region, class scheme *scheme);
-      void leaveScheme(index lno, const char *line, strsize sx, strsize ex, class region *region, class scheme *scheme);
+      void clearLine(index lno, const ::string & line);
+      void addRegion(index lno, const ::string & line, strsize sx, strsize ex, class region *region);
+      void enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
+      void leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region *region, class scheme *scheme);
    protected:
       /**
       * Behaviour is redefined in derived classes

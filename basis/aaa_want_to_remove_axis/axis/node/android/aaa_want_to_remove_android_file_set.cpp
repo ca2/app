@@ -58,7 +58,7 @@ namespace android
    }
 
 
-   ::index file_set::find_first_file(const char * lpcsz, ::index iStart)
+   ::index file_set::find_first_file(const ::string & lpcsz, ::index iStart)
    {
 
       return m_listing.find_first_ci(lpcsz, iStart);

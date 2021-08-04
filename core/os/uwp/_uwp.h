@@ -26,7 +26,7 @@
 //CLASS_DECL_CORE oswindow WINAPI WinSetFocus(oswindow oswindow);
 
 
-CLASS_DECL_CORE string normalize_path(const char* lpcszPath);
+CLASS_DECL_CORE string normalize_path(const ::string & lpcszPath);
 
 
 CLASS_DECL_CORE oswindow get_capture();
@@ -67,8 +67,8 @@ namespace user
 
 
 
-//CLASS_DECL_CORE ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
-//CLASS_DECL_CORE::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_CORE ::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName);
+//CLASS_DECL_CORE::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
 //CLASS_DECL_CORE bool get_filetime(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 

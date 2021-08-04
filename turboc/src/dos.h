@@ -117,7 +117,7 @@ CLASS_DECL_TURBOC void gettime_d (struct time *t);
 // RSB:  The following originally was suffixed by "_d".
 #define getdate(d) getdateTurbo (d)
 CLASS_DECL_TURBOC void getdateTurbo (struct date *d);
-CLASS_DECL_TURBOC struct tm* getdateSystem (const char *d);
+CLASS_DECL_TURBOC struct tm* getdateSystem (const ::string &d);
 
 __END_DECLS
 #define SECONDS_PER_DAY	86400L	/* the number of seconds in one day */

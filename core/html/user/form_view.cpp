@@ -100,7 +100,7 @@ bool html_form_view::Refresh2(i32 i)
    return true;
 }
 
-bool html_form_view::Navigate(const char * pszUrl)
+bool html_form_view::Navigate(const ::string & pszUrl)
 {
    ASSERT(false);
    /*   if(!open_document(pszUrl))

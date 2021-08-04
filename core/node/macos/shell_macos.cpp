@@ -12,7 +12,7 @@
 //
 //#include "shell_macos.h"
 //
-//bool macos_get_file_image(::image * pimage, const char * psz);
+//bool macos_get_file_image(::image * pimage, const ::string & psz);
 //
 //
 //namespace macos
@@ -54,7 +54,7 @@
 //   }
 //
 //
-//   shell::e_folder shell::get_folder_type(::object * pobject, const char * lpcszPath)
+//   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcszPath)
 //   {
 //
 //      string strPath(lpcszPath);

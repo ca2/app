@@ -40,13 +40,13 @@
       return false;
    }
 
-   void os_context::terminate_processes_by_title(const char * lpszName)
+   void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
       UNREFERENCED_PARAMETER(lpszName);
       __throw(error_interface_only, "this is an interface");
    }
 
-   bool os_context::get_pid_by_path(const char * lpszName, u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::string & lpszName, u32 & dwPid)
    {
       UNREFERENCED_PARAMETER(lpszName);
       UNREFERENCED_PARAMETER(dwPid);
@@ -54,7 +54,7 @@
       return false;
    }
 
-   bool os_context::get_pid_by_title(const char * lpszName, u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & lpszName, u32 & dwPid)
    {
       UNREFERENCED_PARAMETER(lpszName);
       UNREFERENCED_PARAMETER(dwPid);
@@ -123,7 +123,7 @@
    }
 
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -133,7 +133,7 @@
 
    }
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -143,7 +143,7 @@
 
    }
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -153,7 +153,7 @@
 
    }
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
+   bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
       UNREFERENCED_PARAMETER(pszKey);
@@ -170,7 +170,7 @@
 
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
 
       UNREFERENCED_PARAMETER(straKey);
@@ -180,7 +180,7 @@
 
    }
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
       UNREFERENCED_PARAMETER(straCommand);
@@ -191,7 +191,7 @@
    }
 
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
       UNREFERENCED_PARAMETER(pszExtension);
@@ -203,7 +203,7 @@
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
 
       UNREFERENCED_PARAMETER(pszExtension);
@@ -216,7 +216,7 @@
    }
 
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
       UNREFERENCED_PARAMETER(pszExtension);
@@ -231,7 +231,7 @@
 
    /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_full_web_browser(const char * pcsz)
+   bool os_context::native_full_web_browser(const ::string & pcsz)
 
    {
 
@@ -243,7 +243,7 @@
 
    /// Windows (Edge), fallback to native_full_web_browser
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_modern_web_browser(const char * pcsz)
+   bool os_context::native_modern_web_browser(const ::string & pcsz)
 
    {
 
@@ -376,7 +376,7 @@
    }
 
 
-   void os_context::set_file_status(const char * pszFileName, const ::file::file_status& status)
+   void os_context::set_file_status(const ::string & pszFileName, const ::file::file_status& status)
 
    {
 

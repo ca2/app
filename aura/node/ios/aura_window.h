@@ -42,7 +42,7 @@ bool m_bDirty;
    virtual void round_window_mouse_dragged(double x, double y) = 0;
    virtual bool round_window_key_down(::user::enum_key ekey) = 0;
    virtual bool round_window_key_up(::user::enum_key ekey) = 0;
-   virtual bool round_window_on_text(const char * pszText, long iSel, long iEnd) = 0;
+   virtual bool round_window_on_text(const ::string & pszText, long iSel, long iEnd) = 0;
    virtual bool round_window_on_sel_text(long iBeg, long iEnd) = 0;
    
    virtual int round_window_get_x() = 0;
@@ -71,17 +71,17 @@ bool m_bDirty;
    
    virtual void round_window_show_keyboard(bool bShow = true);
    
-   virtual void round_window_set_title(const char * pszTitle);
+   virtual void round_window_set_title(const ::string & pszTitle);
    virtual void round_window_get_title(char * pszTitle, long iSize);
 
    
    virtual void round_window_set_sel(long iBeg, long iEnd);
    virtual void round_window_get_sel(long & iBeg, long & iEnd);
 
-   virtual void round_window_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, long iSelBeg, long iSelEnd);
+   virtual void round_window_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, long iSelBeg, long iSelEnd);
    virtual void round_window_edit_on_kill_focus();
 
-   virtual void round_window_set_text(const char * pszText);
+   virtual void round_window_set_text(const ::string & pszText);
    virtual void round_window_get_text(char * pszText, long iSize);
    virtual long round_window_get_text_length();
 

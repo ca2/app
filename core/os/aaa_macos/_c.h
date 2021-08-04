@@ -24,5 +24,5 @@ bool nsapp_activation_policy_is_prohibited();
 
 
 i32 run_system();
-i32 aura_main_command_line(const char * pszParams, int argc, char *argv[]);
+i32 aura_main_command_line(const ::string & pszParams, int argc, char *argv[]);
 

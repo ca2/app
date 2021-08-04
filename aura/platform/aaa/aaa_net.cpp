@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_AURA string url_decode(const char * psz)
+CLASS_DECL_AURA string url_decode(const ::string & psz)
 {
    string str(psz);
 
@@ -55,7 +55,7 @@ CLASS_DECL_AURA string url_decode(const char * psz)
 
 
 
-string url_decode(const char * pszUrl,strsize iLen)
+string url_decode(const ::string & pszUrl,strsize iLen)
 
 {
 
@@ -125,7 +125,7 @@ string url_decode(const char * pszUrl,strsize iLen)
 
 
 
-CLASS_DECL_AURA bool url_query_get_param(string & strParam,const char * pszKey,const char * pszUrl)
+CLASS_DECL_AURA bool url_query_get_param(string & strParam, const ::string & pszKey, const ::string & pszUrl)
 {
 
    const char * pszBeg;
@@ -241,7 +241,7 @@ success:
 
 
 
-string url_encode(const char * psz)
+string url_encode(const ::string & psz)
 {
 
    string str;
@@ -383,7 +383,7 @@ void openURL(const string &url_str)
 
 void openURL(const string &url_str);
 
-int ui_open_url(const char * psz);
+int ui_open_url(const ::string & psz);
 
 void openURL(const string &url_str)
 {
@@ -419,7 +419,7 @@ void openURL(const string &url_str)
 //#define strdup _strdup
 //#endif
 //
-//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
+//CLASS_DECL_AURA int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const ::string & pszServerName, int bInteractive)
 //{
 //
 //   ::aura::application * papp = (::aura::application *) instance;

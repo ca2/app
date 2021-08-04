@@ -275,11 +275,11 @@ public:
    ~CMiniFrameWnd();
 
 
-   virtual bool create(const char * pClassName, const char * lpWindowName,
+   virtual bool create(const ::string & pClassName, const ::string & lpWindowName,
 
       u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
-   virtual bool create_window_ex(u32 dwExStyle, const char * pClassName, const char * lpWindowName,
+   virtual bool create_window_ex(u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName,
 
       u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);

@@ -94,12 +94,12 @@ namespace userex
       }
    }
 
-   void pane_view::set_new_pane_info(id id, const char * pszMatter)
+   void pane_view::set_new_pane_info(id id, const ::string & pszMatter)
    {
       set_menu_info(id, pszMatter, "new_pane");
    }
 
-   void pane_view::set_menu_info(id id, const char * pszMatter, ::id idCommand)
+   void pane_view::set_menu_info(id id, const ::string & pszMatter, ::id idCommand)
    {
 
       __pointer(menu) pmenu;

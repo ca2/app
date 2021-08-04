@@ -212,7 +212,7 @@ int freerdp_client_settings_parse_command_line(rdpSettings* settings, int argc,
 	return status;
 }
 
-int freerdp_client_settings_parse_connection_file(rdpSettings* settings, const char* filename)
+int freerdp_client_settings_parse_connection_file(rdpSettings* settings, const ::string & filename)
 {
 	rdpFile* file;
 	int ret = -1;
@@ -251,7 +251,7 @@ int freerdp_client_settings_parse_connection_file_buffer(rdpSettings* settings, 
 	return status;
 }
 
-int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const char* filename, BOOL unicode)
+int freerdp_client_settings_write_connection_file(const rdpSettings* settings, const ::string & filename, BOOL unicode)
 {
 	rdpFile* file;
 	int ret = -1;
@@ -273,7 +273,7 @@ out:
 	return ret;
 }
 
-int freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const char* filename)
+int freerdp_client_settings_parse_assistance_file(rdpSettings* settings, const ::string & filename)
 {
 	int status;
 	rdpAssistanceFile* file;

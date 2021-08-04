@@ -16,7 +16,7 @@ namespace user
 
       toolbar_control();
 
-      //bool LoadToolBar(const char * pszResourceName);
+      //bool LoadToolBar(const ::string & pszResourceName);
 
       //bool LoadToolBar(::u32 nIDResource);
       bool SetButtons(const ::u32* pIDArray, i32 nIDCount);
@@ -126,8 +126,8 @@ namespace user
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      void SaveState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
-//      void RestoreState(HKEY hKeyRoot, const char * pszSubKey, const char * pszValueName);
+//      void SaveState(HKEY hKeyRoot, const ::string & pszSubKey, const ::string & pszValueName);
+//      void RestoreState(HKEY hKeyRoot, const ::string & pszSubKey, const ::string & pszValueName);
 //      void LoadImages(i32 iBitmapID, HINSTANCE hinst);
 //
 //#endif
@@ -139,7 +139,7 @@ namespace user
       i32 hit_test(POINT_I32 * ppt);
 
       void Customize();
-      i32 AddStrings(const char * pszStrings);
+      i32 AddStrings(const ::string & pszStrings);
 
       void AutoSize();
 

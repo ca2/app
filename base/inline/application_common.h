@@ -64,7 +64,7 @@ public:
    virtual ::aura::application* new_application() override { return new APPLICATION; }
 
 
-   static_application_factory(const char * pszName = "") :
+   static_application_factory(const ::string & pszName = "") :
       static_setup(flag_application, pszName)
    {
 

@@ -40,7 +40,7 @@
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char * pszString)
+strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::string & pszString)
 
 {
    ASSERT(__is_valid_string(pszString));
@@ -225,7 +225,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char 
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const char * pszString, strsize iLen)
+strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::string & pszString, strsize iLen)
 
 {
 
@@ -292,7 +292,7 @@ LCleanExit:
    return (nRetVal);
 }
 
-LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const char * pszValue)
+LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, const ::string & pszValue)
 
 {
 
@@ -324,7 +324,7 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const char * lpszName, const 
 }
 
 
-void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const char * pszValue)
+void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & pszValue)
 
 {
 

@@ -185,7 +185,7 @@
             }
 
 
-            void frame::set_style(const char * pszStyle)
+            void frame::set_style(const ::string & pszStyle)
             {
 
                string strStyle(pszStyle);

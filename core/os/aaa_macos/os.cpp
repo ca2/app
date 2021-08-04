@@ -49,10 +49,10 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 
 
 
-char * mm_browse_folder(const char * pszStartDir, bool bCanCreateDirectories);
+char * mm_browse_folder(const ::string & pszStartDir, bool bCanCreateDirectories);
 
 
-string apple_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
+string apple_browse_folder(const ::string & pszStartDir, bool bCanCreateDirectories)
 {
 
    return ::str::from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
@@ -61,11 +61,11 @@ string apple_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
 
 
 
-char** mm_browse_file_open(const char ** pszStartDir, bool bMulti);
+char** mm_browse_file_open(const ::string &* pszStartDir, bool bMulti);
 
 
 
-string_array apple_browse_file_open(const char ** pszStartDir, bool bMulti)
+string_array apple_browse_file_open(const ::string &* pszStartDir, bool bMulti)
 {
 
 

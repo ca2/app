@@ -429,7 +429,7 @@ namespace user
       return pSBP->strText;
    }
 
-   bool status_bar::SetPaneText(i32 nIndex, const char * pszNewText, bool bUpdate)
+   bool status_bar::SetPaneText(i32 nIndex, const ::string & pszNewText, bool bUpdate)
 
    {
       ASSERT_VALID(this);
@@ -474,7 +474,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      default_window_procedure(SB_SETTEXT, ((::u16)pSBP->nStyle)|nIndex,
 //                    (pSBP->nStyle & SBPS_DISABLED) ? 0 :
-//                    (LPARAM)(const char *)pSBP->strText);
+//                    (LPARAM)(const ::string &)pSBP->strText);
 //#endif
 //
       return true;
@@ -683,7 +683,7 @@ namespace user
          pmessage->m_bRet = true;
          return;
       }
-      pmessage->m_lresult = SetPaneText(nIndex, (const char *)pmessage->m_lparam.m_lparam) ? 0 : -1;
+      pmessage->m_lresult = SetPaneText(nIndex, (const ::string &)pmessage->m_lparam.m_lparam) ? 0 : -1;
       pmessage->m_bRet = true;
    }
 
@@ -730,7 +730,7 @@ namespace user
 
          }
 
-         ::memcpy_dup(pszDest, (const char *)pSBP->strText, nLen*sizeof(char));
+         ::memcpy_dup(pszDest, (const ::string &)pSBP->strText, nLen*sizeof(char));
 
       }
 
@@ -936,7 +936,7 @@ namespace user
          {
             __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";
-            dumpcontext << "\n\tnID = " << (const char *) ppane->m_id;
+            dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_id;
             dumpcontext << "\n\tnStyle = " << ppane->nStyle;
             dumpcontext << "\n\tcxText = " << ppane->cxText;
             dumpcontext << "\n\tstrText = " << ppane->strText;
@@ -990,7 +990,7 @@ namespace user
       //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    }
 
-   void status_bar::SetPaneInfo(i32 nIndex, const char * pszId, ::u32 nStyle, i32 cxWidth)
+   void status_bar::SetPaneInfo(i32 nIndex, const ::string & pszId, ::u32 nStyle, i32 cxWidth)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(pszId);

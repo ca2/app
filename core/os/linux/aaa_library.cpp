@@ -28,7 +28,7 @@ __node_library_is_loaded_callback(struct dl_phdr_info *info, size_t size, void *
     return 0;
 }
 
-string __node_library_is_loaded(const char * pszPath)
+string __node_library_is_loaded(const ::string & pszPath)
 {
 
 
@@ -56,7 +56,7 @@ string __node_library_is_loaded(const char * pszPath)
 }
 
 
-CLASS_DECL_CORE void * __node_library_touch(const char * pszPath, string & strMessage)
+CLASS_DECL_CORE void * __node_library_touch(const ::string & pszPath, string & strMessage)
 {
 
    string strPath = __node_library_is_loaded(pszPath);
@@ -72,7 +72,7 @@ CLASS_DECL_CORE void * __node_library_touch(const char * pszPath, string & strMe
 
 }
 
-CLASS_DECL_CORE void * __node_library_open(const char * pszPath, string & strMessage)
+CLASS_DECL_CORE void * __node_library_open(const ::string & pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -93,7 +93,7 @@ CLASS_DECL_CORE void * __node_library_open(const char * pszPath, string & strMes
    if(ansi_find_string(strPath, ".") == nullptr)
       strPath += ".so";
 
-   if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+   if(strstr((const ::string &) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
       strPath = "lib" + strPath;
 
    void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
@@ -140,7 +140,7 @@ CLASS_DECL_CORE void * __node_library_open(const char * pszPath, string & strMes
 }
 
 
-CLASS_DECL_CORE void * __node_library_open_ca2(const char * pszPath, string & strMessage)
+CLASS_DECL_CORE void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -204,7 +204,7 @@ CLASS_DECL_CORE bool __node_library_close(void * plibrary)
 }
 
 
-CLASS_DECL_CORE void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+CLASS_DECL_CORE void * __node_library_raw_get(void * plibrary, const ::string & pszEntryName)
 {
 
    return dlsym(plibrary, pszEntryName);

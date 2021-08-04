@@ -110,7 +110,7 @@ public:
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status destroy() override;
 
-   inline const char * topic_text();
+   inline const ::string & topic_text();
 
    context& __context(const ::payload & payload);
 
@@ -310,7 +310,7 @@ public:
 
    virtual void destruct();
 
-   static void system(const char * pszProjectName);
+   static void system(const ::string & pszProjectName);
 
    virtual ::e_status enable_application_events(bool bEnable = true);
 
@@ -330,8 +330,8 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const;
    virtual bool is_running() const;
-   virtual void child_post_quit(const char * pszTag);
-   virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
+   virtual void child_post_quit(const ::string & pszTag);
+   virtual void child_post_quit_and_wait(const ::string & pszTag, const duration & duration);
    virtual ::e_status finish(::property_object * pcontextobjectRootFinishingInitiator = nullptr) override;
    virtual ::e_status set_finish(::property_object* pcontextobjectRootFinishingInitiator) override;
    virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
@@ -356,7 +356,7 @@ public:
 
    virtual ::e_status do_request(::create * pcreate);
 
-   virtual __pointer(::extended::future < ::conversation >)  message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >)  message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -364,7 +364,7 @@ public:
    //}
 
 
-   //virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
@@ -376,7 +376,7 @@ public:
 
    virtual void release_references();
 
-   virtual __pointer(::matter) running(const char * pszTag) const;
+   virtual __pointer(::matter) running(const ::string & pszTag) const;
 
    virtual bool ___is_reference(::matter * pobject) const;
 
@@ -407,10 +407,10 @@ public:
    //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
    //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_matter_image(const ::string & pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
    //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   //virtual ::image_result load_thumbnail(const char * pszPath);
+   //virtual ::image_result load_thumbnail(const ::string & pszPath);
    //virtual ::image_result load_dib(const ::file::path & pathDib);
 
 
@@ -559,7 +559,7 @@ public:
    //::e_status property_notify(const ::id & id, ::matter * pmatter);
 
 
-//   inline void format_topic_text(const char * psz, ...)
+//   inline void format_topic_text(const ::string & psz, ...)
 //   {
 //
 //      va_list valist;
@@ -570,7 +570,7 @@ public:
 //   }
 //
 //
-//   inline void format_topic_text_v(const char * psz, va_list valist)
+//   inline void format_topic_text_v(const ::string & psz, va_list valist)
 //   {
 //
 //      string str;
@@ -956,7 +956,7 @@ public:
    //}
 
 
-   //virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
@@ -999,10 +999,10 @@ public:
    //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
    //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_matter_image(const ::string & pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
    //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   //virtual ::image_result load_thumbnail(const char * pszPath);
+   //virtual ::image_result load_thumbnail(const ::string & pszPath);
    //virtual ::image_result load_dib(const ::file::path & pathDib);
 
 
@@ -1151,7 +1151,7 @@ public:
    //::e_status property_notify(const ::id & id, ::matter * pmatter);
 
 
-//   inline void format_topic_text(const char * psz, ...)
+//   inline void format_topic_text(const ::string & psz, ...)
 //   {
 //
 //      va_list valist;
@@ -1162,7 +1162,7 @@ public:
 //   }
 //
 //
-//   inline void format_topic_text_v(const char * psz, va_list valist)
+//   inline void format_topic_text_v(const ::string & psz, va_list valist)
 //   {
 //
 //      string str;

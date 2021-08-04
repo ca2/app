@@ -37,7 +37,7 @@ public:
    bool create(i32 cx, i32 cy);
    bool create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow);
    bool realize(::draw2d::graphics * pgraphics) const;
-   //bool create(const char * pszBitmapID, i32 cx, i32 nGrow, ::color::color crMask);
+   //bool create(const ::string & pszBitmapID, i32 cx, i32 nGrow, ::color::color crMask);
 
 
    i32 reserve_image(int iItem = -1);
@@ -47,12 +47,12 @@ public:
    i32 add_icon(::payload varFile, int iItem = -1);
    i32 add_image(::image * pimage, int x = 0, int y = 0, int iItem = -1);
    ///i32 add_icon_os_data(void * p, int iItem = -1);
-   i32 add_matter_icon(const char * pcszMatter, int iItem = -1);
+   i32 add_matter_icon(const ::string & pcszMatter, int iItem = -1);
 
    i32 add_file(::payload varFile, int iItem = -1);
-   ///i32 add_matter(const char * pcsz, ::object * pobject = nullptr, int iItem = -1);
+   ///i32 add_matter(const ::string & pcsz, ::object * pobject = nullptr, int iItem = -1);
 
-   i32 add_std_matter(const char * pcsz, int iItem = -1);
+   i32 add_std_matter(const ::string & pcsz, int iItem = -1);
 
    //i32 add_image(image_list * pil, int iImage, int iItem = - 1);
 

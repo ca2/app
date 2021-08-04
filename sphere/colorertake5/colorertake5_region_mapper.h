@@ -19,7 +19,7 @@ public:
   /**
    * Searches mapped region define value with qualified name @ca name.
    */
-  virtual RegionDefine *getRegionDefine(const char * name) = 0;
+  virtual RegionDefine *getRegionDefine(const ::string & name) = 0;
 
   virtual ~RegionMapper(){};
 protected:

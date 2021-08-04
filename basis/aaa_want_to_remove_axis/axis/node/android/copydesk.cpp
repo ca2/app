@@ -70,7 +70,7 @@ namespace android
 
    }
 
-   void copydesk::set_plain_text(const char * psz)
+   void copydesk::set_plain_text(const ::string & psz)
    {
 
       __throw(todo);

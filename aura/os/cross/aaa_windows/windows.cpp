@@ -27,7 +27,7 @@ static ::u32 MyStringLen(const wd16char *s)
   return i;
 }
 
-BSTR SysAllocStringByteLen(const char * psz, ::u32 len)
+BSTR SysAllocStringByteLen(const ::string & psz, ::u32 len)
 {
   i32 realLen = len + sizeof(::u32) + sizeof(OLECHAR) + sizeof(OLECHAR);
   void *point = AllocateForBSTR(realLen);
@@ -90,7 +90,7 @@ HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src)
     return res;
   if (src->vt == VT_BSTR)
   {
-    dest->bstrVal = SysAllocStringByteLen((const char *)src->bstrVal,
+    dest->bstrVal = SysAllocStringByteLen((const ::string &)src->bstrVal,
         SysStringByteLen(src->bstrVal));
     if (dest->bstrVal == 0)
       return E_OUTOFMEMORY;

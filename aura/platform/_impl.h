@@ -131,7 +131,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //
 //   template < class APP >
-//   __transport(::aura::application) single_application_library < APP > ::get_new_application(::object * pobject, const char * pszAppId)
+//   __transport(::aura::application) single_application_library < APP > ::get_new_application(::object * pobject, const ::string & pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))

@@ -228,7 +228,7 @@ namespace aura
 
 //   extern __pointer(::aura::application) g_papp;
 
-   CLASS_DECL_AURA i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_AURA i32 SimpleDebugReport(i32 iReportType, const ::string & pszFileName,i32 iLine, const ::string &, const ::string & pszFormat, va_list list)
    {
 #ifdef WIN32
 
@@ -290,7 +290,7 @@ namespace aura
    }
 
 
-   void log::success(const char * psz)
+   void log::success(const ::string & psz)
    {
 
       print(psz);
@@ -298,7 +298,7 @@ namespace aura
    }
 
 
-   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & pszFormat, va_list args)
    //{
 
    //   string str;
@@ -310,7 +310,7 @@ namespace aura
    //}
 
 
-   void log::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
    {
 
       const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
@@ -601,7 +601,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
    }
 
-   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
+   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, ...)
    //{
    //   if(!m_bTrace)
    //      return;
@@ -615,7 +615,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
 
 
-   void log::print(const char * pszFormat, ...)
+   void log::print(const ::string & pszFormat, ...)
    {
 
       va_list valist;
@@ -629,7 +629,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const char * pszId)
+   //::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const ::string & pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -752,7 +752,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
 
 
-   //void log::trace(const char * pszFormat, ...)
+   //void log::trace(const ::string & pszFormat, ...)
    //{
 
    //   if (void_ptr_is_null(this))
@@ -770,7 +770,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    //   va_end(ptr);
    //}
 
-   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
+   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, ...)
    {
       if(!m_bTrace)
          return;

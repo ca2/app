@@ -154,13 +154,13 @@ namespace dynamic_source
       string include_expand_md5(const ::string & strPath);
       void set_include_expand_md5(const ::string & strPath, const ::string & strMd5);
 
-      __pointer(::dynamic_source::session) get_session(const char * pszId);
+      __pointer(::dynamic_source::session) get_session(const ::string & pszId);
 
       __pointer(script_instance) get(const ::string & strNafme);
       __pointer(script_instance) get(const ::string & strName, __pointer(script) & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
-      void run(const char * lpcszName);
+      void run(const ::string & lpcszName);
 
       void LoadEnv();
 
@@ -190,11 +190,11 @@ namespace dynamic_source
       virtual string get_root_plugin();
 
 
-      void wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket);
-      bool has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket);
-      ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
-      bool is_online(const char * pszServer);
-      ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
+      void wait_link_out(const ::string & pszServer, ::sockets::link_in_socket * pinsocket);
+      bool has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket);
+      ::sockets::link_in_socket * get_link_in(const ::string & pszServer, ::sockets::link_out_socket * poutsocket);
+      bool is_online(const ::string & pszServer);
+      ::sockets::link_out_socket * create_link_out(const ::string & pszServer, ::sockets::httpd_socket * phttpdsocket);
       ::size_i32 get_image_size(const ::file::path & strFile);
       bool extract_image_size(const ::file::path & strFile,::size_i32 * psize);
 

@@ -30,7 +30,7 @@ namespace simpledb
       // }
    }
 
-   bool set::exec(const char * pszSql)
+   bool set::exec(const ::string & pszSql)
    {
       ::database::result_set * r = (::database::result_set *) &m_resultset;
       r->record_header.erase_all();
@@ -210,7 +210,7 @@ namespace simpledb
      return 0;  */
 
 
-   bool set::sql_do_select(const char * & pszSql)
+   bool set::sql_do_select(const ::string & & pszSql)
    {
       string_array straField;
 
@@ -345,7 +345,7 @@ namespace simpledb
 
    }
 
-   bool set::sql_do_insert(const char * & pszSql)
+   bool set::sql_do_insert(const ::string & & pszSql)
    {
 
       try
@@ -423,7 +423,7 @@ namespace simpledb
 
    }
 
-   string set::consume_quoted_value(const char * & pszXml)
+   string set::consume_quoted_value(const ::string & & pszXml)
    {
       const char * psz = pszXml;
       string qc = ::str::get_utf8_char(psz);
@@ -450,7 +450,7 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_value(const char * & pszSql)
+   string set::sql_consume_value(const ::string & & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       string str = consume_quoted_value(pszSql);
@@ -458,7 +458,7 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_keyword(const char * & pszSql)
+   string set::sql_consume_keyword(const ::string & & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       string str = ::str::consume_nc_name(pszSql);
@@ -466,19 +466,19 @@ namespace simpledb
       return str;
    }
 
-   string set::sql_consume_field(const char * & pszSql)
+   string set::sql_consume_field(const ::string & & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       return ::str::consume_nc_name(pszSql);
    }
 
-   string set::sql_consume_table(const char * & pszSql)
+   string set::sql_consume_table(const ::string & & pszSql)
    {
       ::str::consume_spaces(pszSql, 0);
       return ::str::consume_nc_name(pszSql);
    }
 
-   string set::sql_consume_join_on(const char * & pszSql)
+   string set::sql_consume_join_on(const ::string & & pszSql)
    {
       UNREFERENCED_PARAMETER(pszSql);
       return "";
@@ -602,7 +602,7 @@ namespace simpledb
    }
 
 
-   bool set::query(const char *query)
+   bool set::query(const ::string &query)
    {
       UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
@@ -653,7 +653,7 @@ namespace simpledb
       return false;
    }
 
-   void set::open(const char * sql)
+   void set::open(const ::string & sql)
    {
       set_select_sql(sql);
       open();
@@ -759,7 +759,7 @@ namespace simpledb
 
 
 
-   long set::nextid(const char *seq_name)
+   long set::nextid(const ::string &seq_name)
    {
       UNREFERENCED_PARAMETER(seq_name);
       /*      if(handle())
@@ -782,7 +782,7 @@ namespace simpledb
       return true;
    }
 
-   bool set::SetFieldValue(const char *f_name, const ::payload &value)
+   bool set::SetFieldValue(const ::string &f_name, const ::payload &value)
    {
       bool found = false;
       if(ds_state == database::dataset_select)
@@ -855,7 +855,7 @@ namespace simpledb
       //  return false;
    }
 
-   i32 set::GetFieldIndex(const char *f_name)
+   i32 set::GetFieldIndex(const ::string &f_name)
    {
       for (i32 i=0; i < fields_object.get_size(); i++)
       {
@@ -894,7 +894,7 @@ namespace simpledb
       __throw(::database::exception("not in Select state"));
    }
 
-   void set::query_items(string_array & stra, const char * pszSql)
+   void set::query_items(string_array & stra, const ::string & pszSql)
    {
       if(query(pszSql))
       {

@@ -205,7 +205,7 @@ static const __MAP_MESSAGE allMessages[] =
 // DDE special case
 
 /*
- static void TraceDDE(const char * lpszPrefix, const MESSAGE* pMsg)
+ static void TraceDDE(const ::string & lpszPrefix, const MESSAGE* pMsg)
  {
  ENSURE_ARG(pMsg != nullptr);
  if (pMsg->message == WM_DDE_EXECUTE)
@@ -221,7 +221,7 @@ static const __MAP_MESSAGE allMessages[] =
  }
  ASSERT(hCommands != nullptr);
 
- const char * lpszCommands = (const char *)::GlobalLock(hCommands);
+ const char * lpszCommands = (const ::string &)::GlobalLock(hCommands);
  ENSURE_THROW(lpszCommands != nullptr, ::AfxThrowMemoryException() );
  //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
@@ -273,7 +273,7 @@ static const __MAP_MESSAGE allMessages[] =
  */
 /////////////////////////////////////////////////////////////////////////////
 
-void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
+void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage)
 {
    //   ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(pmessage != nullptr);
@@ -357,7 +357,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
 
 
 
-void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
+void __trace_message(const ::string & lpszPrefix, LPMESSAGE lpmsg)
 {
    //ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(lpmsg != nullptr);

@@ -7,7 +7,7 @@ namespace aura
 
    inline id system::id(const class ::payload & payload)
    {
-      return ::id((const char *)(class ::payload &) ::payload);
+      return ::id((const ::string &)(class ::payload &) ::payload);
    }
 
    inline id system::id(const property & prop)
@@ -25,7 +25,7 @@ namespace aura
 #endif
    }
 
-   inline id system::id(const char * psz)
+   inline id system::id(const ::string & psz)
    {
       return get_id_space()(psz);
    }
@@ -50,7 +50,7 @@ namespace aura
 
 
 
-inline id::id(const char * psz)
+inline id::id(const ::string & psz)
 {
 
    m_all = {};

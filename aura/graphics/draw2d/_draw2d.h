@@ -14,11 +14,11 @@ class colorref_array;
 
 #if 0
 
-CLASS_DECL_AURA bool TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca);
+CLASS_DECL_AURA bool TextOutU(HDC hdc, i32 x, i32 y, const ::string & pString, i32 ca);
 
-CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl);
+CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const ::string & pString, i32 ca, LPSIZE32 psizl);
 
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECTANGLE_I32 * lprc, ::u32 format);
+CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const ::string & pchText, i32 cchText, RECTANGLE_I32 * lprc, ::u32 format);
 
 #endif
 

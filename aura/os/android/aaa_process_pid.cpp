@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <dirent.h>
 
-i32 get_process_pid(const char * procNameParam)
+i32 get_process_pid(const ::string & procNameParam)
 {
 
    string procName(procNameParam);
@@ -86,7 +86,7 @@ string module_path_from_pid(unsigned int iPid)
 
 
 
-int_array module_path_get_pid(const char * pszPath)
+int_array module_path_get_pid(const ::string & pszPath)
 {
 
    int_array ia;
@@ -121,7 +121,7 @@ int_array module_path_get_pid(const char * pszPath)
 }
 
 
-//id_array app_get_pid(const char * psz)
+//id_array app_get_pid(const ::string & psz)
 //{
 //
 //   id_array ia;

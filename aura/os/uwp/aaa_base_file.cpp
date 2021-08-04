@@ -3,7 +3,7 @@
 #include <io.h>
 
 
-int_bool file_exists(const char * path1)
+int_bool file_exists(const ::string & path1)
 {
 
    u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -17,7 +17,7 @@ int_bool file_exists(const char * path1)
 
 
 
-int_bool file_put_contents(const char * path,const char * contents,count len)
+int_bool file_put_contents(const ::string & path, const ::string & contents,count len)
 {
 
    dir::mk(dir::name(path));
@@ -48,7 +48,7 @@ int_bool file_put_contents(const char * path,const char * contents,count len)
 }
 
 
-filesize file_length_dup(const char * path)
+filesize file_length_dup(const ::string & path)
 {
 
    HANDLE hfile = create_file(path,GENERIC_READ,0,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
@@ -70,7 +70,7 @@ filesize file_length_dup(const char * path)
 
 
 
-int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
+int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 {
    return file_is_equal_path(psz1,psz2);
 //   const i32 iBufSize = MAX_PATH * 8;
@@ -200,7 +200,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //
 
 
-//string file_as_string(const char * path)
+//string file_as_string(const ::string & path)
 //{
 //
 //   string str;
@@ -233,7 +233,7 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 
 //
 //
-//bool file_as_memory(memory_base & memory,const char * path)
+//bool file_as_memory(memory_base & memory, const ::string & path)
 //{
 //
 //   memory.set_size(0);
@@ -338,7 +338,7 @@ string file_module_path_dup()
 
 
 //
-//bool PrintModules(string & strImage,u32 processID,const char * pszDll)
+//bool PrintModules(string & strImage,u32 processID, const ::string & pszDll)
 //{
 //
 //   HANDLE hProcess;
@@ -404,7 +404,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(u32_array & dwa,string_array & straProcesses,const char * pszDll)
+//void dll_processes(u32_array & dwa,string_array & straProcesses, const ::string & pszDll)
 //{
 //   // Get the list of process identifiers.
 //
@@ -1053,7 +1053,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //
 //
 //
-//int_bool file_set_length(const char * pszName,size_t iSize)
+//int_bool file_set_length(const ::string & pszName,size_t iSize)
 //{
 //
 //   wstring wstr(pszName);
@@ -1082,7 +1082,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //
 //
 //
-//int_bool file_move(const char * lpszNewName,const char * lpszOldName)
+//int_bool file_move(const ::string & lpszNewName, const ::string & lpszOldName)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
@@ -1092,7 +1092,7 @@ int_bool ensure_file_size_handle(HANDLE h,u64 iSize)
 //
 //}
 
-int_bool file_delete(const char * lpszFileName)
+int_bool file_delete(const ::string & lpszFileName)
 {
 
 
@@ -1107,7 +1107,7 @@ int_bool file_delete(const char * lpszFileName)
 
 
 //
-//int_bool file_is_equal_path(const char * psz1,const char * psz2)
+//int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1158,7 +1158,7 @@ HANDLE _get_osfhandle(i32 i)
 return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
 
-//FILE *FILE_open(const char *path,const char *attrs)
+//FILE *FILE_open(const ::string &path, const ::string &attrs)
 //{
 //
 //
@@ -1233,7 +1233,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //}
 //
 //
-//i32 fprintf_dup(FILE *fp,const char *s,...)
+//i32 fprintf_dup(FILE *fp, const ::string &s,...)
 //{
 //   va_list args;
 //   va_start(args,s);
@@ -1390,7 +1390,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   // Text-mode translation is always ANSI!
 //   if(textMode)			// text mode -> translate LF -> CRLF
 //   {
-//      const char *src = (const char*)buffer;
+//      const char *src = (const ::string &)buffer;
 //      size_t startpos = 0,i = 0;
 //      for(i = 0; i < size*count; i++)
 //      {
@@ -1429,7 +1429,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   else
 //   {
 //      size_t s = size * count;
-//      const char *src = (const char*)buffer;
+//      const char *src = (const ::string &)buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
@@ -1691,7 +1691,7 @@ HANDLE WinFindFirstFileW(const unichar * pwsz,WIN32_FIND_DATAW * pdata)
 
 }
 
-HANDLE WinFindFirstFileA(const char * pwsz,WIN32_FIND_DATAA * pdata)
+HANDLE WinFindFirstFileA(const ::string & pwsz,WIN32_FIND_DATAA * pdata)
 {
 
    return FindFirstFileExA(pwsz,FindExInfoStandard,pdata,FindExSearchNameMatch,nullptr,0);
@@ -1730,7 +1730,7 @@ return true;
 
 */
 
-HANDLE create_file(const char * lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
+HANDLE create_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1757,7 +1757,7 @@ int_bool close_handle(HANDLE h)
 }
 
 
-::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
+::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName)
 {
 
    return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
@@ -1765,7 +1765,7 @@ int_bool close_handle(HANDLE h)
 }
 
 
-::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
+::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    /*
@@ -1906,7 +1906,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 
 
 //
-//int_bool file_exists(const char * path1)
+//int_bool file_exists(const ::string & path1)
 //{
 //
 //   string str(path1);
@@ -1923,7 +1923,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 //
 
 
-//int_bool file_put_contents(const char * path,const char * contents,::count len)
+//int_bool file_put_contents(const ::string & path, const ::string & contents,::count len)
 //{
 //
 //   dir::mk(dir::name(path));
@@ -1950,7 +1950,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 
 
 
-string file_as_string(const char * path, strsize iReadAtMostByteCount)
+string file_as_string(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -1994,7 +1994,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-bool file_as_memory(memory_base & memory,const char * path, iptr iReadAtMostByteCount)
+bool file_as_memory(memory_base & memory, const ::string & path, iptr iReadAtMostByteCount)
 {
 
    memory.set_size(0);
@@ -2029,7 +2029,7 @@ bool file_as_memory(memory_base & memory,const char * path, iptr iReadAtMostByte
 
 
 
-int_bool file_is_equal_path(const char * psz1,const char * psz2)
+int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
 {
 
    return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
@@ -2059,7 +2059,7 @@ string file_get_mozilla_firefox_plugin_container_path()
 //
 
 
-int_bool file_set_length(const char * pszName,size_t iSize)
+int_bool file_set_length(const ::string & pszName,size_t iSize)
 {
 
    int i = open(pszName,0);
@@ -2075,7 +2075,7 @@ int_bool file_set_length(const char * pszName,size_t iSize)
 
 
 
-bool file_copy_dup(const char  * pszNew, const char * pszSrc,bool bOverwrite)
+bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite)
 {
 
    ::Windows::Storage::StorageFolder ^ folder = nullptr;

@@ -153,7 +153,7 @@ va_list *Arguments
 }
 
 
-void output_debug_string(const char * pOutputString)
+void output_debug_string(const ::string & pOutputString)
 {
 
    if(::acme::should_output_debug_string())

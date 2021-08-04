@@ -118,7 +118,7 @@ namespace windowing
    }
 
 
-   button *simple_ui_display::new_button(const char *pszLabel, enum_dialog_result edialogresult)
+   button *simple_ui_display::new_button(const ::string &pszLabel, enum_dialog_result edialogresult)
    {
 
       return nullptr;

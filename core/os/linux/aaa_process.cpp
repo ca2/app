@@ -10,9 +10,9 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-int create_process6(const char * _cmd_line, int * pprocessId);
+int create_process6(const ::string & _cmd_line, int * pprocessId);
 
-CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses, const ::string & pszDll)
 {
 
    UNREFERENCED_PARAMETER(dwa);
@@ -24,7 +24,7 @@ CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses
 
 
 
-i32 create_process(const char * pszCommandLine, i32 * pprocessId)
+i32 create_process(const ::string & pszCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -73,7 +73,7 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-i32 create_process3(const char * _cmd_line, i32 * pprocessId)
+i32 create_process3(const ::string & _cmd_line, i32 * pprocessId)
 {
 
    char *   exec_path_name;
@@ -121,7 +121,7 @@ i32 create_process3(const char * _cmd_line, i32 * pprocessId)
 }
 
 
-i32 daemonize_process(const char * pszCommandLine, i32 * pprocessId)
+i32 daemonize_process(const ::string & pszCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -227,7 +227,7 @@ i32 daemonize_process(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-i32 create_process4(const char * pszCommandLine, i32 * pprocessId)
+i32 create_process4(const ::string & pszCommandLine, i32 * pprocessId)
 {
 
    string_array stra;
@@ -301,7 +301,7 @@ i32 create_process4(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-CLASS_DECL_CORE i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+CLASS_DECL_CORE i32 call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -345,7 +345,7 @@ CLASS_DECL_CORE i32 call_async(const char * pszPath, const char * pszParam, cons
 }
 
 
-CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_CORE u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -458,12 +458,12 @@ retry:
 
    mem.get_data()[s] = '\0';
 
-   return (const char *) mem.get_data();
+   return (const ::string &) mem.get_data();
 
 }
 
 
-int_array module_path_get_pid(const char * pszPath)
+int_array module_path_get_pid(const ::string & pszPath)
 {
 
    int_array ia;
@@ -499,7 +499,7 @@ int_array module_path_get_pid(const char * pszPath)
 
 
 
-id_array app_get_pid(const char * psz)
+id_array app_get_pid(const ::string & psz)
 {
 
    ::output_debug_string("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
@@ -640,7 +640,7 @@ string_array cmdline_from_pid(unsigned int iPid)
 }
 
 
-bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout )
+bool shell_execute_sync(const ::string & pszFile, const ::string & pszParams, ::duration durationTimeout )
 {
 
    property_set set;
@@ -670,7 +670,7 @@ CLASS_DECL_CORE i32 ca2_main();
 
 
 
-int create_process2(const char * pszCommandLine, int * pprocessId)
+int create_process2(const ::string & pszCommandLine, int * pprocessId)
 {
 
    string_array stra;

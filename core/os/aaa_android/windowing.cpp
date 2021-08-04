@@ -308,7 +308,7 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 }
 
 
-i32 oswindow_data::store_name(const char * psz)
+i32 oswindow_data::store_name(const ::string & psz)
 {
 
    synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_CORE ::e_status os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
+CLASS_DECL_CORE ::e_status os_message_box(oswindow oswindow, const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    while (psystem->oslocal().m_iMessageBoxResult > 0)

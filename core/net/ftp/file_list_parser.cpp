@@ -70,7 +70,7 @@ namespace ftp
    {
    }
 
-   bool file_list_parser::CheckMonth(const char * pszBuffer, const char * pszMonthName) const
+   bool file_list_parser::CheckMonth(const ::string & pszBuffer, const ::string & pszMonthName) const
    {
       if (tolower(pszBuffer[0]) != pszMonthName[0] ||
          tolower(pszBuffer[1]) != pszMonthName[1] ||
@@ -80,7 +80,7 @@ namespace ftp
       return true;
    }
 
-   int file_list_parser::GetMonth(const char * pszBuffer, int iLength) const
+   int file_list_parser::GetMonth(const ::string & pszBuffer, int iLength) const
    {
       if (iLength == 3)
       {
@@ -93,7 +93,7 @@ namespace ftp
       return -1;
    }
 
-   bool file_list_parser::GetLong(const char * pszLong, int iLength, long& lResult) const
+   bool file_list_parser::GetLong(const ::string & pszLong, int iLength, long& lResult) const
    {
       string strLong(pszLong, iLength);
 
@@ -229,12 +229,12 @@ namespace ftp
    /// see http://pobox.com/~djb/proto/eplf.txt
    /// "+i8388621.29609,m824255902,/,\tdev"
    /// "+i8388621.44468,m839956783,r,s10376,\tRFCEPLF"
-   bool file_list_parser::IsEPLS(const char * pszLine)
+   bool file_list_parser::IsEPLS(const ::string & pszLine)
    {
       return pszLine && *pszLine == ('+');
    }
 
-   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const char * pszLine, int iLength)
+   bool file_list_parser::ParseEPLF(file_status& ftpFileStatus, const ::string & pszLine, int iLength)
    {
       if (!IsEPLS(pszLine))
          return false;
@@ -301,7 +301,7 @@ namespace ftp
    /// Also NetPresenz for the Mac:
    /// "-------r--         326  1391972  1392298 Nov 22  1995 MegaPhone.sit"
    /// "drwxrwxr-x               folder        2 May 10  1996 network"
-   bool file_list_parser::IsUNIXStyleListing(const char * pszLine)
+   bool file_list_parser::IsUNIXStyleListing(const ::string & pszLine)
    {
       if (pszLine == nullptr)
          return false;
@@ -320,7 +320,7 @@ namespace ftp
       return false;
    }
 
-   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const char * pszLine, int iLength)
+   bool file_list_parser::ParseUNIXStyleListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength)
    {
       if (!IsUNIXStyleListing(pszLine))
          return false;
@@ -453,12 +453,12 @@ namespace ftp
    /// "CORE.DIR;1          1  8-SEP-1996 16:09 [SYSTEM] (RWE,RWE,RE,RE)"
    /// and non-MutliNet VMS:
    /// "CII-MANUAL.TEX;1  213/216  29-JAN-1996 03:33:12  [ANONYMOU,ANONYMOUS]   (RWED,RWED,,)"
-   bool file_list_parser::IsMultiNetListing(const char * pszLine)
+   bool file_list_parser::IsMultiNetListing(const ::string & pszLine)
    {
       return pszLine && strchr(pszLine, ';') != nullptr;
    }
 
-   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const char * pszLine, int iLength)
+   bool file_list_parser::ParseMultiNetListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength)
    {
       if (!IsMultiNetListing(pszLine))
          return false;
@@ -527,12 +527,12 @@ namespace ftp
    /// 04-27-00  09:09PM       <DIR>          licensed
    /// 07-18-00  10:16AM       <DIR>          pub
    /// 04-14-00  03:47PM                  589 readme.htm
-   bool file_list_parser::IsMSDOSListing(const char * pszLine)
+   bool file_list_parser::IsMSDOSListing(const ::string & pszLine)
    {
       return pszLine && ansi_char_is_digit(pszLine[0]);
    }
 
-   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const char * pszLine, int iLength)
+   bool file_list_parser::ParseMSDOSListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength)
    {
       if (!IsMSDOSListing(pszLine))
          return false;

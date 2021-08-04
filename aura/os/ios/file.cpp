@@ -10,7 +10,7 @@
 
 char * ns_get_executable_path();
 
-CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_AURA void dll_processes(u32_array & dwa, string_array & straProcesses, const ::string & pszDll)
 {
    
    

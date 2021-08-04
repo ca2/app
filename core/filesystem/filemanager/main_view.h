@@ -32,7 +32,7 @@ namespace filemanager
 
       virtual void on_create_split_impact() override;
 
-      void FileManagerBrowse(const char * pcwstr, const ::action_context & action_context);
+      void FileManagerBrowse(const ::string & pcwstr, const ::action_context & action_context);
 
 
       virtual void on_command(::message::command * pcommand) override;

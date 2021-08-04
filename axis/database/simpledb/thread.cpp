@@ -161,7 +161,7 @@ namespace simpledb
    }
 
 
-   void thread::queue(const char * pszKey, block block)
+   void thread::queue(const ::string & pszKey, block block)
    {
 
       synchronous_lock synchronouslock(mutex());

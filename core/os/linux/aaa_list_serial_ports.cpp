@@ -32,7 +32,7 @@ static string usb_sysfs_friendly_name(const string& sys_usb_path);
 static string_array get_sysfs_info(const string& device_path);
 //static string read_line(const string& file);
 static string usb_sysfs_hw_string(const string& sysfs_path);
-static string format(const char* format, ...);
+static string format(const ::string & format, ...);
 
 string_array
 glob(const string_array& patterns)
@@ -235,7 +235,7 @@ string_array get_sysfs_info(const string & device_path)
 
 
 string
-format(const char* format, ...)
+format(const ::string & format, ...)
 {
    va_list ap;
 

@@ -58,7 +58,7 @@ namespace ios
    }
    
    
-   ::index file_set::find_first_file(const char * pcsz, ::index iStart)
+   ::index file_set::find_first_file(const ::string & pcsz, ::index iStart)
    {
       
       return m_straFile.find_first_ci(pcsz, iStart);

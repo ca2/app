@@ -11,7 +11,7 @@
 #include "aura/os/_.h"
 #include "aura/os/_os.h"
 #include "aura/update.h"
-//char * ns_realpath(const char * pszPath);
+//char * ns_realpath(const ::string & pszPath);
 char * mm_ca2_command_line();
 
 
@@ -103,7 +103,7 @@ i32 defer_run_system()
 }
 
 
-i32 defer_run_system(const char * pszFileName)
+i32 defer_run_system(const ::string & pszFileName)
 {
 
    return __start_system_with_file(pszFileName);
@@ -114,7 +114,7 @@ i32 defer_run_system(const char * pszFileName)
 i32 defer_run_system(char ** pszaFileName, int iFileCount)
 {
 
-   return __start_system_with_file((const char **) pszaFileName, iFileCount);
+   return __start_system_with_file((const ::string &*) pszaFileName, iFileCount);
 
 }
 
@@ -138,7 +138,7 @@ void apple_on_new_file()
 }
 
 // iMillisDelay default 500ms good
-void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+void apple_accumulate_on_open_file(const ::string &* psza, int iCount, const ::string & pszExtra)
 {
 
    string_array stra;
@@ -170,7 +170,7 @@ void apple_accumulate_on_open_file(const char ** psza, int iCount, const char * 
 
 
 
-void apple_on_open_file(const char ** psza, int iCount, const char * pszExtra)
+void apple_on_open_file(const ::string &* psza, int iCount, const ::string & pszExtra)
 {
 
    if(iCount <= 0)

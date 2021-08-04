@@ -120,7 +120,7 @@ void operator delete(void* ptr, std::align_val_t) noexcept;
 #if !defined(NO_AURA_MEMORY_MANAGEMENT)
 
 
-void* MEMORY_DECL operator new(size_t nSize, const char* pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new(size_t nSize, const ::string & pszFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -128,7 +128,7 @@ void* MEMORY_DECL operator new(size_t nSize, const char* pszFileName, i32 nLine)
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, const char* pszFileName, i32 nLine) new_throw_spec
+void* MEMORY_DECL operator new[](size_t nSize, const ::string & pszFileName, i32 nLine) new_throw_spec
 {
 
    return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
@@ -136,7 +136,7 @@ void* MEMORY_DECL operator new[](size_t nSize, const char* pszFileName, i32 nLin
 }
 
 
-void MEMORY_DECL operator delete(void* pData, const char* /* pszFileName */, i32 /* nLine */) del_throw_spec
+void MEMORY_DECL operator delete(void* pData, const ::string & /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -144,7 +144,7 @@ void MEMORY_DECL operator delete(void* pData, const char* /* pszFileName */, i32
 }
 
 
-void MEMORY_DECL operator delete[](void* pData, const char* /* pszFileName */, i32 /* nLine */) del_throw_spec
+void MEMORY_DECL operator delete[](void* pData, const ::string & /* pszFileName */, i32 /* nLine */) del_throw_spec
 {
 
    ::operator delete(pData, _NORMAL_BLOCK, nullptr, -1);
@@ -152,7 +152,7 @@ void MEMORY_DECL operator delete[](void* pData, const char* /* pszFileName */, i
 }
 
 
-void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName, i32 nLine)
+void* MEMORY_DECL operator new(size_t nSize, i32 nType, const ::string & pszFileName, i32 nLine)
 {
 
 #if MEMDLEAK
@@ -168,7 +168,7 @@ void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char* pszFileName,
 }
 
 
-void MEMORY_DECL operator delete(void* p, i32 nType, const char* /* pszFileName */, i32 /* nLine */)
+void MEMORY_DECL operator delete(void* p, i32 nType, const ::string & /* pszFileName */, i32 /* nLine */)
 {
 
    memory_free_dbg(p, nType);
@@ -176,7 +176,7 @@ void MEMORY_DECL operator delete(void* p, i32 nType, const char* /* pszFileName 
 }
 
 
-void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const char* pszFileName, i32 nLine)
+void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const ::string & pszFileName, i32 nLine)
 {
 
    return ::operator new(nSize, nType, pszFileName, nLine);
@@ -184,7 +184,7 @@ void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const char* pszFileNam
 }
 
 
-void MEMORY_DECL operator delete[](void* p, i32 nType, const char* pszFileName, i32 nLine)
+void MEMORY_DECL operator delete[](void* p, i32 nType, const ::string & pszFileName, i32 nLine)
 {
 
    ::operator delete(p, nType, pszFileName, nLine);

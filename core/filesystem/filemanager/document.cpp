@@ -356,7 +356,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_item_command(const char * pszId, const ::file::item_array & itema)
+   void document::on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema)
    {
 
       auto pfilemanagerdata = filemanager_data();
@@ -387,7 +387,7 @@ namespace filemanager
 
    //}
 
-   //void data::browse(const char * pcsz, const ::action_context & context)
+   //void data::browse(const ::string & pcsz, const ::action_context & context)
 
    //{
 
@@ -404,7 +404,7 @@ namespace filemanager
    //}
 
 
-   void document::browse(const char * pszPath, const ::action_context & context)
+   void document::browse(const ::string & pszPath, const ::action_context & context)
    {
 
       ::file::path pathUser = pszPath;

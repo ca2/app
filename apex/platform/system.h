@@ -256,7 +256,7 @@ namespace apex
 
 #else
 
-      ::e_status system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+      ::e_status system_construct(const ::string & pszCommandLine, const ::e_display& edisplay = ::e_display_none);
       ::e_status system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #endif
@@ -290,11 +290,11 @@ namespace apex
 
       virtual string get_application_server_name();
 
-      virtual ::acme::library* lib(const char* psz);
-      //CLASS_DECL_APEX::acme::library* lib(const char* psz);
+      virtual ::acme::library* lib(const ::string & psz);
+      //CLASS_DECL_APEX::acme::library* lib(const ::string & psz);
       //
       //template < typename FUNCTION >
-      //FUNCTION library_function(const char* pszLibrary)
+      //FUNCTION library_function(const ::string & pszLibrary)
       //{
 
       //   return lib(pszLibrary)->get<decltype(&entry)>(#entry))
@@ -335,11 +335,11 @@ namespace apex
       virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine, const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
@@ -347,11 +347,11 @@ namespace apex
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine,const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       inline ::apex::node * node() { return m_pnode ? m_pnode->m_papexnode : nullptr; }
@@ -372,7 +372,7 @@ namespace apex
 
       //virtual ::e_status defer_xml();
 
-      virtual __pointer(::data::node) load_xml(const char * pszXml);
+      virtual __pointer(::data::node) load_xml(const ::string & pszXml);
 
       virtual ::e_status verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
@@ -391,7 +391,7 @@ namespace apex
 
       virtual void on_request(::create * pcreate) override;
 
-      //virtual void construct(const char * pszAppId);
+      //virtual void construct(const ::string & pszAppId);
 
       //virtual bool initialize_application() override;
 
@@ -433,13 +433,13 @@ namespace apex
       //virtual string dir_appmatter_locator(::object * pobject);
 
 
-      virtual void hist_hist(const char * psz);
+      virtual void hist_hist(const ::string & psz);
 
 
       //virtual void on_request(::create * pcreate);
 
 
-      //virtual u32 crc32(u32 dwPrevious, const char * psz);
+      //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
 
 
       virtual string url_encode(const ::string & str);
@@ -460,7 +460,7 @@ namespace apex
       //class ::user::window_map                     &  window_map();
 
 
-      ::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      ::e_status set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
       // apex commented
       //virtual void defer_audio();
@@ -545,10 +545,10 @@ namespace apex
 
       virtual void __set_thread_on() override;
 
-      virtual string get_local_mutex_name(const char * pszAppName);
-      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
-      virtual string get_global_mutex_name(const char * pszAppName);
-      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
+      virtual string get_local_mutex_name(const ::string & pszAppName);
+      virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+      virtual string get_global_mutex_name(const ::string & pszAppName);
+      virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
 
 
       //template < class T >
@@ -577,7 +577,7 @@ namespace apex
 
       //virtual void discard_to_factory(::object * pca);
 
-      //bool on_application_menu_action(const char * pszCommand);
+      //bool on_application_menu_action(const ::string & pszCommand);
 
 
       virtual ::e_status initialize_sockets();
@@ -585,7 +585,7 @@ namespace apex
 
       virtual bool on_get_task_name(string& strTaskName) override;
 
-      virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+      virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
 
 
       virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -645,28 +645,28 @@ namespace apex
 
 
 
-      virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args);
-      virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
-      virtual bool assert_failed_line(const char * pszFileName,i32 iLine);
+      virtual i32 _001OnDebugReport(i32 i1,const ::string & psz1,i32 i2,const ::string & psz2,const ::string & psz3,va_list args);
+      virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list);
+      virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine);
 
-      virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine);
-
-
+      virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine);
 
 
 
 
-      virtual ::e_status initialize_log(const char * pszId);
+
+
+      virtual ::e_status initialize_log(const ::string & pszId);
 
 
       virtual void appa_load_string_table();
-      virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context);
-      virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context);
+      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context);
+      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context);
 
-      virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr);
-      virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr);
+      virtual bool assert_running_global(const ::string & pszAppName,const ::string & pszId = nullptr);
+      virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr);
 
-      //__pointer(application) assert_running(const char * pszAppId);
+      //__pointer(application) assert_running(const ::string & pszAppId);
 
       virtual ::count get_application_count();
 
@@ -689,7 +689,7 @@ namespace apex
 
       virtual bool find_applications_from_cache();
       virtual bool find_applications_to_cache(bool bSave = true);
-      virtual bool map_application_library(const char * pszLibrary);
+      virtual bool map_application_library(const ::string & pszLibrary);
 
 
       virtual void install_progress_add_up(int iAddUp = 1);
@@ -707,7 +707,7 @@ namespace apex
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
-      //virtual string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
+      //virtual string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
 
 
 
@@ -751,7 +751,7 @@ namespace apex
 
       virtual bool on_open_file(::payload varFile, string strExtra);
       
-      ::e_status on_open_file(const char * pszFile) override;
+      ::e_status on_open_file(const ::string & pszFile) override;
 
       // apex commented
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
@@ -796,7 +796,7 @@ namespace apex
 
 
 
-      void __tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const override;
+      void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
       virtual string get_user_language();
@@ -858,7 +858,7 @@ namespace apex
       ::e_status set_history(::apex::history* phistory);
 
 
-      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
 
 
       //virtual ::apex::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -902,8 +902,8 @@ namespace apex
 
 
 
-      //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
-      bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
+      //bool sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+      bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr);
 
 
 
@@ -918,7 +918,7 @@ namespace apex
 
 #endif
 
-      //virtual void post_fork_uri(const char * pszUri,application_bias * papplicationbias);
+      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
 
 
 
@@ -948,7 +948,7 @@ namespace apex
 
 
       virtual ::e_status     main() override;
-      //virtual void hist_hist(const char* psz) override;
+      //virtual void hist_hist(const ::string & psz) override;
 
 
       //virtual void defer_calc_os_dark_mode();
@@ -1018,14 +1018,14 @@ namespace apex
 
       //virtual bool initialize_native_window1() override;
 
-      //virtual ::acme::library* load_library(const char* pszLibrary);
+      //virtual ::acme::library* load_library(const ::string & pszLibrary);
 
-      virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
+      virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 
       virtual int console_end(::e_status estatus);
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra) override;
@@ -1089,7 +1089,7 @@ CLASS_DECL_APEX ::apex::system * create_apex_system();
 
 #ifdef _UWP
 
-CLASS_DECL_APEX int app_core_main(const char* psz);
+CLASS_DECL_APEX int app_core_main(const ::string & psz);
 
 #endif
 

@@ -33,7 +33,7 @@ itemidlist::itemidlist(itemidlist && iidl)
 }
 
 
-itemidlist::itemidlist(const char * pszPath) :
+itemidlist::itemidlist(const ::string & pszPath) :
    m_pidl(nullptr)
 {
 
@@ -123,7 +123,7 @@ void itemidlist::free()
 
 
 
-bool itemidlist::parse(const char * pszPath)
+bool itemidlist::parse(const ::string & pszPath)
 {
 
    free();
@@ -239,7 +239,7 @@ itemidlist itemidlist::operator/(const itemidlist & piidl) const
 }
 
 
-itemidlist & itemidlist::operator=(const char * pszPath)
+itemidlist & itemidlist::operator=(const ::string & pszPath)
 {
 
    if (!parse(pszPath))
@@ -972,7 +972,7 @@ int itemidlist::_compare(LPCITEMIDLIST pidlf1, LPCITEMIDLIST pidlf2,
 }
 
 
-HRESULT itemidlist::_parse(LPITEMIDLIST & pidl, const char * pcszPath, IShellFolder * psfFolder)
+HRESULT itemidlist::_parse(LPITEMIDLIST & pidl, const ::string & pcszPath, IShellFolder * psfFolder)
 {
 
    if (!psfFolder)
@@ -995,7 +995,7 @@ HRESULT itemidlist::_parse(LPITEMIDLIST & pidl, const char * pcszPath, IShellFol
 }
 
 
-HRESULT itemidlist::_parse(LPITEMIDLIST &pidlf, const char * pcszPath)
+HRESULT itemidlist::_parse(LPITEMIDLIST &pidlf, const ::string & pcszPath)
 {
 
    comptr < IShellFolder > psfDesktop;

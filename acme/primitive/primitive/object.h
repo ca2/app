@@ -171,8 +171,8 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const;
    virtual bool is_running() const;
-   virtual void child_post_quit(const char* pszTag);
-   virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
+   //virtual void child_post_quit(const char* pszTag);
+   //virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
 
    virtual ::e_status post(const ::routine& routine);
@@ -356,7 +356,7 @@ public:
 
    virtual void destruct();
 
-   static void system(const char* pszProjectName);
+   static void system(const ::string & pszProjectName);
 
    //virtual ::e_status enable_application_events(bool bEnable = true);
 
@@ -395,7 +395,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual __pointer(::extended::future < ::conversation >)  message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >)  message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -410,12 +410,12 @@ public:
 
    //}
 
-   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
    //virtual void release_references();
 
-   virtual __pointer(::matter) running(const char* pszTag) const;
+   //virtual __pointer(::matter) running(const char* pszTag) const;
 
    virtual bool ___is_reference(::matter* pobject) const;
 
@@ -994,12 +994,12 @@ public:
 
    //}
 
-   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+   //virtual ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
    //virtual void release_references();
 
-   //virtual __pointer(::matter) running(const char* pszTag) const;
+   //virtual __pointer(::matter) running(const ::string & pszTag) const;
 
    //virtual bool ___is_reference(::matter* pobject) const;
 

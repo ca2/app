@@ -60,14 +60,14 @@ public:
 
    void close();
 
-   bool load(const char * lpKey, string & str);
-   bool load(const char * lpKey, ::file::output_stream & writer);
+   bool load(const ::string & lpKey, string & str);
+   bool load(const ::string & lpKey, ::file::output_stream & writer);
 
-   bool save(const char * lpKey, const char * psz);
-   bool save(const char * lpKey, ::file::input_stream & reader);
+   bool save(const ::string & lpKey, const ::string & psz);
+   bool save(const ::string & lpKey, ::file::input_stream & reader);
 
 
-   virtual bool initialize_user(mysql::database * pmysqldbUser, const char * pszUser);
+   virtual bool initialize_user(mysql::database * pmysqldbUser, const ::string & pszUser);
    virtual bool initialize();
    virtual bool destroy();
 

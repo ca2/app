@@ -71,7 +71,7 @@ namespace user
       virtual void on_create(::create * pcreate);
 
       const string & get_title() const;
-      virtual void set_title(const char * pszTitle);
+      virtual void set_title(const ::string & pszTitle);
 
       virtual string get_save_file_extension();
 
@@ -283,9 +283,9 @@ namespace user
       virtual void on_close_document();
       virtual void pre_close_document();
       virtual void close_document();
-      virtual void report_load_exception(const ::payload & varFile, ::file_result presult, const char * pszDefault);
-      virtual void report_save_exception(const ::payload & varFile, ::file_result presult, const char * pszDefault);
-      virtual void report_save_load_exception(const ::payload & varFile, ::file_result presult, bool bSave, const char * pszDefault);
+      virtual void report_load_exception(const ::payload & varFile, ::file_result presult, const ::string & pszDefault);
+      virtual void report_save_exception(const ::payload & varFile, ::file_result presult, const ::string & pszDefault);
+      virtual void report_save_load_exception(const ::payload & varFile, ::file_result presult, bool bSave, const ::string & pszDefault);
 
 
       // advanced overridables, closing down frame/doc, etc.

@@ -19,14 +19,14 @@ namespace calculator
       virtual ~parser();
 
 
-      ::calculator::element * parse(const char * psz);
+      ::calculator::element * parse(const ::string & psz);
 
       ::calculator::element * expr(::calculator::element* pelement1);
       ::calculator::element * term(::calculator::element* pelement1);
       ::calculator::element * factor();
 
-      void error(const char * pszMessage);
-      void syntax_error(const char * pszMessage);
+      void error(const ::string & pszMessage);
+      void syntax_error(const ::string & pszMessage);
       void expect(char ch);
 
 

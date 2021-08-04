@@ -387,43 +387,13 @@ string acme_dir::system_short_name()
 
 }
 
-//
-//#endif
 
-
-//#ifdef _UWP
-
-
-//::file::path acme_dir::home()
-//{
-//
-//   return "";
-//
-//}
-
-
-//#endif
-
-
-
-
-void acme_dir::set_path_install_folder(const char* pszPath)
+void acme_dir::set_path_install_folder(const string & strPath)
 {
 
-   m_pathInstallFolder = pszPath;
+   m_pathInstallFolder = strPath;
 
 }
-
-
-//::file::path acme_dir::bookmark()
-//{
-//
-//   return localconfig() / "bookmark";
-//
-//}
-
-
-
 
 
 ::file::path acme_dir::sys_temp()

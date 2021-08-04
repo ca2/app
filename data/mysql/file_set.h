@@ -13,7 +13,7 @@ namespace simpledb
 
       virtual bool refresh();
 
-      bool add_search(const char * pszSearchDirectory);
+      bool add_search(const ::string & pszSearchDirectory);
 
       virtual bool clear_search();
 

@@ -64,7 +64,7 @@ namespace uwp
    }
 
 
-   //char * exception_engine::stack_trace(uptr uiSkip, void * caller_address, const char * pszFormat)
+   //char * exception_engine::stack_trace(uptr uiSkip, void * caller_address, const ::string & pszFormat)
    //{
 
    //   return nullptr;

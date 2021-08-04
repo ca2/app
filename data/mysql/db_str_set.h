@@ -13,10 +13,10 @@ public:
    virtual ~db_str_set();
 
 
-   bool load(const char * lpKey, string &strValue);
-   bool save(const char * lpKey, const char * lpcsz);
+   bool load(const ::string & lpKey, string &strValue);
+   bool save(const ::string & lpKey, const ::string & lpcsz);
 
-   bool erase(const char * lpKey);
+   bool erase(const ::string & lpKey);
 
 
 };

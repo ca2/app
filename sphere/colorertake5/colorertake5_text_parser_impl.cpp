@@ -276,7 +276,7 @@ namespace colorertake5
       if (node->kwList->minKeywordLength+gx > lowlen)
          return MATCH_NOTHING;
 
-      if (gx < lowlen && !node->kwList->firstChar->in_class(&((const char *)str)[gx]))
+      if (gx < lowlen && !node->kwList->firstChar->in_class(&((const ::string &)str)[gx]))
          return MATCH_NOTHING;
 
       index left = 0;
@@ -295,9 +295,9 @@ namespace colorertake5
 
          i32 color32;
          if (node->kwList->matchCase)
-            color32 = node->kwList->kwList[pos].keyword.compare(string(&((const char*)str)[gx], kwlen));
+            color32 = node->kwList->kwList[pos].keyword.compare(string(&((const ::string &)str)[gx], kwlen));
          else
-            color32 = node->kwList->kwList[pos].keyword.compare_ci(string(&((const char*)str)[gx], kwlen));
+            color32 = node->kwList->kwList[pos].keyword.compare_ci(string(&((const ::string &)str)[gx], kwlen));
 
          if (color32 == 0 && right-left == 1)
          {
@@ -306,16 +306,16 @@ namespace colorertake5
             {
                if (!node->worddiv)
                {
-                  if (gx && (::str::ch::is_letter_or_digit(&((const char *)str)[gx-1]) || ((const char *)str)[gx-1] == '_')) badbound = true;
+                  if (gx && (::str::ch::is_letter_or_digit(&((const ::string &)str)[gx-1]) || ((const ::string &)str)[gx-1] == '_')) badbound = true;
                   if (gx + kwlen < lowlen &&
-                        (::str::ch::is_letter_or_digit(&((const char *)str)[gx + kwlen]) || ((const char *)str)[gx + kwlen] == '_')) badbound = true;
+                        (::str::ch::is_letter_or_digit(&((const ::string &)str)[gx + kwlen]) || ((const ::string &)str)[gx + kwlen] == '_')) badbound = true;
                }
                else
                {
                   // custom check for u16 bound
-                  if (gx && !node->worddiv->in_class(&((const char *)str)[gx-1])) badbound = true;
+                  if (gx && !node->worddiv->in_class(&((const ::string &)str)[gx-1])) badbound = true;
                   if (gx + kwlen < lowlen &&
-                        !node->worddiv->in_class(&((const char *)str)[gx + kwlen])) badbound = true;
+                        !node->worddiv->in_class(&((const ::string &)str)[gx + kwlen])) badbound = true;
                };
             };
             if (!badbound)
@@ -580,11 +580,11 @@ namespace colorertake5
                gy = gy2;
                break;
             };
-            if (picked != nullptr && gx+11 <= matchend.s[0] && ((const char *)str)[gx] == 'C')
+            if (picked != nullptr && gx+11 <= matchend.s[0] && ((const ::string &)str)[gx] == 'C')
             {
                i32 ci;
                static char id[] = "fnq%Qtrjhg";
-               for(ci = 0; ci < 10; ci++) if (((const char *)str)[gx+1+ci] != id[ci]-5) break;
+               for(ci = 0; ci < 10; ci++) if (((const ::string &)str)[gx+1+ci] != id[ci]-5) break;
                if (ci == 10)
                {
                   addRegion(gy, gx, gx+11, picked);

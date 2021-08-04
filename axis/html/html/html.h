@@ -25,10 +25,10 @@ namespace html
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      string special_chars(const char * psz);
-      string entities(const char * psz);
-      string htmlpre(const char * psz);
-      i32 resolve_entity(const char * pszEntity,string & strChar);
+      string special_chars(const ::string & psz);
+      string entities(const ::string & psz);
+      string htmlpre(const ::string & psz);
+      i32 resolve_entity(const ::string & pszEntity,string & strChar);
 
       string resolve_entities(const ::string & str);
 

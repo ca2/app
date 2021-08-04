@@ -105,7 +105,7 @@ namespace opengl
 
          int iError = eglGetError();
 
-         const char * pszError = (const char *) eglQueryString(m_display, iError);
+         const char * pszError = (const ::string &) eglQueryString(m_display, iError);
 
          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", pszError, iError);
 

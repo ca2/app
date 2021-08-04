@@ -56,7 +56,7 @@ namespace aura
 // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-//   bool application::_001OnDDECommand(const char * pcsz)
+//   bool application::_001OnDDECommand(const ::string & pcsz)
 
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
@@ -144,7 +144,7 @@ namespace aura
                      // Retrieve file description for language and code page "i".
                      VerQueryValue(pdata,
 
-                        (char *) (const char *) strKey,
+                        (char *) (const ::string &) strKey,
                         (LPVOID *)&psz,
 
                         &uiSize);
@@ -425,7 +425,7 @@ namespace aura
 //#elif defined _WIN32
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const ::string &)slask);
 //      }
 //#else
 //      setenv(payload, value, 1);

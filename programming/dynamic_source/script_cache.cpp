@@ -53,7 +53,7 @@ namespace dynamic_source
    }
 
 
-   script * script_cache::get(const char * lpcszName)
+   script * script_cache::get(const ::string & lpcszName)
    {
 
       string strName(lpcszName);
@@ -82,7 +82,7 @@ namespace dynamic_source
    }
 
 
-   script * script_cache::register_script(const char * lpcszName, script * pscript)
+   script * script_cache::register_script(const ::string & lpcszName, script * pscript)
    {
 
       string strName(lpcszName);
@@ -112,7 +112,7 @@ namespace dynamic_source
 
    }
 
-   __pointer(script_instance) script_cache::create_instance(const char * lpcszName, __pointer(script) & pscript)
+   __pointer(script_instance) script_cache::create_instance(const ::string & lpcszName, __pointer(script) & pscript)
    {
 
       pscript = nullptr;

@@ -791,7 +791,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::run(const char * lpcszName)
+   void script_manager::run(const ::string & lpcszName)
    {
       
       auto pmemfile = create_memory_file();
@@ -1134,7 +1134,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(::dynamic_source::session) script_manager::get_session(const char * pszId)
+   __pointer(::dynamic_source::session) script_manager::get_session(const ::string & pszId)
    {
 
       single_lock synchronouslock(&m_mutexSession, true);
@@ -1315,7 +1315,7 @@ namespace dynamic_source
    }
 
 
-   void script_manager::wait_link_out(const char * pszServer, ::sockets::link_in_socket * pinsocket)
+   void script_manager::wait_link_out(const ::string & pszServer, ::sockets::link_in_socket * pinsocket)
    {
 
       while(true)
@@ -1330,7 +1330,7 @@ namespace dynamic_source
 
    }
 
-   bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
+   bool script_manager::has_link_out_link(const ::string & pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
       single_lock synchronouslock(&m_mutexOutLink, true);
@@ -1379,7 +1379,7 @@ namespace dynamic_source
 
    }
 
-   ::sockets::link_in_socket * script_manager::get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket)
+   ::sockets::link_in_socket * script_manager::get_link_in(const ::string & pszServer, ::sockets::link_out_socket * poutsocket)
    {
 
       single_lock sl2(&m_mutexInLink, true);
@@ -1411,7 +1411,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::is_online(const char * pszServer)
+   bool script_manager::is_online(const ::string & pszServer)
    {
 
       single_lock synchronouslock(&m_mutexTunnel, true);
@@ -1433,7 +1433,7 @@ namespace dynamic_source
    }
 
 
-   ::sockets::link_out_socket * script_manager::create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket)
+   ::sockets::link_out_socket * script_manager::create_link_out(const ::string & pszServer, ::sockets::httpd_socket * phttpdsocket)
    {
 
       ::sockets::link_out_socket * psocket = new sockets::link_out_socket();

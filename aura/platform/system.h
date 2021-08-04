@@ -318,11 +318,11 @@ namespace aura
 
       
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine, const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
@@ -330,11 +330,11 @@ namespace aura
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       virtual ::e_status node_factory_exchange() override;
@@ -349,7 +349,7 @@ namespace aura
 
       //virtual ::e_status defer_xml();
 
-      virtual __pointer(::data::node) load_xml(const char * pszXml) override;
+      virtual __pointer(::data::node) load_xml(const ::string & pszXml) override;
 
       virtual ::e_status verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
@@ -360,8 +360,8 @@ namespace aura
       virtual string crypto_md5_text(const ::string & str) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
-      //virtual ::enum_dialog_result message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
+      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
       //virtual ::e_status create_html();
@@ -370,7 +370,7 @@ namespace aura
 
       //virtual void on_request(::create * pcreate) override;
 
-      //virtual void construct(const char * pszAppId);
+      //virtual void construct(const ::string & pszAppId);
 
       //virtual bool initialize_application() override;
 
@@ -407,13 +407,13 @@ namespace aura
       //virtual string dir_appmatter_locator(::object * pobject);
 
 
-      //virtual void hist_hist(const char * psz);
+      //virtual void hist_hist(const ::string & psz);
 
 
       //virtual void on_request(::create * pcreate);
 
 
-      //virtual u32 crc32(u32 dwPrevious, const char * psz);
+      //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
 
 
       virtual string url_encode(const ::string & str) override;
@@ -433,11 +433,11 @@ namespace aura
       //class ::user::window_map                     &  window_map();
 
 
-      //__pointer(::acme::library) open_component_library(const char* pszComponent, const char* pszImplementation);
+      //__pointer(::acme::library) open_component_library(const ::string & pszComponent, const ::string & pszImplementation);
 
-      //::e_status do_factory_exchange(const char* pszComponent, const char* pszImplementation);
+      //::e_status do_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation);
 
-      //::e_status set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange);
+      //::e_status set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange);
 
 
       //class ::aura::os                             &  os();
@@ -531,10 +531,10 @@ namespace aura
 
       //virtual void __set_thread_on() override;
 
-      //virtual string get_local_mutex_name(const char * pszAppName) override;
-      //virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId) override;
-      //virtual string get_global_mutex_name(const char * pszAppName) override;
-      //virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId) override;
+      //virtual string get_local_mutex_name(const ::string & pszAppName) override;
+      //virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override;
+      //virtual string get_global_mutex_name(const ::string & pszAppName) override;
+      //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override;
 
 
       //template < class T >
@@ -563,7 +563,7 @@ namespace aura
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const char * pszCommand);
+      bool on_application_menu_action(const ::string & pszCommand);
 
 
       //virtual ::e_status initialize_sockets();
@@ -576,9 +576,9 @@ namespace aura
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
-      //virtual ::acme::library * on_get_library(const char * pszLibrary) override;
+      //virtual ::acme::library * on_get_library(const ::string & pszLibrary) override;
 
-      //virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false) override;
+      //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override;
 
 
       //virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0) override;
@@ -635,7 +635,7 @@ namespace aura
 
 
   /*    static inline ::id id(const ::std::type_info & info);
-      static inline ::id id(const char * psz);
+      static inline ::id id(const ::string & psz);
       static inline ::id id(const ::string & str);
       static inline ::id id(i64 i);
       static inline ::id_space & id();
@@ -643,28 +643,28 @@ namespace aura
       inline ::id id(const property & prop);*/
 
 
-      //virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args) override;
-      //virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list) override;
-      //virtual bool assert_failed_line(const char * pszFileName,i32 iLine) override;
+      //virtual i32 _001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args) override;
+      //virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override;
+      //virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine) override;
 
-      //virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine) override;
-
-
+      //virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine) override;
 
 
 
 
-      //virtual ::e_status initialize_log(const char * pszId) override;
+
+
+      //virtual ::e_status initialize_log(const ::string & pszId) override;
 
 
       //virtual void appa_load_string_table() override;
-      //virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context) override;
-      //virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context) override;
+      //virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context) override;
+      //virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context) override;
 
-      //virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr) override;
-      //virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr) override;
+      //virtual bool assert_running_global(const ::string & pszAppName, const ::string & pszId = nullptr) override;
+      //virtual bool assert_running_local(const ::string & pszAppName, const ::string & pszId = nullptr) override;
 
-      //__pointer(application) assert_running(const char * pszAppId);
+      //__pointer(application) assert_running(const ::string & pszAppId);
 
   /*    virtual ::count get_application_count() override;
 */
@@ -688,7 +688,7 @@ namespace aura
 
       //virtual bool find_applications_from_cache() override;
       //virtual bool find_applications_to_cache(bool bSave = true) override;
-      //virtual bool map_application_library(const char * pszLibrary) override;
+      //virtual bool map_application_library(const ::string & pszLibrary) override;
 
 
       //virtual void install_progress_add_up(int iAddUp = 1) override;
@@ -701,14 +701,14 @@ namespace aura
 
       //virtual void on_request(::create * pcreate) override;
 
-      //__pointer(regex) create_regular_expression(const char * pszStyle, const string& str);
-      //__pointer(regex_context) create_regular_expression_context(const char* pszStyle, int iCount);
+      //__pointer(regex) create_regular_expression(const ::string & pszStyle, const string& str);
+      //__pointer(regex_context) create_regular_expression_context(const ::string & pszStyle, int iCount);
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
       //virtual string get_system_platform() override;
       //virtual string get_system_configuration() override;
-      //virtual string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
+      //virtual string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
 
 
 
@@ -784,7 +784,7 @@ namespace aura
 
 
 
-      //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const override;
+      //virtual void __tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) const override;
 
 
       //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
@@ -840,7 +840,7 @@ namespace aura
       //::e_status set_history(::apex::history* phistory);
 
 
-      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
+      //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -879,8 +879,8 @@ namespace aura
 //
 //#endif
 
-      ////bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
-      //bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
+      ////bool sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+      //bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr);
 
 
 
@@ -893,7 +893,7 @@ namespace aura
 
 #endif
 
-      //virtual void post_fork_uri(const char * pszUri,application_bias * papplicationbias);
+      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
 
 
 
@@ -933,7 +933,7 @@ namespace aura
 
 
       virtual ::e_status     main() override;
-      //virtual void hist_hist(const char* psz) override;
+      //virtual void hist_hist(const ::string & psz) override;
 
 
       virtual ::type get_pane_tab_view_type_info();
@@ -994,7 +994,7 @@ namespace aura
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
 
-      //virtual bool on_application_menu_action(const char * pszCommand);
+      //virtual bool on_application_menu_action(const ::string & pszCommand);
 
 
    };

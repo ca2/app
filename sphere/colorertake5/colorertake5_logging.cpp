@@ -15,7 +15,7 @@ namespace colorertake5
 
    static FILE * log = 0;
 
-   static void file_logger(i32 level,const char *cname,const char *msg,va_list v)
+   static void file_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
    {
 
       i32 idx = 0;
@@ -40,9 +40,9 @@ namespace colorertake5
 
       fflush(log);
    }
-   void console_logger(i32 level,const char *cname,const char *msg,va_list v);
+   void console_logger(i32 level, const ::string &cname, const ::string &msg,va_list v);
 
-   void console_logger(i32 level,const char *cname,const char *msg,va_list v)
+   void console_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
    {
 
       debug_print("[%s][%s] ",levelNames[level],cname);
@@ -54,7 +54,7 @@ namespace colorertake5
    }
 
 
-   void colorer_logger_set_target(const char *logfile)
+   void colorer_logger_set_target(const ::string &logfile)
    {
       if(logfile == 0) return;
       if(log != 0)
@@ -66,7 +66,7 @@ namespace colorertake5
 
 
 
-   void colorer_logger_error(const char *cname,const char *msg,...)
+   void colorer_logger_error(const ::string &cname, const ::string &msg,...)
    {
       va_list v;
       va_start(v,msg);
@@ -74,21 +74,21 @@ namespace colorertake5
       va_end(v);
    }
 
-   void colorer_logger_warn(const char *cname,const char *msg,...)
+   void colorer_logger_warn(const ::string &cname, const ::string &msg,...)
    {
       va_list v;
       va_start(v,msg);
       colorer_logger(COLORER_FEATURE_LOGLEVEL_WARN,cname,msg,v);
       va_end(v);
    }
-   void colorer_logger_trace(const char *cname,const char *msg,...)
+   void colorer_logger_trace(const ::string &cname, const ::string &msg,...)
    {
       va_list v;
       va_start(v,msg);
       colorer_logger(COLORER_FEATURE_LOGLEVEL_TRACE,cname,msg,v);
       va_end(v);
    }
-   void colorer_logger_info(const char *cname,const char *msg,...)
+   void colorer_logger_info(const ::string &cname, const ::string &msg,...)
    {
       va_list v;
       va_start(v,msg);
@@ -98,7 +98,7 @@ namespace colorertake5
 
 
 
-   void colorer_logger(i32 level,const char *cname,const char *msg,va_list v)
+   void colorer_logger(i32 level, const ::string &cname, const ::string &msg,va_list v)
    {
 
       bool found = false;

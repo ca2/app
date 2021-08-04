@@ -286,7 +286,7 @@ BOOL freerdp_client_print_command_line_help(int argc, char** argv)
 	return 1;
 }
 
-int freerdp_client_command_line_pre_filter(void* context, int index, int argc, const char ** argv)
+int freerdp_client_command_line_pre_filter(void* context, int index, int argc, const ::string &* argv)
 {
 	if (index == 1)
 	{
@@ -1178,7 +1178,7 @@ int freerdp_map_keyboard_layout_name_to_id(char* name)
 	return 0;
 }
 
-int freerdp_detect_command_line_pre_filter(void* context, int index, int argc, const char ** argv)
+int freerdp_detect_command_line_pre_filter(void* context, int index, int argc, const ::string &* argv)
 {
 	int length;
 
@@ -1226,7 +1226,7 @@ int freerdp_detect_windows_style_command_line_syntax(int argc, char** argv,
 	detect_status = 0;
 	CommandLineClearArgumentsA(args);
 
-	status = CommandLineParseArgumentsA(argc, (const char**) argv, args, flags,
+	status = CommandLineParseArgumentsA(argc, (const ::string &*) argv, args, flags,
 			nullptr, freerdp_detect_command_line_pre_filter, nullptr);
 
 	if (status < 0)
@@ -1270,7 +1270,7 @@ int freerdp_detect_posix_style_command_line_syntax(int argc, char** argv,
 	detect_status = 0;
 	CommandLineClearArgumentsA(args);
 
-	status = CommandLineParseArgumentsA(argc, (const char**) argv, args, flags,
+	status = CommandLineParseArgumentsA(argc, (const ::string &*) argv, args, flags,
 			nullptr, freerdp_detect_command_line_pre_filter, nullptr);
 
 	if (status < 0)
@@ -1430,7 +1430,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			flags |= COMMAND_LINE_IGN_UNKNOWN_KEYWORD;
 		}
-		status = CommandLineParseArgumentsA(argc, (const char**) argv, args, flags, settings,
+		status = CommandLineParseArgumentsA(argc, (const ::string &*) argv, args, flags, settings,
 				freerdp_client_command_line_pre_filter, freerdp_client_command_line_post_filter);
 
 		if (status < 0)
@@ -2234,7 +2234,7 @@ int freerdp_client_settings_parse_command_line_arguments(rdpSettings* settings,
 		{
 			byte *base64;
 			int length;
-			crypto_base64_decode((const char *) (arg->Value), (int) strlen(arg->Value),
+			crypto_base64_decode((const ::string &) (arg->Value), (int) strlen(arg->Value),
 								&base64, &length);
 			if ((base64 != nullptr) && (length == sizeof(ARC_SC_PRIVATE_PACKET)))
 			{

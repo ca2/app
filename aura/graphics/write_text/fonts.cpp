@@ -103,7 +103,7 @@ namespace write_text
    }
 
 
-   double fonts::font_similarity(const char* pszSystem, const char* pszUser)
+   double fonts::font_similarity(const ::string & pszSystem, const ::string & pszUser)
    {
 
       if (::is_null(pszSystem) || ::is_null(pszUser))

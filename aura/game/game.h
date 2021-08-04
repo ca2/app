@@ -22,7 +22,7 @@ namespace aura
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual string sound_path(const char* psz);
+      virtual string sound_path(const ::string & psz);
 
 
    };

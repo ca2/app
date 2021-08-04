@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   bool message_window::create_message_window(const char * pszName,::user::message_window_listener * plistener)
+   bool message_window::create_message_window(const ::string & pszName,::user::message_window_listener * plistener)
    {
 
       m_plistener = plistener;

@@ -175,7 +175,7 @@ namespace linux
 //      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,iLineCount * m_iW,coord,&dwWritten);
    }
 
-   void console::write(const char * psz)
+   void console::write(const ::string & psz)
    {
 
       printw(psz);

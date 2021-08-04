@@ -14,7 +14,7 @@ public: // re-implementations only
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
+   virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
 
 };
 
@@ -1088,7 +1088,7 @@ void simple_toolbar::SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & 
 }
 
 /*
-bool simple_toolbar::LoadBitmap(const char * pszResourceName)
+bool simple_toolbar::LoadBitmap(const ::string & pszResourceName)
 
 {
 ASSERT_VALID(this);
@@ -1690,7 +1690,7 @@ void simple_tool_command::_001SetCheck(enum_check echeck, const ::action_context
 }
 
 
-void simple_tool_command::SetText(const char *, const ::action_context & context)
+void simple_tool_command::SetText(const ::string &, const ::action_context & context)
 {
 
    // ignore it

@@ -165,7 +165,7 @@ namespace filemanager
          }
 
 
-         void view::open_file(i64 iFolder, const char * pszFileName, const char * pszExtension)
+         void view::open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExtension)
          {
 
             string strUrl;

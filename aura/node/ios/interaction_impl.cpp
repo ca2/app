@@ -521,7 +521,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate)
    {
       
       // can't use for desktop or pop-up windows (use CreateEx instead)
@@ -584,7 +584,7 @@ namespace ios
 //   }
 
 
-   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction,const char * pszName)
+   // bool interaction_impl::create_message_queue(::user::interaction * pinteraction, const ::string & pszName)
    // {
 
    //    if(IsWindow())
@@ -1494,7 +1494,7 @@ namespace ios
 
 
 
-//   i32 interaction_impl::message_box(const char * lpszText, const char * lpszCaption, ::u32 nType)
+//   i32 interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption, ::u32 nType)
 //   {
 //
 //      string strCaption;
@@ -1860,7 +1860,7 @@ namespace ios
 
    bool gen_GotScrollLines;
 
-   void interaction_impl::OnSettingChange(::u32 uFlags, const char * lpszSection)
+   void interaction_impl::OnSettingChange(::u32 uFlags, const ::string & lpszSection)
    {
       //      UNUSED_ALWAYS(uFlags);
       //    UNUSED_ALWAYS(lpszSection);
@@ -2237,7 +2237,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::round_window_on_text(const char * pszText)
+//   bool interaction_impl::round_window_on_text(const ::string & pszText)
 //   {
 //
 //      return false;
@@ -2476,7 +2476,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // Dialog initialization support
 
-   bool interaction_impl::ExecuteDlgInit(const char * lpszResourceName)
+   bool interaction_impl::ExecuteDlgInit(const ::string & lpszResourceName)
    {
       // find resource handle
       LPVOID lpResource = nullptr;
@@ -3046,7 +3046,7 @@ namespace ios
 //   }
 
 
-   void interaction_impl::set_window_text(const char * lpszString)
+   void interaction_impl::set_window_text(const ::string & lpszString)
    {
 
       m_strWindowText = lpszString;
@@ -3837,7 +3837,7 @@ namespace ios
 
    }
 
-   void interaction_impl::SetDlgItemText(i32 nID, const char * lpszString)
+   void interaction_impl::SetDlgItemText(i32 nID, const ::string & lpszString)
    {
 
       __throw(error_not_implemented);
@@ -4672,7 +4672,7 @@ namespace ios
 
    }
 
-   void interaction_impl::OnWinIniChange(const char *)
+   void interaction_impl::OnWinIniChange(const ::string &)
    {
       //Default();
       
@@ -4729,7 +4729,7 @@ namespace ios
     { m_nIdleFlags |= (idleLayout | (bNotify ? idleNotify : 0)); };
     bool frame_window::InModalState() const
     { return m_cModalStack != 0; }
-    void frame_window::set_title(const char * lpszTitle)
+    void frame_window::set_title(const ::string & lpszTitle)
     { m_strTitle = lpszTitle; }
     string frame_window::get_title() const
     { return m_strTitle; }
@@ -5194,7 +5194,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd)
+   bool interaction_impl::round_window_on_text(const ::string & pszText, long iSelBeg, long iSelEnd)
    {
 
       __pointer(raw_key) prawkey = psession->get_keyboard_focus();

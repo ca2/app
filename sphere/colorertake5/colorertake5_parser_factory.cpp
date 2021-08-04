@@ -62,7 +62,7 @@ namespace colorertake5
             {
                if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                {
-                  hrcLocations.add((const char *) (loc)->attr("link"));
+                  hrcLocations.add((const ::string &) (loc)->attr("link"));
                }
                loc = loc->get_next_sibling();
             }
@@ -95,7 +95,7 @@ namespace colorertake5
                   {
                      if(loc->get_type() == xml::node_element && loc->get_name() == "location")
                      {
-                        hrdLocV.add((const char *) loc->attr("link"));
+                        hrdLocV.add((const ::string &) loc->attr("link"));
                      }
                      loc = loc->get_next_sibling();
                   }

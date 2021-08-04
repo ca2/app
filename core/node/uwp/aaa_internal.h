@@ -31,4 +31,4 @@
 
 // Sanity checks for ATOMs
 //CLASS_DECL_CORE bool __is_valid_atom(ATOM nAtom);
-//CLASS_DECL_CORE bool __is_valid_atom(const char * psz);
+//CLASS_DECL_CORE bool __is_valid_atom(const ::string & psz);

@@ -1497,7 +1497,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		if (format->formatName)
 //		{
 //			mapping->name = _strdup(format->formatName);
-//			mapping->local_format_id = RegisterClipboardFormatA((const char *) mapping->name);
+//			mapping->local_format_id = RegisterClipboardFormatA((const ::string &) mapping->name);
 //		}
 //		else
 //		{

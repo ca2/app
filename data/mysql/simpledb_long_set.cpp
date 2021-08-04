@@ -108,7 +108,7 @@ public:
    virtual i32 run();
 
 
-   void queue(const char * pszKey,i64 l);
+   void queue(const ::string & pszKey,i64 l);
 
 };
 
@@ -174,7 +174,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const char * pszKey,i64 l)
+void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
 {
 
    single_lock synchronouslock(&m_mutex, true);
@@ -205,7 +205,7 @@ db_long_set::~db_long_set()
 }
 
 // Adiciona na matriz System nomes dos diretrios de imagens.
-bool db_long_set::load(const char * lpKey, i64 * plValue)
+bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -239,7 +239,7 @@ bool db_long_set::load(const char * lpKey, i64 * plValue)
          return false;
       }
 
-      *plValue = ::str::to_i64(string((const char *)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_millisTimeout= ::millis::now() + 23 * (5000);
       longitem.m_l = *plValue;
@@ -306,7 +306,7 @@ bool db_long_set::load(const char * lpKey, i64 * plValue)
 
 }
 
-bool db_long_set::save(const char * lpKey, i64 lValue)
+bool db_long_set::save(const ::string & lpKey, i64 lValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -404,7 +404,7 @@ bool db_long_set::save(const char * lpKey, i64 lValue)
 
 }
 
-bool db_long_set::find(const char * lpKey)
+bool db_long_set::find(const ::string & lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
    /*    single_lock synchronouslock(&m_CriticalSection, true);
@@ -489,7 +489,7 @@ bool db_long_set::find(const char * lpKey)
 }
 
 
-bool db_long_set::load(const char * lpKey, RECTANGLE_I32 * lpRect)
+bool db_long_set::load(const ::string & lpKey, RECTANGLE_I32 * lpRect)
 {
 
    ::rectangle_i32 rectangle;
@@ -520,7 +520,7 @@ bool db_long_set::load(const char * lpKey, RECTANGLE_I32 * lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const char * lpKey, const RECTANGLE_I32 * lpRect)
+bool db_long_set::save(const ::string & lpKey, const RECTANGLE_I32 * lpRect)
 {
 
    string strKey = lpKey;
@@ -542,7 +542,7 @@ bool db_long_set::save(const char * lpKey, const RECTANGLE_I32 * lpRect)
 }
 
 
-bool db_long_set::MoveWindow_(const char * lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::MoveWindow_(const ::string & lpKey, ::user::interaction_impl * pwindow)
 {
 
    ::rectangle_i32 rectangle;
@@ -557,7 +557,7 @@ bool db_long_set::MoveWindow_(const char * lpKey, ::user::interaction_impl * pwi
 }
 
 
-bool db_long_set::SaveWindowRect_(const char * lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SaveWindowRect_(const ::string & lpKey, ::user::interaction_impl * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -574,7 +574,7 @@ bool db_long_set::SaveWindowRect_(const char * lpKey, ::user::interaction_impl *
 
 }
 
-/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const char * lpcszSql)
+/*HRESULT db_long_set::OpenQuery(CDataSource *pdb, const ::string & lpcszSql)
 {
 CSession   session;
 //      HRESULT      hr;
@@ -710,7 +710,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const char * lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -747,7 +747,7 @@ bool db_long_set::SetWindowPlacement(const char * lpKey, ::user::interaction_imp
 
 }
 
-bool db_long_set::SaveWindowPlacement(const char * lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -788,7 +788,7 @@ bool db_long_set::SaveWindowPlacement(const char * lpKey, ::user::interaction_im
 #ifdef WINDOWS_DESKTOP
 
 
-bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
+bool db_long_set::save(const ::string & lpKey, WINDOWPLACEMENT & wp)
 {
 
    if(!save(lpKey , &wp.rcNormalPosition))
@@ -815,7 +815,7 @@ bool db_long_set::save(const char * lpKey, WINDOWPLACEMENT & wp)
 
 }
 
-bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
+bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
 {
 
    load(lpKey , &wp.rcNormalPosition);
@@ -842,7 +842,7 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const char * lpKey, POINT_I32 * lpPoint)
+bool db_long_set::load(const ::string & lpKey, POINT_I32 * lpPoint)
 {
 
    ::point_i32 point;
@@ -861,7 +861,7 @@ bool db_long_set::load(const char * lpKey, POINT_I32 * lpPoint)
 
 }
 
-bool db_long_set::save(const char * lpKey, POINT_I32 * lpPoint)
+bool db_long_set::save(const ::string & lpKey, POINT_I32 * lpPoint)
 {
 
    string strKey = lpKey;

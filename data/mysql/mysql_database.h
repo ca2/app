@@ -43,11 +43,11 @@ namespace mysql
 
       virtual bool initialize();
 
-      virtual bool exec(const char* pszQuery) override;
+      virtual bool exec(const ::string & pszQuery) override;
 
-      virtual __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
+      virtual __pointer(::database::result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1);
 
-      virtual MYSQL_RES* _mysql_query_result(const char* pszSql);
+      virtual MYSQL_RES* _mysql_query_result(const ::string & pszSql);
       virtual bool _mysql_result_free(MYSQL_RES* pres);
       virtual MYSQL_ROW _mysql_fetch_row(MYSQL_RES* pres);
       virtual unsigned long* _mysql_fetch_lengths(MYSQL_RES* pres);
@@ -61,21 +61,21 @@ namespace mysql
       using database_impl::query_row;
       using database_impl::query_rows;
 
-      //virtual bool query_table_item(::payload& payload, const char* table, const char * item, const char * where) override;
-      virtual bool query_item(::payload & payload, const char* pszSql) override;
-      virtual bool query_blob(memory_base& memory, const char* pszSql);
-      virtual bool query_items(__pointer(payload_array) & pvara, const char* pszSql) override;
-      virtual bool query_row(__pointer(::database::row) & prow, const char* pszSql) override;
-      virtual bool query_rows(__pointer(::database::row_array) &prowarray, const char* pszSql) override;
+      //virtual bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
+      virtual bool query_item(::payload & payload, const ::string & pszSql) override;
+      virtual bool query_blob(memory_base& memory, const ::string & pszSql);
+      virtual bool query_items(__pointer(payload_array) & pvara, const ::string & pszSql) override;
+      virtual bool query_row(__pointer(::database::row) & prow, const ::string & pszSql) override;
+      virtual bool query_rows(__pointer(::database::row_array) &prowarray, const ::string & pszSql) override;
 
-      virtual ::payload get_agent(const char* pszTable, const char* pszEmail, const char* pszUser);
+      virtual ::payload get_agent(const ::string & pszTable, const ::string & pszEmail, const ::string & pszUser);
 
       string escape(void* p, strsize iLine);
-      string escape(const char* psz);
+      string escape(const ::string & psz);
 
       ::payload get_insert_id();
 
-      virtual string error1(const char* pszPrefix = nullptr) override;
+      virtual string error1(const ::string & pszPrefix = nullptr) override;
 
 
    };

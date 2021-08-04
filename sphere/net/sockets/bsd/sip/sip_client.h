@@ -12,7 +12,7 @@ namespace sockets
 
       sip_base_client_socket *   m_psocket;
 
-      void invite(const char * pszTo, const char * pszFrom);
+      void invite(const ::string & pszTo, const ::string & pszFrom);
 
    };
 

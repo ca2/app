@@ -31,7 +31,7 @@ namespace windowing
 
 
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-      //virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
+      //virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
 
    };
 

@@ -17,7 +17,7 @@ void __node_axis_factory_exchange(::factory_map * pfactorymap);
 //const char* g_pszMultimediaLibraryName = nullptr;
 //
 //
-//CLASS_DECL_AXIS void multimedia_set_library_name(const char* psz)
+//CLASS_DECL_AXIS void multimedia_set_library_name(const ::string & psz)
 //{
 //
 //   g_pszMultimediaLibraryName = psz;
@@ -47,7 +47,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * po
 extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -68,7 +68,7 @@ void unit_test_primitive_var_aura_block();
 #endif
 
 
-void dappy(const char * psz);
+void dappy(const ::string & psz);
 
 
 
@@ -468,7 +468,7 @@ namespace axis
    }
 
 
-//   __pointer(regex) system::create_regular_expression(const char* pszStyle, const string& str)
+//   __pointer(regex) system::create_regular_expression(const ::string & pszStyle, const string& str)
 //   {
 //
 //      string strStyle(pszStyle);
@@ -485,7 +485,7 @@ namespace axis
 //   }
 //
 //
-//   __pointer(regex_context) system::create_regular_expression_context(const char* pszStyle, int iCount)
+//   __pointer(regex_context) system::create_regular_expression_context(const ::string & pszStyle, int iCount)
 //   {
 //
 //      string strStyle(pszStyle);

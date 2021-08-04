@@ -25,7 +25,7 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_show(const char * pszMatter)
+   void wait_message_dialog::on_show(const ::string & pszMatter)
    {
 
       ::dialog::on_show(pszMatter);

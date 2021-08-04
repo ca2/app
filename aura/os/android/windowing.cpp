@@ -311,7 +311,7 @@ bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
 }
 
 
-i32 oswindow_data::store_name(const char * psz)
+i32 oswindow_data::store_name(const ::string & psz)
 {
 
    synchronous_lock synchronouslock(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
@@ -1607,7 +1607,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA::e_status _android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox)
+CLASS_DECL_AURA::e_status _android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox)
 {
 
    while (::oslocal()->m_iMessageBoxResult > 0)
@@ -1716,7 +1716,7 @@ CLASS_DECL_AURA::e_status _android_os_message_box(const char * pText, const char
 }
 
 
-CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::future & processParam)
+CLASS_DECL_AURA ::e_status android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessageboxParam, const ::future & processParam)
 {
 
    string strText(pText);

@@ -57,10 +57,10 @@ typedef NPError      (* NP_LOADDS NPP_NewStreamProcPtr)(NPP instance, NPMIMEType
 typedef NPError      (* NP_LOADDS NPP_DestroyStreamProcPtr)(NPP instance, NPStream* stream, NPReason reason);
 typedef int32_t      (* NP_LOADDS NPP_WriteReadyProcPtr)(NPP instance, NPStream* stream);
 typedef int32_t      (* NP_LOADDS NPP_WriteProcPtr)(NPP instance, NPStream* stream, int32_t offset, int32_t len, void* buffer);
-typedef void         (* NP_LOADDS NPP_StreamAsFileProcPtr)(NPP instance, NPStream* stream, const char* fname);
+typedef void         (* NP_LOADDS NPP_StreamAsFileProcPtr)(NPP instance, NPStream* stream, const ::string & fname);
 typedef void         (* NP_LOADDS NPP_PrintProcPtr)(NPP instance, NPPrint* platformPrint);
 typedef int16_t      (* NP_LOADDS NPP_HandleEventProcPtr)(NPP instance, void* event);
-typedef void         (* NP_LOADDS NPP_URLNotifyProcPtr)(NPP instance, const char* url, NPReason reason, void* notifyData);
+typedef void         (* NP_LOADDS NPP_URLNotifyProcPtr)(NPP instance, const ::string & url, NPReason reason, void* notifyData);
 /* Any NPObjects returned to the browser via NPP_GetValue should be retained
    by the plugin on the way out. The browser is responsible for releasing. */
 typedef NPError      (* NP_LOADDS NPP_GetValueProcPtr)(NPP instance, NPPVariable variable, void *ret_value);
@@ -68,15 +68,15 @@ typedef NPError      (* NP_LOADDS NPP_SetValueProcPtr)(NPP instance, NPNVariable
 
 typedef NPError      (*NPN_GetValueProcPtr)(NPP instance, NPNVariable variable, void *ret_value);
 typedef NPError      (*NPN_SetValueProcPtr)(NPP instance, NPPVariable variable, void *value);
-typedef NPError      (*NPN_GetURLNotifyProcPtr)(NPP instance, const char* url, const char* window, void* notifyData);
-typedef NPError      (*NPN_PostURLNotifyProcPtr)(NPP instance, const char* url, const char* window, ::u32 len, const char* buf, NPBool file, void* notifyData);
-typedef NPError      (*NPN_GetURLProcPtr)(NPP instance, const char* url, const char* window);
-typedef NPError      (*NPN_PostURLProcPtr)(NPP instance, const char* url, const char* window, ::u32 len, const char* buf, NPBool file);
+typedef NPError      (*NPN_GetURLNotifyProcPtr)(NPP instance, const ::string & url, const ::string & window, void* notifyData);
+typedef NPError      (*NPN_PostURLNotifyProcPtr)(NPP instance, const ::string & url, const ::string & window, ::u32 len, const ::string & buf, NPBool file, void* notifyData);
+typedef NPError      (*NPN_GetURLProcPtr)(NPP instance, const ::string & url, const ::string & window);
+typedef NPError      (*NPN_PostURLProcPtr)(NPP instance, const ::string & url, const ::string & window, ::u32 len, const ::string & buf, NPBool file);
 typedef NPError      (*NPN_RequestReadProcPtr)(NPStream* stream, NPByteRange* rangeList);
-typedef NPError      (*NPN_NewStreamProcPtr)(NPP instance, NPMIMEType type, const char* window, NPStream** stream);
+typedef NPError      (*NPN_NewStreamProcPtr)(NPP instance, NPMIMEType type, const ::string & window, NPStream** stream);
 typedef int32_t      (*NPN_WriteProcPtr)(NPP instance, NPStream* stream, int32_t len, void* buffer);
 typedef NPError      (*NPN_DestroyStreamProcPtr)(NPP instance, NPStream* stream, NPReason reason);
-typedef void         (*NPN_StatusProcPtr)(NPP instance, const char* message);
+typedef void         (*NPN_StatusProcPtr)(NPP instance, const ::string & message);
 /* Browser manages the lifetime of the buffer returned by NPN_UserAgent, don't
    depend on it sticking around and don't free it. */
 typedef const char*  (*NPN_UserAgentProcPtr)(NPP instance);
@@ -113,9 +113,9 @@ typedef bool         (*NPN_PopPopupsEnabledStateProcPtr)(NPP npp);
 typedef bool         (*NPN_EnumerateProcPtr)(NPP npp, NPObject *obj, NPIdentifier **identifier, ::u32 *count);
 typedef void         (*NPN_PluginThreadAsyncCallProcPtr)(NPP instance, void (*func)(void *), void *userData);
 typedef bool         (*NPN_ConstructProcPtr)(NPP npp, NPObject* obj, const NPVariant *args, ::u32 argCount, NPVariant *result);
-typedef NPError      (*NPN_GetValueForURLPtr)(NPP npp, NPNURLVariable variable, const char *url, char **value, ::u32 *len);
-typedef NPError      (*NPN_SetValueForURLPtr)(NPP npp, NPNURLVariable variable, const char *url, const char *value, ::u32 len);
-typedef NPError      (*NPN_GetAuthenticationInfoPtr)(NPP npp, const char *protocol, const char *host, int32_t port, const char *scheme, const char *realm, char **username, ::u32 *ulen, char **password, ::u32 *plen);
+typedef NPError      (*NPN_GetValueForURLPtr)(NPP npp, NPNURLVariable variable, const ::string &url, char **value, ::u32 *len);
+typedef NPError      (*NPN_SetValueForURLPtr)(NPP npp, NPNURLVariable variable, const ::string &url, const ::string &value, ::u32 len);
+typedef NPError      (*NPN_GetAuthenticationInfoPtr)(NPP npp, const ::string &protocol, const ::string &host, int32_t port, const ::string &scheme, const ::string &realm, char **username, ::u32 *ulen, char **password, ::u32 *plen);
 
 typedef struct _NPPluginFuncs {
   ::u3216_t size;
@@ -191,7 +191,7 @@ typedef struct _NPNetscapeFuncs {
 
 #ifdef XP_MACOSX
 /*
- * Mac OS X version(s) of NP_GetMIMEDescription(const char *)
+ * Mac OS X version(s) of NP_GetMIMEDescription(const ::string &)
  * These can be called to retreive MIME information from the plugin dynamically
  *
  * Note: For compatibility with Quicktime, BPSupportedMIMEtypes is another way

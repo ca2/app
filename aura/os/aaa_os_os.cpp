@@ -24,7 +24,7 @@ CLASS_DECL_AURA string get_command_line()
 
 
 
-CLASS_DECL_AURA void set_command_line_dup(const char * psz)
+CLASS_DECL_AURA void set_command_line_dup(const ::string & psz)
 {
 
    get_command_line_string() = psz;

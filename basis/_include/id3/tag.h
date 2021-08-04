@@ -58,7 +58,7 @@ public:
 
 public:
 
-   ID3_Tag(const char *name = NULL);
+   ID3_Tag(const ::string &name = NULL);
    ID3_Tag(const ID3_Tag &tag);
    virtual ~ID3_Tag();
 
@@ -86,7 +86,7 @@ public:
    size_t     Render(uchar*, ID3_TagType = ID3TT_ID3V2) const;
    size_t     Render(ID3_Writer&, ID3_TagType = ID3TT_ID3V2) const;
 
-   size_t     Link(const char *fileInfo, flags_t = (flags_t) ID3TT_ALL);
+   size_t     Link(const ::string &fileInfo, flags_t = (flags_t) ID3TT_ALL);
    size_t     Link(ID3_Reader &reader,flags_t = (flags_t)ID3TT_ALL,bool bSeekable = true); // if easily Randomly bSeekable, search tags at the end, otherwise only at the beginning
    flags_t    Update(flags_t = (flags_t) ID3TT_ALL);
    flags_t    Strip(flags_t = (flags_t) ID3TT_ALL);
@@ -98,7 +98,7 @@ public:
 
    ID3_Frame* Find(ID3_FrameID) const;
    ID3_Frame* Find(ID3_FrameID, ID3_FieldID, u32) const;
-   ID3_Frame* Find(ID3_FrameID, ID3_FieldID, const char*) const;
+   ID3_Frame* Find(ID3_FrameID, ID3_FieldID, const ::string &) const;
    ID3_Frame* Find(ID3_FrameID, ID3_FieldID, const unicode_t*) const;
 
    size_t     NumFrames() const;
@@ -119,7 +119,7 @@ public:
 
    /* Deprecated! */
    void       AddNewFrame(ID3_Frame* f);
-   size_t     Link(const char *fileInfo, bool parseID3v1, bool parseLyrics3);
+   size_t     Link(const ::string &fileInfo, bool parseID3v1, bool parseLyrics3);
    void       SetCompression(bool);
    void       AddFrames(const ID3_Frame *, size_t);
    bool       HasLyrics() const;

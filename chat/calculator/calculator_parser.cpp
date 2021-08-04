@@ -21,7 +21,7 @@ namespace calculator
       return m_elementa.add(__new(::calculator::matter));
    }
 
-   //::calculator::matter * parser::parse(const char * psz)
+   //::calculator::matter * parser::parse(const ::string & psz)
    /********************************************/
    /* Parsing functions */
 
@@ -34,7 +34,7 @@ namespace calculator
    */
 
 
-   ::calculator::matter * parser::parse(const char * psz)
+   ::calculator::matter * parser::parse(const ::string & psz)
    {
       ::calculator::matter *node;
       m_scanner.initialize(psz);
@@ -222,14 +222,14 @@ namespace calculator
    }
 
 
-   void parser::syntax_error(const char * psz)
+   void parser::syntax_error(const ::string & psz)
    {
       error(string("syntax") + psz);
    }
 
 
 
-   void parser::error(const char * psz)
+   void parser::error(const ::string & psz)
    {
       string str;
       str = "error: ";

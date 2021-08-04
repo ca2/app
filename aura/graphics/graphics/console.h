@@ -53,7 +53,7 @@ namespace graphics
       virtual void SetCursorPosition(int y, int x) override;
       virtual void SetTextColor(int color) override;
       virtual void SetScreenColor(::enum_dos_color color, int iLineStart = 0, int iLineCount = -1) override;
-      virtual void write(const char * psz) override;
+      virtual void write(const ::string & psz) override;
       virtual void write(const void * pdata, memsize nCount) override;
 
 

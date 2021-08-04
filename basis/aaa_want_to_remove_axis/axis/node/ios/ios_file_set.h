@@ -25,7 +25,7 @@ namespace ios
       virtual void add_filter(string_array & stra);
       virtual ::count get_file_count();
       virtual void file_at(::index i, string & str);
-      virtual ::index find_first_file(const char * lpcszFilePath, ::index iStart = 0);
+      virtual ::index find_first_file(const ::string & lpcszFilePath, ::index iStart = 0);
       virtual void clear_search();
       virtual void clear_filter();
       virtual void clear_file();

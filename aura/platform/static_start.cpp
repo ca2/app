@@ -69,7 +69,7 @@ namespace aura
    // aura commented
 //#if OBJECT_TYPE_COUNTER
 //
-//   map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
+//   map < const char*, const ::string &, ::i64, ::i64 >* g_pmapObjTypCtr;
 //
 //#endif
 //
@@ -513,7 +513,7 @@ namespace aura
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
+      g_pmapObjTypCtr = new map < const char*, const char *, ::i64, ::i64 >;
 
 #endif
 

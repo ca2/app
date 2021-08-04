@@ -623,7 +623,7 @@ namespace axis
    //}
 
 
-  // ::write_text::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
@@ -1227,7 +1227,7 @@ namespace axis
       //}
 
 
-     // ::write_text::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+     // ::write_text::font_pointer style::create_point_font(e_font efont, const ::string & pszFamilyName, double dFontSize, int iFontWeight)
      // {
 
      //    if (userstyle()->m_mapFont.is_null())

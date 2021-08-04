@@ -132,7 +132,7 @@
 //         ::file::throw_status(error_file, errno, m_strFileName);
 //   }
 //
-//   void stdio_file::write_string(const char * lpsz)
+//   void stdio_file::write_string(const ::string & lpsz)
 //   {
 //      ASSERT(lpsz != nullptr);
 //      ASSERT(m_pStream != nullptr);
@@ -211,7 +211,7 @@
 //      return lpszResult != nullptr;
 //   }
 //
-//   /*void stdio_file::write_string(const char * lpsz)
+//   /*void stdio_file::write_string(const ::string & lpsz)
 //   {
 //      ASSERT(lpsz != nullptr);
 //      ASSERT(m_pStream != nullptr);

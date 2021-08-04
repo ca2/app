@@ -1621,7 +1621,7 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSelText(const char * psz, const ::action_context & context)
+   void plain_edit::_001SetSelText(const ::string & psz, const ::action_context & context)
    {
 
       {
@@ -4222,7 +4222,7 @@ finished_update:
    }
 
 
-   void plain_edit::_001ReplaceSel(const char * pszText)
+   void plain_edit::_001ReplaceSel(const ::string & pszText)
    {
 
       bool bFullUpdate = true;
@@ -4245,7 +4245,7 @@ finished_update:
    }
 
 
-   bool plain_edit::_001ReplaceSel(const char * pszText, bool & bFullUpdate, index & iLineUpdate)
+   bool plain_edit::_001ReplaceSel(const ::string & pszText, bool & bFullUpdate, index & iLineUpdate)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -5710,7 +5710,7 @@ finished_update:
 
    }
 
-   void plain_edit::IndexRegisterInsert(strsize iSel, const char * pcszWhat)
+   void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
       UNREFERENCED_PARAMETER(iSel);

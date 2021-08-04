@@ -18,7 +18,7 @@
 
 //    // load Functions
 //    template < typename T >
-//    inline bool load(const char * lpKey, T & rvalue)
+//    inline bool load(const ::string & lpKey, T & rvalue)
 //    {
       
 //       i64 i;
@@ -32,37 +32,37 @@
 
 //    }
 
-//    bool load(const char * lpKey, i64 * lValue);
-//    bool load(const char * lpKey, RECTANGLE_I32 * lpRect);
+//    bool load(const ::string & lpKey, i64 * lValue);
+//    bool load(const ::string & lpKey, RECTANGLE_I32 * lpRect);
 // #ifdef WINDOWS_DESKTOP
-//    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
+//    bool load(const ::string & lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool load(const char * lpKey, POINT_I32 * lpPoint);
+//    bool load(const ::string & lpKey, POINT_I32 * lpPoint);
 
 //    // save Functions
 //    template < typename T >
-//    inline bool save(const char * lpKey, T value)
+//    inline bool save(const ::string & lpKey, T value)
 //    {
       
 //       return save(lpKey, (i64) value);
 
 //    }
 
-//    bool save(const char * lpKey, i64 lValue);
-//    bool save(const char * lpKey, const RECTANGLE_I32 * lpRect);
+//    bool save(const ::string & lpKey, i64 lValue);
+//    bool save(const ::string & lpKey, const RECTANGLE_I32 * lpRect);
 // #ifdef WINDOWS_DESKTOP
-//    bool save(const char * lpKey, WINDOWPLACEMENT & wp);
+//    bool save(const ::string & lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool save(const char * lpKey, POINT_I32 * lpPoint);
+//    bool save(const ::string & lpKey, POINT_I32 * lpPoint);
 
 //    // Search Functions
-//    bool find(const char * lpKey);
+//    bool find(const ::string & lpKey);
 
 
-//    bool MoveWindow_(const char * lpKey, ::user::interaction_impl * pwindow);
-//    bool SaveWindowRect_(const char * lpKey, ::user::interaction_impl * pwindow);
-//    bool SetWindowPlacement(const char * lpKey, ::user::interaction_impl * pwindow);
-//    bool SaveWindowPlacement(const char * lpKey, ::user::interaction_impl * pwindow);
+//    bool MoveWindow_(const ::string & lpKey, ::user::interaction_impl * pwindow);
+//    bool SaveWindowRect_(const ::string & lpKey, ::user::interaction_impl * pwindow);
+//    bool SetWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow);
+//    bool SaveWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow);
 
 // };
 

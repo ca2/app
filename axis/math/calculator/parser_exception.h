@@ -7,7 +7,7 @@ class CLASS_DECL_AXIS numeric_parser_exception:
 public:
 
 
-   numeric_parser_exception(const char * pszMessage = nullptr);
+   numeric_parser_exception(const ::string & pszMessage = nullptr);
    ~numeric_parser_exception() override;
 
 

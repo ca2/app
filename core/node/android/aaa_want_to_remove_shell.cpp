@@ -639,7 +639,7 @@ namespace android
    const char * lpszClassName;
    if(((::u32) lpClassName) >> 16 == 0)
    {
-     lpszClassName = (const char *) lpClassName;
+     lpszClassName = (const ::string &) lpClassName;
    }
    else
    {
@@ -661,7 +661,7 @@ namespace android
 
    /*   if(((::u32) wndclass) >> 16 == 0)
    {
-     lpszClassName = (const char *) lpClassName;
+     lpszClassName = (const ::string &) lpClassName;
    }
    else
    {
@@ -722,7 +722,7 @@ namespace android
       const char * lpszClassName;
       if(((::u32) lpClassName) >> 16 == 0)
       {
-         lpszClassName = (const char *) lpClassName;
+         lpszClassName = (const ::string &) lpClassName;
       }
       else
       {

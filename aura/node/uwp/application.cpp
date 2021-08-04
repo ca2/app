@@ -50,7 +50,7 @@ namespace aura
 
    //}
 
-   //bool application::_001OnDDECommand(const char * pcsz)
+   //bool application::_001OnDDECommand(const ::string & pcsz)
    //{
    //   UNREFERENCED_PARAMETER(pcsz);
    //   return false;
@@ -119,7 +119,7 @@ namespace aura
 //
 //               // Retrieve file description for language and code page "i".
 //               VerQueryValue(lpdata,
-//                             (char *) (const char *) strKey,
+//                             (char *) (const ::string &) strKey,
 //                             (LPVOID *)&lpsz,
 //                             &uiSize);
 //
@@ -296,7 +296,7 @@ namespace aura
 //#elif defined WINDOWS_DESKTOP
 //      {
 //         string slask = payload + "=" + value;
-//         _putenv( (const char *)slask);
+//         _putenv( (const ::string &)slask);
 //      }
 //#elif defined _UWP
 //

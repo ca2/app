@@ -48,7 +48,7 @@ namespace database
    //   return *this;
    //}
 
-   field_definition_item::enum_type field_definition_item::field_str_to_type(const char * pszType)
+   field_definition_item::enum_type field_definition_item::field_str_to_type(const ::string & pszType)
    {
       string strType(pszType);
       strType.make_lower();

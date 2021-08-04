@@ -44,7 +44,7 @@ namespace account
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual bool on_action(const char * pszId);
+      virtual bool on_action(const ::string & pszId);
 
       void initialize();
 

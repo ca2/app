@@ -19,9 +19,9 @@ namespace experience
       virtual ~department();
 
 
-      virtual __pointer(::experience::experience) create_experience2(::object * pobject, const char * pszExperienceLibrary);
-      virtual __pointer(::experience::experience) get_experience2(::object * pobject, const char * pszExperienceLibrary);
-      virtual __pointer(::experience::frame) experience_get_frame2(::object * pobject, const char * pszExperienceLibrary, const char * pszFrame);
+      virtual __pointer(::experience::experience) create_experience2(::object * pobject, const ::string & pszExperienceLibrary);
+      virtual __pointer(::experience::experience) get_experience2(::object * pobject, const ::string & pszExperienceLibrary);
+      virtual __pointer(::experience::frame) experience_get_frame2(::object * pobject, const ::string & pszExperienceLibrary, const ::string & pszFrame);
 
 
    };

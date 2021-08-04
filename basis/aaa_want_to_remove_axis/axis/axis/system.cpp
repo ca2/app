@@ -378,7 +378,7 @@ namespace axis
 
 #include "framework.h" // from "axis/user/user.h"
 
-//void dappy(const char * psz);
+//void dappy(const ::string & psz);
 
 
 
@@ -421,7 +421,7 @@ namespace axis
 
 
 
-   void system::hist_hist(const char * psz)
+   void system::hist_hist(const ::string & psz)
    {
    }
 

@@ -63,7 +63,7 @@ __pointer(menu_shared) create_menu_shared(const string_array & straParent, const
 }
 
 
-void * menu_shared::find_item(const char * pszParent, const char * pszId)
+void * menu_shared::find_item(const ::string & pszParent, const ::string & pszId)
 {
 
    for(int i = 0; i < m_iCount; i++)
@@ -201,7 +201,7 @@ public: // re-implementations only
       }
    }
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
+   //virtual void SetText(const ::string & pszText, const ::action_context & context = ::e_source_system);
 
 };
 

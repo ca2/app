@@ -71,13 +71,13 @@ namespace parallelization
 
 
 
-bool ns_set_thread_name(const char * psz);
+bool ns_set_thread_name(const ::string & psz);
 
 
 char * ns_get_thread_name();
 
 
-bool task_set_name(const char * psz)
+bool task_set_name(const ::string & psz)
 {
    
    return ns_set_thread_name(psz);

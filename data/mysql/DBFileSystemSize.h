@@ -61,8 +61,8 @@ public:
       void update_size(::object * pobject, index & iIteration);
       void update_size_recursive(::object * pobject, index & iIteration);
 
-      item * FindItem(::object * pobject, const char * pszPath, index & iIteration);
-      index FindName(::object * pobject, const char * pszName, index & iIteration);
+      item * FindItem(::object * pobject, const ::string & pszPath, index & iIteration);
+      index FindName(::object * pobject, const ::string & pszName, index & iIteration);
 
       string path();
 
@@ -109,11 +109,11 @@ public:
 
 
 
-   bool get_cache_fs_size(i64 & i64Size, const char * pszPath, bool & bPending);
-   bool get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending);
+   bool get_cache_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
+   bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
 
 
-   bool get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending, index & iIteration);
+   bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending, index & iIteration);
 
 
 };
@@ -168,7 +168,7 @@ public:
 
 
    void ClientStartServer();
-   bool get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending);
+   bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
 
    void install_message_routing(::channel * pchannel);
 

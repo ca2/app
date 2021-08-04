@@ -11,10 +11,10 @@
 #include "_.h"
 
 //
-//u32 __start_system_with_file(const char ** pszaFile, int iCount);
+//u32 __start_system_with_file(const ::string &* pszaFile, int iCount);
 //
 //
-//u32 __start_system_with_file(const char * pszFileName)
+//u32 __start_system_with_file(const ::string & pszFileName)
 //{
 //
 //   if(pszFileName == nullptr)
@@ -24,7 +24,7 @@
 //
 //   }
 //
-//   const char ** psza = (const char **) malloc(sizeof(const char *) * 1);
+//   const char ** psza = (const ::string &*) malloc(sizeof(const ::string &) * 1);
 //
 //   psza[0] = strdup(pszFileName);
 //
@@ -32,7 +32,7 @@
 //
 //}
 //
-//u32 __start_system_with_file(const char ** pszaFile, int iCount)
+//u32 __start_system_with_file(const ::string &* pszaFile, int iCount)
 //{
 //
 //   string strExtra;

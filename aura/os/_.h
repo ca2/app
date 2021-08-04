@@ -59,7 +59,7 @@
 //template < typename PRED >
 //inline bool predicate_Sleep(int iTime, PRED pred);
 
-//CLASS_DECL_AURA void press_any_key_to_exit(const char* psz = nullptr);
+//CLASS_DECL_AURA void press_any_key_to_exit(const ::string & psz = nullptr);
 
 //void adapt_font_name(string & str);
 

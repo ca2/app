@@ -62,7 +62,7 @@ char* recv_rest(pop3sock_t sock, char* buf, int cs, int bs);
 /* recv end of data through sock, buffer is of bs bytes, already filled by cs */
 /* end of data is assumed when data has a "\r\n.\r\n" string */
 
-char* pop3_query(pop3sock_t sock, const char* query){
+char* pop3_query(pop3sock_t sock, const ::string & query){
 /* performs a simple pop query and returns server's <512 bytes response */
 int r;
 int bytes=0;
@@ -101,7 +101,7 @@ char* buf;
 	return(buf);
 }
 
-char* pop3_user(pop3sock_t sock, const char* name){
+char* pop3_user(pop3sock_t sock, const ::string & name){
 /* performs "USER" pop query and returns server's <512 bytes response */
 char query[POPBUF]; /* total "USER ****your_name****\n" is < 512  */
 
@@ -109,7 +109,7 @@ char query[POPBUF]; /* total "USER ****your_name****\n" is < 512  */
 	return(pop3_query(sock,query));
 }
 
-char* pop3_pass(pop3sock_t sock, const char* pw){
+char* pop3_pass(pop3sock_t sock, const ::string & pw){
 /* performs "PASS" pop query and return server's <512 bytes response */
 char query[POPBUF]; /* total "PASS ****your_pass****\n" is <512 */
 
@@ -441,7 +441,7 @@ char* buf;
 	return(recv_rest(sock,buf,r,POPBUF));
 }
 
-char* pop3_apop(pop3sock_t sock, const char* name, const char* digest){
+char* pop3_apop(pop3sock_t sock, const ::string & name, const ::string & digest){
 /* performs a "APOP" secure query and returns server's <512 bytes response */
 char query[POPBUF]; /* total "APOP name digest\n" is < 512 */
 

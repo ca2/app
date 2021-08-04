@@ -1350,13 +1350,13 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 #define _NET_WM_STATE_TOGGLE        2    // toggle property
 
 Atom * wm_get_list_raw(oswindow w, Atom atomList, unsigned long int * items);
-int wm_test_state(oswindow w, const char * pszNetStateFlag);
-int wm_test_state_raw(oswindow w, const char * pszNetStateFlag);
+int wm_test_state(oswindow w, const ::string & pszNetStateFlag);
+int wm_test_state_raw(oswindow w, const ::string & pszNetStateFlag);
 int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag);
 bool wm_add_erase_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet);
 
 
-void wm_add_erase_state_mapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
+void wm_add_erase_state_mapped_raw(oswindow w, const ::string & pszNetStateFlag, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -1431,7 +1431,7 @@ void wm_add_erase_state_mapped_raw(oswindow w, const char * pszNetStateFlag, boo
 }
 
 
-void wm_add_erase_state_mapped(oswindow w, const char * pszNetStateFlag, bool bSet)
+void wm_add_erase_state_mapped(oswindow w, const ::string & pszNetStateFlag, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -1447,7 +1447,7 @@ void wm_add_erase_state_mapped(oswindow w, const char * pszNetStateFlag, bool bS
 }
 
 
-void wm_add_erase_state_unmapped_raw(oswindow w, const char * pszNetStateFlag, bool bSet)
+void wm_add_erase_state_unmapped_raw(oswindow w, const ::string & pszNetStateFlag, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -1487,7 +1487,7 @@ void wm_add_erase_state_unmapped_raw(oswindow w, const char * pszNetStateFlag, b
 }
 
 
-void wm_add_erase_state_unmapped(oswindow w, const char * pszNetStateFlag, bool bSet)
+void wm_add_erase_state_unmapped(oswindow w, const ::string & pszNetStateFlag, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -1503,7 +1503,7 @@ void wm_add_erase_state_unmapped(oswindow w, const char * pszNetStateFlag, bool 
 }
 
 
-void wm_add_erase_state_raw(oswindow w, const char * pszState, bool bSet)
+void wm_add_erase_state_raw(oswindow w, const ::string & pszState, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -1524,7 +1524,7 @@ void wm_add_erase_state_raw(oswindow w, const char * pszState, bool bSet)
 }
 
 
-void wm_add_erase_state(oswindow w, const char * pszState, bool bSet)
+void wm_add_erase_state(oswindow w, const ::string & pszState, bool bSet)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -2049,7 +2049,7 @@ int wm_test_list_raw(oswindow w, Atom atomList, Atom atomFlag)
 }
 
 
-int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
+int wm_test_state_raw(oswindow w, const ::string & pszNetStateFlag)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);
@@ -2081,7 +2081,7 @@ int wm_test_state_raw(oswindow w, const char * pszNetStateFlag)
 }
 
 
-int wm_test_state(oswindow w, const char * pszNetStateFlag)
+int wm_test_state(oswindow w, const ::string & pszNetStateFlag)
 {
 
    synchronous_lock synchronouslock(g_pmutexX);

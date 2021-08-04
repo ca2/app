@@ -14,7 +14,7 @@ namespace hotplugin
       string      m_strChannel;
       string      m_strPlatform;
 
-      container_launcher(string strPlatform, const char * pszChannel);
+      container_launcher(string strPlatform, const ::string & pszChannel);
 
       virtual bool ensure_executable() { return true; }
 

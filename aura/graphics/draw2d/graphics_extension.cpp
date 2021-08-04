@@ -17,7 +17,7 @@ namespace draw2d
    }
 
 
-   bool graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const char * pcsz, strsize iCount, size_i32 & s)
+   bool graphics_extension::text_out(::draw2d::graphics_pointer & pgraphics, i32 x, i32 y, const ::string & pcsz, strsize iCount, size_i32 & s)
 
    {
       s = pgraphics->get_text_extent(string(pcsz,iCount));
@@ -30,7 +30,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const char * pcsz, ::size_array & sizea)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, ::size_array & sizea)
    {
 
 
@@ -55,7 +55,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const char * psz, size_i32 & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::string & psz, size_i32 & size)
    {
 
       //synchronous_lock ml(&user_mutex());
@@ -66,7 +66,7 @@ namespace draw2d
          return;
       ::GetTextExtentPoint32U(
          (HDC)pgraphics->get_os_data(),
-         (const char *) str,
+         (const ::string &) str,
          str.get_length(),
          &size);*/
 
@@ -76,7 +76,7 @@ namespace draw2d
    }
 
 
-   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const char * pcsz, strsize iCount, size_i32 & size)
+   void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::string & pcsz, strsize iCount, size_i32 & size)
    {
 
       /*::GetTextExtentPoint32U(

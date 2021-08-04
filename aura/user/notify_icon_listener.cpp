@@ -163,7 +163,7 @@ namespace user
    }
 
 
-   void notify_icon_listener::call_notification_area_action(const char * pszId)
+   void notify_icon_listener::call_notification_area_action(const ::string & pszId)
    {
 
    }

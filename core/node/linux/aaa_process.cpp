@@ -162,7 +162,7 @@ namespace ansios
    }
 
 
-   bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir, ::e_priority epriority)
    {
 
       if(!::process::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
@@ -369,7 +369,7 @@ namespace ansios
    }
 
 
-   bool process::synch_elevated(const char * pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
+   bool process::synch_elevated(const ::string & pszCmdLineParam,int iShow,const ::duration & durationTimeOut,bool * pbTimeOut)
    {
 
       string_array straParam;

@@ -267,7 +267,7 @@ namespace aura
       //virtual ::e_status process_exception(const ::exception::exception & e) override;
 
 
-      //virtual __pointer(::aura::application) assert_running(const char * pszAppId) override;
+      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running() override;
 
@@ -279,7 +279,7 @@ namespace aura
 
       virtual bool assert_user_logged_in() override;
 
-      virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = nullptr) override;
+      virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2 = nullptr) override;
 
 
 
@@ -325,7 +325,7 @@ namespace aura
       //virtual void set_env_var(const string & payload, const string & value) override;
 
 
-      virtual ::draw2d::printer * get_printer(const char * pszDeviceName);
+      virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName);
 
 
       virtual ::draw2d::icon * set_icon(::object * pobject, ::draw2d::icon * picon, bool bBigIcon);
@@ -339,8 +339,8 @@ namespace aura
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      //virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      //virtual i32 hotplugin_host_host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
@@ -405,7 +405,7 @@ namespace aura
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual string dialog_box(const char * pszMatter, property_set & propertyset) override;
+      virtual string dialog_box(const ::string & pszMatter, property_set & propertyset) override;
 
       //virtual void application_menu_update() override;
 
@@ -459,16 +459,16 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -478,7 +478,7 @@ namespace aura
       //virtual string_array get_categories() override;
 
       virtual void defer_create_keyboard() override;
-      //virtual bool set_keyboard_layout(const char * pszPath, const ::action_context & action_context);
+      //virtual bool set_keyboard_layout(const ::string & pszPath, const ::action_context & action_context);
 
 
       //virtual bool enable_application_events(::object * pobject, bool bEnable) override;
@@ -518,7 +518,7 @@ namespace aura
       //virtual bool Ex2OnAppInstall();
       //virtual bool Ex2OnAppUninstall();
 
-      bool on_application_menu_action(const char * pszCommand) override;
+      bool on_application_menu_action(const ::string & pszCommand) override;
       //virtual void _001CloseApplication();
 
       //virtual string get_license_id();
@@ -593,7 +593,7 @@ namespace aura
       //virtual bool on_install();
       //virtual bool on_uninstall();
 
-      //virtual bool system_add_app_install(const char * pszId, const char * pszBuild) override;
+      //virtual bool system_add_app_install(const ::string & pszId, const ::string & pszBuild) override;
 
       //virtual void TermThread(HINSTANCE hInstTerm);
 
@@ -603,7 +603,7 @@ namespace aura
       //virtual itask_t get_thread_id();
 
 
-      //virtual bool _001OnDDECommand(const char * pcsz) override;
+      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
 
       virtual ::e_status _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
@@ -613,9 +613,9 @@ namespace aura
       //virtual string multimedia_audio_mixer_get_default_library_name() override;
       //virtual string veriwell_multimedia_music_midi_get_default_library_name() override;
 
-      //virtual bool get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate) override;
+      //virtual bool get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate) override;
 
-      //virtual bool get_temp_file_name(string & str,const char * lpszName,const char * pszExtension) override;
+      //virtual bool get_temp_file_name(string & str, const ::string & lpszName, const ::string & pszExtension) override;
 
       //service_base * get_service();
       //virtual service_base * allocate_new_service() override;
@@ -698,7 +698,7 @@ namespace aura
 
 
 
-      //virtual string http_get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema) override;
+      //virtual string http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema) override;
 
       //virtual void on_update_matter_locator() override;
 
@@ -722,7 +722,7 @@ namespace aura
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
-      //virtual bool platform_open_by_file_extension(index iEdge, const char * pszPathName, ::create * pcreate = nullptr) override;
+      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr) override;
       //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
 
 
@@ -757,7 +757,7 @@ namespace aura
 
       //virtual void play_audio(::payload varFile, bool bSynch = false);
 
-      //virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true) override;
+      //virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true) override;
 
       //virtual void show_critical_error_log() override;
 
@@ -884,7 +884,7 @@ namespace aura
 
       //virtual u32 guess_code_page(const string& str) override;
 
-      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 fuStyle) override;
+      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 
@@ -909,7 +909,7 @@ namespace aura
       virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
+//      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -918,7 +918,7 @@ namespace aura
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
+      bool CreateFileFromRawResource(::u32 nID, const ::string & lcszType, const ::string & pcszFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -928,7 +928,7 @@ namespace aura
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
-      virtual void SetRegistryKey(const char* pszRegistryKey);
+      virtual void SetRegistryKey(const ::string & pszRegistryKey);
 
       virtual void SetRegistryKey(::u32 nIDRegistryKey);
 
@@ -981,12 +981,12 @@ namespace aura
 
 
 
-      virtual i32 track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
+      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
 
-      virtual bool get_fs_size(string& strSize, const char* pszPath, bool& bPending) override;
-      virtual bool get_fs_size(i64& i64Size, const char* pszPath, bool& bPending) override;
+      virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
+      virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;
 
-      virtual void set_title(const char* pszTitle) override;
+      virtual void set_title(const ::string & pszTitle) override;
 
 
       virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
@@ -1017,7 +1017,7 @@ namespace aura
       virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      void report_error(const ::exception::exception & exception, int iMessageFlags, const char* pszTopic) override;
+      void report_error(const ::exception::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
 
 
       bool can_close_application() override;
@@ -1036,7 +1036,7 @@ namespace aura
       virtual string get_visual_studio_build();
 
 
-      string sound_path(const char* psz) override;
+      string sound_path(const ::string & psz) override;
       string get_default_playlist_path() override;
 
       
@@ -1060,15 +1060,15 @@ namespace aura
 
 //CLASS_DECL_AURA ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
 
-//typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const char* pszId);
+//typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const ::string & pszId);
 
 //extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
 
 //#ifdef WINDOWS_DESKTOP
 //
-//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
+//CLASS_DECL_AURA BOOL LaunchAppIntoDifferentSession(const ::string & pszProcess, const ::string & pszCommand, const ::string & pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
 //
-//CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
+//CLASS_DECL_AURA BOOL LaunchAppIntoSystemAcc(const ::string & pszProcess, const ::string & pszCommand, const ::string & pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
 //
 //#endif // WINDOWS_DESKTOP
 

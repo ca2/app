@@ -40,7 +40,7 @@ namespace draw2d
       virtual ~printer();
 
 
-      virtual bool open(const char * pszDeviceName);
+      virtual bool open(const ::string & pszDeviceName);
       virtual ::draw2d::graphics_pointer create_graphics();
       virtual bool is_opened();
       virtual bool close();

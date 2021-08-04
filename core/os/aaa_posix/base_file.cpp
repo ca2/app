@@ -55,7 +55,7 @@ size_t get_file_size(i32 fd)
 
 
 
-int_bool file_set_length(const char * lpszName, size_t iSize)
+int_bool file_set_length(const ::string & lpszName, size_t iSize)
 {
 
    i32 fd = ::open(lpszName, O_RDONLY);
@@ -69,7 +69,7 @@ int_bool file_set_length(const char * lpszName, size_t iSize)
 }
 
 
-int_bool file_exists(const char * path1)
+int_bool file_exists(const ::string & path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -95,7 +95,7 @@ int_bool file_exists(const char * path1)
 }
 
 
-int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
+int_bool is_file_or_dir_dup(const ::string & path1, ::file::enum_type * petype)
 {
 
    struct stat st;
@@ -137,7 +137,7 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
 }
 
 
-int_bool file_put_contents(const char * path, const char * contents, ::count len)
+int_bool file_put_contents(const ::string & path, const ::string & contents, ::count len)
 {
 
    bool bOk = false;
@@ -193,7 +193,7 @@ int_bool file_put_contents(const char * path, const char * contents, ::count len
 
 
 
-string file_as_string(const char * path, strsize iReadAtMostByteCount)
+string file_as_string(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -226,7 +226,7 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-memory file_as_memory(const char * path, strsize iReadAtMostByteCount)
+memory file_as_memory(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    memory mem;
@@ -238,7 +238,7 @@ memory file_as_memory(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMostByteCount)
+bool file_as_memory(memory_base & memory, const ::string & path, strsize iReadAtMostByteCount)
 {
 
    FILE * f = fopen(path, "rb");
@@ -298,7 +298,7 @@ bool file_as_memory(memory_base & memory, const char * path, strsize iReadAtMost
 }
 
 
-memsize file_as_memory(const char * path, void * p, memsize s)
+memsize file_as_memory(const ::string & path, void * p, memsize s)
 {
 
    FILE * f = fopen(path, "rb");
@@ -334,7 +334,7 @@ memsize file_as_memory(const char * path, void * p, memsize s)
 
 
 
-filesize file_length_dup(const char * path)
+filesize file_length_dup(const ::string & path)
 {
 
    struct stat st;
@@ -417,7 +417,7 @@ filesize file_length_dup(const char * path)
 
 
 
-int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
+int_bool file_copy_dup(const ::string & pszNew, const ::string & pszSrc, int_bool bOverwrite)
 {
 
    i32 input, output;
@@ -478,7 +478,7 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
 
 
 
-int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
+int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 {
    if (ansi_compare_ci(psz1, psz2) == 0)
       return true;
@@ -500,7 +500,7 @@ CLASS_DECL_CORE string file_get_mozilla_firefox_plugin_container_path()
 
 
 
-int_bool file_delete(const char * pszFileName)
+int_bool file_delete(const ::string & pszFileName)
 
 {
 
@@ -522,7 +522,7 @@ int_bool file_delete(const char * pszFileName)
 
 
 
-int_bool file_is_equal_path(const char * psz1, const char * psz2)
+int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
 {
 
    const i32 iBufSize = MAX_PATH * 8;
@@ -557,7 +557,7 @@ int_bool file_is_equal_path(const char * psz1, const char * psz2)
 
 
 
-i32 ansi_open(const char * psz, i32 i)
+i32 ansi_open(const ::string & psz, i32 i)
 {
 
    return open(psz, i);
@@ -569,7 +569,7 @@ void ansi_get_errno(i32 * perrno)
    *perrno = errno;
 }
 
-FILE * ansi_fopen(const char * psz, const char * pszMode)
+FILE * ansi_fopen(const ::string & psz, const ::string & pszMode)
 {
 
    return fopen(psz, pszMode);
@@ -618,7 +618,7 @@ int ansi_file_flag(int iFlag)
 }
 
 
-void ansi_unlink(const char * psz)
+void ansi_unlink(const ::string & psz)
 {
 
    unlink(psz);
@@ -626,7 +626,7 @@ void ansi_unlink(const char * psz)
 }
 
 
-int_bool is_dir(const char * path1)
+int_bool is_dir(const ::string & path1)
 {
 
    struct stat st;

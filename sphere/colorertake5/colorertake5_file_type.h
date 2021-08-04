@@ -43,7 +43,7 @@ namespace colorertake5
          */
          virtual string enumerateParameters(i32 idx) = 0;
 
-         virtual string getParameterDescription(const char * name) = 0;
+         virtual string getParameterDescription(const ::string & name) = 0;
 
          /** Returns parameter's value of this file type.
              Parameters are stored in prototypes as
@@ -60,7 +60,7 @@ namespace colorertake5
              @param name Parameter's name
              @return Value (changed or default) of this parameter
          */
-         virtual string getParamValue(const char * name) = 0;
+         virtual string getParamValue(const ::string & name) = 0;
 
          /** Returns parameter's default value of this file type.
              Default values are the values, explicitly pointed with
@@ -68,7 +68,7 @@ namespace colorertake5
              @param name Parameter's name
              @return Default value of this parameter
          */
-         virtual string getParamDefaultValue(const char * name) = 0;
+         virtual string getParamDefaultValue(const ::string & name) = 0;
 
          /** Changes value of the parameter with specified name.
              Note, that changed parameter values are not stored in HRC
@@ -78,7 +78,7 @@ namespace colorertake5
              @param name Parameter's name
              @param value New value of this parameter.
          */
-         virtual void setParamValue(const char *name, const char * value) = 0;
+         virtual void setParamValue(const ::string &name, const ::string & value) = 0;
 
       protected:
          file_type() {};

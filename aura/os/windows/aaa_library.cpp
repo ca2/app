@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-//void * __node_library_open(const char * pszPath, string & strMessage)
+//void * __node_library_open(const ::string & pszPath, string & strMessage)
 //{
 //
 //   strMessage.Empty();
@@ -225,7 +225,7 @@
 //}
 
 
-//void * __node_library_touch(const char * pszPath, string & strMessage)
+//void * __node_library_touch(const ::string & pszPath, string & strMessage)
 //{
 //
 //   strMessage.Empty();
@@ -472,7 +472,7 @@
 //}
 //
 //
-//void * __node_library_open_ca2(const char * psz, string & strMessage)
+//void * __node_library_open_ca2(const ::string & psz, string & strMessage)
 //{
 //
 //   void * p = LoadLibraryW(wstring(psz));
@@ -499,7 +499,7 @@
 //
 //}
 //
-//void * __node_library_raw_get(void * plibrary,const char * pszEntryName)
+//void * __node_library_raw_get(void * plibrary, const ::string & pszEntryName)
 //{
 //
 //   return ::GetProcAddress((HINSTANCE)plibrary,pszEntryName);

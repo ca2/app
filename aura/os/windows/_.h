@@ -13,8 +13,8 @@
 //
 //
 ////CLASS_DECL_AURA string key_to_char(wparam wparam, lparam lparam);
-////CLASS_DECL_AURA string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
-////CLASS_DECL_AURA bool read_resource_as_memory(memory & m, HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount = -1);
+////CLASS_DECL_AURA string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const ::string & pcszType, strsize iReadAtMostByteCount = -1);
+////CLASS_DECL_AURA bool read_resource_as_memory(memory & m, HINSTANCE hinst, ::u32 nID, const ::string & pcszType, strsize iReadAtMostByteCount = -1);
 //
 //
 ////CLASS_DECL_AURA HANDLE dup_handle(HANDLE h);

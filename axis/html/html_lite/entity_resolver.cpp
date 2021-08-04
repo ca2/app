@@ -145,7 +145,7 @@ LiteHTMLEntityResolver::LiteHTMLEntityResolver()
 }
 
 
-i32 LiteHTMLEntityResolver::resolveEntity(const char * pszEntity, string & strChar)
+i32 LiteHTMLEntityResolver::resolveEntity(const ::string & pszEntity, string & strChar)
 
 {
    if (m_CharEntityRefs.get_count() <= 0)

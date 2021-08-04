@@ -116,13 +116,13 @@ namespace dynamic_source
    }
 
 
-   //void script_interface::dprint(const char *)
+   //void script_interface::dprint(const ::string &)
    //{
 
    //}
 
 
-   property & script_interface::get(const char * pszKey)
+   property & script_interface::get(const ::string & pszKey)
    {
       return netnodesocket()->m_request.form().get()[pszKey];
    }
@@ -290,7 +290,7 @@ namespace dynamic_source
 
 
 
-   void script_interface::dprint(const char *)
+   void script_interface::dprint(const ::string &)
    {
 
 
@@ -473,21 +473,21 @@ namespace dynamic_source
 
 
 
-      void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload)
+      void script_interface::uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload)
       {
 
 
       }
 
 
-      void script_interface::uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam)
+      void script_interface::uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam)
       {
 
 
       }
 
 
-      string script_interface::query_get_param(const char* pszUrl, const char* pszKey)
+      string script_interface::query_get_param(const ::string & pszUrl, const ::string & pszKey)
       {
 
          return "";
@@ -495,7 +495,7 @@ namespace dynamic_source
       }
 
 
-      ::payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
+      ::payload script_interface::query_get_var(const ::string & pszUrl, const ::string & pszKey)
       {
 
       return false;

@@ -35,7 +35,7 @@ class nsCharSetProber {
 public:
   virtual ~nsCharSetProber() {};
   virtual const char* GetCharSetName() = 0;
-  virtual nsProbingState HandleData(const char* aBuf, PR::u32 aLen) = 0;
+  virtual nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen) = 0;
   virtual nsProbingState GetState(void) = 0;
   virtual void      Reset(void)  = 0;
   virtual float     GetConfidence(void) = 0;

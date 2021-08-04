@@ -1890,7 +1890,7 @@ return true;
 
 }*/
 
-//   void imaging::SaveJpeg(const char * pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SaveJpeg(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1913,7 +1913,7 @@ return true;
 //#endif
 //   }
 //
-//   void imaging::SavePng(const char * pcszFile,::draw2d::bitmap_pointer pitmap)
+//   void imaging::SavePng(const ::string & pcszFile,::draw2d::bitmap_pointer pitmap)
 
 
 //   {
@@ -1938,7 +1938,7 @@ return true;
 
 
 
-//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const char * pcszImageFilePath,::aura::application * papp)
+//   ::draw2d::bitmap_pointer imaging::LoadImageSync(const ::string & pcszImageFilePath,::aura::application * papp)
 
 //   {
 //#ifdef AXIS_FREEIMAGE
@@ -6786,7 +6786,7 @@ bool imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 //}
 
 
-void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const char * pcsz,i32 len,::color32_t color32,double dBlend)
+void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const ::string & pcsz,i32 len,::color32_t color32,double dBlend)
 {
 
    string str(pcsz,len);

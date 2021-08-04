@@ -32,7 +32,7 @@
 #include <time.h>
 
 struct tm *
-getdateSystem (const char *d)
+getdateSystem (const ::string &d)
 {
 #warning If warning messages about getdate appear, ignore them.
   return (getdate (d));

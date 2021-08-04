@@ -207,7 +207,7 @@
 #ifndef WINDOWS
 
 
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
+bool context::_os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
 {
 
    if (::is_null(psz))
@@ -258,7 +258,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 #endif
 
 
-// CLASS_DECL_CORE bool context::os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_CORE bool context::os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -267,7 +267,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 
 
 
-// CLASS_DECL_CORE bool _os_may_have_alias(const char * psz)
+// CLASS_DECL_CORE bool _os_may_have_alias(const ::string & psz)
 // {
 
 //    return true;
@@ -277,7 +277,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 
 #ifndef WINDOWS
 
-CLASS_DECL_CORE bool context::os_is_alias(const char * path)
+CLASS_DECL_CORE bool context::os_is_alias(const ::string & path)
 {
 
    if (is_null(path))

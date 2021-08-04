@@ -221,7 +221,7 @@ namespace html
 
 
 
-   string html::special_chars(const char* psz)
+   string html::special_chars(const ::string & psz)
    {
       string str(psz);
       str.replace("&", "&amp;");
@@ -234,10 +234,18 @@ namespace html
 
 
 
-   string html::entities(const char* psz)
+   string html::entities(const ::string & strParam)
    {
-      if (psz == nullptr)
+      
+      const char * psz = strParam;
+
+      if (psz == nullptr || *psz == '\0')
+      {
+
          return "";
+
+      }
+
       string str;
       string strChar;
       while (*psz != '\0')
@@ -278,10 +286,18 @@ namespace html
    }
 
 
-   string html::htmlpre(const char* psz)
+   string html::htmlpre(const ::string & strParam)
    {
-      if (psz == nullptr)
+
+      const char * psz = strParam;
+
+      if (psz == nullptr || *psz == '\0')
+      {
+
          return "";
+
+      }
+
       string str;
       string strChar;
       while (*psz != '\0')
@@ -316,13 +332,15 @@ namespace html
             strChar.Format("&#%d;", iChar);
             str += strChar;
          }
+         
          psz = ::str::utf8_inc(psz);
+
       }
       return str;
    }
 
 
-   i32 html::resolve_entity(const char* pszEntity, string& strChar)
+   i32 html::resolve_entity(const ::string & pszEntity, string& strChar)
    {
 
       return m_pentitysolver->resolveEntity(pszEntity, strChar);

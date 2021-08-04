@@ -84,7 +84,7 @@ namespace windowing
       virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
-      button * new_button(const char * pszLabel, enum_dialog_result edialogresult);
+      button * new_button(const ::string & pszLabel, enum_dialog_result edialogresult);
 
 
       void common_construct();

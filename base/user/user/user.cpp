@@ -438,10 +438,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
@@ -983,7 +983,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::channel* pchannelNotify)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
    {
 
       auto psession = get_session();
@@ -1028,7 +1028,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
       auto pmouse = pmessage->m_pmouse;
@@ -1093,7 +1093,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
    {
 
       string strMatterSource(pszMatter);
@@ -1192,7 +1192,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const char* pszExperienceLibrary, ::application* papp)
+   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::application* papp)
    {
 
       auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1211,7 +1211,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const char* pszExperienceLibrary, ::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const ::string & pszExperienceLibrary, ::application* papp)
    {
 
       INFO("aura::session::instantiate_user_theme");
@@ -1425,7 +1425,7 @@ namespace base
    }
 
 
-   void user::defer_instantiate_user_style(const char* pszUiInteractionLibrary)
+   void user::defer_instantiate_user_style(const ::string & pszUiInteractionLibrary)
    {
 
       if (!m_puserstyle)
@@ -1481,7 +1481,7 @@ namespace base
 //}
 
 
-//CLASS_DECL_BASE int __c_get_text_length(const char* psz)
+//CLASS_DECL_BASE int __c_get_text_length(const ::string & psz)
 //{
 //
 //   string str = __get_text(psz);
@@ -1491,7 +1491,7 @@ namespace base
 //}
 
 
-//CLASS_DECL_BASE void __c_get_text(char* pszText, int iLen, const char* psz)
+//CLASS_DECL_BASE void __c_get_text(char* pszText, int iLen, const ::string & psz)
 //{
 //
 //   string str = __get_text(psz);

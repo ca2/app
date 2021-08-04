@@ -4,7 +4,7 @@
 void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority);
 
 
-i32 create_process(const char * _cmd_line, i32 * pprocessId)
+i32 create_process(const ::string & _cmd_line, i32 * pprocessId)
 {
 
    char *   exec_path_name = nullptr;
@@ -107,7 +107,7 @@ unsigned int * puiPid)
 
 }
 
-CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_CORE u32 call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
    string strCmdLine;
 
@@ -228,7 +228,7 @@ namespace process
 //}
 
 
-CLASS_DECL_CORE bool shell_execute_sync(const char * pszPath, const char * pszParam, ::duration durationTimeout)
+CLASS_DECL_CORE bool shell_execute_sync(const ::string & pszPath, const ::string & pszParam, ::duration durationTimeout)
 {
 
    string strCmdLine;

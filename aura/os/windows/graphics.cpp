@@ -60,7 +60,7 @@ namespace draw2d
 } // namespace draw2d
 
 
-//bool similar_font(const char * pszSystem, const char *pszUser)
+//bool similar_font(const ::string & pszSystem, const ::string &pszUser)
 //{
 //
 //   if (::is_null(pszSystem) || ::is_null(pszUser))
@@ -82,7 +82,7 @@ namespace draw2d
 
 
 
-//bool similar_font(const char* pszSystem, const char* pszUser)
+//bool similar_font(const ::string & pszSystem, const ::string & pszUser)
 //{
 //
 //   if (::is_null(pszSystem) || ::is_null(pszUser))

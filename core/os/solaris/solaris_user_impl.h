@@ -137,7 +137,7 @@ public:
    }
 
 
-   i32 store_name(const char * psz);
+   i32 store_name(const ::string & psz);
    i32 select_input(i32 iInput);
    i32 select_all_input();
    i32 map_window();

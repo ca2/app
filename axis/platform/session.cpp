@@ -184,7 +184,7 @@ namespace axis
    }
 
 
-   //::aura::application * session::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+   //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
    //   __pointer(::application) papp;
@@ -259,7 +259,7 @@ namespace axis
    //}
 
 
-//   __pointer(::aura::application) session::get_new_application(::object * pobject, const char * pszAppId)
+//   __pointer(::aura::application) session::get_new_application(::object * pobject, const ::string & pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
@@ -537,7 +537,7 @@ namespace axis
    //}
 
 
-   bool session::is_licensed(const char * pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
    {
 
       if (has_property("install"))

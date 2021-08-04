@@ -92,8 +92,8 @@ namespace user
       void _001SelectItem(::data::tree_item * pitem);
       count _001GetProperItemCount();
       count _001GetVisibleItemCount();
-      void _001SetCollapseImage(const char * pszMatter);
-      void _001SetExpandImage(const char * pszMatter);
+      void _001SetCollapseImage(const ::string & pszMatter);
+      void _001SetExpandImage(const ::string & pszMatter);
       void update_tree_hover();
       void update_tree_hover(point_i32 point);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);

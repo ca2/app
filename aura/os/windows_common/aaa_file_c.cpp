@@ -7,7 +7,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 #endif
 
 
-//::u32 windows_get_file_attributes(const char* path)
+//::u32 windows_get_file_attributes(const ::string & path)
 //{
 //
 //   wstring wstr(path);
@@ -31,7 +31,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //}
 //
 //
-//bool windows_create_directory(const char* path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+//bool windows_create_directory(const ::string & path, LPSECURITY_ATTRIBUTES lpSecurityAttributes)
 //{
 //
 //   wstring wstr(path);
@@ -81,7 +81,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //
 //
 ////extern "C"
-//int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverwrite)
+//int_bool file_copy_dup(const ::string & pszNew, const ::string & pszSrc, int_bool bOverwrite)
 //{
 //
 //   string strNew(pszNew);
@@ -208,7 +208,7 @@ CLASS_DECL_AURA::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, 
 //}
 //
 //
-int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
+int_bool is_file_or_dir_dup(const ::string & path, ::file::enum_type * petype)
 {
 
    auto dwFileAttributes = windows_get_file_attributes(path);
@@ -326,7 +326,7 @@ int_bool is_file_or_dir_dup(const char * path, ::file::enum_type * petype)
 
 
 
-bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+bool context::_os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
 {
 
    if (os_is_alias(psz))
@@ -341,7 +341,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 }
 
 
-CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
+CLASS_DECL_AURA bool _os_may_have_alias(const ::string & psz)
 {
 
    string str(psz);
@@ -351,7 +351,7 @@ CLASS_DECL_AURA bool _os_may_have_alias(const char * psz)
 }
 
 
-bool context::os_is_alias(const char * psz)
+bool context::os_is_alias(const ::string & psz)
 {
 
    return ::str::ends_ci(psz, ".lnk");

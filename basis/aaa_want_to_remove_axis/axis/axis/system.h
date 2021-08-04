@@ -31,11 +31,11 @@ namespace axis
 
 
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine, const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
@@ -43,11 +43,11 @@ namespace axis
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
-      //virtual void install_set_platform(const char * pszPlatform) override;
+      //virtual void install_set_platform(const ::string & pszPlatform) override;
       //virtual string install_get_version() override;
-      //virtual void install_set_version(const char * pszVersion) override;
-      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-      //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
+      //virtual void install_set_version(const ::string & pszVersion) override;
+      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       virtual ::e_status process_init() override;
@@ -72,7 +72,7 @@ namespace axis
 
       virtual void on_request(::create * pcreate) override;
 
-      //virtual void construct(const char * pszAppId);
+      //virtual void construct(const ::string & pszAppId);
 
       //virtual bool initialize_application() override;
 
@@ -113,13 +113,13 @@ namespace axis
       //virtual string dir_appmatter_locator(::object * pobject);
 
 
-      virtual void hist_hist(const char * psz);
+      virtual void hist_hist(const ::string & psz);
 
 
       //virtual void on_request(::create * pcreate);
 
 
-      //virtual u32 crc32(u32 dwPrevious, const char * psz);
+      //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
 
 
       virtual string url_encode(const ::string & str) override;

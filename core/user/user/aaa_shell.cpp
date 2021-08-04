@@ -544,7 +544,7 @@ namespace user
       }
 
 
-      shell::e_folder shell::get_folder_type(::object * pobject, const char * pcszPath)
+      shell::e_folder shell::get_folder_type(::object * pobject, const ::string & pcszPath)
       {
 
          wstring wstr(pcszPath);

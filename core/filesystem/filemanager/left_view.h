@@ -27,7 +27,7 @@ namespace filemanager
 
       void on_create_split_impact() override;
 
-      void FileManagerBrowse(const char * pcwstr, const ::action_context & action_context);
+      void FileManagerBrowse(const ::string & pcwstr, const ::action_context & action_context);
 
 
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;

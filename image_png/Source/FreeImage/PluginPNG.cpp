@@ -81,7 +81,7 @@ _FlushProc(png_structp )
 }
 
 void
-error_handler(png_structp, const char *error)
+error_handler(png_structp, const ::string &error)
 {
    throw error;
 }
@@ -89,7 +89,7 @@ error_handler(png_structp, const char *error)
 // in FreeImage warnings disabled
 
 void
-warning_handler(png_structp, const char *warning)
+warning_handler(png_structp, const ::string &warning)
 {
 }
 
@@ -761,7 +761,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 /*         return pimage;
 
       }
-      catch (const char *text)
+      catch (const ::string &text)
       {
          if (png_ptr)
          {
@@ -1106,7 +1106,7 @@ static int_bool DLL_CALLCONV
 
          return true;
       }
-      catch (const char *text)
+      catch (const ::string &text)
       {
          FreeImage_OutputMessageProc(s_format_id, text);
       }

@@ -125,7 +125,7 @@ namespace apex
 
 
       session();
-      virtual ~session();
+      ~session() override;
 
 
       virtual ::e_status     initialize(::object * pobject) override;
@@ -193,11 +193,11 @@ namespace apex
       virtual void on_request(::create * pcreate) override;
 
 
-      //virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
-      //virtual string dir().matter(const char * pszMatter,const char * pszMatter2);
+      //virtual string matter_as_string(const ::string & pszMatter,const ::string & pszMatter2);
+      //virtual string dir().matter(const ::string & pszMatter,const ::string & pszMatter2);
 
-      //virtual bool is_inside_time_dir(const char * pszPath);
-      //virtual bool file_is_read_only(const char * pszPath);
+      //virtual bool is_inside_time_dir(const ::string & pszPath);
+      //virtual bool file_is_read_only(const ::string & pszPath);
 
       // Long PhRESSing time
       // time in milliseconds that a pressing is considered a double click
@@ -265,7 +265,7 @@ namespace apex
       // apex commented
       //::user::keyboard& keyboard();
 
-      virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr);
+      virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr);
 
       virtual bool open_by_file_extension(::create * pcc);
 
@@ -273,13 +273,13 @@ namespace apex
 
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
-      virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+      virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
 
       virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
       virtual void on_instantiate_application(::application* papp) override;
 
-      //::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       virtual bool is_key_pressed(::user::enum_key ekey);
 
@@ -342,9 +342,9 @@ namespace apex
       //virtual index get_ui_workspace(::user::interaction * pinteraction);
 
 
-      //virtual void defer_instantiate_user_theme(const char * pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const char * pszExperienceLibrary, ::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::application * papp = nullptr);
+      //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);
+      //__pointer(::user::theme) instantiate_user_theme(const ::string & pszExperienceLibrary, ::application * papp = nullptr);
+      //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
@@ -441,8 +441,8 @@ namespace apex
       //virtual void check_topic_file_change();
 
 
-      void launch_app(const char* psz);
-      void install_app(const char* psz);
+      virtual void launch_app(const ::string & psz);
+      virtual void install_app(const ::string & psz);
 
 
 
@@ -469,7 +469,7 @@ namespace apex
 
       __pointer(::application) get_current_application();
 
-      virtual void set_app_title(const char* pszAppId, const char* pszTitle);
+      virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
 
       virtual __pointer(::apex::session) get_session();
 

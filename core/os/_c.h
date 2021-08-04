@@ -7,7 +7,7 @@
 
 // 
 
-// CLASS_DECL_CORE int_bool os_is_alias(const char * psz);
+// CLASS_DECL_CORE int_bool os_is_alias(const ::string & psz);
 
 // 
 

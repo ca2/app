@@ -20,20 +20,20 @@ namespace uwp
 
 
          Key();
-         Key(HKEY hkey, const char * lpcszSubKey, bool bCreate);
+         Key(HKEY hkey, const ::string & lpcszSubKey, bool bCreate);
          virtual ~Key();
       
 
-         bool OpenKey(HKEY hkey, const char * lpcszSubKey, bool bCreate);
+         bool OpenKey(HKEY hkey, const ::string & lpcszSubKey, bool bCreate);
          void CloseKey();
          
-         bool QueryValue(const char * lpcszValueName, string &strVAlue);
+         bool QueryValue(const ::string & lpcszValueName, string &strVAlue);
 
-         bool QueryValue(const char * lpcszValueName, memory & mem);
+         bool QueryValue(const ::string & lpcszValueName, memory & mem);
 
-         bool SetValue(const char * lpcszValueName, const char * lpcszValue);
+         bool SetValue(const ::string & lpcszValueName, const ::string & lpcszValue);
 
-         bool DeleteValue(const char * lpcszValueName);
+         bool DeleteValue(const ::string & lpcszValueName);
 
          bool DeleteKey();
 

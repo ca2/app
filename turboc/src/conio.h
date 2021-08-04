@@ -174,8 +174,8 @@ CLASS_DECL_TURBOC void clrscr (void);
 CLASS_DECL_TURBOC void textmode (int newmode);
 CLASS_DECL_TURBOC int putch (int c);
 CLASS_DECL_TURBOC int getche (void);
-CLASS_DECL_TURBOC int cputs (const char *str);
-CLASS_DECL_TURBOC int cprintf (const char *format, ...);
+CLASS_DECL_TURBOC int cputs (const ::string &str);
+CLASS_DECL_TURBOC int cprintf (const ::string &format, ...);
 CLASS_DECL_TURBOC void delline (void);
 CLASS_DECL_TURBOC void insline (void);
 
@@ -185,8 +185,8 @@ CLASS_DECL_TURBOC void insline (void);
 #undef gettext
 #endif
 static inline char *
-gettextIntl (const char *msgid) { 
-  extern char *gettext (const char *msgid);
+gettextIntl (const ::string &msgid) { 
+  extern char *gettext (const ::string &msgid);
   return (gettext (msgid)); 
 }
 // The following is used to access the TurboC-library's gettext.
@@ -198,7 +198,7 @@ CLASS_DECL_TURBOC int movetext (int left, int top, int right, int bottom, int dl
 		     int dtop);
 CLASS_DECL_TURBOC int kbhit (void);
 CLASS_DECL_TURBOC char *cgets (char *s);
-CLASS_DECL_TURBOC char *getpass (const char *prompt);
+CLASS_DECL_TURBOC char *getpass (const ::string &prompt);
 CLASS_DECL_TURBOC void _setcursortype (int cur_t);
 
 // Implementing getch/ungetch is a little tricky, since functions of the same

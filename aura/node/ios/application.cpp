@@ -43,7 +43,7 @@ namespace aura
       // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
    }
 
-//   bool application::_001OnDDECommand(const char * pcsz)
+//   bool application::_001OnDDECommand(const ::string & pcsz)
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
 //      return false;
@@ -300,7 +300,7 @@ namespace aura
 ////#elif defined _WIN32
 ////      {
 ////         string slask = payload + "=" + value;
-////         _putenv( (const char *)slask);
+////         _putenv( (const ::string &)slask);
 ////      }
 ////#else
 //      setenv(payload, value, 1);
@@ -363,7 +363,7 @@ namespace aura
 
 
 
-//   __pointer(::user::printer) application::get_printer(const char * pszDeviceName)
+//   __pointer(::user::printer) application::get_printer(const ::string & pszDeviceName)
 //   {
 //
 //      __pointer(::ios2::printer) pprinter = create_object <  ::user::printer  > ();

@@ -92,8 +92,8 @@ namespace uwp
 
    //   ::e_status OsErrorToException(::i32 lOsError);
    //   ::e_status ErrnoToException(int nErrno);
-   //   void ThrowOsError(::object * pobject, ::i32 lOsError, const char * lpszFileName = nullptr);
-   //   void ThrowErrno(::object * pobject, int nErrno, const char * lpszFileName = nullptr);
+   //   void ThrowOsError(::object * pobject, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+   //   void ThrowErrno(::object * pobject, int nErrno, const ::string & lpszFileName = nullptr);
 
    //}
 

@@ -60,7 +60,7 @@ namespace ios
       virtual ::file::path appdata() override;
       virtual ::file::path commonappdata_root() override;
       
-//      virtual ::file::path usersystemappdata(::object * pobject, const char * lpcszPrefix);
+//      virtual ::file::path usersystemappdata(::object * pobject, const ::string & lpcszPrefix);
 //      virtual ::file::path userappdata(::object * pobject);
 //      virtual ::file::path userdata(::object * pobject);
 //      //virtual ::file::path userfolder(::object * pobject);

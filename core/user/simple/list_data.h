@@ -22,7 +22,7 @@ public:
    void set_data(::user::mesh * pmesh,string_array & stra);
    void set_column_data(::user::mesh * pmesh,string_array & stra,index iColumn);
    void enable(bool bEnable);
-   void set_item_text(::user::mesh * pmesh,index iItem,index iSubItem,const char * pcsz);
+   void set_item_text(::user::mesh * pmesh,index iItem,index iSubItem, const ::string & pcsz);
 
 
 
@@ -33,7 +33,7 @@ public:
 
    virtual ::count _001GetItemCount() override;
 
-   void set_item_text(index iItem, index iSubItem,const char * pcsz);
+   void set_item_text(index iItem, index iSubItem, const ::string & pcsz);
 
 
 };

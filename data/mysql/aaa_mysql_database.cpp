@@ -81,7 +81,7 @@ namespace mysql
    }
 
 
-   string database::error1(const char * pszPrefix)
+   string database::error1(const ::string & pszPrefix)
    {
 
       return "";
@@ -89,7 +89,7 @@ namespace mysql
    }
 
 
-   bool database::exec(const char * pszSql)
+   bool database::exec(const ::string & pszSql)
    {
 
       m_strLastError = "";
@@ -101,7 +101,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::result_set) database::query_result(const char * pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return nullptr;
@@ -109,7 +109,7 @@ namespace mysql
    }
 
 
-   ::payload database::query_item(const char * pszSql, ::payload varDefault)
+   ::payload database::query_item(const ::string & pszSql, ::payload varDefault)
    {
 
       return error_interface_only;
@@ -117,7 +117,7 @@ namespace mysql
    }
 
 
-   bool database::query_blob(memory_base & memory, const char * pszSql)
+   bool database::query_blob(memory_base & memory, const ::string & pszSql)
    {
 
       return false;
@@ -125,7 +125,7 @@ namespace mysql
    }
 
 
-   __pointer(payload_array) database::query_items(const char * pszSql)
+   __pointer(payload_array) database::query_items(const ::string & pszSql)
    {
 
       return nullptr;
@@ -133,7 +133,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::row) database::query_row(const char * pszSql)
+   __pointer(::database::row) database::query_row(const ::string & pszSql)
    {
 
       return nullptr;
@@ -141,7 +141,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::row_array) database::query_rows(const char* pszQuery)
+   __pointer(::database::row_array) database::query_rows(const ::string & pszQuery)
    {
 
       return nullptr;
@@ -149,7 +149,7 @@ namespace mysql
    }
 
 
-   ::payload database::query_table_item(const char * table, const char * item, const char *where, ::payload notfound)
+   ::payload database::query_table_item(const ::string & table, const ::string & item, const ::string &where, ::payload notfound)
    {
 
       return error_interface_only;
@@ -157,7 +157,7 @@ namespace mysql
    }
 
 
-   ::payload database::get_agent(const char * pszTable, const char * psz, const char * pszUser)
+   ::payload database::get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser)
    {
 
       return error_interface_only;
@@ -181,7 +181,7 @@ namespace mysql
    }
 
 
-   string database::escape(const char * psz)
+   string database::escape(const ::string & psz)
    {
 
       return "";

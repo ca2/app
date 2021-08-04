@@ -32,7 +32,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions);
 
 
       /** write specified line of text using list of LineRegion's.
@@ -44,7 +44,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions);
 
       static void writeStyle(stream & writer, const StyledRegion *lr);
 

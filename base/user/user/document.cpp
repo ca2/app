@@ -447,7 +447,7 @@ namespace user
    }
 
 
-   void document::set_title(const char * pszTitle)
+   void document::set_title(const ::string & pszTitle)
    {
 
       m_strTitle = pszTitle;
@@ -1110,7 +1110,7 @@ namespace user
 
             pframe->display(e_display_none);
 
-            pframe->child_post_quit("prodevian");
+            //pframe->child_post_quit("prodevian");
 
          }
 
@@ -1126,7 +1126,7 @@ namespace user
 
             pframe->display(e_display_none);
 
-            pframe->child_post_quit_and_wait("prodevian", seconds(5));
+            //pframe->child_post_quit_and_wait("prodevian", seconds(5));
 
          }
 
@@ -1163,7 +1163,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_load_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(varFile, presult, false, pszDefault);
@@ -1171,7 +1171,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_save_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(varFile, presult, true, pszDefault);
@@ -1179,7 +1179,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const char * pszDefault)
+   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const ::string & pszDefault)
    {
 
       try
@@ -1784,7 +1784,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
    //   UNREFERENCED_PARAMETER(pdata);

@@ -96,7 +96,7 @@ namespace write_text
    }
 
 
-   __pointer(::write_text::font_enumeration_item) font_enumeration::similar_font(const char* psz)
+   __pointer(::write_text::font_enumeration_item) font_enumeration::similar_font(const ::string & psz)
    {
 
       synchronous_lock synchronouslock(mutex());

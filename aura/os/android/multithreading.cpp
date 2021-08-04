@@ -510,7 +510,7 @@ int get_current_process_affinity_order()
 
 
 
-bool task_set_name(const char * psz)
+bool task_set_name(const ::string & psz)
 {
 
    string strName(psz);

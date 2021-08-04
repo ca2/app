@@ -59,7 +59,7 @@ namespace console
       virtual void SetTextColor(int color) = 0;
       inline int GetTextColor() { return m_iTextColor; }
       virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1) = 0;
-      virtual void write(const char * psz) = 0;
+      virtual void write(const ::string & str) = 0;
 
 
    };
@@ -87,7 +87,7 @@ namespace console
       virtual void SetCursorPosition(int y, int x) override;
       virtual void SetTextColor(int color) override;
       virtual void SetScreenColor(enum_dos_color edoscolor, int iLineStart = 0, int iLineCount = -1) override;
-      virtual void write(const char * psz) override;
+      virtual void write(const ::string & str) override;
 
 
    };

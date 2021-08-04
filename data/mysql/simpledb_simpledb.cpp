@@ -43,7 +43,7 @@ namespace simpledb
       return true;
    }
 
-   void simpledb::on_set_locale(const char * lpcsz, const ::action_context & context)
+   void simpledb::on_set_locale(const ::string & lpcsz, const ::action_context & context)
    {
       if(context.is_user_source())
       {
@@ -52,7 +52,7 @@ namespace simpledb
       get_application()->m_psession->on_set_locale(lpcsz, context);
    }
 
-   void simpledb::on_set_schema(const char * lpcsz, const ::action_context & context)
+   void simpledb::on_set_schema(const ::string & lpcsz, const ::action_context & context)
    {
       if(context.is_user_source())
       {
@@ -202,7 +202,7 @@ namespace simpledb
    }
 
 
-   bool simpledb::set_keyboard_layout(const char * pszPath, const ::action_context & context)
+   bool simpledb::set_keyboard_layout(const ::string & pszPath, const ::action_context & context)
    {
 
       return psession->set_keyboard_layout(pszPath, context);
@@ -210,7 +210,7 @@ namespace simpledb
    }
 
 
-   void simpledb::on_set_keyboard_layout(const char * pszPath, const ::action_context & context)
+   void simpledb::on_set_keyboard_layout(const ::string & pszPath, const ::action_context & context)
    {
 
       if(context.is_user_source())

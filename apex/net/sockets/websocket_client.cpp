@@ -749,7 +749,7 @@ namespace sockets
 
 
 
-   long websocket_client::cert_common_name_check(const char * common_name)
+   long websocket_client::cert_common_name_check(const ::string & common_name)
    {
 
 #ifdef BSD_STYLE_SOCKETS

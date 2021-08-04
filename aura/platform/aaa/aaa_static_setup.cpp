@@ -3,7 +3,7 @@
 
 ::static_setup * static_setup::s_psetupList = nullptr;
 
-static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
+static_setup::static_setup(::static_setup::enum_flag eflag, const ::string & pszName) :
    m_pszName(pszName),
    //m_pfnNewAuraApplication(nullptr),
    //m_pfnNewAuraLibrary(nullptr),
@@ -14,7 +14,7 @@ static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName
 
 }
 
-//static_setup::static_setup(const char * lpszName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
+//static_setup::static_setup(const ::string & lpszName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
@@ -26,7 +26,7 @@ static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName
 //}
 //
 //
-//static_setup::static_setup(const char * lpszName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
+//static_setup::static_setup(const ::string & lpszName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
@@ -48,7 +48,7 @@ void static_setup::construct()
 }
 
 
-static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const char* pszName)
+static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const ::string & pszName)
 {
 
    auto psetup = s_psetupList;
@@ -73,7 +73,7 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 
 }
 
-//::static_setup * static_setup::get(const char * lpszName)
+//::static_setup * static_setup::get(const ::string & lpszName)
 //{
 //
 //   if(s_papp == nullptr)

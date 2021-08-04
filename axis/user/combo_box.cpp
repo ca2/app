@@ -1161,7 +1161,7 @@ namespace user
    }
 
 
-   index combo_box::insert_string(index nIndex, const char * pszString)
+   index combo_box::insert_string(index nIndex, const ::string & pszString)
    {
 
       //ASSERT(is_window());
@@ -1182,7 +1182,7 @@ namespace user
    }
 
 
-   index combo_box::Dir(index attr, const char * pszWildCard)
+   index combo_box::Dir(index attr, const ::string & pszWildCard)
 
    {
 
@@ -1196,7 +1196,7 @@ namespace user
    }
 
 
-   //index combo_box::FindString(index nStartAfter, const char * pszString)
+   //index combo_box::FindString(index nStartAfter, const ::string & pszString)
 
    //{
 
@@ -1218,7 +1218,7 @@ namespace user
    //}
 
 
-   //index combo_box::SelectString(index nStartAfter, const char * pszString, const ::action_context & context)
+   //index combo_box::SelectString(index nStartAfter, const ::string & pszString, const ::action_context & context)
 
    //{
 
@@ -1296,7 +1296,7 @@ namespace user
 
    }
 
-   index combo_box::FindStringExact(index nIndexStart, const char * pszFind)
+   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
 
    {
 
@@ -1526,7 +1526,7 @@ namespace user
    }
 
 
-   index combo_box::add_string(const char * pszString,uptr dwItemData)
+   index combo_box::add_string(const ::string & pszString,uptr dwItemData)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1547,7 +1547,7 @@ namespace user
    }
 
 
-   index combo_box::add_string(const char * pszString,const ::string & strValue)
+   index combo_box::add_string(const ::string & pszString, const ::string & strValue)
    {
 
       ASSERT(m_edatamode == data_mode_string);

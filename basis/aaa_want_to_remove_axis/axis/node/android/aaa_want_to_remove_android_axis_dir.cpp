@@ -36,7 +36,7 @@ namespace android
 
 
 
-      //string dir::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2, bool bUrl)
+      //string dir::path(const ::string & pszFolder, strsize iLenFolder, const ::string & pszRelative, strsize iLenRelative, const ::string & psz2, strsize iLen2, bool bUrl)
       //{
 
       //   bool bEmptyRelative = iLenRelative == 0 || pszRelative == nullptr || *pszRelative == '\0';
@@ -156,14 +156,14 @@ namespace android
 
 
 
-      //string dir::relpath(const char * lpcszSource, const char * lpcszRelative, const char * psz2)
+      //string dir::relpath(const ::string & lpcszSource, const ::string & lpcszRelative, const ::string & psz2)
       //{
       //   const char * pszRequest;
       //   if(::url::is_url(lpcszSource, &pszRequest))
       //   {
       //      if(::str::begins(lpcszRelative, "/"))
       //      {
-      //         return path((const char *) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
+      //         return path((const ::string &) string(lpcszSource, pszRequest - lpcszSource), lpcszRelative);
       //      }
       //      else if(*pszRequest == '\0' || ::str::ends(lpcszSource, "/"))
       //      {
@@ -171,7 +171,7 @@ namespace android
       //      }
       //      else
       //      {
-      //         return path((const char *) name(lpcszSource), lpcszRelative, psz2);
+      //         return path((const ::string &) name(lpcszSource), lpcszRelative, psz2);
       //      }
       //   }
       //   else
@@ -182,12 +182,12 @@ namespace android
       //      }
       //      else
       //      {
-      //         return path((const char *) name(lpcszSource), lpcszRelative, psz2);
+      //         return path((const ::string &) name(lpcszSource), lpcszRelative, psz2);
       //      }
       //   }
       //}
 
-      //bool path::is_equal(const char * lpszPath1, const char * lpszPath2)
+      //bool path::is_equal(const ::string & lpszPath1, const ::string & lpszPath2)
       //{
       //   // use case insensitive compare as a starter
       //   if (lstrcmpi(lpszPath1, lpszPath2) != 0)
@@ -221,7 +221,7 @@ namespace android
 
       //   // for every C3_FULLWIDTH character, make sure it has same C1 value
       //   i32 i = 0;
-      //   for (const char * lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
+      //   for (const ::string & lpsz = lpszPath1; *lpsz != 0; lpsz = _tcsinc(lpsz))
       //   {
       //   // check for C3_FULLWIDTH characters only
       //   if (aCharType13[i] & C3_FULLWIDTH)
@@ -283,7 +283,7 @@ namespace android
       }
 
 
-      //   bool dir::rls(::object * pobject, const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
+      //   bool dir::rls(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, e_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls(papp,lpcsz,pstraPath,pstraTitle,pstraRelative,eextract))
@@ -298,7 +298,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::rls_pattern(::object * pobject, const char * lpcsz, const char * lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
+      //   bool dir::rls_pattern(::object * pobject, const ::string & lpcsz, const ::string & lpszPattern, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative, bool_array * pbaIsDir, i64_array * piaSize, e_extract eextract)
       //   {
       //
       //      if(::file::dir::axis::system::rls_pattern(papp,lpcsz,lpszPattern,pstraPath,pstraTitle,pstraRelative,pbaIsDir,piaSize,eextract))
@@ -313,7 +313,7 @@ namespace android
       //   }
 
 
-      //   bool dir::rls_dir(::object * pobject, const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
+      //   bool dir::rls_dir(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, string_array * pstraRelative)
       //   {
       //
       //      if(::file::dir::axis::system::rls_dir(papp,lpcsz,pstraPath,pstraTitle,pstraRelative))
@@ -328,7 +328,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls_dir(::object * pobject, const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+      //   bool dir::ls_dir(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
       //   {
       //
       //      if(::file::dir::axis::system::ls_dir(papp,lpcsz,pstraPath,pstraTitle))
@@ -343,7 +343,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls_file(::object * pobject, const char * lpcsz, string_array * pstraPath, string_array * pstraTitle)
+      //   bool dir::ls_file(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle)
       //   {
       //
       //      if(::file::dir::axis::system::ls_file(papp,lpcsz,pstraPath,pstraTitle))
@@ -358,7 +358,7 @@ namespace android
       //   }
       //
       //
-      //   bool dir::ls(::object * pobject, const char * lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
+      //   bool dir::ls(::object * pobject, const ::string & lpcsz, string_array * pstraPath, string_array * pstraTitle, bool_array * pbaIsDir, i64_array * piaSize)
       //   {
       //
       //      if(::file::dir::axis::system::ls(papp,lpcsz,pstraPath,pstraTitle,pbaIsDir,piaSize))
@@ -432,7 +432,7 @@ namespace android
             return true; // assume empty string is root_ones directory
          }
 
-         if (thread_zip_is_dir && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3], ".zip", 4))
+         if (thread_zip_is_dir && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3], ".zip", 4))
          {
 
             return true;

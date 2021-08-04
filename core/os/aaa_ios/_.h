@@ -25,7 +25,7 @@ public:
     
     const char * name;
     
-    thread_pointer(const char * pszName)
+    thread_pointer(const ::string & pszName)
     {
         name = pszName;
     }
@@ -62,7 +62,7 @@ public:
     
     const char * name;
     
-    thread_var(const char * pszName)
+    thread_var(const ::string & pszName)
     {
         name = pszName;
     }

@@ -4,7 +4,7 @@
 CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 
 
-//HFONT wingdi_CreatePointFont(int nPointSize, const char * pszFaceName, HDC hdc, LOGFONTW *plf)
+//HFONT wingdi_CreatePointFont(int nPointSize, const ::string & pszFaceName, HDC hdc, LOGFONTW *plf)
 //{
 //
 //   LOGFONTW lF;

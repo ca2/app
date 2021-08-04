@@ -10,7 +10,7 @@
 
 
 
-//char get_drive_letter(const char * pDevicePath);
+//char get_drive_letter(const ::string & pDevicePath);
 //
 //
 //CLASS_DECL_AURA void set_main_hthread(htask_t htask);
@@ -49,7 +49,7 @@
 //
 //
 //
-//CLASS_DECL_AURA HFONT wingdi_CreatePointFont(int nPointSize, const char * pszFaceName, HDC hdc, LOGFONTW* lpLogFont = nullptr);
+//CLASS_DECL_AURA HFONT wingdi_CreatePointFont(int nPointSize, const ::string & pszFaceName, HDC hdc, LOGFONTW* lpLogFont = nullptr);
 //
 //
 //CLASS_DECL_AURA HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc);

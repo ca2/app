@@ -2,13 +2,13 @@
 #include "core/user/simple/_simple.h"
 
 
-//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uFlags, function_arg functionargResult);
+//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption,u32 uFlags, function_arg functionargResult);
 
 
-//i32(*g_pfn_message_box)(oswindow,const char *,const char *,u32, const function_arg &) = nullptr;
+//i32(*g_pfn_message_box)(oswindow, const ::string &, const ::string &,u32, const function_arg &) = nullptr;
 
 
-//CLASS_DECL_CORE ::e_status os_message_box(oswindow oswindow, const char * pszText, const char * pszTitle, u32 uFlags, function_arg function)
+//CLASS_DECL_CORE ::e_status os_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszTitle, u32 uFlags, function_arg function)
 //{
 //
 //#ifndef _UWP
@@ -74,7 +74,7 @@
 //}
 
 
-//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl,const char * pText,const char * lpCaption,u32 uFlags)
+//CLASS_DECL_CORE void aura_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption,u32 uFlags)
 //{
 //
 //   ::os_message_box(interaction_impl,pText,lpCaption,uFlags);
@@ -82,7 +82,7 @@
 //}
 
 
-//CLASS_DECL_CORE void set_message_box(i32(*pfn)(oswindow, const char *, const char *, u32, const ::function_arg & ))
+//CLASS_DECL_CORE void set_message_box(i32(*pfn)(oswindow, const ::string &, const ::string &, u32, const ::function_arg & ))
 //{
 //
 //   g_pfn_message_box = pfn;

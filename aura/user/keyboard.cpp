@@ -392,7 +392,7 @@ namespace user
    //   m_playout->process_escape(pnode, set);
    //}
 
-//   bool keyboard::load_layout(const char * pszPath, const ::action_context & context)
+//   bool keyboard::load_layout(const ::string & pszPath, const ::action_context & context)
 //   {
 //
 //      auto playout = __new(::user::keyboard_layout);
@@ -481,7 +481,7 @@ namespace user
 
    //}
 
-   //string keyboard::process_char(const char * pszKey)
+   //string keyboard::process_char(const ::string & pszKey)
    //{
    //   if(m_playout == nullptr)
    //   {
@@ -490,7 +490,7 @@ namespace user
    //   return m_playout->process_char(pszKey);
    //}
 
-   //string keyboard::process_escape(const char * pszEscape)
+   //string keyboard::process_escape(const ::string & pszEscape)
    //{
    //   if(m_playout == nullptr)
    //   {
@@ -629,7 +629,7 @@ namespace user
 //   }
 
 
-//   bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
+//   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::string & pszPath)
 //   {
 //
 //      if(!pcontext->m_papexcontext->file().exists(pszPath))

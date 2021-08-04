@@ -43,7 +43,7 @@ i64 fd_get_file_size(i32 fd)
 
 
 
-CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
+CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses, const ::string & pszDll)
 {
 
 
@@ -100,7 +100,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 }
 
 
- CLASS_DECL_CORE bool _os_may_have_alias(const char * psz)
+ CLASS_DECL_CORE bool _os_may_have_alias(const ::string & psz)
  {
 
     return true;
@@ -111,7 +111,7 @@ int lockf(int fd, int cmd, off_t ignored_len)
 
 //
 //extern "C"
-//void android_set_cache_dir(const char* pszDir)
+//void android_set_cache_dir(const ::string & pszDir)
 //{
 //
 //   psystem->m_pathCacheDir = pszDir;

@@ -603,66 +603,66 @@ bool object::is_running() const
 }
 
 
-void object::child_post_quit(const char* pszTag)
-{
-
-   try
-   {
-
-      auto pmatter = running(pszTag);
-
-      if (pmatter.is_null())
-      {
-
-         return;
-
-      }
-
-      pmatter->destroy();
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
-
-
-void object::child_post_quit_and_wait(const char* pszTag, const duration& duration)
-{
-
-   try
-   {
-
-      auto pmatter = running(pszTag);
-
-      if (pmatter.is_null())
-      {
-
-         return;
-
-      }
-
-      pmatter->destroy();
-
-      string strTag(pszTag);
-
-      predicate_Sleep(duration,
-         [this, strTag]()
-      {
-
-         return running(strTag).is_set();
-
-      });
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
+//void object::runchild_post_quit(const char * pszTag)
+//{
+//
+//   try
+//   {
+//
+//      auto pmatter = running(pszTag);
+//
+//      if (pmatter.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      pmatter->destroy();
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//}
+//
+//
+//void object::child_post_quit_and_wait(const ::string & pszTag, const duration& duration)
+//{
+//
+//   try
+//   {
+//
+//      auto pmatter = running(pszTag);
+//
+//      if (pmatter.is_null())
+//      {
+//
+//         return;
+//
+//      }
+//
+//      pmatter->destroy();
+//
+//      string strTag(pszTag);
+//
+//      predicate_Sleep(duration,
+//         [this, strTag]()
+//      {
+//
+//         return running(strTag).is_set();
+//
+//      });
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//}
 
 
 ::e_status object::post(const ::routine& routine)
@@ -878,10 +878,10 @@ void object::destruct()
 }
 
 
-void object::system(const char* pszProjectName)
+void object::system(const ::string & strProjectName)
 {
 
-   UNREFERENCED_PARAMETER(pszProjectName);
+   UNREFERENCED_PARAMETER(strProjectName);
 
 }
 
@@ -2082,41 +2082,41 @@ void object::install_message_routing(::channel* pchannel)
 }
 
 
-__pointer(::matter) object::running(const char* pszTag) const
-{
-
-   //if (m_pcompositea)
-   //{
-
-   //   auto pobject = ::parallelization::array::is_running(*m_pcompositea, pszTag);
-
-   //   if (pobject)
-   //   {
-
-   //      return pobject;
-
-
-   //   }
-
-   //}
-
-   //if (m_preferencea)
-   //{
-
-   //   auto pobject = ::parallelization::array::is_running(*m_preferencea, pszTag);
-
-   //   if (pobject)
-   //   {
-
-   //      return pobject;
-
-   //   }
-
-   //}
-
-   return nullptr;
-
-}
+//__pointer(::matter) object::running(const ::string & pszTag) const
+//{
+//
+//   //if (m_pcompositea)
+//   //{
+//
+//   //   auto pobject = ::parallelization::array::is_running(*m_pcompositea, pszTag);
+//
+//   //   if (pobject)
+//   //   {
+//
+//   //      return pobject;
+//
+//
+//   //   }
+//
+//   //}
+//
+//   //if (m_preferencea)
+//   //{
+//
+//   //   auto pobject = ::parallelization::array::is_running(*m_preferencea, pszTag);
+//
+//   //   if (pobject)
+//   //   {
+//
+//   //      return pobject;
+//
+//   //   }
+//
+//   //}
+//
+//   return nullptr;
+//
+//}
 
 
 //::e_status object::add_update_notification(const ::id & id, bool bCreate)
@@ -2348,7 +2348,7 @@ string object::get_text(const ::payload& payload, const ::id& id)
 }
 
 
-__pointer(::extended::future < ::conversation >) object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
+__pointer(::extended::future < ::conversation >) object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
 {
 
    //auto edialogresult =
@@ -2409,7 +2409,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 }
 
 
-//::e_status object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//::e_status object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -2782,7 +2782,7 @@ matter* object::get_taskpool_container()
 //
 
 
-//inline const char* object::topic_text();
+//inline const ::string & object::topic_text();
 
  //context& object::__context(const ::payload& payload)
  //{
@@ -3029,7 +3029,7 @@ matter* object::get_taskpool_container()
 //
 //}
 
-//void object::system(const char* pszProjectName)
+//void object::system(const ::string & pszProjectName)
 //{
 //
 //}
@@ -3130,14 +3130,14 @@ matter* object::get_taskpool_container()
 //}
 
 
-//void object::child_post_quit(const char* pszTag)
+//void object::child_post_quit(const ::string & pszTag)
 //{
 //
 //
 //}
 
 
-//void object::child_post_quit_and_wait(const char* pszTag, const duration& duration)
+//void object::child_post_quit_and_wait(const ::string & pszTag, const duration& duration)
 //{
 //
 //
@@ -3240,7 +3240,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//__pointer(::extended::future < ::conversation >)  object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box& emessagebox)
+//__pointer(::extended::future < ::conversation >)  object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
 //{
 //
 //   return nullptr;
@@ -3260,15 +3260,15 @@ matter* object::get_taskpool_container()
 
 //}
 
-// ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-// ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// ::e_status message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// ::e_status message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
 
 //void object::release_references()
 //{
 //
 //}
 
-//__pointer(::matter) object::running(const char* pszTag) const
+//__pointer(::matter) object::running(const ::string & pszTag) const
 //{
 //
 //   return nullptr;

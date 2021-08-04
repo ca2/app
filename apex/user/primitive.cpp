@@ -774,7 +774,7 @@ namespace user
    //}
 
 
-   //i32 primitive::sync_message_box_timeout(const char * pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 primitive::sync_message_box_timeout(const ::string & pszMessage, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   return papplication->sync_message_box_timeout(this, pszMessage, get_title(), durationTimeOut, fuStyle);
@@ -1690,7 +1690,7 @@ namespace user
    }
 
 
-   void primitive::set_window_text(const char * pszString)
+   void primitive::set_window_text(const ::string & pszString)
    {
 
    }
@@ -2593,7 +2593,7 @@ namespace user
    //}
 
 
-   void primitive::OnLinkClick(const char * psz,const char * pszTarget)
+   void primitive::OnLinkClick(const ::string & psz,const ::string & pszTarget)
    {
 
       ::exception::throw_interface_only();
@@ -2644,7 +2644,7 @@ namespace user
    //}
 
 
-   bool primitive::create_message_queue(const char * lpszName)
+   bool primitive::create_message_queue(const ::string & lpszName)
    {
 
       ::exception::throw_interface_only();
@@ -3173,7 +3173,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags)
+   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3204,7 +3204,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags,::message::message * pmessage)
+   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3234,7 +3234,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point_i32 & point)
+   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
    //{
 
    //   ::exception::throw_interface_only();

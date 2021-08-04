@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   single_document_template::single_document_template(const char * pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass) :
+   single_document_template::single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass) :
       ::user::impact_system(pszMatter, pDocClass, pFrameClass, pViewClass)
    {
 

@@ -12,15 +12,15 @@ namespace uwp
       int function();
    };
 
-   CLASS_DECL_CORE HINSTANCE   LoadLibrary(const char * lpsz);
+   CLASS_DECL_CORE HINSTANCE   LoadLibrary(const ::string & lpsz);
    CLASS_DECL_CORE bool        SHGetSpecialFolderPath(oswindow hwnd, string &str, int csidl, bool fCreate);
-   CLASS_DECL_CORE ::u32       GetFileAttributes(const char * lpFileName);
-   CLASS_DECL_CORE bool        CreateDirectory(const char * lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+   CLASS_DECL_CORE ::u32       GetFileAttributes(const ::string & lpFileName);
+   CLASS_DECL_CORE bool        CreateDirectory(const ::string & lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
    CLASS_DECL_CORE ::u32       GetCurrentDirectory(string & str);
    CLASS_DECL_CORE ::u32       GetTempPath(string & str);
-   CLASS_DECL_CORE ::i32        RegQueryValue(HKEY hkey, const char * lpszSubKey, string & str);
-   CLASS_DECL_CORE HICON       ExtractIcon(HINSTANCE hInst, const char * lpszExeFileName, ::u32 nIconIndex);
-   CLASS_DECL_CORE bool        DeleteFile(const char * lpFileName);
+   CLASS_DECL_CORE ::i32        RegQueryValue(HKEY hkey, const ::string & lpszSubKey, string & str);
+   CLASS_DECL_CORE HICON       ExtractIcon(HINSTANCE hInst, const ::string & lpszExeFileName, ::u32 nIconIndex);
+   CLASS_DECL_CORE bool        DeleteFile(const ::string & lpFileName);
    CLASS_DECL_CORE int         GetMenuStringW(HMENU hMenu, ::u32 uDItem, string & str, ::u32 flags);
    CLASS_DECL_CORE void        TimeToFileTime(::object * pobject, const ::datetime::time& time, LPFILETIME pFileTime);
 

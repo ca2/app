@@ -45,7 +45,7 @@ namespace aura
 //      // xxx       m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
 //   }
 
-//   bool application::_001OnDDECommand(const char * pcsz)
+//   bool application::_001OnDDECommand(const ::string & pcsz)
 //   {
 //      UNREFERENCED_PARAMETER(pcsz);
 //      return false;
@@ -235,7 +235,7 @@ namespace aura
 ////#elif defined _WIN32
 ////      {
 ////         string slask = payload + "=" + value;
-////         _putenv( (const char *)slask);
+////         _putenv( (const ::string &)slask);
 ////      }
 ////#else
 //      setenv(payload, value, 1);
@@ -362,7 +362,7 @@ namespace aura
 
 //
 //
-//bool on_application_menu_action(const char * pszCommand)
+//bool on_application_menu_action(const ::string & pszCommand)
 //{
 //   ::aura::get_system()->on_application_menu_action(pszCommand);
 //}

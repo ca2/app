@@ -13,7 +13,7 @@ namespace user
 {
 
 
-   impact_system::impact_system(const char * pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass)
+   impact_system::impact_system(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass)
    {
 
       m_bHiddenOnNotifyIcon = false;

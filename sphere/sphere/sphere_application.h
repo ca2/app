@@ -104,8 +104,8 @@ namespace sphere
 
       virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
-      void launch_app(const char * psz);
-      void install_app(const char * psz);
+      void launch_app(const ::string & psz);
+      void install_app(const ::string & psz);
 
 //      virtual bool init1() override;
 
@@ -123,13 +123,13 @@ namespace sphere
 
       //void on_request(::create * pcreate) override;
 
-      __pointer(::aura::application) application_get(const char * pszAppId, bool bCreate = true, bool bSynch = true, application_bias * papplicationbias = nullptr);
+      __pointer(::aura::application) application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * papplicationbias = nullptr);
 
       __pointer(::aura::application) get_current_application();
 
 //      virtual bool on_install() override;
 
-      virtual void set_app_title(const char * pszType, const char * pszAppId, const char * pszTitle);
+      virtual void set_app_title(const ::string & pszType, const ::string & pszAppId, const ::string & pszTitle);
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;

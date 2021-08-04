@@ -51,7 +51,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-//bool simple_scroll_bar::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+//bool simple_scroll_bar::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
 //{
 //
 //   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))

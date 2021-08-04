@@ -20,7 +20,7 @@ ftpfs::~ftpfs()
 }
 
 
-::e_status ftpfs::initialize_ftpfs(::object * pobject, const char* pszRoot)
+::e_status ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
 {
 
    auto estatus = ::fs::data::initialize(pobject);

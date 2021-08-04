@@ -1502,7 +1502,7 @@ namespace user
 
             //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
             //str.load_string(_001GetColumnText(iColumn));
-            //hditem.pszText = (char *) (const char *) str;
+            //hditem.pszText = (char *) (const ::string &) str;
             //hditem.pszText = LPSTR_TEXTCALLBACK;
             //hditem.cchTextMax = str.get_length();
 

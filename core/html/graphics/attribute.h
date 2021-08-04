@@ -18,7 +18,7 @@ namespace html
       void set_name(id idName);
       id get_name() const;
 
-      void set_value(const char * pszValue);
+      void set_value(const ::string & pszValue);
       string get_value() const;
 
 

@@ -32,7 +32,7 @@ namespace user
    }
 
 
-   //system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
+   //system::system(u32 uiExStyle, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
    //system(rectangle)
    //{
 
@@ -75,7 +75,7 @@ namespace user
    }
 
 
-   //void system::set_class_name(const char * pszClassName)
+   //void system::set_class_name(const ::string & pszClassName)
    //{
 
    //   m_strClassName = pszClassName;
@@ -85,7 +85,7 @@ namespace user
    //}
 
 
-   //void system::set_window_name(const char * pszWindowName)
+   //void system::set_window_name(const ::string & pszWindowName)
    //{
 
    //   m_strWindowName = pszWindowName;

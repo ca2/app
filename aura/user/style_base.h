@@ -28,7 +28,7 @@ namespace user
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
       //virtual void set_style(enum_style estyle);
 
-      //virtual void set_style(const char * pszStyle);
+      //virtual void set_style(const ::string & pszStyle);
 
       //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 

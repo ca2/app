@@ -76,7 +76,7 @@ namespace acme
 #endif
 
 
-   ::e_status node::call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   ::e_status node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 
       __throw(error_interface_only);
@@ -86,7 +86,7 @@ namespace acme
    }
 
 
-   ::e_status node::call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
+   ::e_status node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
    {
 
       __throw(error_interface_only);
@@ -123,7 +123,7 @@ namespace acme
    }
 
 
-   ::e_status node::_launch_macos_app(const char * pszAppFolder)
+   ::e_status node::_launch_macos_app(const ::string & pszAppFolder)
    {
       
       __throw(error_interface_only);
@@ -133,7 +133,7 @@ namespace acme
    }
 
 
-   ::e_status node::_launch_macos_app_args(const char * pszAppFolder, const char * pszArgs)
+   ::e_status node::_launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
    {
       
       __throw(error_interface_only);
@@ -394,7 +394,7 @@ namespace acme
    }
 
 
-   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   bool node::is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       ::file::path path;
@@ -408,7 +408,7 @@ namespace acme
    }
 
 
-   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   bool node::set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       ::file::path path;
@@ -420,7 +420,7 @@ namespace acme
    }
 
 
-   ::file::path node::application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema)
+   ::file::path node::application_installer_folder(const ::file::path& pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema)
    {
 
       string strFolder = pathExe.folder();
@@ -432,7 +432,7 @@ namespace acme
    }
 
 
-   ::file::path node::get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration)
+   ::file::path node::get_application_path(string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration)
    {
       
       auto pathLastRun = get_last_run_application_path(strAppId);
@@ -796,7 +796,7 @@ namespace acme
    }
 
 
-   string node::get_file_icon_path(const char * pszPath, int iSize)
+   string node::get_file_icon_path(const ::string & pszPath, int iSize)
    {
 
       return "";
@@ -804,7 +804,7 @@ namespace acme
    }
 
 
-   string node::get_file_content_type(const char * pszPath)
+   string node::get_file_content_type(const ::string & pszPath)
    {
 
       return "";
@@ -812,7 +812,7 @@ namespace acme
    }
 
 
-   int node::os_launch_uri(const char * pszUri, char * pszError, int iBufferSize)
+   int node::os_launch_uri(const ::string & pszUri, char * pszError, int iBufferSize)
    {
 
       return -1;
@@ -1237,7 +1237,7 @@ namespace acme
 //
 //#ifdef MACOS
 //      
-//   void node::ns_launch_app(const char * psz, const char ** argv, int iFlags)
+//   void node::ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags)
 //   {
 //      
 //      
@@ -1246,7 +1246,7 @@ namespace acme
 //#endif
 
 
-   ::e_status node::launch_app(const char * psz, const char ** argv, int iFlags)
+   ::e_status node::launch_app(const ::string & psz, const char ** argv, int iFlags)
    {
       
       __throw(error_interface_only);
@@ -1257,7 +1257,7 @@ namespace acme
 
 
 
-   ::e_status node::create_process(const char * pszCommandLine, u32 * pprocessID)
+   ::e_status node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
    {
 
       __throw(error_interface_only);
@@ -1267,7 +1267,7 @@ namespace acme
    }
 
 
-   ::e_status node::run_silent(const char* strFunct, const char* strstrParams)
+   ::e_status node::run_silent(const ::string & strFunct, const ::string & strstrParams)
    {
 
       __throw(error_interface_only);
@@ -1287,7 +1287,7 @@ namespace acme
    }
 
 
-   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir)
+   bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir)
    {
 
       __throw(error_interface_only);
@@ -1307,7 +1307,7 @@ namespace acme
    }
 
 
-   id_array node::module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted)
+   id_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
       
       id_array iaPid;
@@ -1376,7 +1376,7 @@ namespace acme
    }
 
 
-   bool node::process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary)
+   bool node::process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary)
    {
 
       __throw(error_interface_only);
@@ -1386,7 +1386,7 @@ namespace acme
    }
 
 
-   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary)
+   void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary)
    {
 
       __throw(error_interface_only);
@@ -1404,7 +1404,7 @@ namespace acme
    }
 
 
-   string node::get_environment_variable(const char* pszEnvironmentVariable)
+   string node::get_environment_variable(const ::string & pszEnvironmentVariable)
    {
 
       return "";

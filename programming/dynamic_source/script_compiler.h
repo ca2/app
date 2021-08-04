@@ -67,10 +67,10 @@ namespace dynamic_source
 
       virtual ::e_status init1();
 
-      bool defer_run_persistent(const char *psz);
+      bool defer_run_persistent(const ::string &psz);
 
-      bool is_id(const char * psz, strsize iLen, const char * pszId, strsize iLenId, strsize & iIdLen);
-      const char * next_nonspace(const char * psz);
+      bool is_id(const ::string & psz, strsize iLen, const ::string & pszId, strsize iLenId, strsize & iIdLen);
+      const char * next_nonspace(const ::string & psz);
 
       void compile(ds_script * pscript);
 
@@ -82,12 +82,12 @@ namespace dynamic_source
 
       string cppize2(const string & pszSource,bool bScript,string_array & straId);
 
-      string get_ds_print(const char *psz)   ;
+      string get_ds_print(const ::string &psz)   ;
 
       void folder_watch();
 
-      library & lib(const char * pszLibrary);
-      void process_include(const char * pszInclude);
+      library & lib(const ::string & pszLibrary);
+      void process_include(const ::string & pszInclude);
 
       //    bool library_DoesMatchVersion();
 
@@ -95,12 +95,12 @@ namespace dynamic_source
       virtual void handle_file_action(::file::action * paction) override;
 
 
-      void prepare1(const char * pszSource, const char * pszDest);
+      void prepare1(const ::string & pszSource, const ::string & pszDest);
 
 
       virtual void parse_pstr_set();
 
-      virtual void pstr_set(id pszTopic,id idLocale,id idSchema,const char * psz);
+      virtual void pstr_set(id pszTopic,id idLocale,id idSchema, const ::string & psz);
 
    };
 

@@ -21,7 +21,7 @@ namespace calculator
             return mutex();
          }
 
-         virtual void set_expression(const char * pszExp)
+         virtual void set_expression(const ::string & pszExp)
          {
          }
 

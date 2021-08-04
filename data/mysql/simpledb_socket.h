@@ -32,8 +32,8 @@ namespace simpledb
 
       class manager & manager();
 
-      virtual void simple_file_server(const char * psz, const char * pszRelative = nullptr);
-      virtual bool read_file(const char * lpcsz, pointer_array < int_array > * prangea = nullptr, const char * pszContentType = nullptr);
+      virtual void simple_file_server(const ::string & psz, const ::string & pszRelative = nullptr);
+      virtual bool read_file(const ::string & lpcsz, pointer_array < int_array > * prangea = nullptr, const ::string & pszContentType = nullptr);
 
       //virtual bool http_filter_response_header(id key, string & strValue);
    };

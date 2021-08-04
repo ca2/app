@@ -30,7 +30,7 @@ db_server::~db_server()
 
 
 
-bool db_server::initialize_user(mysql::database * pmysqldbUser, const char * pszUser)
+bool db_server::initialize_user(mysql::database * pmysqldbUser, const ::string & pszUser)
 {
 
    if(pmysqldbUser == nullptr)
@@ -244,7 +244,7 @@ void db_server::close()
 // }
 
 
-// bool db_server::load(const char * lpcszKey, string & str)
+// bool db_server::load(const ::string & lpcszKey, string & str)
 // {
 
 //    if(get_db_str_set() == nullptr)
@@ -256,7 +256,7 @@ void db_server::close()
 
 
 
-// bool db_server::load(const char * lpKey, ::file::output_stream & ostream)
+// bool db_server::load(const ::string & lpKey, ::file::output_stream & ostream)
 // {
 
 //    string str;
@@ -277,7 +277,7 @@ void db_server::close()
 // }
 
 
-// bool db_server::save(const char * lpcszKey, const char * lpcsz)
+// bool db_server::save(const ::string & lpcszKey, const ::string & lpcsz)
 // {
 
 //    if(get_db_str_set() == nullptr)
@@ -288,7 +288,7 @@ void db_server::close()
 // }
 
 
-// bool db_server::save(const char * lpKey, ::file::input_stream & istream)
+// bool db_server::save(const ::string & lpKey, ::file::input_stream & istream)
 // {
 
 //    string str;

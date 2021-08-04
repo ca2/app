@@ -158,7 +158,7 @@ CLASS_DECL_ACE void ace_set_alloc(PFN_MEMORY_ALLOC palloc, PFN_MEMORY_REALLOC pr
 static char * g_pszCacheDir;
 
 
-CLASS_DECL_EXPORT void nodeos_set_cache_dir(const char * pszDir)
+CLASS_DECL_EXPORT void nodeos_set_cache_dir(const ::string & pszDir)
 {
 
    if (g_pszCacheDir != nullptr)
@@ -184,7 +184,7 @@ CLASS_DECL_EXPORT const char * android_get_cache_dir()
 static char * g_pszHome;
 
 
-CLASS_DECL_EXPORT void nodeos_set_home(const char * pszDir)
+CLASS_DECL_EXPORT void nodeos_set_home(const ::string & pszDir)
 {
 
    if (g_pszHome != nullptr)
@@ -210,7 +210,7 @@ CLASS_DECL_EXPORT const char * nodeos_get_home()
 static char * g_pszTemp = nullptr;
 
 
-CLASS_DECL_EXPORT void nodeos_set_temp(const char * pszDir)
+CLASS_DECL_EXPORT void nodeos_set_temp(const ::string & pszDir)
 {
 
    if (g_pszTemp != nullptr)

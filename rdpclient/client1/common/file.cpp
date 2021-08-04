@@ -59,7 +59,7 @@ static WCHAR CR_LF_STR_W[] = { '\r', '\n', '\0' };
  *
  */
 
-static int freerdp_client_rdp_file_set_integer(rdpFile* file, const char* name, int value, int index)
+static int freerdp_client_rdp_file_set_integer(rdpFile* file, const ::string & name, int value, int index)
 {
 	int standard = 1;
 
@@ -251,7 +251,7 @@ static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* 
 	return ret;
 }
 
-static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const char* name, const char* value, int index)
+static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const ::string & name, const ::string & value, int index)
 {
 	int ivalue = atoi(value);
 	if (freerdp_client_rdp_file_set_integer(file, name, ivalue, index) < 0)
@@ -268,7 +268,7 @@ static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const cha
  * @return 0 on success, 1 if the key wasn't found (not a standard key), -1 on error
  */
 
-static int freerdp_client_rdp_file_set_string(rdpFile* file, const char* name, const char* value, int index)
+static int freerdp_client_rdp_file_set_string(rdpFile* file, const ::string & name, const ::string & value, int index)
 {
 	int standard = 0;
 	char * *tmp = nullptr;
@@ -660,7 +660,7 @@ BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const byte* buffer, siz
 	return freerdp_client_parse_rdp_file_buffer_ascii(file, buffer, size);
 }
 
-BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
+BOOL freerdp_client_parse_rdp_file(rdpFile* file, const ::string & name)
 {
 	BOOL status;
 	byte* buffer;
@@ -766,7 +766,7 @@ BOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSett
 	return true;
 }
 
-BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL unicode)
+BOOL freerdp_client_write_rdp_file(const rdpFile* file, const ::string & name, BOOL unicode)
 {
 	FILE* fp;
 	int length;
@@ -1195,7 +1195,7 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, int i
 	return line;
 }
 
-static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, const char* name)
+static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, const ::string & name)
 {
 	int index;
 	BOOL bFound = false;
@@ -1226,7 +1226,7 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, con
  * @return 0 on success
  */
 
-int freerdp_client_rdp_file_set_string_option(rdpFile* file, const char* name, const char* value)
+int freerdp_client_rdp_file_set_string_option(rdpFile* file, const ::string & name, const ::string & value)
 {
 	int index;
 	int length;
@@ -1274,7 +1274,7 @@ out_fail:
 
 }
 
-const char* freerdp_client_rdp_file_get_string_option(rdpFile* file, const char* name)
+const char* freerdp_client_rdp_file_get_string_option(rdpFile* file, const ::string & name)
 {
 	rdpFileLine* line;
 
@@ -1289,7 +1289,7 @@ const char* freerdp_client_rdp_file_get_string_option(rdpFile* file, const char*
 	return line->sValue;
 }
 
-int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const char* name, int value)
+int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::string & name, int value)
 {
 	int index;
 	int length;
@@ -1332,7 +1332,7 @@ int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const char* name, 
 	return 0;
 }
 
-int freerdp_client_rdp_file_get_integer_option(rdpFile* file, const char* name)
+int freerdp_client_rdp_file_get_integer_option(rdpFile* file, const ::string & name)
 {
 	rdpFileLine* line;
 

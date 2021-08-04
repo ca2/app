@@ -18,7 +18,7 @@
 //}
 
 
-//void SetCommandLineA(const char * psz)
+//void SetCommandLineA(const ::string & psz)
 //{
 //
 //   get_command_line_string()     = psz;
@@ -38,7 +38,7 @@
 //char * GetCommandLineA()
 //{
 //
-//   return (char *) (const char *) get_command_line_string();
+//   return (char *) (const ::string &) get_command_line_string();
 //
 //}
 //
@@ -52,7 +52,7 @@
 
 
 
-//void output_debug_string(const char * psz)
+//void output_debug_string(const ::string & psz)
 //{
 //
 //   output_debug_string(psz);

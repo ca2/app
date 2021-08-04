@@ -33,7 +33,7 @@
 //      virtual ~application();
 //      
 //      virtual HINSTANCE GetHinstance();
-//      bool _001OnDDECommand(const char * pcsz);
+//      bool _001OnDDECommand(const ::string & pcsz);
 //      virtual void _001EnableShellOpen();
 //      virtual ::user::document * _001OpenDocumentFile(::payload varFile);
 //      virtual void _001OnFileNew();
@@ -73,15 +73,15 @@
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //      
-////      virtual ::user::interaction * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-////      virtual ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+////      virtual ::user::interaction * FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+////      virtual ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 //      
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual itask_t get_thread_id();
 //      
 //      
-////      virtual __pointer(::user::printer) get_printer(const char * pszDeviceName);
+////      virtual __pointer(::user::printer) get_printer(const ::string & pszDeviceName);
 //
 //       string draw2d_get_default_library_name();
 //      string multimedia_audio_mixer_get_default_library_name();

@@ -755,7 +755,7 @@ MY_EXTERN_C HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src);
 #endif
 
 #ifndef WINDOWS
-MY_EXTERN_C BSTR SysAllocStringByteLen(const char * psz, ::u32 len);
+MY_EXTERN_C BSTR SysAllocStringByteLen(const ::string & psz, ::u32 len);
 MY_EXTERN_C BSTR SysAllocString(const OLECHAR *sz);
 MY_EXTERN_C void SysFreeString(BSTR bstr);
 MY_EXTERN_C ::u32 SysStringByteLen(BSTR bstr);

@@ -3,7 +3,7 @@
 #ifdef WINDOWS
 
 
-bool demangle(string& str, const char* pszType)
+bool demangle(string& str, const ::string & pszType)
 {
 
    str = pszType;
@@ -53,7 +53,7 @@ thread_local size_t t_sizeDemangle;
 //extern critical_section * g_pcsDemangle;
 
 
-bool demangle (string & str, const char * pszType)
+bool demangle (string & str, const ::string & pszType)
 {
 
    //cslock cs(g_pcsDemangle);

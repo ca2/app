@@ -71,7 +71,7 @@ namespace colorertake5
    @param line Line of text
    @param lineRegions Linked list of LineRegion structures
    */
-   void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions)
+   void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
       UNREFERENCED_PARAMETER(docLinkHash);
 
@@ -131,7 +131,7 @@ namespace colorertake5
    @param line Line of text
    @param lineRegions Linked list of LineRegion structures
    */
-   void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const char *line, LineRegion *lineRegions)
+   void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
 
       index pos = 0;

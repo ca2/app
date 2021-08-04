@@ -177,7 +177,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
 
 
 
-i32 WINAPI MessageBoxA(oswindow interaction_impl,const char * lpText,const char * lpCaption,u32 uFlags)
+i32 WINAPI MessageBoxA(oswindow interaction_impl, const ::string & lpText, const ::string & lpCaption,u32 uFlags)
 {
 
    UNREFERENCED_PARAMETER(interaction_impl);

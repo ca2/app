@@ -53,7 +53,7 @@ namespace user
 
          }
 
-         virtual void set_expression(const char* pszExp)
+         virtual void set_expression(const ::string & pszExp)
          {
 
          }
@@ -270,8 +270,8 @@ namespace user
       virtual void _001DeleteSel();
       virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
 
-      virtual void _001ReplaceSel(const char * pszText);
-      virtual bool _001ReplaceSel(const char * pszText, bool & bFullUpdate, index & iLineUpdate);
+      virtual void _001ReplaceSel(const ::string & pszText);
+      virtual bool _001ReplaceSel(const ::string & pszText, bool & bFullUpdate, index & iLineUpdate);
 
       virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
 
@@ -387,7 +387,7 @@ namespace user
       void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd) const override;
 
       void _001SetText(const ::string & str, const ::action_context & action_context) override;
-      void _001SetSelText(const char * psz, const ::action_context & action_context) override;
+      void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
       void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
@@ -425,7 +425,7 @@ namespace user
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
       void IndexRegisterDelete(strsize iSel, strsize iCount);
-      void IndexRegisterInsert(strsize iSel, const char * pcszWhat);
+      void IndexRegisterInsert(strsize iSel, const ::string & pcszWhat);
 
 
       virtual void MacroBegin() override;

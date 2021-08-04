@@ -145,7 +145,7 @@ namespace sqlite
    }
 
 
-   bool database::exec(const char * pszQuery)
+   bool database::exec(const ::string & pszQuery)
    {
 
       char * errmsg = nullptr;
@@ -177,7 +177,7 @@ namespace sqlite
    }
 
 
-   __pointer(::database::result_set) database::query_result(const char * pszQuery, ::count iRowCount,
+   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount,
                                                             ::count iColumnCount)
    {
 
@@ -232,7 +232,7 @@ namespace sqlite
    }
 
 
-   __pointer(::database::result_set) database::query(const char * pszQuery, ::count iRowCount, ::count iColumnCount)
+   __pointer(::database::result_set) database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return query_result(pszQuery, iRowCount, iColumnCount);
@@ -264,7 +264,7 @@ namespace sqlite
    }
 
 
-   ___pointer<class payload_array> database::query_row(const char * psz)
+   ___pointer<class payload_array> database::query_row(const ::string & psz)
    {
 
       return nullptr;
@@ -272,7 +272,7 @@ namespace sqlite
    }
 
 
-   ::payload database::query_item(const char * psz)
+   ::payload database::query_item(const ::string & psz)
    {
 
       return ::payload();
@@ -280,7 +280,7 @@ namespace sqlite
    }
 
 
-   __pointer(payload_array) database::query_items(const char * psz)
+   __pointer(payload_array) database::query_items(const ::string & psz)
    {
 
       return nullptr;
@@ -288,12 +288,12 @@ namespace sqlite
    }
 
    ::e_status database::connect(
-      const char * name,
-      const char * host,
-      const char * port,
-      const char * user,
-      const char * pass,
-      const char * sckt,
+      const ::string & name,
+      const ::string & host,
+      const ::string & port,
+      const ::string & user,
+      const ::string & pass,
+      const ::string & sckt,
       u64 uConnectionFlags)
    {
 
@@ -319,7 +319,7 @@ namespace sqlite
    }
 
 
-   __pointer(__pointer_array(payload_array)) database::query_rows(const char * psz)
+   __pointer(__pointer_array(payload_array)) database::query_rows(const ::string & psz)
    {
 
       return nullptr;
@@ -327,7 +327,7 @@ namespace sqlite
    }
 
 
-   bool database::memory_query_item(get_memory getmemory, const char * psz)
+   bool database::memory_query_item(get_memory getmemory, const ::string & psz)
    {
 
       return false;
@@ -509,7 +509,7 @@ namespace sqlite
    }
 
 
-   //long database::nextid(const char* sname)
+   //long database::nextid(const ::string & sname)
    //{
 
    //   synchronous_lock synchronouslock(mutex());
@@ -611,7 +611,7 @@ namespace sqlite
 
    }
 
-   string database::escape(const char * psz)
+   string database::escape(const ::string & psz)
    {
       string str(psz);
       str.replace("\'", "\'\'");

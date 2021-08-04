@@ -58,7 +58,7 @@
 //}
 //
 //
-//::image_result object::load_matter_image(const char * pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
+//::image_result object::load_matter_image(const ::string & pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
 //{
 //
 //   ::image_pointer pimage;
@@ -138,7 +138,7 @@
 //}
 //
 //
-//::image_result object::load_thumbnail(const char * pszPath)
+//::image_result object::load_thumbnail(const ::string & pszPath)
 //{
 //
 //   auto pimage = create_image();

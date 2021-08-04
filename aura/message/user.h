@@ -33,9 +33,9 @@ namespace message
 
       virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
 
-      virtual void error(const char * pcszErrorMessage);
+      virtual void error(const ::string & pcszErrorMessage);
 
-      virtual void failed(const char * pcszErrorMessage);
+      virtual void failed(const ::string & pcszErrorMessage);
 
       ::create * get_create();
 

@@ -23,7 +23,7 @@ namespace simple_ui
       manual_reset_event               m_evReady;
 
 
-      message_box(::object * pobject,const char * pszMessage,const char * pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
+      message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout);
       virtual ~message_box();
 
 
@@ -33,11 +33,11 @@ namespace simple_ui
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool on_action(const char * pszId) override;
+      bool on_action(const ::string & pszId) override;
 
-      virtual void create_a_button(id id,const char * pszText);
-      virtual void create_b_button(id id,const char * pszText);
-      virtual void create_button(__pointer_array(tap) & tapa, id id,const char * pszText);
+      virtual void create_a_button(id id, const ::string & pszText);
+      virtual void create_b_button(id id, const ::string & pszText);
+      virtual void create_button(__pointer_array(tap) & tapa, id id, const ::string & pszText);
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;
@@ -60,7 +60,7 @@ namespace simple_ui
 
 
 
-CLASS_DECL_CORE i32 simple_ui_message_box(oswindow interaction_impl, const char * pText,const char * lpCaption, u32 uFlags);
+CLASS_DECL_CORE i32 simple_ui_message_box(oswindow interaction_impl, const ::string & pText, const ::string & lpCaption, u32 uFlags);
 
 
 

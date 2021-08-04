@@ -30,7 +30,7 @@ namespace android
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-      //bool create_message_queue(::user::interaction * pinteraction, const char * pszName) override;
+      //bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
 
@@ -76,11 +76,11 @@ namespace android
       //oswindow unsubclass_window();
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
-      //bool ExecuteDlgInit(const char * lpszResourceName);
+      //bool ExecuteDlgInit(const ::string & lpszResourceName);
       //bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName, u32 dwStyle, const ::rectangle_i32 & rectangle, ::user::primitive * pParentWnd, id id, ::create * pcreate = nullptr) override;
 
       // for top level windows and/or special features
       virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent = nullptr, ::id id = ::id()) override;
@@ -129,7 +129,7 @@ namespace android
       //virtual void RedrawWindow(::u32 nFlags = 0) override;
 
       // Window Text Functions
-      virtual void set_window_text(const char * lpszString) override;
+      virtual void set_window_text(const ::string & lpszString) override;
       virtual strsize get_window_text(char * lpszStringBuf, strsize nMaxCount) override;
       virtual void get_window_text(string & rString) override;
       virtual strsize get_window_text_length() override;
@@ -246,7 +246,7 @@ namespace android
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
       //virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0) override;
       virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true) override;
-      virtual void SetDlgItemText(i32 nID, const char * lpszString) override;
+      virtual void SetDlgItemText(i32 nID, const ::string & lpszString) override;
 
 
       // Scrolling Functions
@@ -275,8 +275,8 @@ namespace android
       // Window Access Functions
       virtual ::user::interaction * ChildWindowFromPoint(POINT_I32 point_i32);
       virtual ::user::interaction * ChildWindowFromPoint(POINT_I32 point,::u32 nFlags);
-      static ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
-      static ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
+      static ::user::interaction * FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+      static ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
       //virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       //virtual ::user::interaction * GetTopWindow() const override;
@@ -296,7 +296,7 @@ namespace android
 
       //virtual bool FlashWindow(bool bInvert);
 
-      //virtual i32 message_box(const char * lpszText,const char * lpszCaption = nullptr,::u32 nType = e_message_box_ok) override;
+      //virtual i32 message_box(const ::string & lpszText, const ::string & lpszCaption = nullptr,::u32 nType = e_message_box_ok) override;
 
 
 #if(WINVER >= 0x0500)
@@ -417,8 +417,8 @@ namespace android
       void OnSpoolerStatus(::u32 nStatus,::u32 nJobs);
       void OnSysColorChange();
       void OnTimeChange();
-      void OnSettingChange(::u32 uFlags,const char * lpszSection);
-      void OnWinIniChange(const char * lpszSection);
+      void OnSettingChange(::u32 uFlags, const ::string & lpszSection);
+      void OnWinIniChange(const ::string & lpszSection);
 
       // Input message handler member functions
       void OnChar(::u32 nChar,::u32 nRepCnt,::u32 nFlags);
@@ -536,7 +536,7 @@ namespace android
 
       friend class frame_window;
 
-      bool CreateDlg(const char * lpszTemplateName,::user::interaction * pParentWnd);
+      bool CreateDlg(const ::string & lpszTemplateName,::user::interaction * pParentWnd);
 
 
       //CLASS_DECL_AURA friend LRESULT CALLBACK __send_message_hook(i32,WPARAM,LPARAM);
@@ -566,7 +566,7 @@ namespace android
 
       void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      //string calc_icon_window_class(u32 dwDefaultStyle,const char * pszMatter);
+      //string calc_icon_window_class(u32 dwDefaultStyle, const ::string & pszMatter);
       //string calc_window_class();
 
       void on_set_parent(::user::interaction * pinteraction);

@@ -36,7 +36,7 @@ namespace filemanager
 
             void install_message_routing(::channel * pchannel);
 
-            void open_file(i64 iFolder, const char * pszFileName, const char * pszExt);
+            void open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExt);
 
             void open_folder(i64 iFolder);
             void start_music();

@@ -39,7 +39,7 @@
 
 
 //void scIsInNet(CScriptVar *pvar, void *data);
-bool is_only_digits(const char * psz);
+bool is_only_digits(const ::string & psz);
 void scIsPlainHostName(CScriptVar *pvar, void *data);
 void scMyIpAddress(CScriptVar *pvar, void *data);
 
@@ -86,7 +86,7 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 //}
 
 
-bool is_only_digits(const char * psz)
+bool is_only_digits(const ::string & psz)
 {
    if(psz == nullptr || *psz == '\0')
       return false;

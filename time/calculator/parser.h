@@ -23,15 +23,15 @@ namespace datetime
       virtual ::e_status initialize_datetime_parse(::text::context * pcontext);
 
 
-      ::datetime::element * parse(const char * psz);
+      ::datetime::element * parse(const ::string & psz);
 
       ::datetime::element * expr(::datetime::element * pelement1);
       ::datetime::element * term(::datetime::element * pelement1);
       ::datetime::element * factor();
 
 
-      void error(const char * pszMessage);
-      void syntax_error(const char * pszMessage);
+      void error(const ::string & pszMessage);
+      void syntax_error(const ::string & pszMessage);
       void expect(char ch);
 
 

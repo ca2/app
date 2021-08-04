@@ -79,10 +79,10 @@ namespace user
       // button size_i32 should be bigger than image
       void SetHeight(index cyHeight);
       // call after SetSizes, height overrides bitmap size_i32
-      //bool LoadToolBar(const char * pszResourceName);
+      //bool LoadToolBar(const ::string & pszResourceName);
 
       //bool LoadToolBar(::u32 nIDResource);
-      //bool LoadBitmap(const char * pszResourceName);
+      //bool LoadBitmap(const ::string & pszResourceName);
 
       //bool LoadBitmap(::u32 nIDResource);
 //#ifdef WINDOWS_DESKTOP
@@ -110,7 +110,7 @@ namespace user
       // for changing button info
       void GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage);
       void SetButtonInfo(index nIndex, ::u32 nID, ::u32 nStyle, index iImage);
-      bool SetButtonText(index nIndex, const char * pszText);
+      bool SetButtonText(index nIndex, const ::string & pszText);
 
       string GetButtonText(index nIndex) const;
       void GetButtonText(index nIndex, string & rString) const;
@@ -136,7 +136,7 @@ namespace user
       virtual void dump(dump_context & dumpcontext) const;
 
 
-      virtual bool LoadXmlToolBar(const char * pszFileName);
+      virtual bool LoadXmlToolBar(const ::string & pszFileName);
 
       virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle);
 

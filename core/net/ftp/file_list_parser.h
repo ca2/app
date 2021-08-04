@@ -60,21 +60,21 @@ namespace ftp
 
       bool Parse(file_status& ftpFileStatus, const string& strLineToParse);
 
-      bool IsEPLS(const char * pszLine);
-      bool ParseEPLF(file_status& ftpFileStatus, const char * pszLine, int iLength);
+      bool IsEPLS(const ::string & pszLine);
+      bool ParseEPLF(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
 
-      bool IsUNIXStyleListing(const char * pszLine);
-      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
+      bool IsUNIXStyleListing(const ::string & pszLine);
+      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
 
-      bool IsMultiNetListing(const char * pszLine);
-      bool ParseMultiNetListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
+      bool IsMultiNetListing(const ::string & pszLine);
+      bool ParseMultiNetListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
 
-      bool IsMSDOSListing(const char * pszLine);
-      bool ParseMSDOSListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
+      bool IsMSDOSListing(const ::string & pszLine);
+      bool ParseMSDOSListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
 
-      bool CheckMonth(const char * pszBuffer, const char * pszMonthName) const;
-      int  GetMonth(const char * pszBuffer, int iLength) const;
-      bool GetLong(const char * pszLong, int iLength, long& lResult) const;
+      bool CheckMonth(const ::string & pszBuffer, const ::string & pszMonthName) const;
+      int  GetMonth(const ::string & pszBuffer, int iLength) const;
+      bool GetLong(const ::string & pszLong, int iLength, long& lResult) const;
       long GetYear(time_t time) const;
 
       long ToTAI(long lYear, long lMonth, long lMDay) const;

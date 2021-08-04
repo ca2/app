@@ -40,7 +40,7 @@ namespace filemanager
             public __pointer_array(Item)
          {
          public:
-            //i32 FindAbsolute(const char * pszId);
+            //i32 FindAbsolute(const ::string & pszId);
 
          };
 
@@ -133,7 +133,7 @@ namespace filemanager
 
 
 
-            void parse(const char * pszSource);
+            void parse(const ::string & pszSource);
 
             void start_build(i32 iItem = -1);
 

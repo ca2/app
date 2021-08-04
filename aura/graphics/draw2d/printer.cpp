@@ -13,7 +13,7 @@ namespace draw2d
    {
    }
 
-   bool printer::open(const char * pszDeviceName)
+   bool printer::open(const ::string & pszDeviceName)
    {
 
       if (is_opened())

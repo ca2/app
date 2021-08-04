@@ -175,7 +175,7 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA ::e_status os_message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA ::e_status os_message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
 //
 //
 //

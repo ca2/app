@@ -346,7 +346,7 @@
 //      ::u32 uUnique,
 //      string & str);
 //
-//   static int_bool MoveFile(const char * pExistingFileName, const char * lpNewFileName);
+//   static int_bool MoveFile(const ::string & pExistingFileName, const ::string & lpNewFileName);
 //
 //*/
 //};
@@ -603,7 +603,7 @@
 //   return dwResult;
 //}
 //
-//inline ::u32 shell::GetTempFileName(const char * pszPath, const char * pszPrefix, ::u32 uUnique, string & str)
+//inline ::u32 shell::GetTempFileName(const ::string & pszPath, const ::string & pszPrefix, ::u32 uUnique, string & str)
 //
 //{
 //   wstring wstrPathName = ::str::international::utf8_to_unicode(pszPath);
@@ -621,7 +621,7 @@
 //   return uiResult;
 //}
 //
-//inline int_bool shell::MoveFile(const char * pExistingFileName, const char * lpNewFileName)
+//inline int_bool shell::MoveFile(const ::string & pExistingFileName, const ::string & lpNewFileName)
 //
 //{
 //   return MoveFile(::str::international::utf8_to_unicode(pExistingFileName), ::str::international::utf8_to_unicode(lpNewFileName));

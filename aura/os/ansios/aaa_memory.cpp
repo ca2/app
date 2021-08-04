@@ -7,8 +7,8 @@
 void * memmem(const void * l, size_t l_len, const void * s, size_t s_len)
 {
    char * cur, * last;
-   const char * cl = (const char *)l;
-   const char * cs = (const char *)s;
+   const char * cl = (const ::string &)l;
+   const char * cs = (const ::string &)s;
 
    /* we need something to compare */
    if (l_len == 0 || s_len == 0)

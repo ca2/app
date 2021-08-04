@@ -48,7 +48,7 @@ namespace sqlite
       ::e_status drop() override;
 
 
-      string escape(const char * psz) override;
+      string escape(const ::string & psz) override;
 
       //virtual __pointer(class dataset) dataset() = 0;
 
@@ -60,50 +60,50 @@ namespace sqlite
       string add_error_message(const ::string& strErrorMessage) override;
 
       ::e_status connect(
-         const char* name,
-         const char* host = nullptr,
-         const char* port = nullptr,
-         const char* user = nullptr,
-         const char* pass = nullptr,
-         const char* sckt = nullptr,
+         const ::string & name,
+         const ::string & host = nullptr,
+         const ::string & port = nullptr,
+         const ::string & user = nullptr,
+         const ::string & pass = nullptr,
+         const ::string & sckt = nullptr,
          u64 uConnectionFlags = 0) override;
 
 
       ::e_status reset() override;
 
-      //virtual string escape(const char * psz);
+      //virtual string escape(const ::string & psz);
 
       ::count get_affected_rows_count() override;
 
       bool in_transaction() override;
 
-      bool exec(const char* pszQuery) override;
+      bool exec(const ::string & pszQuery) override;
 
-      __pointer(::database::result_set) query_result(const char* pszQuery, ::count iRowCount, ::count iColumnCount) override;
+      __pointer(::database::result_set) query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount) override;
 
-      __pointer(::database::result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      __pointer(::database::result_set) query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
 
 
-      //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      __pointer(::database::row_array) query_rows(const char* pszQuery) override;
+      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      __pointer(::database::row_array) query_rows(const ::string & pszQuery) override;
       
-      __pointer(::database::row) query_row(const char* pszQuery) override;
+      __pointer(::database::row) query_row(const ::string & pszQuery) override;
       
-      __pointer(::payload_array) query_items(const char* pszQuery) override;
+      __pointer(::payload_array) query_items(const ::string & pszQuery) override;
       
-      virtual ::payload query_item(const char* pszQuery);
-      virtual bool memory_query_item(get_memory getmemory, const char* pszQuery);
+      virtual ::payload query_item(const ::string & pszQuery);
+      virtual bool memory_query_item(get_memory getmemory, const ::string & pszQuery);
 
-      //virtual bool query_rows(__pointer(row_array) & rows, const char * pszQuery);
-      //virtual bool query_row(__pointer(row) & rows, const char * pszQuery);
-      //virtual bool query_items(__pointer(payload_array) & items, const char * pszQuery);
-      //virtual bool query_item(::payload & item, const char * pszQuery);
+      //virtual bool query_rows(__pointer(row_array) & rows, const ::string & pszQuery);
+      //virtual bool query_row(__pointer(row) & rows, const ::string & pszQuery);
+      //virtual bool query_items(__pointer(payload_array) & items, const ::string & pszQuery);
+      //virtual bool query_item(::payload & item, const ::string & pszQuery);
 
 
-      //virtual string escape(const char* psz);
+      //virtual string escape(const ::string & psz);
 
-   /*   virtual string error1(const char* pszPrefix = nullptr);
-      virtual void trace_error1(const char* pszPrefix = nullptr);
+   /*   virtual string error1(const ::string & pszPrefix = nullptr);
+      virtual void trace_error1(const ::string & pszPrefix = nullptr);
 */
 
       virtual ::e_status set_id_blob(string strKey, ::block block) override;

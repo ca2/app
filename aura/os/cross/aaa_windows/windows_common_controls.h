@@ -1343,10 +1343,10 @@ typedef struct tagNMTTDISPINFOW {
 
 // end_r_commctrl
 
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc,const char * pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc, const ::string & pszText,::u32 uFlags);
 //WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const widechar * pszText,::u32 uFlags);
 
-//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style,const char * lpszText,oswindow hwndParent,::u32 wID);
+//WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style, const ::string & lpszText,oswindow hwndParent,::u32 wID);
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const widechar * lpszText,oswindow hwndParent,::u32 wID);
 
 #ifdef UNICODE

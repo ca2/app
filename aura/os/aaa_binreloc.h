@@ -56,22 +56,22 @@ typedef enum {
 i32   br_init             (BrInitError *error);
 i32   br_init_lib         (BrInitError *error);
 
-char *br_find_exe         (const char *default_exe);
-char *br_find_exe_dir     (const char *default_dir);
-char *br_find_prefix      (const char *default_prefix);
-char *br_find_bin_dir     (const char *default_bin_dir);
-char *br_find_sbin_dir    (const char *default_sbin_dir);
-char *br_find_data_dir    (const char *default_data_dir);
-char *br_find_locale_dir  (const char *default_locale_dir);
-char *br_find_lib_dir     (const char *default_lib_dir);
-char *br_find_libexec_dir (const char *default_libexec_dir);
-char *br_find_etc_dir     (const char *default_etc_dir);
+char *br_find_exe         (const ::string &default_exe);
+char *br_find_exe_dir     (const ::string &default_dir);
+char *br_find_prefix      (const ::string &default_prefix);
+char *br_find_bin_dir     (const ::string &default_bin_dir);
+char *br_find_sbin_dir    (const ::string &default_sbin_dir);
+char *br_find_data_dir    (const ::string &default_data_dir);
+char *br_find_locale_dir  (const ::string &default_locale_dir);
+char *br_find_lib_dir     (const ::string &default_lib_dir);
+char *br_find_libexec_dir (const ::string &default_libexec_dir);
+char *br_find_etc_dir     (const ::string &default_etc_dir);
 
 /* Utility functions */
-char *br_strcat  (const char *str1, const char *str2);
-char *br_build_path (const char *dir, const char *file);
-char *br_dirname (const char *path);
-void br_init_set_symbol(const char * psz);
+char *br_strcat  (const ::string &str1, const ::string &str2);
+char *br_build_path (const ::string &dir, const ::string &file);
+char *br_dirname (const ::string &path);
+void br_init_set_symbol(const ::string & psz);
 
 #ifdef __cplusplus
 }

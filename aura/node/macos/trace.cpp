@@ -16,7 +16,7 @@
 
 
 /*
- static void TraceDDE(const char * lpszPrefix, const MESSAGE* pMsg)
+ static void TraceDDE(const ::string & lpszPrefix, const MESSAGE* pMsg)
  {
  ENSURE_ARG(pMsg != nullptr);
  if (pMsg->message == WM_DDE_EXECUTE)
@@ -32,7 +32,7 @@
  }
  ASSERT(hCommands != nullptr);
 
- const char * lpszCommands = (const char *)::GlobalLock(hCommands);
+ const char * lpszCommands = (const ::string &)::GlobalLock(hCommands);
  ENSURE_THROW(lpszCommands != nullptr, ::AfxThrowMemoryException() );
  //      ::output_debug_string(::ca2::trace::category_AppMsg, 0, "%s: Execute '%s'.\n", lpszPrefix, lpszCommands);
  ::GlobalUnlock(hCommands);
@@ -84,7 +84,7 @@
  */
 /////////////////////////////////////////////////////////////////////////////
 
-//void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
+//void __trace_message(const ::string & lpszPrefix, ::message::message * pmessage)
 //{
 //   //   ENSURE_ARG(AfxIsValidString(lpszPrefix));
 //   ENSURE_ARG(pmessage != nullptr);
@@ -168,7 +168,7 @@
 //
 //
 //
-//void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg)
+//void __trace_message(const ::string & lpszPrefix, MESSAGE * lpmsg)
 //{
 //   //ENSURE_ARG(AfxIsValidString(lpszPrefix));
 //   ENSURE_ARG(lpmsg != nullptr);

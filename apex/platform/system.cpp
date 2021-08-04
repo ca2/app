@@ -23,27 +23,27 @@
 //int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 
-const char* g_pszMultimediaLibraryName = nullptr;
+///const ::string & g_pszMultimediaLibraryName = nullptr;
 
 void apex_system_update(const ::id & id, const ::payload & payload);
 
 void apex_system_set_modified(const ::id& id);
 
 
-CLASS_DECL_APEX void multimedia_set_library_name(const char* psz)
-{
+// CLASS_DECL_APEX void multimedia_set_library_name(const ::string & psz)
+// {
 
-   g_pszMultimediaLibraryName = psz;
+//    g_pszMultimediaLibraryName = psz;
 
-}
+// }
 
 
-CLASS_DECL_APEX const char * multimedia_get_library_name()
-{
+// CLASS_DECL_APEX const ::string & multimedia_get_library_name()
+// {
 
-   return g_pszMultimediaLibraryName;
+//    return g_pszMultimediaLibraryName;
 
-}
+// }
 
 
 #ifdef CUBE
@@ -60,7 +60,7 @@ extern "C"
 extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
 
 
 #ifdef WINDOWS
@@ -78,7 +78,7 @@ void unit_test_primitive_var_apex_block();
 #endif
 
 
-void dappy(const char * psz);
+void dappy(const ::string & psz);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -581,7 +581,7 @@ namespace apex
 
 
 
-   ::e_status system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+   ::e_status system::set_factory_exchange(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory_exchange pfnFactoryExchange)
    {
 
       m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
@@ -763,7 +763,7 @@ namespace apex
 
 
 
-   //::acme::library * system::on_get_library(const char * pszLibrary)
+   //::acme::library * system::on_get_library(const ::string & pszLibrary)
    //{
 
    //   return nullptr;
@@ -787,7 +787,7 @@ namespace apex
 
 
 
-   ::acme::library * system::get_library(const char * pszLibrary1, bool bOpenCa2)
+   ::acme::library * system::get_library(const ::string & pszLibrary1, bool bOpenCa2)
    {
 
       auto psystem = get_system()->m_papexsystem;
@@ -2280,7 +2280,7 @@ namespace apex
    }
 
 
-   ::acme::library * system::lib(const char * psz)
+   ::acme::library * system::lib(const ::string & psz)
    {
 
       synchronous_lock synchronouslock(&m_mutexLibrary);
@@ -2626,7 +2626,7 @@ namespace apex
    }
 
 
-   i32 system::_001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args)
+   i32 system::_001OnDebugReport(i32 i1,const ::string & psz1,i32 i2,const ::string & psz2,const ::string & psz3,va_list args)
    {
 
       return _debug_logging_report(i1,psz1,i2,psz2,psz3,args);
@@ -2634,7 +2634,7 @@ namespace apex
    }
 
 
-   i32 system::_debug_logging_report(i32 iReportType, const char * pszFileName, i32 iLineNumber, const char * pszModuleName, const char * pszFormat,va_list list)
+   i32 system::_debug_logging_report(i32 iReportType, const ::string & pszFileName, i32 iLineNumber, const ::string & pszModuleName, const ::string & pszFormat,va_list list)
    {
 
       if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
@@ -2722,7 +2722,7 @@ namespace apex
 
 
 
-   bool system::assert_failed_line(const char * pszFileName,i32 iLine)
+   bool system::assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    {
       UNREFERENCED_PARAMETER(pszFileName);
@@ -2732,7 +2732,7 @@ namespace apex
    }
 
 
-   bool system::on_assert_failed_line(const char * pszFileName,i32 iLine)
+   bool system::on_assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    {
       UNREFERENCED_PARAMETER(pszFileName);
@@ -2881,7 +2881,7 @@ namespace apex
    }
 
 
-   ::e_status system::initialize_log(const char * pszId)
+   ::e_status system::initialize_log(const ::string & pszId)
    {
 
       if (m_ptracelog)
@@ -2935,7 +2935,7 @@ namespace apex
    }
 
 
-   void system::appa_set_locale(const char * pszLocale, const ::action_context & context)
+   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),millis(100),millis(100));
@@ -2952,7 +2952,7 @@ namespace apex
    }
 
 
-   void system::appa_set_schema(const char * pszStyle, const ::action_context & context)
+   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
    {
 
       //retry_single_lock rsl(mutex(),millis(100),millis(100));
@@ -2970,7 +2970,7 @@ namespace apex
 
 
 
-   bool system::assert_running_global(const char * pszAppName,const char * pszId)
+   bool system::assert_running_global(const ::string & pszAppName,const ::string & pszId)
    {
       if(string(pszId).has_char())
       {
@@ -3041,7 +3041,7 @@ namespace apex
       }
    }
 
-   bool system::assert_running_local(const char * pszAppName,const char * pszId)
+   bool system::assert_running_local(const ::string & pszAppName,const ::string & pszId)
    {
       string strAppName(pszAppName);
       string strId(pszId);
@@ -3448,7 +3448,7 @@ namespace apex
    }
 
 
-   bool system::map_application_library(const char * pszLibrary)
+   bool system::map_application_library(const ::string & pszLibrary)
    {
 
       ::acme::library library;
@@ -3827,7 +3827,7 @@ namespace apex
    }
 
 
-   ::e_status system::on_open_file(const char * pszFile)
+   ::e_status system::on_open_file(const ::string & pszFile)
    {
       
       defer_accumulate_on_open_file({pszFile}, "");
@@ -4048,7 +4048,7 @@ namespace apex
 
 
 
-   //void system::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   //void system::__tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz)
    //{
 
    //   if (m_ptracelog.is_null())
@@ -4134,7 +4134,7 @@ namespace apex
    }
 
 
-   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
    {
 
       return m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
@@ -4756,14 +4756,14 @@ namespace apex
 
    }
 
-   string system::get_local_mutex_name(const char * pszAppName)
+   string system::get_local_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
       strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
       return strMutex;
    }
 
-   string system::get_local_id_mutex_name(const char * pszAppName, const char * pszId)
+   string system::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    {
       string strId(pszId);
       string strMutex;
@@ -4771,14 +4771,14 @@ namespace apex
       return strMutex;
    }
 
-   string system::get_global_mutex_name(const char * pszAppName)
+   string system::get_global_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
       strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
       return strMutex;
    }
 
-   string system::get_global_id_mutex_name(const char * pszAppName, const char * pszId)
+   string system::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId)
    {
       string strId(pszId);
       string strMutex;
@@ -4958,7 +4958,7 @@ namespace apex
    }
 
 
-   __pointer(::data::node) system::load_xml(const char* pszXml)
+   __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
       __throw(error_interface_only);
@@ -5050,7 +5050,7 @@ namespace apex
    }
 
 
-   //::acme::library * system::on_get_library(const char* pszLibrary)
+   //::acme::library * system::on_get_library(const ::string & pszLibrary)
    //{
 
    //   __pointer(::acme::library) plibrary;
@@ -5142,8 +5142,8 @@ namespace apex
    //}
 
 
-   //bool system::sync_load_url(string& str, const char* pszUrl, ::account::user* puser, ::http::cookies* pcookies)
-   bool system::sync_load_url(string& str, const char* pszUrl, ::http::cookies* pcookies)
+   //bool system::sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser, ::http::cookies* pcookies)
+   bool system::sync_load_url(string& str, const ::string & pszUrl, ::http::cookies* pcookies)
 
    {
 
@@ -5316,7 +5316,7 @@ namespace apex
    //}
 
 
-   //   void system::post_fork_uri(const char * pszUri,application_bias * papplicationbias)
+   //   void system::post_fork_uri(const ::string & pszUri,application_bias * papplicationbias)
    //   {
    //
    //      add_fork_uri(pszUri,papplicationbias);
@@ -5435,7 +5435,7 @@ namespace apex
    //}
 
 
-   void system::hist_hist(const char* psz)
+   void system::hist_hist(const ::string & psz)
    {
 
       hist().hist(psz);
@@ -5708,7 +5708,7 @@ namespace apex
 #else
 
 
-   ::e_status system::system_construct(const char* pszCommandLine, const ::e_display& edisplay)
+   ::e_status system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
    {
 
       return ::success;
@@ -5855,12 +5855,12 @@ string get_bundle_app_library_name();
 
 
 //
-//void apex_application_main(int argc, char* argv[], const char* pszCommandLine);
+//void apex_application_main(int argc, char* argv[], const ::string & pszCommandLine);
 
 namespace apex
 {
 
-   void system::application_main(int argc, char* argv[], const char* pszCommandLine)
+   void system::application_main(int argc, char* argv[], const ::string & pszCommandLine)
    {
 
       //apex_application_main(argc, argv, pszCommandLine);
@@ -5868,7 +5868,7 @@ namespace apex
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);

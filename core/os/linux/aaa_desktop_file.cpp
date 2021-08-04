@@ -425,7 +425,7 @@ namespace linux
                      ixa,
                      8,
                      PropModeReplace,
-                     (const unsigned char*) (const char *) path,
+                     (const unsigned char*) (const ::string &) path,
                      path.get_length());
 
       output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");

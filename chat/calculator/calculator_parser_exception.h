@@ -7,7 +7,7 @@ class CLASS_DECL_CA2_MATH numeric_parser_exception:
 public:
 
 
-   numeric_parser_exception(::object * pobject,const ::string & strMessage);
+   numeric_parser_exception(::object * pobject, const ::string & strMessage);
    virtual ~numeric_parser_exception();
 
 

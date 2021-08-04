@@ -17,7 +17,7 @@ namespace aura
       history();
          
    
-      virtual bool hist(const char *psz);
+      virtual bool hist(const ::string &psz);
 
    };
 

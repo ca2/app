@@ -834,48 +834,48 @@ void thread::on_message_branch(::message::message* pmessage)
 }
 
 
-__pointer(::matter) thread::running(const char * pszTag) const
-{
-
-   auto pmatter = ::channel::running(pszTag);
-
-   if (pmatter)
-   {
-
-      return pmatter;
-
-   }
-
-   //synchronous_lock synchronouslock(mutex());
-
-   //for(auto & pcomposite : *m_pcompositea)
-   //{
-
-   //   try
-   //   {
-
-   //      const char * pszTaskTag = pcomposite->get_task_tag();
-
-   //      if (!strcmp(pszTaskTag, pszTag))
-   //      {
-
-   //         return pcomposite;
-
-   //      }
-
-   //   }
-   //   catch (...)
-   //   {
-
-
-   //   }
-
-   //}
-
-   return nullptr;
-
-
-}
+//__pointer(::matter) thread::running(const char * pszTag) const
+//{
+//
+//   auto pmatter = ::channel::running(pszTag);
+//
+//   if (pmatter)
+//   {
+//
+//      return pmatter;
+//
+//   }
+//
+//   //synchronous_lock synchronouslock(mutex());
+//
+//   //for(auto & pcomposite : *m_pcompositea)
+//   //{
+//
+//   //   try
+//   //   {
+//
+//   //      const char * pszTaskTag = pcomposite->get_task_tag();
+//
+//   //      if (!strcmp(pszTaskTag, pszTag))
+//   //      {
+//
+//   //         return pcomposite;
+//
+//   //      }
+//
+//   //   }
+//   //   catch (...)
+//   //   {
+//
+//
+//   //   }
+//
+//   //}
+//
+//   return nullptr;
+//
+//
+//}
 
 
 int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)

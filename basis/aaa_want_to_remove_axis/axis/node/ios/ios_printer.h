@@ -41,7 +41,7 @@ namespace ios2
       virtual ~printer();
 
 
-      virtual bool open(const char * pszDeviceName);
+      virtual bool open(const ::string & pszDeviceName);
       virtual ::draw2d::graphics * create_graphics();
       virtual bool is_opened();
       virtual bool close();

@@ -117,7 +117,7 @@ extern void gettime_d (struct time *t);
 // RSB:  The following originally was suffixed by "_d".
 #define getdate(d) getdateTurbo (d)
 extern void getdateTurbo (struct date *d);
-extern struct tm* getdateSystem (const char *d);
+extern struct tm* getdateSystem (const ::string &d);
 
 __END_DECLS
 #define SECONDS_PER_DAY	86400L	/* the number of seconds in one day */

@@ -271,7 +271,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadBitmap(const char * lpszResourceName)
+   bool bitmap::LoadBitmap(const ::string & lpszResourceName)
    {
 
       return false;

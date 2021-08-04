@@ -31,7 +31,7 @@ namespace aura
    }
 
 
-   ::e_status library::initialize_aura_library(::object * pobject,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::e_status library::initialize_aura_library(::object * pobject,int iDesambig, const ::string & pszRoot, const ::string & pszName, const ::string & pszFolder)
    {
 
       auto estatus = initialize(pobject);
@@ -108,7 +108,7 @@ namespace aura
    }
 
 
-   bool library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
+   bool library::open(const ::string & pszPath,bool bAutoClose,bool bCa2Path)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -450,7 +450,7 @@ namespace aura
    }
 
 
-   string library::get_app_id(const char * pszAppName)
+   string library::get_app_id(const ::string & pszAppName)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -504,7 +504,7 @@ namespace aura
    }
 
 
-   string library::get_app_name(const char * pszAppId)
+   string library::get_app_name(const ::string & pszAppId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -564,7 +564,7 @@ namespace aura
    }
 
 
-   __transport(::aura::application) library::get_new_application(::object * pobject, const char * pszAppId)
+   __transport(::aura::application) library::get_new_application(::object * pobject, const ::string & pszAppId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -728,7 +728,7 @@ namespace aura
    }
 
 
-   ::matter* library::new_object(::object* pobject, const char* pszClassId)
+   ::matter* library::new_object(::object* pobject, const ::string & pszClassId)
    {
 
       return nullptr;
@@ -736,7 +736,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::create_object(::object * pobject, const char * pszClass)
+   __pointer(::matter) library::create_object(::object * pobject, const ::string & pszClass)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -779,7 +779,7 @@ namespace aura
    }
 
 
-   bool library::has_object_class(const char * pszClassId)
+   bool library::has_object_class(const ::string & pszClassId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -803,7 +803,7 @@ namespace aura
    }
 
 
-   bool library::contains_app(const char * pszAppId)
+   bool library::contains_app(const ::string & pszAppId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -862,7 +862,7 @@ namespace aura
    }
 
 
-   void * library::raw_get(const char * pszEntryName)
+   void * library::raw_get(const ::string & pszEntryName)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -872,7 +872,7 @@ namespace aura
    }
 
    
-   ::matter* library::factory_new(::object* pobject, const char* lpszClass)
+   ::matter* library::factory_new(::object* pobject, const ::string & lpszClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::factory_create(::object * pobject, const char * lpszClass)
+   __pointer(::matter) library::factory_create(::object * pobject, const ::string & lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -908,7 +908,7 @@ namespace aura
    }
 
 
-   bool library::factory_has_object_class(const char * lpszClass)
+   bool library::factory_has_object_class(const ::string & lpszClass)
    {
 
       return find_allocator(lpszClass) != nullptr;
@@ -916,7 +916,7 @@ namespace aura
    }
 
 
-   library_object_allocator_base * library::find_allocator(const char * lpszClass)
+   library_object_allocator_base * library::find_allocator(const ::string & lpszClass)
    {
 
       index iFind = m_allocatorptra.predicate_find_first([&](auto & pallocator)
@@ -968,7 +968,7 @@ namespace aura
 //string_map < __pointer(::acme::library) > * g_pmapLibCall = nullptr;
 
 
-::acme::library * lib(const char * psz)
+::acme::library * lib(const ::string & psz)
 {
 
    //if (::aura::get_system()->m_mapLibCall == nullptr)

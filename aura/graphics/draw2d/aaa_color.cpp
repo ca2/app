@@ -909,7 +909,7 @@ u32 CColor::get_rgb()
 
 #define duplicate_color_nible(nible) ((nible << 4) | (nible))
 
-bool color::parse_color(const char * psz)
+bool color::parse_color(const ::string & psz)
 {
 
    string str(psz);

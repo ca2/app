@@ -32,7 +32,7 @@ namespace database
       //field_definition_item & operator = (const xml::node & node);
 
 
-      enum_type field_str_to_type(const char * pszType);
+      enum_type field_str_to_type(const ::string & pszType);
 
       
    };

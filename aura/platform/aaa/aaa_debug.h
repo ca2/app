@@ -207,11 +207,11 @@
 //
 //
 //
-//// CLASS_DECL_AURA i32 FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags);
+//// CLASS_DECL_AURA i32 FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, i32 iFlags);
 //
 //// CLASS_DECL_AURA i32 FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags);
 //
-//// inline i32 FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags)
+//// inline i32 FUNCTION_XXDEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, i32 iFlags)
 //// {
 //
 ////    UNREFERENCED_PARAMETER(pszMessage);
@@ -254,8 +254,8 @@
 //#ifdef MEMDLEAK
 //
 //CLASS_DECL_AURA string get_mem_info_report1();
-//CLASS_DECL_AURA ::count get_mem_info(i32 ** ppiUse, const char *** ppszFile, const char *** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
-//CLASS_DECL_AURA ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
+//CLASS_DECL_AURA ::count get_mem_info(i32 ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_AURA ::count get_mem_info2(i32 ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
 //
 //
 //
@@ -281,8 +281,8 @@
 //extern critical_section * g_pcsTrace;
 //extern object * g_pobjecTracer;
 //
-//CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage);
-//CLASS_DECL_AURA void trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+//CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszMessage);
+//CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::string & pszTag, const ::string & psz, const ::string & pszFile = nullptr, int iLine = -1);
 //
 //
 //

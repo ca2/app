@@ -29,7 +29,7 @@ void  nsEUCJPProber::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsEUCJPProber::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsEUCJPProber::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsSMState codingState;
 

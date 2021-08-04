@@ -282,7 +282,7 @@ namespace aura
    }
 
 
-   bool session::open_by_file_extension(const char * pszPathName, ::create * pcreate)
+   bool session::open_by_file_extension(const ::string & pszPathName, ::create * pcreate)
    {
 
       auto pcreateNew = __create_new < ::create >();
@@ -383,7 +383,7 @@ namespace aura
    }
 
 
-   bool session::is_licensed(const char * pszAppId, bool bInteractive)
+   bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
    {
 
       if (has_property("install"))
@@ -2174,7 +2174,7 @@ namespace aura
    }
 
 
-   void session::launch_app(const char* psz)
+   void session::launch_app(const ::string & psz)
    {
 
       UNREFERENCED_PARAMETER(psz);
@@ -2182,7 +2182,7 @@ namespace aura
    }
 
 
-   void session::install_app(const char* psz)
+   void session::install_app(const ::string & psz)
    {
 
       UNREFERENCED_PARAMETER(psz);
@@ -2345,7 +2345,7 @@ namespace aura
 
 
 
-   void session::set_app_title(const char* pszAppId, const char* pszTitle)
+   void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
       __pointer(::application) papp;

@@ -220,7 +220,7 @@
 //   }
 //
 //
-//   bool str::load(const char * pszBaseDir)
+//   bool str::load(const ::string & pszBaseDir)
 //   {
 //
 //      return true;
@@ -263,7 +263,7 @@
 //   }
 //
 //
-//   void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const char * psz)
+//   void str::set(const ::id & id, const ::id & idLocale, const ::id & idSchema, const ::string & psz)
 //   {
 //
 //      (*this)[idLocale][idSchema][id] = psz;
@@ -630,7 +630,7 @@
 //   };
 //
 //
-//   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const char * pszFilePath)
+//   bool str::load_uistr_file(const ::id & pszLang, const ::id & pszStyle, const ::string & pszFilePath)
 //   {
 //
 //      memory mem;
@@ -823,7 +823,7 @@
 //      return true;
 //   }
 //
-//   string str::body(const char * psz)
+//   string str::body(const ::string & psz)
 //   {
 //      string str(psz);
 //      str.replace("\\r", "\r");
@@ -832,7 +832,7 @@
 //   }
 //
 //
-//   bool str::matches(const str_context * pcontext, const ::id & id, const char * psz) const
+//   bool str::matches(const str_context * pcontext, const ::id & id, const ::string & psz) const
 //   {
 //
 //      static ::id idEn("en");
@@ -901,7 +901,7 @@
 //   }
 //
 //
-//   bool str::begins(const str_context * pcontext, const char * pszTopic, const ::id & id) const
+//   bool str::begins(const str_context * pcontext, const ::string & pszTopic, const ::id & id) const
 //   {
 //
 //      static ::id idEn("en");
@@ -1039,7 +1039,7 @@
 //
 //
 //
-//   bool str_context::match(string_array & stra, const char * psz, id idExpression, id idRoot) const
+//   bool str_context::match(string_array & stra, const ::string & psz, id idExpression, id idRoot) const
 //   {
 //
 //      synchronous_lock synchronouslock(mutex());

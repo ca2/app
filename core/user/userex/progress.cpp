@@ -27,7 +27,7 @@ namespace userex
    }
 
 
-   void progress_control::set_progress_title(const char * pszTitle)
+   void progress_control::set_progress_title(const ::string & pszTitle)
    {
 
       m_pview->get_parent_frame()->set_window_text(pszTitle);
@@ -116,7 +116,7 @@ namespace userex
    }
 
 
-   void progress_control::defer_show(::user::interaction * puiParent, const char* pszTitle, ::count iStepCount)
+   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::count iStepCount)
    {
 
       m_strTitle = pszTitle;

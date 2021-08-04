@@ -157,7 +157,7 @@ namespace netserver
    }
 
 
-   void socket::simple_file_server(const char * pszPath, bool bMatter)
+   void socket::simple_file_server(const ::string & pszPath, bool bMatter)
    {
 
       pointer_array < int_array > rangea;
@@ -212,7 +212,7 @@ namespace netserver
    }
 
 
-   //void socket::simple_image_server(const char * pszPath, int iMaxWidth, int iMaxHeight)
+   //void socket::simple_image_server(const ::string & pszPath, int iMaxWidth, int iMaxHeight)
    //{
 
    //   if (iMaxWidth <= 0 && iMaxHeight <= 0)

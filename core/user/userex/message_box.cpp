@@ -12,7 +12,7 @@ namespace userex
    }
 
    
-   void message_box::on_show(const char * pszMatter)
+   void message_box::on_show(const ::string & pszMatter)
    {
       
       //auto pformpropertyset = get_form_property_set();
@@ -64,7 +64,7 @@ namespace userex
 //{
 //
 //   
-//   string application::dialog_box(const char * pszMatter, property_set & propertyset)
+//   string application::dialog_box(const ::string & pszMatter, property_set & propertyset)
 //   {
 //      
 //      auto pbox = __create_new <::userex::message_box >();

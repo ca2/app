@@ -245,7 +245,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //
 //
-//string normalize_path(const char * lpcszPath)
+//string normalize_path(const ::string & lpcszPath)
 //{
 //
 //   if(lpcszPath == nullptr)
@@ -349,7 +349,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //
 //
-////void output_debug_string(const char * psz)
+////void output_debug_string(const ::string & psz)
 ////{
 ////
 ////   ::output_debug_string(wstring(psz));
@@ -378,7 +378,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 ////   return CreateMutexW(lpMutexAttributes, bInitialOwner, wstring(lpName));
 ////}
 //
-////CLASS_DECL_AURA char* getenv (const char* name)
+////CLASS_DECL_AURA char* getenv (const ::string & name)
 ////{
 ////   return "";
 ////}

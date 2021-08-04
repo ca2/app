@@ -21,17 +21,17 @@ namespace datetime
 
 
    
-   CLASS_DECL_CA2_TIME bool check_end_expression(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME bool check_expression_separator(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_unit(const ::text::context * pcontext, const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_month(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_lang_date(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_natural(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_lang_offset(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_natural_separator(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_date(const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string check_offset(const ::text::context * pcontext, const char * input, const char * & scanner);
-   CLASS_DECL_CA2_TIME string consume_date_expression(const ::text::context * pcontext, const char * & input);
+   CLASS_DECL_CA2_TIME bool check_end_expression(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME bool check_expression_separator(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_unit(const ::text::context * pcontext, const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_month(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_lang_date(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_natural(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_lang_offset(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_natural_separator(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_date(const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string check_offset(const ::text::context * pcontext, const ::string & input, const ::string & & scanner);
+   CLASS_DECL_CA2_TIME string consume_date_expression(const ::text::context * pcontext, const ::string & & input);
 
 
    class CLASS_DECL_CA2_TIME scanner :
@@ -54,7 +54,7 @@ namespace datetime
       virtual ::e_status initialize_datetime_scanner(::text::context* ptextcontext);
 
 
-      void initialize(const char * psz);
+      void initialize(const ::string & psz);
       void peek();
       void next();
       token * look_ahead();

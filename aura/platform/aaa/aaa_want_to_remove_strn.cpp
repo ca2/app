@@ -9,7 +9,7 @@ namespace aura
 {
 
 
-   bool strn::to(const char * psz, i32 iLen, i64 & i)
+   bool strn::to(const ::string & psz, i32 iLen, i64 & i)
    {
 
       const char * pszEnd;
@@ -25,12 +25,12 @@ namespace aura
 
    }
 
-   bool strn::to(const char * psz, i32 iLen, i32 & i)
+   bool strn::to(const ::string & psz, i32 iLen, i32 & i)
    {
 
       char * pszEnd;
 
-      i64 iConversion = ::ansi_count_to_i64(psz, (const char **) &pszEnd, 10, iLen);
+      i64 iConversion = ::ansi_count_to_i64(psz, (const ::string &*) &pszEnd, 10, iLen);
 
       if(pszEnd == psz)
          return false;
@@ -45,7 +45,7 @@ namespace aura
    }
 
 
-   bool strn::to(const char * psz, i32 iLen, i64 & i, i32 iBase)
+   bool strn::to(const ::string & psz, i32 iLen, i64 & i, i32 iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -64,7 +64,7 @@ namespace aura
 
    }
 
-   bool strn::to(const char * psz, i32 iLen, i32 & i, i32 iBase)
+   bool strn::to(const ::string & psz, i32 iLen, i32 & i, i32 iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)

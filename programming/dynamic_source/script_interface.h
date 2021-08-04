@@ -44,14 +44,14 @@ namespace dynamic_source
 
 
       virtual void dinit();
-      virtual void dprint(const char *) override;
+      virtual void dprint(const ::string &) override;
       inline void dprint_r(::payload payload);
 
 
       property_set& inattra();
 
 
-      virtual property & get(const char * pszKey);
+      virtual property & get(const ::string & pszKey);
 
 
 
@@ -104,10 +104,10 @@ namespace dynamic_source
       inline http::cookie& get_cookie(const ::id & id);
       inline http::cookie& set_cookie(const ::id & id);
 
-      void uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload);
-      void uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam);
-      string query_get_param(const char* pszUrl, const char* pszKey);
-      ::payload query_get_var(const char* pszUrl, const char* pszKey);
+      void uri_set_var(string& strUrl, const ::string & pszUrl, const ::string & pszKey, ::payload payload);
+      void uri_set_param(string& strUrl, const ::string & pszUrl, const ::string & pszKey, const string& strParam);
+      string query_get_param(const ::string & pszUrl, const ::string & pszKey);
+      ::payload query_get_var(const ::string & pszUrl, const ::string & pszKey);
 
 
 

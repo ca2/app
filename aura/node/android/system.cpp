@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aura/platform/app_core.h"
 //#include "windowing.h"
-CLASS_DECL_AURA::e_status android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, const ::future & process);
+CLASS_DECL_AURA::e_status android_os_message_box(const ::string & pText, const ::string & lpCaption, const ::e_message_box & emessagebox, const ::future & process);
 
 //bool os_init_application()
 //{
@@ -83,7 +83,7 @@ namespace aura
    }
 
 
-   ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+   ::e_status system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const ::future & process)
    {
 
       android_os_message_box(pszMessage, pszTitle, emessagebox, process);
@@ -93,7 +93,7 @@ namespace aura
    }
 
 
-   ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+   ::e_status system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
    {
 
       auto estatus = ::aura::get_system()->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);

@@ -286,11 +286,11 @@ namespace base
 //
 //
 //      //virtual string install_get_platform() override;
-//      //virtual void install_set_platform(const char * pszPlatform) override;
+//      //virtual void install_set_platform(const ::string & pszPlatform) override;
 //      //virtual string install_get_version() override;
-//      //virtual void install_set_version(const char * pszVersion) override;
-//      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-//      //virtual i32 install_start(const char * pszCommandLine, const char * pszBuild) override;
+//      //virtual void install_set_version(const ::string & pszVersion) override;
+//      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+//      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
 //      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 //
 //      //virtual ::install::canvas * install_create_canvas();
@@ -298,11 +298,11 @@ namespace base
 //      //virtual int install_canvas_increment_mode();
 //
 //      //virtual string install_get_platform() override;
-//      //virtual void install_set_platform(const char * pszPlatform) override;
+//      //virtual void install_set_platform(const ::string & pszPlatform) override;
 //      //virtual string install_get_version() override;
-//      //virtual void install_set_version(const char * pszVersion) override;
-//      //virtual string install_get_latest_build_number(const char * pszVersion) override;
-//      //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
+//      //virtual void install_set_version(const ::string & pszVersion) override;
+//      //virtual string install_get_latest_build_number(const ::string & pszVersion) override;
+//      //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
 //      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 //
 //      virtual ::e_status process_init();
@@ -329,7 +329,7 @@ namespace base
 //
 //      virtual void on_request(::create * pcreate) override;
 //
-//      //virtual void construct(const char * pszAppId);
+//      //virtual void construct(const ::string & pszAppId);
 //
 //      //virtual bool initialize_application() override;
 //
@@ -370,13 +370,13 @@ namespace base
 //      //virtual string dir_appmatter_locator(::object * pobject);
 //
 //
-//      virtual void hist_hist(const char * psz);
+//      virtual void hist_hist(const ::string & psz);
 //
 //
 //      //virtual void on_request(::create * pcreate);
 //
 //
-//      //virtual u32 crc32(u32 dwPrevious, const char * psz);
+//      //virtual u32 crc32(u32 dwPrevious, const ::string & psz);
 //
 //
 //      virtual string url_encode(const ::string & str);
@@ -493,10 +493,10 @@ namespace base
 //
 //      virtual void __set_thread_on() override;
 //
-//      virtual string get_local_mutex_name(const char * pszAppName);
-//      virtual string get_local_id_mutex_name(const char * pszAppName, const char * pszId);
-//      virtual string get_global_mutex_name(const char * pszAppName);
-//      virtual string get_global_id_mutex_name(const char * pszAppName, const char * pszId);
+//      virtual string get_local_mutex_name(const ::string & pszAppName);
+//      virtual string get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
+//      virtual string get_global_mutex_name(const ::string & pszAppName);
+//      virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
 //
 //
 //      //template < class T >
@@ -525,7 +525,7 @@ namespace base
 //
 //      //virtual void discard_to_factory(::object * pca);
 //
-//      bool on_application_menu_action(const char * pszCommand);
+//      bool on_application_menu_action(const ::string & pszCommand);
 //
 //
 //      virtual ::e_status initialize_sockets();
@@ -538,9 +538,9 @@ namespace base
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
 //
-//      virtual ::acme::library * on_get_library(const char * pszLibrary);
+//      virtual ::acme::library * on_get_library(const ::string & pszLibrary);
 //
-//      virtual ::acme::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
+//      virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false);
 //
 //
 //      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
@@ -597,7 +597,7 @@ namespace base
 //
 //
 //      static inline ::id id(const ::std::type_info & info);
-//      static inline ::id id(const char * psz);
+//      static inline ::id id(const ::string & psz);
 //      static inline ::id id(const ::string & str);
 //      static inline ::id id(i64 i);
 //      static inline ::id_space & id();
@@ -605,28 +605,28 @@ namespace base
 //      inline ::id id(const property & prop);
 //
 //
-//      virtual i32 _001OnDebugReport(i32 i1,const char * psz1,i32 i2,const char * psz2,const char * psz3,va_list args);
-//      virtual i32 _debug_logging_report(i32 iReportType, const char * pszFilename, i32 iLinenumber, const char * iModuleName, const char * pszFormat, va_list list);
-//      virtual bool assert_failed_line(const char * pszFileName,i32 iLine);
+//      virtual i32 _001OnDebugReport(i32 i1, const ::string & psz1,i32 i2, const ::string & psz2, const ::string & psz3,va_list args);
+//      virtual i32 _debug_logging_report(i32 iReportType, const ::string & pszFilename, i32 iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list);
+//      virtual bool assert_failed_line(const ::string & pszFileName,i32 iLine);
 //
-//      virtual bool on_assert_failed_line(const char * pszFileName,i32 iLine);
-//
-//
+//      virtual bool on_assert_failed_line(const ::string & pszFileName,i32 iLine);
 //
 //
 //
 //
-//      virtual ::e_status initialize_log(const char * pszId);
+//
+//
+//      virtual ::e_status initialize_log(const ::string & pszId);
 //
 //
 //      virtual void appa_load_string_table();
-//      virtual void appa_set_locale(const char * pszLocale, const ::action_context & action_context);
-//      virtual void appa_set_schema(const char * pszStyle, const ::action_context & action_context);
+//      virtual void appa_set_locale(const ::string & pszLocale, const ::action_context & action_context);
+//      virtual void appa_set_schema(const ::string & pszStyle, const ::action_context & action_context);
 //
-//      virtual bool assert_running_global(const char * pszAppName,const char * pszId = nullptr);
-//      virtual bool assert_running_local(const char * pszAppName,const char * pszId = nullptr);
+//      virtual bool assert_running_global(const ::string & pszAppName, const ::string & pszId = nullptr);
+//      virtual bool assert_running_local(const ::string & pszAppName, const ::string & pszId = nullptr);
 //
-//      //__pointer(application) assert_running(const char * pszAppId);
+//      //__pointer(application) assert_running(const ::string & pszAppId);
 //
 //      virtual ::count get_application_count();
 //
@@ -649,7 +649,7 @@ namespace base
 //
 //      virtual bool find_applications_from_cache();
 //      virtual bool find_applications_to_cache(bool bSave = true);
-//      virtual bool map_application_library(const char * pszLibrary);
+//      virtual bool map_application_library(const ::string & pszLibrary);
 //
 //
 //      virtual void install_progress_add_up(int iAddUp = 1);
@@ -669,7 +669,7 @@ namespace base
 //
 //      virtual string get_system_platform();
 //      virtual string get_system_configuration();
-//      //virtual string get_latest_build_number(const char * pszConfiguration, const char * pszAppId);
+//      //virtual string get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId);
 //
 //
 //
@@ -771,7 +771,7 @@ namespace base
 //
 //
 //
-//      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) override;
+//      virtual void __tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz) override;
 //
 //
 //      virtual string get_user_language();
@@ -833,7 +833,7 @@ namespace base
 //      ::e_status set_history(::aura::history* phistory);
 //
 //
-//      //__pointer(::acme::library) on_get_library(const char* pszLibrary) override;
+//      //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
 //
 //
 //      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -871,7 +871,7 @@ namespace base
 //
 //
 //
-//      bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
+//      bool sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
 //
 //
 //
@@ -886,7 +886,7 @@ namespace base
 //
 //#endif
 //
-//      //virtual void post_fork_uri(const char * pszUri,application_bias * papplicationbias);
+//      //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
 //
 //
 //
@@ -926,7 +926,7 @@ namespace base
 //
 //
 //      virtual ::e_status     main() override;
-//      //virtual void hist_hist(const char* psz) override;
+//      //virtual void hist_hist(const ::string & psz) override;
 //
 //
 //      virtual ::type get_pane_tab_view_type_info();
@@ -985,7 +985,7 @@ namespace base
 //
 //      //virtual bool initialize_native_window1() override;
 //
-//      //virtual ::acme::library* load_library(const char* pszLibrary);
+//      //virtual ::acme::library* load_library(const ::string & pszLibrary);
 
    };
 
@@ -1007,7 +1007,7 @@ namespace base
 //
 //
 //template < typename ENUM >
-//inline void set_enum_text(ENUM e, const char * psz)
+//inline void set_enum_text(ENUM e, const ::string & psz)
 //{
 //
 //   auto psystem = ::get_context_system();
@@ -1035,7 +1035,7 @@ namespace base
 //
 //
 //template < class ENUM >
-//inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
+//inline ENUM text_enum(ENUM & e, const ::string & psz, ENUM eDefault = (ENUM)0)
 //{
 //
 //   auto psystem = ::get_context_system();
@@ -1063,7 +1063,7 @@ namespace base
 //
 //
 //template < class ENUM, ENUM edefault = 0>
-//inline base_enum < ENUM, edefault > & text_enum(base_enum < ENUM, edefault > & b, const char * psz, ENUM eDefault = edefault)
+//inline base_enum < ENUM, edefault > & text_enum(base_enum < ENUM, edefault > & b, const ::string & psz, ENUM eDefault = edefault)
 //{
 //
 //   return b = text_enum(b.m_evalue, psz, eDefault);
@@ -1112,7 +1112,7 @@ namespace base
 //
 //#ifdef _UWP
 //
-//CLASS_DECL_BASE int app_core_main(const char* psz);
+//CLASS_DECL_BASE int app_core_main(const ::string & psz);
 //
 //#endif
 //

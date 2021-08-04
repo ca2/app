@@ -77,7 +77,7 @@ string get_task_name(htask_t htask)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-CLASS_DECL_AURA bool task_set_name(htask_t htask, const char* pszName)
+CLASS_DECL_AURA bool task_set_name(htask_t htask, const ::string & pszName)
 {
 
    bool bOk1 = false;
@@ -299,7 +299,7 @@ CLASS_DECL_AURA int get_processor_count()
 }
 
 
-bool task_set_name(const char * pszThreadName)
+bool task_set_name(const ::string & pszThreadName)
 {
 
    return task_set_name(::GetCurrentThread(), pszThreadName);
@@ -320,7 +320,7 @@ typedef struct tagTHREADNAME_INFO
 } THREADNAME_INFO;
 #pragma pack(pop)
 
-int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
+int_bool SetThreadName(::u32 dwThreadID, const ::string & threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;

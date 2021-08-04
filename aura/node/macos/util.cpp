@@ -39,7 +39,7 @@
  return ::AfxInvariantStrICmp(szCompare, "combobox") == 0;
  }
 
- int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszClassName)
+ int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const ::string & lpszClassName)
  {
  ASSERT(::IsWindow(hWnd));
  char szTemp[32];
@@ -70,7 +70,7 @@
  return nullptr;    // not found
  }
 
- void CLASS_DECL_lnx AfxSetWindowText(::user::interaction * hWndCtrl, const char * lpszNew)
+ void CLASS_DECL_lnx AfxSetWindowText(::user::interaction * hWndCtrl, const ::string & lpszNew)
  {
  hWndCtrl->set_window_text(lpszNew);
 ENSURE(hWndCtrl);

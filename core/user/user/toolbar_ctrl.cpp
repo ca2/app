@@ -37,7 +37,7 @@ namespace user
 //   }
 
 //#ifdef WINDOWS_DESKTOP
-//   void toolbar_control::SaveState(HKEY hKeyRoot, const char * pszSubKey,
+//   void toolbar_control::SaveState(HKEY hKeyRoot, const ::string & pszSubKey,
 //
 //      const char * pszValueName)
 //
@@ -52,7 +52,7 @@ namespace user
 //      send_message( TB_SAVERESTOREW, (WPARAM)true, (LPARAM)&tbs);
 //   }
 //
-//   void toolbar_control::RestoreState(HKEY hKeyRoot, const char * pszSubKey,
+//   void toolbar_control::RestoreState(HKEY hKeyRoot, const ::string & pszSubKey,
 //
 //      const char * pszValueName)
 //
@@ -116,7 +116,7 @@ namespace user
       { return (::u16*)(this+1); }
    };
 
-   /*bool toolbar_control::LoadToolBar(const char * pszResourceName)
+   /*bool toolbar_control::LoadToolBar(const ::string & pszResourceName)
 
    {
    ASSERT_VALID(this);
@@ -522,7 +522,7 @@ namespace user
 
    // pszStrings are separated by zeroes, last one is marked by two zeroes
 
-   i32 toolbar_control::AddStrings(const char * pszStrings)
+   i32 toolbar_control::AddStrings(const ::string & pszStrings)
    {
 
 //#ifdef WINDOWS_DESKTOP

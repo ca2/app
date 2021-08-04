@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::mutex * g_pmutexOutputDebugStringA = nullptr;
 
-VOID WINAPI output_debug_string(const char * lpOutputString)
+VOID WINAPI output_debug_string(const ::string & lpOutputString)
 {
 
    synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
@@ -51,7 +51,7 @@ VOID WINAPI output_debug_string(const char * lpOutputString)
 }
 
 
-CLASS_DECL_AURA void simple_debug_print(const char * psz)
+CLASS_DECL_AURA void simple_debug_print(const ::string & psz)
 {
 
    __android_log_print(ANDROID_LOG_INFO, "simple_debug_string", "%s", psz);
@@ -88,7 +88,7 @@ CLASS_DECL_AURA int os_trace_level(enum_trace_level elevel)
 }
 
 
-CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage)
+CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::string & pszTag, const ::string & pszMessage)
 {
 
    int iLevel = os_trace_level(elevel);

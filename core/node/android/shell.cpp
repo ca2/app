@@ -12,7 +12,7 @@
 #include "shell.h"
 
 
-bool android_get_file_image(::image * pimage, const char * psz);
+bool android_get_file_image(::image * pimage, const ::string & psz);
 
 
 namespace android
@@ -378,7 +378,7 @@ namespace android
 //
 //                     string strFooPath = m_strShellThemePrefix + "foo." + strExtension;
 //
-//                     imagekey.m_strPath = (char *)(const char *)strFooPath;
+//                     imagekey.m_strPath = (char *)(const ::string &)strFooPath;
 //                     imagekey.m_iIcon = 0;
 //                     imagekey.m_strExtension = "";
 //
@@ -924,7 +924,7 @@ namespace android
    //            if (strlen(imagekey.m_strPath) <= 0)
    //            {
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const ::string &)lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi16,
    //                  sizeof(shfi16),
@@ -933,7 +933,7 @@ namespace android
    //                  | SHGFI_SMALLICON);
    //               hicon16 = shfi16.hIcon;
    //               SHGetFileInfo(
-   //                  (const char *)lpiidlAbsolute,
+   //                  (const ::string &)lpiidlAbsolute,
    //                  FILE_ATTRIBUTE_NORMAL,
    //                  &shfi48,
    //                  sizeof(shfi48),
@@ -1006,7 +1006,7 @@ namespace android
 
 
 
-//      bool shell::get_icon( oswindow oswindow, const char * psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool shell::get_icon( oswindow oswindow, const ::string & psz, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1049,7 +1049,7 @@ namespace android
 //
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcsz)
    {
 
       return get_folder_type(pobject, ::str::international::utf8_to_unicode(lpcsz));
@@ -1697,7 +1697,7 @@ namespace android
 
 
 
-bool android_get_file_image(::image * pimage, const char * psz)
+bool android_get_file_image(::image * pimage, const ::string & psz)
 {
 
    return false;

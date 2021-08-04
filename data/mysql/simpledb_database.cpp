@@ -45,7 +45,7 @@ namespace simpledb
       return DB_COMMAND_OK;
    }
 
-   table * database::get_table(const char * pszName)
+   table * database::get_table(const ::string & pszName)
    {
       table * ptable = nullptr;
       string strName(pszName);
@@ -58,7 +58,7 @@ namespace simpledb
       return ptable;
    }
 
-   table * database::create_table(const char * pszName)
+   table * database::create_table(const ::string & pszName)
    {
       return new table(this, pszName);
    }
@@ -81,7 +81,7 @@ namespace simpledb
    }
 
 
-   long database::nextid(const char* sname)
+   long database::nextid(const ::string & sname)
    {
       UNREFERENCED_PARAMETER(sname);
       if (!active)

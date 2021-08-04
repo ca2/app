@@ -199,7 +199,7 @@ application_array application_container::get_applicationa()
 //}
 
 
-__pointer(::aura::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
+__pointer(::aura::application) application_container::instantiate_application(const ::string & pszAppId, ::create * pcreate)
 {
 
    INFO("aura::application::instantiate_application");
@@ -290,7 +290,7 @@ __pointer(::aura::application) application_container::instantiate_application(co
 }
 
 
-__pointer(::aura::application) application_container::create_application(const char * pszAppId, bool bSynch, ::create * pcreate)
+__pointer(::aura::application) application_container::create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate)
 {
 
    __pointer(::aura::application) papp = instantiate_application(pszAppId, pcreate);
@@ -327,7 +327,7 @@ __pointer(::aura::application) application_container::create_platform(::aura::se
 
 
 
-__pointer(::aura::application) application_container::assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema)
+__pointer(::aura::application) application_container::assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema)
 {
 
   __pointer(::aura::application) papp;
@@ -356,7 +356,7 @@ __pointer(::aura::application) application_container::assert_running(const char 
 
 
 
-__pointer(::aura::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
+__pointer(::aura::application) application_container::start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
 {
 
    string strApp(pszAppId);
@@ -462,7 +462,7 @@ __pointer(::aura::application) application_container::start_application(const ch
 
 
 
-::aura::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
+::aura::application * application_container::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    {
 
       __pointer(::aura::application) papp;

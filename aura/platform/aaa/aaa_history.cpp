@@ -22,7 +22,7 @@ namespace aura
    //}
 
 
-   bool history::hist(const char * psz)
+   bool history::hist(const ::string & psz)
    {
 
       if(m_phistory != nullptr)

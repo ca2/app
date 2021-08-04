@@ -19,8 +19,8 @@ public:
   /**
    * Initial constructor
    */
-  TextRegion(const char *_stext, const char *_etext,
-             const char *_sback, const char *_eback){
+  TextRegion(const ::string &_stext, const ::string &_etext,
+             const char *_sback, const ::string &_eback){
     stext = _stext;
     etext = _etext;
     sback = _sback;

@@ -1,14 +1,14 @@
 #include "framework.h"
 #include <dlfcn.h>
 
-void * __node_library_touch(const char * pszPath, string & strMessage)
+void * __node_library_touch(const ::string & pszPath, string & strMessage)
 {
 
    return __node_library_open(pszPath, strMessage);
 
 }
 
-void * __node_library_open(const char * pszPath, string & strMessage)
+void * __node_library_open(const ::string & pszPath, string & strMessage)
 {
 
    string strPath(pszPath);
@@ -150,7 +150,7 @@ bool __node_library_close(void * plibrary)
 }
 
 
-void * __node_library_raw_get(void * plibrary, const char * pszElement)
+void * __node_library_raw_get(void * plibrary, const ::string & pszElement)
 {
 
    return dlsym(plibrary, pszElement);
@@ -162,7 +162,7 @@ void * __node_library_raw_get(void * plibrary, const char * pszElement)
 
 
 
-void * __node_library_open_ca2(const char * pszPath, string & strMessage)
+void * __node_library_open_ca2(const ::string & pszPath, string & strMessage)
 {
 
    strMessage.Empty();

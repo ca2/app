@@ -18,7 +18,7 @@ namespace database
 
 
       composite();
-      virtual ~composite();
+      ~composite() override;
 
       
       void start_transaction() override;
@@ -43,12 +43,12 @@ namespace database
 
 
       ::e_status     connect(
-         const char* name,
-         const char* host = nullptr,
-         const char* port = nullptr,
-         const char* user = nullptr,
-         const char* pass = nullptr,
-         const char* sckt = nullptr,
+         const ::string & name,
+         const ::string & host = nullptr,
+         const ::string & port = nullptr,
+         const ::string & user = nullptr,
+         const ::string & pass = nullptr,
+         const ::string & sckt = nullptr,
          u64 uConnectionFlags = 0) override;
 
 
@@ -61,7 +61,7 @@ namespace database
       ::e_status     drop() override;
 
 
-      //virtual string escape(const char * psz);
+      //virtual string escape(const ::string & psz);
 
 
       //inline __pointer(class transaction) transaction();
@@ -73,14 +73,14 @@ namespace database
       bool in_transaction() override { return m_pdatabase->in_transaction(); };
 
 
-      bool exec(const char* pszQuery) override;
+      bool exec(const ::string & pszQuery) override;
 
 
-      __pointer(result_set) query_result(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
-      __pointer(result_set) query(const char* pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      __pointer(result_set) query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
 
 
-      virtual ::payload get_agent(const char* pszTable, const char* psz, const char* pszUser) override;
+      virtual ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
      
 
       using database::query_table_item;
@@ -89,19 +89,19 @@ namespace database
       using database::query_row;
       using database::query_rows;
 
-      //virtual ::payload query(const char * pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      bool query_table_item(::payload& payload, const char* table, const char* item, const char* where) override;
-      bool query_rows(__pointer(row_array) & prowarray, const char* pszQuery) override;
-      bool query_row(__pointer(row) & prow, const char* pszQuery) override;
-      bool query_items(__pointer(payload_array) & pvara, const char* pszQuery) override;
-      bool query_item(::payload & payload, const char* pszQuery) override;
-       bool query_blob(get_memory getmemory, const char* pszQuery) override;
+      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
+      bool query_rows(__pointer(row_array) & prowarray, const ::string & pszQuery) override;
+      bool query_row(__pointer(row) & prow, const ::string & pszQuery) override;
+      bool query_items(__pointer(payload_array) & pvara, const ::string & pszQuery) override;
+      bool query_item(::payload & payload, const ::string & pszQuery) override;
+       bool query_blob(get_memory getmemory, const ::string & pszQuery) override;
 
 
-      string escape(const char* psz) override;
+      string escape(const ::string & psz) override;
 
-      string error1(const char* pszPrefix = nullptr) override;
-      void trace_error1(const char* pszPrefix = nullptr) override;
+      string error1(const ::string & pszPrefix = nullptr) override;
+      void trace_error1(const ::string & pszPrefix = nullptr) override;
 
       ::payload get_insert_id() override;
 

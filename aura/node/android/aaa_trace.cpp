@@ -1,6 +1,6 @@
 
 
-void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
+void __trace_message(const ::string & lpszPrefix, LPMESSAGE lpmsg)
 {
    //ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(lpmsg != nullptr);

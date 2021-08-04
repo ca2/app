@@ -157,8 +157,8 @@ bool isNumeric(char ch);
 bool isNumber(const string &str);
 bool isHexadecimal(char ch);
 bool isAlpha(char ch);
-bool isIDString(const char *s);
-void replace(string &str, char textFrom, const char *textTo);
+bool isIDString(const ::string &s);
+void replace(string &str, char textFrom, const ::string &textTo);
 bool isAlphaNum(const string &str);
 
 
@@ -248,7 +248,7 @@ bool isAlpha(char ch)
    return ((ch>='a') && (ch<='z')) || ((ch>='A') && (ch<='Z')) || ch=='_';
 }
 
-bool isIDString(const char *s)
+bool isIDString(const ::string &s)
 {
    if (!isAlpha(*s))
       return false;
@@ -261,7 +261,7 @@ bool isIDString(const char *s)
    return true;
 }
 
-void replace(string &str, char textFrom, const char *textTo)
+void replace(string &str, char textFrom, const ::string &textTo)
 {
    strsize sLen = strlen(textTo);
    strsize iPosition = str.find(textFrom);

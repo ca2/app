@@ -92,15 +92,15 @@ namespace hotplugin
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle) override;
 
 
-      virtual i32 start_app_install(const char * pszCommandLine);
+      virtual i32 start_app_install(const ::string & pszCommandLine);
 
-      static i32 s_start_app_install(const char * pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
+      static i32 s_start_app_install(const ::string & pszCommandLine,::aura::application * papp,host * phost, plugin * pplugin = nullptr);
 
-      i32 start_app_install(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      i32 start_app_install(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
-      static i32 s_host_starter_start_sync(const char * pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
+      static i32 s_host_starter_start_sync(const ::string & pszCommandLine,::aura::application * papp,host * phost,plugin * pplugin = nullptr);
 
-      i32 host_starter_start_sync(const char * pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
+      i32 host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, plugin * pplugin = nullptr);
 
       virtual void deferred_prodevian_redraw() override;
 
@@ -114,7 +114,7 @@ namespace hotplugin
 
       virtual bool is_ca2_installation_ready();
 
-      virtual void set_status(const char * pszStatus) override;
+      virtual void set_status(const ::string & pszStatus) override;
 
       virtual void set_bitmap(::draw2d::graphics * pimage, const ::rectangle_i32 & rectangle);
 

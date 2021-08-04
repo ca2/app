@@ -55,7 +55,7 @@
 //      }
 //
 //
-//      bool tx::open(const char * pszKey,launcher * plauncher)
+//      bool tx::open(const ::string & pszKey,launcher * plauncher)
 //      {
 //
 //         m_strBaseChannel = "aura\\appdata\\interprocess_communication\\" + string(pszKey);
@@ -87,7 +87,7 @@
 //      }
 //
 //
-//      bool tx::send(const char * pszMessage,unsigned int tickTimeout)
+//      bool tx::send(const ::string & pszMessage,unsigned int tickTimeout)
 //      {
 //
 //         ::Windows::Storage::StorageFolder ^ folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
@@ -162,7 +162,7 @@
 //      }
 //
 //
-//      bool rx::create(const char * pszKey)
+//      bool rx::create(const ::string & pszKey)
 //      {
 //
 //
@@ -283,7 +283,7 @@
 //      }
 //
 //
-//      void rx::receiver::on_receive(rx * prx,const char * pszMessage)
+//      void rx::receiver::on_receive(rx * prx, const ::string & pszMessage)
 //      {
 //      }
 //
@@ -295,7 +295,7 @@
 //      {
 //      }
 //
-//      void * rx::on_receive(rx * prx,const char * pszMessage)
+//      void * rx::on_receive(rx * prx, const ::string & pszMessage)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -412,7 +412,7 @@
 //      //   //   else if(pcds->dwData == 0x80000000)
 //      //   //   {
 //
-//      //   //      string strMessage((const char *)pcds->lpData,pcds->cbData);
+//      //   //      string strMessage((const ::string &)pcds->lpData,pcds->cbData);
 //
 //      //   //      on_receive(this,strMessage.c_str());
 //
@@ -477,7 +477,7 @@
 //
 //      }
 //
-//      bool ipc::open_ab(const char * pszKey,const char * pszModule,launcher * plauncher)
+//      bool ipc::open_ab(const ::string & pszKey, const ::string & pszModule,launcher * plauncher)
 //      {
 //
 //         /*m_strChannel = pszKey;
@@ -508,7 +508,7 @@
 //
 //      }
 //
-//      bool ipc::open_ba(const char * pszKey,const char * pszModule,launcher * plauncher)
+//      bool ipc::open_ba(const ::string & pszKey, const ::string & pszModule,launcher * plauncher)
 //      {
 //
 //         //m_strChannel = pszKey;

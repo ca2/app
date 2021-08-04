@@ -6,6 +6,6 @@
 
 extern "C"
 {
-   CLASS_DECL_ca unsigned int stunCalculateFingerprint(const char* input, int length); 
+   CLASS_DECL_ca unsigned int stunCalculateFingerprint(const ::string & input, int length); 
 }
 

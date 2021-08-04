@@ -23,21 +23,21 @@ namespace simpledb
       ~dataset();
 
 
-      virtual void query_items(string_array & stra, const char * pszSql);
+      virtual void query_items(string_array & stra, const ::string & pszSql);
 
-      virtual bool exec(const char * pszSql);
+      virtual bool exec(const ::string & pszSql);
 
 
-      virtual bool sql_do_select(const char * & pszSql);
-      virtual bool sql_do_insert(const char * & pszSql);
+      virtual bool sql_do_select(const ::string & & pszSql);
+      virtual bool sql_do_insert(const ::string & & pszSql);
 
-      virtual string sql_consume_keyword(const char * & pszSql);
-      virtual string sql_consume_field(const char * & pszSql);
-      virtual string sql_consume_table(const char * & pszSql);
-      virtual string sql_consume_join_on(const char * & pszSql);
-      virtual string sql_consume_value(const char * & pszSql);
+      virtual string sql_consume_keyword(const ::string & & pszSql);
+      virtual string sql_consume_field(const ::string & & pszSql);
+      virtual string sql_consume_table(const ::string & & pszSql);
+      virtual string sql_consume_join_on(const ::string & & pszSql);
+      virtual string sql_consume_value(const ::string & & pszSql);
 
-      static string consume_quoted_value(const char * & pszXml);
+      static string consume_quoted_value(const ::string & & pszXml);
 
       /* Makes direct queries to database */
       virtual void make_query(string_array &_sql);
@@ -56,19 +56,19 @@ namespace simpledb
 
       /* opens a query  & then sets a query results */
       virtual void open();
-      virtual void open(const char * sql);
+      virtual void open(const ::string & sql);
       /* func. executes a query without results to return */
       virtual bool exec();
-      //     virtual bool exec(const char * sql);
+      //     virtual bool exec(const ::string & sql);
       virtual const void * getExecRes();
       /* as open, but with our query exept Sql */
-      virtual bool query(const char *query);
+      virtual bool query(const ::string &query);
       /* func. closes a query */
       virtual void close();
       /* Cancel changes, made in insert or edit states of dataset */
       virtual void cancel();
       /* sequence numbers */
-      virtual long nextid(const char *seq_name);
+      virtual long nextid(const ::string &seq_name);
       /* sequence numbers */
       virtual ::count num_rows();
 
@@ -83,11 +83,11 @@ namespace simpledb
       /* Go to record No (starting with 0) */
       virtual bool seek(index pos=0);
 
-      virtual bool SetFieldValue(const char *f_name, const ::payload &value);
+      virtual bool SetFieldValue(const ::string &f_name, const ::payload &value);
       virtual bool SetFieldValue(index iFieldIndex, const ::payload &value);
 
       virtual ::payload & FieldValueAt(index iFieldIndex);
-      virtual i32 GetFieldIndex(const char *f_name);
+      virtual i32 GetFieldIndex(const ::string &f_name);
 
       database * get_database();
 

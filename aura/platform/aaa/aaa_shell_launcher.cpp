@@ -16,7 +16,7 @@ namespace aura
    }
 
 
-   shell_launcher::shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
+   shell_launcher::shell_launcher(oswindow oswindow, const ::string & pszOperation, const ::string & pszFile, const ::string & pszParameters, const ::string & pszDirectory, ::e_display edisplay, duration durationTimeout)
    {
 
       m_iMode              = 0;

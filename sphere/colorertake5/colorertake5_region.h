@@ -31,7 +31,7 @@ namespace colorertake5
       Basic constructor.
       Used only by HRCParser.
       */
-      region(const char *_name, const char * _description, class region *_parent, index _id)
+      region(const ::string &_name, const ::string & _description, class region *_parent, index _id)
       {
          name = (_name);
          if (_description != nullptr) 

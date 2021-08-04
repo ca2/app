@@ -152,20 +152,20 @@ namespace core
       virtual ::e_status init() override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) dialog_box(::object * pobject, const char * pszMatter, property_set & propertyset);
+      virtual __pointer(::extended::future < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
 
 
-      virtual __pointer(::extended::future < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual __pointer(::extended::future < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::future < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual ::e_status ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-      virtual i32 track_popup_menu(const char * pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie);
+      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie);
 
 
-      virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
-      virtual bool get_fs_size(i64 & i64Size, const char * pszPath, bool & bPending);
+      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
 
       virtual void data_on_after_change(::message::message * pmessage);
 
@@ -173,7 +173,7 @@ namespace core
 
       virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
-      virtual void AddToRecentFileList(const char * pszPathName);
+      virtual void AddToRecentFileList(const ::string & pszPathName);
 
       virtual ::e_status initialize_html();
 
@@ -295,11 +295,11 @@ namespace core
       //virtual void on_request(::create * pcreate) override;
 
 
-      ////virtual string matter_as_string(const char * pszMatter,const char * pszMatter2);
-      ////virtual string dir().matter(const char * pszMatter,const char * pszMatter2);
+      ////virtual string matter_as_string(const ::string & pszMatter, const ::string & pszMatter2);
+      ////virtual string dir().matter(const ::string & pszMatter, const ::string & pszMatter2);
 
-      ////virtual bool is_inside_time_dir(const char * pszPath);
-      ////virtual bool file_is_read_only(const char * pszPath);
+      ////virtual bool is_inside_time_dir(const ::string & pszPath);
+      ////virtual bool file_is_read_only(const ::string & pszPath);
 
       //// Long PhRESSing time
       //// time in milliseconds that a pressing is considered a double click
@@ -362,11 +362,11 @@ namespace core
 
       //::user::keyboard& keyboard();
 
-      //virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr);
+      //virtual bool open_by_file_extension(const ::string & pszPathName, ::create * pcreate = nullptr);
 
       //virtual bool open_by_file_extension(::create * pcc);
 
-      ////__pointer(::aura::application) get_new_application(::object * pobject, const char * pszAppId);
+      ////__pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
 
@@ -388,7 +388,7 @@ namespace core
 
       ////virtual void defer_initialize_user_presence();
 
-      //virtual bool is_licensed(const char * pszId, bool bInteractive = true);
+      //virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
 
       //virtual void userstyle(::user::style_context * pcontext);
 
@@ -398,7 +398,7 @@ namespace core
 
       ////virtual void on_request(::create * pcreate) override;
 
-      //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
+      //::aura::application * application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
       //virtual bool is_key_pressed(::user::enum_key ekey);
 
@@ -572,8 +572,8 @@ namespace core
       //virtual void check_topic_file_change();
 
 
-      //void launch_app(const char* psz);
-      //void install_app(const char* psz);
+      //void launch_app(const ::string & psz);
+      //void install_app(const ::string & psz);
 
 
 
@@ -606,13 +606,13 @@ namespace core
 
 
 
-      //virtual void set_app_title(const char* pszAppId, const char* pszTitle);
+      //virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
 
       //virtual __pointer(::aura::session) get_session();
 
       ////virtual void term() override;
 
-      ////virtual bool open_by_file_extension(const char* pszPathName, ::create* pcreate = nullptr) override;
+      ////virtual bool open_by_file_extension(const ::string & pszPathName, ::create* pcreate = nullptr) override;
       ////virtual bool open_by_file_extension(::create* pcc) override;
 
       ////virtual bool is_session() const override;

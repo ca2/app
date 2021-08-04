@@ -582,7 +582,7 @@ namespace user
 
       //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
 
-      virtual void set_place_child_title(const char* pszTitle);
+      virtual void set_place_child_title(const ::string & pszTitle);
 
       virtual ::user::primitive * get_bind_ui();
 
@@ -705,7 +705,7 @@ namespace user
       inline bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
 
 
-      virtual bool create_message_queue(const char* lpszName) override;
+      virtual bool create_message_queue(const ::string & lpszName) override;
 
 
       virtual bool has_text_input();
@@ -1006,7 +1006,7 @@ namespace user
       virtual ::e_status create_host() override;
       virtual ::e_status create_child(::user::interaction * pparent) override;
 
-      // virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
+      // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -1172,7 +1172,7 @@ namespace user
 
       void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void set_window_text(const char* pszString) override;
+      virtual void set_window_text(const ::string & pszString) override;
 
 #ifdef WINDOWS
       strsize _009GetWindowText(wchar_t * pwsz, int n) override;
@@ -1308,7 +1308,7 @@ namespace user
 
       virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
-      virtual void OnLinkClick(const char* psz, const char* pszTarget = nullptr) override;
+      virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr) override;
 
       virtual void pre_translate_message(::message::message* pmessage) override;
 
@@ -1749,7 +1749,7 @@ namespace user
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool on_action(const char* pszId);
+      virtual bool on_action(const ::string & pszId);
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -2039,7 +2039,7 @@ namespace user
 
       virtual void enable(bool bOn);
       virtual void SetCheck(i32 nCheck);
-      virtual void SetText(const char* pszText);
+      virtual void SetText(const ::string & pszText);
 
       id GetControlCommand(id id);
 

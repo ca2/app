@@ -2,7 +2,7 @@
 #include "acme/platform/version.h"
 
 
-string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
+string consume_param(const ::string & pszCommandLine, const ::string &* pszEndPtr)
 {
 
    if(pszCommandLine == nullptr)
@@ -44,7 +44,7 @@ string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 
 
 
-//string get_command_line_param(const char * pszCommandLine, const char * pszParam, const char * pszIfParamValue, const char * pszReplaceParam)
+//string get_command_line_param(const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszIfParamValue, const ::string & pszReplaceParam)
 //{
 //
 //   string strValue;
@@ -71,7 +71,7 @@ string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 //
 //}
 
-//string get_command_line_param(const char * pszCommandLine, const char * pszParam)
+//string get_command_line_param(const ::string & pszCommandLine, const ::string & pszParam)
 //{
 //
 //   string strParam(pszParam);
@@ -125,7 +125,7 @@ string consume_param(const char * pszCommandLine, const char ** pszEndPtr)
 //}
 
 
-bool get_command_line_param(string & strValue, const char * pszCommandLine, const char * pszParam, const char * pszDefault)
+bool get_command_line_param(string & strValue, const ::string & pszCommandLine, const ::string & pszParam, const ::string & pszDefault)
 {
 
    if (!get_command_line_param(strValue, pszCommandLine, pszParam))
@@ -142,7 +142,7 @@ bool get_command_line_param(string & strValue, const char * pszCommandLine, cons
 }
 
 
-string get_command_line_param(const char * psz,const char * pszParam)
+string get_command_line_param(const ::string & psz, const ::string & pszParam)
 {
 
    string str;
@@ -159,7 +159,7 @@ string get_command_line_param(const char * psz,const char * pszParam)
 }
 
 
-CLASS_DECL_AURA bool is_command_line_param_true(string& strValue, const char* pszCommandLine, const char* pszParam, bool bDefault)
+CLASS_DECL_AURA bool is_command_line_param_true(string& strValue, const ::string & pszCommandLine, const ::string & pszParam, bool bDefault)
 {
 
    if (!get_command_line_param(strValue, pszCommandLine, pszParam))
@@ -209,7 +209,7 @@ CLASS_DECL_AURA bool is_command_line_param_true(string& strValue, const char* ps
 }
 
 
-bool get_command_line_param(string & wstrValue,const char * psz,const char * pszParam)
+bool get_command_line_param(string & wstrValue, const ::string & psz, const ::string & pszParam)
 {
 
    string wstr(psz);

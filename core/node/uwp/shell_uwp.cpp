@@ -10,7 +10,7 @@
 #include "shell_uwp.h"
 
 
-bool uwp_get_file_image(::image * pimage, const char * psz);
+bool uwp_get_file_image(::image * pimage, const ::string & psz);
 
 
 namespace uwp
@@ -132,7 +132,7 @@ namespace uwp
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const char * lpcsz)
+   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & lpcsz)
    {
 
       return get_folder_type(pobject, ::str::international::utf8_to_unicode(lpcsz));
@@ -414,7 +414,7 @@ namespace uwp
 } // namespace uwp
 
 
-bool uwp_get_file_image(::image * pimage, const char * psz)
+bool uwp_get_file_image(::image * pimage, const ::string & psz)
 {
 
    return false;

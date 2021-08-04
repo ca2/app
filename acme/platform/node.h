@@ -77,8 +77,8 @@ namespace acme
       i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
-      virtual ::e_status call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
-      virtual ::e_status call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
+      virtual ::e_status call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      virtual ::e_status call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set);
 
 
 //#ifdef LINUX
@@ -96,9 +96,9 @@ namespace acme
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
 
-      virtual ::e_status _launch_macos_app(const char * pszAppFolder);
+      virtual ::e_status _launch_macos_app(const ::string & pszAppFolder);
   
-      virtual ::e_status _launch_macos_app_args(const char * pszAppFolder, const char * pszArgs);
+      virtual ::e_status _launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs);
 
       ::e_status on_initialize_object() override;
 
@@ -134,12 +134,12 @@ namespace acme
       virtual string app_id_to_executable_name(const ::string & strAppId);
 
 
-      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
-      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const char* pszBuild, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
+      virtual bool is_application_installed(const ::file::path& pathExe, string strAppId, string& strBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
+      virtual bool set_application_installed(const ::file::path& pathExe, string strAppId, const ::string & pszBuild, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
 
 
-      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const char* pszPlatform, const char* pszConfiguration, const char* pszLocale, const char* pszSchema);
-      virtual ::file::path get_application_path(string strAppId, const char* pszPlatform, const char* pszConfiguration);
+      virtual ::file::path application_installer_folder(const ::file::path& pathExe, string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration, const ::string & pszLocale, const ::string & pszSchema);
+      virtual ::file::path get_application_path(string strAppId, const ::string & pszPlatform, const ::string & pszConfiguration);
 
 
       virtual ::file::path get_last_run_application_path_file(const ::string & strAppId);
@@ -213,11 +213,11 @@ namespace acme
 
       virtual string get_wallpaper(index iScreen);
 
-      virtual string get_file_icon_path(const char * pszPath, int iSize);
+      virtual string get_file_icon_path(const ::string & pszPath, int iSize);
 
-      virtual string get_file_content_type(const char * pszPath);
+      virtual string get_file_content_type(const ::string & pszPath);
 
-      virtual int os_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
+      virtual int os_launch_uri(const ::string & pszUri, char * pszError = NULL, int iBufferSize = 0);
 
       virtual void enable_wallpaper_change_notification();
 
@@ -330,19 +330,19 @@ namespace acme
 #endif
       
       
-   virtual ::e_status launch_app(const char * psz, const char ** argv, int iFlags);
+   virtual ::e_status launch_app(const ::string & psz, const char ** argv, int iFlags);
 
-   virtual ::e_status create_process(const char * pszCommandLine, u32 * pprocessID);
+   virtual ::e_status create_process(const ::string & pszCommandLine, u32 * pprocessID);
 
-   virtual ::e_status run_silent(const char* strFunct, const char* strstrParams);
+   virtual ::e_status run_silent(const ::string & strFunct, const ::string & strstrParams);
 
    virtual bool process_modules(string_array& stra, u32 processID);
 
-      virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const char* pszExceptDir);
+   virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
-      virtual id_array get_pids();
+   virtual id_array get_pids();
       
-      virtual id_array module_path_get_pid(const char* pszModulePath, bool bModuleNameIsPropertyFormatted);
+      virtual id_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
       
       virtual string module_path_from_pid(u32 pid);
       
@@ -352,13 +352,13 @@ namespace acme
 
       virtual bool is_shared_library_busy(const string_array& stra);
       
-      virtual bool process_contains_module(string& strImage, ::u32 processID, const char* pszLibrary);
+      virtual bool process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary);
 
-      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const char* pszLibrary);
+      virtual void shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary);
 
       virtual bool is_process_running(::u32 pid);
       
-      virtual string get_environment_variable(const char* pszEnvironmentVariable);
+      virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
       
       virtual string expand_env(string str);
 

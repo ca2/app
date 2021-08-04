@@ -9,7 +9,7 @@ typedef struct{
   i32 error;
 } MemoryFile;
 
-voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const char *filename, i32 mode)
+voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const ::string &filename, i32 mode)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   mf->error = 0;

@@ -29,7 +29,7 @@ void  nsBig5Prober::Reset(void)
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsBig5Prober::HandleData(const char* aBuf, PR::u32 aLen)
+nsProbingState nsBig5Prober::HandleData(const ::string & aBuf, PR::u32 aLen)
 {
   nsSMState codingState;
 

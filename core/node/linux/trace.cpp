@@ -6,7 +6,7 @@
 
 
 /*
-static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
+static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 
 {
    ENSURE_ARG(pMsg != nullptr);
@@ -23,7 +23,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
       }
       ASSERT(hCommands != nullptr);
 
-      const char * pszCommands = (const char *)::GlobalLock(hCommands);
+      const char * pszCommands = (const ::string &)::GlobalLock(hCommands);
 
       ENSURE_THROW(pszCommands != nullptr, ::AfxThrowMemoryException() );
 
@@ -85,7 +85,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 */
 /////////////////////////////////////////////////////////////////////////////
 
-//void __trace_message(const char * pszPrefix, ::message::message * pmessage)
+//void __trace_message(const ::string & pszPrefix, ::message::message * pmessage)
 
 //{
 ////   ENSURE_ARG(AfxIsValidString(pszPrefix));
@@ -182,7 +182,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //
 //
 //
-//void __trace_message(const char * pszPrefix, MESSAGE * lpmsg)
+//void __trace_message(const ::string & pszPrefix, MESSAGE * lpmsg)
 
 //{
 //   //ENSURE_ARG(AfxIsValidString(pszPrefix));

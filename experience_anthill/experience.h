@@ -31,7 +31,7 @@ namespace experience
 
 
 
-            virtual ::experience::frame * experience_get_frame(const char * pszSchema) override;
+            virtual ::experience::frame * experience_get_frame(const ::string & pszSchema) override;
 
 
          };

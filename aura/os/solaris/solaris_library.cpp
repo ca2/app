@@ -14,7 +14,7 @@ namespace ca
    }
 
 
-   library::library(const char * pszOpen)
+   library::library(const ::string & pszOpen)
    {
 
       m_plibrary = nullptr;
@@ -32,7 +32,7 @@ namespace ca
    }
 
 
-   bool library::open(const char * pszPath)
+   bool library::open(const ::string & pszPath)
    {
 
       vsstring strPath(pszPath);
@@ -53,7 +53,7 @@ namespace ca
       if(ansi_find_string(strPath, ".") == nullptr)
          strPath += ".so";
 
-      if(strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
+      if(strstr((const ::string &) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
          strPath = "lib" + strPath;
 
       m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_NOW | RTLD_NODELETE);
@@ -77,7 +77,7 @@ namespace ca
    }
 
 
-   void * library::raw_get(const char * pszElement)
+   void * library::raw_get(const ::string & pszElement)
    {
       return dlsym(m_plibrary, pszElement);
    }
@@ -86,7 +86,7 @@ namespace ca
    {
    }
 
-   ca2_library::ca2_library(const char * pszOpen) :
+   ca2_library::ca2_library(const ::string & pszOpen) :
       library(pszOpen)
    {
 
@@ -97,7 +97,7 @@ namespace ca
 
    }
 
-   bool ca2_library::open(const char * pszPath)
+   bool ca2_library::open(const ::string & pszPath)
    {
       return library::open(pszPath);
    }

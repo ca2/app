@@ -70,9 +70,9 @@ namespace user
 
       void create_common_construct();
 
-      //void set_class_name(const char* pszClassName);
+      //void set_class_name(const ::string & pszClassName);
 
-      //void set_window_name(const char* pszWindowName);
+      //void set_window_name(const ::string & pszWindowName);
 
       //void set_rect(const ::rectangle_i32& rectangle);
 

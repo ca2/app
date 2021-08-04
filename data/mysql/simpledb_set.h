@@ -28,16 +28,16 @@ namespace simpledb
       virtual bool exec(const ::string & pszSql);
 
 
-      virtual bool sql_do_select(const ::string & & pszSql);
-      virtual bool sql_do_insert(const ::string & & pszSql);
+      virtual bool sql_do_select(const char * & pszSql);
+      virtual bool sql_do_insert(const char * & pszSql);
 
-      virtual string sql_consume_keyword(const ::string & & pszSql);
-      virtual string sql_consume_field(const ::string & & pszSql);
-      virtual string sql_consume_table(const ::string & & pszSql);
-      virtual string sql_consume_join_on(const ::string & & pszSql);
-      virtual string sql_consume_value(const ::string & & pszSql);
+      virtual string sql_consume_keyword(const char * & pszSql);
+      virtual string sql_consume_field(const char * & pszSql);
+      virtual string sql_consume_table(const char * & pszSql);
+      virtual string sql_consume_join_on(const char * & pszSql);
+      virtual string sql_consume_value(const char * & pszSql);
 
-      static string consume_quoted_value(const ::string & & pszXml);
+      static string consume_quoted_value(const char * & pszXml);
 
       /* Makes direct queries to database */
       virtual void make_query(string_array &_sql);

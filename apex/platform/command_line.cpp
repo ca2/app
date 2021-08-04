@@ -273,7 +273,7 @@ void command_line::_001ParseCommandFork(const ::string & strCommandFork)
 
    m_strCommandLine = strCommandFork;
 
-   m_varQuery.propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strExe);
+   m_varQuery.as_propset()._008ParseCommandFork(strCommandFork,m_varFile,m_strExe);
 
    if(!m_varFile.is_empty())
    {

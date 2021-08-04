@@ -18,7 +18,7 @@
 CLASS_DECL_CA2_TIME bool get_avoid_datetime_parser_exception()
 {
 
-   return ::get_task()->payload(id_thread_avoid_datetime_parser_exception);
+   return ::get_task()->payload(id_thread_avoid_datetime_parser_exception).is_true();
 
 }
 

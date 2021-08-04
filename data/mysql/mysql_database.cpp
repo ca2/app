@@ -604,18 +604,21 @@ namespace mysql
          return false;
 
       }
-      else if (row[0] == nullptr)
+
+      if (row[0] == nullptr)
       {
 
-         return ::payload(::e_type_null);
+         payload = ::e_type_null;
 
       }
       else
       {
 
-         return ::payload(row[0]);
+         payload = row[0];
 
       }
+
+      return true;
 
    }
 
@@ -837,12 +840,12 @@ namespace mysql
    }
 
 
-   string database::escape(void* p, strsize iLen)
+   string database::escape(const char * psz, strsize iLen)
    {
 
-      string str;
+      string strEscaped;
 
-      char* psz = str.get_string_buffer(iLen * 2 + 1);
+      char* pszEscaped = strEscaped.get_string_buffer(iLen * 2 + 1);
 
       if (psz == nullptr)
       {
@@ -851,19 +854,19 @@ namespace mysql
 
       }
 
-      mysql_real_escape_string((MYSQL*)m_pmysql, psz, (const ::string &)p, (unsigned long)iLen);
+      mysql_real_escape_string((MYSQL*)m_pmysql, pszEscaped, psz, (unsigned long)iLen);
 
-      str.release_string_buffer();
+      strEscaped.release_string_buffer();
 
-      return str;
+      return strEscaped;
 
    }
 
 
-   string database::escape(const ::string & psz)
+   string database::escape(const ::string & str)
    {
 
-      return escape((void*)psz, strlen(psz));
+      return escape(str.c_str(), str.get_length());
 
    }
 

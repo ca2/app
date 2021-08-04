@@ -70,7 +70,7 @@ namespace mysql
 
       virtual ::payload get_agent(const ::string & pszTable, const ::string & pszEmail, const ::string & pszUser);
 
-      string escape(void* p, strsize iLine);
+      string escape(const char * psz, strsize size);
       string escape(const ::string & psz);
 
       ::payload get_insert_id();

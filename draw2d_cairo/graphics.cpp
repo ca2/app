@@ -3742,7 +3742,7 @@ bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rect
 bool graphics::internal_draw_text(const ::block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_CAIRO_TEXT ftext)
 {
 
-    string str((const ::string &) block.get_data(), block.get_size());
+    string str((const char *) block.get_data(), block.get_size());
 
     str = ::str::q_valid(str);
 

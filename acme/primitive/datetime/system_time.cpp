@@ -37,6 +37,6 @@ void copy(payload * ppayload, const system_time_t * psystemtime)
 
    ppayload->set_type(e_type_time, false);
 
-   system_time_to_time(&ppayload->m_time, psystemtime);
+   system_time_to_time(&ppayload->m_time.m_time, psystemtime);
 
 }

@@ -252,11 +252,11 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //
    //   }
 
+
    void system::TermSystem()
    {
 
       ::acme::idpool::term();
-      
       
       m_pnode->os_post_quit();
 

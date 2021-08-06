@@ -7137,7 +7137,7 @@ namespace user
       m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->destroy();
       m_puiLabel && m_puiLabel->destroy();
       m_useritema.destroy_all();
-      m_pform && m_pform->destroy();
+      m_pform && m_pform != this && m_pform->destroy();
       m_palphasource && m_palphasource->destroy();
       m_pdrawableBackground && m_pdrawableBackground->destroy();
       m_pimpl && m_pimpl->destroy();

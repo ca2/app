@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef void FN_CAIRO_TEXT(cairo_t *, const ::string &);
+typedef void FN_CAIRO_TEXT(cairo_t *, const char *);
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
@@ -357,14 +357,14 @@ namespace draw2d_cairo
       //virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
       virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      size_f64 get_text_extent(const ::string & lpszString, strsize nCount, strsize iIndex) override;
-      size_f64 get_text_extent(const ::string & lpszString, strsize nCount) override;
+      size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
+      size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
       size_f64 get_text_extent(const block & block) override;
-      bool _GetTextExtent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex);
-      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex) override;
-      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount) override;
+      bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
+      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
+      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
       bool get_text_extent(size_f64 & size_f64, const ::string & str) override;
-      size_f64 GetOutputTextExtent(const ::string & lpszString, strsize nCount) override;
+      size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       size_f64 GetOutputTextExtent(const ::string & str) override;
       //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       //size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;

@@ -10,9 +10,11 @@ namespace acme
    {
    public:
 
-      static __pointer(idpool) g_pidpool;
 
-      static idpool* g_pthis;
+      static idpool * g_pidpool;
+
+
+      static idpool * g_pthis;
 
       ::id xml;
 

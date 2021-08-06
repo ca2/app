@@ -24,9 +24,9 @@
 #include "acme/os/ansios/_ansios.h"
 
 #ifdef __MACH__
+
 #include <mach/clock.h>
 #include <mach/mach.h>
-#endif
 
 struct mach_calendar_clock
 {
@@ -61,6 +61,10 @@ struct mach_calendar_clock
 
    
 } g_machcalendarclock;
+
+
+#endif // __MACH__
+
 
 void clock_getrealtime(struct timespec * pts)
 {

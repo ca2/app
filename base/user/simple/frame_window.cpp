@@ -533,14 +533,23 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       try
       {
 
-         if (m_pnotifyicon)
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         pnode->node_branch(__routine([this]()
          {
 
-            m_pnotifyicon->destroy_notify_icon();
+            if (m_pnotifyicon)
+            {
 
-            m_pnotifyicon.release();
+               m_pnotifyicon->destroy_notify_icon();
 
-         }
+               m_pnotifyicon.release();
+
+            }
+
+         }));
 
       }
       catch (...)

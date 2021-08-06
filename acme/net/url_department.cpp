@@ -1620,9 +1620,9 @@ namespace url
 
 #else
 
-      char * point = nullptr;
+      char * psz = nullptr;
 
-      Idna_rc rc = (Idna_rc) idna_to_ascii_8z(psz, &point, IDNA_ALLOW_UNASSIGNED);
+      Idna_rc rc = (Idna_rc) idna_to_ascii_8z(str, &psz, IDNA_ALLOW_UNASSIGNED);
 
       if (rc != IDNA_SUCCESS)
       {
@@ -1631,11 +1631,11 @@ namespace url
 
       }
 
-      string str(point);
+      string strReturn(psz);
 
-      free(point);
+      free(psz);
 
-      return str;
+      return strReturn;
 
 #endif
 
@@ -1664,23 +1664,27 @@ namespace url
 
 #else
 
-      if(psz == nullptr || *psz == '\0')
-         return "";
-
+      if(str.is_empty())
       {
 
-         string str(psz);
-
-         str.trim();
-
-         if(str.is_empty())
-            return "";
+         return "";
 
       }
 
-      char * point = nullptr;
+      string strTrimmed(str);
 
-      Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(psz, &point, IDNA_ALLOW_UNASSIGNED);
+      strTrimmed.trim();
+
+      if(strTrimmed.is_empty())
+      {
+
+         return "";
+
+      }
+
+      char * psz = nullptr;
+
+      Idna_rc rc = (Idna_rc)idna_to_unicode_8z8z(strTrimmed, &psz, IDNA_ALLOW_UNASSIGNED);
 
       if (rc != IDNA_SUCCESS)
       {
@@ -1689,11 +1693,11 @@ namespace url
 
       }
 
-      string str(point);
+      string strReturn(psz);
 
-      free(point);
+      free(psz);
 
-      return str;
+      return strReturn;
 
 #endif
 

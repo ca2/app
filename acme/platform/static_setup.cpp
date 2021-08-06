@@ -8,8 +8,6 @@
 
 static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
    m_pszName(pszName),
-   //m_pfnNewAuraApplication(nullptr),
-   //m_pfnNewAuraLibrary(nullptr),
    m_eflag(eflag)
 {
 

@@ -685,7 +685,7 @@ namespace user
          pmessage->m_bRet = true;
          return;
       }
-      pmessage->m_lresult = SetPaneText(nIndex, (const ::string &)pmessage->m_lparam.m_lparam) ? 0 : -1;
+      pmessage->m_lresult = SetPaneText(nIndex, (const char *)pmessage->m_lparam.m_lparam) ? 0 : -1;
       pmessage->m_bRet = true;
    }
 

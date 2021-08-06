@@ -145,13 +145,13 @@ namespace str
    }
 
 
-   template < typename TYPE, typename PREFIX >
-   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
-   {
-
-      return !::str::string_n_compare_ci(str, strPrefix, ::str::string_safe_length(strPrefix));
-
-   }
+//   template < typename TYPE, typename PREFIX >
+//   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
+//   {
+//
+//      return !::str::string_n_compare_ci(str, strPrefix, ::str::string_safe_length(strPrefix));
+//
+//   }
 
 
    template < typename TYPE, typename FED, typename PREFIX >

@@ -1257,12 +1257,12 @@ bool object::check_tasks_finished()
 
    set_finish();
 
-   while (check_tasks_finished())
-   {
-
-      ::sleep(100_ms);
-
-   }
+//   while (check_tasks_finished())
+//   {
+//
+//      ::sleep(100_ms);
+//
+//   }
 
    return ::success;
 

@@ -139,11 +139,12 @@ namespace hex
 //}
 
 
-template < typename TYPE_CHAR, typename TYPE >
-inline string_base < TYPE_CHAR > operator +(const string_base < TYPE_CHAR > & str, const TYPE & t)
+template < typename TYPE_CHAR >
+template < typename TYPE >
+inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYPE & t) const
 {
 
-   return str.operator + (__str(t));
+   return this->operator + (__str(t));
 
 }
 

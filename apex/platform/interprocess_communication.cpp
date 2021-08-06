@@ -354,40 +354,40 @@ namespace interprocess_communication
       }
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//
+//      bool interprocess_communication::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+//      {
+//
+//         m_strChannel = pszKey;
+//
+//         m_prx->m_preceiver = this;
+//
+//         string strChannelRx = m_strChannel + "-a";
+//
+//         string strChannelTx = m_strChannel + "-b";
+//
+//         if (!m_prx->create(strChannelRx.c_str()))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         return true;
+//
+//      }
+//
 
-
-      bool interprocess_communication::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
-      {
-
-         m_strChannel = pszKey;
-
-         m_prx->m_preceiver = this;
-
-         string strChannelRx = m_strChannel + "-a";
-
-         string strChannelTx = m_strChannel + "-b";
-
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
-
-            return false;
-
-         }
-
-         if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-         {
-
-            return false;
-
-         }
-
-         return true;
-
-      }
-
-
-      bool interprocess_communication::open_ba(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
+     /* bool interprocess_communication::open_ba(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
       {
 
          m_strChannel = pszKey;
@@ -416,7 +416,7 @@ namespace interprocess_communication
 
       }
 
-#else
+#else*/
 
 
       bool interprocess_communication::open_ab(const ::string & pszKey, launcher * plauncher)
@@ -479,7 +479,7 @@ namespace interprocess_communication
       }
 
 
-#endif
+//#endif
 
 
       bool interprocess_communication::is_rx_tx_ok()

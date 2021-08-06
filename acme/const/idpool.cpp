@@ -8,7 +8,7 @@ namespace acme
 {
 
 
-   __pointer(idpool) idpool::g_pidpool;
+   idpool * idpool::g_pidpool;
 
    idpool * idpool::g_pthis = nullptr;
 
@@ -26,7 +26,11 @@ namespace acme
    void idpool::init()
    {
 
-      __construct(g_pidpool);
+      auto pidpool = __create < idpool >();
+
+      pidpool->increment_reference_count();
+
+      g_pidpool = pidpool;
 
    }
 
@@ -34,7 +38,7 @@ namespace acme
    void idpool::term()
    {
 
-      g_pidpool.release();
+      ::release(g_pidpool);
 
    }
 

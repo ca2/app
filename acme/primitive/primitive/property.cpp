@@ -1843,14 +1843,20 @@ void on_property_destruct2()
 
 }
 
+
+#define DEBUG_PROPERTY_COUNT 0
+
+#if DEBUG_PROPERTY_COUNT
 critical_section g_criticalsectionProperty;
 ptr_array < property > g_propertya;
-
+#endif
 
 void on_property_construct(property * pproperty)
 {
 
    g_interlockedcountProperty++;
+
+#if DEBUG_PROPERTY_COUNT
 
    output_debug_string("prop" + __str(g_interlockedcountProperty.operator i64()) + "\n");
 
@@ -1860,12 +1866,16 @@ void on_property_construct(property * pproperty)
 
    g_propertya.add(pproperty);
 
+#endif
+
 }
 
 void on_property_destruct(property* pproperty)
 {
 
    g_interlockedcountProperty--;
+
+#if DEBUG_PROPERTY_COUNT
 
    on_property_destruct2();
 
@@ -1897,6 +1907,8 @@ void on_property_destruct(property* pproperty)
       }
 
    }
+
+#endif
 
 }
 

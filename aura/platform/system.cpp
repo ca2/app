@@ -1836,7 +1836,7 @@ namespace aura
    void system::term2()
    {
 
-      ::aqua::system::term2();
+      //::aqua::system::term2();
 
       //for (int i = 0; i < m_serviceptra.get_size(); i++)
       //{

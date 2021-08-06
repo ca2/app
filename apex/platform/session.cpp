@@ -541,40 +541,15 @@ namespace apex
 
    }
 
-   //::e_status session::init()
-   //{
-
-
-
-   //   return true;
-
-   //}
-
-
-   //void session::term()
-   //{
-
-   //   m_paccount.release();
-
-
-
-
-
-
-   //}
-
 
    void session::term2()
    {
-
-
 
    }
 
 
    void session::term1()
    {
-
 
    }
 
@@ -585,37 +560,8 @@ namespace apex
       auto psystem = get_system()->m_papexsystem;
 
       psystem->post_message(e_message_erase_session, m_iEdge);
-      //psystem->session_erase(m_iEdge);
 
    }
-
-
-//   bool session::defer_create_session_frame_window()
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (m_puiSession)
-//      {
-//
-//         return true;
-//
-//      }
-//
-//      ::e_status estatus = __compose(m_puiSession, ::move(create_system_message_window(this)));
-//
-//      if (!estatus)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//#endif
-//
-//      return true;
-//
-//   }
 
 
    bool session::on_get_task_name(string& strTaskName)
@@ -637,16 +583,6 @@ namespace apex
 
    void session::on_request(::create * pcreate)
    {
-
-      // it was here
-      //auto estatus = defer_initialize_host_window();
-      //
-      //if(!estatus)
-      //{
-      //
-      //   __throw(::exception::exception(estatus));
-      //
-      //}
 
       auto psystem = get_system()->m_papexsystem;
 
@@ -695,7 +631,6 @@ namespace apex
       }
 
       m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
-
 
       //string strApp;
 
@@ -1066,8 +1001,6 @@ namespace apex
    //}
 
 
-
-
    bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
    {
 
@@ -1115,8 +1048,10 @@ namespace apex
       }
 
       bool bPressed = false;
+
       if (ekey == ::user::e_key_shift)
       {
+
          m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
@@ -1193,8 +1128,6 @@ ret:
 
    }
 
-
-   
 
    ::e_status session::init1()
    {

@@ -755,7 +755,7 @@ namespace apex
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
 
-         destroy();
+         set_finish();
 
       }
 
@@ -2385,7 +2385,6 @@ namespace apex
 
       }
 
-
    }
 
 
@@ -2405,6 +2404,7 @@ namespace apex
 //#endif // LINUX
 
    }
+
 
    void system::term_thread()
    {
@@ -2533,16 +2533,16 @@ namespace apex
 //      // ... do this call, but this requires all references to ::apex::system ...
 //      // ... to be released. This is a bit of an ideal situation that may not ...
 //      // ... always happen as the wish the program finishes when it is closed ...
-      auto pnode = m_pnode;
-
-
-
-      if(pnode)
-      {
-
-         pnode->post_quit();
-
-      }
+//      auto pnode = m_pnode;
+//
+//
+//
+//      if(pnode)
+//      {
+//
+//         pnode->post_quit();
+//
+//      }
 
 //#elif defined(__APPLE__)
 //

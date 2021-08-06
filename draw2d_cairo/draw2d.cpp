@@ -83,14 +83,14 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock synchronouslock(mutex());
-
-      if (!m_papi->open())
-      {
-
-         return false;
-
-      }
+//      synchronous_lock synchronouslock(mutex());
+//
+//      if (!m_papi->open())
+//      {
+//
+//         return false;
+//
+//      }
 
       return true;
 
@@ -170,7 +170,7 @@ namespace draw2d_cairo
          if (m_papi)
          {
 
-            m_papi->close();
+            //m_papi->close();
 
             m_papi->destroy();
 

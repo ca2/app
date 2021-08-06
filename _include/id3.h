@@ -56,14 +56,14 @@ ID3_C_EXPORT bool                 CCONV ID3Tag_AttachFrame          (ID3Tag *tag
 ID3_C_EXPORT void                 CCONV ID3Tag_AddFrames            (ID3Tag *tag, const ID3Frame *frames, size_t num);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_RemoveFrame          (ID3Tag *tag, const ID3Frame *frame);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Parse                (ID3Tag *tag, const uchar header[ID3_TAGHEADERSIZE], const uchar *buffer);
-ID3_C_EXPORT size_t               CCONV ID3Tag_Link                 (ID3Tag *tag, const ::string &fileName);
-ID3_C_EXPORT size_t               CCONV ID3Tag_LinkWithFlags        (ID3Tag *tag, const ::string &fileName, flags_t flags);
+ID3_C_EXPORT size_t               CCONV ID3Tag_Link                 (ID3Tag *tag, const char * fileName);
+ID3_C_EXPORT size_t               CCONV ID3Tag_LinkWithFlags        (ID3Tag *tag, const char * fileName, flags_t flags);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Update               (ID3Tag *tag);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_UpdateByTagType      (ID3Tag *tag, flags_t type);
 ID3_C_EXPORT ID3_Err              CCONV ID3Tag_Strip                (ID3Tag *tag, flags_t ulTagFlags);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithID      (const ID3Tag *tag, ID3_FrameID id);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithINT     (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, u32 data);
-ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithASCII   (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, const ::string &data);
+ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithASCII   (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, const char * data);
 ID3_C_EXPORT ID3Frame*            CCONV ID3Tag_FindFrameWithUNICODE (const ID3Tag *tag, ID3_FrameID id, ID3_FieldID fld, const unicode_t *data);
 ID3_C_EXPORT size_t               CCONV ID3Tag_NumFrames            (const ID3Tag *tag);
 ID3_C_EXPORT bool                 CCONV ID3Tag_HasTagType           (const ID3Tag *tag, ID3_TagType);
@@ -96,14 +96,14 @@ ID3_C_EXPORT void                 CCONV ID3Field_SetUNICODE         (ID3Field *f
 ID3_C_EXPORT size_t               CCONV ID3Field_GetUNICODE         (const ID3Field *field, unicode_t *buffer, size_t maxChars);
 ID3_C_EXPORT size_t               CCONV ID3Field_GetUNICODEItem     (const ID3Field *field, unicode_t *buffer, size_t maxChars, size_t itemNum);
 ID3_C_EXPORT void                 CCONV ID3Field_AddUNICODE         (ID3Field *field, const unicode_t *string);
-ID3_C_EXPORT void                 CCONV ID3Field_SetASCII           (ID3Field *field, const ::string &string);
-ID3_C_EXPORT size_t               CCONV ID3Field_GetASCII           (const ID3Field *field, char *buffer, size_t maxChars);
-ID3_C_EXPORT size_t               CCONV ID3Field_GetASCIIItem       (const ID3Field *field, char *buffer, size_t maxChars, size_t itemNum);
-ID3_C_EXPORT void                 CCONV ID3Field_AddASCII           (ID3Field *field, const ::string &string);
+ID3_C_EXPORT void                 CCONV ID3Field_SetASCII           (ID3Field *field, const char * string);
+ID3_C_EXPORT size_t               CCONV ID3Field_GetASCII           (const ID3Field *field, char * buffer, size_t maxChars);
+ID3_C_EXPORT size_t               CCONV ID3Field_GetASCIIItem       (const ID3Field *field, char * buffer, size_t maxChars, size_t itemNum);
+ID3_C_EXPORT void                 CCONV ID3Field_AddASCII           (ID3Field *field, const char * string);
 ID3_C_EXPORT void                 CCONV ID3Field_SetBINARY          (ID3Field *field, const uchar *data, size_t size);
 ID3_C_EXPORT void                 CCONV ID3Field_GetBINARY          (const ID3Field *field, uchar *buffer, size_t buffLength);
-ID3_C_EXPORT void                 CCONV ID3Field_FromFile           (ID3Field *field, const ::string &fileName);
-ID3_C_EXPORT void                 CCONV ID3Field_ToFile             (const ID3Field *field, const ::string &fileName);
+ID3_C_EXPORT void                 CCONV ID3Field_FromFile           (ID3Field *field, const char * fileName);
+ID3_C_EXPORT void                 CCONV ID3Field_ToFile             (const ID3Field *field, const char * fileName);
 
 /* field-info wrappers */
 ID3_C_EXPORT char*                CCONV ID3FrameInfo_ShortName     (ID3_FrameID frameid);

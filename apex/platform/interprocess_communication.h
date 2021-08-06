@@ -20,42 +20,6 @@ namespace interprocess_communication
    {
    public:
 
-//#ifdef _UWP
-//
-//      //i32              m_iSerial;
-//
-//#elif defined(WINDOWS_DESKTOP)
-//
-//
-//      HWND              m_hwnd;
-//
-//
-//#elif defined(APPLEOS)
-//
-//
-//      CFMessagePortRef     m_port;
-//
-//
-//#elif !defined(_UWP)
-//
-//      key_t                m_key;
-//      int                  m_iQueue;
-//
-//      struct data_struct
-//      {
-//
-//
-//         long     mtype;
-//         long     request;
-//         int      size;
-//         char     data[0];
-//
-//
-//      };
-//
-//
-//#endif
-
 
       string   m_strBaseChannel;
 
@@ -78,11 +42,7 @@ namespace interprocess_communication
 
 
 
-#if defined(_UWP)
-      virtual bool open(const ::string & pszChannel);
-#else
       virtual bool open(const ::string & pszChannel, ::launcher * plauncher = nullptr);
-#endif
       virtual bool close();
 
 
@@ -91,6 +51,7 @@ namespace interprocess_communication
 
 
       virtual bool is_tx_ok();
+
 
    };
 
@@ -146,13 +107,6 @@ namespace interprocess_communication
 
       virtual bool on_idle();
 
-//ifndef WINDOWS
-//
-//      bool start_receiving();
-//
-//      void * receive();
-//
-//#endif
 
       virtual bool is_rx_ok();
 
@@ -174,18 +128,10 @@ namespace interprocess_communication
 
 
       interprocess_communication();
-      virtual ~interprocess_communication();
+      ~interprocess_communication() override;
 
-#if defined(_UWP)
-      virtual bool open_ab(const ::string & pszChannel, const ::string & pszModule);
-      virtual bool open_ba(const ::string & pszChannel, const ::string & pszModule);
-#elif defined(WINDOWS)
-      virtual bool open_ab(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
-      virtual bool open_ba(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
-#else
       virtual bool open_ab(const ::string & pszChannel, launcher * plauncher = nullptr);
       virtual bool open_ba(const ::string & pszChannel, launcher * plauncher = nullptr);
-#endif
       virtual bool close();
 
       virtual void restart_apex_ipc();

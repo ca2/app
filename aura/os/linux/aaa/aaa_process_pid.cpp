@@ -2,7 +2,7 @@
 #include <dirent.h>
 
 
-i32 get_process_pid(const ::string & procNameParam)
+i32 get_process_pid(const char * procNameParam)
 {
 
    string procName(procNameParam);

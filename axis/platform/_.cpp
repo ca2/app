@@ -26,10 +26,12 @@ namespace axis
 
 
 
-   bool extract_sub_string(string& rString, const ::string & pszFullString, i32 iSubString, char chSep)
+   bool extract_sub_string(string& rString, const ::string & strFullString, i32 iSubString, char chSep)
    {
 
-      if (pszFullString == nullptr)
+      const char * pszFullString = strFullString;
+
+      if (pszFullString == nullptr || *pszFullString == '\0')
       {
 
          return false;

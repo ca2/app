@@ -3913,7 +3913,7 @@ bool graphics::draw_text_ex(const ::string & str, const ::rectangle_f64 & rectan
 }
 
 
-size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount, strsize iIndex)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
 {
 
     size_f64 sz;
@@ -3930,7 +3930,7 @@ size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount, 
 }
 
 
-size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount)
+size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount)
 {
 
     return get_text_extent(lpszString, nCount, -1);
@@ -3941,12 +3941,12 @@ size_f64 graphics::get_text_extent(const ::string & lpszString, strsize nCount)
 size_f64 graphics::get_text_extent(const block & block)
 {
 
-    return get_text_extent((const ::string &) block.get_data(), block.get_size());
+    return get_text_extent((const char *) block.get_data(), block.get_size());
 
 }
 
 
-size_f64 graphics::GetOutputTextExtent(const ::string & lpszString, strsize nCount)
+size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3966,7 +3966,7 @@ size_f64 graphics::GetOutputTextExtent(const ::string & str)
 }
 
 
-bool graphics::get_text_extent(size_f64 & size, const ::string & lpszString, strsize nCount, strsize iIndex)
+bool graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
    string str(lpszString, minimum_non_negative(iIndex, nCount));
@@ -4093,7 +4093,7 @@ bool graphics::get_text_extent(size_f64 & size, const ::string & lpszString, str
 }
 
 
-bool graphics::_GetTextExtent(size_f64 & size, const ::string & lpszString, strsize nCount, strsize iIndex)
+bool graphics::_GetTextExtent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
     if (iIndex < 0)
@@ -4218,7 +4218,7 @@ bool graphics::_GetTextExtent(size_f64 & size, const ::string & lpszString, strs
 }
 
 
-bool graphics::get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount)
+bool graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount)
 {
 
     return get_text_extent(size_f64, lpszString, nCount, -1);

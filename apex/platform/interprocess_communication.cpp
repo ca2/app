@@ -180,7 +180,11 @@ namespace interprocess_communication
       {
 
          if (!is_tx_ok())
+         {
+
             return false;
+
+         }
 
 
          return true;
@@ -192,10 +196,18 @@ namespace interprocess_communication
       {
 
          if (message == 0x80000000)
+         {
+
             return false;
 
+         }
+
          if (!is_tx_ok())
+         {
+
             return false;
+
+         }
 
 
          return true;
@@ -203,16 +215,12 @@ namespace interprocess_communication
       }
 
 
-
       bool tx::is_tx_ok()
       {
 
-         //return ::IsWindow((HWND)m_oswindow) != false;
          return false;
 
       }
-
-
 
 
       rx::rx()
@@ -223,57 +231,10 @@ namespace interprocess_communication
       }
 
 
-
       bool rx::create(const ::string & pszKey)
       {
 
-
-         /*    if(g_pfnChangeWindowMessageFilter != nullptr)
-             {
-                g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
-             }*/
-
-             //HINSTANCE hinstance = ::GetModuleHandleA("apex.dll");
-
-             //if(hinstance == nullptr)
-             //{
-
-             //   hinstance = ::GetModuleHandleA(nullptr);
-
-             //}
-
-             //auto pappcore = psystem->m_pappcore;
-
-             //auto pmaindata = pappcore->m_pmaindata;
-
-         //HINSTANCE hinstance = (HINSTANCE)psystem->m_hinstance;
-
-         //ATOM atom = rx_register_class(hinstance);
-
-         //wstring wstrKey(pszKey);
-
-         //m_oswindow = ::CreateWindowExW(0, L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr);
-
-         //if (m_oswindow == nullptr)
-         //{
-         //   unsigned int dwLastError = ::GetLastError();
-         //   return false;
-         //}
-
-         //if (!ChangeWindowMessageFilterEx((HWND)m_oswindow, WM_COPYDATA, MSGFLT_ADD, NULL))
-         //{
-
-         //   TRACE("Failed to change WM_COPYDATA message filter");
-
-         //}
-
-         //SetTimer((HWND)m_oswindow, 888888, 84, nullptr);
-
-         //SetWindowLongPtr((HWND)m_oswindow, GWLP_USERDATA, (LONG_PTR)this);
-
-         //m_strWindowProcModule = pszWindowProcModule;
-
-         return true;
+        return true;
 
       }
 
@@ -283,37 +244,9 @@ namespace interprocess_communication
 
          auto estatus = base::destroy();
 
-         //if (m_oswindow != nullptr)
-         //{
-         //   ::DestroyWindow((HWND)m_oswindow);
-         //   m_oswindow = nullptr;
-         //}
-
          return estatus;
 
       }
-
-
-      //void rx::receiver::on_interprocess_receive(rx * prx, const ::string & pszMessage)
-      //{
-
-
-      //}
-
-
-      //void rx::receiver::on_interprocess_receive(rx * prx, int message, void * pdata, memsize len)
-      //{
-
-
-      //}
-
-
-      //void rx::receiver::on_interprocess_post(rx * prx, i64 a, i64 b)
-      //{
-
-
-
-      //}
 
 
       void * rx::on_interprocess_receive(rx * prx, const ::string & pszMessage)
@@ -335,17 +268,17 @@ namespace interprocess_communication
          else
          {
 
-            get_application()->fork([this,prx,strMessage]()
+            get_application()->fork([this, prx, strMessage]()
+            {
+
+               if (m_preceiver != nullptr)
                {
 
-                  if (m_preceiver != nullptr)
-                  {
+                  m_preceiver->on_interprocess_receive(prx, strMessage);
 
-                     m_preceiver->on_interprocess_receive(prx, strMessage);
+               }
 
-                  }
-
-               });
+            });
 
          }
 
@@ -390,111 +323,6 @@ namespace interprocess_communication
       }
 
 
-      //LRESULT CALLBACK s_rx_message_queue_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
-      //{
-
-      //   int iRet = 0;
-
-      //   rx * pchannel = (rx *)GetWindowLongPtr((HWND)hwnd, GWLP_USERDATA);
-
-      //   if (pchannel == nullptr)
-      //   {
-
-      //      return ::DefWindowProcW((HWND)hwnd, message, wparam, lparam);
-
-      //   }
-      //   else
-      //   {
-
-      //      return pchannel->message_queue_proc((enum_message)message, wparam, lparam);
-
-      //   }
-
-      //}
-
-
-      //ATOM rx_register_class(HINSTANCE hInstance)
-      //{
-      //   WNDCLASSEXW wcex = {};
-
-      //   wcex.cbSize = sizeof(WNDCLASSEX);
-
-      //   wcex.style = 0;
-      //   wcex.lpfnWndProc = &s_rx_message_queue_proc;
-
-      //   wcex.cbClsExtra = 0;
-      //   wcex.cbWndExtra = 0;
-      //   wcex.hInstance = hInstance;
-      //   wcex.hIcon = nullptr;
-      //   //wcex.hCursor       = LoadCursor(nullptr, IDC_ARROW);
-      //   wcex.hCursor = nullptr;
-      //   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-      //   wcex.lpszMenuName = nullptr;
-
-      //   wcex.lpszClassName = L"small_ipc_rx_::color::e_channel_message_queue_class";
-
-      //   wcex.hIconSm = nullptr;
-
-      //   return RegisterClassExW(&wcex);
-      //}
-
-
-      //LRESULT rx::message_queue_proc(::u32 message, wparam wparam, lparam lparam)
-      //{
-
-      //   if (message == WM_USER + 100)
-      //   {
-
-      //      on_interprocess_post(this, wparam, lparam);
-
-      //   }
-      //   else if (message == WM_COPYDATA)
-      //   {
-
-      //      COPYDATASTRUCT * pcds = (COPYDATASTRUCT *)lparam;
-
-
-      //      if (pcds == nullptr)
-      //      {
-
-      //         return 0;
-
-      //      }
-      //      else if (pcds->dwData == 0x80000000)
-      //      {
-
-      //         string strMessage((const ::string &)pcds->lpData, pcds->cbData);
-
-      //         on_interprocess_receive(this, strMessage.c_str());
-
-      //      }
-      //      else
-      //      {
-
-      //         on_interprocess_receive(this, (int)pcds->dwData, pcds->lpData, pcds->cbData);
-
-      //      }
-
-      //   }
-      //   else if (message >= WM_APP)
-      //   {
-
-      //      on_interprocess_receive(this, message, (void *)wparam, lparam);
-
-      //   }
-      //   else
-      //   {
-
-      //      return ::DefWindowProcW(m_oswindow, message, wparam, lparam);
-
-      //   }
-
-      //   return 0;
-
-      //}
-
-
-
       bool rx::on_idle()
       {
 
@@ -506,7 +334,6 @@ namespace interprocess_communication
       bool rx::is_rx_ok()
       {
 
-         //return ::IsWindow(m_oswindow) != false;
          return false;
 
       }
@@ -526,7 +353,9 @@ namespace interprocess_communication
 
       }
 
+
 #ifdef WINDOWS
+
 
       bool interprocess_communication::open_ab(const ::string & pszKey, const ::string & pszModule, launcher * plauncher)
       {
@@ -536,19 +365,15 @@ namespace interprocess_communication
          m_prx->m_preceiver = this;
 
          string strChannelRx = m_strChannel + "-a";
+
          string strChannelTx = m_strChannel + "-b";
 
-         //if (!::IsWindow(m_rx.m_oswindow))
-         //{
+         if (!m_prx->create(strChannelRx.c_str()))
+         {
 
-            if (!m_prx->create(strChannelRx.c_str()))
-            {
+            return false;
 
-               return false;
-
-            }
-
-         //}
+         }
 
          if (!m_ptx->open(strChannelTx.c_str(), plauncher))
          {
@@ -570,20 +395,15 @@ namespace interprocess_communication
          m_prx->m_preceiver = this;
 
          string strChannelRx = m_strChannel + "-b";
+
          string strChannelTx = m_strChannel + "-a";
 
+         if (!m_prx->create(strChannelRx.c_str()))
+         {
 
-         //if (!::IsWindow(m_rx.m_oswindow))
-         //{
+            return false;
 
-            if (!m_prx->create(strChannelRx.c_str()))
-            {
-
-               return false;
-
-            }
-
-         //}
+         }
 
          if (!m_ptx->open(strChannelTx.c_str(), plauncher))
          {
@@ -607,19 +427,15 @@ namespace interprocess_communication
          m_prx->m_preceiver = this;
 
          string strChannelRx = m_strChannel + "-a";
+
          string strChannelTx = m_strChannel + "-b";
 
-         //if (!::IsWindow(m_rx.m_oswindow))
-         //{
+         if (!m_prx->create(strChannelRx.c_str()))
+         {
 
-            if (!m_prx->create(strChannelRx.c_str()))
-            {
+            return false;
 
-               return false;
-
-            }
-
-         //}
+         }
 
          if (!m_ptx->open(strChannelTx.c_str(), plauncher))
          {
@@ -641,20 +457,15 @@ namespace interprocess_communication
          m_prx->m_preceiver = this;
 
          string strChannelRx = m_strChannel + "-b";
+
          string strChannelTx = m_strChannel + "-a";
 
+         if (!m_prx->create(strChannelRx.c_str()))
+         {
 
-         //if (!::IsWindow(m_rx.m_oswindow))
-         //{
+            return false;
 
-            if (!m_prx->create(strChannelRx.c_str()))
-            {
-
-               return false;
-
-            }
-
-         //}
+         }
 
          if (!m_ptx->open(strChannelTx.c_str(), plauncher))
          {

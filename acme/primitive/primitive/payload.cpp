@@ -258,12 +258,12 @@ payload::payload(const class ::payload & payload)
 }
 
 
-payload::payload(class ::payload * pvar)
+payload::payload(::payload * ppayload)
 {
 
    m_etype = e_type_new;
 
-   operator = (pvar);
+   operator = (ppayload);
 
 }
 
@@ -283,15 +283,6 @@ pack::pack(const ::std::initializer_list < pack >& list)
 
    }
 
-
-}
-
-payload::payload(const class ::payload * pvar)
-{
-
-   m_etype = e_type_new;
-
-   operator = ( pvar);
 
 }
 
@@ -332,27 +323,6 @@ payload::payload(const ::routine & routine)
 
 
 payload::payload(::property * pproperty)
-{
-
-   m_etype = e_type_new;
-
-   if (::is_set(pproperty))
-   {
-
-      operator = (pproperty);
-
-   }
-   else
-   {
-
-      clear_data();
-
-   }
-
-}
-
-
-payload::payload(const ::property * pproperty)
 {
 
    m_etype = e_type_new;
@@ -4497,7 +4467,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 }
 
 
-payload payload::operator + (const char * psz) const
+::payload payload::operator + (const char * psz) const
 {
    
    return *this + ::string(psz); 
@@ -5845,7 +5815,7 @@ end:
 
 #if defined(LINUX) || defined(ANDROID)
 
-      f64 f64 = atof(strNumber);
+      ::f64 f64 = atof(strNumber);
 
 #else
 

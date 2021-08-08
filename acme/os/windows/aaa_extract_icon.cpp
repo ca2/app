@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "extract_icon.h"
 
 //http://borland.public.cppbuilder.nativeapi.narkive.com/7OPcjHO5/loading-x48-icons-with-extracticonex
 
@@ -85,10 +86,22 @@ CLASS_DECL_ACME HICON ExtractResourceIcon(const ::string & strPath, int& cx, int
 
    HMODULE hLib = nullptr;
 
+   wstring wstrPath(strPath);
+
+   wstring wstrExpanded;
+
+   auto pwz = wstrExpanded
+
+   DWORD ExpandEnvironmentStringsW(
+      LPCSTR lpSrc,
+      LPSTR  lpDst,
+      DWORD  nSize
+   );
+
    try
    {
 
-      hLib = LoadLibraryExW(wstring(strPath), nullptr, LOAD_LIBRARY_AS_DATAFILE);
+      hLib = LoadLibraryExW(, nullptr, LOAD_LIBRARY_AS_DATAFILE);
 
    }
    catch (...)

@@ -235,9 +235,13 @@ namespace userfs
 
          }
 
-         listingFolderUser.add(listingUser[i]);
+         auto pathFolderUser = listingUser[i];
 
-         listingFolderFinal.add(listingFinal[i]);
+         auto pathFolderFinal = listingFinal[i];
+
+         listingFolderUser.add(pathFolderUser);
+
+         listingFolderFinal.add(pathFolderFinal);
 
       }
 

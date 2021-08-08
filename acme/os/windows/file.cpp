@@ -211,67 +211,6 @@ int_bool file_is_equal_path_dup(const char * psz1, const char * psz2)
 
 
 
-string file_get_mozilla_firefox_plugin_container_path()
-{
-
-   string strPath;
-   HKEY hkeyMozillaFirefox;
-
-   if(::RegOpenKeyW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Mozilla\\Mozilla Firefox", &hkeyMozillaFirefox) != ERROR_SUCCESS)
-      return "";
-   {
-
-      DWORD dwType;
-      DWORD dwData;
-      dwData = 0;
-      if(::WinRegGetValueW(hkeyMozillaFirefox, nullptr, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, nullptr, &dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-
-      wstring wstrVersion;
-      auto pwszVersion = wstrVersion.get_string_buffer(dwData);
-      if(::WinRegGetValueW(hkeyMozillaFirefox, nullptr, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, pwszVersion, &dwData) != ERROR_SUCCESS)
-      {
-         wstrVersion.release_string_buffer();
-         goto ret1;
-      }
-      wstrVersion.release_string_buffer();
-
-      wstring wstrMainSubKey = wstrVersion + L"\\Main";
-      dwData = 0;
-
-      if(::WinRegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, nullptr, &dwData) != ERROR_SUCCESS)
-      {
-         goto ret1;
-      }
-
-      wstring wstrDir;
-      auto pwszDir = wstrDir.get_string_buffer(dwData);
-      if(::WinRegGetValueW(hkeyMozillaFirefox, wstrMainSubKey, L"Install Directory", RRF_RT_REG_SZ, &dwType, pwszDir, &dwData) != ERROR_SUCCESS)
-      {
-         wstrDir.release_string_buffer();
-         goto ret1;
-      }
-      wstrDir.release_string_buffer();
-
-      ::file::path strDir;
-
-      strDir = ::str::international::unicode_to_utf8(wstrDir);
-
-      strPath = strDir / "plugin-container.exe";
-   }
-
-ret1:
-   ::RegCloseKey(hkeyMozillaFirefox);
-   return strPath;
-
-}
-
-
-
-
-
 
 string file_as_string(const char * path, strsize iReadAtMostByteCount)
 {

@@ -338,32 +338,34 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage)
+void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage)
 {
 
-   string str(pszMessage);
+   INFO("::interprocess_intercommunication::on_receive %s", strMessage.c_str());
 
-   INFO("::interprocess_intercommunication::on_receive %s", pszMessage);
-
-   if(!::str::begins_eat(str, "call "))
+   if(!::str::begins_eat(strMessage, "call "))
    {
 
       return;
 
    }
 
-   ::i64 iCall = ::str::consume_natural(str);
+   ::i64 iCall = ::str::consume_natural(strMessage);
 
-   if(!::str::begins_eat(str, " from "))
+   if(!::str::begins_eat(strMessage, " from "))
    {
 
       return;
 
    }
 
-   string strFrom = ::str::consume_non_spaces(str);
+   string strAppFrom;
+   
+   strMessage.eat_before(strAppFrom, ":");
 
-   string strAppFrom = ::str::token(strFrom, ":");
+   string strAppPid;
+   
+   strMessage.eat_before(strAppPid, " ");
 
    if(strAppFrom.is_empty())
    {
@@ -372,16 +374,23 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    }
 
-   ::id idPidFrom = strFrom;
-
-   if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64() == 0))
+   if (strAppPid.is_empty())
    {
 
       return;
 
    }
 
-   strsize iFind = str.find(":");
+   auto iPid = atoll(strAppPid);
+
+   if(iPid == 0)
+   {
+
+      return;
+
+   }
+
+   strsize iFind = strMessage.find(":");
 
    string str1;
 
@@ -403,13 +412,13 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
    if(iFind > 3)
    {
 
-      str1 = str.Left(iFind);
+      str1 = strMessage.Left(iFind);
 
    }
    else
    {
 
-      str1 = str;
+      str1 = strMessage;
 
    }
 
@@ -431,7 +440,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
    if(iFind >= 0)
    {
 
-      str1 = str.Mid(iFind + 1);
+      str1 = strMessage.Mid(iFind + 1);
 
       str1.trim();
 
@@ -462,7 +471,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       pcall->set_timeout(1_min);
 
-      pcall->post(idPidFrom);
+      pcall->post(strAppPid);
 
    }
 

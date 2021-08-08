@@ -1243,9 +1243,9 @@ ret:
 
          plink->fill_os_user();
 
-         pset->m_spafsdata.add(plink);
+         pset->m_spafsdata.add(plink.m_p);
 
-         pset->m_spafsdata.add(__create_new < ::fs::native>());
+         pset->m_spafsdata.add(__create_new < ::fs::native>().m_p);
 
          estatus = __compose(m_pfsdata, pset);
 

@@ -945,10 +945,23 @@ namespace userfs
 
             auto puser = psession->user();
 
-            pitem->m_iImage = puser->shell()->get_file_image(
-                              pfsitem->m_filepathFinal,
+            auto iImage = puser->shell()->get_file_image(
+                              pfsitem->m_filepathUser,
                               pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
                               ::user::shell::icon_normal);
+
+            if (iImage < 0)
+            {
+
+               iImage = puser->shell()->get_file_image(
+                  pfsitem->m_filepathFinal,
+                  pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
+                  ::user::shell::icon_normal);
+
+
+            }
+
+            pitem->m_iImage = iImage;
 
             if (pitem->m_iImage >= 0)
             {

@@ -2,7 +2,10 @@
 #include "acme/operating_system.h"
 
 
-#if defined(__APPLE__)
+#if defined(WINDOWS_DESKTOP)
+#include <Shlobj.h>
+#include <shellapi.h>
+#elif defined(__APPLE__)
 #include <sys/stat.h>
 #include <dirent.h>
 #elif defined(LINUX)

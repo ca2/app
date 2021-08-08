@@ -92,7 +92,9 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "dropbox://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Dropbox"));
 
       }
@@ -103,7 +105,9 @@ namespace fs
       {
          
          ::file::path & path = listing.insert_at(0, "onedrive://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("OneDrive"));
          
       }
@@ -111,15 +115,20 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "video://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Video"));
 
       }
 
       {
 
+
          ::file::path & path = listing.insert_at(0, "image://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Image"));
 
       }
@@ -127,7 +136,9 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "music://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Music"));
 
       }
@@ -135,7 +146,9 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "download://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Download"));
 
       }
@@ -143,7 +156,9 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "document://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Document"));
 
       }
@@ -151,7 +166,9 @@ namespace fs
       {
 
          ::file::path & path = listing.insert_at(0, "desktop://");
+
          path.m_iDir = 1;
+
          listing.m_straTitle.insert_at(0, unitext("Desktop"));
 
       }

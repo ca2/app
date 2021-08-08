@@ -1430,6 +1430,81 @@ namespace acme
    }
 
 
+   string node::get_user_language()
+   {
+
+      return "";
+
+   }
+
+
+   bool node::get_application_exclusivity_security_attributes(memory & memory)
+   {
+
+      return true;
+
+   }
+
+
+   bool node::register_spa_file_type(const ::string & strAppIdHandler)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+   {
+
+      ::install::admin_mutex smutex(strPlatform);
+
+      return smutex.already_exists();
+
+   }
+
+
+   void node::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   {
+
+      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
+      {
+
+         return;
+
+      }
+
+      start_program_files_app_app_admin(strPlatform, strConfiguration);
+
+   }
+
+
+   ::e_status node::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   {
+
+      return error_failed;
+
+   }
+
+
+   ::e_status node::get_folder_path_from_user(::file::path & pathFolder)
+   {
+
+      __throw(error_interface_only);
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::string node::expand_environment_variables(const ::string & str)
+   {
+
+      return str;
+
+   }
+
+
 } // namespace acme
 
 

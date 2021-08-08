@@ -154,8 +154,6 @@ bool __node_acme_pre_init()
 }
 
 
-void windows_registry_init();
-
 
 
 bool __node_acme_pos_init()
@@ -167,7 +165,6 @@ bool __node_acme_pos_init()
    //g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
 
 
-   windows_registry_init();
 
 
 

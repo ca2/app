@@ -123,6 +123,7 @@ namespace user
       index_map < int >                m_mapColumnWidth;
 
       CSortInfo                        m_sortinfo;
+      ::size_i32                       m_sizeMaximumItem;
 
       EFilterState                     m_efilterstate;
       index_biunique *                 m_piaFilterIcon;

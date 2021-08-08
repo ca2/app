@@ -122,7 +122,20 @@ namespace userfs
 
       auto puser = psession->user();
 
-      return puser->shell()->get_file_image(m_filepathFinal, efileattribute, eicon);
+      auto pshell = puser->shell();
+
+      auto iImage = pshell->get_file_image(m_filepathUser, efileattribute, eicon);
+
+      if (iImage >= 0)
+      {
+
+         return iImage;
+
+      }
+
+      iImage = pshell->get_file_image(m_filepathFinal, efileattribute, eicon);
+
+      return iImage;
 
    }
 

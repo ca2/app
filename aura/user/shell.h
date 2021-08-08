@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA shell :
-      virtual public ::object
+      virtual public ::task
    {
    public:
 
@@ -81,28 +81,28 @@ namespace user
    public:
 
 
-      class CLASS_DECL_AURA thread :
-         virtual public ::thread
-      {
-      public:
+      //class CLASS_DECL_AURA thread :
+      //   virtual public ::thread
+      //{
+      //public:
 
 
-         __reference(shell)         m_pshell;
+      //   __reference(shell)         m_pshell;
 
-         image_key                  m_imagekey;
+      //   image_key                  m_imagekey;
 
 
-         thread(shell * pshell);
-         ~thread() override;
+         //thread(shell * pshell);
+         //~thread() override;
 
-         ::e_status init_thread() override;
+//         ::e_status init_tashread() override;
 
          ::e_status run() override;
 
          ::e_status destroy() override;
 
 
-      };
+      //};
 
 
       bool                                               m_bPendingUpdate;
@@ -149,7 +149,7 @@ namespace user
       inline ::aura::system* get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
 
 
-      virtual void add_thread();
+      //virtual void add_thread();
 
 
       virtual void on_update_sizes_interest();
@@ -168,10 +168,12 @@ namespace user
 
       virtual void on_add_default_file_image();
 
+      
 
       virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
       virtual i32 get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation);
+      virtual i32 create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon);
+      virtual i32 _create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon);
 
 
 
@@ -195,10 +197,11 @@ namespace user
       int add_hover_image(int iSize, int iIndex, const ::color::color & colorBackground);
 
 
-      virtual i32 add_icon_path(::file::path path, const ::color::color& colorBackground, int iImage);
+      virtual i32 set_image(int iImage, ::image * pimage, const ::color::color & colorBackground);
+      virtual i32 set_icon(int iImage, const ::file::path & pathIcon, const ::color::color& colorBackground);
 
 
-      ::e_status destroy() override;
+      //::e_status destroy() override;
 
 
    };

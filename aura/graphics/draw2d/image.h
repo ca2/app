@@ -23,6 +23,10 @@ public:
    virtual void defer_update_image();
 
 
+   virtual __pointer(::image) get_image(const ::size_i32 & size);
+   virtual __pointer(::image) get_image(::i32 cx, ::i32 cy);
+
+
    inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::object::is_ok()); }
 
 

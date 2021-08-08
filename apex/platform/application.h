@@ -761,11 +761,11 @@
 
       virtual void install_trace(const ::string & str);
       virtual void install_trace(double dRate);
-      virtual bool register_spa_file_type();
+      virtual bool register_application_as_spa_file_type_handler();
 
-      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
-      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
-      virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      //virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
+      //virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      // virtual void start_program_files_app_app_admin(string strPlatform, string strConfiguration);
 
 
 

@@ -110,7 +110,7 @@ namespace str
 
 
 
-   bool CLASS_DECL_ACME eat_before(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool CLASS_DECL_ACME eat_before(string & strBefore,const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
    bool CLASS_DECL_ACME eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
 

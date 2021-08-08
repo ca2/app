@@ -23,7 +23,9 @@ namespace user
       m_penHighlight(e_create)
    {
 
-      m_dItemHeight = 32.0;
+      m_sizeMaximumItem.cx = 16;
+      m_sizeMaximumItem.cy = 16;
+      m_dItemHeight = 16.0;
       m_plist = nullptr;
       m_piaFilterIcon = new index_biunique();
       m_piaFilterMesh = new index_array();
@@ -832,6 +834,8 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
+      m_dItemHeight = m_sizeMaximumItem.cy + 1;
+
       if(m_bTopText)
       {
 
@@ -861,6 +865,7 @@ namespace user
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
       on_change_view_size(pgraphics);
+
 
 
       //if (m_eview == impact_icon)

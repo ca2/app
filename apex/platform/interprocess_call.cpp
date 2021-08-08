@@ -81,14 +81,12 @@ void interprocess_call::post(const ::id& idPid)
 
          auto& pobjectTask = pcall->m_mapTask[idPid];
 
-         if (pobjectTask)
+         if (!pobjectTask)
          {
 
-            return;
+            pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
 
          }
-
-         pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
 
          pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_varaArgs);
 

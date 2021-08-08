@@ -340,6 +340,7 @@ i32 image_list::add(::windowing::icon * picon, int iItem)
       output_debug_string("14 16");
 
    }
+
    m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
 
    return iItem;

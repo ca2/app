@@ -218,7 +218,7 @@ bool timer_task::task_active() const
       for (::index i = 0; i < c100Ms; i++)
       {
 
-         sleep(100_ms);
+         ::sleep(100_ms);
 
          if (!task_get_run())
          {
@@ -229,7 +229,7 @@ bool timer_task::task_active() const
 
       }
 
-      sleep(r100Ms);
+      ::sleep(r100Ms);
 
       if (!task_get_run())
       {

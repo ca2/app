@@ -44,7 +44,7 @@ public:
 
    bool natural_is_shared() const { return m_countReference > 1; }
 
-   auto natural_add_ref() { return m_countReference++; }
+   auto natural_add_ref() { return ++m_countReference; }
 
    auto natural_dec_ref() { return --m_countReference; }
 

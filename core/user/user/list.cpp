@@ -913,6 +913,8 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
+      m_dItemHeight = m_sizeMaximumItem.cy + 1;
+
       auto rect1 = get_client_rect();
 
       if (!rect1)
@@ -3123,6 +3125,15 @@ namespace user
                         rectIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
                         rectIcon.Align(e_align_left_center, rectAlign);
                         pdrawitem->m_rectImage = rectIcon;
+
+                        if (ii.m_rectangle.size() > m_sizeMaximumItem)
+                        {
+
+                           m_sizeMaximumItem = ii.m_rectangle.size();
+
+                           set_need_layout();
+
+                        }
 
                         return_(pdrawitem->m_bOk, true);
 

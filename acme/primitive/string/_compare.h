@@ -71,7 +71,7 @@ namespace str
    template < typename TYPE, typename SUFFIX >
    inline bool ends_eat_ci(TYPE & str, const SUFFIX & strSuffix);
 
-   bool CLASS_DECL_ACME eat_before(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool CLASS_DECL_ACME eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
    bool CLASS_DECL_ACME eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
    bool CLASS_DECL_ACME eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);

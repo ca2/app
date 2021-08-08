@@ -27,13 +27,35 @@ namespace interprocess_communication
    }
 
 
-   void rx::receiver::on_interprocess_receive(rx * prx, const ::string & pszMessage)
+   void rx::receiver::on_interprocess_receive(rx * prx, __pointer(class dispatch_item) && pdispatchitem)
+   {
+
+      if (pdispatchitem->is_text_message())
+      {
+
+         on_interprocess_receive(prx, ::move(pdispatchitem->m_strMessage));
+
+      }
+      else
+      {
+
+         on_interprocess_receive(
+            prx,
+            (int) pdispatchitem->m_uData, 
+            ::move(pdispatchitem->m_memory));
+
+      }
+
+   }
+
+
+   void rx::receiver::on_interprocess_receive(rx * prx, ::string && strMessage)
    {
 
    }
 
 
-   void rx::receiver::on_interprocess_receive(rx * prx, int message, void * pdata, memsize len)
+   void rx::receiver::on_interprocess_receive(rx * prx, int message, ::memory && memory)
    {
 
    }
@@ -231,6 +253,21 @@ namespace interprocess_communication
       }
 
 
+      ::e_status rx::on_initialize_object()
+      {
+
+         fork([this]()
+            {
+
+               task_dispatch();
+
+            });
+
+         return ::success;
+
+      }
+
+
       bool rx::create(const ::string & pszKey)
       {
 
@@ -249,10 +286,8 @@ namespace interprocess_communication
       }
 
 
-      void * rx::on_interprocess_receive(rx * prx, const ::string & pszMessage)
+      void rx::on_interprocess_receive(::string && strMessage)
       {
-
-         string strMessage(pszMessage);
 
          if (::str::begins_ci(strMessage, "synch_"))
          {
@@ -260,7 +295,7 @@ namespace interprocess_communication
             if (m_preceiver != nullptr)
             {
 
-               m_preceiver->on_interprocess_receive(prx, strMessage);
+               m_preceiver->on_interprocess_receive(this, ::move(strMessage));
 
             }
 
@@ -268,57 +303,62 @@ namespace interprocess_communication
          else
          {
 
-            get_application()->fork([this, prx, strMessage]()
-            {
+            dispatch_message(::move(strMessage));
+            //get_application()->fork([this, prx, strMessage]()
+            //{
 
-               if (m_preceiver != nullptr)
-               {
+            //   if (m_preceiver != nullptr)
+            //   {
 
-                  m_preceiver->on_interprocess_receive(prx, strMessage);
+            //      m_preceiver->on_interprocess_receive(prx, strMessage);
 
-               }
+            //   }
 
-            });
+            //});
 
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
-         return nullptr;
+         //return nullptr;
 
       }
 
 
-      void * rx::on_interprocess_receive(rx * prx, int message, void * pdata, memsize len)
+      void rx::on_interprocess_receive(int message, ::memory && memory)
+      {
+
+         ///memory memory(pdata, len);
+
+         dispatch_message(message, ::move(memory));
+
+         //if (m_preceiver != nullptr)
+         //{
+
+           // m_preceiver->on_interprocess_receive(prx, message, pdata, len);
+
+         //}
+
+         // ODOW - on date of writing : return ignored by this windows implementation
+
+         //return nullptr;
+
+      }
+
+
+      void rx::on_interprocess_post(i64 a, i64 b)
       {
 
          if (m_preceiver != nullptr)
          {
 
-            m_preceiver->on_interprocess_receive(prx, message, pdata, len);
+            m_preceiver->on_interprocess_post(this, a, b);
 
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
 
-         return nullptr;
-
-      }
-
-
-      void * rx::on_interprocess_post(rx * prx, i64 a, i64 b)
-      {
-
-         if (m_preceiver != nullptr)
-         {
-
-            m_preceiver->on_interprocess_post(prx, a, b);
-
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return nullptr;
+         //return nullptr;
 
       }
 
@@ -335,6 +375,98 @@ namespace interprocess_communication
       {
 
          return false;
+
+      }
+
+      
+      void rx::dispatch_message(::string && strMessage)
+      {
+
+         auto pdispatchitem = __new(class dispatch_item(::move(strMessage)));
+
+         dispatch_item(::move(pdispatchitem));
+
+      }
+
+
+      void rx::dispatch_message(::u64 uData, ::memory && memory)
+      {
+
+         auto pdispatchitem = __new(class dispatch_item(uData, ::move(memory)));
+
+         dispatch_item(::move(pdispatchitem));
+
+      }
+
+
+      void rx::dispatch_item(__pointer(class dispatch_item) && pdispatchitem)
+      {
+
+         synchronous_lock synchronouslock(&m_mutexDispatch);
+
+         bool bWasEmpty = m_dispatchitema.is_empty();
+
+         m_dispatchitema.add(::move(pdispatchitem));
+
+         if (bWasEmpty)
+         {
+
+            m_evDispatchItemNew.SetEvent();
+
+         }
+
+      }
+
+
+      void rx::task_dispatch()
+      {
+
+         auto ptask = ::get_task();
+
+         single_lock singlelock(&m_mutexDispatch);
+
+         while (ptask->task_get_run())
+         {
+
+            if (m_evDispatchItemNew.wait(1_s).succeeded())
+            {
+
+               singlelock.lock();
+
+               while (m_dispatchitema.has_element()
+                  && ptask->task_get_run())
+               {
+
+                  {
+
+                     auto pdispatchitem = m_dispatchitema.pick_first();
+
+                     singlelock.unlock();
+
+                     try
+                     {
+
+                        m_preceiver->on_interprocess_receive(this, ::move(pdispatchitem));
+
+                     }
+                     catch (...)
+                     {
+
+                     }
+
+                  }
+
+                  singlelock.lock();
+
+               }
+
+               m_evDispatchItemNew.ResetEvent();
+
+               singlelock.unlock();
+
+            }
+
+         }
 
       }
 

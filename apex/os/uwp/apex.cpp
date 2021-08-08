@@ -152,39 +152,7 @@ bool os_finalize()
 
 }
 */
-/*
 
-LSTATUS
-APIENTRY
-WinRegGetValueW(
-    HKEY hkey,
-    const widechar * lpSubKey,
-    const widechar * lpValue,
-    ::u32 dwFlags,
-    LPDWORD pdwType,
-	 PVOID pvData,
-    LPDWORD pcbData
-    )
-{
-   if(g_pfnRegGetValueW != nullptr)
-   {
-      return g_pfnRegGetValueW(hkey, lpSubKey, lpValue, dwFlags, pdwType, pvData, pcbData);
-   }
-   else
-   {
-      LSTATUS lstatus = RegQueryValueExW(hkey, lpSubKey, nullptr, pdwType, (LPBYTE) pvData, pcbData);
-      if(lstatus == ERROR_SUCCESS)
-      {
-         if(pvData != nullptr && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
-         {
-            ((WCHAR *)pvData)[*pcbData] = L'\0';
-         }
-      }
-      return lstatus;
-   }
-}
-
-*/
 
 /*Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
 Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;

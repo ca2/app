@@ -133,7 +133,7 @@
 
       using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 
-      void on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage) override;
+      void on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage) override;
 
       virtual bool start(const ::string & strApp);
 

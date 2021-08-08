@@ -165,6 +165,19 @@ public:
 
    }
 
+   inline ::index add_item(__pointer(T) && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   {
+
+      ::index nIndex = this->m_nSize;
+
+      this->allocate(nIndex + 1);
+
+      this->last() = ::move(p);
+
+      return nIndex;
+
+   }
+
    template < container_type CONTAINER >
    ::index add(const CONTAINER & a)
    {
@@ -174,10 +187,25 @@ public:
    }
 
 
-   ::index add(T * p)
+   //::index add(T * p)
+   //{
+
+   //   return this->add_item(p);
+
+   //}
+
+   ::index add(const __pointer(T) & p)
    {
 
       return this->add_item(p);
+
+   }
+
+
+   ::index add(__pointer(T) && p)
+   {
+
+      return this->add_item(::move(p));
 
    }
 

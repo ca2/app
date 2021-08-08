@@ -32,6 +32,7 @@ namespace user
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
+      ::size_i32                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;

@@ -366,6 +366,23 @@ namespace acme
       virtual array <::serial::port_info> list_serial_ports();
 
 
+      virtual string get_user_language();
+
+
+      virtual bool get_application_exclusivity_security_attributes(memory & memory);
+
+      virtual bool register_spa_file_type(const ::string & strAppIdHandler);
+
+      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
+      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual ::e_status start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+
+      virtual ::e_status get_folder_path_from_user(::file::path & pathFolder);
+
+
+      virtual ::string expand_environment_variables(const ::string & str);
+
+
    };
 
 

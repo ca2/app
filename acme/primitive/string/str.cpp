@@ -422,7 +422,7 @@ namespace str
    }
 
 
-   bool eat_before(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound)
+   bool eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound)
    {
 
       ASSERT(&str != &strBefore);

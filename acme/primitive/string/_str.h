@@ -245,6 +245,8 @@ namespace str
 
    CLASS_DECL_ACME string token(string & str, const ansichar * pszSeparatorText, bool bWithSeparator = false);
 
+   //CLASS_DECL_ACME void token(string & strToken, ::string & strSource, const ansichar * pszSeparatorText, bool bWithSeparator = false);
+
    CLASS_DECL_ACME string line(string& str, bool bWithNewLine = false);
 
    CLASS_DECL_ACME string pad(const ansichar * psz, ::count iLen, const ansichar * pszPattern, e_pad epad);

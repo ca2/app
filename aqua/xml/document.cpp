@@ -119,7 +119,7 @@ namespace xml
 
       m_pnodeRoot->initialize_matter(this);
 
-      m_nodea.add(m_pnodeRoot);
+      m_nodea.add(m_pnodeRoot.m_p);
 
    }
 

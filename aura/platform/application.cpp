@@ -471,7 +471,7 @@ namespace aura
 
                      pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
-                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
+                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, ::move(m));
 
                   }
 

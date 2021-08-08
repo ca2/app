@@ -126,7 +126,6 @@ CLASS_DECL_ACME string file_title_dup(const char * path);
 CLASS_DECL_ACME string file_name_dup(const char * path);
 
 
-CLASS_DECL_ACME string file_get_mozilla_firefox_plugin_container_path();
 
 
 

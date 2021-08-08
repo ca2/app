@@ -546,8 +546,8 @@ public:
 
    
    TYPE pick_at(::index nIndex);
-   TYPE pick_first(::index nIndex = 0) { return pick_at(nIndex); }
-   TYPE pick_last(::index nIndex = -1) { return pick_at(m_nSize + nIndex); }
+   TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
+   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(m_nSize + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 

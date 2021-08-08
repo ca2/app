@@ -172,7 +172,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      add_thread();
+      branch();
 
       do_initialize();
 
@@ -186,37 +186,37 @@ namespace user
    }
 
 
-   void shell::add_thread()
-   {
+   //void shell::add_thread()
+   //{
 
-      synchronous_lock synchronouslock(mutex());
+   //   synchronous_lock synchronouslock(mutex());
 
-      auto pthread = __new(thread(this));
+   //   auto pthread = __new(thread(this));
 
-      add_composite(pthread);
+   //   add_composite(pthread);
 
-   }
-
-
-   shell::thread::thread(shell * pshell)
-   {
-
-      initialize(pshell);
-
-      __refer(m_pshell, pshell);
-
-      branch();
-
-   }
+   //}
 
 
-   shell::thread::~thread()
-   {
+   //shell::thread::thread(shell * pshell)
+   //{
 
-   }
+   //   initialize(pshell);
+
+   //   __refer(m_pshell, pshell);
+
+   //   branch();
+
+   //}
 
 
-   ::e_status shell::thread::init_thread()
+   //shell::thread::~thread()
+   //{
+
+   //}
+
+
+   /*::e_status shell::thread::init_thread()
    {
 
       m_bSimpleMessageLoop = false;
@@ -234,7 +234,7 @@ namespace user
 
       return true;
 
-   }
+   }*/
 
    bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
    {
@@ -430,9 +430,14 @@ namespace user
    void shell::on_add_default_file_image()
    {
 
-      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_normal, "matter://quickaccess.ico");
+      create_file_icon_image("bookmark://", file_attribute_directory, icon_normal, "icon://quickaccess");
 
-      create_file_icon_image(m_psystem->m_pacmedir->bookmark(), file_attribute_directory, icon_open, "matter://quickaccess.ico");
+      create_file_icon_image("bookmark://", file_attribute_directory, icon_open, "icon://quickaccess");
+
+      create_file_icon_image("dropbox://", file_attribute_directory, icon_normal, "icon://dropbox");
+
+      create_file_icon_image("dropbox://", file_attribute_directory, icon_open, "icon://dropbox");
+
 
    }
 
@@ -649,50 +654,6 @@ namespace user
 
       }
 
-      //if (m_threadptra.get_count() < m_iMaxThreadCount)
-      //{
-
-      //   bool bMax = m_iActiveThreadCount >= m_threadptra.get_count();
-
-      //   if (bMax)
-      //   {
-
-      //      if (!m_bMax)
-      //      {
-
-      //         m_bMax = true;
-
-      //         m_millisLastMax= ::millis::now();
-
-      //      }
-      //      else if (m_millisLastMax.elapsed() > 50)
-      //      {
-
-      //         add_thread();
-
-      //      }
-
-      //   }
-      //   else
-      //   {
-
-      //      m_bMax = false;
-
-      //   }
-
-      //}
-
-      //index iThread = m_iThread;
-
-      //iThread = iThread % m_threadptra.get_size();
-
-      //i32 iImage = m_threadptra[iThread]->_get_file_image(oswindow, imagekey);
-
-      //iThread++;
-
-      //m_iThread = iThread;
-
-      //return iImage;
       return 0x80000000;
 
    }
@@ -706,15 +667,17 @@ namespace user
    }
 
 
-   ::e_status shell::thread::run()
+   ::e_status shell::run()
    {
+
+      defer_co_initialize_ex(false);
 
       while (task_get_run())
       {
 
          image_key imagekey;
 
-         m_pshell->get_scheduled_image_key(imagekey);
+         get_scheduled_image_key(imagekey);
 
          if (!task_get_run())
          {
@@ -726,20 +689,20 @@ namespace user
          try
          {
 
-            int iImage = m_pshell->_get_file_image(imagekey);
+            int iImage = _get_file_image(imagekey);
 
-            synchronous_lock synchronouslock(m_pshell->mutex());
+            synchronous_lock synchronouslock(mutex());
 
             if (iImage & 0x80000000)
             {
 
-               m_pshell->m_imagemap.erase_key(imagekey);
+               m_imagemap.erase_key(imagekey);
 
             }
             else
             {
 
-               m_pshell->m_imagemap.set_at(imagekey, iImage);
+               m_imagemap.set_at(imagekey, iImage);
 
             }
 
@@ -756,29 +719,203 @@ namespace user
    }
 
 
-   i32 shell::add_icon_path(::file::path path, const ::color::color& colorBackground, int iImage)
+   i32 shell::set_icon(int iImage, const ::file::path & pathIcon, const ::color::color& colorBackground)
    {
 
-      return -1;
+      synchronous_lock synchronouslock(mutex());
+
+      auto iaSize = m_iaSize;
+
+      synchronouslock.unlock();
+
+      ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathIcon);
+
+      for (auto iSize : m_iaSize)
+      {
+
+         auto pcontext = m_pcontext->m_pauracontext;
+
+         auto pcontextimage = pcontext->context_image();
+
+         auto pimage = pcontextimage->get_image(path);
+
+         if (::is_null(pimage))
+         {
+
+            output_debug_string("error loading image: \"" + path + "\"\n");
+
+         }
+
+         iImage = set_image(iImage, pimage, colorBackground);
+
+      }
+
+      return iImage;
+
+   }
+
+   
+   i32 shell::set_image(int iImage, ::image * pimage, const ::color::color & colorBackground)
+   {
+
+      int iSize = pimage->get_size().cy;
+
+      synchronous_lock synchronouslock(m_pil[iSize]->mutex());
+
+      synchronous_lock slHover(m_pilHover[iSize]->mutex());
+
+      iImage = m_pil[iSize]->add_image(pimage, 0, 0, iImage);
+
+      iImage = add_hover_image(iSize, iImage, colorBackground);
+
+      return iImage;
 
    }
 
 
-   i32 shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, string strIcoLocation)
+   i32 shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon)
    {
 
+      int iReturn = -1;
+
+      auto pcontext = m_pcontext->m_papexcontext;
+
+      auto pathFinal = pcontext->defer_process_path(strPath);
+
+      if (pathFinal != strPath)
+      {
+
+         iReturn = _create_file_icon_image(pathFinal, eattribute, eicon, strIcon);
+
+      }
+
+      iReturn = _create_file_icon_image(strPath, eattribute, eicon, strIcon);
+
+      return iReturn;
+
+   }
+
+
+   i32 shell::_create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIconParam)
+   {
+    
       image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);
 
       i32 iImage;
 
-      if (reserve_image(imagekey, iImage))
+      if (!reserve_image(imagekey, iImage))
       {
 
-         ::file::path path = strIcoLocation;
-
-         add_icon_path(path, imagekey.m_cr, iImage);
+         return -1;
 
       }
+
+      string strIcon(strIconParam);
+
+      ::file::path pathIcon;
+
+      m_imagemap[imagekey] = iImage;
+
+      if (strIcon.begins_eat_ci("icon://"))
+      {
+
+         auto pcontext = m_pcontext->m_papexcontext;
+
+         auto pcontextimage = pcontext->context_image();
+
+         ::file::path pathFolder = m_psystem->m_pacmedir->ca2roaming() / "matter/icon";
+
+         __pointer(::image) pimage;
+
+         int_array iaSizeFallback;
+
+         iaSizeFallback.add(1024);
+         iaSizeFallback.add(512);
+         iaSizeFallback.add(256);
+         iaSizeFallback.add(128);
+         iaSizeFallback.add(64);
+         iaSizeFallback.add(48);
+         iaSizeFallback.add(32);
+         iaSizeFallback.add(24);
+         iaSizeFallback.add(16);
+
+         for (int & iSize : m_iaSize)
+         {
+
+            string strSize;
+
+            strSize.Format("%d", iSize);
+
+            ::file::path pathImage = pathFolder / strSize / (strIcon + ".png");
+
+            pimage = nullptr;
+
+            if (file_exists(pathImage))
+            {
+
+               pimage = pcontextimage->get_image(pathImage);
+
+            }
+
+            if (!::is_ok(pimage))
+            {
+
+               for (int & iSizeFallback : iaSizeFallback)
+               {
+
+                  if (iSizeFallback != iSize)
+                  {
+
+                     strSize.Format("%d", iSizeFallback);
+
+                     pathImage = pathFolder / strSize / (strIcon + ".png");
+
+                     if (file_exists(pathImage))
+                     {
+
+                        pimage = pcontextimage->get_image(pathImage);
+
+                        if (::is_ok(pimage))
+                        {
+
+                           break;
+
+                        }
+
+                     }
+
+                  }
+
+               }
+
+            }
+
+            if (::is_ok(pimage))
+            {
+
+               pimage = pimage->get_image(iSize, iSize);
+
+               set_image(iImage, pimage, imagekey.m_cr);
+
+            }
+
+         }
+
+         return iImage;
+
+         auto & dir = pcontext->dir();
+
+         pathIcon = pathFolder / "ico" / (strIcon + ".ico");
+
+      }
+      else
+      {
+
+         pathIcon = strIcon;
+
+      }
+
+      set_icon(iImage, pathIcon, imagekey.m_cr);
 
       return iImage;
 
@@ -917,18 +1054,18 @@ namespace user
    }
 
 
-   ::e_status shell::thread::destroy()
-   {
+   //::e_status shell::thread::destroy()
+   //{
 
-      return ::thread::destroy();
+   //   return ::thread::destroy();
 
-   }
+   //}
 
 
    ::e_status shell::destroy()
    {
 
-      ::object::destroy();
+      ::task::destroy();
 
       //task_erase_all();
 

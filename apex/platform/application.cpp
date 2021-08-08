@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "apex/operating_system.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -19,15 +18,6 @@
 #include "node.h"
 //#include "apex/os/_os.h"
 
-#ifdef WINDOWS_DESKTOP
-
-int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
-
-
-
-#include "apex/os/windows/_.h"
-
-#endif
 
 
 extern ::app_core * g_pappcore;
@@ -2195,30 +2185,30 @@ void application::term_instance()
 
 ::e_status application::application_pre_run()
 {
-
-INFO("apex::application::application_pre_run");
-
-#ifdef WINDOWS_DESKTOP
-
-MSG msg;
-
-// Create Windows Message Queue
-::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
-
-MESSAGE message;
-
-__copy(message, msg);
-
-auto psystem = m_psystem->m_papexsystem;
-
-if (!is_system() && is_true("SessionSynchronizedInput"))
-{
-
-::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
-
-}
-
-#endif
+//
+//INFO("apex::application::application_pre_run");
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//MSG msg;
+//
+//// Create Windows Message Queue
+//::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
+//
+//MESSAGE message;
+//
+//__copy(message, msg);
+//
+//auto psystem = m_psystem->m_papexsystem;
+//
+//if (!is_system() && is_true("SessionSynchronizedInput"))
+//{
+//
+//::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
+//
+//}
+//
+//#endif
 
 m_millisHeartBeat.Now();
 
@@ -3312,174 +3302,139 @@ return nullptr;
 ::e_status application::init1()
 {
 
-auto estatus = initialize_context();
+   auto estatus = initialize_context();
 
-if (!estatus)
-{
+   if (!estatus)
+   {
 
-return estatus;
+      return estatus;
 
-}
+   }
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
+   estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
 
-if (!estatus)
-{
+   if (!estatus)
+   {
 
-return estatus;
+      return estatus;
 
-}
+   }
 
-if (psystem)
-{
+   if (psystem)
+   {
 
-if (psystem->m_pintstringLanguageResourceMap != nullptr)
-{
+      if (psystem->m_pintstringLanguageResourceMap != nullptr)
+      {
 
-m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
+         m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
 
-}
+      }
 
-}
+   }
 
-if (psystem->m_bLocalization)
-{
+   if (psystem->m_bLocalization)
+   {
 
-string strLang = psystem->get_user_language();
+      string strLang = psystem->get_user_language();
 
-if (!m_puserlanguagemap->set_language(this, strLang))
-{
+      if (!m_puserlanguagemap->set_language(this, strLang))
+      {
 
-m_puserlanguagemap->set_default_language(this);
+         m_puserlanguagemap->set_default_language(this);
 
-}
+      }
 
-}
+   }
 
-m_millisHeartBeat.Now();
+   m_millisHeartBeat.Now();
 
-if (!notify_init1())
-{
+   if (!notify_init1())
+   {
 
-return ::error_failed;
+      return ::error_failed;
 
-}
+   }
 
-if (psystem->m_bLocalization)
-{
+   if (psystem->m_bLocalization)
+   {
 
-string strLocale;
+      string strLocale;
 
-string strSchema;
+      string strSchema;
 
-if (psystem->get_user_language().has_char())
-{
+      //if (psystem->get_user_language().has_char())
+      //{
 
-m_strLocale = psystem->get_user_language();
+         m_strLocale = psystem->get_user_language();
 
-m_strSchema = m_strLocale;
+         m_strSchema = m_strLocale;
 
-}
-else
-{
+      //}
 
-#ifdef _UWP
+      if (strLocale.is_empty())
+      {
 
-string_array stra;
+         strLocale = "_std";
 
-try
-{
+      }
 
-   stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+      if (strSchema.is_empty())
+      {
 
-}
-catch (long)
-{
+         strSchema = strLocale;
 
-}
+      }
 
-strLocale = stra[0];
+      if (psystem->payload("locale").get_count() > 0)
+      {
 
-strSchema = stra[0];
+         strLocale = psystem->payload("locale").stra()[0];
 
-#elif defined(WINDOWS)
+      }
 
-LANGID langid = ::GetUserDefaultLangID();
+      if (psystem->payload("schema").get_count() > 0)
+      {
 
-string strIso = ::windows::langid_to_iso(langid);
+         strSchema = psystem->payload("schema").stra()[0];
 
-strLocale = strIso;
+      }
 
-strSchema = strIso;
+      if (get_application()->payload("locale").get_count() > 0)
+      {
 
-#endif
+         strLocale = get_application()->payload("locale").stra()[0];
 
-}
+      }
 
-if (strLocale.is_empty())
-{
+      if (get_application()->payload("schema").get_count() > 0)
+      {
 
-strLocale = "_std";
+         strSchema = get_application()->payload("schema").stra()[0];
 
-}
+      }
 
-if (strSchema.is_empty())
-{
+      set_locale(strLocale, ::e_source_database);
 
-strSchema = strLocale;
+      set_schema(strSchema, ::e_source_database);
 
-}
+   }
 
-if (psystem->payload("locale").get_count() > 0)
-{
+   if (!initialize_contextualized_theme())
+   {
 
-strLocale = psystem->payload("locale").stra()[0];
+      FATAL("Failed to initialize_contextualized_theme");
 
-}
+      return false;
 
-if (psystem->payload("schema").get_count() > 0)
-{
+   }
 
-strSchema = psystem->payload("schema").stra()[0];
+   INFO("start");
 
-}
+   m_millisHeartBeat.Now();
 
-if (get_application()->payload("locale").get_count() > 0)
-{
-
-strLocale = get_application()->payload("locale").stra()[0];
-
-}
-
-if (get_application()->payload("schema").get_count() > 0)
-{
-
-strSchema = get_application()->payload("schema").stra()[0];
-
-}
-
-set_locale(strLocale, ::e_source_database);
-
-set_schema(strSchema, ::e_source_database);
-
-}
-
-if (!initialize_contextualized_theme())
-{
-
-FATAL("Failed to initialize_contextualized_theme");
-
-return false;
-
-}
-
-INFO("start");
-
-m_millisHeartBeat.Now();
-
-return ::success;
+   return ::success;
 
 }
 
@@ -3752,55 +3707,22 @@ bool application::check_exclusive(bool & bHandled)
 
 #endif
 
-   bool bSetOk;
-
    bool bResourceException = false;
 
-   #ifdef WINDOWS_DESKTOP
+   auto psystem = m_psystem;
 
-   LPSECURITY_ATTRIBUTES psa = nullptr;
+   auto pnode = psystem->node();
 
-   bSetOk = false;
+   memory memorySecurityAttributes;
 
-   SECURITY_ATTRIBUTES MutexAttributes;
-   ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-   MutexAttributes.nLength = sizeof(MutexAttributes);
-   MutexAttributes.bInheritHandle = false; // object uninheritable
-   // declare and initialize a security descriptor
-   SECURITY_DESCRIPTOR SD;
-   bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
-   if (bInitOk)
-   {
-   // give the security descriptor a Null Dacl
-   // done using the  "true, (PACL)nullptr" here
-   bSetOk = SetSecurityDescriptorDacl(&SD,
-                                   true,
-                                   (PACL)nullptr,
-                                   false) != false;
-   }
+   bool bSetOk = pnode->get_application_exclusivity_security_attributes(memorySecurityAttributes);
+
+   void * psaSecurityAttributes = memorySecurityAttributes.get_data();
 
    if (bSetOk)
    {
 
-   MutexAttributes.lpSecurityDescriptor = &SD;
-
-
-   psa = &MutexAttributes;
-
-
-   }
-
-   #else
-
-   bSetOk = true;
-
-   #endif
-
-
-      if (bSetOk)
-      {
-
-      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
       {
@@ -3830,7 +3752,7 @@ bool application::check_exclusive(bool & bHandled)
       if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
       {
 
-      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if (bGlobalIdExclusiveFail)
       {
@@ -3859,7 +3781,7 @@ bool application::check_exclusive(bool & bHandled)
 
       }
 
-      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
       {
@@ -3889,7 +3811,7 @@ bool application::check_exclusive(bool & bHandled)
    if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
    {
 
-   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
    if (bLocalIdExclusiveFail)
    {
@@ -4979,146 +4901,28 @@ synchronous_lock synchronouslock(mutex());
 }
 
 
-bool application::register_spa_file_type()
+bool application::register_application_as_spa_file_type_handler()
 {
 
-#ifdef WINDOWS_DESKTOP
+   auto psystem = m_psystem;
 
-HKEY hkey;
+   auto pnode = psystem->node();
 
-wstring extension = L".spa";                     // file extension
-wstring desc = L"spafile";          // file type description
-wstring content_type = L"application/x-spa";
+   auto bOk= pnode->register_spa_file_type(m_strAppId);
 
-wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+   if (!bOk)
+   {
 
-wstring icon(app);
+      return false;
 
-app = L"\"" + app + L"\"" + L" \"%1\"";
-icon = L"\"" + icon + L"\",107";
+   }
 
-wstring action = L"Open";
-
-wstring sub = L"\\shell\\";
-
-wstring path = L"spafile\\shell\\open\\command";
-
-
-// 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-RegCloseKey(hkey);
-
-
-
-// 2: Create Subkeys for action ( "Open with my program" )
-// HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
-RegCloseKey(hkey);
-
-
-path = L"spafile\\DefaultIcon";
-
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
-RegCloseKey(hkey);
-
-wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
-
-int iRetry = 9;
-
-while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
-{
-
-dir::mk(dir::name(utf8(wstr.c_str())).c_str());
-
-file_put_contents(utf8(wstr.c_str()).c_str(), "");
-
-iRetry--;
-
-sleep(100_ms);
-
-}
-
-#endif
-
-return true;
+   return true;
 
 }
 
 
-bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
-{
 
-::install::admin_mutex smutex(strPlatform);
-
-return smutex.already_exists();
-
-}
-
-
-void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-{
-
-if (low_is_app_app_admin_running(strPlatform, strConfiguration))
-{
-
-return;
-
-}
-
-start_program_files_app_app_admin(strPlatform, strConfiguration);
-
-}
-
-
-void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-SHELLEXECUTEINFOW sei = {};
-
-string str = m_psystem->m_pacmepath->app_app_admin(strPlatform, strConfiguration);
-
-if (!::file_exists(str))
-{
-
-return;
-
-}
-
-::install::admin_mutex mutexStartup("-startup");
-
-wstring wstr(str);
-
-sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
-sei.lpVerb = L"RunAs";
-
-sei.lpFile = wstr.c_str();
-
-::ShellExecuteExW(&sei);
-
-DWORD dwGetLastError = GetLastError();
-
-#endif
-
-}
 
 
 string application::get_app_id(string wstr)
@@ -6560,27 +6364,27 @@ return false;
 }
 else
 {
-#ifdef WINDOWS_DESKTOP
-// when this process is started in the context of a system account,
-// for example, this code ensure that the process will
-// impersonate a loggen on ::account::user
-HANDLE hprocess;
-HANDLE htoken;
-
-hprocess = ::GetCurrentProcess();
-
-if (!OpenProcessToken(
-hprocess,
-TOKEN_ALL_ACCESS,
-&htoken))
-return false;
-
-if (!ImpersonateLoggedOnUser(htoken))
-{
-TRACELASTERROR();
-return false;
-}
-#endif
+//#ifdef WINDOWS_DESKTOP
+//// when this process is started in the context of a system account,
+//// for example, this code ensure that the process will
+//// impersonate a loggen on ::account::user
+//HANDLE hprocess;
+//HANDLE htoken;
+//
+//hprocess = ::GetCurrentProcess();
+//
+//if (!OpenProcessToken(
+//hprocess,
+//TOKEN_ALL_ACCESS,
+//&htoken))
+//return false;
+//
+//if (!ImpersonateLoggedOnUser(htoken))
+//{
+//TRACELASTERROR();
+//return false;
+//}
+//#endif
 }
 
 m_millisHeartBeat.Now();
@@ -9378,42 +9182,6 @@ pmessage->m_bRet = true;
 //}
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-bool Is_Vista_or_Later()
-{
-OSVERSIONINFOEX osvi;
-DWORDLONG dwlConditionMask = 0;
-byte op = VER_GREATER_EQUAL;
-
-// Initialize the OSVERSIONINFOEX structure.
-
-ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-osvi.dwMajorVersion = 6;
-//   osvi.dwMinorVersion = 1;
-//   osvi.wServicePackMajor = 0;
-//   osvi.wServicePackMinor = 0;
-
-// Initialize the condition mask.
-
-VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
-//VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
-//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
-//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
-
-// Perform the test.
-
-return VerifyVersionInfo(
-&osvi,
-VER_MAJORVERSION | VER_MINORVERSION |
-VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-dwlConditionMask) != false;
-}
-
-
-#endif
 
 
 void application::pre_translate_message(::message::message * pmessage)

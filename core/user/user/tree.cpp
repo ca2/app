@@ -48,6 +48,9 @@ namespace user
       m_evOpen.m_eobject += e_object_alertable_wait;
       m_evExpand.m_eobject += e_object_alertable_wait;
 
+      m_sizeItemMaximum.cx = 16;
+      m_sizeItemMaximum.cy = 16;
+
    }
 
 
@@ -364,6 +367,15 @@ namespace user
       __pointer(::data::tree_item) pitem = data.m_pitem;
 
       __pointer(::image_list) pimagelistItem = pitem->get_image_list();
+
+      if (pimagelistItem->m_size > m_sizeItemMaximum)
+      {
+
+         m_sizeItemMaximum = pimagelistItem->m_size;
+
+         set_need_layout();
+
+      }
 
       __pointer(::image_list) pimagelistTree = get_image_list();
 
@@ -891,8 +903,8 @@ namespace user
 
          prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
-
          int iHDiff = 0;
+
          if (m_pimagelist != nullptr)
          {
 
@@ -1514,7 +1526,7 @@ namespace user
 
       size = pgraphics->get_text_extent(unitext("Ág"));
 
-      int iItemHeight = 1;
+      int iItemHeight = m_sizeItemMaximum.cy + 1;
 
       if (size.cy > iItemHeight)
       {

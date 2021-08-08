@@ -8949,7 +8949,33 @@ void image::defer_update_image()
 }
 
 
+__pointer(::image) image::get_image(const ::size_i32 & size)
+{
 
+   if (size == get_size())
+   {
+
+      return this;
+
+   }
+
+   auto pimageNew = create_image(size);
+
+   pimageNew->g()->stretch(pimageNew->rectangle(), this, this->rectangle());
+
+   return pimageNew;
+
+}
+
+
+__pointer(::image) image::get_image(::i32 cx, ::i32 cy)
+{
+
+   auto pimageNew = get_image( ::size_i32( cx, cy ));
+
+   return pimageNew;
+
+}
 
 
 #if 0

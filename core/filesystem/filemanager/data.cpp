@@ -305,7 +305,7 @@ namespace filemanager
 
       }
 
-      if (pszDefault != nullptr && strlen(pszDefault) > 0)
+    /*  if (pszDefault != nullptr && strlen(pszDefault) > 0)
       {
 
          strPath = pszDefault;
@@ -316,7 +316,7 @@ namespace filemanager
 
          strPath = pcontext->m_papexcontext->dir().desktop();
 
-      }
+      }*/
 
       return strPath;
 

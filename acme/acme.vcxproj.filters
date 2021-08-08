@@ -120,9 +120,6 @@
     <Filter Include="Header Files\node\windows_common">
       <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
     </Filter>
@@ -209,9 +206,6 @@
     </Filter>
     <Filter Include="Header Files\node\cross\windows">
       <UniqueIdentifier>{6d39aee1-bca9-483c-876b-dca6baed1168}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{77e2d591-68ae-463a-a9ba-f6b32cf164fa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\promise_predicate">
       <UniqueIdentifier>{7608eaa1-ccb5-4c11-a897-cf0c4fce30c7}</UniqueIdentifier>
@@ -1010,9 +1004,6 @@
     <ClInclude Include="os\windows\environment_variable.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\extract_icon.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\file.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -1035,9 +1026,6 @@
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\process.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\registry.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\shell1.h">
@@ -1789,9 +1777,6 @@
     </ClInclude>
     <ClInclude Include="node\cross\windows\file_memory_map.h">
       <Filter>Header Files\node\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\itemidlist.h">
-      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\mutex.h">
       <Filter>Header Files\os\windows</Filter>
@@ -3145,9 +3130,6 @@
     <ClCompile Include="os\windows\internal.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\itemidlist.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\language.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3161,9 +3143,6 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\process.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\registry.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\simple_app.cpp">
@@ -3453,9 +3432,6 @@
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\extract_icon.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>

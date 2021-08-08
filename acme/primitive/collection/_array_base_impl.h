@@ -468,7 +468,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pick_at(::index n
 
    m_nSize -= nCount;
 
-   return t;
+   return ::move(t);
 
 }
 

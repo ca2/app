@@ -112,7 +112,9 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
 
    const unichar * pwszName = pstrName == nullptr ? nullptr : (const unichar *)wstrName;
 
-   m_hsync = ::CreateMutexExW(PARAM_SEC_ATTRS, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
+   auto psa = (LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS;
+
+   m_hsync = ::CreateMutexExW(psa, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 
    DWORD dwLastError = ::GetLastError();
 

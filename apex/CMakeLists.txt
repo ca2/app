@@ -372,10 +372,6 @@ list(APPEND apex_source
    parallelization/handler_manager.cpp
    parallelization/handler_manager.cpp
    parallelization/retry.h
-   # parallelization/retry_multi_lock.cpp
-   # parallelization/retry_multi_lock.h
-   # parallelization/retry_single_lock.cpp
-   # parallelization/retry_single_lock.h
    parallelization/service.cpp
    parallelization/service.h
    parallelization/service_handler.cpp
@@ -846,7 +842,7 @@ if (LINUX)
       node/operating_system/linux/language.cpp
       #os/linux/library.cpp
       node/operating_system/linux/linux_linux.h
-      node/operating_system/linux/lock.cpp
+      #node/operating_system/linux/lock.cpp
       node/operating_system/linux/menu.cpp
       node/operating_system/linux/message_loop.cpp
       node/operating_system/linux/parallelization.cpp

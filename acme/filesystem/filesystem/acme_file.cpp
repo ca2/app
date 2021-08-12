@@ -337,6 +337,16 @@ filesize acme_file::get_size(const char * path)
 }
 
 
+filesize acme_file::get_size(int iFile)
+{
+
+   __throw(error_interface_only);
+
+   return -1;
+
+}
+
+
 FILE * acme_file::FILE_open(const char * path, const char * attrs, int iShare)
 {
    

@@ -229,9 +229,9 @@ list(APPEND library_source
    node/_node.h
    node/serial.h
    node/operating_system/ansi/_.h
-   node/operating_system/ansi/_ansios.h
+   node/operating_system/ansi/_ansi.h
    node/operating_system/ansi/_c.h
-   node/operating_system/ansi/ansios_file.h
+   node/operating_system/ansi/ansi_file.h
    #os/ansios/callstack.h
    node/operating_system/ansi/datetime_c.h
    node/operating_system/ansi/exception_engine.h
@@ -724,7 +724,7 @@ if (LINUX)
       node/operating_system/linux/linux.inl
       node/operating_system/linux/linux_linux.h
       #os/linux/list_serial_ports.cpp
-      node/operating_system/linux/lock.cpp
+      #node/operating_system/linux/lock.cpp
       node/operating_system/linux/message_loop.cpp
       #os/linux/monitor.cpp
       node/operating_system/linux/os.cpp

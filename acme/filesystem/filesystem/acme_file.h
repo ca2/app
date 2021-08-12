@@ -36,6 +36,7 @@ public:
    virtual bool put_contents(const char * path, const char * contents, strsize len);
    virtual bool get_temp_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate);
    virtual filesize get_size(const char * path);
+   virtual filesize get_size(int iFile);
 
    virtual FILE * FILE_open(const char * path, const char * attrs, int iShare);
    virtual i32 FILE_printf(FILE * fp, const char * s, ...);

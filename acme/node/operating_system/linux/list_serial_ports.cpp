@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 //#if defined(__linux__)
 
@@ -22,6 +22,7 @@
 
 namespace serial
 {
+
 
 
    static string_array glob(const string_array & patterns);
@@ -152,18 +153,22 @@ namespace serial
    }
 
 
-   string usb_sysfs_friendly_name(const string & sys_usb_path)
+   string usb_sysfs_friendly_name(::matter * pmatter, const string & sys_usb_path)
    {
 
       unsigned int device_number = 0;
 
-      device_number = atoi(file_first_line_dup(sys_usb_path + "/devnum"));
+      auto psystem = pmatter->m_psystem;
 
-      string manufacturer = file_first_line_dup(sys_usb_path + "/manufacturer");
+      auto pacmefile = psystem->m_pacmefile;
 
-      string product = file_first_line_dup(sys_usb_path + "/product");
+      device_number = atoi(pacmefile->first_line(sys_usb_path + "/devnum"));
 
-      string serial = file_first_line_dup(sys_usb_path + "/serial");
+      string manufacturer = pacmefile->first_line(sys_usb_path + "/manufacturer");
+
+      string product = pacmefile->first_line(sys_usb_path + "/product");
+
+      string serial = pacmefile->first_line(sys_usb_path + "/serial");
 
       if (manufacturer.empty() && product.empty() && serial.empty())
       {

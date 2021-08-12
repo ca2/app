@@ -9,8 +9,8 @@
 #import "aura/node/ios/AuraWindowApp.h"
 
 
-#import "acme/os/apple/DDInvocationGrabber.h"
-#import "acme/os/apple/NSObject+DDExtensions.h"
+#import "acme/node/operating_system/apple/DDInvocationGrabber.h"
+#import "acme/node/operating_system/apple/NSObject+DDExtensions.h"
 
 
 #ifdef AURA_LANGUAGE

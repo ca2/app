@@ -1,15 +1,12 @@
 #include "framework.h"
-//#include "acme/os/console.h"
+//#include "acme/node/operating_system/console.h"
 //#include "shell.h"
 //#include "console.h"
 //#include "apex/node/posix/pipe.h"
 //#include "apex/node/posix/file_os_watcher.h"
 //#include "process.h"
 #include "_linux.h"
-#include "apex/node/_node.h"
-#include "apex/os/_os2.h"
-//#include "apex/os/_os2.h"
-//#include "copydesk.h"
+#include "apex/operating_system.h"
 
 
 void __node_apex_factory_exchange(::factory_map * pfactorymap)

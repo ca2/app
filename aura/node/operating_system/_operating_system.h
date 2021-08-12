@@ -24,12 +24,9 @@
 
 #elif defined(LINUX)
 
-#include "aura/os/linux/_linux.h"
-#include "aura/os/linux/_user.h"
-#include "aura/os/ansios/_ansios.h"
-//#ifndef WINDOWS
-//#include "acme/os/cross/windows/_windows.h"
-//#endif
+#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/node/operating_system/linux/_linux.h"
+#include "aura/node/operating_system/linux/_user.h"
 
 #elif defined(_UWP)
 

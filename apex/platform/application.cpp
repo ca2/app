@@ -78,7 +78,7 @@ void ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags);
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 #endif
 #define _GNU_SOURCE

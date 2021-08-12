@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "acme/id.h"
 #include <jni.h>
-#include "acme/os/android/_os_object.h"
-#include "acme/os/android/_os_remote.h"
+#include "acme/node/operating_system/android/_os_object.h"
+#include "acme/node/operating_system/android/_os_remote.h"
 
 
 __pointer(os_local) g_poslocal;

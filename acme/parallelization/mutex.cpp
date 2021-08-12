@@ -5,7 +5,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -23,7 +23,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #undef USE_MISC
 
 
@@ -31,7 +31,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #endif
 
 
@@ -1518,7 +1518,7 @@ bool mutex::unlock()
 
 
 
-__pointer(mutex) open_mutex(const char * lpszName)
+__pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 {
 
 #ifdef WINDOWS
@@ -1585,7 +1585,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
    if (str::begins_ci(lpszName, "Global"))
    {
 
-      path = "/::payload/tmp/ca2/lock/mutex/named";
+      path = "/payload/tmp/ca2/lock/mutex/named";
 
    }
    else
@@ -1609,11 +1609,9 @@ __pointer(mutex) open_mutex(const char * lpszName)
 
    path /= lpszName;
 
-            auto psystem = m_psystem;
+   auto pacmedir = pmatter->m_psystem->m_pacmedir;
 
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(path.folder());
+   pacmedir->create(path.folder());
 
    int iFd = open(path, O_RDWR, S_IRWXU);
 

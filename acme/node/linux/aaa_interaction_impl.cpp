@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "acme/platform/app_core.h"
-#include "acme/os/linux/_linux.h"
+#include "acme/node/operating_system/linux/_linux.h"
 //!!!#include <X11/Xatom.h>
 ////#include "third/sn/sn.h"
 #include <gdk/gdkx.h>

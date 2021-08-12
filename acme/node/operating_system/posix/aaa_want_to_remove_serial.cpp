@@ -22,7 +22,7 @@
 #include <sysexits.h>
 #include <termios.h>
 #include <sys/param.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 #if defined(__linux__)
 # include <linux/serial.h>

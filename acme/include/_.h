@@ -951,7 +951,7 @@ enum enum_optional
 #include <intsafe.h>
 #else
 
-#include "acme/os/cross/windows/_include.h"
+#include "acme/node/operating_system/cross/windows/_include.h"
 
 #endif
 
@@ -2856,7 +2856,7 @@ namespace text
 
 
 // C-includes
-//#include "acme/os/os.h"
+//#include "acme/node/operating_system/os.h"
 
 
 class thread_parameter;
@@ -3850,41 +3850,43 @@ using lresult = iptr;
 //#include "acme/account/_.h"
 
 
+#include "acme/node/operating_system/_.h"
+
 
 #if defined(LINUX)
 
-//#include "acme/os/ansios/_.h"
+//#include "acme/node/operating_system/ansi/_.h"
 
 
 #elif defined(_UWP)
 //
-//#include "acme/os/_UWP/_UWP.h"
-//#include "acme/os/_UWP/_UWP_user_impl.h"
+//#include "acme/node/operating_system/_UWP/_UWP.h"
+//#include "acme/node/operating_system/_UWP/_UWP_user_impl.h"
 //
 #elif defined(MACOS)
 //
-//#include "acme/os/ansios/ansios.h"
-//#include "acme/os/macos/macos.h"
+//#include "acme/node/operating_system/ansi/ansios.h"
+//#include "acme/node/operating_system/macos/macos.h"
 //
 #elif defined(ANDROID)
 //
-//#include "acme/os/ansios/ansios.h"
-//#include "acme/os/android/android.h"
+//#include "acme/node/operating_system/ansi/ansios.h"
+//#include "acme/node/operating_system/android/android.h"
 //
 #elif defined(WINDOWS_DESKTOP)
 //
-//#include "acme/os/windows/windows.h"
+//#include "acme/node/operating_system/windows/windows.h"
 //
 #elif defined(APPLE_IOS)
 //
-//#include "acme/os/ansios/ansios.h"
-//#include "acme/os/ios/ios.h"
-////#include "acme/os/ios/ios_windowing.h"
+//#include "acme/node/operating_system/ansi/ansios.h"
+//#include "acme/node/operating_system/ios/ios.h"
+////#include "acme/node/operating_system/ios/ios_windowing.h"
 //
 #elif defined(SOLARIS)
 //
-//#include "acme/os/ansios/ansios.h"
-//#include "acme/os/solaris/solaris_user_impl.h"
+//#include "acme/node/operating_system/ansi/ansios.h"
+//#include "acme/node/operating_system/solaris/solaris_user_impl.h"
 //
 #else
 //
@@ -4126,7 +4128,7 @@ namespace zip
 
 #ifdef ANDROID
 
-#include "acme/os/android/_os_local.h"
+#include "acme/node/operating_system/android/_os_local.h"
 
 class os_local;
 class os_remote;
@@ -4593,7 +4595,7 @@ class wcsdup_array;
 
 //#ifndef WINDOWS_DESKTOP
 //
-//#include "acme/os/cross/windows/windows_thread_impl.h"
+//#include "acme/node/operating_system/cross/windows/windows_thread_impl.h"
 //
 //#endif
 
@@ -4711,7 +4713,7 @@ class wcsdup_array;
 //#include "acme/database/_impl.h"
 
 
-//#include "acme/os/_impl.h"
+//#include "acme/node/operating_system/_impl.h"
 
 
 //#include "acme/primitive/subject/_impl.h"

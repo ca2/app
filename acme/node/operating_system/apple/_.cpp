@@ -8,8 +8,8 @@
 
 #include "framework.h"
 #include "main.h"
-//aaa_#include "acme/os/_.h"
-//#include "acme/os/_os.h"
+//aaa_#include "acme/node/operating_system/_.h"
+//#include "acme/node/operating_system/_os.h"
 #include "acme/update.h"
 //char * ns_realpath(const char * pszPath);
 //char * mm_ca2_command_line();

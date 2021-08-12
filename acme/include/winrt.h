@@ -16,9 +16,9 @@
 #pragma once
 
 
-#include "acme/os/uwp/file_winrt.h"
-#include "acme/os/uwp/parallelization_winrt.h"
-//#include "acme/os/uwp/gdi_winrt.h"
+#include "acme/node/operating_system/uwp/file_winrt.h"
+#include "acme/node/operating_system/uwp/parallelization_winrt.h"
+//#include "acme/node/operating_system/uwp/gdi_winrt.h"
 
 
 

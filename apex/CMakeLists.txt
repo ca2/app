@@ -187,181 +187,181 @@ list(APPEND apex_source
    message/sender.cpp
    message/simple_command.cpp
    message/simple_command.h
-   net/http/_.cpp
-   net/http/_.h
-   net/http/context.cpp
-   net/http/context.h
-   net/http/cookie.cpp
-   net/http/cookie.h
-   net/http/form.cpp
-   net/http/form.h
-   net/http/get_socket.cpp
-   net/http/get_socket.h
-   net/http/listener.h
-   net/http/ostream.cpp
-   net/http/request.cpp
-   net/http/request.h
-   net/http/response.cpp
-   net/http/response.h
-   net/http/signal.cpp
-   net/http/signal.h
-   net/http/status.cpp
-   net/http/status.h
-   net/http/stream.h
-   net/http/transaction.cpp
-   net/http/transaction.h
-   net/sockets/base/base_socket.cpp
-   net/sockets/base/base_socket.h
-   net/sockets/base/base_socket_handler.cpp
-   net/sockets/base/base_socket_handler.h
-   net/sockets/base/socket_thread.cpp
-   net/sockets/base/socket_thread.h
-   net/sockets/bsd/basic/_.h
-   net/sockets/bsd/basic/basic_net.cpp
-   net/sockets/bsd/basic/listen_socket.cpp
-   net/sockets/bsd/basic/listen_socket.h
+   networking/http/_.cpp
+   networking/http/_.h
+   networking/http/context.cpp
+   networking/http/context.h
+   networking/http/cookie.cpp
+   networking/http/cookie.h
+   networking/http/form.cpp
+   networking/http/form.h
+   networking/http/get_socket.cpp
+   networking/http/get_socket.h
+   networking/http/listener.h
+   networking/http/ostream.cpp
+   networking/http/request.cpp
+   networking/http/request.h
+   networking/http/response.cpp
+   networking/http/response.h
+   networking/http/signal.cpp
+   networking/http/signal.h
+   networking/http/status.cpp
+   networking/http/status.h
+   networking/http/stream.h
+   networking/http/transaction.cpp
+   networking/http/transaction.h
+   networking/sockets/base/base_socket.cpp
+   networking/sockets/base/base_socket.h
+   networking/sockets/base/base_socket_handler.cpp
+   networking/sockets/base/base_socket_handler.h
+   networking/sockets/base/socket_thread.cpp
+   networking/sockets/base/socket_thread.h
+   networking/sockets/bsd/basic/_.h
+   networking/sockets/bsd/basic/basic_net.cpp
+   networking/sockets/bsd/basic/listen_socket.cpp
+   networking/sockets/bsd/basic/listen_socket.h
    #net/sockets/bsd/basic/net.cpp
    #net/sockets/bsd/basic/net.h
-   net/sockets/bsd/basic/sctp_socket.cpp
-   net/sockets/bsd/basic/sctp_socket.h
-   net/sockets/bsd/basic/socket.cpp
-   net/sockets/bsd/basic/socket.h
-   net/sockets/bsd/basic/socket_handler.cpp
-   net/sockets/bsd/basic/socket_handler.h
-   net/sockets/bsd/basic/stream_socket.cpp
-   net/sockets/bsd/basic/stream_socket.h
-   net/sockets/bsd/basic/sync_socket_handler.cpp
-   net/sockets/bsd/basic/sync_socket_handler.h
-   net/sockets/bsd/basic/tcp_socket.cpp
-   net/sockets/bsd/basic/tcp_socket.h
-   net/sockets/bsd/basic/tls_socket.cpp
-   net/sockets/bsd/basic/tls_socket.h
-   net/sockets/bsd/basic/udp_socket.cpp
-   net/sockets/bsd/basic/udp_socket.h
-   net/sockets/bsd/dns/resolv_server.cpp
-   net/sockets/bsd/dns/resolv_server.h
-   net/sockets/bsd/dns/resolv_socket.cpp
-   net/sockets/bsd/dns/resolv_socket.h
-   net/sockets/bsd/ssl/client_context.cpp
-   net/sockets/bsd/ssl/client_context.h
-   net/sockets/bsd/ssl/client_context_map.cpp
-   net/sockets/bsd/ssl/client_context_map.h
-   net/sockets/bsd/ssl/context.cpp
-   net/sockets/bsd/ssl/context.h
-   net/sockets/bsd/ssl/initializer.cpp
-   net/sockets/bsd/ssl/initializer.h
-   net/sockets/bsd/ssl/ticket_key.h
-   net/sockets/bsd/webserver/httpd_socket.cpp
-   net/sockets/bsd/webserver/httpd_socket.h
-   net/sockets/bsd/_.h
-   net/sockets/bsd/_strconv.cpp
-   net/sockets/bsd/_strconv.h
-   net/sockets/bsd/config.h
-   net/sockets/bsd/include.cpp
-   net/sockets/bsd/socket_id_list.h
-   net/sockets/bsd/sockets.cpp
-   net/sockets/bsd/sockets.h
-   net/sockets/http/_.h
-   net/sockets/http/client_socket.cpp
-   net/sockets/http/client_socket.h
-   net/sockets/http/debug_socket.cpp
-   net/sockets/http/debug_socket.h
-   net/sockets/http/get_socket.cpp
-   net/sockets/http/get_socket.h
-   net/sockets/http/http_base_socket.cpp
-   net/sockets/http/http_base_socket.h
-   net/sockets/http/listener.cpp
-   net/sockets/http/listener.h
-   net/sockets/http/post_socket.cpp
-   net/sockets/http/post_socket.h
-   net/sockets/http/put_socket.cpp
-   net/sockets/http/put_socket.h
-   net/sockets/http/session.cpp
-   net/sockets/http/session.h
-   net/sockets/http/socket.cpp
-   net/sockets/http/socket.h
-   net/sockets/http/tunnel.cpp
-   net/sockets/http/tunnel.h
-   net/sockets/_.h
-   net/sockets/_system_sockets.cpp
-   net/sockets/http_batch_buffer.cpp
-   net/sockets/http_batch_buffer.h
-   net/sockets/http_buffer.h
-   net/sockets/link_in_socket.cpp
-   net/sockets/link_in_socket.h
-   net/sockets/link_out_socket.cpp
-   net/sockets/link_out_socket.h
-   net/sockets/logger.h
-   net/sockets/sockets_base.cpp
-   net/sockets/sockets_base.h
-   net/sockets/trace_interface.cpp
-   net/sockets/trace_interface.h
-   net/sockets/transfer_socket.cpp
-   net/sockets/transfer_socket.h
-   net/sockets/websocket_client.cpp
-   net/sockets/websocket_client.h
-   net/_.cpp
-   net/_.h
-   net/_impl.h
-   net/_net_impl.h
-   net/address.cpp
-   net/address.h
-   net/address_department.cpp
-   net/address_department.h
-   net/byte_order.h
-   net/email.cpp
-   net/email.h
-   net/email_address.cpp
-   net/email_address.h
-   net/ip_enum.cpp
-   net/ip_enum.h
-   net/net.h
-   net/open_weather_city.h
-   net/port_forward.cpp
-   net/port_forward.h
-   net/sockets.cpp
+   networking/sockets/bsd/basic/sctp_socket.cpp
+   networking/sockets/bsd/basic/sctp_socket.h
+   networking/sockets/bsd/basic/socket.cpp
+   networking/sockets/bsd/basic/socket.h
+   networking/sockets/bsd/basic/socket_handler.cpp
+   networking/sockets/bsd/basic/socket_handler.h
+   networking/sockets/bsd/basic/stream_socket.cpp
+   networking/sockets/bsd/basic/stream_socket.h
+   networking/sockets/bsd/basic/sync_socket_handler.cpp
+   networking/sockets/bsd/basic/sync_socket_handler.h
+   networking/sockets/bsd/basic/tcp_socket.cpp
+   networking/sockets/bsd/basic/tcp_socket.h
+   networking/sockets/bsd/basic/tls_socket.cpp
+   networking/sockets/bsd/basic/tls_socket.h
+   networking/sockets/bsd/basic/udp_socket.cpp
+   networking/sockets/bsd/basic/udp_socket.h
+   networking/sockets/bsd/dns/resolv_server.cpp
+   networking/sockets/bsd/dns/resolv_server.h
+   networking/sockets/bsd/dns/resolv_socket.cpp
+   networking/sockets/bsd/dns/resolv_socket.h
+   networking/sockets/bsd/ssl/client_context.cpp
+   networking/sockets/bsd/ssl/client_context.h
+   networking/sockets/bsd/ssl/client_context_map.cpp
+   networking/sockets/bsd/ssl/client_context_map.h
+   networking/sockets/bsd/ssl/context.cpp
+   networking/sockets/bsd/ssl/context.h
+   networking/sockets/bsd/ssl/initializer.cpp
+   networking/sockets/bsd/ssl/initializer.h
+   networking/sockets/bsd/ssl/ticket_key.h
+   networking/sockets/bsd/webserver/httpd_socket.cpp
+   networking/sockets/bsd/webserver/httpd_socket.h
+   networking/sockets/bsd/_.h
+   networking/sockets/bsd/_strconv.cpp
+   networking/sockets/bsd/_strconv.h
+   networking/sockets/bsd/config.h
+   networking/sockets/bsd/include.cpp
+   networking/sockets/bsd/socket_id_list.h
+   networking/sockets/bsd/sockets.cpp
+   networking/sockets/bsd/sockets.h
+   networking/sockets/http/_.h
+   networking/sockets/http/client_socket.cpp
+   networking/sockets/http/client_socket.h
+   networking/sockets/http/debug_socket.cpp
+   networking/sockets/http/debug_socket.h
+   networking/sockets/http/get_socket.cpp
+   networking/sockets/http/get_socket.h
+   networking/sockets/http/http_base_socket.cpp
+   networking/sockets/http/http_base_socket.h
+   networking/sockets/http/listener.cpp
+   networking/sockets/http/listener.h
+   networking/sockets/http/post_socket.cpp
+   networking/sockets/http/post_socket.h
+   networking/sockets/http/put_socket.cpp
+   networking/sockets/http/put_socket.h
+   networking/sockets/http/session.cpp
+   networking/sockets/http/session.h
+   networking/sockets/http/socket.cpp
+   networking/sockets/http/socket.h
+   networking/sockets/http/tunnel.cpp
+   networking/sockets/http/tunnel.h
+   networking/sockets/_.h
+   networking/sockets/_system_sockets.cpp
+   networking/sockets/http_batch_buffer.cpp
+   networking/sockets/http_batch_buffer.h
+   networking/sockets/http_buffer.h
+   networking/sockets/link_in_socket.cpp
+   networking/sockets/link_in_socket.h
+   networking/sockets/link_out_socket.cpp
+   networking/sockets/link_out_socket.h
+   networking/sockets/logger.h
+   networking/sockets/sockets_base.cpp
+   networking/sockets/sockets_base.h
+   #networking/sockets/trace_interface.cpp
+   #networking/sockets/trace_interface.h
+   networking/sockets/transfer_socket.cpp
+   networking/sockets/transfer_socket.h
+   networking/sockets/websocket_client.cpp
+   networking/sockets/websocket_client.h
+   networking/_.cpp
+   networking/_.h
+   networking/_impl.h
+   networking/_networking_impl.h
+   networking/address.cpp
+   networking/address.h
+   networking/address_department.cpp
+   networking/address_department.h
+   networking/byte_order.h
+   networking/email.cpp
+   networking/email.h
+   networking/email_address.cpp
+   networking/email_address.h
+   networking/ip_enum.cpp
+   networking/ip_enum.h
+   networking/net.h
+   networking/open_weather_city.h
+   networking/port_forward.cpp
+   networking/port_forward.h
+   networking/sockets.cpp
    node/_.h
    node/_node.h
-   os/ansios/_.h
-   os/ansios/_ansios.h
+   node/operating_system/ansi/_.h
+   node/operating_system/ansi/_ansi.h
    #os/ansios/_c.h
-   os/ansios/ansios_file.h
-   os/ansios/base.cpp
+   node/operating_system/ansi/ansi_file.h
+   node/operating_system/ansi/base.cpp
    # os/ansios/callstack.h
    #os/ansios/datetime.cpp
    #os/ansios/datetime_c.h
    # os/ansios/exception_engine.cpp
    # os/ansios/exception_engine.h
-   os/ansios/file.cpp
-   os/ansios/file.h
+   node/operating_system/ansi/file.cpp
+   node/operating_system/ansi/file.h
    #os/ansios/file_c.h
-   os/ansios/language.cpp
-   os/ansios/parallelization.h
+   node/operating_system/ansi/language.cpp
+   node/operating_system/ansi/parallelization.h
    #os/ansios/process.cpp
-   os/ansios/win.cpp
-   os/_2.h
-   os/_application.cpp
-   os/_application.h
-   os/_c2.h
-   os/_impl.h
-   os/_os2.h
-   os/apex.h
+   node/operating_system/ansi/win.cpp
+   node/operating_system/_.h
+   node/operating_system/_application.cpp
+   node/operating_system/_application.h
+   #node/operating_system/_c2.h
+   node/operating_system/_impl.h
+   node/operating_system/_operating_system.h
+   node/operating_system/apex.h
    #os/argcargv.cpp
-   os/binreloc.h
-   os/cross.h
-   os/debug.cpp
-   os/file.h
-   os/graphics.h
-   os/http.cpp
-   os/openssl_crypt.cpp
-   os/os.h
-   os/os_os.cpp
-   os/os_windowing2.h
+   node/operating_system/binreloc.h
+   node/operating_system/cross.h
+   node/operating_system/debug.cpp
+   node/operating_system/file.h
+   node/operating_system/graphics.h
+   node/operating_system/http.cpp
+   node/operating_system/openssl_crypt.cpp
+   node/operating_system/operating_system.h
+   node/operating_system/operating_system.cpp
+   #node/operating_system/os_windowing2.h
    #os/process.h
-   os/text.h
-   os/thread.cpp
-   os/thread.h
-   os/windowing.h
+   node/operating_system/text.h
+   node/operating_system/thread.cpp
+   node/operating_system/thread.h
+   node/operating_system/windowing.h
    parallelization/_.cpp
    parallelization/_.h
    parallelization/_impl.h
@@ -369,8 +369,8 @@ list(APPEND apex_source
    parallelization/create_thread.h
    parallelization/data.h
    parallelization/delay_thread.h
-   parallelization/handler.cpp
-   parallelization/handler.h
+   parallelization/handler_manager.cpp
+   parallelization/handler_manager.cpp
    parallelization/retry.h
    # parallelization/retry_multi_lock.cpp
    # parallelization/retry_multi_lock.h
@@ -471,9 +471,6 @@ list(APPEND apex_source
    platform/os_context.h
    platform/os_history.cpp
    platform/os_history.h
-   platform/progress.cpp
-   platform/progress.h
-   platform/progress_interface.h
    platform/savings.cpp
    platform/savings.h
    platform/session.cpp
@@ -505,6 +502,9 @@ list(APPEND apex_source
    process/department.h
    process/process.cpp
    process/process.h
+   progress/progress.cpp
+   progress/progress.h
+   progress/_.h
    template/list.h
    user/_.h
    user/_const_key.h
@@ -614,10 +614,10 @@ if (WIN32)
 else ()
 
    list(APPEND apex_source
-      os/cross/windows/windows_thread.h
-      os/cross/windows/windows_thread_impl.h
-      os/cross/cross.h
-      os/winpr_input.h
+      node/operating_system/cross/windows/windows_thread.h
+      node/operating_system/cross/windows/windows_thread_impl.h
+      node/operating_system/cross/cross.h
+      node/operating_system/winpr_input.h
       #os/winpr_keycode.cpp
       #os/winpr_scancode.cpp
       )
@@ -781,8 +781,8 @@ if (UWP)
 else ()
 
    list(APPEND apex_source
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp)
+      node/operating_system/cross/uwp/cross_metrowin_user.cpp
+      node/operating_system/cross/uwp/metrowin_user.cpp)
 
 endif ()
 
@@ -822,48 +822,48 @@ if (LINUX)
       node/linux/util.cpp
       #node/posix/file_os_watcher.cpp
       #node/posix/file_os_watcher.cpp
-      os/linux/_.h
-      os/linux/_c.h
-      os/linux/_linux.h
-      os/linux/_user.h
-      os/linux/apex.cpp
-      os/linux/application_system_run.cpp
-      os/linux/callstack.cpp
-      os/linux/cross_win_file.cpp
-      os/linux/cross_win_file.h
-      os/linux/cross_win_gdi.cpp
-      os/linux/cross_win_gdi.h
-      os/linux/cross_win_gdi_internal.h
-      os/linux/debug.cpp
-      os/linux/debug.h
+      node/operating_system/linux/_.h
+      node/operating_system/linux/_c.h
+      node/operating_system/linux/_linux.h
+      node/operating_system/linux/_user.h
+      node/operating_system/linux/apex.cpp
+      node/operating_system/linux/application_system_run.cpp
+      node/operating_system/linux/callstack.cpp
+      node/operating_system/linux/cross_win_file.cpp
+      node/operating_system/linux/cross_win_file.h
+      node/operating_system/linux/cross_win_gdi.cpp
+      node/operating_system/linux/cross_win_gdi.h
+      node/operating_system/linux/cross_win_gdi_internal.h
+      node/operating_system/linux/debug.cpp
+      node/operating_system/linux/debug.h
       # os/linux/exception_engine.cpp
       # os/linux/exception_engine.h
-      os/linux/file.cpp
-      os/linux/file.h
-      os/linux/graphics.cpp
-      os/linux/graphics.h
-      os/linux/graphics2.h
-      os/linux/language.cpp
+      node/operating_system/linux/file.cpp
+      node/operating_system/linux/file.h
+      node/operating_system/linux/graphics.cpp
+      node/operating_system/linux/graphics.h
+      node/operating_system/linux/graphics2.h
+      node/operating_system/linux/language.cpp
       #os/linux/library.cpp
-      os/linux/linux_linux.h
-      os/linux/lock.cpp
-      os/linux/menu.cpp
-      os/linux/message_loop.cpp
-      os/linux/parallelization.cpp
-      os/linux/os.cpp
+      node/operating_system/linux/linux_linux.h
+      node/operating_system/linux/lock.cpp
+      node/operating_system/linux/menu.cpp
+      node/operating_system/linux/message_loop.cpp
+      node/operating_system/linux/parallelization.cpp
+      node/operating_system/linux/os.cpp
       #os/linux/process.cpp
       #os/linux/process.h
       #os/linux/process_pid.cpp
-      os/linux/simple_app.cpp
-      os/linux/shell_launcher.cpp
-      os/linux/shell_launcher.h
-      os/linux/standard_exception.cpp
+      node/operating_system/linux/simple_app.cpp
+      node/operating_system/linux/shell_launcher.cpp
+      node/operating_system/linux/shell_launcher.h
+      node/operating_system/linux/standard_exception.cpp
       #node/linux/interprocess_communication.cpp
-      os/linux/time.cpp
-      os/linux/user.cpp
-      os/linux/user.h
-      os/linux/user_private.h
-      os/linux/win_base.cpp)
+      node/operating_system/linux/time.cpp
+      node/operating_system/linux/user.cpp
+      node/operating_system/linux/user.h
+      node/operating_system/linux/user_private.h
+      node/operating_system/linux/win_base.cpp)
 endif ()
 
 
@@ -1264,7 +1264,7 @@ endif ()
 if (PTHREAD)
 
    list(APPEND apex_source
-      os/posix/pthread.cpp)
+      node/operating_system/posix/pthread.cpp)
 
 endif ()
 
@@ -1276,7 +1276,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(apex SHARED ${apex_source} node/operating_system/posix/_posix.h node/operating_system/posix/_.h)
 
 target_precompile_headers(apex PRIVATE framework.h)
 

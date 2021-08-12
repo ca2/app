@@ -340,11 +340,19 @@ filesize acme_file::get_size(const char * path)
 FILE * acme_file::FILE_open(const char * path, const char * attrs, int iShare)
 {
    
+#ifdef WINDOWS
+
    wstring wstrPath(path);
 
    wstring wstrAttrs(attrs);
 
    auto pfile = _wfsopen(wstrPath, wstrAttrs, iShare);
+
+#else
+
+   auto pfile = fopen(path, attrs);
+
+#endif
 
    if (!pfile)
    {
@@ -812,6 +820,14 @@ bool acme_file::as_block(block & block, const char * path)
 {
 
    return as_memory(path, block.get_data(), block.get_size()) == block.get_size();
+
+}
+
+
+string acme_file::first_line(const char * path)
+{
+
+   return line(path, 0);
 
 }
 

@@ -20,7 +20,7 @@
 #define user user_struct
 #include <sys/sysctl.h>
 
-#include "acme/os/apple/ns_exception.h"
+#include "acme/node/operating_system/apple/ns_exception.h"
 
 int __node_is_debugger_attached()
 // Returns true if the current process is being debugged (either

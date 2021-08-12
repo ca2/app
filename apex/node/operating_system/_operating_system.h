@@ -24,10 +24,11 @@
 
 #elif defined(LINUX)
 
-#include "apex/os/linux/_linux.h"
-#include "apex/os/linux/_user.h"
-#include "apex/os/ansios/_ansios.h"
-//#include "apex/os/cross/windows/windows.h"
+
+#include "apex/node/operating_system/ansi/_ansi.h"
+#include "apex/node/operating_system/posix/_posix.h"
+#include "apex/node/operating_system/linux/_linux.h"
+#include "apex/node/operating_system/linux/_user.h"
 
 #elif defined(_UWP)
 

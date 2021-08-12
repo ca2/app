@@ -3,7 +3,7 @@
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -11,7 +11,7 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
 #endif
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 #ifdef __MACH__
 #include <mach/clock.h>

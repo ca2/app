@@ -1,8 +1,11 @@
 //
-// Created by camilo on 12/08/2021.
+// Created by camilo on 2021-08-12 02:57 BRT <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef BASIS__POSIX_H
-#define BASIS__POSIX_H
 
-#endif //BASIS__POSIX_H
+#ifdef LINUX
+
+#include "file_lock.h"
+
+#endif

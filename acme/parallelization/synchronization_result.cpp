@@ -5,14 +5,14 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
 
 
 #ifdef LINUX
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #endif
 
 

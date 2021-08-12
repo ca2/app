@@ -21,9 +21,9 @@
 //#include "_os_local.h"
 //#include "_os_remote.h"
 
-#include "acme/os/android/_os_object.h"
-#include "acme/os/android/_os_local.h"
-#include "acme/os/android/_os_remote.h"
+#include "acme/node/operating_system/android/_os_object.h"
+#include "acme/node/operating_system/android/_os_local.h"
+#include "acme/node/operating_system/android/_os_remote.h"
 
 
 void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);

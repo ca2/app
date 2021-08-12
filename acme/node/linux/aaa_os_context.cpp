@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/app_core.h"
 #include "_linux.h"
-#include "acme/os/linux/gnome_gnome.h"
+#include "acme/node/operating_system/linux/gnome_gnome.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);

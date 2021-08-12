@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
-#include "acme/os/windows_common/draw2d_direct2d_global.h"
-#include "acme/os/uwp/_winrt.h"
+#include "acme/node/operating_system/windows_common/draw2d_direct2d_global.h"
+#include "acme/node/operating_system/uwp/_winrt.h"
 #include "_uwp.h"
 #include "buffer.h"
 

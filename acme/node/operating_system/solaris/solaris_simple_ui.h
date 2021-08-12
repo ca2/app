@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/os/solaris/solaris_window_xlib.h"
+#include "acme/node/operating_system/solaris/solaris_window_xlib.h"
 
 
 namespace os

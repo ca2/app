@@ -7,7 +7,7 @@
 #ifdef PTHREAD_PARALLELIZATION
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 int ithread_equals(itask_t a, itask_t b)

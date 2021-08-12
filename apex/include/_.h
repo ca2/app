@@ -855,7 +855,7 @@ namespace core
 
 #if defined(LINUX)
 
-#include "apex/os/ansios/_.h"
+#include "apex/node/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -1269,7 +1269,7 @@ namespace mathematics
 #ifndef WINDOWS_DESKTOP
 
 
-#include "apex/os/cross/windows/windows_thread_impl.h"
+#include "apex/node/operating_system/cross/windows/windows_thread_impl.h"
 
 
 #endif

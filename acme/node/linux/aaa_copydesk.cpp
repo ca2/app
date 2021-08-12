@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
-#include "acme/os/linux/_linux.h"
-#include "acme/os/linux/gnome_gnome.h"
+#include "acme/node/operating_system/linux/_linux.h"
+#include "acme/node/operating_system/linux/gnome_gnome.h"
 #include "acme/node/linux/_linux.h"
 
 

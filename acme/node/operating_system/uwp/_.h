@@ -6,7 +6,7 @@
 
 
 #ifdef __cplusplus
-#include "acme/os/windows_common/comptr.h"
+#include "acme/node/operating_system/windows_common/comptr.h"
 #endif
 
 

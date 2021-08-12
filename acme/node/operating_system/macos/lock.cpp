@@ -46,7 +46,7 @@ int _c_lock(const char * lpszName, void ** pdata)
 
    int fd;
 
-   _ca_get_file_name(file::path("/::payload/lib/ca2/")/ lpszName, true, &fd);
+   _ca_get_file_name(file::path("/var/lib/ca2/")/ lpszName, true, &fd);
 
    if(fd == -1)
       return 0;
@@ -100,30 +100,45 @@ int _c_unlock(void ** pdata)
 
 
 
-string _ca_get_file_name(const char * lpszName, bool bCreate, int * pfd)
+string _lock_get_file_name(const char * lpszName, bool bCreate, int * pfd)
 {
 
    string str(lpszName);
 
-   str.replace("\\", "/");
+   str.replace("\\", "-");
+
    str.replace("::", "_");
 
-            auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(::file_path_folder(str));
+//   auto psystem = m_psystem;
+//
+//   auto pacmedir = psystem->m_pacmedir;
+//
+//   pacmedir->create(::file_path_folder(str));
 
    if(bCreate)
    {
+
       int fd = open(str, O_CREAT | O_RDWR);
+
       if(fd == -1)
+      {
+
          return "";
+
+      }
+
       if(pfd != nullptr)
       {
+
          *pfd = fd;
+
       }
+
    }
 
    return str;
+
 }
+
+
+

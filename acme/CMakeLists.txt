@@ -34,7 +34,7 @@ list(APPEND library_source
    exception/extended_status.cpp
    exception/extended_status.h
    exception/extended_transport.h
-   exception/hresult.cpp
+   #exception/hresult.cpp
    #exception/index_out_of_bounds.cpp
    #exception/installing.cpp
    #exception/interface_only.cpp
@@ -63,14 +63,14 @@ list(APPEND library_source
    #exception/user.cpp
    #exception/void_implementation.cpp
    #exception/wtf.cpp
-   filesystem/file/_.cpp
+   #filesystem/file/_.cpp
    filesystem/file/binary_stream.cpp
    filesystem/file/buffered_buffer.cpp
    filesystem/file/c.cpp
    filesystem/file/circular_buffer.cpp
    filesystem/file/composite.cpp
    filesystem/file/cpp.cpp
-   filesystem/file/dir.cpp
+   #filesystem/file/dir.cpp
    filesystem/file/dir2.cpp
    filesystem/file/exception.cpp
    filesystem/file/file.cpp
@@ -82,7 +82,7 @@ list(APPEND library_source
    filesystem/file/seekable.cpp
    filesystem/file/serializable.cpp
    filesystem/file/serialize.cpp
-   filesystem/file/stdio_file.cpp
+   #filesystem/file/stdio_file.cpp
    filesystem/file/stream.cpp
    filesystem/file/string_file.cpp
    filesystem/file/text_file.cpp
@@ -90,8 +90,12 @@ list(APPEND library_source
    filesystem/file/var_stream.cpp
    filesystem/filesystem/acme_dir.cpp
    filesystem/filesystem/acme_dir.h
+   filesystem/filesystem/acme_file.cpp
+   filesystem/filesystem/acme_file.h
    filesystem/filesystem/acme_path.cpp
    filesystem/filesystem/acme_path.h
+   filesystem/filesystem/file_path.cpp
+   filesystem/filesystem/file_path.h
    filesystem/filesystem/listing.cpp
    filesystem/filesystem/path.cpp
    filesystem/filesystem/path_object.cpp
@@ -126,37 +130,37 @@ list(APPEND library_source
    memory/string_memory_allocate.cpp
    memory/string_memory_allocate.h
    memory/string_memory_allocator.h
-   net/top_level_domain_list.cpp
-   net/url.cpp
-   net/url.h
-   net/url_department.cpp
-   net/url_department.h
-   net/url_domain.cpp
-   net/url_domain.h
-   os/ansios/_pthread.h
-   os/ansios/base.cpp
-   os/ansios/datetime.cpp
-   os/ansios/exception_engine.cpp
-   os/ansios/file.cpp
-   os/ansios/file_raw.cpp
-   os/ansios/file_std.cpp
-   os/ansios/language.cpp
-   os/ansios/memory.cpp
-   os/ansios/process.cpp
-   os/ansios/user.cpp
-   os/ansios/win.cpp
-   os/_const_console.h
-   os/_.cpp
-   os/argcargv.cpp
-   os/chronometer.cpp
-   os/console.cpp
-   os/debug.cpp
-   os/file.cpp
-   os/http.cpp
-   os/parallelization.cpp
-   os/process.h
-   os/time.cpp
-   os/windowing.cpp
+   networking/top_level_domain_list.cpp
+   networking/url.cpp
+   networking/url.h
+   networking/url_department.cpp
+   networking/url_department.h
+   networking/url_domain.cpp
+   networking/url_domain.h
+   node/operating_system/ansi/_pthread.h
+   node/operating_system/ansi/base.cpp
+   node/operating_system/ansi/datetime.cpp
+   node/operating_system/ansi/exception_engine.cpp
+   node/operating_system/ansi/file.cpp
+   node/operating_system/ansi/file_raw.cpp
+   node/operating_system/ansi/file_std.cpp
+   node/operating_system/ansi/language.cpp
+   node/operating_system/ansi/memory.cpp
+   node/operating_system/ansi/process.cpp
+   node/operating_system/ansi/user.cpp
+   node/operating_system/ansi/win.cpp
+   node/operating_system/_const_console.h
+   node/operating_system/_.cpp
+   node/operating_system/argcargv.cpp
+   node/operating_system/chronometer.cpp
+   node/operating_system/console.cpp
+   node/operating_system/debug.cpp
+   node/operating_system/file.cpp
+   node/operating_system/http.cpp
+   node/operating_system/parallelization.cpp
+   node/operating_system/process.h
+   node/operating_system/time.cpp
+   node/operating_system/windowing.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
    parallelization/condition.h
@@ -457,7 +461,7 @@ list(APPEND library_source
 
 
 list(APPEND library_source
-   "os/ios/window_boot 2.h"
+   #"os/ios/window_boot 2.h"
    #exception/debug.h
    #node/android/buffer.h
    #os/ansios/parallelization.h
@@ -529,7 +533,7 @@ list(APPEND library_source
    exception/exception2.h
    exception/exit.cpp
    exception/exit.h
-   exception/hresult.h
+   #exception/hresult.h
    #exception/installing.h
    #exception/interface_only.h
    #exception/invalid_argument.h
@@ -604,7 +608,7 @@ list(APPEND library_source
    filesystem/file/serializable.h
    filesystem/file/serialize.h
    filesystem/file/status.h
-   filesystem/file/stdio_file.h
+   #filesystem/file/stdio_file.h
    filesystem/file/stream.h
    filesystem/file/streamable.h
    filesystem/file/string_file.h
@@ -612,8 +616,8 @@ list(APPEND library_source
    filesystem/file/text_stream.h
    filesystem/file/transfer_file.h
    filesystem/file/var_stream.h
-   filesystem/filesystem.h
-   filesystem/filesystem/_.h
+   #filesystem/filesystem.h
+   #filesystem/filesystem/_.h
    filesystem/filesystem/_impl.h
    filesystem/filesystem/listing.h
    filesystem/filesystem/path.h
@@ -668,7 +672,7 @@ list(APPEND library_source
    #memory/plex_heap1.h
    #memory/plex_heap_impl1.h
    node/_.h
-   node/_node2.h
+   #node/_node2.h
    node/android/Kerr/LocalMemory.h
    node/android/Kerr/kerr.h
    node/android/_.h
@@ -681,144 +685,143 @@ list(APPEND library_source
    node/android/internal.h
    node/android/thread.h
    node/serial.h
-   os/_2.h
-   os/_application.h
-   os/_c2.h
-   os/_impl2.h
-   os/_os2.h
-   os/_user.h
-   os/android/_.h
-   os/android/_android.h
-   os/android/_c.h
-   os/android/_os_impl.h
-   os/android/_os_local.h
-   os/android/_os_object.h
-   os/android/_os_remote.h
-   os/android/cross_win_file.h
-   os/android/cross_win_gdi.h
-   os/android/cross_win_gdi_internal.h
-   os/android/exception_engine.h
-   os/android/file.h
-   os/android/graphics.h
-   os/android/internal.h
-   os/android/process.h
-   os/ansios/_.h
-   os/ansios/_ansios.h
-   os/ansios/_c.h
-   os/ansios/ansios_file.h
-   os/ansios/binreloc.h
-   os/ansios/callstack.h
-   os/ansios/datetime_c.h
-   os/ansios/exception_engine.h
-   os/ansios/file.h
-   os/ansios/file_c.h
-   os/ansios/file_raw.h
-   os/ansios/pmutex_lock.h
-   os/ansios/pthread.cpp
-   os/ansios/semun.h
-   os/file.h
-   os/graphics.h
-   os/ios/_.h
-   os/ios/_c.h
-   os/ios/_ios.h
-   os/ios/_m.h
-   os/ios/_mm.h
-   os/ios/base_internal.h
-   os/ios/cross_win_gdi.h
-   os/ios/engine.h
-   os/ios/gen_1.h
-   os/ios/implementation.h
-   os/ios/internal.h
-   os/ios/mm_graphics.h
-   os/ios/mm_oswindow.h
-   os/ios/oswindow_data.h
-   os/ios/parallelization.h
-   os/ios/process.h
-   os/ios/window.h
-   os/ios/window_boot.h
-   os/ios/window_impl.h
-   os/ios/windowing.h
-   os/os_windowing2.h
-   os/parallelization.h
-   os/posix/mq_base.h
-   os/posix/time.h
-   os/solaris/linux_internal.h
-   os/solaris/solaris.h
-   os/solaris/solaris_cairo_keep.h
-   os/solaris/solaris_cross_win_file.h
-   os/solaris/solaris_cross_win_gdi.h
-   os/solaris/solaris_cross_win_gdi_internal.h
-   os/solaris/solaris_debug.h
-   os/solaris/solaris_file.h
-   os/solaris/solaris_file_watcher.h
-   os/solaris/solaris_graphics.h
-   os/solaris/solaris_http.h
-   os/solaris/solaris_http_lib.h
-   os/solaris/solaris_internal.h
-   os/solaris/solaris_process.h
-   os/solaris/solaris_simple_ui.h
-   os/solaris/solaris_solaris.h
-   os/solaris/solaris_user_impl.h
-   os/solaris/solaris_window_xlib.h
-   os/text.h
-   os/time.h
-   os/user.h
-   os/uwp/_.h
-   os/uwp/_uwp.h
-   os/uwp/_winrt.h
-   os/uwp/base_file.h
-   os/uwp/exception_engine.h
-   os/uwp/file_winrt.h
-   os/uwp/gdi_winrt.h
-   os/uwp/host_interaction.h
-   os/uwp/metrowin_metrowin.h
-   os/uwp/parallelization.h
-   os/uwp/parallelization_winrt.h
-   os/uwp/process.h
-   os/uwp/simple_hold_handle.h
-   os/uwp/simple_ui.h
-   os/uwp/sockets.h
-   os/windows/_.h
-   os/windows/_c.h
-   os/windows/_windows.h
-   os/windows/_windows_impl.h
-   os/windows/api.h
+   node/operating_system/_.h
+   node/operating_system/_application.h
+   node/operating_system/_impl.h
+   node/operating_system/_operating_system.h
+   node/operating_system/_user.h
+   node/operating_system/android/_.h
+   node/operating_system/android/_android.h
+   node/operating_system/android/_c.h
+   node/operating_system/android/_os_impl.h
+   node/operating_system/android/_os_local.h
+   node/operating_system/android/_os_object.h
+   node/operating_system/android/_os_remote.h
+   node/operating_system/android/cross_win_file.h
+   node/operating_system/android/cross_win_gdi.h
+   node/operating_system/android/cross_win_gdi_internal.h
+   node/operating_system/android/exception_engine.h
+   node/operating_system/android/file.h
+   node/operating_system/android/graphics.h
+   node/operating_system/android/internal.h
+   node/operating_system/android/process.h
+   node/operating_system/ansi/_.h
+   node/operating_system/ansi/_ansi.h
+   node/operating_system/ansi/_c.h
+   node/operating_system/ansi/ansios_file.h
+   node/operating_system/ansi/binreloc.h
+   node/operating_system/ansi/callstack.h
+   node/operating_system/ansi/datetime_c.h
+   node/operating_system/ansi/exception_engine.h
+   node/operating_system/ansi/file.h
+   node/operating_system/ansi/file_c.h
+   node/operating_system/ansi/file_raw.h
+   node/operating_system/ansi/pmutex_lock.h
+   node/operating_system/ansi/pthread.cpp
+   node/operating_system/ansi/semun.h
+   node/operating_system/file.h
+   node/operating_system/graphics.h
+   node/operating_system/ios/_.h
+   node/operating_system/ios/_c.h
+   node/operating_system/ios/_ios.h
+   node/operating_system/ios/_m.h
+   node/operating_system/ios/_mm.h
+   node/operating_system/ios/base_internal.h
+   node/operating_system/ios/cross_win_gdi.h
+   node/operating_system/ios/engine.h
+   node/operating_system/ios/gen_1.h
+   node/operating_system/ios/implementation.h
+   node/operating_system/ios/internal.h
+   node/operating_system/ios/mm_graphics.h
+   node/operating_system/ios/mm_oswindow.h
+   node/operating_system/ios/oswindow_data.h
+   node/operating_system/ios/parallelization.h
+   node/operating_system/ios/process.h
+   node/operating_system/ios/window.h
+   node/operating_system/ios/window_boot.h
+   node/operating_system/ios/window_impl.h
+   node/operating_system/ios/windowing.h
+   node/operating_system/os_windowing2.h
+   node/operating_system/parallelization.h
+   node/operating_system/posix/mq_base.h
+   node/operating_system/posix/time.h
+   node/operating_system/solaris/linux_internal.h
+   node/operating_system/solaris/solaris.h
+   node/operating_system/solaris/solaris_cairo_keep.h
+   node/operating_system/solaris/solaris_cross_win_file.h
+   node/operating_system/solaris/solaris_cross_win_gdi.h
+   node/operating_system/solaris/solaris_cross_win_gdi_internal.h
+   node/operating_system/solaris/solaris_debug.h
+   node/operating_system/solaris/solaris_file.h
+   node/operating_system/solaris/solaris_file_watcher.h
+   node/operating_system/solaris/solaris_graphics.h
+   node/operating_system/solaris/solaris_http.h
+   node/operating_system/solaris/solaris_http_lib.h
+   node/operating_system/solaris/solaris_internal.h
+   node/operating_system/solaris/solaris_process.h
+   node/operating_system/solaris/solaris_simple_ui.h
+   node/operating_system/solaris/solaris_solaris.h
+   node/operating_system/solaris/solaris_user_impl.h
+   node/operating_system/solaris/solaris_window_xlib.h
+   node/operating_system/text.h
+   node/operating_system/time.h
+   node/operating_system/user.h
+   node/operating_system/uwp/_.h
+   node/operating_system/uwp/_uwp.h
+   node/operating_system/uwp/_winrt.h
+   node/operating_system/uwp/base_file.h
+   node/operating_system/uwp/exception_engine.h
+   node/operating_system/uwp/file_winrt.h
+   node/operating_system/uwp/gdi_winrt.h
+   node/operating_system/uwp/host_interaction.h
+   node/operating_system/uwp/metrowin_metrowin.h
+   node/operating_system/uwp/parallelization.h
+   node/operating_system/uwp/parallelization_winrt.h
+   node/operating_system/uwp/process.h
+   node/operating_system/uwp/simple_hold_handle.h
+   node/operating_system/uwp/simple_ui.h
+   node/operating_system/uwp/sockets.h
+   node/operating_system/windows/_.h
+   #node/operating_system/windows/_c.h
+   node/operating_system/windows/_windows.h
+   #node/operating_system/windows/_windows_impl.h
+   #node/operating_system/windows/api.h
    #os/windows/callstack.h
-   os/windows/d2d1_1.h
-   os/windows/dir.h
-   os/windows/environment_variable.h
-   os/windows/exception_engine.h
-   os/windows/extract_icon.h
-   os/windows/file.h
-   os/windows/handle.h
-   os/windows/implementation.h
-   os/windows/internal.h
-   os/windows/itemidlist.h
-   os/windows/parallelization.h
-   os/windows/port_forward.h
-   os/windows/print_job.h
-   os/windows/printer.h
-   os/windows/process.h
-   os/windows/process_data.h
-   os/windows/registry.h
-   os/windows/shell1.h
-   os/windows/simple_hold_handle.h
-   os/windows/utils.h
-   os/windows/windowing.h
-   os/windows_common/_.h
-   os/windows_common/_c.h
-   os/windows_common/_default_dll_impl.h
-   os/windows_common/_file_c.h
-   os/windows_common/_unicode_c.h
-   os/windows_common/bstring.h
-   os/windows_common/comptr.h
-   os/windows_common/cotaskptr.h
-   os/windows_common/file.h
-   #os/windows_common/graphics.h
-   os/windows_common/new_api.h
-   os/windows_common/parallelization.h
-   os/windows_common/variant.h
-   os/winpr_input.h
+ # node/operating_system/windows/d2d1_1.h
+ # node/operating_system/windows/dir.h
+ # node/operating_system/windows/environment_variable.h
+ # node/operating_system/windows/exception_engine.h
+ # node/operating_system/windows/extract_icon.h
+ # node/operating_system/windows/file.h
+ # node/operating_system/windows/handle.h
+ # node/operating_system/windows/implementation.h
+ # node/operating_system/windows/internal.h
+ # node/operating_system/windows/itemidlist.h
+ # node/operating_system/windows/parallelization.h
+ # node/operating_system/windows/port_forward.h
+ # node/operating_system/windows/print_job.h
+ # node/operating_system/windows/printer.h
+ # node/operating_system/windows/process.h
+ # node/operating_system/windows/process_data.h
+ # node/operating_system/windows/registry.h
+ # node/operating_system/windows/shell1.h
+ # node/operating_system/windows/simple_hold_handle.h
+ # node/operating_system/windows/utils.h
+ # node/operating_system/windows/windowing.h
+ # node/operating_system/windows_common/_.h
+ # node/operating_system/windows_common/_c.h
+ # node/operating_system/windows_common/_default_dll_impl.h
+ # node/operating_system/windows_common/_file_c.h
+ # node/operating_system/windows_common/_unicode_c.h
+ # node/operating_system/windows_common/bstring.h
+ # node/operating_system/windows_common/comptr.h
+ # node/operating_system/windows_common/cotaskptr.h
+ # node/operating_system/windows_common/file.h
+ # #os/windows_common/graphics.h
+ # node/operating_system/windows_common/new_api.h
+ # node/operating_system/windows_common/parallelization.h
+ # node/operating_system/windows_common/variant.h
+ # node/operating_system/winpr_input.h
    parallelization/_.h
    parallelization/_impl.h
    parallelization/_thread_os_create_impl.h
@@ -1400,12 +1403,12 @@ else ()
    list(APPEND library_source
       #node/posix/file_memory_map.cpp
       #node/posix/file_memory_map.h
-      os/ansios/dir.cpp
-      os/ansios/parallelization.cpp
-      os/cross/windows/user.cpp
-      os/cross/windows/file.cpp
-      os/cross/windows/dir.cpp
-      os/cross/windows/time.cpp
+      node/operating_system/ansi/dir.cpp
+      node/operating_system/ansi/parallelization.cpp
+      node/operating_system/cross/windows/user.cpp
+      node/operating_system/cross/windows/file.cpp
+      node/operating_system/cross/windows/dir.cpp
+      node/operating_system/cross/windows/time.cpp
       #os/cross/windows/crt.cpp
       #os/cross/windows/crt_debug.cpp
       #os/cross/windows/datetime.cpp
@@ -1448,7 +1451,7 @@ else ()
       #os/cross/windows/_.h
       #os/cross/_.h
       #os/cross.h
-      os/cross/_cross.h
+      #os/cross/_cross.h
       )
 
 endif ()
@@ -1494,28 +1497,28 @@ if (LINUX)
       node/linux/trace.cpp
       node/linux/util.cpp
       #os/linux/application_system_run.cpp
-      os/linux/_.cpp
-      os/linux/callstack.cpp
-      os/linux/cross_win_file.cpp
-      os/linux/cross_win_gdi.cpp
-      os/linux/debug.cpp
-      os/linux/exception_engine.cpp
-      os/linux/file.cpp
+      node/operating_system/linux/_.cpp
+      node/operating_system/linux/callstack.cpp
+      node/operating_system/linux/cross_win_file.cpp
+      node/operating_system/linux/cross_win_gdi.cpp
+      node/operating_system/linux/debug.cpp
+      node/operating_system/linux/exception_engine.cpp
+      node/operating_system/linux/file.cpp
+      node/operating_system/linux/file_lock.cpp
       #os/linux/gdk.cpp
-      os/linux/graphics.cpp
-      os/linux/library.cpp
-      os/linux/linux.inl
-      os/linux/list_serial_ports.cpp
-      os/linux/lock.cpp
-      os/linux/parallelization.cpp
-      os/linux/node.cpp
-      os/linux/os.cpp
-      os/linux/process.cpp
-      os/linux/process_pid.cpp
-      os/linux/simple_app.cpp
-      os/linux/time.cpp
-      os/linux/user.cpp
-      os/linux/win_base.cpp
+      node/operating_system/linux/graphics.cpp
+      node/operating_system/linux/library.cpp
+      node/operating_system/linux/linux.inl
+      #node/operating_system/linux/list_serial_ports.cpp
+      node/operating_system/linux/parallelization.cpp
+      node/operating_system/linux/node.cpp
+      node/operating_system/linux/os.cpp
+      node/operating_system/linux/process.cpp
+      node/operating_system/linux/process_pid.cpp
+      node/operating_system/linux/simple_app.cpp
+      node/operating_system/linux/time.cpp
+      node/operating_system/linux/user.cpp
+      node/operating_system/linux/win_base.cpp
       )
 
 
@@ -1530,21 +1533,21 @@ if (LINUX)
       node/linux/thread.h
       node/linux/_.h
       node/linux/_linux.h
-      os/linux/cross_win_file.h
-      os/linux/cross_win_gdi.h
-      os/linux/cross_win_gdi_internal.h
-      os/linux/debug.h
-      os/linux/exception_engine.h
-      os/linux/file.h
+      node/operating_system/linux/cross_win_file.h
+      node/operating_system/linux/cross_win_gdi.h
+      node/operating_system/linux/cross_win_gdi_internal.h
+      node/operating_system/linux/debug.h
+      node/operating_system/linux/exception_engine.h
+      node/operating_system/linux/file.h
       #os/linux/gdk.h
-      os/linux/linux_linux.h
-      os/linux/process.h
-      os/linux/user.h
-      os/linux/user_private.h
-      os/linux/_.h
-      os/linux/_c.h
-      os/linux/_linux.h
-      os/linux/_user.h
+      node/operating_system/linux/linux_linux.h
+      node/operating_system/linux/process.h
+      node/operating_system/linux/user.h
+      node/operating_system/linux/user_private.h
+      node/operating_system/linux/_.h
+      node/operating_system/linux/_c.h
+      node/operating_system/linux/_linux.h
+      node/operating_system/linux/_user.h
       )
 endif ()
 
@@ -1674,7 +1677,7 @@ if (IOS)
       os/ios/user.cpp
       os/ios/win_base.cpp
       os/ios/window.cpp
-      "os/ios/window_boot 2.h"
+      #"os/ios/window_boot 2.h"
       os/ios/windowing.cpp
       )
 
@@ -1828,19 +1831,19 @@ if (LINUX OR APPLE OR SOLARIS)
 
 
    list(APPEND library_source
-      #node/node_serial.cpp
-      os/posix/base_file.cpp
-      os/posix/local_memory_map.cpp
-      os/posix/process.cpp
-      os/posix/pthread.cpp
-      os/posix/parallelization.cpp
-      os/posix/time.cpp
-      os/posix/timer.cpp
-      os/winpr_keycode.cpp
-      os/winpr_scancode.cpp
-      )
-
-   list(APPEND library_source
+      node/operating_system/posix/_.h
+      node/operating_system/posix/_posix.h
+      node/operating_system/posix/base_file.cpp
+      node/operating_system/posix/file_lock.cpp
+      node/operating_system/posix/file_lock.h
+      node/operating_system/posix/local_memory_map.cpp
+      node/operating_system/posix/process.cpp
+      node/operating_system/posix/pthread.cpp
+      node/operating_system/posix/parallelization.cpp
+      node/operating_system/posix/time.cpp
+      node/operating_system/posix/timer.cpp
+      node/operating_system/winpr_keycode.cpp
+      node/operating_system/winpr_scancode.cpp
       node/posix/_posix.h
       )
 
@@ -1852,7 +1855,7 @@ if (LINUX)
 
 
    list(APPEND library_source
-      os/ansios/binreloc.cpp
+      node/operating_system/ansi/binreloc.cpp
            )
 
 

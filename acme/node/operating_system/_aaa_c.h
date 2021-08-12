@@ -16,31 +16,31 @@
 #pragma once
 
 
-#include "acme/os/cross/_.h"
+#include "acme/node/operating_system/cross/_.h"
 
 
 
 
 #if defined(ANDROID)
-#include "acme/os/ansios/_c.h"
-#include "acme/os/android/_c.h"
+#include "acme/node/operating_system/ansi/_c.h"
+#include "acme/node/operating_system/android/_c.h"
 #elif defined(MACOS)
-#include "acme/os/ansios/_c.h"
-#include "acme/os/macos/_c.h"
+#include "acme/node/operating_system/ansi/_c.h"
+#include "acme/node/operating_system/macos/_c.h"
 #elif defined(LINUX)
-#include "acme/os/ansios/_c.h"
-#include "acme/os/linux/_c.h"
+#include "acme/node/operating_system/ansi/_c.h"
+#include "acme/node/operating_system/linux/_c.h"
 #elif defined(_UWP)
-#include "acme/os/windows_common/_c.h"
-#include "acme/os/uwp/_.h"
+#include "acme/node/operating_system/windows_common/_c.h"
+#include "acme/node/operating_system/uwp/_.h"
 #elif defined(WINDOWS_DESKTOP)
-#include "acme/os/windows_common/_c.h"
-#include "acme/os/windows/_c.h"
+#include "acme/node/operating_system/windows_common/_c.h"
+#include "acme/node/operating_system/windows/_c.h"
 #elif defined(SOLARIS)
-#include "acme/os/solaris/solaris.h"
+#include "acme/node/operating_system/solaris/solaris.h"
 #elif defined(APPLE_IOS)
-#include "acme/os/ansios/_c.h"
-#include "acme/os/ios/_c.h"
+#include "acme/node/operating_system/ansi/_c.h"
+#include "acme/node/operating_system/ios/_c.h"
 #else
 #error Not Supported Operational ::acme::get_system()
 #endif

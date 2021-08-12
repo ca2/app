@@ -38,27 +38,27 @@ CLASS_DECL_ACME bool is_verbose();
 
 #if defined(MACOS)
 
-#include "acme/os/ansios/_.h"
-#include "acme/os/apple/_.h"
-#include "acme/os/macos/_.h"
+#include "acme/node/operating_system/ansi/_.h"
+#include "acme/node/operating_system/apple/_.h"
+#include "acme/node/operating_system/macos/_.h"
 
 #elif defined(APPLE_IOS)
 
-#include "acme/os/ansios/_.h"
-#include "acme/os/apple/_.h"
-#include "acme/os/ios/_.h"
+#include "acme/node/operating_system/ansi/_.h"
+#include "acme/node/operating_system/apple/_.h"
+#include "acme/node/operating_system/ios/_.h"
 
 #elif defined(LINUX)
 
-//#include "acme/os/cairo/_.h"
-//#include "acme/os/ansios/_.h"
-//#include "acme/os/linux/_.h"
+//#include "acme/node/operating_system/cairo/_.h"
+//#include "acme/node/operating_system/ansi/_.h"
+//#include "acme/node/operating_system/linux/_.h"
 
 #elif defined(_UWP)
 
-#include "acme/os/ansios/_.h"
-#include "acme/os/windows_common/_.h"
-#include "acme/os/uwp/_.h"
+#include "acme/node/operating_system/ansi/_.h"
+#include "acme/node/operating_system/windows_common/_.h"
+#include "acme/node/operating_system/uwp/_.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
@@ -68,13 +68,13 @@ CLASS_DECL_ACME bool is_verbose();
 
 #elif defined(ANDROID)
 
-#include "acme/os/ansios/_.h"
-#include "acme/os/android/_.h"
+#include "acme/node/operating_system/ansi/_.h"
+#include "acme/node/operating_system/android/_.h"
 
 #elif defined(SOLARIS)
 
-#include "acme/os/ansios/_.h"
-#include "acme/os/solaris/_.h"
+#include "acme/node/operating_system/ansi/_.h"
+#include "acme/node/operating_system/solaris/_.h"
 
 #else
 

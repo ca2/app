@@ -21,9 +21,9 @@
 
 #elif defined(LINUX)
 
-//#include "apex/os/cairo/_.h"
-#include "apex/os/ansios/_.h"
-#include "apex/os/linux/_.h"
+#include "apex/node/operating_system/ansi/_.h"
+#include "apex/node/operating_system/posix/_.h"
+#include "apex/node/operating_system/linux/_.h"
 
 #elif defined(_UWP)
 

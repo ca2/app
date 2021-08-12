@@ -1,4 +1,4 @@
-// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSørensen!!
+// Create by camilo on 2021-08-09 03:02 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -97,6 +97,7 @@ public:
 
 
    //virtual string_array file_as_lines(const char * path, strsize iReadAtMostByteCount = -1);
+   virtual string first_line(const char * path);
    virtual string line(const char * path, index iLine);
    virtual bool set_line(const char * path, index iLine, const char * pszLine);
    //virtual string file_extension_dup(const char * path);

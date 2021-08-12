@@ -45,7 +45,7 @@ int _c_lock(const ::string & pszName, void ** pdata)
 
    int fd;
 
-   _ca_get_file_name(file::path("/::payload/lib/ca2/") / pszName, true, &fd);
+   _ca_get_file_name(file::path("/var/lib/ca2/") / pszName, true, &fd);
 
    if(fd == -1)
       return 0;

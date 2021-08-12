@@ -1,13 +1,13 @@
 #include "framework.h"
 //#include "acme/node/ansios/ansios.h"
 #include "_linux.h"
-#include "acme/os/linux/_linux.h"
+#include "acme/node/operating_system/linux/_linux.h"
 
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 namespace acme

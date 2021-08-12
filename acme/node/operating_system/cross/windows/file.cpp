@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "acme/os/_const_console.h"
-#include "acme/os/console.h"
+#include "acme/node/operating_system/_const_console.h"
+#include "acme/node/operating_system/console.h"
 #ifdef LINUX
-#include "acme/os/ansios/binreloc.h"
+#include "acme/node/operating_system/ansi/binreloc.h"
 #endif
 #if defined(LINUX) || defined(MACOS)
 #include <sys/stat.h>

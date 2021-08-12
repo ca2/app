@@ -9,7 +9,7 @@
 
 
 
-#include "acme/os/apple/_mm_common.h"
+#include "acme/node/operating_system/apple/_mm_common.h"
 
 
 #include "_m.h"
@@ -19,8 +19,8 @@ class oswindow_data;
 typedef oswindow_data * oswindow;
 
 
-#import "acme/os/apple/DDInvocationGrabber.h"
-#import "acme/os/apple/NSObject+DDExtensions.h"
+#import "acme/node/operating_system/apple/DDInvocationGrabber.h"
+#import "acme/node/operating_system/apple/NSObject+DDExtensions.h"
 
 
 

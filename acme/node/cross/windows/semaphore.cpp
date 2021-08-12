@@ -4,13 +4,13 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <semaphore.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #endif
 
 

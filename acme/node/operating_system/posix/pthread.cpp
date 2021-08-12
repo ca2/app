@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #include "acme/parallelization/message_queue.h"
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #ifdef LINUX
-#include "acme/os/linux/_user.h"
+#include "acme/node/operating_system/linux/_user.h"
 
 
 #endif

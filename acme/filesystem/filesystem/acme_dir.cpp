@@ -270,7 +270,7 @@ pacmedir->roaming();
 
 #else
 
-   return m_psystem->m_pacmepath->app_module().folder(4);
+   return m_psystem->m_pacmefile->executable() - 4;
 
 #endif
 
@@ -305,7 +305,7 @@ pacmedir->roaming();
 
 #else
 
-   return m_psystem->m_pacmepath->app_module().folder(4);
+   return m_psystem->m_pacmefile->executable() - 4;
 
 #endif
 

@@ -1,8 +1,5 @@
 //
-// Created by camilo on 12/08/2021.
+// Created by camilo on 2021-08-12 03:08 BRT <3Thomas Borregaard Sorensen!!
 //
+#pragma once
 
-#ifndef BASIS__POSIX_H
-#define BASIS__POSIX_H
-
-#endif //BASIS__POSIX_H

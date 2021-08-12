@@ -13,7 +13,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #undef USE_MISC
 
 
@@ -21,7 +21,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #endif
 
 

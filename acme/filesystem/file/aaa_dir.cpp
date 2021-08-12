@@ -17,7 +17,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #elif defined(_UWP)
-#include "acme/os/uwp/file_winrt.h"
+#include "acme/node/operating_system/uwp/file_winrt.h"
 #endif
 
 

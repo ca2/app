@@ -9,27 +9,26 @@
 
 #if defined(MACOS)
 
-#include "acme/os/apple/_apple.h"
-#include "acme/os/macos/_macos.h"
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/apple/_apple.h"
+#include "acme/node/operating_system/macos/_macos.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 #elif defined(APPLE_IOS)
 
-#include "acme/os/apple/_apple.h"
-#include "acme/os/ios/_ios.h"
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/apple/_apple.h"
+#include "acme/node/operating_system/ios/_ios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 #elif defined(LINUX)
 
-#include "acme/os/linux/_linux.h"
-//#include "acme/os/linux/_user.h"
-#include "acme/os/ansios/_ansios.h"
-//#include "acme/os/cross/_cross.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/node/operating_system/posix/_posix.h"
+#include "acme/node/operating_system/linux/_linux.h"
 
 #elif defined(_UWP)
 
-#include "acme/os/ansios/_ansios.h"
-#include "acme/os/uwp/_uwp.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/node/operating_system/uwp/_uwp.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
@@ -38,17 +37,17 @@
 
 #elif defined(ANDROID)
 
-#include "acme/os/ansios/_ansios.h"
-#include "acme/os/android/_android.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
+#include "acme/node/operating_system/android/_android.h"
 
 #elif defined(SOLARIS)
 
-#include "acme/os/solaris/solaris_solaris.h"
+#include "acme/node/operating_system/solaris/solaris_solaris.h"
 
 #elif defined(APPLE_IOS)
 
 #include "os/ansios/ansios.h"
-#include "acme/os/ios/ca_os.h"
+#include "acme/node/operating_system/ios/ca_os.h"
 
 #else
 

@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_os.h"
+#include "acme/node/operating_system/_c.h"
+#include "acme/node/operating_system/_os.h"
 
 
 #ifdef LINUX
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #endif
 
 

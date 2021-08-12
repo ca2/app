@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifdef LINUX
-#include "acme/os/linux/_linux.h"
+#include "acme/node/operating_system/linux/_linux.h"
 #include "acme/node/linux/_linux.h"
 #endif
 /*

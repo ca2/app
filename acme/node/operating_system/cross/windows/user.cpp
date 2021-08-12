@@ -1,14 +1,14 @@
 #include "framework.h"
 #if defined(LINUX)
-#include "acme/os/linux/_user.h"
+#include "acme/node/operating_system/linux/_user.h"
 #elif defined(ANDROID)
-#include "acme/os/android/_user.h"
+#include "acme/node/operating_system/android/_user.h"
 #elif defined(_UWP)
-#include "acme/os/uwp/_uwp.h"
+#include "acme/node/operating_system/uwp/_uwp.h"
 #elif defined(MACOS)
-//#include "acme/os/macos/oswindow_data.h"
+//#include "acme/node/operating_system/macos/oswindow_data.h"
 #elif defined(APPLE_IOS)
-#include "acme/os/ios/oswindow_data.h"
+#include "acme/node/operating_system/ios/oswindow_data.h"
 #endif
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 #include <iconv.h>

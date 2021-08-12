@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/os/_.h"
-#include "acme/os/_os.h"
+#include "acme/node/operating_system/_.h"
+#include "acme/node/operating_system/_os.h"
 #include <dlfcn.h>
 #ifdef __APPLE__
 #include <mach-o/dyld.h>

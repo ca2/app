@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -15,13 +15,13 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <semaphore.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #endif
 
 
@@ -86,7 +86,6 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #else
 
-
    m_lMaxCount    = lMaxCount;
 
    if(pstrName != nullptr && *pstrName != '\0')
@@ -101,27 +100,19 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       if(str::begins_ci(pstrName, "Local\\") || str::begins_ci(pstrName, "Local\\"))
       {
 
-         strPath =          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
+         strPath = pacmedir->home() / ".ca2/ftok/semaphore/" + string(pstrName);
 
       }
       else
       {
+
          strPath = "/::payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
+
       }
 
-               auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(::file::path(strPath).folder());
+      pacmedir->create(::file::path(strPath).folder());
 
       m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
-
-
 
    }
    else

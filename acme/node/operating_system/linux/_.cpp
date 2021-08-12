@@ -74,20 +74,6 @@ CLASS_DECL_ACME bool __node_acme_pos_term()
 //}
 
 
-// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
-// http://stackoverflow.com/users/1275169/l3x
-int get_proc_stat_core_count()
-{
-
-   string str = m_psystem->m_pacmefile->as_string("/proc/stat");
-
-   string_array stra;
-
-   stra.add_lines(str);
-
-   return stra.predicate_get_count([](auto str) { return ::str::begins(str, "cpu"); });
-
-}
 
 
 

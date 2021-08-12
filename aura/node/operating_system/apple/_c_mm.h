@@ -10,8 +10,8 @@
 // C and Objective-C include
 
 #ifdef __OBJC__
-//#include "acme/os/apple/NSObject+DDExtensions.h"
-//#include "acme/os/apple/DDInvocationGrabber.h"
+//#include "acme/node/operating_system/apple/NSObject+DDExtensions.h"
+//#include "acme/node/operating_system/apple/DDInvocationGrabber.h"
 
 char * ns_string(NSString * str);
 

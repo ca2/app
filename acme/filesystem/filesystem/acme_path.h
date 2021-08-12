@@ -8,26 +8,32 @@ class CLASS_DECL_ACME acme_path :
 public:
 
 
-   ::PLATFORM_NAMESPACE::acme_path* m_pplatformpath;
-
-   ::file::path      m_pathModule;
+   ::PLATFORM_NAMESPACE::acme_path *   m_pplatformpath;
 
 
-   virtual ::file::path app(string strPlatform, string strConfiguration);
+   acme_dir *                          m_pacmedir;
+   acme_file *                         m_pacmefile;
 
-   virtual ::file::path app_app_admin(string strPlatform, string strConfiguration);
-   
-   virtual ::file::path app_app_nest(string strPlatform, string strConfiguration);
 
-   virtual ::file::path app_app(string strPlatform, string strConfiguration);
+   acme_path();
+   ~acme_path() override;
 
-   virtual ::file::path vcredist(string strPlatform, string strConfiguration);
 
-   virtual ::file::path install_log(string strPlatform, string strConfiguration);
 
    virtual  string from(string str);
 
-   virtual ::file::path app_module();
+   //virtual ::file::path app_module();
+   //virtual ::file::path ca2_module();
+
+   virtual ::file::path final(const char * path);
+
+   virtual ::file::path _final(const char * path);
+
+   virtual bool final_begins_eat_ci(string & str, const char * pcszPrefix);
+
+   virtual bool final_is_same(const char * path1, const char * path2);
+
+   virtual bool is_file_or_dir(const char * path, ::file::enum_type * petype);
 
 
 };

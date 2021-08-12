@@ -267,7 +267,7 @@ namespace file
 
       string strExtra;
 
-      strExtra = get_system_error_message(m_lOsError);
+      strExtra = get_last_error_message(m_lOsError);
 
       strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
 

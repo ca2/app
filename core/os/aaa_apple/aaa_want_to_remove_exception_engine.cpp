@@ -1025,7 +1025,7 @@ namespace exception
    bool engine::init()
    {
 
-      //if(!::file_exists("C:\\aura\\exception_engine.txt"))
+      //if(!::m_psystem->m_pacmefile->exists("C:\\aura\\exception_engine.txt"))
       //{
       //   return false;
       //}

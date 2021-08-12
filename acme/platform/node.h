@@ -360,7 +360,7 @@ namespace acme
       
       virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
       
-      virtual string expand_env(string str);
+      virtual string expand_environment_variables(const string & str);
 
 
       virtual array <::serial::port_info> list_serial_ports();
@@ -380,7 +380,24 @@ namespace acme
       virtual ::e_status get_folder_path_from_user(::file::path & pathFolder);
 
 
-      virtual ::string expand_environment_variables(const ::string & str);
+      //virtual ::string expand_environment_variables(const ::string & str);
+      
+      virtual ::file::path command_find_path(const ::string & pszCommand);
+
+
+
+      virtual bool launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+
+
+
+      virtual bool shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+
+      virtual bool root_execute_async(const char * pszFile, const char * pszParams);
+      virtual bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+
+      
+      //::file::path command_find_path(const ::string & pszCommand);
 
 
    };

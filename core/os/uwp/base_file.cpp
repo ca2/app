@@ -3,7 +3,7 @@
 #include <io.h>
 
 
-int_bool file_exists(const ::string & path1)
+int_bool m_psystem->m_pacmefile->exists(const ::string & path1)
 {
 
    u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -17,10 +17,14 @@ int_bool file_exists(const ::string & path1)
 
 
 
-int_bool file_put_contents(const ::string & path, const ::string & contents,count len)
+int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents,count len)
 {
 
-   dir::mk(dir::name(path));
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(path));
 
    wstring wstr(path);
 
@@ -72,7 +76,7 @@ filesize file_length_dup(const ::string & path)
 
 int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 {
-   return file_is_equal_path(psz1,psz2);
+   return file_path_is_equal(psz1,psz2);
 //   const i32 iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
 //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
@@ -901,7 +905,7 @@ int_bool file_delete(const ::string & lpszFileName)
 
 
 //
-//int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
+//int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1700,7 +1704,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 
 
 //
-//int_bool file_exists(const ::string & path1)
+//int_bool m_psystem->m_pacmefile->exists(const ::string & path1)
 //{
 //
 //   string str(path1);
@@ -1717,10 +1721,14 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 //
 
 
-//int_bool file_put_contents(const ::string & path, const ::string & contents,::count len)
+//int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents,::count len)
 //{
 //
-//   dir::mk(dir::name(path));
+//            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(path));
 //
 //   wstring wstr(path);
 //
@@ -1744,7 +1752,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 
 
 
-string file_as_string(const ::string & path, strsize iReadAtMostByteCount)
+string m_psystem->m_pacmefile->as_string(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -1823,7 +1831,7 @@ bool file_as_memory(memory_base & memory, const ::string & path, iptr iReadAtMos
 
 
 
-int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
+int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
 {
 
    return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
@@ -1877,7 +1885,7 @@ bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite
    try
    {
 
-      folder = get_os_folder(::dir::name(pszNew));
+      folder = get_os_folder(::file_path_folder(pszNew));
 
       if(folder == nullptr)
          return false;

@@ -2,6 +2,8 @@
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
@@ -240,31 +242,31 @@ namespace apex
 
       auto & dir = this->dir();
 
-      if (dir.image().has_char() && ::file::begins_eat_ci(str, dir.image()))
+      if (dir.image().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.image()))
       {
 
          return ::file::path("image://") / str;
 
       }
-      else if (dir.music().has_char() && ::file::begins_eat_ci(str, dir.music()))
+      else if (dir.music().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.music()))
       {
 
          return ::file::path("music://") / str;
 
       }
-      else if (dir.video().has_char() && ::file::begins_eat_ci(str, dir.video()))
+      else if (dir.video().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.video()))
       {
 
          return ::file::path("video://") / str;
 
       }
-      else if (dir.document().has_char() && ::file::begins_eat_ci(str, dir.document()))
+      else if (dir.document().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.document()))
       {
 
          return ::file::path("document://") / str;
 
       }
-      else if (dir.download().has_char() && ::file::begins_eat_ci(str, dir.download()))
+      else if (dir.download().has_char() && m_psystem->m_pacmepath->final_begins_eat_ci(str, dir.download()))
       {
 
          return ::file::path("download://") / str;
@@ -567,7 +569,8 @@ namespace apex
          ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
          if ((path & ::file::e_flag_get_local_path)
-            || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+            || (!(path & ::file::e_flag_bypass_cache) 
+               && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
          {
 
             return pathCache;
@@ -581,7 +584,7 @@ namespace apex
          if (!(path & ::file::e_flag_bypass_cache))
          {
 
-            string strFirstLine = file_line_dup(pathMeta, 0);
+            string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
 
             if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
             {
@@ -592,10 +595,10 @@ namespace apex
             else if (strFirstLine == "processing")
             {
 
-               if (!retry([pathMeta]()
+               if (!retry([this, pathMeta]()
                   {
 
-                     return file_line_dup(pathMeta, 0) != "processing";
+                     return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
 
                   }))
                {
@@ -612,7 +615,7 @@ namespace apex
 
          ::file::enum_type etype = ::file::e_type_none;
 
-         if (is_file_or_dir_dup(pathSide, &etype))
+         if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
          {
 
             if (etype == ::file::e_type_file)
@@ -713,7 +716,7 @@ namespace apex
                if (!retry([&]()
                   {
 
-                     return file_set_line_dup(pathMeta, 0, strFsType);
+                     return m_psystem->m_pacmefile->set_line(pathMeta, 0, strFsType);
 
                   }))
                {
@@ -728,7 +731,7 @@ namespace apex
                retry([&]()
                   {
 
-                     return file_set_line_dup(pathMeta, 0, "itdoesntexist");
+                     return m_psystem->m_pacmefile->set_line(pathMeta, 0, "itdoesntexist");
 
                   });
                return "";

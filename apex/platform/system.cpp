@@ -14,6 +14,7 @@
 #endif
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 //extern ::apex::system* g_papexsystem;
@@ -98,7 +99,7 @@ string get_user_name()
 
 }
 
-#include "acme/os/windows/_c.h"
+//#include "acme/os/windows/_c.h"
 #endif
 
 
@@ -345,7 +346,7 @@ namespace apex
 
          ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
-         if (file_exists(pathNoExceptionStackTrace))
+         if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
          {
 
             bGlobalEnableStackTrace = false;
@@ -1221,7 +1222,7 @@ namespace apex
       //
       //         str = m_psystem->m_pacmedir->home() / ".profile";
       //
-      //         if(!file_exists(str))
+      //         if(!m_psystem->m_pacmefile->exists(str))
       //         {
       //
       //            str = m_psystem->m_pacmedir->home() / ".bashrc";
@@ -1357,9 +1358,13 @@ namespace apex
 
                   string str("installing or unstalling as root : getuid() %d", uid);
 
-                  ::dir::mk("/ca2core");
+                           auto psystem = m_psystem;
 
-                  file_put_contents("/ca2core/teste.txt", str, str.length());
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create("/ca2core");
+
+                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
                   */
 #endif
 
@@ -1544,7 +1549,7 @@ namespace apex
 
          ::file::path pathCmdLineDumpFile = m_psystem->m_pacmedir->home() / "application" / strCmdLineDumpFileName;
 
-         file_put_contents(pathCmdLineDumpFile, strCmd);
+         m_psystem->m_pacmefile->put_contents(pathCmdLineDumpFile, strCmd);
 
       }
 
@@ -1587,7 +1592,7 @@ namespace apex
 
          ::file::path pathEnvDumpFile = m_psystem->m_pacmedir->home() / "application" / strEnvDumpFileName;
 
-         file_put_contents(pathEnvDumpFile, strEnv);
+         m_psystem->m_pacmefile->put_contents(pathEnvDumpFile, strEnv);
 
       }
 
@@ -1657,7 +1662,7 @@ namespace apex
 
          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
-         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
+         bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
 
          bMatterFromHttpCache = !bFileSystemMatter;
 
@@ -3947,7 +3952,7 @@ namespace apex
    string system::standalone_setting(string str)
    {
 
-      return file_as_string(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
+      return m_psystem->m_pacmefile->as_string(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
 
    }
 
@@ -3955,7 +3960,7 @@ namespace apex
    bool system::set_standalone_setting(string str, string strSetting)
    {
 
-      return file_put_contents(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
+      return m_psystem->m_pacmefile->put_contents(m_pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -4554,7 +4559,7 @@ namespace apex
 
             }
 
-            strParam += " " + file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+            strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
             auto psystem = m_psystem;
 
@@ -4572,7 +4577,7 @@ namespace apex
 
          sa.add("--user-data-dir=" + pathProfile + "");
 
-         string strChrome = file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+         string strChrome = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
          string_array sa2 = get_c_args_for_c(strChrome);
 
@@ -4603,7 +4608,7 @@ namespace apex
 
          strParam += "--user-data-dir=\"" + pathProfile + "\"";
 
-         strParam += " " + file_as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
+         strParam += " " + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->localconfig() / "app-core/commander/chrome.txt");
 
          string strCmd = path + " " + strParam;
 

@@ -140,7 +140,7 @@
 //
 //
 //
-//string file_line_dup(const ::string & path, index iLine)
+//string m_psystem->m_pacmefile->line(const ::string & path, index iLine)
 //{
 //
 //   string str;
@@ -221,7 +221,11 @@
 //
 //   ::file::path path(pszPath);
 //
-//   ::dir::mk(path.folder());
+//            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 //
 //   FILE * file = FILE_open(path, "a+", _SH_DENYWR);
 //

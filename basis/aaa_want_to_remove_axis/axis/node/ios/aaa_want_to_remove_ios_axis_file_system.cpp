@@ -947,7 +947,7 @@ namespace ios
 //
 //         if(::str::begins_ci_iws(pszPath, "uifs://"))
 //         {
-//            return AppUser(pobject).m_pifs->file_exists(pszPath);
+//            return AppUser(pobject).m_pifs->m_psystem->m_pacmefile->exists(pszPath);
 //         }
 //         else if(::str::begins_ci_iws(pszPath, "http://") || ::str::begins_ci_iws(pszPath, "https://"))
 //         {
@@ -976,7 +976,7 @@ namespace ios
 //#ifdef WINDOWS
 //
 //
-//         return file_exists(pszPath);
+//         return m_psystem->m_pacmefile->exists(pszPath);
 //
 //         //return ::windows_get_file_attributes(::str::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 //
@@ -999,7 +999,7 @@ namespace ios
 //
 //         if(::str::begins_ci_iws(strPath, "uifs://"))
 //         {
-//            return AppUser(pobject).m_pifs->file_exists(strPath);
+//            return AppUser(pobject).m_pifs->m_psystem->m_pacmefile->exists(strPath);
 //         }
 //
 //         if(::str::begins_ci_iws(strPath, "http://")
@@ -1039,10 +1039,10 @@ namespace ios
 //#ifdef WINDOWS
 //
 //
-//         return file_exists(strPath);
+//         return m_psystem->m_pacmefile->exists(strPath);
 //         // return true;
 //
-//         //return App(papp).m_spfsdata->file_exists(strPath);
+//         //return App(papp).m_spfsdata->m_psystem->m_pacmefile->exists(strPath);
 //         //return ::windows_get_file_attributes(::str::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 //
 //#else

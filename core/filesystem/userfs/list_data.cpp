@@ -288,8 +288,8 @@ namespace userfs
 
             pitem->m_iImage = puser->shell()->get_file_image(
                               pathFinal,
-                              pathFinal.m_iDir == 1 ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
-                              ::user::shell::icon_normal);
+                              pathFinal.m_iDir == 1 ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                              ::user::shell::e_icon_normal);
 
          }
          catch (...)

@@ -50,7 +50,11 @@ namespace programming
 
          bool bNew = true;
 
-         __pointer(::acme::library) lib = pcompiler->compile(pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
+         __pointer(::acme::library) lib = pcompiler->compile(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp_bot.cpp", bNew);
 
          if (lib->m_pca2library == nullptr)
          {
@@ -77,7 +81,11 @@ namespace programming
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = pacmedir->config() / "programming/vs_build.txt";
+      ::file::path path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "programming/vs_build.txt";
 
       string strBuild = pcontext->m_papexcontext->file().as_string(path);
 

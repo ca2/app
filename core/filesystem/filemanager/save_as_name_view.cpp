@@ -224,7 +224,7 @@ namespace filemanager
          if (bSave)
          {
 
-            if (filemanager_document()->fs_data()->file_exists(strPath))
+            if (filemanager_document()->fs_data()->m_psystem->m_pacmefile->exists(strPath))
             {
 
                //auto pfuture = __process([this, strPath](const ::payload & payload)

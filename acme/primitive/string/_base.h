@@ -323,8 +323,12 @@ public:
          fork_string(size);
 
       }
+      else
+      {
 
-      this->metadata()->set_length(size);
+         this->metadata()->set_length(size);
+
+      }
 
       return this->m_pdata;
 
@@ -421,7 +425,7 @@ public:
 
       this->assign_natural_meta_data(pNew);
 
-      pNew->natural_dec_ref();
+      //pNew->natural_dec_ref();
 
       return pNew->get_data();
 
@@ -912,10 +916,10 @@ public:
 
 
    // set the string_base to the value of environment ::payload 'pszVar'
-   bool get_environment_variable(const CHAR_TYPE* pszVar);
+   //bool xxxget_environment_variable(const CHAR_TYPE* pszVar);
 
    // set the string_base to the value of environment ::payload 'pszVar'
-   bool getenv(const CHAR_TYPE* pszVar);
+   //bool xxxgetenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'
    //bool load_string(::matter* pobject, id id);

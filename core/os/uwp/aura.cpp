@@ -254,7 +254,7 @@ string key_to_char(wparam wparam, lparam lparam)
 
 
 
-string get_system_error_message(u32 dwError)
+string get_last_error_message(u32 dwError)
 {
    wstring wstr;
    unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
@@ -508,14 +508,15 @@ bool __node_aura_pos_term()
 
 }
 
-void os_term_application()
-{
-
-   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
-
-}
-
-
+//
+//void os_term_application()
+//{
+//
+//   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
+//
+//}
+//
+//
 
 
 

@@ -635,19 +635,19 @@ namespace user
          return desktop_lxde;
 
       }
-      else if(file_exists("/usr/bin/xfconf-query"))
+      else if(m_psystem->m_pacmefile->exists("/usr/bin/xfconf-query"))
       {
 
          return desktop_xfce;
 
       }
-      else if(file_exists("/usr/bin/mate-about"))
+      else if(m_psystem->m_pacmefile->exists("/usr/bin/mate-about"))
       {
 
          return desktop_mate;
 
       }
-      else if(file_exists("/usr/bin/unity"))
+      else if(m_psystem->m_pacmefile->exists("/usr/bin/unity"))
       {
 
          return desktop_unity_gnome;

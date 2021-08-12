@@ -117,7 +117,11 @@ namespace linux
 
       ::file::path pathJson;
 
-      pathJson = pacmedir->home() / ".dropbox/info.json";
+      pathJson =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home() / ".dropbox/info.json";
 
       return pathJson;
 

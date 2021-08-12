@@ -227,9 +227,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ::file::path path = memory_counter_path(pthis);
 //
-//      int i = atoi(file_as_string(path));
+//      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      file_put_contents(path, __str(i + 1));
+//      m_psystem->m_pacmefile->put_contents(path, __str(i + 1));
 //
 //   }
 //
@@ -247,9 +247,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ::file::path path = memory_counter_path(pthis);
 //
-//      int i = atoi(file_as_string(path));
+//      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      file_put_contents(path, __str(i - 1));
+//      m_psystem->m_pacmefile->put_contents(path, __str(i - 1));
 //
 //   }
 //

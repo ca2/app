@@ -459,12 +459,14 @@ namespace draw2d
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      image_drawing imagedrawing;
+      image_source imagesource(pimageBlur);
+
+      image_drawing_options imagedrawingoptions(rectEmboss);
+
+      imagedrawingoptions = colorfilter;
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
       
-      imagedrawing.set(rectEmboss, pimageBlur);
-
-      imagedrawing = colorfilter;
-
       pgraphics->draw(imagedrawing);
 
       return true;

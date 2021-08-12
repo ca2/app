@@ -55,11 +55,31 @@ namespace geo
          *file.get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
 
 
-         //pcontext->m_papexcontext->file().to_array(m_straCity, pacmedir->system() / "weather-cit.bin");
-         //pcontext->m_papexcontext->file().to_array(m_straCityLo, pacmedir->system() / "weather-cil.bin");
-         //pcontext->m_papexcontext->file().to_array(m_iaIds, pacmedir->system() / "weather-ids.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLon, pacmedir->system() / "weather-lon.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLat, pacmedir->system() / "weather-lat.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-cit.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-cil.bin");
+         //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-ids.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-lon.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()
@@ -602,11 +622,11 @@ namespace geo
 
 #ifdef WINDOWS
 
-      strKey = file_as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
 
 #else
 
-      strKey = file_as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
 
 #endif
 
@@ -734,11 +754,11 @@ namespace geo
       //
       //#ifdef WINDOWS
       //
-      //         strKey = file_as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      //         strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
       //
       //#else
       //
-      //         strKey = file_as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      //         strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
       //
       //#endif
       //

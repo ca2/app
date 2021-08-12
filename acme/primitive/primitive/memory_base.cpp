@@ -500,7 +500,7 @@ void memory_base::fread(FILE * pfile)
    while(true)
    {
 
-      auto iRead = FILE_read(buffer, 1, buffer.size(), pfile);
+      memsize iRead = ::fread(buffer, 1, buffer.size(), pfile);
 
       if(iRead > 0)
       {
@@ -1994,6 +1994,81 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
    }
 
    return ::success;
+
+}
+
+
+byte * memory_base::find(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::find_index(const ::block & block, ::index iStart) const
+{
+
+   auto p = find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
+
+}
+
+
+byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)reverse_memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::reverse_find_index(const ::block & block, ::index iStart) const
+{
+
+   auto p = reverse_find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
+
+}
+
+
+byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)reverse_byte_not_in_block(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block & block, ::index iStart) const
+{
+
+   auto p = reverse_find_byte_not_in_block(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
 
 }
 

@@ -9,10 +9,6 @@ namespace file
 }
 
 
-CLASS_DECL_ACME bool is_url(const char * pszCandidate);
-
-
-CLASS_DECL_ACME bool __node_further_file_is_equal(const ::file::path & path1, const ::file::path & path2);
 
 
 namespace file
@@ -23,21 +19,14 @@ namespace file
    
    //typedef CLASS_DECL_ACME string_array_base < ::file::path, string, e_type_payload > patha;
 
-   enum e_path
-   {
-      path_none,
-      path_file,
-      path_url,
-      path_data
-   };
 
-   CLASS_DECL_ACME e_path get_path_type(const ::string & str, e_path epathForce = path_none);
+   
 
    struct CLASS_DECL_ACME path_meta :
       public enumeration < ::file::enum_flag >
    {
 
-      e_path                     m_epath;
+      enum_path                  m_epath;
 
       i64                        m_iSize; // if negative, not set/calculated/retrieved the file size_i32(for directories would be all contained elements total sum size_i32)
       int                        m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
@@ -46,7 +35,7 @@ namespace file
       __pointer(::matter)        m_pmatterOsPath;
 
 
-      path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
+      path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
       {
 
          m_epath                             = epath;
@@ -65,16 +54,8 @@ namespace file
    };
 
 
-   CLASS_DECL_ACME string normalize_path(string strPath, e_path epath = path_none);
-
-   CLASS_DECL_ACME bool normalize_path_inline(string & strPath, e_path & epath);
-
-   inline char path_sep(e_path epath);
-
-   inline const char * path_sepsz(e_path epath);
-
-   inline char path_osep(e_path epath);
-
+   
+   
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
    class CLASS_DECL_ACME path :
       public string,
@@ -82,15 +63,15 @@ namespace file
    {
    public:
 
-      path() { m_epath = path_file; }
+      path() { m_epath = e_path_file; }
       path(nullptr_t) {}
-      path(e_path epath) { m_epath = epath; }
-      path(const ::string & str, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(enum_path epath) { m_epath = epath; }
+      path(const ::string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
       path(const path& path);
       path(const path_object& path);
 
       template < typename TYPE >
-      inline path(const TYPE & t, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+      inline path(const TYPE & t, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
          path(__str(t), epath, iDir, bNormalize, iSize)
       {
 
@@ -99,29 +80,33 @@ namespace file
       ~path() noexcept;
 
 
-      void set_type(e_path epath);
+      void set_type(enum_path epath);
 
-      ::file::path replace_file_extension(const char * pszNewExtension, const char * pszOldExtension);
-      ::file::path replace_file_extension(const char * pszNewExtension);
+      //::file::path replace_extension(const char * pszNewExtension, const char * pszOldExtension);
+      void set_all_extensions(const ::string & strNewExtension);
+      void set_final_extension(const ::string & strNewExtension);
 
-      inline char sep() const
+      ::file::path with_all_extensions(const ::string & strNewExtension) const;
+      ::file::path with_final_extension(const ::string & strNewExtension) const;
+
+      inline char separator() const
       {
 
-         return path_sep(m_epath);
+         return file_path_separator(m_epath);
 
       }
 
-      inline const char* sepsz() const
+      inline const char* separator_sz() const
       {
 
-         return path_sepsz(m_epath);
+         return file_path_separator_sz(m_epath);
 
       }
 
-      inline char osep() const
+      inline char other_separator() const
       {
 
-         return path_osep(m_epath);
+         return file_path_other_separator(m_epath);
 
       }
 
@@ -130,24 +115,25 @@ namespace file
 
       path & operator = (const ::string & str);
 
-      bool is_equal_full(const path & path) const
-      {
+//      bool is_equal_full(const path & path) const
+//      {
+//
+//#ifdef WINDOWS
+//
+//         if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+//            return true;
+//
+//#else
+//
+//         if (strcmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
+//            return true;
+//
+//#endif
+//
+//         return __node_further_file_is_equal(*this, path);
+//
+//      }
 
-#ifdef WINDOWS
-
-         if (_stricmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
-            return true;
-
-#else
-
-         if (strcmp(c_str(), path.c_str()) == 0) // undoubtely eaqual...
-            return true;
-
-#endif
-
-         return __node_further_file_is_equal(*this, path);
-
-      }
 
       bool is_equal_fast(const path & path) const
       {
@@ -309,13 +295,22 @@ namespace file
 
       string name(index i /* = -1 */) const;
 
-      index find_file_name() const;
+      /// return index pointing to beginning of name
+      index find_name() const;
+
+      /// return index just after first dot in file name
+      /// -1 if not found
+      index find_all_extensions() const;
+
+      /// return index just after last dot in file name
+      /// -1 if not found
+      index find_final_extension() const;
 
       //      bool is_equal(const ::file::path & path2) const;
 
-      string extension() const;
+      string all_extensions() const;
 
-      string ext() const;
+      //string ext() const;
 
       string final_extension() const;
 
@@ -336,6 +331,7 @@ namespace file
       path up(int i) const;
       path & go_up();
       path & go_up(int i);
+      path operator - (int i) const { return this->up(i); }
       path & operator -= (int i);
       using path_meta::operator -=;
 
@@ -344,62 +340,8 @@ namespace file
    };
 
 
-   CLASS_DECL_ACME e_path get_path_type(const ::string & str, e_path epathForce);
+   //CLASS_DECL_ACME e_path file_path_get_type(const ::string & str, e_path epathForce);
 
-
-   inline char path_sep(e_path epath)
-   {
-
-#ifdef WINDOWS
-
-      if (epath == path_file)
-      {
-
-         return '\\';
-
-      }
-
-#endif
-
-      return '/';
-
-   }
-
-   inline const char * path_sepsz(e_path epath)
-   {
-
-#ifdef WINDOWS
-
-      if (epath == path_file)
-      {
-
-         return "\\";
-
-      }
-
-#endif
-
-      return "/";
-
-   }
-
-   inline char path_osep(e_path epath)
-   {
-
-#ifdef WINDOWS
-
-      if (epath == path_file)
-      {
-
-         return '/';
-
-      }
-
-#endif
-
-      return '\\';
-
-   }
 
    CLASS_DECL_ACME bool begins_eat_ci(string & str, const char * pcszPrefix);
 
@@ -416,10 +358,10 @@ template<>
 inline uptr uptr_hash < const ::file::path & >(const ::file::path & key);
 
 
-CLASS_DECL_ACME ::file::path node_full_file_path(file::path path);
+//CLASS_DECL_ACME ::file::path node_full_file_path(file::path path);
 
 
-CLASS_DECL_ACME ::file::path __node_full_file_path(file::path path);
+//CLASS_DECL_ACME ::file::path __xxxnode_full_file_path(file::path path);
 
 
 inline ::file::path CLASS_DECL_ACME operator / (const ansichar * psz, const ::file::path & pathConcat)

@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_application()->file_as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->m_psystem->m_pacmefile->as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -727,7 +727,7 @@ namespace android
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::file_exists(path))
+//                        if (::m_psystem->m_pacmefile->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;

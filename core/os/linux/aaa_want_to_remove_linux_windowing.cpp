@@ -2608,7 +2608,7 @@ bool x11_process_message(Display * pdisplay)
                if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
                {
 
-                  //file_put_contents("/home/camilo/xxx.txt", "");
+                  //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
 
                   // 1111111111111111111111111111111111111111111
 

@@ -642,7 +642,11 @@ namespace ios
 ////
 ////                     string strIcon;
 ////
-////                     strIcon = pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
+////                     strIcon =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 ////
 ////                     for (auto iSize : m_iaSize)
 ////                     {
@@ -1317,7 +1321,11 @@ namespace ios
 //
 //      ::str::international::unicode_to_utf8(strPath, lpcszPath);
 //
-//      if (dir::is(strPath))
+//      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
 //      {
 //         return folder_file_system;
 //      }
@@ -1999,7 +2007,11 @@ namespace ios
 
       string strPath(lpcszPath);
 
-      if (dir::is(strPath))
+      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
       {
          return folder_file_system;
       }

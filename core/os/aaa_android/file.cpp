@@ -73,7 +73,11 @@ CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses
 // ::file::path dir::bookmark()
 // {
 
-//    return pacmedir->localconfig() / "favorites";
+//    return          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig() / "favorites";
 
 // }
 

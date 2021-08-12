@@ -3,6 +3,7 @@
 #include "apex/compress/zip/_.h"
 #include "acme/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
@@ -402,7 +403,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.ext(), ".zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception::exception("should implement recursive zip"));
@@ -462,7 +463,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && ::thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathUser.ext(), ".zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && ::thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception::exception("should implement recursive zip"));
@@ -1748,7 +1749,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             }
 
-            if (::is_file_or_dir_dup(strFinal, nullptr))
+            if (m_psystem->m_pacmepath->is_file_or_dir(strFinal, nullptr))
             {
 
                TRACE("!!Cache Hit: %s", strFinal.c_str());
@@ -1794,7 +1795,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             path = m_psystem->m_pacmedir->ca2roaming() / "_matter" / strMatter;
 
-            //                  if (::is_file_or_dir_dup(path, nullptr))
+            //                  if (::m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
             //                  {
             //
             //                     goto ret;
@@ -1876,7 +1877,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
          if (bDir)
          {
 
-            ::dir::mk(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            m_psystem->m_pacmedir->create(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
 
          }
 
@@ -1900,7 +1901,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
 
-            if (::is_file_or_dir_dup(path, nullptr))
+            if (m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
             {
 
                goto ret;
@@ -1925,7 +1926,7 @@ ret:
       //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       //if ((path & ::file::e_flag_get_local_path)
-      //   || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+      //   || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
       //{
 
       //   return pathCache;

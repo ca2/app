@@ -204,7 +204,7 @@ namespace str
 
       }
 
-      str = str.ptr_at(len);
+      str = &str[len];
 
       return true;
 

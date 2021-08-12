@@ -6,9 +6,9 @@
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/node/_node.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 #ifdef _UWP
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#include "aura/node/operating_system/windows_common/draw2d_direct2d_global.h"
 #endif
 
 point_i32 g_pointLastBottomRight;

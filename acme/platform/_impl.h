@@ -192,9 +192,9 @@ void memory_counter_increment(T * pthis)
 
       //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      //int i = atoi(file_as_string(path));
+      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //file_put_contents(path, __str(i + 1));
+      //m_psystem->m_pacmefile->put_contents(path, __str(i + 1));
    }
 
 }
@@ -211,9 +211,9 @@ void memory_counter_decrement(T * pthis)
 
       _memory_counter_decrement(psz);
 
-      //int i = atoi(file_as_string(path));
+      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //file_put_contents(path, __str(i - 1));
+      //m_psystem->m_pacmefile->put_contents(path, __str(i - 1));
 
    }
 

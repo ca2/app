@@ -44,10 +44,10 @@ namespace aura
          if(m_iQueue >= 0)
             close();
 
-         if(!file_exists(pszChannel))
+         if(!m_psystem->m_pacmefile->exists(pszChannel))
          {
 
-            file_put_contents(pszChannel, pszChannel);
+            m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
 
          }
 
@@ -212,10 +212,10 @@ namespace aura
 
 
 
-         if(!file_exists(pszChannel))
+         if(!m_psystem->m_pacmefile->exists(pszChannel))
          {
 
-            file_put_contents(pszChannel, pszChannel);
+            m_psystem->m_pacmefile->put_contents(pszChannel, pszChannel);
 
          }
 

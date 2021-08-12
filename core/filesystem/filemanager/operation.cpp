@@ -713,7 +713,7 @@ namespace filemanager
       else
       {
          strName = str.title();
-         strExtension = "." + str.ext();
+         strExtension = "." + str.final_extension();
       }
 
 

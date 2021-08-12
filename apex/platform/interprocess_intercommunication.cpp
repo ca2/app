@@ -3,6 +3,7 @@
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 interprocess_intercommunication::interprocess_intercommunication() 
@@ -611,7 +612,7 @@ id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    pathModule /= strApp + ".module_list";
 
-   string strModuleList = file_as_string(pathModule);
+   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
    stra.add_lines(strModuleList);
 
@@ -711,7 +712,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    
    ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-   string strModuleList = file_as_string(pathModule);
+   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
    m_straModule.add_lines(strModuleList);
 

@@ -389,7 +389,11 @@ namespace filemanager
                || pathFilemanagerProject.extension().compare_ci("component") != 0)
          {
 
-            m_pathFilemanagerProject = pacmedir->localconfig() / "user.component";
+            m_pathFilemanagerProject =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig() / "user.component";
 
          }
          else

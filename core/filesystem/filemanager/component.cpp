@@ -404,7 +404,7 @@ namespace filemanager
          auto pcontext = get_context();
 
          if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
-               || pathFilemanagerProject.extension().compare_ci("component") != 0)
+               || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
             m_pathFilemanagerProject = m_psystem->m_pacmedir->localconfig() / "user.component";

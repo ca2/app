@@ -80,7 +80,7 @@ void acme_auto_debug_teste()
 
 //   teste_acme_cmp();
 
-//   if(!file_exists("/ca2/debug_test"))
+//   if(!m_psystem->m_pacmefile->exists("/ca2/debug_test"))
 //   {
 //
 //      return;

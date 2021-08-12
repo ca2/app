@@ -1120,10 +1120,18 @@ m_millisHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if(m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

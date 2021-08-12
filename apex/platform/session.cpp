@@ -876,7 +876,7 @@ namespace apex
       else
       {
 
-         string strExtension = strPathName.extension();
+         string strExtension = strPathName.final_extension();
 
          string_array straApp;
 

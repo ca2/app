@@ -1,7 +1,8 @@
 #include "framework.h"
-#include "apex/net/sockets/_.h"
+#include "apex/networking/sockets/_.h"
 #include "apex/platform/app_core.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 //CLASS_DECL_APEX string task_get_name();
@@ -151,10 +152,10 @@ namespace apex
 
 #ifdef __DEBUG
 
-      if (!file_exists(pathTrace))
+      if (!m_psystem->m_pacmefile->exists(pathTrace))
       {
 
-         ::file_put_contents(pathTrace, "yes");
+         m_psystem->m_pacmefile->put_contents(pathTrace, "yes");
 
       }
 
@@ -176,8 +177,7 @@ namespace apex
 
 #endif
 
-
-      if (file_is_true_dup(m_psystem->m_pacmedir->system() / "log.txt"))
+      if (m_psystem->m_pacmefile->is_true(m_psystem->m_pacmedir->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -477,7 +477,11 @@ namespace apex
 //         try
 //         {
 //
-//            ::dir::mk(::dir::name(m_strLogPath));
+//                     auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->create(::file_path_folder(m_strLogPath));
 //
 //            if (!(m_pfile = fopen(m_strLogPath, "at")))
 //            {
@@ -552,7 +556,7 @@ namespace apex
 //
 //                  sleep(1_s);
 //
-//                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
+//                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
 //                  {
 //
 //                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);

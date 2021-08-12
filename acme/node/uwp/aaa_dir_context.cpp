@@ -107,7 +107,11 @@ namespace uwp
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome = pacmedir->roaming() / "home";
+      m_pdirsystem->m_pathHome =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->roaming() / "home";
 
       //nodeos_set_home(m_pdirsystem->m_pathHome);
 
@@ -528,7 +532,7 @@ namespace uwp
 
                }
 
-               string strError = get_system_error_message(dwError);
+               string strError = get_last_error_message(dwError);
 
                TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 

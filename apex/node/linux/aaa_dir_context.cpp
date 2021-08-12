@@ -32,7 +32,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = file_as_string(path);
+   string strDirs = m_psystem->m_pacmefile->as_string(path);
 
    string_array stra;
 
@@ -360,7 +360,11 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(path))
       {
 
          return true;

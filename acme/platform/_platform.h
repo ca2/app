@@ -131,7 +131,7 @@ namespace acme
 #pragma warning(disable: 4250)
 
 
-class stdio_file;
+//class stdio_file;
 struct memory_state;
 
 

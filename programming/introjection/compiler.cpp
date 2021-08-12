@@ -21,7 +21,7 @@ string vs_build(::object * pobject)
 
    path = pacmedir->config() / "programming/vs_build.txt";
 
-   string strVsBuild = file_as_string(path);
+   string strVsBuild = pobject->m_psystem->m_pacmefile->as_string(path);
 
    strVsBuild.trim();
 
@@ -483,9 +483,9 @@ namespace introjection
 
       pathEnvTxt = pacmedir->system() / "env.txt";
 
-      file_put_contents(pacmedir->system() / "env1.bat",pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       auto psystem = m_psystem;
 
@@ -495,7 +495,7 @@ namespace introjection
 
       string strLog;
 
-      strLog = file_as_string(pacmedir->system() / "env.txt");
+      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
 
       string_array stra;
 
@@ -718,7 +718,11 @@ namespace introjection
 
       }
 
-      ::dir::mk("/::payload/tmp/ca2/intermediate");
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create("/::payload/tmp/ca2/intermediate");
 
 #else
 
@@ -1124,7 +1128,7 @@ namespace introjection
 
 #ifdef LINUX
 
-      file_put_contents("/tmp/introj.bash", str);
+      m_psystem->m_pacmefile->put_contents("/tmp/introj.bash", str);
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1172,7 +1176,7 @@ namespace introjection
 
       }
 
-      strLog= file_as_string(strClog);
+      strLog= m_psystem->m_pacmefile->as_string(strClog);
 
 #else
 auto tickStart = ::millis::now();
@@ -1308,7 +1312,7 @@ auto tickStart = ::millis::now();
 
 #ifdef LINUX
 
-         file_put_contents("/tmp/introl.bash", str);
+         m_psystem->m_pacmefile->put_contents("/tmp/introl.bash", str);
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -1382,7 +1386,7 @@ auto tickStart = ::millis::now();
 
 #ifdef MACOS
 
-         strLog= file_as_string(strLlog);
+         strLog= m_psystem->m_pacmefile->as_string(strLlog);
 
 #else
 

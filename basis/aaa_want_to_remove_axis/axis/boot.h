@@ -122,7 +122,7 @@ extern "C"
 
 CLASS_DECL_BOOT string _ca_get_file_name(const ::string & psz, bool bCreate = false, i32 * pfd = nullptr);
 
-CLASS_DECL_AXIS string get_system_error_message(u32 dwError);
+CLASS_DECL_AXIS string get_last_error_message(u32 dwError);
 
 
 #include "boot_simple_app.h"

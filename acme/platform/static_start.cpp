@@ -593,7 +593,7 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      g_pengine = new ::PLATFORM_NAMESPACE::exception::engine();
+      //g_pengine = new ::PLATFORM_NAMESPACE::exception::engine();
 
       g_pmutexGlobals = new ::mutex();
 
@@ -1129,15 +1129,15 @@ namespace acme
 
       }
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//      set_extended_output_debug_string_a();
+//
+//      set_extended_output_debug_string_w();
+//
+//#endif
 
-      set_extended_output_debug_string_a();
-
-      set_extended_output_debug_string_w();
-
-#endif
-
-      create_factory < ::stdio_file >();
+      //create_factory < ::stdio_file >();
 
       //__node_acme_factory_exchange(::factory::get_factory_map());
 
@@ -1166,13 +1166,13 @@ namespace acme
 
       __node_acme_pre_term();
 
-#ifdef WINDOWS
-
-      set_simple_output_debug_string_a();
-
-      set_simple_output_debug_string_w();
-
-#endif
+//#ifdef WINDOWS
+//
+//      set_simple_output_debug_string_a();
+//
+//      set_simple_output_debug_string_w();
+//
+//#endif
 
       processor_cache_oriented_destroy_all_memory_pools();
 

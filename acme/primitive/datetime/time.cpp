@@ -784,7 +784,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //}
 
 
-FILETIME __FILETIME(const ::datetime::time & time)
+CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 {
 
    SYSTEMTIME systemtime = __SYSTEMTIME(time);

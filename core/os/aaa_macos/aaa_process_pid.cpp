@@ -187,10 +187,10 @@ id_array app_get_pid(const ::string & psz)
 
    path1 = get_last_run_application_path_file(psz);
 
-   if(file_exists(path1))
+   if(m_psystem->m_pacmefile->exists(path1))
    {
 
-      path1 = file_as_string(path1);
+      path1 = m_psystem->m_pacmefile->as_string(path1);
 
    }
 

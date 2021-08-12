@@ -89,7 +89,11 @@ string _ca_get_file_name(const ::string & pszName, bool bCreate, i32 * pfd)
    str.replace("\\", "/");
    str.replace("::", "_");
 
-   dir::mk(dir::name(str));
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(str));
 
    if(bCreate)
    {

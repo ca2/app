@@ -35,7 +35,7 @@ string FormatMessageFromSystem(u32 dwError)
 {
 
 
-   return ::get_system_error_message(dwError);
+   return ::get_last_error_message(dwError);
 
 
 }
@@ -123,7 +123,11 @@ CLASS_DECL_AURA bool memory_counter_on()
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = file_exists(pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -152,13 +156,21 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
 
 #if defined(_UWP)
 
-      string strBasePath = pacmedir->system() / "memory_counters";
+      string strBasePath =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "memory_counters";
 
 #else
 
       ::file::path strModule = module_path_from_pid(getpid());
 
-      string strBasePath = pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
+      string strBasePath =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
 
 #endif
 

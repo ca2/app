@@ -1297,11 +1297,14 @@ namespace core
 
    }
 
+   
    bool is_html_file(string strFilePath)
    {
 
-      return file_extension_dup(strFilePath).contains_ci("htm");
+      return string(file_path_final_extension(strFilePath)).compare_ci("htm") == 0;
+
    }
+
 
    __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
    {

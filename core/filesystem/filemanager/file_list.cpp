@@ -626,7 +626,7 @@ namespace filemanager
 
          ::file::path strPath = patha.first();
 
-         string strExt = strPath.extension();
+         string strExt = strPath.final_extension();
 
          string_array stra;
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/_net.h"
+#include "apex/networking/_networking.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"
 #endif
@@ -360,7 +360,8 @@ i32 GeoIP_db_avail(i32 type)
    {
       return 0;
    }
-   return file_exists(filePath);
+   //return file_exists(filePath);
+   return 1;
 }
 
 static

@@ -11,7 +11,7 @@ bool launcher::start()
       return false;
 
    vsstring strPath(get_executable_path());
-   vsstring strDir(dir::name(strPath));
+   vsstring strDir(::file_path_folder(strPath));
 
 
     /*vsstring strPath

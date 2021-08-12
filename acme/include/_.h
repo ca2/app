@@ -677,6 +677,7 @@ namespace acme
 
 class acme_dir;
 
+class acme_file;
 
 class acme_path;
 
@@ -686,6 +687,8 @@ namespace PLATFORM_NAMESPACE
 
 
    class acme_dir;
+
+   class acme_file;
 
    class acme_path;
 
@@ -1069,7 +1072,7 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //#include "acme/multimedia/_c.h"
 
 
-#include "acme/os/argcargv.h"
+#include "acme/node/operating_system/argcargv.h"
 
 
 class matter;
@@ -1126,6 +1129,10 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int
 
 inline const ::matter * context_trace_object() { return general_trace_object(); }
 
+
+//#ifdef WINDOWS
+//#include "windows_common.h"
+//#endif
 
 //CLASS_DECL_ACME void __tracea(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
@@ -2734,9 +2741,9 @@ class factory_map;
 
 typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
-#ifdef WINDOWS
-CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
-#endif
+//#ifdef WINDOWS
+//CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
+//#endif
 
 
 class matter;
@@ -3209,6 +3216,9 @@ namespace factory
 } // namespace factory
 
 
+#include "acme/const/parallelization.h"
+
+
 #include "acme/parallelization/synchronization_result.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
@@ -3455,17 +3465,14 @@ using exception_array = ::array < ::exception::exception >;
 #include "acme/user/conversation.h"
 
 
-CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) show_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
-
-
-
-
-
-
-
+//CLASS_DECL_ACME __pointer(::extended::future < ::conversation >) xxxshow_error_message(const string& strMessage, const string& strTitle, const ::e_message_box& emessagebox = e_message_box_ok);
 
 
 #include "acme/primitive/comparison/var_strict.h"
+
+#include "acme/const/filesystem.h"
+
+#include "acme/filesystem/filesystem/file_path.h"
 
 #include "acme/filesystem/filesystem/path.h"
 
@@ -3678,6 +3685,11 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/text_stream.h"
 
 
+#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+
+
 #include "acme/exception/_dump_context.h"
 
 
@@ -3881,7 +3893,6 @@ using lresult = iptr;
 #endif
 
 
-CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
@@ -4050,7 +4061,19 @@ namespace file
 #include "acme/primitive/datetime/_datetime.h"
 
 
-#include "acme/net/_.h"
+struct lib_main_int
+{
+
+   int         m_iAny = 0;
+   ::millis    m_millisProcessAttach = 0;
+   ::millis    m_millisProcessDetach = 0;
+   ::millis    m_millisThreadAttach = 0;
+   ::millis    m_millisThreadDetach = 0;
+
+};
+
+
+#include "acme/networking/_.h"
 
 
 #include "acme/primitive/text/context.h"
@@ -4098,7 +4121,7 @@ namespace zip
 } // namespace zip
 
 
-#include "acme/os/text.h"
+#include "acme/node/operating_system/text.h"
 
 
 #ifdef ANDROID
@@ -4120,7 +4143,7 @@ void set_osremote(os_remote * posremote);
 
 #include "acme/process/_.h"
 
-#include "acme/os/process.h"
+#include "acme/node/operating_system/process.h"
 
 
 
@@ -4171,15 +4194,11 @@ namespace xml
 #define new ACME_NEW
 
 
-#include "acme/os/chronometer.h"
+#include "acme/node/operating_system/chronometer.h"
 
 
 #include "acme/platform/number.h"
 
-
-// C++ Includes
-#include "acme/os/_2.h"
-//#include "acme/node/_.h"
 
 
 i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar *pMultByteStr, i32 cbMultiByte,
@@ -4226,7 +4245,7 @@ i32 _c_unlock(void **pdata);
 
 CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
 
-//CLASS_DECL_ACME string get_system_error_message(u32 dwError);
+//CLASS_DECL_ACME string get_last_error_message(u32 dwError);
 
 
 #include "acme/platform/simple_app.h"
@@ -4466,9 +4485,6 @@ inline string &to_json(string &str, const T &value, bool bNewLine)
 }
 
 
-#ifdef WINDOWS
-CLASS_DECL_ACME int trace_hr(const char * psz,HRESULT hr);
-#endif
 
 CLASS_DECL_ACME string get_last_error_string();
 

@@ -530,7 +530,11 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      string strOverride = file_as_string(pacmedir->system() / "config\\system\\keyboard_layout.txt");
+//      string strOverride = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\system\\keyboard_layout.txt");
 //
 //      if(strOverride.has_char())
 //      {

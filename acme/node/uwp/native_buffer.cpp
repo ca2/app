@@ -306,7 +306,11 @@ namespace uwp
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         ::dir::mk(path.folder());
+                  auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 
       }
 

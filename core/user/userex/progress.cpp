@@ -38,7 +38,7 @@ namespace userex
    i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      i64 i = ::progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      i64 i = ::progress::real::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       //if (i == 1 && m_pthread.is_set())
       //{
@@ -73,7 +73,7 @@ namespace userex
 
       m_pview->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
 
-      m_pview->m_pprogresscontrol = this;
+      m_pview->m_pprogressreal = this;
 
    }
 
@@ -317,7 +317,7 @@ namespace userex
 
       pgraphics->set_text_color(argb(255, 80, 80, 80));
 
-      pgraphics->draw_text(m_pprogresscontrol->m_strStatus, m_rectStatus, e_align_center);
+      pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectStatus, e_align_center);
 
    }
 

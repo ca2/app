@@ -5,6 +5,7 @@
 #include "acme/id.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
@@ -401,7 +402,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      strBuild = file_as_string(path);
+      strBuild = m_psystem->m_pacmefile->as_string(path);
 
       return strBuild.has_char();
 
@@ -415,7 +416,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      return file_put_contents(path, pszBuild);
+      return m_psystem->m_pacmefile->put_contents(path, pszBuild);
 
    }
 
@@ -437,7 +438,7 @@ namespace acme
       
       auto pathLastRun = get_last_run_application_path(strAppId);
       
-      if(pathLastRun.has_char() && ::file_exists(pathLastRun))
+      if(pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
       {
          
          return pathLastRun;
@@ -504,7 +505,11 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      ::file::path path = ::file_as_string(pathFile);
+      auto psystem = m_psystem;
+
+      auto pfile = psystem->m_pacmefile;
+
+      ::file::path path = pfile->as_string(pathFile);
 
       return path;
 
@@ -514,11 +519,11 @@ namespace acme
    ::e_status node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = m_psystem->m_pacmepath->app_module();
+      ::file::path path = m_psystem->m_pacmefile->executable();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      return file_put_contents(pathFile, path);
+      return m_psystem->m_pacmefile->put_contents(pathFile, path);
 
    }
 
@@ -1202,7 +1207,7 @@ namespace acme
 
       auto pacmedir = psystem->acmedir();
 
-      auto pathFolder = pacmedir->get_memory_map_base_folder_path();
+      auto pathFolder =  pacmedir->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 
@@ -1412,10 +1417,10 @@ namespace acme
    }
 
 
-   string node::expand_env(string str)
+   string node::expand_environment_variables(const string & str)
    {
 
-      return "";
+      return str;
 
    }
 
@@ -1497,12 +1502,141 @@ namespace acme
    }
 
 
-   ::string node::expand_environment_variables(const ::string & str)
+   //::string node::expand_environment_variables(const ::string & str)
+   //{
+
+   //   return str;
+
+   //}
+
+   ::file::path node::command_find_path(const ::string & pszCommand)
    {
 
-      return str;
+#ifdef _UWP
+
+      return "";
+
+#else
+
+      string strPath = getenv("PATH");
+
+      string_array straPath;
+
+      straPath.explode(":", strPath);
+
+      for (auto & str : straPath)
+      {
+
+         ::file::path path;
+
+         path = str;
+
+         path /= pszCommand;
+
+         if (m_psystem->m_pacmefile->exists(path))
+         {
+
+            return path;
+
+         }
+
+      }
+
+      return pszCommand;
+
+#endif
 
    }
+
+
+   bool node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::shell_execute_async(const char * pszFile, const char * pszParams)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::root_execute_async(const char * pszFile, const char * pszParams)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+   bool node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   {
+
+      __throw(error_interface_only);
+
+      return false;
+
+   }
+
+
+//   ::file::path node::command_find_path(const ::string & pszCommand)
+//   {
+//
+//#ifdef _UWP
+//
+//      return "";
+//
+//#else
+//
+//      string strPath = getenv("PATH");
+//
+//      string_array straPath;
+//
+//      straPath.explode(":", strPath);
+//
+//      for (auto & str : straPath)
+//      {
+//
+//         ::file::path path;
+//
+//         path = str;
+//
+//         path /= pszCommand;
+//
+//         if (m_psystem->m_pacmefile->exists(path))
+//         {
+//
+//            return path;
+//
+//         }
+//
+//      }
+//
+//      return pszCommand;
+//
+//#endif
+//
+//   }
 
 
 } // namespace acme

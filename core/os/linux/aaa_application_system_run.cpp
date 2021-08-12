@@ -206,19 +206,19 @@ void sn_start_context();
 
 // }
 
-
-void os_term_application()
-{
-
-//   if(g_papexapplication != nullptr)
-//   {
 //
-//      g_application_quit(G_APPLICATION(g_papexapplication));
+//void os_term_application()
+//{
 //
-//   }
-
-}
-
+////   if(g_papexapplication != nullptr)
+////   {
+////
+////      g_application_quit(G_APPLICATION(g_papexapplication));
+////
+////   }
+//
+//}
+//
 
 gboolean gtk_quit_callback(gpointer data)
 {

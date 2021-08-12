@@ -116,7 +116,11 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str = pacmedir->system() / "database.sqlite";
+   //str =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "database.sqlite";
 
    if (papplication->is_system())
    {

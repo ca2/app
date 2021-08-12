@@ -999,9 +999,17 @@ namespace android
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(pacmedir->system() / "home");
+      //nodeos_set_home(         auto psystem = m_psystem;
 
-      //nodeos_set_temp(pacmedir->system() / "temp");
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "home");
+
+      //nodeos_set_temp(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "temp");
 
       m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
 
@@ -1097,7 +1105,11 @@ namespace android
          CSIDL_COMMON_APPDATA,
          false);*/
 
-      str = pacmedir->system() / ".ca2/app/appdata";
+      str =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / ".ca2/app/appdata";
       string strRelative;
       strRelative = install();
       //index iFind = strRelative.find(':');

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "static_start.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
 //#include "apex/os/_os.h"

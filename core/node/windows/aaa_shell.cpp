@@ -422,7 +422,11 @@ namespace windows
 
             string strIcon;
 
-            strIcon = pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
+            strIcon =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "shell/app_theme" / imagekey.m_strShellThemePrefix + strExtension + ".ico";
 
             if (pcontext->m_papexcontext->file().exists(strIcon))
             {
@@ -811,7 +815,11 @@ namespace windows
 
       ::str::international::unicode_to_utf8(strPath, pcszPath);
 
-      if (dir::is(strPath))
+      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
       {
 
          return folder_file_system;

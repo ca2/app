@@ -340,6 +340,73 @@ namespace app_shader
 
       //_001OnDraw1Through3(pgraphics);
 
+      auto pathShader = m_strShaderPath;
+
+      auto text = ::file::path(pathShader).name();
+
+      auto pstyle = m_pinteraction->get_style(pgraphics);
+
+      auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+
+      auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
+
+      colorBackground.alpha = 128;
+
+      ::draw2d::brush_pointer brush;
+      
+      brush.create();
+      
+      brush->create_solid(colorBackground);
+
+      ::write_text::font_pointer pfont;
+
+      pfont.create();
+
+      auto pnode = m_psystem->m_paurasystem->node();
+
+      auto strFontName = pnode->font_name(e_font_sans_ui);
+
+      pfont->create_point_font(strFontName, 12.0);
+
+      pgraphics->set(pfont);
+
+      auto size = pgraphics->get_text_extent(text);
+      ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
+
+      rect.move_to(10, 10);
+      rect.inflate(4);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      pgraphics->set(brush);
+      pgraphics->fill_rectangle(rect);
+      pgraphics->set_text_color(color);
+
+
+      pgraphics->text_out({ 10,10 }, text);
+
+      if (m_pprogram)
+      {
+
+         if (m_pprogram->m_pshader->m_strError.has_char())
+         {
+
+            string strError = m_pprogram->m_pshader->m_strError;
+
+            auto size = pgraphics->get_text_extent(strError);
+            ::rectangle_i32 rect2(::point_f64(0, 0), size);
+
+            rect2.move_to(10, rect.bottom + 8);
+            rect2.inflate(4);
+            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            pgraphics->set(brush);
+            pgraphics->fill_rectangle(rect2);
+            pgraphics->set_text_color(color);
+
+            pgraphics->text_out(10, rect.bottom + 8, m_pprogram->m_pshader->m_strError);
+
+         }
+
+      }
    }
 
 

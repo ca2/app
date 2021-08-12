@@ -9,8 +9,7 @@
 #include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
-#include "acme/os/_user.h"
-//#include "acme/os/cross/windows/_windows.h"
+#include "acme/node/operating_system/_user.h"
 
 
 #define MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG 0
@@ -20,8 +19,7 @@ int g_i134 = 0;
 #define TEST_PRINT_BUFFER
 
 #ifdef WINDOWS_DESKTOP
-#include "aura/os/windows/windowing.h"
-//#include "aura/node/windows/system_interaction.h"
+#include "aura/node/operating_system/windows/windowing.h"
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(_UWP)
 

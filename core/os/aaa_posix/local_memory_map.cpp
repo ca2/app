@@ -79,7 +79,11 @@ namespace file
 
       ::file::path path(get_path());
 
-      ::dir::mk(path.folder());
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 
       m_iFile = ::open(path, iOpen, S_IRUSR | S_IWUSR);
 

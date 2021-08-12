@@ -1080,18 +1080,18 @@ namespace draw2d
 
          ::rectangle_f64 rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
-         if (rectIntersect.intersect(rectIntersect, imagedrawing.m_rectDst))
+         if (rectIntersect.intersect(rectIntersect, imagedrawing.m_rectangleTarget))
          {
 
-            auto & rectSrc = imagedrawing.m_rectSrc;
+            auto & rectSrc = imagedrawing.m_rectangleSource;
 
-            auto & rectDst = imagedrawing.m_rectDst;
+            auto & rectDst = imagedrawing.m_rectangleTarget;
 
-            ::point_i32 pointSrc(imagedrawing.m_rectSrc.top_left());
+            ::point_i32 pointSrc(imagedrawing.m_rectangleSource.top_left());
 
-            ::point_i32 pointDst(imagedrawing.m_rectDst.top_left());
+            ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
 
-            ::size_i32 size(imagedrawing.m_rectDst.size());
+            ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
             ::image_pointer pimage1 = create_image(size);
 
@@ -1102,7 +1102,13 @@ namespace draw2d
 
             }
 
-            if (!pimage1->draw(::rectangle_f64(size), imagedrawing.m_pimage, pointSrc))
+            ::image_source imagesource1(imagedrawing.m_pimage, pointSrc);
+
+            ::image_drawing_options imagedrawingoptions1(::rectangle_f64(size));
+
+            ::image_drawing imagedrawing1(imagedrawingoptions1, imagesource1);
+
+            if (!pimage1->draw(imagedrawing1))
             {
 
                return false;
@@ -1120,9 +1126,9 @@ namespace draw2d
 
             pimage2->fill(255, 0, 0, 0);
 
-            pimage2->g()->draw(::rectangle_f64(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size),
-               m_pimageAlphaBlend->get_graphics(),
-               ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)));
+            pimage2->g()->draw({ ::rectangle_f64(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size),
+               {m_pimageAlphaBlend,
+               ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)) } });
 
             pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 

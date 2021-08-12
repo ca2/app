@@ -3,7 +3,7 @@
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 namespace user

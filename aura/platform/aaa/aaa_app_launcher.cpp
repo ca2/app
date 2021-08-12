@@ -22,7 +22,7 @@ namespace aura
 
       ::file::path path = get_last_run_application_path(m_strApp);
 
-      if(file_exists(path))
+      if(m_psystem->m_pacmefile->exists(path))
       {
 
          return ::move(path);
@@ -89,7 +89,7 @@ namespace aura
 
       wstring wstrApp(get_executable_path());
 
-      wstring wstrDir(dir::name(string(wstrApp)));
+      wstring wstrDir(::file_path_folder(string(wstrApp)));
 
       wstring wstrParams = get_params();
 
@@ -133,7 +133,7 @@ namespace aura
 
       string strPath = get_executable_path();
 
-      string strDir = dir::name(strPath);
+      string strDir = ::file_path_folder(strPath);
 
       string strParams = get_params();
 

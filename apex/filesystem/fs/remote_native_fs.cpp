@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "remote_native_file.h"
 
@@ -335,7 +335,9 @@ namespace fs
 
    bool remote_native::file_exists(const ::file::path & pszPath)
    {
+
       return ::fs::data::file_exists(pszPath);
+
    }
 
 

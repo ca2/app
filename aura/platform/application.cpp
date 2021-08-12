@@ -955,7 +955,7 @@ namespace aura
 //
 //         path /= pszCommand;
 //
-//         if (file_exists(path))
+//         if (m_psystem->m_pacmefile->exists(path))
 //         {
 //
 //            return path;
@@ -3535,12 +3535,16 @@ retry_license:
 //
 //      int iRetry = 9;
 //
-//      while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
+//      while (!m_psystem->m_pacmefile->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
 //
-//         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
+//                  auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
 //
-//         file_put_contents(utf8(wstr.c_str()).c_str(), "");
+//pacmedir->create(::file_path_folder(utf8(wstr.c_str())).c_str());
+//
+//         m_psystem->m_pacmefile->put_contents(utf8(wstr.c_str()).c_str(), "");
 //
 //         iRetry--;
 //
@@ -3589,7 +3593,7 @@ retry_license:
 //
 //      string str = ::path::app_app_admin(strPlatform, strConfiguration);
 //
-//      if (!::file_exists(str))
+//      if (!::m_psystem->m_pacmefile->exists(str))
 //      {
 //
 //         return;
@@ -3640,7 +3644,7 @@ retry_license:
 //
 //      ::string strPath = wstr.c_str();
 //
-//      ::string strContents = file_as_string(strPath.c_str());
+//      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 //
 //      __throw(todo("xml"));
 //
@@ -5108,7 +5112,7 @@ retry_license:
 
       ::file::path strFile = dir().install() / strRelative;
 
-      ::file::path strUrl(::file::path_url);
+      ::file::path strUrl(::e_path_url);
 
       if (framework_is_basis())
       {
@@ -5202,10 +5206,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -8790,7 +8794,7 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
 
          if(::str::ends_ci(strIgnitionServer,".ca2.software"))
          {

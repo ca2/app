@@ -3,10 +3,8 @@
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-
-
-
-
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -178,7 +176,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   return is_file_or_dir_dup(path, petype) != false;
+   return m_psystem->m_pacmepath->is_file_or_dir(path, petype) != false;
 
 }
 
@@ -1032,7 +1030,11 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
          }
 
-         if (!::file_copy_dup(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
+         auto psystem = m_psystem;
+
+         auto pacmefile = psystem->m_pacmefile;
+
+         if (!pacmefile->copy(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
          {
 
             return ::error_failed;
@@ -1412,7 +1414,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
    }
    else
    {
-      string strExt = psz.ext();
+      string strExt = psz.final_extension();
       if (!strExt.is_empty())
       {
          strExt = "-" + strExt;
@@ -2468,7 +2470,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
       synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
 
-      if (!(path & ::file::e_flag_bypass_cache) && ::file_exists(pathCache))
+      if (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmefile->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -2776,7 +2778,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          if (eopenFlags & ::file::e_open_text)
          {
 
-            pfile = __create_new<::stdio_file>();
+            //pfile = __create_new<::stdio_file>();
 
          }
 
@@ -2965,7 +2967,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni = onedrive_global_ini();
 
-   string strIni = file_as_string(pathGlobalIni);
+   string strIni = m_psystem->m_pacmefile->as_string(pathGlobalIni);
 
    if (strIni.is_empty())
    {

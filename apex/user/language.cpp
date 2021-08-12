@@ -107,35 +107,37 @@ namespace user
    string language::load_podata(bool bOnlyHeader)
    {
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      int iPo = m_iPo;
+//
+//      return read_resource_as_string(nullptr, iPo, "PO", bOnlyHeader ? 4096 : -1);
+//
+//#elif defined(MACOS)
+//
+//      string strLang = m_strLanguageCode;
+//      
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
+//
+//      ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
+//
+//      return m_psystem->m_pacmefile->as_string(path, bOnlyHeader ? 4096 : -1);
+//
+//#else
+//
+//      string strLang = m_strLanguageCode;
+//
+//      auto pcontext = m_pcontext;
+//
+//      ::file::path path = pcontext->m_papexsystem->dir().module() / "po" / (strLang + ".po");
+//
+//      return m_psystem->m_pacmefile->as_string(path, bOnlyHeader ? 4096 : -1);
+//
+//#endif
 
-      int iPo = m_iPo;
-
-      return read_resource_as_string(nullptr, iPo, "PO", bOnlyHeader ? 4096 : -1);
-
-#elif defined(MACOS)
-
-      string strLang = m_strLanguageCode;
-      
-      auto psystem = m_psystem->m_papexsystem;
-
-      ::file::path pathCa2 = psystem->m_pdirsystem->m_pathCa2;
-
-      ::file::path path = pathCa2 / "Resources/po" / (strLang + ".po");
-
-      return file_as_string(path, bOnlyHeader ? 4096 : -1);
-
-#else
-
-      string strLang = m_strLanguageCode;
-
-      auto pcontext = m_pcontext;
-
-      ::file::path path = pcontext->m_papexsystem->dir().module() / "po" / (strLang + ".po");
-
-      return file_as_string(path, bOnlyHeader ? 4096 : -1);
-
-#endif
+      __throw(todo);
 
    }
 

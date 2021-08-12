@@ -173,7 +173,7 @@ public:
 
       auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(memsize + BASE_META_DATA::natural_offset());
 
-      pmetadata->m_countReference = 1;
+      pmetadata->m_countReference = 0;
 
       pmetadata->m_memsize = memsize;
 
@@ -226,9 +226,9 @@ public:
 
          }
 
-         natural_release(pOld);
-
          this->m_pdata = pNew->get_data();
+
+         natural_release(pOld);
 
       }
 
@@ -238,24 +238,19 @@ public:
    void natural_release()
    {
 
-      if (::is_set(this->m_pdata))
-      {
-
-         natural_release(this->m_pdata);
-
-      }
+      auto pdata = this->m_pdata;
 
       m_pdata = default_construct_natural_pointer();
+
+      natural_release(pdata);
 
    }
 
 
-   static void natural_release(DATA * & pdata)
+   static void natural_release(DATA * pdata)
    {
 
       natural_release(NATURAL_META_DATA::from_data(pdata));
-
-      pdata = nullptr;
 
    }
 

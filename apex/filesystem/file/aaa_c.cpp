@@ -14,17 +14,17 @@
 */
 
 
-bool file_put_contents(const char * path, const memory_base & memory)
+bool m_psystem->m_pacmefile->put_contents(const char * path, const memory_base & memory)
 {
 
-   return file_put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
+   return m_psystem->m_pacmefile->put_contents(path, (const char *) memory.get_data(), memory.get_size()) != false;
 
 }
 
 
 
 
-string file_name_dup(const char * path)
+string file_path_name(const char * path)
 {
    string str(path);
    strsize iPos;
@@ -57,9 +57,9 @@ string file_name_dup(const char * path)
 }
 
 
-string file_title_dup(const char * path)
+string file_path_title(const char * path)
 {
-   string str = file_name_dup(path);
+   string str = file_path_name(path);
    strsize iPos = str.find('.');
    if(iPos != -1)
    {
@@ -72,7 +72,7 @@ string file_title_dup(const char * path)
 }
 
 
-int_bool file_path_is_relative_dup(const char * psz)
+int_bool file_path_is_relative(const char * psz)
 {
 
    string strPath(psz);
@@ -107,7 +107,11 @@ CLASS_DECL_APEX int_bool dir_appdata(char * psz,size_t size)
 
 int dir_mk(const char * psz)
 {
-   return ::dir::mk(psz) != 0;
+   return          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(psz) != 0;
 }
 
 int_bool is_absolute_path(const char * psz)
@@ -132,7 +136,7 @@ int_bool is_absolute_path(const char * psz)
 CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 {
 
-   return ::str::is_true(::file_as_string(path));
+   return ::str::is_true(::m_psystem->m_pacmefile->as_string(path));
 
 }
 
@@ -145,7 +149,7 @@ CLASS_DECL_APEX int_bool file_is_true_dup(const char * path)
 CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & stra)
 {
 
-   return file_put_contents(lpszName, stra.implode("\n"));
+   return m_psystem->m_pacmefile->put_contents(lpszName, stra.implode("\n"));
 
 }
 
@@ -153,7 +157,7 @@ CLASS_DECL_APEX bool file_save_stra(const char * lpszName, const string_array & 
 CLASS_DECL_APEX bool file_load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
 {
 
-   stra.add_lines(file_as_string(lpszName), bAddEmpty);
+   stra.add_lines(m_psystem->m_pacmefile->as_string(lpszName), bAddEmpty);
 
    return true;
 

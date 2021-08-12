@@ -27,8 +27,6 @@ namespace user
    shell::image_key::image_key(const image_key & key)
    {
 
-      //m_oswindow = key.m_oswindow;
-      m_cr = key.m_cr;
       m_strPath = key.m_strPath;
       m_iIcon = key.m_iIcon;
       m_eattribute = key.m_eattribute;
@@ -39,17 +37,10 @@ namespace user
    }
 
 
-   shell::image_key::image_key(const ::string & strPath, const ::string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+   shell::image_key::image_key(const ::string & strPath, const ::string & strShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon)
    {
 
-      if (colorref_get_a_value(crBk) != 255)
-      {
-
-         crBk = 0;
-
-      }
-
-      set_path(strPath);
+      m_strPath = strPath;
 
       m_strShellThemePrefix = strShellThemePrefix;
 
@@ -58,10 +49,6 @@ namespace user
       m_eicon = eicon;
 
       m_iIcon = 0;
-
-      //m_oswindow = m_pimage->get_safe_handle();
-
-      m_cr = crBk;
 
    }
 
@@ -125,6 +112,8 @@ namespace user
    shell::shell()
    {
 
+      m_bAddDefaultIcons = false;
+      m_bRequireHighQualityThumbnail = false;
       m_bPendingUpdate = false;
       m_bMax = false;
       m_iActiveThreadCount = 0;
@@ -333,6 +322,55 @@ namespace user
    }
 
 
+   bool shell::defer_set_thumbnail(_get_file_image_ & getfileimage)
+   {
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pcontextimage = psystem->context_image();
+
+      auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
+
+      if (::is_ok(pimageTemplate))
+      {
+
+         getfileimage.m_iImage = _reserve_image(getfileimage.m_imagekey);
+
+         if (getfileimage.m_iImage >= 0)
+         {
+
+            for (auto & iSize : m_iaSize)
+            {
+
+               double dSize = (double)iSize;
+
+               double dRateWidth = dSize / (double)pimageTemplate->width();
+
+               double dRateHeight = dSize / (double)pimageTemplate->height();
+
+               double dRateMinimum = minimum(dRateWidth, dRateHeight);
+
+               int cx = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->width());
+
+               int cy = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->height());
+
+               auto pimage = pimageTemplate->get_image(cx, cy);
+
+               set_image(getfileimage.m_iImage, iSize, pimage);
+
+            }
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+ 
    void shell::on_update_sizes_interest()
    {
 
@@ -382,7 +420,7 @@ namespace user
 
       }
 
-      on_add_default_file_image();
+      m_bAddDefaultIcons = true;
 
       m_bPendingUpdate = false;
 
@@ -427,16 +465,16 @@ namespace user
    }
 
 
-   void shell::on_add_default_file_image()
+   void shell::on_add_default_file_image(_get_file_image_ & getfileimage)
    {
 
-      create_file_icon_image("bookmark://", file_attribute_directory, icon_normal, "icon://quickaccess");
+      create_file_icon_image("bookmark://", e_file_attribute_directory, e_icon_normal, "icon://quickaccess", getfileimage);
 
-      create_file_icon_image("bookmark://", file_attribute_directory, icon_open, "icon://quickaccess");
+      create_file_icon_image("bookmark://", e_file_attribute_directory, e_icon_open, "icon://quickaccess", getfileimage);
 
-      create_file_icon_image("dropbox://", file_attribute_directory, icon_normal, "icon://dropbox");
+      create_file_icon_image("dropbox://", e_file_attribute_directory, e_icon_normal, "icon://dropbox", getfileimage);
 
-      create_file_icon_image("dropbox://", file_attribute_directory, icon_open, "icon://dropbox");
+      create_file_icon_image("dropbox://", e_file_attribute_directory, e_icon_open, "icon://dropbox", getfileimage);
 
 
    }
@@ -445,6 +483,14 @@ namespace user
    void shell::do_initialize()
    {
 
+
+   }
+
+
+   shell::_get_file_image_ * shell::new_get_file_image()
+   {
+
+      return new _get_file_image_;
 
    }
 
@@ -539,7 +585,7 @@ namespace user
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const ::wstring & wstrPath)
+   shell::enum_folder shell::get_folder_type(::object * pobject, const ::wstring & wstrPath)
    {
 
       string str(wstrPath);
@@ -549,7 +595,7 @@ namespace user
    }
 
 
-   shell::e_folder shell::get_folder_type(::object * pobject, const ::string & strPath)
+   shell::enum_folder shell::get_folder_type(::object * pobject, const ::string & strPath)
    {
 
       wstring wstr(strPath);
@@ -559,45 +605,29 @@ namespace user
    }
 
 
-   i32 shell::get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+
+
+
+   void shell::get_file_extension_image(_get_file_image_ & getfileimage)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      getfileimage.m_imagekey.m_strPath = "foo";
 
-      image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon, crBk);
+      getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
 
-      return get_file_image(imagekey);
+      getfileimage.m_imagekey.m_iIcon = 0;
+
+      get_file_image(getfileimage.m_imagekey);
 
    }
 
 
-   i32 shell::get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk)
+   i32 shell::get_file_image(const ::file::path & path, ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
-      //i32 iImage = 0x80000000;
+      synchronous_lock synchronouslock(mutex());
 
-      if (colorref_get_a_value(crBk) != 255)
-      {
-
-         crBk = 0;
-
-      }
-
-      image_key imagekey;
-
-      imagekey.m_strPath = "foo";
-
-      imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
-
-      imagekey.m_strExtension = strExtension;
-
-      imagekey.m_eattribute = eattribute;
-
-      imagekey.m_eicon = eicon;
-
-      imagekey.m_iIcon = 0;
-
-      imagekey.m_cr = crBk;
+      image_key imagekey(path, m_strShellThemePrefix, eattribute, eicon);
 
       return get_file_image(imagekey);
 
@@ -659,10 +689,8 @@ namespace user
    }
 
 
-   i32 shell::_get_file_image(const image_key& imagekey)
+   void shell::_get_file_image(_get_file_image_ & getfileimage)
    {
-
-      return -1;
 
    }
 
@@ -670,14 +698,14 @@ namespace user
    ::e_status shell::run()
    {
 
-      defer_co_initialize_ex(false);
+      auto_pointer < _get_file_image_ > pgetfileimage(new_get_file_image());
 
       while (task_get_run())
       {
 
-         image_key imagekey;
+//         image_key imagekey;
 
-         get_scheduled_image_key(imagekey);
+         get_scheduled_image_key(pgetfileimage->m_imagekey);
 
          if (!task_get_run())
          {
@@ -686,23 +714,40 @@ namespace user
 
          }
 
+         if (m_bAddDefaultIcons)
+         {
+
+            m_bAddDefaultIcons = false;
+
+            on_add_default_file_image(*pgetfileimage);
+
+         }
+
          try
          {
 
-            int iImage = _get_file_image(imagekey);
+            auto strPath = pgetfileimage->m_imagekey.m_strPath;
+
+            _get_file_image(*pgetfileimage);
+
+            pgetfileimage->m_imagekey.m_strPath = strPath;
+
+            pgetfileimage->m_imagekey.m_strExtension.Empty();
+
+            pgetfileimage->m_imagekey.m_iIcon = 0;
 
             synchronous_lock synchronouslock(mutex());
 
-            if (iImage & 0x80000000)
+            if (pgetfileimage->m_iImage & 0x80000000)
             {
 
-               m_imagemap.erase_key(imagekey);
+               m_imagemap.erase_key(pgetfileimage->m_imagekey);
 
             }
             else
             {
 
-               m_imagemap.set_at(imagekey, iImage);
+               m_imagemap.set_at(pgetfileimage->m_imagekey, pgetfileimage->m_iImage);
 
             }
 
@@ -719,7 +764,7 @@ namespace user
    }
 
 
-   i32 shell::set_icon(int iImage, const ::file::path & pathIcon, const ::color::color& colorBackground)
+   void shell::set_icon(const ::file::path & pathIcon, _get_file_image_ & getfileimage)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -746,34 +791,32 @@ namespace user
 
          }
 
-         iImage = set_image(iImage, pimage, colorBackground);
+         set_image(getfileimage.m_iImage, iSize, pimage);
 
       }
-
-      return iImage;
 
    }
 
    
-   i32 shell::set_image(int iImage, ::image * pimage, const ::color::color & colorBackground)
+   void shell::set_image(int iImage, int iSize, ::image * pimage)
    {
-
-      int iSize = pimage->get_size().cy;
 
       synchronous_lock synchronouslock(m_pil[iSize]->mutex());
 
       synchronous_lock slHover(m_pilHover[iSize]->mutex());
 
-      iImage = m_pil[iSize]->add_image(pimage, 0, 0, iImage);
+      m_pil[iSize]->set(iImage, pimage);
 
-      iImage = add_hover_image(iSize, iImage, colorBackground);
+      auto pimageHover = m_pil[iSize]->get_image(iImage);
 
-      return iImage;
+      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+
+      m_pilHover[iSize]->set(iImage, pimageHover);
 
    }
 
 
-   i32 shell::create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon)
+   i32 shell::create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage)
    {
 
       int iReturn = -1;
@@ -785,25 +828,28 @@ namespace user
       if (pathFinal != strPath)
       {
 
-         iReturn = _create_file_icon_image(pathFinal, eattribute, eicon, strIcon);
+         iReturn = _create_file_icon_image(pathFinal, eattribute, eicon, strIcon, getfileimage);
 
       }
 
-      iReturn = _create_file_icon_image(strPath, eattribute, eicon, strIcon);
+      iReturn = _create_file_icon_image(strPath, eattribute, eicon, strIcon, getfileimage);
 
       return iReturn;
 
    }
 
 
-   i32 shell::_create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIconParam)
+   i32 shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
    {
-    
-      image_key imagekey(strPath, m_strShellThemePrefix, eattribute, eicon);
 
-      i32 iImage;
+      // auto_pointer < _get_file_image_ > pgetfileimage(new_get_file_image());
 
-      if (!reserve_image(imagekey, iImage))
+      getfileimage.m_imagekey.m_strPath = strPath;
+      getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
+      getfileimage.m_imagekey.m_eattribute = eattribute;
+      getfileimage.m_imagekey.m_eicon = eicon;
+
+      if (!reserve_image(getfileimage.m_imagekey, getfileimage.m_iImage))
       {
 
          return -1;
@@ -814,7 +860,7 @@ namespace user
 
       ::file::path pathIcon;
 
-      m_imagemap[imagekey] = iImage;
+      m_imagemap[getfileimage.m_imagekey] = getfileimage.m_iImage;
 
       if (strIcon.begins_eat_ci("icon://"))
       {
@@ -850,7 +896,7 @@ namespace user
 
             pimage = nullptr;
 
-            if (file_exists(pathImage))
+            if (m_psystem->m_pacmefile->exists(pathImage))
             {
 
                pimage = pcontextimage->get_image(pathImage);
@@ -870,7 +916,7 @@ namespace user
 
                      pathImage = pathFolder / strSize / (strIcon + ".png");
 
-                     if (file_exists(pathImage))
+                     if (m_psystem->m_pacmefile->exists(pathImage))
                      {
 
                         pimage = pcontextimage->get_image(pathImage);
@@ -895,17 +941,18 @@ namespace user
 
                pimage = pimage->get_image(iSize, iSize);
 
-               set_image(iImage, pimage, imagekey.m_cr);
+               set_image(getfileimage.m_iImage, iSize, pimage);
 
             }
 
          }
 
-         return iImage;
+         //return iImage;
+         return getfileimage.m_iImage;
 
-         auto & dir = pcontext->dir();
+         //auto & dir = pcontext->dir();
 
-         pathIcon = pathFolder / "ico" / (strIcon + ".ico");
+         //pathIcon = pathFolder / "ico" / (strIcon + ".ico");
 
       }
       else
@@ -915,9 +962,9 @@ namespace user
 
       }
 
-      set_icon(iImage, pathIcon, imagekey.m_cr);
+      set_icon(pathIcon, getfileimage);
 
-      return iImage;
+      return getfileimage.m_iImage;
 
    }
 
@@ -981,77 +1028,77 @@ namespace user
 
    //}
 
-   int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
-   {
+   //int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
+   //{
 
-      synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
 
-      if (colorBackground.is_transparent())
-      {
+   //   if (colorBackground.is_transparent())
+   //   {
 
-         auto pimage = m_pil[iSize]->get_image(iImage);
-         
-         pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+   //      auto pimage = m_pil[iSize]->get_image(iImage);
+   //      
+   //      pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
 
-         m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
+   //      m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
 
-         return iImage;
+   //      return iImage;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         auto pimage = m_pil[iSize]->get_image(iImage);
+   //      auto pimage = m_pil[iSize]->get_image(iImage);
 
-         iImage = m_pilHover[iSize]->add_image(pimage, 0, 0,  iImage);
+   //      iImage = m_pilHover[iSize]->add_image(pimage, 0, 0,  iImage);
 
-         {
+   //      {
 
-            ::image_pointer pimage(this);
+   //         ::image_pointer pimage(this);
 
-            pimage->create({ iSize, iSize });
+   //         pimage->create({ iSize, iSize });
 
-            pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
+   //         pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
 
-            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
+   //         ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
-            m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
+   //         m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
 
-            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            auto rectDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
+   //         auto rectDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
 
-            m_pilHover[iSize]->m_pimage->g()->draw(rectDraw, pimage->get_graphics());
+   //         m_pilHover[iSize]->m_pimage->g()->draw(rectDraw, pimage->get_graphics());
 
-            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         }
+   //      }
 
-         {
+   //      {
 
-            ::image_pointer d = m_pilHover[iSize]->m_pimage;
+   //         ::image_pointer d = m_pilHover[iSize]->m_pimage;
 
-            ::image_pointer pimage(this);
+   //         ::image_pointer pimage(this);
 
-            pimage->create(d->size());
+   //         pimage->create(d->size());
 
-            pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
-            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            pimage->get_graphics()->stretch(d->size(), d);
-            pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorBackground.red, colorBackground.green, colorBackground.blue));
-            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-            m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
-            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         pimage->fill(255, colorBackground.red, colorBackground.green, colorBackground.blue);
+   //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         pimage->get_graphics()->stretch(d->size(), d);
+   //         pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorBackground.red, colorBackground.green, colorBackground.blue));
+   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
+   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         }
+   //      }
 
-         return iImage;
+   //      return iImage;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    //::e_status shell::thread::destroy()

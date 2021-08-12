@@ -179,7 +179,7 @@ namespace colorertake5
       {
          string relPath = hrcLocations.element_at(idx);
          string path;
-         if(file_path_is_relative_dup(relPath))
+         if(file_path_is_relative(relPath))
          {
             path = catalogPath.sibling(relPath);
             string path2del = path;

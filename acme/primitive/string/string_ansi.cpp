@@ -606,7 +606,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   return  ::str::get_utf8_char(pch).get_length();
 //}
 //
-//u32 __cdecl char_traits::get_environment_variable(const char * pszVar, char * pszBuffer,u32 dwSize )
+//u32 __cdecl char_traits::xxxget_environment_variable(const char * pszVar, char * pszBuffer,u32 dwSize )
 //{
 //
 //#ifdef _UWP
@@ -3085,10 +3085,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //#endif
 //
 //// set the string to the value of environment ::payload 'pszVar'
-//bool string::get_environment_variable(const char * pszVar)
+//bool string::xxxget_environment_variable(const char * pszVar)
 //{
 //
-//   u32 nLength = str::get_environment_variable(pszVar,nullptr,0);
+//   u32 nLength = str::xxxget_environment_variable(pszVar,nullptr,0);
 //   bool bRetVal = false;
 //
 //   if(nLength == 0)
@@ -3098,7 +3098,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   else
 //   {
 //      char * pszBuffer = GetBuffer(nLength);
-//      str::get_environment_variable(pszVar,pszBuffer,nLength);
+//      str::xxxget_environment_variable(pszVar,pszBuffer,nLength);
 //      ReleaseBuffer();
 //      bRetVal = true;
 //   }
@@ -3107,10 +3107,10 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//bool string::getenv(const char * pszVar)
+//bool string::xxxetenv(const char * pszVar)
 //{
 //
-//   return get_environment_variable(pszVar);
+//   return xxxget_environment_variable(pszVar);
 //
 //}
 //

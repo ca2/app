@@ -1,9 +1,13 @@
 #include "framework.h"
-#include "acme/operating_system.h"
+#include "apex/operating_system.h"
 #include "apex/message.h"
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
 #include "apex/platform/node.h"
+
+
+//HANDLE duplicate_handle(HANDLE h);
+CLASS_DECL_ACME void TRACELASTERROR();
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -2565,7 +2569,7 @@ void thread::set_current_handles()
 
 #ifdef WINDOWS_DESKTOP
 
-   m_htask = dup_handle(::get_current_hthread());
+   m_htask = duplicate_handle(::get_current_hthread());
 
 #else
 

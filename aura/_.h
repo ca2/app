@@ -193,7 +193,7 @@ namespace aura
 
 //#include "aura/platform/struct.h"
 
-#include "aura/os/os.h"
+#include "aura/node/operating_system/operating_system.h"
 
 //#include "aura/memory/heap_c.h"
 //

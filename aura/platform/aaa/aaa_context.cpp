@@ -425,7 +425,11 @@ string context::defer_get_file_title(string strParam)
    else if (::str::begins_eat_ci(path, "usersystem://"))
    {
 
-      path = pacmedir->system() / path;
+      path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / path;
 
    }
    else if (::str::begins_eat_ci(path, "desktop://"))
@@ -524,7 +528,7 @@ string context::defer_get_file_title(string strParam)
       ::file::path pathCache = ::aura::get_system()->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       if ((path & ::file::e_flag_get_local_path)
-         || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+         || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
       {
 
          return pathCache;
@@ -538,7 +542,7 @@ string context::defer_get_file_title(string strParam)
       if (!(path & ::file::e_flag_bypass_cache))
       {
 
-         string strFirstLine = file_line_dup(pathMeta, 0);
+         string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
 
          if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
          {
@@ -552,7 +556,7 @@ string context::defer_get_file_title(string strParam)
             if (!retry([pathMeta]()
                {
 
-                  return file_line_dup(pathMeta, 0) != "processing";
+                  return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
 
                }))
             {
@@ -569,7 +573,7 @@ string context::defer_get_file_title(string strParam)
 
       ::file::enum_type etype = ::file::e_type_none;
 
-      if (is_file_or_dir_dup(pathSide, &etype))
+      if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
       {
 
          if (etype == ::file::e_type_file)
@@ -820,7 +824,11 @@ string context::http_get(const ::string & strUrl, ::property_set & set)
 ::handle::ini context::local_ini()
 {
 
-   ::file::path pathFolder = pacmedir->localconfig();
+   ::file::path pathFolder =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig();
 
    return ini_from_path(pathFolder);
 
@@ -943,7 +951,11 @@ string context::http_get(const ::string & pszUrl)
 bool context::sys_set(string strPath, string strValue)
 {
 
-   return file().put_contents_utf8(pacmedir->config() / strPath, strValue);
+   return file().put_contents_utf8(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / strPath, strValue);
 
 }
 
@@ -951,7 +963,11 @@ bool context::sys_set(string strPath, string strValue)
 string context::sys_get(string strPath, string strDefault)
 {
 
-   string strValue = file().as_string(pacmedir->config() / strPath);
+   string strValue = file().as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / strPath);
 
    if (strValue.is_empty())
    {

@@ -198,9 +198,9 @@ namespace apex
 
 
 
-class source;
-class update;
-class machine;
+//class source;
+//class update;
+//class machine;
 
 
 
@@ -209,8 +209,8 @@ class machine;
 #pragma warning(disable: 4250)
 
 
-class stdio_file;
-struct memory_state;
+//class stdio_file;
+//struct memory_state;
 
 
 //#include "const.h"
@@ -342,7 +342,7 @@ namespace apex
 
 //#include "types.h"
 
-#include "progress_interface.h"
+//#include "progress_interface.h"
 
 //#include "debug.h"
 

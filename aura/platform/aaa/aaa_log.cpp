@@ -44,14 +44,18 @@ namespace aura
 
 #else
 
-      ::file::path pathTrace = pacmedir->system() / "trace.txt";
+      ::file::path pathTrace =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!file_exists(pathTrace))
+      if (!m_psystem->m_pacmefile->exists(pathTrace))
       {
 
-         ::file_put_contents(pathTrace, "yes");
+         ::m_psystem->m_pacmefile->put_contents(pathTrace, "yes");
 
       }
 
@@ -175,7 +179,11 @@ namespace aura
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(pacmedir->system() / "log.txt"))
+      if (file_is_true_dup(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -472,7 +480,11 @@ namespace aura
          try
          {
 
-            ::dir::mk(::dir::name(m_strLogPath));
+                     auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(m_strLogPath));
 
             if (!(m_pfile = fopen(m_strLogPath, "at")))
             {
@@ -545,7 +557,11 @@ namespace aura
 
                   sleep(1_s);
 
-                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(pacmedir->system() / "logviewer.txt"))
+                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "logviewer.txt"))
                   {
 
                      call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_normal, false);

@@ -320,12 +320,12 @@ void copy(RECTD * prectTarget, const CGRect * prectSource)
 bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
 {
 
-   return __node_full_file_path(path1).compare_ci(__node_full_file_path(path2)) == 0;
+   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
 
 }
 
 
-::file::path __node_full_file_path(file::path path)
+::file::path __xxxnode_full_file_path(file::path path)
 {
 
    if(path.is_empty())

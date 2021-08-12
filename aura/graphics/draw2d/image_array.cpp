@@ -75,7 +75,23 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
          auto rectSrc = ::rectangle_i32_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 
-         pimage->stretch(rectDst, pimageSource, rectSrc);
+         image_source imagesource(pimageSource, rectSrc);
+
+         image_drawing_options imagedrawingoptions(rectDst);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         /*
+
+         image_source imagesource();
+
+         image_drawing_options imagedrawingoptions();
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         */
+
+         pimage->draw(imagedrawing);
 
          add(pimage);
 

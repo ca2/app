@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/filesystem/file/stdio_file.h"
+//#include "acme/filesystem/file/stdio_file.h"
 #include "apex/filesystem/fs/_fs.h"
 
 
@@ -262,18 +262,18 @@ namespace fs
 
       file_pointer pfile;
 
-      if (eopen & ::file::e_open_text)
-      {
+      //if (eopen & ::file::e_open_text)
+      //{
 
-         pfile = __create_new<::stdio_file>();
+      //   pfile = __create_new<::stdio_file>();
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
          pfile.create(this);
 
-      }
+//      }
 
       auto result = pfile->open(path, eopen);
 

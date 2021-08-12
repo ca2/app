@@ -171,7 +171,11 @@ namespace ios
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(path))
       {
 
          return true;
@@ -257,7 +261,11 @@ namespace ios
 
             }
 
-            if(!::dir::is(stra[i]))
+            if(!         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(stra[i]))
             {
 
                return false;
@@ -296,7 +304,7 @@ namespace ios
    //   }
    //
    //
-   //   string dir::name(const ::string & path1)
+   //   string ::file_path_folder(const ::string & path1)
    //   {
    //      const char * psz = path1 + strlen(path1) - 1;
    //      while(psz >= path1)
@@ -328,7 +336,7 @@ namespace ios
    //      }
    //   }
    //
-   //   string dir::name(const ::string & str)
+   //   string ::file_path_folder(const ::string & str)
    //   {
    //
    //      strsize iLast = str.get_length() - 1;

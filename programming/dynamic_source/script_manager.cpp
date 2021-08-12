@@ -1099,18 +1099,22 @@ namespace dynamic_source
          return "";
    }
 
-#ifdef WINDOWS
-#define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
-   || (psz[0] == '\\' && psz[1] == '\\'))
-#else
-#define is_absolute_path(psz) (psz[0] == '/')
-#endif
+// #ifdef WINDOWS
+// #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
+//    || (psz[0] == '\\' && psz[1] == '\\'))
+// #else
+// #define is_absolute_path(psz) (psz[0] == '/')
+// #endif
+
 
    ::file::path script_manager::real_path(const ::file::path & str)
    {
+
 #ifdef WINDOWS
-      if(is_absolute_path(str))
+
+      if(file_path_is_absolute(str))
       {
+
          if(include_matches_file_exists(str))
             return str;
          return "";

@@ -847,7 +847,8 @@ namespace core
 #include "apex/filesystem/filesystem.h"
 
 
-#include "apex/platform/progress.h"
+#include "apex/progress/_.h"
+
 
 #include "apex/parallelization/_.h"
 
@@ -932,10 +933,19 @@ namespace windowing
 
 
 #include "apex/parallelization/thread.h"
-#include "apex/parallelization/handler.h"
+
+
+class handler_manager;
+
+
+class service;
+class service_handler;
+
+
+//#include "apex/parallelization/handler_manager.h"
 //#include "apex/parallelization/service_status.h"
-#include "apex/parallelization/service.h"
-#include "apex/parallelization/service_handler.h"
+//#include "apex/parallelization/service.h"
+//#include "apex/parallelization/service_handler.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/fork.h"
@@ -965,7 +975,7 @@ namespace user
 
 #include "apex/platform/savings.h"
 
-#include "apex/net/_.h"
+#include "apex/networking/_.h"
 
 class launcher;
 //#include "apex/platform/launcher.h"
@@ -1013,7 +1023,7 @@ namespace zip
 } // namespace zip
 
 
-#include "apex/os/text.h"
+//#include "apex/node/operating_system/text.h"
 
 #include "apex/process/process.h"
 
@@ -1277,7 +1287,7 @@ namespace mathematics
 #include "apex/filesystem/file/_.h"
 
 
-//#include "apex/net/_impl.h"
+//#include "apex/networking/_impl.h"
 
 
 #include "apex/filesystem/filesystem/_impl.h"
@@ -1286,7 +1296,7 @@ namespace mathematics
 #include "apex/database/_impl.h"
 
 
-#include "apex/os/_impl.h"
+//#include "apex/node/operating_system/_impl.h"
 
 
 

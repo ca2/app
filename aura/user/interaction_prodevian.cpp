@@ -4,7 +4,7 @@
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD
@@ -1317,3 +1317,24 @@ prodevian::~prodevian()
    m_pinteraction->erase_prodevian(this);
 
 }
+
+
+
+//void attach_thread_input_to_main_thread(bool bAttach)
+//{
+//
+//   MSG msg;
+//
+//   if (bAttach)
+//   {
+//
+//      PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+//
+//   }
+//
+//   AttachThreadInput(::GetCurrentThreadId(), (DWORD)get_main_ithread(), bAttach ? true : false);
+//
+//}
+//
+
+

@@ -1099,7 +1099,7 @@ breakFilter2:
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::file_exists(path))
+//                        if (::m_psystem->m_pacmefile->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;

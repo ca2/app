@@ -29,7 +29,7 @@ void * __node_library_open(const ::string & pszPath, string & strMessage)
    if(ansi_ends_ci(strPath,".exp"))
       return false;
 
-   if(ansi_find_string(file_name_dup(strPath),".") == nullptr)
+   if(ansi_find_string(file_path_name(strPath),".") == nullptr)
       strPath += ".dll";
 
    try

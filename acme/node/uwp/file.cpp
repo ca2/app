@@ -92,7 +92,11 @@ namespace uwp
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         ::dir::mk(lpszFileName.folder());
+                  auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(lpszFileName.folder());
 
       }
 

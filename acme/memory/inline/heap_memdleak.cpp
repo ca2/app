@@ -485,7 +485,7 @@ CLASS_DECL_ACME int  global_memdleak_enabled()
 
 #else
 
-      bMemdleak = ::file_exists("/archive/ca2/config/system/memdleak.txt");
+      bMemdleak = ::m_psystem->m_pacmefile->exists("/archive/ca2/config/system/memdleak.txt");
 
 #endif
 
@@ -726,7 +726,11 @@ void memdleak_dump()
    output_debug_string(sz);
    output_debug_string(" memory leaks.");
 
-   //file_put_contents(pacmedir->system() / "m.html", get_mem_info_report1());
+   //m_psystem->m_pacmefile->put_contents(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "m.html", get_mem_info_report1());
 }
 
 #undef print

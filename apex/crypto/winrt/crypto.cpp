@@ -1051,7 +1051,11 @@ namespace crypto
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return pacmedir->system() / "user" / "databin.bin";
+      return          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "user" / "databin.bin";
 
    }
 

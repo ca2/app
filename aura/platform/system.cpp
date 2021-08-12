@@ -193,7 +193,7 @@ namespace aura
 
          ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
-         if (file_exists(pathNoExceptionStackTrace))
+         if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
          {
 
             bGlobalEnableStackTrace = false;
@@ -744,7 +744,7 @@ namespace aura
 //
 //         str = m_psystem->m_pacmedir->home() / ".profile";
 //
-//         if(!file_exists(str))
+//         if(!m_psystem->m_pacmefile->exists(str))
 //         {
 //
 //            str = m_psystem->m_pacmedir->home() / ".bashrc";
@@ -882,9 +882,13 @@ namespace aura
 //
 //                  string str("installing or unstalling as root : getuid() %d", uid);
 //
-//                  ::dir::mk("/ca2core");
+//                           auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
 //
-//                  file_put_contents("/ca2core/teste.txt", str, str.length());
+//pacmedir->create("/ca2core");
+//
+//                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -1173,7 +1177,7 @@ namespace aura
 
       ::file::path path = m_psystem->m_pacmedir->config() / "system/draw2d.txt";
 
-      str = file_as_string(path);
+      str = m_psystem->m_pacmefile->as_string(path);
 
       if(str.has_char())
       {
@@ -1184,7 +1188,7 @@ namespace aura
 
       path = m_psystem->m_pacmedir->appdata() / "draw2d.txt";
 
-      str = file_as_string(path);
+      str = m_psystem->m_pacmefile->as_string(path);
 
       if(str.has_char())
       {
@@ -1693,7 +1697,15 @@ namespace aura
       //
       //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
-      //         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
+      //         bool bFileSystemMatter =          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathSide) ||          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathLocal);
       //
       //         bMatterFromHttpCache = !bFileSystemMatter;
       //
@@ -3894,7 +3906,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_as_string(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
+   //   return m_psystem->m_pacmefile->as_string(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
 
    //}
 
@@ -3904,7 +3916,7 @@ namespace aura
 
    //   auto pcontext = get_context();
 
-   //   return file_put_contents(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
+   //   return m_psystem->m_pacmefile->put_contents(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
 
    //}
 
@@ -4459,7 +4471,11 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//            strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //            call_async(path, strParam, pathDir, e_display_default, false);
 //
@@ -4473,7 +4489,11 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//         string strChrome = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string_array sa2 = get_c_args_for_c(strChrome);
 //
@@ -4498,7 +4518,11 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//         strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string strCmd = path + " " + strParam;
 //
@@ -5174,7 +5198,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   strBuild = file_as_string(path);
+//   strBuild = m_psystem->m_pacmefile->as_string(path);
 //
 //   return strBuild.has_char();
 //
@@ -5188,7 +5212,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return file_put_contents(path, pszBuild);
+//   return m_psystem->m_pacmefile->put_contents(path, pszBuild);
 //
 //}
 //
@@ -5228,7 +5252,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   ::file::path path = ::file_as_string(pathFile);
+//   ::file::path path = ::m_psystem->m_pacmefile->as_string(pathFile);
 //
 //   return path;
 //
@@ -5242,7 +5266,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return file_put_contents(pathFile, path);
+//   return m_psystem->m_pacmefile->put_contents(pathFile, path);
 //
 //}
 //

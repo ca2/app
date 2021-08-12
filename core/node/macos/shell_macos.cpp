@@ -59,7 +59,11 @@
 //
 //      string strPath(lpcszPath);
 //
-//      if (dir::is(strPath))
+//      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
 //      {
 //         return folder_file_system;
 //      }

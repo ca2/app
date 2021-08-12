@@ -1,21 +1,6 @@
 #pragma once
 
 
-enum enum_synchronization_result : ::index
-{
-
-
-   e_synchronization_result_abandoned_base = -1024,
-   e_synchronization_result_error = -16,	
-   e_synchronization_result_io_completion = -3,
-   e_synchronization_result_bad_thread = -2,
-   e_synchronization_result_timed_out = -1,		
-   e_synchronization_result_signaled_base = 0,	
-
-
-};
-
-
 #ifndef WINDOWS
 
 

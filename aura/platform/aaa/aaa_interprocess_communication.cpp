@@ -489,7 +489,11 @@ started:
 
 #ifdef LINUX
 
-      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 #elif defined(__APPLE__)
 
@@ -511,7 +515,11 @@ started:
 
 #else
 
-      strKey = pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
+      strKey =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 
 #endif
@@ -777,11 +785,15 @@ started:
 
       ::file::path pathModule;
 
-      pathModule = pacmedir->system() / "interprocess_communication";
+      pathModule =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
-      string strModuleList = file_as_string(pathModule);
+      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
       stra.add_lines(strModuleList);
 
@@ -867,13 +879,17 @@ repeat:
 
       m_straModule.erase_all();
 
-      pathModule = pacmedir->system() / "interprocess_communication";
+      pathModule =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 
       ::file::path pathPid = module_path_from_pid((::u32)idPid.i64());
 
-      string strModuleList = file_as_string(pathModule);
+      string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
       m_straModule.add_lines(strModuleList);
 

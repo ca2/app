@@ -104,7 +104,7 @@ namespace user
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
-         string strExtension = pszPathName.ext();
+         string strExtension = pszPathName.final_extension();
 
          if (strExtension.has_char())
          {

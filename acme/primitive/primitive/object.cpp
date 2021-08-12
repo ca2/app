@@ -2179,7 +2179,11 @@ void object::install_message_routing(::channel* pchannel)
 //__pointer(::handle::ini) object::appini()
 //{
 //
-//   return __new(::handle::ini(pacmedir->localconfig()));
+//   return __new(::handle::ini(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig()));
 //
 //}
 

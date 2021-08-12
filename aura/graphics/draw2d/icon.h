@@ -29,7 +29,7 @@ namespace draw2d
       
 
       icon();
-      virtual ~icon();
+      ~icon() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;

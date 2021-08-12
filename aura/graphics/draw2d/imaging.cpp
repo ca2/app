@@ -1546,11 +1546,31 @@ bool imaging::BitmapDivBlend(
 
    }
 
-   pimage->stretch(size, pdcSrc);
+   {
+
+      image_source imagesource(pdcSrc);
+
+      image_drawing_options imagedrawingoptions(::rectangle_f64(size));
+      
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pimage->draw(imagedrawing);
+
+   }
 
    pimage->DivideRGB(bAlpha);
 
-   return pdcDst->draw(::rectangle_f64(pointDst, size), pimage->g(),pointSrc);
+   {
+
+      image_source imagesource(pimage->g(), pointSrc);
+
+      image_drawing_options imagedrawingoptions(::rectangle_f64(pointDst, size));
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      return pdcDst->draw(imagedrawing);
+
+   }
 
 }
 

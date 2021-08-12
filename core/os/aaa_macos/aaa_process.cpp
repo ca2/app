@@ -13,9 +13,13 @@
 ::file::path macos_app_path(string strApp)
 {
 
-   ::file::path path = pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
+   ::file::path path =          auto psystem = m_psystem;
 
-   return file_as_string(path);
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home() / "Library/papplication Support/ca2/mypath" / (strApp + ".txt");
+
+   return m_psystem->m_pacmefile->as_string(path);
 
 }
 
@@ -302,13 +306,14 @@ CLASS_DECL_CORE bool is_shared_library_busy(const string_array & stra)
 
 }
 
-void os_term_application()
-{
 //
-//   ns_app_terminate();
+//void os_term_application()
+//{
+////
+////   ns_app_terminate();
+////
+//}
 //
-}
-
 
 CLASS_DECL_CORE ::file::path core_app_path(string strApp)
 {
@@ -319,7 +324,7 @@ CLASS_DECL_CORE ::file::path core_app_path(string strApp)
 
    path += ".txt";
 
-   return file_as_string(path);
+   return m_psystem->m_pacmefile->as_string(path);
 
 }
 
@@ -342,7 +347,11 @@ bool launch_command(const ::string & const pszCommand)
    
    strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams, pacmedir->home(), e_display_none, false) != 0)
+   if (call_async("/bin/bash", strParams,          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home(), e_display_none, false) != 0)
    {
       
       return false;

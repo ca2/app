@@ -265,7 +265,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") < 0)
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
+      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
 
       path.m_iDir = 1;
 
@@ -277,7 +277,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") >= 0)
          continue;
 
-      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
+      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
 
       path.m_iSize = pchild->m_filesize;
 

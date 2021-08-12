@@ -42,8 +42,12 @@ namespace file
 //      if (::str::begins_eat_ci(str, "Local\\"))
 //      {
 //
-//         path /= pacmedir->home() / str;
+//         path /=          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
 //
+//pacmedir->home() / str;
+////
 //      }
 //      else
 //      {

@@ -4,68 +4,23 @@
 #include "acme_dir.h"
 
 
-::file::path acme_path::app(string strPlatform, string strConfiguration)
+acme_path::acme_path()
 {
-
-#ifdef WINDOWS
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app.exe";
-
-#else
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app";
-
-#endif
 
 }
 
 
-::file::path acme_path::app_app_admin(string strPlatform, string strConfiguration)
+acme_path::~acme_path()
 {
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app_app_admin.exe";
 
 }
 
 
-::file::path acme_path::app_app_nest(string strPlatform, string strConfiguration)
-{
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app_app_nest.exe";
-
-}
 
 
-::file::path acme_path::app_app(string strPlatform, string strConfiguration)
-{
-
-#ifdef WINDOWS
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app_app.exe";
-
-#else
-
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "app_app";
-
-#endif
-
-}
 
 
-::file::path acme_path::vcredist(string strPlatform, string strConfiguration)
-{
 
-   return m_psystem->m_pacmedir->stage("ca2 Store", strPlatform, strConfiguration) / "vcredist.exe";
-
-}
-
-
-::file::path acme_path::install_log(string strPlatform, string strConfiguration)
-{
-
-   return m_psystem->m_pacmedir->install() / ("install-" + strPlatform + ".log");
-
-}
 
 
 string acme_path::from(string str)
@@ -96,23 +51,141 @@ string acme_path::from(string str)
 }
 
 
-::file::path acme_path::app_module()
+
+
+//bool acme_path::final_is_same(const char * pszPath1, const char * pszPath2)
+//{
+//
+//   __throw(error_interface_only);
+//
+//   return false;
+//
+//}
+//
+
+::file::path acme_path::final(const char * path)
 {
 
-   if(m_pathModule.is_empty())
+   ::file::path pathFull = _final(path);
+
+   if (pathFull.is_empty())
    {
 
-      auto pnode = m_psystem->node();
-
-      auto pathModule = pnode->module_path_source();
-
-      m_pathModule = pathModule;
+      return path;
 
    }
 
-   return m_pathModule;
+   return pathFull;
 
 }
 
+
+::file::path acme_path::_final(const char * path)
+{
+
+   __throw(error_interface_only);
+
+   return "";
+
+}
+
+
+bool acme_path::final_begins_eat_ci(string & str, const char * pcszPrefix)
+{
+
+   ::file::path path(pcszPrefix);
+
+   if (path.is_empty())
+   {
+
+      return true;
+
+   }
+
+   if (str.is_empty())
+   {
+
+      return false;
+
+   }
+
+   string strPath;
+
+   strPath = path;
+
+   if (is_url(strPath))
+   {
+
+      strPath += "/";
+
+   }
+   else
+   {
+
+      strPath += file_path_separator(e_path_file);
+
+   }
+
+   if (str == path || str == strPath)
+   {
+
+      str.Empty();
+
+      return true;
+
+   }
+   else if (::str::begins_eat_ci(str, strPath))
+   {
+
+      return true;
+
+   }
+   else
+   {
+
+      string strFull;
+
+      strFull = m_psystem->m_pacmepath->final(str);
+
+      string strFullPath;
+
+      strFullPath = m_psystem->m_pacmepath->final(strPath);
+
+      if (::str::begins_eat_ci(strFull, strFullPath))
+      {
+
+         str = strFull;
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
+bool acme_path::final_is_same(const char * path1, const char * path2)
+{
+
+   ::file::path pathFull1 = final(path1);
+
+   ::file::path pathFull2 = final(path2);
+
+   return pathFull1.has_char() && pathFull1.compare_ci(pathFull2) == 0;
+
+}
+
+
+bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
+{
+
+   __throw(error_interface_only);
+
+   return false;
+
+}
 
 

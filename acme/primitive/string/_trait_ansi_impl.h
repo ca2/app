@@ -433,7 +433,7 @@ namespace str
    //}
 //
 //
-//   u32  get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize)
+//   u32  xxxget_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize)
 //   {
 //
 //#ifdef _UWP

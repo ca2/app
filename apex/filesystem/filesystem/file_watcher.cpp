@@ -321,7 +321,7 @@ namespace file
       for (auto & pair : m_watchmap)
       {
 
-         if (::file_is_equal_path(pathFolder, pair.element2()->m_pathFolder))
+         if (::file_path_is_equal(pathFolder, pair.element2()->m_pathFolder))
          {
 
             erase_watch(pair.element1());

@@ -694,7 +694,17 @@ CLASS_DECL_ACME void set_debug_pointer(void * p)
 
 void plex_heap_alloc_sync::Free(void * pParam)
 {
+   if (m_nAllocSize == 128)
+   {
+      u64 & u = ((u64 &)pParam);
 
+      if ((u & 0xff000000) == 00)
+      {
+         output_debug_string("");
+
+      }
+
+   }
    if ((byte *) 0x0000000200000020 == ((byte *)pParam))
    {
 

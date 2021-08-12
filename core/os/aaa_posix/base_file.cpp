@@ -69,7 +69,7 @@ int_bool file_set_length(const ::string & lpszName, size_t iSize)
 }
 
 
-int_bool file_exists(const ::string & path1)
+int_bool m_psystem->m_pacmefile->exists(const ::string & path1)
 {
 
    // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -95,7 +95,7 @@ int_bool file_exists(const ::string & path1)
 }
 
 
-int_bool is_file_or_dir_dup(const ::string & path1, ::file::enum_type * petype)
+int_bool m_psystem->m_pacmepath->is_file_or_dir(const ::string & path1, ::file::enum_type * petype)
 {
 
    struct stat st;
@@ -137,12 +137,16 @@ int_bool is_file_or_dir_dup(const ::string & path1, ::file::enum_type * petype)
 }
 
 
-int_bool file_put_contents(const ::string & path, const ::string & contents, ::count len)
+int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents, ::count len)
 {
 
    bool bOk = false;
 
-   dir::mk(dir::name(path));
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(path));
 
    wstring wstr(path);
 
@@ -193,7 +197,7 @@ int_bool file_put_contents(const ::string & path, const ::string & contents, ::c
 
 
 
-string file_as_string(const ::string & path, strsize iReadAtMostByteCount)
+string m_psystem->m_pacmefile->as_string(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -522,7 +526,7 @@ int_bool file_delete(const ::string & pszFileName)
 
 
 
-int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
+int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
 {
 
    const i32 iBufSize = MAX_PATH * 8;

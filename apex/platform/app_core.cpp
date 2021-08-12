@@ -4,6 +4,7 @@
 #include "acme/platform/static_setup.h"
 #include "apex/platform/static_start.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -219,14 +220,14 @@ bool app_core::on_result(const ::e_status & estatus)
 
    m_millisAfterApplicationFirstRequest = m_millisStart;
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10_s);
 
    }
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -317,19 +318,19 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    string_array stra3;
 
-#ifdef WINDOWS_DESKTOP
-
-   stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
-
-//#elif defined(__APPLE__)
+//#ifdef WINDOWS_DESKTOP
 //
-//   stra3 =  get_c_args_for_c(ca2_command_line2());
+//   stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
 //
-//#else
+////#elif defined(__APPLE__)
+////
+////   stra3 =  get_c_args_for_c(ca2_command_line2());
+////
+////#else
+////
+////   stra3 = get_c_args_from_c(ca2_command_line());
 //
-//   stra3 = get_c_args_from_c(ca2_command_line());
-
-#endif
+//#endif
 
    string_array stra5;
 
@@ -538,7 +539,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    ::file::path pathGlobalOutputDebugString = m_psystem->m_pacmedir->config() / "output_debug_string.txt" ;
 
-   //::apex::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
+   //::apex::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -571,7 +572,7 @@ void app_core::set_command_line(const char * psz)
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      file_put_contents(path, get_command_line());
+      m_psystem->m_pacmefile->put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_param(psz, nullptr);
 
@@ -579,10 +580,10 @@ void app_core::set_command_line(const char * psz)
 
       path = pathFolder / "last_executable.txt";
 
-      if (file_is_equal_path(pathExecutable.title(), strAppTitle))
+      if (file_path_is_equal(pathExecutable.title(), strAppTitle))
       {
 
-         file_put_contents(path, pathExecutable);
+         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
 
       }
 
@@ -731,172 +732,172 @@ void app_core::set_command_line(const char * psz)
 void app_core::system_end()
 {
 
-   os_term_application();
+   //os_term_application();
 
    //os_term_windowing();
 
    //os_term_imaging();
 
-   if (m_bShowApplicationInformation)
-   {
-
-      char szEllapsed[MAX_PATH * 2];
-
-      ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
-
-      auto tickEnd = ::millis::now();
-
-      char szTimeMessage[2108];
-
-      ::time_t timet = ::time(nullptr);
-
-      tm t;
-
-#ifdef WINDOWS
-
-      errno_t err = _localtime64_s(&t, &timet);
-
-#else
-
-      localtime_r(&timet, &t);
-
-#endif
-
-      if (is_verbose())
-      {
-
-         char szTime[2048];
-
-         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
-
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         millis iMillisecondsTotal = tickEnd - m_millisStart;
-
-         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", iMillisecondsTotal.m_i);
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         int iMilliseconds = iMillisecondsTotal.m_i % 1000;
-         int iSecondsTotal = (int)(iMillisecondsTotal.m_i / 1000);
-         int iSeconds = iSecondsTotal % 60;
-         int iMinutesTotal = iSecondsTotal / 60;
-         int iMinutes = iMinutesTotal % 60;
-         int iHoursTotal = iMinutesTotal / 60;
-         int iHours = iHoursTotal % 24;
-         int iDays = iHoursTotal / 24;
-
-         if (iDays > 0)
-         {
-
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, iMilliseconds);
-
-         }
-         else if (iHours > 0)
-         {
-
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, iMilliseconds);
-
-         }
-         else if (iMinutes > 0)
-         {
-
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, iMilliseconds);
-
-         }
-         else
-         {
-
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, iMilliseconds);
-
-         }
-
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n|  %s", szTime);
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n|");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         sprintf(szTimeMessage, "\n");
-         ::output_debug_string(szTimeMessage);
-         printf("%s", szTimeMessage);
-
-         if (file_exists_raw(szEllapsed))
-         {
-
-            char szUTCTime[2048];
-
-            time_t rawtime;
-
-            struct tm* g;
-
-            time(&rawtime);
-
-            g = gmtime(&rawtime);
-
-            sprintf(szUTCTime, "%04d-%02d-%02d %02d:%02d:%02d UTC", g->tm_year + 1900, g->tm_mon, g->tm_mday, g->tm_hour, g->tm_min, g->tm_sec);
-
-            char szTimeMessage1[2048];
-
-            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
-
-            if (file_length_raw(szEllapsed) > 0)
-            {
-
-               file_add_contents_raw(szEllapsed, "\n");
-
-            }
-
-            file_add_contents_raw(szEllapsed, szUTCTime);
-
-            file_add_contents_raw(szEllapsed, szTimeMessage1);
-
-            file_add_contents_raw(szEllapsed, "\n");
-
-            char szTimeMessage2[2048];
-
-            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_millisStart).m_i);
-
-            file_add_contents_raw(szEllapsed, szUTCTime);
-
-            file_add_contents_raw(szEllapsed, szTimeMessage2);
-
-         }
-
-      }
-
-   }
+//   if (m_bShowApplicationInformation)
+//   {
+//
+//      char szEllapsed[MAX_PATH * 2];
+//
+//      ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
+//
+//      auto tickEnd = ::millis::now();
+//
+//      char szTimeMessage[2108];
+//
+//      ::time_t timet = ::time(nullptr);
+//
+//      tm t;
+//
+//#ifdef WINDOWS
+//
+//      errno_t err = _localtime64_s(&t, &timet);
+//
+//#else
+//
+//      localtime_r(&timet, &t);
+//
+//#endif
+//
+//      if (is_verbose())
+//      {
+//
+//         char szTime[2048];
+//
+//         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
+//
+//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         millis iMillisecondsTotal = tickEnd - m_millisStart;
+//
+//         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", iMillisecondsTotal.m_i);
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         int iMilliseconds = iMillisecondsTotal.m_i % 1000;
+//         int iSecondsTotal = (int)(iMillisecondsTotal.m_i / 1000);
+//         int iSeconds = iSecondsTotal % 60;
+//         int iMinutesTotal = iSecondsTotal / 60;
+//         int iMinutes = iMinutesTotal % 60;
+//         int iHoursTotal = iMinutesTotal / 60;
+//         int iHours = iHoursTotal % 24;
+//         int iDays = iHoursTotal / 24;
+//
+//         if (iDays > 0)
+//         {
+//
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, iMilliseconds);
+//
+//         }
+//         else if (iHours > 0)
+//         {
+//
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, iMilliseconds);
+//
+//         }
+//         else if (iMinutes > 0)
+//         {
+//
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, iMilliseconds);
+//
+//         }
+//         else
+//         {
+//
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, iMilliseconds);
+//
+//         }
+//
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n|");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n|  %s", szTime);
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n|");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n|");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n-------------------------------------------------------------------------------------------- - ");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         sprintf(szTimeMessage, "\n");
+//         ::output_debug_string(szTimeMessage);
+//         printf("%s", szTimeMessage);
+//
+//         if (file_exists_raw(szEllapsed))
+//         {
+//
+//            char szUTCTime[2048];
+//
+//            time_t rawtime;
+//
+//            struct tm* g;
+//
+//            time(&rawtime);
+//
+//            g = gmtime(&rawtime);
+//
+//            sprintf(szUTCTime, "%04d-%02d-%02d %02d:%02d:%02d UTC", g->tm_year + 1900, g->tm_mon, g->tm_mday, g->tm_hour, g->tm_min, g->tm_sec);
+//
+//            char szTimeMessage1[2048];
+//
+//            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+//
+//            if (file_length_raw(szEllapsed) > 0)
+//            {
+//
+//               file_add_contents_raw(szEllapsed, "\n");
+//
+//            }
+//
+//            file_add_contents_raw(szEllapsed, szUTCTime);
+//
+//            file_add_contents_raw(szEllapsed, szTimeMessage1);
+//
+//            file_add_contents_raw(szEllapsed, "\n");
+//
+//            char szTimeMessage2[2048];
+//
+//            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_millisStart).m_i);
+//
+//            file_add_contents_raw(szEllapsed, szUTCTime);
+//
+//            file_add_contents_raw(szEllapsed, szTimeMessage2);
+//
+//         }
+//
+//      }
+//
+//   }
 
    //defer_unload_backbone_libraries();
 

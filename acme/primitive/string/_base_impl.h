@@ -2855,45 +2855,45 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
 
 
 // set the string_base < TYPE_CHAR > to the value of environment ::payload 'pszVar'
-template < typename TYPE_CHAR >
-bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar)
-{
+// template < typename TYPE_CHAR >
+// bool string_base < TYPE_CHAR >::xxxget_environment_variable(const CHAR_TYPE* pszVar)
+// {
 
-   u32 nLength = ::str::get_environment_variable(pszVar, nullptr, 0);
+//    u32 nLength = ::str::xxxget_environment_variable(pszVar, nullptr, 0);
 
-   bool bRetVal = false;
+//    bool bRetVal = false;
 
-   if (nLength == 0)
-   {
+//    if (nLength == 0)
+//    {
 
-      Empty();
+//       Empty();
 
-   }
-   else
-   {
+//    }
+//    else
+//    {
 
-      CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
+//       CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
 
-      ::str::get_environment_variable(pszVar, pszBuffer, nLength);
+//       ::str::xxxget_environment_variable(pszVar, pszBuffer, nLength);
 
-      release_string_buffer();
+//       release_string_buffer();
 
-      bRetVal = true;
+//       bRetVal = true;
 
-   }
+//    }
 
-   return(bRetVal);
+//    return(bRetVal);
 
-}
+// }
 
 
-template < typename TYPE_CHAR >
-bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
-{
+// template < typename TYPE_CHAR >
+// bool string_base < TYPE_CHAR >::xxxgetenv(const CHAR_TYPE* pszVar)
+// {
 
-   return get_environment_variable(pszVar);
+//    return xxxget_environment_variable(pszVar);
 
-}
+// }
 
 
 #ifndef _CSTRING_BUFFER_SIZE

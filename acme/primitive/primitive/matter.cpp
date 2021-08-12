@@ -702,7 +702,13 @@ void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const c
 
    string str;
 
+   va_list ptr1;
+
+   va_copy(ptr1, valist);
+
    str.FormatV(pszFormat, valist);
+
+   va_end(ptr1);
 
    __tracea(elevel, pszFunction, pszFile, iLine, str);
 

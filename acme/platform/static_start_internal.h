@@ -45,13 +45,13 @@ namespace acme
 #ifdef WINDOWS
 
 
-   CLASS_DECL_ACME void set_simple_output_debug_string_a();
+   // CLASS_DECL_ACME void set_simple_output_debug_string_a();
 
-      CLASS_DECL_ACME void set_extended_output_debug_string_a();
+   //    CLASS_DECL_ACME void set_extended_output_debug_string_a();
 
-      CLASS_DECL_ACME void set_simple_output_debug_string_w();
+   //    CLASS_DECL_ACME void set_simple_output_debug_string_w();
 
-      CLASS_DECL_ACME void set_extended_output_debug_string_w();
+   //    CLASS_DECL_ACME void set_extended_output_debug_string_w();
 
 
       //#endif

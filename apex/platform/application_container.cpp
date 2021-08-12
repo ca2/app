@@ -464,7 +464,7 @@ __pointer(::application) application_container::start_application(const char * p
 
    string strBuild;
 
-   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
+   ::file::path pathExe = m_psystem->m_pacmefile->executable();
 
    auto psystem = get_system()->m_papexsystem;
 

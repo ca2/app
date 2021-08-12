@@ -213,15 +213,15 @@ void os_post_quit()
 
 }
 
-
 //
-void os_term_application()
-{
+////
+//void os_term_application()
+//{
+////
+//   //ui_app_terminate();
+////
+//}
 //
-   //ui_app_terminate();
-//
-}
-
 
 
 

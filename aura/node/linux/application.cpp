@@ -513,7 +513,7 @@ namespace aura
 
          ::file::path path = pnode->get_desktop_file_path(papplication);
 
-         if(path.has_char() && !file_exists(path))
+         if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

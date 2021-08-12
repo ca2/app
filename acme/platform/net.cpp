@@ -451,10 +451,18 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
+//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
+//         auto pacmedir = psystem->m_pacmedir;
 //
+//pacmedir->system() / "config\\user.txt");
+////
+////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\pass.txt");
+////
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{
 //
@@ -1011,9 +1019,17 @@ void openURL(const string& url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
+//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+   /*      auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\user.txt")*/;
 //
-//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
+//   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{

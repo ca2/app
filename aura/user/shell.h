@@ -11,30 +11,30 @@ namespace user
    public:
 
 
-      enum e_file_attribute
+      enum enum_file_attribute
       {
 
-         file_attribute_none,
-         file_attribute_normal,
-         file_attribute_directory,
+         e_file_attribute_none,
+         e_file_attribute_normal,
+         e_file_attribute_directory,
 
       };
 
-      enum e_folder
+      enum enum_folder
       {
 
-         folder_none,
-         folder_file_system,
-         folder_zip,
+         e_folder_none,
+         e_folder_file_system,
+         e_folder_zip,
 
       };
 
 
-      enum e_icon
+      enum enum_icon
       {
 
-         icon_normal,
-         icon_open,
+         e_icon_normal,
+         e_icon_open,
 
       };
 
@@ -44,26 +44,33 @@ namespace user
       public:
 
 
-         string                        m_strPath;
-         string                        m_strShellThemePrefix;
-         enumeration < e_file_attribute >    m_eattribute;
-         enumeration < e_icon >              m_eicon;
-         i32                           m_iIcon;
-         string                        m_strExtension;
-
-         //oswindow                      m_oswindow;
-         ::color::color                      m_cr;
+         string                                 m_strPath;
+         string                                 m_strShellThemePrefix;
+         enumeration < enum_file_attribute >    m_eattribute;
+         enumeration < enum_icon >              m_eicon;
+         i32                                    m_iIcon;
+         string                                 m_strExtension;
 
 
          image_key();
          image_key(const image_key & imagekey);
-         image_key(const ::string & strPath, const ::string & strShellThemePrefix, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-         virtual ~image_key();
+         image_key(const ::string & strPath, const ::string & strShellThemePrefix, enum_file_attribute eattribute, enum_icon eicon);
+         ~image_key();
 
 
          bool operator == (const image_key & key) const;
          void set_path(const ::string & strPath, bool bSetExtension = true);
          void set_extension(const ::string & strPath);
+
+
+      };
+
+      
+      struct _get_file_image_
+      {
+
+         int            m_iImage;
+         image_key      m_imagekey;
 
 
       };
@@ -134,6 +141,8 @@ namespace user
       bool                                               m_bInitialized;
 
       ::array < image_key >                              m_imagekeySchedule;
+      bool                                            m_bRequireHighQualityThumbnail;
+      bool                                            m_bAddDefaultIcons;
 
 
       shell();
@@ -144,6 +153,9 @@ namespace user
       virtual void do_initialize();
 
 
+      virtual _get_file_image_ * new_get_file_image();
+
+
       inline ::aura::application* get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
       inline ::aura::session* get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
       inline ::aura::system* get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
@@ -151,6 +163,7 @@ namespace user
 
       //virtual void add_thread();
 
+      virtual bool defer_set_thumbnail(_get_file_image_ & getfileimage);
 
       virtual void on_update_sizes_interest();
 
@@ -166,22 +179,22 @@ namespace user
       virtual void get_scheduled_image_key(image_key & imagekey);
 
 
-      virtual void on_add_default_file_image();
+      virtual void on_add_default_file_image(_get_file_image_ & getfileimage);
 
       
 
-      virtual i32 get_file_extension_image(const ::string & strExtension, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 get_file_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, ::color::color crBk = 0);
-      virtual i32 create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon);
-      virtual i32 _create_file_icon_image(const ::string & strPath, e_file_attribute eattribute, e_icon eicon, const string & strIcon);
+      virtual void get_file_extension_image(_get_file_image_ & getfileimage);
+      virtual i32 create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
+      virtual i32 _create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIcon, _get_file_image_ & getfileimage);
 
 
 
+      virtual i32 get_file_image(const ::file::path & path, ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
       virtual i32 get_file_image(const image_key & imagekey);
       virtual i32 schedule_get_file_image(const image_key & imagekey);
 
 
-      virtual i32 _get_file_image(const image_key& imagekey);
+      virtual void _get_file_image(_get_file_image_ & getfileimage);
 
 
       //virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
@@ -191,14 +204,14 @@ namespace user
       ::image_list * GetImageListHover(int iSize);
 
 
-      virtual e_folder get_folder_type(::object * pobject, const ::wstring & wstrPath);
-      virtual e_folder get_folder_type(::object * pobject, const ::string & strPath);
-
-      int add_hover_image(int iSize, int iIndex, const ::color::color & colorBackground);
+      virtual enum_folder get_folder_type(::object * pobject, const ::wstring & wstrPath);
+      virtual enum_folder get_folder_type(::object * pobject, const ::string & strPath);
 
 
-      virtual i32 set_image(int iImage, ::image * pimage, const ::color::color & colorBackground);
-      virtual i32 set_icon(int iImage, const ::file::path & pathIcon, const ::color::color& colorBackground);
+//      void set_image(int iIndex, int iSize, ::image * pimage);
+
+      virtual void set_image(int iIndex, int iSize, ::image_drawing imagedrawing);
+      //virtual void set_icon(const ::file::path & pathIcon, _get_file_image_ & getfileimage);
 
 
       //::e_status destroy() override;

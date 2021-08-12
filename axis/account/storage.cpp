@@ -31,7 +31,11 @@ namespace account
 //      
 //      string strName = purl->os_fsname(strToken);
 //      
-//      return pacmedir->system() / "credential_storage" / strName;
+//      return          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "credential_storage" / strName;
 //      
 //   }
 //   

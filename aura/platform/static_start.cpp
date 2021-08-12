@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "static_start.h"
-#include "apex/net/sockets/_.h"
+#include "apex/networking/sockets/_.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 #include "apex/platform/app_core.h"
@@ -958,15 +958,6 @@ namespace aura
 
       }
 
-#ifdef WINDOWS
-
-      ::acme::set_extended_output_debug_string_a();
-
-      ::acme::set_extended_output_debug_string_w();
-
-#endif
-
-      //g_pfn_create_system = &aura_create_aura_system;
 
       return true;
 
@@ -990,14 +981,6 @@ namespace aura
       ::parallelization::destroy();
 
       __node_aura_pre_term();
-
-#ifdef WINDOWS
-
-      ::acme::set_simple_output_debug_string_a();
-
-      ::acme::set_simple_output_debug_string_w();
-
-#endif
 
       processor_cache_oriented_destroy_all_memory_pools();
 

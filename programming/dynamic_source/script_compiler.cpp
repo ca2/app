@@ -3,7 +3,7 @@
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"
 #include "acme_windows/_acme_windows.h"
-#include "acme/os/windows/environment_variable.h"
+//#include "acme/os/windows/environment_variable.h"
 #endif
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -482,7 +482,11 @@ namespace dynamic_source
 
          ::file::path pathDVP_Folder = pathDVP.folder();
 
-         ::dir::mk(pathDVP_Folder);
+                  auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(pathDVP_Folder);
 
          m_pcontext->m_papexcontext->file().copy(pathDVP, pathSourceDVP);
 
@@ -1376,9 +1380,9 @@ namespace dynamic_source
 
       pathEnvTxt = pacmedir->system() / "env.txt";
 
-      file_put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      file_put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat", "@call " + strBuildCmd + "\r\n@set");
 
       auto psystem = m_psystem;
 
@@ -1386,7 +1390,7 @@ namespace dynamic_source
 
       pnode->run_silent(pacmedir->system() / "env1.bat", "");
 
-      strLog = file_as_string(pacmedir->system() / "env.txt");
+      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
 
       stra.add_lines(strLog);
 
@@ -1466,12 +1470,16 @@ namespace dynamic_source
 //   ::process::process_pointer process(e_create);
 //
 //
-//   file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
+//   m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
 //
 //   set_thread_priority(::priority_highest);
 //   process->prop("inherit") = false;
 //
-//   ::file::path pathCommand = pacmedir->system() / "env.bat";
+//   ::file::path pathCommand =          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "env.bat";
 //
 //   ::file::path pathFolder = ::file::path(m_strEnv).folder();
 //
@@ -1586,7 +1594,11 @@ namespace dynamic_source
 //
       stra.add_lines(strLog);
 
-      //string strEnv = file_as_string(pacmedir->system() / "env.txt");
+      //string strEnv = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "env.txt");
 
       ::file::path strFolder;
       strFolder = m_pcontext->m_papexcontext->dir().install();
@@ -1752,7 +1764,7 @@ namespace dynamic_source
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size();)
       {
-         if(l.m_straLibSourcePath[i].ext() != "ds" && l.m_straLibSourcePath[i].ext() != "cpp")
+         if(l.m_straLibSourcePath[i].final_extension() != "ds" && l.m_straLibSourcePath[i].final_extension() != "cpp")
          {
             l.m_straLibSourcePath.erase_at(i);
          }
@@ -1775,7 +1787,7 @@ namespace dynamic_source
       pcontext->m_papexcontext->dir().rls(l.m_straLibIncludePath, m_pmanager->m_strNetseedDsCa2Path / "library" / strName);
       for(i32 i = 0; i < l.m_straLibIncludePath.get_size();)
       {
-         if(l.m_straLibIncludePath[i].ext() != "h"
+         if(l.m_straLibIncludePath[i].final_extension() != "h"
                || ::str::find_ci(l.m_straLibIncludePath[i],"\\.svn\\") >= 0
                || m_pcontext->m_papexcontext->dir().is(l.m_straLibIncludePath[i]))
          {
@@ -1851,9 +1863,9 @@ namespace dynamic_source
 
       for(i32 i = 0; i < l.m_straLibSourcePath.get_size(); i++)
       {
-         if(l.m_straLibSourcePath[i].ext() == "cpp")
+         if(l.m_straLibSourcePath[i].final_extension() == "cpp")
          {
-            file_copy_dup(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
+            m_psystem->m_pacmefile->copy(l.m_straLibCppPath[i], l.m_straLibSourcePath[i], false);
          }
          else
          {
@@ -2029,7 +2041,7 @@ auto tickStart = ::millis::now();
          ::file::path strRel = l.m_straLibSourcePath[i].relative();
          ::str::ends_eat_ci(strRel,".ds");
          strObjs += m_strTime / "intermediate" / m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_library/library" / strName;
-         strObjs += m_strTime.sep();
+         strObjs += m_strTime.separator();
          strObjs += strRel;
 #ifdef LINUX
          strObjs+=".o";

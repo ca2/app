@@ -1,11 +1,12 @@
 #include "framework.h"
-#include "acme/os/_const_console.h"
-#include "acme/os/console.h"
+#include "acme/node/operating_system/_const_console.h"
+#include "acme/node/operating_system/console.h"
 #include "console.h"
 
 
 namespace graphics
 {
+
 
    int next_char(char & ch, const char *& psz, int & x, int & y, int cx, int cy)
    {

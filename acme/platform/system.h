@@ -80,6 +80,7 @@ public:
 
    __pointer(class ::acme::node)                      m_pnode;
    __composite(class ::acme_dir)                      m_pacmedir;
+   __composite(class ::acme_file)                     m_pacmefile;
    __composite(class ::acme_path)                     m_pacmepath;
    //__pointer(::parallelization::cleanup_task)         m_pcleanuptask;
    __composite(geometry::geometry)                    m_pgeometry;

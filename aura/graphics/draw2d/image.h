@@ -242,8 +242,8 @@ public:
    virtual bool DivideA(i32 iDivide);
 
    
-   using image_drawer::stretch;
-   virtual bool stretch(::image * pimage);
+   //using image_drawer::stretch;
+   //virtual bool stretch(::image * pimage);
 
 
    //virtual bool stretch(::draw2d::graphics * pgraphics);

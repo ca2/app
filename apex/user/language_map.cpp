@@ -300,13 +300,13 @@ namespace user
 
       //   ::file::path point1 = ::dir::appdata() / ("missing_translation_" + m_planguage->m_strLanguageCode + ".txt");
 
-      //   string str1 = file_as_string(point1);
+      //   string str1 = m_psystem->m_pacmefile->as_string(point1);
 
       //   str1 += "\nmsgid\"" + strId + "\"\n";
       //   str1 += "\nmsgstr\"" + strId + "\"\n";
       //   str1 += "\n";
 
-      //   file_put_contents(point1, str1);
+      //   m_psystem->m_pacmefile->put_contents(point1, str1);
 
       //   strText = "!" + m_planguage->m_strLanguageCode + ":" + strId;
 

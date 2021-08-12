@@ -290,7 +290,7 @@ namespace gpu
 
       string strFragment = file.as_string(path);
 
-      string strExtension = path.extension();
+      string strExtension = path.all_extensions();
 
       string strVersion = get_shader_version_text();
 

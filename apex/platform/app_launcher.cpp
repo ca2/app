@@ -2,6 +2,7 @@
 #include "apex/operating_system.h"
 #include "launcher.h"
 #include "app_launcher.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 
 
@@ -46,7 +47,7 @@ namespace apex
 
       ::file::path path = pnode->get_last_run_application_path(m_strApp);
 
-      if(file_exists(path))
+      if(m_psystem->m_pacmefile->exists(path))
       {
 
          return ::move(path);
@@ -76,7 +77,7 @@ namespace apex
 
       }
 
-      return m_psystem->m_pacmepath->app_app(m_strPlatform, process_configuration_dir_name());
+      return m_psystem->m_pacmedir->app_app(m_strPlatform, process_configuration_dir_name());
 
    }
 
@@ -119,7 +120,7 @@ namespace apex
 
       wstring wstrApp(get_executable_path());
 
-      wstring wstrDir(dir::name(string(wstrApp)));
+      wstring wstrDir(::file_path_folder(string(wstrApp)));
 
       wstring wstrParams = get_params();
 
@@ -193,7 +194,7 @@ namespace apex
 
       string strPath = get_executable_path();
 
-      string strDir = dir::name(strPath);
+      string strDir = ::file_path_folder(strPath);
 
       string strParams = get_params();
 

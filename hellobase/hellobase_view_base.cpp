@@ -209,7 +209,11 @@ auto m_millisRoll = ::millis::now();
 
       //d->get_graphics()->BitBlt(rectangleClient, pimage->g());
 
-      //d.save_to_file(pacmedir->system() / "obs.png");
+      //d.save_to_file(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "obs.png");
 
 
       //pdcParam->set_font(m_fontDrawStatus);

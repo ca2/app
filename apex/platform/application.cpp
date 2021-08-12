@@ -9,6 +9,7 @@
 #include "acme/platform/profiler.h"
 #include "apex/compress/zip/_.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/node.h"
@@ -1207,44 +1208,6 @@ return bIsUserService && bIsService;
 
 
 
-::file::path command_find_path(const ::string & pszCommand)
-{
-
-#ifdef _UWP
-
-return "";
-
-#else
-
-string strPath = getenv("PATH");
-
-string_array straPath;
-
-straPath.explode(":", strPath);
-
-for (auto & str : straPath)
-{
-
-::file::path path;
-
-path = str;
-
-path /= pszCommand;
-
-if (file_exists(path))
-{
-
-return path;
-
-}
-
-}
-
-return pszCommand;
-
-#endif
-
-}
 
 
 bool application::_001OnDDECommand(const ::string & str)
@@ -2620,56 +2583,6 @@ return bOk;
 }
 
 
-e_status application::enable_service()
-{
-
-auto estatus = m_psystem->m_papexsystem->os().enable_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-estatus = service_handler()->start_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-return estatus;
-
-}
-
-
-e_status application::disable_service()
-{
-
-auto estatus = service_handler()->stop_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-estatus = os().disable_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-return estatus;
-
-}
 
 
 bool application::system_add_app_install(const ::string & pszId, const ::string & pszBuild)
@@ -2699,7 +2612,7 @@ string_array straSchema;
 straLocale = payload("locale");
 straSchema = payload("schema");
 
-::file::path pathExe = m_psystem->m_pacmepath->app_module();
+::file::path pathExe = m_psystem->m_pacmefile->executable();
 
 straLocale.insert_at(0, strSystemLocale);
 straSchema.insert_at(0, strSystemSchema);
@@ -2883,65 +2796,6 @@ return nullptr;
 //   return m_pcontext->m_papexcontext->os().stop_service();
 
 //}
-
-
-void application::on_service_request(::create * pcreate)
-{
-
-if (!is_service())
-{
-
-return;
-
-}
-
-if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
-{
-
-enable_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
-{
-
-service_handler()->defer_service();
-
-service_handler()->start_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
-{
-
-service_handler()->stop_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
-{
-
-disable_service();
-
-}
-else if (has_property("service"))
-{
-
-service_handler()->defer_service();
-
-service_handler()->start_service();
-
-}
-else if (has_property("run"))
-{
-
-__compose(m_pservicehanlder)
-;
-
-service_handler()->defer_service();
-
-service_handler()->get_service()->run();
-
-}
-
-}
 
 
 //void application::on_update_matter_locator()
@@ -4951,7 +4805,7 @@ return "";
 
 ::string strPath = wstr.c_str();
 
-::string strContents = file_as_string(strPath.c_str());
+::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 
 __throw(todo, "xml");
 
@@ -5291,9 +5145,9 @@ bool application::is_equal_file_path(const ::file::path & path1Param, const ::fi
 
    path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-   path1 = node_full_file_path(path1);
+   path1 = m_psystem->m_pacmepath->final(path1);
 
-   path2 = node_full_file_path(path2);
+   path2 = m_psystem->m_pacmepath->final(path2);
 
    return strcmp(path1, path2) == 0;
 
@@ -6497,7 +6351,7 @@ string strSchema;
 TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
 ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
-::file::path strUrl(::file::path_url);
+::file::path strUrl(::e_path_url);
 
 if (framework_is_basis())
 {
@@ -6589,10 +6443,10 @@ bool application::assert_user_logged_in()
 
    string strRequestUrl;
 
-   if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+   if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
    {
 
-      strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+      strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
    }
 
@@ -6793,6 +6647,16 @@ pnode->show_wait_cursor(true);
 //}
 
 
+__pointer(::progress::real) application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount)
+{
+
+   __throw(todo);
+
+   return nullptr;
+
+}
+
+
 ::e_status application::userfs_init1()
 {
 
@@ -6948,7 +6812,7 @@ auto psystem = m_psystem;
 
 auto pnode = psystem->node();
 
-return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -9833,7 +9697,7 @@ string application::as_string(const ::payload & payload)
    if(path.has_char())
    {
 
-      if (::is_url(path) || ::file_exists(path))
+      if (::is_url(path) || m_psystem->m_pacmefile->exists(path))
       {
 
          return file().as_string(path);

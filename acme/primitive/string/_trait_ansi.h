@@ -45,7 +45,7 @@ namespace str
 
    inline  u32                format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, ansichar * pszBuffer, u32 nSize, va_list * pArguments) noexcept;
    inline  strsize            string_safe_length(const ansichar * psz) noexcept;
-   CLASS_DECL_ACME u32        get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize);
+   //CLASS_DECL_ACME u32        xxxget_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize);
 
    inline  void               copy_string(ansichar * pszDst, const ansichar * pszSrc);
    inline  void               copy_chars(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept;

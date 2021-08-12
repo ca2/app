@@ -392,7 +392,7 @@ namespace aura
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
 //         if ((path & ::file::e_flag_get_local_path)
-//            || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+//            || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
 //         {
 //
 //            return pathCache;
@@ -406,7 +406,7 @@ namespace aura
 //         if (!(path & ::file::e_flag_bypass_cache))
 //         {
 //
-//            string strFirstLine = file_line_dup(pathMeta, 0);
+//            string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
 //
 //            if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
 //            {
@@ -420,7 +420,7 @@ namespace aura
 //               if (!retry([pathMeta]()
 //               {
 //
-//                  return file_line_dup(pathMeta, 0) != "processing";
+//                  return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
 //
 //               }))
 //               {
@@ -437,7 +437,7 @@ namespace aura
 //
 //         ::file::enum_type etype = ::file::e_type_none;
 //
-//         if (is_file_or_dir_dup(pathSide, &etype))
+//         if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
 //         {
 //
 //            if (etype == ::file::e_type_file)

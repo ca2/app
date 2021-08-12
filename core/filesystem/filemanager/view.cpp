@@ -212,7 +212,7 @@ namespace filemanager
                   strSuffix = "." + filemanager_data()->m_pdocumentTopic->get_save_file_extension();
 
                }
-               else if (path.ext().has_char())
+               else if (path.final_extension().has_char())
                {
 
                   string strExtension = psubject->payload("file_extension");
@@ -226,7 +226,7 @@ namespace filemanager
                   else
                   {
 
-                     strSuffix = "." + path.ext();
+                     strSuffix = "." + path.final_extension();
 
                   }
 

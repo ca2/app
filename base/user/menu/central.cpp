@@ -46,7 +46,11 @@ namespace user
 
          pchild->find_attribute("img", strImage);
 
-         iIndex = MenuV033GetImageList()->add_file(strImage);
+         auto pcontextimage = m_pcontext->context_image();
+
+         auto pimage = pcontextimage->get_image(strImage);
+
+         iIndex = MenuV033GetImageList()->add(pimage);
 
          id = strId;
 

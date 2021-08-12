@@ -48,7 +48,7 @@ namespace user
          return;
       }
       xml::node node(this);
-      if(node.load(psystem->file_as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
+      if(node.load(psystem->m_psystem->m_pacmefile->as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
          i32 iProxyPort = node.attr("port");

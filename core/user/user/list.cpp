@@ -3114,6 +3114,8 @@ namespace user
                   if (pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
                   {
 
+                     string strText = pdrawitem->m_strText;
+
                      pdrawitem->m_pcolumn->m_pil->get_image_info((i32)pdrawitem->m_iImage, &ii);
 
                      if (eelement == ::user::list::element_image)

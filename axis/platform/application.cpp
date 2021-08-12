@@ -140,47 +140,6 @@ namespace axis
    }
 
 
-
-
-
-   ::file::path command_find_path(const ::string & pszCommand)
-   {
-
-#ifdef _UWP
-
-      return "";
-
-#else
-
-      string strPath = getenv("PATH");
-
-      string_array straPath;
-
-      straPath.explode(":", strPath);
-
-      for (auto & str : straPath)
-      {
-
-         ::file::path path;
-
-         path = str;
-
-         path /= pszCommand;
-
-         if (file_exists(path))
-         {
-
-            return path;
-
-         }
-
-      }
-
-      return pszCommand;
-
-#endif
-
-   }
 //#ifdef WINDOWS_DESKTOP
 //
 //
@@ -2125,10 +2084,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

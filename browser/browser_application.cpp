@@ -65,7 +65,11 @@ namespace browser
 
          ::DeleteFileW(szRelative);
 
-         ::dir::mk(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - needs include shlobj.h
+                  auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - needs include shlobj.h
 
          CefString(&settings.cache_path) = szRelative;
 

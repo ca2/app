@@ -9,7 +9,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE progress_control :
-      virtual public ::progress_control
+      virtual public ::progress::real
    {
    public:
 
@@ -47,7 +47,7 @@ namespace userex
 
       
       
-      ::progress_control *          m_pprogresscontrol;
+      __pointer(::progress::real)        m_pprogressreal;
 
       __pointer(::user::progress)   m_pprogress;
 

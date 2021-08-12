@@ -88,7 +88,11 @@ bool machine_event::write(machine_event_data * pdata)
    try
    {
 
-      dir::mk(dir::name(machine_event_file_path()));
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(machine_event_file_path()));
 
       pfile = FILE_open(machine_event_file_path(), "w", _SH_DENYWR);
 

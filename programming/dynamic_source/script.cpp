@@ -329,7 +329,7 @@ namespace dynamic_source
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
-         ::file_copy_dup(strStagePath, m_strScriptPath, true);
+         m_psystem->m_pacmefile->copy(strStagePath, m_strScriptPath, true);
 
          m_plibrary->open(strStagePath, true);
 
@@ -356,7 +356,7 @@ namespace dynamic_source
 
             TRACE("Error Message Id: %d\n", dwMessageId);
 
-            string strError = get_system_error_message(dwMessageId);
+            string strError = get_last_error_message(dwMessageId);
 
             string str;
 

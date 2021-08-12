@@ -2492,7 +2492,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-#include "aura/os/_.h"
+//#include "aura/node/operating_system/_.h"
 //
 //
 //class update;
@@ -2784,7 +2784,7 @@ namespace draw2d
 
 #include "aura/graphics/_impl.h"
 
-#include "aura/os/_impl.h"
+#include "aura/node/operating_system/_impl.h"
 
 #include "aura/platform/_impl.h"
 

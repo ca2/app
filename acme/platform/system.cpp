@@ -2,7 +2,9 @@
 #include "acme/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/platform/static_start_internal.h"
 #include "simple_log.h"
 
 
@@ -144,6 +146,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       }
 
+      ::acme::g_pengine;
+
       return estatus;
 
    }
@@ -198,7 +202,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       //}
 
-      auto estatus = __compose(m_pacmedir);
+      auto estatus = __raw_compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -211,7 +215,50 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
    //    m_pacmedir->increment_reference_count();
 
-      estatus = __compose(m_pacmepath);
+      estatus = __raw_compose(m_pacmefile);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __raw_compose(m_pacmepath);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pacmedir->m_pacmefile = m_pacmefile;
+      m_pacmedir->m_pacmepath = m_pacmepath;
+      m_pacmefile->m_pacmedir = m_pacmedir;
+      m_pacmefile->m_pacmepath = m_pacmepath;
+      m_pacmepath->m_pacmedir = m_pacmedir;
+      m_pacmepath->m_pacmefile = m_pacmefile;
+
+      estatus = m_pacmefile->initialize(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pacmepath->initialize(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pacmedir->initialize(this);
 
       if (!estatus)
       {

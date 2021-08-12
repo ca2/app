@@ -197,14 +197,14 @@ bool app_core::on_result(const ::e_status & estatus)
 
    m_millisAfterApplicationFirstRequest = m_millisStart;
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10000_ms);
 
    }
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -518,11 +518,19 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString = pacmedir->system() / strAppId / "output_debug_string.txt" ;
+   ::file::path pathOutputDebugString =          auto psystem = m_psystem;
 
-   ::file::path pathGlobalOutputDebugString = pacmedir->config() / "output_debug_string.txt" ;
+         auto pacmedir = psystem->m_pacmedir;
 
-   ::aura::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
+pacmedir->system() / strAppId / "output_debug_string.txt" ;
+
+   ::file::path pathGlobalOutputDebugString =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "output_debug_string.txt" ;
+
+   ::aura::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -542,7 +550,11 @@ void app_core::set_command_line(const ::string & psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder = pacmedir->ca2roaming() / "program";
+   ::file::path pathFolder =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 
@@ -553,7 +565,7 @@ void app_core::set_command_line(const ::string & psz)
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      file_put_contents(path, get_command_line());
+      m_psystem->m_pacmefile->put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_param(psz, nullptr);
 
@@ -564,7 +576,7 @@ void app_core::set_command_line(const ::string & psz)
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         file_put_contents(path, pathExecutable);
+         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
 
       }
 
@@ -713,7 +725,7 @@ void app_core::set_command_line(const ::string & psz)
 void app_core::system_end()
 {
 
-   os_term_application();
+   //os_term_application();
 
    os_term_windowing();
 

@@ -91,10 +91,12 @@ namespace account
       
       path = path_prefix(strToken);
       
-      dir::mk(path);
+               auto psystem = m_psystem->m_papexsystem;
 
-      auto psystem = get_system()->m_papexsystem;
-      
+         auto pacmedir = psystem->m_pacmedir;
+
+      pacmedir->create(path);
+
       path /= psystem->crypto()->md5(strToken + strKey);
       
       return psystem->crypto()->file_set(path, strValue, strToken, get_application());

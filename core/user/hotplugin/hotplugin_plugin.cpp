@@ -772,7 +772,11 @@ namespace hotplugin
          //   m_pcolorref = (u32 *)get_map_failed();
          //}
 
-         dir::mk(dir::appdata() / "time" / "aura");
+                  auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(dir::appdata() / "time" / "aura");
 
          //i32 iOpen;
 

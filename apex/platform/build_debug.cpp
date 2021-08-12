@@ -80,7 +80,7 @@
 //
 ////   teste_apex_cmp();
 //
-////   if(!file_exists("/ca2/debug_test"))
+////   if(!m_psystem->m_pacmefile->exists("/ca2/debug_test"))
 ////   {
 ////
 ////      return;

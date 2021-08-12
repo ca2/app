@@ -12,15 +12,15 @@ public:
    public:
 
 
-      ::rectangle_i32               m_rectangle;
-      ::image_pointer      m_pimage;
+      ::rectangle_i32         m_rectangle;
+      ::image_pointer         m_pimage;
 
    };
 
 
-   size_i32                          m_size;
-   i32                           m_iSize;
-   i32                           m_iGrow;
+   size_i32                         m_size;
+   i32                              m_iSize;
+   i32                              m_iGrow;
    __composite(::image)             m_pimage;
 
 
@@ -31,28 +31,37 @@ public:
 
    image_list();
    image_list(const image_list & imagelist);
-   virtual ~image_list();
+   ~image_list() override;
 
 
-   bool create(i32 cx, i32 cy);
-   bool create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow);
-   bool realize(::draw2d::graphics * pgraphics) const;
-   //bool create(const ::string & pszBitmapID, i32 cx, i32 nGrow, ::color::color crMask);
+   virtual bool create(i32 cx, i32 cy);
+   virtual bool create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow);
+   virtual bool realize(::draw2d::graphics * pgraphics) const;
 
 
-   i32 reserve_image(int iItem = -1);
+   virtual i32 reserve_image(int iItem = -1);
 
-   i32 add(::draw2d::icon * picon, int iItem = -1);
-   i32 add(::windowing::icon * picon, int iItem = -1);
-   i32 add_icon(::payload varFile, int iItem = -1);
-   i32 add_image(::image * pimage, int x = 0, int y = 0, int iItem = -1);
-   ///i32 add_icon_os_data(void * p, int iItem = -1);
-   i32 add_matter_icon(const ::string & pcszMatter, int iItem = -1);
 
-   i32 add_file(::payload varFile, int iItem = -1);
+   //virtual i32 _set(int iItem, ::draw2d::icon * picon);
+   virtual i32 set(int iItem, image_drawing imagedrawing);
+
+   //template < image_list_source_pointer IMAGE_LIST_SOURCE_POINTER >
+   //i32 add(IMAGE_LIST_SOURCE_POINTER psource, const ::rectangle_i32 & rectangleSource = ::rectangle_i32())
+   //{
+
+   //   return _add(psource);
+
+   //}
+
+   inline i32 add(image_drawing imagedrawing) { return set(-1, imagedrawing); }
+   //inline i32 _add(::draw2d::icon * picon) { return _set(-1, picon); }
+
+   // inline i32 add(::windowing::icon * picon) { return set(iItem, picon, x, y); }
+
+   //i32 add_file(::payload varFile, int iItem = -1);
    ///i32 add_matter(const ::string & pcsz, ::object * pobject = nullptr, int iItem = -1);
 
-   i32 add_std_matter(const ::string & pcsz, int iItem = -1);
+   //i32 add_std_matter(const ::string & pcsz, int iItem = -1);
 
    //i32 add_image(image_list * pil, int iImage, int iItem = - 1);
 
@@ -69,31 +78,29 @@ public:
    //}
 
 
-   ::image_pointer get_image(int iImage);
+   virtual ::image_pointer get_image(int iImage);
 
 
    virtual bool color_blend(image_list* pimagelistSource, const ::color::color& color, const ::opacity& opacity);
 
 
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity& opacity);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
-   i32 get_image_count() const;
+   virtual bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
+   virtual bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, const ::opacity& opacity);
+   virtual bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
+   virtual i32 get_image_count() const;
 
-   void copy_from(const image_list * plist);
+   virtual void copy_from(const image_list * plist);
 
-   ::e_status get_image_info(i32 nImage, info * pinfo) const;
+   virtual ::e_status get_image_info(i32 nImage, info * pinfo) const;
 
-   void erase_all();
+   virtual void erase_all();
 
    image_list & operator = (const image_list & imagelist);
 
-   bool _grow(int iAddUpHint = -1);
-   i32 _get_alloc_count();
+   virtual bool _grow(int iAddUpHint = -1);
+   virtual i32 _get_alloc_count();
 
 };
-
-
 
 
 

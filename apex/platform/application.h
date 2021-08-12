@@ -1216,6 +1216,9 @@
       virtual bool  get_desk_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 
       */
+      
+      
+      virtual __pointer(::progress::real) show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////

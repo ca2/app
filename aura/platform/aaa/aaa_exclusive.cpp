@@ -68,7 +68,11 @@ namespace aura
 
       path /= strId;
 
-      ::dir::mk(path.folder());
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

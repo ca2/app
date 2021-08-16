@@ -500,7 +500,14 @@ namespace experience
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
+
+               image_source imagesource(ppane->m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectIcon);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
 
@@ -629,7 +636,13 @@ namespace experience
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
+               image_source imagesource(ppane->m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectIcon);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             if (iPane == 0)
@@ -1421,7 +1434,15 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  pgraphics->draw(rectangle, item.m_pimage->g(), ::point_i32(), opacity(0.9));
+                  image_source imagesource(item.m_pimage, ::point_i32());
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  imagedrawingoptions.opacity(0.9);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1464,7 +1485,13 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               pgraphics->draw(rectangle, item.m_pimage->g(), ::point_i32());
+               image_source imagesource(item.m_pimage, ::point_i32());
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
@@ -1501,7 +1528,15 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_none);
 
-               pgraphics->draw(rectangle, item.m_pimage->g(), ::point_i32(), opacity(0.2));
+               image_source imagesource(item.m_pimage, ::point_i32());
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               imagedrawingoptions.opacity(0.2);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
@@ -1673,7 +1708,15 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  pgraphics->draw(rectangle, item.m_pimage, ::point_i32(), opacity(0.8));
+                  image_source imagesource(item.m_pimage, ::point_i32());
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  imagedrawingoptions.opacity(0.8);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1716,7 +1759,13 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               pgraphics->draw(rectangle, item.m_pimage);
+               image_source imagesource(item.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)
@@ -1768,7 +1817,15 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               pgraphics->draw(rectangle, item.m_pimage->g(), opacity(0.20));
+               image_source imagesource(item.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               imagedrawingoptions.opacity(0.20);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffff)

@@ -60,7 +60,7 @@ namespace acme
       virtual ::payload file_payload(const ::payload & payloadFile);
 
 
-      ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
+      ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
 
 
 

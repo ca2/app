@@ -1903,8 +1903,8 @@ __transport(::application) app_core::new_application(const char* pszAppId)
    if (!papp->is_service() || papp->is_user_service())
    {
 
-      psystem->m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      psystem->m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      psystem->m_pmutexUserAppData = __new(::mutex(psystem, false, "Local\\ca2.UserAppData"));
+      psystem->m_pmutexSystemAppData = __new(::mutex(psystem, false, "Local\\ca2.SystemAppData"));
 
    }
 

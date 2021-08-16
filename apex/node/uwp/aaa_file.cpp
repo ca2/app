@@ -286,7 +286,7 @@ namespace uwp
 
    }
 
-   filesize file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize file::seek(filesize lOff, ::enum_seek eseek)
    {
 
       if(m_hFile == HFILE_NULL)
@@ -294,8 +294,8 @@ namespace uwp
 
       ASSERT_VALID(this);
       ASSERT(m_hFile != HFILE_NULL);
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-      ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+      ASSERT(nFrom == ::e_seek_set || nFrom == ::e_seek_end || nFrom == ::e_seek_current);
+      ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
       ::i32 lLoOffset = lOff & 0xffffffff;
       ::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
@@ -396,7 +396,7 @@ namespace uwp
       ASSERT(m_hFile != HFILE_NULL);
 
 
-      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
+      seek((::i32)dwNewLen, (::enum_seek)::e_seek_set);
 
       if (!::SetEndOfFile((HANDLE)m_hFile))
       {
@@ -418,11 +418,11 @@ namespace uwp
       // seek is a non const operation
       file* pFile = (file*)this;
 
-      dwCur = pFile->seek(0L, ::file::seek_current);
+      dwCur = pFile->seek(0L, ::e_seek_current);
 
       dwLen = pFile->seek_to_end();
 
-      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::file::seek_begin));
+      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::e_seek_set));
 
       return (filesize) dwLen;
 

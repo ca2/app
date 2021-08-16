@@ -252,7 +252,7 @@ namespace apex
 
 #if !defined(_UWP) && !defined(ANDROID)
 
-      m_pmutexMatter = __new(::mutex(e_create_new, false, "Local\\ca2-appmatter"));
+      m_pmutexMatter = __new(::mutex(this, false, "Local\\ca2-appmatter"));
 
 #endif
 
@@ -2977,10 +2977,13 @@ pacmedir->create("/ca2core");
 
    bool system::assert_running_global(const ::string & pszAppName,const ::string & pszId)
    {
+
       if(string(pszId).has_char())
       {
+
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         ::mutex * pmutex = ::mutex::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
+         ::mutex * pmutex = ::mutex::open_mutex(this, get_global_id_mutex_name(pszAppName,pszId));
+
          if(pmutex == nullptr)
          {
 
@@ -3015,7 +3018,7 @@ pacmedir->create("/ca2core");
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         ::mutex * pmutex = ::mutex::open_mutex(get_global_mutex_name(pszAppName));
+         ::mutex * pmutex = ::mutex::open_mutex(this, get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp = pszAppName;
@@ -3053,7 +3056,7 @@ pacmedir->create("/ca2core");
       if(strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         ::mutex * pmutex = ::mutex::open_mutex(get_local_id_mutex_name(pszAppName,strId));
+         ::mutex * pmutex = ::mutex::open_mutex(this, get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -3087,7 +3090,7 @@ pacmedir->create("/ca2core");
       else
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         ::mutex * pmutex = ::mutex::open_mutex(get_local_mutex_name(pszAppName));
+         ::mutex * pmutex = ::mutex::open_mutex(this, get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp;

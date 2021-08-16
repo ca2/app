@@ -2,7 +2,7 @@
 #include "core/user/userex/_userex.h"
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
-#include "aura/os/windows_common/graphics.h"
+#include "aura/node/operating_system/windows_common/graphics.h"
 
 
 //#if defined(APPLEOS)
@@ -743,9 +743,9 @@ namespace userex
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::rectangle_i32 r1;
+      ::rectangle_i32 rTarget;
 
-      r1.top_left() = m_rectColors.top_left();
+      rTarget.top_left() = m_rectColors.top_left();
 
       if (!m_pimage)
       {
@@ -754,13 +754,23 @@ namespace userex
 
       }
 
-      r1.set_size(m_pimage->get_size());
+      rTarget.set_size(m_pimage->get_size());
 
-      ::rectangle_i32 r2 = m_pimage->rectangle();
+      ::rectangle_i32 rSource = m_pimage->rectangle();
 
       ::rectangle_i32 rCursor;
 
-      pgraphics->stretch(r1, m_pimage, r2);
+      {
+
+         image_source imagesource(m_pimage, rSource);
+
+         image_drawing_options imagedrawingoptions(rTarget);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+      }
 
       ::point_i32 point;
 
@@ -773,9 +783,9 @@ namespace userex
       else
       {
 
-         point.x = (::i32)(r1.left + r1.width() * m_hls.m_dH);
+         point.x = (::i32)(rTarget.left + rTarget.width() * m_hls.m_dH);
 
-         point.y = (::i32)(r1.top + r1.height() * (1.0 - m_hls.m_dS));
+         point.y = (::i32)(rTarget.top + rTarget.height() * (1.0 - m_hls.m_dS));
 
       }
 
@@ -787,17 +797,27 @@ namespace userex
 
       rectLum1.set_size(m_pimageLuminance->get_size());
 
-      r2 = m_pimageLuminance->rectangle();
+      rSource = m_pimageLuminance->rectangle();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
+      {
 
-      r1.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+         image_source imagesource(m_pimageLuminance);
 
-      r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
+         image_drawing_options imagedrawingoptions(rectLum1);
 
-      pgraphics->fill_rectangle(r1, get_color());
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+      }
+
+      rTarget.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+
+      rTarget.set_size(m_rectColors.right - rTarget.left, m_pimage->height());
+
+      pgraphics->fill_rectangle(rTarget, get_color());
 
       int y = (int) (rectLum1.top + (1.0 - m_hls.m_dL)  * rectLum1.height());
 
@@ -924,7 +944,17 @@ namespace userex
 
       m_pimage = create_image({m_rectColors.width() / 2,  m_rectColors.height()});
 
-      m_pimage->g()->stretch(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
+      {
+
+         image_source imagesource(m_pimageTemplate);
+
+         image_drawing_options imagedrawingoptions(m_pimage->rectangle());
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         m_pimage->g()->draw(imagedrawing);
+
+      }
 
       m_pimageLuminance = create_image({m_rectColors.width() / 8,  m_rectColors.height()});
 

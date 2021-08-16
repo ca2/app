@@ -52,7 +52,9 @@ int main(int argc, char * argv[], char * envp[])
       if (!estatus)
       {
 
-         return estatus.error_status();
+         auto iExitCode = estatus.exit_code();
+
+         return iExitCode;
 
       }
 
@@ -66,9 +68,9 @@ int main(int argc, char * argv[], char * envp[])
 
    auto estatus = pnode->main();
 
-   ::i32 iErrorStatus = estatus.error_status();
+   ::i32 iExitCode = estatus.exit_code();
 
-   return iErrorStatus;
+   return iExitCode;
 
 }
 

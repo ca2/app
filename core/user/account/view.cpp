@@ -336,7 +336,15 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
-         pgraphics->draw(::rectangle_i32(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
+         image_source imagesource(m_picon95);
+
+         rectangle_f64 rectangle(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
       }
       else

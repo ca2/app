@@ -59,10 +59,10 @@ namespace file
    }
 
 
-   filesize reference::seek(filesize lOff, ::file::e_seek  nFrom)
+   ::index reference::translate(::count c, ::enum_seek eseek)
    {
 
-      return m_pfile->seek(lOff, nFrom);
+      return m_pfile->translate(c, eseek);
 
    }
 

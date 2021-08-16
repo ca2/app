@@ -9,7 +9,7 @@
 #include "aura/user/windows_tsf/edit_window.h"
 #endif
 #endif
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 //#include "_tree.h"
 
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
@@ -1517,7 +1517,7 @@ namespace user
 
       char * psz = str.get_string_buffer((strsize)(iSize + 1));
 
-      m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
       m_ptree->m_peditfile->read(psz, (memsize)iSize);
 
@@ -1610,7 +1610,7 @@ namespace user
 
       char * psz = str.get_string_buffer((strsize)(iSize + 1));
 
-      m_ptree->m_peditfile->seek((filesize)iBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek((filesize)iBeg, ::e_seek_set);
 
       m_ptree->m_peditfile->read(psz, (memsize)(iSize));
 
@@ -1628,11 +1628,11 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          m_ptree->m_peditfile->Delete((memsize)(m_ptree->m_iSelEnd - m_ptree->m_iSelBeg));
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          m_ptree->m_peditfile->Insert(psz, strlen(psz));
 
@@ -2204,7 +2204,7 @@ namespace user
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
 
          iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
 
@@ -2497,9 +2497,9 @@ namespace user
 
             synchronous_lock synchronouslock(mutex());
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Insert(strText, strText.get_length());
 
 
@@ -2656,7 +2656,7 @@ namespace user
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
 
          iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
 
@@ -3614,7 +3614,7 @@ end:
       char * psz;
 
 
-      m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
       if (m_sizeTotal.cx <= 0)
       {
@@ -3787,7 +3787,7 @@ end:
 
       char * psz;
 
-      m_ptree->m_peditfile->seek(iOffset, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iOffset, ::e_seek_set);
 
       if (m_sizeTotal.cx <= 0)
       {
@@ -4031,7 +4031,7 @@ finished_update:
 
             }
 
-            m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -4067,7 +4067,7 @@ finished_update:
 
             __memset(buf, 0, sizeof(buf));
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
@@ -4092,7 +4092,7 @@ finished_update:
 
             }
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
 
@@ -4193,7 +4193,7 @@ finished_update:
 
       }
 
-      m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
       m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -4300,7 +4300,7 @@ finished_update:
 
       }
 
-      m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
       if(i2 > i1)
       {
@@ -4589,7 +4589,7 @@ finished_update:
 
                         strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
-                        m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
+                        m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                         m_ptree->m_peditfile->read(buf, sizeof(buf));
                         const char * psz;
                         strsize iMultiByteUtf8DeleteCount;
@@ -4633,7 +4633,7 @@ finished_update:
                         }
 
                         m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
-                        m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+                        m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                         m_ptree->m_peditfile->Delete((memsize)iMultiByteUtf8DeleteCount);
 
                         m_pinsert = nullptr;
@@ -4783,7 +4783,7 @@ finished_update:
                else if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
                {
                   char buf[32];
-                  m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+                  m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                   memsize uRead = m_ptree->m_peditfile->read(buf, 32);
                   if (uRead == 2 &&
                         buf[0] == '\r' &&
@@ -4828,7 +4828,7 @@ finished_update:
                   {
                      char buf[64];
                      char * psz;
-                     m_ptree->m_peditfile->seek(maximum(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
+                     m_ptree->m_peditfile->seek(maximum(0, m_ptree->m_iSelEnd - 32), ::e_seek_set);
                      psz = &buf[minimum(32, m_ptree->m_iSelEnd)];
                      memsize uRead = m_ptree->m_peditfile->read(buf, 64);
                      if (uRead == 2 &&
@@ -5464,13 +5464,13 @@ finished_update:
 
       string strComposition(strText.Mid(iComposingBeg, iComposingEnd - iComposingBeg));
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
 
       m_ptree->m_peditfile->Delete((memsize)(iComposingEnd - iComposingBeg));
 
       IndexRegisterDelete(iComposingBeg, iComposingEnd - iComposingBeg);
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
 
       auto iLength = strComposition.get_length();
 
@@ -5550,7 +5550,7 @@ finished_update:
             if (i1 != i2)
             {
                ::sort::sort_non_negative(i1, i2);
-               m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(i1, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
                m_pinsert = nullptr;
@@ -5564,11 +5564,11 @@ finished_update:
                __memset(buf, 0, sizeof(buf));
                strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
-               m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
                const char * psz = ::str::uni_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
-               m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
 
                m_pinsert = nullptr;
@@ -5699,10 +5699,10 @@ finished_update:
 
          if(iLineEnd > iLineStart)
          {
-         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::file::seek_begin);
+         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::e_seek_set);
          m_editfileLineIndex.Delete(5 * (iLineEnd - iLineStart));
          }
-         m_editfileLineIndex.seek(5 * iLineStart, ::file::seek_begin);
+         m_editfileLineIndex.seek(5 * iLineStart, ::e_seek_set);
          iLineSize = iLineStartRemain + iLineEndRemain;
          m_editfileLineIndex.write(&iLineSize, 4);
          m_editfileLineIndex.write(&flag, 1);
@@ -6062,7 +6062,7 @@ finished_update:
          if(m_ptree->m_peditfile->get_length() > 0)
          {
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
 
@@ -6071,7 +6071,7 @@ finished_update:
          if(str.has_char())
          {
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             m_ptree->m_peditfile->Insert(str, str.get_length());
 
@@ -6679,7 +6679,7 @@ finished_update:
 
          char *psz = strLine.get_string_buffer(iLineLen);
 
-         m_ptree->m_peditfile->seek(m_iaLineBeg[iLine], ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_iaLineBeg[iLine], ::e_seek_set);
 
          m_ptree->m_peditfile->read(psz, iLineLen);
 
@@ -6811,7 +6811,7 @@ finished_update:
          if (i1 != i2)
          {
 
-            m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -6823,10 +6823,10 @@ finished_update:
 
          m_ptree->m_iSelEnd = i1;
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
          m_ptree->m_iSelEnd += strText.get_length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          auto iLength = strText.get_length();
 

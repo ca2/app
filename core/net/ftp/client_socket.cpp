@@ -588,7 +588,7 @@ namespace ftp
          ReportError(sys_error::GetErrorDescription(), __FILE__, __LINE__);
          return false;
       }
-      file.Seek(0, ::file::seek_end);
+      file.Seek(0, ::e_seek_from_end);
 
       return DownloadFile(strRemoteFile, file, repType, fPasv);
    }

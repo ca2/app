@@ -35,6 +35,8 @@ public:
 
    virtual bool is_file_or_dir(const char * path, ::file::enum_type * petype);
 
+   //virtual bool is_link(const char * path);
+
 
 };
 

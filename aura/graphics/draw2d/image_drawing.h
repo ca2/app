@@ -29,17 +29,10 @@ public:
    ::rectangle_f64      m_rectangleTarget;
 
 
-   image_drawing_options(const image_drawing_options & imagedrawingoptions) :
-      ::color_filter(imagedrawingoptions),
-      m_eplacement(imagedrawingoptions.m_eplacement),
-      m_pointAlign(imagedrawingoptions.m_pointAlign),
-      m_rectangleTarget(imagedrawingoptions.m_rectangleTarget)
-   {
-
-   }
+   image_drawing_options(const image_drawing_options & imagedrawingoptions) = default;
 
    
-   image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.)) :
+   explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.)) :
       m_rectangleTarget(rectangleTarget),
       m_eplacement(eplacement),
       m_pointAlign(pointAlign)
@@ -61,10 +54,10 @@ class CLASS_DECL_AURA image_drawing :
 public:
 
 
-   using image_drawing_options::operator=;
+   using ::image_drawing_options::operator=;
 
 
-   image_drawing(const image_drawing & imagedrawing) :
+   image_drawing(const ::image_drawing & imagedrawing) :
       image_drawing_options(imagedrawing),
       image_source(imagedrawing)
    {
@@ -72,7 +65,7 @@ public:
    }
 
 
-   image_drawing(image_drawing && imagedrawing) :
+   image_drawing(::image_drawing && imagedrawing) noexcept:
       image_drawing_options(::move(imagedrawing)),
       image_source(::move(imagedrawing))
    {
@@ -80,9 +73,9 @@ public:
    }
 
 
-   image_drawing(const image_drawing_options & imagedrawingoptions, const image_source & imagesource) :
-      image_drawing_options(::move(imagedrawingoptions)),
-      image_source(::move(imagesource))
+   image_drawing(const ::image_drawing_options & imagedrawingoptions, const ::image_source & imagesource) :
+      ::image_drawing_options(imagedrawingoptions),
+      ::image_source(imagesource)
    {
 
    }

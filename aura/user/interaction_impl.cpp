@@ -634,11 +634,11 @@ namespace user
       //                      pusersystem->m_createstruct.cx,
       //                      pusersystem->m_createstruct.cy));
 
-      auto psynca = __new(synchronization_array);
+      //auto psynca = __new(synchronization_array);
 
-      __pointer(manual_reset_event) peventStartedUser;
+      //__pointer(manual_reset_event) peventStartedUser;
 
-      __pointer(manual_reset_event) peventStartedProdevian;
+      //__pointer(manual_reset_event) peventStartedProdevian;
 
       if (bNewOwnThread)
       {
@@ -651,9 +651,9 @@ namespace user
 
          m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
 
-         peventStartedUser = __new(manual_reset_event());
+         //peventStartedUser = __new(manual_reset_event());
 
-         m_puserthread->m_peventStarted = peventStartedUser;
+         //m_puserthread->m_peventStarted = peventStartedUser;
 
       }
 
@@ -671,42 +671,12 @@ namespace user
 
          }
 
-         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
-         {
-
-            peventStartedProdevian = __new(manual_reset_event());
-
-            m_pprodevian->m_peventStarted = peventStartedProdevian;
-
-            if (!m_pprodevian->branch())
-            {
-
-               __release(m_pprodevian);
-
-               __release(m_puserthread);
-
-               m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
-
-               return false;
-
-            }
-
-            psynca->add(peventStartedProdevian);
-
-         }
-         else
-         {
-
-            m_pprodevian->init_thread();
-
-         }
-
       }
 
       if (bNewOwnThread)
       {
 
-         if (!m_puserthread->branch())
+         if (!m_puserthread->begin_synch())
          {
 
             __release(m_pprodevian);
@@ -719,68 +689,68 @@ namespace user
 
          }
 
-         psynca->add(peventStartedUser);
-
-         auto proutine = __routine([this, psynca]()
-            {
-
-               if (!m_puserinteraction ||
-                  //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
-                     //&&
-                  !m_puserinteraction->is_window())
-                  //)
-               {
-
-                  return;
-
-               }
-
-               if (m_puserthread->m_result.failed())
-               {
-
-                  if (m_puserinteraction)
-                  {
-
-                     m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
-
-                  }
-
-                  __release(m_pprodevian);
-
-                  __release(m_puserthread);
-
-                  return;
-
-               }
-
-               //peventStartedUser.release();
-
-               if (::is_set(m_pprodevian))
-               {
-
-                  if (m_pprodevian->m_result.failed())
-                  {
-
-                     if (m_puserinteraction)
-                     {
-
-                        m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
-
-                     }
-
-                     __release(m_pprodevian);
-
-                     __release(m_puserthread);
-
-                     return;
-
-                  }
-
-                 // peventStartedProdevian.release();
-
-               }
-
-            });
+//         psynca->add(peventStartedUser);
+//
+//         auto proutine = __routine([this, psynca]()
+//            {
+//
+//               if (!m_puserinteraction ||
+//                  //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
+//                     //&&
+//                  !m_puserinteraction->is_window())
+//                  //)
+//               {
+//
+//                  return;
+//
+//               }
+//
+//               if (m_puserthread->m_result.failed())
+//               {
+//
+//                  if (m_puserinteraction)
+//                  {
+//
+//                     m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+//
+//                  }
+//
+//                  __release(m_pprodevian);
+//
+//                  __release(m_puserthread);
+//
+//                  return;
+//
+//               }
+//
+//               //peventStartedUser.release();
+//
+//               if (::is_set(m_pprodevian))
+//               {
+//
+//                  if (m_pprodevian->m_result.failed())
+//                  {
+//
+//                     if (m_puserinteraction)
+//                     {
+//
+//                        m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+//
+//                     }
+//
+//                     __release(m_pprodevian);
+//
+//                     __release(m_puserthread);
+//
+//                     return;
+//
+//                  }
+//
+//                 // peventStartedProdevian.release();
+//
+//               }
+//
+//            });
 
          //if (pusersystem->m_routineSuccess)
          //{
@@ -800,7 +770,7 @@ namespace user
          //else
          //{
 
-            psynca->wait();
+            ///psynca->wait();
 
          //   (*proutine)();
 
@@ -810,14 +780,14 @@ namespace user
       else
       {
 
-         psynca->wait(true, one_minute());
+         //psynca->wait(true, one_minute());
 
-         if (::is_set(m_pprodevian))
-         {
+         //if (::is_set(m_pprodevian))
+         //{
 
-            peventStartedProdevian.release();
+           // peventStartedProdevian.release();
 
-         }
+         //}
 
          if (!native_create_host())
          {
@@ -3580,6 +3550,13 @@ namespace user
                m_pprodevian->prodevian_reset(m_puserinteraction);
 
             }
+
+         }
+
+         if(m_pprodevian)
+         {
+
+            m_pprodevian->defer_create_prodevian();
 
          }
 

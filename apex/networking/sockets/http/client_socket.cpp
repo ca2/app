@@ -352,7 +352,7 @@ namespace sockets
 
          memory_file memoryfile;
 
-         m_memoryfile.seek_begin();
+         m_memoryfile.seek_to_begin();
 
          compress_context compress(this);
 

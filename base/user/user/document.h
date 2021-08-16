@@ -283,9 +283,9 @@ namespace user
       virtual void on_close_document();
       virtual void pre_close_document();
       virtual void close_document();
-      virtual void report_load_exception(const ::payload & varFile, ::file_result presult, const ::string & pszDefault);
-      virtual void report_save_exception(const ::payload & varFile, ::file_result presult, const ::string & pszDefault);
-      virtual void report_save_load_exception(const ::payload & varFile, ::file_result presult, bool bSave, const ::string & pszDefault);
+      virtual void report_load_exception(const ::payload & varFile, ::file_transport presult, const ::string & pszDefault);
+      virtual void report_save_exception(const ::payload & varFile, ::file_transport presult, const ::string & pszDefault);
+      virtual void report_save_load_exception(const ::payload & varFile, ::file_transport presult, bool bSave, const ::string & pszDefault);
 
 
       // advanced overridables, closing down frame/doc, etc.

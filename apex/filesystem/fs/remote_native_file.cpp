@@ -52,16 +52,22 @@ namespace fs
       }
    }
 
-   filesize remote_native_file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize remote_native_file::seek(filesize lOff, ::enum_seek eseek)
    {
+
       if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
-         return m_httpfile.seek(lOff, nFrom);
+
+         return m_httpfile.translate(lOff, eseek);
+
       }
       else
       {
-         return m_memfile.seek(lOff, nFrom);
+
+         return m_memfile.translate(lOff, eseek);
+
       }
+
    }
 
 

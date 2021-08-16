@@ -1955,7 +1955,7 @@ namespace http
       if(!psockethandler)
       {
 
-         psockethandler = __new(::sockets::socket_handler);
+         psockethandler = __create_new < ::sockets::socket_handler >();
 
       }
 

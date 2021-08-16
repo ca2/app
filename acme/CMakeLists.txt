@@ -11,9 +11,9 @@ list(APPEND library_source
    compress/zip/unzip.cpp
    compress/zip/zip.cpp
    compress/gz.cpp
-   const/_.h
-   const/code_page.h
-   const/idpool.cpp
+   constant/_.h
+   constant/code_page.h
+   constant/idpool.cpp
    #exception/overflow.cpp
    #exception/range.cpp
    #exception/runtime.cpp
@@ -500,23 +500,23 @@ list(APPEND library_source
    compress/zip/memory_buffer.h
    compress/zip/unzip.h
    console.h
-   const/GLOBAL_ID.h
-   const/_const.h
-   const/character_set.h
-   const/check.h
-   const/context.h
-   const/future.h
-   const/id.h
-   const/idpool.h
-   const/impact.h
-   const/message.h
-   const/routine.h
-   const/simple_command.h
-   const/source.h
-   const/status.h
-   const/status_range_authentication.h
-   const/thread.h
-   const/timer.h
+   constant/GLOBAL_ID.h
+   constant/_constant.h
+   constant/character_set.h
+   constant/check.h
+   constant/context.h
+   constant/future.h
+   constant/id.h
+   constant/idpool.h
+   constant/impact.h
+   constant/message.h
+   constant/routine.h
+   constant/simple_command.h
+   constant/source.h
+   constant/status.h
+   constant/status_range_authentication.h
+   constant/thread.h
+   constant/timer.h
    exception/_.h
    exception/_c.h
    exception/_const.h
@@ -608,7 +608,8 @@ list(APPEND library_source
    filesystem/file/serializable.h
    filesystem/file/serialize.h
    filesystem/file/status.h
-   #filesystem/file/stdio_file.h
+   filesystem/file/stdio_file.cpp
+   filesystem/file/stdio_file.h
    filesystem/file/stream.h
    filesystem/file/streamable.h
    filesystem/file/string_file.h

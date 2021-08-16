@@ -104,10 +104,10 @@ void binary_stream::close()
 }
 
 
-filesize binary_stream::seek(filesize offset, ::file::e_seek eseek)
+::index binary_stream::translate(::count c, ::enum_seek eseek)
 {
 
-   return m_p->seek(offset, eseek);
+   return m_p->translate(c, eseek);
 
 }
 
@@ -1197,12 +1197,12 @@ void binary_stream::getline(char * sz, strsize n)
 
 
 
-filesize binary_stream::seek_from_begin(filesize position)
-{
-
-   return m_p->seek_from_begin(position);
-
-}
+//filesize binary_stream::seek_from_begin(filesize position)
+//{
+//
+//   return m_p->seek(position);
+//
+//}
 
 
 
@@ -1260,7 +1260,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
    }
    else
    {
-      m_p->seek_from_begin(tickStart);
+      m_p->set_position(tickStart);
    }
    memsize uiPos = 0;
    memsize uRead;

@@ -87,7 +87,7 @@ public:
 
 
 
-   inline bool is_status_ok() const { return (bool)m_estatus; }
+   inline bool is_status_ok() const { return m_estatus; }
    inline bool has_failed_status() const { return !is_status_ok(); }
 
 

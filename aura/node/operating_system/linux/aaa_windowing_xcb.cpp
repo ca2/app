@@ -3,8 +3,8 @@
 #include "acme/node/operating_system/x11/_x11.h"
 #include "acme/node/operating_system/xcb/_xcb.h"
 #include "_linux.h"
-#include "acme/const/id.h"
-#include "acme/const/message.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
 //#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>

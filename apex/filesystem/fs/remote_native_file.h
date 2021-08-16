@@ -27,7 +27,7 @@ namespace fs
       virtual void write(const void * pdata, memsize nCount);
 
 
-      filesize seek(filesize lOff, ::file::e_seek  nFrom);
+      filesize seek(filesize lOff, ::enum_seek eseek);
 
       virtual filesize get_size() const;
 

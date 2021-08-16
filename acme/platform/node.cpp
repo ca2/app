@@ -180,7 +180,7 @@ namespace acme
       if (m_edesktop == ::user::e_desktop_none)
       {
 
-         calculate_edesktop();
+         m_edesktop = calculate_edesktop();
 
       }
 
@@ -191,8 +191,6 @@ namespace acme
 
    ::user::enum_desktop node::calculate_edesktop()
    {
-
-      // Implement m_edesktop update
 
       return ::user::e_desktop_none;
 
@@ -1462,7 +1460,7 @@ namespace acme
    bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
    {
 
-      ::install::admin_mutex smutex(strPlatform);
+      ::install::admin_mutex smutex(this, strPlatform);
 
       return smutex.already_exists();
 
@@ -1597,46 +1595,6 @@ namespace acme
       return false;
 
    }
-
-
-//   ::file::path node::command_find_path(const ::string & pszCommand)
-//   {
-//
-//#ifdef _UWP
-//
-//      return "";
-//
-//#else
-//
-//      string strPath = getenv("PATH");
-//
-//      string_array straPath;
-//
-//      straPath.explode(":", strPath);
-//
-//      for (auto & str : straPath)
-//      {
-//
-//         ::file::path path;
-//
-//         path = str;
-//
-//         path /= pszCommand;
-//
-//         if (m_psystem->m_pacmefile->exists(path))
-//         {
-//
-//            return path;
-//
-//         }
-//
-//      }
-//
-//      return pszCommand;
-//
-//#endif
-//
-//   }
 
 
 } // namespace acme

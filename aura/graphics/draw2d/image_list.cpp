@@ -135,9 +135,15 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
 
       UNREFERENCED_PARAMETER(iFlag);
 
-      image_source imagesource(m_pimage, point_f64((double)(iImage * m_size.cx), 0.));
+      point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
-      image_drawing_options imagedrawingoptions(::rectangle_f64(point, m_size));
+      rectangle_f64 rectangleSource(pointSource, m_size);
+
+      image_source imagesource(m_pimage, rectangleSource);
+
+      rectangle_f64 rectangleTarget(point, m_size);
+
+      image_drawing_options imagedrawingoptions(rectangleTarget);
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -169,13 +175,19 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   image_source imagesource(m_pimage, ::point_i32(iImage * m_size.cx, 0));
+   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
-   image_drawing_options imagedrawingoptions(::rectangle_i32(point, m_size));
+   rectangle_f64 rectangleSource(pointSource, m_size);
 
-   class ::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   image_source imagesource(m_pimage, rectangleSource);
 
-   imagedrawing = ::color_filter(opacity);
+   rectangle_f64 rectangleTarget(point, m_size);
+
+   image_drawing_options imagedrawingoptions(rectangleTarget);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   imagedrawing.opacity(opacity);
 
    return pgraphics->draw(imagedrawing);
 
@@ -217,15 +229,20 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = minimum(m_size.cx, sz.cx);
-   sz.cy = minimum(m_size.cy, sz.cy);
    pointOffset.x = minimum(m_size.cx, pointOffset.x);
    pointOffset.y = minimum(m_size.cy, pointOffset.y);
+   sz.cx = maximum(0, minimum(m_size.cx-pointOffset.x, sz.cx));
+   sz.cy = maximum(0, minimum(m_size.cy-pointOffset.y, sz.cy));
 
-   image_source imagesource(m_pimage,
-      point_f64(iImage * m_size.cx + pointOffset.x, pointOffset.y));
+   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
-   image_drawing_options imagedrawingoptions(rectangle_f64(point, sz));
+   rectangle_f64 rectangleSource(pointSource, sz);
+
+   image_source imagesource(m_pimage, rectangleSource);
+
+   rectangle_f64 rectangleTarget(point, sz);
+
+   image_drawing_options imagedrawingoptions(rectangleTarget);
 
    image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -468,6 +485,50 @@ i32 image_list::set(int iItem, ::image_drawing imagedrawing)
    m_pimage->get_graphics()->draw(imagedrawing);
 
    return iItem;
+
+}
+
+
+i32 image_list::set_file(int iItem, const ::payload & payload)
+{
+
+   auto pcontextimage = m_psystem->context_image();
+
+   auto pimage = pcontextimage->get_image(payload);
+
+   image_source imagesource(pimage);
+
+   rectangle_f64 rectangle(m_size);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   i32 iImage = this->set(iItem, imagedrawing);
+
+   return iImage;
+
+}
+
+
+i32 image_list::set_icon(int iItem, const ::payload & payload)
+{
+
+   auto pcontextimage = m_psystem->context_image();
+
+   auto pimage = pcontextimage->get_image(payload);
+
+   image_source imagesource(pimage);
+
+   rectangle_f64 rectangle(m_size);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   i32 iImage = this->set(iItem, imagedrawing);
+
+   return iImage;
 
 }
 

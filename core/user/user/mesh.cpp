@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 //#include "acme/node/operating_system/cross/windows/_windows.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 #define DBLCLKMS 500
@@ -5680,23 +5680,40 @@ namespace user
             psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
             pimage2->set_rgb(0,0,0);
 
+            image_source imagesource(pimage2, point_i32(1,1));
 
-            m_pgraphics->draw(m_rectText, pimage2, point_i32(1,1), ::opacity(0.50));
+            image_drawing_options imagedrawingoptions(m_rectText);
 
+            imagedrawingoptions.opacity(0.5);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            m_pgraphics->draw(imagedrawing);
 
             brushText->create_solid(argb(255,255,255,255));
+
             m_pgraphics->set(brushText);
+
             m_pgraphics->set(m_pfont);
+
             m_pgraphics->_DrawText(m_strText,m_rectText,m_ealign, m_edrawtext);
+
          }
          else
          {
+
             ::draw2d::brush_pointer brushText(e_create);
+
             brushText->create_solid(m_colorText);
+
             m_pgraphics->set(brushText);
+
             m_pgraphics->_DrawText(m_strText,m_rectText, m_ealign, m_edrawtext);
+
          }
+
       }
+
    }
 
 

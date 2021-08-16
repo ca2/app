@@ -395,7 +395,13 @@ namespace user
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->stretch(m_pimageLogo->rectangle({ 10, 10 }), m_pimageLogo->get_graphics());
+      image_source imagesource(m_pimageLogo);
+
+      image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pgraphics->draw(imagedrawing);
 
       ::rectangle_i32 rectangle;
 
@@ -541,7 +547,13 @@ namespace user
                   rectDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
                   rectDib.set_size(pimage1->width(), pimage1->height());
 
-                  pgraphics->stretch(rectDib, pimage1->g());
+                  image_source imagesource(pimage1);
+
+                  image_drawing_options imagedrawingoptions(rectDib);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
@@ -610,7 +622,17 @@ namespace user
 
       }
 
-      pgraphicsParam->stretch(rectangleClient, pimage1->get_graphics());
+      {
+
+         image_source imagesource(pimage1);
+
+         image_drawing_options imagedrawingoptions(rectangleClient);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphicsParam->draw(imagedrawing);
+
+      }
 
    }
 

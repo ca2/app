@@ -795,7 +795,15 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-               pgraphics->draw(rectangle, item.m_pimage,  ::opacity(0.85));
+               image_source imagesource(item.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               imagedrawingoptions.opacity(0.85);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             else if (uImage != 0xffffffffu)
@@ -843,7 +851,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
-            pgraphics->draw(rectangle, item.m_pimage);
+            image_source imagesource(item.m_pimage);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
 
          }
          else if (uImage != 0xffffffff)
@@ -890,7 +904,15 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //    }
 
-               pgraphics->draw(rectangle, item.m_pimage,::opacity(0.23));
+               image_source imagesource(item.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               imagedrawingoptions.opacity(0.23);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
 

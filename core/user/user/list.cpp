@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 #include "acme/primitive/collection/sort.h"
 
 
@@ -7374,12 +7374,24 @@ namespace user
    {
       if (m_pcolumn->m_bIcon)
       {
+
          draw2d::icon * picon;
+
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {
+
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            return m_pgraphics->draw(m_rectImage, picon) != false;
+
+            image_source imagesource(picon);
+
+            image_drawing_options imagedrawingoptions(m_rectImage);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            return m_pgraphics->draw(imagedrawing) != false;
+
          }
+
       }
       else
       {
@@ -7472,10 +7484,16 @@ namespace user
 
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            ::rectangle_i32 rectDib(m_rectImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
+            image_source imagesource(pimage);
+
+            rectangle_f64 rectDib(m_rectImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
                       m_rectImage.size() + size_i32(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
-            m_pgraphics->draw(rectDib, pimage->get_graphics());
+            image_drawing_options imagedrawingoptions(rectDib);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            m_pgraphics->draw(imagedrawing);
 
             ::rectangle_i32 rectI;
 
@@ -7514,7 +7532,17 @@ namespace user
 
                m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               m_pgraphics->draw(rectI, m_plist->m_pimageTime->get_graphics(),rect2.top_left());
+               {
+
+                  image_source imagesource(m_plist->m_pimageTime, rect2.top_left());
+
+                  image_drawing_options imagedrawingoptions(rectI);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  m_pgraphics->draw(imagedrawing);
+
+               }
 
             }
 

@@ -1102,16 +1102,22 @@ namespace draw2d
 
             }
 
-            ::image_source imagesource1(imagedrawing.m_pimage, pointSrc);
-
-            ::image_drawing_options imagedrawingoptions1(::rectangle_f64(size));
-
-            ::image_drawing imagedrawing1(imagedrawingoptions1, imagesource1);
-
-            if (!pimage1->draw(imagedrawing1))
             {
 
-               return false;
+               image_source imagesource(imagedrawing.m_pimage, pointSrc);
+
+               rectangle_f64 rectangle(size);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               if (!pimage1->draw(imagedrawing))
+               {
+
+                  return false;
+
+               }
 
             }
 
@@ -1126,13 +1132,36 @@ namespace draw2d
 
             pimage2->fill(255, 0, 0, 0);
 
-            pimage2->g()->draw({ ::rectangle_f64(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size),
-               {m_pimageAlphaBlend,
-               ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)) } });
+            {
+
+               image_source imagesource(m_pimageAlphaBlend,
+                                        ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)));
+
+               rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pimage2->g()->draw(imagedrawing);
+
+            }
 
             pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 
-            stretch(::rectangle_f64(pointDst, size), pimage1->g(), ::rectangle_f64(pointSrc, size));
+            {
+
+               image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
+
+               rectangle_f64 rectangle(pointDst, size);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               draw(imagedrawing);
+
+            }
 
             return true;
 
@@ -1541,9 +1570,33 @@ namespace draw2d
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
-         pimage1->draw(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectText.size()));
+         {
 
-         draw(::rectangle_f64(::point_f64(x, y), rectText.size()), pimage1);
+            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x), (int)maximum(0, y - m_pointAlphaBlend.y)), rectText.size()));
+
+            rectangle_f64 rectangle(pimage1->rectangle());
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pimage1->g()->draw(imagedrawing);
+
+         }
+
+         {
+
+            image_source imagesource(pimage1);
+
+            rectangle_f64 rectangle(::rectangle_f64(::point_f64(x, y), rectText.size()));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            draw(imagedrawing);
+
+         }
 
          return true;
 
@@ -4812,7 +4865,19 @@ namespace draw2d
 
          auto rectDst = ::rectangle_f64(::point_f64(x1, h), pimage->size());
 
-         draw(rectDst, pimage->get_graphics());
+         {
+
+            image_source imagesource(pimage);
+
+            rectangle_f64 rectangle(rectDst);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            draw(imagedrawing);
+
+         }
 
       }
 

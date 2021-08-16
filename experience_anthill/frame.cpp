@@ -100,10 +100,21 @@ namespace experience
                pframewindow->client_to_screen(rectWindow);
                //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
-               pimage2->get_graphics()->draw(
-                  rectangle_i32_dimension(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2),
-                  pgraphics, 
-                  ::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate));
+
+               {
+
+                  image_source imagesource(pgraphics,
+                                           ::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate));
+
+                  auto rectangle = rectangle_f64_dimension(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage2->get_graphics()->draw(imagedrawing);
+
+               }
                //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
 
                m_blur1.blur(pimage1, 2, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
@@ -131,7 +142,17 @@ namespace experience
                rectWindow.height(),
                bf);*/
 
-               pgraphics->draw(rectangleClient, pimage1->g(), ::point_i32(iInflate, iInflate));
+               {
+
+                  image_source imagesource(pimage1, point_f64(iInflate, iInflate));
+
+                  image_drawing_options imagedrawingoptions(rectangleClient);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
+
+               }
 
             }
 
@@ -569,7 +590,13 @@ namespace experience
                      if (pdrawicon != nullptr)
                      {
 
-                        pgraphics->draw(rectIcon, pdrawicon);
+                        image_source imagesource(pdrawicon);
+
+                        image_drawing_options imagedrawingoptions(rectIcon);
+
+                        image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                        pgraphics->draw(imagedrawing);
 
                      }
 
@@ -666,7 +693,13 @@ namespace experience
                      if (pdrawicon != nullptr)
                      {
 
-                        pgraphics->draw(rectIcon, pdrawicon);
+                        image_source imagesource(pdrawicon);
+
+                        image_drawing_options imagedrawingoptions(rectIcon);
+
+                        image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                        pgraphics->draw(imagedrawing);
 
                      }
 

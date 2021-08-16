@@ -385,6 +385,7 @@ list(APPEND apex_source
    parallelization/threading.cpp
    parallelization/threading.h
    platform/_.cpp
+   platform/_application_service.cpp
    platform/_impl.h
    platform/_platform.h
    #platform/_system_id_impl.h
@@ -498,8 +499,14 @@ list(APPEND apex_source
    process/department.h
    process/process.cpp
    process/process.h
+   progress/integer.cpp
+   progress/integer.h
+   progress/listener.cpp
+   progress/listener.h
    progress/progress.cpp
    progress/progress.h
+   progress/real.cpp
+   progress/real.h
    progress/_.h
    template/list.h
    user/_.h

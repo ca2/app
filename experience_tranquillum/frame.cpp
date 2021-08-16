@@ -582,11 +582,17 @@ namespace experience
                if (pdrawicon != nullptr)
                {
 
-                  ::rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
+                  image_source imagesource(pdrawicon);
+
+                  rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
 
                   rectDst.CenterOf(rectIcon);
 
-                  pgraphics->draw(rectDst, pdrawicon);
+                  image_drawing_options imagedrawingoptions(rectDst);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
@@ -769,11 +775,17 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  ::rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
+                  image_source imagesource(picon);
+
+                  rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
 
                   rectDst.CenterOf(rectIcon);
 
-                  pgraphics->draw(rectIcon, picon);
+                  image_drawing_options imagedrawingoptions(rectDst);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 

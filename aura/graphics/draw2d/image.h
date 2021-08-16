@@ -102,7 +102,7 @@ public:
    virtual bool blend2(const ::point_i32 & pointDst, ::image * imageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA);
    virtual bool fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size);
    virtual bool fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA);
-   virtual bool bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle);
+   //virtual bool bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle);
 
    virtual bool color_blend(::color32_t color32, byte bAlpha);
    virtual bool BitBlt(::image * pimage, i32 op);
@@ -243,7 +243,7 @@ public:
 
    
    //using image_drawer::stretch;
-   //virtual bool stretch(::image * pimage);
+   virtual bool stretch_image(::image * pimage);
 
 
    //virtual bool stretch(::draw2d::graphics * pgraphics);

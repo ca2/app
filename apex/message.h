@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/const/message.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/message.h"
+#include "acme/constant/simple_command.h"
 
 
 #include "apex/message/simple_command.h"

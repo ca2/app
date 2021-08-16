@@ -6782,7 +6782,7 @@ return m_strAppId;
 
 {
 
-auto pmutex = __new(::install::mutex(process_platform_dir_name2()));
+auto pmutex = __new(::install::mutex(this, process_platform_dir_name2()));
 
 if (pmutex->already_exists())
 {

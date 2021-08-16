@@ -4,7 +4,7 @@
 #include "aqua/xml.h"
 //#include "acme/node/operating_system/_os.h"
 //#include "acme/node/operating_system/cross.h"
-#include "aura/os/_user.h"
+#include "aura/node/operating_system/_user.h"
 #include "toolbar.h"
 
 #define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))

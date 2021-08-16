@@ -284,19 +284,19 @@ filesize memory_file::get_position() const
 }
 
 
-filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
+filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
 {
 
    ASSERT(is_valid());
 
-   ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-   //ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+   ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
+   //ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
    memsize dwNew = (memsize)m_position;
 
-   switch (nFrom)
+   switch (eseek)
    {
-   case ::file::seek_begin:
+   case ::e_seek_set:
       if(lOff < 0)
       {
 
@@ -309,7 +309,7 @@ filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
 
       }
       break;
-   case ::file::seek_end:
+   case ::e_seek_from_end:
       if(lOff < -(memsize)get_size())
       {
 
@@ -321,7 +321,7 @@ filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
          dwNew = (memsize)(get_size() + lOff);
       }
       break;
-   case ::file::seek_current:
+   case ::e_seek_current:
       if(lOff < -(memsize)m_position)
       {
 
@@ -544,7 +544,7 @@ void memory_file::to(::file::file* pfileOut, memsize uiSize)
 
       ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
 
-      pfileOut->seek(get_internal_data_size(), ::file::seek_current);
+      pfileOut->position() += get_internal_data_size();
 
    }
    else

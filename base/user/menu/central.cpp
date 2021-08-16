@@ -50,7 +50,13 @@ namespace user
 
          auto pimage = pcontextimage->get_image(strImage);
 
-         iIndex = MenuV033GetImageList()->add(pimage);
+         image_source imagesource(pimage);
+
+         image_drawing_options imagedrawingoptions;
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         iIndex = MenuV033GetImageList()->add(imagedrawing);
 
          id = strId;
 

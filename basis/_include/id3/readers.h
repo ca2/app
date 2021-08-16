@@ -72,7 +72,7 @@
 //    virtual pos_type getEnd()
 //    {
 //       pos_type cur = this->getCur();
-//       _stream.seekg(0, file::seek_end);
+//       _stream.seekg(0, e_seek_end);
 //       pos_type end = this->getCur();
 //       this->setCur(cur);
 //       return end;

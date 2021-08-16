@@ -327,7 +327,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_result ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
+file_transport ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    auto pfile = __new(ifs_file( path));

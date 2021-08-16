@@ -567,7 +567,7 @@ namespace geo
 
       ::datetime::time now = ::datetime::time::get_current_time();
 
-      ::mutex m(e_create_new, false, "Global\\ca2_datetime_departament");
+      ::mutex m(pcity, false, "Global\\ca2_datetime_departament");
 
       {
 

@@ -193,7 +193,7 @@ namespace fs
    //}
 
 
-   file_result data::get_file(const ::file::path & varFile, const ::file::e_open & eopen)
+   file_transport data::get_file(const ::file::path & varFile, const ::file::e_open & eopen)
    {
 
       UNREFERENCED_PARAMETER(varFile);

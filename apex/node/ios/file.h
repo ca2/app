@@ -70,7 +70,7 @@ namespace ios
 
       virtual ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
-      virtual filesize seek(filesize uiCount, ::file::e_seek eseek) override;
+      virtual filesize seek(filesize uiCount, ::enum_seek eseek) override;
       virtual void set_size(filesize uiCount) override;
       virtual filesize get_size() const override;
 

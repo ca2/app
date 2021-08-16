@@ -95,6 +95,17 @@ public:
 
    }
 
+   template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE >
+   image_source(IMAGE_SOURCE_POINTER pimagesource, const SIZE & sizeSrc)
+   {
+
+      auto concreteSize = pimagesource->size();
+
+      m_pimage = pimagesource->get_image(concreteSize);
+
+      m_rectangleSource.set(sizeSrc);
+
+   }
 
 
 };

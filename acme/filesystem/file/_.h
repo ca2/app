@@ -4,6 +4,9 @@
 #include "item.h"
 
 
+#include "stdio_file.h"
+
+
 CLASS_DECL_ACME int get_sync_io_error();
 CLASS_DECL_ACME void set_sync_io_error(int iError);
 CLASS_DECL_ACME int get_generate_sync_io_error();
@@ -185,14 +188,16 @@ typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 namespace file
 {
 
+
    using pos_type = filesize;
    using off_type = filesize;
 
+
    using iostate = ::file::e_iostate;
-   using seekdir = ::file::e_seek;
+   using seekdir = ::enum_seek;
+
+
 }
-
-
 
 
 #include "memory_file.h"

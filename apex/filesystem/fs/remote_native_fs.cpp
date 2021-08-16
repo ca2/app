@@ -314,7 +314,7 @@ namespace fs
    }
 
 
-   file_result remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_transport remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile = __new(remote_native_file(path));

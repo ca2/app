@@ -2435,7 +2435,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //using file_pointer = __pointer(::file::file);
 //
-//using file_result = __transport(::file::file);
+//using file_transport = __transport(::file::file);
 //
 //class stream;
 //class binary_stream;

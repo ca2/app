@@ -40,10 +40,10 @@ typedef iptr strsize;
 #include "apex/include/_c.h"
 
 
-#include "acme/const/source.h"
+#include "acme/constant/source.h"
 
 
-#include "acme/const/check.h"
+#include "acme/constant/check.h"
 
 
 #include "apex/user/menu_shared_command.h"

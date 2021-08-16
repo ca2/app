@@ -194,8 +194,12 @@ enum e_id : u64
    id_app_tortoise_svn,
    id_app_smart_svn,
 
-   id_raw_buttondown,
-   id_raw_buttonup,
+   id_raw_left_button_down,
+   id_raw_left_button_up,
+   id_raw_middle_button_down,
+   id_raw_middle_button_up,
+   id_raw_right_button_down,
+   id_raw_right_button_up,
    id_raw_keydown,
    id_raw_keyup,
 

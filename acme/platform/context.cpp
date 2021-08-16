@@ -109,7 +109,7 @@ namespace acme
    }
 
 
-   file_result context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+   file_transport context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
    {
 
       __pointer(::file::file) pfile;

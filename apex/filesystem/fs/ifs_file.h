@@ -23,7 +23,7 @@ public:
    virtual void write(const void * pdata, memsize nCount) override;
 
 
-   filesize seek(filesize lOff, ::file::e_seek  nFrom) override;
+   ::index translate(::count c, ::enum_seek eseek) override;
 
    virtual filesize get_size() const override;
 

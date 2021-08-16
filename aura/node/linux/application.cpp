@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "aura/os/linux/_linux.h"
+#include "aura/node/operating_system/linux/_linux.h"
 
 
 //#include <X11/cursorfont.h>

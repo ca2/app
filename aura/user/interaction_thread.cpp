@@ -285,6 +285,7 @@ namespace user
 
       }
 
+
       //}
       //else
       //{ 
@@ -297,8 +298,6 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      __refer(m_pprodevian, m_pimpl->m_pprodevian);
-
       m_oswindow = m_pimpl->m_pwindow->get_oswindow();
 
       //delete m_pusersystem;
@@ -308,6 +307,8 @@ namespace user
       return true;
 
    }
+
+
 
 
    bool thread::pump_runnable()

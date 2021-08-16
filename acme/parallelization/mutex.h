@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME __pointer(::mutex) open_mutex(const char * lpszName);
+CLASS_DECL_ACME __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName);
 
 
 class CLASS_DECL_ACME mutex :
@@ -57,7 +57,7 @@ public:
 #elif defined(MUTEX_NAMED_VSEM)
    mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, i32 semid, bool bOwner = true);
 #endif
-   mutex(enum_create_new ecreatenew, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
+   mutex(::object * pobject, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
    mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
    virtual ~mutex();
 
@@ -81,7 +81,7 @@ public:
    bool already_exists();
 
 
-   static __pointer(::mutex) open_mutex(const char * lpszName) {return ::open_mutex(lpszName);}
+   static __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
 
 
 };
@@ -136,7 +136,7 @@ namespace install
    {
    public:
 
-      mutex(string strPlatform, string strSuffix = "");
+      mutex(::object * pobject, string strPlatform, string strSuffix = "");
 
    };
 
@@ -149,7 +149,7 @@ namespace install
    {
    public:
 
-      admin_mutex(string strPlatform, string strSuffix = "");
+      admin_mutex(::object * pobject, string strPlatform, string strSuffix = "");
 
    };
 

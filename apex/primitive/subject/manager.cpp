@@ -39,6 +39,8 @@ namespace subject
 
       auto & psubject = m_pmapSubject->operator[](id);
 
+      bool bNew = false;
+
       if (!psubject)
       {
 
@@ -65,13 +67,20 @@ namespace subject
 
          }
 
+         bNew = true;
+
       }
 
       psubject->m_actioncontext = actioncontext;
 
       synchronouslock.unlock();
 
-      //handle_subject(psubject);
+      if(bNew)
+      {
+
+         handle_subject(psubject);
+
+      }
 
 
 //      }

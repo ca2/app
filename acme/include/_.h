@@ -323,7 +323,7 @@ typedef char ansichar;
 #include "acme/exception/_c.h"
 
 
-#include "acme/const/_.h"
+#include "acme/constant/_.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1045,7 +1045,7 @@ enum e_image_type
 
 #include "acme/filesystem/file/_c.h"
 
-#include "acme/const/thread.h"
+#include "acme/constant/thread.h"
 
 
 #if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
@@ -2110,7 +2110,7 @@ typedef FN_TIMER *PFN_TIMER;
 #define IMAGE_OBJECT_OK (SUCCESS)
 #define DEFAULT_CREATE_IMAGE_OBJECT_FLAG (IMAGE_OBJECT_OK)
 
-#include "acme/const/_const.h"
+//#include "acme/constant/_constant.h"
 
 
 #include "acme/primitive/primitive/_memory.h"
@@ -3018,7 +3018,7 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 using file_pointer = __pointer(::file::file);
 
-using file_result = __transport(::file::file);
+using file_transport = __transport(::file::file);
 
 class stream;
 
@@ -3216,7 +3216,7 @@ namespace factory
 } // namespace factory
 
 
-#include "acme/const/parallelization.h"
+#include "acme/constant/parallelization.h"
 
 
 #include "acme/parallelization/synchronization_result.h"
@@ -3227,7 +3227,7 @@ namespace factory
 #include "acme/primitive/primitive/material_object.h"
 
 
-#include "acme/const/idpool.h"
+#include "acme/constant/idpool.h"
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -3470,7 +3470,7 @@ using exception_array = ::array < ::exception::exception >;
 
 #include "acme/primitive/comparison/var_strict.h"
 
-#include "acme/const/filesystem.h"
+#include "acme/constant/filesystem.h"
 
 #include "acme/filesystem/filesystem/file_path.h"
 
@@ -3731,11 +3731,7 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/filesystem/filesystem.h"
 
 
-
-
-//#include "acme/primitive/collection/base_enum.h"
-
-#include "acme/const/source.h"
+#include "acme/constant/source.h"
 
 
 DECLARE_ENUMERATION(e_source, enum_source);
@@ -3744,7 +3740,7 @@ DECLARE_ENUMERATION(e_source, enum_source);
 using lresult = iptr;
 
 
-#include "acme/const/context.h"
+#include "acme/constant/context.h"
 #include "acme/platform/message.h"
 #include "acme/primitive/primitive/action_context.h"
 
@@ -3899,18 +3895,7 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
 #include "acme/platform/flags.h"
-#include "acme/const/check.h"
-
-
-//#include "acme/message/_message.h"
-
-
-
-
-//#include "acme/user/command.h"
-
-
-//#include "acme/message/message.h"
+#include "acme/constant/check.h"
 
 
 #include "acme/platform/keep.h"
@@ -3918,9 +3903,6 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 
 #include "acme/primitive/mathematics/objects.h"
-
-
-//#include "acme/platform/simple_log.h"
 
 
 #include "acme/primitive/collection/file_path_map.h"

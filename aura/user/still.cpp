@@ -661,8 +661,23 @@ namespace user
          rectDib.bottom = minimum(rectText.top + m_pimage->height(), rectText.bottom);
          rectDib.right = minimum(rectText.left + m_pimage->width(), rectText.right);
          //m_pimage->to(pgraphics, rectDib);
-         m_pimage->bitmap_blend(pgraphics, rectDib);
+
+         {
+
+            image_source imagesource(m_pimage);
+
+            auto rectangle = rectDib;
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
+
          rectText.left += m_pimage->width();
+
       }
 
 
@@ -836,7 +851,19 @@ namespace user
 
          rectAspect.Align(e_align_center, rectangleClient);
 
-         pgraphics->stretch(rectangleClient, pimage->g(), ::rectangle_i32(pimage->get_size()));
+         {
+
+            image_source imagesource(pimage, ::rectangle_f64(pimage->get_size()));
+
+            rectangle_f64 rectangle(rectangleClient);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
 
       }
 

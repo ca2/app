@@ -257,7 +257,7 @@ namespace fs
    }
 
 
-   file_result native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_transport native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile;

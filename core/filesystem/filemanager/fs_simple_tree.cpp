@@ -45,10 +45,14 @@ namespace filemanager
 
             m_pimagelist->create(16, 16);
 
-            m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal->ico");
-            m_iIconFolderSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected->ico");
-            m_iIconArtistNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal->ico");
-            m_iIconArtistSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected->ico");
+#ifdef WINDOWS
+
+            m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+            m_iIconFolderSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
+            m_iIconArtistNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+            m_iIconArtistSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected.ico");
+
+#endif
 
             return estatus;
 

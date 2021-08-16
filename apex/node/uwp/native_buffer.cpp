@@ -517,13 +517,13 @@ namespace uwp
 
    }
 
-   filesize native_buffer::seek(filesize lOff,::file::e_seek nFrom)
+   filesize native_buffer::seek(filesize lOff,::enum_seek eseek)
    {
-      if(nFrom == ::file::seek_begin)
+      if(nFrom == ::e_seek_set)
       {
          m_stream->Seek(lOff);
       }
-      else if(nFrom == ::file::seek_current)
+      else if(nFrom == ::e_seek_current)
       {
          m_stream->Seek(m_stream->Position+lOff);
       }
@@ -606,7 +606,7 @@ namespace uwp
       //ASSERT_VALID(this);
       //ASSERT(m_hnative_buffer != (::u32)hnative_bufferNull);
 
-      //seek((::i32)dwNewLen,(::file::e_seek)::file::seek_begin);
+      //seek((::i32)dwNewLen,(::enum_seek)::e_seek_set);
 
       //if(!::SetEndOfnative_buffer((HANDLE)m_hnative_buffer))
       //   WinFileException::ThrowOsError(get_application(),(::i32)::get_last_error());
@@ -622,9 +622,9 @@ namespace uwp
 
       // seek is a non const operation
       native_buffer* pnative_buffer = (native_buffer*)this;
-      dwCur = pnative_buffer->seek(0L,::file::seek_current);
+      dwCur = pnative_buffer->seek(0L,::e_seek_current);
       dwLen = pnative_buffer->seek_to_end();
-      VERIFY(dwCur == (u64)pnative_buffer->seek((filesize)dwCur,::file::seek_begin));
+      VERIFY(dwCur == (u64)pnative_buffer->seek((filesize)dwCur,::e_seek_set));
 
       return (filesize)dwLen;
    }

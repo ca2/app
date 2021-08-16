@@ -545,16 +545,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen);
+   inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

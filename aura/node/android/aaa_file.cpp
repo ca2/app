@@ -442,7 +442,7 @@ namespace android
    }
 
 
-   filesize file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize file::seek(filesize lOff, ::enum_seek eseek)
    {
 
       if (m_iFile == hFileNull)
@@ -454,8 +454,8 @@ namespace android
 
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-      ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
+      ASSERT(nFrom == ::e_seek_set || nFrom == ::e_seek_end || nFrom == ::e_seek_current);
+      ASSERT(::e_seek_set == SEEK_SET && ::e_seek_end == SEEK_END && ::e_seek_current == SEEK_CUR);
 
       ::i32 lLoOffset = lOff & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
@@ -556,7 +556,7 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      seek((::i32)dwNewLen, (::file::e_seek)::file::seek_begin);
+      seek((::i32)dwNewLen, (::enum_seek)::e_seek_set);
 
 #ifdef __LP64
       int iError = ::ftruncate64(m_iFile, dwNewLen);
@@ -577,9 +577,9 @@ namespace android
 
       // seek is a non const operation
       file* pFile = (file*)this;
-      dwCur = pFile->seek(0L, ::file::seek_current);
+      dwCur = pFile->seek(0L, ::e_seek_current);
       dwLen = pFile->seek_to_end();
-      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::file::seek_begin));
+      VERIFY(dwCur == (u64)pFile->seek((filesize) dwCur, ::e_seek_set));
 
       return (filesize) dwLen;
    }
@@ -715,7 +715,7 @@ namespace android
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
             return false;
-         // get time ::file::seek_current file size
+         // get time ::e_seek_current file size
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
             return false;*/

@@ -31,7 +31,13 @@ namespace html
 
                auto rectDst = ::rectangle_f64(pointDst, sizeDst);
 
-               pgraphics->draw(rectDst, m_pimage->get_graphics());
+               image_source imagesource(m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectDst);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
                
             }
 

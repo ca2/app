@@ -405,7 +405,8 @@ void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) con
 
       __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + get_size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - get_size());
       ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),get_data(),get_size());
-      pfileOut->seek(get_size(),::file::seek_current);
+
+      pfileOut->position() += get_size();
 
    }
    else
@@ -417,6 +418,7 @@ void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) con
 
 }
 
+
 void memory_base::transfer_from_begin(::file::file * pfileIn,memsize uiBufferSize)
 {
 
@@ -425,6 +427,7 @@ void memory_base::transfer_from_begin(::file::file * pfileIn,memsize uiBufferSiz
    transfer_from(pfileIn,uiBufferSize);
 
 }
+
 
 void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 {
@@ -2091,8 +2094,10 @@ namespace papaya
             return;
 
          __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.get_size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.get_size());
+
          ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.get_data(), mem.get_size());
-         pfileOut->seek(mem.get_size(), ::file::seek_current);
+
+         pfileOut->position() += mem.get_size();
 
       }
       else

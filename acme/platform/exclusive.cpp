@@ -67,11 +67,7 @@ namespace acme
 
       path /= strId;
 
-               auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(path.folder());
+      create_directory_path(path.folder());
 
       m_iFile = open(path, O_WRONLY | O_CREAT, 0777);
 

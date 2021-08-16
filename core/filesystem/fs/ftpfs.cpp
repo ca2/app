@@ -395,7 +395,7 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 }
 
 
-file_result ftpfs::get_file(const ::file::path & path, const ::file::e_open & eopen)
+file_transport ftpfs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    if (is_dir(path))

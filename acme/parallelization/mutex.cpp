@@ -101,8 +101,10 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn)
 }
 
 
-mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
+mutex::mutex(::object * pobject, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
 {
+
+   initialize(pobject);
 
    m_bAlreadyExists = false;
 
@@ -293,11 +295,7 @@ pacmedir->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
       path /= pstrName;
 
-               auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(path.folder());
+      create_directory_path(path.folder());
 
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 
@@ -1667,10 +1665,10 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 }
 
 
-void wait_until_mutex_does_not_exist(const char * lpszName)
+void wait_until_mutex_does_not_exist(::object * pobject,  const char * lpszName)
 {
 
-   __pointer(mutex) pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+   __pointer(mutex) pmutex = __new(mutex(pobject, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
    if(::get_last_status() == ::error_already_exists)
    {
@@ -1682,7 +1680,7 @@ void wait_until_mutex_does_not_exist(const char * lpszName)
 
          sleep(200_ms);
 
-         pmutex = __new(mutex(e_create_new, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         pmutex = __new(mutex(pobject, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
       }
 
@@ -1740,23 +1738,24 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 namespace install
 {
 
-   mutex::mutex(string strPlatform, string strSuffix) :
+
+   mutex::mutex(::object * pobject, string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
       ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
       , synchronization_object("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
-      ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      ::mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif
    {
 
    }
 
 
-   admin_mutex::admin_mutex(string strPlatform, string strSuffix) :
+   admin_mutex::admin_mutex(::object * pobject, string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
       mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
 #else
-      mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
+      mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif
 
    {

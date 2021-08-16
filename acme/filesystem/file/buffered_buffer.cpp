@@ -37,43 +37,43 @@ namespace file
    }
 
 
-   filesize buffered_file::seek(filesize lOff, ::file::e_seek nFrom)
+   ::index buffered_file::translate(::count c, ::enum_seek eseek)
    {
 
       u64 uiBegBufPosition = m_uiBufLPos;
       u64 uiEndBufPosition = m_uiBufUPos;
       u64 uiNewPos;
-      if(nFrom == ::file::seek_begin)
+      if(eseek == ::e_seek_set)
       {
-         if(lOff < 0)
-            lOff = 0;
-         uiNewPos = lOff;
+         if(c < 0)
+            c = 0;
+         uiNewPos = c;
       }
-      else if(nFrom == ::file::seek_end)
+      else if(eseek == ::e_seek_from_end)
       {
 
-         uiNewPos = m_pfile->get_size() + lOff;
+         uiNewPos = m_pfile->get_size() + c;
 
       }
-      else if(nFrom == ::file::seek_current)
+      else if(eseek == ::e_seek_current)
       {
          
-         i64 iNewPos = m_uiPosition + lOff;
+         i64 iNewPosition = m_uiPosition + c;
 
-         if (iNewPos < 0)
+         if (iNewPosition < 0)
          {
 
-            iNewPos = 0;
+            iNewPosition = 0;
 
          }
-         else if (::comparison::gt(iNewPos, m_pfile->get_size()))
+         else if (::comparison::gt(iNewPosition, m_pfile->get_size()))
          {
 
-            iNewPos = m_pfile->get_size();
+            iNewPosition = m_pfile->get_size();
 
          }
          
-         uiNewPos = iNewPos;
+         uiNewPos = iNewPosition;
 
       }
       else
@@ -92,7 +92,7 @@ namespace file
       else
       {
 
-         m_uiPosition = m_pfile->seek(uiNewPos, ::file::seek_begin);
+         m_uiPosition = m_pfile->set_position(uiNewPos);
 
          if (m_bDirty)
          {
@@ -213,7 +213,7 @@ namespace file
 
       }
 
-      m_pfile->seek((filesize) m_uiPosition, ::file::seek_begin);
+      m_pfile->set_position((filesize) m_uiPosition);
 
       memsize uiCopy;
 
@@ -341,7 +341,7 @@ namespace file
       if(m_bDirty)
       {
 
-         m_pfile->seek((filesize) m_uiWriteLPos, ::file::seek_begin);
+         m_pfile->set_position((filesize) m_uiWriteLPos);
 
          m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (memsize) (m_uiWriteUPos - m_uiWriteLPos + 1));
 

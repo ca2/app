@@ -47,7 +47,7 @@ namespace zip
 
 
       in_file();
-      virtual ~in_file();
+      ~in_file() override;
 
 
       virtual void assert_valid() const override;
@@ -80,33 +80,30 @@ namespace zip
       ::zip::file * get_zip_file();
       const ::zip::file * get_zip_file() const;
 
-      virtual filesize seek(filesize lOff,::file::e_seek nFrom) override;
-      virtual void set_size(filesize dwNewLen) override;
-      virtual filesize get_size() const override;
+      ::index translate(::count c, ::enum_seek eseek) override;
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
 
       using ::file::file::read;
-      virtual memsize read(void * pdata,memsize nCount) override;
+      memsize read(void * pdata, memsize nCount) override;
 
 
       using ::file::file::write;
-      virtual void write(const void * pdata,memsize nCount) override;
+      void write(const void * pdata,memsize nCount) override;
 
 
-      //virtual void lock(filesize dwPos,filesize dwCount) override;
-      //virtual void unlock(filesize dwPos,filesize dwCount) override;
-
-      virtual void flush() override;
-      virtual void close() override;
+      void flush() override;
+      void close() override;
 
       virtual ::file::listing & ls(::file::listing & listing);
       virtual ::file::listing & ls_relative_name(::file::listing & listing);
 
 
-      virtual bool is_opened() const override;
+      bool is_opened() const override;
 
 
-      virtual ::file::listing & perform_file_listing(::file::listing & listing) override;
-      virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
+      ::file::listing & perform_file_listing(::file::listing & listing) override;
+      ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
 
    };

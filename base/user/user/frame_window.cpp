@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/message.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -507,7 +507,13 @@ namespace user
 
                   auto rectDst = ::rectangle_f64(rectangle.size());
 
-                  pimage1->get_graphics()->draw(rectDst, pgraphics);
+                  image_source imagesource(pgraphics);
+
+                  image_drawing_options imagedrawingoptions(rectDst);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage1->get_graphics()->draw(imagedrawing);
 
                   auto pcopydesk = psession->copydesk();
 
@@ -541,7 +547,21 @@ namespace user
 
                   pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
+                  rectangle_f64 rectangleSource(rectangle.size());
+
+                  {
+
+                     image_source imagesource(pimage1, rectangleSource);
+
+                     rectangle_f64 rectangleTarget(pimage2->size());
+
+                     image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                     pimage2->get_graphics()->draw(imagedrawing);
+
+                  }
 
                   pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 

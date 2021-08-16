@@ -215,21 +215,21 @@ public:
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
 
-   virtual ::file_result file_get_file(::file::path path, const ::file::e_open & eopen);
+   virtual ::file_transport file_get_file(::file::path path, const ::file::e_open & eopen);
 
-   virtual ::file_result data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_transport data_get_file(string strData, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result zip_get_file(::file::file * pfile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_transport zip_get_file(::file::file * pfile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result http_get_file(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_transport http_get_file(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
+   virtual ::file_transport get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
 
-   virtual ::file_result get_reader(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_transport get_reader(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result shared_reader(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_transport shared_reader(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_result get_writer(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+   virtual ::file_transport get_writer(const ::payload & varFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_defer_create_directory | ::file::e_open_binary);
 
    virtual bool post_output(::file::path pathOut, ::file::path pathDownloading);
 
@@ -351,7 +351,7 @@ public:
    string sys_temp(const char * lpszName, const char * pszExtension);
 
 
-   //virtual ::file_result get_file(const ::payload & varFile, ::u32 nOpenFlags);
+   //virtual ::file_transport get_file(const ::payload & varFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & psz);

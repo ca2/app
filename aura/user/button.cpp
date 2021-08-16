@@ -409,8 +409,23 @@ namespace user
             rectDib.bottom = minimum(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
             rectDib.right = minimum(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
             //m_pimage->to(pgraphics, rectDib);
-            m_pbitmap->m_pimage->bitmap_blend(pgraphics, rectDib);
+
+            {
+
+               image_source imagesource(m_pbitmap->m_pimage);
+
+               auto rectangle = rectDib;
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
+
+            }
+
             rectText.left += m_pbitmap->m_pimage->width();
+
          }
 
       }
@@ -817,7 +832,19 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
+         {
+
+            image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+
+            rectangle_f64 rectangle(rectAspect);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
 
       }
 
@@ -883,7 +910,19 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
+            {
+
+               image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+
+               rectangle_f64 rectangle(rectAspect);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
+
+            }
 
             rectAspect.left = rectAspect.right + iPadding;
             rectAspect.right = rectPadded.right;

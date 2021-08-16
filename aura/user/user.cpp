@@ -3,7 +3,7 @@
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "acme/platform/static_setup.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "shell.h"
 

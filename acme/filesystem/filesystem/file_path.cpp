@@ -157,7 +157,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
 
    //string strAbsolute(strParam);
 
-   strsize iNewPos;
+   strsize iNewPosition;
 
    bool bDynIa = false;
 
@@ -306,7 +306,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                   if (iSlashCount <= 0)
                   {
 
-                     iNewPos = iaSlash[0];
+                     iNewPosition = iaSlash[0];
 
                      iSlashCount = 1;
 
@@ -314,15 +314,15 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                   else
                   {
 
-                     iNewPos = iaSlash[iSlashCount];
+                     iNewPosition = iaSlash[iSlashCount];
 
                   }
 
-                  strcpy(&psz[iNewPos], &psz[iPos]);
+                  strcpy(&psz[iNewPosition], &psz[iPos]);
 
-                  iLen -= iPos - iNewPos;
+                  iLen -= iPos - iNewPosition;
 
-                  iPos = iNewPos;
+                  iPos = iNewPosition;
 
                }
                else
@@ -361,7 +361,7 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                if (iSlashCount <= 0)
                {
 
-                  iNewPos = iaSlash[0];
+                  iNewPosition = iaSlash[0];
 
                   iSlashCount = 1;
 
@@ -369,15 +369,15 @@ CLASS_DECL_ACME bool solve_relative_inplace(string & str, bool & bUrl, bool & bO
                else
                {
 
-                  iNewPos = iaSlash[iSlashCount];
+                  iNewPosition = iaSlash[iSlashCount];
 
                }
 
-               strcpy(&psz[iNewPos], &psz[iPos]);
+               strcpy(&psz[iNewPosition], &psz[iPos]);
 
-               iLen -= iPos - iNewPos;
+               iLen -= iPos - iNewPosition;
 
-               iPos = iNewPos;
+               iPos = iNewPosition;
 
             }
             else

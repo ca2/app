@@ -291,7 +291,7 @@ string get_status_message(::e_status estatus)
       
    string str;
       
-   if(estatus > 0)
+   if(estatus)
    {
     
       str.Format("success status (%" PRId64 ")", (::i64) estatus.m_estatus);

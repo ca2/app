@@ -26,6 +26,11 @@ namespace app_shader
       ::color::hls                               m_hlsText;
       ::millis                              m_millisStart;
       ::gpu::enum_shader_source           m_eshadersource;
+      ::image_pointer                     m_pimageLabel;
+      string                              m_strLastLabel;
+      ::image_pointer                     m_pimageError;
+      string                              m_strLastError;
+
 
       render();
       virtual ~render();
@@ -43,6 +48,10 @@ namespace app_shader
       virtual ::e_status _update_shader();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001OnDrawError(::draw2d::graphics_pointer & pgraphics);
 
       virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
 

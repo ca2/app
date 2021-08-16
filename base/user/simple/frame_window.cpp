@@ -2482,10 +2482,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      image_drawing imagedrawing;
-      
-      imagedrawing.set(rectangleClient.size(), pgraphics);
+      image_source imagesource(pgraphics);
 
+      image_drawing_options imagedrawingoptions(rectangleClient.size());
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      
       imagedrawing.opacity(dAlpha);
 
       pgraphicsParam->draw(imagedrawing);

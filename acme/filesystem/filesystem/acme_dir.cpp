@@ -703,14 +703,14 @@ bool acme_dir::_is(const char * path1)
 }
 
 
-::file::path acme_dir::base_module()
-{
-
-   __throw(error_interface_only);
-
-   return "";
-
-}
+//::file::path acme_dir::base_module()
+//{
+//
+//   __throw(error_interface_only);
+//
+//   return "";
+//
+//}
 
 
 bool acme_dir::create(const char * path)

@@ -1550,7 +1550,9 @@ bool imaging::BitmapDivBlend(
 
       image_source imagesource(pdcSrc);
 
-      image_drawing_options imagedrawingoptions(::rectangle_f64(size));
+      rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
       
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -2938,7 +2940,15 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    pimageSrc->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   if (!pdcSrc->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
+   image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+
+   rectangle_f64 rectangle(size);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   if (!pdcSrc->draw(imagedrawing))
    {
 
       return false;
@@ -2952,10 +2962,22 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
          iRadius))
       return false;
 
-   if (!pdcDst->draw(::rectangle_f64(pointDst, size), pimageDst))
    {
 
-      return false;
+      image_source imagesource(pimageDst);
+
+      rectangle_f64 rectangle(pointDst, size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcDst->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -2994,10 +3016,22 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
 
-      return false;
+      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+
+      ::rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pimageSrc->g()->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -3008,10 +3042,22 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
       iRadius))
       return false;
 
-   if (!pdcDst->draw(::rectangle_f64(pointDst, size), pimageDst))
    {
 
-      return false;
+      image_source imagesource(pimageDst);
+
+      rectangle_f64 rectangle(pointDst, size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcDst->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -3650,10 +3696,22 @@ byte * pFilter)
 
    }
 
-   if (!pdcSrc->stretch(::rectangle_f64(size), pimageSrc, ::rectangle_f64(pointSrc, size)))
    {
 
-      return false;
+      image_source imagesource(pimageSrc, ::rectangle_f64(pointSrc, size));
+
+      rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcSrc->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -3670,10 +3728,23 @@ byte * pFilter)
 
    }
 
-   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_f64(pointDst, size)))
+
    {
 
-      return false;
+      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+
+      rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcDst->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -4061,7 +4132,13 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
-   return pgraphics->draw(rectangle, pdcColorAlpha, pointAlpha);
+   image_source imagesource(pdcColorAlpha, pointAlpha);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   return pgraphics->draw(imagedrawing);
 
 }
 
@@ -4826,10 +4903,22 @@ i32 iChannel,i32 iRadius,
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
 
-      return false;
+      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+
+      ::rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pimageSrc->g()->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -4848,10 +4937,22 @@ i32 iChannel,i32 iRadius,
 
    }
 
-   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_i32(pointDst, size)))
    {
 
-      return false;
+      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+
+      ::rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcDst->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -4914,10 +5015,22 @@ i32 iRadius,
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_i32(pointSrc, size)))
    {
 
-      return false;
+      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+
+      ::rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pimageSrc->g()->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 
@@ -4931,10 +5044,22 @@ i32 iRadius,
 
    }
 
-   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_i32(pointDst, size)))
    {
 
-      return false;
+      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+
+      ::rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!pdcDst->draw(imagedrawing))
+      {
+
+         return false;
+
+      }
 
    }
 

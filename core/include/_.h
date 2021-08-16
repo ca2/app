@@ -113,7 +113,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #if defined(LINUX)
 
-#include "aura/os/ansios/_.h"
+#include "aura/node/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //

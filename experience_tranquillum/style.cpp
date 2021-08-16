@@ -672,7 +672,13 @@ namespace tranquillum
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               image_source imagesource(pane.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectIcon);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
 
@@ -795,7 +801,13 @@ namespace tranquillum
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               pane.m_pimage->bitmap_blend(pgraphics, rectIcon);
+               image_source imagesource(pane.m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectIcon);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
             }
             //if (iPane == 0)

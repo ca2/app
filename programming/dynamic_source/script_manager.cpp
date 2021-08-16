@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "aura/user/_user.h"
 
 
@@ -1124,7 +1124,7 @@ namespace dynamic_source
          return real_path(m_strNetseedDsCa2Path, str);
       }
 #else
-      if(is_absolute_path(str))
+      if(file_path_is_absolute(str))
       {
          if(include_matches_file_exists(str))
             return str;
@@ -1567,7 +1567,7 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->seek(i, ::file::seek_begin);
+            f->set_position(i);
 
             if(f->read(buf, 4) < 4)
                return false;

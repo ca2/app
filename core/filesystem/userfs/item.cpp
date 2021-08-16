@@ -88,33 +88,33 @@ namespace userfs
    index item::data_item_get_image(object * pobject) const
    {
 
-      ::user::shell::e_file_attribute efileattribute;
+      ::user::shell::enum_file_attribute efileattribute;
 
       if (m_flags & ::file::e_flag_folder)
       {
 
-         efileattribute = ::user::shell::file_attribute_directory;
+         efileattribute = ::user::shell::e_file_attribute_directory;
 
       }
       else
       {
 
-         efileattribute = ::user::shell::file_attribute_normal;
+         efileattribute = ::user::shell::e_file_attribute_normal;
 
       }
 
-      ::user::shell::e_icon eicon;
+      ::user::shell::enum_icon eicon;
 
       if (m_ptree->is_selected(this))
       {
 
-         eicon = ::user::shell::icon_open;
+         eicon = ::user::shell::e_icon_open;
 
       }
       else
       {
 
-         eicon = ::user::shell::icon_normal;
+         eicon = ::user::shell::e_icon_normal;
 
       }
 

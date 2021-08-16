@@ -237,7 +237,7 @@ namespace zip
 //   UNREFERENCED_PARAMETER(stream);
 //   ::zip::file * pzipfile = (::zip::file *) opaque;
 //   file_pointer  pfile = pzipfile->m_pfile;
-//   if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
+//   if(pfile->seek(offset, (::enum_seek) origin) == 0xffffffff)
 //      return -1;
 //   else
 //      return 0;
@@ -301,8 +301,8 @@ long   c_zip_file_tell_file_func (voidpf opaque, voidpf stream)
 long   c_zip_file_seek_file_func (voidpf opaque, voidpf stream, uptr offset, i32 origin)
 {
    UNREFERENCED_PARAMETER(stream);
-   ::file::file * pfile = (::file::file *) opaque;
-   if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
+   auto * pfile = (::file::file *) opaque;
+   if(pfile->translate(offset, (::enum_seek) origin) == 0xffffffff)
       return -1;
    else
       return 0;

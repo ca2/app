@@ -228,22 +228,22 @@ namespace ios
     return lpszResult;
     }*/
 
-   filesize stdio_file::seek(filesize lOff, ::file::e_seek eseek)
+   filesize stdio_file::seek(filesize lOff, ::enum_seek eseek)
    {
       ASSERT_VALID(this);
-      ASSERT(eseek == ::file::seek_begin || eseek== ::file::seek_end || eseek== ::file::seek_current);
+      ASSERT(eseek == ::e_seek_set || eseek== ::e_seek_end || eseek== ::e_seek_current);
       ASSERT(m_pStream != nullptr);
 
       i32 nFrom;
       switch(eseek)
       {
-      case ::file::seek_begin:
+      case ::e_seek_set:
          nFrom = SEEK_SET;
          break;
-      case ::file::seek_end:
+      case ::e_seek_end:
          nFrom = SEEK_END;
          break;
-      case ::file::seek_current:
+      case ::e_seek_current:
          nFrom = SEEK_CUR;
          break;
       default:

@@ -192,7 +192,7 @@ namespace apex
 
       //virtual ::e_status destroy() override;
 
-      file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
+      file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
 
 
    };

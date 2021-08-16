@@ -306,7 +306,13 @@ bool image::create_isotropic(::image* pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pimage->g()->stretch(::rectangle_i32_dimension(0, 0, cx, cy), get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
+      image_source imagesource(get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
+
+      image_drawing_options imagedrawingoptions(::rectangle_i32_dimension(0, 0, cx, cy));
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pimage->g()->draw(imagedrawing);
 
    }
 
@@ -482,7 +488,7 @@ bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
 //}
 
 
-bool image::stretch(::image* pimage)
+bool image::stretch_image(::image* pimage)
 {
 
    auto pgraphics = get_graphics();
@@ -501,7 +507,13 @@ bool image::stretch(::image* pimage)
 
    }
 
-   return pgraphics->stretch(::rectangle_f64(this->size()), pimage->g(), ::rectangle_f64(pimage->size()));
+   image_source imagesource(pimage->g(), ::rectangle_f64(pimage->size()));
+
+   image_drawing_options imagedrawingoptions(rectangle());
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   return pgraphics->draw(imagedrawing);
 
 }
 
@@ -528,7 +540,15 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      return get_graphics()->draw(rectDstParam, pimageSrc->get_graphics(), pointSrcParam);
+      image_source imagesource(pimageSrc, pointSrcParam);
+
+      rectangle_f64 rectangle(rectDstParam);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      return get_graphics()->draw(imagedrawing);
 
    }
 
@@ -3575,13 +3595,16 @@ bool image::copy(const ::image* pimage, ::eobject eobjectCreate)
 }
 
 
-bool image::bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangle)
-{
-
-   return pgraphics->stretch(rectangle, get_graphics()) != false;
-
-
-}
+//bool image::bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangle)
+//{
+//
+//   image_source imagesource(pgraphics);
+//
+//
+//   return pgraphics->stretch(rectangle, get_graphics()) != false;
+//
+//
+//}
 
 
 bool image::color_blend(color32_t cr, byte bAlpha)
@@ -3959,7 +3982,15 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->draw(::rectangle_f64(s), pimage, ::point_f64(x, y)))
+      image_source imagesource(pimage, ::point_f64(x, y));
+
+      ::rectangle_f64 rectangle(s);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      if (!g()->draw(imagedrawing))
       {
 
          return false;
@@ -6498,7 +6529,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->stretch(::size_f64(cxSource, cySource), pimage->g());
+      image_source imagesource(pimage);
+
+      rectangle_f64 rectangle(::size_f64(cxSource, cySource));
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      get_graphics()->draw(imagedrawing);
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -6529,7 +6568,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          else
          {
 
-            get_graphics()->stretch(::rectangle_i32_dimension((i32)x, (i32)y, (i32)cx, (i32)cy), pimage->g(), ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy));
+            image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy));
+
+            auto rectangle = rectangle_f64_dimension(x, y, cx, cy);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            get_graphics()->draw(imagedrawing);
 
          }
 
@@ -6601,7 +6648,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
             else
             {
 
-               get_graphics()->stretch(::rectangle_i32_dimension(x, y, dx, dy), pimage->get_graphics(), ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+               image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+               auto rectangle = rectangle_f64_dimension(x, y, dx, dy);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               get_graphics()->draw(imagedrawing);
 
             }
 
@@ -8546,7 +8601,15 @@ bool image::create_circle(::image* pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      get_graphics()->stretch(rectangle_i32_dimension(0, 0, diameter, diameter), pimage->g(), rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+      image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+      auto rectangle = rectangle_f64_dimension(0, 0, diameter, diameter);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      get_graphics()->draw(imagedrawing);
 
    }
 
@@ -8613,7 +8676,15 @@ bool image::create_framed_square(::image* pimage, int inner, int outer, color32_
 
    fill(cr);
 
-   get_graphics()->stretch(::rectangle_i32_dimension(outer, outer, inner, inner), pimage->g(), ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+   image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+   auto rectangle = rectangle_f64_dimension(outer, outer, inner, inner);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   get_graphics()->draw(imagedrawing);
 
    return true;
 
@@ -8961,7 +9032,15 @@ __pointer(::image) image::get_image(const ::size_i32 & size)
 
    auto pimageNew = create_image(size);
 
-   pimageNew->g()->stretch(pimageNew->rectangle(), this, this->rectangle());
+   image_source imagesource(this, this->rectangle());
+
+   auto rectangle = pimageNew->rectangle();
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   pimageNew->g()->draw(imagedrawing);
 
    return pimageNew;
 

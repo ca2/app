@@ -23,11 +23,11 @@ namespace filemanager
    bool file_list_callback::initialize_file_list_callback()
    {
 
-      m_pimagelistSubItemHover = __new(::image_list);
+      m_pimagelistSubItemHover = __create_new < ::image_list >();
 
-      m_pimagelistItemHover = __new(::image_list);
+      m_pimagelistItemHover = __create_new < ::image_list >();
 
-      m_pimagelistNormal = __new(::image_list);
+      m_pimagelistNormal = __create_new < ::image_list >();
 
       ::draw2d::graphics_pointer spgraphics(e_create);
 

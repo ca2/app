@@ -23,7 +23,7 @@ inline bool failed(::i64 i)
 }
 
 
-class e_status
+class CLASS_DECL_ACME e_status
 {
 public:
    
@@ -37,10 +37,11 @@ public:
    e_status(i32 i) : m_estatus((::enum_status) i) {}
    e_status(i64 i) : m_estatus((::enum_status) i) {}
    
-   operator ::enum_status & () { return m_estatus; }
    operator ::enum_status () const { return m_estatus; }
+
+   operator bool() const { return this->succeeded(); }
    
-   operator bool() const { return succeeded(); }
+   operator int() const { return this->succeeded(); }
    
    bool operator !() const { return failed();}
 
@@ -50,14 +51,18 @@ public:
 
    int error_status() const { return succeeded() ? 0 : (int)m_estatus; }
 
+   int exit_code() const;
+
    e_status & operator =(enum_status estatus) { m_estatus = estatus; return *this; }
-   e_status & operator =(const e_status & estatus) { m_estatus = estatus; return *this; }
+   e_status & operator =(const e_status & estatus) { m_estatus = (enum_status) estatus; return *this; }
    e_status & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
 
    bool operator ==(enum_status estatus) const { return m_estatus == estatus; }
    bool operator ==(const e_status& estatus) const { return m_estatus == estatus; }
-   bool operator <(const e_status& estatus) const { return m_estatus < estatus; }
+   bool operator <(const e_status& estatus) const { return m_estatus < (enum_status) estatus; }
    bool operator <(const enum_status& estatus) const { return m_estatus < estatus; }
+   bool operator >(const e_status& estatus) const { return m_estatus > (enum_status) estatus; }
+   bool operator >(const enum_status& estatus) const { return m_estatus > estatus; }
 
    
 };

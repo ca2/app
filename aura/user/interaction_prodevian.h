@@ -68,7 +68,7 @@ namespace user
 
 
       prodevian();
-      virtual ~prodevian();
+      ~prodevian() override;
 
 
 #ifdef DEBUG
@@ -76,6 +76,10 @@ namespace user
       virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
+
+
+      virtual ::e_status defer_create_prodevian();
+
 
 
       virtual ::e_status initialize_prodevian(interaction_impl * pimpl);

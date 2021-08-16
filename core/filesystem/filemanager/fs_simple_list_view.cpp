@@ -75,11 +75,15 @@ namespace filemanager
 
             m_pil->create(16, 16, 0, 0, 0);
 
-            m_iIconFolder = m_pil->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+#ifdef WINDOWS
 
-            m_iIconArtist = m_pil->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+            m_iIconFolder = m_pil->add_icon("matter://mplite/vmskarlib_folder_normal.ico");
 
-            m_iIconSong = m_pil->add_matter_icon("mplite/vmskarlib_song_normal.ico");
+            m_iIconArtist = m_pil->add_icon("matter://mplite/vmskarlib_artist_normal.ico");
+
+            m_iIconSong = m_pil->add_icon("matter://mplite/vmskarlib_song_normal.ico");
+
+#endif
 
          }
 

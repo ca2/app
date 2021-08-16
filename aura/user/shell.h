@@ -20,6 +20,7 @@ namespace user
 
       };
 
+
       enum enum_folder
       {
 
@@ -156,9 +157,9 @@ namespace user
       virtual _get_file_image_ * new_get_file_image();
 
 
-      inline ::aura::application* get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
-      inline ::aura::session* get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
-      inline ::aura::system* get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
+      inline ::aura::application * get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
+      inline ::aura::session * get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
+      inline ::aura::system * get_system() { return m_psystem ? m_psystem->m_paurasystem : nullptr; }
 
 
       //virtual void add_thread();
@@ -173,7 +174,7 @@ namespace user
       i32 _reserve_image(const image_key & key);
 
       bool contains_image(const image_key & imagekey, i32 & iImage);
-      bool reserve_image(const image_key & imagekey, i32 & iImage);
+      bool reserve_image(_get_file_image_ & getfileimage);
 
 
       virtual void get_scheduled_image_key(image_key & imagekey);
@@ -189,12 +190,16 @@ namespace user
 
 
 
-      virtual i32 get_file_image(const ::file::path & path, ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
+      virtual i32 get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
       virtual i32 get_file_image(const image_key & imagekey);
       virtual i32 schedule_get_file_image(const image_key & imagekey);
 
 
       virtual void _get_file_image(_get_file_image_ & getfileimage);
+
+
+
+
 
 
       //virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
@@ -211,7 +216,7 @@ namespace user
 //      void set_image(int iIndex, int iSize, ::image * pimage);
 
       virtual void set_image(int iIndex, int iSize, ::image_drawing imagedrawing);
-      //virtual void set_icon(const ::file::path & pathIcon, _get_file_image_ & getfileimage);
+      virtual void set_icon(int iIndex, const ::file::path & pathIcon);
 
 
       //::e_status destroy() override;

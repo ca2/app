@@ -90,7 +90,7 @@ namespace sockets
             }
             else
             {
-               m_file.seek(-1, ::file::seek_current);
+               m_file.seek(-1, ::e_seek_current);
                return str;
             }
          }

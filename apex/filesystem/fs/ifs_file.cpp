@@ -53,19 +53,19 @@ filesize ifs_file::get_size() const
 }
 
 
-filesize ifs_file::seek(filesize lOff, ::file::e_seek nFrom)
+::index ifs_file::translate(filesize lOff, ::enum_seek eseek)
 {
 
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_httpfile.seek(lOff, nFrom);
+      return m_httpfile.translate(lOff, eseek);
 
    }
    else
    {
 
-      return m_memfile.seek(lOff, nFrom);
+      return m_memfile.translate(lOff, eseek);
 
    }
 

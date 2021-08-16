@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class CLASS_DECL_ACME binary_stream :
    virtual public stream
 {
@@ -74,14 +73,14 @@ public:
 
    //}
 
-   operator ::file::file * () { return m_p; }
+   explicit operator ::file::file * ()  { return m_p; }
 
 
-   virtual filesize seek(filesize offset, ::file::e_seek eseek);
+   virtual ::index translate(::count c, ::enum_seek eseek);
 
 
-   virtual string factory_id_to_text(const ::id & id) override;
-   virtual ::id text_to_factory_id(string strText) override;
+   string factory_id_to_text(const ::id & id) override;
+   ::id text_to_factory_id(string strText) override;
 
 
    template < typename TYPE >
@@ -106,38 +105,38 @@ public:
    }
 
 
-   virtual bool is_open() const override;
+   bool is_open() const override;
 
 
    virtual bool is_stream_null();
    virtual bool is_stream_set();
 
-   virtual void * get_internal_data() override;
-   virtual memsize get_internal_data_size() const override;
-   virtual bool set_internal_data_size(memsize c) override;
-   virtual filesize get_position() const override;
+   void * get_internal_data() override;
+   memsize get_internal_data_size() const override;
+   bool set_internal_data_size(memsize c) override;
+   filesize get_position() const override;
 
 
    inline memsize read(void * pdata, memsize nCount) { return m_gcount = m_p->read(pdata, nCount); }
 
-   virtual void read(memory_base & m) override;
-   virtual void write(const memory_base & m) override;
+   void read(memory_base & m) override;
+   void write(const memory_base & m) override;
 
    virtual bool is_reader_null();
    virtual bool is_reader_set();
 
-   virtual void read_to_hex(string & str, filesize iStart = -1, filesize iEnd = -1) override;
+   void read_to_hex(string & str, filesize iStart = -1, filesize iEnd = -1) override;
 
-   virtual void write_from_hex(const void * pdata, memsize nCount) override;
+   void write_from_hex(const void * pdata, memsize nCount) override;
 
-   virtual void write(const void * pdata, memsize nCount) override;
+   void write(const void * pdata, memsize nCount) override;
 
-   virtual void write(const void * pdata, memsize nCount, memsize * dwWritten) override;
+   void write(const void * pdata, memsize nCount, memsize * dwWritten) override;
 
-   virtual bool is_writer_null() override;
-   virtual bool is_writer_set() override;
+   bool is_writer_null() override;
+   bool is_writer_set() override;
 
-   virtual void flush() override;
+   void flush() override;
 
    virtual void set_size(filesize len);
 
@@ -258,7 +257,7 @@ public:
 
    /*::filesize tellp();
    virtual void seekp(filesize position);
-   virtual void seekp(filesize offset, ::file::e_seek eseek);*/
+   virtual void seekp(filesize offset, ::enum_seek eseek);*/
    virtual void put(char ch) override;
 
 
@@ -306,8 +305,8 @@ public:
    int peek();
 
    virtual filesize get_position();
-   virtual filesize seek_from_begin(filesize position);
-   //virtual void seek(filesize offset, ::file::e_seek eseek);
+   //virtual filesize seek_from_begin(filesize position);
+   //virtual void seek(filesize offset, ::enum_seek eseek);
 
    ::filesize get_left() const;
 

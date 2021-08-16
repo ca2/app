@@ -947,17 +947,16 @@ namespace userfs
 
             auto iImage = puser->shell()->get_file_image(
                               pfsitem->m_filepathUser,
-                              pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
-                              ::user::shell::icon_normal);
+                              pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                              ::user::shell::e_icon_normal);
 
             if (iImage < 0)
             {
 
                iImage = puser->shell()->get_file_image(
                   pfsitem->m_filepathFinal,
-                  pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
-                  ::user::shell::icon_normal);
-
+                  pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  ::user::shell::e_icon_normal);
 
             }
 
@@ -984,11 +983,12 @@ namespace userfs
 
       }
 
-
       return ::user::form_list_view::_001GetItemImage(pitem);
 
    }
 
 
 } // namespace userfs
+
+
 

@@ -22,7 +22,7 @@ namespace ftp
 
       bool close();
 
-      bool Seek(long lOffset, ::file::e_seek enOrigin);
+      bool Seek(long lOffset, ::enum_seek enOrigin);
 
       long Tell();
 

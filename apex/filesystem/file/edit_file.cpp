@@ -470,7 +470,7 @@ namespace file
    }
 
 
-   void edit_file::SetFile(file_pointer  pfile)
+   void edit_file::SetFile(file_pointer pfile)
    {
 
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
@@ -481,13 +481,17 @@ namespace file
       }
 
       if(pfile == nullptr)
+      {
+
          __throw(error_invalid_argument);
+
+      }
 
       m_pfile = pfile;
 
       m_size = pfile->get_size();
 
-      m_pfile->seek(0,::file::seek_begin);
+      m_pfile->seek_to_begin();
 
       m_position = 0;
 
@@ -623,7 +627,7 @@ namespace file
          if(!bRead)
          {
 
-            m_pfile->seek_begin(m_positionIteration);
+            m_pfile->set_position(m_positionIteration);
 
             bRead = m_pfile->read(&b, 1) == 1;
 
@@ -766,7 +770,7 @@ namespace file
       pdelete = __new(delete_item);
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
-      seek((filesize)m_position,::file::seek_begin);
+      seek((filesize)m_position,::e_seek_set);
       read(pdelete->m_memstorage.get_data(),uiCount);
       TreeInsert(pdelete);
       m_size -= uiCount;
@@ -786,7 +790,7 @@ namespace file
       return true;
    }
 
-   filesize edit_file::seek(filesize lOff,::file::e_seek nFrom)
+   filesize edit_file::seek(filesize lOff,::enum_seek eseek)
    {
 
 
@@ -794,33 +798,33 @@ namespace file
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return m_position = m_pfile->seek(lOff, nFrom);
+         return m_position = m_pfile->translate(lOff, eseek);
 
       }
 
       ASSERT(IsValid());
 
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
+      ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
 
-//      ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+//      ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
       filesize dwNew = (u32)-1;
 
-      switch(nFrom)
+      switch(eseek)
       {
-      case ::file::seek_begin:
+      case ::e_seek_set:
 
          dwNew = (filesize)lOff;
 
          break;
 
-      case ::file::seek_end:
+      case ::e_seek_from_end:
 
          dwNew = get_length() - lOff;
 
          break;
 
-      case ::file::seek_current:
+      case ::e_seek_current:
 
          if(lOff < 0)
          {
@@ -876,13 +880,13 @@ namespace file
 
       auto pfile = create_memory_file();
 
-      seek(0, ::file::seek_begin);
+      seek(0, ::e_seek_set);
       
       to(pfile);
       
       m_pfile->set_size(0);
       
-      pfile->seek_begin();
+      pfile->seek_to_begin();
       
       m_pfile->from(pfile);
 

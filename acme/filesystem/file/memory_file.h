@@ -46,14 +46,13 @@ public:
 
 
    void load_string(string & str);
-   //void create(memsize iSize = -1);
-   filesize seek(filesize lOff, ::file::e_seek  nFrom) override;
+   ::index translate(::count c, ::enum_seek eseek) override;
    filesize get_position() const override;
 
-   virtual ::file::path get_file_path() const override;
+   ::file::path get_file_path() const override;
 
-   virtual void set_size(filesize dwNewLen) override;
-   virtual ::filesize get_size() const override;
+   void set_size(filesize dwNewLen) override;
+   ::filesize get_size() const override;
    void clear();
 
 

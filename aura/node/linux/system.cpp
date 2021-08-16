@@ -2,7 +2,7 @@
 // Created by camilo on 29/12/2020. 17:14 BRT <3ThomasBS_, Mummi and bilbo!!
 // (as caThworansfer (also fun :/ ... few times... so seriously F****) from aura/os/application_system_run.cpp)
 #include "framework.h"
-#include "aura/os/linux/_user.h"
+#include "aura/node/operating_system/linux/_user.h"
 #include "aura/user/_user.h"
 //#include <gtk/gtk.h>
 ////#include "third/sn/sn.h"

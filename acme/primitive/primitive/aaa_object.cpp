@@ -2111,7 +2111,7 @@ pacmedir->localconfig()));
 //}
 
 
-::file_result object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+::file_transport object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
 {
 
    return pcontext->m_papexcontext->file().get_file(varFile, eopen);

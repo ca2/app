@@ -54,8 +54,6 @@ namespace acme
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
 
-      //::user::enum_desktop    m_edesktop;
-
       ::logic::bit            m_bLastDarkModeApp;
 
       ::logic::bit            m_bLastDarkModeSystem;
@@ -65,7 +63,7 @@ namespace acme
       int                     m_iWeatherDarkness;
       ::file::path            m_pathModule;
 
-      ::user::enum_desktop                               m_edesktop;
+      ::user::enum_desktop    m_edesktop;
 
 
       node();
@@ -398,6 +396,13 @@ namespace acme
 
       
       //::file::path command_find_path(const ::string & pszCommand);
+
+
+//      virtual ::user::enum_desktop calculate_edesktop();
+//
+//
+//      virtual ::user::enum_desktop get_edesktop();
+
 
 
    };

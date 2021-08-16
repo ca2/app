@@ -85,7 +85,7 @@ namespace zip
 //{
 //   UNREFERENCED_PARAMETER(stream);
 //   ::zip::memory_file * pfile = (::zip::memory_file *) opaque;
-//   if(pfile->seek(offset, (::file::e_seek) origin) == 0xffffffff)
+//   if(pfile->seek(offset, (::enum_seek) origin) == 0xffffffff)
 //      return -1;
 //   else
 //      return 0;

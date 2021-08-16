@@ -18,14 +18,14 @@ stdio_file::~stdio_file()
    if(m_pfile != nullptr)
    {
 
-      FILE_close(m_pfile);
+      fclose(m_pfile);
 
    }
 
 }
 
 
-::extended::status stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
+::extended::status stdio_file::open(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    string str;
@@ -33,11 +33,11 @@ stdio_file::~stdio_file()
    if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
    {
 
-      ::dir::mk(::file::path(pszFileName).folder());
+      m_psystem->m_pacmedir->create(path.folder());
 
    }
 
-   if (eopen & ::file::e_open_no_truncate && file_exists(pszFileName))
+   if (eopen & ::file::e_open_no_truncate && m_psystem->m_pacmefile->exists(path))
    {
 
       str += "r";
@@ -55,21 +55,6 @@ stdio_file::~stdio_file()
       str += "r";
 
    }
-
-
-
-   //if (eopen & ::file::e_open_write)
-   //{
-
-   //   str += "w";
-
-   //}
-   //else if(eopen & ::file::e_open_read)
-   //{
-
-   //   
-
-   //}
 
    if(eopen & ::file::e_open_binary)
    {
@@ -89,12 +74,14 @@ stdio_file::~stdio_file()
 
    }
 
-   m_pfile = FILE_open(pszFileName, str, _SH_DENYNO);
+   int iShare = _SH_DENYNO;
 
-   if (m_pfile == nullptr)
+   auto estatus = open(path, str, iShare);
+
+   if (!estatus)
    {
 
-      return ::error_io;
+      return estatus;
 
    }
 
@@ -103,18 +90,43 @@ stdio_file::~stdio_file()
 }
 
 
-filesize stdio_file::seek(filesize lOff,::file::e_seek eseek)
+::e_status stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
+{
+
+#ifdef WINDOWS
+
+   m_pfile = _wfsopen(wstrPath, wstrAttrs, iShare);
+
+#else
+
+   m_pfile = fopen(path, strAttributes);
+
+#endif
+
+   if(!m_pfile)
+   {
+
+      return error_failed;
+
+   }
+
+   return ::success;
+
+}
+
+
+filesize stdio_file::translate(filesize lOff, ::enum_seek eseek)
 {
 
    int nFrom = SEEK_SET;
 
    switch(eseek)
    {
-   case ::file::seek_current:
+   case ::e_seek_current:
       nFrom = SEEK_CUR;
       break;
 
-   case ::file::seek_end:
+   case ::e_seek_from_end:
       nFrom = SEEK_END;
       break;
 
@@ -123,7 +135,7 @@ filesize stdio_file::seek(filesize lOff,::file::e_seek eseek)
 
    }
 
-   return FILE_seek(m_pfile, lOff, nFrom);
+   return fseek(m_pfile, lOff, nFrom);
 
 }
 
@@ -131,7 +143,7 @@ filesize stdio_file::seek(filesize lOff,::file::e_seek eseek)
 filesize stdio_file::get_position() const
 {
 
-   return FILE_tell(m_pfile);
+   return ftell(m_pfile);
 
 }
 
@@ -139,7 +151,7 @@ filesize stdio_file::get_position() const
 void stdio_file::flush()
 {
 
-   FILE_flush(m_pfile);
+   fflush(m_pfile);
 
 }
 
@@ -147,7 +159,7 @@ void stdio_file::flush()
 void stdio_file::close()
 {
 
-   FILE_close(m_pfile);
+   fclose(m_pfile);
 
 }
 
@@ -155,14 +167,14 @@ void stdio_file::close()
 memsize stdio_file::read(void * pdata, memsize nCount)
 {
 
-   auto size = FILE_read(pdata, 1, nCount, m_pfile);
+   auto size = fread(pdata, 1, nCount, m_pfile);
 
-   int iEof = FILE_eof(m_pfile);
+   int iEof = feof(m_pfile);
 
    if (!iEof)
    {
 
-      int iError = FILE_error(m_pfile);
+      int iError = ferror(m_pfile);
 
       if (iError > 0)
       {
@@ -183,7 +195,7 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 int stdio_file::get_character()
 {
 
-   int iChar = ::FILE_getc(m_pfile);
+   int iChar = fgetc(m_pfile);
 
    return iChar;
 
@@ -194,9 +206,9 @@ int stdio_file::get_character()
 int stdio_file::peek_character()
 {
 
-   int iChar = FILE_getc(m_pfile);
+   int iChar = fgetc(m_pfile);
 
-   FILE_ungetc(iChar, m_pfile);
+   ::ungetc(iChar, m_pfile);
 
    return iChar;
 
@@ -206,32 +218,36 @@ int stdio_file::peek_character()
 int stdio_file::put_character_back(int iChar)
 {
 
-   int iCharRet = FILE_ungetc(iChar, m_pfile);
+   int iCharRet = ::ungetc(iChar, m_pfile);
 
    return iCharRet;
 
 }
 
 
-
 void stdio_file::write(const void * pdata,memsize nCount)
 {
 
-   FILE_write(pdata,nCount, 1, m_pfile);
+   fwrite(pdata,nCount, 1, m_pfile);
 
 }
 
 
 void stdio_file::lock(filesize dwPos,filesize dwCount)
 {
+
    UNREFERENCED_PARAMETER(dwPos);
    UNREFERENCED_PARAMETER(dwCount);
+
 }
+
 
 void stdio_file::unlock(filesize dwPos,filesize dwCount)
 {
+
    UNREFERENCED_PARAMETER(dwPos);
    UNREFERENCED_PARAMETER(dwCount);
+
 }
 
 
@@ -246,7 +262,13 @@ void stdio_file::set_size(filesize dwNewLen)
 filesize stdio_file::get_size() const
 {
 
-   return FILE_get_size(m_pfile);
+   auto position = get_position();
+
+   auto size = ((stdio_file *)this)->seek_to_end();
+
+   ((stdio_file *)this)->set_position(position);
+
+   return size;
 
 }
 
@@ -259,7 +281,7 @@ void stdio_file::assert_valid() const
 
 void stdio_file::dump(dump_context & dumpcontext) const
 {
-   
+
    UNREFERENCED_PARAMETER(dumpcontext);
 
 }
@@ -297,6 +319,25 @@ string stdio_file::get_location() const
    return get_file_path();
 
 }
+
+
+//CLASS_DECL_ACME file_transport create_stdio_file(const ::file::path & path, const ::string & strAttributes, int iShare)
+//{
+//
+//   auto pfile = __new(stdio_file);
+//
+//   auto estatus = pfile->open(path, strAttributes, iShare);
+//
+//   if(!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   return pfile;
+//
+//}
 
 
 

@@ -1,8 +1,8 @@
-// Created by camilo on 2021-08-09 02:44 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-08-09 02:44 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
-#include "acme/const/parallelization.h"
+#include "acme/constant/parallelization.h"
 
 
 inline enum_synchronization_result windows_wait_result_to_synchronization_result(int iResult)

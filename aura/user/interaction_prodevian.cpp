@@ -17,7 +17,11 @@
 
 
 #ifdef LINUX
-#include "aura/os/ansios/_ansios.h"
+
+
+#include "aura/node/operating_system/ansi/_ansi.h"
+
+
 #endif
 
 
@@ -86,6 +90,42 @@ namespace user
 
 
 #endif
+
+
+   ::e_status prodevian::defer_create_prodevian()
+   {
+
+      //__refer(m_pprodevian, m_pimpl->m_pprodevian);
+
+      //if(m_pprodevian)
+      {
+
+         if (!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
+         {
+
+
+            if (!branch())
+            {
+
+               //__release(m_pprodevian);
+
+               return error_failed;
+
+            }
+
+         }
+         else
+         {
+
+            init_thread();
+
+         }
+
+      }
+
+      return ::success;
+
+   }
 
 
    ::e_status prodevian::initialize_prodevian(interaction_impl * pimpl)
@@ -257,230 +297,202 @@ namespace user
    }
 
 
-bool prodevian::prodevian_reset(::user::interaction * pinteraction)
-{
-
-   m_puserinteraction = pinteraction;
-
-   m_nanosNow = get_nanos();
-
-   //m_iFrameId = m_nanosNow / m_nanosFrame;
-
-   //m_iLastFrameId = m_iFrameId;
-
-   return true;
-
-}
-
-
-void prodevian::term_thread()
-{
-
-   if (m_pimpl)
+   bool prodevian::prodevian_reset(::user::interaction * pinteraction)
    {
 
-      if (m_pimpl->m_pprodevian == this)
-      {
+      m_puserinteraction = pinteraction;
 
-         m_pimpl->__release(m_pimpl->m_pprodevian);
+      m_nanosNow = get_nanos();
 
-      }
+      //m_iFrameId = m_nanosNow / m_nanosFrame;
+
+      //m_iLastFrameId = m_iFrameId;
+
+      return true;
 
    }
 
-   m_nanotimer.close_timer();
 
-   ::thread::term_thread();
-
-   m_pimpl.release();
-
-   m_puserinteraction.release();
-
-   if (m_routineUpdateScreen)
+   void prodevian::term_thread()
    {
 
-      m_routineUpdateScreen->destroy();
+      if (m_pimpl)
+      {
+
+         if (m_pimpl->m_pprodevian == this)
+         {
+
+            m_pimpl->__release(m_pimpl->m_pprodevian);
+
+         }
+
+      }
+
+      m_nanotimer.close_timer();
+
+      ::thread::term_thread();
+
+      m_pimpl.release();
+
+      m_puserinteraction.release();
+
+      if (m_routineUpdateScreen)
+      {
+
+         m_routineUpdateScreen->destroy();
+
+      }
+
+      m_routineUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+      if (m_routineWindowShow)
+      {
+
+         m_routineWindowShow->destroy();
+
+      }
+
+      m_routineWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
    }
 
-   m_routineUpdateScreen.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-   if (m_routineWindowShow)
+   ::e_status prodevian::destroy()
    {
 
-      m_routineWindowShow->destroy();
+      m_evUpdateScreen.SetEvent();
+
+      m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+      m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
+
+      m_synchronizationa.clear();
+
+      auto estatus = ::thread::destroy();
+
+      return estatus;
 
    }
 
-   m_routineWindowShow.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
-}
-
-
-::e_status prodevian::destroy()
-{
-
-   m_evUpdateScreen.SetEvent();
-
-   m_puserinteraction.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-
-   m_pimpl.release(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
-
-   m_synchronizationa.clear();
-   
-   auto estatus = ::thread::destroy();
-
-   return estatus;
-
-}
+   #undef EXTRA_PRODEVIAN_ITERATION_LOG
 
 
-#undef EXTRA_PRODEVIAN_ITERATION_LOG
-
-
-bool prodevian::prodevian_iteration()
-{
-
-   bool bHasProdevian = false;
-
-   bool bRedraw = false;
-
-   string strType;
-
-   strType = ::str::demangle(m_puserinteraction->type_name());
-
-   try
+   bool prodevian::prodevian_iteration()
    {
 
-      synchronous_lock synchronouslock(m_puserinteraction->mutex());
+      bool bHasProdevian = false;
 
-      if (strType.contains_ci("filemanager"))
+      bool bRedraw = false;
+
+      string strType;
+
+      strType = ::str::demangle(m_puserinteraction->type_name());
+
+      try
       {
 
-         //INFO("filemanager frame... ");
+         synchronous_lock synchronouslock(m_puserinteraction->mutex());
 
-      }
+         if (strType.contains_ci("filemanager"))
+         {
 
-      if(!m_puserinteraction)
-      {
+            //INFO("filemanager frame... ");
 
-         return false;
+         }
 
-      }
-
-      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-      {
-
-         bHasProdevian = false;
-
-      }
-      else if (m_puserinteraction->m_pimpl2.is_null())
-      {
-
-         bHasProdevian = false;
-
-      }
-      else
-      {
-
-         bHasProdevian = m_puserinteraction->has_prodevian();
-
-         //synchronous_lock synchronouslock(m_pimpl->mutex());
-
-         // if (bHasProdevian)
-         // {
-
-         //    output_debug_string("has_prodevian");
-          
-         // }
-
-      }
-
-   }
-   catch(...)
-   {
-
-   }
-
-   if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
-   {
-
-      if (m_puserinteraction->m_pimpl2.is_null() || !bHasProdevian)
-      {
-
-         m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
-
-         if (!get_message(&m_message, NULL, 0, 0))
+         if(!m_puserinteraction)
          {
 
             return false;
 
          }
 
-         if (strType.contains_ci("list_box"))
+         if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
          {
 
-            output_debug_string("list_box");
+            bHasProdevian = false;
 
          }
-
-         //printf("prodevian get_message(%d)\n", m_message.message);
-
-         int iSkipped = 0;
-
-         while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
+         else if (m_puserinteraction->m_pimpl2.is_null())
          {
 
-            if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
-            {
-
-               iSkipped++;
-
-               peek_message(&m_message, NULL, 0, 0, PM_REMOVE);
-
-            }
-            else
-            {
-
-               break;
-
-            }
+            bHasProdevian = false;
 
          }
-
-#ifdef EXTRA_PRODEVIAN_ITERATION_LOG
-
-         INFO("Skipped e_message_redraw count "+ ::str::from(iSkipped) + "\n");
-
-#endif
-
-         if (m_message.m_id == e_message_null)
+         else
          {
 
-            return true;
+            bHasProdevian = m_puserinteraction->has_prodevian();
+
+            //synchronous_lock synchronouslock(m_pimpl->mutex());
+
+            // if (bHasProdevian)
+            // {
+
+            //    output_debug_string("has_prodevian");
+
+            // }
 
          }
-         else if (m_message.m_id != e_message_redraw)
-         {
-
-            return true;
-
-         }
-         else if (!this->task_get_run())
-         {
-
-            return false;
-
-         }
-
-         bRedraw = true;
 
       }
-      else if(!bHasProdevian)
+      catch(...)
       {
 
-         while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
+      }
+
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
+      {
+
+         if (m_puserinteraction->m_pimpl2.is_null() || !bHasProdevian)
          {
+
+            m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
+
+            if (!get_message(&m_message, NULL, 0, 0))
+            {
+
+               return false;
+
+            }
+
+            if (strType.contains_ci("list_box"))
+            {
+
+               output_debug_string("list_box");
+
+            }
+
+            //printf("prodevian get_message(%d)\n", m_message.message);
+
+            int iSkipped = 0;
+
+            while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
+            {
+
+               if (m_message.m_id == e_message_redraw || m_message.m_id == WM_KICKIDLE)
+               {
+
+                  iSkipped++;
+
+                  peek_message(&m_message, NULL, 0, 0, PM_REMOVE);
+
+               }
+               else
+               {
+
+                  break;
+
+               }
+
+            }
+
+   #ifdef EXTRA_PRODEVIAN_ITERATION_LOG
+
+            INFO("Skipped e_message_redraw count "+ ::str::from(iSkipped) + "\n");
+
+   #endif
 
             if (m_message.m_id == e_message_null)
             {
@@ -494,373 +506,401 @@ bool prodevian::prodevian_iteration()
                return true;
 
             }
+            else if (!this->task_get_run())
+            {
+
+               return false;
+
+            }
 
             bRedraw = true;
 
          }
-
-         if (!this->task_get_run())
+         else if(!bHasProdevian)
          {
 
-            return false;
-
-         }
-
-      }
-
-   }
-
-   if(!m_puserinteraction)
-   {
-
-      return false;
-
-   }
-
-   if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-   {
-
-      if(m_pimpl->m_bPendingRedraw && m_pimpl->m_millisLastRedraw.elapsed() < 100_ms)
-      {
-
-         return true;
-
-      }
-
-   }
-
-   // e_message_redraw
-
-   if(strType.contains_ci("filemanager"))
-   {
-
-      //INFO("filemanager");
-
-   }
-
-   i64 i1 = _get_nanos();
-
-   bRedraw = m_message.wParam & 1;
-
-   m_message.wParam &= ~1;
-
-   //if (m_bUpdateBufferUpdateWindowPending)
-   //{
-
-      prodevian_update_buffer(bRedraw);
-
-   //}
-
-   //m_bUpdateBufferUpdateWindowPending = false;
-
-   m_nanosNow = get_nanos();
-
-   if (!this->task_get_run())
-   {
-
-      return false;
-
-   }
-
-   //if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
-   //{
-
-   //   m_bUpdateWindow |= m_bUpdateBuffer;
-
-   //}
-
-   bool bStartWindowVisual = false;
-
-   if (m_puserinteraction)
-   {
-
-      if (m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
-      {
-
-         m_puserinteraction->m_bUpdateVisual = false;
-
-         if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
-         {
-
-            bStartWindowVisual = true;
-
-         }
-
-      }
-
-   }
-
-   bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
-
-   if (bWait)
-   {
-
-      if (bHasProdevian)
-      {
-
-         bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawProdevian / 2;
-
-      }
-      else
-      {
-
-         bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawNominal / 2;
-
-      }
-
-   }
-
-   if (bWait)
-   {
-
-      // Either:
-      // - It has prodevian mode (FPS drawing);
-      // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
-
-      auto nanosFrame = bHasProdevian ? m_nanosPostRedrawProdevian : m_nanosPostRedrawNominal ;
-
-      //i64 i2 = get_nanos();
-
-      // calculates the next/new frame id
-      //m_iFrameId = (m_nanosNow + nanosFrame - 1) / (nanosFrame);
-
-      //m_nanosNextFrame = m_iFrameId * nanosFrame;
-
-      m_nanosNextFrame = m_nanosNow + nanosFrame;
-
-      //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
-
-      //m_iLastFrameId = m_iFrameId;
-
-      m_nanosNextScreenUpdate = m_nanosNextFrame;
-
-      auto nanosElapsedSinceLastFrame = m_nanosNow - m_nanosLastFrame;
-
-      if (nanosElapsedSinceLastFrame > nanosFrame)
-      {
-
-         // todo display average from last 10 or so frame drawing time and not for every each single offending sample
-         // output_debug_string("("+__str(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
-
-         m_nanosNextScreenUpdate += nanosFrame;
-
-         //m_iLastFrameId++;
-
-      }
-
-      {
-
-         auto nanosStartWait = get_nanos();
-
-         auto nanosToWaitForNextFrame = m_nanosNextScreenUpdate - (::nanos) get_nanos();
-
-         if (nanosToWaitForNextFrame > 1'000'000'000)
-         {
-
-            //output_debug_string("what?!?!\n");
-
-            nanosToWaitForNextFrame = 500'000'000;
-
-         }
-
-         if (nanosToWaitForNextFrame >= 2_ms)
-         {
-
-            ::millis tickWait;
-
-            tickWait.Now();
-
-            //printf("msToWaitForNextFrame >= 2\n");
-
-            if (nanosToWaitForNextFrame < nanosFrame)
+            while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
             {
 
-               if (nanosToWaitForNextFrame >= 50_ms)
+               if (m_message.m_id == e_message_null)
                {
 
-                  //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
-
-                  ::millis millis;
-
-                  millis.Now();
-
-                  m_synchronizationa.wait(nanosToWaitForNextFrame - 1_ms);
-
-                  //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
+                  return true;
 
                }
-               else
+               else if (m_message.m_id != e_message_redraw)
                {
 
-                  //printf("msToWaitForNextFrame < 50\n");
-
-                  m_evUpdateScreen.wait(nanosToWaitForNextFrame);
+                  return true;
 
                }
+
+               bRedraw = true;
 
             }
 
-            auto elapsed = tickWait.elapsed();
+            if (!this->task_get_run())
+            {
 
-            //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i);
+               return false;
+
+            }
 
          }
 
-         auto nanosEndWait = get_nanos();
+      }
 
-         if (nanosEndWait - nanosStartWait > 100'000'000)
+      if(!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+      {
+
+         if(m_pimpl->m_bPendingRedraw && m_pimpl->m_millisLastRedraw.elapsed() < 100_ms)
          {
 
-            output_debug_string("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+            return true;
 
          }
 
-         //{
-
-         //   i64 nanosDeltaPostRedraw = (i64)m_nanosNextScreenUpdate - (nanosFrame - m_nanosPostRedraw)  - (i64)get_nanos();
-
-         //   i32 msDeltaPostRedraw = (::i32)(nanosDeltaPostRedraw / 1'000'000);
-
-         //   if (msDeltaPostRedraw >= 1)
-         //   {
-
-         //      sleep(msDeltaPostRedraw);
-
-         //   }
-
-
-         //}
-
-         m_evUpdateScreen.ResetEvent();
-
       }
 
-   }
+      // e_message_redraw
 
-   if (!this->task_get_run())
-   {
-
-      return false;
-
-   }
-
-   if(!m_pimpl)
-   {
-
-      return false;
-
-   }
-
-   if(!m_puserinteraction)
-   {
-
-      return false;
-
-   }
-
-   if (!(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
-   {
-
-      //#ifdef LINUX
-
-      if (bStartWindowVisual)
+      if(strType.contains_ci("filemanager"))
       {
 
-         m_pimpl->window_show();
+         //INFO("filemanager");
 
       }
 
-      //#endif
-      ////END IFDEF LINUX
+      i64 i1 = _get_nanos();
 
-   }
+      bRedraw = m_message.wParam & 1;
 
-   if (m_bVisualUpdated)
-   {
+      m_message.wParam &= ~1;
 
-      m_bVisualUpdated = false;
+      //if (m_bUpdateBufferUpdateWindowPending)
+      //{
 
-      if (::is_set(m_pimpl->m_puserthread))
+         prodevian_update_buffer(bRedraw);
+
+      //}
+
+      //m_bUpdateBufferUpdateWindowPending = false;
+
+      m_nanosNow = get_nanos();
+
+      if (!this->task_get_run())
       {
 
-         m_pimpl->m_puserthread->m_evApplyVisual.wait(seconds(15));
+         return false;
 
       }
 
-   }
+      //if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
+      //{
 
-   if (!this->task_get_run())
-   {
+      //   m_bUpdateWindow |= m_bUpdateBuffer;
 
-      return false;
+      //}
 
-   }
+      bool bStartWindowVisual = false;
 
-   bool bWindowsApplyVisual = true;
-
-   if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
-   {
-
-      prodevian_update_screen();
-
-   }
-   
-   if (!m_puserinteraction)
-   {
-
-      return false;
-
-   }
-
-   if ((m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
-   {
-      // IFDEF WINDOWS
-      if (bStartWindowVisual)
+      if (m_puserinteraction)
       {
 
-         m_pimpl->m_pwindow->window_show();
-         //m_puserinteraction->post_routine(m_routineWindowShow);
+         if (m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
+         {
+
+            m_puserinteraction->m_bUpdateVisual = false;
+
+            if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
+            {
+
+               bStartWindowVisual = true;
+
+            }
+
+         }
 
       }
-      // ENDIF WINDOWS
-   }
 
-   auto nanosNow = get_nanos();
+      bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
-   for (index i = 0; i < m_nanosaFrame.get_size();)
-   {
-
-      auto nanosFrame = m_nanosaFrame[i];
-
-      auto nanosDiff = nanosNow - nanosFrame;
-
-      if (nanosDiff.m_i > 1'000'000'000LL)
+      if (bWait)
       {
 
-         m_nanosaFrame.erase_at(i);
+         if (bHasProdevian)
+         {
+
+            bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawProdevian / 2;
+
+         }
+         else
+         {
+
+            bWait = (m_nanosNow - m_nanosLastFrame) < m_nanosPostRedrawNominal / 2;
+
+         }
 
       }
-      else
+
+      if (bWait)
       {
 
-         break;
+         // Either:
+         // - It has prodevian mode (FPS drawing);
+         // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
+
+         auto nanosFrame = bHasProdevian ? m_nanosPostRedrawProdevian : m_nanosPostRedrawNominal ;
+
+         //i64 i2 = get_nanos();
+
+         // calculates the next/new frame id
+         //m_iFrameId = (m_nanosNow + nanosFrame - 1) / (nanosFrame);
+
+         //m_nanosNextFrame = m_iFrameId * nanosFrame;
+
+         m_nanosNextFrame = m_nanosNow + nanosFrame;
+
+         //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
+
+         //m_iLastFrameId = m_iFrameId;
+
+         m_nanosNextScreenUpdate = m_nanosNextFrame;
+
+         auto nanosElapsedSinceLastFrame = m_nanosNow - m_nanosLastFrame;
+
+         if (nanosElapsedSinceLastFrame > nanosFrame)
+         {
+
+            // todo display average from last 10 or so frame drawing time and not for every each single offending sample
+            // output_debug_string("("+__str(nanosElapsedSinceLastFrame/1'000'000)+"ms)Frames are taking long to draw. Wait a bit more to free CPU. Is there much load?!?!\n");
+
+            m_nanosNextScreenUpdate += nanosFrame;
+
+            //m_iLastFrameId++;
+
+         }
+
+         {
+
+            auto nanosStartWait = get_nanos();
+
+            auto nanosToWaitForNextFrame = m_nanosNextScreenUpdate - (::nanos) get_nanos();
+
+            if (nanosToWaitForNextFrame > 1'000'000'000)
+            {
+
+               //output_debug_string("what?!?!\n");
+
+               nanosToWaitForNextFrame = 500'000'000;
+
+            }
+
+            if (nanosToWaitForNextFrame >= 2_ms)
+            {
+
+               ::millis tickWait;
+
+               tickWait.Now();
+
+               //printf("msToWaitForNextFrame >= 2\n");
+
+               if (nanosToWaitForNextFrame < nanosFrame)
+               {
+
+                  if (nanosToWaitForNextFrame >= 50_ms)
+                  {
+
+                     //printf("msToWaitForNextFrame >= 50ms (%dms)\n", (::i32) (msToWaitForNextFrame - 1));
+
+                     ::millis millis;
+
+                     millis.Now();
+
+                     m_synchronizationa.wait(nanosToWaitForNextFrame - 1_ms);
+
+                     //printf("Actually waited %dms\n", (::i32) millis.elapsed().m_i);
+
+                  }
+                  else
+                  {
+
+                     //printf("msToWaitForNextFrame < 50\n");
+
+                     m_evUpdateScreen.wait(nanosToWaitForNextFrame);
+
+                  }
+
+               }
+
+               auto elapsed = tickWait.elapsed();
+
+               //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i);
+
+            }
+
+            auto nanosEndWait = get_nanos();
+
+            if (nanosEndWait - nanosStartWait > 100'000'000)
+            {
+
+               output_debug_string("Waited more than 100ms to go display drawn frame at screen?!?!\n");
+
+            }
+
+            //{
+
+            //   i64 nanosDeltaPostRedraw = (i64)m_nanosNextScreenUpdate - (nanosFrame - m_nanosPostRedraw)  - (i64)get_nanos();
+
+            //   i32 msDeltaPostRedraw = (::i32)(nanosDeltaPostRedraw / 1'000'000);
+
+            //   if (msDeltaPostRedraw >= 1)
+            //   {
+
+            //      sleep(msDeltaPostRedraw);
+
+            //   }
+
+
+            //}
+
+            m_evUpdateScreen.ResetEvent();
+
+         }
 
       }
 
+      if (!this->task_get_run())
+      {
+
+         return false;
+
+      }
+
+      if(!m_pimpl)
+      {
+
+         return false;
+
+      }
+
+      if(!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
+      {
+
+         //#ifdef LINUX
+
+         if (bStartWindowVisual)
+         {
+
+            m_pimpl->window_show();
+
+         }
+
+         //#endif
+         ////END IFDEF LINUX
+
+      }
+
+      if (m_bVisualUpdated)
+      {
+
+         m_bVisualUpdated = false;
+
+         if (::is_set(m_pimpl->m_puserthread))
+         {
+
+            m_pimpl->m_puserthread->m_evApplyVisual.wait(seconds(15));
+
+         }
+
+      }
+
+      if (!this->task_get_run())
+      {
+
+         return false;
+
+      }
+
+      bool bWindowsApplyVisual = true;
+
+      if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
+      {
+
+         prodevian_update_screen();
+
+      }
+
+      if (!m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
+      if ((m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update))
+      {
+         // IFDEF WINDOWS
+         if (bStartWindowVisual)
+         {
+
+            m_pimpl->m_pwindow->window_show();
+            //m_puserinteraction->post_routine(m_routineWindowShow);
+
+         }
+         // ENDIF WINDOWS
+      }
+
+      auto nanosNow = get_nanos();
+
+      for (index i = 0; i < m_nanosaFrame.get_size();)
+      {
+
+         auto nanosFrame = m_nanosaFrame[i];
+
+         auto nanosDiff = nanosNow - nanosFrame;
+
+         if (nanosDiff.m_i > 1'000'000'000LL)
+         {
+
+            m_nanosaFrame.erase_at(i);
+
+         }
+         else
+         {
+
+            break;
+
+         }
+
+      }
+
+      if(!m_pimpl)
+      {
+
+         return false;
+
+      }
+
+      m_pimpl->m_dOutputFps = (double)(m_nanosaFrame.get_size());
+
+      return true;
+
    }
-
-   if(!m_pimpl)
-   {
-
-      return false;
-
-   }
-
-   m_pimpl->m_dOutputFps = (double)(m_nanosaFrame.get_size());
-
-   return true;
-
-}
 
 
    bool prodevian::prodevian_update_buffer(bool bRedraw)

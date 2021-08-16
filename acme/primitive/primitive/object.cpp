@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/const/message.h"
+#include "acme/constant/message.h"
 #include "acme/update.h"
 #if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"
@@ -8,10 +8,7 @@
 
 
 object::~object()
-{
-
-
-}
+= default;
 
 
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -2188,7 +2185,7 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-::file_result object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
 {
 
    return m_pcontext->get_file(varFile, eopen);
@@ -3510,22 +3507,22 @@ bool object::IsSerializable() const
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-//::file_result object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+//::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
 //{
 //
 //   return nullptr;
 //
 //}
 
-//inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-//inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+//inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
+//inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

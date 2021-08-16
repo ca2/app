@@ -115,18 +115,14 @@ namespace file
    }
 
 
-   filesize file::seek(filesize lOff, ::file::e_seek nFrom)
+   ::index file::translate(::count c, ::enum_seek eseek)
    {
-      UNREFERENCED_PARAMETER(lOff);
-      UNREFERENCED_PARAMETER(nFrom);
+
+      UNREFERENCED_PARAMETER(c);
+
+      UNREFERENCED_PARAMETER(eseek);
+
       return 0;
-   }
-
-
-   filesize file::set_position(filesize offset)
-   {
-
-      return seek(offset, ::file::seek_begin);
 
    }
 
@@ -159,30 +155,6 @@ namespace file
    }
 
 
-   filesize file::seek_from_begin(filesize lPos)
-   {
-
-      return seek(lPos, ::file::seek_begin);
-
-   }
-
-
-   filesize file::seek_to_begin(filesize lPos)
-   {
-
-      return seek_from_begin(lPos);
-
-   }
-
-
-   filesize file::seek_begin(filesize lPos)
-   {
-
-      return seek_to_begin(lPos);
-
-   }
-
-
    bool file::has_write_mode()
    {
 
@@ -190,10 +162,46 @@ namespace file
 
    }
 
+
    filesize file::get_position() const
    {
-      return ((file *) this)->seek(0, ::file::seek_current);
+
+      return ((file *) this)->translate(0, ::e_seek_current);
+
    }
+
+
+   filesize file::set_position(filesize position)
+   {
+
+      return ((file *) this)->translate(position, ::e_seek_set);
+
+   }
+
+
+   filesize file::increment_position(filesize offset)
+   {
+
+      return translate(offset, ::e_seek_current);
+
+   }
+
+
+   filesize file::decrement_position(filesize offset)
+   {
+
+      return translate(-offset, ::e_seek_current);
+
+   }
+
+
+   filesize file::seek_from_end(filesize offset)
+   {
+
+      return translate(offset, ::e_seek_from_end);
+
+   }
+
 
 
    void file::flush()
@@ -201,8 +209,11 @@ namespace file
       
    }
 
+
    void file::close()
    {
+
+
    }
 
 
@@ -212,7 +223,11 @@ namespace file
       unsigned char uch;
 
       if (read(&uch, 1) == 1)
+      {
+
          return uch;
+
+      }
 
       return EOF;
 
@@ -221,12 +236,16 @@ namespace file
 
    int file::peek()
    {
+
       unsigned char uch;
 
       if (read(&uch, 1) == 1)
       {
-         seek(-1, ::file::seek_current);
+
+         --position();
+
          return uch;
+
       }
 
       return EOF;
@@ -241,28 +260,52 @@ namespace file
 
       while (n > 0)
       {
+
          c = get();
+
          if (c == EOF)
          {
+
             break;
+
          }
          else if (c == '\n')
          {
+
             c = get();
+
             if (c != '\r' && c != EOF)
-               seek(-1, ::file::seek_current);
+            {
+
+               --position();
+
+            }
+
             break;
+
          }
          else if (c == '\r')
          {
+
             c = get();
+
             if (c != '\n' && c != EOF)
-               seek(-1, ::file::seek_current);
+            {
+
+               --position();
+
+            }
+
             break;
+
          }
+
          *sz = (char)c;
+
          sz++;
+
          n--;
+
       }
 
       return *this;
@@ -282,9 +325,10 @@ namespace file
    {
 
       memsize uRead;
-      memsize uiPos = 0;
-      u8 * buf = (u8 *) pdata;
 
+      memsize uiPos = 0;
+
+      u8 * buf = (u8 *) pdata;
 
       while(nCount > 0)
       {
@@ -299,6 +343,7 @@ namespace file
          }
 
          nCount   -= uRead;
+
          uiPos    += uRead;
 
       }
@@ -309,13 +354,11 @@ namespace file
 
 
    void file::write_from_hex(const void * pdata,memsize nCount)
-
    {
 
       memory memory;
 
       memory.from_hex((const char *) pdata, nCount);
-
 
       write(memory.get_data(),memory.get_size());
 
@@ -327,12 +370,14 @@ namespace file
 
    }
 
+
    void file::write(const memory_base & base)
    {
 
       write(base.get_data(), base.get_size());
 
    }
+
 
    void file::lock(filesize dwPos, filesize dwCount)
    {
@@ -461,7 +506,7 @@ namespace file
 
       }
 
-      seek(-1, ::file::seek_current);
+      --position();
 
       return true;
 
@@ -478,7 +523,7 @@ namespace file
 
       }
 
-      seek(-1, ::file::seek_current);
+      --position();
 
       return true;
 
@@ -627,7 +672,7 @@ namespace file
       if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)
       {
 
-         seek(-1, seek_current);
+         --position();
 
       }
 
@@ -766,10 +811,18 @@ namespace file
    }
 
 
+   filesize file::seek_to_begin()
+   {
+
+      return set_position(0);
+
+   }
+
+
    filesize file::seek_to_end()
    {
 
-      return seek(0, seek_end);
+      return translate(0, e_seek_from_end);
 
    }
 
@@ -894,7 +947,7 @@ namespace file
 
             __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + get_internal_data_size(), ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - get_internal_data_size());
             ::memcpy_dup(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), get_internal_data_size());
-            pfileOut->seek(get_internal_data_size(), seek_current);
+            pfileOut->position() += get_internal_data_size();
 
          }
          else
@@ -919,7 +972,7 @@ namespace file
       {
          __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufInc);
          uRead = read(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufSize);
-         pfileOut->seek(uRead, seek_current);
+         pfileOut->position() += uRead;
          uiBufSize -= uRead;
          if(uiBufSize < uiBufMin)
          {
@@ -1032,6 +1085,7 @@ namespace file
       write_file_from_begin(pfileIn, uiBufSize);
 
    }
+
 
    void file::write_file_from_begin(::file::file * pfileIn, memsize uiBufSize)
    {

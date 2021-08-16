@@ -1,7 +1,53 @@
 #pragma once
 
 
-///class stream;
+class CLASS_DECL_ACME translatable
+{
+public:
+
+
+   virtual ::index translate(::count c, enum_seek eseek) = 0;
+
+   ::index operator++()
+   {
+
+      return translate(1, ::e_seek_current);
+
+   }
+
+   ::index operator--()
+   {
+
+      return translate(-1, ::e_seek_current);
+
+   }
+
+
+   ::index operator+=(::count c)
+   {
+
+      return translate(c, ::e_seek_current);
+
+   }
+
+
+   ::index operator-=(::count c)
+   {
+
+      return translate(-c, ::e_seek_current);
+
+   }
+
+
+   explicit operator ::index() const
+   {
+
+      return ((translatable *)this)->translate(0, ::e_seek_current);
+
+   }
+
+
+};
 
 
 namespace file
@@ -25,19 +71,13 @@ namespace file
    class file;
 
 
-   enum e_seek
-   {
-      seek_begin = 0x0,
-      seek_current = 0x1,
-      seek_end = 0x2,
-      beg = seek_begin,
-      cur = seek_current,
-      end = seek_end
-   };
+
+
 
 
    class CLASS_DECL_ACME file :
-      virtual public ::object
+      virtual public ::object,
+      virtual protected translatable
    {
    public:
 
@@ -49,12 +89,12 @@ namespace file
 
 
       file();
-      file(const ::file::path & path);
-      virtual ~file();
+      explicit file(const ::file::path & path);
+      ~file() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void* get_internal_data();
@@ -63,19 +103,22 @@ namespace file
       virtual bool set_internal_data_size(memsize c);
       virtual bool increase_internal_data_size(memsize c);
 
-      virtual filesize seek_to_end();
-
-
       virtual bool is_seekable();
 
-      virtual filesize seek_from_begin(filesize position);
-      virtual filesize seek(filesize offset, ::file::e_seek seekOrigin);
+      inline translatable & position() {return *this;}
       virtual filesize get_position() const;
-      virtual filesize set_position(filesize offset);
+      virtual filesize set_position(filesize position);
+      virtual filesize increment_position(filesize offset = 1);
+      virtual filesize decrement_position(filesize offset = 1);
+      virtual filesize seek_to_begin();
+      virtual filesize seek_to_end();
+      virtual filesize seek_from_end(filesize offset);
+      //virtual filesize seek(filesize offset, ::enum_seek eseek);
+      ::index translate(::count c, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
 
-      inline filesize get_remaining_byte_count() { return get_size() - get_position(); }
+      inline filesize get_remaining_byte_count() const { return get_size() - get_position(); }
 
       virtual memsize read(void* pdata, memsize nCount);
 
@@ -167,8 +210,7 @@ namespace file
       ::file::fmtflags flags(::file::fmtflags flags);
 
 
-      virtual filesize seek_to_begin(filesize lPos = 0);
-      virtual filesize seek_begin(filesize lPos = 0);
+      //virtual filesize seek_begin(filesize lPos = 0);
       virtual void set_size(filesize dwNewLen);
       virtual filesize get_size() const;
       inline bool is_empty() const { return get_size() <= 0; }

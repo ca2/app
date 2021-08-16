@@ -59,7 +59,7 @@ class application;
 class system;
 
 
-#include "acme/const/_.h"
+#include "acme/constant/_.h"
 #include "acme/parallelization/_types.h"
 #include "acme/node/operating_system/parallelization.h"
 //#include "acme/platform/struct.h"
@@ -73,7 +73,7 @@ class system;
 
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
-#include "acme/const/_const.h"
+#include "acme/constant/_const.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"

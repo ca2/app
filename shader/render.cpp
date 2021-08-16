@@ -313,19 +313,36 @@ namespace app_shader
       
          
 #if !defined(__APPLE__)
+
          ::draw2d::matrix matrixOriginal;
+
          pgraphics->get(matrixOriginal);
+
          ::draw2d::matrix matrix(matrixOriginal);
+
          matrix.scale(1.0, -1.0);
+
          matrix.translate(0, m_rectangle.height());
+
          pgraphics->set(matrix);
+
 #endif
 
-         pgraphics->stretch(m_rectangle, m_pcontext->m_pbuffer->m_pimage);
+
+         image_source imagesource(m_pcontext->m_pbuffer->m_pimage);
+
+         image_drawing_options imagedrawingoptions(m_rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
 #if !defined(__APPLE__)
+
          pgraphics->set(matrixOriginal);
+
 #endif
+
       }
 
       ::rectangle_i32 rectangle;
@@ -340,76 +357,236 @@ namespace app_shader
 
       //_001OnDraw1Through3(pgraphics);
 
+      _001OnDrawLabel(pgraphics);
+
+      _001OnDrawError(pgraphics);
+
+   }
+
+
+   void render::_001OnDrawLabel(::draw2d::graphics_pointer & pgraphics)
+   {
+
       auto pathShader = m_strShaderPath;
 
-      auto text = ::file::path(pathShader).name();
+      auto strLabel = ::file::path(pathShader).name();
 
-      auto pstyle = m_pinteraction->get_style(pgraphics);
-
-      auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
-
-      auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
-
-      colorBackground.alpha = 128;
-
-      ::draw2d::brush_pointer brush;
-      
-      brush.create();
-      
-      brush->create_solid(colorBackground);
-
-      ::write_text::font_pointer pfont;
-
-      pfont.create();
-
-      auto pnode = m_psystem->m_paurasystem->node();
-
-      auto strFontName = pnode->font_name(e_font_sans_ui);
-
-      pfont->create_point_font(strFontName, 12.0);
-
-      pgraphics->set(pfont);
-
-      auto size = pgraphics->get_text_extent(text);
-      ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
-
-      rect.move_to(10, 10);
-      rect.inflate(4);
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-      pgraphics->set(brush);
-      pgraphics->fill_rectangle(rect);
-      pgraphics->set_text_color(color);
-
-
-      pgraphics->text_out({ 10,10 }, text);
-
-      if (m_pprogram)
+      if(m_strLastLabel != strLabel)
       {
 
-         if (m_pprogram->m_pshader->m_strError.has_char())
+         m_strLastLabel = strLabel;
+
+         if(strLabel.has_char())
          {
 
-            string strError = m_pprogram->m_pshader->m_strError;
+            auto pstyle = m_pinteraction->get_style(pgraphics);
 
-            auto size = pgraphics->get_text_extent(strError);
-            ::rectangle_i32 rect2(::point_f64(0, 0), size);
+            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
 
-            rect2.move_to(10, rect.bottom + 8);
-            rect2.inflate(4);
-            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-            pgraphics->set(brush);
-            pgraphics->fill_rectangle(rect2);
-            pgraphics->set_text_color(color);
+            auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
 
-            pgraphics->text_out(10, rect.bottom + 8, m_pprogram->m_pshader->m_strError);
+            colorBackground.alpha = 128;
+
+            ::draw2d::brush_pointer brush;
+
+            brush.create();
+
+            brush->create_solid(colorBackground);
+
+            ::write_text::font_pointer pfont;
+
+            pfont.create();
+
+            auto pnode = m_psystem->m_paurasystem->node();
+
+            auto strFontName = pnode->font_name(e_font_sans_ui);
+
+            pfont->create_point_font(strFontName, 12.0);
+
+            m_pimageLabel.defer_create();
+
+            if(m_pimageLabel->g() == nullptr)
+            {
+
+               m_pimageLabel->create(16, 16);
+
+            }
+
+            auto pgraphicsLabel = m_pimageLabel->g();
+
+            pgraphicsLabel->set(pfont);
+
+            auto size = pgraphicsLabel->get_text_extent(strLabel);
+
+            ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
+
+            rect.inflate(4);
+
+            rect.move_to(0, 0);
+
+            m_pimageLabel->create(rect.size());
+
+            pgraphicsLabel = m_pimageLabel->g();
+
+            pgraphicsLabel->set(pfont);
+
+
+            pgraphicsLabel->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pgraphicsLabel->set(brush);
+            pgraphicsLabel->fill_rectangle(rect);
+            pgraphicsLabel->set_text_color(0);
+
+
+            pgraphicsLabel->text_out({ 4,4 }, strLabel);
+
+         }
+         else
+         {
+
+            m_pimageLabel.release();
 
          }
 
       }
+
+      if(::is_ok(m_pimageLabel))
+      {
+
+         image_source imagesource(m_pimageLabel);
+
+         rectangle_f64 rectangle(point_f64(10, 10), m_pimageLabel->size());
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         pgraphics->draw(imagedrawing);
+
+      }
+
    }
 
 
+   void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      if (!m_pprogram)
+      {
+
+         return;
+
+      }
+
+      if (m_pprogram->m_pshader->m_strError.is_empty())
+      {
+
+         return;
+
+      }
+
+      string strError = m_pprogram->m_pshader->m_strError;
+
+      auto pathShader = m_strShaderPath;
+
+      if(m_strLastError != strError)
+      {
+
+         m_strLastError = strError;
+
+         if(strError.has_char())
+         {
+
+            auto pstyle = m_pinteraction->get_style(pgraphics);
+
+            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+
+            auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
+
+            colorBackground.alpha = 128;
+
+            ::draw2d::brush_pointer brush;
+
+            brush.create();
+
+            brush->create_solid(colorBackground);
+
+            ::write_text::font_pointer pfont;
+
+            pfont.create();
+
+            auto pnode = m_psystem->m_paurasystem->node();
+
+            auto strFontName = pnode->font_name(e_font_sans_ui);
+
+            pfont->create_point_font(strFontName, 12.0);
+
+
+            m_pimageError.defer_create();
+
+            if(m_pimageError->g() == nullptr)
+            {
+
+               m_pimageError->create(16, 16);
+
+            }
+
+            auto pgraphicsError = m_pimageLabel->g();
+
+            pgraphicsError->set(pfont);
+
+            auto size = pgraphicsError->get_text_extent(strError);
+
+            ::rectangle_i32 rect(::point_f64( 0, 0 ), size);
+
+            rect.move_to(10, 10);
+            rect.inflate(4);
+
+            m_pimageError->create(rect.size());
+
+            pgraphicsError = m_pimageError->g();
+
+            pgraphicsError->set(pfont);
+
+            rect.move_to(0, 0);
+
+            pgraphicsError->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            pgraphicsError->set(brush);
+            pgraphicsError->fill_rectangle(rect);
+            pgraphicsError->set_text_color(0);
+
+
+            pgraphicsError->text_out({ 4,4 }, strError);
+
+         }
+         else
+         {
+
+            m_pimageError.release();
+
+         }
+
+      }
+
+      if(::is_ok(m_pimageError))
+      {
+
+         image_source imagesource(m_pimageError);
+
+         rectangle_f64 rectangle(point_f64(10, 40), m_pimageError->size());
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         pgraphics->draw(imagedrawing);
+
+      }
+
+   }
    void render::_001OnDraw1Through3(::draw2d::graphics_pointer& pgraphics)
    {
 

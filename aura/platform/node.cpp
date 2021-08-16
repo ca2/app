@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "node.h"
 #ifdef LINUX
-#include "aura/os/linux/x11.h"
+#include "aura/node/operating_system/linux/x11.h"
 #endif
 
 

@@ -748,7 +748,7 @@ void file_context::lines(string_array &stra, const ::payload &varFile)
 {
 
 
-   file_result pfile;
+   file_transport pfile;
 
    try
    {
@@ -785,7 +785,7 @@ void file_context::lines(string_array &stra, const ::payload &varFile)
 bool file_context::put_contents(const ::payload &varFile, const void *pvoidContents, ::count count)
 {
 
-   file_result pfile;
+   file_transport pfile;
 
    int iTry = 0;
 
@@ -1860,7 +1860,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         spfile->write(buf, uRead);
 //         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
-//      spfile->seek(iPos, ::file::seek_begin);
+//      spfile->seek(iPos, ::e_seek_set);
 //      strMd5 = __str(ctx);
 //      write_gen_string(spfile, nullptr, strMd5);
 //      spfile->seek_to_end();
@@ -2272,7 +2272,7 @@ bool file_context::post_output(::file::path pathOut, ::file::path pathDownloadin
 }
 
 
-file_result file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
+file_transport file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
 {
 
    file_pointer pfile;
@@ -2314,7 +2314,7 @@ file_result file_context::file_get_file(::file::path path, const ::file::e_open 
 }
 
 
-file_result file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
+file_transport file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
 {
 
    ASSERT(strData.begins_ci("data:"));
@@ -2370,7 +2370,7 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
 }
 
 
-file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
+file_transport file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
 {
 
    auto pinfile = __new(zip::in_file);
@@ -2396,7 +2396,7 @@ file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open
 }
 
 
-file_result file_context::http_get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
+file_transport file_context::http_get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    if (eopenFlags & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
@@ -2520,7 +2520,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
       try
       {
 
-         pmemoryfile->seek_begin();
+         pmemoryfile->seek_to_begin();
 
          auto pfileOut = m_pcontext->m_papexcontext->file().get_writer(pathCache);
 
@@ -2543,7 +2543,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
       }
 
-      pmemoryfile->seek_begin();
+      pmemoryfile->seek_to_begin();
 
    }
 
@@ -2551,7 +2551,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
 }
 
-::file_result file_context::shared_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::shared_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    return get_reader(varFile, eopenFlags | ::file::e_open_share_deny_none);
@@ -2559,10 +2559,10 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 }
 
 
-::file_result file_context::get_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::get_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_result preader;
+   ::file_transport preader;
 
    if (varFile.m_etype == ::e_type_element)
    {
@@ -2583,10 +2583,10 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 }
 
 
-::file_result file_context::get_writer(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::get_writer(const ::payload &varFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_result pwriter;
+   ::file_transport pwriter;
 
    if (varFile.m_etype == ::e_type_element)
    {
@@ -2607,7 +2607,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 }
 
 
-file_result file_context::get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
+file_transport file_context::get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
 {
 
    try
@@ -3240,7 +3240,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 
 //
 //
-//::file_result file_context::get_file(const ::payload & varFile, ::u32 nOpenFlags)
+//::file_transport file_context::get_file(const ::payload & varFile, ::u32 nOpenFlags)
 //{
 //
 //   return m_pcontext->m_papexcontext->file().get_file(get_application(), varFile, nOpenFlags);

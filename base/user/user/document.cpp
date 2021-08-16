@@ -1163,7 +1163,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
+   void document::report_load_exception(const ::payload & varFile, file_transport presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(varFile, presult, false, pszDefault);
@@ -1171,7 +1171,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
+   void document::report_save_exception(const ::payload & varFile, file_transport presult, const ::string & pszDefault)
    {
 
       report_save_load_exception(varFile, presult, true, pszDefault);
@@ -1179,7 +1179,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const ::string & pszDefault)
+   void document::report_save_load_exception(const ::payload & varFile, file_transport presult, bool bSave, const ::string & pszDefault)
    {
 
       try

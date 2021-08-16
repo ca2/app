@@ -933,7 +933,7 @@ inline text_stream & operator << (text_stream & stream, const TYPE & t)
 }
 
 
-inline text_stream & operator << (text_stream & stream, const file_result & pfile)
+inline text_stream & operator << (text_stream & stream, const file_transport & pfile)
 {
 
    stream.defer_set_storing();

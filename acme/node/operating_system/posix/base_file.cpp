@@ -8,7 +8,7 @@
 //#include <sys/stat.h>
 ////Copy file using mmap()
 //#include <sys/mman.h>
-//#include <unistd.h>
+#include <unistd.h>
 //#endif
 //
 //#include <fcntl.h>
@@ -17,13 +17,13 @@
 ////#define PACKAGE "mmap"
 ////#include <wchar.h>
 ////#include <fcntl.h>
-////#include <sys/stat.h>
+#include <sys/stat.h>
 //
 //
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 //
 //
-//int_bool ensure_file_size_fd(i32 fd, size_t iSize)
+//int_bool set_file_size_fd(i32 fd, size_t iSize)
 //{
 //
 //   if (ftruncate(fd, iSize) == -1)
@@ -54,7 +54,7 @@
 //
 //
 //
-//int_bool file_set_length(const char * lpszName, size_t iSize)
+//int_bool set_file_size(const char * lpszName, size_t iSize)
 //{
 //
 //   i32 fd = ::open(lpszName, O_RDONLY);
@@ -724,3 +724,219 @@
 //
 //
 //
+
+
+::e_status is_directory(const char * path)
+{
+
+   if(::is_null(path))
+   {
+
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   struct stat stat = {};
+
+   if (::stat(path, &stat))
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   if (!(stat.st_mode & S_IFDIR))
+   {
+
+      return error_false;
+
+   }
+
+   return success;
+
+}
+
+
+::e_status file_exists(const char * path)
+{
+
+   if(::is_null(path))
+   {
+
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
+
+   struct stat stat = {};
+
+   if (::stat(path, &stat))
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   if ((stat.st_mode & S_IFDIR))
+   {
+
+      return error_false;
+
+   }
+
+   return ::success;
+
+}
+
+
+::e_status create_directory_path(const char * pathParam)
+{
+
+   if (is_directory(pathParam))
+   {
+
+      return ::success_none;
+
+   }
+
+   string strName;
+
+   ::file::path pathDir;
+
+   strsize iLastPos = -1;
+
+   ::file::patha stra;
+
+   ::file::path path(pathParam);
+
+   path.ascendants_path(stra);
+
+   index i = stra.get_upper_bound();
+
+   for (; i >= 0; i--)
+   {
+
+      string strDir = stra[i];
+
+      auto estatus = is_directory(strDir);
+
+      if(estatus)
+      {
+
+         break;
+
+      }
+
+   }
+
+   if (i < 0)
+   {
+
+      return true;
+
+   }
+
+   for (; i < stra.get_count(); i++)
+   {
+
+      string strDir = stra[i];
+
+      auto estatus = create_directory(strDir);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   return ::success;
+
+}
+
+
+::e_status create_directory(const char * path)
+{
+
+   if (is_directory(path))
+   {
+
+      return ::success_none;
+
+   }
+
+   auto estatus = file_exists(path);
+
+   if(estatus)
+   {
+
+      estatus = file_delete(path);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   return ::success;
+
+}
+
+
+::e_status file_delete(const char * path)
+{
+
+   if(::is_null(path))
+   {
+
+      return error_null_pointer;
+
+   }
+
+   if(*path == '\0')
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   if (::unlink(path) == -1)
+   {
+
+      return errno_to_status(errno);
+
+   }
+
+   return ::success;
+
+}
+
+
+

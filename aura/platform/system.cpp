@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aqua/xml/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/const/id.h"
+//#include "acme/constant/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
@@ -633,6 +633,8 @@ namespace aura
 
       if (!estatus)
       {
+
+         output_debug_string("Fatal Error: Failed to do node factory exchange (system::node_factory_exchange).\n");
 
          return estatus;
 

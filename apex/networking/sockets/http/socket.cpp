@@ -549,7 +549,7 @@ namespace sockets
       else if(response().file()->get_size() > 0)
       {
 
-         response().file()->seek_begin();
+         response().file()->seek_to_begin();
 
          __transfer_to_writer(*this, response().file());
 

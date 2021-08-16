@@ -4,9 +4,9 @@
 #include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/message/timer.h"
-#include "acme/const/timer.h"
-#include "acme/const/id.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/timer.h"
+#include "acme/constant/id.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
 #include "acme/node/operating_system/_user.h"
@@ -33,7 +33,6 @@ int g_i134 = 0;
 namespace user
 {
 
-   //void defer_calc_os_dark_mode();
 
 #ifdef _UWP
 
@@ -2032,18 +2031,23 @@ namespace user
 
 #ifndef WINDOWS_DESKTOP
 
-      if (is_active_window())
+      if(get_parent() == nullptr)
       {
 
-         auto psession = get_session();
+         if (is_active_window())
+         {
 
-         auto puser = psession->user();
+            auto psession = get_session();
 
-         auto pwindowing = puser->windowing();
+            auto puser = psession->user();
 
-         pwindowing->clear_active_window(m_pthreadUserInteraction);
+            auto pwindowing = puser->windowing();
 
-         //::set_active_window(nullptr);
+            pwindowing->clear_active_window(m_pthreadUserInteraction, get_window());
+
+            //::set_active_window(nullptr);
+
+         }
 
       }
 
@@ -9736,41 +9740,41 @@ namespace user
    bool interaction::is_active_window() const
    {
 
-      auto psession = get_session();
-
-      if (::is_null(psession))
-      {
-
-         return false;
-
-      }
-
-      auto puser = psession->user();
-
-      if (!puser)
-      {
-
-         return false;
-
-      }
-
-      auto pwindowing = puser->windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         return false;
-
-      }
-
-      auto pwindow = pwindowing->get_active_window(m_pthreadUserInteraction);
-
-      if (::is_null(pwindow))
-      {
-
-         return false;
-
-      }
+//      auto psession = get_session();
+//
+//      if (::is_null(psession))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto puser = psession->user();
+//
+//      if (!puser)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto pwindowing = puser->windowing();
+//
+//      if (::is_null(pwindowing))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto pwindow = pwindowing->get_active_window(m_pthreadUserInteraction);
+//
+//      if (::is_null(pwindow))
+//      {
+//
+//         return false;
+//
+//      }
 
       auto pwindowThis = get_window();
 
@@ -9781,7 +9785,14 @@ namespace user
 
       }
 
-      if (*pwindow != *pwindowThis)
+//      if (*pwindow != *pwindowThis)
+//      {
+//
+//         return false;
+//
+//      }
+
+      if(!pwindowThis->is_active_window())
       {
 
          return false;

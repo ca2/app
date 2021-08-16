@@ -571,7 +571,7 @@ namespace sockets
                }
                
                // iEnd > iLen is not verified because file may be growing
-               preader->seek(iStart, ::file::seek_begin);
+               preader->set_position(iStart);
 
                memsize uRead;
 
@@ -653,7 +653,7 @@ namespace sockets
             {
                
                // iEnd > iLen is not verified because file may be growing
-               preader->seek(iStart, ::file::seek_begin);
+               preader->set_position(iStart);
                
                memsize uRead;
 

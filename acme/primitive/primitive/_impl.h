@@ -1673,7 +1673,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 
 //
-//inline ::file_result matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::e_open_read) ;
@@ -1681,7 +1681,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::file_result matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::e_open_write);
@@ -3256,7 +3256,7 @@ inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_D
 //}
 
 
-inline ::file_result object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
 {
 
    return get_file(varFile, eopen | ::file::e_open_read);
@@ -3264,7 +3264,7 @@ inline ::file_result object::get_reader(const ::payload& varFile, const ::file::
 }
 
 
-inline ::file_result object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
 {
 
    return get_file(varFile, eopen | ::file::e_open_write);

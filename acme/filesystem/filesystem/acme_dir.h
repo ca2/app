@@ -96,7 +96,7 @@ public:
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_dir.h
 // on 2021-08-09 03:20 BRT
-// <3ThomasBorregaardSørensen!!
+// <3ThomasBorregaardSï¿½rensen!!
 
 
    //namespace posix
@@ -115,55 +115,24 @@ public:
          //virtual string name(const char * path1);
 
 
-         virtual ::file::path base_module();
-         //virtual bool create(const char * path);
+         //virtual ::file::path base_module();
+
          virtual bool create(const char * path);
-
-
-         //virtual bool _create(const char * path);
-
          virtual bool _create(const char * path);
-
-
          virtual bool create_directory(const char * path);
-
-
-         //virtual ::file::path module();
 
 
          virtual bool is(const char * path);
 
-
-         //virtual string name(string path);
-
-
          virtual void rls(::file::patha & stra, const char * psz);
-
-
          virtual void rls_dir(::file::patha & stra, const char * psz);
 
-
          virtual void ls(::file::patha & stra, const char * psz);
-
-
          virtual void ls_dir(::file::patha & stra, const char * psz);
 
          virtual void ls_file(::file::patha & stra, const char * psz);
 
-//         virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
-
-
-         //virtual ::file::path archive();
-
-
          virtual int make_path(const char * psz);
-
-   //   };
-
-
-   //} // namespace posix
-
-
 
 
          /*namespace dir

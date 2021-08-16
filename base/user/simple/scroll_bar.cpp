@@ -1763,10 +1763,12 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto rectSrc = ::rectangle_f64(pointSrc, sizeSrc);
 
-   image_drawing imagedrawing;
-   
-   imagedrawing.set(rectDst, m_pimageDots, rectSrc);
+   image_source imagesource(m_pimageDots, rectSrc);
 
+   image_drawing_options imagedrawingoptions(rectDst);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   
    imagedrawing.opacity(uchAlpha);
 
    pgraphics->draw(imagedrawing);

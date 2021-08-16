@@ -15,97 +15,34 @@ namespace linux
 
    stdio_file::~stdio_file()
    {
-//   ASSERT_VALID(this);
+      //   ASSERT_VALID(this);
 
-//   if (m_pStream != nullptr && m_bCloseOnDelete)
+      //   if (m_pStream != nullptr && m_bCloseOnDelete)
       //close();
       if (m_pStream != nullptr)
          close();
    }
 
 
-   ::extended::status stdio_file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen)
+   ::e_status stdio_file::open(const ::file::path & path, const ::string & strAttributes, int iShare)
    {
 
-      ASSERT(pszFileName.has_char());
+#ifdef WINDOWS
 
-      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
+      m_pfile = _wfsopen(pszFileName, strAttributes, _SH_DENYNO);
+
+#else
+
+      m_pfile = fopen(pszFileName, strAttributes);
+
+#endif
+
+      if(!m_pfile)
       {
 
-         pcontext->m_papexcontext->dir().mk(pszFileName.folder());
-
+         return error_io;
 
       }
-
-      m_pStream = nullptr;
-      //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::e_open_text)))
-
-      // return false;
-
-//   ASSERT(m_hFile != hFileNull);
-      // ASSERT(m_bCloseOnDelete);
-
-      char szMode[4]; // C-runtime open string
-      i32 nMode = 0;
-
-      // determine read/write mode depending on ::ca2::filesp mode
-      if (eopen & ::file::e_open_create)
-      {
-         if (eopen & ::file::e_open_no_truncate)
-            szMode[nMode++] = 'a';
-         else
-            szMode[nMode++] = 'w';
-      }
-      else if (eopen & ::file::e_open_write)
-         szMode[nMode++] = 'a';
-      else
-         szMode[nMode++] = 'r';
-
-      // add '+' if necessary (when read/write modes mismatched)
-      if ((szMode[0] == 'r' && (eopen & ::file::e_open_read_write)) ||
-            (szMode[0] != 'r' && !(eopen & ::file::e_open_write)))
-      {
-         // current szMode mismatched, need to add '+' to fix
-         szMode[nMode++] = '+';
-      }
-
-      // will be inverted if not necessary
-      i32 nFlags = O_RDONLY;
-      if (eopen & (::file::e_open_write | ::file::e_open_read_write))
-         nFlags ^= O_RDONLY;
-
-      if (eopen & ::file::e_open_binary)
-         szMode[nMode++] = 'b'; // , nFlags ^= _O_TEXT;
-      else
-         szMode[nMode++] = 't';
-      szMode[nMode++] = '\0';
-
-      // open a C-runtime low-level file handle
-      //i32 nHandle = _open_osfhandle(m_hFile, nFlags);
-
-      // open a C-runtime stream from that handle
-      //if (nHandle != -1)
-      m_pStream = fopen(pszFileName, szMode);
-
-
-
-      if (m_pStream == nullptr)
-      {
-         ::file::throw_status(error_file, errno, m_path);
-         // an error somewhere along the way...
-         //if (pException != nullptr)
-         {
-//         pException->m_lOsError = errno;
-//         pException->m_cause = ::file::exception::OsErrorToException(errno);
-         }
-
-         ::linux::file::Abort(); // close m_hFile
-         //return ::fesp(get_application(), ::file::exception::none);
-         return ::error_io;
-      }
-
-      m_path = pszFileName;
-
 
       return ::success;
 
@@ -113,7 +50,6 @@ namespace linux
 
 
    memsize stdio_file::read(void * pdata, memsize nCount)
-
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
@@ -271,22 +207,22 @@ namespace linux
 
    }*/
 
-   filesize stdio_file::seek(filesize lOff, ::file::e_seek eseek)
+   filesize stdio_file::seek(filesize lOff, ::enum_seek eseek)
    {
       ASSERT_VALID(this);
-      ASSERT(eseek == ::file::seek_begin || eseek== ::file::seek_end || eseek== ::file::seek_current);
+      ASSERT(eseek == ::e_seek_set || eseek== ::e_seek_end || eseek== ::e_seek_current);
       ASSERT(m_pStream != nullptr);
 
       i32 nFrom;
       switch(eseek)
       {
-      case ::file::seek_begin:
+      case ::e_seek_set:
          nFrom = SEEK_SET;
          break;
-      case ::file::seek_end:
+      case ::e_seek_end:
          nFrom = SEEK_END;
          break;
-      case ::file::seek_current:
+      case ::e_seek_current:
          nFrom = SEEK_CUR;
          break;
       default:

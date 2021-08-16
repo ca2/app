@@ -155,7 +155,15 @@ namespace write_text
 
          }
 
-         pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
+         image_source imagesource(pbox->m_pimage);
+
+         auto rectangle = pbox->m_rectangle;
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
       }
 
@@ -183,7 +191,15 @@ namespace write_text
 
             }
 
-            pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
+            image_source imagesource(pbox->m_pimage);
+
+            auto rectangle = pbox->m_rectangle;
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
 
          }
 
@@ -213,7 +229,15 @@ namespace write_text
 
             }
 
-            pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
+            image_source imagesource(pbox->m_pimage);
+
+            rectangle_f64 rectangle(pbox->m_rectangle);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
 
          }
 
@@ -335,7 +359,19 @@ namespace write_text
 
          }
 
-         pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
+         {
+
+            image_source imagesource(pbox->m_pimage);
+
+            rectangle_f64 rectangle(pbox->m_rectangle);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
 
       }
 

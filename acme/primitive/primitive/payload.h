@@ -79,7 +79,7 @@ public:
       class nanos * m_pnanos;
       class duration             m_duration;
       class duration * m_pduration;
-      ::e_status                 m_estatus;
+      ::enum_status              m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
       ::color::color             m_color;

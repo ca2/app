@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#include "aura/os/_user.h"
+#include "aura/node/operating_system/_user.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),

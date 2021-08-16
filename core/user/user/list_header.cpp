@@ -57,7 +57,13 @@ namespace user
 
          rectangle.Align(::e_align_left_center, rC);
 
-         pgraphics->stretch(rectangle, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
+         image_source imagesource(plist->m_columna.get_visible(iColumn)->m_pimageHeader);
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
          rectColumn.left = rectangle.right + m_iImageSpacing;
 

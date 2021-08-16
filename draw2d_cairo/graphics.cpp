@@ -1210,7 +1210,8 @@ bool graphics::fill_ellipse(double x1, double y1, double x2, double y2)
 
    cairo_scale(m_pdc, radiusx, radiusy);
 
-   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
+   //cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * M_PI);
+   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 6.28);
 
    cairo_fill(m_pdc);
 
@@ -4628,11 +4629,11 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
    if (pbrush->m_etype == ::draw2d::brush::type_radial_gradient_color)
    {
 
-      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point2.x - x, pbrush->m_point2.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
+      cairo_pattern_t * ppattern = cairo_pattern_create_radial(pbrush->m_point.x - x, pbrush->m_point.y - y, 0, pbrush->m_point.x - x, pbrush->m_point.y - y, maximum(pbrush->m_size.cx, pbrush->m_size.cy));
 
       cairo_pattern_add_color_stop_rgba(ppattern, 0., __expand_rgba(pbrush->m_color1));
 
-      cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_rgba(pbrush->m_color1));
+      cairo_pattern_add_color_stop_rgba(ppattern, 1., __expand_rgba(pbrush->m_color2));
 
       cairo_set_source(m_pdc, ppattern);
 

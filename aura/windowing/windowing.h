@@ -107,7 +107,7 @@ namespace windowing
 
       virtual ::windowing::window * get_active_window(::thread * pthread);
 
-      virtual ::e_status clear_active_window(::thread * pthread);
+      virtual ::e_status clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 

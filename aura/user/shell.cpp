@@ -225,19 +225,20 @@ namespace user
 
    }*/
 
-   bool shell::reserve_image(const image_key & imagekey, i32 & iImage)
+
+   bool shell::reserve_image(_get_file_image_ & getfileimage)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      if (contains_image(imagekey, iImage))
+      if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))
       {
 
          return false;
 
       }
 
-      iImage = _reserve_image(imagekey);
+      getfileimage.m_iImage = _reserve_image(getfileimage.m_imagekey);
 
       return true;
 
@@ -356,7 +357,15 @@ namespace user
 
                auto pimage = pimageTemplate->get_image(cx, cy);
 
-               set_image(getfileimage.m_iImage, iSize, pimage);
+               image_source imagesource(pimage);
+
+               rectangle_f64 rectangle(::size_f64(iSize, iSize));
+
+               image_drawing_options imagedrawingoptions(rectangle, e_placement_aspect_fit, {0.5, 0.5});
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               set_image(getfileimage.m_iImage, iSize, imagedrawing);
 
             }
 
@@ -622,7 +631,7 @@ namespace user
    }
 
 
-   i32 shell::get_file_image(const ::file::path & path, ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
+   i32 shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -728,6 +737,8 @@ namespace user
 
             auto strPath = pgetfileimage->m_imagekey.m_strPath;
 
+            auto eicon = pgetfileimage->m_imagekey.m_eicon;
+
             _get_file_image(*pgetfileimage);
 
             pgetfileimage->m_imagekey.m_strPath = strPath;
@@ -735,6 +746,8 @@ namespace user
             pgetfileimage->m_imagekey.m_strExtension.Empty();
 
             pgetfileimage->m_imagekey.m_iIcon = 0;
+
+            pgetfileimage->m_imagekey.m_eicon = eicon;
 
             synchronous_lock synchronouslock(mutex());
 
@@ -764,7 +777,7 @@ namespace user
    }
 
 
-   void shell::set_icon(const ::file::path & pathIcon, _get_file_image_ & getfileimage)
+   void shell::set_icon(int iImage, const ::file::path & pathIcon)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -775,6 +788,14 @@ namespace user
 
       ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathIcon);
 
+      auto pwindowingicon = __create < windowing::icon >();
+
+      pwindowingicon->load_file(path);
+
+      auto pdraw2dicon = __create < draw2d::icon >();
+
+      pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
+
       for (auto iSize : m_iaSize)
       {
 
@@ -782,7 +803,7 @@ namespace user
 
          auto pcontextimage = pcontext->context_image();
 
-         auto pimage = pcontextimage->get_image(path);
+         auto pimage = pdraw2dicon->get_image(::size_f64(iSize, iSize));
 
          if (::is_null(pimage))
          {
@@ -791,27 +812,52 @@ namespace user
 
          }
 
-         set_image(getfileimage.m_iImage, iSize, pimage);
+         image_source imagesource(pimage);
+
+         rectangle_f64 rectangle(::size_f64(iSize, iSize));
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         set_image(iImage, iSize, imagedrawing);
 
       }
 
    }
 
    
-   void shell::set_image(int iImage, int iSize, ::image * pimage)
+//   void shell::set_image(int iImage, int iSize, ::image * pimage)
+//   {
+//
+//      synchronous_lock synchronouslock(m_pil[iSize]->mutex());
+//
+//      synchronous_lock slHover(m_pilHover[iSize]->mutex());
+//
+//      m_pil[iSize]->set(iImage, pimage);
+//
+//      auto pimageHover = m_pil[iSize]->get_image(iImage);
+//
+//      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+//
+//      m_pilHover[iSize]->set(iImage, pimageHover);
+//
+//   }
+
+   void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
    {
 
       synchronous_lock synchronouslock(m_pil[iSize]->mutex());
 
       synchronous_lock slHover(m_pilHover[iSize]->mutex());
 
-      m_pil[iSize]->set(iImage, pimage);
+      m_pil[iSize]->set(iImage, imagedrawing);
 
       auto pimageHover = m_pil[iSize]->get_image(iImage);
 
-      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
+      pimageHover->g()->fill_rectangle(pimageHover->rectangle(), ::color::color(255, 255, 240, 64));
 
-      m_pilHover[iSize]->set(iImage, pimageHover);
+      m_pilHover[iSize]->set(iImage, imagedrawing);
 
    }
 
@@ -842,17 +888,15 @@ namespace user
    i32 shell::_create_file_icon_image(const ::string & strPath, enum_file_attribute eattribute, enum_icon eicon, const string & strIconParam, _get_file_image_ & getfileimage)
    {
 
-      // auto_pointer < _get_file_image_ > pgetfileimage(new_get_file_image());
-
       getfileimage.m_imagekey.m_strPath = strPath;
       getfileimage.m_imagekey.m_strShellThemePrefix = m_strShellThemePrefix;
       getfileimage.m_imagekey.m_eattribute = eattribute;
       getfileimage.m_imagekey.m_eicon = eicon;
 
-      if (!reserve_image(getfileimage.m_imagekey, getfileimage.m_iImage))
+      if (!reserve_image(getfileimage))
       {
 
-         return -1;
+         return getfileimage.m_iImage;
 
       }
 
@@ -939,9 +983,15 @@ namespace user
             if (::is_ok(pimage))
             {
 
-               pimage = pimage->get_image(iSize, iSize);
+               image_source imagesource(pimage);
 
-               set_image(getfileimage.m_iImage, iSize, pimage);
+               rectangle_f64 rectangle(::size_f64(iSize, iSize));
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               set_image(getfileimage.m_iImage, iSize, imagedrawing);
 
             }
 
@@ -962,7 +1012,7 @@ namespace user
 
       }
 
-      set_icon(pathIcon, getfileimage);
+      set_icon(getfileimage.m_iImage, pathIcon);
 
       return getfileimage.m_iImage;
 

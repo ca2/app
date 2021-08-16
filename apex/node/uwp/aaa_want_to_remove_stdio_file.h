@@ -33,7 +33,7 @@ namespace uwp
       virtual ::extended::status open(const ::file::path & lpszFileName,::u32 nOpenFlags);
       virtual memsize read(void * lpBuf, memsize nCount);
       virtual void write(const void * lpBuf, memsize nCount);
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom);
+      virtual filesize seek(filesize lOff, ::enum_seek eseek);
       virtual void Abort();
       virtual void Flush();
       virtual void close();

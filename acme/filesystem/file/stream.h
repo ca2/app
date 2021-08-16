@@ -501,7 +501,7 @@ public:
 
    //::filesize tellp();
    //virtual void seekp(filesize position) ;
-   //virtual void seekp(filesize offset, ::file::e_seek eseek);
+   //virtual void seekp(filesize offset, ::enum_seek eseek);
    virtual void put(char ch);
 
 
@@ -595,7 +595,7 @@ public:
 
 //   filesize tellg() ;
 //   virtual void seekg(filesize position);
-//   virtual void seekg(filesize offset, ::file::e_seek eseek);
+//   virtual void seekg(filesize offset, ::enum_seek eseek);
 
    ::filesize get_left() const;
 
@@ -901,7 +901,7 @@ namespace std
 //
 //
 //
-//inline stream & operator << (stream & s, ::file_result & pfile)
+//inline stream & operator << (stream & s, ::file_transport & pfile)
 //{
 //
 //   operator << (s, pfile.m_p);

@@ -19,6 +19,10 @@
 #include <sys/ptrace.h>
 #include <sys/wait.h>
 
+
+i32 gdb_check();
+
+
 i32 __node_is_debugger_attached()
 {
 
@@ -166,7 +170,7 @@ void output_debug_string(const ::string & pOutputString)
 
       }
 
-      printf("%s", pOutputString);
+      printf("%s", pOutputString.c_str());
 
       fflush(stdout);
 

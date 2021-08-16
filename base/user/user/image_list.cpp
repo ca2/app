@@ -441,7 +441,15 @@ namespace user
 
                   pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage->g()->stretch(::rectangle_i32(szNew), pimageSrc->get_graphics(),pimageSrc->rectangle());
+                  image_source imagesource(pimageSrc);
+
+                  rectangle_f64 rectangle(szNew);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage->g()->draw(imagedrawing);
 
                }
 
@@ -534,7 +542,13 @@ namespace user
 
                }
 
-               pgraphics->stretch(rectImage, pimage->g());
+               image_source imagesource(pimage);
+
+               image_drawing_options imagedrawingoptions(rectImage);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
                if (bSel)
                {

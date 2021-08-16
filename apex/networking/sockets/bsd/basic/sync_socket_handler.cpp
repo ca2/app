@@ -117,7 +117,7 @@ namespace sockets
             }
             else
             {
-               m_file.seek(-1, ::file::seek_current);
+               --m_file.position();
                return str;
             }
          }

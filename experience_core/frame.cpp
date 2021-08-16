@@ -111,11 +111,41 @@ namespace experience
 
                point -= pointInflate;
 
-               bool b = pimage2->g()->stretch(::rectangle_i32(pimage1->get_size()), pgraphics, ::rectangle_i32(point, pimage1->get_size()));
+               bool b;
+
+               {
+
+                  rectangle_f64 rectangleSource(point, pimage1->get_size());
+
+                  image_source imagesource(pgraphics, rectangleSource);
+
+                  rectangle_f64 rectangleTarget(pimage1->get_size());
+
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  b = pimage2->g()->draw(imagedrawing);
+
+               }
 
                b = imaging.blur(pimage2, 2);
 
-               pgraphics->stretch(rectangleClient, pimage2->g(), ::rectangle_i32(pointInflate, rectangleClient.size()));
+               {
+
+                  rectangle_f64 rectangleSource(pointInflate, rectangleClient.size());
+
+                  image_source imagesource(pimage2, rectangleSource);
+
+                  rectangle_f64 rectangleTarget(rectangleClient);
+
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
+
+               }
 
             }
 
@@ -625,7 +655,13 @@ namespace experience
                      if(::is_set(pdrawicon))
                      {
 
-                        pgraphics->draw(rectIcon, pdrawicon);
+                        image_source imagesource(pdrawicon);
+
+                        image_drawing_options imagedrawingoptions(rectIcon);
+
+                        image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                        pgraphics->draw(imagedrawing);
 
                      }
 
@@ -711,7 +747,13 @@ namespace experience
 
                         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                        pgraphics->draw(rectIcon, pdrawicon);
+                        image_source imagesource(pdrawicon);
+
+                        image_drawing_options imagedrawingoptions(rectIcon);
+
+                        image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                        pgraphics->draw(imagedrawing);
 
                      }
 

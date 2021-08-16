@@ -38,9 +38,9 @@ namespace ftp
 
    }
 
-   bool file::Seek(long lOffset, ::file::e_seek enOrigin)
+   bool file::Seek(long lOffset, ::enum_seek enOrigin)
    {
-      return m_file.is_set() && m_file->seek(lOffset, enOrigin) == 0;
+      return m_file.is_set() && m_file->translate(lOffset, enOrigin) == 0;
    }
 
 
@@ -117,7 +117,7 @@ namespace ftp
 
    void file::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)
    {
-      Seek(dwOffsetFromBeginOfStream, ::file::seek_begin);
+      Seek(dwOffsetFromBeginOfStream, ::e_seek_set);
    }
 
    void file::OnBytesReceived(const memory& vBuffer, long lReceivedBytes)

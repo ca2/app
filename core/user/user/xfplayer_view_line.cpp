@@ -306,17 +306,48 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
                   //const ::point_i32 & point = pgraphics->GetViewportOrg();
                   //pimage->from(nullptr, pgraphics, point_i32 + rectangle.top_left(), rectangle.size());
-                  pimage->g()->draw(rectangle.size(), pgraphics, rectangle.top_left());
+
+                  {
+
+                     image_source imagesource(pgraphics, rectangle.top_left());
+
+                     ::rectangle_f64 rectangleTarget(rectangle.size());
+
+                     image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                     pimage->g()->draw(imagedrawing);
+
+                  }
+
                   //pimage->get_graphics()->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pimage->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
                   pimage->fill_channel(255, ::color::e_channel_alpha);
-                  pgraphics->draw(rectangle, pimage);
+
+                  {
+
+                     image_source imagesource(pimage);
+
+                     rectangle_f64 rectangleTarget(rectangle);
+
+                     image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                     pgraphics->draw(imagedrawing);
+
+                  }
+
                }
+
             }
+
          }
 
       }
+
    }
    break;
    case AnimateRHL:
@@ -1390,7 +1421,21 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       point.y = (::i32) (iTop - ((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      pgraphics->draw(::rectangle_i32(point, m_pimageMain->get_size()), m_pimageMain, ::point_i32(), ::opacity(dBlend));
+      {
+
+         image_source imagesource(m_pimageMain, ::point_i32());
+
+         rectangle_f64 rectangleTarget(point, m_pimageMain->get_size());
+
+         image_drawing_options imagedrawingoptions(rectangleTarget);
+
+         imagedrawingoptions.opacity(dBlend);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+      }
 
       if (m_bColonPrefix)
       {

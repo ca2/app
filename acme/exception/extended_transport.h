@@ -343,6 +343,8 @@ namespace extended
 
       operator bool() const { return succeeded(); }
 
+      operator ::e_status() const { return estatus(); }
+
       bool operator !() const { return failed(); }
 
       auto operator ->() { return ___pointer<T>::operator ->(); }

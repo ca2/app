@@ -269,7 +269,7 @@ namespace simpledb
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ::file::seek_begin);
+               spfile->seek(iStart, ::e_seek_set);
                memsize uRead;
                ::memory_file memfile(this);
                memsize iPos = iStart;
@@ -322,7 +322,7 @@ namespace simpledb
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ::file::seek_begin);
+               spfile->seek(iStart, ::e_seek_set);
                memsize uRead;
                ::memory_file memfile(this);
                memsize iPos = iStart;

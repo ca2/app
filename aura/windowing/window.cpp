@@ -539,12 +539,16 @@ namespace windowing
    bool window::is_active_window() const
    {
 
-      __throw(error_interface_only);
+      if(m_pwindowing->get_active_window(m_pimpl->m_puserinteraction->m_pthreadUserInteraction) != this)
+      {
 
-      return false;
+         return false;
+
+      }
+
+      return true;
 
    }
-
 
 
    ::user::interaction * window::get_desktop_window()

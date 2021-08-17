@@ -45,6 +45,18 @@ namespace draw2d_cairo
    }
 
 
+   bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
+   {
+
+      pgraphics.cast < graphics >()->_set(this);
+
+      return pgraphics->fill_contains(point);
+
+
+   }
+
+
+
 } // namespace draw2d_cairo
 
 

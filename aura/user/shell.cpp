@@ -445,7 +445,7 @@ namespace user
 
          {
 
-            m_pevNewImageKey->wait();
+            m_pevNewImageKey->wait(500_ms);
 
             synchronous_lock synchronouslock(mutex());
 

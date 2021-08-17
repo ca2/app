@@ -1170,7 +1170,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(uEvent, millisEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, true);
 
    }
 

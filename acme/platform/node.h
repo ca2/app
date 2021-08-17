@@ -273,7 +273,7 @@ namespace acme
 
       //virtual void enum_display_monitors(::aura::session * psession);
 
-      virtual void os_post_quit();
+      virtual void node_quit();
 
       virtual bool should_launch_on_node(::subject::subject * psubject);
 

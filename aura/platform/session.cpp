@@ -112,6 +112,41 @@ namespace aura
    }
 
 
+   ::e_status session::on_initialize_object()
+   {
+
+      auto estatus = ::aqua::session::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::aura::context::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::user::style_base::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status session::initialize(::object * pobject)
    {
 

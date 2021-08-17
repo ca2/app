@@ -325,6 +325,15 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
+bool graphics::fill_contains(const point_f64 & point)
+{
+
+
+   return cairo_in_fill(m_pdc, point.x, point.y);
+
+}
+
+
 ::e_status graphics::reset_clip()
 {
 
@@ -6246,6 +6255,41 @@ FT_Library __ftlibrary()
 }
 
 
+//bool path::contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point)
+//{
+//
+//   pgraphics->set(this);
+//
+//   pgraphics->fill_contains(point);
+//
+//   int iFill = 0;
+//
+//   for (auto& pmatter : m_shapea)
+//   {
+//
+//      if (pmatter->contains(point))
+//      {
+//
+//         if (m_efillmode == ::draw2d::fill_mode_winding)
+//         {
+//
+//            return true;
+//
+//         }
+//         else
+//         {
+//
+//            iFill++;
+//
+//         }
+//
+//      }
+//
+//   }
+//
+//   return (iFill % 2) == 1;
+//
+//}
 
 
 

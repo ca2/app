@@ -923,7 +923,7 @@ namespace acme
 //   }
 
 
-   void node::os_post_quit()
+   void node::node_quit()
    {
 
    }

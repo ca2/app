@@ -44,8 +44,18 @@ i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 #endif
 
 
-::e_status timer_task::initialize_timer(::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
+::e_status timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class synchronization_object* pmutex)
 {
+
+   auto estatus = ::task::initialize(pobject);
+
+   if(!estatus)
+   {
+
+
+      return estatus;
+
+   }
 
    m_bRunning = false;
 

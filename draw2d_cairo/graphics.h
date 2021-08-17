@@ -202,6 +202,7 @@ namespace draw2d_cairo
       //i32 OffsetClipRgn(const ::size_f64 & size_f64) override;
       //i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
+      bool fill_contains(const point_f64 & point) override;
 
       virtual ::e_status reset_clip() override;
 

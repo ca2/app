@@ -20,15 +20,6 @@ task::task()
 
    //m_bTaskPending = true;
 
-   auto pobjectParentTask = ::get_task();
-
-   if (pobjectParentTask)
-   {
-
-      pobjectParentTask->add_task(this);
-
-   }
-
    m_bSetFinish = false;
    m_bTaskTerminated = false;
    m_bTaskStarted = false;
@@ -46,6 +37,52 @@ task::task()
 
 task::~task()
 {
+
+
+}
+
+
+
+::e_status task::on_initialize_object()
+{
+
+   auto estatus = ::object::on_initialize_object();
+
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   auto pobjectParentTask = ::get_task();
+
+   if(::is_null(pobjectParentTask))
+   {
+
+      pobjectParentTask = m_pcontext;
+
+   }
+
+   if(::is_null(pobjectParentTask))
+   {
+
+      pobjectParentTask = m_psystem;
+
+   }
+
+   if (pobjectParentTask)
+   {
+
+      pobjectParentTask->add_task(this);
+
+   }
+   else
+   {
+
+      __throw(error_invalid_usage);
+
+   }
 
 
 }
@@ -349,7 +386,7 @@ void* task::s_os_task(void* p)
 
          auto pparentTask = ptask->m_pobjectParentTask;
 
-         ptask->m_pobjectParentTask.release();
+         ptask->m_pobjectParentTask = nullptr;
 
          if (::is_set(pparentTask))
          {

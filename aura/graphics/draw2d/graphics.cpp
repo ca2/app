@@ -4946,6 +4946,15 @@ namespace draw2d
    }
 
 
+   bool graphics::fill_contains(const point_f64 & point)
+   {
+
+      __throw(error_not_implemented);
+
+      return false;
+
+   }
+
 
    void graphics::draw_ca2(int x, int y, int z, const ::color::color & colorBk, const ::color::color & color)
    {

@@ -77,7 +77,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_evExpand.wait();
+               m_evExpand.wait(500_ms);
 
                if (m_treeitemaExpand.has_element())
                {
@@ -106,7 +106,7 @@ namespace user
             while (pthread->task_get_run())
             {
 
-               m_evOpen.wait();
+               m_evOpen.wait(500_ms);
 
                if (m_treeitemaOpen.has_element())
                {

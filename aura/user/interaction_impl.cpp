@@ -825,6 +825,13 @@ namespace user
 
       auto origin = m_puserinteraction->layout().window().origin();
 
+      if(::is_null(m_pgraphics))
+      {
+
+         return 0;
+
+      }
+
       return m_pgraphics->get_screen_image()->pixel(x - origin.x, y - origin.y);
 
    }

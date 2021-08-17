@@ -82,6 +82,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       trace_category_static_term();
 
+      m_pnode->node_quit();
+
    }
 
 
@@ -305,7 +307,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       ::acme::idpool::term();
       
-      m_pnode->os_post_quit();
+      //m_pnode->os_post_quit();
 
    }
 

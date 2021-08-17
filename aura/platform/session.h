@@ -42,7 +42,10 @@ namespace aura
 
 
       session();
-      virtual ~session();
+      ~session() override;
+
+
+      ::e_status on_initialize_object() override;
 
 
 #if defined(WINDOWS)

@@ -7,11 +7,11 @@ int main(int argc, char * argv[], char * envp[])
 
    string strAppId = executable_get_app_id();
 
-   ::apex::node * pnode = nullptr;
+   __pointer(::apex::node) pnode;
 
    {
 
-      auto psystem = platform_create_system(strAppId);
+      auto psystem = platform_create_system(strAppId); // new:platform_create_system
 
       auto papplicationStartup = psystem->new_application(strAppId);
 

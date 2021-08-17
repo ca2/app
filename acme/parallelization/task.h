@@ -48,6 +48,9 @@ public:
    ~task() override;
 
 
+   ::e_status on_initialize_object() override;
+
+
    string get_tag() const override;
    string task_get_name() const;
 

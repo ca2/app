@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME context :
-      virtual public ::object
+      virtual public ::task
    {
    public:
 

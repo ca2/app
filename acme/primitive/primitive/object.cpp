@@ -7,8 +7,7 @@
 #include "acme/primitive/text/_.h"
 
 
-object::~object()
-= default;
+object::~object() = default;
 
 
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -1034,6 +1033,20 @@ void object::system(const ::string & strProjectName)
 void object::add_task(::object* pobjectTask)
 {
 
+   if(::is_null(pobjectTask))
+   {
+
+      return;
+
+   }
+
+   if(pobjectTask == this)
+   {
+
+      return;
+
+   }
+
    synchronous_lock synchronouslock(mutex());
 
    if (!m_pobjectaChildrenTask)
@@ -1072,7 +1085,7 @@ void object::erase_task(::object* pobjectTask)
    if (m_pobjectaChildrenTask->erase(pobjectTask))
    {
 
-      pobjectTask->m_pobjectParentTask.release();
+      pobjectTask->m_pobjectParentTask = nullptr;
 
    }
 
@@ -1182,7 +1195,7 @@ bool object::check_tasks_finished()
          if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
          {
 
-            ptaskChild->m_pobjectParentTask.release();
+            ptaskChild->m_pobjectParentTask = nullptr;
 
             m_pobjectaChildrenTask->erase_at(iChildTask);
 

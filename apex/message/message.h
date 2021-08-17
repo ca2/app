@@ -29,7 +29,7 @@ namespace message
 
 
       handler_item_array *          m_phandlera;
-      __pointer(channel)            m_pchannel;
+      channel *                     m_pchannel;
       oswindow                      m_oswindow;
       enumeration < enum_flag >     m_eflagMessage;
       index                         m_iRouteIndex;

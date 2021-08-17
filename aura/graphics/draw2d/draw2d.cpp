@@ -1415,7 +1415,7 @@ breakFilter2:
 
       }
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem;
 
       estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
@@ -1468,7 +1468,7 @@ breakFilter2:
       if (strLibrary != "write_text_pango")
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         auto psystem = m_psystem;
 
          estatus = psystem->do_factory_exchange("write_text", "pango");
 

@@ -5627,7 +5627,7 @@ bool image::rotate180(::image* pimage)
 bool image::rotate270(::image* pimage)
 {
 
-   if (!create(pimage->size()))
+   if (!create({pimage->height(), pimage->width()}))
    {
 
       return false;

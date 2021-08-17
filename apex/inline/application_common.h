@@ -55,7 +55,7 @@ CLASS_DECL_ACME void set_main_thread();
 //
 #ifdef LINUX
 
-#include "apex/os/binreloc.h"
+#include "apex/node/operating_system/binreloc.h"
 
 const char* br_init_get_symbol();
 

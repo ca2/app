@@ -35,9 +35,9 @@ namespace filemanager
 
       m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
 
-      m_pimagelistSubItemHover->add_file("matter://filemanager/execute_16.png");
-      m_pimagelistSubItemHover->add_file("matter://filemanager/check_off_16.png");
-      m_pimagelistSubItemHover->add_file("matter://filemanager/check_on_16.png");
+      m_pimagelistSubItemHover->add_file(this, "matter://filemanager/execute_16.png");
+      m_pimagelistSubItemHover->add_file(this, "matter://filemanager/check_off_16.png");
+      m_pimagelistSubItemHover->add_file(this, "matter://filemanager/check_on_16.png");
 
       auto psystem = get_system()->m_pcoresystem;
 

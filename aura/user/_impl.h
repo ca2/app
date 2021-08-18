@@ -382,6 +382,22 @@ namespace user
    }
 
 
+   inline double interaction::screen_scaler() const
+   {
+
+      return m_pinteractionScaler->screen_scaler();
+
+   }
+
+
+   inline double interaction::font_scaler() const
+   {
+
+      return m_pinteractionScaler->font_scaler();
+
+   }
+
+
 } // namespace user
 
 

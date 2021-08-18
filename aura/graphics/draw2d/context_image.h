@@ -11,10 +11,10 @@ public:
 
 
    context_image();
-   virtual ~context_image();
+   ~context_image() override;
 
 
-   virtual ::e_status initialize(::object * pobject) override;
+   ::e_status initialize(::object * pobject) override;
 
 
    //virtual ::e_status set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
@@ -58,11 +58,11 @@ public:
    virtual ::image_result _load_image_from_file(const ::payload & varFile, const ::payload & varOptions);
    virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions);
    
-   virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);
+   virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
    
-   virtual bool _load_multi_frame_image(::image* pimage, memory_pointer pmemory);
+   virtual bool _load_multi_frame_image(::image* pimage, memory & memory);
 
-   virtual ::e_status load_svg(::image* pimage, ::memory_pointer pmemory);
+   virtual ::e_status load_svg(::image* pimage, memory & memory);
 
 #ifdef _UWP
    virtual bool _desk_to_image(::image* pimage);

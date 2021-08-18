@@ -330,6 +330,19 @@ namespace user
 
       auto pcontextimage = psystem->context_image();
 
+      string strPath;
+
+      strPath = getfileimage.m_imagekey.m_strPath;
+
+      if(strPath.ends_ci(".jpg")
+      || strPath.ends_ci(".jpeg")
+      || strPath.ends_ci(".png")
+      || strPath.ends_ci(".gif")
+      || strPath.ends_ci(".bmp")
+      || strPath.ends_ci(".svg")
+      )
+      {
+
       auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
 
       if (::is_ok(pimageTemplate))
@@ -343,25 +356,25 @@ namespace user
             for (auto & iSize : m_iaSize)
             {
 
-               double dSize = (double)iSize;
+//               double dSize = (double)iSize;
+//
+//               double dRateWidth = dSize / (double)pimageTemplate->width();
+//
+//               double dRateHeight = dSize / (double)pimageTemplate->height();
+//
+//               double dRateMinimum = minimum(dRateWidth, dRateHeight);
+//
+//               int cx = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->width());
+//
+//               int cy = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->height());
+//
+//               auto pimage = pimageTemplate->get_image(cx, cy);
 
-               double dRateWidth = dSize / (double)pimageTemplate->width();
-
-               double dRateHeight = dSize / (double)pimageTemplate->height();
-
-               double dRateMinimum = minimum(dRateWidth, dRateHeight);
-
-               int cx = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->width());
-
-               int cy = (int) maximum(1.0, dRateMinimum * (double)pimageTemplate->height());
-
-               auto pimage = pimageTemplate->get_image(cx, cy);
-
-               image_source imagesource(pimage);
+               image_source imagesource(pimageTemplate);
 
                rectangle_f64 rectangle(::size_f64(iSize, iSize));
 
-               image_drawing_options imagedrawingoptions(rectangle, e_placement_aspect_fit, {0.5, 0.5});
+               image_drawing_options imagedrawingoptions(rectangle, e_placement_aspect_fit, {0.0, 0.0});
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -370,6 +383,8 @@ namespace user
             }
 
             return true;
+
+         }
 
          }
 

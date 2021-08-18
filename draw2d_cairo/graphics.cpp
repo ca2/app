@@ -1536,17 +1536,48 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 
     auto nSrcHeight = rectSrc.height();
 
-    auto nDstWidth = rectDst.width();
+    rectangle_f64 rectFinal;
 
-    auto nDstHeight = rectDst.height();
+    if(imagedrawingoptions.m_eplacement == e_placement_aspect_fit)
+    {
+
+       double dW = rectDst.width() / rectSrc.width();
+
+       double dH = rectDst.height() / rectSrc.height();
+
+       double d = minimum(dW, dH);
+
+       rectFinal.left = 0.0;
+
+       rectFinal.top = 0.0;
+
+       rectFinal.right = d * rectSrc.width();
+
+       rectFinal.bottom = d * rectSrc.height();
+
+       rectFinal.align_rate(
+          imagedrawingoptions.m_pointAlign.x,
+         imagedrawingoptions.m_pointAlign.y,
+         rectDst);
+
+    }
+    //else // if(imagedrawingoptions.m_eplacement == e_placement_stretch)
+    //{
+
+
+    //}
+
+    auto nDstWidth = rectFinal.width();
+
+    auto nDstHeight = rectFinal.height();
 
     auto xSrc = rectSrc.left;
 
     auto ySrc = rectSrc.top;
 
-    auto xDst = rectDst.left;
+    auto xDst = rectFinal.left;
 
-    auto yDst = rectDst.top;
+    auto yDst = rectFinal.top;
 
     if (nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
     {

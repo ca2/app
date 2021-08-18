@@ -770,7 +770,7 @@ bool memory_base::begins(const char * psz, strsize iCount) const
 
    }
 
-   if ((memsize) iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -808,7 +808,7 @@ bool memory_base::begins_ci(const char * psz, strsize iCount) const
 
    }
 
-   if ((memsize)iCount > get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -830,7 +830,7 @@ bool memory_base::begins(const ::string & str, strsize iCount) const
 
    }
 
-   if ((memsize)iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -852,7 +852,7 @@ bool memory_base::begins_ci(const ::string & str, strsize iCount) const
 
    }
 
-   if ((memsize)iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -860,6 +860,110 @@ bool memory_base::begins_ci(const ::string & str, strsize iCount) const
    }
 
    return !ansi_count_compare_ci((const char*) get_data(), str.c_str(), iCount);
+
+}
+
+
+bool memory_base::ends(const char * psz, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += strlen(psz) + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !__memcmp(get_data() + get_size() - iCount, psz, iCount);
+
+}
+
+
+bool memory_base::ends_ci(const char * psz, strsize iCount) const
+{
+
+   if (::is_null(psz) || *psz == '\0')
+   {
+
+      return true;
+
+   }
+
+   const char * pszThis = (const char *)get_data();
+
+   if (::is_null(pszThis))
+   {
+
+      return false;
+
+   }
+
+   if (iCount < 0)
+   {
+
+      iCount += strlen(psz) + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !ansi_count_compare_ci(pszThis + get_size() - iCount, psz, (size_t) iCount);
+
+}
+
+
+bool memory_base::ends(const ::string & str, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += str.get_length() + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !__memcmp(get_data() + get_size() - iCount, str.c_str(), iCount);
+
+}
+
+
+bool memory_base::ends_ci(const ::string & str, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += str.get_length() + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !ansi_count_compare_ci((const char*) get_data() + get_size() - iCount, str.c_str(), iCount);
 
 }
 
@@ -1999,6 +2103,41 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
    return ::success;
 
 }
+
+
+bool memory_base::begins(const block& block) const
+{
+
+   if(get_size() < block.get_size())
+   {
+
+      return false;
+
+   }
+
+   int iMemcmp = memcmp(get_data(), block.get_data(), block.get_size());
+
+   return iMemcmp == 0;
+
+}
+
+
+bool memory_base::ends(const block& block) const
+{
+
+   if(get_size() < block.get_size())
+   {
+
+      return false;
+
+   }
+
+   int iMemcmp = memcmp(get_data() + get_size() - block.get_size(), block.get_data(), block.get_size());
+
+   return iMemcmp == 0;
+
+}
+
 
 
 byte * memory_base::find(const ::block & block, ::index iStart) const

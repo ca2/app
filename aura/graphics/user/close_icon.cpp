@@ -36,7 +36,7 @@ namespace user
 
          //double h2 = rectangle.height();
 
-         pitem->m_ppath.create();
+         pitem->m_ppath.create(puserinteraction);
 
          pitem->m_ppath->add_rect(rectangle, 45_degrees);
 

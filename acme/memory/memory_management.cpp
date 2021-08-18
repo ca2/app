@@ -77,7 +77,20 @@ CLASS_DECL_ACME void * manage_memory_reallocate(enum_memory_heap ememoryheap, vo
 CLASS_DECL_ACME void manage_memory_free(enum_memory_heap ememoryheap, void* p)
 {
 
-   g_memorymanagement.m_heapa[ememoryheap].m_pfnMemoryFree(p);
+   if(ememoryheap >= 0 && ememoryheap < e_memory_heap_count)
+   {
+
+      g_memorymanagement.m_heapa[ememoryheap].m_pfnMemoryFree(p);
+
+   }
+   else
+   {
+
+      output_debug_string("unknown ememoryheap\n");
+
+      __throw(error_index_out_of_bounds);
+
+   }
 
 }
 

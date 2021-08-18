@@ -44,8 +44,8 @@ public:
 
    //virtual i32 _set(int iItem, ::draw2d::icon * picon);
    virtual i32 set(int iItem, image_drawing imagedrawing);
-   virtual i32 set_file(int iItem, const ::payload & payload);
-   virtual i32 set_icon(int iItem, const ::payload & payload);
+   virtual i32 set_file(int iItem, ::object * pobjectContext, const ::payload & payload);
+   virtual i32 set_icon(int iItem, ::object * pobjectContext, const ::payload & payload);
 
    //template < image_list_source_pointer IMAGE_LIST_SOURCE_POINTER >
    //i32 add(IMAGE_LIST_SOURCE_POINTER psource, const ::rectangle_i32 & rectangleSource = ::rectangle_i32())
@@ -56,8 +56,8 @@ public:
    //}
 
    inline i32 add(image_drawing imagedrawing) { return set(-1, imagedrawing); }
-   inline i32 add_file(const ::payload & payload) { return set_file(-1, payload); }
-   inline i32 add_icon(const ::payload & payload) { return set_icon(-1, payload); }
+   inline i32 add_file(::object * pobjectContext, const ::payload & payload) { return set_file(-1, pobjectContext, payload); }
+   inline i32 add_icon(::object * pobjectContext, const ::payload & payload) { return set_icon(-1, pobjectContext, payload); }
    //inline i32 _add(::draw2d::icon * picon) { return _set(-1, picon); }
 
    // inline i32 add(::windowing::icon * picon) { return set(iItem, picon, x, y); }

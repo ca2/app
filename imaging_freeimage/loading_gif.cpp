@@ -14,10 +14,10 @@ namespace imaging_freeimage
    bool freeimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, index iFrame, FIBITMAP * pfi);
 
 
-   ::e_status context_image::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   ::e_status context_image::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory & memory)
    {
 
-      fimemory mem(*pmemory);
+      fimemory mem(memory);
 
       if (!mem)
       {

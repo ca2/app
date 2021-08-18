@@ -3577,7 +3577,14 @@ namespace user
    void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
    {
 
-      //m_puserinteraction->on_create_user_interaction();
+      if(::is_null(m_puserinteraction->m_pinteractionScaler))
+      {
+
+         m_puserinteraction->m_pinteractionScaler = __new(::user::interaction_scaler());
+
+      }
+
+      m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);
 
    }
 
@@ -3875,6 +3882,8 @@ namespace user
 
          pgraphics->on_begin_draw();
 
+         pgraphics->m_puserinteraction = m_puserinteraction;
+
          pgraphics->m_puserstyle.release();
 
          if (pgraphics->m_pimage)
@@ -4143,6 +4152,10 @@ namespace user
       return m_pgraphics.is_set() ? ::success : ::error_failed;
 
    }
+
+
+
+
 
 
    ::e_status interaction_impl::interaction_branch(const ::routine & routine)
@@ -5508,6 +5521,8 @@ namespace user
 
    void interaction_impl::on_message_move(::message::message * pmessage)
    {
+
+      m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);
 
       if(m_bEatMoveEvent)
       {

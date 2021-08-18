@@ -1298,6 +1298,45 @@ namespace experience
             }
 
         }
+         else if (eelement == ::user::e_element_border)
+         {
+
+            if (estate & ::user::e_state_new_input)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 130, 130, 130);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 192, 192, 192);
+
+               }
+
+            }
+            else
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+         }
         else if (eelement == ::user::e_element_background)
         {
 

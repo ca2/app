@@ -489,12 +489,19 @@ i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 }
 
 
-i32 image_list::set_file(int iItem, const ::payload & payload)
+i32 image_list::set_file(int iItem, ::object * pobjectContext, const ::payload & payload)
 {
 
-   auto pcontextimage = m_psystem->context_image();
+   auto pcontextimage = pobjectContext->m_pcontext->context_image();
 
    auto pimage = pcontextimage->get_image(payload);
+
+   if(!::is_ok(pimage))
+   {
+
+      return -1;
+
+   }
 
    image_source imagesource(pimage);
 
@@ -511,10 +518,10 @@ i32 image_list::set_file(int iItem, const ::payload & payload)
 }
 
 
-i32 image_list::set_icon(int iItem, const ::payload & payload)
+i32 image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
 {
 
-   auto pcontextimage = m_psystem->context_image();
+   auto pcontextimage = pobjectContext->m_pcontext->context_image();
 
    auto pimage = pcontextimage->get_image(payload);
 

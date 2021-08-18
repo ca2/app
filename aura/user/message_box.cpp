@@ -310,6 +310,12 @@ namespace user
 
       pgraphics->create_memory_graphics();
 
+      pgraphics->m_puserinteraction = this;
+
+      m_pinteractionScaler = __new(::user::interaction_scaler);
+
+      m_pinteractionScaler->on_display_change(this);
+
       int iMaxWidth = 100;
 
       for (auto& pbutton : m_buttona)
@@ -334,15 +340,15 @@ namespace user
 
       puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 
-      int iButtonGroupWidth = (int) (iMaxWidth * 1.25 * m_buttona.get_count());
+      int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 
-      int iWidth = maximum((int)(iButtonGroupWidth * 1.1), rectangleMonitor.width() / 2);
+      int iWidth = maximum((int)(iButtonGroupWidth + 20 * screen_scaler()), rectangleMonitor.width() / 2);
 
-      m_pstill->place({ 10, 10, iWidth - 20, 200 });
+      m_pstill->place({ 30 * screen_scaler(), 10 * screen_scaler(), iWidth - 60 * screen_scaler(), 200 * screen_scaler() });
 
       m_pstill->display();
 
-      int right = (int) (iWidth - 10);
+      int right = (int) (iWidth - 20);
 
       int iButton = (int) m_buttona.get_upper_bound();
 
@@ -351,16 +357,16 @@ namespace user
 
          auto pbutton = m_buttona[iButton];
 
-         pbutton->place({ right - iMaxWidth, 210, right, 280 });
+         pbutton->place({ right - iMaxWidth, 230 * screen_scaler(), right, 280 * screen_scaler() });
          pbutton->display();
-         right -= (int) (iMaxWidth * 1.25);
+         right -= (int) (iMaxWidth + 20 * screen_scaler());
          iButton--;
 
       }
 
       ::rectangle_i32 r;
 
-      r.set_dim(0, 0, iWidth, 300);
+      r.set_dim(0, 0, iWidth, 300 * screen_scaler());
 
       r.Align(e_align_horizontal_center, rectangleMonitor);
 
@@ -422,6 +428,26 @@ namespace user
       close_window();
 
       return true;
+
+   }
+
+
+   void message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::interaction::_001OnDraw(pgraphics);
+
+      rectangle_i32 rectangleClient;
+
+      get_client_rect(rectangleClient);
+
+      auto pstyle = get_style(pgraphics);
+
+      auto colorBorder = pstyle->get_color(this, e_element_border);
+
+      colorBorder.alpha = 100;
+
+      pgraphics->draw_rectangle(rectangleClient, colorBorder);
 
    }
 

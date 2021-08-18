@@ -620,7 +620,7 @@ context_image::~context_image()
 
 
 
-::e_status context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory)
+::e_status context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory & memory)
 {
 
    return ::success;
@@ -696,7 +696,7 @@ context_image::~context_image()
 //}
 
 
-bool context_image::_load_multi_frame_image(image * pimage, memory_pointer pmemory)
+bool context_image::_load_multi_frame_image(image * pimage, memory & memory)
 {
 
    __pointer(image_frame_array) pframea;
@@ -705,7 +705,7 @@ bool context_image::_load_multi_frame_image(image * pimage, memory_pointer pmemo
 
    pframea->m_pimage = this;
 
-   auto estatus = _load_image(pimage, pframea, pmemory);
+   auto estatus = _load_image(pimage, pframea, memory);
 
    if (!estatus)
    {

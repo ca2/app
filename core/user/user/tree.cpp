@@ -163,9 +163,9 @@ namespace user
       fork([this]()
       {
 
-         _001SetCollapseImage("list/collapse.png");
+         _001SetCollapseImage("matter://list/collapse.png");
 
-         _001SetExpandImage("list/expand.png");
+         _001SetExpandImage("matter://list/expand.png");
 
       });
 
@@ -1323,7 +1323,7 @@ namespace user
    void tree::_001SetExpandImage(const ::string & pszMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add_file(pszMatter);
+      m_iImageExpand = m_pimagelist->add_file(this, pszMatter);
 
    }
 
@@ -1331,7 +1331,7 @@ namespace user
    void tree::_001SetCollapseImage(const ::string & pszMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add_file(pszMatter);
+      m_iImageCollapse = m_pimagelist->add_file(this, pszMatter);
 
    }
 

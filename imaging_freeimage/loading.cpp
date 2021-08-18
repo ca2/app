@@ -238,7 +238,7 @@ namespace imaging_freeimage
    ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, bool bSync, bool bCreateHelperMaps)
    {
 
-      auto pmemory = create_memory();
+      memory memory;
 
       ::payload varFile;
 
@@ -259,11 +259,27 @@ namespace imaging_freeimage
 
       set_bypass_cache_if_empty(varFile);
 
-      m_pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
+      ::file::path path = varFile.get_file_path();
+
+      ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
+
+      auto estatus = m_pcontext->m_papexcontext->file().as_memory(varFile, memory);
+
+      auto p1 = memory.get_data();
+
+      int s1 = memory.get_size();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
 
       //m_pcontext->m_papexcontext->file().non_empty_memory(varFile, *pmemory);
 
-      const char * psz = (const char *)pmemory->get_data();
+      const char * psz = (const char *)memory.get_data();
 
       if (::is_null(psz))
       {
@@ -279,7 +295,7 @@ namespace imaging_freeimage
 
       }
 
-      if (pmemory->is_empty())
+      if (memory.is_empty())
       {
 
          return false;
@@ -290,21 +306,51 @@ namespace imaging_freeimage
 
       auto pcontextimage = pcontext->context_image();
 
-      auto estatus = pcontextimage->load_svg(pimage, pmemory);
+      const char * pszData = memory.get_data();
 
-      if (::succeeded(estatus))
+      int size = memory.get_size();
+
+      char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
+
+      bool bPng = size > sizeof(pszPngSignature)
+      && strncmp(pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+
+      bool bJpegBegins = memory.begins("\x0FF\x0D8", 2);
+
+      bool bJpegEnds = memory.ends("\x0FF\x0D9", 2);
+
+      bool bJpeg =  bJpegBegins && bJpegEnds;
+
+      bool bJfif = memory.begins("JFIF", 4);
+
+      bool bExif = memory.begins("Exif", 4);
+
+      bool bBinary = *pszData == '\0';
+
+      if(!bPng
+      && !bBinary
+      && !bJpeg
+      && !bJfif
+      && !bExif)
       {
 
-         auto pdata = pimage->get_data();
+         estatus = pcontextimage->load_svg(pimage, memory);
 
-         return estatus;
+         if (::succeeded(estatus))
+         {
+
+            auto pdata = pimage->get_data();
+
+            return estatus;
+
+         }
 
       }
 
-      if (pmemory->get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
+      if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
       {
 
-         if (!_load_multi_frame_image(pimage, pmemory))
+         if (!_load_multi_frame_image(pimage, memory))
          {
 
             pimage->set_nok();
@@ -323,7 +369,7 @@ namespace imaging_freeimage
 
       }
 
-      FIMEMORY * pmem = FreeImage_OpenMemory(pmemory->get_data(), (::u32) pmemory->get_size());
+      FIMEMORY * pmem = FreeImage_OpenMemory(memory.get_data(), (::u32) memory.get_size());
 
       if (pmem == nullptr)
       {

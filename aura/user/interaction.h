@@ -149,6 +149,9 @@ namespace user
       bool                                         m_bUserInteractionHost : 1;
 
 
+      __pointer(::user::interaction_scaler)        m_pinteractionScaler;
+
+
 
       oswindow                                     m_oswindow;
       ewindowflag                                  m_ewindowflag;
@@ -351,7 +354,6 @@ namespace user
       virtual bool is_branch_current() const;
 
 
-
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
       inline ::aura::application * get_application() const;
@@ -390,6 +392,9 @@ namespace user
 
       const class ::user::interaction_layout& layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
+
+      inline double screen_scaler() const;
+      inline double font_scaler() const;
 
 
       //void clear();
@@ -1529,7 +1534,6 @@ namespace user
       virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, edisplay edisplay);
 
       virtual edisplay initial_restore_display();
-
 
 
       virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);

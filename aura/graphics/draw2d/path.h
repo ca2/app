@@ -21,7 +21,7 @@ namespace draw2d
       
 
       path();
-      virtual ~path();
+      ~path() override;
 
 
       virtual bool has_current_point();

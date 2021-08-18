@@ -405,7 +405,7 @@ namespace apex
       virtual string url_encode(const ::string & str);
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
 

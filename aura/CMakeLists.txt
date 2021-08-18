@@ -117,6 +117,7 @@ list(APPEND library_source
    graphics/draw2d/matrix.cpp
    graphics/draw2d/matrix.h
    graphics/draw2d/nanosvg.cpp
+   graphics/draw2d/nanosvgrast.cpp
    graphics/draw2d/object.cpp
    graphics/draw2d/object.h
    graphics/draw2d/palette.cpp
@@ -1145,7 +1146,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${library_source})
+add_library(aura SHARED ${library_source} user/interaction_scaler.cpp user/interaction_scaler.h)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

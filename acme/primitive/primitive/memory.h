@@ -103,7 +103,7 @@ public:
 
 using memory_pointer = __pointer(memory);
 
-inline memory_pointer create_memory() { return __create_new < ::memory >(); }
+inline memory_pointer create_memory() { return __new(::memory); }
 
 class get_memory
 {

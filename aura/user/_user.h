@@ -244,6 +244,9 @@ namespace user
 #include "graphics_call.h"
 
 
+#include "interaction_scaler.h"
+
+
 #include "interaction.h"
 
 
@@ -259,7 +262,6 @@ namespace user
 //using window_pointer = __pointer(::user::interaction_impl);
 
 //#include "primitive_impl.h"
-
 
 #include "interaction_impl.h"
 

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class message_box :
+   class CLASS_DECL_AURA message_box :
       virtual public ::user::interaction
    {
    public:
@@ -81,7 +81,7 @@ namespace user
 
       //message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
       message_box();
-      virtual ~message_box();
+      ~message_box() override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -114,7 +114,7 @@ namespace user
 
       //void call_expose(Display * pdisplay);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -128,7 +128,7 @@ namespace user
 
       //virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      void on_control_event(::user::control_event * pevent) override;
 
       
 
@@ -137,6 +137,10 @@ namespace user
       bool on_click(int iResult);
 
       virtual void close_window();
+
+
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
 
 
    };

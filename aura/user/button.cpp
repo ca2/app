@@ -180,6 +180,8 @@ namespace user
 
          pgraphics = pdraw2d->create_memory_graphics();
 
+         pgraphics->m_puserinteraction = this;
+
       }
 
       pgraphics->set_font(this, ::user::e_element_none);

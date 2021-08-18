@@ -265,13 +265,14 @@ namespace android
 
       ENSURE_ARG(pusersystem->m_createstruct.lpszClass == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszClass));
 
+      m_puserinteraction->m_pimpl = this;
+
+      m_puserinteraction->m_pimplBase = this;
+
       if (pusersystem->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_bMessageWindow = true;
-
-         m_puserinteraction->m_pimpl = this;
-
 
          return true;
 
@@ -403,8 +404,6 @@ namespace android
          ASSERT(false); // should have been set in send msg hook
 
       }
-
-      m_puserinteraction->m_pimpl = this;
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 

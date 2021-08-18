@@ -425,7 +425,11 @@ namespace draw2d
    {
 
       if(!m_bHasPoint)
+      {
+
          __throw(::exception::exception("there is no point_i32"));
+
+      }
 
       return m_pointEnd;
 

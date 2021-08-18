@@ -949,6 +949,107 @@ namespace user
             }
 
          }
+         else if(econtroltype == ::user::e_control_type_button)
+         {
+
+
+            if (eelement == ::user::e_element_border)
+            {
+
+               if(estate & e_state_hover)
+               {
+
+
+                  ::color::color crText;
+
+                  if (is_dark_mode())
+                  {
+
+                     crText = argb(255, 192, 192, 192);
+
+                  }
+                  else
+                  {
+
+                     crText = argb(255, 120, 120, 120);
+
+                  }
+
+                  return crText;
+
+               }
+               else
+               {
+
+                  ::color::color crText;
+
+                  if (is_dark_mode())
+                  {
+
+                     crText = argb(255, 128, 128, 128);
+
+                  }
+                  else
+                  {
+
+                     crText = argb(255, 100, 100, 100);
+
+                  }
+
+                  return crText;
+
+               }
+
+            }
+            else if (eelement == ::user::e_element_background)
+            {
+
+               if(estate & e_state_hover)
+               {
+
+                  ::color::color crText;
+
+                  if (is_dark_mode())
+                  {
+
+                     crText = argb(255, 120, 120, 120);
+
+                  }
+                  else
+                  {
+
+                     crText = argb(255, 240, 240, 240);
+
+                  }
+
+                  return crText;
+
+               }
+               else
+               {
+
+                  ::color::color crText;
+
+                  if (is_dark_mode())
+                  {
+
+                     crText = argb(255, 80, 80, 80);
+
+                  }
+                  else
+                  {
+
+                     crText = argb(255, 220, 220, 220);
+
+                  }
+
+                  return crText;
+
+               }
+
+            }
+
+         }
 
       }
 
@@ -995,6 +1096,27 @@ namespace user
 
       }
       else if (eelement == ::user::e_element_text)
+      {
+
+         ::color::color crText;
+
+         if (is_dark_mode())
+         {
+
+            crText = argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            crText = argb(255, 49, 50, 42);
+
+         }
+
+         return crText;
+
+      }
+      else if (eelement == ::user::e_element_border)
       {
 
          ::color::color crText;

@@ -109,10 +109,18 @@ public:
    virtual string as_utf8() const;
 
    virtual char * c_str();
+
+   virtual bool begins(const block& block) const;
    virtual bool begins(const char * psz, strsize iCount = -1) const;
    virtual bool begins_ci(const char * psz, strsize iCount = -1) const;
    virtual bool begins(const ::string & str, strsize iCount = -1) const;
    virtual bool begins_ci(const ::string & str, strsize iCount = -1) const;
+
+   virtual bool ends(const block& block) const;
+   virtual bool ends(const char * psz, strsize iCount = -1) const;
+   virtual bool ends_ci(const char * psz, strsize iCount = -1) const;
+   virtual bool ends(const ::string & str, strsize iCount = -1) const;
+   virtual bool ends_ci(const ::string & str, strsize iCount = -1) const;
 
    //virtual byte * detach_primitive_memory();
    //virtual byte * detach_virtual_memory();
@@ -260,6 +268,7 @@ public:
    memsize length() const;
 
    inline void set_char_at_grow(strsize iChar, char ch);
+
 
    byte * find(const block& block, ::index iStart = 0) const;
    ::index find_index(const block& block, ::index iStart = 0) const;

@@ -62,6 +62,8 @@ namespace user
    class thread;
 
 
+
+
    class CLASS_DECL_AURA interaction_impl:
       virtual public ::user::primitive_impl
    {
@@ -142,8 +144,9 @@ namespace user
       millis                                    m_millisLastDeviceDraw;
 
 
+
       interaction_impl();
-      virtual ~interaction_impl();
+      ~interaction_impl() override;
 
 
       
@@ -177,6 +180,10 @@ namespace user
       virtual bool post(::message::message* pusermessage) override;
 
       virtual ::e_status update_graphics_resources();
+
+
+
+
 
 
       virtual ::e_status set_tool_window(bool bSet) override;

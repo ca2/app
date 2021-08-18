@@ -7077,10 +7077,12 @@ void imaging::free_work_image(::image * pimage)
 }
 
 
-::e_status context_image::load_svg(::image * pimage, ::memory_pointer pmemory)
+::e_status context_image::load_svg(::image * pimage, memory & memory)
 {
 
-   const char * psz = (const char *)pmemory->get_data();
+   const char * psz = (const char *)memory.get_data();
+
+   int size = memory.get_size();
 
    if (::is_null(psz))
    {
@@ -7089,10 +7091,12 @@ void imaging::free_work_image(::image * pimage)
 
    }
 
-   if (memmem(psz, pmemory->get_size(), "<svg", 4) != nullptr)
+   if (memmem(psz, size, "<svg", 4) != nullptr)
    {
 
-      if (pimage->create_nanosvg(pmemory->c_str()))
+      char * pszXml = memory.c_str();
+
+      if (pimage->create_nanosvg(pszXml))
       {
 
          pimage->mult_alpha_fast();

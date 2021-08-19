@@ -160,25 +160,25 @@ void duration::sleep() const
    if (m_secs.m_i >= 20)
    {
 
-      ::sleep(m_secs);
+      ::preempt(m_secs);
 
    }
    else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
    {
 
-      ::sleep(millis());
+      ::preempt(millis());
 
    }
    else if (m_nanos.m_i > 20'000)
    {
 
-      ::sleep(micros());
+      ::preempt(micros());
 
    }
    else
    {
 
-      ::sleep(nanos());
+      ::preempt(nanos());
 
    }
 

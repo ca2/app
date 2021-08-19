@@ -721,7 +721,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #else
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 
@@ -992,9 +992,6 @@ enum enum_optional
 #define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
-// Contains a 64-bit value representing the number
-// of 100-nanosecond intervals since January 1, 1601 (UTC).
-using filetime_t = ::u64;
 
 //typedef struct rdp_freerdp freerdp;
 
@@ -4215,19 +4212,19 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 #define return_(y, x) {y = x; return;}
 
 
-extern "C"
-{
+//extern "C"
+//{
+//
+//
+//i32 _c_lock_is_active(const char *lpszName);
+//i32 _c_lock(const char *lpszName, void **pdata);
+//i32 _c_unlock(void **pdata);
+//
+//
+//}
 
-
-i32 _c_lock_is_active(const char *lpszName);
-i32 _c_lock(const char *lpszName, void **pdata);
-i32 _c_unlock(void **pdata);
-
-
-}
-
-
-CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
+//
+//CLASS_DECL_ACME string _ca_get_file_name(const char *psz, bool bCreate = false, i32 *pfd = nullptr);
 
 //CLASS_DECL_ACME string get_last_error_message(u32 dwError);
 

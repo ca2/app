@@ -145,7 +145,7 @@ namespace hex
 
 
 template < typename TYPE >
-inline ::block __block(TYPE type) 
+inline ::block memory_block(TYPE type) 
 { 
    
    return { (void *)__memory_address_of(type), (memsize) sizeof(type) };

@@ -198,7 +198,7 @@ simple_log::simple_log()
 
    m_bReallySimple = true;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    //INFO("Starting Simple Alog");
 

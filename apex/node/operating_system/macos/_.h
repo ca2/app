@@ -8,8 +8,14 @@
 #pragma once
 
 
+#ifdef cplusplus
+
+
 CLASS_DECL_APEX ::file::path get_resource_path();
 CLASS_DECL_APEX ::file::path get_resource_path(string strRelative);
+
+
+#endif
 
 
 

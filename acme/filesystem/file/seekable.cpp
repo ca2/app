@@ -28,7 +28,7 @@
 //
 //   }
 //
-//   filesize seekable::seek(filesize offset, e_seek seekOrigin)
+//   filesize seekable::seek(filesize offset, enum_seek seekOrigin)
 //   {
 //      UNREFERENCED_PARAMETER(offset);
 //      UNREFERENCED_PARAMETER(seekOrigin);

@@ -5,7 +5,7 @@
 void micros::sleep() const
 {
 
-   ::sleep(*this);
+   ::preempt(*this);
 
 }
 

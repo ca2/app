@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "main.h"
-#include "aura/os/_.h"
+#include "aura/node/operating_system/_.h"
 #include "aura/update.h"
 //char * ns_realpath(const ::string & pszPath);
 //char * mm_ca2_command_line();
@@ -314,35 +314,35 @@ void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
    
 }
 
-
-
-bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
-{
-
-   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
-
-}
-
-
-::file::path __xxxnode_full_file_path(file::path path)
-{
-
-   if(path.is_empty())
-   {
-
-      return path;
-
-   }
-
-   //return ::str::from_strdup(ns_realpath(path));
-
-   char sz[4096];
-
-   __zero(sz);
-
-   return realpath(path, sz);
-
-}
+//
+//
+//bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
+//{
+//
+//   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
+//
+//}
+//
+//
+//::file::path __xxxnode_full_file_path(file::path path)
+//{
+//
+//   if(path.is_empty())
+//   {
+//
+//      return path;
+//
+//   }
+//
+//   //return ::str::from_strdup(ns_realpath(path));
+//
+//   char sz[4096];
+//
+//   __zero(sz);
+//
+//   return realpath(path, sz);
+//
+//}
 
 
 

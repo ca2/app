@@ -49,7 +49,7 @@ namespace file
       return processedSize;
    }
 
-   filesize clustered_istream::seek(filesize offset, e_seek seekOrigin)
+   filesize clustered_istream::seek(filesize offset, enum_seek seekOrigin)
    {
       u64 newVirtPos = offset;
       switch(seekOrigin)

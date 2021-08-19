@@ -39,10 +39,10 @@ public:
    ~event() override;
 
    // using event_base::lock;
-   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   bool lock(const duration & durationTimeout = duration::infinite()) override;
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   bool unlock() override;
 
    //virtual HSYNC hsync() const;
 
@@ -56,12 +56,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual synchronization_result wait ();
+   synchronization_result wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual synchronization_result wait (const duration & duration);
+   virtual synchronization_result wait (const duration & duration) override;
 
    bool is_signaled() const;
 

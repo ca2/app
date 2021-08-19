@@ -967,7 +967,7 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
    while (task->task_get_run())
    {
 
-      sleep(100_ms);
+      preempt(100_ms);
 
    }
 
@@ -989,7 +989,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis)
 
       }
 
-      sleep(millis);
+      preempt(millis);
 
       return ptask->task_get_run();
 
@@ -1154,7 +1154,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
          else
          {
 
-            ::sleep(millis);
+            ::preempt(millis);
 
          }
 

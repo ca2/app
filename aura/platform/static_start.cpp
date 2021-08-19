@@ -10,6 +10,7 @@
 //#include "aura/os/_os.h"
 //
 //#include <sqlite3.h>
+#include <locale.h>
 
 #ifdef RASPBIAN
 #define PLATFORM_NAMESPACE linux

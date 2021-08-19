@@ -6,7 +6,7 @@
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-
+#include <unistd.h>
 
 #undef user
 

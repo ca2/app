@@ -73,7 +73,7 @@ class system;
 
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
-#include "acme/constant/_const.h"
+#include "acme/constant/_constant.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
@@ -86,7 +86,9 @@ class system;
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/matter.h"
-
+#ifdef __APPLE__
+#include "acme/node/operating_system/apple/_apple_no_templates.h"
+#endif
 
 #include "acme/parallelization/_impl_synchronization_result.h"
 #include "acme/primitive/datetime/_impl.h"

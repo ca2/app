@@ -7,9 +7,9 @@
 
 #if defined(MACOS)
 
-#include "aura/os/ansios/_.h"
-#include "aura/os/apple/_.h"
-#include "aura/os/macos/_.h"
+#include "aura/node/operating_system/ansi/_.h"
+#include "aura/node/operating_system/apple/_.h"
+#include "aura/node/operating_system/macos/_.h"
 
 #elif defined(APPLE_IOS)
 

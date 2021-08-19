@@ -3495,7 +3495,7 @@ inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriorit
 
    }
 
-   auto ptask = this->branch(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_task(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {

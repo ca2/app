@@ -48,8 +48,8 @@ public:
    //rectangle_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
 #ifdef APPLEOS
-   point_type(const CGPoint & point) noexcept : point_type(point.x, point.y){}
-   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x, ppoint->y){}
+//   point_type(const CGPoint & point) noexcept : point_type(point.x, point.y){}
+//   point_type(const CGPoint * ppoint) noexcept : point_type(ppoint->x, ppoint->y){}
 #endif
 
 

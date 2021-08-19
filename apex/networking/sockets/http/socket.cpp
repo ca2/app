@@ -572,7 +572,7 @@ namespace sockets
       if (m_request.m_propertysetHeader[__id(host)].string().has_char())
       {
 
-         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)];
+         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)].to_string();
 
          if(m_iProxyPort > 0 ||
                (m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))

@@ -65,7 +65,7 @@ extern ::app_core * g_pappcore;
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags);
+void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -9857,7 +9857,7 @@ string application::get_wm_class() const
 #endif
 
 
-void application_on_menu_action(void * pApplication, const ::string & pszCommand)
+void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
    
    auto papplication = (::application *) pApplication;

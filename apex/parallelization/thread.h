@@ -97,12 +97,12 @@ public:
    __pointer(::object)                                m_pobjectScript;
 
 
-#ifdef MACOS
-
-   array < CFRunLoopSourceRef >                       m_runloopsourcea;
-   CFRunLoopRef                                       m_runloop;
-
-#endif
+//#ifdef MACOS
+//
+//   array < CFRunLoopSourceRef >                       m_runloopsourcea;
+//   CFRunLoopRef                                       m_runloop;
+//
+//#endif
 
 #ifdef WINDOWS
 
@@ -591,7 +591,7 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
    for (index i = 0; i < iTime; i++)
    {
 
-      sleep(100_ms);
+      preempt(100_ms);
 
       if (!pred())
       {

@@ -128,11 +128,11 @@ thread::thread()
 
    m_estatus = ::success_none;
 
-#ifdef MACOS
-
-   m_runloop = nullptr;
-
-#endif
+//#ifdef MACOS
+//
+//   m_runloop = nullptr;
+//
+//#endif
 
    m_epriority = priority_normal;
 
@@ -2921,17 +2921,17 @@ namespace apex
    void system::post_to_all_threads(const ::id& id, wparam wparam, lparam lparam)
    {
 
-#ifdef DEBUG
-
-      if (id == e_message_quit)
-      {
-
-         //!!for e_message_quit please use post_quit_to_all_threads;
-         __throw(error_invalid_argument);
-
-      }
-
-#endif
+//#ifdef _DEBUG
+//
+//      if (id == e_message_quit)
+//      {
+//
+//         //!!for e_message_quit please use post_quit_to_all_threads;
+//         __throw(error_invalid_argument);
+//
+//      }
+//
+//#endif
 
       //for e_message_quit please use post_quit_to_all_threads;
       //if(id == e_message_quit)
@@ -2943,9 +2943,9 @@ namespace apex
 
       //}
 
-      auto psystem = m_psystem->m_papexsystem;
-
-      psystem->m_papexsystem->post_to_all_threads(id, wparam, lparam);
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      psystem->m_papexsystem->post_to_all_threads(id, wparam, lparam);
 
    }
 

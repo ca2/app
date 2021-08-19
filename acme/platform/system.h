@@ -99,7 +99,7 @@ public:
    void os_construct();
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;

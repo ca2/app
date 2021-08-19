@@ -7,6 +7,7 @@
 //
 
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "main.h"
 //aaa_#include "acme/node/operating_system/_.h"
 //#include "acme/node/operating_system/_os.h"
@@ -317,12 +318,12 @@ i32 defer_run_system()
 //
 
 
-bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
-{
-
-   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
-
-}
+//bool __node_further_file_is_equal(file::path const & path1, file::path const & path2)
+//{
+//
+//   return __xxxnode_full_file_path(path1).compare_ci(__xxxnode_full_file_path(path2)) == 0;
+//
+//}
 
 
 ::file::path __xxxnode_full_file_path(file::path path)

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 CLASS_DECL_ACME string url_decode(const ::string & strParam)
@@ -363,23 +364,6 @@ string url_encode(const char * psz)
 
 
 #if defined(MACOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str)
-{
-   CFURLRef url = CFURLCreateWithBytes(
-                  nullptr,                        // allocator
-                  (const ::u8*)url_str.c_str(),     // URLBytes
-                  url_str.length(),            // length
-                  kCFStringEncodingASCII,      // encoding
-                  nullptr                         // baseURL
-                  );
-   LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-
 #elif defined(APPLE_IOS)
 
 void openURL(const string &url_str);

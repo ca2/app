@@ -116,7 +116,7 @@ namespace sockets
       if(m_request.headers().has_property(__id(user_agent)))
       {
 
-         TRACE("user-agent: " + m_request.header(__id(user_agent)));
+         TRACE("user-agent: " + m_request.header(__id(user_agent)).to_string());
 
       }
       else
@@ -129,7 +129,7 @@ namespace sockets
       if(m_request.headers().has_property(__id(from)))
       {
 
-         TRACE("from: " + m_request.header(__id(from)));
+         TRACE("from: " + m_request.header(__id(from)).to_string());
 
       }
 

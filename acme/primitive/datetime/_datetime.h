@@ -41,13 +41,13 @@ class filetime;
 
 
 
-CLASS_DECL_ACME void sleep(const ::duration & duration);
+CLASS_DECL_ACME void preempt(const ::duration & duration);
 
 
-CLASS_DECL_ACME void sleep(const ::secs & secs);
-CLASS_DECL_ACME void sleep(const ::millis & millis);
-CLASS_DECL_ACME void sleep(const ::micros & micros);
-CLASS_DECL_ACME void sleep(const ::nanos & nanos);
+CLASS_DECL_ACME void preempt(const ::secs & secs);
+CLASS_DECL_ACME void preempt(const ::millis & millis);
+CLASS_DECL_ACME void preempt(const ::micros & micros);
+CLASS_DECL_ACME void preempt(const ::nanos & nanos);
 
 
 #include "department.h"

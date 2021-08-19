@@ -26,20 +26,20 @@
 i32 axis_main_command_line(const ::string & pszParams, int argc, char *argv[]);
 
 
-#ifdef cplusplus
-
-
-namespace macos
-{
-   
-   CGFloat get_system_main_menu_bar_height();
-   CGFloat get_system_dock_height();
-   
-   
-} // namespace macos
-
-
-#endif
+//#ifdef cplusplus
+//
+//
+//namespace macos
+//{
+//
+//   CGFloat get_system_main_menu_bar_height();
+//   CGFloat get_system_dock_height();
+//
+//
+//} // namespace macos
+//
+//
+//#endif
 
 //
 //  c_os_cross_win_user_internal.h
@@ -80,10 +80,10 @@ namespace macos
  #pragma once
  */
 
-CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
-
-
-int_bool get_nswindow_rect(oswindow hwnd,RECTANGLE_I32 * prectangle);
+//CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
+//
+//
+//int_bool get_nswindow_rect(oswindow hwnd,RECTANGLE_I32 * prectangle);
 
 
 

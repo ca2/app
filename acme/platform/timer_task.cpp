@@ -14,7 +14,7 @@ timer_task::~timer_task()
 }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 i64 timer_task::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -228,7 +228,7 @@ bool timer_task::task_active() const
       for (::index i = 0; i < c100Ms; i++)
       {
 
-         ::sleep(100_ms);
+         ::preempt(100_ms);
 
          if (!task_get_run())
          {
@@ -239,7 +239,7 @@ bool timer_task::task_active() const
 
       }
 
-      ::sleep(r100Ms);
+      ::preempt(r100Ms);
 
       if (!task_get_run())
       {

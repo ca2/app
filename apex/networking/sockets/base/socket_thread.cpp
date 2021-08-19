@@ -134,7 +134,7 @@ namespace sockets
    //}
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    ::i64 socket_thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

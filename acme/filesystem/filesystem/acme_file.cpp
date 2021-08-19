@@ -293,7 +293,7 @@ pacmedir->is(::file_path_folder(strFile)))
 
       }
 
-      sleep(500_ms);
+      preempt(500_ms);
 
    }
 
@@ -1379,7 +1379,7 @@ bool acme_file::append_wait(const ::string & strFile, const block & block, const
 
       }
 
-      sleep(500_ms);
+      preempt(500_ms);
 
    }
 

@@ -433,7 +433,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   c_derived * ptr = pca;
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 ////   ::id id = p->m_id;
 //   //char * pszType = nullptr;
@@ -481,7 +481,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   }
 //
-//   //#ifdef DEBUG
+//   //#ifdef _DEBUG
 //   //
 //   //   try
 //   //   {

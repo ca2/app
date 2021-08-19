@@ -990,7 +990,7 @@ void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslo
 
          cCount = get_count_except_current_thread();
 
-         sleep(500_ms);
+         preempt(500_ms);
 
          synchronouslock.lock();
 

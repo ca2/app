@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "aura/os/_.h"
+#include "aura/node/operating_system/_.h"
 #include <mach-o/dyld.h>
 #include <sys/time.h>
 
@@ -316,16 +316,16 @@ namespace aura
 //      
 //      if(         auto psystem = m_psystem;
 
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->is(path))
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(path))
 //      {
 //
 //         ::file::path path2 =          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         
 //         if(::m_psystem->m_pacmefile->exists(path2))
 //         {
@@ -337,18 +337,18 @@ pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         auto pathFolder2 = path2.folder();
 //         
 //                  auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(pathFolder2);
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->create(pathFolder2);
 //         
 //         bool bFilePathIsLink = file_path_is_link(path2);
 //         
 //         if(!bFilePathIsLink &&          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->is(pathFolder2))
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathFolder2))
 //         {
 //
 //            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

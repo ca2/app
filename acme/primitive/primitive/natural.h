@@ -33,7 +33,7 @@ public:
    typedef TYPE_DATA                   DATA;
 
 
-   ::std::atomic <::count>             m_countReference;
+   iptr                                m_countReference;
    memsize_storage                     m_memsize;
    memsize_storage                     m_datasize;
    DATA                                m_endofmetadata[1024];

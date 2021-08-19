@@ -39,7 +39,7 @@ namespace file
       }
 
       memsize read(void * data, memsize size);
-      filesize seek(filesize offset, e_seek seekOrigin);
+      filesize seek(filesize offset, enum_seek seekOrigin);
    };
 
 

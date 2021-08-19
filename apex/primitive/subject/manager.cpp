@@ -63,7 +63,7 @@ namespace subject
          else if (psubject->should_poll(psubject->poll_time()))
          {
 
-            m_pcontext->branch(psubject);
+            m_pcontext->branch_task(psubject);
 
          }
 
@@ -384,7 +384,7 @@ namespace subject
    //}
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 manager::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

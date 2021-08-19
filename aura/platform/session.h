@@ -344,8 +344,8 @@ namespace aura
       //virtual void check_topic_file_change() override;
 
 
-      void launch_app(const ::string & psz);
-      void install_app(const ::string & psz);
+      void launch_app(const ::string & psz) override;
+      void install_app(const ::string & psz) override;
 
 
 

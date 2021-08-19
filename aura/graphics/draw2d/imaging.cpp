@@ -7082,7 +7082,7 @@ void imaging::free_work_image(::image * pimage)
 
    const char * psz = (const char *)memory.get_data();
 
-   int size = memory.get_size();
+   auto size = memory.get_size();
 
    if (::is_null(psz))
    {

@@ -816,7 +816,7 @@ public:
             if (p)
             {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
                string strType = p->type_name();
 

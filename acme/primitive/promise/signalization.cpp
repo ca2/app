@@ -10,7 +10,7 @@ namespace promise
 {
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    signalization::signalization()

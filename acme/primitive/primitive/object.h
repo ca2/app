@@ -77,7 +77,7 @@ public:
    ~object() override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -230,7 +230,7 @@ public:
 
    virtual string get_text(const ::payload& payload, const ::id& id) override;
 
-   //#ifdef DEBUG
+   //#ifdef _DEBUG
    //   virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    //   virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    //   virtual void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -549,7 +549,7 @@ public:
    //inline auto new_predicateicate_thread(PRED pred);
 
    template < typename TYPE >
-   inline __transport(task) branch(void (TYPE::* pfnMemberProcedure)(),
+   inline __transport(task) branch_task(void (TYPE::* pfnMemberProcedure)(),
       ::e_priority epriority = priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
@@ -571,7 +571,7 @@ public:
    }
 
 
-   __transport(::task) branch(matter* pmatter,
+   __transport(::task) branch_task(matter* pmatter,
       ::e_priority epriority = priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -677,7 +677,7 @@ public:
    //virtual ~object();
 //
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //
 //   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -784,7 +784,7 @@ public:
 
    //virtual string get_text(const ::payload& payload, const ::id& id) override;
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //   virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   virtual void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

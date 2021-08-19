@@ -5,7 +5,7 @@
 void secs::sleep() const
 {
 
-   ::sleep(*this);
+   ::preempt(*this);
 
 }
 

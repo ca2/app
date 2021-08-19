@@ -917,7 +917,7 @@ namespace aura
       //virtual ::e_status do_request(::create* pcommand) override;
 
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      virtual void set_context(::context* pcontext) override;
 //      virtual void set_context_thread(::thread* pthread) override;

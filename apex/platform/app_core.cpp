@@ -46,7 +46,7 @@ CLASS_DECL_APEX void os_term_windowing();
 #endif
 
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //
 //   static bool g_bVerbose = true;

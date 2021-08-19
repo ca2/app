@@ -148,7 +148,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       }
 
-      ::acme::g_pengine;
+      //::acme::g_pengine;
 
       return estatus;
 
@@ -1283,7 +1283,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -1400,7 +1400,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const ::string & pszFile);
+void system_on_open_file(void * pSystem, const char * pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -1423,7 +1423,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const ::string & pszFile)
+void system_on_open_file(void * pSystem, const char * pszFile)
 {
 
    auto psystem = (class ::system *) pSystem;

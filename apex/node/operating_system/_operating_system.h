@@ -12,9 +12,9 @@
 
 #if defined(MACOS)
 
-#include "apex/os/apple/_apple.h"
-#include "apex/os/macos/_macos.h"
-#include "apex/os/ansios/_ansios.h"
+#include "apex/node/operating_system/ansi/_ansi.h"
+#include "apex/node/operating_system/apple/_apple.h"
+#include "apex/node/operating_system/macos/_macos.h"
 
 #elif defined(APPLE_IOS)
 

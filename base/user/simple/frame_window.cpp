@@ -2562,20 +2562,46 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          {
 
             ::rectangle_f64 rectDst(rectangleClient.size());
+            
+            {
+               
+               image_source imagesource(pgraphics);
+               
+               image_drawing_options imagedrawingoptions(rectDst);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            m_pimageBlur->g()->draw(rectDst, pgraphics);
+               m_pimageBlur->g()->draw(imagedrawing);
+               
+            }
 
             m_blur.blur(m_pimageBlur, 2);
-
-            image_drawing imagedrawing;
             
-            imagedrawing.set(rectangleClient.size(), m_pimageBk);
+            {
+               
+               image_source imagesource(m_pimageBk);
 
-            imagedrawing.opacity(49);
+               image_drawing_options imagedrawingoptions(rectangleClient.size());
+            
+               imagedrawingoptions.opacity(49);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            m_pimageBlur->draw(imagedrawing);
+               m_pimageBlur->draw(imagedrawing);
+               
+            }
+            
+            {
+               
+               image_source imagesource(m_pimageBlur);
+               
+               image_drawing_options imagedrawingoptions(rectangleClient);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->stretch(rectangleClient, m_pimageBlur);
+               pgraphics->draw(imagedrawing);
+               
+            }
 
          }
 

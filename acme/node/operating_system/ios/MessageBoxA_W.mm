@@ -21,29 +21,29 @@ int ui_MessageBoxA(void * oswindow, const char * pszMessageParam, const char * p
    
    switch(uType)
    {
-      case MB_OKCANCEL:
+      case e_message_box_ok_cancel:
          strButton1 = "OK";
          strButton2 = "Cancel";
          break;
-      case MB_ABORTRETRYIGNORE:
+      case e_message_box_abort_retry_ignore:
          strButton1 = "Abort";
          strButton2 = "Retry";
          strButton3 = "Ignore";
          break;
-      case MB_YESNOCANCEL:
+      case e_message_box_yes_no_cancel:
          strButton1 = "Yes";
          strButton2 = "No";
          strButton3 = "Cancel";
          break;
-      case MB_YESNO:
+      case e_message_box_yes_no:
          strButton1 = "Yes";
          strButton2 = "No";
          break;
-      case MB_RETRYCANCEL:
+      case e_message_box_retry_cancel:
          strButton1 = "Retry";
          strButton2 = "Cancel";
          break;
-      case MB_CANCELTRYCONTINUE:
+      case e_message_box_cancel_try_continue:
          strButton1 = "Cancel";
          strButton2 = "Try";
          strButton3 = "Continue";

@@ -24,6 +24,7 @@
 
 // #include "apex/os/apple/ns_exception.h"
 
+void ns_create_alias(const char * pszTarget, const char * pszSource);
 // int __node_is_debugger_attached()
 // // Returns true if the current process is being debugged (either
 // // running under the debugger or has a debugger attached post facto).
@@ -267,49 +268,44 @@
       ::file::path path = pcontext->m_papexcontext->file().module();
 
       path -= 3;
+      
+      auto pacmedir = m_psystem->m_pacmedir;
 
-      if(         auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->is(path))
+      if(pacmedir->is(path))
       {
 
          auto psystem = m_psystem;
 
          auto pacmedir = psystem->m_pacmedir;
 
-         ::file::path path2 =          auto psystem = m_psystem;
+         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
 
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
-
-         if(::m_psystem->m_pacmefile->exists(path2))
+         if(m_psystem->m_pacmefile->exists(path2))
          {
 
-            ::unlink(path2);
+            m_psystem->m_pacmefile->delete_file(path2);
 
          }
 
          auto pathFolder2 = path2.folder();
 
-                  auto psystem = m_psystem;
+         pacmedir->create(pathFolder2);
 
-         auto pacmedir = psystem->m_pacmedir;
+         bool bFilePathIsLink = m_psystem->m_pacmepath->is_symbolic_link(path2);
+         
+         string strDestination = m_psystem->m_pacmepath->symbolic_link_destination(path2);
 
-pacmedir->create(pathFolder2);
-
-         bool bFilePathIsLink = file_path_is_link(path2);
-
-         if(!bFilePathIsLink &&          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->is(pathFolder2))
+         if(!bFilePathIsLink || strDestination != path)
          {
+            
+            auto pacmefile = pacmedir->m_pacmefile;
+            
+            pacmefile->delete_file(path2);
+            
+            auto pacmepath = pacmedir->m_pacmepath;
 
-            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");
+            pacmepath->create_symbolic_link(path2, path);
+        //    ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");
 
          }
 

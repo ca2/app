@@ -6,14 +6,14 @@
 //
 #import "_mm.h"
 
-void ns_create_alias(const char * pszTarget, const char * pszSource)
-{
-   NSString * strTarget = [[NSString alloc]initWithUTF8String:pszTarget];
-   NSString * strSource = [[NSString alloc]initWithUTF8String:pszSource];
-   
-   [[NSFileManager defaultManager ] createSymbolicLinkAtPath: strTarget withDestinationPath: strSource error:nil];
-}
-
+//void ns_create_alias(const char * pszTarget, const char * pszSource)
+//{
+//   NSString * strTarget = [[NSString alloc]initWithUTF8String:pszTarget];
+//   NSString * strSource = [[NSString alloc]initWithUTF8String:pszSource];
+//   
+//   [[NSFileManager defaultManager ] createSymbolicLinkAtPath: strTarget withDestinationPath: strSource error:nil];
+//}
+//
 
 char * ns_user_local_folder(NSSearchPathDirectory e)
 {

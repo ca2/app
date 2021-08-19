@@ -73,3 +73,15 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 //   return ::stra::from_strdup(mm_browse_file_open(pszStartDir, bMulti));
 //
 //}
+
+
+
+void _openURL(const char * psz);
+
+
+void openURL(const ::string & str)
+{
+   
+   _openURL(str);
+   
+}

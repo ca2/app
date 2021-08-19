@@ -248,7 +248,7 @@ do {                                           \
 #endif
 #endif
 
-#ifdef DEBUG_REFCOUNT
+#ifdef _DEBUG_REFCOUNT
 #ifndef DEBUG_INTERFACES
 #define DEBUG_INTERFACES
 #endif

@@ -26,7 +26,7 @@ namespace subject
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 subject::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -109,7 +109,7 @@ namespace subject
 
          }
 
-         ::sleep(iPollMillis);
+         ::preempt(iPollMillis);
 
       }
 
@@ -140,7 +140,7 @@ namespace subject
          if (pcontext->m_bFork)
          {
 
-            branch(pmatter);
+            branch_task(pmatter);
 
          }
          else
@@ -323,7 +323,7 @@ namespace subject
       if (!should_poll(poll_time()))
       {
 
-         branch(this);
+         branch_task(this);
 
       }
 

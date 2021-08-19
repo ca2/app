@@ -1875,63 +1875,8 @@ void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, mem
 }
 
 
-#elif defined(__APPLE__)
-
-CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
-{
-   if (pos > get_size())
-      __throw(error_invalid_argument);
-   if(size < 0)
-   {
-      size = get_size() - pos;
-
-   }
-   else if (pos + size > get_size())
-   {
-      size = get_size() - pos;
-   }
-   return CFDataCreate(kCFAllocatorDefault, (const ::u8 *)&get_data()[pos], (CFIndex)size);
-}
-
-
-void memory_base::set_os_cf_data(CFDataRef data, memsize pos, memsize size)
-{
-
-   if (pos > CFDataGetLength(data))
-   {
-
-      __throw(error_invalid_argument);
-
-   }
-
-   if (pos > CFDataGetLength(data))
-   {
-
-      __throw(error_invalid_argument);
-
-   }
-
-   if(size < 0)
-   {
-
-      size = CFDataGetLength(data) - pos;
-
-   }
-   else if (pos + size > CFDataGetLength(data))
-   {
-
-      size = CFDataGetLength(data) - pos;
-
-   }
-
-   set_size(size);
-
-   ::memcpy_dup(get_data(), &CFDataGetBytePtr(data)[pos], size);
-
-}
-
-
 #endif
+
 
 memory_base & memory_base::reverse()
 {
@@ -2051,7 +1996,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
    }
 
-   auto iFindEol = find_index(__block('\n'), iStart);
+   auto iFindEol = find_index(memory_block('\n'), iStart);
 
    if (iFindEol < 0)
    {

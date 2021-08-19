@@ -87,7 +87,7 @@ public:
 
       auto concreteSize = pimagesource->size();
 
-      auto sizeSrc = rectSrc.size();
+      //auto sizeSrc = rectSrc.size();
 
       m_pimage = pimagesource->get_image(concreteSize);
 

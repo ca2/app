@@ -1,5 +1,6 @@
 #include "framework.h"
 #include <time.h>
+#include <unistd.h>
 
 
 //CLASS_DECL_ACME void sleep(const millis & millis)
@@ -16,7 +17,7 @@
 
 
 
-CLASS_DECL_ACME void sleep(const ::secs & secs)
+CLASS_DECL_ACME void preempt(const ::secs & secs)
 {
 
    ::sleep((unsigned int) secs.m_i);
@@ -26,13 +27,13 @@ CLASS_DECL_ACME void sleep(const ::secs & secs)
 
 CLASS_DECL_ACME void millis_sleep(::u64 uMillis)
 {
-
+   
    ::usleep((useconds_t) uMillis * 1'000);
 
 }
 
 
-CLASS_DECL_ACME void sleep(const millis & millis)
+CLASS_DECL_ACME void preempt(const millis & millis)
 {
 
    millis_sleep(millis.m_i);
@@ -40,7 +41,7 @@ CLASS_DECL_ACME void sleep(const millis & millis)
 }
 
 
-CLASS_DECL_ACME void sleep(const micros & micros)
+CLASS_DECL_ACME void preempt(const micros & micros)
 {
 
    ::usleep((unsigned int)micros.m_i);
@@ -48,7 +49,7 @@ CLASS_DECL_ACME void sleep(const micros & micros)
 }
 
 
-CLASS_DECL_ACME void sleep(const nanos & nanos)
+CLASS_DECL_ACME void preempt(const nanos & nanos)
 {
 
    struct timespec timespec;

@@ -722,12 +722,12 @@ end_processing_adding:
 
             i32 iError = m_iSelectErrno;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
             TRACE("m_maxsock: %d\n", m_maxsock);
             TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
 
-#else
+#elif defined(WINDOWS)
 
             TRACE("sockets::socket_handler select error : %s (%d)", get_last_error_message(iError).c_str(), iError);
 

@@ -457,6 +457,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::u32() const;
    operator ::i64() const;
    operator ::u64() const;
+   
+#if defined(__APPLE__) || defined(RASBPIAN) || defined(ANDROID)
+   operator long() const;
+   operator unsigned long() const;
+#endif
+
+
+   
    operator ::f32() const;
    operator ::f64() const;
    operator ::string() const;
@@ -1002,6 +1010,15 @@ public:
    operator u32 & () { return m_payload.as_u32(); }
    operator i64 & () { return m_payload.as_i64(); }
    operator u64 & () { return m_payload.as_u64(); }
+   
+   
+#ifdef __APPLE__
+   
+   operator long & () { return m_payload.as_long(); }
+   operator unsigned long & () { return m_payload.as_unsigned_long(); }
+   
+#endif
+   
 
    operator f32 & () { return m_payload.as_f32(); }
    operator f64 & () { return m_payload.as_f64(); }

@@ -10,6 +10,7 @@
 
 //#pragma pack(show)
 
+#include "acme/include/_acme.h"
 #include "acme/version/version.h"
 #include "acme/memory/_.h"
 #include "acme/platform/_features.h"
@@ -42,9 +43,8 @@
 
 
 #ifdef _DEBUG
+#ifndef __DEBUG
 #define __DEBUG
-#ifndef DEBUG
-#define DEBUG
 #endif
 #else
 #define NNDEBUG

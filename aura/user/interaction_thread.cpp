@@ -89,7 +89,7 @@ namespace user
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

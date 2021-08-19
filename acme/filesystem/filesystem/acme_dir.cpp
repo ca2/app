@@ -341,7 +341,7 @@ pacmedir->roaming();
 
 #elif defined(__APPLE__)
 
-   return m_psystem->m_pacmepath->executable()-3;
+   return m_psystem->m_pacmefile->executable()-3;
 
 #else
 

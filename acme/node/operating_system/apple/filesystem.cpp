@@ -8,6 +8,11 @@
 #include "framework.h"
 #include <mach-o/dyld.h>
 
+
+string apple_app_module_folder();
+string apple_app_module_path();
+
+
 string get_exe_path()
 {
 char path[8192];
@@ -21,3 +26,17 @@ printf("buffer too small; need size_i32 %u\n", size);
    return path;
 
 }
+
+
+
+string apple_app_module_folder()
+{
+
+   auto strPath = apple_app_module_path();
+
+   return file_path_folder(strPath);
+
+}
+
+
+

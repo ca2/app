@@ -77,7 +77,7 @@ bool ns_set_thread_name(const char * psz);
 char * ns_get_thread_name();
 
 
-bool task_set_name(const char * psz)
+::e_status task_set_name(const char * psz)
 {
    
    return ns_set_thread_name(psz);
@@ -93,14 +93,3 @@ string task_get_name()
 
 
 
-CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority)
-{
-
-   ns_main_sync(^()
-   {
-
-      pobjectTask->call();
-
-   });
-
-}

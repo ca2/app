@@ -291,12 +291,14 @@ public:
    inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
    inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
 
-#elif defined(APPLEOS)
-
-   CFDataRef get_os_cf_data(memsize pos = 0, memsize size = -1) const;
-   void set_os_cf_data(CFDataRef data, memsize pos = 0, memsize size = -1);
-
 #endif
+   
+//#if defined(APPLEOS)
+//
+//   CFDataRef get_os_cf_data(memsize pos = 0, memsize size = -1) const;
+//   void set_os_cf_data(CFDataRef data, memsize pos = 0, memsize size = -1);
+//
+//#endif
 
 
 

@@ -342,7 +342,7 @@ inline __pointer(TYPE) __create_new(::object * pobject)
 // inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource)
 // {
 // //
-// //#ifdef DEBUG
+// //#ifdef _DEBUG
 // //
 // //   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
 // //
@@ -470,7 +470,7 @@ template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
 inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
 {
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
 //

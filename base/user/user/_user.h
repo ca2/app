@@ -87,7 +87,7 @@ namespace experience
 
 #elif defined(MACOS)
 
-#include "aura/os/macos/user.h"
+#include "aura/node/operating_system/macos/user.h"
 #include "aura/node/macos/user.h"
 
 #elif defined(LINUX)

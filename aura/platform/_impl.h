@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
@@ -1076,7 +1076,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   c_derived * ptr = pca;
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 ////   ::id id = p->m_id;
 //   //char * pszType = nullptr;
@@ -1124,7 +1124,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   }
 //
-//   //#ifdef DEBUG
+//   //#ifdef _DEBUG
 //   //
 //   //   try
 //   //   {

@@ -9,7 +9,7 @@
 
 void throw_ns_exception();
 
-string apple_error_string(OSStatus status);
-
-string apple_error_description(OSStatus status);
+//string apple_error_string(OSStatus status);
+//
+//string apple_error_description(OSStatus status);
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 #include <unistd.h>
 #endif
 
@@ -22,31 +22,31 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
-CLASS_DECL_ACME void sleep(const duration & duration)
+CLASS_DECL_ACME void preempt(const duration & duration)
 {
 
    if(duration.secs() >= 20)
    {
 
-      sleep(duration.secs());
+      preempt(duration.secs());
 
    }
    else if(duration.millis().m_i >= 20)
    {
 
-      sleep(duration.millis());
+      preempt(duration.millis());
 
    }
    else if(duration.micros().m_i >= 20)
    {
 
-      sleep(duration.micros());
+      preempt(duration.micros());
 
    }
    else
    {
 
-      sleep(duration.nanos());
+      preempt(duration.nanos());
 
    }
 

@@ -45,7 +45,7 @@ bool defer_init_winsock()
    else
    {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       output_debug_string("The Winsock 2.2 dll was found. OK.\n");
 

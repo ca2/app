@@ -648,6 +648,8 @@ string task_get_name(htask_t htask)
 }
 
 
+#if !defined(__APPLE__)
+
 string task_get_name()
 {
 
@@ -716,6 +718,8 @@ using htask_t = void *;
    
 }
 
+
+#endif // __APPLE__
 
 //
 //

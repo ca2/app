@@ -12,15 +12,15 @@
 
 #if defined(MACOS)
 
-#include "aura/os/apple/_apple.h"
-#include "aura/os/macos/_macos.h"
-#include "aura/os/ansios/_ansios.h"
+#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/node/operating_system/apple/_apple.h"
+#include "aura/node/operating_system/macos/_macos.h"
 
 #elif defined(APPLE_IOS)
 
-#include "aura/os/apple/_apple.h"
-#include "aura/os/ios/_ios.h"
-#include "aura/os/ansios/_ansios.h"
+#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/node/operating_system/apple/_apple.h"
+#include "aura/node/operating_system/ios/_ios.h"
 
 #elif defined(LINUX)
 

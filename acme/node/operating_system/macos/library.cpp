@@ -7,7 +7,7 @@
 #elif !defined(_OS_WINDOWS_)
 #include <link.h>
 #endif
-
+string apple_app_module_folder();
 void * __node_library_touch(const char * pszPath, string & strMessage)
 {
 
@@ -98,7 +98,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    strMessage += "\n(2) dlopen: " + path + " with the error: \"" + strError + "\"";
 
-   path = ::file::path(::dir::ca2_module()) / strPath;
+   path = ::file::path(apple_app_module_folder()) / strPath;
 
    plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
 

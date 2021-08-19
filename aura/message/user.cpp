@@ -83,7 +83,7 @@ namespace message
 
       ///::aura::application * papp = ::get_context_system();
 
-      TRACE("%s", pcszErrorMessage);
+      TRACE("%s", pcszErrorMessage.c_str());
 
 #ifdef __DEBUG
 

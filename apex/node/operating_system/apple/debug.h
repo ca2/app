@@ -7,6 +7,10 @@
 #pragma once
 
 
+#undef DEBUG
+#include <Carbon/Carbon.h>
+
+
 void throw_ns_exception();
 
 string apple_error_string(OSStatus status);

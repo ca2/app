@@ -580,7 +580,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 
    }
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 //   ::id id = p->m_id;
    //char * pszType = nullptr;

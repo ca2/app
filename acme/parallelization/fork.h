@@ -340,37 +340,37 @@ template < typename PRED >
 
 
 
-template < typename T >
-inline void fork_release(::object * pobjectParent, __pointer(T) & t)
-{
-
-   try
-   {
-
-      T * p;
-
-      p = t.m_p;
-
-      p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobjectParent, "fork_release"));
-
-      t.release();
-
-      ::fork(pobjectParent, [&]()
-             {
-
-                ::release(p);
-
-             });
-
-   }
-   catch (...)
-   {
-
-
-   }
-
-}
-
+//template < typename T >
+//inline void fork_release(::object * pobjectParent, __pointer(T) & t)
+//{
+//
+//   try
+//   {
+//
+//      T * p;
+//
+//      p = t.m_p;
+//
+//      p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobjectParent, "fork_release"));
+//
+//      t.release();
+//
+//      pobjectParent->fork([&]()
+//             {
+//
+//                ::release(p);
+//
+//             });
+//
+//   }
+//   catch (...)
+//   {
+//
+//
+//   }
+//
+//}
+//
 
 
 template < typename PRED >

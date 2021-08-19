@@ -54,6 +54,8 @@ namespace simpledb
 
       if(!ptransport)
       {
+         
+         WARN("Failed to load database_sqlite3");
 
          return false;
 

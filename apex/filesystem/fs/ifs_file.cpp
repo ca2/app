@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
@@ -53,19 +53,19 @@ filesize ifs_file::get_size() const
 }
 
 
-::index ifs_file::translate(filesize lOff, ::enum_seek eseek)
+::index ifs_file::translate(::count offset, ::enum_seek eseek)
 {
 
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_httpfile.translate(lOff, eseek);
+      return m_httpfile.translate(offset, eseek);
 
    }
    else
    {
 
-      return m_memfile.translate(lOff, eseek);
+      return m_memfile.translate(offset, eseek);
 
    }
 

@@ -369,7 +369,7 @@ namespace acme
 
       virtual bool get_application_exclusivity_security_attributes(memory & memory);
 
-      virtual bool register_spa_file_type(const ::string & strAppIdHandler);
+      virtual ::e_status register_spa_file_type(const ::string & strAppIdHandler);
 
       virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
       virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
@@ -384,15 +384,15 @@ namespace acme
 
 
 
-      virtual bool launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+      virtual ::e_status launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
 
 
 
-      virtual bool shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
 
-      virtual bool root_execute_async(const char * pszFile, const char * pszParams);
-      virtual bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
+      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
 
       
       //::file::path command_find_path(const ::string & pszCommand);

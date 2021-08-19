@@ -300,7 +300,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
          //task_sleep(100_ms);
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          millis tRemaining = durationTimeout - tStart.elapsed();
 

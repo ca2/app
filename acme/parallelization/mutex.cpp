@@ -810,7 +810,7 @@ synchronization_result mutex::wait(const duration & duration)
 
             }
 
-            sleep(minimum_maximum((tickTimeout - tickElapsed) / 50, 1, 1000));
+            preempt((::millis)minimum_maximum((tickTimeout - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 
@@ -1187,7 +1187,7 @@ bool mutex::lock()
 
          }
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          rc = pthread_mutex_lock(&m_mutex);
 
@@ -1678,7 +1678,7 @@ void wait_until_mutex_does_not_exist(::object * pobject,  const char * lpszName)
 
          pmutex.release();
 
-         sleep(200_ms);
+         preempt(200_ms);
 
          pmutex = __new(mutex(pobject, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 

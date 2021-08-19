@@ -1047,11 +1047,9 @@ public:
 inline const ansichar* __c_str(const string& str) { return str.c_str(); }
 
 
-template < typename STRINGABLE >
-inline ::ansistring operator+(const char* pszLeft, const STRINGABLE& stringableRight);
+inline ::string operator+(const char* pszLeft, const ::string & strRight);
 
-template < typename WSTRINGABLE >
-inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringableRight);
+inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight);
 
 
 

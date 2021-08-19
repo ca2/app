@@ -115,7 +115,7 @@ stdio_file::~stdio_file()
 }
 
 
-filesize stdio_file::translate(filesize lOff, ::enum_seek eseek)
+::index stdio_file::translate(::count offset, ::enum_seek eseek)
 {
 
    int nFrom = SEEK_SET;
@@ -135,7 +135,7 @@ filesize stdio_file::translate(filesize lOff, ::enum_seek eseek)
 
    }
 
-   return fseek(m_pfile, lOff, nFrom);
+   return fseek(m_pfile, offset, nFrom);
 
 }
 

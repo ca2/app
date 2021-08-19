@@ -5,7 +5,7 @@
 
 
 
-#ifdef DEBUG_FLAGS
+#ifdef _DEBUG_FLAGS
 
 namespace ___FlagsDebug
 {

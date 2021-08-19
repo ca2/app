@@ -99,7 +99,7 @@ string object::to_string() const
 
       return success_none;
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      object_on_add_composite(pmatter);
 //
@@ -1627,7 +1627,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__transport(task) object::branch(matter * pmatter, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__transport(task) object::branch_task(matter * pmatter, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pmatter))
@@ -1667,7 +1667,7 @@ __transport(task) object::branch(matter * pmatter, ::e_priority epriority, ::u32
 __transport(task) object::branch(::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   auto ptask = branch(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = branch_task(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    return ptask;
 
@@ -2447,7 +2447,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const ::str
 //}
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 //void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
@@ -2516,7 +2516,7 @@ matter* object::get_taskpool_container()
 //}
 
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //
 //i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -2850,7 +2850,7 @@ matter* object::get_taskpool_container()
 //
 //}
 ////
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

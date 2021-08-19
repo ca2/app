@@ -6,4 +6,20 @@
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 
-#include <stdio.h>
+#include "framework.h"
+#include "acme/operating_system.h"
+
+
+
+
+CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority)
+{
+
+   ns_main_sync(^()
+   {
+
+      pobjectTask->operator()();
+
+   });
+
+}

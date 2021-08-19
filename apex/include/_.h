@@ -1207,17 +1207,17 @@ namespace xml
 
 #define return_(y, x) {y = x; return;}
 
-
-extern "C"
-{
-
-
-   i32 _c_lock_is_active(const char * lpszName);
-   i32 _c_lock(const char * lpszName,void ** pdata);
-   i32 _c_unlock(void ** pdata);
-
-
-}
+//
+//extern "C"
+//{
+//
+//
+//   i32 _c_lock_is_active(const char * lpszName);
+//   i32 _c_lock(const char * lpszName,void ** pdata);
+//   i32 _c_unlock(void ** pdata);
+//
+//
+//}
 
 
 #include "apex/platform/simple_app.h"

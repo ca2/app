@@ -1344,22 +1344,6 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 
 }
 
-#ifdef APPLEOS
-
-void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
-void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource);
-void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource);
-void window_copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource);
-void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource);
-
-
-void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource);
-void copy(POINT_I32 * ppointTarget, const CGPoint * ppointSource);
-void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource);
-void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource);
-
-#endif
 
 
 #ifdef _UWP

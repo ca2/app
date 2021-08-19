@@ -53,6 +53,6 @@ i32 CLASS_DECL_AURA __mac_main(i32 argc, char * argv[]);
 
 
 //void ns_app_terminate();
-void ns_create_alias(const ::string & pszTarget, const ::string & pszSource);
+//void ns_create_alias(const char * pszTarget, const char * pszSource);
 
 

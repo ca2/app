@@ -1607,7 +1607,7 @@ namespace aura
    ::e_status system::init1()
    {
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      ___compile_test_sort_array_21304528734();
 //

@@ -96,7 +96,7 @@ void debug_object_event_promisse_predicate()
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 static bool g_bVerbose = true;

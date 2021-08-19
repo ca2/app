@@ -1,5 +1,5 @@
 #include "framework.h"
-#ifdef LINUX
+#if defined(LINUX) || defined(__APPLE__)
 #include <unistd.h>
 #endif
 

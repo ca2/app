@@ -87,50 +87,7 @@ bool ns_open_file(const char * psz)
    
 }
 
-void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags)
-{
-   
-   NSWorkspace * workspace = [NSWorkspace sharedWorkspace];
-   
-   NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-   
-   if(argv != NULL)
-   {
-   
-      NSMutableArray * array = [[NSMutableArray alloc] init];
-   
-      while(*argv != NULL)
-      {
-      
-         [array addObject: [[NSString alloc] initWithUTF8String: *argv]];
-         
-         argv++;
-         
-      }
 
-      [dict setObject:array forKey:NSWorkspaceLaunchConfigurationArguments];
-      
-   }
-   
-   //NSWorkspaceLaunchWithoutActivation
-   //NSWorkspaceLaunchNewInstance
-   //NSWorkspaceLaunchDefault
-   
-   [workspace launchApplicationAtURL:url options: iFlags configuration:dict error:nil];
-   
-
-}
-
-void ns_launch_app(const char * psz, const char ** argv, int iFlags)
-{
-   
-   NSString * path = [[NSString alloc] initWithUTF8String:psz];
-   
-   NSURL * url = [NSURL fileURLWithPath:path isDirectory:YES];
-   
-   ns_launch_app_at_url(url, argv, iFlags);
-   
-}
 
 void node_launch_app(const char * psz, const char ** argv, int iFlags)
 {

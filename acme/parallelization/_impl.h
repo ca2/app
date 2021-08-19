@@ -112,7 +112,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
    if(iTime < 100)
    {
 
-      sleep(100_ms);
+      preempt(100_ms);
 
    }
    else
@@ -125,7 +125,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
       for(index i = 0; i < iTime; i++)
       {
 
-         sleep(100_ms);
+         preempt(100_ms);
 
          if(!::task_get_run() || !pred())
          {

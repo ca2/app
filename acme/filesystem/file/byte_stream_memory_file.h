@@ -22,7 +22,7 @@
 //      byte_stream_memory_file(::matter * pobject);
 //      virtual ~byte_stream_memory_file();
 //
-//      virtual filesize seek(filesize offset, e_seek seekOrigin);
+//      virtual filesize seek(filesize offset, enum_seek seekOrigin);
 //      virtual filesize get_position() const;
 //      virtual void flush();
 //      virtual void * get_internal_data();

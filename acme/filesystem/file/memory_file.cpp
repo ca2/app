@@ -284,7 +284,7 @@ filesize memory_file::get_position() const
 }
 
 
-filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
+::index memory_file::translate(::count offset, ::enum_seek eseek)
 {
 
    ASSERT(is_valid());
@@ -297,7 +297,7 @@ filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
    switch (eseek)
    {
    case ::e_seek_set:
-      if(lOff < 0)
+      if(offset < 0)
       {
 
          dwNew = 0;
@@ -305,12 +305,12 @@ filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
       }
       else
       {
-         dwNew = (memsize)lOff;
+         dwNew = (memsize)offset;
 
       }
       break;
    case ::e_seek_from_end:
-      if(lOff < -(memsize)get_size())
+      if(offset < -(memsize)get_size())
       {
 
          dwNew = 0;
@@ -318,11 +318,11 @@ filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
       }
       else
       {
-         dwNew = (memsize)(get_size() + lOff);
+         dwNew = (memsize)(get_size() + offset);
       }
       break;
    case ::e_seek_current:
-      if(lOff < -(memsize)m_position)
+      if(offset < -(memsize)m_position)
       {
 
          dwNew = 0;
@@ -331,7 +331,7 @@ filesize memory_file::translate(filesize lOff, ::enum_seek eseek)
       else
       {
 
-         dwNew = (memsize)(m_position + lOff);
+         dwNew = (memsize)(m_position + offset);
 
       }
       break;

@@ -2681,6 +2681,24 @@ string & payload::as_string(const char * pszOnNull)
 }
 
 
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+   long payload::get_long(long lDefault) const
+{
+   
+   return this->i64(lDefault);
+   
+}
+
+
+unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
+{
+   
+   return this->u64(ulDefault);
+   
+}
+#endif
+
 //
 //i64 & payload::as_i64()
 //{
@@ -7209,8 +7227,6 @@ void unit_test_primitive_var_acme_block()
 //}
 
 
-
-
 #define IMPLEMENT_PAYLOAD_NUMBER(NUMBERTYPE)     \
 ::NUMBERTYPE & payload::as_ ## NUMBERTYPE()      \
 {                                                \
@@ -7404,7 +7420,7 @@ void payload::receive_response(const ::payload & payload)
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 void number_operator_payload_test()
 {

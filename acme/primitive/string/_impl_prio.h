@@ -114,8 +114,8 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 
 }
 
-template < typename STRINGABLE >
-inline ::ansistring operator+(const char * pszLeft, const STRINGABLE & stringableRight)
+
+inline ::string operator+(const char * pszLeft, const ::string & stringableRight)
 {
 
    ::ansistring strLeft(pszLeft);
@@ -157,8 +157,7 @@ inline ::ansistring operator+(const char * pszLeft, const STRINGABLE & stringabl
 //}
 
 
-template < typename WSTRINGABLE >
-inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringableRight)
+inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight)
 {
 
    ::wstring wstrLeft(pszLeft);

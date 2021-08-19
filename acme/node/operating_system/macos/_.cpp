@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/update.h"
-
+#include <locale.h>
 
 
 void ns_app_run();

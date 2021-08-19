@@ -788,16 +788,16 @@ namespace user
 
    #if defined(MACOS)
 
-      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
-
-      if(ekey != ::user::e_key_none)
-      {
-
-          pkey->m_ekey = ekey;
-
-          return;
-
-      }
+//      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
+//
+//      if(ekey != ::user::e_key_none)
+//      {
+//
+//          pkey->m_ekey = ekey;
+//
+//          return;
+//
+//      }
 
    #elif !defined(LINUX)
 

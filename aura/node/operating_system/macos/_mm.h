@@ -8,8 +8,7 @@
 #pragma once
 
 
-#include "aura/os/apple/_mm_common.h"
-
+#include "aura/include/_no_templates.h"
 
 
 //#include "mmos.h"

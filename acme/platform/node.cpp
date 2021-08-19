@@ -55,7 +55,7 @@ namespace acme
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -1449,10 +1449,12 @@ namespace acme
    }
 
 
-   bool node::register_spa_file_type(const ::string & strAppIdHandler)
+   ::e_status node::register_spa_file_type(const ::string & strAppIdHandler)
    {
+      
+      __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
@@ -1547,52 +1549,52 @@ namespace acme
    }
 
 
-   bool node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   ::e_status node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
 
-   bool node::shell_execute_async(const char * pszFile, const char * pszParams)
+   ::e_status node::shell_execute_async(const char * pszFile, const char * pszParams)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
 
-   bool node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   ::e_status node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
 
-   bool node::root_execute_async(const char * pszFile, const char * pszParams)
+   ::e_status node::root_execute_async(const char * pszFile, const char * pszParams)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 
 
-   bool node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   ::e_status node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
    {
 
       __throw(error_interface_only);
 
-      return false;
+      return error_interface_only;
 
    }
 

@@ -159,7 +159,7 @@ namespace apex
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -1724,7 +1724,7 @@ pacmedir->create("/ca2core");
 //      return true;
 
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      ___compile_test_sort_array_21304528734();
 //
@@ -4767,7 +4767,7 @@ pacmedir->create("/ca2core");
    string system::get_local_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
+      strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4775,14 +4775,14 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId.c_str());
+      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 
    string system::get_global_mutex_name(const ::string & pszAppName)
    {
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
+      strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName.c_str());
       return strMutex;
    }
 
@@ -4790,7 +4790,7 @@ pacmedir->create("/ca2core");
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName, strId.c_str());
+      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName.c_str(), strId.c_str());
       return strMutex;
    }
 

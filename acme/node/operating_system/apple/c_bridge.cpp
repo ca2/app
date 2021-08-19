@@ -6,4 +6,9 @@
 //  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 
-#include <stdio.h>
+#include <time.h>
+
+time_t _mkgmtime(struct tm * const ptm)
+{
+   return timegm(ptm);
+}

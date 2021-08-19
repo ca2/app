@@ -6,7 +6,7 @@
 //
 //
 #import "_mm.h"
-#include "aura/os/cross/windows/windowing.h"
+#include "aura/node/operating_system/cross/windows/windowing.h"
 
 int_bool get_nswindow_rect(oswindow oswindow, LPRECT lprect);
 void copy(LPRECT lprectDst, const CGRect & rectSrc);

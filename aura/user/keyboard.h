@@ -22,11 +22,14 @@ namespace user
       //__pointer(keyboard_layout)                    m_playout;
 
       keyboard();
-      virtual ~keyboard();
+      ~keyboard() override;
 
       //virtual class keyboard_layout & on_layout();
 
       virtual ::e_status initialize(::object * pobject) override;
+      
+      
+      virtual ::user::enum_key wparam_to_userkey(wparam wparam);
 
       //bool load_layout(const ::string & pszPath, const ::action_context & action_context);
 

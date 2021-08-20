@@ -31,11 +31,22 @@ namespace windowing
 
    }
 
+
+   ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
+   {
+   
+      return ::user::e_key_none;
+   
+   }
+
+
    bool keyboard::initializeXkb()
    {
 
       return false;
    }
+
+
 
 
    string keyboard::getSymbolNameByResNum(int groupResNum)

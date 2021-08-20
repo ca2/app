@@ -252,6 +252,8 @@ namespace message
       m_nRepCnt = LOWORD(lparam);
 
       m_nFlags = HIWORD(lparam);
+      
+      m_iVirtualKey = wparam;
 
       m_nScanCode = ((lparam >> 16) & 0xff);
 

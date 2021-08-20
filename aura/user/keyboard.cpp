@@ -259,6 +259,24 @@ namespace user
    }
 
 
+   ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
+   {
+      
+      auto psystem = m_psystem->m_paurasystem;
+   
+      auto psession = psystem->get_session();
+      
+      auto puser = psession->user();
+      
+      auto pwindowing = puser->windowing();
+      
+      auto pkeyboard = pwindowing->keyboard();
+      
+      return pkeyboard->wparam_to_userkey(wparam);
+      
+      
+   }
+
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
 
@@ -841,6 +859,13 @@ namespace user
       {
 
          pkey->m_ekey = m_mapKey[(i32) pkey->m_iVirtualKey];
+
+      }
+      
+      if(pkey->m_ekey == ::user::e_key_none)
+      {
+
+         pkey->m_ekey = wparam_to_userkey(pkey->m_wparam);
 
       }
 

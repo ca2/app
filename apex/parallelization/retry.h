@@ -12,7 +12,7 @@ bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pr
 
    auto tickTimeout = durationTimeout.u32_millis();
    
-   auto ptask = ::get_task();
+   //auto ptask = ::get_task();
 
    while (true)
    {

@@ -95,7 +95,11 @@ stdio_file::~stdio_file()
 
 #ifdef WINDOWS
 
-   m_pfile = _wfsopen(wstrPath, wstrAttrs, iShare);
+   wstring wstrPath(path);
+
+   wstring wstrAttributes(strAttributes);
+
+   m_pfile = _wfsopen(wstrPath, wstrAttributes, iShare);
 
 #else
 

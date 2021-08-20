@@ -56,12 +56,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   synchronization_result wait () override;
+   synchronization_result _wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual synchronization_result wait (const duration & duration) override;
+   virtual synchronization_result _wait (const duration & duration) override;
 
    bool is_signaled() const;
 

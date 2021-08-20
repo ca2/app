@@ -1609,9 +1609,6 @@
     <ClCompile Include="progress\real.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="_application_service.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="networking\_.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
@@ -1854,6 +1851,9 @@
     </ClCompile>
     <ClCompile Include="networking\http\transaction.cpp">
       <Filter>Source Files\networking\http</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\_application_service.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

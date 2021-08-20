@@ -70,6 +70,8 @@ dir_system::~dir_system()
 
    m_pfilewatcher.create(this);
 
+   auto pacmedir = psystem->m_pacmedir;
+
    pacmedir->create(m_psystem->m_pacmedir->bookmark());
 
    //if (!update_module_path())

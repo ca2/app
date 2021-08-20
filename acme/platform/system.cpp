@@ -15,7 +15,7 @@ class ::system * g_psystem = nullptr;
 
 extern const char8_t  * g_pszTopLevelDomainList[];
 
-enum_dialog_result message_box_for_console(const ::string & psz, const ::string & pszTitle, const ::e_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox);
 
 
 //namespace acme

@@ -59,7 +59,7 @@ public:
 #endif
    mutex(::object * pobject, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
    mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
-   virtual ~mutex();
+   ~mutex() override;
 
 
 #ifndef WINDOWS
@@ -68,9 +68,9 @@ public:
 
    virtual bool lock(const duration & durationTimeout);
 
-   virtual synchronization_result wait();
+   virtual synchronization_result _wait();
 
-   virtual synchronization_result wait(const duration & durationTimeout);
+   virtual synchronization_result _wait(const duration & durationTimeout);
 
 #endif
 

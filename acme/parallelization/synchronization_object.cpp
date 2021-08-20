@@ -107,6 +107,100 @@ synchronization_result synchronization_object::wait()
 }
 
 
+synchronization_result synchronization_object::wait()
+{
+
+   auto ptask = ::get_task();
+
+   if (::is_null(ptask))
+   {
+
+      ptask = m_psystem;
+
+   }
+
+   if (::is_null(ptask))
+   {
+
+      __throw(error_null_pointer);
+
+   }
+
+   while (ptask->task_get_run())
+   {
+
+      auto result = _wait(100_ms);
+
+      if (!result.timed_out())
+      {
+
+         return result;
+
+      }
+
+   }
+
+   return e_synchronization_result_thread_set_finish;
+
+}
+
+
+synchronization_result synchronization_object::wait(const ::duration & durationTimeout)
+{
+   
+   if (durationTimeout < 200_ms)
+   {
+
+      return _wait(durationTimeout);
+
+   }
+
+   ::millis millisEnd = ::millis::now() + durationTimeout;
+
+   auto ptask = ::get_task();
+
+   if (::is_null(ptask))
+   {
+
+      ptask = m_psystem;
+
+   }
+
+   if (::is_null(ptask))
+   {
+
+      __throw(error_null_pointer);
+
+   }
+
+   while (ptask->task_get_run())
+   {
+
+      auto millisWait = millisEnd - ::millis::now();
+
+      if (millisWait < 0)
+      {
+
+         return e_synchronization_result_timed_out;
+
+      }
+
+      auto result = _wait(millisWait);
+
+      if (!result.timed_out())
+      {
+
+         return result;
+
+      }
+
+   }
+
+   return e_synchronization_result_thread_set_finish;
+
+}
+
+
 //synchronization_result synchronization_object::wait(const duration & durationTimeout)
 //{
 //

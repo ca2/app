@@ -199,7 +199,7 @@
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
@@ -677,7 +677,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -698,6 +697,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <EnableModules>false</EnableModules>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -1231,7 +1231,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="node\operating_system\windows\_.cpp" />
     <ClCompile Include="node\operating_system\windows_common\file.cpp" />
     <ClCompile Include="node\operating_system\_application.cpp" />
-    <ClCompile Include="_application_service.cpp" />
     <ClInclude Include="crypto\crypto_initializer.h" />
     <ClInclude Include="inline\implement\ansi.h" />
     <ClInclude Include="inline\implement\windows.h" />
@@ -1280,6 +1279,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\_.cpp" />
+    <ClCompile Include="platform\_application_service.cpp" />
     <ClCompile Include="primitive\subject\context.cpp" />
     <ClCompile Include="primitive\subject\manager.cpp" />
     <ClCompile Include="primitive\subject\process.cpp" />

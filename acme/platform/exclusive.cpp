@@ -15,7 +15,7 @@ namespace acme
 #ifdef WINDOWS
 
 
-   exclusive::exclusive(string strId ARG_SEC_ATTRS)
+   exclusive::exclusive(::object * pobject, string strId ARG_SEC_ATTRS)
    {
 
       m_strId = strId;
@@ -25,7 +25,7 @@ namespace acme
       try
       {
 
-         m_pmutex = __new(::mutex(e_create_new, false, strId ADD_PARAM_SEC_ATTRS));
+         m_pmutex = __new(::mutex(pobject, false, strId ADD_PARAM_SEC_ATTRS));
 
          m_dwLastError = ::GetLastError();
 
@@ -36,7 +36,7 @@ namespace acme
          try
          {
 
-            m_pmutex = __new(::mutex(e_create_new, false, strId));
+            m_pmutex = __new(::mutex(pobject, false, strId));
 
             m_dwLastError = ::GetLastError();
 
@@ -56,7 +56,7 @@ namespace acme
 #else
 
 
-   exclusive::exclusive(string strId ARG_SEC_ATTRS)
+   exclusive::exclusive(::object * pobject, string strId ARG_SEC_ATTRS)
    {
 
       m_strId = strId;

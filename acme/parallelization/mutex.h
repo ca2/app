@@ -64,18 +64,18 @@ public:
 
 #ifndef WINDOWS
 
-   virtual bool lock();
+   virtual bool lock() override;
 
-   virtual bool lock(const duration & durationTimeout);
+   virtual bool lock(const duration & durationTimeout) override;
 
-   virtual synchronization_result _wait();
+   virtual synchronization_result _wait() override;
 
-   virtual synchronization_result _wait(const duration & durationTimeout);
+   virtual synchronization_result _wait(const duration & durationTimeout) override;
 
 #endif
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   virtual bool unlock() override;
 
 
    bool already_exists();

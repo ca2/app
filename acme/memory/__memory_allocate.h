@@ -1,5 +1,4 @@
 //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSørensen!!
-#pragma once
 
 
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)

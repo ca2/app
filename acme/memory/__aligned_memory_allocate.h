@@ -1,5 +1,4 @@
 //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSørensen!!
-#pragma once
 
 
 CLASS_DECL_ACME void* aligned_memory_allocate(memsize size, memsize align = 0);

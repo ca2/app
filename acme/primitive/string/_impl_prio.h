@@ -127,6 +127,18 @@ inline ::string operator+(const char * pszLeft, const ::string & stringableRight
 }
 
 
+inline ::string operator+(const char * pszLeft, const ::id & stringableRight)
+{
+
+   ::ansistring strLeft(pszLeft);
+
+   ::ansistring strRight(stringableRight);
+
+   return strLeft + strRight;
+
+}
+
+
 //inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)
 //{
 //

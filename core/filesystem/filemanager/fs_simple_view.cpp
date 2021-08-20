@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "_data.h"
 #include "core/user/user/_tree.h"
@@ -173,8 +173,10 @@ namespace filemanager
             auto psystem = m_psystem;
 
             auto purl = psystem->url();
+            
+            string strFileNameEncoded =  purl->url_encode(pszFileName);
 
-            strUrl.Format("http://file.ca2.software/ifs/get?name=" + purl->url_encode(pszFileName)+ "&folder=%I64d&extension=.%s", iFolder, pszExtension);
+            strUrl.Format("http://file.ca2.software/ifs/get?name=%s&folder=%I64d&extension=.%s",strFileNameEncoded.c_str(), iFolder, pszExtension.c_str());
 
             //if(m_prequestinterface != nullptr)
             //{

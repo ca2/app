@@ -5986,8 +5986,17 @@ namespace user
       ::rectangle_i32 rectangle;
 
       m_puserinteraction->get_window_rect(rectangle);
+      
+      auto pimage = m_pgraphics->get_screen_image();
+      
+      if(::is_null(pimage))
+      {
+         
+         return 0;
+         
+      }
 
-      return m_pgraphics->get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent);
+      return pimage->_001GetTopLeftWeightedOpaqueArea(colorTransparent);
 
    }
 

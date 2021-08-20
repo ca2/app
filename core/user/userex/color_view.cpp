@@ -158,8 +158,16 @@ namespace visual
 
    void color_with_shade_of_grey(::color::color & color, double i, double j, double dw, double dh)
    {
+      
+#ifdef MACOS
 
+      image_color_with_shade_of_grey(color.red, color.green, color.blue, i, dh - j -1, dw, dh);
+      
+#else
+      
       image_color_with_shade_of_grey(color.red, color.green, color.blue, i, j, dw, dh);
+      
+#endif
 
    }
 

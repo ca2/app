@@ -94,7 +94,7 @@ bool dialog::show(const ::string & pszMatter)
 
       string str;
 
-      str.Format("Could not show dialog %s", pszMatter);
+      str.Format("Could not show dialog %s", pszMatter.c_str());
 
       TRACE(str);
 

@@ -253,7 +253,7 @@ namespace message
 
       m_nFlags = HIWORD(lparam);
       
-      m_iVirtualKey = wparam;
+      m_iVirtualKey = (int)wparam;
 
       m_nScanCode = ((lparam >> 16) & 0xff);
 

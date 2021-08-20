@@ -13,5 +13,3 @@ enum enum_memory_heap : unsigned char
 
 };
 
-
-

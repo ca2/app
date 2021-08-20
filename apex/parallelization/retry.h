@@ -11,6 +11,8 @@ bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pr
    auto tickRetry = durationRetry.u32_millis();
 
    auto tickTimeout = durationTimeout.u32_millis();
+   
+   auto ptask = ::get_task();
 
    while (true)
    {
@@ -32,8 +34,8 @@ bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pr
          return false;
 
       }
-
-      if (!task_sleep(tickRetry))
+      
+      if (!::task_sleep(tickRetry))
       {
 
          return false;

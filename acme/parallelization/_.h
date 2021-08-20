@@ -325,11 +325,11 @@ CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 //typedef bool task_sleep(millis millis, ::synchronization_object* psync);
 //using PFN_task_sleep = task_sleep*;
 
-CLASS_DECL_ACME bool __simple_task_sleep();
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
-CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::synchronization_object* psync);
-CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
+//CLASS_DECL_ACME bool __simple_task_sleep();
+//CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
+//CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
+//CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::synchronization_object* psync);
+//CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
 //CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
@@ -365,15 +365,16 @@ CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task* task);
-
-CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
-
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
-
-CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync);
-
-CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
+//CLASS_DECL_ACME bool __task_sleep(task* task);
+//
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
+//
+//CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
+//
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync);
+//
+//CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(const ::duration & duration);
 
 
 #include "synchronized_routine.h"

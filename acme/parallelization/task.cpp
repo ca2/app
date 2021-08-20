@@ -911,6 +911,30 @@ bool task::has_message() const
 }
 
 
+bool task::task_sleep(const ::duration & duration)
+{
+   
+   ::millis millisEnd = ::millis::now() + duration;
+   
+   while(task_get_run())
+   {
+      
+      ::millis millisPreempt = millisEnd - ::millis::now();
+      
+      if(millisPreempt <= 0)
+      {
+       
+         return true;
+         
+      }
+      
+      ::preempt(millisPreempt);
+      
+   }
+   
+
+}
+
 //::e_status task::branch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
@@ -1218,5 +1242,34 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_ob
 //   }
 //}
 //
+
+
+
+
+CLASS_DECL_ACME bool task_sleep(const ::duration & duration)
+{
+   
+   auto ptask =::get_task();
+   
+   if(::is_null(ptask))
+   {
+    
+      ::preempt(duration);
+      
+      return true;
+      
+   }
+   
+   if(!ptask->task_sleep(duration))
+   {
+      
+      return false;
+      
+   }
+      
+   return true;
+   
+}
+
 
 

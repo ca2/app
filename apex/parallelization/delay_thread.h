@@ -21,7 +21,7 @@ public:
    }
 
 
-   ::e_status     run()
+   ::e_status run()
    {
 
       while (true)

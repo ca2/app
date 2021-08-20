@@ -109,6 +109,8 @@ public:
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+   
+   virtual bool task_sleep(const ::duration & duration);
 
    //template < typename METHOD >
    //inline static ::task_pointer __task(METHOD method)

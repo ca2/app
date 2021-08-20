@@ -99,10 +99,10 @@ bool synchronization_object::lock(const duration & durationTimeout)
 }
 
 
-synchronization_result synchronization_object::wait()
+synchronization_result synchronization_object::_wait()
 {
 
-   return wait(::duration::infinite());
+   return _wait(::duration::infinite());
 
 }
 
@@ -233,7 +233,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-synchronization_result synchronization_object::wait(const duration & durationTimeout)
+synchronization_result synchronization_object::_wait(const duration & durationTimeout)
 {
 
 #ifdef WINDOWS

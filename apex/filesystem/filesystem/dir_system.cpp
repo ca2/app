@@ -46,9 +46,9 @@ dir_system::~dir_system()
 
    auto psystem = get_system()->m_papexsystem;
 
-   #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
-
    auto pacmedir = psystem->m_pacmedir;
+
+   #if defined(__APPLE__) || (defined(DEBUG)) || defined(ANDROID) || defined(_UWP)
 
    if ( pacmedir->is(psystem->side_get_matter_path("app/_matter/main")))
    {
@@ -69,8 +69,6 @@ dir_system::~dir_system()
    }
 
    m_pfilewatcher.create(this);
-
-   auto pacmedir = psystem->m_pacmedir;
 
    pacmedir->create(m_psystem->m_pacmedir->bookmark());
 

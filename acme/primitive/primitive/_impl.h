@@ -2454,7 +2454,8 @@ template < typename BASE_TYPE >
 inline __transport(BASE_TYPE) object::__create()
 {
 
-   auto p = ::__create<BASE_TYPE>();
+
+   auto p = ::move(::__create<BASE_TYPE>());
 
    if (p)
    {
@@ -2470,7 +2471,7 @@ inline __transport(BASE_TYPE) object::__create()
 
    }
 
-   return p;
+   return ::move(p);
 
 }
 
@@ -2479,7 +2480,7 @@ template < typename BASE_TYPE >
 inline __transport(BASE_TYPE) object::__id_create(const ::id& id)
 {
 
-   auto p = ::__id_create<BASE_TYPE>(id);
+   auto p = ::move(::__id_create<BASE_TYPE>(id));
 
    if (p)
    {
@@ -2495,7 +2496,7 @@ inline __transport(BASE_TYPE) object::__id_create(const ::id& id)
 
    }
 
-   return p;
+   return ::move(p);
 
 }
 
@@ -2506,7 +2507,7 @@ inline __transport(TYPE) object::__create_new()
 
    ASSERT(::is_set(this));
 
-   auto p = ::__create_new<TYPE>();
+   auto p = ::move(::__create_new<TYPE>());
 
    if (p)
    {
@@ -2522,7 +2523,7 @@ inline __transport(TYPE) object::__create_new()
 
    }
 
-   return p;
+   return ::move(p);
 
 }
 
@@ -2543,7 +2544,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite)
 
       }
 
-      auto ptypeNew = pfactory->call_new();
+      auto ptypeNew = ::move(pfactory->call_new());
 
       if (!ptypeNew)
       {

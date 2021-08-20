@@ -1325,7 +1325,7 @@ bool mutex::lock(const duration & duration)
 }
 
 
-synchronization_result mutex::wait()
+synchronization_result mutex::_wait()
 {
 
    if (!lock())
@@ -1741,7 +1741,7 @@ namespace install
 
    mutex::mutex(::object * pobject, string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
-      ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
+      ::mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
       , synchronization_object("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
       ::mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
@@ -1753,7 +1753,7 @@ namespace install
 
    admin_mutex::admin_mutex(::object * pobject, string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
-      mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
+      mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
 #else
       mutex(pobject, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif

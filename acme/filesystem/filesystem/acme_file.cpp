@@ -7,6 +7,7 @@
 #include "acme_file.h"
 #include <stdio.h>
 
+
 void trace_last_error()
 {
 
@@ -81,26 +82,155 @@ memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 }
 
 
-memsize acme_file::as_memory(const char * path, void * p, memsize s)
-{
-
-   __throw(error_interface_only);
-
-   return -1;
-
-}
-
-
 string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 {
 
-   __throw(error_interface_only);
+   string str;
 
-   return ::memory();
+   wstring wstr(path);
+
+   stdio_file file;
+
+   auto estatus = file.open(path, "r", _SH_DENYNO);
+
+   if(!estatus)
+   {
+
+      DWORD dwLastError = ::GetLastError();
+
+      return "";
+
+   }
+
+   DWORD dwSize;
+
+   dwSize = (DWORD)file.get_size();
+
+   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize : minimum(iReadAtMostByteCount, (::strsize)dwSize);
+
+   char * psz = str.get_string_buffer(iReadAtMostByteCount);
+
+   ::size_t iPos = 0;
+
+   while (iReadAtMostByteCount - iPos > 0)
+   {
+
+      auto dwRead = file.read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+
+      if (dwRead <= 0)
+      {
+
+         break;
+
+      }
+
+      iPos += dwRead;
+
+   }
+
+   psz[iPos] = '\0';
+
+   str.release_string_buffer(iReadAtMostByteCount);
+
+   return str;
+
+}
+
+
+memsize acme_file::as_memory(const char * path, void * p, memsize s)
+{
+
+   stdio_file file;
+
+   auto estatus = file.open(path, "r", _SH_DENYNO);
+
+   if(!estatus)
+   {
+
+      return 0;
+
+   }
+
+   auto iReadAtMostByteCount = s;
+
+   byte * psz = (byte *) p;
+
+   ::size_t iPos = 0;
+
+   while (iReadAtMostByteCount - iPos > 0)
+   {
+
+      auto dwRead = file.read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+
+      if (dwRead <= 0)
+      {
+
+         break;
+
+      }
+
+      iPos += dwRead;
+
+   }
+
+   return iPos;
+
 }
 
 
 
+bool acme_file::as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount)
+{
+
+   memory.set_size(0);
+
+   stdio_file file;
+
+   auto estatus = file.open(path, "r", _SH_DENYNO);
+
+   if (file == nullptr)
+   {
+
+      return false;
+
+   }
+
+   auto iSize = file.get_size();
+
+   if (iSize < 0)
+   {
+
+      return false;
+
+   }
+
+   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, (::strsize)iSize);
+
+   memory.set_size(iReadAtMostByteCount);
+
+   filesize dwReadTotal = 0;
+
+   while (dwReadTotal < iReadAtMostByteCount)
+   {
+
+      auto dwRead = file.read(memory.get_data() + dwReadTotal, (u32)iReadAtMostByteCount - dwReadTotal);
+
+      if (dwRead <= 0)
+      {
+
+         break;
+
+      }
+
+      dwReadTotal += dwRead;
+
+   }
+
+   memory.set_size(dwReadTotal);
+
+   return true;
+
+}
 
 
 string acme_file::get_temporary_file_name(const char * lpszName, const char * pszExtension)
@@ -875,16 +1005,6 @@ bool acme_file::put_contents(const char * path, const char * contents)
    }
 
    return true;
-
-}
-
-
-bool acme_file::as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount)
-{
-
-   __throw(error_interface_only);
-
-   return false;
 
 }
 

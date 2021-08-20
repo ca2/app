@@ -215,7 +215,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       else if (intDelayMs.m_millisProcessAttach.m_i)
       {
 
-         ::sleep(intDelayMs.m_millisProcessAttach);
+         ::preempt(intDelayMs.m_millisProcessAttach);
 
       }
 
@@ -233,7 +233,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       else if (intDelayMs.m_millisProcessDetach.m_i)
       {
 
-         ::sleep(intDelayMs.m_millisProcessDetach);
+         ::preempt(intDelayMs.m_millisProcessDetach);
 
       }
 
@@ -251,7 +251,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       else if (intDelayMs.m_millisThreadAttach.m_i)
       {
 
-         ::sleep(intDelayMs.m_millisThreadAttach);
+         ::preempt(intDelayMs.m_millisThreadAttach);
 
       }
 
@@ -269,7 +269,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
       else if (intDelayMs.m_millisThreadDetach.m_i)
       {
 
-         ::sleep(intDelayMs.m_millisThreadDetach);
+         ::preempt(intDelayMs.m_millisThreadDetach);
 
       }
 

@@ -35,7 +35,7 @@ void nano_timer::wait(const ::nanos & nanosWait)
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
-         sleep(::millis(nanosWait.m_i / 1'000'000LL));
+         ::preempt(::millis(nanosWait.m_i / 1'000'000LL));
 
       }
       else

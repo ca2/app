@@ -84,6 +84,7 @@ task::~task()
 
    }
 
+   return ::success;
 
 }
 

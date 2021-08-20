@@ -3524,7 +3524,7 @@ __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATT
    if(!pexclusive)
    {
 
-      auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
+      auto pexclusiveNew = __new(::acme::exclusive(this, strId ADD_PARAM_SEC_ATTRS));
 
       __m_own(this, pexclusive, pexclusiveNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::get_exclusive") );
 

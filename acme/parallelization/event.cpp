@@ -425,7 +425,7 @@ bool event::ResetEvent()
 }
 
 
-synchronization_result event::wait ()
+synchronization_result event::_wait ()
 {
 
    //__throw(todo("thread"));
@@ -556,7 +556,7 @@ synchronization_result event::wait ()
 }
 
 
-synchronization_result event::wait (const duration & durationTimeout)
+synchronization_result event::_wait (const duration & durationTimeout)
 {
 
    synchronization_result result;

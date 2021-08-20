@@ -95,7 +95,11 @@ stdio_file::~stdio_file()
 
 #ifdef WINDOWS
 
-   m_pfile = _wfsopen(wstrPath, wstrAttrs, iShare);
+   wstring wstrPath(path);
+
+   wstring wstrAttributes(strAttributes);
+
+   m_pfile = _wfsopen(wstrPath, wstrAttributes, iShare);
 
 #else
 
@@ -135,7 +139,15 @@ stdio_file::~stdio_file()
 
    }
 
+#ifdef WINDOWS
+
+   return fseek(m_pfile, (long) offset, nFrom);
+
+#else
+
    return fseek(m_pfile, offset, nFrom);
+
+#endif
 
 }
 

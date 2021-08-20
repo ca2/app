@@ -200,7 +200,7 @@
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
@@ -682,7 +682,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
       <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -703,6 +702,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <EnableModules>false</EnableModules>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -1101,7 +1101,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="compress\zip\memory_buffer.cpp" />
     <ClCompile Include="compress\zip\unzip.cpp" />
     <ClCompile Include="compress\zip\zip.cpp" />
-    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="exception\engine.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
@@ -1141,6 +1141,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     </ClCompile>
     <ClCompile Include="filesystem\file\dir2.cpp" />
     <ClCompile Include="filesystem\file\exception.cpp" />
+    <ClCompile Include="filesystem\file\stdio_file.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
@@ -1166,8 +1167,30 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="memory\allocation.cpp" />
     <ClCompile Include="memory\array_memory_allocate.cpp" />
     <ClCompile Include="memory\counter.cpp" />
-    <ClInclude Include="const\filesystem.h" />
-    <ClInclude Include="const\parallelization.h" />
+    <ClInclude Include="constant\activate.h" />
+    <ClInclude Include="constant\button_state.h" />
+    <ClInclude Include="constant\character_set.h" />
+    <ClInclude Include="constant\check.h" />
+    <ClInclude Include="constant\code_page.h" />
+    <ClInclude Include="constant\context.h" />
+    <ClInclude Include="constant\cursor.h" />
+    <ClInclude Include="constant\filesystem.h" />
+    <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\GLOBAL_ID.h" />
+    <ClInclude Include="constant\id.h" />
+    <ClInclude Include="constant\idpool.h" />
+    <ClInclude Include="constant\impact.h" />
+    <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\parallelization.h" />
+    <ClInclude Include="constant\routine.h" />
+    <ClInclude Include="constant\simple_command.h" />
+    <ClInclude Include="constant\source.h" />
+    <ClInclude Include="constant\status.h" />
+    <ClInclude Include="constant\status_range_authentication.h" />
+    <ClInclude Include="constant\thread.h" />
+    <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\_.h" />
+    <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
@@ -1518,27 +1541,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="compress\gz.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="const\activate.h" />
-    <ClInclude Include="const\button_state.h" />
-    <ClInclude Include="const\code_page.h" />
-    <ClInclude Include="const\future.h" />
-    <ClInclude Include="const\character_set.h" />
-    <ClInclude Include="const\check.h" />
-    <ClInclude Include="const\context.h" />
-    <ClInclude Include="const\GLOBAL_ID.h" />
-    <ClInclude Include="const\id.h" />
-    <ClInclude Include="const\idpool.h" />
-    <ClInclude Include="const\impact.h" />
-    <ClInclude Include="const\message.h" />
-    <ClInclude Include="const\routine.h" />
-    <ClInclude Include="const\simple_command.h" />
-    <ClInclude Include="const\source.h" />
-    <ClInclude Include="const\status.h" />
-    <ClInclude Include="const\status_range_authentication.h" />
-    <ClInclude Include="const\thread.h" />
-    <ClInclude Include="const\timer.h" />
-    <ClInclude Include="const\_.h" />
-    <ClInclude Include="const\_const.h" />
     <ClInclude Include="exception\aaa_assert.h" />
     <ClInclude Include="exception\aaa_base.h" />
     <ClInclude Include="exception\aaa_debug_stream.h" />

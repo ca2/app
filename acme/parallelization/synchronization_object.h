@@ -29,8 +29,14 @@ public:
    virtual bool lock();
    virtual bool lock(const duration & durationTimeout);
 
+   
+   virtual synchronization_result _wait();
+   virtual synchronization_result _wait(const duration & durationTimeout);
+
+   
    virtual synchronization_result wait();
    virtual synchronization_result wait(const duration & durationTimeout);
+
 
    virtual bool is_locked() const;
 

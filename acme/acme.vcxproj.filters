@@ -81,9 +81,6 @@
     <Filter Include="Source Files\primitive\string">
       <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -177,9 +174,6 @@
     <Filter Include="Header Files\primitive\collection">
       <UniqueIdentifier>{fa21be76-75d0-485c-984d-ccd11bea77d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\text">
       <UniqueIdentifier>{545f16d0-41cd-47fa-a030-7e700a6a109d}</UniqueIdentifier>
     </Filter>
@@ -251,6 +245,12 @@
     </Filter>
     <Filter Include="Header Files\node\operating_system\ansi">
       <UniqueIdentifier>{b6713797-af08-4440-b4d1-631dd04e5514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2075,63 +2075,6 @@
     <ClInclude Include="platform\acme_main_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="const\code_page.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\character_set.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\future.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\routine.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="platform\library.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2450,12 +2393,6 @@
     <ClInclude Include="regular_expression\topic.h">
       <Filter>Header Files\regular_expression</Filter>
     </ClInclude>
-    <ClInclude Include="const\activate.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\button_state.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="exception\file.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2507,17 +2444,11 @@
     <ClInclude Include="memory\_.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="const\parallelization.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\acme_file.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_path.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="const\filesystem.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="networking\_.h">
       <Filter>Header Files\networking</Filter>
@@ -2620,6 +2551,78 @@
     </ClInclude>
     <ClInclude Include="networking\sockets\trace_interface.h">
       <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_constant.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\activate.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\button_state.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\character_set.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\check.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\code_page.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\context.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\cursor.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\filesystem.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\future.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\GLOBAL_ID.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\id.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\impact.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\message.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\parallelization.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\routine.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\simple_command.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\source.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\status.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\status_range_authentication.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\thread.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\timer.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3166,9 +3169,6 @@
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\colorref_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -3690,6 +3690,12 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\trace_interface.cpp">
       <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\stdio_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -122,7 +122,7 @@ synchronization_result synchronization_object::wait()
    if (::is_null(ptask))
    {
 
-      __throw(error_null_pointer);
+      return _wait();
 
    }
 
@@ -169,7 +169,7 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
    if (::is_null(ptask))
    {
 
-      __throw(error_null_pointer);
+      return _wait(durationTimeout);
 
    }
    

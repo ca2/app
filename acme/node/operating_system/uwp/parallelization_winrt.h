@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -63,7 +63,7 @@ public:
    T wait(unsigned int dwMillis = U32_INFINITE_TIMEOUT, ::Windows::Foundation::AsyncStatus * pstatus = nullptr)
    {
 
-      task_sleep(dwMillis, &m_event);
+      m_event.preempt(::millis(dwMillis));
 
       if (pstatus != nullptr)
       {

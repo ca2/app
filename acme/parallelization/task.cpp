@@ -1136,86 +1136,86 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_ob
 }
 
 
-CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
-{
-
-   auto ptask = ::get_task();
-
-   if (::is_null(ptask))
-   {
-
-      if (::is_null(psync))
-      {
-
-         if (__os(millis) == U32_INFINITE_TIMEOUT)
-         {
-
-         }
-         else
-         {
-
-            ::preempt(millis);
-
-         }
-
-      }
-      else
-      {
-
-         if (__os(millis) == U32_INFINITE_TIMEOUT)
-         {
-
-            return psync->lock();
-
-         }
-         else
-         {
-
-            return psync->lock(millis);
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-   if (::is_null(psync))
-   {
-
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
-
-         return __task_sleep(ptask);
-
-      }
-      else
-      {
-
-         return __task_sleep(ptask, millis);
-
-      }
-
-   }
-   else
-   {
-
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
-
-         return __task_sleep(ptask, psync);
-
-      }
-      else
-      {
-
-         return __task_sleep(ptask, millis, psync);
-
-      }
-
-   }
-}
-
+//CLASS_DECL_ACME bool task_sleep(const ::duration & duration)
+//{
+//
+//   auto ptask = ::get_task();
+//
+//   if (::is_null(ptask))
+//   {
+//
+//      if (::is_null(psync))
+//      {
+//
+//         if (__os(millis) == U32_INFINITE_TIMEOUT)
+//         {
+//
+//         }
+//         else
+//         {
+//
+//            ::preempt(millis);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         if (__os(millis) == U32_INFINITE_TIMEOUT)
+//         {
+//
+//            return psync->lock();
+//
+//         }
+//         else
+//         {
+//
+//            return psync->lock(millis);
+//
+//         }
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//   if (::is_null(psync))
+//   {
+//
+//      if (__os(millis) == U32_INFINITE_TIMEOUT)
+//      {
+//
+//         return __task_sleep(ptask);
+//
+//      }
+//      else
+//      {
+//
+//         return __task_sleep(ptask, millis);
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      if (__os(millis) == U32_INFINITE_TIMEOUT)
+//      {
+//
+//         return __task_sleep(ptask, psync);
+//
+//      }
+//      else
+//      {
+//
+//         return __task_sleep(ptask, millis, psync);
+//
+//      }
+//
+//   }
+//}
+//
 
 

@@ -139,7 +139,15 @@ stdio_file::~stdio_file()
 
    }
 
+#ifdef WINDOWS
+
+   return fseek(m_pfile, (long) offset, nFrom);
+
+#else
+
    return fseek(m_pfile, offset, nFrom);
+
+#endif
 
 }
 

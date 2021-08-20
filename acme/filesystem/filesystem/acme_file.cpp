@@ -96,8 +96,6 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
    if(!estatus)
    {
 
-      DWORD dwLastError = ::GetLastError();
-
       return "";
 
    }

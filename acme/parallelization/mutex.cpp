@@ -668,7 +668,7 @@ bool mutex::already_exists()
 
 #if !defined(WINDOWS)
 
-synchronization_result mutex::wait(const duration & duration)
+synchronization_result mutex::_wait(const duration & duration)
 {
 
    if(duration.is_pos_infinity())

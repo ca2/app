@@ -172,6 +172,8 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
       __throw(error_null_pointer);
 
    }
+   
+   ;;millis millisStep(100_ms);
 
    while (ptask->task_get_run())
    {
@@ -183,6 +185,13 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
 
          return e_synchronization_result_timed_out;
 
+      }
+      
+      if(millisWait > millisStep)
+      {
+       
+         millisWait = millisStep;
+         
       }
 
       auto result = _wait(millisWait);

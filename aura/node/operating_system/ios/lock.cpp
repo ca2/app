@@ -5,7 +5,7 @@
 
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 
 
 /* lock operations for flock(2) */

@@ -7,7 +7,7 @@
 #include <dlfcn.h>
 #include <link.h>
 #include <ctype.h>
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 #include <dlfcn.h>
 #include <sys/stat.h>
 #endif

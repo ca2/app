@@ -25,7 +25,7 @@ public:
    //   HANDLE               m_hTimerQueue;
    //   HANDLE               m_hTimer;
    //
-   //#elif defined(APPLEOS)
+   //#elif defined(__APPLE__)
    //
    //   void *               m_timer;
    //   void *               m_queue;

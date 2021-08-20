@@ -36,7 +36,7 @@ namespace subject
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 handler::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

@@ -35,7 +35,7 @@
 #endif
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #ifndef _DEBUG
 #define _DEBUG
 #endif

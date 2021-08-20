@@ -766,7 +766,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #define _ASSUME(cond)
 #if defined(ANDROID)
 #define ASSERT_VALID(cond)
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 #define ASSERT_VALID(cond)
 #elif defined(LINUX)
 #define ASSERT_VALID(cond)
@@ -1045,7 +1045,7 @@ enum e_image_type
 #include "acme/constant/thread.h"
 
 
-#if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 
 int ftruncate(int file, filesize len);
 
@@ -2787,7 +2787,7 @@ namespace calculator
 
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #undef err_none
 #endif
 
@@ -4375,7 +4375,7 @@ namespace std
 
    using setw = ::file::set_width;
 
-#if !defined(WINDOWS_DESKTOP) && !defined(APPLEOS) && !defined(_UWP)
+#if !defined(WINDOWS_DESKTOP) && !defined(__APPLE__) && !defined(_UWP)
 
    using bad_alloc = ::memory_exception;
 

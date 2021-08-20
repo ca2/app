@@ -24,7 +24,7 @@ namespace factory
 #endif
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #include <semaphore.h>
 #endif
 

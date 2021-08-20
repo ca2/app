@@ -1,4 +1,4 @@
-#ifdef APPLEOS
+#ifdef __APPLE__
 
 
 #define ALIGN_BYTE_COUNT (sizeof(size_t) * 2)

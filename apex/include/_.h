@@ -724,7 +724,7 @@ namespace calculator
 } // namespace calculator
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #undef err_none
 #endif
 

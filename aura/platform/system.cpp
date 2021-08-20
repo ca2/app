@@ -5797,7 +5797,7 @@ namespace aura
    //::e_status system::init()
    //{
    //   //
-   //   //#ifndef APPLEOS
+   //   //#ifndef __APPLE__
    //   //
    //   //      if(m_pparserfactory == nullptr)
    //   //      {

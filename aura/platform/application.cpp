@@ -7716,7 +7716,7 @@ namespace aura
 
 //   ::user::interaction * application::get_desktop_window()
 //   {
-//#if defined(_UWP) || defined(APPLEOS)
+//#if defined(_UWP) || defined(__APPLE__)
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //

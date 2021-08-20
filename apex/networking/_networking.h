@@ -4,11 +4,11 @@
 #include "apex/operating_system.h"
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 #include <netinet/in.h>
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
 typedef in6_addr in_addr6;
 

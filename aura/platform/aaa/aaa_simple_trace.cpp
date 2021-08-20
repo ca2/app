@@ -187,7 +187,7 @@ pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
 simple_trace::simple_trace()
 {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    //INFO("Starting Simple Alog");
 

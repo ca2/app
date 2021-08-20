@@ -20,7 +20,7 @@ namespace exception
 }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
@@ -140,7 +140,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       object_on_add_composite(pmatter);
 
@@ -2357,7 +2357,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 //}
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)

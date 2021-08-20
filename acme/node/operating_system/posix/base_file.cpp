@@ -420,7 +420,7 @@
 ////   return string(pszModuleFilePath);
 ////
 ////
-////#elif defined(APPLEOS)
+////#elif defined(__APPLE__)
 ////
 ////   return apple_app_module_path();
 ////

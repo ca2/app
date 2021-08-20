@@ -27,7 +27,7 @@ namespace acme
 
 inline int trailingBytesForUTF8(char ch);
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #undef err_none
 #endif
 

@@ -35,7 +35,7 @@
 
 #else
 
-#error "Not implemented... (not MACOS, not APPLE_IOS, but APPLEOS ?)"
+#error "Not implemented... (not MACOS, not APPLE_IOS, but __APPLE__ ?)"
 
 #endif
 

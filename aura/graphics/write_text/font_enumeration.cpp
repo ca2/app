@@ -105,7 +105,7 @@ namespace write_text
 
       double dMaxSimilarity = 0.2;
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem->m_paurasystem;
 
       auto * pdraw2d = psystem->draw2d();
 
@@ -164,7 +164,7 @@ namespace write_text
       else
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         auto psystem = m_psystem->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 

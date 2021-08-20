@@ -294,7 +294,7 @@ inline i64 release(c_derived * & pca)
 
    c_derived * p = pca;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    ::id id = p->m_id;
    //char * pszType = nullptr;
@@ -340,7 +340,7 @@ inline i64 release(c_derived * & pca)
 
    }
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //   try
 //   {

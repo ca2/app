@@ -15,21 +15,21 @@
 #endif
 
 
-#ifdef DEBUG
-#ifndef _DEBUG
-#define _DEBUG
-#endif
-#endif
+// #ifdef _DEBUG
+// #ifndef _DEBUG
+// #define _DEBUG
+// #endif
+// #endif
 
 
-#ifdef _DEBUG
-#define __DEBUG
-#ifndef DEBUG
-#define DEBUG
-#endif
-#else
-#define NNDEBUG
-#endif
+// #ifdef _DEBUG
+// #define __DEBUG
+// #ifndef DEBUG
+// #define DEBUG
+// #endif
+// #else
+// #define NNDEBUG
+// #endif
 
 #define CA2_AURA
 

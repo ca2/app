@@ -88,7 +88,7 @@ namespace logic
 
       inline bit & operator=(int i)
       {
-         m_ebit = (enum_bit)i;
+         m_ebit = (i ? e_bit_true : e_bit_false);
          return *this;
       }
 

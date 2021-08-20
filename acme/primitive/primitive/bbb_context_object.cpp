@@ -8,7 +8,7 @@ object::~object()
 }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -317,7 +317,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
     }
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

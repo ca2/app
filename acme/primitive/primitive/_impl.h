@@ -1689,7 +1689,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 
 
-#ifndef DEBUG
+#ifndef _DEBUG
 
 
 inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

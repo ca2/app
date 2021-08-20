@@ -21,7 +21,7 @@ class single_lock;
 
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #include <semaphore.h>
 #endif
 
@@ -35,7 +35,7 @@ class single_lock;
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 #define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX

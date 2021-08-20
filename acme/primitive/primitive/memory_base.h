@@ -293,7 +293,7 @@ public:
 
 #endif
    
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //
 //   CFDataRef get_os_cf_data(memsize pos = 0, memsize size = -1) const;
 //   void set_os_cf_data(CFDataRef data, memsize pos = 0, memsize size = -1);

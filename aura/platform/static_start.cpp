@@ -1252,13 +1252,13 @@ namespace aura
 ////         //
 ////         //#endif
 ////
-////         //#if defined(APPLEOS)
+////         //#if defined(__APPLE__)
 ////         //
 ////         //         g_poswindowdataptra = new oswindow_dataptra;
 ////         //
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //
-////         //#endif // defined(APPLEOS)
+////         //#endif // defined(__APPLE__)
 ////
 ////
 ////
@@ -1341,13 +1341,13 @@ namespace aura
 //      {
 //
 //
-//         //#if defined(APPLEOS)
+//         //#if defined(__APPLE__)
 //         //
 //         //         delete g_poswindowdataptra;
 //         //
 //         //         g_poswindowdataptra = nullptr;
 //         //
-//         //#endif // defined(APPLEOS)
+//         //#endif // defined(__APPLE__)
 //
 //
 //

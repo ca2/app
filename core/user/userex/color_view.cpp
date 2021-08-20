@@ -5,7 +5,7 @@
 #include "aura/node/operating_system/windows_common/graphics.h"
 
 
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
 //#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
@@ -127,7 +127,7 @@ namespace visual
       double dL = 0.5;
 
       double dS = 1.0 - IMAGE_Y(j, h) / h;
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //      dS = 1.0 - dS;
 //#endif
 
@@ -294,7 +294,7 @@ namespace visual
       {
          double dL = 1.0 - ((double) j / dh);
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
          dL = 1.0 - dL;
 #endif
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <time.h>
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 #include <unistd.h>
 #endif
 

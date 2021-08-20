@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 typedef int key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;

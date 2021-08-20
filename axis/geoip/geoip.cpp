@@ -12,7 +12,7 @@
 
 #endif
 
-#if defined(APPLEOS) || defined(ANDROID) || defined(LINUX)
+#if defined(__APPLE__) || defined(ANDROID) || defined(LINUX)
 
 #include <netdb.h>
 
@@ -23,7 +23,7 @@ static geoipv6_t IPV6_NULL;
 
 #define GEOIPDATADIR "/aura/geoip"
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 #include<sys/stat.h>
 #include<sys/mman.h>
@@ -34,7 +34,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 
 #include<arpa/inet.h>
 #include<sys/time.h>

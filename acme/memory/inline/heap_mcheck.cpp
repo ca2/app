@@ -140,7 +140,7 @@ void * unaligned_memory_allocate(size_t size)
 
 #else
 
-#if defined(APPLEOS) || defined(LINUX)
+#if defined(__APPLE__) || defined(LINUX)
 
    p = aligned_memory_allocate(size);
 
@@ -253,7 +253,7 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
 #else
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 
    p = aligned_memory_allocate(size);
 
@@ -301,7 +301,7 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
 void * memory_allocate(memsize size)
 {
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
    return aligned_memory_allocate(size);
 
@@ -327,7 +327,7 @@ void * memory_allocate_no_track(size_t size)
 
 #else
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
    return aligned_memory_allocate(size);
 

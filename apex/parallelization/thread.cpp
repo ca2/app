@@ -3432,6 +3432,13 @@ message_queue* thread::_get_mq()
       return m_pmq;
 
    }
+   
+   if(m_itask == 0)
+   {
+      
+      return nullptr;
+      
+   }
 
    auto pmq = ::get_message_queue(m_itask, true);
 

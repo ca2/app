@@ -41,9 +41,9 @@
 
 #define PLATFORM_NAME   "uwp"
 
-#ifdef _DEBUG
-#define DEBUG
-#endif
+// #ifdef _DEBUG
+// #define DEBUG
+// #endif
 
 
 #define DECL_C __cdecl

@@ -1019,7 +1019,7 @@ typedef int* int_ptr_atomic;
 typedef ::u64* int_ptr_atomic;
 #elif defined(LINUX)
 typedef ::u64* int_ptr_atomic;
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 typedef ::u64* int_ptr_atomic;
 #else
 typedef iptr int_ptr_atomic;

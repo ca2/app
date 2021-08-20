@@ -33,7 +33,7 @@ namespace userex
       virtual bool update_data(bool bSaveAndValidate) override;
 
       virtual bool _001GetItemText(string & str, index iItem) override;
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

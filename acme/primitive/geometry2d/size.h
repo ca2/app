@@ -37,7 +37,7 @@ public:
    size_type(const SIZE_I64* psize) noexcept : size_type(*psize) {}
    size_type(const SIZE_F32* psize) noexcept : size_type(*psize) {}
    size_type(const SIZE_F64* psize) noexcept : size_type(*psize) {}
-#ifdef APPLEOS
+#ifdef __APPLE__
 //   size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
 //   size_type(const CGSize *psize) noexcept : size_type(*psize) {}
 #endif

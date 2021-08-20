@@ -93,7 +93,7 @@ inline bool image::operator != (const image& image) const
 inline int image::line(int line)
 {
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
    return height() - line - 1;
 
@@ -349,7 +349,7 @@ namespace draw2d
    inline ::color::color get_pixel(const ::color32_t * pdata, int iScan, int iHeight, int x, int y)
    {
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 
       return ((::color32_t *)&((u8 *)pdata)[iScan * (iHeight - y - 1)])[x];
 

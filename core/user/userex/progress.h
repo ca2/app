@@ -21,7 +21,7 @@ namespace userex
       progress_control();
       virtual ~progress_control();
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
@@ -60,7 +60,7 @@ namespace userex
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

@@ -1901,7 +1901,7 @@ namespace apex
 //
 //      }
 //
-//#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+//#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //      //attach_thread_input_to_main_thread(false);
 //#endif
 //

@@ -1,4 +1,4 @@
-﻿//#include "config.h"
+//#include "config.h"
 
 #pragma once
 
@@ -168,7 +168,7 @@ namespace sockets
 #  error FreeBSD versions prior to 400014 does not support ipv6
 # endif
 
-#elif defined APPLEOS
+#elif defined __APPLE__
 // ----------------------------------------
 // Mac App X
 #ifdef __DARWIN_UNIX03

@@ -1,6 +1,6 @@
 #pragma once
 
-#if !defined(APPLEOS) && !defined(ANDROID)
+#if !defined(__APPLE__) && !defined(ANDROID)
 
 #if BYTE_ORDER == BIG_ENDIAN
 

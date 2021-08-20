@@ -27,7 +27,7 @@ It is provided "as is" without express or implied warranty.
 #include <cxxabi.h>
 #undef USE_MISC
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 #include <execinfo.h>
 #elif defined(ANDROID)
 #undef USE_MISC
@@ -345,7 +345,7 @@ LPDWORD     pNumberOfBytesRead
 {
 
    SIZE_T size = 0;
-#if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
    return false;
 #else
    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
@@ -367,7 +367,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, 
 {
 
    SIZE_T size = 0;
-#if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
+#if defined(_UWP) || defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(SOLARIS)
    __throw(todo);
 #else
    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
@@ -1650,7 +1650,7 @@ namespace exception
 
    }
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
    void engine::backtrace(void **pinteraction, int &c)
    {

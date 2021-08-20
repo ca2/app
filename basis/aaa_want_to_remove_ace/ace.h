@@ -4,31 +4,31 @@
 #include "_ace.h"
 
 
-#ifdef DEBUG
+// #ifdef _DEBUG
 
-#ifndef _DEBUG
+// #ifndef _DEBUG
 
-#define _DEBUG
+// #define _DEBUG
 
-#endif
+// #endif
 
-#endif
+// #endif
 
-#ifdef _DEBUG
+// #ifdef _DEBUG
 
-#define __DEBUG
+// #define __DEBUG
 
-#ifndef DEBUG
+// #ifndef DEBUG
 
-#define DEBUG
+// #define DEBUG
 
-#endif
+// #endif
 
-#else
+// #else
 
-#define NNDEBUG
+// #define NNDEBUG
 
-#endif
+// #endif
 
 // enable debug at release for debugging release
 #define XXDEBUG

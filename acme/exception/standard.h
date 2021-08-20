@@ -37,7 +37,7 @@
 
 #elif defined(WINDOWS)
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 
 #include <sys/ucontext.h>
@@ -174,7 +174,7 @@ namespace exception
 //      }
 //
 //
-//#elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+//#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
 //      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
 //#ifdef LINUX
 //#ifdef _LP64
@@ -254,7 +254,7 @@ namespace exception
    };
 
 
-#elif defined(LINUX) || defined(APPLEOS)
+#elif defined(LINUX) || defined(__APPLE__)
 
    class standard_sigfpe : public standard_exception
    {
@@ -300,7 +300,7 @@ namespace exception
 
 
 #include "translator.h"
-#if !defined(APPLEOS)
+#if !defined(__APPLE__)
 #include <ucontext.h>
 #include <sys/ucontext.h>
 #endif*/

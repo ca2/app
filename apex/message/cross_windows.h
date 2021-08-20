@@ -52,7 +52,7 @@ typedef LPCREATESTRUCTA LPCREATESTRUCT ;
 
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 #define WM_APP 0x8000
 #define WM_USER                         0x0400
 #endif

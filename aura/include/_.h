@@ -233,7 +233,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define _ASSUME(cond)
 //#if defined(ANDROID)
 //#define ASSERT_VALID(cond)
-//#elif defined(APPLEOS)
+//#elif defined(__APPLE__)
 //#define ASSERT_VALID(cond)
 //#elif defined(LINUX)
 //#define ASSERT_VALID(cond)
@@ -498,7 +498,7 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//#if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
+//#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 //
 //int ftruncate(int file, filesize len);
 //
@@ -2283,7 +2283,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-//#ifdef APPLEOS
+//#ifdef __APPLE__
 //#undef err_none
 //#endif
 //

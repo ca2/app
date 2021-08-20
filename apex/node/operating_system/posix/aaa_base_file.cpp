@@ -409,7 +409,7 @@ filesize file_length_dup(const char * path)
    return string(pszModuleFilePath);
 
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
    return apple_app_module_path();
 

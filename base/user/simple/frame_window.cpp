@@ -537,7 +537,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
          auto pnode = psystem->node();
 
-         pnode->node_branch(__routine([this]()
+         pnode->node_sync(15_s, __routine([this]()
          {
 
             if (m_pnotifyicon)
@@ -550,7 +550,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             }
 
          }));
-
+         
       }
       catch (...)
       {
@@ -693,7 +693,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    }
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 
    SetActiveFlag(true);
 

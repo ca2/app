@@ -81,7 +81,7 @@ namespace user
          bOk = false;
 
          string strMessage;
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
          strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).name());
 #else
          strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());

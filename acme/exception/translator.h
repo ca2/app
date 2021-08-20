@@ -24,7 +24,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #define EXCEPTION_TRANSLATOR_USE_SIGNAL
 #endif
 

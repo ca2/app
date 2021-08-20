@@ -45,7 +45,7 @@ namespace user
       virtual bool update_data(bool bSaveAndValidate) override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
@@ -98,7 +98,7 @@ namespace user
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

@@ -27,7 +27,7 @@
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 #ifndef _DEBUG
 
@@ -41,19 +41,19 @@
 
 // Mummi: Good Good (GUDDO GUDDO) - [Gato Guri Gato],[Gato Guri Gato]
 
-#define __DEBUG
+// #define __DEBUG
 
-#ifndef DEBUG
+// #ifndef DEBUG
 
-#define DEBUG
+// #define DEBUG
 
-#endif
+// #endif
 
-#else
+// #else
 
-#define NNDEBUG
+// #define NNDEBUG
 
-#endif
+// #endif
 
 // enable debug at release for debugging release
 #define XXDEBUG

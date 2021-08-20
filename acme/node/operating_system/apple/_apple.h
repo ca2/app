@@ -14,7 +14,7 @@
 #include "_apple_no_templates.h"
 
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
 
 CFDataRef get_os_cf_data(const memory_base & memory, memsize pos = 0, memsize size = -1);

@@ -15,7 +15,7 @@ public:
    ::i32              m_lMaxCount;
    sem_t *           m_psem;
 
-#elif defined(LINUX) || defined(APPLEOS)
+#elif defined(LINUX) || defined(__APPLE__)
 
    ::i32              m_lMaxCount;
    i32           m_hsync;
@@ -26,7 +26,7 @@ public:
    virtual ~semaphore();
 
 
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 //   using matter::lock;
    virtual synchronization_result wait(const duration & durationTimeout) override;
 #endif

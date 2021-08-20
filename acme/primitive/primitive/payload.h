@@ -111,7 +111,7 @@ public:
    payload(::u64 u);
    payload(float f);
    payload(double d);
-#ifdef APPLEOS
+#ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
 #endif

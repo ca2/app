@@ -1,7 +1,7 @@
 #include "framework.h"
 #include <math.h>
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #include <freetype/freetype.h>
 #endif
 

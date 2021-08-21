@@ -501,3 +501,12 @@ namespace draw2d
 
 
 
+
+
+inline image_payload::image_payload(::object * pobject, const ::payload & payload):
+image_source(pobject->m_pcontext->context_image()->get_image(payload))
+{
+
+
+}
+

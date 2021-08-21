@@ -56,12 +56,17 @@ public:
    template < image_source_pointer IMAGE_SOURCE_POINTER >
    image_source(IMAGE_SOURCE_POINTER pimagesource)
    {
+      
+      if(pimagesource)
+      {
 
-      auto concreteSize = pimagesource->size();
+         auto concreteSize = pimagesource->size();
 
-      m_pimage = pimagesource->get_image(concreteSize);
+         m_pimage = pimagesource->get_image(concreteSize);
 
-      m_rectangleSource.set(concreteSize);
+         m_rectangleSource.set(concreteSize);
+         
+      }
 
    }
 
@@ -111,3 +116,12 @@ public:
 };
 
 
+class CLASS_DECL_AURA image_payload :
+   public image_source
+   {
+public:
+
+      image_payload(::object * pobject, const ::payload & payload);
+
+
+   };

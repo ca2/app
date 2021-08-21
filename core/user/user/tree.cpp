@@ -1323,7 +1323,7 @@ namespace user
    void tree::_001SetExpandImage(const ::string & pszMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add_file(this, pszMatter);
+      m_iImageExpand = m_pimagelist->add(image_payload(this, pszMatter));
 
    }
 
@@ -1331,7 +1331,7 @@ namespace user
    void tree::_001SetCollapseImage(const ::string & pszMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add_file(this, pszMatter);
+      m_iImageCollapse = m_pimagelist->add(image_payload(this, pszMatter));
 
    }
 

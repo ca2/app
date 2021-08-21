@@ -80,6 +80,12 @@ public:
 
    }
 
+   image_drawing(const ::image_source & imagesource) :
+      ::image_source(imagesource)
+   {
+
+   }
+
 
 };
 

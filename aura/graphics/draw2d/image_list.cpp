@@ -489,55 +489,55 @@ i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 }
 
 
-i32 image_list::set_file(int iItem, ::object * pobjectContext, const ::payload & payload)
-{
-
-   auto pcontextimage = pobjectContext->m_pcontext->context_image();
-
-   auto pimage = pcontextimage->get_image(payload);
-
-   if(!::is_ok(pimage))
-   {
-
-      return -1;
-
-   }
-
-   image_source imagesource(pimage);
-
-   rectangle_f64 rectangle(m_size);
-
-   image_drawing_options imagedrawingoptions(rectangle);
-
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-   i32 iImage = this->set(iItem, imagedrawing);
-
-   return iImage;
-
-}
-
-
-i32 image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
-{
-
-   auto pcontextimage = pobjectContext->m_pcontext->context_image();
-
-   auto pimage = pcontextimage->get_image(payload);
-
-   image_source imagesource(pimage);
-
-   rectangle_f64 rectangle(m_size);
-
-   image_drawing_options imagedrawingoptions(rectangle);
-
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-   i32 iImage = this->set(iItem, imagedrawing);
-
-   return iImage;
-
-}
+//i32 image_list::set_file(int iItem, ::file::file * pfile)
+//{
+//
+//   auto pcontextimage = pobjectContext->m_pcontext->context_image();
+//
+//   auto pimage = pcontextimage->get_image(pfile);
+//
+//   if(!::is_ok(pimage))
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   image_source imagesource(pimage);
+//
+//   rectangle_f64 rectangle(m_size);
+//
+//   image_drawing_options imagedrawingoptions(rectangle);
+//
+//   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//   i32 iImage = this->set(iItem, imagedrawing);
+//
+//   return iImage;
+//
+//}
+//
+//
+//i32 image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
+//{
+//
+//   auto pcontextimage = pobjectContext->m_pcontext->context_image();
+//
+//   auto pimage = pcontextimage->get_image(payload);
+//
+//   image_source imagesource(pimage);
+//
+//   rectangle_f64 rectangle(m_size);
+//
+//   image_drawing_options imagedrawingoptions(rectangle);
+//
+//   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//   i32 iImage = this->set(iItem, imagedrawing);
+//
+//   return iImage;
+//
+//}
 
 
 //i32 image_list::add_matter(const ::string & pcsz, ::object * pobject, int iItem)

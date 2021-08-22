@@ -35,6 +35,8 @@
 		9ADD666226B625E500D11298 /* libssl.1.1.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9ADD666026B625E500D11298 /* libssl.1.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9ADD666326B625FB00D11298 /* libapp_shader.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5CC8E22CBECAE00EDEAD1 /* en.lproj */; };
+		9AF73B0F26D19D1E0041CBEC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FCC2C2651A8A600C0D8A1 /* MainMenu.xib */; };
+		9AF73B1026D19D230041CBEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8FCC2E2651A8A600C0D8A1 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,7 +412,7 @@
 		070B8EE21B6E53F900D26137 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "ca2 Desenvolvimento de Software Ltdal";
 				TargetAttributes = {
 					070B8EE91B6E53F900D26137 = {
@@ -525,7 +527,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF73B1026D19D230041CBEC /* Images.xcassets in Resources */,
 				9AE5CC8F22CBECAE00EDEAD1 /* en.lproj in Resources */,
+				9AF73B0F26D19D1E0041CBEC /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +651,6 @@
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -713,7 +716,6 @@
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -753,6 +755,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/macos/Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = app.shader;

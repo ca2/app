@@ -5986,6 +5986,13 @@ namespace user
       ::rectangle_i32 rectangle;
 
       m_puserinteraction->get_window_rect(rectangle);
+       
+      if(::is_null(m_pgraphics))
+      {
+         
+         return 0;
+         
+      }
       
       auto pimage = m_pgraphics->get_screen_image();
       

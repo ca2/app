@@ -381,7 +381,7 @@ namespace app_shader
 
             auto pstyle = m_pinteraction->get_style(pgraphics);
 
-            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+//            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
 
             auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
 
@@ -500,7 +500,7 @@ namespace app_shader
 
             auto pstyle = m_pinteraction->get_style(pgraphics);
 
-            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+//            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
 
             auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
 

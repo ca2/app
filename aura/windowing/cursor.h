@@ -37,7 +37,7 @@ namespace windowing
       virtual ::file::path get_file_path() const;
 
       virtual ::e_status _create_os_cursor();
-
+      
       //virtual ::e_status set_cursor_file(const ::file::path& pathParam, bool bFromCache);
 
 

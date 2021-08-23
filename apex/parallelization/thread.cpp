@@ -3920,7 +3920,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
          }
 
-         __copy(pMsg, msg);
+         copy(pMsg, &msg);
 
          if (iRet == -1)
          {

@@ -2226,6 +2226,41 @@ namespace draw2d
    }
 
    
+   bool graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   {
+
+      ::draw2d::brush_pointer brushSolidColor(e_create);
+
+      brushSolidColor->create_solid(color);
+
+      auto smooth_mode = get_smooth_mode();
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode_none);
+
+      }
+
+      if (!fill_rectangle(rectangle, brushSolidColor))
+      {
+
+         return false;
+
+      }
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode);
+
+      }
+
+      return true;
+
+   }
+
+
    bool graphics::color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
    {
 
@@ -2267,8 +2302,17 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   bool graphics::draw_inset_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
+
+      auto smooth_mode = get_smooth_mode();
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode_none);
+
+      }
 
       if (eborder & e_border_top)
       {
@@ -2332,15 +2376,22 @@ namespace draw2d
 
       }
 
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode);
+
+      }
+
       return true;
 
    }
 
 
-   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   bool graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
-      if (!draw_3drect(rectangle, color, color, eborder))
+      if (!draw_inset_3drect(rectangle, color, color, eborder))
       {
 
          return false;

@@ -392,7 +392,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, crBorder);
 
       }
 
@@ -605,15 +605,15 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1, 0, 1);
 
@@ -1233,7 +1233,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw_3drect(
+         pgraphics->draw_inset_3drect(
          rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));

@@ -88,7 +88,7 @@ namespace app_app
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rectangle(rectangleClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_inset_rectangle(rectangleClient, __acolor(255, 127, 127, 127));
 
          rectangleClient.deflate(1, 1);
 

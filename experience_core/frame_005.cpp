@@ -738,14 +738,14 @@ SizingNone:;
 
                auto crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-               pgraphics->draw_3drect(rectangle, crMoveableBorder, crMoveableBorderDkShadow);
+               pgraphics->draw_inset_3drect(rectangle, crMoveableBorder, crMoveableBorderDkShadow);
 
                rectangle.top++;
                rectangle.bottom--;
                rectangle.left++;
                rectangle.right--;
 
-               pgraphics->draw_3drect(rectangle,crMoveableBorderHilight, crMoveableBorderShadow);
+               pgraphics->draw_inset_3drect(rectangle,crMoveableBorderHilight, crMoveableBorderShadow);
 
                rectangle.top++;
                rectangle.bottom--;

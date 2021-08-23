@@ -1,5 +1,5 @@
 //#include "operating_system/config.h"
-//#include <stdio.h>
+#include <stdio.h>
 //#include <stdlib.h>
 
 //#ifdef WINDOWS

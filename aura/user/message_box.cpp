@@ -447,7 +447,7 @@ namespace user
 
       colorBorder.alpha = 100;
 
-      pgraphics->draw_rectangle(rectangleClient, colorBorder);
+      pgraphics->draw_inset_rectangle(rectangleClient, colorBorder);
 
    }
 

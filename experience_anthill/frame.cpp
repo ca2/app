@@ -612,7 +612,7 @@ namespace experience
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw_3drect(rectangle_i32_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                        pgraphics->draw_inset_3drect(rectangle_i32_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                         i += 5;
 

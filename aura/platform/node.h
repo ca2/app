@@ -33,7 +33,7 @@ namespace aura
 
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
       virtual ::e_status on_initialize_object() override;
@@ -44,6 +44,11 @@ namespace aura
     //  virtual void appindicator_destroy(::linux::appindicator * pappindicator);
 
 //#endif
+
+
+      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier);
+
+      virtual ::image_pointer get_file_image(int iSize, const char * pszPath);
       
       virtual void defer_dock_application(bool bDock);
 

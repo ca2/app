@@ -219,5 +219,14 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 }
 
 
+bool acme_path::has_custom_icon(const char * path)
+{
+   
+   __throw(error_interface_only);
+      
+   return false;
+   
+}
+
 
 

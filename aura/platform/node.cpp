@@ -66,6 +66,27 @@ namespace aura
 //
 //#endif
 
+
+   ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
+   {
+      
+      __throw(error_interface_only);
+      
+      return nullptr;
+      
+   }
+
+
+   ::image_pointer node::get_file_image(int iSize, const char * pszPath)
+   {
+      
+      __throw(error_interface_only);
+      
+      return nullptr;
+      
+   }
+
+
    void node::defer_dock_application(bool bDock)
    {
       

@@ -44,6 +44,8 @@ public:
 
    virtual ::file::path symbolic_link_destination(const char * pszLink);
 
+   virtual bool has_custom_icon(const char * path);
+   
 
 };
 

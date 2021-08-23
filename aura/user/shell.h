@@ -70,8 +70,10 @@ namespace user
       struct _get_file_image_
       {
 
-         int            m_iImage;
-         image_key      m_imagekey;
+         
+         int               m_iImage;
+         ::file::path      m_pathFinal;
+         image_key         m_imagekey;
 
 
       };
@@ -80,6 +82,9 @@ namespace user
       template < typename VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE > >
       using image_key_map = map< image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE, PAIR >;
 
+      bool m_bGetFileImageByIconPath : 1;
+      bool m_bGetFileImageByFileTypeImage : 1;
+      bool m_bGetFileImageByFileImage : 1;
 
    protected:
 
@@ -156,6 +161,7 @@ namespace user
 
       virtual _get_file_image_ * new_get_file_image();
 
+      virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
       inline ::aura::application * get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
       inline ::aura::session * get_session() { return m_pcontext ? m_pcontext->m_paurasession : nullptr; }
@@ -164,7 +170,8 @@ namespace user
 
       //virtual void add_thread();
 
-      virtual bool defer_set_thumbnail(_get_file_image_ & getfileimage);
+      
+      
 
       virtual void on_update_sizes_interest();
 
@@ -194,9 +201,17 @@ namespace user
       virtual i32 get_file_image(const image_key & imagekey);
       virtual i32 schedule_get_file_image(const image_key & imagekey);
 
+      virtual bool get_image_by_file_extension(_get_file_image_ & getfileimage);
 
-      virtual void _get_file_image(_get_file_image_ & getfileimage);
+      virtual bool _get_file_image(_get_file_image_ & getfileimage);
 
+      virtual bool defer_set_thumbnail(_get_file_image_ & getfileimage);
+      
+      virtual bool defer_get_file_image_by_icon_path(_get_file_image_ & getfileimage);
+      
+      virtual bool defer_get_file_image_by_file_type_image(_get_file_image_ & getfileimage);
+      
+      virtual bool defer_get_file_image_by_file_image(_get_file_image_ & getfileimage);
 
 
 

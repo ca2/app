@@ -518,6 +518,25 @@ namespace user
 
    }
 
+   
+   ::file::path & shell::final_path(_get_file_image_ & getfileimage)
+   {
+      
+      if(getfileimage.m_pathFinal.is_empty())
+      {
+      
+         ::file::path path = m_pcontext->m_papexcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
+      
+         ::file::path pathFinal = m_psystem->m_pacmepath->_final(path);
+      
+         getfileimage.m_pathFinal = pathFinal;
+
+      }
+      
+      return getfileimage.m_pathFinal;
+      
+   }
+
 
    ::image_list * shell::GetImageList(int iSize)
    {
@@ -629,9 +648,6 @@ namespace user
    }
 
 
-
-
-
    void shell::get_file_extension_image(_get_file_image_ & getfileimage)
    {
 
@@ -713,11 +729,865 @@ namespace user
    }
 
 
-   void shell::_get_file_image(_get_file_image_ & getfileimage)
+   bool shell::get_image_by_file_extension(_get_file_image_ & getfileimage)
    {
+      
+      return false;
 
    }
 
+
+   bool shell::_get_file_image(_get_file_image_ & getfileimage)
+   {
+      
+//      ::file::path path = getfileimage.m_imagekey.m_strPath;
+//
+////         image_key imagekey(imagekeyParam);
+////
+////         i32 iImage = 0x80000000;
+//
+//      if (::str::begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
+//      {
+//
+//         auto pcontext = m_pcontext;
+//
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+//
+////            for (auto iSize : m_iaSize)
+////            {
+////
+////
+//////               HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+////
+////               //             iImage = add_icon(iSize, hicon, crBk);
+////
+////            }
+//
+//         single_lock synchronouslock(mutex(), true);
+//
+//         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+//
+//         //return iImage;
+//
+//         return;
+//
+//      }
+//      else if (::str::begins_ci(getfileimage.m_imagekey.m_strPath, "fs:"))
+//      {
+//
+//         auto pcontext = m_pcontext;
+//
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+//
+////            for (auto iSize : m_iaSize)
+////            {
+////
+////
+//////               HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+////
+////               //             iImage = add_icon(iSize, hicon, crBk);
+////
+////            }
+//
+//         single_lock synchronouslock(mutex(), true);
+//
+//         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+//
+//         //return iImage;
+//
+//         return;
+//
+//      }
+//      else if (::str::begins_ci(getfileimage.m_imagekey.m_strPath, "ftp:"))
+//      {
+//
+//         auto pcontext = m_pcontext;
+//
+//         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+//
+////            for (auto iSize : m_iaSize)
+////            {
+////
+////
+////               //HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+////
+////               //iImage = add_icon(iSize, hicon, crBk);
+////
+////            }
+//
+//         single_lock synchronouslock(mutex(), true);
+//
+//         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+//
+//         //return iImage;
+//
+//         return;
+//
+//      }
+//
+//      if (::str::ends_ci(getfileimage.m_imagekey.m_strPath, ".aura"))
+//      {
+//
+//         auto pcontext = m_pcontext;
+//
+//         string str = pcontext->m_papexcontext->file().as_string(getfileimage.m_imagekey.m_strPath);
+//
+//         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+//         {
+//
+//            str.trim();
+//            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+//            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+//            synchronous_lock sl1(m_pil48Hover->mutex());
+//            synchronous_lock sl2(m_pil48->mutex());
+//            iImage = m_pil16->add_icon_os_data(hicon16);
+//            m_pil48Hover->add_icon_os_data(hicon48);
+//
+//            if (crBk == 0)
+//            {
+//               psystem->imaging().Createcolor_blend_ImageList(
+//                  m_pil48,
+//                  m_pil48Hover,
+//                  rgb(255, 255, 240),
+//                  64);
+//            }
+//            else
+//            {
+//               *m_pil48 = *m_pil48Hover;
+//            }*/
+//
+//         }
+//         //return iImage;
+//
+//         return true;
+//
+//      }
+//
+//      // try to find "uifs:// http:// ftp:// like addresses"
+//      // then should show icon by extension or if is folder
+//
+//      string strPath = getfileimage.m_imagekey.m_strPath;
+//
+//      string strRealPath = m_pcontext->m_papexcontext->defer_process_path(strPath);
+//
+//      string strFinalPath = m_psystem->m_pacmepath->_final(strRealPath);
+//
+//      if(strFinalPath.is_empty())
+//      {
+//
+//         string strProtocol = m_psystem->m_purldepartment->get_protocol(path);
+//
+//         string strRoot = m_psystem->m_purldepartment->get_root(path);
+//
+//         if (strProtocol.has_char() && strRoot.has_char())
+//         {
+//
+//            if(get_image_by_file_extension(getfileimage))
+//            {
+//
+//               return true;
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//      if(defer_set_thumbnail(getfileimage))
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      string strExtension;
+//
+//      if (::str::ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
+//      {
+//
+//         // output_debug_string("test .sln");
+//
+//      }
+//
+//      return false;
+
+      
+      string strPath = getfileimage.m_imagekey.m_strPath;
+
+//         image_key imagekey(imagekeyParam);
+//
+//         i32 iImage = 0x80000000;
+
+      if (::str::begins_ci(strPath, "uifs:"))
+      {
+
+         auto pcontext = m_pcontext;
+
+         ::file::path path = pcontext->m_papexcontext->dir().matter("cloud.ico");
+
+//            for (auto iSize : m_iaSize)
+//            {
+//
+//
+////               HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+//
+//               //             iImage = add_icon(iSize, hicon, crBk);
+//
+//            }
+
+         single_lock synchronouslock(mutex(), true);
+
+         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+
+         //return iImage;
+
+         return true;
+
+      }
+      else if (::str::begins_ci(strPath, "fs:"))
+      {
+
+         auto pcontext = m_pcontext;
+
+         ::file::path path = pcontext->m_papexcontext->dir().matter("remote.ico");
+
+//            for (auto iSize : m_iaSize)
+//            {
+//
+//
+////               HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+//
+//               //             iImage = add_icon(iSize, hicon, crBk);
+//
+//            }
+
+         single_lock synchronouslock(mutex(), true);
+
+         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+
+         //return iImage;
+
+         return true;
+
+      }
+      else if (::str::begins_ci(strPath, "ftp:"))
+      {
+
+         auto pcontext = m_pcontext;
+
+         ::file::path path = pcontext->m_papexcontext->dir().matter("ftp.ico");
+
+//            for (auto iSize : m_iaSize)
+//            {
+//
+//
+//               //HICON hicon = (HICON)LoadImage(nullptr, path, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
+//
+//               //iImage = add_icon(iSize, hicon, crBk);
+//
+//            }
+
+         single_lock synchronouslock(mutex(), true);
+
+         m_imagemap.set_at(getfileimage.m_imagekey, getfileimage.m_iImage);
+
+         //return iImage;
+
+         return true;
+
+      }
+
+      if (::str::ends_ci(strPath, ".aura"))
+      {
+
+         auto pcontext = m_pcontext;
+
+         string str = pcontext->m_papexcontext->file().as_string(strPath);
+
+         if (::str::begins_eat_ci(str, "ca2prompt\r\n"))
+         {
+
+            str.trim();
+            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
+            HICON hicon48 = (HICON) ::LoadImage(nullptr, pcontext->m_papexcontext->dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
+            synchronous_lock sl1(m_pil48Hover->mutex());
+            synchronous_lock sl2(m_pil48->mutex());
+            iImage = m_pil16->add_icon_os_data(hicon16);
+            m_pil48Hover->add_icon_os_data(hicon48);
+
+            if (crBk == 0)
+            {
+               psystem->imaging().Createcolor_blend_ImageList(
+                  m_pil48,
+                  m_pil48Hover,
+                  rgb(255, 255, 240),
+                  64);
+            }
+            else
+            {
+               *m_pil48 = *m_pil48Hover;
+            }*/
+
+         }
+         //return iImage;
+
+         return true;
+
+      }
+
+      // try to find "uifs:// http:// ftp:// like addresses"
+      // then should show icon by extension or if is folder
+
+      auto & pathFinal = final_path(getfileimage);
+
+      if(pathFinal.is_empty())
+      {
+
+         string strProtocol = m_psystem->m_purldepartment->get_protocol(strPath);
+
+         string strRoot = m_psystem->m_purldepartment->get_root(strPath);
+
+         if (strProtocol.has_char() && strRoot.has_char())
+         {
+
+            if(get_image_by_file_extension(getfileimage))
+            {
+            
+               return true;
+               
+            }
+
+         }
+
+      }
+
+      if(defer_set_thumbnail(getfileimage))
+      {
+
+         return true;
+
+      }
+      
+      if(m_bGetFileImageByIconPath)
+      {
+      
+         if(defer_get_file_image_by_icon_path(getfileimage))
+         {
+            
+            return true;
+         
+         }
+         
+      }
+      
+      bool bGetFileImageByFileTypeImage = m_bGetFileImageByFileTypeImage;
+
+      if(bGetFileImageByFileTypeImage)
+      {
+         
+         if(m_bGetFileImageByFileImage)
+         {
+            
+            auto pacmepath = m_psystem->m_pacmepath;
+         
+            if(pacmepath->has_custom_icon(strPath))
+            {
+               
+               bGetFileImageByFileTypeImage = false;
+               
+            }
+               
+         }
+
+         if(bGetFileImageByFileTypeImage)
+         {
+      
+            if(defer_get_file_image_by_file_type_image(getfileimage))
+            {
+               
+               return true;
+            
+            }
+            
+         }
+         
+      }
+
+      if(m_bGetFileImageByFileImage)
+      {
+      
+         if(defer_get_file_image_by_file_image(getfileimage))
+         {
+            
+            return true;
+         
+         }
+         
+      }
+      
+      return false;
+
+   }
+
+
+   bool shell::defer_get_file_image_by_icon_path(_get_file_image_ & getfileimage)
+   {
+
+      string strExtension;
+
+      string strIcon48;
+
+      string strIcon16;
+
+      if (::str::ends_ci(getfileimage.m_imagekey.m_strPath, ".desktop"))
+      {
+
+         auto pcontext = m_pcontext;
+
+         string str = pcontext->m_papexcontext->file().as_string(getfileimage.m_imagekey.m_strPath);
+
+         string_array stra;
+
+         stra.add_lines(str);
+
+         stra.filter_begins_ci("icon=");
+
+         if (stra.get_size() <= 0)
+         {
+
+            getfileimage.m_iImage = -1;
+
+            return false;
+
+         }
+
+         string strIcon = stra[0];
+
+         ::str::begins_eat_ci(strIcon, "icon=");
+
+         strIcon48 = strIcon;
+
+         strIcon16 = strIcon;
+
+      }
+      else
+      {
+
+         auto psystem = m_psystem->m_paurasystem;
+
+         auto pnode = psystem->node();
+         
+         auto pathFinal = final_path(getfileimage);
+         
+         strIcon48 = pnode->get_file_icon_path(pathFinal, 48);
+
+         strIcon16 = pnode->get_file_icon_path(pathFinal, 16);
+
+      }
+
+      if (strIcon16.has_char() || strIcon48.has_char())
+      {
+
+         if(strIcon16.has_char())
+         {
+
+            getfileimage.m_imagekey.m_strPath = strIcon16;
+
+            getfileimage.m_imagekey.m_strExtension = "";
+
+            getfileimage.m_imagekey.m_eicon = e_icon_normal;
+
+            if(!reserve_image(getfileimage))
+            {
+
+               return false;
+
+            }
+
+         }
+         else if(strIcon48.has_char())
+         {
+
+            getfileimage.m_imagekey.m_strPath = strIcon48;
+
+            getfileimage.m_imagekey.m_strExtension = "";
+
+            getfileimage.m_imagekey.m_eicon = e_icon_normal;
+
+            if(!reserve_image(getfileimage))
+            {
+
+               return false;
+
+            }
+
+         }
+
+         if(strIcon16.is_empty())
+         {
+
+            strIcon16 = strIcon48;
+
+         }
+         else if(strIcon48.is_empty())
+         {
+
+            strIcon48 = strIcon16;
+
+         }
+
+         ::image_pointer pimage1 = m_pcontext->m_pcontextimage->load_image(strIcon16);
+
+         if (!::is_ok(pimage1))
+         {
+
+            return false;
+
+         }
+
+         auto pcontext = m_pcontext;
+
+         auto pcontextimage = pcontext->context_image();
+
+         ::image_pointer pimage = pcontextimage->load_image(strIcon48);
+
+         if (!::is_ok(pimage))
+         {
+
+            return false;
+
+         }
+
+         ::image_pointer image16;
+
+         if(pimage1->get_size() == ::size_i32(16, 16))
+         {
+
+            image16 = pimage1;
+
+         }
+         else
+         {
+
+            image16 = create_image({16, 16});
+
+            if (!::is_ok(image16))
+            {
+
+               return false;
+
+            }
+
+            image16->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+            image_source imagesource(pimage1, pimage1->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(16, 16));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            image16->get_graphics()->draw(imagedrawing);
+
+         }
+
+         ::image_pointer image48;
+
+         if(pimage->get_size() == ::size_i32(48, 48))
+         {
+
+            image48 = pimage;
+
+         }
+         else
+         {
+
+            image48 = create_image({48, 48});
+
+            if (!::is_ok(image48))
+            {
+
+               return false;
+
+            }
+
+            image48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+            image_source imagesource(pimage, pimage->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(48, 48));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            image48->get_graphics()->draw(imagedrawing);
+
+         }
+
+         {
+
+            synchronous_lock sl1(m_pil[16]->mutex());
+
+            image_source imagesource(pimage1, pimage1->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(16, 16));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            getfileimage.m_iImage = m_pil[16]->set(getfileimage.m_iImage, imagedrawing);
+
+         }
+
+         {
+
+            synchronous_lock sl2(m_pil[48]->mutex());
+
+            image_source imagesource(image48, image48->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(48, 48));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            getfileimage.m_iImage = m_pil[48]->set(getfileimage.m_iImage, imagedrawing);
+
+         }
+
+         {
+
+            synchronous_lock sl1(m_pilHover[16]->mutex());
+
+            image_source imagesource(image16, image16->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(16, 16));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            getfileimage.m_iImage = m_pil[16]->set(getfileimage.m_iImage, imagedrawing);
+
+            m_pilHover[16]->color_blend(m_pil[16], rgb(255, 255, 240), 64);
+
+         }
+
+         {
+
+            synchronous_lock sl1(m_pilHover[48]->mutex());
+
+            image_source imagesource(image48, image48->rectangle());
+
+            rectangle_f64 rectangle(::size_i32(48, 48));
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            getfileimage.m_iImage = m_pil[48]->set(getfileimage.m_iImage, imagedrawing);
+
+            m_pilHover[48]->color_blend(m_pil[48], rgb(255, 255, 240), 64);
+
+         }
+
+         return true;
+
+         
+      }
+
+      return false;
+      
+   }
+
+
+   bool shell::defer_get_file_image_by_file_type_image(_get_file_image_ & getfileimage)
+   {
+   
+      auto psystem = m_psystem->m_paurasystem;
+      
+      auto pnode = psystem->node();
+      
+      auto pathFinal = final_path(getfileimage);
+      
+      string strTypeIdentifier = pnode->get_file_type_identifier(pathFinal);
+      
+      if(strTypeIdentifier.is_empty())
+      {
+         
+         return false;
+         
+      }
+      
+      string strPath = getfileimage.m_imagekey.m_strPath;
+      
+      getfileimage.m_imagekey.m_strPath.Empty();
+      
+      getfileimage.m_imagekey.m_strExtension = strTypeIdentifier;
+      
+      if(!reserve_image(getfileimage))
+      {
+         
+         // File Type Image already set
+         
+         return true;
+         
+      }
+      
+      image_pointer pimageFirst;
+      
+      auto iaSize = m_iaSize;
+      
+      iaSize.sort(false);
+
+      for(int & iSize : iaSize)
+      {
+         
+         auto pimage = pnode->get_file_image_by_type_identifier(iSize, strTypeIdentifier);
+         
+         if(!::is_ok(pimage))
+         {
+         
+            if(!::is_ok(pimageFirst))
+            {
+               
+               getfileimage.m_imagekey.m_strPath = strPath;
+               
+               getfileimage.m_imagekey.m_strExtension.Empty();
+               
+               return false;
+            
+            }
+            
+            pimage = pimageFirst;
+
+         }
+         else if(::is_null(pimageFirst))
+         {
+            
+            pimageFirst = pimage;
+            
+         }
+
+         image_source imagesource(pimage);
+
+         set_image(getfileimage.m_iImage, iSize, imagesource);
+
+      }
+
+      return true;
+
+//      if(strUniversalTypeIdentifier.has_char())
+//      {
+//
+//         string strPathOld = getfileimage.m_imagekey.m_strPath;
+//
+//         getfileimage.m_imagekey.m_strPath.Empty();
+//
+//         getfileimage.m_imagekey.m_strExtension = strUniversalTypeIdentifier;
+//
+//         if(!reserve_image(getfileimage))
+//         {
+//
+//            // Image already set for this file type.
+//
+//            return true;
+//
+//         }
+//
+//         ::image_pointer pimage;
+//
+//         pimage.create();
+//
+//         pimage->create({ 48, 48});
+//
+//         if (macos_get_file_image_by_type_identifier(pimage, strUniversalTypeIdentifier))
+//         {
+//
+//            if (::is_ok(pimage))
+//            {
+//
+//               image_source imagesource(pimage);
+//
+//               for(int & iSize : m_iaSize)
+//               {
+//
+//                  set_image(getfileimage.m_iImage, iSize, imagesource);
+//
+//               }
+//
+//               return true;
+//
+//            }
+//
+//         }
+//
+//         getfileimage.m_imagekey.m_strPath = strPathOld;
+//
+//      }
+//
+//      return false;
+
+   }
+
+
+   bool shell::defer_get_file_image_by_file_image(_get_file_image_ & getfileimage)
+   {
+      
+      auto psystem = m_psystem->m_paurasystem;
+      
+      auto pnode = psystem->node();
+      
+      auto pcontext = m_pcontext->m_papexcontext;
+      
+      string strPath = pcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
+      
+      image_pointer pimageFirst;
+      
+      auto iaSize = m_iaSize;
+      
+      iaSize.sort(false);
+      
+      for(int & iSize : iaSize)
+      {
+         
+         auto pimage = pnode->get_file_image(iSize, strPath);
+         
+         if(!::is_ok(pimage))
+         {
+         
+            if(!::is_ok(pimageFirst))
+            {
+          
+               return false;
+            
+            }
+            
+            pimage = pimageFirst;
+            
+         }
+         else if(::is_null(pimageFirst))
+         {
+            
+            getfileimage.m_iImage = _reserve_image(getfileimage.m_imagekey);
+          
+            pimageFirst = pimage;
+            
+         }
+
+         image_source imagesource(pimage);
+
+         set_image(getfileimage.m_iImage, iSize, imagesource);
+
+      }
+
+      return true;
+         
+   }
+      
 
    ::e_status shell::run()
    {
@@ -726,9 +1596,7 @@ namespace user
 
       while (task_get_run())
       {
-
-//         image_key imagekey;
-
+         
          get_scheduled_image_key(pgetfileimage->m_imagekey);
 
          if (!task_get_run())
@@ -749,6 +1617,8 @@ namespace user
 
          try
          {
+            
+            pgetfileimage->m_pathFinal.Empty();
 
             auto strPath = pgetfileimage->m_imagekey.m_strPath;
 

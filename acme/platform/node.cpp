@@ -77,6 +77,14 @@ namespace acme
 #endif
 
 
+   ::string node::get_file_type_identifier(const char * path)
+   {
+      
+      return "";
+      
+   }
+
+
    ::e_status node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 

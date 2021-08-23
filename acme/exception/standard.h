@@ -269,7 +269,13 @@ namespace exception
 #endif
 #else
 #ifdef _LP64
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+      
+#ifdef __ARM_ARCH_ISA_A64
+         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__pc)
+#else
+      standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+
+#endif
 
 #else
 #if defined(APPLE_IOS)

@@ -2225,6 +2225,33 @@ namespace draw2d
 
    }
 
+
+   bool graphics::fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   {
+
+      ::draw2d::brush_pointer brushSolidColor(e_create);
+
+      brushSolidColor->create_solid(color);
+
+      if (!fill_rectangle(
+         {
+            rectangle.left + 1,
+            rectangle.top + 1,
+            rectangle.right - 1,
+            rectangle.bottom - 1
+         },
+         brushSolidColor))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    
    bool graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
    {

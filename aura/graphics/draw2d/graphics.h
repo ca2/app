@@ -598,6 +598,7 @@ virtual bool fill_contains(const point_f64 & point);
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle);
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush);
       virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
+      virtual bool fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       virtual bool fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
       virtual bool color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);

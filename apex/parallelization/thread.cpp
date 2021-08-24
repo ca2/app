@@ -3492,7 +3492,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 
       }
 
-      __copy(pMsg, msg);
+      copy(pMsg, &msg);
 
    }
 

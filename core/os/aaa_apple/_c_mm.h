@@ -30,9 +30,9 @@ void window_copy(RECT32 * prectTarget, const CGRect * prectSource);
 #ifdef MM
 
 void copy(NSRect & rectangle, LPCRECT32 lpcrect);
-void copy(RECTANGLE_I32 * lprect, const NSRect & rectSrc);
+void copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
 void window_copy(NSRect & rectangle, LPCRECT32 lpcrect);
-void window_copy(RECTANGLE_I32 * lprect, const NSRect & rectSrc);
+void window_copy(RECTANGLE_I32 * lprect, const NSRect & rectangleSource);
 
 #endif
 

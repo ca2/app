@@ -29,7 +29,8 @@ namespace draw2d
    class CLASS_DECL_AURA graphics :
       virtual public ::aura::simple_chain < ::aura::draw_context >,
       virtual public ::image_drawer,
-      virtual public ::write_text::drawer
+      virtual public ::write_text::drawer,
+      virtual public ::image_source_interface
    {
    public:
 
@@ -138,11 +139,11 @@ namespace draw2d
       inline ::size_f64 origin() const { return ::size_f64(); }
 
 
-      inline ::image * get_image(const concrete < ::size_i32 > & sizeDst) { return m_pimage->get_image(sizeDst); }
+      ::image_pointer image_source_image(const concrete < ::size_i32 > & sizeDst) override;
 
+      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
-      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
-      inline concrete < ::size_i32 > size() const { return m_pimage->size(); }
+      concrete < ::size_i32 > image_source_size() const override;
 
 
       //#ifdef _UWP
@@ -651,10 +652,10 @@ virtual bool fill_contains(const point_f64 & point);
 
       //virtual bool draw_image(const ::rectangle_f64 & rectangle, ::draw2d::graphics * pgraphicsSrc, const ::point_f64 & point);
 
-      //virtual bool draw_image(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangle);
+      //virtual bool draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangle);
       //virtual bool draw_image(const ::rectangle_f64 & rectdDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangle);
-      //virtual bool draw_image(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc);
-      // virtual bool draw_image(const ::rectangle_f64 & rectddDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc);
+      //virtual bool draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource);
+      // virtual bool draw_image(const ::rectangle_f64 & rectddDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource);
 
 
       // bit block transfer (pixel-to-pixel)
@@ -666,23 +667,23 @@ virtual bool fill_contains(const point_f64 & point);
       virtual bool _draw_blend(const ::image_drawing & imagedrawing) override;
 
       
-      //virtual bool _draw(const ::rectangle_f64 & rectDst, const image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc) override;
-      //virtual bool _draw_raw(const ::rectangle_f64 & rectDst, const image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc) override;
-      //virtual bool _draw_blend(const ::rectangle_f64 & rectDst, const image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc) override;
+      //virtual bool _draw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
+      //virtual bool _draw_raw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
+      //virtual bool _draw_blend(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
 
       //
-      //virtual bool _draw_raw(const ::rectangle_f64 & rectDst, const image_drawing & imagedrawing, const ::point_f64 & pointSrc) override;
-      //virtual bool _stretch_raw(const ::rectangle_f64 & rectDst, const image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc) override;
+      //virtual bool _draw_raw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::point_f64 & pointSrc) override;
+      //virtual bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, const image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource) override;
 
 
 
 
       // potentially stretching
-      //virtual bool stretch(const ::rectangle_f64 & rectDst, ::image * pimage, const ::rectangle_f64 & rectSrc = ::rectangle_f64());
-      //virtual bool stretch(const ::rectangle_f64 & rectDst, ::image_frame * pframe, const ::rectangle_f64 & rectSrc = ::rectangle_f64());
-      //virtual bool stretch(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc = ::rectangle_f64());
-      //virtual bool stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc = ::rectangle_f64());
-      //virtual bool stretch_blend(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc = ::rectangle_f64());
+      //virtual bool stretch(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual bool stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual bool stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual bool stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual bool stretch_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
 
 
       //template < primitive_size SIZE >
@@ -699,16 +700,16 @@ virtual bool fill_contains(const point_f64 & point);
 
 
       //template < primitive_rectangle RECTANGLE >
-      //inline bool alpha_blend(const RECTANGLE & rectDst, const ::image_drawing & imagedrawing, double dOpacity)
+      //inline bool alpha_blend(const RECTANGLE & rectangleTarget, const ::image_drawing & imagedrawing, double dOpacity)
       //{
 
-      //   return _alpha_blend(rectDst, pgraphicssource, ::rectangle_f64(rectDst.size()), dOpacity);
+      //   return _alpha_blend(rectangleTarget, pgraphicssource, ::rectangle_f64(rectangleTarget.size()), dOpacity);
 
       //}
 
       //
       //template < primitive_rectangle RECTANGLE, primitive_point POINT >
-      //inline bool alpha_blend(const RECTANGLE & rectDst, const ::image_drawing & imagedrawing, const POINT & pointSrc, double dOpacity)
+      //inline bool alpha_blend(const RECTANGLE & rectangleTarget, const ::image_drawing & imagedrawing, const POINT & pointSrc, double dOpacity)
       //{
 
       //   if (::is_null(pgraphicssource))
@@ -718,29 +719,29 @@ virtual bool fill_contains(const point_f64 & point);
 
       //   }
 
-      //   auto sizeDst = rectDst.size() - pointSrc;
+      //   auto sizeDst = rectangleTarget.size() - pointSrc;
 
-      //   return _alpha_blend(rectangle_f64(rectDst.top_left(), sizeDst), pgraphicssource, ::rectangle_f64(pointSrc, pgraphicssource->size_i32(sizeDst) - pointSrc), dOpacity);
+      //   return _alpha_blend(rectangle_f64(rectangleTarget.top_left(), sizeDst), pgraphicssource, ::rectangle_f64(pointSrc, pgraphicssource->size_i32(sizeDst) - pointSrc), dOpacity);
 
       //}
 
 
       //template < primitive_rectangle RECTANGLE_DST, primitive_rectangle RECTANGLE_SRC >
-      //inline bool alpha_blend(const RECTANGLE_DST & rectDst, const ::image_drawing & imagedrawing, const RECTANGLE_SRC & rectSrc, double dOpacity)
+      //inline bool alpha_blend(const RECTANGLE_DST & rectangleTarget, const ::image_drawing & imagedrawing, const RECTANGLE_SRC & rectangleSource, double dOpacity)
       //{
 
-      //   return _alpha_blend(rectDst, pgraphicssource, rectSrc, dOpacity);
+      //   return _alpha_blend(rectangleTarget, pgraphicssource, rectangleSource, dOpacity);
 
       //}
 
 
-      //virtual bool _alpha_blend(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dOpacity);
-      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dRate);
-      //virtual bool _alpha_blend_blend(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dRate);
+      //virtual bool _alpha_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dOpacity);
+      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dRate);
+      //virtual bool _alpha_blend_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dRate);
 
 
       //virtual bool draw(const ::rectangle_f64 & point, cursor * pcursor);
-      //virtual bool draw(const ::rectangle_f64 & rectDst, icon * picon);
+      //virtual bool draw(const ::rectangle_f64 & rectangleTarget, icon * picon);
 
 
 

@@ -269,12 +269,12 @@ namespace draw2d_cairo
 //
 //   }
 
-   bool image::_draw_raw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc)
+   bool image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc)
    {
 
       image_source imagesource(pimage, pointSrc);
 
-      rectangle_f64 rectangle(rectDst);
+      rectangle_f64 rectangle(rectangleTarget);
 
       image_drawing_options imagedrawingoptions(rectangle);
 

@@ -25,9 +25,9 @@ namespace user
       pgraphics->fill_rectangle(m_rectangle, argb(127, 255, 255, 180));
       pgraphics->draw_text(m_str, m_rectangle, e_align_center);
       ::rectangle_i32 rectangle(m_rectangle);
-      pgraphics->draw_rectangle(rectangle, argb(127, 255, 255, 255));
+      pgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rectangle(rectangle, argb(127, 255, 255, 255));
+      pgraphics->draw_inset_rectangle(rectangle, argb(127, 255, 255, 255));
 
    }
 

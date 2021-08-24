@@ -145,7 +145,7 @@ inline bool get_memory::get_base64(const ::string & str)
 
 
 //template < typename PRED >
-//inline ::image_result matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_transport matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return get_system()->get_image(this, varFile, uTrait, pred);

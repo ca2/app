@@ -344,7 +344,7 @@ namespace user
             
             pgraphics->fill_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
-            pgraphics->draw_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208));
+            pgraphics->draw_inset_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208));
 
          }
 
@@ -640,7 +640,7 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            pdrawitem->m_pgraphics->draw_rectangle(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
+            pdrawitem->m_pgraphics->draw_inset_rectangle(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
 
             pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, argb(40, 255, 255, 255));
 
@@ -7534,7 +7534,7 @@ namespace user
 
                {
 
-                  image_source imagesource(m_plist->m_pimageTime, rect2.top_left());
+                  image_source imagesource(m_plist->m_pimageTime, rect2);
 
                   image_drawing_options imagedrawingoptions(rectI);
 

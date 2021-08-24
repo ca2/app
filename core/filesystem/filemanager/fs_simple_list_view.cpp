@@ -77,13 +77,30 @@ namespace filemanager
 
 #ifdef WINDOWS
 
-            m_iIconFolder = m_pil->add_icon("matter://mplite/vmskarlib_folder_normal.ico");
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
 
-            m_iIconArtist = m_pil->add_icon("matter://mplite/vmskarlib_artist_normal.ico");
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
 
-            m_iIconSong = m_pil->add_icon("matter://mplite/vmskarlib_song_normal.ico");
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
+
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 #endif
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
          }
 

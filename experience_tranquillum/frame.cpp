@@ -584,11 +584,11 @@ namespace experience
 
                   image_source imagesource(pdrawicon);
 
-                  rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
+                  rectangle_f64 rectangleTarget(pdrawicon->get_smaller_size(rectIcon.size()));
 
-                  rectDst.CenterOf(rectIcon);
+                  rectangleTarget.CenterOf(rectIcon);
 
-                  image_drawing_options imagedrawingoptions(rectDst);
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -777,11 +777,11 @@ namespace experience
 
                   image_source imagesource(picon);
 
-                  rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
+                  rectangle_f64 rectangleTarget(picon->get_smaller_size(rectIcon.size()));
 
-                  rectDst.CenterOf(rectIcon);
+                  rectangleTarget.CenterOf(rectIcon);
 
-                  image_drawing_options imagedrawingoptions(rectDst);
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

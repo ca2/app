@@ -1564,7 +1564,7 @@ bool imaging::BitmapDivBlend(
 
    {
 
-      image_source imagesource(pimage->g(), pointSrc);
+      image_source imagesource(pimage, { pointSrc, size });
 
       image_drawing_options imagedrawingoptions(::rectangle_f64(pointDst, size));
 
@@ -4132,7 +4132,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
-   image_source imagesource(pdcColorAlpha, pointAlpha);
+   image_source imagesource(pdcColorAlpha, { pointAlpha, rectangle.size() } );
 
    image_drawing_options imagedrawingoptions(rectangle);
 
@@ -4320,8 +4320,8 @@ i32 w3)
 //   ::u32 uScanLineCount;
 //
 //
-//   ::rectangle_i32 rectDst(pointDst, size);
-//   ::rectangle_i32 rectSrc(pointSrc, size);
+//   ::rectangle_i32 rectangleTarget(pointDst, size);
+//   ::rectangle_i32 rectangleSource(pointSrc, size);
 //
 //   i32 iwDest;
 //
@@ -4340,7 +4340,7 @@ i32 w3)
 //            bmiDst,
 //            memstorageA,
 //            bitmapDst,
-//            rectDst,
+//            rectangleTarget,
 //            iwDest,
 //            uiStartScanLine,
 //            uiScanLineCount,
@@ -4366,7 +4366,7 @@ i32 w3)
 //            pdcSrc,bmSrc,bmiSrc,
 //            memstorageB,
 //            bitmapSrc,
-//            rectSrc,
+//            rectangleSource,
 //            iwSrc,
 //            user,
 //            user,
@@ -4499,7 +4499,7 @@ i32 w3)
 //
 //
 //   ::rectangle_i32 rectDest(pointDst, size);
-//   ::rectangle_i32 rectSrc(pointSrc, size);
+//   ::rectangle_i32 rectangleSource(pointSrc, size);
 //
 //   i32 iwDest;
 //
@@ -4545,7 +4545,7 @@ i32 w3)
 //            pdcSrc,bmSrc,bmiSrc,
 //            memstorageB,
 //            bitmapSrc,
-//            rectSrc,
+//            rectangleSource,
 //            iwSrc,
 //            user,
 //            user,
@@ -5663,11 +5663,11 @@ breakFilter2:
 //   rectDest.top = yDest;
 //   rectDest.bottom = yDest + cy;
 //
-//   ::rectangle_i32 rectSrc;
-//   rectSrc.left = xSrc;
-//   rectSrc.right = xSrc + cx;
-//   rectSrc.top = ySrc;
-//   rectSrc.bottom = ySrc + cy;
+//   ::rectangle_i32 rectangleSource;
+//   rectangleSource.left = xSrc;
+//   rectangleSource.right = xSrc + cx;
+//   rectangleSource.top = ySrc;
+//   rectangleSource.bottom = ySrc + cy;
 //
 //   i32 iwDest;
 //
@@ -5709,7 +5709,7 @@ breakFilter2:
 //            pdcSrc,bmSrc,bmiSrc,
 //            memstorageB,
 //            bitmapSrc,
-//            rectSrc,
+//            rectangleSource,
 //            iwSrc,
 //            user,
 //            user,

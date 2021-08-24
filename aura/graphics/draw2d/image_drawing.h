@@ -24,18 +24,20 @@ public:
    using color_filter::operator=;
 
 
-   enum_placement       m_eplacement;
-   point_f64            m_pointAlign;
-   ::rectangle_f64      m_rectangleTarget;
+   enum_image_selection    m_eimageselection;
+   enum_placement          m_eplacement;
+   point_f64               m_pointAlign;
+   ::rectangle_f64         m_rectangleTarget;
 
 
    image_drawing_options(const image_drawing_options & imagedrawingoptions) = default;
 
    
-   explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.)) :
+   explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default) :
       m_rectangleTarget(rectangleTarget),
       m_eplacement(eplacement),
-      m_pointAlign(pointAlign)
+      m_pointAlign(pointAlign),
+      m_eimageselection(eimageselection)
    {
 
    }
@@ -83,6 +85,77 @@ public:
    image_drawing(const ::image_source & imagesource) :
       ::image_source(imagesource)
    {
+
+   }
+
+   ::rectangle_f64 source_rectangle() const
+   {
+
+      if (m_esubimage == e_sub_image_rate)
+      {
+
+         auto sizeTarget = m_rectangleTarget.size() / m_rectangleSubImage.size();
+
+         auto size = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
+
+         return ::rectangle_f64(
+            m_rectangleSubImage.left * size.cx,
+            m_rectangleSubImage.top * size.cy,
+            m_rectangleSubImage.right * size.cx,
+            m_rectangleSubImage.bottom * size.cy);
+
+      }
+      else if (m_esubimage == e_sub_image_coordinates)
+      {
+
+         // I hope you know you are doing
+
+         return m_rectangleSubImage;
+
+      }
+      else
+      {
+
+         auto sizeTarget(m_rectangleTarget.size());
+
+         return ::rectangle_f64(m_pimagesource->image_source_size(sizeTarget, m_eimageselection));
+
+      }
+
+   }
+
+   ::image_pointer image() const
+   {
+
+
+      if (m_esubimage == e_sub_image_rate)
+      {
+
+         auto sizeTarget = m_rectangleTarget.size() / m_rectangleSubImage.size();
+
+         auto concreteSize = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
+
+         return m_pimagesource->image_source_image(concreteSize);
+
+      }
+      else if (m_esubimage == e_sub_image_coordinates)
+      {
+
+         auto concreteSize = m_pimagesource->image_source_size();
+
+         return m_pimagesource->image_source_image(concreteSize);
+
+      }
+      else
+      {
+
+         auto sizeTarget = m_rectangleTarget.size();
+
+         auto concreteSize = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
+
+         return m_pimagesource->image_source_image(concreteSize);
+
+      }
 
    }
 

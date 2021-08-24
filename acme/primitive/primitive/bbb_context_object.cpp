@@ -381,11 +381,11 @@ void object::process_exit_status(const ::e_status& estatus)
 
    // void to_string(const string_exchange & str) const 
 
-   //::image_result create_image();
-   //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_transport create_image();
+   //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   //::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
    //inline __transport(BASE_TYPE) __create();
@@ -830,14 +830,14 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-   // ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   // ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   // ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   // ::image_result load_thumbnail(const char * pszPath);
-   // ::image_result load_dib(const ::file::path & pathDib);
+   // ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   // ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+   // ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   // ::image_transport load_thumbnail(const char * pszPath);
+   // ::image_transport load_dib(const ::file::path & pathDib);
 
 
 

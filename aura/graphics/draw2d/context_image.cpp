@@ -49,7 +49,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::_load_image_from_file(const ::payload & varFile, const ::payload & varOptions)
+::image_transport context_image::_load_image_from_file(const ::payload & varFile, const ::payload & varOptions)
 {
 
    return load_image(
@@ -74,7 +74,35 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::get_image(const ::payload & varFile, bool bCache, bool bSync)
+::icon_transport context_image::get_icon(const ::payload & varFile, bool bCache, bool bSync)
+{
+
+   icon_pointer picon;
+
+   auto estatus = __construct(picon);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = _get_icon(picon, varFile);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return picon;
+
+}
+
+
+::image_transport context_image::get_image(const ::payload & varFile, bool bCache, bool bSync)
 {
 
    image_pointer pimage;
@@ -102,7 +130,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::matter_image(const ::string & strMatter, bool bCache, bool bSync)
+::image_transport context_image::matter_image(const ::string & strMatter, bool bCache, bool bSync)
 {
 
    image_pointer pimage;
@@ -146,7 +174,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_image(const ::payload & varFile, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_transport context_image::load_image(const ::payload & varFile, bool bCache, bool bSync, bool bCreateHelperMaps)
 {
 
    image_pointer pimage;
@@ -190,7 +218,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_matter_image(const ::string & strMatter, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_transport context_image::load_matter_image(const ::string & strMatter, bool bCache, bool bSync, bool bCreateHelperMaps)
 {
 
    image_pointer pimage;
@@ -234,7 +262,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_matter_icon(string_array & straMatter, string strIcon)
+::image_transport context_image::load_matter_icon(string_array & straMatter, string strIcon)
 {
 
    image_pointer pimage;
@@ -262,7 +290,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_thumbnail(const ::payload & varFile, int w, int h)
+::image_transport context_image::load_thumbnail(const ::payload & varFile, int w, int h)
 {
 
    image_pointer pimage;
@@ -290,7 +318,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_thumbnail(const ::string & strPath)
+::image_transport context_image::load_thumbnail(const ::string & strPath)
 {
 
    image_pointer pimage;
@@ -318,7 +346,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_dib(const ::file::path & pathDib)
+::image_transport context_image::load_dib(const ::file::path & pathDib)
 {
 
    image_pointer pimage;
@@ -344,6 +372,36 @@ context_image::~context_image()
    return pimage;
 
 }
+
+
+::e_status context_image::_get_icon(::draw2d::icon * picon, const ::payload & varFile)
+{
+
+   return _load_icon(picon, varFile);
+
+}
+
+
+::e_status context_image::_load_icon(::draw2d::icon * picon, const ::payload & varFile)
+{
+
+   auto pwindowingicon = __create < ::windowing::icon >();
+
+   pwindowingicon->load_file(varFile);
+
+   auto estatus = picon->initialize_with_windowing_icon(pwindowingicon);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
+
+}
+
 
 
 ::e_status context_image::_get_image(image * pimage, const ::payload & varFile, bool bSync)

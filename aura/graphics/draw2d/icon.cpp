@@ -156,7 +156,7 @@ namespace draw2d
    }
 
 
-   image * icon::get_image(const concrete < ::size_i32 > & size)
+   image_pointer icon::image_source_image(const concrete < ::size_i32 > & size)
    {
 
       bool bExists;
@@ -233,6 +233,110 @@ namespace draw2d
       return m_sizea[iFound];
 
    }
+
+
+   /*image_pointer icon::image_source_image(const concrete < ::size_i32 > & size) const
+   {
+
+      return ((icon *)this)->get_image(size);
+
+   }*/
+
+
+   // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
+
+   concrete < ::size_i32 > icon::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   {
+
+      if (m_sizea.is_empty())
+      {
+
+         return ::size_i32();
+
+      }
+
+      for (::index i = 0; i < m_sizea.get_size(); i++)
+      {
+
+         if (sizeDst.cy == m_sizea[i].cy)
+         {
+
+            return m_sizea[i];
+
+         }
+
+      }
+
+      ::index iFound = -1;
+
+      if (eimageselection == e_image_selection_prefer_largest)
+      {
+
+         iFound = m_sizea.last_index();
+
+      }
+      else if (eimageselection >= e_image_selection_prefer_smaller)
+      {
+
+         iFound = m_sizea.first_index();
+
+         double dRateSmaller = 1.0 / pow(2.0, (double)(int)(eimageselection - e_image_selection_prefer_smaller));
+
+         for (::index i = m_sizea.get_upper_bound(); i >= 0; i--)
+         {
+
+            if (m_sizea[i].cy < dRateSmaller * sizeDst.cy)
+            {
+
+               iFound = i;
+
+               break;
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         iFound = m_sizea.first_index();
+
+         for (::index i = 0; i < m_sizea.get_size(); i++)
+         {
+
+            if (m_sizea[i].cy > sizeDst.cy)
+            {
+
+               iFound = i;
+
+               break;
+
+            }
+
+         }
+
+      }
+
+      if (iFound < 0)
+      {
+
+         return size_i32();
+
+      }
+
+      return m_sizea[iFound];
+
+   }
+
+
+   concrete < ::size_i32 > icon::image_source_size() const
+   { 
+      
+      return image_source_size(::size_f64(), e_image_selection_default);
+   
+   }
+
 
 
 } // namespace draw2d

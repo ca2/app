@@ -1366,7 +1366,7 @@ bool graphics::round_rectangle(const ::rectangle_f64 & rectangle, double dRadius
 }
 
 
-bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+bool graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
 {
 
    synchronous_lock ml(cairo_mutex());
@@ -1399,7 +1399,7 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 
       }
 
-      if (rectDst.width() <= 0 || rectDst.height() <= 0)
+      if (rectangleTarget.width() <= 0 || rectangleTarget.height() <= 0)
       {
 
          return false;
@@ -1428,7 +1428,7 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 
       cairo_matrix_t matrixOld;
 
-      cairo_translate(m_pdc, rectDst.left, rectDst.top);
+      cairo_translate(m_pdc, rectangleTarget.left, rectangleTarget.top);
 
       cairo_pattern_get_matrix(ppattern, &matrixOld);
 
@@ -1436,7 +1436,7 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 
       cairo_pattern_set_matrix(ppattern, &matrix);
 
-      cairo_rectangle(m_pdc, 0, 0, rectDst.width(), rectDst.height());
+      cairo_rectangle(m_pdc, 0, 0, rectangleTarget.width(), rectangleTarget.height());
 
       cairo_clip(m_pdc);
 
@@ -1509,7 +1509,7 @@ bool graphics::_draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, cons
 }
 
 
-bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectSrc)
+bool graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
 {
 
     synchronous_lock ml(cairo_mutex());
@@ -1532,18 +1532,18 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 
     }
 
-    auto nSrcWidth = rectSrc.width();
+    auto nSrcWidth = rectangleSource.width();
 
-    auto nSrcHeight = rectSrc.height();
+    auto nSrcHeight = rectangleSource.height();
 
     rectangle_f64 rectFinal;
 
     if(imagedrawingoptions.m_eplacement == e_placement_aspect_fit)
     {
 
-       double dW = rectDst.width() / rectSrc.width();
+       double dW = rectangleTarget.width() / rectangleSource.width();
 
-       double dH = rectDst.height() / rectSrc.height();
+       double dH = rectangleTarget.height() / rectangleSource.height();
 
        double d = minimum(dW, dH);
 
@@ -1551,14 +1551,14 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 
        rectFinal.top = 0.0;
 
-       rectFinal.right = d * rectSrc.width();
+       rectFinal.right = d * rectangleSource.width();
 
-       rectFinal.bottom = d * rectSrc.height();
+       rectFinal.bottom = d * rectangleSource.height();
 
        rectFinal.align_rate(
           imagedrawingoptions.m_pointAlign.x,
          imagedrawingoptions.m_pointAlign.y,
-         rectDst);
+         rectangleTarget);
 
     }
     //else // if(imagedrawingoptions.m_eplacement == e_placement_stretch)
@@ -1571,9 +1571,9 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 
     auto nDstHeight = rectFinal.height();
 
-    auto xSrc = rectSrc.left;
+    auto xSrc = rectangleSource.left;
 
-    auto ySrc = rectSrc.top;
+    auto ySrc = rectangleSource.top;
 
     auto xDst = rectFinal.left;
 
@@ -2763,7 +2763,7 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //// India India
 //// Member
 //
-//bool graphics::_alpha_blend_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dRate)
+//bool graphics::_alpha_blend_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dRate)
 //{
 //
 //    synchronous_lock ml(cairo_mutex());
@@ -2780,7 +2780,7 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //
 //        }
 //
-//        if (rectDst.area() <= 0)
+//        if (rectangleTarget.area() <= 0)
 //        {
 //
 //            return false;
@@ -2816,15 +2816,15 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 //
 //        cairo_matrix_t matrixOld;
 //
-//        cairo_translate(m_pdc, rectDst.left, rectDst.right);
+//        cairo_translate(m_pdc, rectangleTarget.left, rectangleTarget.right);
 //
 //        cairo_pattern_get_matrix(ppattern, &matrixOld);
 //
-//        cairo_matrix_init_translate(&matrix, rectSrc.left, rectSrc.top);
+//        cairo_matrix_init_translate(&matrix, rectangleSource.left, rectangleSource.top);
 //
 //        cairo_pattern_set_matrix(ppattern, &matrix);
 //
-//        cairo_rectangle(m_pdc, 0, 0, rectDst.width(), rectDst.height());
+//        cairo_rectangle(m_pdc, 0, 0, rectangleTarget.width(), rectangleTarget.height());
 //
 //        cairo_clip(m_pdc);
 //

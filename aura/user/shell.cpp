@@ -1688,7 +1688,7 @@ namespace user
 
          auto pcontextimage = pcontext->context_image();
 
-         auto pimage = pdraw2dicon->get_image(::size_f64(iSize, iSize));
+         auto pimage = pdraw2dicon->image_source_image(::size_f64(iSize, iSize));
 
          if (::is_null(pimage))
          {

@@ -309,7 +309,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
                   {
 
-                     image_source imagesource(pgraphics, rectangle.top_left());
+                     image_source imagesource(pgraphics, rectangle);
 
                      ::rectangle_f64 rectangleTarget(rectangle.size());
 
@@ -1423,7 +1423,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       {
 
-         image_source imagesource(m_pimageMain, ::point_i32());
+         image_source imagesource(m_pimageMain);
 
          rectangle_f64 rectangleTarget(point, m_pimageMain->get_size());
 

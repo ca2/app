@@ -419,7 +419,7 @@ SizingNone:
                      for (index i = 0; i < iMaxBorder; i++)
                      {
 
-                        pgraphics->draw_rectangle(rectA, argb(0, 0, 0, 0), eborder);
+                        pgraphics->draw_inset_rectangle(rectA, argb(0, 0, 0, 0), eborder);
 
                         rectA.deflate(rectDeflate);
 
@@ -458,19 +458,19 @@ SizingNone:
                         if (estyle == ::user::StyleRedOrange)
                         {
 
-                           pgraphics->draw_rectangle(rectA, argb(255, 255, 170, 136), eborder);
+                           pgraphics->draw_inset_rectangle(rectA, argb(255, 255, 170, 136), eborder);
 
                         }
                         else if (estyle == ::user::StyleLightGreen)
                         {
 
-                           pgraphics->draw_rectangle(rectA, argb(255, 128, 230, 150), eborder);
+                           pgraphics->draw_inset_rectangle(rectA, argb(255, 128, 230, 150), eborder);
 
                         }
                         else
                         {
 
-                           pgraphics->draw_rectangle(rectA, argb(255, 0x07, 0x6D, 0x91), eborder);
+                           pgraphics->draw_inset_rectangle(rectA, argb(255, 0x07, 0x6D, 0x91), eborder);
 
                         }
 
@@ -479,7 +479,7 @@ SizingNone:
                      {
 
                         //rectA.deflate(9, 9, 9, 9);
-                        pgraphics->draw_rectangle(rectA, argb(255, 128, 128, 128));
+                        pgraphics->draw_inset_rectangle(rectA, argb(255, 128, 128, 128));
 
                      }
 

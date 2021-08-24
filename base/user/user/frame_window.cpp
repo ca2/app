@@ -505,11 +505,11 @@ namespace user
 
                   synchronous_lock synchronouslock(psync);
 
-                  auto rectDst = ::rectangle_f64(rectangle.size());
+                  auto rectangleTarget = ::rectangle_f64(rectangle.size());
 
                   image_source imagesource(pgraphics);
 
-                  image_drawing_options imagedrawingoptions(rectDst);
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

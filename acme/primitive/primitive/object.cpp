@@ -1056,10 +1056,28 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   if (pobjectTask->m_pobjectParentTask)
+   try
    {
 
-      pobjectTask->m_pobjectParentTask->erase_task(pobjectTask);
+      auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
+
+      if (::is_set(ptaskOldParent))
+      {
+
+         auto pchildren = ptaskOldParent->m_pobjectaChildrenTask;
+
+         if (::is_set(pchildren))
+         {
+
+            ptaskOldParent->erase_task(pobjectTask);
+
+         }
+
+      }
+
+   }
+   catch (...)
+   {
 
    }
 
@@ -1082,10 +1100,17 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   if (m_pobjectaChildrenTask->erase(pobjectTask))
+   if (pobjectTask->m_pobjectParentTask == this)
    {
 
       pobjectTask->m_pobjectParentTask = nullptr;
+
+   }
+
+   if (m_pobjectaChildrenTask->erase(pobjectTask) <= 0)
+   {
+
+      ::output_debug_string("not a child");
 
    }
 
@@ -1123,6 +1148,8 @@ void object::transfer_tasks_from(::task* ptask)
 
          try
          {
+
+            pobjectTask->m_pobjectParentTask = nullptr;
 
             add_task(pobjectTask);
 
@@ -1195,7 +1222,12 @@ bool object::check_tasks_finished()
          if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
          {
 
-            ptaskChild->m_pobjectParentTask = nullptr;
+            if (ptaskChild->m_pobjectParentTask == this)
+            {
+
+               ptaskChild->m_pobjectParentTask = nullptr;
+
+            }
 
             m_pobjectaChildrenTask->erase_at(iChildTask);
 
@@ -2914,11 +2946,11 @@ matter* object::get_taskpool_container()
 
 // void to_string(const string_exchange & str) const 
 
-//::image_result create_image();
-//::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image_transport create_image();
+//::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-//::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-//::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+//::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+//::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
 //inline __transport(BASE_TYPE) __create();
@@ -3363,14 +3395,14 @@ matter* object::get_taskpool_container()
 
 
 //template < typename PRED >
-//::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+//::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-// ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-// ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-// ::image_result load_thumbnail(const char * pszPath);
-// ::image_result load_dib(const ::file::path & pathDib);
+// ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+// ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+// ::image_transport load_thumbnail(const char * pszPath);
+// ::image_transport load_dib(const ::file::path & pathDib);
 
 
 

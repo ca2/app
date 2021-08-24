@@ -2561,13 +2561,13 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectDst(rectangleClient.size());
+            ::rectangle_f64 rectangleTarget(rectangleClient.size());
             
             {
                
                image_source imagesource(pgraphics);
                
-               image_drawing_options imagedrawingoptions(rectDst);
+               image_drawing_options imagedrawingoptions(rectangleTarget);
                
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

@@ -107,13 +107,13 @@
 
 #
 
-//CLASS_DECL_ACME int_bool CopyRect(RECTANGLE_I32 * prectDest, const RECTANGLE_I32 * rectSrc)
+//CLASS_DECL_ACME int_bool CopyRect(RECTANGLE_I32 * prectDest, const RECTANGLE_I32 * rectangleSource)
 //{
 //
-//   prectDest->left      = rectSrc->left;
-//   prectDest->top       = rectSrc->top;
-//   prectDest->right     = rectSrc->right;
-//   prectDest->bottom    = rectSrc->bottom;
+//   prectDest->left      = rectangleSource->left;
+//   prectDest->top       = rectangleSource->top;
+//   prectDest->right     = rectangleSource->right;
+//   prectDest->bottom    = rectangleSource->bottom;
 //
 //   return true;
 //

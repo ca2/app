@@ -2453,6 +2453,23 @@ namespace draw2d
 
    }
 
+   bool graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   {
+
+      auto rectangleFrame(rectangle);
+
+      rectangleFrame.inflate(1.0);
+
+      if (!draw_inset_rectangle(rectangleFrame, color, eborder))
+      {
+
+         return false;
+
+      }
+
+      return true;
+   }
+
 
       void graphics::assert_valid() const
    {

@@ -770,7 +770,7 @@ bool thread::thread_step()
 bool thread::pump_runnable()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    while(task_get_run())
    {
@@ -3924,6 +3924,12 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
          {
 
             ::output_debug_string("e_message_quit");
+
+         }
+         else if (msg.message == e_message_destroy_window)
+         {
+
+            ::output_debug_string("e_message_destroy_window");
 
          }
 

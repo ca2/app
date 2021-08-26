@@ -227,9 +227,11 @@ namespace user
 
       }
 
-      m_puserinteraction->m_pthreadUserInteraction->add_task(this);
+      m_puserinteraction->add_task(this);
 
-      add_task(m_puserinteraction);
+      //m_puserinteraction->m_pthreadUserInteraction->add_task(this);
+
+      //add_task(m_puserinteraction);
 
       while (task_get_run())
       {

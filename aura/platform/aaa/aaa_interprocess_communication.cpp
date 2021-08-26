@@ -785,11 +785,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
       ::file::path pathModule;
 
-      pathModule =          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= strApp + ".module_list";
 
@@ -879,11 +875,7 @@ repeat:
 
       m_straModule.erase_all();
 
-      pathModule =          auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->system() / "interprocess_communication";
+      pathModule = pacmedir->system() / "interprocess_communication";
 
       pathModule /= m_strApp + ".module_list";
 

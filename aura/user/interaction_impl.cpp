@@ -640,10 +640,14 @@ namespace user
 
       //__pointer(manual_reset_event) peventStartedProdevian;
 
+      __pointer(::user::thread) puserthread;
+
       if (bNewOwnThread)
       {
 
-         __raw_compose_new(m_puserthread);
+         puserthread = __create_new<::user::thread>();
+
+         __refer(m_puserthread, puserthread);
 
          m_puserthread->initialize_user_thread(this);
 
@@ -657,17 +661,21 @@ namespace user
 
       }
 
+      __pointer(::user::prodevian) pprodevian;
+
       if (bProdevianThread)
       {
 
-         __raw_compose_new(m_pprodevian);
+         pprodevian = __create_new < ::user::prodevian >();
+
+         __refer(m_pprodevian, pprodevian);
 
          m_pprodevian->initialize_prodevian(this);
 
          if (m_puserinteraction->is_graphical())
          {
 
-            m_pprodevian->m_puserthread = m_puserthread;
+            m_pprodevian->__refer(m_pprodevian->m_puserthread, m_puserthread);
 
          }
 
@@ -964,7 +972,7 @@ namespace user
 
          //{
 
-         //   synchronous_lock synchronouslock(mutex());
+         //   _synchronous_lock synchronouslock(mutex());
 
          //   uia = m_uiptraMouseHover;
 
@@ -1047,7 +1055,7 @@ namespace user
 
    //      {
 
-   //         synchronous_lock synchronouslock(mutex());
+   //         _synchronous_lock synchronouslock(mutex());
 
    //         for(auto & pinteraction : m_uiptraMouseHover)
    //         {
@@ -1137,7 +1145,7 @@ namespace user
 
    //      }
 
-   //      //synchronous_lock synchronouslock(mutex_children());
+   //      //_synchronous_lock synchronouslock(mutex_children());
 
    //      auto puserinteraction = m_puserinteraction->child_from_point(pmouse->m_point);
 
@@ -1167,7 +1175,7 @@ namespace user
    bool interaction_impl::add_prodevian(::matter * pmatter)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       auto bAdded = m_matteraProdevian.add_unique(pmatter);
 
@@ -1188,7 +1196,7 @@ namespace user
    bool interaction_impl::erase_prodevian(::matter * pmatter)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       bool bRemoved = m_matteraProdevian.erase(pmatter) > 0;
 
@@ -1227,7 +1235,7 @@ namespace user
       
       {
 
-         synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(mutex());
 
          bWasEmpty = m_userinteractionaMouseHover.is_empty();
 
@@ -1266,7 +1274,7 @@ namespace user
    void interaction_impl::_on_mouse_move_step(const ::point_i32 & pointCursor, bool bMouseLeave)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       for(::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
       {
@@ -1314,7 +1322,7 @@ namespace user
 //
 //      {
 //
-//         synchronous_lock synchronouslock(mutex());
+//         _synchronous_lock synchronouslock(mutex());
 //
 //         if (statusPointCursor.m_estatus != success)
 //         {
@@ -1373,7 +1381,7 @@ namespace user
    bool interaction_impl::mouse_hover_erase(::user::interaction * pinterface)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       return m_userinteractionaMouseHover.erase(pinterface) > 0;
 
@@ -1562,7 +1570,7 @@ namespace user
 
          auto psync = mutex();
 
-         synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(mutex());
 
          m_userinteractionaMouseHover.erase_all();
 
@@ -1584,13 +1592,13 @@ namespace user
 //
 //      }
 
+      auto pwindowthread = m_puserthread;
+
       ::user::primitive_impl::post_non_client_destroy();
 
       detach();
 
       m_puserinteraction.release();
-
-      auto pwindowthread = m_puserthread;
 
       if (::is_set(pwindowthread))
       {
@@ -3408,7 +3416,7 @@ namespace user
 
          auto psync = mutex();
 
-         synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(mutex());
 
          userinteractiona = m_userinteractionaMouseHover;
 
@@ -3630,7 +3638,7 @@ namespace user
 
             {
 
-               synchronous_lock synchronouslock(mutex());
+               _synchronous_lock synchronouslock(mutex());
 
                userinteractiona = m_userinteractionaMouseHover;
 
@@ -3665,7 +3673,7 @@ namespace user
 
             //{
 
-            //   synchronous_lock synchronouslock(mutex());
+            //   _synchronous_lock synchronouslock(mutex());
 
             //   if(!m_puserinteraction)
             //   {
@@ -3838,11 +3846,11 @@ namespace user
 
          ::size_i32 sizeDrawn;
 
-         synchronous_lock slGraphics(m_pgraphics->mutex());
+         _synchronous_lock slGraphics(m_pgraphics->mutex());
 
          ::synchronization_object * psync = m_pgraphics->get_buffer_sync();
 
-         synchronous_lock synchronouslock(psync);
+         _synchronous_lock synchronouslock(psync);
 
          ::draw2d::device_lock devicelock(m_puserinteraction);
 
@@ -4079,7 +4087,7 @@ namespace user
    void interaction_impl::_001UpdateScreen()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       if (!m_puserinteraction)
       {
@@ -4338,11 +4346,11 @@ namespace user
          if (m_pgraphics)
          {
 
-            synchronous_lock slGraphics(m_pgraphics->mutex());
+            _synchronous_lock slGraphics(m_pgraphics->mutex());
 
             ::synchronization_object * psync = m_pgraphics->get_draw_lock();
 
-            synchronous_lock synchronouslock(psync);
+            _synchronous_lock synchronouslock(psync);
 
             slGraphics.unlock();
 
@@ -4367,11 +4375,11 @@ namespace user
 
          {
 
-            synchronous_lock slGraphics(m_pgraphics->mutex());
+            _synchronous_lock slGraphics(m_pgraphics->mutex());
 
             ::synchronization_object * psyncDraw = m_pgraphics->get_draw_lock();
 
-            synchronous_lock slDraw(psyncDraw);
+            _synchronous_lock slDraw(psyncDraw);
 
             slGraphics.unlock();
 
@@ -4385,9 +4393,9 @@ namespace user
 
          //{
 
-         //   synchronous_lock synchronouslock(mutex());
+         //   _synchronous_lock synchronouslock(mutex());
 
-         //   synchronous_lock slGraphics(m_pgraphics->mutex());
+         //   _synchronous_lock slGraphics(m_pgraphics->mutex());
 
          //   m_pprodevian);
 
@@ -4538,7 +4546,7 @@ namespace user
 
       on_final_kill_keyboard_focus(nullptr);
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       if (m_puserinteractionFocusRequest && m_puserinteractionFocusRequest != m_puserinteractionFocus1)
       {
@@ -4582,7 +4590,7 @@ namespace user
    void interaction_impl::on_final_kill_keyboard_focus(::message::kill_keyboard_focus * pkillkeyboardfocus)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       if (m_puserinteractionToKillFocus && m_puserinteractionToKillFocus != m_puserinteractionFocusRequest)
       {
@@ -4875,7 +4883,7 @@ namespace user
       //if (m_puserthread)
       //{
 
-      //   synchronous_lock synchronouslock(m_puserthread->mutex());
+      //   _synchronous_lock synchronouslock(m_puserthread->mutex());
 
       //   m_puserthread->m_messagebasea.add(pmessage);
 
@@ -4901,7 +4909,7 @@ namespace user
    void interaction_impl::redraw_add(::object * p)
    {
 
-      synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw());
 
       m_ptraRedraw.add(p);
 
@@ -4911,7 +4919,7 @@ namespace user
    void interaction_impl::redraw_erase(::object * p)
    {
 
-      synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw());
 
       m_ptraRedraw.erase(p);
 
@@ -4921,7 +4929,7 @@ namespace user
    bool interaction_impl::has_redraw()
    {
 
-      synchronous_lock synchronouslock(mutex_redraw());
+      _synchronous_lock synchronouslock(mutex_redraw());
 
       return m_ptraRedraw.has_elements();
 
@@ -4948,7 +4956,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(mutex());
+         _synchronous_lock synchronouslock(mutex());
 
          if (m_ptraRedraw.has_elements())
          {
@@ -5395,7 +5403,7 @@ namespace user
    void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       for(auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
       {
@@ -5939,7 +5947,7 @@ namespace user
    i64 interaction_impl::opaque_area(const RECTANGLE_I32 * lpcrect)
    {
 
-      synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
+      _synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
 
       ::color::color colorTransparent(0);
 

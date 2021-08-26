@@ -7,7 +7,7 @@
 //#pragma warning(disable:4101)
 //#endif
 
-#include "nanosvg/nanosvg.h"
+#include "third/nanosvg/nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION
-#include "nanosvg/nanosvgrast.h"
+#include "third/nanosvg/nanosvgrast.h"
 

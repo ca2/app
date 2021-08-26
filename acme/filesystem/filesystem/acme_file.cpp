@@ -89,9 +89,9 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 
    wstring wstr(path);
 
-   stdio_file file;
+   auto pfile = m_psystem->__create_new < stdio_file >();
 
-   auto estatus = file.open(path, "r", _SH_DENYNO);
+   auto estatus = pfile->open(path, "r", _SH_DENYNO);
 
    if(!estatus)
    {
@@ -102,7 +102,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 
    DWORD dwSize;
 
-   dwSize = (DWORD)file.get_size();
+   dwSize = (DWORD)pfile->get_size();
 
    iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize : minimum(iReadAtMostByteCount, (::strsize)dwSize);
 
@@ -113,7 +113,7 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
    while (iReadAtMostByteCount - iPos > 0)
    {
 
-      auto dwRead = file.read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
+      auto dwRead = pfile->read(psz + iPos, (size_t)iReadAtMostByteCount - iPos);
 
       if (dwRead <= 0)
       {
@@ -493,9 +493,7 @@ filesize acme_file::get_size(const char * path)
 filesize acme_file::get_size(FILE * pfile)
 {
 
-   __throw(error_interface_only);
-
-   return -1;
+   return get_size_fd(fileno(pfile));
 
 }
 

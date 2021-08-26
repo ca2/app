@@ -18,7 +18,7 @@ namespace app_app
 
 
       main_window();
-      virtual ~main_window();
+      ~main_window() override;
 
 
       //bool is_frame_window() override;

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include <stdio.h>
 
 
@@ -114,6 +115,8 @@ stdio_file::~stdio_file()
 
    }
 
+   m_path = path;
+
    return ::success;
 
 }
@@ -141,13 +144,34 @@ stdio_file::~stdio_file()
 
 #ifdef WINDOWS
 
-   return fseek(m_pfile, (long) offset, nFrom);
+   if (fseek(m_pfile, (long)offset, nFrom))
+   {
+
+      // error;
+
+      __throw(::file::exception(error_failed, GetLastError(), errno, m_path));
+
+      return -1;
+
+   }
+
 
 #else
 
-   return fseek(m_pfile, offset, nFrom);
+   if(fseek(m_pfile, offset, nFrom)
+   {
+
+      // error;
+
+      __throw(::file::exception(error_failed, GetLastError(), errno, m_path));
+
+      return -1;
+
+   }
 
 #endif
+
+   return ftell(m_pfile);
 
 }
 
@@ -273,6 +297,8 @@ void stdio_file::set_size(filesize dwNewLen)
 
 filesize stdio_file::get_size() const
 {
+
+   //return m_psystem->m_pacmefile->get_size(m_pfile);
 
    auto position = get_position();
 

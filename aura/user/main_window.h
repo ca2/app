@@ -15,7 +15,7 @@ namespace user
 
 
       main_window();
-      virtual ~main_window();
+      ~main_window() override;
 
 
       virtual void install_message_routing(::channel* pchannel) override;

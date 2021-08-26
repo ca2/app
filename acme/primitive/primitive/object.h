@@ -161,7 +161,8 @@ public:
 
    virtual void add_task(::object* pobjectTask);
    virtual void erase_task(::object* pobjectTask);
-   virtual void transfer_tasks_from(::task * ptask);
+   virtual void transfer_tasks_from(::object * ptask);
+   virtual bool is_ascendant_task(::object * ptaskCandidateAscendant) const;
 
 //   ::e_status destroy() override;
 

@@ -7,5 +7,5 @@
 //#endif
 
 #define NANOSVG_IMPLEMENTATION  // Expands implementation
-#include "nanosvg/nanosvg.h"
+#include "third/nanosvg/nanosvg.h"
 

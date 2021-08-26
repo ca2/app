@@ -786,7 +786,7 @@ namespace windowing
    }
 
 
-   void window::post_nc_destroy()
+   void window::post_non_client_destroy()
    {
 
    }

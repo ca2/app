@@ -7215,6 +7215,13 @@ void interaction::post_non_client_destroy()
 
    m_bTaskTerminated = true;
 
+   if (::is_set(m_pobjectParentTask))
+   {
+
+      m_pobjectParentTask->erase_task(this);
+
+   }
+
    if (::is_set(m_pthreadUserInteraction))
    {
 
@@ -7231,19 +7238,14 @@ void interaction::post_non_client_destroy()
 
       }
 
-      if(::is_set(m_pthreadUserInteraction))
+      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
       {
 
-         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
-         {
-
-            m_pthreadUserInteraction->m_puiptraThread->erase(this);
-
-         }
-
-         __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         m_pthreadUserInteraction->m_puiptraThread->erase(this);
 
       }
+
+      __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
 
    }
 

@@ -96,7 +96,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hsync = ::CreateEventW((LPSECURITY_ATTRIBUTES) PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, wstring(pstrName));
+   m_hsync = ::CreateEventW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
 
    if (m_hsync == NULL)
    {

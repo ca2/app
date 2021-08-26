@@ -427,10 +427,21 @@ namespace user
          if (m_message.m_id != WM_KICKIDLE && m_message.m_id != e_message_quit)
          {
 
-            if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+            if (m_message.m_id == e_message_destroy_window)
             {
 
-               INFO("notify_icon");
+               if (m_strDebugType.contains("notify_icon"))
+               {
+
+                  INFO("notify_icon");
+
+               }
+               else if (m_strDebugType.contains("main_frame"))
+               {
+
+                  INFO("main_frame");
+
+               }
 
             }
 

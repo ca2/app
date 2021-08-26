@@ -64,20 +64,18 @@ machine_event_central::~machine_event_central()
 }
 
 
-::e_status     machine_event_central::run()
+::e_status machine_event_central::run()
 {
 
    // todo (camilo) instead of sleeping, wait for machine messages pooling in the machine event data file.
 
    // meanwhile, not being used, so exit... It is a problem for Instrumentation Profiling, as function timing (and not cpu usage), counts.
 
-#if 0
-
    while(task_get_run())
    {
 
       {
-         synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);
+         synchronous_lock lockMachineEvent(m_pmachineevent->mutex());
 
          //machine_event_data data;
 
@@ -89,8 +87,6 @@ machine_event_central::~machine_event_central()
       sleep(500_ms);
 
    }
-
-#endif
 
    return ::success;
 

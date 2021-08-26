@@ -33,11 +33,6 @@
 
                m_bHollow = false;
 
-               m_penHollow1.create(this);
-               m_penHollow2.create(this);
-               m_penHollow3.create(this);
-               m_penHollow4.create(this);
-               m_penHollow5.create(this);
 
             }
 
@@ -562,6 +557,13 @@ SizingNone:
 
             void frame_008::_on_style_change(::draw2d::graphics_pointer & pgraphics)
             {
+
+               m_penHollow1.create(this);
+               m_penHollow2.create(this);
+               m_penHollow3.create(this);
+               m_penHollow4.create(this);
+               m_penHollow5.create(this);
+
 
                on_style_change_001_and_002(pgraphics);
                

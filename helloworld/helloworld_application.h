@@ -38,15 +38,15 @@ namespace helloworld
 
 
       //::user::split_view *                             m_ptopviewLast;
-      //view *                                 m_pviewLast;
+      //impact *                                 m_pviewLast;
 
       //::user::split_view *                             m_ptopviewMain;
-      //view *                                 m_pviewMain;
+      //impact *                                 m_pviewMain;
       //::user::button_view *                          m_ptoggleviewMain;
       //::user::plain_edit_view *              m_peditMain;
 
       //::user::split_view *                             m_ptopviewSwitcher;
-      //view *                                 m_pviewSwitcher;
+      //impact *                                 m_pviewSwitcher;
       //::user::button_view *                          m_ptoggleviewSwitcher;
       //::user::plain_edit_view *              m_peditSwitcher;
 

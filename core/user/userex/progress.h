@@ -15,7 +15,7 @@ namespace userex
 
 
       ::user::document *    m_pdocument;
-      progress_view *       m_pview;
+      progress_view *       m_pimpact;
 
 
       progress_control();

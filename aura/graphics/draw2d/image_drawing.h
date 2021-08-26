@@ -30,6 +30,15 @@ public:
    ::rectangle_f64         m_rectangleTarget;
 
 
+   image_drawing_options() :
+      m_eimageselection(e_image_selection_default),
+      m_eplacement(e_placement_stretch)
+   {
+
+
+   }
+
+
    image_drawing_options(const image_drawing_options & imagedrawingoptions) = default;
 
    
@@ -124,9 +133,48 @@ public:
 
    }
 
-   ::image_pointer image() const
+
+   ::rectangle_f64 target_rectangle() const
    {
 
+      if (m_eplacement == e_placement_stretch)
+      {
+
+         return m_rectangleTarget;
+
+      }
+      else if (m_eplacement == e_placement_source)
+      {
+
+         auto rectangle = source_rectangle();
+
+         rectangle.align_rate(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+
+         return rectangle;
+
+      }
+      else if (m_eplacement == e_placement_aspect_fit)
+      {
+
+         auto rectangle = source_rectangle();
+
+         rectangle.aspect_align_fit(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+
+         return rectangle;
+
+      }
+      else
+      {
+
+         throw "invalid image_drawing::m_eplacement";
+
+      }
+
+   }
+
+
+   ::image_pointer image() const
+   {
 
       if (m_esubimage == e_sub_image_rate)
       {

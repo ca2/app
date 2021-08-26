@@ -21,6 +21,6 @@
 }
 
 @property (strong, nonatomic) UIWindow * window;
-@property (strong, nonatomic) RoundWindowFrameView * view;
+@property (strong, nonatomic) RoundWindowFrameView * impact;
 
 @end

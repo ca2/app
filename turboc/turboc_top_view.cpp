@@ -62,7 +62,7 @@ namespace turboc
       if(m_peditview == NULL)
       {
 
-         message_box(NULL,"Could not create folder edit view");
+         message_box(NULL,"Could not create folder edit impact");
 
       }
 

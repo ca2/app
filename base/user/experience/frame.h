@@ -50,6 +50,7 @@ namespace experience
       __composite(control_box)               m_pcontrolbox;
 
       i32                                    m_iCaptionHeight;
+      i32                                    m_iTitleBottom;
 
       ::rectangle_i32                        m_rectMarginFullScreen;
       ::rectangle_i32                        m_rectMarginZoomed;

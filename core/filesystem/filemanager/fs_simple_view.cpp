@@ -16,7 +16,7 @@ namespace filemanager
       {
 
 
-         view::view()
+         impact::impact()
          {
 
             //   m_pinetsession = nullptr;
@@ -25,36 +25,36 @@ namespace filemanager
          }
 
 
-         view::~view()
+         impact::~impact()
          {
             // if(m_pinetsession != nullptr)
             //  delete m_pinetsession;
          }
 
 
-         void view::install_message_routing(::channel * pchannel)
+         void impact::install_message_routing(::channel * pchannel)
          {
 
             ::user::split_view::install_message_routing(pchannel);
 
-            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::view::on_message_destroy);
+            MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
 
          }
 
 
 
-         void view::assert_valid() const
+         void impact::assert_valid() const
          {
             ::user::split_view::assert_valid();
          }
 
-         void view::dump(dump_context & dumpcontext) const
+         void impact::dump(dump_context & dumpcontext) const
          {
             ::user::split_view::dump(dumpcontext);
          }
 
 
-         void view::on_message_destroy(::message::message * pmessage)
+         void impact::on_message_destroy(::message::message * pmessage)
          {
 
             __release(m_ptree);
@@ -64,7 +64,7 @@ namespace filemanager
          }
 
 
-         void view::CreateViews()
+         void impact::CreateViews()
          {
 
             SetPaneCount(2);
@@ -96,7 +96,7 @@ namespace filemanager
          }
 
 
-         void view::start_music()
+         void impact::start_music()
          {
 
             property_set set;
@@ -108,7 +108,7 @@ namespace filemanager
          }
 
 
-         void view::start_root()
+         void impact::start_root()
          {
 
             property_set set;
@@ -120,7 +120,7 @@ namespace filemanager
          }
 
 
-         void view::on_request_response(::message::message * pmessage)
+         void impact::on_request_response(::message::message * pmessage)
          {
 
             __pointer(::http::message) psignal(pmessage);
@@ -140,7 +140,7 @@ namespace filemanager
          }
 
 
-         void view::open_folder(i64 iFolder)
+         void impact::open_folder(i64 iFolder)
          {
 
             fork([this, iFolder]()
@@ -165,7 +165,7 @@ namespace filemanager
          }
 
 
-         void view::open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExtension)
+         void impact::open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExtension)
          {
 
             string strUrl;
@@ -188,7 +188,7 @@ namespace filemanager
          }
 
 
-         void view::set_request_interface(::object * prequestinterface)
+         void impact::set_request_interface(::object * prequestinterface)
          {
 
             m_prequestinterface = prequestinterface;

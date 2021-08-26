@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::object * pobject):
+   impact::impact(::object * pobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,
@@ -72,31 +72,31 @@ namespace turboc
 
    }
 
-   view::~view()
+   impact::~impact()
    {
    }
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       ::aura::impact::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       ::aura::impact::dump(dumpcontext);
    }
 
-   void view::install_message_handling(::message::dispatch * pdispatch)
+   void impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::aura::impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&view::on_message_create);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&impact::on_message_create);
 
    }
 
 
-   void view::on_message_create(signal_details * pmessage)
+   void impact::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -126,7 +126,7 @@ namespace turboc
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if(m_strNewHelloMultiverse.is_empty())
@@ -148,7 +148,7 @@ namespace turboc
       if(m_bHelloLayoutOn001Layout)
       {
 
-         ::turboc::view::on_layout(pgraphics);
+         ::turboc::impact::on_layout(pgraphics);
 
       }
       else
@@ -163,12 +163,12 @@ namespace turboc
 
 
 
-   void view::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
+   void impact::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
    {
       UNREFERENCED_PARAMETER(psubject);
    }
 
-   bool view::in_anime()
+   bool impact::in_anime()
    {
       if(m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
          return true;
@@ -178,7 +178,7 @@ namespace turboc
    }
 
 
-/*   void view::_006OnDraw(::image * pimage)
+/*   void impact::_006OnDraw(::image * pimage)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -370,7 +370,7 @@ namespace turboc
 
    }
 
-   void view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -400,7 +400,7 @@ namespace turboc
 
    }
 
-   void view::turboc_fast_render(const ::string & strHelloMultiverse)
+   void impact::turboc_fast_render(const ::string & strHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)
@@ -471,14 +471,14 @@ namespace turboc
 
 
 
-   ::aura::document * view::get_document()
+   ::aura::document * impact::get_document()
    {
 
       return  (::aura::impact::get_document());
 
    }
 
-   void view::turboc_render()
+   void impact::turboc_render()
    {
 
       {
@@ -496,7 +496,7 @@ namespace turboc
 
    }
 
-   void view::full_render()
+   void impact::full_render()
    {
 
       size_i32 sizeNew = size_i32(m_cx, m_cy) + size(100,100);
@@ -596,7 +596,7 @@ namespace turboc
    }
 
 
-/*   void view::_001OnPostProcess(::image * pimage)
+/*   void impact::_001OnPostProcess(::image * pimage)
    {
 
       if(m_eeffect == effect_crt)
@@ -659,7 +659,7 @@ namespace turboc
    }
 
 
-   void view::turboc_draw()
+   void impact::turboc_draw()
    {
 
       if(m_bVoidTransfer)
@@ -700,14 +700,14 @@ namespace turboc
    }
 
 
-   ::u32 view::thread_proc_render(void * pparam)
+   ::u32 impact::thread_proc_render(void * pparam)
    {
 
-      view * pviewParam = (view *)pparam;
+      impact * pviewParam = (impact *)pparam;
 
       {
 
-         __pointer(view) pview = pviewParam;
+         __pointer(impact) pview = pviewParam;
 
          while(::task_get_run() && pview->IsWindow())
          {
@@ -741,7 +741,7 @@ namespace turboc
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -766,7 +766,7 @@ namespace turboc
    }
 
 
-   string view::get_processed_turboc()
+   string impact::get_processed_turboc()
    {
 
       string str = get_turboc();
@@ -827,7 +827,7 @@ namespace turboc
    }
 
 
-   string view::get_turboc()
+   string impact::get_turboc()
    {
 
       synchronous_lock synchronouslock(&m_mutexText);
@@ -866,7 +866,7 @@ namespace turboc
    }
 
 
-/*   void view::turboc_render(::image * pimage)
+/*   void impact::turboc_render(::image * pimage)
    {
 
       if(m_pimageImage->is_set() && m_pimageImage->area() > 0)

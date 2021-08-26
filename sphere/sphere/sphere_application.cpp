@@ -605,7 +605,7 @@ namespace sphere
       //i32 iCount = 32; // todo: get from bergedge profile
 
       create_factory < ::userstack::document >();
-      create_factory < ::userstack::view >();
+      create_factory < ::userstack::impact >();
       create_factory < ::userstack::pane_view >();
       create_factory < ::userstack::frame >();
 

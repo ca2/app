@@ -5,8 +5,8 @@ namespace helloworld
 {
 
 
-   class CLASS_DECL_APP_HELLOWORLD view :
-      virtual public hellobase::view,
+   class CLASS_DECL_APP_HELLOWORLD impact :
+      virtual public hellobase::impact,
       virtual public hellobase::impact_base
    {
    public:
@@ -28,8 +28,8 @@ namespace helloworld
       bool                    m_b001LayoutIgnoreEmpty;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;

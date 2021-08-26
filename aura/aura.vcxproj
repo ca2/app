@@ -1112,6 +1112,7 @@
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
+    <ClCompile Include="graphics\draw2d\load_image.cpp" />
     <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
@@ -1390,6 +1391,7 @@
     <ClInclude Include="graphics\draw2d\image_drawer.h" />
     <ClInclude Include="graphics\draw2d\image_drawing.h" />
     <ClInclude Include="graphics\draw2d\image_source.h" />
+    <ClInclude Include="graphics\draw2d\load_image.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\user\close_button.h" />
     <ClInclude Include="graphics\user\close_icon.h" />

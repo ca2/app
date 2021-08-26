@@ -332,8 +332,8 @@
 		<Unit filename="filesystem/filemanager/left_view.h" />
 		<Unit filename="filesystem/filemanager/main_frame.cpp" />
 		<Unit filename="filesystem/filemanager/main_frame.h" />
-		<Unit filename="filesystem/filemanager/main_view.cpp" />
-		<Unit filename="filesystem/filemanager/main_view.h" />
+		<Unit filename="filesystem/filemanager/main_impact.cpp" />
+		<Unit filename="filesystem/filemanager/main_impact.h" />
 		<Unit filename="filesystem/filemanager/operation.cpp" />
 		<Unit filename="filesystem/filemanager/operation.h" />
 		<Unit filename="filesystem/filemanager/operation_child_frame.cpp" />
@@ -360,8 +360,8 @@
 		<Unit filename="filesystem/filemanager/tree.h" />
 		<Unit filename="filesystem/filemanager/update_hint.cpp" />
 		<Unit filename="filesystem/filemanager/update_hint.h" />
-		<Unit filename="filesystem/filemanager/view.cpp" />
-		<Unit filename="filesystem/filemanager/view.h" />
+		<Unit filename="filesystem/filemanager/impact.cpp" />
+		<Unit filename="filesystem/filemanager/impact.h" />
 		<Unit filename="filesystem/filesystem.h" />
 		<Unit filename="filesystem/fs/_.h" />
 		<Unit filename="filesystem/fs/_fs.h" />
@@ -385,8 +385,8 @@
 		<Unit filename="filesystem/userfs/list_item.h" />
 		<Unit filename="filesystem/userfs/list_item_array.cpp" />
 		<Unit filename="filesystem/userfs/list_item_array.h" />
-		<Unit filename="filesystem/userfs/main_view.cpp" />
-		<Unit filename="filesystem/userfs/main_view.h" />
+		<Unit filename="filesystem/userfs/main_impact.cpp" />
+		<Unit filename="filesystem/userfs/main_impact.h" />
 		<Unit filename="filesystem/userfs/tree.cpp" />
 		<Unit filename="filesystem/userfs/tree.h" />
 		<Unit filename="filesystem/userfs/userfs.cpp" />
@@ -479,8 +479,8 @@
 		<Unit filename="html/user/internal.h" />
 		<Unit filename="html/user/user.cpp" />
 		<Unit filename="html/user/user.h" />
-		<Unit filename="html/user/view.cpp" />
-		<Unit filename="html/user/view.h" />
+		<Unit filename="html/user/impact.cpp" />
+		<Unit filename="html/user/impact.h" />
 		<Unit filename="id.h" />
 		<Unit filename="include/_.cpp" />
 		<Unit filename="include/_.h" />
@@ -539,8 +539,8 @@
 		<Unit filename="user/account/account_simple_ui.cpp" />
 		<Unit filename="user/account/account_simple_ui.h" />
 		<Unit filename="user/account/simple_ui_style.h" />
-		<Unit filename="user/account/view.cpp" />
-		<Unit filename="user/account/view.h" />
+		<Unit filename="user/account/impact.cpp" />
+		<Unit filename="user/account/impact.h" />
 		<Unit filename="user/databaseuser/_.h" />
 		<Unit filename="user/databaseuser/_databaseuser.h" />
 		<Unit filename="user/databaseuser/key_mesh_data.cpp" />

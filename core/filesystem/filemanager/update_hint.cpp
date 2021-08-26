@@ -10,7 +10,7 @@ namespace filemanager
    //update::update()
    //{
    //
-   //   m_pview = nullptr;
+   //   m_pimpact = nullptr;
    //   m_context = ::source_none;
    //   m_bOk = false;
 

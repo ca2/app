@@ -856,7 +856,7 @@ namespace user
          if (pobject.is_null() || ::is_null(pobject->get_application()))
          {
             
-            ERR("Cannot create view. Document doesn't have context application. (Should it be a blocking thing...)");
+            ERR("Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
 
             return nullptr;
 

@@ -25,7 +25,7 @@
     <ClInclude Include="pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="view.h">
+    <ClInclude Include="impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_shader.h">
@@ -65,7 +65,7 @@
     <ClCompile Include="simple_shader_arcs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view.cpp">
+    <ClCompile Include="impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="simple_shader.cpp">

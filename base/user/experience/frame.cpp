@@ -707,6 +707,22 @@ namespace experience
 
       i32 iCaptionTextHeight = calc_caption_height(pgraphics);
 
+      pgraphics->set_font(pframewindow, ::user::e_element_window_title);
+
+      if (pgraphics->m_pfont)
+      {
+
+         m_iTitleBottom = m_pcontrolbox->m_iDefaultButtonMargin + pgraphics->m_pfont->get_height(pgraphics);
+
+      }
+      else
+      {
+
+         m_iTitleBottom = iCaptionTextHeight;
+
+      }
+
+
       i32 iCaptionHeight = iCaptionTextHeight + rectCaptionTextPadding.top + rectCaptionTextPadding.bottom;
 
       m_rectCaption.left = rectangleClient.left + rectMargin.left;
@@ -783,7 +799,7 @@ namespace experience
 
       m_rectWindowText.top = m_rectCaption.top + rectCaptionTextPadding.top;
       m_rectWindowText.right = m_rectCaption.right - rectCaptionTextPadding.right;
-      m_rectWindowText.bottom = m_rectCaption.bottom - rectCaptionTextPadding.bottom;
+      m_rectWindowText.bottom = m_iTitleBottom;
 
       if (bVisible)
       {

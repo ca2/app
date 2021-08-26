@@ -3255,7 +3255,7 @@
     <ClInclude Include="user\account\simple_ui_style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\view.h">
+    <ClInclude Include="user\account\impact.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="user\userpresence\_.h">
@@ -3510,7 +3510,7 @@
     <ClInclude Include="filesystem\filemanager\main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\main_view.h">
+    <ClInclude Include="filesystem\filemanager\main_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation.h">
@@ -3552,7 +3552,7 @@
     <ClInclude Include="filesystem\filemanager\update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\view.h">
+    <ClInclude Include="filesystem\filemanager\impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="process\process.h">
@@ -3645,7 +3645,7 @@
     <ClInclude Include="filesystem\userfs\list_item_array.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\main_view.h">
+    <ClInclude Include="filesystem\userfs\main_impact.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\tree.h">
@@ -3873,7 +3873,7 @@
     <ClInclude Include="html\user\user.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\view.h">
+    <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\_.h">
@@ -7312,7 +7312,7 @@
     <ClCompile Include="user\account\account_simple_ui.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\view.cpp">
+    <ClCompile Include="user\account\impact.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\button.cpp">
@@ -7597,7 +7597,7 @@
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\main_view.cpp">
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\operation.cpp">
@@ -7639,7 +7639,7 @@
     <ClCompile Include="filesystem\filemanager\update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\view.cpp">
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="process\process_bidi_pipe.cpp">
@@ -7714,7 +7714,7 @@
     <ClCompile Include="filesystem\userfs\list_item_array.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\main_view.cpp">
+    <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\tree.cpp">
@@ -7885,7 +7885,7 @@
     <ClCompile Include="html\user\user.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\view.cpp">
+    <ClCompile Include="html\user\impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\impl\cell.cpp">

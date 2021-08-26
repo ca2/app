@@ -176,6 +176,10 @@ namespace user
    void tree::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
       {
 
          millis tickStart;

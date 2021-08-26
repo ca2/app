@@ -51,8 +51,8 @@ namespace tc4
       create_factory <::tc4::top_view >();
       create_factory <::tc4::lite_view >();
       create_factory <::tc4::full_view >();
-      create_factory <::tc4::view >();
-      create_factory <::tc4::main_view >();
+      create_factory <::tc4::impact >();
+      create_factory <::tc4::main_impact >();
       create_factory <::tc4::switcher_view >();
       create_factory <::tc4::pane_view >();
 
@@ -73,7 +73,7 @@ namespace tc4
       "main",
       __type(::tc4::document),
       __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
-      __type(::tc4::main_view));
+      __type(::tc4::main_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseView = pDocTemplate;
       pDocTemplate = new ::user::single_document_template(

@@ -12,7 +12,7 @@ namespace helloworld
       place_holder_container(pobject)
    {
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_ptopview = nullptr;
 
@@ -66,27 +66,27 @@ namespace helloworld
       if(m_ptopview == nullptr)
       {
 
-         message_box(nullptr,"Could not create folder edit view");
+         message_box(nullptr,"Could not create folder edit impact");
 
       }
 
       //SetPane(0,m_ptopview,false);
 
-      m_pview = create_view < view >(nullptr, get_pane_holder(1),"helloworld_view");
+      m_pimpact = create_view < impact >(nullptr, get_pane_holder(1),"helloworld_view");
 
-      m_pview->m_prender->m_bAlternate = true;
+      m_pimpact->m_prender->m_bAlternate = true;
 
-      if(m_pview == nullptr)
+      if(m_pimpact == nullptr)
       {
 
          message_box(nullptr,"Could not create file list ::user::impact");
 
       }
 
-//      m_ptopview->m_pview = m_pview;
+//      m_ptopview->m_pimpact = m_pimpact;
 
 
-      //SetPane(1,m_pview,false);
+      //SetPane(1,m_pimpact,false);
 
 
    }
@@ -102,7 +102,7 @@ namespace helloworld
          if(pevent->m_puserinteraction->m_id == "switcher_toggle")
          {
 
-            __pointer(view) pview = m_pview;
+            __pointer(impact) pview = m_pimpact;
 
             pview->m_prender->m_bLite = !pview->m_prender->m_bLite;
 
@@ -112,10 +112,10 @@ namespace helloworld
          else if(pevent->m_puserinteraction->m_id == "helloworld_toggle")
          {
 
-            m_pview->m_prender->m_bLite = !m_pview->m_prender->m_bLite;
+            m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
 
-            m_pview->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);
 
             return true;
 

@@ -99,6 +99,23 @@ bool synchronization_object::lock(const duration & durationTimeout)
 }
 
 
+bool synchronization_object::_lock()
+{
+
+   return _wait().succeeded();
+
+}
+
+
+bool synchronization_object::_lock(const duration & durationTimeout)
+{
+
+   return _wait(durationTimeout).succeeded();
+
+}
+
+
+
 synchronization_result synchronization_object::_wait()
 {
 

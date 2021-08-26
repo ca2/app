@@ -125,6 +125,7 @@ namespace filemanager
 //#include "item_action.h"
 //#include "manager.h"
 
+#include "impact_base.h"
 #include "impact.h"
 #include "file_list_callback.h"
 //#include "manager_template.h"
@@ -134,8 +135,7 @@ namespace filemanager
 #include "save_as_name_view.h"
 #include "tab_view.h"
 #include "left_view.h"
-#include "view.h"
-#include "main_view.h"
+#include "main_impact.h"
 #include "child_frame.h"
 
 
@@ -204,7 +204,7 @@ namespace filemanager
 #include "save_as_name_view.h"
 #include "tab_view.h"
 #include "left_view.h"
-#include "main_view.h"
+#include "main_impact.h"
 #include "child_frame.h"
 
 

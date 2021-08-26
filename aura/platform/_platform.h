@@ -63,7 +63,7 @@ namespace bergedge
 
 
    class document;
-   class view;
+   class impact;
 
 
 } // namespace bergedge

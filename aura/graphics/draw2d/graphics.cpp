@@ -5436,7 +5436,7 @@ namespace draw2d
    void graphics::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int width, int height)
    {
 
-      float view[4], cx, cy, hw, hh, aspect, px;
+      float impact[4], cx, cy, hw, hh, aspect, px;
 
       NSVGshape* shape;
 
@@ -5459,7 +5459,7 @@ namespace draw2d
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
 
-      // Fit view to bounds
+      // Fit impact to bounds
       cx = pnsvgimage->width * 0.5f;
       cy = pnsvgimage->height * 0.5f;
       hw = pnsvgimage->width * 0.5f;
@@ -5468,23 +5468,23 @@ namespace draw2d
       if (width / hw < height / hh)
       {
          aspect = (float)height / (float)width;
-         view[0] = cx - hw * 1.2f;
-         view[2] = cx + hw * 1.2f;
-         view[1] = cy - hw * 1.2f * aspect;
-         view[3] = cy + hw * 1.2f * aspect;
+         impact[0] = cx - hw * 1.2f;
+         impact[2] = cx + hw * 1.2f;
+         impact[1] = cy - hw * 1.2f * aspect;
+         impact[3] = cy + hw * 1.2f * aspect;
       }
       else
       {
          aspect = (float)width / (float)height;
-         view[0] = cx - hh * 1.2f * aspect;
-         view[2] = cx + hh * 1.2f * aspect;
-         view[1] = cy - hh * 1.2f;
-         view[3] = cy + hh * 1.2f;
+         impact[0] = cx - hh * 1.2f * aspect;
+         impact[2] = cx + hh * 1.2f * aspect;
+         impact[1] = cy - hh * 1.2f;
+         impact[3] = cy + hh * 1.2f;
       }
       // Size of one pixel.
-      px = (view[2] - view[1]) / (float)width;
+      px = (impact[2] - impact[1]) / (float)width;
 
-      //glOrtho(view[0], view[2], view[3], view[1], -1, 1);
+      //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
 
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();

@@ -972,9 +972,9 @@ namespace aura
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -1183,7 +1183,7 @@ namespace aura
       //      //else
       //      //{
 
-      //      //   puiParent = get_document()->get_typed_view < ::bergedge::view >();
+      //      //   puiParent = get_document()->get_typed_view < ::bergedge::impact >();
 
       //      //}
 

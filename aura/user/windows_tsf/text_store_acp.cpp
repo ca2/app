@@ -1006,7 +1006,7 @@ namespace tsf
    {
        OutputDebugString(TEXT("edit_window::get_active_view \n"));
 
-       //this app only supports one view, so this can be constant
+       //this app only supports one impact, so this can be constant
        *pvcView = EDIT_VIEW_COOKIE;
 
        return S_OK;

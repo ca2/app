@@ -7,9 +7,6 @@ class CLASS_DECL_AURA context_image :
 public:
 
 
-   //handler_manager                     m_managerImageLoad;
-
-
    context_image();
    ~context_image() override;
 
@@ -77,6 +74,12 @@ public:
    virtual bool _image_to_desk(const ::image* pimage);
 #endif
    
+   
+   virtual void _task_load_image(::image * pimage, ::payload payload, bool bCache);
+   
+   
+   virtual void _os_load_image(::image * pimage, memory & memory);
+
 
 };
 

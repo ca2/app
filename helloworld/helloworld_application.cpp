@@ -62,8 +62,8 @@ namespace helloworld
       create_factory <::helloworld::frame >();
       create_factory <::helloworld::main_frame >();
       create_factory <::user::button_view >();
-      create_factory <::helloworld::view >();
-      create_factory <::helloworld::main_view >();
+      create_factory <::helloworld::impact >();
+      create_factory <::helloworld::main_impact >();
       create_factory <::helloworld::switcher_view >();
       create_factory <::helloworld::pane_view >();
 
@@ -103,7 +103,7 @@ namespace helloworld
                              "main",
                              __type(document),
                              __type(frame),
-                             __type(main_view)));
+                             __type(main_impact)));
       m_ptemplateHelloWorldView = pDocTemplate;
       add_document_template(pDocTemplate);
 

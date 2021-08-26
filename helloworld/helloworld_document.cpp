@@ -51,7 +51,7 @@ namespace helloworld
    bool document::on_open_document(const ::payload & varFile)
    {
 
-      view * pview = get_typed_view < view >();
+      impact * pview = get_typed_view < impact >();
 
       if(pview == nullptr)
       {
@@ -72,15 +72,15 @@ namespace helloworld
 /*      if(pview->m_prender->m_pimageImage->load_image(varFile))
       {
 
-         get_typed_view < view >()->m_strImage = varFile["url"];
+         get_typed_view < impact >()->m_strImage = varFile["url"];
 
          {
 
-            synchronous_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_typed_view < impact >() != nullptr  ? &get_typed_view < impact >()->m_mutexText : nullptr);
 
-            get_typed_view < view >()->m_strHelloWorld = "image:" + get_typed_view < view >()->m_strImage + "," + get_typed_view < view >()->m_strHelloWorld;
+            get_typed_view < impact >()->m_strHelloWorld = "image:" + get_typed_view < impact >()->m_strImage + "," + get_typed_view < impact >()->m_strHelloWorld;
 
-            get_typed_view < view >()->set_need_layout(true);
+            get_typed_view < impact >()->set_need_layout(true);
 
          }
 

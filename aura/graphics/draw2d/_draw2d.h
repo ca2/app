@@ -251,6 +251,8 @@ namespace draw2d
 
 #include "printer.h"
 
+#include "load_image.h"
+
 #include "context_image.h"
 
 #include "draw2d.h"

@@ -2993,6 +2993,13 @@ bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)
 bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 {
 
+   if (id.umessage() == e_message_close)
+   {
+
+      output_debug_string("thread::post_message e_message_close");
+
+   }
+
 #ifdef WINDOWS_DESKTOP
 
    if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)

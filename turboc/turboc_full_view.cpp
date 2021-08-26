@@ -8,7 +8,7 @@ namespace turboc
 
    full_view::full_view(::object * pobject):
       ::object(pobject),
-      view(pobject)
+      impact(pobject)
    {
 
       m_bLite = false;
@@ -41,7 +41,7 @@ namespace turboc
    void full_view::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      view::install_message_handling(pdispatch);
+      impact::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&full_view::on_message_create);
 
@@ -79,7 +79,7 @@ namespace turboc
    void full_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      view::_001OnDraw(pgraphics);
+      impact::_001OnDraw(pgraphics);
 
    }
 
@@ -91,7 +91,7 @@ namespace turboc
    }
 
 
-/*   void view::turboc_render_full_view(::image * pimage)
+/*   void impact::turboc_render_full_view(::image * pimage)
    {
 
       if(m_pimageWork->area() <= 0)

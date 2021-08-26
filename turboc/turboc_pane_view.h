@@ -11,7 +11,7 @@ namespace turboc
    public:
 
 
-      ::turboc::view *                     m_pflagview;
+      ::turboc::impact *                     m_pflagview;
 
 
       pane_view(::object * pobject);

@@ -134,6 +134,10 @@ namespace user
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       if (m_estyle == style_push)
       {
 

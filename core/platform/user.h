@@ -1240,7 +1240,7 @@
 //      //////////////////////////////////////////////////////////////////////////////////////////////////
 //      // Session/Session
 //      //
-//      //         virtual __pointer(::bergedge::view) get_view();
+//      //         virtual __pointer(::bergedge::impact) get_view();
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //

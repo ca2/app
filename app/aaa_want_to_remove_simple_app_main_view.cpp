@@ -5,7 +5,7 @@ namespace simple_drawing
 {
 
 
-   main_view::main_view(::object * pobject):
+   main_impact::main_impact(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -14,7 +14,7 @@ namespace simple_drawing
    {
 
       m_ptopview = NULL;
-      m_pview    = NULL;
+      m_pimpact    = NULL;
       m_flagNonClient.add(non_client_background);
       m_flagNonClient.add(non_client_focus_rect);
 
@@ -22,13 +22,13 @@ namespace simple_drawing
    }
 
 
-   main_view::~main_view()
+   main_impact::~main_impact()
    {
 
    }
 
 
-   void main_view::assert_valid() const
+   void main_impact::assert_valid() const
    {
 
       ::user::split_view::assert_valid();
@@ -36,7 +36,7 @@ namespace simple_drawing
    }
 
 
-   void main_view::dump(dump_context & dumpcontext) const
+   void main_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_view::dump(dumpcontext);
@@ -44,7 +44,7 @@ namespace simple_drawing
    }
 
 
-   void main_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       ::user::split_view::on_subject(psubject, pcontext);
@@ -52,7 +52,7 @@ namespace simple_drawing
    }
 
 
-   void main_view::on_create_split_impact()
+   void main_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -76,7 +76,7 @@ namespace simple_drawing
          if (m_ptopview == NULL)
          {
 
-            message_box(NULL, "Could not create folder edit view");
+            message_box(NULL, "Could not create folder edit impact");
 
          }
 
@@ -96,11 +96,11 @@ namespace simple_drawing
 
       }
 
-      //m_pview = create_view < lite_view >();
+      //m_pimpact = create_view < lite_view >();
 
-      m_pview = host_view < view >(iPane, "simple_drawing_view");
+      m_pimpact = host_view < impact >(iPane, "simple_drawing_view");
 
-      if(m_pview == NULL)
+      if(m_pimpact == NULL)
       {
 
          message_box(NULL,"Could not create file list ::user::impact");
@@ -114,18 +114,18 @@ namespace simple_drawing
 
          string strText;
 
-         m_pview->data_get("cur_text",strText);
+         m_pimpact->data_get("cur_text",strText);
 
          peditview->_001SetText(strText, ::e_source_initialize);
 
       }
 
-//      SetPane(iPane,m_pview,false);
+//      SetPane(iPane,m_pimpact,false);
 
    }
 
 
-   void main_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_view::_001OnNcDraw(pgraphics);
@@ -133,7 +133,7 @@ namespace simple_drawing
    }
 
 
-   void main_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_view::_001OnDraw(pgraphics);
@@ -141,7 +141,7 @@ namespace simple_drawing
    }
 
 
-   bool main_view::BaseOnControlEvent(::user::control_event * pevent)
+   bool main_impact::BaseOnControlEvent(::user::control_event * pevent)
    {
 
       if(pevent->m_eevent == ::user::e_event_click)
@@ -150,7 +150,7 @@ namespace simple_drawing
          if(pevent->m_puserinteraction->m_id == "simple_drawing_toggle")
          {
 
-            m_pview->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);
 
             return true;
 

@@ -1449,11 +1449,11 @@ bool object::__is_child_task(::task * ptask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point_i32 of view)...
+// ->at simple objects (from finish point_i32 of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish point_i32 of view)...
+// ->for complex objects (from finish point_i32 of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.

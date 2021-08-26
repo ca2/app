@@ -33,7 +33,7 @@ namespace prompt
 
       create_factory <prompt::document >();
       create_factory <prompt::frame >();
-      create_factory <prompt::view >();
+      create_factory <prompt::impact >();
       create_factory <prompt::pane_view >();
       create_factory <prompt::primary_view >();
 

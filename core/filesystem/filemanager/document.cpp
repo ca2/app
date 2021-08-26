@@ -834,7 +834,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      __pointer(view) pview = get_typed_view<view>();
+      __pointer(impact) pview = get_typed_view<impact>();
 
       if (pview.is_set())
       {

@@ -7,12 +7,12 @@ namespace calculator
    class document;
 
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       virtual public ::user::impact
    {
    public:
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
       virtual void assert_valid() const override;

@@ -224,6 +224,10 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
+   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
    __pointer(::user::tab) ptab = GetTypedParent < ::user::tab >();
 
    if (ptab.is_set())

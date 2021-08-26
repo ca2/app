@@ -12,7 +12,7 @@ namespace userex
 
       m_id = "font_view";
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_ptopview = nullptr;
 
@@ -83,13 +83,13 @@ namespace userex
          if (m_ptopview != nullptr && psubject->m_puserprimitive == m_ptopview->m_peditview)
          {
 
-            synchronous_lock synchronouslock(m_pview->m_pfontlist->mutex());
+            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->mutex());
 
             string strText;
 
             m_ptopview->m_peditview->_001GetText(strText);
 
-            m_pview->m_pfontlist->m_strText = strText;
+            m_pimpact->m_pfontlist->m_strText = strText;
 
          }
 
@@ -121,13 +121,13 @@ namespace userex
       if (m_ptopview == nullptr)
       {
 
-         message_box("Could not create folder edit view");
+         message_box("Could not create folder edit impact");
 
       }
 
-      m_pview = create_view < ::user::font_list_view >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
+      m_pimpact = create_view < ::user::font_list_view >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
 
-      if (m_pview == nullptr)
+      if (m_pimpact == nullptr)
       {
 
          message_box("Could not create file list ::user::impact");
@@ -137,11 +137,11 @@ namespace userex
       if(get_document()->m_pviewTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = m_pview;
+         get_document()->m_pviewTopic = m_pimpact;
 
       }
 
-      m_pview->set_font_list_type(::write_text::font_list::type_wide);
+      m_pimpact->set_font_list_type(::write_text::font_list::type_wide);
 
    }
 
@@ -168,7 +168,7 @@ namespace userex
 
       }
 
-      if (!m_pview || !m_pview->m_pfontlist)
+      if (!m_pimpact || !m_pimpact->m_pfontlist)
       {
 
          return false;
@@ -178,11 +178,11 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_pview->m_pfontlist->m_strText = "";
+         m_pimpact->m_pfontlist->m_strText = "";
 
       }
 
-      if (!m_pview->m_pfontlist->set_sel_by_name(str))
+      if (!m_pimpact->m_pfontlist->set_sel_by_name(str))
       {
 
          return false;
@@ -210,7 +210,7 @@ namespace userex
 
                string strText;
 
-               strText = m_pview->m_pfontlist->m_strFontFamily;
+               strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
                m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
 
@@ -218,7 +218,7 @@ namespace userex
 
                m_ptopview->m_peditview->m_pfont->set_family_name(strText);
 
-               m_pview->m_pfontlist->m_strText = "";
+               m_pimpact->m_pfontlist->m_strText = "";
 
             }
 

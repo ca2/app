@@ -153,7 +153,7 @@ namespace user
 
       virtual void on_select() override;
 
-      // each view can display one or more documents but has only one document interface
+      // each impact can display one or more documents but has only one document interface
       //::user::document * get_document() const;
 
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE

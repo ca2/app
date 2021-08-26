@@ -1097,6 +1097,9 @@
     <ClInclude Include="user\interaction_scaler.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\load_image.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1650,6 +1653,9 @@
     </ClCompile>
     <ClCompile Include="user\interaction_scaler.cpp">
       <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\load_image.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

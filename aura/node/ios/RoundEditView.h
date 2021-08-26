@@ -1,7 +1,7 @@
 /*
      File: RoundEditView.h
  Abstract:
-A view that illustrates how to implement and use the UITextInput protocol.
+A impact that illustrates how to implement and use the UITextInput protocol.
 
 Heavily leverages an existing CoreText-based editor and merely serves as the "glue" between the system keyboard and this editor.
  
@@ -63,7 +63,7 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 @end
 
 
-// RoundEditView - Main custom text view that handles text input and draws text
+// RoundEditView - Main custom text impact that handles text input and draws text
 // (using contained RoundTextView)
 @interface RoundEditView : UIView <UITextInput>
 

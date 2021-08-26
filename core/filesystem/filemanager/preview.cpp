@@ -57,7 +57,7 @@ namespace filemanager
    void preview::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

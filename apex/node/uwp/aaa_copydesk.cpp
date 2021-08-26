@@ -33,9 +33,9 @@ namespace uwp
       defer_main_thread([&bHasFile, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if(view == nullptr)
+         if(impact == nullptr)
          {
 
             //iFileCount = 0;
@@ -43,18 +43,18 @@ namespace uwp
 
          }
 
-         if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+         if(impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
          {
 
             bHasFile = true;
 
          }
-         //else if(view->Contains("FileDrop"))
+         //else if(impact->Contains("FileDrop"))
          //{
 
          //   HGLOBAL hglobal;
 
-         //   ::Windows::Storage::Streams::IInputStream ^ stream = (::Windows::Storage::Streams::IInputStream ^):: wait(view->GetDataAsync("FileDrop"));
+         //   ::Windows::Storage::Streams::IInputStream ^ stream = (::Windows::Storage::Streams::IInputStream ^):: wait(impact->GetDataAsync("FileDrop"));
 
          //   ::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
 
@@ -74,10 +74,10 @@ namespace uwp
          //   bHasFile = true;
 
          //}
-         else if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+         else if(impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
          {
 
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
             bHasFile = true;
 
@@ -99,25 +99,25 @@ namespace uwp
       defer_main_thread([&bHasFile, &patha, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (view == nullptr)
+         if (impact == nullptr)
          {
 
             return;
 
          }
 
-         if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+         if (impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
          {
 
             bHasFile = true;
 
          }
-         else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+         else if (impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
          {
 
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
             for (int i = 0; i < items->Size; i++)
             {

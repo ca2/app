@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       virtual public ::user::show < ::user::interaction >
    {
    public:
@@ -48,8 +48,8 @@ namespace userstack
       ::mutex                      m_mutexDraw;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
       virtual void assert_valid() const override;

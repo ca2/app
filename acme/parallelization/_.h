@@ -172,6 +172,7 @@ namespace parallelization
 
 class sync_interface;
 class synchronous_lock;
+class _synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :

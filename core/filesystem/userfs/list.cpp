@@ -945,8 +945,14 @@ namespace userfs
 
             auto puser = psession->user();
 
+            ::file::path pathUser = pfsitem->m_filepathUser;
+
+            auto pcontext = m_pcontext->m_papexcontext;
+
+            ::file::path pathProcessed = pcontext->defer_process_path(pathUser);
+
             auto iImage = puser->shell()->get_file_image(
-                              pfsitem->m_filepathUser,
+                              pathProcessed,
                               pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                               ::user::shell::e_icon_normal);
 

@@ -50,7 +50,7 @@ namespace filemanager
       if(m_pusertree == nullptr)
       {
 
-         message_box("Could not create folder tree view");
+         message_box("Could not create folder tree impact");
 
       }
 
@@ -125,7 +125,7 @@ namespace filemanager
    void folder_selection_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
 
    }
 

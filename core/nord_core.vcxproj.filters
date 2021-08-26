@@ -4,7 +4,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\view.cpp">
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\update_hint.cpp">
@@ -46,7 +46,7 @@
     <ClCompile Include="filesystem\filemanager\operation.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\main_view.cpp">
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
@@ -142,7 +142,7 @@
     <ClCompile Include="filesystem\userfs\list_item_array.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\main_view.cpp">
+    <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\tree.cpp">
@@ -163,7 +163,7 @@
     <ClCompile Include="user\account\account_simple_ui.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\view.cpp">
+    <ClCompile Include="user\account\impact.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="html\graphics\attribute.cpp">
@@ -220,7 +220,7 @@
     <ClCompile Include="html\user\user.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\view.cpp">
+    <ClCompile Include="html\user\impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\child_frame.cpp">
@@ -1371,7 +1371,7 @@
     <ClInclude Include="user\account\simple_ui_style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\view.h">
+    <ClInclude Include="user\account\impact.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\_.h">
@@ -1470,7 +1470,7 @@
     <ClInclude Include="filesystem\filemanager\main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\main_view.h">
+    <ClInclude Include="filesystem\filemanager\main_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation.h">
@@ -1512,7 +1512,7 @@
     <ClInclude Include="filesystem\filemanager\update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\view.h">
+    <ClInclude Include="filesystem\filemanager\impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="html\element\element.h">
@@ -1632,7 +1632,7 @@
     <ClInclude Include="html\impl\text.h">
       <Filter>Header Files\html\impl</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\view.h">
+    <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">

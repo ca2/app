@@ -23,7 +23,7 @@ namespace user
       //::user::impact_system *          m_ptemplateNewDocument;
       ::object *                       m_ptemplateNewDocument;
 
-      // original view/frame
+      // original impact/frame
       ::user::primitive *              m_puiLastView;
       ::user::primitive *              m_puiCurrentFrame;
       //__pointer(impact_data)         m_pimpactdata;

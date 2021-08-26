@@ -89,8 +89,8 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
       create_factory <::browser::frame >();
       create_factory <::browser::main_frame >();
       create_factory <::user::button_view >();
-      create_factory <::browser::view >();
-      create_factory <::browser::main_view >();
+      create_factory <::browser::impact >();
+      create_factory <::browser::main_impact >();
       create_factory <::browser::switcher_view >();
       create_factory <::browser::pane_view >();
       create_factory <::browser::gcom >();
@@ -132,7 +132,7 @@ pacmedir->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); - need
                           "main",
                           __type(document),
                           __type(frame),
-                          __type(main_view)));
+                          __type(main_impact)));
       m_ptemplateHelloBrowserView = pDocTemplate;
       add_document_template(pDocTemplate);
 

@@ -24,7 +24,7 @@ namespace filemanager
    void folder_list_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::simple_list_view::install_message_routing(pchannel);
 
    }

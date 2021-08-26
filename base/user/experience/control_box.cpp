@@ -373,10 +373,15 @@ namespace experience
          return;
 
       }
-      
-      m_fontMarlett.create(this);
-      
-      m_fontMarlett->create_pixel_font("Marlett", 16.0);
+
+      if (!m_fontMarlett)
+      {
+
+         m_fontMarlett.create(this);
+
+         m_fontMarlett->create_pixel_font("Marlett", 16.0);
+
+      }
 
       create_buttons();
 

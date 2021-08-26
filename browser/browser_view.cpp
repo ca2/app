@@ -14,7 +14,7 @@ namespace browser
 {
 
 
-   view::view(::object * pobject):
+   impact::impact(::object * pobject):
       object(pobject),
       impact_base(pobject)
    {
@@ -51,43 +51,43 @@ namespace browser
 
    }
 
-   view::~view()
+   impact::~impact()
    {
    }
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       user::box::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       user::box::dump(dumpcontext);
    }
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::_001OnMouse);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnMouse);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &view::_001OnMouse);
+      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::_001OnMouse);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::_001OnMouse);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &impact::_001OnMouse);
 
    }
 
 
-   void view::on_before_initialize_render()
+   void impact::on_before_initialize_render()
    {
 
 
    }
 
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -108,7 +108,7 @@ namespace browser
 
       m_prender = __new(render(get_application(), bAlternate));
 
-      m_prender->m_pview = this;
+      m_prender->m_pimpact = this;
 
       on_before_initialize_render();
 
@@ -152,7 +152,7 @@ namespace browser
    }
 
 
-   void view::_001OnTimer(::timer * ptimer)
+   void impact::_001OnTimer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == ::e_timer_update_current_area)
@@ -201,13 +201,13 @@ namespace browser
    }
 
 
-   void view::on_message_destroy(::message::message * pmessage)
+   void impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void view::on_layout()
+   void impact::on_layout()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -254,7 +254,7 @@ namespace browser
    }
 
 
-   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
       impact_base::on_subject(psubject, pcontext);
@@ -281,7 +281,7 @@ namespace browser
    }
 
 
-   void view::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimageBrowser)
@@ -299,7 +299,7 @@ namespace browser
 
 
 
-   void view::on_message_left_button_down(::message::message * pmessage)
+   void impact::on_message_left_button_down(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_pmouse;
@@ -310,7 +310,7 @@ namespace browser
 
    }
 
-   void view::_001OnMouse(::message::message * pmessage)
+   void impact::_001OnMouse(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_pmouse;
@@ -351,7 +351,7 @@ namespace browser
       pmouse->m_bRet = true;
    }
 
-   ::user::document * view::get_document()
+   ::user::document * impact::get_document()
    {
 
       return  (::user::impact::get_document());
@@ -359,7 +359,7 @@ namespace browser
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -470,7 +470,7 @@ namespace browser
    }
 
 
-   void view::calc_processed_browser(string & strProcessedHellomultiverse)
+   void impact::calc_processed_browser(string & strProcessedHellomultiverse)
    {
 
       synchronous_lock slText(&m_mutexText);
@@ -597,7 +597,7 @@ namespace browser
    }
 
 
-   string view::get_browser()
+   string impact::get_browser()
    {
 
       synchronous_lock synchronouslock(&m_mutexText);
@@ -658,7 +658,7 @@ namespace browser
    }
 
 
-   void view::defer_check_on_draw_layout()
+   void impact::defer_check_on_draw_layout()
    {
 
       if (m_prender != nullptr)
@@ -682,7 +682,7 @@ namespace browser
    }
 
 
-   void view::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -744,7 +744,7 @@ namespace browser
 
    }
 
-   void view::set_browser(string strText)
+   void impact::set_browser(string strText)
    {
 
       string strFork;
@@ -763,16 +763,16 @@ namespace browser
 
    }
 
-   void view::OnBrowserCreated(CefRefPtr<CefBrowser> browser)
+   void impact::OnBrowserCreated(CefRefPtr<CefBrowser> browser)
    {
       m_pbrowser = browser;
    }
 
-   void view::OnBrowserClosing(CefRefPtr<CefBrowser> browser)
+   void impact::OnBrowserClosing(CefRefPtr<CefBrowser> browser)
    {
    }
 
-   void view::OnBrowserClosed(CefRefPtr<CefBrowser> browser)
+   void impact::OnBrowserClosed(CefRefPtr<CefBrowser> browser)
    {
       if (m_pbrowser != nullptr &&
             m_pbrowser->GetIdentifier() == browser->GetIdentifier())
@@ -783,7 +783,7 @@ namespace browser
       }
    }
 
-   void view::OnSetAddress(std::string const & url)
+   void impact::OnSetAddress(std::string const & url)
    {
       //if (frame->IsMain())
       //{
@@ -801,12 +801,12 @@ namespace browser
       //}
    }
 
-   void view::OnSetTitle(std::string const & title)
+   void impact::OnSetTitle(std::string const & title)
    {
 //      ::SetWindowText(m_hWnd, CefString(title).ToWString().c_str());
    }
 
-   void view::OnSetFullscreen(bool const fullscreen)
+   void impact::OnSetFullscreen(bool const fullscreen)
    {
       if (m_pbrowser != nullptr)
       {
@@ -821,13 +821,13 @@ namespace browser
       }
    }
 
-   void view::OnSetLoadingState(bool const isLoading,
+   void impact::OnSetLoadingState(bool const isLoading,
                                 bool const canGoBack,
                                 bool const canGoForward)
    {
    }
 
-   //void view::OnSize(::u32 nType, int cx, int cy)
+   //void impact::OnSize(::u32 nType, int cx, int cy)
    //{
    //   CView::OnSize(nType, cx, cy);
 
@@ -844,7 +844,7 @@ namespace browser
    //   }
    //}
 
-   //BOOL view::PreTranslateMessage(MSG* pMsg)
+   //BOOL impact::PreTranslateMessage(MSG* pMsg)
    //{
    //   if (pMsg->message == e_message_key_down)
    //   {
@@ -858,7 +858,7 @@ namespace browser
    //}
 
    
-   bool view::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) 
+   bool impact::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) 
    {
 
       auto rectWindow = get_top_level()->get_window_rect();
@@ -870,7 +870,7 @@ namespace browser
    }
 
 
-   bool view::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
+   bool impact::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
       ::rectangle_i32 rectangleClient = get_client_rect();
@@ -884,7 +884,7 @@ namespace browser
    }
 
 
-   void view::OnPaint(CefRefPtr<CefBrowser> browser,
+   void impact::OnPaint(CefRefPtr<CefBrowser> browser,
                       CefRenderHandler::PaintElementType type,
                       const CefRenderHandler::RectList& dirtyRects,
                       const void* buffer,
@@ -913,7 +913,7 @@ namespace browser
    }
 
 
-   void view::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url)
+   void impact::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url)
    {
 
       CEF_REQUIRE_UI_THREAD();
@@ -929,7 +929,7 @@ namespace browser
    }
 
 
-   void view::OnTitleChange(CefRefPtr<CefBrowser> browser, const CefString& title)
+   void impact::OnTitleChange(CefRefPtr<CefBrowser> browser, const CefString& title)
    {
       
       CEF_REQUIRE_UI_THREAD();
@@ -939,7 +939,7 @@ namespace browser
    }
 
 
-   void view::OnFullscreenModeChange(CefRefPtr<CefBrowser> browser, bool fullscreen)
+   void impact::OnFullscreenModeChange(CefRefPtr<CefBrowser> browser, bool fullscreen)
    {
 
       CEF_REQUIRE_UI_THREAD();
@@ -949,7 +949,7 @@ namespace browser
    }
 
 
-   void view::OnAfterCreated(CefRefPtr<CefBrowser> browser)
+   void impact::OnAfterCreated(CefRefPtr<CefBrowser> browser)
    {
       
       CEF_REQUIRE_UI_THREAD();
@@ -959,7 +959,7 @@ namespace browser
    }
 
    
-   bool view::DoClose(CefRefPtr<CefBrowser> browser)
+   bool impact::DoClose(CefRefPtr<CefBrowser> browser)
    {
       
       CEF_REQUIRE_UI_THREAD();
@@ -971,7 +971,7 @@ namespace browser
    }
 
 
-   void view::OnBeforeClose(CefRefPtr<CefBrowser> browser)
+   void impact::OnBeforeClose(CefRefPtr<CefBrowser> browser)
    {
       
       CEF_REQUIRE_UI_THREAD();
@@ -981,7 +981,7 @@ namespace browser
    }
 
 
-   void view::OnLoadError(CefRefPtr<CefBrowser> browser,
+   void impact::OnLoadError(CefRefPtr<CefBrowser> browser,
                           CefRefPtr<CefFrame> frame,
                           ErrorCode errorCode,
                           const CefString& errorText,
@@ -1007,7 +1007,7 @@ namespace browser
    }
 
 
-   void view::OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward)
+   void impact::OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward)
    {
       
       CEF_REQUIRE_UI_THREAD();
@@ -1017,7 +1017,7 @@ namespace browser
    }
 
 
-   void view::CreateBrowser(CefWindowInfo const & info, CefBrowserSettings const & settings, CefString const & url)
+   void impact::CreateBrowser(CefWindowInfo const & info, CefBrowserSettings const & settings, CefString const & url)
    {
 
       CefBrowserHost::CreateBrowser(info, this, url, settings, nullptr);

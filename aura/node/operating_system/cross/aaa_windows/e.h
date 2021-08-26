@@ -6446,7 +6446,7 @@
 // MessageText:
 //
 // A privilege that the service requires to function properly does not exist in the service account configuration.
-// You may use the Services Microsoft Management Console (MMC) snap-in (services.msc) and the LoCAl Security Settings MMC snap-in (secpol.msc) to view the service configuration and the account configuration.
+// You may use the Services Microsoft Management Console (MMC) snap-in (services.msc) and the LoCAl Security Settings MMC snap-in (secpol.msc) to impact the service configuration and the account configuration.
 //
 #define ERROR_INCOMPATIBLE_SERVICE_PRIVILEGE 1297L
 
@@ -24158,7 +24158,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Unable to map view of file for OLE service
+// Unable to map impact of file for OLE service
 //
 #define CO_E_INIT_SCM_MAP_VIEW_OF_FILE   _HRESULT_TYPEDEF_(0x80004010L)
 
@@ -24810,7 +24810,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Error drawing view
+// Error drawing impact
 //
 #define VIEW_E_DRAW                      _HRESULT_TYPEDEF_(0x80040140L)
 

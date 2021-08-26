@@ -8,7 +8,7 @@ namespace turboc
 
    lite_view::lite_view(::object * pobject):
       ::object(pobject),
-      view(pobject)
+      impact(pobject)
    {
 
 
@@ -34,7 +34,7 @@ namespace turboc
    void lite_view::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      view::install_message_handling(pdispatch);
+      impact::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_view::on_message_create);
 
@@ -81,7 +81,7 @@ namespace turboc
    void lite_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      view::_001OnDraw(pgraphics);
+      impact::_001OnDraw(pgraphics);
 
    }
 
@@ -94,7 +94,7 @@ namespace turboc
    }
 
 
-/*   void view::turboc_render_lite_view(::image * pimage)
+/*   void impact::turboc_render_lite_view(::image * pimage)
    {
 
 

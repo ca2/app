@@ -1049,35 +1049,41 @@ void object::add_task(::object* pobjectTask)
 
    synchronous_lock synchronouslock(mutex());
 
-   if (!m_pobjectaChildrenTask)
-   {
-
-      m_pobjectaChildrenTask.create_new();
-
-   }
-
    try
    {
 
       auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
 
+      if(ptaskOldParent == this
+      && m_pobjectaChildrenTask 
+      && m_pobjectaChildrenTask->contains(pobjectTask))
+      {
+
+         return;
+
+      }
+
       if (::is_set(ptaskOldParent))
       {
 
-         auto pchildren = ptaskOldParent->m_pobjectaChildrenTask;
+         synchronouslock.unlock();
 
-         if (::is_set(pchildren))
-         {
+         ptaskOldParent->erase_task(pobjectTask);
 
-            ptaskOldParent->erase_task(pobjectTask);
-
-         }
+         synchronouslock.lock();
 
       }
 
    }
    catch (...)
    {
+
+   }
+
+   if (!m_pobjectaChildrenTask)
+   {
+
+      m_pobjectaChildrenTask.create_new();
 
    }
 
@@ -1120,6 +1126,8 @@ void object::erase_task(::object* pobjectTask)
 void object::transfer_tasks_from(::task* ptask)
 {
 
+   synchronous_lock synchronouslock(mutex());
+
    __pointer(__pointer_array(::object)) pobjectaChildrenTask;
 
    {
@@ -1140,8 +1148,6 @@ void object::transfer_tasks_from(::task* ptask)
    }
 
    {
-
-      synchronous_lock synchronouslock(mutex());
 
       for (auto& pobjectTask : *pobjectaChildrenTask)
       {
@@ -1190,25 +1196,33 @@ bool object::check_tasks_finished()
 
    }
 
+   _synchronous_lock lock(mutex());
+
+   if (m_bCheckingChildrenTask)
+   {
+
+      return m_pobjectaChildrenTask->has_element();
+
+   }
+
    m_bCheckingChildrenTask = true;
 
    try
    {
 
-      synchronous_lock lock(mutex());
-
       for (int iChildTask = 0; iChildTask < m_pobjectaChildrenTask->get_size(); iChildTask++)
       {
 
-         auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
-         
-         string strType = ptaskChild->type_c_str();
+         auto & ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
 
-         lock.unlock();
+         if (ptaskChild)
+         {
 
-         ptaskChild->set_finish();
+            string strType = ptaskChild->type_c_str();
 
-         lock.lock();
+            ptaskChild->set_finish();
+
+         }
 
       }
 
@@ -1217,17 +1231,8 @@ bool object::check_tasks_finished()
 
          auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
 
-         string strType = ptaskChild->type_c_str();
-
-         if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
+         if (!ptaskChild)
          {
-
-            if (ptaskChild->m_pobjectParentTask == this)
-            {
-
-               ptaskChild->m_pobjectParentTask = nullptr;
-
-            }
 
             m_pobjectaChildrenTask->erase_at(iChildTask);
 
@@ -1235,7 +1240,27 @@ bool object::check_tasks_finished()
          else
          {
 
-            iChildTask++;
+            string strType = ptaskChild->type_c_str();
+
+            if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
+            {
+
+               if (ptaskChild->m_pobjectParentTask == this)
+               {
+
+                  ptaskChild->m_pobjectParentTask = nullptr;
+
+               }
+
+               m_pobjectaChildrenTask->erase_at(iChildTask);
+
+            }
+            else
+            {
+
+               iChildTask++;
+
+            }
 
          }
 
@@ -1477,6 +1502,8 @@ bool object::__is_child_task(::object * pobjectTask) const
 
    }
 
+   synchronous_lock lock(mutex());
+
    if (!m_pobjectaChildrenTask)
    {
 
@@ -1513,11 +1540,11 @@ bool object::__is_child_task(::object * pobjectTask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point_i32 of view)...
+// ->at simple objects (from finish point_i32 of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish point_i32 of view)...
+// ->for complex objects (from finish point_i32 of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.

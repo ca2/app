@@ -12,7 +12,7 @@ namespace browser
 
 
       ::userex::top_view *    m_ptopview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
       switcher_view(::object * pobject);

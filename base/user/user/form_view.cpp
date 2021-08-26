@@ -149,18 +149,22 @@ namespace user
       if(pformOld)
       {
 
-         __pointer(::user::form_view) pview = pformOld;
+//         __pointer(::user::form_view) pview = pformOld;
 
-         if (pview)
-         {
+         //if (pview)
+         //{
 
-            get_document()->erase_view(pview);
+         //   pview->set_finish();
 
-         }
+         //   //get_document()->erase_view(pview);
 
-         pformOld->destroy_window();
+         //}
 
-         pformOld.release();
+         //pformOld->destroy_window();
+
+         //pformOld.release();
+
+         pformOld->set_finish();
 
       }
 

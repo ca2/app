@@ -5034,7 +5034,7 @@ namespace ios
    void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      // graphics will be already set its view port to the user::interaction for linux - cairo with xlib
+      // graphics will be already set its impact port to the user::interaction for linux - cairo with xlib
 
       pgraphics->SetViewportOrg(::point_i32());
 

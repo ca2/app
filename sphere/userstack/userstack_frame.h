@@ -24,7 +24,7 @@ namespace userstack
 
       bool                       m_bMouseOver;
 
-      __pointer(view)                     m_pview;
+      __pointer(impact)                     m_pimpact;
       __pointer(pane_view)                m_ppaneview;
 
 

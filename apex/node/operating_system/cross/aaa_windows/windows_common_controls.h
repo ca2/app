@@ -207,7 +207,7 @@ typedef struct tagTBADDBITMAP {
 #define STD_REPLACE             13
 #define STD_PRINT               14
 
-// icon indexes for standard view bitmap
+// icon indexes for standard impact bitmap
 
 #define VIEW_LARGEICONS         0
 #define VIEW_SMALLICONS         1

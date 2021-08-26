@@ -578,9 +578,9 @@ namespace tranquillum
 
       ptab->get_data()->m_pen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
+      //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+      //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::rectangle_i32 rcTab;
 

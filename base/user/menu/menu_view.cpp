@@ -157,7 +157,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->failed("Failed to create new xml document for menu view");
+         pcreate->failed("Failed to create new xml document for menu impact");
 
          return;
 

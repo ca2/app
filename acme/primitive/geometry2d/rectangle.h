@@ -654,6 +654,43 @@ public:
 
  }
 
+
+ ::size_f64 aspect_size(const rectangle_type & rectangle) const
+ {
+
+    ::size_f64 size = this->size();
+
+    double dW = (double) rectangle.width() / size.cx;
+
+    double dH = (double) rectangle.height() / size.cy;
+
+    double d = minimum(dW, dH);
+
+    return {size.cx * d, size.cy * d};
+
+ }
+
+ void aspect_fit(const rectangle_type & rectangle)
+ {
+
+    auto size = aspect_size(rectangle);
+
+    set_size(size);
+
+ }
+
+
+ void aspect_align_fit(double x, double y, const rectangle_type & rectangle)
+ {
+
+    aspect_fit(rectangle);
+
+    align_x(x, rectangle);
+
+    align_y(y, rectangle);
+
+ }
+
  void align_rate(double x, double y, const rectangle_type & rectangle)
  {
 

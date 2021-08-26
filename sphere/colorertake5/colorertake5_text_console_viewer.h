@@ -19,7 +19,7 @@ namespace colorertake5
      text_console_viewer(base_editor *be, text_lines *ts, i32 background, i32 encoding);
      ~text_console_viewer();
 
-     void view();
+     void impact();
    };
 
 } // namespace colorertake5

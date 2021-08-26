@@ -1105,6 +1105,14 @@ namespace user
    }
 
 
+   ::e_status thread::set_finish()
+   {
+
+      return ::thread::set_finish();
+
+   }
+
+
    void thread::term_thread()
    {
 

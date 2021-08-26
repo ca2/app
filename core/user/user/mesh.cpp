@@ -2181,7 +2181,7 @@ namespace user
          return_(pdrawitem->m_bOk,true);
 
          //return;
-         //__throw(::exception::exception("subitem rectangle_i32 on icon view? why are you asking for that now?"));
+         //__throw(::exception::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
       }
 
       pdrawitem->m_bOk = false;

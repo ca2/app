@@ -22,7 +22,7 @@ namespace filemanager
    {
       pmessage->previous();
 
-      get_document()->m_thread.m_pview = this;
+      get_document()->m_thread.m_pimpact = this;
 
       m_pviewcreator = __new(::user::impact_creator());
 

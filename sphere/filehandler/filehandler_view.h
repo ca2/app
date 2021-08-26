@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       public ::user::form_view
    {
    public:
@@ -33,7 +33,7 @@ namespace filehandler
 
          void parse(const ::string & pszApp);
 
-         void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
+         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
       };
 
@@ -50,7 +50,7 @@ namespace filehandler
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
          void on_layout(const RECTANGLE_I32 * lpcrect);
-         void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics);
+         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics);
 
       };
 
@@ -62,8 +62,8 @@ namespace filehandler
       ::write_text::font_pointer       m_pfont;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);

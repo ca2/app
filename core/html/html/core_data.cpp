@@ -419,6 +419,10 @@ namespace html
 
       m_pgraphics = pgraphics;
 
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
 

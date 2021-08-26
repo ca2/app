@@ -9,7 +9,7 @@ namespace user
    color_combo_box::color_combo_box() 
    {
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
       m_pdocument = nullptr;
       m_bMouseDown = false;
 
@@ -111,13 +111,13 @@ namespace user
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-               m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
+               m_pimpact = m_pdocument->get_typed_view < ::userex::color_view >();
 
-               m_pview->m_bCompact = true;
+               m_pimpact->m_bCompact = true;
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 
-               m_pframewindow = m_pview->top_level_frame()->cast < ::simple_frame_window >();
+               m_pframewindow = m_pimpact->top_level_frame()->cast < ::simple_frame_window >();
 
                m_pframewindow->set_owner(this);
 
@@ -128,7 +128,7 @@ namespace user
 
             }
 
-            m_pview->m_hls = m_hls;
+            m_pimpact->m_hls = m_hls;
 
             auto pframe = frame();
 
@@ -172,14 +172,14 @@ namespace user
    void color_combo_box::on_control_event(::user::control_event * pevent)
    {
 
-      if(pevent->m_puserinteraction == m_pview)
+      if(pevent->m_puserinteraction == m_pimpact)
       {
 
          pevent->m_puserinteraction = this;
 
          pevent->m_id = m_id;
 
-         m_hls = m_pview->m_hls;
+         m_hls = m_pimpact->m_hls;
 
       }
 

@@ -145,7 +145,7 @@ namespace filemanager
          /*if(m_netcfg.create(m_ptabview))
          {
             pimpactdata->m_pdocument = m_netcfg.m_pdocument;
-            pimpactdata->m_puserinteraction = m_netcfg.m_pview->get_parent_frame();
+            pimpactdata->m_puserinteraction = m_netcfg.m_pimpact->get_parent_frame();
          }*/
 
       }

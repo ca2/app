@@ -51,21 +51,21 @@ namespace uwp
       defer_main_thread([&patha, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (view != nullptr)
+         if (impact != nullptr)
          {
 
-            if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+            if (impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
             {
 
                m_bHasFile = true;
 
             }
-            else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+            else if (impact->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
             {
 
-               ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+               ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
                if (items)
                {

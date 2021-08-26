@@ -33,14 +33,6 @@ context_image::~context_image()
 }
 
 
-//::e_status context_image::set_finish_composites(::property_object * pcontextobjectFinish)
-//{
-//
-//   return ::object::set_finish_composites(pcontextobjectFinish);
-//
-//}
-
-
 ::e_status context_image::destroy_composites()
 {
 
@@ -848,4 +840,86 @@ bool context_image::_image_to_desk(const ::image* pimage)
 #endif // _UWP
 
 
+void context_image::_task_load_image(::image * pimage, ::payload payload, bool bCache)
+{
+
+   pimage->m_estatus = ::error_failed;
+
+   ::file::path path = payload.get_file_path();
+
+   memory memory;
+
+   if (!bCache)
+   {
+
+      ::file::set_no_cache(payload);
+
+   }
+
+   m_pcontext->m_papexcontext->file().as_memory(payload, memory);
+
+   const char * psz = (const char *)memory.get_data();
+
+   auto size = memory.get_size();
+
+   if (::is_null(psz))
+   {
+
+      return;
+
+   }
+
+   auto pcontext = m_pcontext->m_pauracontext;
+
+   auto pcontextimage = pcontext->context_image();
+
+   auto estatus = pcontextimage->load_svg(pimage, memory);
+
+   if (::succeeded(estatus))
+   {
+
+      pimage->on_load_image();
+
+      pimage->set_ok();
+
+      pimage->m_estatus = ::success;
+
+      return;
+
+   }
+
+   if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
+   {
+
+      if (!_load_multi_frame_image(pimage, memory))
+      {
+
+         pimage->set_nok();
+
+         pimage->m_estatus = ::error_failed;
+
+         return;
+
+      }
+
+      pimage->on_load_image();
+
+      pimage->set_ok();
+
+      pimage->m_estatus = ::success;
+
+      return;
+
+   }
+
+   _os_load_image(pimage, memory);
+
+}
+
+
+void context_image::_os_load_image(::image * pimage, memory & memory)
+{
+
+
+}
 

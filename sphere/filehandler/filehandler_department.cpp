@@ -37,7 +37,7 @@ namespace filehandler
       create_factory <pane_view >();
       create_factory <document >();
       create_factory <frame >();
-      create_factory <view >();
+      create_factory <impact >();
 
       if(!::acme::department::init_instance())
          return false;

@@ -12,7 +12,7 @@ text_console_viewer::text_console_viewer(base_editor *be, text_lines *ts, int ba
 };
 text_console_viewer::~text_console_viewer(){};
 
-void text_console_viewer::view()
+void text_console_viewer::impact()
 {
 #ifdef _WIN32
 int topline, leftpos;
@@ -116,7 +116,7 @@ INPUT_RECORD ir;
         break;
       };
       if (ir.EventType == KEY_EVENT && ir.Event.KeyEvent.bKeyDown){
-        // moving view position
+        // moving impact position
         switch(ir.Event.KeyEvent.wVirtualKeyCode){
           case VK_UP:
             if (topline) topline--;

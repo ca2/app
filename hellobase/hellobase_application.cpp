@@ -42,7 +42,7 @@ namespace hellobase
       create_factory <::hellobase::document >();
       create_factory <::hellobase::main_frame >();
       create_factory <::user::button_view >();
-      create_factory <::hellobase::view >();
+      create_factory <::hellobase::impact >();
 
       if (!::base::application::init_instance())
       {
@@ -77,7 +77,7 @@ namespace hellobase
                              "main",
                              __type(document),
                              __type(main_frame),
-                             __type(view)));
+                             __type(impact)));
       m_ptemplateHelloBaseMain = pDocTemplate;
 
 

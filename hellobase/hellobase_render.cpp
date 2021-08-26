@@ -30,7 +30,7 @@ namespace hellobase
       m_millisFastAnime = 500;
       m_millisLastOk = 0;
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_bImageEnable = true;
 
@@ -176,7 +176,7 @@ namespace hellobase
       //for (auto & bilbo : m_bilboa)
       //{
 
-      //   m_pview->data_get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
+      //   m_pimpact->data_get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
 
       //   i++;
 
@@ -197,7 +197,7 @@ namespace hellobase
 
       //::parallelization::set_priority(::priority_time_critical);
 
-      //double dFps = m_pview->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
+      //double dFps = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 
       //double dPeriod = 1000.0 / dFps;
 
@@ -1115,9 +1115,9 @@ namespace hellobase
 
       //      {
 
-      //         synchronous_lock slText(&m_pview->m_mutexText);
+      //         synchronous_lock slText(&m_pimpact->m_mutexText);
 
-      //         strHelloBase = m_pview->get_processed_helloaura().c_str();
+      //         strHelloBase = m_pimpact->get_processed_helloaura().c_str();
 
       //      }
 
@@ -1179,7 +1179,7 @@ namespace hellobase
       //if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       //{
 
-      //   synchronous_lock sl1(m_pview->get_wnd()->mutex());
+      //   synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
 
       //   synchronous_lock slDraw(&m_mutexDraw);
 
@@ -1190,9 +1190,9 @@ namespace hellobase
 
       //      {
 
-      //         synchronous_lock slText(&m_pview->m_mutexText);
+      //         synchronous_lock slText(&m_pimpact->m_mutexText);
 
-      //         helloaura_fast_render(m_pview->get_processed_helloaura());
+      //         helloaura_fast_render(m_pimpact->get_processed_helloaura());
 
       //      }
 
@@ -1213,16 +1213,16 @@ namespace hellobase
 
       //   //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
-      //   m_pview->m_bOkPending = true;
+      //   m_pimpact->m_bOkPending = true;
 
       //   return;
 
       //}
 
-      //if (m_pview->m_bOkPending)
+      //if (m_pimpact->m_bOkPending)
       //{
 
-      //   m_pview->m_bOkPending = false;
+      //   m_pimpact->m_bOkPending = false;
 
       //   m_millisLastOk= ::millis::now();
 
@@ -1316,7 +1316,7 @@ namespace hellobase
 
    //         bilbo.m_b = true;
 
-   //         m_pview->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+   //         m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 
    //      }
    //      else if (!bilbo.m_bNew && bilbo.m_b)
@@ -1326,7 +1326,7 @@ namespace hellobase
 
    //         bilbo.m_b = false;
 
-   //         m_pview->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+   //         m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 
    //      }
 
@@ -1379,7 +1379,7 @@ namespace hellobase
 
    //   ::write_text::font_pointer font(e_create);
 
-   //   font->create_pixel_font(m_pview->m_strFont, fHeight, e_font_weight_bold);
+   //   font->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 
    //   pgraphics->set_font(font);
 
@@ -1389,7 +1389,7 @@ namespace hellobase
 
    //   double ratey = fHeight * 0.84 / size.cy;
 
-   //   font->create_pixel_font(m_pview->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+   //   font->create_pixel_font(m_pimpact->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
    //   m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 

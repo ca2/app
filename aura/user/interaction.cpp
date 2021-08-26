@@ -3753,10 +3753,10 @@ return "";
 
          string strType = type_name();
 
-         if (strType == "waven::view")
+         if (strType == "waven::impact")
          {
 
-            output_debug_string("waven::view");
+            output_debug_string("waven::impact");
          }
          //         else if(strType.contains_ci("menu_list_view"))
          //         {
@@ -7141,14 +7141,17 @@ void interaction::destroy_window()
    m_puserinteractionCustomWindowProc && m_puserinteractionCustomWindowProc->destroy();
    m_puiLabel && m_puiLabel->destroy();
    m_useritema.destroy_all();
-   m_pform && m_pform != this && m_pform->destroy();
+   // tasks should not be destroyed in destroy
+   //m_pform && m_pform != this && m_pform->destroy();
    m_palphasource && m_palphasource->destroy();
    m_pdrawableBackground && m_pdrawableBackground->destroy();
    m_pimpl && m_pimpl->destroy();
    m_pimpl2 && m_pimpl2->destroy();
    m_puserinteractionpointeraOwned && m_puserinteractionpointeraOwned->destroy();
    m_puserinteractionpointeraChild && m_puserinteractionpointeraChild->destroy();
-   m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
+   //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
+   // tasks should not be destroyed in destroy
+   //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
    m_ptooltip && m_ptooltip->destroy();
    m_pmenuitem && m_pmenuitem->destroy();
    m_menua.destroy_all();
@@ -9380,9 +9383,7 @@ void interaction::on_control_event(control_event* pevent)
 }
 
 
-
 bool interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
-
 {
 
    if (m_pimpl.is_null())
@@ -9396,6 +9397,12 @@ bool interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       output_debug_string("::user::interaction::post_message e_message_key_down");
+
+   }
+   else if (id == e_message_close)
+   {
+
+      output_debug_string("::user::interaction::post_message e_message_close");
 
    }
 
@@ -11795,6 +11802,8 @@ void interaction::on_simple_command(::message::simple_command * psimplecommand)
          }
          else
          {
+
+            synchronous_lock synchronouslock(mutex());
 
             auto pthread = payload("transparent_mouse_event_thread").cast<::thread>();
 

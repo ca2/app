@@ -323,25 +323,37 @@ namespace user
    }
 
 
+   bool shell::would_set_thumbnail_for(_get_file_image_ & getfileimage)
+   {
+
+      ::file::path pathFinal;
+
+      pathFinal = final_path(getfileimage);
+
+      if (pathFinal.ends_ci(".jpg")
+         || pathFinal.ends_ci(".jpeg")
+         || pathFinal.ends_ci(".png")
+         || pathFinal.ends_ci(".gif")
+         || pathFinal.ends_ci(".bmp")
+         || pathFinal.ends_ci(".svg")
+         )
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
    bool shell::defer_set_thumbnail(_get_file_image_ & getfileimage)
    {
 
       auto psystem = m_psystem->m_paurasystem;
 
       auto pcontextimage = psystem->context_image();
-
-      string strPath;
-
-      strPath = getfileimage.m_imagekey.m_strPath;
-
-      if(strPath.ends_ci(".jpg")
-      || strPath.ends_ci(".jpeg")
-      || strPath.ends_ci(".png")
-      || strPath.ends_ci(".gif")
-      || strPath.ends_ci(".bmp")
-      || strPath.ends_ci(".svg")
-      )
-      {
 
       auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
 
@@ -383,8 +395,6 @@ namespace user
             }
 
             return true;
-
-         }
 
          }
 
@@ -519,15 +529,32 @@ namespace user
    }
 
    
+   ::file::path & shell::processed_path(_get_file_image_ & getfileimage)
+   {
+
+      if (getfileimage.m_pathProcessed.is_empty())
+      {
+
+         ::file::path pathProcessed = m_pcontext->m_papexcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
+
+         getfileimage.m_pathProcessed = pathProcessed;
+
+      }
+
+      return getfileimage.m_pathProcessed;
+
+   }
+
+
    ::file::path & shell::final_path(_get_file_image_ & getfileimage)
    {
-      
+
       if(getfileimage.m_pathFinal.is_empty())
       {
       
-         ::file::path path = m_pcontext->m_papexcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
-      
-         ::file::path pathFinal = m_psystem->m_pacmepath->_final(path);
+         processed_path(getfileimage);
+
+         ::file::path pathFinal = m_psystem->m_pacmepath->_final(getfileimage.m_pathProcessed);
       
          getfileimage.m_pathFinal = pathFinal;
 
@@ -1061,10 +1088,15 @@ namespace user
 
       }
 
-      if(defer_set_thumbnail(getfileimage))
+      if (would_set_thumbnail_for(getfileimage))
       {
 
-         return true;
+         if (defer_set_thumbnail(getfileimage))
+         {
+
+            return true;
+
+         }
 
       }
       
@@ -1617,6 +1649,8 @@ namespace user
 
          try
          {
+
+            pgetfileimage->m_pathProcessed.Empty();
             
             pgetfileimage->m_pathFinal.Empty();
 
@@ -1728,6 +1762,7 @@ namespace user
 //      m_pilHover[iSize]->set(iImage, pimageHover);
 //
 //   }
+
 
    void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
    {

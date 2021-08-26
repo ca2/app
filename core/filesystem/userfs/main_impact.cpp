@@ -8,26 +8,26 @@ namespace userfs
 {
 
 
-   main_view::main_view()
+   main_impact::main_impact()
    {
 
    }
 
 
-   void main_view::install_message_routing(::channel * pchannel)
+   void main_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_view::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &main_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &main_impact::on_message_create);
    }
 
-   void main_view::on_message_create(::message::message * pmessage)
+   void main_impact::on_message_create(::message::message * pmessage)
    {
       pmessage->previous();
       if(pmessage->m_bRet)
          return;
 
 //      __pointer(application) papp =  (this);
-      //papp->m_pmainview = this;
+      //papp->m_pmainimpact = this;
       
       SetPaneCount(2);
       
@@ -57,7 +57,7 @@ namespace userfs
    }
 
    
-   void main_view::_001OnTimer(::timer * ptimer)
+   void main_impact::_001OnTimer(::timer * ptimer)
    {
 
       ::user::split_view::_001OnTimer(ptimer);
@@ -65,7 +65,7 @@ namespace userfs
    }
 
 
-   ::user::document * main_view::get_document()
+   ::user::document * main_impact::get_document()
    {
       return  ::user::split_view::get_document();
    }

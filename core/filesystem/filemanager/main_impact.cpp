@@ -8,7 +8,7 @@ namespace filemanager
 {
 
 
-   main_view::main_view()
+   main_impact::main_impact()
    {
 
       //m_ppropform = nullptr;
@@ -18,22 +18,22 @@ namespace filemanager
    }
 
 
-   main_view::~main_view()
+   main_impact::~main_impact()
    {
 
    }
 
 
-   void main_view::install_message_routing(::channel * pchannel)
+   void main_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
 
 
-   void main_view::assert_valid() const
+   void main_impact::assert_valid() const
    {
 
       ::user::split_view::assert_valid();
@@ -41,7 +41,7 @@ namespace filemanager
    }
 
 
-   void main_view::dump(dump_context & dumpcontext) const
+   void main_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_view::dump(dumpcontext);
@@ -52,7 +52,7 @@ namespace filemanager
 
 
 
-   void main_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //auto pstyle = get_style(pgraphics);
@@ -73,7 +73,7 @@ namespace filemanager
    }
 
 
-   void main_view::on_create_split_impact()
+   void main_impact::on_create_split_impact()
    {
 
       if (get_pane_count() > 0)
@@ -118,7 +118,7 @@ namespace filemanager
    }
 
 
-   void main_view::OpenSelectionProperties()
+   void main_impact::OpenSelectionProperties()
    {
 
       auto itema = m_pfilelist->get_selected_items();
@@ -142,7 +142,7 @@ namespace filemanager
    }
 
 
-   void main_view::on_command(::message::command * pcommand)
+   void main_impact::on_command(::message::command * pcommand)
    {
 
       if(pcommand->m_id == "change_view")
@@ -177,17 +177,17 @@ namespace filemanager
    }
 
 
-   void main_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
 
       ::user::split_view::on_subject(psubject, pcontext);
 
       if (psubject->id() == OPEN_DOCUMENT_UPDATE)
       {
 
-         output_debug_string("filemanager::main_view ::update_open_document");
+         output_debug_string("filemanager::main_impact ::update_open_document");
 
       }
 

@@ -8,7 +8,7 @@ namespace userfs
    class document;
 
 
-   class CLASS_DECL_CORE main_view :
+   class CLASS_DECL_CORE main_impact :
       public ::user::split_view
    {
    public:
@@ -17,7 +17,7 @@ namespace userfs
       
 
 
-      main_view();
+      main_impact();
       void install_message_routing(::channel * pchannel);
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);

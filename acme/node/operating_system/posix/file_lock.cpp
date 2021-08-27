@@ -176,6 +176,7 @@ namespace file_lock
 
     }
 
+
    string file_lock::_get_file_name(const char * lpszName)
    {
 

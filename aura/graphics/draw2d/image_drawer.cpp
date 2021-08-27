@@ -85,18 +85,20 @@ bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
 
    auto rectangleSource = imagedrawing.source_rectangle();
 
+   auto rectangleTarget = imagedrawing.target_rectangle();
+
    auto pimage = imagedrawing.image();
 
-   if (rectangleSource.size() == imagedrawing.m_rectangleTarget.size())
+   if (rectangleSource.size() == rectangleTarget.size())
    {
 
-      return _draw_raw(imagedrawing.m_rectangleTarget, pimage, imagedrawing, rectangleSource.top_left());
+      return _draw_raw(rectangleTarget, pimage, imagedrawing, rectangleSource.top_left());
 
    }
    else
    {
 
-      return _stretch_raw(imagedrawing.m_rectangleTarget, pimage, imagedrawing, rectangleSource);
+      return _stretch_raw(rectangleTarget, pimage, imagedrawing, rectangleSource);
 
    }
 

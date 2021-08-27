@@ -663,7 +663,7 @@ namespace user
 
       __pointer(::user::prodevian) pprodevian;
 
-      if (bProdevianThread)
+      if (bProdevianThread && m_puserinteraction->is_graphical())
       {
 
          pprodevian = __create_new < ::user::prodevian >();
@@ -672,12 +672,9 @@ namespace user
 
          m_pprodevian->initialize_prodevian(this);
 
-         if (m_puserinteraction->is_graphical())
-         {
+         m_puserinteraction->add_task(m_pprodevian);
 
-            m_pprodevian->__refer(m_pprodevian->m_puserthread, m_puserthread);
-
-         }
+         m_pprodevian->__refer(m_pprodevian->m_puserthread, m_puserthread);
 
       }
 

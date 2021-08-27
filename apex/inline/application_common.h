@@ -151,6 +151,12 @@ void application_common(::apex::system * psystem)
 
 #endif
 
+#ifdef NO_AUDIO
+
+   psystem->m_bImaging = false;
+
+#endif
+
 }
 
 

@@ -182,20 +182,20 @@ namespace file_lock
 
    // }
 
-   string file_lock::_get_file_name(const char * lpszName)
-   {
-
-      string str;
-
-      str.replace("\\", "-");
-
-      str.replace("::", "_");
-
-      str = "/var/lib/ca2/" + str;
-
-      return str;
-
-   }
+//   string file_lock::_get_file_name(const char * lpszName)
+//   {
+//
+//      string str;
+//
+//      str.replace("\\", "-");
+//
+//      str.replace("::", "_");
+//
+//      str = "/var/lib/ca2/" + str;
+//
+//      return str;
+//
+//   }
 
 } // namespace file_lock
 

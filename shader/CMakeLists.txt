@@ -4,15 +4,15 @@ project(app_shader CXX)
 
 list(APPEND library_source
    _.cpp
-    _.h
-    _user.h
-    application.cpp
-    application.h
-    framework.h
-    render.cpp
-    render.h
-    main_window.cpp
-    main_window.h)
+   _.h
+   _user.h
+   application.cpp
+   application.h
+   framework.h
+   render.cpp
+   render.h
+   main_window.cpp
+   main_window.h)
 
 
 list(APPEND library_references
@@ -21,8 +21,6 @@ list(APPEND library_references
    aqua
    aura
    )
-
-
 
 
 add_library(app_shader SHARED ${library_source})
@@ -34,21 +32,19 @@ set_target_properties(app_shader PROPERTIES LINKER_LANGUAGE CXX)
 
 if (MSVC)
 
-    target_compile_options(app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(app_shader PRIVATE ${library_references})
+   target_compile_options(app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(app_shader PRIVATE ${library_references})
 
 elseif (LINUX)
 
-    target_compile_options(app_shader PRIVATE -fpermissive)
-    #target_link_options(app_shader PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(app_shader PRIVATE ${library_references})
-    target_link_options(app_shader PRIVATE -Wl,-z,defs)
+   target_compile_options(app_shader PRIVATE -fpermissive)
+   #target_link_options(app_shader PRIVATE -Wl,-rpath=$ORIGIN)
+   target_link_libraries(app_shader PRIVATE ${library_references})
+   target_link_options(app_shader PRIVATE -Wl,-z,defs)
 
 endif ()
-
-
 
 
 target_link_directories(app_shader PRIVATE ${library_link_directories})
@@ -73,17 +69,17 @@ target_compile_definitions(_app_shader PRIVATE _APP_ID="app/shader")
 
 if (MSVC)
 
-    target_compile_options(_app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(_app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(_app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(_app_shader PRIVATE ${library_references})
+   target_compile_options(_app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(_app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(_app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(_app_shader PRIVATE ${library_references})
 
 elseif (LINUX)
 
-    target_compile_options(_app_shader PRIVATE -fpermissive)
-    #target_link_options(_app_shader PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(_app_shader PRIVATE ${library_references})
-    target_link_options(_app_shader PRIVATE -Wl,-z,defs)
+   target_compile_options(_app_shader PRIVATE -fpermissive)
+   #target_link_options(_app_shader PRIVATE -Wl,-rpath=$ORIGIN)
+   target_link_libraries(_app_shader PRIVATE ${library_references})
+   target_link_options(_app_shader PRIVATE -Wl,-z,defs)
 
 endif ()
 

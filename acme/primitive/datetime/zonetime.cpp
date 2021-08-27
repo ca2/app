@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#if defined(LINUX)
+#include <time.h>
+#endif
 
 
 namespace datetime

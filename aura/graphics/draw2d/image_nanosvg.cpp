@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "nanosvg/nanosvg.h"
-#include "nanosvg/nanosvgrast.h"
+#include "third/nanosvg/nanosvg.h"
+#include "third/nanosvg/nanosvgrast.h"
 
 double get_default_screen_dpi();
 

@@ -86,6 +86,8 @@ list(APPEND library_source
    filesystem/filemanager/icon.h
    filesystem/filemanager/iconoverlayer.cpp
    filesystem/filemanager/iconoverlayer.h
+   filesystem/filemanager/impact_base.cpp
+   filesystem/filemanager/impact_base.h
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
    filesystem/filemanager/left_view.cpp

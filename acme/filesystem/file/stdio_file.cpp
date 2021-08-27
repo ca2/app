@@ -149,7 +149,7 @@ stdio_file::~stdio_file()
 
       // error;
 
-      __throw(::file::exception(error_failed, GetLastError(), errno, m_path));
+      __throw(::file::exception(error_file, GetLastError(), errno, m_path));
 
       return -1;
 
@@ -158,12 +158,12 @@ stdio_file::~stdio_file()
 
 #else
 
-   if(fseek(m_pfile, offset, nFrom)
+   if(fseek(m_pfile, offset, nFrom))
    {
 
       // error;
 
-      __throw(::file::exception(error_failed, GetLastError(), errno, m_path));
+      __throw(::file::exception(error_file, 0, errno, m_path));
 
       return -1;
 

@@ -100,11 +100,9 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
 
    }
 
-   DWORD dwSize;
+   auto uSize = pfile->get_size();
 
-   dwSize = (DWORD)pfile->get_size();
-
-   iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwSize : minimum(iReadAtMostByteCount, (::strsize)dwSize);
+   iReadAtMostByteCount = minimum_non_negative(iReadAtMostByteCount, uSize);
 
    char * psz = str.get_string_buffer(iReadAtMostByteCount);
 

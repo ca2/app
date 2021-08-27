@@ -26,81 +26,81 @@
 #include "framework.h"
 #include "cairo/cairo-features.h"
 #include <cairo/cairo.h>
-#include <librsvg/rsvg.h>
+//#include <librsvg/rsvg.h>
 
 
 namespace imaging_freeimage
 {
 
 
-   ::e_status context_image::load_svg(::image * pimage, memory & memory)
-   {
-
-      return ::context_image::load_svg(pimage, memory);
-
-//      int ret;
+//   ::e_status context_image::load_svg(::image * pimage, memory & memory)
+//   {
 //
-//      RsvgDimensionData unscaled_dimensions, dimensions;
-//      cairo_surface_t *image;
-//      cairo_t *crender = NULL;
-//      GError *error = NULL;
+//      return ::context_image::load_svg(pimage, memory);
 //
-//      auto pszData = (const char *) memory.get_data();
-//
-//      auto size = memory.get_size();
-//
-//
-//      auto handle = rsvg_handle_new_from_data(pszData, size, &error);
-//      if (error) {
-//         g_error_free(error);
-//         return error_invalid_buffer;
-//      }
-//
-//      rsvg_handle_get_dimensions(handle, &dimensions);
-//      rsvg_handle_get_dimensions(handle, &unscaled_dimensions);
-//      dimensions.width  = pimage->width()  ? pimage->width()  : dimensions.width;
-//      dimensions.height = pimage->height() ? pimage->height() : dimensions.height;
-////      if (s->keep_ar && (s->width || s->height)) {
-////         double default_ar = unscaled_dimensions.width/(double)unscaled_dimensions.height;
-////         if (!s->width)
-////            dimensions.width  = lrintf(dimensions.height * default_ar);
-////         else
-////            dimensions.height = lrintf(dimensions.width  / default_ar);
+////      int ret;
+////
+////      RsvgDimensionData unscaled_dimensions, dimensions;
+////      cairo_surface_t *image;
+////      cairo_t *crender = NULL;
+////      GError *error = NULL;
+////
+////      auto pszData = (const char *) memory.get_data();
+////
+////      auto size = memory.get_size();
+////
+////
+////      auto handle = rsvg_handle_new_from_data(pszData, size, &error);
+////      if (error) {
+////         g_error_free(error);
+////         return error_invalid_buffer;
 ////      }
+////
+////      rsvg_handle_get_dimensions(handle, &dimensions);
+////      rsvg_handle_get_dimensions(handle, &unscaled_dimensions);
+////      dimensions.width  = pimage->width()  ? pimage->width()  : dimensions.width;
+////      dimensions.height = pimage->height() ? pimage->height() : dimensions.height;
+//////      if (s->keep_ar && (s->width || s->height)) {
+//////         double default_ar = unscaled_dimensions.width/(double)unscaled_dimensions.height;
+//////         if (!s->width)
+//////            dimensions.width  = lrintf(dimensions.height * default_ar);
+//////         else
+//////            dimensions.height = lrintf(dimensions.width  / default_ar);
+//////      }
+////
+////      if(!pimage->create({dimensions.width, dimensions.height}))
+////      {
+////         return error_failed;
+////
+////      }
+////
+////
+////      image = cairo_image_surface_create_for_data(
+////         (unsigned char *) pimage->get_data(), CAIRO_FORMAT_ARGB32,
+////                                                  pimage->width(), pimage->height(),
+////                                                  pimage->scan_size());
+////      if (cairo_surface_status(image) != CAIRO_STATUS_SUCCESS)
+////         return error_invalid_buffer;
+////
+////      crender = cairo_create(image);
+////
+////      cairo_save(crender);
+////      cairo_set_operator(crender, CAIRO_OPERATOR_CLEAR);
+////      cairo_paint(crender);
+////      cairo_restore(crender);
+////
+////      cairo_scale(crender, dimensions.width / (double)unscaled_dimensions.width,
+////                  dimensions.height / (double)unscaled_dimensions.height);
+////
+////      rsvg_handle_render_cairo(handle, crender);
+////
+////      cairo_destroy(crender);
+////      cairo_surface_destroy(image);
+////      g_object_unref(handle);
+////
+////      return success;
 //
-//      if(!pimage->create({dimensions.width, dimensions.height}))
-//      {
-//         return error_failed;
-//
-//      }
-//
-//
-//      image = cairo_image_surface_create_for_data(
-//         (unsigned char *) pimage->get_data(), CAIRO_FORMAT_ARGB32,
-//                                                  pimage->width(), pimage->height(),
-//                                                  pimage->scan_size());
-//      if (cairo_surface_status(image) != CAIRO_STATUS_SUCCESS)
-//         return error_invalid_buffer;
-//
-//      crender = cairo_create(image);
-//
-//      cairo_save(crender);
-//      cairo_set_operator(crender, CAIRO_OPERATOR_CLEAR);
-//      cairo_paint(crender);
-//      cairo_restore(crender);
-//
-//      cairo_scale(crender, dimensions.width / (double)unscaled_dimensions.width,
-//                  dimensions.height / (double)unscaled_dimensions.height);
-//
-//      rsvg_handle_render_cairo(handle, crender);
-//
-//      cairo_destroy(crender);
-//      cairo_surface_destroy(image);
-//      g_object_unref(handle);
-//
-//      return success;
-
-   }
+//   }
 
 
 } // namespace imaging_freeimage

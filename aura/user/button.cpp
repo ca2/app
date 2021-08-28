@@ -150,7 +150,7 @@ namespace user
          _001OnButtonDrawList(pgraphics);
 
       }
-      else if (m_estyle == style_bitmap)
+      else if (m_estyle == style_image)
       {
 
          _001OnButtonDrawBitmap(pgraphics);
@@ -220,7 +220,7 @@ namespace user
          set_size(sizeTotal);
 
       }
-      else if (m_estyle == style_bitmap)
+      else if (m_estyle == style_image)
       {
 
          ::size_i32 sizeTotal = m_pbitmap->m_pimage->size();
@@ -751,7 +751,12 @@ namespace user
 
       rectangleClient.deflate(rectBorder);
 
-      _001OnButtonDrawBackground(pgraphics);
+      if(m_estyle != style_stock_icon)
+      {
+
+         _001OnButtonDrawBackground(pgraphics);
+
+      }
 
 //      if(m_itemHover)
 //      {
@@ -1057,7 +1062,7 @@ namespace user
    void button::on_enter_button_style(e_style estyle)
    {
 
-      if(estyle == style_bitmap || estyle == style_image_and_text)
+      if(estyle == style_image || estyle == style_image_and_text)
       {
 
          m_pbitmap = new bitmap();
@@ -1087,7 +1092,7 @@ namespace user
    void button::on_exit_button_style(e_style estyle)
    {
 
-      if(estyle == style_bitmap || estyle == style_image_and_text)
+      if(estyle == style_image|| estyle == style_image_and_text)
       {
 
          ::acme::del(m_pbitmap);
@@ -1112,11 +1117,11 @@ namespace user
    bool button::LoadBitmaps(::payload payload,::payload varSel,::payload varFocus,::payload varDisabled,::payload varHover)
    {
 
-      if (m_estyle != style_bitmap &&
+      if (m_estyle != style_image &&
             m_estyle != style_image_and_text)
       {
 
-         set_button_style(style_bitmap);
+         set_button_style(style_image);
 
       }
 

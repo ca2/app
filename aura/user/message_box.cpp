@@ -47,6 +47,15 @@ namespace user
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
 
+      m_pbuttonClose = __new(::user::button("", e_dialog_result_close));
+
+      m_pbuttonClose->set_button_style(::user::button::style_stock_icon);
+
+      m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
+
+      m_pbuttonClose->m_flagNonClient -= non_client_background;
+      m_pbuttonClose->m_flagNonClient -= non_client_focus_rect;
+
       switch (emessageboxType)
       {
       case e_message_box_ok_cancel:
@@ -80,6 +89,10 @@ namespace user
          m_buttona.add(__new(::user::button("OK", e_dialog_result_ok)));
          break;
       }
+
+      m_pbuttonClose->initialize(this);
+
+      m_pbuttonClose->add_control_event_handler(this);
 
       for (auto& pbutton : m_buttona)
       {
@@ -167,6 +180,8 @@ namespace user
    {
 
       __pointer(::message::create) pcreate(pmessage);
+
+      m_pbuttonClose->create_child(this);
 
       for (auto & pbutton : m_buttona)
       {
@@ -368,6 +383,10 @@ namespace user
 
       r.set_dim(0, 0, iWidth, 300 * screen_scaler());
 
+      m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
+
+      m_pbuttonClose->display();
+
       r.Align(e_align_horizontal_center, rectangleMonitor);
 
       r.offset_y((rectangleMonitor.height() - r.height()) * 2 / 5);
@@ -453,8 +472,6 @@ namespace user
 
 
 } // namespace user
-
-
 
 
 namespace aura

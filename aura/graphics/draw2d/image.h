@@ -68,7 +68,7 @@ public:
    ::size_i32 get_image_drawer_size() const override;
 
 
-   ::image_pointer image_source_image(const concrete < ::size_i32 > &);
+   ::image_pointer image_source_image(const concrete < ::size_i32 > &) override;
 
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 &, const ::size_f64 &, enum_image_selection) const { return get_size(); }

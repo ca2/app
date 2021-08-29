@@ -29,6 +29,7 @@ struct CLASS_DECL_APEX apex_main_struct
    ::logic::bit                  m_bUser;
    ::logic::bit                  m_bUserEx;
    ::logic::bit                  m_bImaging;
+   ::logic::bit                  m_bAudio;
    ::logic::bit                  m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::logic::bit                  m_bGdiplus;

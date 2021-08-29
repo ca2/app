@@ -972,7 +972,7 @@
     <ClInclude Include="html\user\frame.h" />
     <ClInclude Include="html\user\internal.h" />
     <ClInclude Include="html\user\user.h" />
-    <ClInclude Include="html\user\view.h" />
+    <ClInclude Include="html\user\impact.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />

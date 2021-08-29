@@ -17,10 +17,11 @@ namespace user
          style_none,
          style_normal,
          style_simple,
-         style_bitmap,
+         style_image,
          style_image_and_text,
          style_push,
-         style_list
+         style_list,
+         style_stock_icon,
       };
 
       class bitmap
@@ -67,7 +68,7 @@ namespace user
 
       button();
       button(const ::string & pszName, const ::id & id);
-      virtual ~button();
+      ~button() override;
 
 
       void user_button_construct();

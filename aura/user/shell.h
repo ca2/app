@@ -72,6 +72,7 @@ namespace user
 
          
          int               m_iImage;
+         ::file::path      m_pathProcessed;
          ::file::path      m_pathFinal;
          image_key         m_imagekey;
 
@@ -161,6 +162,7 @@ namespace user
 
       virtual _get_file_image_ * new_get_file_image();
 
+      virtual ::file::path & processed_path(_get_file_image_ & getfileimage);
       virtual ::file::path & final_path(_get_file_image_ & getfileimage);
 
       inline ::aura::application * get_application() { return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; }
@@ -171,7 +173,7 @@ namespace user
       //virtual void add_thread();
 
       
-      
+      virtual bool would_set_thumbnail_for(_get_file_image_ & getfileimage);
 
       virtual void on_update_sizes_interest();
 

@@ -31,6 +31,7 @@ namespace user
       int                              m_iLineHeight;
       int                              m_iTextAscent;
 
+      __pointer(button)                m_pbuttonClose;
       __pointer_array(button)          m_buttona;
 
       int                              m_iButtonTop;

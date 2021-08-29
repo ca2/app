@@ -912,7 +912,7 @@
     <ClInclude Include="filesystem\filemanager\main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\main_view.h">
+    <ClInclude Include="filesystem\filemanager\main_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation.h">
@@ -954,7 +954,7 @@
     <ClInclude Include="filesystem\filemanager\update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\view.h">
+    <ClInclude Include="filesystem\filemanager\impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="process\process.h">

@@ -26,7 +26,7 @@ namespace filehandler
       IDR_ALBUM,
       __type(MediaLibraryDoc),
       __type(MediaLibraryChildFrame),
-      __type(::mplite::library::view));
+      __type(::mplite::library::impact));
       m_pdocumenttemplateAlbum = pdoctemplate;
 
       pdoctemplate = new ::user::single_document_template(
@@ -113,7 +113,7 @@ namespace filehandler
       if(::str::begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         __pointer(::filehandler::view) pview = create_view < ::filehandler::view > (pimpactdata);
+         __pointer(::filehandler::impact) pview = create_view < ::filehandler::impact > (pimpactdata);
 
          pimpactdata->m_puserinteraction = pview;
 
@@ -150,7 +150,7 @@ namespace filehandler
          }*/
          /*         create_context cc;
          cc.m_pCurrentDoc = get_document();
-         cc.m_typeNewView =  __type(rtprx::view);
+         cc.m_typeNewView =  __type(rtprx::impact);
 
          __pointer(::user::impact) pview = (CreateView(&cc, 101, this));
          if(pview != nullptr)

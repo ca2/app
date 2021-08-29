@@ -1094,6 +1094,12 @@
     <ClInclude Include="node\operating_system\ansi\_.h">
       <Filter>Header Files\node\operating_system\ansi</Filter>
     </ClInclude>
+    <ClInclude Include="user\interaction_scaler.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\load_image.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1641,6 +1647,15 @@
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\windowing.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
+    </ClCompile>
+    <ClCompile Include="user\interaction_scaler.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\load_image.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -192,7 +192,7 @@ namespace filemanager
          //__pointer(simple_frame_window) puserinteractionTopLevel;
          __pointer(document) pdocument = get_document();
 
-         create_view < view >(pimpactdata);
+         create_view < impact >(pimpactdata);
 
          auto pcontext = get_context();
 

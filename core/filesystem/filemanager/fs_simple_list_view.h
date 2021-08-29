@@ -12,7 +12,7 @@ namespace filemanager
       namespace simple
       {
 
-         class view;
+         class impact;
 
          enum EItemType
          {
@@ -106,7 +106,7 @@ namespace filemanager
 
             __pointer(::image_list)                           m_pil;
             index                                   m_iParentFolder;
-            __pointer(::filemanager::fs::simple::view)      m_pserver;
+            __pointer(::filemanager::fs::simple::impact)      m_pserver;
 
 
             i32                                             m_iIconFolder;

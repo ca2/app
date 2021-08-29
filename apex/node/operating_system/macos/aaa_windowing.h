@@ -74,20 +74,20 @@ int GetWorkspaceCount();
 //
 ////void copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
 ////
-////void copy(RECTANGLE_I32 * prectangle, const CGRect & rectSrc);
+////void copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
 ////
 ////void window_copy(CGRect & rectangle, const RECTANGLE_I32 * prectangle);
 ////
-////void window_copy(RECTANGLE_I32 * prectangle, const CGRect & rectSrc);
+////void window_copy(RECTANGLE_I32 * prectangle, const CGRect & rectangleSource);
 ////
 ////#ifdef MM
 ////void copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
 ////
-////void copy(RECTANGLE_I32 * prectangle, const NSRect & rectSrc);
+////void copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
 ////
 ////void window_copy(NSRect & rectangle, const RECTANGLE_I32 * prectangle);
 ////
-////void window_copy(RECTANGLE_I32 * prectangle, const NSRect & rectSrc);
+////void window_copy(RECTANGLE_I32 * prectangle, const NSRect & rectangleSource);
 ////
 ////#endif
 //

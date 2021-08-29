@@ -53,7 +53,7 @@ namespace browser
 
       m_strFontSel = pnode->font_name(e_font_sans);
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_bImageEnable = true;
 
@@ -171,7 +171,7 @@ namespace browser
       for (auto & pslide : slideshow())
       {
 
-         m_pview->data_get("slide." + pslide->m_strPath, pslide->m_bDatabase);
+         m_pimpact->data_get("slide." + pslide->m_strPath, pslide->m_bDatabase);
 
          i++;
 
@@ -208,7 +208,7 @@ namespace browser
       try
       {
 
-         auto pview = m_pview;
+         auto pview = m_pimpact;
 
          if(::is_null(pview))
          {
@@ -1068,7 +1068,7 @@ namespace browser
 
                synchronous_lock synchronouslock(&m_mutexText);
 
-               strHelloBrowser = m_pview->m_strProcessedHellomultiverse.c_str();
+               strHelloBrowser = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
             }
 
@@ -1130,7 +1130,7 @@ namespace browser
       if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
       {
 
-         synchronous_lock sl1(m_pview->get_wnd()->mutex());
+         synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
 
          synchronous_lock slDraw(&m_mutexDraw);
 
@@ -1144,9 +1144,9 @@ namespace browser
 
             {
 
-               synchronous_lock slText(&m_pview->m_mutexText);
+               synchronous_lock slText(&m_pimpact->m_mutexText);
 
-               strFork = m_pview->m_strProcessedHellomultiverse.c_str();
+               strFork = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
             }
 
@@ -1172,16 +1172,16 @@ namespace browser
 
          }
 
-         m_pview->m_bOkPending = true;
+         m_pimpact->m_bOkPending = true;
 
          return;
 
       }
 
-      if (m_pview->m_bOkPending)
+      if (m_pimpact->m_bOkPending)
       {
 
-         m_pview->m_bOkPending = false;
+         m_pimpact->m_bOkPending = false;
 
          m_millisLastOk= ::millis::now();
 
@@ -1287,7 +1287,7 @@ namespace browser
 
       //      m_pimageaSlide->add_erase(slide->m_bActive, get_image(slide->m_strPath));
 
-      //m_pview->data_set("slide." + slide.m_strPath, slide.m_bActive);
+      //m_pimpact->data_set("slide." + slide.m_strPath, slide.m_bActive);
 
       //   }
 
@@ -1335,7 +1335,7 @@ namespace browser
 
       ::write_text::font_pointer font(e_create);
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, e_font_weight_bold);
+      font->create_pixel_font(m_pimpact->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
@@ -1345,7 +1345,7 @@ namespace browser
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      font->create_pixel_font(m_pimpact->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
       m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 

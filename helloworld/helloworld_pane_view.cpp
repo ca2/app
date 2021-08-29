@@ -141,7 +141,7 @@ namespace helloworld
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_straTitle.implode(" ");
@@ -151,7 +151,7 @@ namespace helloworld
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_straTitle.implode(" ");
@@ -522,7 +522,7 @@ namespace helloworld
             if(pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -539,7 +539,7 @@ namespace helloworld
             else if (pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_hover_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {

@@ -86,14 +86,16 @@ list(APPEND library_source
    filesystem/filemanager/icon.h
    filesystem/filemanager/iconoverlayer.cpp
    filesystem/filemanager/iconoverlayer.h
+   filesystem/filemanager/impact_base.cpp
+   filesystem/filemanager/impact_base.h
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
    filesystem/filemanager/left_view.cpp
    filesystem/filemanager/left_view.h
    filesystem/filemanager/main_frame.cpp
    filesystem/filemanager/main_frame.h
-   filesystem/filemanager/main_view.cpp
-   filesystem/filemanager/main_view.h
+   filesystem/filemanager/main_impact.cpp
+   filesystem/filemanager/main_impact.h
    filesystem/filemanager/operation.cpp
    filesystem/filemanager/operation.h
    filesystem/filemanager/operation_child_frame.cpp
@@ -120,8 +122,8 @@ list(APPEND library_source
    filesystem/filemanager/tree.h
    filesystem/filemanager/update_hint.cpp
    filesystem/filemanager/update_hint.h
-   filesystem/filemanager/view.cpp
-   filesystem/filemanager/view.h
+   filesystem/filemanager/impact.cpp
+   filesystem/filemanager/impact.h
    filesystem/fs/_.h
    filesystem/fs/_fs.h
    filesystem/fs/ftp_file.cpp
@@ -147,8 +149,8 @@ list(APPEND library_source
    filesystem/userfs/list_item.h
    filesystem/userfs/list_item_array.cpp
    filesystem/userfs/list_item_array.h
-   filesystem/userfs/main_view.cpp
-   filesystem/userfs/main_view.h
+   filesystem/userfs/main_impact.cpp
+   filesystem/userfs/main_impact.h
    filesystem/userfs/tree.cpp
    filesystem/userfs/tree.h
    filesystem/userfs/userfs.cpp
@@ -235,8 +237,8 @@ list(APPEND library_source
    html/user/frame.cpp
    html/user/frame.h
    html/user/user.cpp
-   html/user/view.cpp
-   html/user/view.h
+   html/user/impact.cpp
+   html/user/impact.h
    include/_.cpp
    include/_.h
    include/_c.h
@@ -318,8 +320,8 @@ list(APPEND library_source
    user/account/account_simple_ui.cpp
    user/account/dialog.h
    user/account/login.h
-   user/account/view.cpp
-   user/account/view.h
+   user/account/impact.cpp
+   user/account/impact.h
    user/databaseuser/_.h
    user/databaseuser/_databaseuser.h
    user/databaseuser/key_mesh_data.cpp

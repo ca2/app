@@ -510,3 +510,12 @@ image_source(pobject->m_pcontext->context_image()->get_image(payload))
 
 }
 
+
+
+inline icon_payload::icon_payload(::object * pobject, const ::payload & payload) :
+   image_source(pobject->m_pcontext->context_image()->get_icon(payload))
+{
+
+
+}
+

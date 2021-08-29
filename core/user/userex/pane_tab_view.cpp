@@ -425,7 +425,7 @@ namespace userex
       else if (pimpactdata->m_id == "account")
       {
 
-         __pointer(::account::view) pview = create_view < ::account::view >();
+         __pointer(::account::impact) pview = create_view < ::account::impact >();
 
          if (pview.is_set())
          {
@@ -476,14 +476,14 @@ namespace userex
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview->m_pview->add_control_event_handler(this);
+         m_pfontview->m_pimpact->add_control_event_handler(this);
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pview)
          {
 
-            m_pfontview->m_pview->add_control_event_handler(pview);
+            m_pfontview->m_pimpact->add_control_event_handler(pview);
 
          }
 
@@ -765,7 +765,7 @@ namespace userex
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::view) pview = get_view();
+      __pointer(::account::impact) pview = get_view();
 
       if (pview.is_null())
       {

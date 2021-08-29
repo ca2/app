@@ -1,7 +1,7 @@
 /*
      File: RoundTextView.h
  Abstract:
- A view that draws text, reasons about layout, and manages a selection over its text range.
+ A impact that draws text, reasons about layout, and manages a selection over its text range.
  
  IMPORTANT: Its use of CoreText is naive and inefficient, it deals only with left-to-right text layout, and it is by no means a good template for any text editor. It is a toy implementation included only to illustrate how to bind the system keyboard to some pre-existing text editor.
  
@@ -64,7 +64,7 @@
 }
 @property (nonatomic, copy) NSString *contentText; // The text content (without attributes).
 @property (nonatomic, strong) UIFont *font; // Font used for text content.
-@property (nonatomic, getter=isEditing) BOOL editing; // Is view in "editing" mode or not (affects drawn results).
+@property (nonatomic, getter=isEditing) BOOL editing; // Is impact in "editing" mode or not (affects drawn results).
 @property (nonatomic) NSRange markedTextRange; // Marked text range (for input method marked text).
 @property (nonatomic) NSRange selectedTextRange; // Selected text range.
 

@@ -2504,6 +2504,10 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //return;
 
+   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
    auto pstyle = get_style(pgraphics);
 
    bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
@@ -2561,13 +2565,13 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectDst(rectangleClient.size());
+            ::rectangle_f64 rectangleTarget(rectangleClient.size());
             
             {
                
                image_source imagesource(pgraphics);
                
-               image_drawing_options imagedrawingoptions(rectDst);
+               image_drawing_options imagedrawingoptions(rectangleTarget);
                
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

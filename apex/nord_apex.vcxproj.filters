@@ -3786,7 +3786,7 @@
     <ClInclude Include="html\user\user.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\view.h">
+    <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\cell.h">

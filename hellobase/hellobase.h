@@ -25,7 +25,7 @@ namespace hellobase
 
    class application;
    class document;
-   class view;
+   class impact;
 
 } // namespace flag
 

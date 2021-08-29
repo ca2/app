@@ -323,9 +323,9 @@ i32 image_list::reserve_image(int iItem)
 //
 //   auto sizeDst = m_size;
 //
-//   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+//   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
 //
-//   m_pimage->get_graphics()->draw(rectDst, picon);
+//   m_pimage->get_graphics()->draw(rectangleTarget, picon);
 //
 ////#endif
 //
@@ -358,13 +358,13 @@ i32 image_list::reserve_image(int iItem)
 //
 //   auto sizeDst = m_size;
 //
-//   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+//   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
 //
 //   auto pdraw2dicon = __create < ::draw2d::icon >();
 //
 //   pdraw2dicon->initialize_with_windowing_icon(picon);
 //
-//   m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
+//   m_pimage->get_graphics()->draw(rectangleTarget, pdraw2dicon);
 //
 //   return iItem;
 //

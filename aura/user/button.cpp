@@ -134,6 +134,10 @@ namespace user
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       if (m_estyle == style_push)
       {
 
@@ -146,7 +150,7 @@ namespace user
          _001OnButtonDrawList(pgraphics);
 
       }
-      else if (m_estyle == style_bitmap)
+      else if (m_estyle == style_image)
       {
 
          _001OnButtonDrawBitmap(pgraphics);
@@ -216,7 +220,7 @@ namespace user
          set_size(sizeTotal);
 
       }
-      else if (m_estyle == style_bitmap)
+      else if (m_estyle == style_image)
       {
 
          ::size_i32 sizeTotal = m_pbitmap->m_pimage->size();
@@ -392,7 +396,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_rectangle(rectangleClient, crBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, crBorder);
 
       }
 
@@ -605,15 +609,15 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1, 0, 1);
 
@@ -747,7 +751,12 @@ namespace user
 
       rectangleClient.deflate(rectBorder);
 
-      _001OnButtonDrawBackground(pgraphics);
+      if(m_estyle != style_stock_icon)
+      {
+
+         _001OnButtonDrawBackground(pgraphics);
+
+      }
 
 //      if(m_itemHover)
 //      {
@@ -1053,7 +1062,7 @@ namespace user
    void button::on_enter_button_style(e_style estyle)
    {
 
-      if(estyle == style_bitmap || estyle == style_image_and_text)
+      if(estyle == style_image || estyle == style_image_and_text)
       {
 
          m_pbitmap = new bitmap();
@@ -1083,7 +1092,7 @@ namespace user
    void button::on_exit_button_style(e_style estyle)
    {
 
-      if(estyle == style_bitmap || estyle == style_image_and_text)
+      if(estyle == style_image|| estyle == style_image_and_text)
       {
 
          ::acme::del(m_pbitmap);
@@ -1108,11 +1117,11 @@ namespace user
    bool button::LoadBitmaps(::payload payload,::payload varSel,::payload varFocus,::payload varDisabled,::payload varHover)
    {
 
-      if (m_estyle != style_bitmap &&
+      if (m_estyle != style_image &&
             m_estyle != style_image_and_text)
       {
 
-         set_button_style(style_bitmap);
+         set_button_style(style_image);
 
       }
 
@@ -1233,7 +1242,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw_3drect(
+         pgraphics->draw_inset_3drect(
          rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));

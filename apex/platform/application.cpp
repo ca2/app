@@ -5137,6 +5137,30 @@ void application::on_message_close(::message::message* pmessage)
 bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
 {
 
+   if (path1Param.is_empty())
+   {
+
+      if (path2Param.is_empty())
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (path2Param.is_empty())
+   {
+
+      return false;
+
+   }
+
    ::file::path path1;
 
    ::file::path path2;

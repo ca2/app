@@ -78,7 +78,7 @@ namespace browser
 
       ::mutex                            m_mutexText;
 
-      view *                           m_pview;
+      impact *                           m_pimpact;
 
 
       millis                            m_millisAnime;

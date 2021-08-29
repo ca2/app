@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE path_view :
       virtual public ::user::show < ::user::plain_edit >,
-      virtual public ::filemanager_impact
+      virtual public ::filemanager_impact_base
    {
    public:
 

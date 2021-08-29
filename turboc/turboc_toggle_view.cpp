@@ -43,15 +43,15 @@ namespace turboc
    //   if(!context.is_user_source())
    //      return;
 
-   //   if(m_pmainview == NULL || m_pmainview->m_pview == NULL)
+   //   if(m_pmainimpact == NULL || m_pmainimpact->m_pimpact == NULL)
    //      return;
 
    //   {
-   //      synchronous_lock synchronouslock(&m_pmainview->m_pview->m_mutexText);
-   //      _001GetText(m_pmainview->m_pview->m_strNewHelloMultiverse);
+   //      synchronous_lock synchronouslock(&m_pmainimpact->m_pimpact->m_mutexText);
+   //      _001GetText(m_pmainimpact->m_pimpact->m_strNewHelloMultiverse);
    //   }
 
-   //   m_pmainview->m_pview->post_message(WM_USER + 2000 + 77 + 2);
+   //   m_pmainimpact->m_pimpact->post_message(WM_USER + 2000 + 77 + 2);
 
    //}
 

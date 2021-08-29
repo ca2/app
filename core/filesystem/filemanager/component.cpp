@@ -185,11 +185,11 @@ namespace filemanager
       create_factory <form >();
       create_factory <document >();
       create_factory <child_frame >();
-      create_factory <view >();
+      create_factory <impact >();
       create_factory <path_view >();
       create_factory <save_as_view >();
       create_factory <left_view >();
-      create_factory <main_view >();
+      create_factory <main_impact >();
       create_factory <file_list >();
       create_factory <preview >();
       create_factory <main_frame >();
@@ -206,7 +206,7 @@ namespace filemanager
       create_factory <operation_list_view >();
       create_factory <save_as_edit_view >();
       create_factory <save_as_button>();
-      create_factory <fs::simple::view >();
+      create_factory <fs::simple::impact >();
       create_factory <fs::simple::list_view >();
 
       //__compose_new(this, m_pmap);
@@ -332,7 +332,7 @@ namespace filemanager
                              strTemplateId,
                              __type(document),
                              __type(frame),
-                             __type(view)));
+                             __type(impact)));
       }
 
       auto psession = get_session();

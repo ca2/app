@@ -82,9 +82,9 @@ namespace user
 
          string strMessage;
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
-         strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).name());
+         strMessage.Format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).name());
 #else
-         strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());
+         strMessage.Format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());
 #endif
 
          message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);

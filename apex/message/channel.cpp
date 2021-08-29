@@ -197,7 +197,7 @@ void channel::erase_all_routes()
    try
    {
 
-      synchronous_lock synchronouslock(channel_mutex());
+      _synchronous_lock synchronouslock(channel_mutex());
 
       if(m_bNewChannel)
       {

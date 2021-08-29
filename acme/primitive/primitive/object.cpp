@@ -90,7 +90,7 @@ string object::to_string() const
 ::e_status object::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    m_pcompositea.defer_create_new();
 
@@ -115,7 +115,7 @@ string object::to_string() const
 ::e_status object::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    m_preferencea.defer_create_new();
 
@@ -148,7 +148,7 @@ string object::to_string() const
 //
 //   }
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (m_pcompositea)
 //   {
@@ -177,7 +177,7 @@ string object::to_string() const
 //
 //   }
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (m_pcompositea)
 //   {
@@ -219,7 +219,7 @@ string object::to_string() const
 //
 //   }
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (m_preferencea)
 //   {
@@ -336,7 +336,7 @@ void object::dev_log(string strMessage) const
 //
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      _synchronous_lock synchronouslock(mutex());
 //
 //      __defer_construct_new(m_pobjecta);
 //
@@ -346,7 +346,7 @@ void object::dev_log(string strMessage) const
 //
 //   {
 //
-//      synchronous_lock synchronouslock(mutex());
+//      _synchronous_lock synchronouslock(mutex());
 //
 //      __defer_construct_new(pobject->m_pobjecta);
 //
@@ -360,7 +360,7 @@ void object::dev_log(string strMessage) const
 //void object::on_delete_object(::object* pobject)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (m_pobjecta)
 //   {
@@ -1007,7 +1007,7 @@ void object::system(const ::string & strProjectName)
 //
 //   //{
 //
-//   //   synchronous_lock synchronouslock(mutex());
+//   //   _synchronous_lock synchronouslock(mutex());
 //
 //   //   if (m_pobjecta)
 //   //   {
@@ -1036,6 +1036,8 @@ void object::add_task(::object* pobjectTask)
    if(::is_null(pobjectTask))
    {
 
+      __throw(error_invalid_argument);
+
       return;
 
    }
@@ -1043,11 +1045,37 @@ void object::add_task(::object* pobjectTask)
    if(pobjectTask == this)
    {
 
+      __throw(error_invalid_argument);
+
       return;
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslockParent1(mutex());
+
+   if(is_ascendant_task(pobjectTask))
+   {
+
+      __throw(error_invalid_argument);
+
+      return;
+
+   }
+
+   auto ptaskOldParent = pobjectTask->m_pobjectParentTask;
+
+   _synchronous_lock synchronouslockParent2(ptaskOldParent ? ptaskOldParent->mutex() : nullptr);
+
+   _synchronous_lock synchronouslock(pobjectTask->mutex());
+
+   if(ptaskOldParent == this
+   && m_pobjectaChildrenTask 
+   && m_pobjectaChildrenTask->contains(pobjectTask))
+   {
+
+      return;
+
+   }
 
    if (!m_pobjectaChildrenTask)
    {
@@ -1056,10 +1084,18 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   if (pobjectTask->m_pobjectParentTask)
+   string strType = type_c_str();
+
+   if (strType.contains("prodevian"))
    {
 
-      pobjectTask->m_pobjectParentTask->erase_task(pobjectTask);
+      ::output_debug_string("task added to prodevian\n");
+
+   }
+   else if (strType.contains("user::thread"))
+   {
+
+      ::output_debug_string("task added to user::thread\n");
 
    }
 
@@ -1067,13 +1103,27 @@ void object::add_task(::object* pobjectTask)
 
    pobjectTask->m_pobjectParentTask = this;
 
+   if(::is_set(ptaskOldParent))
+   {
+
+      if(::is_set(ptaskOldParent->m_pobjectaChildrenTask))
+      {
+
+         ptaskOldParent->m_pobjectaChildrenTask->erase(pobjectTask);
+
+      }
+
+   }
+
 }
 
 
 void object::erase_task(::object* pobjectTask)
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
+
+   _synchronous_lock synchronouslockObject(pobjectTask->mutex());
 
    if (!m_pobjectaChildrenTask)
    {
@@ -1082,59 +1132,143 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   if (m_pobjectaChildrenTask->erase(pobjectTask))
+   if (pobjectTask->m_pobjectParentTask != this)
    {
 
-      pobjectTask->m_pobjectParentTask = nullptr;
+      __throw(error_invalid_argument);
+
+      return;
+
+   }
+
+   string strType = type_c_str();
+
+   if (strType.contains("user::thread"))
+   {
+
+      ::output_debug_string("task added to user::thread\n");
+
+   }
+
+   pobjectTask->m_pobjectParentTask = nullptr;
+
+   if (m_pobjectaChildrenTask->erase(pobjectTask) <= 0)
+   {
+
+      ::output_debug_string("not a child");
 
    }
 
 }
 
 
-void object::transfer_tasks_from(::task* ptask)
+void object::transfer_tasks_from(::object* ptask)
 {
 
-   __pointer(__pointer_array(::object)) pobjectaChildrenTask;
-
+   if(::is_null(ptask))
    {
 
-      synchronous_lock synchronouslock(ptask->mutex());
+      __throw(error_invalid_argument);
 
-      if (!ptask->m_pobjectaChildrenTask)
-      {
-
-         return;
-
-      }
-
-      pobjectaChildrenTask = ptask->m_pobjectaChildrenTask;
-
-      ptask->m_pobjectaChildrenTask.release();
+      return;
 
    }
 
+   if(ptask == this)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      __throw(error_invalid_argument);
 
-      for (auto& pobjectTask : *pobjectaChildrenTask)
+      return;
+
+   }
+
+   _synchronous_lock synchronouslock(mutex());
+
+   if(is_ascendant_task(ptask))
+   {
+
+      __throw(error_invalid_argument);
+
+      return;
+
+   }
+
+   _synchronous_lock synchronouslockParent2(ptask->mutex());
+
+   if(!ptask->m_pobjectaChildrenTask
+   || ptask->m_pobjectaChildrenTask->is_empty())
+   {
+
+      return;
+
+   }
+
+   if (!m_pobjectaChildrenTask)
+   {
+
+      m_pobjectaChildrenTask.create_new();
+
+   }
+
+   __pointer_array(::object) objectaChildrenTask;
+
+   objectaChildrenTask = *ptask->m_pobjectaChildrenTask;
+
+   for (auto pobjectTask : objectaChildrenTask)
+   {
+
+      _synchronous_lock synchronouslock(pobjectTask->mutex());
+
+      try
       {
 
-         try
-         {
+         pobjectTask->m_pobjectParentTask = this;
 
-            add_task(pobjectTask);
+         m_pobjectaChildrenTask->add(pobjectTask);
 
-         }
-         catch (...)
-         {
-
-         }
+      }
+      catch (...)
+      {
 
       }
 
    }
+
+   ptask->m_pobjectaChildrenTask.release();
+
+}
+
+
+bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
+{
+
+   try
+   {
+
+      auto p = m_pobjectParentTask;
+
+      while(::is_set(p))
+      {
+
+         if(p == ptaskCandidateAscendant)
+         {
+
+            return true;
+
+         }
+
+         p = p->m_pobjectParentTask;
+
+      }
+      
+   }
+   catch(...)
+   {
+      
+   }
+
+   return false;
 
 }
 
@@ -1163,49 +1297,81 @@ bool object::check_tasks_finished()
 
    }
 
+   _synchronous_lock lock(mutex());
+
+   if (m_bCheckingChildrenTask)
+   {
+
+      return m_pobjectaChildrenTask->has_element();
+
+   }
+
    m_bCheckingChildrenTask = true;
 
    try
    {
 
-      synchronous_lock lock(mutex());
-
       for (int iChildTask = 0; iChildTask < m_pobjectaChildrenTask->get_size(); iChildTask++)
       {
 
-         auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
-         
-         string strType = ptaskChild->type_c_str();
+         auto & ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
 
-         lock.unlock();
+         if (ptaskChild)
+         {
 
-         ptaskChild->set_finish();
+            string strType = ptaskChild->type_c_str();
 
-         lock.lock();
+            ptaskChild->set_finish();
+
+         }
 
       }
 
       for (int iChildTask = 0; iChildTask < m_pobjectaChildrenTask->get_size(); )
       {
 
-         auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
+          auto ptaskChild = m_pobjectaChildrenTask->element_at(iChildTask);
 
-         string strType = ptaskChild->type_c_str();
+          if (!ptaskChild)
+          {
 
-         if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
-         {
+             m_pobjectaChildrenTask->erase_at(iChildTask);
 
-            ptaskChild->m_pobjectParentTask = nullptr;
+          }
+          else
+          {
 
-            m_pobjectaChildrenTask->erase_at(iChildTask);
+             iChildTask++;
 
-         }
-         else
-         {
+          }
+      //    else
+      //    {
 
-            iChildTask++;
+      //       _synchronous_lock synchronouslockChild(ptaskChild->mutex());
 
-         }
+      //       string strType = ptaskChild->type_c_str();
+
+      //       if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
+      //       {
+
+      //          if (ptaskChild->m_pobjectParentTask == this)
+      //          {
+
+      //             ptaskChild->m_pobjectParentTask = nullptr;
+
+      //          }
+
+      //          m_pobjectaChildrenTask->erase_at(iChildTask);
+
+      //       }
+      //       else
+      //       {
+
+      //          iChildTask++;
+
+      //       }
+
+      //    }
 
       }
 
@@ -1325,7 +1491,7 @@ void object::delete_this()
 
    string strTypeName = type_name();
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    if (m_pcompositea)
    {
@@ -1357,7 +1523,7 @@ void object::delete_this()
 
    string strTypeName = type_name();
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    if (m_preferencea)
    {
@@ -1385,7 +1551,7 @@ bool object::___is_reference(::matter* pmatter) const
 
    }
 
-   synchronous_lock synchronouslock(get_children_mutex());
+   _synchronous_lock synchronouslock(get_children_mutex());
 
    if (!m_preferencea)
    {
@@ -1445,6 +1611,8 @@ bool object::__is_child_task(::object * pobjectTask) const
 
    }
 
+   _synchronous_lock lock(mutex());
+
    if (!m_pobjectaChildrenTask)
    {
 
@@ -1481,11 +1649,11 @@ bool object::__is_child_task(::object * pobjectTask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point_i32 of view)...
+// ->at simple objects (from finish point_i32 of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish point_i32 of view)...
+// ->for complex objects (from finish point_i32 of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
@@ -1760,7 +1928,7 @@ __transport(task) object::branch(::e_priority epriority, ::u32 nStackSize, ::u32
 //::index object::task_add(::task * ptask)
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   return get_meta()->task_add(this, ptask);
 //
@@ -1770,7 +1938,7 @@ __transport(task) object::branch(::e_priority epriority, ::u32 nStackSize, ::u32
 void object::task_erase(::task* ptask)
 {
 
-   //synchronous_lock synchronouslock(mutex());
+   //_synchronous_lock synchronouslock(mutex());
 
    //if (m_pmeta)
    //{
@@ -1790,7 +1958,7 @@ void object::task_erase(::task* ptask)
 
       string strThreadChild = ptask->type_name();
 
-      synchronous_lock synchronouslock(mutex());
+      _synchronous_lock synchronouslock(mutex());
 
       if (::is_null(ptask))
       {
@@ -1799,7 +1967,7 @@ void object::task_erase(::task* ptask)
 
       }
 
-      //synchronous_lock slChild(ptask->mutex());
+      //_synchronous_lock slChild(ptask->mutex());
 
       //if (!m_pcompositea->contains(ptask) && ptask->thread_parent() != this)
       //{
@@ -1869,7 +2037,7 @@ void object::task_erase(::task* ptask)
 
          {
 
-            synchronous_lock synchronouslock(ptask->mutex());
+            _synchronous_lock synchronouslock(ptask->mutex());
 
             if (ptask->m_pevSleep.is_null())
             {
@@ -1970,7 +2138,7 @@ void object::task_erase(::task* ptask)
 //void object::task_erase_all()
 //{
 //
-//   /*synchronous_lock synchronouslock(mutex());
+//   /*_synchronous_lock synchronouslock(mutex());
 //
 //   if (m_pmeta)
 //   {
@@ -1984,7 +2152,7 @@ void object::task_erase(::task* ptask)
 //::task_array * object::task_array_get()
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (!m_pmeta)
 //   {
@@ -2001,7 +2169,7 @@ void object::task_erase(::task* ptask)
 //const ::task_array* object::task_array_get() const
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   if (!m_pmeta)
 //   {
@@ -2018,7 +2186,7 @@ void object::task_erase(::task* ptask)
 //bool object::task_is_empty() const
 //{
 //
-//   synchronous_lock synchronouslock(mutex());
+//   _synchronous_lock synchronouslock(mutex());
 //
 //   auto pthreada = task_array_get();
 //
@@ -2914,11 +3082,11 @@ matter* object::get_taskpool_container()
 
 // void to_string(const string_exchange & str) const 
 
-//::image_result create_image();
-//::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image_transport create_image();
+//::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-//::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-//::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+//::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+//::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
 //inline __transport(BASE_TYPE) __create();
@@ -3363,14 +3531,14 @@ matter* object::get_taskpool_container()
 
 
 //template < typename PRED >
-//::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+//::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-// ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-// ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-// ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-// ::image_result load_thumbnail(const char * pszPath);
-// ::image_result load_dib(const ::file::path & pathDib);
+// ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+// ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+// ::image_transport load_thumbnail(const char * pszPath);
+// ::image_transport load_dib(const ::file::path & pathDib);
 
 
 
@@ -3467,7 +3635,7 @@ bool object::IsSerializable() const
 
    //   auto ptask = ::get_task();
 
-   //   synchronous_lock synchronouslock(ptask->mutex());
+   //   _synchronous_lock synchronouslock(ptask->mutex());
 
    //   if (ptask && ptask->m_bIsPredicate)
    //   {

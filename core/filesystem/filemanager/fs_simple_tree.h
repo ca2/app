@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         class view;
+         class impact;
 
          enum EFolderType
          {
@@ -60,7 +60,7 @@ namespace filemanager
             i32                                          m_iIconFolderSelected;
             i32                                          m_iIconArtistNormal;
             i32                                          m_iIconArtistSelected;
-            __pointer(::filemanager::fs::simple::view)   m_pserver;
+            __pointer(::filemanager::fs::simple::impact)   m_pserver;
             FolderArray                                  m_foldera;
             i64                                          m_iParentFolder;
 

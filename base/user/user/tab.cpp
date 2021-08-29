@@ -568,6 +568,10 @@ namespace user
    void tab::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       defer_handle_auto_hide_tabs();
 
       if (m_bNoTabs || !m_bShowTabs)

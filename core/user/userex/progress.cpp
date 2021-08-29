@@ -14,7 +14,7 @@ namespace userex
       
       m_iStepCount = 0;
       m_pdocument = nullptr;
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
 
 
@@ -30,7 +30,7 @@ namespace userex
    void progress_control::set_progress_title(const ::string & pszTitle)
    {
 
-      m_pview->get_parent_frame()->set_window_text(pszTitle);
+      m_pimpact->get_parent_frame()->set_window_text(pszTitle);
 
    }
 
@@ -67,13 +67,13 @@ namespace userex
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-         m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
+         m_pimpact = m_pdocument->get_typed_view<::userex::progress_view>();
 
       }
 
-      m_pview->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
+      m_pimpact->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
 
-      m_pview->m_pprogressreal = this;
+      m_pimpact->m_pprogressreal = this;
 
    }
 
@@ -101,16 +101,16 @@ namespace userex
    void progress_control::redraw()
    {
 
-      if (m_pview == nullptr)
+      if (m_pimpact == nullptr)
       {
 
          return;
 
       }
 
-      m_pview->set_need_redraw();
+      m_pimpact->set_need_redraw();
 
-      m_pview->post_redraw();
+      m_pimpact->post_redraw();
 
 
    }

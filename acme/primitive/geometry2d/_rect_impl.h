@@ -215,9 +215,9 @@
 //   return ::unite(this, rect1, rect2);
 //}
 //
-//TEMPLATE void rectangle_i64::operator=(const RECTANGLE_I64 & rectSrc) noexcept
+//TEMPLATE void rectangle_i64::operator=(const RECTANGLE_I64 & rectangleSource) noexcept
 //{
-//   ::copy(this, &rectSrc);
+//   ::copy(this, &rectangleSource);
 //}
 //TEMPLATE bool rectangle_i64::operator==(const RECTANGLE_I64 & rectangle_i64) const noexcept
 //{
@@ -559,7 +559,7 @@
 //
 //  TEMPLATE void rectangle_f64::operator=(const ::rectangle_f64 & rectectSrc) noexcept
 //   {
-//      ::copy(this, (const rectangle_f64&)& rectSrc);
+//      ::copy(this, (const rectangle_f64&)& rectangleSource);
 //   }
 //  TEMPLATE bool rectangle_f64::operator==(const ::rectangle_f64 & rectectd) const noexcept
 //   {

@@ -29,11 +29,11 @@ namespace html
 
                auto sizeDst = m_pimage->size();
 
-               auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+               auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
 
                image_source imagesource(m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectDst);
+               image_drawing_options imagedrawingoptions(rectangleTarget);
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

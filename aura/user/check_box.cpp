@@ -196,13 +196,13 @@ namespace user
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_rectangle(rectCheckBox, argb(255, 60, 120, 200));
+            pgraphics->draw_inset_rectangle(rectCheckBox, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_rectangle(rectCheckBox, argb(255, 128, 128, 128));
+            pgraphics->draw_inset_rectangle(rectCheckBox, argb(255, 128, 128, 128));
 
          }
 

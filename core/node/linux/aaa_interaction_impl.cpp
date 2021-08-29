@@ -1852,7 +1852,7 @@ namespace linux
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
    //  hook for interaction_impl functions
-   //    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
+   //    only works for derived class (eg: ::impact) that override 'GetScrollBarCtrl'
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 

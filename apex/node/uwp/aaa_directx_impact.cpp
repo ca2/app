@@ -431,7 +431,7 @@ namespace uwp
       Rect selectionRect = get_input_selection_rect();
 
 
-      // Next, convert to screen coordinates in view pixels.
+      // Next, convert to screen coordinates in impact pixels.
       Rect windowBounds = m_window->Bounds;
       contentRect.X += windowBounds.X;
       contentRect.Y += windowBounds.Y;

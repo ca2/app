@@ -770,7 +770,7 @@ bool thread::thread_step()
 bool thread::pump_runnable()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    while(task_get_run())
    {
@@ -2993,6 +2993,13 @@ bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)
 bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 {
 
+   if (id.umessage() == e_message_close)
+   {
+
+      output_debug_string("thread::post_message e_message_close");
+
+   }
+
 #ifdef WINDOWS_DESKTOP
 
    if (m_htask && !m_bAuraMessageQueue && m_bMessageThread)
@@ -3492,7 +3499,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 
       }
 
-      __copy(pMsg, msg);
+      copy(pMsg, &msg);
 
    }
 
@@ -3919,8 +3926,14 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
             ::output_debug_string("e_message_quit");
 
          }
+         else if (msg.message == e_message_destroy_window)
+         {
 
-         __copy(pMsg, msg);
+            ::output_debug_string("e_message_destroy_window");
+
+         }
+
+         copy(pMsg, &msg);
 
          if (iRet == -1)
          {

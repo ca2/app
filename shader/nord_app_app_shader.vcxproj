@@ -163,7 +163,7 @@
     <ClInclude Include="main_frame.h" />
     <ClInclude Include="pane_view.h" />
     <ClInclude Include="simple_shader.h" />
-    <ClInclude Include="view.h" />
+    <ClInclude Include="impact.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_shader.h" />
   </ItemGroup>
@@ -177,7 +177,7 @@
     <ClCompile Include="simple_shader.cpp" />
     <ClCompile Include="simple_shader_1through3.cpp" />
     <ClCompile Include="simple_shader_arcs.cpp" />
-    <ClCompile Include="view.cpp" />
+    <ClCompile Include="impact.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

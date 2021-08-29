@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class view;
+//   class impact;
 //
 //
 //   class CLASS_DECL_SPHERE department :

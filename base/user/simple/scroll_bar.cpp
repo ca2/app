@@ -1755,17 +1755,17 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   auto rectDst = rectDraw;
+   auto rectangleTarget = rectDraw;
 
    auto pointSrc = ::point_f64(iDiv, iDiv);
 
    auto sizeSrc = m_pimageDots->get_size() - ::size_f64(iDiv * 2, iDiv * 2);
 
-   auto rectSrc = ::rectangle_f64(pointSrc, sizeSrc);
+   auto rectangleSource = ::rectangle_f64(pointSrc, sizeSrc);
 
-   image_source imagesource(m_pimageDots, rectSrc);
+   image_source imagesource(m_pimageDots, rectangleSource);
 
-   image_drawing_options imagedrawingoptions(rectDst);
+   image_drawing_options imagedrawingoptions(rectangleTarget);
 
    image_drawing imagedrawing(imagedrawingoptions, imagesource);
    

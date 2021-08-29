@@ -69,7 +69,6 @@ namespace write_text
    font::font()
    {
 
-      //m_strFontFamilyName;
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
       m_eunitFontSize = ::draw2d::unit_point;

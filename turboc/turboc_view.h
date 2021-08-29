@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC view :
+   class CLASS_DECL_TURBOC impact :
       public ::aura::impact
    {
    public:
@@ -23,7 +23,7 @@ namespace turboc
       e_effect                m_eeffect;
       bool                    m_bLite;
 
-      //main_view *             m_pmainview;
+      //main_impact *             m_pmainimpact;
 
       string                  m_strServer;
       ::mutex                   m_mutexWork;
@@ -76,8 +76,8 @@ namespace turboc
       bool                    m_bAlternate;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;

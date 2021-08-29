@@ -71,13 +71,13 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
          auto pimage = create_image(size);
 
-         auto rectDst = pimage->rectangle();
+         auto rectangleTarget = pimage->rectangle();
 
-         auto rectSrc = ::rectangle_i32_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
+         auto rectangleSource = ::rectangle_i32_dimension(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 
-         image_source imagesource(pimageSource, rectSrc);
+         image_source imagesource(pimageSource, rectangleSource);
 
-         image_drawing_options imagedrawingoptions(rectDst);
+         image_drawing_options imagedrawingoptions(rectangleTarget);
 
          image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

@@ -304,9 +304,9 @@ namespace draw2d_cairo
 
 
       //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
-      virtual bool _draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
-      virtual bool _stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
-      //bool _stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc) override;
+      virtual bool _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
+      virtual bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
+      //bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource) override;
 
 
       ::color::color GetPixel(double x, double y) override;
@@ -328,7 +328,7 @@ namespace draw2d_cairo
 //                          ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
 //                          ::u32 clrTransparent) override;
 
-      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dOpacity) override;
+      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dOpacity) override;
 
       /*bool alpha_blend(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
         ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
@@ -478,7 +478,7 @@ namespace draw2d_cairo
       //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       bool fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;
-      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //bool draw_inset_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw3d_rect(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 

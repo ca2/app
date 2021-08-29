@@ -12,7 +12,7 @@ namespace experience
       control_box::control_box()
       {
    
-         m_iDefaultButtonMargin = 0;
+         m_iDefaultButtonMargin = 1;
 
          m_colorBackground.set(0, 0, 0, 0);
 
@@ -89,9 +89,7 @@ namespace experience
          
          m_fontMarlett.create(this);
 
-         m_fontMarlett->create_point_font("Marlett", 24);
-         
-         
+         m_fontMarlett->create_point_font("Marlett", 20);
       
       }
 

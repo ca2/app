@@ -81,7 +81,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    m_messagea.add(message);
 
@@ -104,7 +104,7 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
    ::i64 iMessage = -1;
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    while (true)
    {
@@ -203,7 +203,7 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    ::count count = m_messagea.get_count();
 

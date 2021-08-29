@@ -161,7 +161,8 @@ public:
 
    virtual void add_task(::object* pobjectTask);
    virtual void erase_task(::object* pobjectTask);
-   virtual void transfer_tasks_from(::task * ptask);
+   virtual void transfer_tasks_from(::object * ptask);
+   virtual bool is_ascendant_task(::object * ptaskCandidateAscendant) const;
 
 //   ::e_status destroy() override;
 
@@ -279,11 +280,11 @@ public:
 
    //virtual void to_string(const string_exchange & str) const override;
 
-   //::image_result create_image();
-   //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_transport create_image();
+   //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   //::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
    inline __transport(BASE_TYPE) __create();
@@ -446,14 +447,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   //virtual ::image_result load_thumbnail(const char * pszPath);
-   //virtual ::image_result load_dib(const ::file::path & pathDib);
+   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const char * pszPath);
+   //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
 
 
@@ -1027,14 +1028,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   //virtual ::image_result load_thumbnail(const char * pszPath);
-   //virtual ::image_result load_dib(const ::file::path & pathDib);
+   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const char * pszPath);
+   //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
 
 

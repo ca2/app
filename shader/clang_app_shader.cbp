@@ -133,8 +133,8 @@
 		<Unit filename="pane_view.h" />
 		<Unit filename="simple_shader.cpp" />
 		<Unit filename="simple_shader.h" />
-		<Unit filename="view.cpp" />
-		<Unit filename="view.h" />
+		<Unit filename="impact.cpp" />
+		<Unit filename="impact.h" />
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />

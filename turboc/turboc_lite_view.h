@@ -6,7 +6,7 @@ namespace turboc
 
 
    class CLASS_DECL_TURBOC lite_view:
-      virtual public view
+      virtual public impact
    {
    public:
 

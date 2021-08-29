@@ -453,7 +453,7 @@
 		<Unit filename="filesystem/filemanager/item_action.h" />
 		<Unit filename="filesystem/filemanager/left_view.h" />
 		<Unit filename="filesystem/filemanager/main_frame.h" />
-		<Unit filename="filesystem/filemanager/main_view.h" />
+		<Unit filename="filesystem/filemanager/main_impact.h" />
 		<Unit filename="filesystem/filemanager/operation.h" />
 		<Unit filename="filesystem/filemanager/operation_child_frame.h" />
 		<Unit filename="filesystem/filemanager/operation_document.h" />
@@ -467,7 +467,7 @@
 		<Unit filename="filesystem/filemanager/tab_view.h" />
 		<Unit filename="filesystem/filemanager/tree.h" />
 		<Unit filename="filesystem/filemanager/update_hint.h" />
-		<Unit filename="filesystem/filemanager/view.h" />
+		<Unit filename="filesystem/filemanager/impact.h" />
 		<Unit filename="filesystem/filesystem.h" />
 		<Unit filename="filesystem/filesystem/aaa_want_to_remove_application_dir.h" />
 		<Unit filename="filesystem/filesystem/aaa_want_to_remove_application_file.h" />
@@ -523,7 +523,7 @@
 		<Unit filename="filesystem/userfs/list_data.h" />
 		<Unit filename="filesystem/userfs/list_item.h" />
 		<Unit filename="filesystem/userfs/list_item_array.h" />
-		<Unit filename="filesystem/userfs/main_view.h" />
+		<Unit filename="filesystem/userfs/main_impact.h" />
 		<Unit filename="filesystem/userfs/tree.h" />
 		<Unit filename="filesystem/userfs/userfs.h" />
 		<Unit filename="framework.cpp" />
@@ -588,7 +588,7 @@
 		<Unit filename="html/user/frame.h" />
 		<Unit filename="html/user/internal.h" />
 		<Unit filename="html/user/user.h" />
-		<Unit filename="html/user/view.h" />
+		<Unit filename="html/user/impact.h" />
 		<Unit filename="html_lite/_.h" />
 		<Unit filename="html_lite/attributes.h" />
 		<Unit filename="html_lite/common.h" />

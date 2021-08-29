@@ -194,13 +194,13 @@ namespace filemanager
 
          }
 
-         m_pview->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
+         m_pimpact->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pview->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
+      m_pimpact->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
 
       return ::success;
 

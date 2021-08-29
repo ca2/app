@@ -306,14 +306,14 @@ namespace imaging_freeimage
 
       auto pcontextimage = pcontext->context_image();
 
-      const char * pszData = memory.get_data();
+      auto pszData = memory.get_data();
 
       int size = memory.get_size();
 
       char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
 
       bool bPng = size > sizeof(pszPngSignature)
-      && strncmp(pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+      && strncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
 
       bool bJpegBegins = memory.begins("\x0FF\x0D8", 2);
 

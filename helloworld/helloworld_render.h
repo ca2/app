@@ -83,7 +83,7 @@ namespace helloworld
 
       //::mutex *                          m_pmutexText;
 
-      //view *                           m_pview;
+      //impact *                           m_pimpact;
 
 
       //millis                            m_millisAnime;

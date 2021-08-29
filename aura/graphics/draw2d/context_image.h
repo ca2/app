@@ -7,9 +7,6 @@ class CLASS_DECL_AURA context_image :
 public:
 
 
-   //handler_manager                     m_managerImageLoad;
-
-
    context_image();
    ~context_image() override;
 
@@ -22,16 +19,23 @@ public:
    ::e_status destroy_composites() override;
 
 
-   virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   virtual ::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   virtual ::icon_transport get_icon(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   virtual ::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   virtual ::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
-   virtual ::image_result load_image(const ::payload & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::image_result load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   virtual ::image_result load_thumbnail(const ::string & strPath);
-   virtual ::image_result load_dib(const ::file::path & pathDib);
-   //virtual ::icon_result load_icon(const ::payload & varFile);
+   virtual ::image_transport load_image(const ::payload & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image_transport load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+   virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   virtual ::image_transport load_thumbnail(const ::string & strPath);
+   virtual ::image_transport load_dib(const ::file::path & pathDib);
+   //virtual ::icon_transport load_icon(const ::payload & varFile);
+
+
+   virtual ::e_status _get_icon(::draw2d::icon * picon, const ::payload & varFile);
+
+
+   virtual ::e_status _load_icon(::draw2d::icon * picon, const ::payload & varFile);
 
 
    virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
@@ -55,7 +59,7 @@ public:
    virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);
 
 
-   virtual ::image_result _load_image_from_file(const ::payload & varFile, const ::payload & varOptions);
+   virtual ::image_transport _load_image_from_file(const ::payload & varFile, const ::payload & varOptions);
    virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions);
    
    virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
@@ -70,6 +74,12 @@ public:
    virtual bool _image_to_desk(const ::image* pimage);
 #endif
    
+   
+   virtual void _task_load_image(::image * pimage, ::payload payload, bool bCache);
+   
+   
+   virtual void _os_load_image(::image * pimage, memory & memory);
+
 
 };
 

@@ -9179,7 +9179,7 @@ namespace aura
    }
 
 
-//   icon_result application::load_icon(const ::payload& varFile)
+//   icon_transport application::load_icon(const ::payload& varFile)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

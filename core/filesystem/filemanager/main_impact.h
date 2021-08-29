@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE main_view:
+   class CLASS_DECL_CORE main_impact:
       virtual public ::filemanager_show < ::user::split_view >
    {
    public:
@@ -18,8 +18,8 @@ namespace filemanager
       ::file::item_array                     m_itema;
 
 
-      main_view();
-      virtual ~main_view();
+      main_impact();
+      virtual ~main_impact();
 
 
       virtual void install_message_routing(::channel * pchannel) override;

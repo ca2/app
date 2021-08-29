@@ -7,13 +7,14 @@
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
    virtual public ::object,
-   virtual public ::image_drawer
+   virtual public ::image_drawer,
+   virtual public ::image_source_interface
 {
 public:
 
 
    memory                              m_memoryMap;
-   ::rectangle_i32                              m_rectTag;
+   ::rectangle_i32                     m_rectTag;
 
 
    image();
@@ -67,11 +68,12 @@ public:
    ::size_i32 get_image_drawer_size() const override;
 
 
-   inline ::image * get_image(const concrete < ::size_i32 > &) { return this; }
+   ::image_pointer image_source_image(const concrete < ::size_i32 > &);
 
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 &, const ::size_f64 &, enum_image_selection) const { return get_size(); }
-   inline concrete < ::size_i32 > size(const ::size_f64 &, enum_image_selection ) const { return get_size(); }
+   concrete < ::size_i32 > image_source_size(const ::size_f64 &, enum_image_selection) const override;
+   concrete < ::size_i32 > image_source_size() const override;
    using image_meta::size;
    
    inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
@@ -254,10 +256,10 @@ public:
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size_i32 & size);
    //virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics* pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size);
    //using image_drawer::draw;
-   virtual bool _draw_raw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc = ::point_i32());
-   virtual bool blend(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc, byte bA);
+   virtual bool _draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc = ::point_i32());
+   virtual bool blend(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc, byte bA);
    //virtual bool blend(const ::point_i32 & pointDst, ::image * piml, const ::point_i32 & pointSrc, const ::size_i32 & size);
-   virtual bool draw_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::rectangle_i32 & rectSrc);
+   virtual bool draw_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::rectangle_i32 & rectangleSource);
 
    //virtual bool to(::draw2d::graphics* pgraphics);
    //virtual bool to(::draw2d::graphics* pgraphics, const ::point_i32 & point);
@@ -471,7 +473,7 @@ public:
 ////
 //
 //
-//inline ::image_result __create_image()
+//inline ::image_transport __create_image()
 //{
 //
 //   return ::__create<::image>();

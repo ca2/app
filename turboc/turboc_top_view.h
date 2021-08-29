@@ -13,7 +13,7 @@ namespace turboc
 
       edit_view *             m_peditview;
       toggle_view *           m_ptoggleview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
       top_view(::object * pobject);

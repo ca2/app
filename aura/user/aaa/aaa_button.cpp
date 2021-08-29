@@ -591,11 +591,11 @@ namespace user
 
          ::rectangle rectPush(rectangleClient);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
          rectPush.deflate(1, 1);
 
-         pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3drect(rectPush, colorTopLeft, colorBottomRight);
 
       }
       else
@@ -1159,7 +1159,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw_3drect(
+         pgraphics->draw_inset_3drect(
          rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));

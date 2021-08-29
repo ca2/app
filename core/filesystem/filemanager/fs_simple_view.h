@@ -17,7 +17,7 @@ namespace filemanager
          class tree;
 
 
-         class CLASS_DECL_CORE view :
+         class CLASS_DECL_CORE impact :
             virtual public ::user::split_view
          {
          public:
@@ -30,8 +30,8 @@ namespace filemanager
             ::object *                    m_prequestinterface;
 
 
-            view();
-            virtual ~view();
+            impact();
+            virtual ~impact();
 
 
             void install_message_routing(::channel * pchannel);

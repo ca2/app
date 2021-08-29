@@ -1,258 +1,78 @@
 #include "framework.h"
 #include "core/filesystem/filemanager/_filemanager.h"
+#include "aura/update.h"
+#include "base/user/user/split_pane.h"
 
 
-filemanager_impact::filemanager_impact()
+namespace filemanager
 {
 
-   m_bEditConnectInit = false;
 
-}
-
-
-filemanager_impact::~filemanager_impact()
-{
-
-}
-
-
-void filemanager_impact::install_message_routing(::channel * pchannel)
-{
-
-   ::user::impact::install_message_routing(pchannel);
-
-   connect_command_probe("edit_paste",&filemanager_impact::_001OnUpdateEditPaste);
-
-   connect_command("edit_paste",&filemanager_impact::_001OnEditPaste);
-
-   MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact::_001OnOperationDocMessage);
-
-}
-
-
-
-//::filemanager_impact * filemanager_impact::this_view()
-//{
-//
-//   return dynamic_cast <::filemanager_impact *> (this);
-//
-//}
-
-
-::file::item * filemanager_impact::filemanager_item()
-{
-
-   auto pdocument = filemanager_document();
-
-   if (!pdocument)
+   impact::impact()
    {
-
-      return nullptr;
 
    }
 
-   return pdocument->filemanager_item();
 
-}
-
-
-__pointer(::fs::data) filemanager_impact::fs_data()
-{
-
-   return filemanager_document()->fs_data();
-
-}
-
-
-::file::path filemanager_impact::filemanager_path()
-{
-
-   return filemanager_item()->m_filepathUser;
-
-}
-
-
-::filemanager::document * filemanager_impact::filemanager_document()
-{
-
-   return dynamic_cast <::filemanager::document * > (get_document());
-
-}
-
-
-::filemanager::data * filemanager_impact::filemanager_data()
-{
-
-   return  filemanager_document()->filemanager_data();
-
-}
-
-
-void filemanager_impact::_001Refresh()
-{
-
-   filemanager_document()->browse(filemanager_item(),::e_source_sync);
-
-}
-
-
-void filemanager_impact::browse_sync(const ::action_context & context)
-{
-
-   UNREFERENCED_PARAMETER(context);
-
-}
-
-
-void filemanager_impact::knowledge(const ::file::path & pathUser, const ::action_context & context)
-{
-
-   UNREFERENCED_PARAMETER(pathUser);
-   UNREFERENCED_PARAMETER(context);
-
-}
-
-
-void filemanager_impact::_001OnUpdateEditPaste(::message::message * pmessage)
-{
-
-   __pointer(::message::command) pcommand(pmessage);
-
-   auto psession = get_session();
-   
-   auto pcopydesk = psession->copydesk();
-   
-   bool bHasFile = pcopydesk->has_filea();
-         
-   pcommand->enable(bHasFile);
-
-   pmessage->m_bRet = true;
-
-}
-
-
-void filemanager_impact::_001OnEditPaste(::message::message * pmessage)
-{
-
-   UNREFERENCED_PARAMETER(pmessage);
-
-   ::file::listing listing;
-
-   ::user::copydesk::e_op eop;
-
-   auto psession = get_session();
-   
-   auto pcopydesk = psession->copydesk();
-   
-   bool bOk = pcopydesk->get_filea(listing, eop);
-
-   if(!bOk || listing.is_empty())
+   impact::~impact()
    {
-
-      pmessage->m_bRet = true;
-
-      return;
 
    }
 
-   string strDir;
 
-   strDir = filemanager_item()->m_filepathUser;
-
-   auto pview  = this;
-
-   if(pview == nullptr)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
-      return;
+      ::filemanager_impact_base::install_message_routing(pchannel);
+      ::user::split_view::install_message_routing(pchannel);
 
    }
 
-   auto ptabview = GetTypedParent <::filemanager::tab_view >();
 
-   if(ptabview != nullptr)
+   void impact::assert_valid() const
    {
-
-      bool bDeleteOriginOnSuccessfulCopy = eop == ::user::copydesk::op_cut;
-
-      ptabview->filemanager_document()->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
-
-      ptabview->filemanager_document()->get_operation_doc(true)->m_thread.kick();
-
+      ::user::split_view::assert_valid();
    }
 
-   pmessage->m_bRet =true;
+   void impact::dump(dump_context & dumpcontext) const
+   {
+      ::user::split_view::dump(dumpcontext);
+   }
 
-}
 
-
-void filemanager_impact::_001OnOperationDocMessage(::message::message * pmessage)
-{
-
-   __pointer(::user::message) pusermessage(pmessage);
-
-   if(pusermessage->m_wparam == 4096)
+   void impact::on_create_split_impact()
    {
 
-      if(pusermessage->m_lparam == 0)
+      if (get_pane_count() > 0)
       {
 
-         _001Refresh();
+         return;
 
       }
 
-   }
+      auto papplication = get_application();
 
-}
+      bool bPathView = papplication->is_false("no_path_view");
 
+      SetPaneCount(bPathView ? 2 : 1);
 
+      SetSplitOrientation(e_orientation_horizontal);
 
-void filemanager_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-{
-
-   ::user::impact::on_subject(psubject, pcontext);
-
-   if (psubject->id() == INITIALIZE_ID)
-   {
-
-      if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
+      if (bPathView)
       {
 
-         __pointer(::database::client) pclient = get_parent_frame();
+         set_position(0, 24);
 
-         if (pclient != nullptr && !pclient->m_id.to_string().contains("::frame"))
+         m_splitpanecompositea[0]->m_bFixedSize = true;
+
+         initialize_split_layout();
+
+         path_view * ppathview = create_pane_view < path_view >(0);
+
+         if (ppathview == nullptr)
          {
 
-            string str;
-
-            str.Format("frame(%s)", filemanager_data()->m_id.str().c_str());
-
-            pclient->set_data_key_modifier(str);
-
-         }
-
-      }
-
-   }
-   else if (psubject->id() == SYNCHRONIZE_PATH_ID)
-   {
-
-      __pointer(::core::application) papplication = get_application();
-
-      auto pfileitem = psubject->m_pfileitem;
-
-      auto bFileManagerItemSet = ::is_set(filemanager_item());
-
-      bool bEqualFilePath = bFileManagerItemSet && papplication->is_equal_file_path(psubject->m_pfileitem->m_filepathFinal, filemanager_item()->m_filepathFinal);
-
-      if (pfileitem && (bFileManagerItemSet && bEqualFilePath))
-      {
-
-#define DBG_LOOP  1
-         for (index i = 0; i < DBG_LOOP; i++)
-         {
-
-            browse_sync(psubject->m_actioncontext + ::e_source_sync);
+            message_box("Could not create filemanager path impact");
 
          }
 
@@ -260,16 +80,219 @@ void filemanager_impact::on_subject(::subject::subject * psubject, ::subject::co
       else
       {
 
-         knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::e_source_sync);
+         initialize_split_layout();
 
       }
 
-      set_need_redraw();
+
+      main_impact * pmainview = create_pane_view < main_impact >(bPathView ? 1 : 0);
+
+      if (pmainview == nullptr)
+      {
+
+         message_box("Could not create file list ::user::impact");
+
+      }
+
+      //SetPane(pmainview, false);
+
+      //pmainview->create_views();
 
    }
 
-}
 
+   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   {
+
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
+
+      ::user::split_view::on_subject(psubject, pcontext);
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pdocumentSubject = psubject->cast < ::user::document >(id_document);
+
+      if (filemanager_document() == pdocumentSubject)
+      {
+
+         //if (psubject->id() == id_initialize)
+         //{
+
+         //   string str;
+
+         //   str.Format("(%s)", filemanager_data()->m_id.str().c_str());
+
+         //   __pointer(::database::client) pframe = get_parent_frame();
+
+         //   if (pframe != nullptr)
+         //   {
+
+         //      pframe->set_data_key_modifier(str);
+
+         //   }
+
+         //}
+         //else
+         if (psubject->id() == id_pop)
+         {
+
+            OnActivateFrame(e_activate_inactive, get_parent_frame());
+
+            __pointer(::user::frame_window) spframewindow = get_parent_frame();
+
+            if (spframewindow.is_set())
+            {
+
+               spframewindow->ActivateFrame(e_display_normal);
+
+            }
+
+            OnActivateView(true, this, this);
+
+            set_need_redraw();
+
+         }
+         else if (psubject->id() == id_create_bars)
+         {
+
+            __pointer(simple_frame_window) pframe = get_parent_frame();
+
+            if (pframe != nullptr)
+            {
+
+               pframe->create_bars();
+
+            }
+
+         }
+         else if (psubject->id() == id_topic_start)
+         {
+
+            if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
+            {
+
+               __pointer(simple_frame_window) pframe = get_parent_frame();
+
+               if (pframe != nullptr)
+               {
+
+                  pframe->create_bars();
+
+               }
+
+               ::filemanager::save_as_view * ptopview = create_view < ::filemanager::save_as_view >();
+
+               if (ptopview == nullptr)
+               {
+
+                  message_box("Could not create folder tree ::user::impact");
+
+               }
+
+               InsertPaneAt(0, ptopview, true);
+
+               ::file::path path = filemanager_data()->m_pdocumentTopic->get_file_path();
+
+               string strName;
+
+               string strPrefix;
+
+               if (path.title().has_char())
+               {
+
+                  strPrefix = path.title() + " - ";
+
+               }
+
+               string strSuffix;
+
+               if (filemanager_data()->m_pdocumentTopic->get_save_file_extension().has_char())
+               {
+
+                  strSuffix = "." + filemanager_data()->m_pdocumentTopic->get_save_file_extension();
+
+               }
+               else if (path.final_extension().has_char())
+               {
+
+                  string strExtension = psubject->payload("file_extension");
+
+                  if (strExtension.has_char())
+                  {
+
+                     strSuffix = "." + strExtension;
+
+                  }
+                  else
+                  {
+
+                     strSuffix = "." + path.final_extension();
+
+                  }
+
+               }
+
+               //auto psystem = m_psystem;
+
+               auto pdatetime = psystem->datetime();
+
+               strName = strPrefix + pdatetime->international().get_gmt_date_time() + strSuffix;
+
+               strName.replace(":", "-");
+
+               ptopview->m_pedit->_001SetText(strName, psubject->m_actioncontext);
+
+               filemanager_data()->m_pdocument->m_strTopic = strName;
+
+               set_position(0, 28);
+
+               set_position(1, 56);
+
+               ::rectangle_i32 rectangleClient;
+
+               get_client_rect(rectangleClient);
+
+               set_need_layout();
+
+               pframe->set_need_layout();
+
+            }
+
+         }
+         else if (psubject->id() == id_topic_cancel)
+         {
+
+            if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
+            {
+               //RemovePaneAt(0);
+               //set_position(0, 49);
+               //on_layout(::draw2d::graphics_pointer & pgraphics);
+            }
+
+         }
+         else if (psubject->id() == id_topic_ok)
+         {
+
+            if (filemanager_document()->m_emode == ::userfs::mode_import)
+            {
+
+               psubject->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), psubject->m_pfileitem->m_filepathUser);
+
+            }
+
+         }
+
+      }
+
+      //tab_view * ptabview = get_parent_frame()->GetTypedParent < tab_view >();
+      //if (ptabview != nullptr)
+      //{
+      //   ptabview->on_update(this, eupdate, pobject);
+      //}
+
+   }
+
+} // namespace filemanager
 
 
 

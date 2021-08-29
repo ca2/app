@@ -157,7 +157,7 @@ namespace browser
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
@@ -167,7 +167,7 @@ namespace browser
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
@@ -180,7 +180,7 @@ namespace browser
             {
 
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_view"));
-               //m_pviewLastBilbo = dynamic_cast <view *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
                pviewLast->set_need_layout();
                //m_pviewdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
@@ -188,7 +188,7 @@ namespace browser
             }
             {
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_switcher_view"));
-               //m_pviewLastBilbo = dynamic_cast <view *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
                pviewLast->set_need_layout();
                //m_pviewdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
@@ -470,13 +470,13 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && pevent->m_puserinteraction == m_pfontview->m_pview)
+         if (m_pfontview != nullptr && pevent->m_puserinteraction == m_pfontview->m_pimpact)
          {
 
             if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -495,7 +495,7 @@ namespace browser
             else if (pevent->m_eevent == ::user::e_event_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_hover_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {

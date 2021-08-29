@@ -21,6 +21,6 @@
 }
 
 @property (strong, nonatomic) UIWindow * window;
-@property (strong, nonatomic) AuraWindowFrameView * view;
+@property (strong, nonatomic) AuraWindowFrameView * impact;
 
 @end

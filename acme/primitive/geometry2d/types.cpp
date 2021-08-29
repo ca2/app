@@ -768,26 +768,26 @@
 //
 //
 //
-//void copy(CGRect & rectDst, const rectangle_i32 & rectSrc)
+//void copy(CGRect & rectangleTarget, const rectangle_i32 & rectangleSource)
 //{
-//   rectDst.origin.x = rectSrc.left;
-//   rectDst.origin.y = rectSrc.top;
-//   rectDst.size.width = width(rectSrc);
-//   rectDst.size.height = height(rectSrc);
+//   rectangleTarget.origin.x = rectangleSource.left;
+//   rectangleTarget.origin.y = rectangleSource.top;
+//   rectangleTarget.size.width = width(rectangleSource);
+//   rectangleTarget.size.height = height(rectangleSource);
 //
 //}
 //
 //
-//void copy(RECTANGLE_I32 * prectDst, const CGRect & rectSrc)
+//void copy(RECTANGLE_I32 * prectDst, const CGRect & rectangleSource)
 //
 //{
-//   prectDst->left = rectSrc.origin.x;
+//   prectDst->left = rectangleSource.origin.x;
 //
-//   prectDst->top = rectSrc.origin.y;
+//   prectDst->top = rectangleSource.origin.y;
 //
-//   prectDst->right = rectSrc.origin.x + rectSrc.size.width;
+//   prectDst->right = rectangleSource.origin.x + rectangleSource.size.width;
 //
-//   prectDst->bottom = rectSrc.origin.y + rectSrc.size.height;
+//   prectDst->bottom = rectangleSource.origin.y + rectangleSource.size.height;
 //
 //}
 //

@@ -23,3 +23,32 @@ public:
 
 
 };
+
+
+
+class CLASS_DECL_ACME _single_lock :
+   virtual public synchronization_object
+{
+public:
+
+
+   __pointer(synchronization_object)         m_psync;
+   //HANDLE                  m_hobject;
+   bool                    m_bAcquired;
+
+
+   explicit _single_lock(synchronization_object * pobject, bool bInitialLock = false);
+   ~_single_lock();
+
+
+   synchronization_result _wait();
+   synchronization_result _wait(const duration & duration);
+   bool unlock();
+   bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
+   bool IsLocked();
+
+
+};
+
+
+

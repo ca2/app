@@ -1202,7 +1202,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="filesystem\filemanager\left_view.cpp" />
     <ClCompile Include="filesystem\filemanager\main_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\main_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\operation.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_document.cpp" />
@@ -1216,7 +1216,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="filesystem\filemanager\tab_view.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\view.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
@@ -1241,7 +1241,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="filesystem\userfs\list_data.cpp" />
     <ClCompile Include="filesystem\userfs\list_item.cpp" />
     <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
-    <ClCompile Include="filesystem\userfs\main_view.cpp" />
+    <ClCompile Include="filesystem\userfs\main_impact.cpp" />
     <ClCompile Include="filesystem\userfs\tree.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp">
@@ -1307,7 +1307,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="html\user\form_view.cpp" />
     <ClCompile Include="html\user\frame.cpp" />
     <ClCompile Include="html\user\user.cpp" />
-    <ClCompile Include="html\user\view.cpp" />
+    <ClCompile Include="html\user\impact.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="math\calculator\calculator_calculator.cpp" />
     <ClCompile Include="math\calculator\calculator_element.cpp" />
@@ -1718,7 +1718,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\account\account_dialog.cpp" />
     <ClCompile Include="user\account\account_login.cpp" />
     <ClCompile Include="user\account\account_simple_ui.cpp" />
-    <ClCompile Include="user\account\view.cpp" />
+    <ClCompile Include="user\account\impact.cpp" />
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp" />
     <ClCompile Include="user\databaseuser\mesh_data.cpp" />
     <ClCompile Include="user\experience\button.cpp" />
@@ -2017,7 +2017,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="html\user\frame.h" />
     <ClInclude Include="html\user\internal.h" />
     <ClInclude Include="html\user\user.h" />
-    <ClInclude Include="html\user\view.h" />
+    <ClInclude Include="html\user\impact.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
@@ -2485,7 +2485,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="filesystem\filemanager\left_view.h" />
     <ClInclude Include="filesystem\filemanager\main_frame.h" />
-    <ClInclude Include="filesystem\filemanager\main_view.h" />
+    <ClInclude Include="filesystem\filemanager\main_impact.h" />
     <ClInclude Include="filesystem\filemanager\operation.h" />
     <ClInclude Include="filesystem\filemanager\operation_child_frame.h" />
     <ClInclude Include="filesystem\filemanager\operation_document.h" />
@@ -2499,7 +2499,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filemanager\tab_view.h" />
     <ClInclude Include="filesystem\filemanager\tree.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />
-    <ClInclude Include="filesystem\filemanager\view.h" />
+    <ClInclude Include="filesystem\filemanager\impact.h" />
     <ClInclude Include="filesystem\filemanager\_.h" />
     <ClInclude Include="filesystem\filemanager\_filemanager.h" />
     <ClInclude Include="filesystem\filesystem\dir_context.h" />
@@ -3067,7 +3067,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\userfs\list_data.h" />
     <ClInclude Include="filesystem\userfs\list_item.h" />
     <ClInclude Include="filesystem\userfs\list_item_array.h" />
-    <ClInclude Include="filesystem\userfs\main_view.h" />
+    <ClInclude Include="filesystem\userfs\main_impact.h" />
     <ClInclude Include="filesystem\userfs\tree.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\_.h" />
@@ -3601,7 +3601,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\account\account_login.h" />
     <ClInclude Include="user\account\account_simple_ui.h" />
     <ClInclude Include="user\account\simple_ui_style.h" />
-    <ClInclude Include="user\account\view.h" />
+    <ClInclude Include="user\account\impact.h" />
     <ClInclude Include="user\databaseuser\key_mesh_data.h" />
     <ClInclude Include="user\databaseuser\mesh_data.h" />
     <ClInclude Include="user\databaseuser\_.h" />

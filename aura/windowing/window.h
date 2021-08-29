@@ -91,7 +91,7 @@ namespace windowing
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 
-      virtual void post_nc_destroy();
+      virtual void post_non_client_destroy();
 
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       

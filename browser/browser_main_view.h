@@ -5,18 +5,18 @@ namespace browser
 {
 
 
-   class CLASS_DECL_APP_BROWSER main_view:
+   class CLASS_DECL_APP_BROWSER main_impact:
       virtual public ::user::split_view
    {
    public:
 
 
       ::userex::top_view *    m_ptopview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
-      main_view(::object * pobject);
-      virtual ~main_view();
+      main_impact(::object * pobject);
+      virtual ~main_impact();
 
 
       virtual void assert_valid() const;

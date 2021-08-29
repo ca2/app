@@ -18,7 +18,7 @@ namespace user
       __pointer(::user::interaction)            m_puserinteraction;
       __pointer(::user::interaction_impl)       m_pimpl;
 
-      __composite(::user::thread)               m_puserthread;
+      __reference(::user::thread)               m_puserthread;
       nano_timer                                m_nanotimer;
 
       ::nanos                                   m_nanosNow;

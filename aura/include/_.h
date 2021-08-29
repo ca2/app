@@ -943,8 +943,8 @@ using image_pointer = __pointer(::image);
 using icon_pointer = __pointer(::draw2d::icon);
 //
 //
-using image_result = __transport(::image);
-using icon_result = __transport(::draw2d::icon);
+using image_transport = __transport(::image);
+using icon_transport = __transport(::draw2d::icon);
 //
 //
 //class command_line;

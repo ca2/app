@@ -77,13 +77,30 @@ namespace filemanager
 
 #ifdef WINDOWS
 
-            m_iIconFolder = m_pil->add_icon("matter://mplite/vmskarlib_folder_normal.ico");
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
 
-            m_iIconArtist = m_pil->add_icon("matter://mplite/vmskarlib_artist_normal.ico");
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
 
-            m_iIconSong = m_pil->add_icon("matter://mplite/vmskarlib_song_normal.ico");
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
+
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 #endif
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
          }
 
@@ -376,10 +393,10 @@ namespace filemanager
             /*FillTask * pobjectTask = (FillTask *) pParameter;
 
 
-            pobjectTask->m_pview->KillTimer(1123);
+            pobjectTask->m_pimpact->KillTimer(1123);
 
             string & wstrPath = pobjectTask->m_wstrFile;
-            MediaLibraryDoc * pdocument = pobjectTask->m_pview->get_document();
+            MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
             i32 iFind;
@@ -405,7 +422,7 @@ namespace filemanager
             pds->erase_row();
             }
 
-            pobjectTask->m_pview->PostMessage(WM_USER + 1217, 0, (LPARAM) pobjectTask);*/
+            pobjectTask->m_pimpact->PostMessage(WM_USER + 1217, 0, (LPARAM) pobjectTask);*/
 
 
 
@@ -581,7 +598,7 @@ namespace filemanager
          /*list_view::FillTask::FillTask(__pointer(list_view) pview, LPWString pcsz)
 
          :
-         m_pview(pview),m_wstrFile(pcsz)
+         m_pimpact(pview),m_wstrFile(pcsz)
 
          {
          }*/

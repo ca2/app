@@ -55,35 +55,6 @@ task::~task()
 
    }
 
-   auto pobjectParentTask = ::get_task();
-
-   if(::is_null(pobjectParentTask))
-   {
-
-      pobjectParentTask = m_pcontext;
-
-   }
-
-   if(::is_null(pobjectParentTask))
-   {
-
-      pobjectParentTask = m_psystem;
-
-   }
-
-   if (pobjectParentTask)
-   {
-
-      pobjectParentTask->add_task(this);
-
-   }
-   else
-   {
-
-      __throw(error_invalid_usage);
-
-   }
-
    return ::success;
 
 }
@@ -347,11 +318,11 @@ void* task::s_os_task(void* p)
    try
    {
 
-      ::task* ptask = (::task*)p;
+      ::task * ptask = (::task*)p;
 
       ::set_task(ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(ptask));
 
-      ptask->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(ptask));
+      //ptask->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(ptask));
 
       try
       {
@@ -385,9 +356,7 @@ void* task::s_os_task(void* p)
       try
       {
 
-         auto pparentTask = ptask->m_pobjectParentTask;
-
-         ptask->m_pobjectParentTask = nullptr;
+         __pointer(::object) pparentTask = ptask->m_pobjectParentTask;
 
          if (::is_set(pparentTask))
          {
@@ -860,11 +829,46 @@ bool task::has_message() const
    //}
 
    // __task_procedure() should release this (pmatter)
-   increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
+   //increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS_FUNCTION_LINE);
 
    m_bIsRunning = true;
 
    m_bTaskStarted = true;
+
+   auto pobjectParentTask = ::get_task();
+
+   if (::is_null(pobjectParentTask))
+   {
+
+      pobjectParentTask = m_pcontext;
+
+   }
+
+   if (::is_null(pobjectParentTask))
+   {
+
+      pobjectParentTask = m_psystem;
+
+   }
+
+   if (pobjectParentTask)
+   {
+
+      if (pobjectParentTask != this)
+      {
+
+         pobjectParentTask->add_task(this);
+
+      }
+
+   }
+   else
+   {
+
+      __throw(error_invalid_usage);
+
+   }
+
 
 #ifdef WINDOWS
 

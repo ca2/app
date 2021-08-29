@@ -1359,7 +1359,7 @@ namespace experience
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;
          
-         pgraphics->draw_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+         pgraphics->draw_inset_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
          
       }
       else
@@ -1378,9 +1378,9 @@ namespace experience
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
 
-                  pgraphics->fill_rectangle(rectItem, argb(208, 255, 255, 250));
+                  pgraphics->fill_inset_rectangle(rectItem, argb(208, 255, 255, 250));
 
-                  pgraphics->draw_rectangle(rectItem, argb(255, 127, 127, 127));
+                  pgraphics->draw_inset_rectangle(rectItem, argb(255, 127, 127, 127));
                   
                }
 
@@ -1434,7 +1434,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(item.m_pimage, ::point_i32());
+                  image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
 
                   image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1485,7 +1485,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
-               image_source imagesource(item.m_pimage, ::point_i32());
+               image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1517,7 +1517,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1528,7 +1528,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_none);
 
-               image_source imagesource(item.m_pimage, ::point_i32());
+               image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1654,7 +1654,7 @@ namespace experience
 
                   pgraphics->fill_rectangle(rectItem, argb(208, 255, 255, 250));
 
-                  pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+                  pgraphics->draw_inset_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
                }
 
@@ -1708,7 +1708,7 @@ namespace experience
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(item.m_pimage, ::point_i32());
+                  image_source imagesource(item.m_pimage, ::rectangle_f64(rectangle.size()));
 
                   image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1791,7 +1791,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 

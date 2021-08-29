@@ -11,7 +11,7 @@ namespace account
    //   ::u32 c_cdecl thread_proc_defer_translate_login(void * p);
 
 
-   view::view()
+   impact::impact()
    {
 
       m_pstillUser = new ::user::still;
@@ -48,7 +48,7 @@ namespace account
 
    }
 
-   view::~view()
+   impact::~impact()
    {
       /*
       if(m_pploginDeferTranslate != nullptr)
@@ -79,17 +79,17 @@ namespace account
    }
 
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
 
    }
 
 
-   void view::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
+   void impact::defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen)
    {
 
       if (strUser.has_char())
@@ -104,13 +104,13 @@ namespace account
    }
 
 
-   void view::initialize()
+   void impact::initialize()
    {
 
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -210,7 +210,7 @@ namespace account
    }
 
 
-   void view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -357,7 +357,7 @@ namespace account
    }
 
 
-   bool view::on_action(const ::string & pszId)
+   bool impact::on_action(const ::string & pszId)
    {
 
       if (!strcmp(pszId, "submit"))
@@ -401,7 +401,7 @@ namespace account
 
 
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -439,7 +439,7 @@ namespace account
 
       m_peditUser->set_keyboard_focus();
 
-      //m_pploginDeferTranslate = new view *;
+      //m_pploginDeferTranslate = new impact *;
 
       //*m_pploginDeferTranslate = this;
 
@@ -469,7 +469,7 @@ namespace account
    //}
 
 
-   void view::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //user::interaction::_000OnDraw(pgraphics);
@@ -496,7 +496,7 @@ namespace account
    }
 
 
-   void view::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
       //single_lock synchronouslock(mutex(), true);
@@ -532,7 +532,7 @@ namespace account
    }
 
 
-   void view::interactive_credentials(::account::credentials * pcredentials)
+   void impact::interactive_credentials(::account::credentials * pcredentials)
    {
 
       pcredentials->m_estatus = error_credentials;

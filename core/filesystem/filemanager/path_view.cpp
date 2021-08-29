@@ -17,7 +17,7 @@ namespace filemanager
    void path_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::user::plain_edit::install_message_routing(pchannel);
 
    }
@@ -177,7 +177,7 @@ namespace filemanager
    void path_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

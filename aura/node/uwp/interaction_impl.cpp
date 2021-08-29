@@ -5973,7 +5973,7 @@ namespace uwp
 
    void interaction_impl::set_view_port_org(::image * pimage)
    {
-      // graphics will be already set its view port to the interaction_impl for linux - cairo with xlib
+      // graphics will be already set its impact port to the interaction_impl for linux - cairo with xlib
 
 
       rectangle_i32 rectWindow;

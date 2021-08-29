@@ -4,7 +4,7 @@
 namespace prompt
 {
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       virtual public ::user::impact,
       virtual public ::user::interaction
    {
@@ -22,8 +22,8 @@ namespace prompt
          OpUpdateCurrentArea,
       };
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
 
@@ -39,7 +39,7 @@ namespace prompt
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::view
+      virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::impact
       virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);

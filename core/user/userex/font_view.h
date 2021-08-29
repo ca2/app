@@ -12,7 +12,7 @@ namespace userex
 
 
       top_view *                    m_ptopview;
-      ::user::font_list_view *      m_pview;
+      ::user::font_list_view *      m_pimpact;
       bool                          m_bSourceFontSel;
 
 

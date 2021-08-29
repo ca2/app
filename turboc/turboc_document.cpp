@@ -47,12 +47,12 @@ namespace turboc
    bool document::on_open_document(const ::payload & varFile)
    {
 
-      view * pview = get_typed_view < view >();
+      impact * pview = get_typed_view < impact >();
 
 /*      if(pview->m_pimageImage->load_image(varFile))
       {
-         get_typed_view < view >()->m_strImage = varFile;
-         get_typed_view < view >()->m_strHelloMultiverse = "image:"+ get_typed_view < view >()->m_strImage + ":" + get_typed_view < view >()->m_strHelloMultiverse;
+         get_typed_view < impact >()->m_strImage = varFile;
+         get_typed_view < impact >()->m_strHelloMultiverse = "image:"+ get_typed_view < impact >()->m_strImage + ":" + get_typed_view < impact >()->m_strHelloMultiverse;
       }
       else if(get_typed_view < edit_view >() != NULL)
       {

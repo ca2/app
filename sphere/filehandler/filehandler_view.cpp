@@ -6,7 +6,7 @@ namespace filehandler
 {
 
 
-   view::view(::object * pobject) :
+   impact::impact(::object * pobject) :
       ::object(pobject),
       m_pfont(e_create)
    {
@@ -16,7 +16,7 @@ namespace filehandler
    }
 
 
-   view::~view()
+   impact::~impact()
    {
 
       ::acme::del(m_pxmldoc);
@@ -24,18 +24,18 @@ namespace filehandler
    }
 
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::form::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
 //
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
 
    }
 
 
-   void view::refresh()
+   void impact::refresh()
    {
 
       m_plistWorking = __new(list(this));
@@ -51,7 +51,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnTimer(::timer * ptimer)
+   void impact::_001OnTimer(::timer * ptimer)
    {
 
       form_view::_001OnTimer(ptimer);;
@@ -66,7 +66,7 @@ namespace filehandler
    }
 
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
 
       if(pmessage->previous())
@@ -77,7 +77,7 @@ namespace filehandler
    }
 
 
-   void view::item::parse(const ::string & pszApp)
+   void impact::item::parse(const ::string & pszApp)
    {
 
       m_strApp = pszApp;
@@ -85,7 +85,7 @@ namespace filehandler
    }
 
 
-   void view::list::parse(::filehandler::handler * phandler, const ::string & pszTopic)
+   void impact::list::parse(::filehandler::handler * phandler, const ::string & pszTopic)
    {
 
       erase_all();
@@ -105,13 +105,13 @@ namespace filehandler
 
    }
 
-   view::item::item(::object * pobject) :
+   impact::item::item(::object * pobject) :
       ::object(pobject)
    {
 
    }
 
-   void view::item::draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics, list * plist)
+   void impact::item::draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist)
    {
 
       UNREFERENCED_PARAMETER(plist);
@@ -160,13 +160,13 @@ namespace filehandler
    }
 
 
-   view::list::list(::object * pobject) :
+   impact::list::list(::object * pobject) :
       ::object(pobject)
    {
       m_iItemHeight = 30;
    }
 
-   void view::list::on_layout(const RECTANGLE_I32 * lpcrect)
+   void impact::list::on_layout(const RECTANGLE_I32 * lpcrect)
    {
       i32 top = lpcrect->top;
       for(i32 i = 0; i < get_count(); i++)
@@ -187,7 +187,7 @@ namespace filehandler
       }
    }
 
-   void view::list::draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics)
+   void impact::list::draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics)
    {
       for(i32 i = 0; i < get_count(); i++)
       {
@@ -196,7 +196,7 @@ namespace filehandler
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_plist.is_null())
@@ -207,7 +207,7 @@ namespace filehandler
 
    }
 
-   void view::layout_list(list * plist)
+   void impact::layout_list(list * plist)
    {
 
       auto pgraphics = create_memory_graphics();
@@ -219,7 +219,7 @@ namespace filehandler
    }
 
 
-   void view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_plist.is_null())
@@ -234,7 +234,7 @@ namespace filehandler
 
 
 
-   void view::on_message_left_button_up(::message::message * pmessage)
+   void impact::on_message_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_pmouse;
@@ -269,7 +269,7 @@ namespace filehandler
    }
 
 
-   void view::on_hit_test(::user::item & item)
+   void impact::on_hit_test(::user::item & item)
    {
 
       if (m_plist.is_null())
@@ -318,7 +318,7 @@ namespace filehandler
    }
 
 
-   bool view::get_font(::write_text::font_pointer & font)
+   bool impact::get_font(::write_text::font_pointer & font)
    {
 
       font = m_pfont;

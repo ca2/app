@@ -39,6 +39,10 @@ namespace user
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       auto pstyle = get_style(pgraphics);
 
       if (m_estyle == style_image)
@@ -553,11 +557,6 @@ namespace user
    void still::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //if(pstyle == nullptr)
-      //   return;
-
-
-
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);
@@ -642,7 +641,7 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_rectangle(rectangleClient, colorBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, colorBorder);
 
       }
 

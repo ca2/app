@@ -97,7 +97,7 @@
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="filesystem\filemanager\left_view.h" />
     <ClInclude Include="filesystem\filemanager\main_frame.h" />
-    <ClInclude Include="filesystem\filemanager\main_view.h" />
+    <ClInclude Include="filesystem\filemanager\main_impact.h" />
     <ClInclude Include="filesystem\filemanager\operation.h" />
     <ClInclude Include="filesystem\filemanager\operation_child_frame.h" />
     <ClInclude Include="filesystem\filemanager\operation_document.h" />
@@ -111,7 +111,7 @@
     <ClInclude Include="filesystem\filemanager\tab_view.h" />
     <ClInclude Include="filesystem\filemanager\tree.h" />
     <ClInclude Include="filesystem\filemanager\update_hint.h" />
-    <ClInclude Include="filesystem\filemanager\view.h" />
+    <ClInclude Include="filesystem\filemanager\impact.h" />
     <ClInclude Include="filesystem\filemanager\_.h" />
     <ClInclude Include="filesystem\filemanager\_data.h" />
     <ClInclude Include="filesystem\filemanager\_filemanager.h" />

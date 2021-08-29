@@ -38,18 +38,18 @@ namespace turboc
       if(!context.is_user_source())
          return;
 
-      if(m_ptopview == NULL || m_ptopview->m_pview == NULL)
+      if(m_ptopview == NULL || m_ptopview->m_pimpact == NULL)
          return;
 
       {
 
-         synchronous_lock synchronouslock(&m_ptopview->m_pview->m_mutexText);
+         synchronous_lock synchronouslock(&m_ptopview->m_pimpact->m_mutexText);
 
-         _001GetText(m_ptopview->m_pview->m_strNewHelloMultiverse);
+         _001GetText(m_ptopview->m_pimpact->m_strNewHelloMultiverse);
 
       }
 
-      m_ptopview->m_pview->post_message(WM_USER + 2000 + 77 + 2);
+      m_ptopview->m_pimpact->post_message(WM_USER + 2000 + 77 + 2);
 
    }
 

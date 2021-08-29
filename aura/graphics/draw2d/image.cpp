@@ -106,6 +106,30 @@ image::~image()
 }
 
 
+::image_pointer image::image_source_image(const concrete < ::size_i32 > &)
+{
+   
+   return this; 
+
+}
+
+
+concrete < ::size_i32 > image::image_source_size(const ::size_f64 &, enum_image_selection) const
+{ 
+   
+   return get_size(); 
+
+}
+
+
+concrete < ::size_i32 > image::image_source_size() const 
+{
+   
+   return get_size(); 
+
+}
+
+
 ::draw2d::graphics* image::get_graphics() const
 {
 
@@ -540,7 +564,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      image_source imagesource(pimageSrc, pointSrcParam);
+      image_source imagesource(pimageSrc, { pointSrcParam, rectDstParam.size() } );
 
       rectangle_f64 rectangle(rectDstParam);
 
@@ -556,16 +580,16 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectDst(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
-   rectDst += m_point;
+   rectangleTarget += m_point;
 
    if (pointSrc.x < 0)
    {
 
-      rectDst.left -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -574,47 +598,47 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
    if (pointSrc.y < 0)
    {
 
-      rectDst.top -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectDst.left < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      rectDst.right += rectDst.left;
+      rectangleTarget.right += rectangleTarget.left;
 
-      rectDst.left = 0;
+      rectangleTarget.left = 0;
 
    }
 
-   if (rectDst.width() < 0)
-   {
-
-      return true;
-
-   }
-
-   if (rectDst.top < 0)
-   {
-
-      rectDst.bottom += rectDst.top;
-
-      rectDst.top = 0;
-
-   }
-
-   if (rectDst.height() < 0)
+   if (rectangleTarget.width() < 0)
    {
 
       return true;
 
    }
 
-   int xEnd = minimum(rectDst.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   if (rectangleTarget.top < 0)
+   {
 
-   int yEnd = minimum(rectDst.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+      rectangleTarget.bottom += rectangleTarget.top;
+
+      rectangleTarget.top = 0;
+
+   }
+
+   if (rectangleTarget.height() < 0)
+   {
+
+      return true;
+
+   }
+
+   int xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
+
+   int yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -634,7 +658,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
+   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(color32_t)];
 
    u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -679,18 +703,18 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectDst(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
-   ::size_i32 size(rectDst.size());
+   ::size_i32 size(rectangleTarget.size());
 
-   rectDst += m_point;
+   rectangleTarget += m_point;
 
    if (pointSrc.x < 0)
    {
 
-      rectDst.left -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -699,18 +723,18 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
    if (pointSrc.y < 0)
    {
 
-      rectDst.top -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectDst.left < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      size.cx += rectDst.left;
+      size.cx += rectangleTarget.left;
 
-      rectDst.left = 0;
+      rectangleTarget.left = 0;
 
    }
 
@@ -721,12 +745,12 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    }
 
-   if (rectDst.top < 0)
+   if (rectangleTarget.top < 0)
    {
 
-      size.cy += rectDst.top;
+      size.cy += rectangleTarget.top;
 
-      rectDst.top = 0;
+      rectangleTarget.top = 0;
 
    }
 
@@ -737,9 +761,9 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    }
 
-   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
 
-   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -759,7 +783,7 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
+   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(color32_t)];
 
    u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -3982,7 +4006,7 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      image_source imagesource(pimage, ::point_f64(x, y));
+      image_source imagesource(pimage, { ::point_f64(x, y), s } );
 
       ::rectangle_f64 rectangle(s);
 

@@ -26,7 +26,7 @@ class html_document;
 #include "frame.h"
 #include "child_frame.h"
 #include "document.h"
-#include "view.h"
+#include "impact.h"
 
 
 

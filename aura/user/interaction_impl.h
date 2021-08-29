@@ -82,8 +82,8 @@ namespace user
       bool                                      m_bEatSizeEvent;
       bool                                      m_bEatMoveEvent;
       millis                                    m_millisLastExposureAddUp;
-      __composite(prodevian)                    m_pprodevian;
-      __composite(::user::thread)               m_puserthread;
+      __reference(prodevian)                    m_pprodevian;
+      __reference(::user::thread)               m_puserthread;
       __pointer_array(::matter)                 m_matteraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;

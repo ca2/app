@@ -7,7 +7,7 @@ class CLASS_DECL_CORE simple_printer_list_view :
 public:
 
 
-   __pointer(::user::impact)                   m_pview;
+   __pointer(::user::impact)                   m_pimpact;
 
 
    simple_printer_list_view();

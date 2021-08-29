@@ -873,7 +873,7 @@ list(APPEND library_source
    platform/_platform.h
    platform/acme_str_pool.h
    #platform/all.h
-   platform/aura_aura.h
+   #platform/acme.h
    #platform/aura_regex.h
    platform/auto.h
    platform/auto_pointer.h

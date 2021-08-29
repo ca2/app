@@ -1978,7 +1978,7 @@ namespace filemanager
    void file_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::on_subject(psubject, pcontext);
 
       ::userfs::list::on_subject(psubject, pcontext);
 

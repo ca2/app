@@ -207,7 +207,7 @@ namespace core
       create_factory <::user::check_box >();
       create_factory <::user::place_holder_container >();
 
-      create_factory < ::account::view >();
+      create_factory < ::account::impact >();
 
       create_factory < form_document >();
       create_factory < simple_child_frame  >();

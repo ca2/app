@@ -1486,9 +1486,6 @@
     <ClCompile Include="platform\interprocess_communication.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\interprocess_intercommunication.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="process\process.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
@@ -1853,6 +1850,9 @@
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="platform\_application_service.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

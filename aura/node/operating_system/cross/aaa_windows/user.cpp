@@ -58,13 +58,13 @@ CLASS_DECL_AURA i32 WINAPI GetSystemMetrics(i32 nIndex)
 
 
 
-CLASS_DECL_AURA int_bool CopyRect(RECT32 * prectDest, const RECT32 * rectSrc)
+CLASS_DECL_AURA int_bool CopyRect(RECT32 * prectDest, const RECT32 * rectangleSource)
 {
 
-   prectDest->left      = rectSrc->left;
-   prectDest->top       = rectSrc->top;
-   prectDest->right     = rectSrc->right;
-   prectDest->bottom    = rectSrc->bottom;
+   prectDest->left      = rectangleSource->left;
+   prectDest->top       = rectangleSource->top;
+   prectDest->right     = rectangleSource->right;
+   prectDest->bottom    = rectangleSource->bottom;
 
    return true;
 

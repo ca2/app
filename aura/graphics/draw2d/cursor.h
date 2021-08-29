@@ -9,7 +9,7 @@ namespace draw2d
    
    
    class CLASS_DECL_AURA cursor :
-      virtual public ::matter
+      virtual public ::image_source_interface
    {
    public:
 
@@ -25,7 +25,7 @@ namespace draw2d
 
 
       cursor();
-      virtual ~cursor();
+      ~cursor() override;
 
 
       //virtual bool initialize_system_default();
@@ -48,11 +48,11 @@ namespace draw2d
       inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return m_pimage->g(sizeHint); }
 
       
-      inline ::image * get_image(const concrete < ::size_i32 > & concreteSize) { return m_pimage->get_image(concreteSize); }
+      ::image_pointer image_source_image(const concrete < ::size_i32 > & concreteSize) override;
 
+      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
-      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
-      inline concrete < ::size_i32 > size() const { return m_pimage->size(); }
+      concrete < ::size_i32 > image_source_size() const override;
 
 
    };

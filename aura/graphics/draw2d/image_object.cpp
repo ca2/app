@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//::image_result con::get_image(const ::payload & varFile, bool bCache, bool bSync)
+//::image_transport con::get_image(const ::payload & varFile, bool bCache, bool bSync)
 //{
 //
 //   return pcontext->m_papexcontext->load_image(varFile, bCache, bSync);
@@ -9,7 +9,7 @@
 //}
 //
 //
-//::image_result object::matter_image(const ::string & strMatter, bool bCache, bool bSync)
+//::image_transport object::matter_image(const ::string & strMatter, bool bCache, bool bSync)
 //{
 //
 //   return psystem->matter_image(this, strMatter, bCache, bSync);
@@ -17,7 +17,7 @@
 //}
 //
 //
-//::image_result object::load_image(const ::payload & varFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
+//::image_transport object::load_image(const ::payload & varFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
 //{
 //
 //   {
@@ -58,7 +58,7 @@
 //}
 //
 //
-//::image_result object::load_matter_image(const ::string & pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
+//::image_transport object::load_matter_image(const ::string & pszMatter, bool bSync, bool bCache, bool bCreateHelperMaps)
 //{
 //
 //   ::image_pointer pimage;
@@ -86,10 +86,10 @@
 //}
 //
 //
-//image_result object::load_matter_icon(string_array & straMatter, string strIcon)
+//image_transport object::load_matter_icon(string_array & straMatter, string strIcon)
 //{
 //
-//   ::image_result pimage = create_image();
+//   ::image_transport pimage = create_image();
 //
 //   if (!pimage)
 //   {
@@ -112,7 +112,7 @@
 //}
 //
 //
-//::image_result object::load_thumbnail(const ::payload & varFile, int w, int h)
+//::image_transport object::load_thumbnail(const ::payload & varFile, int w, int h)
 //{
 //
 //   auto pimage = create_image();
@@ -138,7 +138,7 @@
 //}
 //
 //
-//::image_result object::load_thumbnail(const ::string & pszPath)
+//::image_transport object::load_thumbnail(const ::string & pszPath)
 //{
 //
 //   auto pimage = create_image();
@@ -164,7 +164,7 @@
 //}
 //
 //
-//::image_result object::load_dib(const ::file::path & pathDib)
+//::image_transport object::load_dib(const ::file::path & pathDib)
 //{
 //
 //   auto pimage = create_image();

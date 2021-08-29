@@ -530,7 +530,7 @@
     <ClInclude Include="filesystem\filemanager\iconoverlayer.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact.h">
+    <ClInclude Include="filesystem\filemanager\impact_base.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\left_view.h">
@@ -539,7 +539,7 @@
     <ClInclude Include="filesystem\filemanager\main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\main_view.h">
+    <ClInclude Include="filesystem\filemanager\main_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation.h">
@@ -581,7 +581,7 @@
     <ClInclude Include="filesystem\filemanager\update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\view.h">
+    <ClInclude Include="filesystem\filemanager\impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\_.h">
@@ -764,7 +764,7 @@
     <ClInclude Include="filesystem\userfs\list_item_array.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\main_view.h">
+    <ClInclude Include="filesystem\userfs\main_impact.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\tree.h">
@@ -818,7 +818,7 @@
     <ClInclude Include="user\account\account_style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\view.h">
+    <ClInclude Include="user\account\impact.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="html\html\_.h">
@@ -1136,7 +1136,7 @@
     <ClInclude Include="html\user\frame.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\view.h">
+    <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h">
@@ -1433,6 +1433,9 @@
     <ClInclude Include="platform\core.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filemanager\impact.h">
+      <Filter>Header Files\filesystem\filemanager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\simple\message_box.cpp">
@@ -1627,7 +1630,7 @@
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\impact.cpp">
+    <ClCompile Include="filesystem\filemanager\impact_base.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\left_view.cpp">
@@ -1636,7 +1639,7 @@
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\main_view.cpp">
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\operation.cpp">
@@ -1678,7 +1681,7 @@
     <ClCompile Include="filesystem\filemanager\update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\view.cpp">
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\document.cpp">
@@ -1699,7 +1702,7 @@
     <ClCompile Include="filesystem\userfs\list_item_array.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\main_view.cpp">
+    <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\tree.cpp">
@@ -1879,7 +1882,7 @@
     <ClCompile Include="user\account\account_simple_ui.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\view.cpp">
+    <ClCompile Include="user\account\impact.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\handler.cpp">
@@ -1990,7 +1993,7 @@
     <ClCompile Include="html\user\user.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\view.cpp">
+    <ClCompile Include="html\user\impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
@@ -2163,6 +2166,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\ftpnet.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

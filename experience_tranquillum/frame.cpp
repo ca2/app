@@ -195,14 +195,13 @@ namespace experience
 
             }
 
-            prectangle->left = m_rectCaption.left;
+            prectangle->left = m_rectCaption.left + m_pcontrolbox->m_iDefaultButtonMargin;
 
-            prectangle->top = m_rectCaption.top;
+            prectangle->right = prectangle->left + 16;
 
-            prectangle->right = prectangle->left + m_iCaptionHeight;
+            prectangle->bottom = m_iTitleBottom;
 
-            prectangle->bottom = prectangle->top + m_iCaptionHeight;
-
+            prectangle->top = prectangle->bottom - 16;
 
             return true;
 
@@ -429,12 +428,11 @@ namespace experience
       {
 
          ::rectangle_i32 rectangle(rectParam);
+
          i32 x = rectangle.left;
          i32 y = rectangle.top;
          i32 cx = rectangle.width() - 1;
          i32 cy = rectangle.height() - 1;
-
-
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -544,7 +542,13 @@ namespace experience
 
          //auto psession = get_session();
 
+         //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+
 
          if (!m_pframewindow->layout().is_full_screen()
             && !m_pframewindow->layout().is_zoomed()
@@ -584,11 +588,11 @@ namespace experience
 
                   image_source imagesource(pdrawicon);
 
-                  rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
+                  rectangle_f64 rectangleTarget(pdrawicon->get_smaller_size(rectIcon.size()));
 
-                  rectDst.CenterOf(rectIcon);
+                  rectangleTarget.CenterOf(rectIcon);
 
-                  image_drawing_options imagedrawingoptions(rectDst);
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -616,7 +620,7 @@ namespace experience
 
                   auto rect3d = ::rectangle_f64_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
 
-                  pgraphics->draw_3drect(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                  pgraphics->draw_inset_3drect(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                   i += 5;
 
@@ -777,11 +781,11 @@ namespace experience
 
                   image_source imagesource(picon);
 
-                  rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
+                  //rectangle_f64 rectangleTarget(picon->get_smaller_size(rectIcon.size()));
 
-                  rectDst.CenterOf(rectIcon);
+                  //rectangleTarget.CenterOf(rectIcon);
 
-                  image_drawing_options imagedrawingoptions(rectDst);
+                  image_drawing_options imagedrawingoptions(rectIcon);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 

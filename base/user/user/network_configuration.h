@@ -11,7 +11,7 @@ namespace user
 
 
       /*__pointer(::user::document)               m_pdocument;
-      __pointer(::user::form)                   m_pview;*/
+      __pointer(::user::form)                   m_pimpact;*/
 
 
       network_configuration();

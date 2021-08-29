@@ -224,6 +224,10 @@ size_i32 simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
+   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
    __pointer(::user::tab) ptab = GetTypedParent < ::user::tab >();
 
    if (ptab.is_set())
@@ -716,7 +720,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       rectSeparator.bottom = rectImage.bottom;
 
-      pgraphics->draw_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+      pgraphics->draw_inset_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
 
    }
    else
@@ -737,7 +741,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                pgraphics->fill_rectangle(rectItem, argb(208, 255, 255, 250));
 
-               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -883,7 +887,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if (estate & ::user::e_state_checked)
          {
 
-            pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+            pgraphics->draw_inset_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
          }
 

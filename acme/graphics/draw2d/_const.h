@@ -5,7 +5,7 @@ enum enum_image_selection
 {
 
    e_image_selection_default,
-   e_image_selection_largest,
+   e_image_selection_prefer_largest = e_image_selection_default,
    e_image_selection_prefer_at_least_2x_larger,
    e_image_selection_prefer_larger,
    e_image_selection_prefer_smaller,

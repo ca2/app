@@ -5,7 +5,7 @@
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
-#include "nanosvg/nanosvg.h"
+#include "third/nanosvg/nanosvg.h"
 
 CLASS_DECL_AURA image_array * g_pimagea = nullptr;
 
@@ -77,6 +77,30 @@ namespace draw2d
 
 
    //}
+
+
+   ::image_pointer graphics::image_source_image(const concrete < ::size_i32 > & sizeDst)
+   {
+      
+      return m_pimage->get_image(sizeDst); 
+   
+   }
+
+   
+   concrete < ::size_i32 > graphics::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   {
+      
+      return m_pimage->image_source_size(sizeDst, eimageselection); 
+   
+   }
+
+
+   concrete < ::size_i32 > graphics::image_source_size() const 
+   { 
+      
+      return m_pimage->size(); 
+   
+   }
 
 
    bool graphics::on_begin_draw()
@@ -1083,11 +1107,11 @@ namespace draw2d
          if (rectIntersect.intersect(rectIntersect, imagedrawing.m_rectangleTarget))
          {
 
-            auto & rectSrc = imagedrawing.m_rectangleSource;
+            auto rectangleSource = imagedrawing.source_rectangle();
 
-            auto & rectDst = imagedrawing.m_rectangleTarget;
+            auto & rectangleTarget = imagedrawing.m_rectangleTarget;
 
-            ::point_i32 pointSrc(imagedrawing.m_rectangleSource.top_left());
+            ::point_i32 pointSrc(rectangleSource.top_left());
 
             ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
 
@@ -1104,7 +1128,7 @@ namespace draw2d
 
             {
 
-               image_source imagesource(imagedrawing.m_pimage, pointSrc);
+               image_source imagesource(imagedrawing.m_pimagesource, {pointSrc, size});
 
                rectangle_f64 rectangle(size);
 
@@ -1135,9 +1159,9 @@ namespace draw2d
             {
 
                image_source imagesource(m_pimageAlphaBlend,
-                                        ::point_f64(maximum(0, rectDst.left - m_pointAlphaBlend.x), maximum(0, rectDst.top - m_pointAlphaBlend.y)));
+                  { ::point_f64(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
 
-               rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectDst.left), maximum(0, m_pointAlphaBlend.y - rectDst.top)), size);
+               rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
 
                image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1236,25 +1260,25 @@ namespace draw2d
    //}
 
    
-   //bool graphics::draw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::point_f64 & pointSrc)
+   //bool graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::point_f64 & pointSrc)
    //{
 
-   //   return draw(rectDst, pimage->g(), pointSrc);
+   //   return draw(rectangleTarget, pimage->g(), pointSrc);
 
    //}
 
 
-   //bool graphics::draw(const ::rectangle_f64 & rectDst, ::image_frame * pframe, const ::point_f64 & pointSrc)
+   //bool graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
-   //   return draw(rectDst, pframe->m_pimage, pointSrc);
+   //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
 
    //}
 
 
 
 
-   //bool graphics::stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc)
+   //bool graphics::stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return false;
@@ -1265,17 +1289,17 @@ namespace draw2d
    //bool graphics::stretch_blend(const ::rectangle_f64 & rectDstParam, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrcParam)
    //{
 
-   //   //::rectangle_f64 rectDst(rectDstParam);
+   //   //::rectangle_f64 rectangleTarget(rectDstParam);
 
-   //   //::rectangle_f64 rectSrc(rectSrcParam);
+   //   //::rectangle_f64 rectangleSource(rectSrcParam);
 
    //   //if (m_pimageAlphaBlend)
    //   //{
 
-   //   //   if (rectDst.left < 0)
+   //   //   if (rectangleTarget.left < 0)
    //   //   {
 
-   //   //      rectSrc.left -= rectDst.left;
+   //   //      rectangleSource.left -= rectangleTarget.left;
 
    //   //      rectangle.right += rectangle.left;
 
@@ -1351,7 +1375,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_image(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc)
+   //bool graphics::draw_image(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc)
    //{
 
    //   if(pgraphicsSrc == nullptr)
@@ -1370,40 +1394,40 @@ namespace draw2d
 
    //   }
 
-   //   ::rectangle_f64 rectSrc(nullptr, pimage->get_size());
+   //   ::rectangle_f64 rectangleSource(nullptr, pimage->get_size());
 
-   //   return draw_image(rectDst, pgraphicsSrc, rectSrc);
-
-   //}
-
-
-   //bool graphics::stretch(const ::rectangle_f64 & rectDst, ::image * pimage, const ::rectangle_f64 & rectSrc)
-   //{
-
-   //   return stretch(rectDst, pimage->g(), rectSrc.is_null() ? ::rectangle_f64(pimage->rectangle()) : rectSrc);
+   //   return draw_image(rectangleTarget, pgraphicsSrc, rectangleSource);
 
    //}
 
 
-   //bool graphics::stretch(const ::rectangle_f64 & rectDst, ::image_frame * pframe, const ::rectangle_f64 & rectSrc)
+   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::rectangle_f64 & rectangleSource)
    //{
 
-   //   return stretch(rectDst, pframe->m_pimage, rectSrc);
+   //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::rectangle_f64(pimage->rectangle()) : rectangleSource);
 
    //}
 
 
-   //bool graphics::stretch(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc)
+   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
    //{
 
-   //   if (stretch_blend(rectDst, pgraphicsSrc, rectSrc))
+   //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
+
+   //}
+
+
+   //bool graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource)
+   //{
+
+   //   if (stretch_blend(rectangleTarget, pgraphicsSrc, rectangleSource))
    //   {
 
    //      return true;
 
    //   }
 
-   //   if (stretch_raw(rectDst, pgraphicsSrc, rectSrc))
+   //   if (stretch_raw(rectangleTarget, pgraphicsSrc, rectangleSource))
    //   {
 
    //      return true;
@@ -2225,7 +2249,69 @@ namespace draw2d
 
    }
 
+
+   bool graphics::fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   {
+
+      ::draw2d::brush_pointer brushSolidColor(e_create);
+
+      brushSolidColor->create_solid(color);
+
+      if (!fill_rectangle(
+         {
+            rectangle.left + 1,
+            rectangle.top + 1,
+            rectangle.right - 1,
+            rectangle.bottom - 1
+         },
+         brushSolidColor))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    
+   bool graphics::fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   {
+
+      ::draw2d::brush_pointer brushSolidColor(e_create);
+
+      brushSolidColor->create_solid(color);
+
+      auto smooth_mode = get_smooth_mode();
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode_none);
+
+      }
+
+      if (!fill_rectangle(rectangle, brushSolidColor))
+      {
+
+         return false;
+
+      }
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode);
+
+      }
+
+      return true;
+
+   }
+
+
    bool graphics::color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity& opacityTopLeft, const ::color::color & colorBottomRight, const ::opacity& opacityBottomRight)
    {
 
@@ -2267,8 +2353,17 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   bool graphics::draw_inset_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
+
+      auto smooth_mode = get_smooth_mode();
+
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode_none);
+
+      }
 
       if (eborder & e_border_top)
       {
@@ -2332,15 +2427,22 @@ namespace draw2d
 
       }
 
+      if (smooth_mode != smooth_mode_none)
+      {
+
+         set_smooth_mode(smooth_mode);
+
+      }
+
       return true;
 
    }
 
 
-   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   bool graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
-      if (!draw_3drect(rectangle, color, color, eborder))
+      if (!draw_inset_3drect(rectangle, color, color, eborder))
       {
 
          return false;
@@ -2349,6 +2451,23 @@ namespace draw2d
 
       return true;
 
+   }
+
+   bool graphics::frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
+   {
+
+      auto rectangleFrame(rectangle);
+
+      rectangleFrame.inflate(1.0);
+
+      if (!draw_inset_rectangle(rectangleFrame, color, eborder))
+      {
+
+         return false;
+
+      }
+
+      return true;
    }
 
 
@@ -4863,13 +4982,13 @@ namespace draw2d
 
          set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         auto rectDst = ::rectangle_f64(::point_f64(x1, h), pimage->size());
+         auto rectangleTarget = ::rectangle_f64(::point_f64(x1, h), pimage->size());
 
          {
 
             image_source imagesource(pimage);
 
-            rectangle_f64 rectangle(rectDst);
+            rectangle_f64 rectangle(rectangleTarget);
 
             image_drawing_options imagedrawingoptions(rectangle);
 
@@ -5317,7 +5436,7 @@ namespace draw2d
    void graphics::nanosvg_drawframe(NSVGimage* pnsvgimage, int x, int y, int width, int height)
    {
 
-      float view[4], cx, cy, hw, hh, aspect, px;
+      float impact[4], cx, cy, hw, hh, aspect, px;
 
       NSVGshape* shape;
 
@@ -5340,7 +5459,7 @@ namespace draw2d
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
 
-      // Fit view to bounds
+      // Fit impact to bounds
       cx = pnsvgimage->width * 0.5f;
       cy = pnsvgimage->height * 0.5f;
       hw = pnsvgimage->width * 0.5f;
@@ -5349,23 +5468,23 @@ namespace draw2d
       if (width / hw < height / hh)
       {
          aspect = (float)height / (float)width;
-         view[0] = cx - hw * 1.2f;
-         view[2] = cx + hw * 1.2f;
-         view[1] = cy - hw * 1.2f * aspect;
-         view[3] = cy + hw * 1.2f * aspect;
+         impact[0] = cx - hw * 1.2f;
+         impact[2] = cx + hw * 1.2f;
+         impact[1] = cy - hw * 1.2f * aspect;
+         impact[3] = cy + hw * 1.2f * aspect;
       }
       else
       {
          aspect = (float)width / (float)height;
-         view[0] = cx - hh * 1.2f * aspect;
-         view[2] = cx + hh * 1.2f * aspect;
-         view[1] = cy - hh * 1.2f;
-         view[3] = cy + hh * 1.2f;
+         impact[0] = cx - hh * 1.2f * aspect;
+         impact[2] = cx + hh * 1.2f * aspect;
+         impact[1] = cy - hh * 1.2f;
+         impact[3] = cy + hh * 1.2f;
       }
       // Size of one pixel.
-      px = (view[2] - view[1]) / (float)width;
+      px = (impact[2] - impact[1]) / (float)width;
 
-      //glOrtho(view[0], view[2], view[3], view[1], -1, 1);
+      //glOrtho(impact[0], impact[2], impact[3], impact[1], -1, 1);
 
       //glMatrixMode(GL_MODELVIEW);
       //glLoadIdentity();

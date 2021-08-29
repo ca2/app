@@ -2181,7 +2181,7 @@ namespace user
          return_(pdrawitem->m_bOk,true);
 
          //return;
-         //__throw(::exception::exception("subitem rectangle_i32 on icon view? why are you asking for that now?"));
+         //__throw(::exception::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
       }
 
       pdrawitem->m_bOk = false;
@@ -5680,7 +5680,7 @@ namespace user
             psystem->imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
             pimage2->set_rgb(0,0,0);
 
-            image_source imagesource(pimage2, point_i32(1,1));
+            image_source imagesource(pimage2, rectangle_i32(1,1, m_rectText.width(), m_rectText.height()));
 
             image_drawing_options imagedrawingoptions(m_rectText);
 

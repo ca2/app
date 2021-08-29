@@ -5,7 +5,7 @@ namespace account
 {
 
 
-   class CLASS_DECL_CORE view :
+   class CLASS_DECL_CORE impact :
       virtual public ::user::impact
    {
    public:
@@ -36,8 +36,8 @@ namespace account
       draw2d::icon *                m_picon95; // the best size_i32 to fit current ca2 icon (as of 2014)
 
 
-      view();
-      virtual ~view();
+      impact();
+      virtual ~impact();
 
 
       virtual void install_message_routing(::channel * pchannel);

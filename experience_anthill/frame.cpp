@@ -104,7 +104,7 @@ namespace experience
                {
 
                   image_source imagesource(pgraphics,
-                                           ::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate));
+                     rectangle_f64(::point_i32(rectangleClient.left - iInflate, rectangleClient.top - iInflate), ::size_f64(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
 
                   auto rectangle = rectangle_f64_dimension(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2);
 
@@ -144,7 +144,7 @@ namespace experience
 
                {
 
-                  image_source imagesource(pimage1, point_f64(iInflate, iInflate));
+                  image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleClient.size()));
 
                   image_drawing_options imagedrawingoptions(rectangleClient);
 
@@ -612,7 +612,7 @@ namespace experience
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw_3drect(rectangle_i32_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                        pgraphics->draw_inset_3drect(rectangle_i32_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                         i += 5;
 

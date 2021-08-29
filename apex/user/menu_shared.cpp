@@ -165,4 +165,20 @@ void menu_shared::on_idle_update()
 }
 
 
+void menu_shared_increment_reference_count(menu_shared * pmenushared)
+{
+   
+   pmenushared->increment_reference_count();
+   
+}
+
+
+void menu_shared_release(menu_shared * pmenushared)
+{
+   
+   ::release(pmenushared);
+   
+}
+
+
 

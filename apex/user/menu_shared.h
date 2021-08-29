@@ -43,5 +43,6 @@ public:
 };
 
 
-
+void menu_shared_increment_reference_count(menu_shared * pmenushared);
+void menu_shared_release(menu_shared * pmenushared);
 

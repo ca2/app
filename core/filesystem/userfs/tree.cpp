@@ -23,6 +23,8 @@ namespace userfs
    }
 
 
+#ifdef _DEBUG
+
    i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
@@ -75,6 +77,9 @@ namespace userfs
       return i;
 
    }
+
+
+#endif
 
 
    void tree::assert_valid() const

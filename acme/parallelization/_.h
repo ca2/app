@@ -334,7 +334,7 @@ CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 //CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
-#ifdef _UWP
+#ifdef __cplusplus_winrt
 
 #include "acme/node/operating_system/uwp/parallelization_winrt.h"
 

@@ -63,9 +63,9 @@ namespace str
    template < typename TYPE >
    inline void from(string & str, const ::matter & t);
 
-#ifdef _UWP
-   inline void from(string& str, Platform::String^ strSource);
-#endif
+//#ifdef _UWP
+   //inline void from(string& str, Platform::String^ strSource);
+//#endif
 
    inline void from(string& str, const bool & b);
 

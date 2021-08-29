@@ -93,7 +93,7 @@
     <ClInclude Include="filesystem\filemanager\fs_simple_view.h" />
     <ClInclude Include="filesystem\filemanager\icon.h" />
     <ClInclude Include="filesystem\filemanager\iconoverlayer.h" />
-    <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\impact_base.h" />
     <ClInclude Include="filesystem\filemanager\item_action.h" />
     <ClInclude Include="filesystem\filemanager\left_view.h" />
     <ClInclude Include="filesystem\filemanager\main_frame.h" />
@@ -989,7 +989,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -998,7 +998,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1021,12 +1021,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1047,12 +1047,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1075,10 +1075,10 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1102,10 +1102,10 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1127,12 +1127,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1153,12 +1153,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1179,12 +1179,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1205,12 +1205,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1233,11 +1233,11 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1259,12 +1259,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -1285,12 +1285,12 @@
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/await /bigobj </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CompileAsManaged>false</CompileAsManaged>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>

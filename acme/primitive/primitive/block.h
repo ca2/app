@@ -50,12 +50,12 @@ struct CLASS_DECL_ACME block :
 
    inline bool is_empty() const { return get_size() <= 0; }
 
-#ifdef _UWP
-
-   ::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
-   Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
-
-#endif
+//#ifdef _UWP
+//
+//   ::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
+//   Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
+//
+//#endif
 
    block & from_base64(const char * psz, strsize iSize) const;
    string to_base64() const;

@@ -28,7 +28,8 @@
 #elif defined(_UWP)
 
 #include "acme/node/operating_system/ansi/_ansi.h"
-#include "acme/node/operating_system/uwp/_uwp.h"
+#include "acme/node/operating_system/windows_common/_windows_common.h"
+#include "acme/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

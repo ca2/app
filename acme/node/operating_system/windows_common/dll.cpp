@@ -188,9 +188,9 @@ void module_output_debug_string_w(hinstance hinstance, const WCHAR * pwszPrefix 
 
 
 
-#ifdef _UWP
-[MTAThread]
-#endif
+//#ifdef _UWP
+//[MTAThread]
+//#endif
 int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int & intDelayMs)
 {
 

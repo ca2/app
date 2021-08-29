@@ -630,17 +630,17 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
    //}
 
 
-#ifdef _UWP
-
-
-   inline void from(string& str, Platform::String ^ strSource)
-   {
-
-      str = strSource->Begin();
-
-   }
-
-#endif
+//#ifdef _UWP
+//
+//
+//   inline void from(string& str, Platform::String ^ strSource)
+//   {
+//
+//      str = strSource->Begin();
+//
+//   }
+//
+//#endif
 
    inline void from(string & str, const matter & o)
    {

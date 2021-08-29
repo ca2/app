@@ -24,9 +24,9 @@
 #endif
 
 
-#ifdef _UWP
-[MTAThread]
-#endif
+//#ifdef _UWP
+//[MTAThread]
+//#endif
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 

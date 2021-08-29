@@ -316,12 +316,12 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ExceptionHandling>Async</ExceptionHandling>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
     <Link>
@@ -345,8 +345,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -368,8 +369,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -413,8 +415,9 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -437,8 +440,9 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -461,8 +465,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -484,8 +489,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -507,8 +513,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -530,8 +537,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -554,8 +562,9 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -578,8 +587,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -601,8 +611,9 @@
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

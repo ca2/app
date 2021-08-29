@@ -323,16 +323,16 @@ namespace mathematics
 
    u64 mathematics::gen_rand()
    {
-#if defined(_UWP)
-      u64 uiLo = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      return uiLo | (uiHi << 32);
-#else
+//#if defined(_UWP)
+//      u64 uiLo = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      return uiLo | (uiHi << 32);
+//#else
       u64 u = 0;
       gen_rand(&u, sizeof(u));
       return u;
-#endif
-
+//#endif
+//
    }
 
    void mathematics::random_bytes(void * buf, memsize dwLen)

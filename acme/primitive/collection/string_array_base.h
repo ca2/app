@@ -53,9 +53,9 @@ public:
    }
 
    string_array_base(const string_array_base & array);
-#ifdef _UWP
-   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
-#endif
+//#ifdef _UWP
+//   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
+//#endif
    string_array_base(CHAR_TYPE * const * ppsz, ::count c);
    ~string_array_base() override;
 
@@ -1517,28 +1517,28 @@ string_array_base < Type, RawType, t_etypePayload > ::string_array_base(CHAR_TYP
 }
 
 
-#ifdef _UWP
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-string_array_base < Type, RawType, t_etypePayload > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
-{
-
-   for (unsigned int u = 0; u < refstra->Length; u++)
-   {
-
-      Type str;
-
-      str = refstra[u]->Begin();
-
-      add(str);
-
-   }
-
-}
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
+//{
+//
+//   for (unsigned int u = 0; u < refstra->Length; u++)
+//   {
+//
+//      Type str;
+//
+//      str = refstra[u]->Begin();
+//
+//      add(str);
+//
+//   }
+//
+//}
+//
+//
+//#endif
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >

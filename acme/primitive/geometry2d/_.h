@@ -1346,25 +1346,25 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 
 
 
-#ifdef _UWP
-
-inline void copy(rectangle_i32 * prectDst, const ::Windows::Foundation::Rect * prectSrc)
-{
-   prectDst->left = (::i32) prectSrc->X;
-   prectDst->top = (::i32)prectSrc->Y;
-   prectDst->right = (::i32) (prectSrc->X + prectSrc->Width);
-   prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
-}
-
-inline void copy(::Windows::Foundation::Rect* prectDst, rectangle_i32* prectSrc)
-{
-   prectDst->X = (float) prectSrc->left;
-   prectDst->Y = (float) prectSrc->top;
-   prectDst->Width = (float) prectSrc->width();
-   prectDst->Height = (float) prectSrc->height();
-}
-
-#endif
+//#ifdef _UWP
+//
+//inline void copy(rectangle_i32 * prectDst, const ::Windows::Foundation::Rect * prectSrc)
+//{
+//   prectDst->left = (::i32) prectSrc->X;
+//   prectDst->top = (::i32)prectSrc->Y;
+//   prectDst->right = (::i32) (prectSrc->X + prectSrc->Width);
+//   prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
+//}
+//
+//inline void copy(::Windows::Foundation::Rect* prectDst, rectangle_i32* prectSrc)
+//{
+//   prectDst->X = (float) prectSrc->left;
+//   prectDst->Y = (float) prectSrc->top;
+//   prectDst->Width = (float) prectSrc->width();
+//   prectDst->Height = (float) prectSrc->height();
+//}
+//
+//#endif
 
 
 inline auto __point(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
@@ -1389,22 +1389,22 @@ inline auto __pointd(const ::u32 u) noexcept { return ::point_f64((double)__u32x
 inline auto __pointd(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size.cx, size.cy); }
 
-#ifdef _UWP
-
-inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rectangle, double scale)
-{
-
-   rectangle.X = (float)(rectangle.X*scale);
-   rectangle.Y = (float)(rectangle.Y* scale);
-   rectangle.Width = (float)(rectangle.Width * scale);
-   rectangle.Height = (float)(rectangle.Height*scale);
-
-   return rectangle;
-
-}
-
-
-#endif
+//#ifdef _UWP
+//
+//inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rectangle, double scale)
+//{
+//
+//   rectangle.X = (float)(rectangle.X*scale);
+//   rectangle.Y = (float)(rectangle.Y* scale);
+//   rectangle.Width = (float)(rectangle.Width * scale);
+//   rectangle.Height = (float)(rectangle.Height*scale);
+//
+//   return rectangle;
+//
+//}
+//
+//
+//#endif
 
 
 

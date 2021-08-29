@@ -9,12 +9,12 @@
       <Configuration>Debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|ARM">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|x86">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -43,14 +43,14 @@
     <UseOfStl>c++_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <UseOfStl>c++_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
@@ -63,10 +63,10 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -85,13 +85,13 @@
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
@@ -134,7 +134,7 @@
       <LibraryDependencies>aura;$(StlLibraryName);android;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -152,7 +152,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
@@ -191,9 +191,6 @@
     </ProjectReference>
     <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
       <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

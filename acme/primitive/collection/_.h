@@ -6,21 +6,21 @@ template < typename ITERABLE >
 inline ::count __iterable_count(const ITERABLE & iterable);
 
 
-#ifdef _UWP
-
-
-template < typename T >
-inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
-{
-
-   return a.Size;
-
-}
-
-
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename T >
+//inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
+//{
+//
+//   return a.Size;
+//
+//}
+//
+//
+//
+//
+//#endif
 
 
 class strid_array;

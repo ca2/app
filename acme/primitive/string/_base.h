@@ -88,10 +88,10 @@ public:
    string_base(wd16char wd16ch, strsize repeat = 1);
    string_base(wd32char wd32ch, strsize repeat = 1);
    
-#ifdef _UWP
-   string_base(Array <byte > ^ a);
-   string_base(Object ^ o);
-#endif
+//#ifdef _UWP
+   //string_base(Array <byte > ^ a);
+   //string_base(Object ^ o);
+//#endif
 
    //string_base(const ::payload & payload);
    //string_base(const property & property);
@@ -129,9 +129,9 @@ public:
 
    //inline operator const CHAR_TYPE* () const noexcept { return this->m_pdata; }
 
-#if defined(_UWP) 
-   inline operator String ^ () const { return ref new String(wd16string(*this)); }
-#endif
+//#if defined(_UWP) 
+   //inline operator String ^ () const { return ref new String(wd16string(*this)); }
+//#endif
 
    auto to_string_base() const { return *this; }
    const auto & to_string_base() { return *this; }

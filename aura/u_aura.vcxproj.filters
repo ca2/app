@@ -1677,6 +1677,7 @@
     <ClInclude Include="user\graphics_call.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filemanager\impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">

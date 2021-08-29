@@ -604,30 +604,30 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //}
 
 
-#elif defined(_UWP)
-
-comptr < IStream > memory_base::create_istream() const
-{
-
-   if (get_data() == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
-
-   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
-
-   IStream * pstream = nullptr;
-
-   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
-
-   return pstream;
-
-
-}
+//#elif defined(_UWP)
+//
+//comptr < IStream > memory_base::create_istream() const
+//{
+//
+//   if (get_data() == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+//
+//   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
+//
+//   IStream * pstream = nullptr;
+//
+//   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
+//
+//   return pstream;
+//
+//
+//}
 #endif
 
 

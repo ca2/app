@@ -200,7 +200,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    }
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
    u32 windowsWaitResult;
 

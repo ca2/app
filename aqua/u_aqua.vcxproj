@@ -272,13 +272,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -295,13 +295,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -318,13 +318,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -341,13 +341,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -364,13 +364,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -387,13 +387,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -410,13 +410,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -433,13 +433,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -456,13 +456,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -479,13 +479,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -502,13 +502,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -525,13 +525,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
-      <AdditionalOptions>/await </AdditionalOptions>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

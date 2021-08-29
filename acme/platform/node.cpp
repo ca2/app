@@ -301,7 +301,7 @@ namespace acme
    //}
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
 
    ::e_status node::register_dll(const ::file::path& pathDll)
@@ -1430,6 +1430,7 @@ namespace acme
 
    }
 
+#if !defined(_UWP)
 
    array <::serial::port_info> node::list_serial_ports()
    {
@@ -1440,6 +1441,7 @@ namespace acme
 
    }
 
+#endif
 
    string node::get_user_language()
    {

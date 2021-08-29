@@ -58,7 +58,7 @@ CLASS_DECL_ACME bool is_verbose();
 
 #include "acme/node/operating_system/ansi/_.h"
 #include "acme/node/operating_system/windows_common/_.h"
-#include "acme/node/operating_system/uwp/_.h"
+#include "acme/node/operating_system/universal_windows/_.h"
 
 #elif defined(WINDOWS_DESKTOP)
 
@@ -154,6 +154,10 @@ CLASS_DECL_ACME ::e_status create_directory_path(const char * path);
 CLASS_DECL_ACME ::e_status create_directory(const char * path);
 
 CLASS_DECL_ACME ::e_status file_delete(const char * path);
+
+CLASS_DECL_ACME ::file::path dir_ca2_module();
+
+CLASS_DECL_ACME ::file::path dir_base_module();
 
 
 

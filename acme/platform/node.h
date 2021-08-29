@@ -364,8 +364,10 @@ namespace acme
       
       virtual string expand_environment_variables(const string & str);
 
-
+#ifndef _UWP
       virtual array <::serial::port_info> list_serial_ports();
+
+#endif
 
 
       virtual string get_user_language();

@@ -82,31 +82,31 @@ namespace acme
 
 #endif
 
-#ifdef _UWP
-
-
-::e_status os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
-{
-
-   return _os_message_box(pszText, pszTitle, emessagebox, process);
-
-}
-
-
-#else
-
-
+//#ifdef _UWP
+//
+//
 //::e_status os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
 //{
 //
-//   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
-//
-//   return __realize(posmessagebox, process);
+//   return _os_message_box(pszText, pszTitle, emessagebox, process);
 //
 //}
 //
-
-#endif
+//
+//#else
+//
+//
+////::e_status os_message_box(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+////{
+////
+////   auto posmessagebox = __new(::acme::os_message_box(pszText, pszTitle, emessagebox));
+////
+////   return __realize(posmessagebox, process);
+////
+////}
+////
+//
+//#endif
 
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int iLineNumber)
 {

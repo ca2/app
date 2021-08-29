@@ -26,31 +26,31 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //#endif
 
 
-#ifdef _UWP
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >::string_base(Array <byte >^ a)
-{
-
-   *this = string_base < TYPE_CHAR >((const ansichar *) a->begin(), a->Length);
-
-}
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >::string_base(Object^ o)
-{
-
-   *this = o->ToString()->Begin();
-
-}
-
-
-
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >::string_base(Array <byte >^ a)
+//{
+//
+//   *this = string_base < TYPE_CHAR >((const ansichar *) a->begin(), a->Length);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >::string_base(Object^ o)
+//{
+//
+//   *this = o->ToString()->Begin();
+//
+//}
+//
+//
+//
+//
+//
+//#endif
 
 
 

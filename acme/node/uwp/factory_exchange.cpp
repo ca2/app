@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_uwp.h"
+//#include "_uwp.h"
 
 //
 //namespace uwp
@@ -34,7 +34,7 @@ void __node_acme_factory_exchange(::factory_map * pfactorymap)
 {
 
    //create_factory < ::uwp::interaction_impl, ::user::interaction_impl >();
-   create_factory < ::uwp::file, ::file::file >();
+   //create_factory < ::uwp::file, ::file::file >();
    //create_factory < ::file::os_watcher, ::file::watcher >();
    //create_factory < ::uwp::os_context, ::os_context >();
    //create_factory < ::uwp::file_system, ::file_system >();

@@ -77,6 +77,6 @@ namespace user
 //CLASS_DECL_ACME bool get_filetime(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
-#include "file_winrt.h"
+
 
 

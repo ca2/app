@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
+
 ////#include "uwp.h"
 //int _c_lock_is_active(const char * pszName)
 //{

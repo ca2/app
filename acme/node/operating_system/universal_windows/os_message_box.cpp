@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
-#include <collection.h>
+#include "acme/operating_system.h"
+
+
+//#include <collection.h>
 
 
 //void keep_sealed_object(Object ^ o);
@@ -96,31 +99,31 @@
 //}
 
 
-template < typename T, typename PRED >
-void chain(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext = CallbackContext::Any)
-{
-
-   operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([pred](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
-   {
-
-      if (status == ::Windows::Foundation::AsyncStatus::Completed)
-      {
-
-         pred(operation->GetResults());
-
-      }
-      else
-      {
-
-         auto ErrorCode = operation->ErrorCode;
-
-         pred(nullptr);
-
-      }
-
-   }, callbackcontext);
-
-}
+//template < typename T, typename PRED >
+//void chain(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, CallbackContext callbackcontext = CallbackContext::Any)
+//{
+//
+//   operation->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T >([pred](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
+//   {
+//
+//      if (status == ::Windows::Foundation::AsyncStatus::Completed)
+//      {
+//
+//         pred(operation->GetResults());
+//
+//      }
+//      else
+//      {
+//
+//         auto ErrorCode = operation->ErrorCode;
+//
+//         pred(nullptr);
+//
+//      }
+//
+//   }, callbackcontext);
+//
+//}
 
 
 bool g_bCoreWindowOnceVisible;
@@ -143,10 +146,10 @@ bool is_core_window_once_visible()
 #undef new
 
 
-using namespace Windows::UI::Popups;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Navigation;
+//using namespace Windows::UI::Popups;
+//using namespace Windows::UI::Xaml;
+//using namespace Windows::UI::Xaml::Controls;
+//using namespace Windows::UI::Xaml::Navigation;
 
 
 class message_box_w;

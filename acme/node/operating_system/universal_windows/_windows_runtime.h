@@ -19,3 +19,7 @@ CLASS_DECL_ACME uptr virtualkey_to_code(::Windows::::acme::get_system()::Virtual
 
 
 
+
+#include "file_winrt.h"
+
+

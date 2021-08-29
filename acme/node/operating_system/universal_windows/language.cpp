@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
 
 //
 //CLASS_DECL_ACME string load_podata(string strLang, bool bOnlyHeader)

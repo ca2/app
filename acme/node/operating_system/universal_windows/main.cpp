@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 //#include "uwp.h"
 //#include "sal.h"
 
@@ -242,16 +243,16 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 }
 
 
-string executable_get_app_id()
-{
-
-   string strAppId =  Windows::ApplicationModel::Package::Current->Id->Name;
-
-   strAppId.replace(".", "/");
-
-   return strAppId;
-
-}
+//string executable_get_app_id()
+//{
+//
+//   string strAppId =  Windows::ApplicationModel::Package::Current->Id->Name;
+//
+//   strAppId.replace(".", "/");
+//
+//   return strAppId;
+//
+//}
 
 string ca2_command_line()
 {

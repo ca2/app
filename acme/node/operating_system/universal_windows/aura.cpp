@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 //#include "uwp.h"
 //#include <winternl.h>
 //#include <VersionHelpers.h>

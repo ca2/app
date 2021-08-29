@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 
 
 bool os_init_imaging()
@@ -26,21 +27,21 @@ void os_term_imaging()
 //
 //}
 
+//
+//HCURSOR load_default_cursor(e_cursor ecursor)
+//{
+//
+//   return nullptr;
+//
+//}
 
-HCURSOR load_default_cursor(e_cursor ecursor)
-{
 
-   return nullptr;
-
-}
-
-
-int_bool delete_hcursor(HCURSOR hcursor)
-{
-
-   return true;
-
-}
+//int_bool delete_hcursor(HCURSOR hcursor)
+//{
+//
+//   return true;
+//
+//}
 
 
 namespace draw2d

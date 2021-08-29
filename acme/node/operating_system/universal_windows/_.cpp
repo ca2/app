@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "_uwp.h"
 #include "acme/id.h"
 

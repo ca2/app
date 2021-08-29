@@ -5,6 +5,7 @@
 //
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "_.h"
 #include "acme/parallelization/message_queue.h"
 
@@ -156,44 +157,44 @@ void _on_aura_thread_detach()
 
 #pragma warning (disable : 4273)
 
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
-{
+//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
+//{
+//
+//   return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
+//
+//}
 
-   return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
 
-}
-
-
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
-{
-
-   ::u32 dwResult = 0;
-
-   if (dwWakeMask & MWMO_ALERTABLE)
-   {
-
-      HANDLE* ph = new HANDLE[nCount + 1];
-
-      ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
-
-      ph[nCount] = (HANDLE)::get_message_queue(get_current_ithread(), true)->m_eventNewMessage.hsync();
-
-      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, true);
-
-      delete ph;
-
-   }
-   else
-   {
-
-      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, false);
-
-   }
-
-   return dwResult;
-
-}
-
+//CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+//{
+//
+//   ::u32 dwResult = 0;
+//
+//   if (dwWakeMask & MWMO_ALERTABLE)
+//   {
+//
+//      HANDLE* ph = new HANDLE[nCount + 1];
+//
+//      ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
+//
+//      ph[nCount] = (HANDLE)::get_message_queue(get_current_ithread(), true)->m_eventNewMessage.hsync();
+//
+//      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, true);
+//
+//      delete ph;
+//
+//   }
+//   else
+//   {
+//
+//      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, false);
+//
+//   }
+//
+//   return dwResult;
+//
+//}
+//
 
 
 

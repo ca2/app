@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "id.h"
 #include "_winrt.h"
 #include "acme/node/uwp/_uwp.h"

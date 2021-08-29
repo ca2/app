@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "acme/operating_system.h"
 
 
 void * __node_library_touch(const char * pszPath, string & strMessage)
@@ -17,20 +17,40 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
    string strPath(pszPath);
 
-   if(ansi_ends_ci(strPath,".ilk"))
-      return false;
+   if (ansi_ends_ci(strPath, ".ilk"))
+   {
 
-   if(ansi_ends_ci(strPath,".pdb"))
-      return false;
+      return nullptr;
 
-   if(ansi_ends_ci(strPath,".lib"))
-      return false;
+   }
 
-   if(ansi_ends_ci(strPath,".exp"))
-      return false;
+   if (ansi_ends_ci(strPath, ".pdb"))
+   {
 
-   if(ansi_find_string(file_path_name(strPath),".") == nullptr)
+      return nullptr;
+
+   }
+
+   if (ansi_ends_ci(strPath, ".lib"))
+   {
+
+      return nullptr;
+
+   }
+
+   if (ansi_ends_ci(strPath, ".exp"))
+   {
+
+      return nullptr;
+
+   }
+
+   if (ansi_find_string(file_path_name(strPath), ".") == nullptr)
+   {
+
       strPath += ".dll";
+
+   }
 
    try
    {
@@ -69,7 +89,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
       try
       {
 
-         wstring wstrPath(::dir::ca2_module() / strPath);
+         wstring wstrPath(::dir_ca2_module() / strPath);
 
          plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -87,7 +107,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
       try
       {
 
-         wstring wstrPath(("\\\\?\\" + ::dir::ca2_module()) / strPath);
+         wstring wstrPath(("\\\\?\\" + ::dir_ca2_module()) / strPath);
 
          plibrary = ::LoadPackagedLibrary(wstrPath, 0);
 
@@ -105,7 +125,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
       try
       {
 
-         wstring wstr(::dir::base_module() / strPath);
+         wstring wstr(::dir_base_module() / strPath);
 
          plibrary = ::LoadPackagedLibrary(wstr,0);
 
@@ -123,7 +143,7 @@ void * __node_library_open(const char * pszPath, string & strMessage)
       try
       {
 
-         wstring wstr(("\\\\?\\" + ::dir::base_module()) / strPath);
+         wstring wstr(("\\\\?\\" + ::dir_base_module()) / strPath);
 
          plibrary = ::LoadPackagedLibrary(wstr,0);
 

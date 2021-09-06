@@ -156,7 +156,7 @@ namespace graphics
    bool graphics::update_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
-      return false;
+      return true;
 
    }
 

@@ -616,7 +616,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //
 //   }
 //
-//   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+//   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 //
 //   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 //
@@ -1787,20 +1787,20 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 }
 
 
-::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memsize pos, memsize size) const
+::winrt::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memsize pos, memsize size) const
 {
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 
-   return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(pbytes);
+   return ::winrt::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(pbytes);
 
 }
 
 
-::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
+::winrt::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
 {
 
-   ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter();
+   ::winrt::Windows::Storage::Streams::DataWriter ^ writer = ref new ::winrt::Windows::Storage::Streams::DataWriter();
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 
@@ -1849,22 +1849,22 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
 }
 
 
-void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
+void memory_base::set_os_crypt_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
 {
 
    Array < uchar, 1U > ^ a = nullptr;
 
-   ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
+   ::winrt::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
 
    return set_os_bytes(a, pos, size);
 
 }
 
 
-void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
+void memory_base::set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
 {
 
-   Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
+   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
 
    Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
 

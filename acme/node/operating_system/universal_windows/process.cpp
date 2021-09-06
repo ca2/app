@@ -2,7 +2,7 @@
 #include "acme/operating_system.h"
 
 
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include <Shellapi.h>
 //#include <string.h>
 
@@ -318,21 +318,21 @@ int get_current_process_affinity_order()
 
 }
 
-#undef ::acme::get_system()
+//#undef ::acme::get_system()
 
-CLASS_DECL_ACME int ui_open_url(const char * pszUrl)
-{
-
-   string strUrl(pszUrl);
-
-   auto uri = ref new Windows::Foundation::Uri(strUrl);
-
-   Windows::::acme::get_system()::Launcher::LaunchUriAsync(uri);
-
-   return 0;
-
-}
-
+//CLASS_DECL_ACME int ui_open_url(const char * pszUrl)
+//{
+//
+//   string strUrl(pszUrl);
+//
+//   auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
+//
+//   ::winrt::Windows::::acme::get_system()::Launcher::LaunchUriAsync(uri);
+//
+//   return 0;
+//
+//}
+//
 
 
 
@@ -362,7 +362,9 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 {
 
-   throw todo();
+   __throw(todo);
+
+   return "";
 
 }
 

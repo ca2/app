@@ -360,7 +360,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority)
 {
 
    auto proutine = __sync_routine(pred);
@@ -388,7 +388,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //
 //
 //template < typename PRED >
-//void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
+//void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, enum_priority epriority)
 //{
 //
 //   auto pobjectTask = __task_procedure(pred);

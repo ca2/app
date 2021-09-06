@@ -50,11 +50,14 @@ namespace xml
          m_pnode = m_pdocument->root();
          string strName;
          strName = m_pnode->get_name();
-         if(strName != pcszName)
 
+         if(strName != pcszName)
          {
+            
             m_pnode = nullptr;
-            __throw(::exception::exception("Node not found"));
+            
+            throw ::exception::exception("Node not found");
+
          }
          
          importable.xml_import(*this);
@@ -88,7 +91,7 @@ namespace xml
 
             m_pnode = nullptr;
 
-            __throw(::exception::exception("Node not found"));
+            throw ::exception::exception("Node not found");
 
          }
 

@@ -804,7 +804,7 @@ pacmedir->create(pathDVP_Folder);
 
       ::process::process_pointer process(e_create);
 
-      ::parallelization::set_priority(::priority_highest);
+      ::parallelization::set_priority(::e_priority_highest);
 
       //process->prop("inherit") = false;
 
@@ -813,9 +813,9 @@ pacmedir->create(pathDVP_Folder);
       m_pcontext->m_papexcontext->file().put_contents_utf8(pathCompiler, strCompiler);
 
 #ifdef WINDOWS
-      process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::priority_highest);
+      process->create_child_process(strCompiler,true,"C:\\netnode\\source\\app-core\\netnode_dynamic_source_script",::e_priority_highest);
 #else
-      process->create_child_process(strCompiler,true,m_pathProjectDir,::priority_highest);
+      process->create_child_process(strCompiler,true,m_pathProjectDir,::e_priority_highest);
 #endif
 
       //::system(str + " > " + "\"" + strClog + "\"");
@@ -996,7 +996,7 @@ pacmedir->create(pathDVP_Folder);
 
          ::process::process_pointer process(e_create);
 
-         ::parallelization::set_priority(::priority_highest);
+         ::parallelization::set_priority(::e_priority_highest);
 
          string strLinker(str);
 
@@ -1005,7 +1005,7 @@ pacmedir->create(pathDVP_Folder);
 
          m_pcontext->m_papexcontext->file().put_contents_utf8(pathLinker, strLinker);
 
-         process->create_child_process(strLinker,true,nullptr,::priority_highest);
+         process->create_child_process(strLinker,true,nullptr,::e_priority_highest);
 
          auto tickStart = ::millis::now();
 
@@ -1472,7 +1472,7 @@ pacmedir->create(pathDVP_Folder);
 //
 //   m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + " "+m_strVCVersion+"\r\n@set");
 //
-//   set_thread_priority(::priority_highest);
+//   set_thread_priority(::e_priority_highest);
 //   process->prop("inherit") = false;
 //
 //   ::file::path pathCommand =          auto psystem = m_psystem;
@@ -1493,7 +1493,7 @@ pacmedir->create(pathDVP_Folder);
 //
 //   #endif
 //
-//   process->create_child_process(pathCommand,true,pathFolder,::priority_highest);
+//   process->create_child_process(pathCommand,true,pathFolder,::e_priority_highest);
 //   string strLog;
 //
 //   //   EnvVarValArray arrEnvVarVal;
@@ -1946,9 +1946,9 @@ pacmedir->create(pathDVP_Folder);
 
          ::process::process_pointer process(e_create);
 
-         ::parallelization::set_priority(::priority_highest);
+         ::parallelization::set_priority(::e_priority_highest);
 
-         process->create_child_process(str,true,nullptr,::priority_highest);
+         process->create_child_process(str,true,nullptr,::e_priority_highest);
 auto tickStart = ::millis::now();
 
          //u32 dwExitCode;
@@ -2095,9 +2095,9 @@ auto tickStart = ::millis::now();
 
       ::process::process_pointer process(e_create);
 
-      ::parallelization::set_priority(::priority_highest);
+      ::parallelization::set_priority(::e_priority_highest);
 
-      process->create_child_process(str,true,nullptr,::priority_highest);
+      process->create_child_process(str,true,nullptr,::e_priority_highest);
 auto tickStart = ::millis::now();
 
       string strLog;

@@ -212,10 +212,16 @@ public:
 
 
    virtual ::e_status system_main();
-   //virtual ::e_status run_system();
+
+
+   ::e_status on_pre_run_task() override;
+
+
    ::e_status main() override;
 
+
    virtual ::e_status end();
+
 
    virtual ::e_status on_end();
 
@@ -244,9 +250,9 @@ public:
    void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
-   //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
+   //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);
 
-   //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+   //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
 
 
    ::task* get_task(itask_t itask);
@@ -338,7 +344,7 @@ public:
    }
 
    template < typename PRED >
-   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
    {
 
       if (iCount <= 0)
@@ -407,7 +413,7 @@ public:
    }
 
 
-   ::task_group* task_group(::e_priority epriority = ::priority_none);
+   ::task_group* task_group(::enum_priority epriority = ::e_priority_none);
 
    ::task_tool* task_tool(::enum_task_tool etool);
 
@@ -447,7 +453,7 @@ public:
    virtual ::e_status on_open_untitled_file();
    
    virtual ::e_status on_open_file(const ::string &pszFile);
-   
+
 
 };
 

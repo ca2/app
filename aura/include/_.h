@@ -50,16 +50,16 @@ namespace aura
 #if defined _UWP
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
-   ref class directx_framework_view;
-   ref class directx_application_source;
+   //ref class directx_framework_view;
+   //ref class directx_application_source;
    class interaction_impl;
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 #endif
@@ -505,10 +505,10 @@ CLASS_DECL_AURA void aura_ref();
 //#endif
 //
 //
-//CLASS_DECL_AURA i32 get_os_thread_priority(::e_priority epriority);
-//CLASS_DECL_AURA i32 get_os_priority_class(::e_priority epriority);
-//CLASS_DECL_AURA ::e_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
-//CLASS_DECL_AURA ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
+//CLASS_DECL_AURA i32 get_os_thread_priority(::enum_priority epriority);
+//CLASS_DECL_AURA i32 get_os_priority_class(::enum_priority epriority);
+//CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
+//CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //
 //
 //

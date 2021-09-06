@@ -1,5 +1,6 @@
 #include "framework.h" // from "base/apex/.h"
 #include <time.h>
+#include "acme/primitive/datetime/_string.h"
 //#ifdef ANDROID
 //#include <sys/time.h>
 //#endif
@@ -175,7 +176,7 @@ namespace datetime
    i32 department::get_weekday(i32 year, i32 month, i32 day)
    {
       ::datetime::time time(year, month, day, 0, 0, 0);
-      return atoi(time.Format("%w"));
+      return atoi(Format("%w", time));
    }
 
    i64 department::get_timestamp(i32 year, i32 month, i32 day)
@@ -322,7 +323,7 @@ namespace datetime
    string department::international::get_gmt_date_time(const ::datetime::time & time, string strFormat)
    {
       string str;
-      time.FormatGmt(str, strFormat);
+      str = FormatGmt(strFormat, time);
       return str;
    }
 
@@ -345,7 +346,7 @@ namespace datetime
    string department::international::get_local_date_time(const ::datetime::time & time, string strFormat)
    {
       string str;
-      time.Format(str, strFormat);
+      str = Format(strFormat, time);
       return str;
    }
 
@@ -578,7 +579,10 @@ namespace datetime
       case 12:
          return 30;
       }
-      __throw(error_invalid_argument);
+      
+      throw ::exception::exception(error_invalid_argument);
+
+
    }
 
    i32 department::LEAP(i32 y)
@@ -709,7 +713,7 @@ namespace datetime
          strV.Format("%02d", ISO_WN(time.GetYear(), time.GetMonth(), time.GetDay()));
          strFormat.replace("%V", strV);
       }
-      time.FormatGmt(str, strFormat);
+      str = FormatGmt(strFormat, time);
       return str;
    }
 
@@ -718,7 +722,7 @@ namespace datetime
       string str;
       ::datetime::time time;
       time = ::datetime::time::get_current_time();
-      time.FormatGmt(str, psz);
+      str = FormatGmt(psz, time);
       return str;
    }
 
@@ -1148,7 +1152,9 @@ namespace datetime
                else if (strText1 == "now"
                   || (pcontext != nullptr && pcontext->matches(idCalendarNow, strText1)))
                {
-                  __throw(::exception::exception("now cannot be span"));
+                  
+                  __throw(error_invalid_argument, "now cannot be span");
+
                }
                else if (strText1.compare_ci("UTC") == 0)
                {
@@ -1611,32 +1617,32 @@ namespace datetime
             if (time.GetHour() == 0 && time.GetMinute() == 0)
             {
 
-               str = time.Format("%Y-");
+               str = Format("%Y-", time);
 
                get_month_str(pcontext, time.GetMonth());
 
-               str += time.Format("-%d");
+               str += Format("-%d", time);
 
             }
             else
             {
 
-               str = time.Format("%Y-");
+               str = Format("%Y-", time);
 
                str += get_month_str(pcontext, time.GetMonth());
 
-               str += time.Format("-%d %H:%M");
+               str += Format("-%d %H:%M", time);
 
             }
          }
          else
          {
 
-            str = time.Format("%Y-");
+            str = Format("%Y-", time);
 
             str += get_month_str(pcontext, time.GetMonth());
 
-            str += time.Format("-%d %H:%M:%S");
+            str += Format("-%d %H:%M:%S", time);
 
          }
 

@@ -48,8 +48,8 @@ namespace net
 
 #elif defined(WINRT_SOCKETS)
 
-      Windows::Networking::HostName^ m_hostname;
-      port_t      m_port;
+      //::winrt::Windows::Networking::HostName^ m_hostname;
+      //port_t      m_port;
 
 
 #else

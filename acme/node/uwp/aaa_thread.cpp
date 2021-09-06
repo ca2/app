@@ -1,12 +1,12 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include <process.h>    // for _beginthreadex and _endthreadex
 //#include <ddeml.h>  // for MSGF_DDEMGR
 
-namespace uwp
+namespace universal_windows
 {
    class thread;
-} // namespace uwp
+} // namespace universal_windows
 
 bool CLASS_DECL_ACME __internal_pump_message();
 LRESULT CLASS_DECL_ACME __internal_process_wnd_proc_exception(::exception::exception*, const MSG* pMsg);

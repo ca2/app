@@ -105,28 +105,28 @@ CLASS_DECL_ACME bool task_set_name(htask_t htask, const char* pszName)
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ htask_t htask, _In_ PCWSTR pThreadDescription);
 
 
-i32 get_os_thread_priority(::e_priority epriority)
+i32 get_os_thread_priority(::enum_priority epriority)
 {
 
-   if (epriority <= ::priority_none)
+   if (epriority <= ::e_priority_none)
       return THREAD_PRIORITY_NORMAL;
 
-   if (epriority <= ::priority_idle)
+   if (epriority <= ::e_priority_idle)
       return THREAD_PRIORITY_IDLE;
 
-   if (epriority <= ::priority_lowest)
+   if (epriority <= ::e_priority_lowest)
       return THREAD_PRIORITY_LOWEST;
 
-   if (epriority <= ::priority_below_normal)
+   if (epriority <= ::e_priority_below_normal)
       return THREAD_PRIORITY_BELOW_NORMAL;
 
-   if (epriority <= ::priority_normal)
+   if (epriority <= ::e_priority_normal)
       return THREAD_PRIORITY_NORMAL;
 
-   if (epriority <= ::priority_above_normal)
+   if (epriority <= ::e_priority_above_normal)
       return THREAD_PRIORITY_ABOVE_NORMAL;
 
-   if (epriority <= ::priority_highest)
+   if (epriority <= ::e_priority_highest)
       return THREAD_PRIORITY_HIGHEST;
 
    return THREAD_PRIORITY_TIME_CRITICAL;
@@ -135,28 +135,28 @@ i32 get_os_thread_priority(::e_priority epriority)
 
 
 
-i32 get_os_priority_class(::e_priority epriority)
+i32 get_os_priority_class(::enum_priority epriority)
 {
 
-   if (epriority <= ::priority_none)
+   if (epriority <= ::e_priority_none)
       return NORMAL_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_idle)
+   if (epriority <= ::e_priority_idle)
       return IDLE_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_lowest)
+   if (epriority <= ::e_priority_lowest)
       return BELOW_NORMAL_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_below_normal)
+   if (epriority <= ::e_priority_below_normal)
       return BELOW_NORMAL_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_normal)
+   if (epriority <= ::e_priority_normal)
       return NORMAL_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_above_normal)
+   if (epriority <= ::e_priority_above_normal)
       return ABOVE_NORMAL_PRIORITY_CLASS;
 
-   if (epriority <= ::priority_highest)
+   if (epriority <= ::e_priority_highest)
       return HIGH_PRIORITY_CLASS;
 
    return REALTIME_PRIORITY_CLASS;
@@ -164,38 +164,38 @@ i32 get_os_priority_class(::e_priority epriority)
 }
 
 
-::e_priority get_os_thread_scheduling_priority(i32 nPriority)
+::enum_priority get_os_thread_scheduling_priority(i32 nPriority)
 {
 
-   ::e_priority epriority;
+   ::enum_priority epriority;
 
    if (nPriority <= THREAD_PRIORITY_IDLE)
    {
-      epriority = ::priority_idle;
+      epriority = ::e_priority_idle;
    }
    else if (nPriority <= THREAD_PRIORITY_LOWEST)
    {
-      epriority = ::priority_lowest;
+      epriority = ::e_priority_lowest;
    }
    else if (nPriority <= THREAD_PRIORITY_BELOW_NORMAL)
    {
-      epriority = ::priority_below_normal;
+      epriority = ::e_priority_below_normal;
    }
    else if (nPriority <= THREAD_PRIORITY_NORMAL)
    {
-      epriority = ::priority_normal;
+      epriority = ::e_priority_normal;
    }
    else if (nPriority <= THREAD_PRIORITY_ABOVE_NORMAL)
    {
-      epriority = ::priority_above_normal;
+      epriority = ::e_priority_above_normal;
    }
    else if (nPriority <= THREAD_PRIORITY_HIGHEST)
    {
-      epriority = ::priority_highest;
+      epriority = ::e_priority_highest;
    }
    else
    {
-      epriority = ::priority_time_critical;
+      epriority = ::e_priority_time_critical;
    }
 
    return epriority;
@@ -203,34 +203,34 @@ i32 get_os_priority_class(::e_priority epriority)
 }
 
 
-::e_priority get_os_class_scheduling_priority(i32 nPriority)
+::enum_priority get_os_class_scheduling_priority(i32 nPriority)
 {
 
-   ::e_priority epriority;
+   ::enum_priority epriority;
 
    if (nPriority <= IDLE_PRIORITY_CLASS)
    {
-      epriority = ::priority_idle;
+      epriority = ::e_priority_idle;
    }
    else if (nPriority <= BELOW_NORMAL_PRIORITY_CLASS)
    {
-      epriority = ::priority_below_normal;
+      epriority = ::e_priority_below_normal;
    }
    else if (nPriority <= NORMAL_PRIORITY_CLASS)
    {
-      epriority = ::priority_normal;
+      epriority = ::e_priority_normal;
    }
    else if (nPriority <= ABOVE_NORMAL_PRIORITY_CLASS)
    {
-      epriority = ::priority_above_normal;
+      epriority = ::e_priority_above_normal;
    }
    else if (nPriority <= HIGH_PRIORITY_CLASS)
    {
-      epriority = ::priority_highest;
+      epriority = ::e_priority_highest;
    }
    else
    {
-      epriority = ::priority_time_critical;
+      epriority = ::e_priority_time_critical;
    }
 
    return epriority;
@@ -242,7 +242,7 @@ namespace parallelization
 {
 
 
-   bool set_priority(::e_priority epriority)
+   bool set_priority(::enum_priority epriority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(), get_os_thread_priority(epriority)) != 0);

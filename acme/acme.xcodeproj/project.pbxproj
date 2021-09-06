@@ -5694,7 +5694,7 @@
 				9A89287926CD7570008D6412 /* macos */,
 				9A89286626CD7570008D6412 /* posix */,
 				9A8929C926CD7571008D6412 /* solaris */,
-				9A8929F326CD7571008D6412 /* uwp */,
+				9A8929F326CD7571008D6412 /* universal_windows */,
 				9A8929C126CD7571008D6412 /* windows */,
 				9A8929B226CD7570008D6412 /* windows_common */,
 				9A89285F26CD7570008D6412 /* xcb */,
@@ -5903,7 +5903,7 @@
 				9A8928D526CD7570008D6412 /* _2.h */,
 				9A8928D626CD7570008D6412 /* _cross.h */,
 				9A8928D726CD7570008D6412 /* windows */,
-				9A89290826CD7570008D6412 /* uwp */,
+				9A89290826CD7570008D6412 /* universal_windows */,
 			);
 			path = cross;
 			sourceTree = "<group>";
@@ -5963,13 +5963,13 @@
 			path = windows;
 			sourceTree = "<group>";
 		};
-		9A89290826CD7570008D6412 /* uwp */ = {
+		9A89290826CD7570008D6412 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A89290926CD7570008D6412 /* metrowin_user.cpp */,
 				9A89290A26CD7570008D6412 /* cross_metrowin_user.cpp */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A89290E26CD7570008D6412 /* ios */ = {
@@ -6221,7 +6221,7 @@
 			path = solaris;
 			sourceTree = "<group>";
 		};
-		9A8929F326CD7571008D6412 /* uwp */ = {
+		9A8929F326CD7571008D6412 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A892A0E26CD7571008D6412 /* _.cpp */,
@@ -6272,7 +6272,7 @@
 				9A892A1826CD7571008D6412 /* simple_ui.h */,
 				9A892A0F26CD7571008D6412 /* sockets.h */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A892DBC26CD9061008D6412 /* constant */ = {

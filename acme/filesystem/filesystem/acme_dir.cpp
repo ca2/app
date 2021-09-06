@@ -19,8 +19,26 @@ acme_dir::~acme_dir()
 }
 
 
+::e_status acme_dir::initialize(::object * pobject)
+{
+
+   auto estatus = ::matter::initialize(pobject);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   m_pathInstallFolder = default_install();
+
+   m_pathModuleFolder = dir_ca2_module();
+
+   return estatus;
 
 
+}
 
 
 ::file::path acme_dir::app(string strPlatform, string strConfiguration)
@@ -85,6 +103,8 @@ acme_dir::~acme_dir()
    return install() / ("install-" + strPlatform + ".log");
 
 }
+
+
 
 
 ::file::path acme_dir::module_folder()
@@ -342,6 +362,10 @@ pacmedir->roaming();
 #elif defined(__APPLE__)
 
    return m_psystem->m_pacmefile->executable()-3;
+
+#elif defined(_UWP)
+
+   return "";
 
 #else
 
@@ -713,44 +737,136 @@ bool acme_dir::_is(const char * path1)
 //}
 
 
-bool acme_dir::create(const char * path)
+::e_status acme_dir::create(const char * path)
 {
 
-   __throw(error_interface_only);
-
-   return "";
-
-}
-
-//bool _create(const char * path);
-
-bool acme_dir::_create(const char * path)
-{
-
-   __throw(error_interface_only);
-
-   return "";
+   return _create(path);
 
 }
 
 
-bool acme_dir::create_directory(const char * path)
+::e_status acme_dir::_create(const char * pathParam)
 {
 
-   __throw(error_interface_only);
+   if (is(pathParam))
+   {
 
-   return "";
+      return ::success_none;
+
+   }
+
+   ::file::path path(pathParam);
+
+   string strName;
+
+   ::file::path pathDir;
+
+   strsize iLastPo = -1;
+
+   ::file::patha stra;
+
+   path.ascendants_path(stra);
+
+   index i = stra.get_upper_bound();
+
+   for (; i >= 0; i--)
+   {
+
+      string strDir = stra[i];
+
+      if (is(strDir))
+      {
+
+         break;
+
+      }
+
+   }
+
+   if (i < 0)
+   {
+
+      return true;
+
+   }
+
+   for (; i < stra.get_count(); i++)
+   {
+
+      string strDir = stra[i];
+
+      auto estatus = create_directory(strDir);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   return ::success;
 
 }
 
 
+::e_status acme_dir::create_directory(const char * pathParam)
+{
 
+   if (is(pathParam))
+   {
+
+      return ::success_none;
+
+   }
+
+   auto estatus = _create_directory(pathParam);
+
+   if (estatus == error_already_exists)
+   {
+
+      try
+      {
+
+         estatus = m_pacmefile->delete_file(pathParam);
+
+      }
+      catch (...)
+      {
+
+      }
+
+      estatus = _create_directory(pathParam);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   return ::success;
+
+}
+
+
+::e_status acme_dir::_create_directory(const char * pathParam)
+{
+
+   __throw(error_interface_only);
+
+   return ::error_interface_only;
+
+}
+
+   
 bool acme_dir::is(const char * path)
 {
 
-   __throw(error_interface_only);
-
-   return "";
+   return _is(path);
 
 }
 
@@ -809,6 +925,8 @@ int acme_dir::make_path(const char * psz)
 {
 
    __throw(error_interface_only);
+
+   return -1;
 
 }
 

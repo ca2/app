@@ -1,6 +1,9 @@
 #pragma once
 
 
+#ifndef __cplusplus_winrt
+
+
 template < typename T >
 inline string __str(const T& t)
 {
@@ -187,4 +190,4 @@ namespace str
 } // namespace str
 
 
-
+#endif // __cplusplus_winrt

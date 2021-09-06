@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include <winternl.h>
 //#include <VersionHelpers.h>
 
@@ -21,15 +21,15 @@ namespace audio
 // {
 
 
-//    ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler ([=]()
 //    {
 
-//       Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref new ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
 
 // //UICommand^ continueCommand = ref new UICommand(
 //       //      "Try again",
 //       //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       Windows::UI::Popups::UICommand ^ upgradeCommand = ref new Windows::UI::Popups::UICommand(
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref new ::winrt::Windows::UI::Popups::UICommand(
 //             "OK");
 
 //       // Add the commands to the dialog
@@ -42,7 +42,7 @@ namespace audio
 //       // Set the command to be invoked when escape is pressed
 //       msg->CancelCommandIndex = 0;
 
-//       Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
+//       ::winrt::Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
 
 //    })));
 
@@ -512,7 +512,7 @@ bool __node_aura_pos_term()
 //void os_term_application()
 //{
 //
-//   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
+//   ::winrt::Windows::ApplicationModel::Core::CoreApplication::Exit();
 //
 //}
 //

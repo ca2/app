@@ -15,7 +15,7 @@ task_tool::~task_tool()
 }
 
 
-task_group::task_group(::matter * pmatter, ::e_priority epriority)
+task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 {
 
    defer_create_mutex();
@@ -55,10 +55,10 @@ task_group::task_group(::matter * pmatter, ::e_priority epriority)
 
       ptooltask->m_uThreadAffinityMask = translate_processor_affinity((int) (ptooltask->m_iThread));
 
-      if (epriority == ::priority_none)
+      if (epriority == ::e_priority_none)
       {
 
-         ptooltask->branch(::priority_highest);
+         ptooltask->branch(::e_priority_highest);
 
       }
       else
@@ -377,7 +377,7 @@ void tool_task::reset()
 }
 
 
-//CLASS_DECL_ACME ::task_group * get_task_group(::e_priority epriority)
+//CLASS_DECL_ACME ::task_group * get_task_group(::enum_priority epriority)
 //{
 //
 //   return  ::apex::get_system()->tools(epriority);

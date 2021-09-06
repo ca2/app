@@ -30,7 +30,7 @@ public:
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -226,7 +226,7 @@ template < typename PRED >
 //
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, e_priority epriority = priority_normal)
+//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
 //   auto ppredtask = __new(predicate_task < PRED >(pobject, pred));
@@ -297,7 +297,7 @@ template < typename PRED >
 
 
 //template < typename PRED >
-//inline auto object::fork(PRED pred, const char * pszTag, int iCallStackAddUp, e_priority epriority)
+//inline auto object::fork(PRED pred, const char * pszTag, int iCallStackAddUp, enum_priority epriority)
 //{
 //
 //   iCallStackAddUp++;

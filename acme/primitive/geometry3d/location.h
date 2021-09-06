@@ -70,6 +70,10 @@ public:
    }
 
 
+   ::size_f64 & cxy(){ return (::size_f64 &) *this; }
+   const ::size_f64 & cxy()const { return (::size_f64 &)*this; }
+
+
    locationd rotate(locationd d);
 
    operator LPLOCATIOND() { return this; }

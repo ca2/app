@@ -1,7 +1,10 @@
 #pragma once
 
 
-class interlocked_i64
+#include "acme/primitive/primitive/atomic.h"
+
+
+class CLASS_DECL_ACME interlocked_i64
 {
 protected:
 

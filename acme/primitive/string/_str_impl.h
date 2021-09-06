@@ -616,6 +616,7 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
 
    }
 
+
    //inline void from(string & str, const matter & t)
    //{
 
@@ -1520,7 +1521,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (this->natural_is_shared())
    {
 
-      __throw(::exception::exception("invalid state"));
+      __throw(error_wrong_state, "invalid state");
 
    }
 

@@ -19,12 +19,12 @@
 // Declare local identifiers:
 
 using namespace Platform;
-using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
-using namespace Windows::Media::SpeechSynthesis;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::Foundation::Collections;
+using namespace ::winrt::Windows::Media::SpeechSynthesis;
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -58,7 +58,7 @@ namespace uwp
          //
          // Create text to speech engine
          //
-         Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref new Windows::Media::SpeechSynthesis::SpeechSynthesizer();
+         ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref new ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer();
          if (psynth == nullptr)
          {
 
@@ -75,7 +75,7 @@ namespace uwp
 
          }
          // get all of the installed voices
-         IVectorView<VoiceInformation ^> ^voices = Windows::Media::SpeechSynthesis::SpeechSynthesizer::AllVoices;
+         IVectorView<VoiceInformation ^> ^voices = ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer::AllVoices;
 
          for (unsigned int index = 0; index < voices->Size; index++)
          {
@@ -278,7 +278,7 @@ namespace uwp
    } // namespace tts
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+
+
 namespace graphics
 {
 
@@ -11,13 +13,23 @@ namespace graphics
    public:
 
 
-      __pointer(::user::interaction_impl)    m_pimpl;
-      __pointer(::windowing::window)         m_pwindow;
-      bool                                   m_bNewBuffer;
+      __pointer(::user::interaction_impl)          m_pimpl;
+      __pointer(::windowing::window)               m_pwindow;
+      bool                                         m_bNewBuffer;
+
+      union
+      {
+
+         ::uptr                                    m_uptrBuffer;
+         ::PLATFORM_NAMESPACE::buffer *            m_pPlatformBuffer;
+         ::windowing_universal_windows::buffer *   m_pWindowingUniversalWindowsBuffer;
+         ::windowing_win32::buffer *               m_pWindowingWin32Buffer;
+
+      };
 
 
       graphics();
-      virtual ~graphics();
+      ~graphics() override;
 
 
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl);

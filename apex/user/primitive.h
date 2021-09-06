@@ -498,7 +498,7 @@ namespace user
       virtual void _000OnMouseLeave(::message::message* pmessage);
 
       //#ifdef _UWP
-      //      Agile<Windows::UI::Core::CoreWindow> get_os_window();
+      //      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 
 

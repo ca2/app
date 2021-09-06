@@ -61,9 +61,6 @@
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{bf6bd182-ae84-4c17-8ae1-9ad49aa7b6a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\draw2d\nopch">
-      <UniqueIdentifier>{796adccc-090a-48a6-a4b4-75e7013bafa6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{550a02e8-3dee-4521-8417-bb6e98938a96}</UniqueIdentifier>
     </Filter>
@@ -73,26 +70,11 @@
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{0bdea6d2-5d04-4a22-b702-c94fc8fba4d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{caca27e0-b88e-4f76-9a10-48b83a8f7c83}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\uwp">
-      <UniqueIdentifier>{1d06f856-d73e-4b51-bd87-40eeb2b6d44f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{3a0788a7-7903-4668-86fe-34005a0f2802}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\uwp">
-      <UniqueIdentifier>{af63d04c-2b0d-4aa9-be36-9397a6ad8ad0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\node">
       <UniqueIdentifier>{db48ae43-0e33-4274-a363-bf6684db0ae5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\uwp">
+    <Filter Include="Header Files\node\universal_windows">
       <UniqueIdentifier>{009e7946-528e-4031-b7b6-820866a52476}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows_common">
-      <UniqueIdentifier>{ac4b2377-285b-42f9-9820-dada8ca2ddfb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
@@ -136,29 +118,11 @@
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{1052cb4e-bae1-4d65-abbb-8f3a64d7ddad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\inline\application">
-      <UniqueIdentifier>{cf119731-3bc3-4e6d-a740-e23e1a633865}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\ansios">
-      <UniqueIdentifier>{78bc0996-c4bf-4212-b793-005f38485196}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows_common">
-      <UniqueIdentifier>{7a2084f9-b0cb-4e74-b192-6dc25efa7925}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\uwp">
-      <UniqueIdentifier>{52cbc506-350c-4b24-b97d-399613fc8723}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\template">
       <UniqueIdentifier>{ebc060f4-4117-480c-b9ec-09d9e4f1a8ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\symbol">
       <UniqueIdentifier>{e91854f5-3d86-4cd6-b7a0-6869e6b96c56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{3a0ffdf9-8f07-4452-b1b2-45a77dfcfdc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{d8576aaa-a17e-4a34-8334-ebb46af77c44}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gpu">
       <UniqueIdentifier>{3b076a98-d207-48ed-8aa5-8b17473f43fc}</UniqueIdentifier>
@@ -169,17 +133,38 @@
     <Filter Include="Source Files\graphics\game">
       <UniqueIdentifier>{57196f87-50cc-44e5-a402-ce2345eda686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\cross">
-      <UniqueIdentifier>{efa1f1b2-61a2-4524-b833-637dd535ec74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\cross\windows">
-      <UniqueIdentifier>{e4f7710e-d541-43f8-b5f0-d4bc2d5f100a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\asset">
       <UniqueIdentifier>{9c0c8dbb-8662-431d-8881-71a265c80eeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\windows_common\NewFilter1">
-      <UniqueIdentifier>{d9e1e991-d973-469b-a01c-9ff82833b629}</UniqueIdentifier>
+    <Filter Include="Source Files\graphics\write_text">
+      <UniqueIdentifier>{08867584-972d-4957-9e89-1f116846391d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\write_text">
+      <UniqueIdentifier>{434ffefb-81d7-41ed-b740-c27636ff245b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system">
+      <UniqueIdentifier>{aafcea4a-d4e9-42a2-858c-b825a5d78176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\universal_windows">
+      <UniqueIdentifier>{1020ffab-d15f-40e2-830e-5584d33782fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system">
+      <UniqueIdentifier>{3cd24c1f-4703-40f5-add3-71319b3449b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system\universal_windows">
+      <UniqueIdentifier>{28321e11-349e-4371-9162-17225bf21c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\draw2d\no_precompiled_header">
+      <UniqueIdentifier>{e87a678e-6bd6-49c5-b056-2db25b3aa132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{6c104630-d344-4c5e-be77-fa82026a09ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphics\user">
+      <UniqueIdentifier>{78cc1ae4-b9aa-42e9-a6fb-2a6f9beaeea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windowing">
+      <UniqueIdentifier>{6c4bf7cc-5025-4a6a-9f85-3f1c2f844b3f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -336,122 +321,29 @@
     <ClInclude Include="policy\policy_winrt.h">
       <Filter>Header Files\policy</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\_.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\_uwp.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\aaa_want_to_remove_window_impl.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\buffer.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\base_file.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\file_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_impact.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\gdi_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_interaction.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\metrowin_metrowin.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="node\universal_windows\factory_exchange.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\oswindow.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\process.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\simple_hold_handle.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\simple_ui.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\sockets.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\_.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\buffer.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\directx.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\directx_impact.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\directx_interaction.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\factory_exchange.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\interaction_impl.h">
-      <Filter>Header Files\node\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\aura.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\threading.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
+    <ClInclude Include="node\universal_windows\interaction_impl.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="platform\_features.h">
       <Filter>Header Files\platform</Filter>
@@ -1092,108 +984,6 @@
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\android.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\linux.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\macos.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\windows.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\_.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\_ansios.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\_c.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\ansios_file.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\callstack.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\exception_engine.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\file.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\file_c.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\multithreading.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\datetime_c.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\ansios\file_raw.h">
-      <Filter>Header Files\os\ansios</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\variant.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\new_api.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\multithreading.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\graphics.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\file.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\draw2d_direct2d_global.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\cotaskptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\comptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\bstring.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_unicode_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_file_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_default_dll_impl.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
     <ClInclude Include="template\list.h">
       <Filter>Header Files\template</Filter>
     </ClInclude>
@@ -1374,11 +1164,8 @@
     <ClInclude Include="platform\mq.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\host_interaction.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\copydesk.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\copydesk.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="symbol\user_parent.h">
       <Filter>Header Files\symbol</Filter>
@@ -1635,41 +1422,23 @@
     <ClInclude Include="user\windowing.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="os\cross\windows\windowing.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\context_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\parallelization.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\parallelization_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="os\uwp\_user.h">
-      <Filter>Header Files\os\uwp</Filter>
-    </ClInclude>
-    <ClInclude Include="node\uwp\directx_application.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_application.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="user\call_message_handler_task.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_windows_common.h">
-      <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
     <ClInclude Include="user\style_control.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\aaaa_plain_edit_style.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\draw2d\device_lock.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\graphics_call.h">
       <Filter>Header Files\graphics\draw2d</Filter>
@@ -1678,6 +1447,183 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\impact_base.h" />
+    <ClInclude Include="graphics\_.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\_.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\bounding_rect.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\contains.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\draw_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\drawer.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_enumeration.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_data.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\font_list_item.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\fonts.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_box.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\text_out_array.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\write_text\write_text.h">
+      <Filter>Header Files\graphics\write_text</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\_.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\_user.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\_universal_windows.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\_windows_runtime.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\base_file.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\file_winrt.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\gdi_winrt.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\host_interaction.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\metrowin_metrowin.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\oswindow.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\parallelization.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\parallelization_winrt.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\simple_hold_handle.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\simple_ui.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\universal_windows\sockets.h">
+      <Filter>Header Files\node\operating_system\universal_windows</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\main.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\main_common.h">
+      <Filter>Header Files\inline</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_impl.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\buffer.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\button.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor_manager.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\event.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\exception.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\graphics_lock.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\hook.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\icon.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\keyboard.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_command.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\menu_item.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\message_box.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\monitor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\simple_ui_display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\window.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphics\_.h">
+      <Filter>Header Files\graphics\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1758,18 +1704,6 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\fastblur.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_department.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_enumeration.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\font_list.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\glyph.cpp">
@@ -1853,98 +1787,14 @@
     <ClCompile Include="graphics\draw2d\region.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\text_box.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\thread_tool.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw3d\ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
-      <Filter>Source Files\graphics\draw2d\nopch</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\util.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\trace.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\timer.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\interaction_impl.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\graphics_buffer.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\factory_exchange.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\error.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\directx_interaction.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\directx_impact.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\directx.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\application.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\aura.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\direct2d_tls.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\dummy_ipc.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\graphics.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\lock.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\user.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\windowing.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="os\_application.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\argcargv.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\binreloc.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\http.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\thread.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windowing.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1976,17 +1826,11 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
     <ClCompile Include="game\estamira.cpp">
       <Filter>Source Files\graphics\game</Filter>
     </ClCompile>
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\graphics\game</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\copydesk.cpp">
-      <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
     <ClCompile Include="platform\static_start_aura.cpp">
       <Filter>Source Files\platform</Filter>
@@ -1994,10 +1838,163 @@
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
+    <ClCompile Include="platform\drawable.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\approach.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\buffer.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\context.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\program.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\gpu\shader.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\context_image.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\aura_mq.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\shell_open.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\drawer.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_enumeration.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\font_list.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\fonts.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_box.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\text_out_array.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\write_text.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\aura.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\direct2d_tls.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\dummy_ipc.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\graphics.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\main.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\user.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\universal_windows\windowing.cpp">
+      <Filter>Source Files\node\operating_system\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color_filter.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image_drawer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image_drawing.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\load_image.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\task_tool.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\buffer.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor_manager.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\debug.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\display.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\icon.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\keyboard.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_command.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\menu_item.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\monitor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing___.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\xrender.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\_.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\button.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\call_message_handler_task.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\callback.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\check_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
@@ -2007,12 +2004,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\create.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\create_struct.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\form.cpp">
@@ -2039,6 +2030,9 @@
     <ClCompile Include="user\interaction_prodevian.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\interaction_scaler.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\interaction_thread.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -2054,19 +2048,31 @@
     <ClCompile Include="user\main_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\message_queue.cpp">
+    <ClCompile Include="user\menu_command.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\message.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\message_box.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\message_window.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\mouse.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\notify_icon.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\notify_icon_listener.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\plain_edit.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\plain_text_data.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\primitive.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\primitive_impl.cpp">
@@ -2084,10 +2090,25 @@
     <ClCompile Include="user\scroll_bar.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
+    <ClCompile Include="user\shell.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\still.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
     <ClCompile Include="user\style.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\style_base.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style_control.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\system.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\text_composition.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\tool_window.cpp">
@@ -2111,53 +2132,23 @@
     <ClCompile Include="user\windowing.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="platform\drawable.cpp">
+    <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\gpu\approach.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\gpu\buffer.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
+    <ClCompile Include="graphics\user\close_button.cpp">
+      <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\gpu\context.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
+    <ClCompile Include="graphics\user\close_icon.cpp">
+      <Filter>Source Files\graphics\user</Filter>
     </ClCompile>
-    <ClCompile Include="gpu\gpu\program.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="gpu\gpu\shader.cpp">
-      <Filter>Source Files\gpu\gpu</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\context_image.cpp">
+    <ClCompile Include="graphics\draw2d\lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_mq.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\main.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\shell_open.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="os\uwp\monitor.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\directx_application.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\system.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
-    <ClCompile Include="user\call_message_handler_task.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style_control.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\device_lock.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
+    <ClCompile Include="windowing\graphics_lock.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1912,7 +1912,7 @@ namespace android
    //      m_event.ResetEvent();
    //      m_hwnd = hwnd;
    //      m_hdc = hdc;
-   //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::priority_normal);
+   //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::e_priority_normal);
    //      if (m_event.wait(millis(tickTimeout)).timeout())
    //      {
    //         TRACE("print_window::time_out");

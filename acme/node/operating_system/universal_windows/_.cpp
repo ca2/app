@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "_uwp.h"
+//#include "_uwp.h"
 #include "acme/id.h"
 
 
@@ -175,6 +175,9 @@ bool __node_acme_pos_term()
    return 500;
 
 }
+
+
+
 
 
 

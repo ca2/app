@@ -63,6 +63,10 @@ namespace windowing
       virtual ::e_status bring_to_front();
 
 
+      virtual void graphics_lock();
+      virtual void graphics_unlock();
+
+
       virtual bool has_mouse_capture() const;
       virtual bool has_keyboard_focus() const;
 

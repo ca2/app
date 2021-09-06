@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -25,7 +25,7 @@ namespace uwp
       pointd                                    m_pointLastMouseMove;
       double                                    m_dAccumulatedMouseMoveDistance;
       millis                                      m_millisLastMouseMove;
-      Agile < Windows::UI::Core::CoreWindow >   m_window;
+      Agile < ::winrt::Windows::UI::Core::CoreWindow >   m_window;
       ::thread *                                m_pthreadDraw;
       ::user::primitive* m_pbasewnd;
       ::user::interaction* m_pguieCapture;
@@ -685,7 +685,7 @@ namespace uwp
       void _001OnTriggerMouseInside();
 
 
-      Agile < Windows::UI::Core::CoreWindow > get_os_window();
+      Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
       void set_view_port_org(::image * pimage);
 
@@ -711,7 +711,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

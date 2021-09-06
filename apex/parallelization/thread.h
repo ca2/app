@@ -86,7 +86,7 @@ public:
 
 
    __pointer(manual_reset_event)                      m_pevent1;
-   e_priority                                         m_epriority;
+   enum_priority                                         m_epriority;
 
 
    string                                             m_strDebug;
@@ -163,7 +163,7 @@ public:
 
 //   virtual ::e_status branch(
 //      ::matter * pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
@@ -191,7 +191,7 @@ public:
 
    //static __pointer(thread) start(
    //   ::matter* pmatter,
-   //   ::e_priority epriority = priority_normal,
+   //   ::enum_priority epriority = e_priority_normal,
    //   u32 nStackSize = 0,
    //   u32 dwCreateFlags = 0);
 
@@ -209,9 +209,9 @@ public:
 
    //virtual synchronization_result wait(const duration & duration);
 
-   bool set_thread_priority(::e_priority epriority);
+   bool set_thread_priority(::enum_priority epriority);
 
-   ::e_priority thread_priority();
+   ::enum_priority thread_priority();
 
    //virtual void set_thread_run(bool bRun = true);
 
@@ -325,7 +325,7 @@ public:
    virtual bool is_idle_message();  // checks for special messages
 
    virtual ::e_status init_thread();
-   virtual ::e_status on_pre_run_thread();
+   //virtual ::e_status on_pre_run_task();
 
    virtual ::e_status run() override;
    virtual ::e_status main() override;
@@ -447,7 +447,7 @@ public:
 
    virtual e_status begin_thread(
    bool bSynchInitialization = false,
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -455,13 +455,13 @@ public:
    using object::branch;
 
    virtual ::e_status branch(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual ::e_status begin_synch(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -620,6 +620,6 @@ CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority);
 
 

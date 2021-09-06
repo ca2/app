@@ -2,7 +2,7 @@
 #include "apex/os/windows_common/file.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -1086,7 +1086,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

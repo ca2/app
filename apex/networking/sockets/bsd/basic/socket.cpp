@@ -270,10 +270,15 @@ namespace sockets
       socklen_t nLengthAddr = sizeof(SOCKADDR);
       if (getpeername(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("GetPeerName"));
+         
+         throw transfer_socket_exception("GetPeerName");
+
       }
+
       return psa;
+
    }
+
 
    ::net::address socket::get_socket_address() // const
    {
@@ -285,13 +290,17 @@ namespace sockets
       socklen_t nLengthAddr = sizeof(SOCKADDR);
       if (getsockname(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("GetSockName"));
+         
+         throw transfer_socket_exception("GetSockName");
+
       }
+
       return psa;
+
    }
 
-} // namespace sockets
 
+} // namespace sockets
 
 
 

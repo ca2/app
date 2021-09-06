@@ -34,10 +34,14 @@ namespace xml
    {
       if(m_pnode == nullptr)
       {
+         
          if(m_pdocument == nullptr)
          {
-            __throw(::exception::exception("Cannot output to a nullptr document"));
+         
+            throw ::exception::exception("Cannot output to a nullptr document");
+
          }
+
          m_pnode = m_pdocument->root();
          m_pnode->set_name(pcszName);
 

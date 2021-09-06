@@ -2044,7 +2044,7 @@
 				9A23A3AA26CE988100F98012 /* linux */,
 				9A23A2DD26CE988000F98012 /* macos */,
 				9A23A48026CE988200F98012 /* solaris */,
-				9A23A4AE26CE988200F98012 /* uwp */,
+				9A23A4AE26CE988200F98012 /* universal_windows */,
 				9A23A45226CE988100F98012 /* windows */,
 				9A23A43026CE988100F98012 /* windows_common */,
 				9A23A42726CE988100F98012 /* x11 */,
@@ -2206,7 +2206,7 @@
 			children = (
 				9A23A33026CE988000F98012 /* cross.h */,
 				9A23A35B26CE988100F98012 /* windows */,
-				9A23A35D26CE988100F98012 /* uwp */,
+				9A23A35D26CE988100F98012 /* universal_windows */,
 				9A23A36026CE988100F98012 /* _.h */,
 			);
 			path = cross;
@@ -2220,13 +2220,13 @@
 			path = windows;
 			sourceTree = "<group>";
 		};
-		9A23A35D26CE988100F98012 /* uwp */ = {
+		9A23A35D26CE988100F98012 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A23A35E26CE988100F98012 /* metrowin_user.cpp */,
 				9A23A35F26CE988100F98012 /* cross_metrowin_user.cpp */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A23A36726CE988100F98012 /* cairo */ = {
@@ -2576,7 +2576,7 @@
 			path = solaris;
 			sourceTree = "<group>";
 		};
-		9A23A4AE26CE988200F98012 /* uwp */ = {
+		9A23A4AE26CE988200F98012 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A23A4C426CE988200F98012 /* _os_metrowin.cpp */,
@@ -2629,7 +2629,7 @@
 				9A23A4D126CE988200F98012 /* simple_ui.h */,
 				9A23A4C926CE988200F98012 /* sockets.h */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A247FE92452C48100F23D28 /* platform */ = {

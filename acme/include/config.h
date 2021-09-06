@@ -27,7 +27,7 @@
 #endif
 
 
-#define PLATFORM_NAMESPACE uwp
+#define PLATFORM_NAMESPACE universal_windows
 
 #define DEFAULT_DIR_SEPARATOR "\\"
 
@@ -39,7 +39,7 @@
 //#define BSD_STYLE_SOCKETS
 
 
-#define PLATFORM_NAME   "uwp"
+#define PLATFORM_NAME   "universal_windows"
 
 // #ifdef _DEBUG
 // #define DEBUG

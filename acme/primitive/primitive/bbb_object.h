@@ -535,7 +535,7 @@ public:
    inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
    ::thread_pointer begin(
-      ::e_priority epriority = ::priority_normal,
+      ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -585,7 +585,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -604,20 +604,20 @@ public:
    ::thread_pointer start_below_normal(void (TYPE::* pfn)())
    {
 
-      return fork(pfn, ::priority_below_normal);
+      return fork(pfn, ::e_priority_below_normal);
 
    }
 
 
    //template < typename TYPE >
-   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
+   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
    ::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    template < typename TYPE >
-   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
    virtual matter* get_taskpool_container() override;

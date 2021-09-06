@@ -18,7 +18,7 @@ namespace draw2d_direct2d
 } // namespace draw2d_direct2d
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -61,12 +61,12 @@ namespace uwp
       ::mutex                          m_mutexDc;
       size_i32                             m_size;
       ::size_i32                           m_sizeBuffer;
-      ::uwp::interaction_impl *        m_pimpl;
+      ::universal_windows::interaction_impl *        m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;
       ::image_pointer                  m_pimage;
       bool                             m_bCreated;
-      Windows::Foundation::Rect        m_windowBounds;
+      ::winrt::Windows::Foundation::Rect        m_windowBounds;
 
 
       directx_base();
@@ -82,7 +82,7 @@ namespace uwp
 
       virtual bool defer_init();
 
-      virtual void Initialize(Windows::UI::Core::CoreWindow^ window, float dpi);
+      virtual void Initialize(::winrt::Windows::UI::Core::CoreWindow^ window, float dpi);
       virtual void HandleDeviceLost();
       virtual void CreateDeviceIndependentResources();
       virtual void CreateDeviceResources();
@@ -102,7 +102,7 @@ namespace uwp
       ID2D1DeviceContext* get_device_context();
 
    protected private:
-      Agile<Windows::UI::Core::CoreWindow>  m_window;
+      Agile<::winrt::Windows::UI::Core::CoreWindow>  m_window;
 
       // DirectWrite & Windows Imaging Component Objects.
       Microsoft::WRL::ComPtr<IDWriteFactory1>         m_dwriteFactory;
@@ -123,7 +123,7 @@ namespace uwp
       Microsoft::WRL::ComPtr<ID3D11DepthStencilView>  m_d3dDepthStencilView;
       // Cached renderer properties.
       D3D_FEATURE_LEVEL                               m_featureLevel;
-      Windows::Foundation::Size                       m_renderTargetSize;
+      ::winrt::Windows::Foundation::Size                       m_renderTargetSize;
       float                                           m_dpi;
       float                                           m_dpiIni;
       //bool                                            m_windowSizeChangeInProgress;
@@ -140,7 +140,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

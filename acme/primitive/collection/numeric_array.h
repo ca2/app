@@ -807,7 +807,6 @@ inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::count N)
 
 }
 
-
 template < primitive_floating FLOATING >
 inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
 {
@@ -830,7 +829,6 @@ inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
    return (FLOATING)(d / (double) N);
 
 }
-
 
 inline int get_mean(const int * A, ::count N)
 {

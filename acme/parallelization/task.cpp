@@ -235,6 +235,14 @@ bool task::kick_thread()
 }
 
 
+::e_status task::on_pre_run_task()
+{
+
+   return ::success;
+
+}
+
+
 ::e_status task::main()
 {
 
@@ -251,7 +259,16 @@ bool task::kick_thread()
 
    }
 
-   auto estatus = run();
+   auto estatus = on_pre_run_task();
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   estatus = run();
 
    if (!estatus)
    {
@@ -696,7 +713,7 @@ bool task::has_message() const
 
 //::e_status task::branch(
 //   ::matter* pmatter,
-//   ::e_priority epriority,
+//   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 uCreateFlags ARG_SEC_ATTRS)
 //{
@@ -711,7 +728,7 @@ bool task::has_message() const
 
 
 ::e_status task::branch(
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags ARG_SEC_ATTRS)
 {
@@ -940,7 +957,7 @@ bool task::task_sleep(const ::duration & duration)
 
 }
 
-//::e_status task::branch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+//::e_status task::branch(::matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = __new(task);

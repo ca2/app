@@ -21,7 +21,7 @@
 //#include "c_os_binreloc.h"
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 ::i64 get_tick();
 
 

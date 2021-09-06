@@ -1770,7 +1770,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-::task_pointer object::defer_branch(const ::id& id, const ::routine & routine, e_priority epriority)
+::task_pointer object::defer_branch(const ::id& id, const ::routine & routine, enum_priority epriority)
 {
 
    auto ptask = get_property_set()[__id(thread)][id].cast < ::task>();
@@ -1795,7 +1795,7 @@ void object::branch_each(const ::routine_array& routinea)
 }
 
 
-__transport(task) object::branch_task(matter * pmatter, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__transport(task) object::branch_task(matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(pmatter))
@@ -1832,7 +1832,7 @@ __transport(task) object::branch_task(matter * pmatter, ::e_priority epriority, 
 }
 
 
-__transport(task) object::branch(::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+__transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_task(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -2217,7 +2217,7 @@ void object::task_erase(::task* ptask)
 
 //__pointer(thread) object::start(
 //   ::matter* pmatter,
-//   ::e_priority epriority = priority_normal,
+//   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0)
 //{
@@ -3676,7 +3676,7 @@ bool object::IsSerializable() const
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::e_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags)
    //{
 
    //   return nullptr;
@@ -3734,7 +3734,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -3753,20 +3753,20 @@ bool object::IsSerializable() const
    //::thread_pointer start_below_normal(void (TYPE::* pfn)())
    //{
 
-   //   return fork(pfn, ::priority_below_normal);
+   //   return fork(pfn, ::e_priority_below_normal);
 
    //}
 
 
    //template < typename TYPE >
-   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
+   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
    //::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    //template < typename TYPE >
-   //::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   //::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
 //matter* object::get_taskpool_container()

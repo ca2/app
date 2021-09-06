@@ -13,7 +13,7 @@ void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -100,4 +100,4 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows

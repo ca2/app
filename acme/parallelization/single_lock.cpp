@@ -6,6 +6,13 @@ single_lock::single_lock(synchronization_object * psync, bool bInitialLock)
 
    m_psync = psync;
 
+   if (::is_set(m_psync))
+   {
+
+      m_psync->increment_reference_count();
+
+   }
+
    m_bAcquired = false;
 
    if (bInitialLock)
@@ -22,6 +29,8 @@ single_lock::~single_lock()
 {
 
    unlock();
+
+   ::release(m_psync);
 
 }
 
@@ -176,6 +185,13 @@ _single_lock::_single_lock(synchronization_object * psync, bool bInitialLock)
 
    m_psync = psync;
 
+   if (::is_set(m_psync))
+   {
+
+      m_psync->increment_reference_count();
+
+   }
+
    m_bAcquired = false;
 
    if (bInitialLock)
@@ -192,6 +208,8 @@ _single_lock::~_single_lock()
 {
 
    unlock();
+
+   ::release(m_psync);
 
 }
 

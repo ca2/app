@@ -12,7 +12,7 @@ namespace exception
 
       ::e_status              m_estatus;
 
-      //enum_exception          m_eexception;
+      //enum_exception        m_eexception;
       bool                    m_bDumpBackTrace;
       __pointer(callstack)    m_pcallstack;
       bool                    m_bHandled;

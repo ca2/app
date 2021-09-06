@@ -205,3 +205,14 @@ inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory(
 
 
 
+namespace factory
+{
+
+   template < typename TYPE >
+   __pointer(TYPE) create();
+
+
+} // namespace factory
+
+
+

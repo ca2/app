@@ -47,7 +47,7 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 
    }
 
-   __throw(parsing_exception(strMessage));
+   __throw(error_parsing, strMessage);
 
    return true;
 
@@ -100,7 +100,7 @@ CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage)
 
    }
 
-   __throw(json_parsing_exception(strMessage));
+   __throw(error_json_parsing, strMessage);
 
    return true;
 

@@ -16,9 +16,9 @@
 #pragma once
 
 
-#include "aura/os/uwp/file_winrt.h"
-#include "aura/os/uwp/multithreading_winrt.h"
-#include "aura/os/uwp/gdi_winrt.h"
+#include "aura/os/universal_windows/file_winrt.h"
+#include "aura/os/universal_windows/multithreading_winrt.h"
+#include "aura/os/universal_windows/gdi_winrt.h"
 
 
 

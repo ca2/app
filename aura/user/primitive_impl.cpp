@@ -309,7 +309,7 @@ namespace user
    }
 
 
-   //::e_status primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
+   //::e_status primitive_impl::main_async(const promise::routine & routine, enum_priority epriority)
    //{
 
    //   if (!m_puserinteraction)

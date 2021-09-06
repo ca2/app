@@ -365,7 +365,7 @@ void task::term_task()
 
 ::e_status task::start(
    ::matter* pmatter,
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
 {
@@ -380,7 +380,7 @@ void task::term_task()
 
 
 ::e_status task::begin_task(
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
 {
@@ -484,7 +484,7 @@ void task::term_task()
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
 {
 
    auto ptask = __new(task);

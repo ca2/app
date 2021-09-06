@@ -235,7 +235,7 @@ namespace browser
    ::e_status     render::run()
    {
 
-      ::parallelization::set_priority(::priority_below_normal);
+      ::parallelization::set_priority(::e_priority_below_normal);
 
       nano_timer nanotimer;
 

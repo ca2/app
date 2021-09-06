@@ -1,11 +1,11 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 
 //extern thread_local_storage * gen_ThreadData;
 
 
-//namespace uwp
+//namespace universal_windows
 namespace aura
 {
 
@@ -135,7 +135,7 @@ namespace aura
 //
 //      return "";
 //#else
-//      TRACE("returning hard coded default 1.0 version for uwp::application::get_version");
+//      TRACE("returning hard coded default 1.0 version for universal_windows::application::get_version");
 //      return "1.0";
 //#endif
 //
@@ -202,54 +202,54 @@ namespace aura
       // Advanced: exception handling
       LRESULT application::ProcessWndProcException(::exception::aura* e, const MSG* pMsg)
       {
-         return   ::uwp::thread::ProcessWndProcException(e, pMsg);
+         return   ::universal_windows::thread::ProcessWndProcException(e, pMsg);
       }
 
 
       // Advanced: handling messages sent to message filter hook
       bool application::ProcessMessageFilter(int code, LPMSG lpMsg)
       {
-         return  ::uwp::thread::ProcessMessageFilter(code, lpMsg);
+         return  ::universal_windows::thread::ProcessMessageFilter(code, lpMsg);
       }
 
 
       // Advanced: access to GetMainWnd()
       ::user::interaction* application::GetMainWnd()
       {
-         return ::uwp::thread::GetMainWnd();
+         return ::universal_windows::thread::GetMainWnd();
       }
 
 
 
       void application::assert_valid() const
       {
-         ::uwp::thread::assert_valid();
+         ::universal_windows::thread::assert_valid();
       }
 
       void application::dump(dump_context & dumpcontext) const
       {
-         ::uwp::thread::dump(dumpcontext);
+         ::universal_windows::thread::dump(dumpcontext);
       }
 
 
       void application::CommonConstruct()
       {
-         ::uwp::thread::CommonConstruct();
+         ::universal_windows::thread::CommonConstruct();
       }
       void application::Delete()
       {
-         ::uwp::thread::Delete();
+         ::universal_windows::thread::Delete();
       }
       // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MSG* msg)  // helper
       {
-         return ::uwp::thread::DispatchThreadMessageEx(msg);
+         return ::universal_windows::thread::DispatchThreadMessageEx(msg);
       }*/
 
    /*   ::draw2d::graphics * application::graphics_from_os_data(void * pdata)
       {
-         return ::uwp::graphics::from_handle((HDC) pdata);
+         return ::universal_windows::graphics::from_handle((HDC) pdata);
       }*/
 
 
@@ -385,7 +385,7 @@ namespace aura
 
    }
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

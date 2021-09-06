@@ -764,7 +764,7 @@ namespace acme
       init();
 
 
-      create_reusable_factory < manual_reset_event >();
+      create_factory < manual_reset_event >();
 
 #ifdef LINUX
 

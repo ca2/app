@@ -117,7 +117,7 @@ inline i64 mkint(i64 ll)
 //}
 
 //
-//template < primitive_integral A, primitive_integral B >
+//template < primitive_integral) A, __typename(primitive_integral B >
 //constexpr const auto maximum(const A & a, const B & b)
 //{
 //

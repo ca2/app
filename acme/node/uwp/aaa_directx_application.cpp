@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/node/operating_system/windows_common/draw2d_direct2d_global.h"
-#include "acme/node/operating_system/uwp/_winrt.h"
+#include "acme/node/operating_system/universal_windows/_winrt.h"
 #include "_uwp.h"
 #include "buffer.h"
 
@@ -14,19 +14,19 @@ extern int g_iMouse;
 
 using namespace Platform;
 using namespace Microsoft::WRL;
-using namespace Windows::Foundation;
-using namespace Windows::UI::Core;
-using namespace Windows::ApplicationModel;
-using namespace Windows::ApplicationModel::Core;
-using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::::acme::get_system();
-using namespace Windows::Graphics::Display;
-using namespace Windows::::acme::get_system()::Threading;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::ApplicationModel;
+using namespace ::winrt::Windows::ApplicationModel::Core;
+using namespace ::winrt::Windows::ApplicationModel::Activation;
+using namespace ::winrt::Windows::::acme::get_system();
+using namespace ::winrt::Windows::Graphics::Display;
+using namespace ::winrt::Windows::::acme::get_system()::Threading;
 
 bool g_bCoreWindowOnceVisible = false;
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -35,9 +35,9 @@ namespace uwp
 
       draw2d_direct2d::direct2d_initialize();
 
-      m_puisettings = ref new ::Windows::UI::ViewManagement::UISettings;
+      m_puisettings = ref new ::winrt::Windows::UI::ViewManagement::UISettings;
          
-      create_factory < ::uwp::buffer, ::graphics::graphics >();
+      create_factory < ::universal_windows::buffer, ::graphics::graphics >();
 
       m_dwMouseMoveThrottle = 10;
 
@@ -120,7 +120,7 @@ namespace uwp
 
       auto pimpl = m_psystem->get_session()->m_puserinteractionHost->m_pimpl;
 
-      auto puwpui = pimpl->cast < ::uwp::interaction_impl >();
+      auto puwpui = pimpl->cast < ::universal_windows::interaction_impl >();
 
       puwpui->m_frameworkview = this;
 
@@ -161,7 +161,7 @@ namespace uwp
    void directx_framework_view::install_directx_application_message_routing()
    {
       
-      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_view::OnUISettingsColorValuesChange);
+      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<::winrt::Windows::UI::ViewManagement::UISettings^, Platform::Object^> (this, &directx_framework_view::OnUISettingsColorValuesChange);
 
       CoreWindow ^ window = m_window.Get();
 
@@ -183,7 +183,7 @@ namespace uwp
 
       window->PointerReleased += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_view::OnPointerReleased);
 
-      ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
       displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_view::DpiChanged);
 
@@ -201,7 +201,7 @@ namespace uwp
 
       m_directx->m_psystem = m_psystem;
 
-      ::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
       m_directx->Initialize(window, displayinformation->LogicalDpi);
 
@@ -234,7 +234,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
+   void directx_framework_view::OnUISettingsColorValuesChange(::winrt::Windows::UI::ViewManagement::UISettings^ uisettings, Platform::Object^)
    {
 
       ::user::os_update_dark_mode();
@@ -256,7 +256,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_view::DpiChanged(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       m_rectLastWindowRect = m_window->Bounds;
@@ -267,7 +267,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_view::DisplayContentsInvalidated(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       // Ensure the D3D Device is available for rendering.
@@ -331,7 +331,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnCharacterReceived(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CharacterReceivedEventArgs ^ args)
+   void directx_framework_view::OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
       if(m_psystem->get_session() == nullptr)
@@ -358,9 +358,9 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnKeyDown(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_view::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
-      if (args->VirtualKey == ::Windows::::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = true;
       }
@@ -411,7 +411,7 @@ namespace uwp
 
    }
 
-   void directx_framework_view::OnKeyUp(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_view::OnKeyUp(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
 
       if(m_psystem == nullptr)
@@ -430,7 +430,7 @@ namespace uwp
       spbase = pkey;
 
 
-      if (args->VirtualKey == ::Windows::::acme::get_system()::VirtualKey::Shift)
+      if (args->VirtualKey == ::winrt::Windows::::acme::get_system()::VirtualKey::Shift)
       {
          m_bFontopusShift = false;
       }
@@ -492,7 +492,7 @@ namespace uwp
 
    }
 
-   void directx_framework_view::OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args)
+   void directx_framework_view::OnWindowVisibilityChanged(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::VisibilityChangedEventArgs^ args)
    {
 
       if (args->Visible)
@@ -509,7 +509,7 @@ namespace uwp
 
    }
 
-   void directx_framework_view::OnPointerMoved(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_dwMouseMoveThrottle && m_millisLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
@@ -528,7 +528,7 @@ namespace uwp
       if(m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
+      ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
       ::g_iMouse = pointerPoint->PointerId;
 
@@ -552,7 +552,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnPointerPressed(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerPressed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if(m_psystem == nullptr)
@@ -564,7 +564,7 @@ namespace uwp
       if(m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
+      ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
       ::g_iMouse = pointerPoint->PointerId;
 
@@ -618,7 +618,7 @@ namespace uwp
    }
 
 
-   void directx_framework_view::OnPointerReleased(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_view::OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_psystem == nullptr)
@@ -628,7 +628,7 @@ namespace uwp
 
       }
 
-      Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
+      ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
       ::g_iMouse = pointerPoint->PointerId;
 
@@ -697,7 +697,7 @@ namespace uwp
    }
 
 
-   Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
+   ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
 
       return ref new directx_framework_view(m_psystem,m_strId);
@@ -719,30 +719,30 @@ namespace uwp
    }
 
    
-   Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
-      Windows::Foundation::Rect rectangle = m_rectInputContentRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectInputContentRect;
 
       return rectangle;
 
    }
 
 
-   Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
-      Windows::Foundation::Rect rectangle = m_rectInputSelectionRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectInputSelectionRect;
 
       return rectangle;
 
    }
 
 
-   Windows::Foundation::Rect directx_framework_view::get_window_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
-      Windows::Foundation::Rect rectangle = m_rectLastWindowRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectLastWindowRect;
 
       /*      rectangle.X = 0;
             rectangle.Y = 0;
@@ -752,7 +752,7 @@ namespace uwp
             if(m_window == nullptr)
                return rectangle;
 
-            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
+            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
             {
                try
                {
@@ -767,12 +767,12 @@ namespace uwp
 
    }
 
-   Windows::Foundation::Point directx_framework_view::get_cursor_position()
+   ::winrt::Windows::Foundation::Point directx_framework_view::get_cursor_position()
    {
 
       single_lock synchronouslock(&m_mutex, true);
 
-      Windows::Foundation::Point p = m_pointLastCursor;
+      ::winrt::Windows::Foundation::Point p = m_pointLastCursor;
 
       /*      if(m_window == nullptr)
                return p;
@@ -780,22 +780,22 @@ namespace uwp
             if(g_iMouse < 0)
                return p;
 
-            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &p]()
+            ::wait(m_window->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler ([=, &p]()
             {
                try
                {
 
-                  Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+                  ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Devices::Input::PointerDevice ^ > ^ deva = ::winrt::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
                   for(unsigned int u = 0; u < deva->Size; u++)
                   {
 
-                     Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
+                     ::winrt::Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 
-                     if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+                     if(dev->PointerDeviceType == ::winrt::Windows::Devices::Input::PointerDeviceType::Mouse)
                      {
 
-                        Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
+                        ::winrt::Windows::UI::Input::PointerPoint ^ pointerPoint = ::winrt::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 
                         p = pointerPoint->RawPosition;
 
@@ -818,7 +818,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

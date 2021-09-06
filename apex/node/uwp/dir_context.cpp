@@ -3,7 +3,7 @@
 #include "acme/id.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -637,7 +637,7 @@ try1:;
    ::file::path dir_context::appdata()
    {
 
-      return ::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin());
+      return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin());
 
    }
 
@@ -762,7 +762,7 @@ try1:;
    ::file::path dir_context::commonappdata()
    {
 
-      return ::file::path(string(::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin()))/ "commonappdata";
+      return ::file::path(string(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin()))/ "commonappdata";
 
    }
 
@@ -811,7 +811,7 @@ try1:;
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

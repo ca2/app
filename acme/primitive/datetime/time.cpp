@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
+#include "acme/primitive/datetime/_string.h"
 
 
 ::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
@@ -196,6 +197,8 @@ namespace datetime
 
       __throw(error_not_implemented);
 
+      return 0;
+
    }
 
 
@@ -205,6 +208,8 @@ namespace datetime
        UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
+
+      return 0;
 
    }
 
@@ -453,141 +458,6 @@ namespace datetime
       return ptm ? ptm->tm_wday + 1 : 0 ;
    }
 
-
-   string time::Format(string & str, const ::string & strFormat) const
-   {
-
-#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-      struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-
-      str.release_string_buffer();
-
-      return str;
-
-#elif defined(__APPLE__)
-
-#if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on __APPLE__"
-#endif
-
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-      struct tm* ptmTemp = localtime(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-      str.release_string_buffer();
-
-      return str;
-
-#elif _SECURE_TEMPLATE
-
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-      struct tm ptmTemp;
-
-      errno_t err = _localtime64_s(&ptmTemp, &m_time);
-
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-
-      str.ReleaseBuffer();
-
-      return str;
-
-//#elif defined(ANDROID) || defined(SOLARIS)
-//
-//      struct tm* ptmTemp = localtime(&m_time);
-//
-//      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-//      {
-//
-//         szBuffer[0] = '\0';
-//
-//      }
-//
-#else
-
-      str = strFormat;
-
-      str.replace("%Y",__str(GetYear()));
-      str.replace("%m",::str::zero_padded(__str(GetMonth()), 2));
-      str.replace("%d",::str::zero_padded(__str(GetDay()),2));
-      str.replace("%H",::str::zero_padded(__str(GetHour()),2));
-      str.replace("%M",::str::zero_padded(__str(GetMinute()),2));
-      str.replace("%S",::str::zero_padded(__str(GetSecond()),2));
-
-      return str;
-
-#endif
-
-
-
-   }
-
-
-   string time::FormatGmt(string & str, const ::string & strFormat) const
-   {
-
-      char szBuffer[maxTimeBufferSize];
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      struct tm* ptmTemp = gmtime(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#elif _SECURE_TEMPLATE
-
-      struct tm ptmTemp;
-
-      errno_t err = _gmtime64_s(&ptmTemp, &m_time);
-
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#else
-
-      struct tm* ptmTemp =_gmtime64(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#endif
-
-      str = szBuffer;
-
-      return szBuffer;
-
-   }
 
    time time::get_sunday() const
    {
@@ -843,23 +713,166 @@ namespace datetime
 {
 
 
-   string time::Format(const ::string & strFormat)
-   {
-      string str;
-      Format(str, strFormat);
-      return str;
-   }
-
-
-   string time::FormatGmt(const ::string & strFormat)
-   {
-      string str;
-      FormatGmt(str, strFormat);
-      return str;
-   }
-
-
 } // namespace datetime
 
 
 
+
+
+
+string Format(const ::string & strFormat, const ::datetime::time & time)
+{
+
+   string str;
+
+#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+   struct tm * ptmTemp = localtime(&m_time);
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+      szBuffer[0] = '\0';
+   }
+
+   str.release_string_buffer();
+
+   return str;
+
+#elif defined(__APPLE__)
+
+#if __WORDSIZE != 64
+#pragma error "error: long should 8-byte on __APPLE__"
+#endif
+
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+   struct tm * ptmTemp = localtime(&m_time);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+   str.release_string_buffer();
+
+   return str;
+
+#elif _SECURE_TEMPLATE
+
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+   struct tm ptmTemp;
+
+   errno_t err = _localtime64_s(&ptmTemp, &m_time);
+
+   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+
+   str.ReleaseBuffer();
+
+   return str;
+
+   //#elif defined(ANDROID) || defined(SOLARIS)
+   //
+   //      struct tm* ptmTemp = localtime(&m_time);
+   //
+   //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   //      {
+   //
+   //         szBuffer[0] = '\0';
+   //
+   //      }
+   //
+#else
+
+   str = strFormat;
+
+   str.replace("%Y", __str(time.GetYear()));
+   str.replace("%m", ::str::zero_padded(__str(time.GetMonth()), 2));
+   str.replace("%d", ::str::zero_padded(__str(time.GetDay()), 2));
+   str.replace("%H", ::str::zero_padded(__str(time.GetHour()), 2));
+   str.replace("%M", ::str::zero_padded(__str(time.GetMinute()), 2));
+   str.replace("%S", ::str::zero_padded(__str(time.GetSecond()), 2));
+
+   return str;
+
+#endif
+
+
+
+}
+
+
+string FormatGmt(const string & strFormat, const ::datetime::time & time)
+{
+
+   string str;
+
+   char szBuffer[maxTimeBufferSize];
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+   struct tm * ptmTemp = gmtime(&m_time);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#elif _SECURE_TEMPLATE
+
+   struct tm ptmTemp;
+
+   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+
+   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#else
+
+   struct tm * ptmTemp = _gmtime64(&time.m_time);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#endif
+
+   str = szBuffer;
+
+   return szBuffer;
+
+}
+
+
+//
+//
+//string Format(const ::string & strFormat, const ::datetime::time & time)
+//{
+//   string str;
+//   str = Format(strFormat, time);
+//   return str;
+//}
+//
+//
+//string FormatGmt(const ::string & strFormat, const ::datetime::time & time)
+//{
+//   string str;
+//   str = FormatGmt(strFormat, time);
+//   return str;
+//}

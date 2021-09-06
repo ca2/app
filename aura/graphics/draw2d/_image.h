@@ -90,7 +90,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool _set_mipmap(::draw2d::e_mipmap emipmap)= 0;
 //
 //   virtual bool create_isotropic(::image * pimage)= 0;
-//   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority)= 0;
+//   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority)= 0;
 //
 //   virtual bool SetViewportOrg(const ::point_i32 & point)= 0;
 //   virtual bool set_font_factor(double dFactor)= 0;

@@ -234,11 +234,15 @@ namespace sockets
 
       if (iRet == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("Socket Error"));
+
+         throw transfer_socket_exception("Socket Error");
+
       }
 
       return iRet == 1;
+
    }
+
 
    bool transfer_socket::check_writability(int nSecsPatience) // const
    {
@@ -255,45 +259,14 @@ namespace sockets
 
       if (iRet == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("Socket Error"));
+         
+         throw transfer_socket_exception("Socket Error");
+
       }
 
       return iRet == 1;
+
    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
    read_socket::read_socket() //:
@@ -439,7 +412,7 @@ namespace sockets
       if (!check_readability(nSecs))
       {
 
-         __throw(transfer_socket_exception("Receive timeout"));
+         throw transfer_socket_exception("Receive timeout");
 
       }
 
@@ -449,7 +422,9 @@ namespace sockets
 
       if (nBytesReceived == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("ReceiveDatagram"));
+         
+         throw transfer_socket_exception("ReceiveDatagram");
+
       }
 
       return nBytesReceived;
@@ -461,18 +436,22 @@ namespace sockets
       if (!check_writability(nSecs))
       {
 
-         __throw(transfer_socket_exception("Send timeout"));
+         throw transfer_socket_exception("Send timeout");
+
       }
 
       const int nBytesSent = (int) (::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
+      
       if (nBytesSent == SOCKET_ERROR)
       {
-         __throw(transfer_socket_exception("SendDatagram"));
+
+         throw transfer_socket_exception("SendDatagram");
+
       }
 
       return nBytesSent;
-   }
 
+   }
 
 
    /////////////////////////////////////////////////////////////////////////////////////////

@@ -11,6 +11,7 @@
 
 #pragma once
 
+
 #define DECLARE_REUSABLE(TYPE) \
 TYPE * m_pnext; \
 ::factory::reusable_factory < TYPE, TYPE > * m_pfactory; \
@@ -23,7 +24,8 @@ class CLASS_DECL_ACME manual_reset_event :
 public:
 
 
-   DECLARE_REUSABLE(manual_reset_event);
+   ::e_status m_estatus;
+   // DECLARE_REUSABLE(manual_reset_event);
 
 
    manual_reset_event(char * sz = nullptr, bool bInitiallyOwn = false);
@@ -32,50 +34,3 @@ public:
    void reuse() { ResetEvent(); }
 
 };
-
-
-template < primitive_integral INTEGRAL >
-class counter :
-   public manual_reset_event
-{
-public:
-
-
-   interlocked < INTEGRAL >      m_interlocked;
-
-
-   counter(INTEGRAL lCount) : m_interlocked(lCount) {}
-
-
-   INTEGRAL operator ++()
-   {
-
-      INTEGRAL i = --m_interlocked;
-
-      if (i <= 0)
-      {
-
-         SetEvent();
-
-      }
-
-      return i;
-
-   }
-
-
-   INTEGRAL operator ++(int)
-   {
-
-      INTEGRAL i = m_interlocked;
-   
-      ++(*this);
-
-      return i;
-
-   }
-
-};
-
-
-

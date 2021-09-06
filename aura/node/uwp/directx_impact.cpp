@@ -8,19 +8,19 @@
 
 using namespace Platform;
 using namespace Microsoft::WRL;
-using namespace Windows::Foundation;
-using namespace Windows::UI::Core;
-using namespace Windows::ApplicationModel;
-using namespace Windows::ApplicationModel::Core;
-using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::::aura::get_system();
-using namespace Windows::Graphics::Display;
-using namespace Windows::::aura::get_system()::Threading;
-using namespace Windows::UI::Text::Core;
-using namespace Windows::UI::ViewManagement;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::ApplicationModel;
+using namespace ::winrt::Windows::ApplicationModel::Core;
+using namespace ::winrt::Windows::ApplicationModel::Activation;
+using namespace ::winrt::Windows::::aura::get_system();
+using namespace ::winrt::Windows::Graphics::Display;
+using namespace ::winrt::Windows::::aura::get_system()::Threading;
+using namespace ::winrt::Windows::UI::Text::Core;
+using namespace ::winrt::Windows::UI::ViewManagement;
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -45,21 +45,21 @@ namespace uwp
 
       m_window = window;
       
-      m_resizemanager = ::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+      m_resizemanager = ::winrt::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
 
       m_resizemanager->ShouldWaitForLayoutCompletion = true;
 
-      //auto coreTitleBar = ::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+      //auto coreTitleBar = ::winrt::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
 
       //coreTitleBar->ExtendViewIntoTitleBar = true;
 
-      m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
+      m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
 
-      m_tokenClosed = m_window->Closed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow ^, ::Windows::UI::Core::CoreWindowEventArgs ^>(this, &impact::CoreWindow_CoreWindowClosed);
+      m_tokenClosed = m_window->Closed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^>(this, &impact::CoreWindow_CoreWindowClosed);
 
-      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
+      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
+      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
       CoreTextServicesManager ^ manager = CoreTextServicesManager::GetForCurrentView();
 
@@ -123,7 +123,7 @@ namespace uwp
 
    }
 
-   void impact::CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, ::Windows::UI::Core::PointerEventArgs ^args)
+   void impact::CoreWindow_PointerPressed(::winrt::Windows::UI::Core::CoreWindow^ sender, ::winrt::Windows::UI::Core::PointerEventArgs ^args)
    {
       // See whether the pointer is inside or outside the control.
       //Rect contentRect = GetElementRect(BorderPanel);
@@ -216,7 +216,7 @@ namespace uwp
    }
 
 
-   void impact::Element_Unloaded(Object ^ sender, ::Windows::UI::Xaml::RoutedEventArgs ^ e)
+   void impact::Element_Unloaded(Object ^ sender, ::winrt::Windows::UI::Xaml::RoutedEventArgs ^ e)
    {
 
       m_window->KeyDown -= m_tokenKeyDown;
@@ -555,17 +555,17 @@ namespace uwp
    }
 
 
-   void impact::EditContext_NotifyFocusLeaveCompleted(::Windows::UI::Text::Core::CoreTextEditContext ^ sender, ::Platform::Object ^ args)
+   void impact::EditContext_NotifyFocusLeaveCompleted(::winrt::Windows::UI::Text::Core::CoreTextEditContext ^ sender, ::Platform::Object ^ args)
    {
 
 
    }
 
 
-   void impact::CoreWindow_WindowActivated(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::WindowActivatedEventArgs^ args)
+   void impact::CoreWindow_WindowActivated(::winrt::Windows::UI::Core::CoreWindow^ sender, ::winrt::Windows::UI::Core::WindowActivatedEventArgs^ args)
    {
 
-      if (args->WindowActivationState == ::Windows::UI::Core::CoreWindowActivationState::Deactivated)
+      if (args->WindowActivationState == ::winrt::Windows::UI::Core::CoreWindowActivationState::Deactivated)
       {
 
          ::output_debug_string("Deactivated");
@@ -583,7 +583,7 @@ namespace uwp
    }
 
 
-   void impact::CoreWindow_CoreWindowClosed(::Windows::UI::Core::CoreWindow ^ sender, Windows::UI::Core::CoreWindowEventArgs ^ args)
+   void impact::CoreWindow_CoreWindowClosed(::winrt::Windows::UI::Core::CoreWindow ^ sender, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^ args)
    {
 
       ::output_debug_string("window closed");
@@ -591,7 +591,7 @@ namespace uwp
    }
 
 
-   void impact::CoreWindow_KeyDown(::Windows::UI::Core::CoreWindow^ sender, KeyEventArgs ^args)
+   void impact::CoreWindow_KeyDown(::winrt::Windows::UI::Core::CoreWindow^ sender, KeyEventArgs ^args)
    {
 
       // Do not process keyboard input if the custom edit control does not
@@ -745,7 +745,7 @@ namespace uwp
    void impact::UpdateFocusUI()
    {
 
-      //BorderPanel->BorderBrush = _internalFocus ? new ::Windows::UI::Xaml::Media::SolidColorBrush(::Windows::UI::Colors::Green) : null;
+      //BorderPanel->BorderBrush = _internalFocus ? new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
 
    }
 
@@ -791,7 +791,7 @@ namespace uwp
    //}
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -10,13 +10,13 @@
 __pointer(message_queue) get_message_queue(itask_t idthread, bool bCreate);
 
 
-CLASS_DECL_CORE void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_CORE void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 
-CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 
-CLASS_DECL_CORE::e_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_CORE::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
-CLASS_DECL_CORE::e_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
+CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
 ::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
@@ -312,7 +312,7 @@ int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
 
    sched_param schedparam;
 
-   thread_get_os_priority(&iPolicy, &schedparam, (::e_priority)nCa2Priority);
+   thread_get_os_priority(&iPolicy, &schedparam, (::enum_priority)nCa2Priority);
 
    pthread_setschedparam((pthread_t)htask, iPolicy, &schedparam);
 
@@ -321,7 +321,7 @@ int_bool WINAPI SetThreadPriority(htask_t htask, i32 nCa2Priority)
 }
 
 
-i32 get_os_thread_priority(::e_priority epriority)
+i32 get_os_thread_priority(::enum_priority epriority)
 {
 
    return (i32)epriority;
@@ -468,7 +468,7 @@ int g_iDebug_post_thread_msg_time;
 namespace parallelization
 {
 
-   CLASS_DECL_CORE bool set_priority(::e_priority epriority)
+   CLASS_DECL_CORE bool set_priority(::enum_priority epriority)
    {
 
       return (::SetThreadPriority(::get_current_hthread(), epriority) != 0);
@@ -511,7 +511,7 @@ bool on_term_thread()
 }
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority)
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    int iOsPolicy;
@@ -520,22 +520,22 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
 
    int iCa2Max;
 
-   if (epriority == ::priority_normal)
+   if (epriority == ::e_priority_normal)
    {
 
       iOsPolicy = SCHED_OTHER;
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
-   else if (epriority > ::priority_normal)
+   else if (epriority > ::e_priority_normal)
    {
 
       iOsPolicy = SCHED_RR;
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -551,7 +551,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
 
@@ -579,7 +579,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriorit
 }
 
 
-void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority)
+void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -587,10 +587,10 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 }
 
 
-::e_priority get_os_thread_scheduling_priority(int nPriority)
+::enum_priority get_os_thread_scheduling_priority(int nPriority)
 {
 
-   return (::e_priority) nPriority;
+   return (::enum_priority) nPriority;
 
 }
 

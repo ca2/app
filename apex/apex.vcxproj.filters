@@ -557,7 +557,7 @@
     <ClInclude Include="inline\application\windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\linux.h">
@@ -1796,12 +1796,6 @@
       <Filter>Source Files\node\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\_.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\application.cpp">
-      <Filter>Source Files\node\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="node\operating_system\windows\application_system_run.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\operating_system\windows\dpi.cpp">

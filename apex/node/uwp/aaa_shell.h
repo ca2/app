@@ -4,7 +4,7 @@
 #define WH_SHSTDAPI(type) type
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -492,7 +492,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

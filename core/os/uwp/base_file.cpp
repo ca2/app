@@ -1555,15 +1555,15 @@ int_bool close_handle(HANDLE h)
 }
 
 
-::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName)
+::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName)
 {
 
-   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
+   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
 
 }
 
 
-::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
+::winrt::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    /*
@@ -1600,13 +1600,13 @@ int_bool close_handle(HANDLE h)
 
    */
 
-   ::Windows::Storage::StorageFile ^ file = nullptr;
+   ::winrt::Windows::Storage::StorageFile ^ file = nullptr;
 
    string strPrefix;
 
    string strRelative;
 
-   ::Windows::Storage::StorageFolder ^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
+   ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
 
    if (folder == nullptr)
    {
@@ -1618,7 +1618,7 @@ int_bool close_handle(HANDLE h)
    if(dwCreationDisposition == CREATE_ALWAYS)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::ReplaceExisting;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1626,7 +1626,7 @@ int_bool close_handle(HANDLE h)
    else if(dwCreationDisposition == CREATE_NEW)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::FailIfExists;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::FailIfExists;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1634,7 +1634,7 @@ int_bool close_handle(HANDLE h)
    else if(dwCreationDisposition == OPEN_ALWAYS)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::OpenIfExists;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1650,7 +1650,7 @@ int_bool close_handle(HANDLE h)
 
       file = wait(folder->GetFileAsync(strRelative));
 
-      ::Windows::Storage::StorageStreamTransaction ^ transaction = wait(file->OpenTransactedWriteAsync());
+      ::winrt::Windows::Storage::StorageStreamTransaction ^ transaction = wait(file->OpenTransactedWriteAsync());
 
       transaction->Stream->Size = 0;
 
@@ -1661,7 +1661,7 @@ int_bool close_handle(HANDLE h)
 }
 
 
-bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
+bool get_filetime(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
 {
 
    if(lpCreationTime != nullptr)
@@ -1674,7 +1674,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
    if(lpItemTime != nullptr || lpLastWriteTime != nullptr)
    {
 
-      ::Windows::Storage::FileProperties::BasicProperties ^ properties = wait(file->GetBasicPropertiesAsync());
+      ::winrt::Windows::Storage::FileProperties::BasicProperties ^ properties = wait(file->GetBasicPropertiesAsync());
 
       if(lpItemTime != nullptr)
       {
@@ -1698,7 +1698,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 ::file::path dir::sys_temp()
 {
 
-   return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
+   return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
 
 }
 
@@ -1880,7 +1880,7 @@ int_bool file_set_length(const ::string & pszName,size_t iSize)
 bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite)
 {
 
-   ::Windows::Storage::StorageFolder ^ folder = nullptr;
+   ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;
 
    try
    {
@@ -1899,7 +1899,7 @@ bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite
    }
 
 
-   ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
+   ::winrt::Windows::Storage::StorageFile ^ fileSrc = nullptr;
 
    try
    {
@@ -1920,8 +1920,8 @@ bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite
    wstring wstrNew(pszNew);
 
    return ::wait(fileSrc->CopyAsync(folder,wstrNew,bOverwrite ?
-                                    ::Windows::Storage::NameCollisionOption::ReplaceExisting :
-                                    ::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
+                                    ::winrt::Windows::Storage::NameCollisionOption::ReplaceExisting :
+                                    ::winrt::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
 
 
 }

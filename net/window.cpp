@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/snippet/close_button.h"
+#include "aura/graphics/user/close_button.h"
 
 
 namespace app_net
@@ -11,13 +11,13 @@ namespace app_net
 
       m_bGettingUrl = false;
 
-      m_bSimpleUIDefaultMouseHandling = true;
+      //m_bSimpleUIDefaultMouseHandling = true;
 
       m_strUrl = "https://ca2.software/time";
 
       m_dBreathPeriod = 60.0;
 
-      m_dStartTime = ::get_secs();
+      m_dStartTime = (double) ::get_secs().m_i;
 
       m_dPhaseShift = 0.0;
 
@@ -38,15 +38,19 @@ namespace app_net
 
 #endif
 
-      ModifyStyleEx(0, WS_EX_LAYERED);
+      //ModifyStyleEx(0, WS_EX_LAYERED);
 
-      auto & app = App(this);
+      auto papplication = get_application();
 
-      app.m_bInterprocessIntercommunication = false;
+      papplication->m_bInterprocessIntercommunication = false;
 
       ::user::interaction * p = this;
 
       __construct(m_pfont);
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      auto pnode = psystem->node();
 
       m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 21.0);
 
@@ -88,7 +92,7 @@ namespace app_net
 
          auto millis = duration(elapsed).millis();
 
-         strGet = "Getting Url " + strDots.Left((millis.m_iMilliseconds / 300) % 4);
+         strGet = "Getting Url " + strDots.Left((millis.m_i / 300) % 4);
 
       }
       else
@@ -143,6 +147,8 @@ namespace app_net
             property_set set;
 
             set["raw_http"] = true;
+
+            auto papplication = get_application();
 
             string strGet = papplication->http().get(m_strUrl, set);
 

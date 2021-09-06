@@ -22,7 +22,9 @@ enum
    FILTER_ID,
    FORM_ID,
    REDRAW_ID,
+   SOUL_ID,
    COUNT_ID,
+
 
    // method
    CREATE_ROUTINE,

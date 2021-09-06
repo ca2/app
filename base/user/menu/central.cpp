@@ -175,7 +175,7 @@ namespace user
       if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
       {
          
-         __throw(::exception::exception("resource exception menu_central constructor"));
+         throw ::exception::exception("resource exception menu_central constructor");
 
       }
 //#endif

@@ -242,7 +242,7 @@ namespace xml
       if(*pszXml == '\0')
       {
 
-         __throw(::exception::exception("No Entity"));
+         throw ::exception::exception(error_parsing, "No Entity");
 
       }
 
@@ -264,7 +264,7 @@ namespace xml
                || *pszXml == '=')
          {
 
-            __throw(::exception::exception("Not expected character on Entity Reference"));
+            throw ::exception::exception(error_parsing, "Not expected character on Entity Reference");
 
          }
 
@@ -290,7 +290,7 @@ namespace xml
       if(ent.is_empty() && extEnt.is_empty() && (strName.is_empty() || strName[0] != '#'))
       {
 
-         __throw(::exception::exception("Undefined Entity Reference"));
+         throw ::exception::exception(error_parsing, "Undefined Entity Reference");
 
       }
 

@@ -38,7 +38,7 @@ namespace graphics
          if (!bOk)
          {
 
-            __throw(::exception::exception("failed to reference"));
+            throw ::exception::exception(error_failed, "failed to reference");
 
          }
 

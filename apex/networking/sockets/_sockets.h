@@ -45,7 +45,7 @@ namespace net
 
 #include "bsd/_.h"
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(_UWP)
 
 extern "C"
 CLASS_DECL_APEX const SSL_METHOD * TLS_client_method();
@@ -56,6 +56,7 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
 #endif
 
 #elif defined(WINRT_SOCKETS)
+
 
 #include "winrt/_.h"
 

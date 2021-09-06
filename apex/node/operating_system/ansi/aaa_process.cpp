@@ -29,7 +29,7 @@
 
 
 
-::e_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    int iCa2Min;
@@ -40,7 +40,7 @@
    if (iOsPolicy == SCHED_RR)
    {
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -50,15 +50,15 @@
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
    else
    {
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
 
@@ -70,7 +70,7 @@
 
    if (iOsMax == iOsMin)
    {
-      iCa2Priority = (i32) ::priority_normal;
+      iCa2Priority = (i32) ::e_priority_normal;
    }
    else
    {
@@ -79,13 +79,13 @@
 
    iCa2Priority = maximum(iCa2Min, minimum(iCa2Max, iCa2Priority));
 
-   return (e_priority) iCa2Priority;
+   return (enum_priority) iCa2Priority;
 
 }
 
 
 
-::e_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -93,7 +93,7 @@
 }
 
 
-void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority)
+void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -101,7 +101,7 @@ void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority 
 }
 
 
-::e_priority process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);

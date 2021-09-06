@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include "sal.h"
 
 
@@ -41,7 +41,7 @@ CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //   int nReturnCode = 0;
 //
 //
-//   auto pcommand  = __new(::uwp::command);
+//   auto pcommand  = __new(::universal_windows::command);
 //
 //   //    pcommand->m_hInstance               = nullptr;
 //   //    pcommand->m_hPrevInstance           = nullptr;
@@ -151,7 +151,7 @@ CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //      int nReturnCode = 0;
 //
-//      ::uwp::main_init_data * pinitmaindata  = new ::uwp::main_init_data;
+//      ::universal_windows::main_init_data * pinitmaindata  = new ::universal_windows::main_init_data;
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;
@@ -245,7 +245,7 @@ void CLASS_DECL_CORE __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 string ca2_command_line()
 {
 
-   string strAppId = Windows::ApplicationModel::Package::Current->Id->Name;
+   string strAppId = ::winrt::Windows::ApplicationModel::Package::Current->Id->Name;
 
    if (strAppId.is_empty())
    {

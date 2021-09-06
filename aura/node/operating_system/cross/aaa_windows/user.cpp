@@ -5,7 +5,7 @@
 #elif defined(ANDROID)
 #include "aura/os/android/windowing.h"
 #elif defined(_UWP)
-#include "aura/os/uwp/_uwp.h"
+#include "aura/os/universal_windows/_uwp.h"
 #elif defined(MACOS)
 #include "aura/os/macos/oswindow_data.h"
 #elif defined(APPLE_IOS)

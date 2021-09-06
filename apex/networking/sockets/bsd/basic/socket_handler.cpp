@@ -729,7 +729,7 @@ end_processing_adding:
 
 #elif defined(WINDOWS)
 
-            TRACE("sockets::socket_handler select error : %s (%d)", get_last_error_message(iError).c_str(), iError);
+            TRACE("sockets::socket_handler select error : %s (%d)", last_error_message(iError).c_str(), iError);
 
 #endif
 

@@ -52,7 +52,7 @@ struct CLASS_DECL_ACME block :
 
 //#ifdef _UWP
 //
-//   ::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
+//   ::winrt::Windows::Storage::Streams::IBuffer^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
 //   Array < uchar, 1U >^ get_os_bytes(memsize pos, memsize size) const;
 //
 //#endif

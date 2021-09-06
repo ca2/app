@@ -52,7 +52,7 @@ namespace exception
 //#endif
 
       translator();
-      virtual ~translator();
+      ~translator() override;
 
 //#ifdef WINDOWS
 //      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
@@ -66,7 +66,7 @@ namespace exception
       virtual bool detach();
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
 
       virtual string _get_standard_exception_name(u32 uiCode);

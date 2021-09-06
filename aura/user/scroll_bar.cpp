@@ -270,7 +270,7 @@ namespace user
       catch (...)
       {
 
-         __throw(::exception::exception("no more a window"));
+         throw ::exception::exception(error_exception, "no more a window");
 
       }
 

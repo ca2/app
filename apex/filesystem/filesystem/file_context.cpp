@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -12,7 +13,7 @@
 #include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
-#include "apex/os/_os.h"
+#include "apex/node/operating_system/_operating_system.h"
 #endif
 
 #include <stdio.h>
@@ -329,7 +330,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       if (!m_pcontext->m_papexcontext->dir().is(str))
       {
 
-         __throw(::exception::exception("time square dir does not exist"));
+         __throw(error_path_not_found, "time square dir does not exist");
 
       }
 
@@ -1270,7 +1271,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //
 //#elif defined(_UWP)
 //
-//   ::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //   if (file == nullptr)
 //   {
@@ -1299,7 +1300,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //   }
 //   else
 //   {
-//      ::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
+//      ::winrt::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
 //      if (strNameOld == strNameNew)
 //      {
 //         ::wait(file->MoveAsync(folder));
@@ -1505,7 +1506,10 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
 
    UNREFERENCED_PARAMETER(path);
    UNREFERENCED_PARAMETER(status);
+
    __throw(error_interface_only);
+
+   return false;
 
 }
 
@@ -1515,7 +1519,10 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
 
    UNREFERENCED_PARAMETER(path);
    UNREFERENCED_PARAMETER(status);
+
    __throw(error_interface_only);
+
+   return ::success;
 
 }
 
@@ -2121,6 +2128,8 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 {
 
    __throw(error_interface_only);
+
+   return false;
 
 }
 

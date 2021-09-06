@@ -4354,7 +4354,7 @@ Type & string_array_base < Type, RawType, t_etypePayload > ::random_element()
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 
@@ -4370,7 +4370,7 @@ const Type & string_array_base < Type, RawType, t_etypePayload > ::random_elemen
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 
@@ -4386,7 +4386,7 @@ Type string_array_base < Type, RawType, t_etypePayload > ::pop_random_element()
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 

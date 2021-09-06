@@ -33,6 +33,15 @@ namespace acme
    public:
 
 
+      union
+      {
+
+         ::u64                               m_uNodeFlags;
+
+         bool                                m_bHasNodePostedSystemInitialRequest : 1;
+
+      };
+
       ::apex::node *                         m_papexnode;
       ::aura::node *                         m_pauranode;
 
@@ -43,6 +52,12 @@ namespace acme
       ::acme::PLATFORM_NAMESPACE::node *     m_pAcmePlatform;
       ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
       ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
+
+      ::PLATFORM_NAMESPACE::node *           m_pNode;
+
+
+      ::windowing_universal_windows::node *  m_pWindowingUniversalWindowsNode;
+
 
       ::windowing_x11::node *                m_pNodeX11;
       ::windowing_xcb::node *                m_pNodeXcb;
@@ -108,11 +123,11 @@ namespace acme
 
       virtual ::e_status system_main();
 
-      virtual ::e_status on_start_system();
-      
       virtual ::e_status _will_finish_launching();
 
       virtual ::e_status reboot();
+
+      virtual ::e_status implement();
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -409,6 +424,7 @@ namespace acme
 //
 //      virtual ::user::enum_desktop get_edesktop();
 
+      virtual ::e_status on_start_system();
 
 
    };

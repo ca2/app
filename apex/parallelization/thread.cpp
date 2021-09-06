@@ -134,7 +134,7 @@ thread::thread()
 //
 //#endif
 
-   m_epriority = priority_normal;
+   m_epriority = e_priority_normal;
 
    m_pmutexThreadUiPtra = nullptr;
 
@@ -885,7 +885,7 @@ void thread::on_message_branch(::message::message* pmessage)
 int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
-   __throw(exception::exception());
+   throw exception::exception();
 
    //__zero(pmessage);
 
@@ -1964,10 +1964,6 @@ u32 __thread_entry(void * p);
 //}
 
 
-
-
-
-
 ::e_status thread::init_thread()
 {
 
@@ -2049,13 +2045,13 @@ u32 __thread_entry(void * p);
 
 }
 
-
-::e_status thread::on_pre_run_thread()
-{
-
-   return true;
-
-}
+//
+//::e_status thread::on_pre_run_thread()
+//{
+//
+//   return true;
+//
+//}
 
 
 void thread::dispatch_thread_message(::message::message * pusermessage)
@@ -2322,7 +2318,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    clear_finish_bit();
@@ -2464,7 +2460,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 
 
 
-::e_status thread::branch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::e_status thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -2481,7 +2477,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::e_priority epriority,
 }
 
 
-::e_status thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::e_status thread::begin_synch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    auto estatus = begin_thread(true, epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -2617,7 +2613,7 @@ void thread::__priority_and_affinity()
 
    }
 
-   if (m_epriority != priority_normal)
+   if (m_epriority != e_priority_normal)
    {
 
       set_thread_priority(m_epriority);
@@ -3291,7 +3287,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
    try
    {
 
-      estatus = on_pre_run_thread();
+      estatus = on_pre_run_task();
       
       if(!estatus)
       {
@@ -4435,7 +4431,7 @@ void thread::message_handler(::message::message * pmessage)
 
 
 
-bool thread::set_thread_priority(::e_priority epriority)
+bool thread::set_thread_priority(::enum_priority epriority)
 {
 
    i32 nPriority = get_os_thread_priority(epriority);
@@ -4458,14 +4454,14 @@ bool thread::set_thread_priority(::e_priority epriority)
 }
 
 
-::e_priority thread::thread_priority()
+::enum_priority thread::thread_priority()
 {
 
    ASSERT(m_htask != null_hthread);
 
    i32 nPriority = ::GetThreadPriority(m_htask);
 
-   ::e_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
+   ::enum_priority epriority = ::get_os_thread_scheduling_priority(nPriority);
 
    return epriority;
 
@@ -4888,7 +4884,7 @@ bool thread::is_running() const
 
 //__transport(::task) thread::branch(
 //   ::matter * pmatter,
-//   ::e_priority epriority,
+//   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 dwCreateFlags ARG_SEC_ATTRS)
 //{

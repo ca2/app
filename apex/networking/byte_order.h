@@ -55,18 +55,18 @@
 #endif
 
 
-#if defined(_UWP)
-
-
-#define AF_INET         2               // internetwork: UDP, TCP, etc.
-#define AF_INET6        23              // Internetwork Version 6
-
-
-#define htons(n) HTONS(n)
-#define ntohs(n) NTOHS(n)
-
-#define htonl(n) HTONL(n)
-#define ntohl(n) NTOHL(n)
-
-#endif
+//#if defined(_UWP)
+//
+//
+//#define AF_INET         2               // internetwork: UDP, TCP, etc.
+//#define AF_INET6        23              // Internetwork Version 6
+//
+//
+//#define htons(n) HTONS(n)
+//#define ntohs(n) NTOHS(n)
+//
+//#define htonl(n) HTONL(n)
+//#define ntohl(n) NTOHL(n)
+//
+//#endif
 

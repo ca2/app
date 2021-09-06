@@ -1212,7 +1212,7 @@ namespace experience
       catch (...)
       {
 
-         __throw(::exception::exception("no more a u"));
+         throw ::exception::exception(error_failed, "no more a u");
 
       }
 

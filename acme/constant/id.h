@@ -39,6 +39,7 @@ enum e_id : u64
    id_filter = FILTER_ID,
    id_form = FORM_ID,
    id_redraw = REDRAW_ID,
+   id_soul = SOUL_ID,
 
 
    id_search = 1 << 20,

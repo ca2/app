@@ -174,6 +174,10 @@ public:
    inline byte *           data() const;
    inline byte *           data();
 
+
+   inline byte * begin() const { return get_data();  }
+   inline byte * end() const { return get_data() + size(); }
+
    inline const char * c_str() const { return (char*)data(); }
    inline char * sz() { return (char*)data(); }
 
@@ -285,11 +289,11 @@ public:
 #if defined(_UWP) && defined(__cplusplus_winrt)
 
    inline Array < uchar, 1U > ^ get_os_bytes(memsize pos = 0, memsize size = -1) const;
-   inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memsize pos = 0, memsize size = -1) const;
-   inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
+   inline ::winrt::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memsize pos = 0, memsize size = -1) const;
+   inline ::winrt::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
    inline void set_os_bytes(Array < uchar, 1U > ^ a, memsize pos = 0, memsize size = -1);
-   inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
-   inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
+   inline void set_os_crypt_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
+   inline void set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
 
 #endif
    

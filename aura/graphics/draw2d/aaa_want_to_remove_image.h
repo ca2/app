@@ -106,7 +106,7 @@ public:
 
    //virtual bool add_next(double dRate)
    virtual bool create_isotropic(::image * pimage) override;
-   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority) override;
+   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority) override;
 
    virtual bool SetViewportOrg(const ::point & point) override;
    virtual bool set_font_factor(double dFactor) override;

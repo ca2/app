@@ -12,7 +12,7 @@ void CLASS_DECL_CORE vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 #define HFILE_NULL INVALID_HANDLE_VALUE
 
-namespace uwp
+namespace universal_windows
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -99,4 +99,4 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows

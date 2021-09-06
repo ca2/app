@@ -2263,7 +2263,7 @@
 				9AE64F19252A681B00BED5B8 /* ios */,
 				9AE64F5F252A681B00BED5B8 /* serial.h */,
 				9AE64F90252A681B00BED5B8 /* _node.h */,
-				9AE64FD5252A681B00BED5B8 /* uwp */,
+				9AE64FD5252A681B00BED5B8 /* universal_windows */,
 				9AE6501C252A681B00BED5B8 /* _.h */,
 			);
 			path = node;
@@ -2381,7 +2381,7 @@
 			path = ios;
 			sourceTree = "<group>";
 		};
-		9AE64FD5252A681B00BED5B8 /* uwp */ = {
+		9AE64FD5252A681B00BED5B8 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9AE64FD6252A681B00BED5B8 /* aaa_dir_context.cpp */,
@@ -2454,7 +2454,7 @@
 				9AE6501A252A681B00BED5B8 /* aaa_buffer.h */,
 				9AE6501B252A681B00BED5B8 /* _.h */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9AE64FE6252A681B00BED5B8 /* aaa_net */ = {

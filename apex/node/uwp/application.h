@@ -11,7 +11,7 @@
 //} // namespace gen
 //
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //
@@ -215,5 +215,5 @@
 //   };
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //

@@ -4,7 +4,7 @@
 bool CLASS_DECL_CORE vfxResolveShortcut(string & strTarget, const ::string & pszSource, ::user::primitive * puiMessageParentOptional = nullptr);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -77,7 +77,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

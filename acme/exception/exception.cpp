@@ -137,9 +137,14 @@ namespace exception
    exception::~exception()
    {
 
+      if (::is_set(m_pcallstack))
+      {
+
+         ::release(m_pcallstack);
+
+      }
+
    }
-
-
 
 
    void exception::exception_enable_stack_trace(bool bEnable)
@@ -148,7 +153,6 @@ namespace exception
       s_bDoStackTrace = bEnable;
 
    }
-
 
 
    string exception::get_message() const
@@ -361,7 +365,7 @@ namespace exception
    void exception::dump_back_trace()
    {
 
-      if (m_pcallstack.is_set())
+      if (::is_set(m_pcallstack))
       {
 
 #ifdef ANDROID
@@ -488,6 +492,14 @@ string estatus_to_string(::e_status estatus)
       return "failed";
 
    }
+
+}
+
+
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
+{
+
+   throw ::exception::exception(estatus, pszMessage, iSkip, caller_address);
 
 }
 

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#ifndef __cplusplus_winrt
+
 
 template < typename TYPE >
 inline stream & operator >> (stream & stream, TYPE & t) { stream.defer_set_loading(); stream.stream_exchange(::id::e_type_null, t); return stream; }
@@ -18,6 +20,9 @@ template < typename TYPE >
 inline void stream::stream_exchange(const ::id & id, TYPE & t) { ::__exchange(*this, t); }
 
 #include "_defer_var_stream.h"
+
+
+#endif // __cplusplus_winrt
 
 
 

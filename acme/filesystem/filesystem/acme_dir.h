@@ -26,6 +26,9 @@ public:
    acme_dir();
    ~acme_dir() override;
 
+
+   ::e_status initialize(::object * pobject) override;
+
    
    virtual ::file::path module_folder();
 
@@ -117,9 +120,10 @@ public:
 
          //virtual ::file::path base_module();
 
-         virtual bool create(const char * path);
-         virtual bool _create(const char * path);
-         virtual bool create_directory(const char * path);
+         virtual ::e_status create(const char * path);
+         virtual ::e_status _create(const char * path);
+         virtual ::e_status create_directory(const char * path);
+         virtual ::e_status _create_directory(const char * path);
 
 
          virtual bool is(const char * path);

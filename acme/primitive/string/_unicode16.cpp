@@ -827,7 +827,7 @@ strsize utf16_to_utf16_len(const wd16char* codepoints, strsize input_size)
       {
 
          // invalid code_point, do something !
-         __throw(::exception::exception("utf16_to_utf16_len :: invalid code_point, do something ! "));
+         __throw(error_invalid_character, "utf16_to_utf16_len :: invalid code_point, do something ! ");
 
          //++len;
 

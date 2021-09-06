@@ -11,6 +11,8 @@ namespace graphics
 
       defer_create_mutex();
 
+      m_uptrBuffer = 0;
+
       m_bNewBuffer = false;
 
    }

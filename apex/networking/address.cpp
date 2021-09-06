@@ -423,7 +423,7 @@ namespace net
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
-//         m_posdata->m_hostname = ref new ::Windows::Networking::HostName(get_display_number());
+//         m_posdata->m_hostname = ref new ::winrt::Windows::Networking::HostName(get_display_number());
 //      }
 //      else if (m_posdata->m_hostname != nullptr)
 //      {
@@ -515,13 +515,13 @@ namespace net
       else
       {
 
-         __throw(parsing_exception("Unrecognized networking IP address"));
+         __throw(error_parsing, "Unrecognized networking IP address");
 
       }
 
 #elif defined(WINRT_SOCKETS)
 
-      m_hostname = ref new Windows::Networking::HostName(strAddress);
+      m_hostname = ref new ::winrt::Windows::Networking::HostName(strAddress);
 
 
 #endif

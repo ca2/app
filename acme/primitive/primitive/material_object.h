@@ -41,7 +41,7 @@ public:
 
 //   __transport(task) branch(
 //      ::matter* pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 

@@ -12,7 +12,7 @@
 //
 //#elif defined(_UWP)
 //
-//   path = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+//   path = begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 //
 //#elif defined(ANDROID)
 //

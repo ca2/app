@@ -27,7 +27,7 @@
 		9A281ABC25243402009FA9CB /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8825243402009FA9CB /* linux.h */; };
 		9A281ABD25243402009FA9CB /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8925243402009FA9CB /* macos.h */; };
 		9A281ABE25243402009FA9CB /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8A25243402009FA9CB /* windows.h */; };
-		9A281ABF25243402009FA9CB /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8B25243402009FA9CB /* uwp.h */; };
+		9A281ABF25243402009FA9CB /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8B25243402009FA9CB /* universal_windows.h */; };
 		9A281AC025243402009FA9CB /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8C25243402009FA9CB /* android.h */; };
 		9A281AC225243402009FA9CB /* _console_old.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8E25243402009FA9CB /* _console_old.h */; };
 		9A281AC325243402009FA9CB /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8F25243402009FA9CB /* library.h */; };
@@ -94,7 +94,7 @@
 		9A281A8825243402009FA9CB /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9A281A8925243402009FA9CB /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 		9A281A8A25243402009FA9CB /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
-		9A281A8B25243402009FA9CB /* uwp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uwp.h; sourceTree = "<group>"; };
+		9A281A8B25243402009FA9CB /* universal_windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal_windows.h; sourceTree = "<group>"; };
 		9A281A8C25243402009FA9CB /* android.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = android.h; sourceTree = "<group>"; };
 		9A281A8E25243402009FA9CB /* _console_old.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _console_old.h; sourceTree = "<group>"; };
 		9A281A8F25243402009FA9CB /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 				9A281A8825243402009FA9CB /* linux.h */,
 				9A281A8925243402009FA9CB /* macos.h */,
 				9A281A8A25243402009FA9CB /* windows.h */,
-				9A281A8B25243402009FA9CB /* uwp.h */,
+				9A281A8B25243402009FA9CB /* universal_windows.h */,
 				9A281A8C25243402009FA9CB /* android.h */,
 			);
 			path = aaa_application;
@@ -283,7 +283,7 @@
 				9A281AB125243402009FA9CB /* session.h in Headers */,
 				9A281AC025243402009FA9CB /* android.h in Headers */,
 				9A281AAB25243402009FA9CB /* console.h in Headers */,
-				9A281ABF25243402009FA9CB /* uwp.h in Headers */,
+				9A281ABF25243402009FA9CB /* universal_windows.h in Headers */,
 				9A281AD025243402009FA9CB /* idpool.h in Headers */,
 				9A281AC225243402009FA9CB /* _console_old.h in Headers */,
 				9A281AAC25243402009FA9CB /* _defer.h in Headers */,

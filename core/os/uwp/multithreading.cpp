@@ -13,8 +13,8 @@
 
 #pragma push_macro("System")
 #undef System
-using namespace Windows::Foundation;
-using namespace Windows::System::Threading;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::System::Threading;
 #pragma pop_macro("System")
 
 

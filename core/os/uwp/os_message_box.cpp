@@ -6,10 +6,10 @@ extern bool g_bCoreWindowOnceVisible;
 #undef new
 
 
-using namespace Windows::UI::Popups;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Navigation;
+using namespace ::winrt::Windows::UI::Popups;
+using namespace ::winrt::Windows::UI::Xaml;
+using namespace ::winrt::Windows::UI::Xaml::Controls;
+using namespace ::winrt::Windows::UI::Xaml::Navigation;
 
 
 ref class message_box_w

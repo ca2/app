@@ -106,10 +106,10 @@ public:
    ::count                                m_cSpan;
    ::enum_task_op                       m_etaskop;
    __pointer(::task_tool)               m_ptool;
-   ::e_priority                           m_epriority;
+   ::enum_priority                           m_epriority;
 
 
-   task_group(::matter * pmatter, ::e_priority epriority);
+   task_group(::matter * pmatter, ::enum_priority epriority);
    virtual ~task_group();
 
 
@@ -141,7 +141,7 @@ public:
 
 
 template < typename PRED >
-inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart = 0, ::e_priority epriority = ::priority_none);
+inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart = 0, ::enum_priority epriority = ::e_priority_none);
 
 
 
@@ -159,7 +159,7 @@ inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, inde
 
 
 
-using task_group_map = map < e_priority, __pointer_array(::task_group) >;
+using task_group_map = map < enum_priority, __pointer_array(::task_group) >;
 using task_tool_map = map < enum_task_tool, __pointer_array(::task_tool) >;
 
 

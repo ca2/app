@@ -32,7 +32,7 @@
 #include "acme/node/operating_system/linux/_c.h"
 #elif defined(_UWP)
 #include "acme/node/operating_system/windows_common/_c.h"
-#include "acme/node/operating_system/uwp/_.h"
+#include "acme/node/operating_system/universal_windows/_.h"
 #elif defined(WINDOWS_DESKTOP)
 #include "acme/node/operating_system/windows_common/_c.h"
 #include "acme/node/operating_system/windows/_c.h"

@@ -1,8 +1,8 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 #if false
@@ -215,6 +215,6 @@ namespace uwp
    }
 #endif
 
-} // namespace uwp
+} // namespace universal_windows
 
 

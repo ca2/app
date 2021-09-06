@@ -86,23 +86,6 @@ inline ___pointer < T > ::___pointer(const T * p) :
 }
 
 
-template < class T >
-inline ___pointer < T > ::___pointer(const lparam& lparam)
-{
-
-   auto * p = (::matter *) lparam.m_lparam;
-
-   m_p = dynamic_cast < T * > (p);
-
-   if (::is_null(m_p))
-   {
-
-      ::release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
-
-   }
-
-}
-
 
 template < class T >
 inline ___pointer < T > ::~___pointer()
@@ -414,6 +397,24 @@ inline bool operator ==(lparam l, const ___pointer < T > & sp) { return ((T *) l
 
 template < class T >
 inline bool operator !=(lparam l, const ___pointer < T > & sp) { return ((T *) l) != sp.m_p; }
+
+
+template < typename TYPE >
+inline bool is_set(const __pointer(TYPE) & p)
+{
+
+   return p.is_set();
+
+}
+
+
+template<typename TYPE>
+inline bool is_null(const __pointer(TYPE) & p)
+{
+
+   return ::is_null(p.m_p);
+
+}
 
 
 

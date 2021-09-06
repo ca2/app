@@ -363,7 +363,7 @@ namespace file
       void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
       {
 
-         __throw(exception(estatus, lOsError, iErrNo, path, eopen));
+         throw exception(estatus, lOsError, iErrNo, path, eopen);
 
       }
 
@@ -371,7 +371,7 @@ namespace file
       void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path)
       {
 
-         throw_exception(estatus, lOsError, -1, path, e_null);
+         throw exception(estatus, lOsError, -1, path, e_null);
 
       }
 
@@ -379,7 +379,7 @@ namespace file
       void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path)
       {
 
-         throw_status(estatus, ::file::dos_to_os_error(lDOSError), path);
+         throw exception(estatus, ::file::dos_to_os_error(lDOSError), path);
 
       }
 

@@ -2,4 +2,4 @@
 
 
 
-CLASS_DECL_ACME string get_last_error_message(DWORD dwLastError);
+CLASS_DECL_ACME string last_error_message(DWORD dwLastError);

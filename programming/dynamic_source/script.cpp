@@ -492,7 +492,7 @@ namespace dynamic_source
       try
       {
 
-         ::parallelization::set_priority(::priority_highest);
+         ::parallelization::set_priority(::e_priority_highest);
 
       }
       catch (...)

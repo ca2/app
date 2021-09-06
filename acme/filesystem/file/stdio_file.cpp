@@ -149,7 +149,7 @@ stdio_file::~stdio_file()
 
       // error;
 
-      __throw(::file::exception(error_file, GetLastError(), errno, m_path));
+      throw ::file::exception(error_file, GetLastError(), errno, m_path);
 
       return -1;
 

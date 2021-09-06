@@ -2,13 +2,13 @@
 
 #include <agile.h>
 
-using namespace Windows::Foundation;
-using namespace Windows::Foundation::Collections;
-using namespace Windows::Media::SpeechSynthesis;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::Foundation::Collections;
+using namespace ::winrt::Windows::Media::SpeechSynthesis;
 using namespace Platform;
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -25,7 +25,7 @@ namespace uwp
       public:
 
 
-         string_map < Agile < Windows::Media::SpeechSynthesis::SpeechSynthesizer > >        m_synth;
+         string_map < Agile < ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer > >        m_synth;
          string_map < ::u32 >                                                       m_time;
          string_map < bool >                                                        m_tts;
 
@@ -62,7 +62,7 @@ namespace uwp
    } // namespace tts
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -287,6 +287,8 @@ string ip_reverse(string str)
 #include <openssl/ssl.h>
 
 
+//#if !defined(_UWP)
+
 extern "C"
 CLASS_DECL_APEX const SSL_METHOD * TLS_client_method()
 {
@@ -303,6 +305,9 @@ CLASS_DECL_APEX const SSL_METHOD * TLS_server_method()
    return TLSv1_2_server_method();
 
 }
+
+
+//#endif
 
 
 #endif

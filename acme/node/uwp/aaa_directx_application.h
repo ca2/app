@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -13,17 +13,17 @@ namespace uwp
 
       ::user::interaction_impl * m_pimpl;
 
-      Windows::Foundation::Point                m_pointLastCursor;
+      ::winrt::Windows::Foundation::Point                m_pointLastCursor;
 
       ::u32                                     m_dwMouseMoveThrottle;
 
       millis m_millisLastMouseMove;
 
-      ::Windows::UI::ViewManagement::UISettings ^     m_puisettings;
+      ::winrt::Windows::UI::ViewManagement::UISettings ^     m_puisettings;
 
       String ^                                  m_strId;
 
-      //Windows::UI::Core::CoreWindow^   m_window;
+      //::winrt::Windows::UI::Core::CoreWindow^   m_window;
 
       impact^ m_impact;
 
@@ -46,9 +46,9 @@ namespace uwp
 
       bool                                      m_bRightButton;
 
-      Windows::Foundation::Rect                 m_rectLastWindowRect;
-      Windows::Foundation::Rect                 m_rectInputContentRect;
-      Windows::Foundation::Rect                 m_rectInputSelectionRect;
+      ::winrt::Windows::Foundation::Rect                 m_rectLastWindowRect;
+      ::winrt::Windows::Foundation::Rect                 m_rectInputContentRect;
+      ::winrt::Windows::Foundation::Rect                 m_rectInputSelectionRect;
 
 
       directx_framework_view(class ::system * psystem,String ^ strId);
@@ -69,45 +69,45 @@ namespace uwp
 
 
       // IFrameworkView Methods
-      virtual void Initialize(_In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView) override;
-      virtual void SetWindow(_In_ Windows::UI::Core::CoreWindow^ window)override;
+      virtual void Initialize(_In_ ::winrt::Windows::ApplicationModel::Core::CoreApplicationView^ applicationView) override;
+      virtual void SetWindow(_In_ ::winrt::Windows::UI::Core::CoreWindow^ window)override;
       virtual void Load(_In_ String^ entryPoint)override;
       virtual void Run()override;
       virtual void Uninitialize()override;
 
 
-      virtual Windows::Foundation::Rect get_window_rect() override;
-      virtual Windows::Foundation::Point get_cursor_position() override;
+      virtual ::winrt::Windows::Foundation::Rect get_window_rect() override;
+      virtual ::winrt::Windows::Foundation::Point get_cursor_position() override;
 
-      virtual Windows::Foundation::Rect get_input_content_rect() override;
-      virtual Windows::Foundation::Rect get_input_selection_rect() override;
+      virtual ::winrt::Windows::Foundation::Rect get_input_content_rect() override;
+      virtual ::winrt::Windows::Foundation::Rect get_input_selection_rect() override;
 
 
       virtual ~directx_framework_view();
 
    private:
 
-      void OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^, Platform::Object^);
+      void OnUISettingsColorValuesChange(::winrt::Windows::UI::ViewManagement::UISettings^, Platform::Object^);
 
 
       // Event Handlers
       void OnWindowSizeChanged(
-      _In_ Windows::UI::Core::CoreWindow^ sender,
-      _In_ Windows::UI::Core::WindowSizeChangedEventArgs^ args
+      _In_ ::winrt::Windows::UI::Core::CoreWindow^ sender,
+      _In_ ::winrt::Windows::UI::Core::WindowSizeChangedEventArgs^ args
       );
 
-      void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
+      void DpiChanged(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 
-      void DisplayContentsInvalidated(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
+      void DisplayContentsInvalidated(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 
       void OnActivated(
-      _In_ Windows::ApplicationModel::Core::CoreApplicationView^ applicationView,
-      _In_ Windows::ApplicationModel::Activation::IActivatedEventArgs^ args
+      _In_ ::winrt::Windows::ApplicationModel::Core::CoreApplicationView^ applicationView,
+      _In_ ::winrt::Windows::ApplicationModel::Activation::IActivatedEventArgs^ args
       );
 
       void OnSuspending(
       _In_ Object^ sender,
-      _In_ Windows::ApplicationModel::SuspendingEventArgs^ args
+      _In_ ::winrt::Windows::ApplicationModel::SuspendingEventArgs^ args
       );
 
       void OnResuming(
@@ -116,15 +116,15 @@ namespace uwp
       );
 
       
-      void OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args);
+      void OnWindowVisibilityChanged(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::VisibilityChangedEventArgs^ args);
 
-      void OnPointerMoved(Windows::UI::Core::CoreWindow^, Windows::UI::Core::PointerEventArgs^ args);
+      void OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^ args);
 
-      void OnCharacterReceived(Windows::UI::Core::CoreWindow^, Windows::UI::Core::CharacterReceivedEventArgs^ args);
-      void OnKeyDown(Windows::UI::Core::CoreWindow^, Windows::UI::Core::KeyEventArgs^ args);
-      void OnKeyUp(Windows::UI::Core::CoreWindow^, Windows::UI::Core::KeyEventArgs^ args);
-      void OnPointerPressed(Windows::UI::Core::CoreWindow^, Windows::UI::Core::PointerEventArgs^ args);
-      void OnPointerReleased(Windows::UI::Core::CoreWindow^, Windows::UI::Core::PointerEventArgs^ args);
+      void OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs^ args);
+      void OnKeyDown(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^ args);
+      void OnKeyUp(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^ args);
+      void OnPointerPressed(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^ args);
+      void OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^ args);
 
 
       //Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>                    m_blackBrush;
@@ -137,7 +137,7 @@ namespace uwp
 
 
    ref class directx_application_source :
-      Windows::ApplicationModel::Core::IFrameworkViewSource
+      ::winrt::Windows::ApplicationModel::Core::IFrameworkViewSource
    {
    internal:
 
@@ -149,7 +149,7 @@ namespace uwp
 
    public:
 
-      virtual Windows::ApplicationModel::Core::IFrameworkView ^ CreateView();
+      virtual ::winrt::Windows::ApplicationModel::Core::IFrameworkView ^ CreateView();
 
    };
 
@@ -157,7 +157,7 @@ namespace uwp
    CLASS_DECL_ACME directx_application_source ^ new_directx_application_source(class ::system * psystem, const ::string & str);
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

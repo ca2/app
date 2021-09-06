@@ -28,7 +28,7 @@
 
 
 class CLASS_DECL_ACME callstack :
-   public ::matter
+   virtual public ::matter
 {
 public:
 
@@ -65,7 +65,7 @@ public:
 
 
    callstack(const char * pszFormat = default_format(), i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
-   virtual ~callstack();
+   ~callstack() override;
 
 
    //static void global_enable_stack_trace(bool bEnable = true);

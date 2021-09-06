@@ -437,7 +437,7 @@
     <ClInclude Include="inline\application\android.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
-    <ClInclude Include="inline\application\uwp.h" />
+    <ClInclude Include="inline\application\universal_windows.h" />
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\library.h" />
@@ -572,40 +572,40 @@
     <ClInclude Include="net\sockets\bsd\basic\sockets_tcp_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_tls_socket.h" />
     <ClInclude Include="net\sockets\bsd\basic\sockets_udp_socket.h" />
-    <ClInclude Include="node\uwp\aaa_want_to_erase_folder_watch.h" />
-    <ClInclude Include="node\uwp\application.h" />
-    <ClInclude Include="node\uwp\buffer.h" />
-    <ClInclude Include="node\uwp\command.h" />
-    <ClInclude Include="node\uwp\directx.h" />
-    <ClInclude Include="node\uwp\directx_framework_view.h" />
-    <ClInclude Include="node\uwp\directx_impact.h" />
-    <ClInclude Include="node\uwp\directx_interaction.h" />
-    <ClInclude Include="node\uwp\dir_context.h" />
-    <ClInclude Include="node\uwp\dir_system.h" />
-    <ClInclude Include="node\uwp\exception.h" />
-    <ClInclude Include="node\uwp\factory_exchange.h" />
-    <ClInclude Include="node\uwp\file.h" />
-    <ClInclude Include="node\uwp\file_context.h" />
-    <ClInclude Include="node\uwp\file_find.h" />
-    <ClInclude Include="node\uwp\file_system.h" />
-    <ClInclude Include="node\uwp\file_watcher.h" />
-    <ClInclude Include="node\uwp\implementation.h" />
-    <ClInclude Include="node\uwp\interaction_impl.h" />
-    <ClInclude Include="node\uwp\internal.h" />
-    <ClInclude Include="node\uwp\metrowin1.h" />
-    <ClInclude Include="node\uwp\copydesk.h" />
-    <ClInclude Include="node\uwp\native_buffer.h" />
-    <ClInclude Include="node\uwp\os.h" />
-    <ClInclude Include="node\uwp\pen.h" />
-    <ClInclude Include="node\uwp\printer.h" />
-    <ClInclude Include="node\uwp\registry.h" />
-    <ClInclude Include="node\uwp\shell.h" />
-    <ClInclude Include="node\uwp\shell_uwp.h" />
-    <ClInclude Include="node\uwp\thread.h" />
-    <ClInclude Include="node\uwp\tts_speaker.h" />
-    <ClInclude Include="node\uwp\uac_tools.h" />
-    <ClInclude Include="node\uwp\_.h" />
-    <ClInclude Include="node\uwp\_uwp.h" />
+    <ClInclude Include="node\universal_windows\aaa_want_to_erase_folder_watch.h" />
+    <ClInclude Include="node\universal_windows\application.h" />
+    <ClInclude Include="node\universal_windows\buffer.h" />
+    <ClInclude Include="node\universal_windows\command.h" />
+    <ClInclude Include="node\universal_windows\directx.h" />
+    <ClInclude Include="node\universal_windows\directx_framework_view.h" />
+    <ClInclude Include="node\universal_windows\directx_impact.h" />
+    <ClInclude Include="node\universal_windows\directx_interaction.h" />
+    <ClInclude Include="node\universal_windows\dir_context.h" />
+    <ClInclude Include="node\universal_windows\dir_system.h" />
+    <ClInclude Include="node\universal_windows\exception.h" />
+    <ClInclude Include="node\universal_windows\factory_exchange.h" />
+    <ClInclude Include="node\universal_windows\file.h" />
+    <ClInclude Include="node\universal_windows\file_context.h" />
+    <ClInclude Include="node\universal_windows\file_find.h" />
+    <ClInclude Include="node\universal_windows\file_system.h" />
+    <ClInclude Include="node\universal_windows\file_watcher.h" />
+    <ClInclude Include="node\universal_windows\implementation.h" />
+    <ClInclude Include="node\universal_windows\interaction_impl.h" />
+    <ClInclude Include="node\universal_windows\internal.h" />
+    <ClInclude Include="node\universal_windows\metrowin1.h" />
+    <ClInclude Include="node\universal_windows\copydesk.h" />
+    <ClInclude Include="node\universal_windows\native_buffer.h" />
+    <ClInclude Include="node\universal_windows\os.h" />
+    <ClInclude Include="node\universal_windows\pen.h" />
+    <ClInclude Include="node\universal_windows\printer.h" />
+    <ClInclude Include="node\universal_windows\registry.h" />
+    <ClInclude Include="node\universal_windows\shell.h" />
+    <ClInclude Include="node\universal_windows\shell_uwp.h" />
+    <ClInclude Include="node\universal_windows\thread.h" />
+    <ClInclude Include="node\universal_windows\tts_speaker.h" />
+    <ClInclude Include="node\universal_windows\uac_tools.h" />
+    <ClInclude Include="node\universal_windows\_.h" />
+    <ClInclude Include="node\universal_windows\_uwp.h" />
     <ClInclude Include="os\ansios\datetime_c.h" />
     <ClInclude Include="os\ansios\ansios_file.h" />
     <ClInclude Include="os\ansios\file_raw.h" />
@@ -629,23 +629,23 @@
     <ClInclude Include="os\text.h" />
     <ClInclude Include="os\threading.h" />
     <ClInclude Include="os\time.h" />
-    <ClInclude Include="os\uwp\aaa_want_to_erase_window_impl.h" />
-    <ClInclude Include="os\uwp\base_file.h" />
-    <ClInclude Include="os\uwp\exception_engine.h" />
-    <ClInclude Include="os\uwp\file_winrt.h" />
-    <ClInclude Include="os\uwp\gdi_winrt.h" />
-    <ClInclude Include="os\uwp\host_interaction.h" />
-    <ClInclude Include="os\uwp\metrowin_metrowin.h" />
-    <ClInclude Include="os\uwp\multithreading.h" />
-    <ClInclude Include="os\uwp\multithreading_winrt.h" />
-    <ClInclude Include="os\uwp\oswindow.h" />
-    <ClInclude Include="os\uwp\process.h" />
-    <ClInclude Include="os\uwp\simple_hold_handle.h" />
-    <ClInclude Include="os\uwp\simple_ui.h" />
-    <ClInclude Include="os\uwp\sockets.h" />
-    <ClInclude Include="os\uwp\_.h" />
-    <ClInclude Include="os\uwp\_uwp.h" />
-    <ClInclude Include="os\uwp\_winrt.h" />
+    <ClInclude Include="os\universal_windows\aaa_want_to_erase_window_impl.h" />
+    <ClInclude Include="os\universal_windows\base_file.h" />
+    <ClInclude Include="os\universal_windows\exception_engine.h" />
+    <ClInclude Include="os\universal_windows\file_winrt.h" />
+    <ClInclude Include="os\universal_windows\gdi_winrt.h" />
+    <ClInclude Include="os\universal_windows\host_interaction.h" />
+    <ClInclude Include="os\universal_windows\metrowin_metrowin.h" />
+    <ClInclude Include="os\universal_windows\multithreading.h" />
+    <ClInclude Include="os\universal_windows\multithreading_winrt.h" />
+    <ClInclude Include="os\universal_windows\oswindow.h" />
+    <ClInclude Include="os\universal_windows\process.h" />
+    <ClInclude Include="os\universal_windows\simple_hold_handle.h" />
+    <ClInclude Include="os\universal_windows\simple_ui.h" />
+    <ClInclude Include="os\universal_windows\sockets.h" />
+    <ClInclude Include="os\universal_windows\_.h" />
+    <ClInclude Include="os\universal_windows\_uwp.h" />
+    <ClInclude Include="os\universal_windows\_winrt.h" />
     <ClInclude Include="os\windowing.h" />
     <ClInclude Include="os\windows_common\aaa_want_to_erase_windows_common_c.h" />
     <ClInclude Include="os\windows_common\aaa_want_to_erase_windows_common_error.h" />
@@ -1986,37 +1986,37 @@
     <ClCompile Include="net\url_domain.cpp" />
     <ClCompile Include="net\_.cpp" />
     <ClCompile Include="node\dummy\frame_window.cpp" />
-    <ClCompile Include="node\uwp\application.cpp" />
-    <ClCompile Include="node\uwp\app_core.cpp" />
-    <ClCompile Include="node\uwp\command.cpp" />
-    <ClCompile Include="node\uwp\directx.cpp" />
-    <ClCompile Include="node\uwp\directx_framework_view.cpp" />
-    <ClCompile Include="node\uwp\directx_impact.cpp" />
-    <ClCompile Include="node\uwp\directx_interaction.cpp" />
-    <ClCompile Include="node\uwp\dir_context.cpp" />
-    <ClCompile Include="node\uwp\dir_system.cpp" />
-    <ClCompile Include="node\uwp\error.cpp" />
-    <ClCompile Include="node\uwp\factory_exchange.cpp" />
-    <ClCompile Include="node\uwp\file.cpp" />
-    <ClCompile Include="node\uwp\file_context.cpp" />
-    <ClCompile Include="node\uwp\file_find.cpp" />
-    <ClCompile Include="node\uwp\file_system.cpp" />
-    <ClCompile Include="node\uwp\file_watcher.cpp" />
-    <ClCompile Include="node\uwp\folder_watch.cpp" />
-    <ClCompile Include="node\uwp\graphics_buffer.cpp" />
-    <ClCompile Include="node\uwp\interaction_impl.cpp" />
-    <ClCompile Include="node\uwp\copydesk.cpp" />
-    <ClCompile Include="node\uwp\native_buffer.cpp" />
-    <ClCompile Include="node\uwp\os_context.cpp" />
-    <ClCompile Include="node\uwp\registry.cpp" />
-    <ClCompile Include="node\uwp\shell.cpp" />
-    <ClCompile Include="node\uwp\shell_uwp.cpp" />
-    <ClCompile Include="node\uwp\thread.cpp" />
-    <ClCompile Include="node\uwp\timer.cpp" />
-    <ClCompile Include="node\uwp\trace.cpp" />
-    <ClCompile Include="node\uwp\tts_speaker.cpp" />
-    <ClCompile Include="node\uwp\uac_tools.cpp" />
-    <ClCompile Include="node\uwp\util.cpp" />
+    <ClCompile Include="node\universal_windows\application.cpp" />
+    <ClCompile Include="node\universal_windows\app_core.cpp" />
+    <ClCompile Include="node\universal_windows\command.cpp" />
+    <ClCompile Include="node\universal_windows\directx.cpp" />
+    <ClCompile Include="node\universal_windows\directx_framework_view.cpp" />
+    <ClCompile Include="node\universal_windows\directx_impact.cpp" />
+    <ClCompile Include="node\universal_windows\directx_interaction.cpp" />
+    <ClCompile Include="node\universal_windows\dir_context.cpp" />
+    <ClCompile Include="node\universal_windows\dir_system.cpp" />
+    <ClCompile Include="node\universal_windows\error.cpp" />
+    <ClCompile Include="node\universal_windows\factory_exchange.cpp" />
+    <ClCompile Include="node\universal_windows\file.cpp" />
+    <ClCompile Include="node\universal_windows\file_context.cpp" />
+    <ClCompile Include="node\universal_windows\file_find.cpp" />
+    <ClCompile Include="node\universal_windows\file_system.cpp" />
+    <ClCompile Include="node\universal_windows\file_watcher.cpp" />
+    <ClCompile Include="node\universal_windows\folder_watch.cpp" />
+    <ClCompile Include="node\universal_windows\graphics_buffer.cpp" />
+    <ClCompile Include="node\universal_windows\interaction_impl.cpp" />
+    <ClCompile Include="node\universal_windows\copydesk.cpp" />
+    <ClCompile Include="node\universal_windows\native_buffer.cpp" />
+    <ClCompile Include="node\universal_windows\os_context.cpp" />
+    <ClCompile Include="node\universal_windows\registry.cpp" />
+    <ClCompile Include="node\universal_windows\shell.cpp" />
+    <ClCompile Include="node\universal_windows\shell_uwp.cpp" />
+    <ClCompile Include="node\universal_windows\thread.cpp" />
+    <ClCompile Include="node\universal_windows\timer.cpp" />
+    <ClCompile Include="node\universal_windows\trace.cpp" />
+    <ClCompile Include="node\universal_windows\tts_speaker.cpp" />
+    <ClCompile Include="node\universal_windows\uac_tools.cpp" />
+    <ClCompile Include="node\universal_windows\util.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="os\ansios\base.cpp" />
     <ClCompile Include="os\ansios\datetime.cpp" />
@@ -2050,33 +2050,33 @@
     <ClCompile Include="os\process.cpp" />
     <ClCompile Include="os\thread.cpp" />
     <ClCompile Include="os\time.cpp" />
-    <ClCompile Include="os\uwp\application_system_run.cpp" />
-    <ClCompile Include="os\uwp\aura.cpp" />
-    <ClCompile Include="os\uwp\base_file.cpp" />
-    <ClCompile Include="os\uwp\debug.cpp" />
-    <ClCompile Include="os\uwp\direct2d_tls.cpp" />
-    <ClCompile Include="os\uwp\dpi.cpp" />
-    <ClCompile Include="os\uwp\dummy_ipc.cpp" />
-    <ClCompile Include="os\uwp\exception_engine.cpp" />
-    <ClCompile Include="os\uwp\file.cpp" />
-    <ClCompile Include="os\uwp\file_memory_map.cpp" />
-    <ClCompile Include="os\uwp\graphics.cpp" />
-    <ClCompile Include="os\uwp\language.cpp" />
-    <ClCompile Include="os\uwp\launcher.cpp" />
-    <ClCompile Include="os\uwp\library.cpp" />
-    <ClCompile Include="os\uwp\lock.cpp" />
-    <ClCompile Include="os\uwp\main.cpp" />
-    <ClCompile Include="os\uwp\multithreading.cpp" />
-    <ClCompile Include="os\uwp\os_message_box.cpp" />
-    <ClCompile Include="os\uwp\process.cpp" />
-    <ClCompile Include="os\uwp\simple_app.cpp" />
-    <ClCompile Include="os\uwp\simple_shell_launcher.cpp" />
-    <ClCompile Include="os\uwp\small_ipca_channel.cpp" />
-    <ClCompile Include="os\uwp\sockets.cpp" />
-    <ClCompile Include="os\uwp\time.cpp" />
-    <ClCompile Include="os\uwp\user.cpp" />
-    <ClCompile Include="os\uwp\windowing.cpp" />
-    <ClCompile Include="os\uwp\aaa_want_to_erase_main_uwp.cpp">
+    <ClCompile Include="os\universal_windows\application_system_run.cpp" />
+    <ClCompile Include="os\universal_windows\aura.cpp" />
+    <ClCompile Include="os\universal_windows\base_file.cpp" />
+    <ClCompile Include="os\universal_windows\debug.cpp" />
+    <ClCompile Include="os\universal_windows\direct2d_tls.cpp" />
+    <ClCompile Include="os\universal_windows\dpi.cpp" />
+    <ClCompile Include="os\universal_windows\dummy_ipc.cpp" />
+    <ClCompile Include="os\universal_windows\exception_engine.cpp" />
+    <ClCompile Include="os\universal_windows\file.cpp" />
+    <ClCompile Include="os\universal_windows\file_memory_map.cpp" />
+    <ClCompile Include="os\universal_windows\graphics.cpp" />
+    <ClCompile Include="os\universal_windows\language.cpp" />
+    <ClCompile Include="os\universal_windows\launcher.cpp" />
+    <ClCompile Include="os\universal_windows\library.cpp" />
+    <ClCompile Include="os\universal_windows\lock.cpp" />
+    <ClCompile Include="os\universal_windows\main.cpp" />
+    <ClCompile Include="os\universal_windows\multithreading.cpp" />
+    <ClCompile Include="os\universal_windows\os_message_box.cpp" />
+    <ClCompile Include="os\universal_windows\process.cpp" />
+    <ClCompile Include="os\universal_windows\simple_app.cpp" />
+    <ClCompile Include="os\universal_windows\simple_shell_launcher.cpp" />
+    <ClCompile Include="os\universal_windows\small_ipca_channel.cpp" />
+    <ClCompile Include="os\universal_windows\sockets.cpp" />
+    <ClCompile Include="os\universal_windows\time.cpp" />
+    <ClCompile Include="os\universal_windows\user.cpp" />
+    <ClCompile Include="os\universal_windows\windowing.cpp" />
+    <ClCompile Include="os\universal_windows\aaa_want_to_erase_main_uwp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -2674,27 +2674,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\platform-uwp\Common.props" />
+    <Import Project="..\..\platform-universal_windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -2739,7 +2739,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -2759,7 +2759,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <FixedBaseAddress>false</FixedBaseAddress>
       <ModuleDefinitionFile>
@@ -2772,7 +2772,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2787,7 +2787,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>sqlite.lib;ssleay32.lib;libeay32.lib;zlib.lib;bzip2.lib;pcre.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -2800,7 +2800,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2813,7 +2813,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>sqlite.lib;ssleay32.lib;libeay32.lib;zlib.lib;bzip2.lib;pcre.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -2825,7 +2825,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2840,7 +2840,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>sqlite.lib;ssleay32.lib;libeay32.lib;zlib.lib;bzip2.lib;pcre.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -2853,7 +2853,7 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PreprocessorDefinitions>_AURA_LIBRARY;USE_OS_IMAGE_LOADER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2867,7 +2867,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>sqlite.lib;ssleay32.lib;libeay32.lib;zlib.lib;bzip2.lib;pcre.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -2879,7 +2879,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <CompileAsWinRT>true</CompileAsWinRT>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include/include;$(__archive)third-uwp/third/include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include/include;$(__archive)third-universal_windows/third/include;$(SolutionDir)../../platform-universal_windows;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj </AdditionalOptions>
@@ -2894,7 +2894,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-uwp/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-uwp/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows/third/library/$(PlatformName)/$(Configuration);$(__archive)storage-universal_windows/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
       <AdditionalDependencies>sqlite.lib;ssleay32.lib;libeay32.lib;zlib.lib;bzip2.lib;pcre.lib;dxgi.lib;Windowscodecs.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>

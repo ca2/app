@@ -3,89 +3,89 @@
 #include <io.h>
 
 
-int_bool m_psystem->m_pacmefile->exists(const char* path1)
-{
-
-   u32 dwFileAttributes = windows_get_file_attributes(path1);
-
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-      return false;
-
-   return true;
-
-}
-
-
-
-int_bool m_psystem->m_pacmefile->put_contents(const char* path, const char* contents, memsize len)
-{
-
-            auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(::file_path_folder(path));
-
-   wstring wstr(path);
-
-   HANDLE hfile = hfile_create(path, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   if (hfile == hfile_null)
-   {
-
-      return false;
-
-   }
-
-   count dwWrite;
-
-   if (len < 0)
-   {
-
-      dwWrite = ansi_length(contents);
-
-   }
-   else
-   {
-
-      dwWrite = len;
-
-   }
-
-   DWORD dwWritten = 0;
-
-   int_bool bOk = WriteFile(hfile, contents, (u32)dwWrite, &dwWritten, nullptr) != false;
-
-   CloseHandle(hfile);
-
-   return dwWrite == dwWritten && bOk != false;
-
-
-}
-
-
-filesize file_length_dup(const char* path)
-{
-
-   auto hfile = hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   if (is_nok(hfile))
-   {
-    
-      return 0;
-
-   }
-
-   u64 u = hfile_get_size(hfile);
-
-   CloseHandle(hfile);
-
-   return u;
-
-}
+//int_bool file_exists(const char* path1)
+//{
+//
+//   u32 dwFileAttributes = windows_get_file_attributes(path1);
+//
+//   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+//      return false;
+//
+//   return true;
+//
+//}
 
 
 
+//int_bool m_psystem->m_pacmefile->put_contents(const char* path, const char* contents, memsize len)
+//{
+//
+//            auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->create(::file_path_folder(path));
+//
+//   wstring wstr(path);
+//
+//   HANDLE hfile = hfile_create(path, GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+//
+//   if (hfile == hfile_null)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   count dwWrite;
+//
+//   if (len < 0)
+//   {
+//
+//      dwWrite = ansi_length(contents);
+//
+//   }
+//   else
+//   {
+//
+//      dwWrite = len;
+//
+//   }
+//
+//   DWORD dwWritten = 0;
+//
+//   int_bool bOk = WriteFile(hfile, contents, (u32)dwWrite, &dwWritten, nullptr) != false;
+//
+//   CloseHandle(hfile);
+//
+//   return dwWrite == dwWritten && bOk != false;
+//
+//
+//}
+
+
+//filesize file_length_dup(const char* path)
+//{
+//
+//   auto hfile = hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+//
+//   if (is_nok(hfile))
+//   {
+//    
+//      return 0;
+//
+//   }
+//
+//   u64 u = hfile_get_size(hfile);
+//
+//   CloseHandle(hfile);
+//
+//   return u;
+//
+//}
+//
+//
+//
 
 
 
@@ -815,33 +815,33 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 }
 
 
-int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
-{
-
-   DWORD dwHi;
-
-   DWORD dwLo = GetFileSize(h, &dwHi);
-
-   if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
-   {
-
-      LONG l = (iSize >> 32) & 0xffffffff;
-
-      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32)(iSize & 0xffffffff))
-         return false;
-
-      if (l != ((iSize >> 32) & 0xffffffff))
-         return false;
-
-      if (!SetEndOfFile(h))
-         return false;
-
-   }
-
-
-   return 1;
-
-}
+//int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
+//{
+//
+//   DWORD dwHi;
+//
+//   DWORD dwLo = GetFileSize(h, &dwHi);
+//
+//   if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
+//   {
+//
+//      LONG l = (iSize >> 32) & 0xffffffff;
+//
+//      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32)(iSize & 0xffffffff))
+//         return false;
+//
+//      if (l != ((iSize >> 32) & 0xffffffff))
+//         return false;
+//
+//      if (!SetEndOfFile(h))
+//         return false;
+//
+//   }
+//
+//
+//   return 1;
+//
+//}
 
 
 
@@ -909,22 +909,22 @@ int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 //
 //}
 
-int_bool file_delete(const char* lpszFileName)
-{
-
-   wstring wstr(lpszFileName);
-
-   if (!::DeleteFile(wstr))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-
-}
+//int_bool file_delete(const char* lpszFileName)
+//{
+//
+//   wstring wstr(lpszFileName);
+//
+//   if (!::DeleteFile(wstr))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//
+//}
 
 
 
@@ -1409,24 +1409,24 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 //
-
-void hfile_set_size(HANDLE h, i64 iSize)
-{
-
-   DWORD dwHi;
-
-   DWORD dwLo = ::GetFileSize(h, &dwHi);
-
-   if (((u64)dwLo | ((i64)dwHi << 32)) != iSize)
-   {
-
-      LONG l = (iSize >> 32) & 0xffffffff;
-
-      ::SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
-      SetEndOfFile(h);
-   }
-
-}
+//
+//void hfile_set_size(HANDLE h, i64 iSize)
+//{
+//
+//   DWORD dwHi;
+//
+//   DWORD dwLo = ::GetFileSize(h, &dwHi);
+//
+//   if (((u64)dwLo | ((i64)dwHi << 32)) != iSize)
+//   {
+//
+//      LONG l = (iSize >> 32) & 0xffffffff;
+//
+//      ::SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
+//      SetEndOfFile(h);
+//   }
+//
+//}
 
 ::u32 WinSetFilePointer(HANDLE h, ::i32 lMove, PLONG plHi, ::u32 dwMeth)
 {
@@ -1455,7 +1455,7 @@ void hfile_set_size(HANDLE h, i64 iSize)
    }
 
    if (!SetFilePointerEx(h, liMove, &liRes, dwMeth))
-      __throw(::exception::exception("SetFilePointer error"));
+      __throw(error_io, "SetFilePointer error");
 
    if (plHi != nullptr)
    {
@@ -1475,7 +1475,11 @@ void hfile_set_size(HANDLE h, i64 iSize)
    FILE_STANDARD_INFO info;
 
    if (!GetFileInformationByHandleEx(h, FileStandardInfo, &info, sizeof(info)))
-      __throw(::exception::exception("GetFileSize Error"));
+   {
+
+      __throw(error_io, "GetFileSize Error");
+
+   }
 
    if (lpdwHi != nullptr)
    {
@@ -1577,313 +1581,313 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 }
 
 
-::e_status hfile_close(hfile hfile)
-{
-
-   return ::CloseHandle(hfile) != false;
-
-}
-
-
-::Windows::Storage::StorageFolder^ get_os_folder(const char* lpcszDirName)
-{
-
-   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
-
-}
-
-
-::Windows::Storage::StorageFile^ get_os_file(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
-{
-
-   /*
-   CREATE_ALWAYS
-   2
-   Creates a new file, always.
-   If the specified file exists and is writable, the function overwrites the file, the function succeeds, and last-error code is set to ERROR_ALREADY_EXISTS (183).
-   If the specified file does not exist and is a valid path, a new file is created, the function succeeds, and the last-error code is set to zero.
-   For more information, see the Remarks section of this topic.
-
-   CREATE_NEW
-   1
-   Creates a new file, only if it does not already exist.
-   If the specified file exists, the function fails and the last-error code is set to ERROR_FILE_EXISTS (80).
-   If the specified file does not exist and is a valid path to a writable location, a new file is created.
-
-   OPEN_ALWAYS
-   4
-   Opens a file, always.
-   If the specified file exists, the function succeeds and the last-error code is set to ERROR_ALREADY_EXISTS (183).
-   If the specified file does not exist and is a valid path to a writable location, the function creates a file and the last-error code is set to zero.
-
-   OPEN_EXISTING
-   3
-   Opens a file or device, only if it exists.
-   If the specified file or device does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
-   For more information about devices, see the Remarks section.
-
-   TRUNCATE_EXISTING
-   5
-   Opens a file and truncates it so that its size_i32 is zero bytes, only if it exists.
-   If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
-   The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
-
-   */
-
-   ::Windows::Storage::StorageFile^ file = nullptr;
-
-   string strPrefix;
-
-   string strRelative;
-
-   ::Windows::Storage::StorageFolder^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
-
-   if (folder == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   if (dwCreationDisposition == CREATE_ALWAYS)
-   {
-
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
-
-      file = wait(folder->CreateFileAsync(strRelative, optionNew));
-
-   }
-   else if (dwCreationDisposition == CREATE_NEW)
-   {
-
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::FailIfExists;
-
-      file = wait(folder->CreateFileAsync(strRelative, optionNew));
-
-   }
-   else if (dwCreationDisposition == OPEN_ALWAYS)
-   {
-
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::OpenIfExists;
-
-      file = wait(folder->CreateFileAsync(strRelative, optionNew));
-
-   }
-   else if (dwCreationDisposition == OPEN_EXISTING)
-   {
-
-      file = wait(folder->GetFileAsync(strRelative));
-
-   }
-   else if (dwCreationDisposition == TRUNCATE_EXISTING)
-   {
-
-      file = wait(folder->GetFileAsync(strRelative));
-
-      ::Windows::Storage::StorageStreamTransaction^ transaction = wait(file->OpenTransactedWriteAsync());
-
-      transaction->Stream->Size = 0;
-
-   }
-
-   return file;
-
-}
-
-
-bool get_filetime_set(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
-{
-
-   if (lpCreationTime != nullptr)
-   {
-
-      *lpCreationTime = (FILETIME&)file->DateCreated;
-
-   }
-
-   if (lpItemTime != nullptr || lpLastWriteTime != nullptr)
-   {
-
-      ::Windows::Storage::FileProperties::BasicProperties^ properties = wait(file->GetBasicPropertiesAsync());
-
-      if (lpItemTime != nullptr)
-      {
-         *lpItemTime = (FILETIME&)properties->ItemDate;
-      }
-
-      if (lpLastWriteTime != nullptr)
-      {
-         *lpLastWriteTime = (FILETIME&)properties->DateModified;
-      }
-
-   }
-
-   return true;
-
-}
-
-
-
-
-::file::path dir::sys_temp()
-{
-
-   return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
-
-}
-
-
-//
-//int_bool m_psystem->m_pacmefile->exists(const char * path1)
+//::e_status hfile_close(hfile hfile)
 //{
 //
-//   string str(path1);
-//   str.replace("/","\\");
-//   wstring wstr(L"\\\\?\\");
-//   wstr = wstr + wstring(str);
-//   u32 dwFileAttributes = ::windows_get_file_attributes(wstr);
-//   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-//      return true;
-//   else
-//      return false;
+//   return ::CloseHandle(hfile) != false;
 //
 //}
 //
 
-
-//int_bool m_psystem->m_pacmefile->put_contents(const char * path,const char * contents,::count len)
+//::winrt::Windows::Storage::StorageFolder^ get_os_folder(const char* lpcszDirName)
 //{
 //
-//            auto psystem = m_psystem;
-
-         auto pacmedir = psystem->m_pacmedir;
-
-pacmedir->create(::file_path_folder(path));
-//
-//   wstring wstr(path);
-//
-//
-//
-//   HANDLE hfile = ::create_file(path,GENERIC_WRITE,0,nullptr,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,nullptr);
-//   if(hfile == INVALID_HANDLE_VALUE)
-//      return false;
-//   count dwWrite;
-//   if(len < 0)
-//      dwWrite = ansi_length(contents);
-//   else
-//      dwWrite = len;
-//   ::u32 dwWritten = 0;
-//   bool bOk = ::WriteFile(hfile,contents,(u32)dwWrite,&dwWritten,nullptr) != false;
-//   ::CloseHandle(hfile);
-//   return dwWrite == dwWritten && bOk != false;
+//   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
 //
 //}
-
-
-
-
-string m_psystem->m_pacmefile->as_string(const char* path, strsize iReadAtMostByteCount)
-{
-
-   string str;
-
-   hfile hfile = ::hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   if (::is_nok(hfile))
-   {
-
-      return "";
-
-   }
-
-   DWORD dwSizeHigh;
-
-   u32 dwSize = ::GetFileSize(hfile, &dwSizeHigh);
-
-   if (iReadAtMostByteCount < 0)
-   {
-
-      dwSize = dwSize + iReadAtMostByteCount + 1;
-
-   }
-   else
-   {
-
-      dwSize = iReadAtMostByteCount;
-
-   }
-
-   char* psz = str.get_string_buffer(dwSize);
-
-   DWORD dwRead;
-
-   ::ReadFile(hfile, psz, dwSize, &dwRead, nullptr);
-
-   psz[dwSize] = '\0';
-
-   str.release_string_buffer();
-
-   ::hfile_close(hfile);
-
-   return str;
-
-}
-
-
-bool file_as_memory(memory_base& memory, const char* path, iptr iReadAtMostByteCount)
-{
-
-   memory.set_size(0);
-
-   hfile hfile = ::hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-
-   if (::is_nok(hfile))
-   {
-
-      return false;
-
-   }
-
-   ::filesize filesize = ::hfile_get_size(hfile);
-
-   iReadAtMostByteCount = (iptr) minimum_non_negative(filesize, iReadAtMostByteCount);
-
-   memory.set_size(iReadAtMostByteCount);
-
-   auto iRead = hfile_read(hfile, memory.get_data(), (u32)memory.get_size());
-
-   bool bOk = ::GetLastError() == NO_ERROR;
-
-   memory.set_size(iRead);
-
-   hfile_close(hfile);
-
-   return bOk;
-
-}
-
-
-
-
-int_bool file_path_is_equal(const char* psz1, const char* psz2)
-{
-
-   return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
-
-}
-
-
-string file_get_mozilla_firefox_plugin_container_path()
-{
-
-   __throw(::exception::exception(" todo "));
-
-   return "";
-
-}
-
-
-
+//
+//
+//::winrt::Windows::Storage::StorageFile^ get_os_file(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
+//{
+//
+//   /*
+//   CREATE_ALWAYS
+//   2
+//   Creates a new file, always.
+//   If the specified file exists and is writable, the function overwrites the file, the function succeeds, and last-error code is set to ERROR_ALREADY_EXISTS (183).
+//   If the specified file does not exist and is a valid path, a new file is created, the function succeeds, and the last-error code is set to zero.
+//   For more information, see the Remarks section of this topic.
+//
+//   CREATE_NEW
+//   1
+//   Creates a new file, only if it does not already exist.
+//   If the specified file exists, the function fails and the last-error code is set to ERROR_FILE_EXISTS (80).
+//   If the specified file does not exist and is a valid path to a writable location, a new file is created.
+//
+//   OPEN_ALWAYS
+//   4
+//   Opens a file, always.
+//   If the specified file exists, the function succeeds and the last-error code is set to ERROR_ALREADY_EXISTS (183).
+//   If the specified file does not exist and is a valid path to a writable location, the function creates a file and the last-error code is set to zero.
+//
+//   OPEN_EXISTING
+//   3
+//   Opens a file or device, only if it exists.
+//   If the specified file or device does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
+//   For more information about devices, see the Remarks section.
+//
+//   TRUNCATE_EXISTING
+//   5
+//   Opens a file and truncates it so that its size_i32 is zero bytes, only if it exists.
+//   If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
+//   The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
+//
+//   */
+//
+//   ::winrt::Windows::Storage::StorageFile^ file = nullptr;
+//
+//   string strPrefix;
+//
+//   string strRelative;
+//
+//   ::winrt::Windows::Storage::StorageFolder^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
+//
+//   if (folder == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   if (dwCreationDisposition == CREATE_ALWAYS)
+//   {
+//
+//      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::ReplaceExisting;
+//
+//      file = wait(folder->CreateFileAsync(strRelative, optionNew));
+//
+//   }
+//   else if (dwCreationDisposition == CREATE_NEW)
+//   {
+//
+//      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::FailIfExists;
+//
+//      file = wait(folder->CreateFileAsync(strRelative, optionNew));
+//
+//   }
+//   else if (dwCreationDisposition == OPEN_ALWAYS)
+//   {
+//
+//      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists;
+//
+//      file = wait(folder->CreateFileAsync(strRelative, optionNew));
+//
+//   }
+//   else if (dwCreationDisposition == OPEN_EXISTING)
+//   {
+//
+//      file = wait(folder->GetFileAsync(strRelative));
+//
+//   }
+//   else if (dwCreationDisposition == TRUNCATE_EXISTING)
+//   {
+//
+//      file = wait(folder->GetFileAsync(strRelative));
+//
+//      ::winrt::Windows::Storage::StorageStreamTransaction^ transaction = wait(file->OpenTransactedWriteAsync());
+//
+//      transaction->Stream->Size = 0;
+//
+//   }
+//
+//   return file;
+//
+//}
+//
+//
+//bool get_filetime_set(::winrt::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+//{
+//
+//   if (lpCreationTime != nullptr)
+//   {
+//
+//      *lpCreationTime = (FILETIME&)file->DateCreated;
+//
+//   }
+//
+//   if (lpItemTime != nullptr || lpLastWriteTime != nullptr)
+//   {
+//
+//      ::winrt::Windows::Storage::FileProperties::BasicProperties^ properties = wait(file->GetBasicPropertiesAsync());
+//
+//      if (lpItemTime != nullptr)
+//      {
+//         *lpItemTime = (FILETIME&)properties->ItemDate;
+//      }
+//
+//      if (lpLastWriteTime != nullptr)
+//      {
+//         *lpLastWriteTime = (FILETIME&)properties->DateModified;
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//
+//
+//::file::path dir::sys_temp()
+//{
+//
+//   return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
+//
+//}
+//
+//
+////
+////int_bool m_psystem->m_pacmefile->exists(const char * path1)
+////{
+////
+////   string str(path1);
+////   str.replace("/","\\");
+////   wstring wstr(L"\\\\?\\");
+////   wstr = wstr + wstring(str);
+////   u32 dwFileAttributes = ::windows_get_file_attributes(wstr);
+////   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+////      return true;
+////   else
+////      return false;
+////
+////}
+////
+//
+//
+////int_bool m_psystem->m_pacmefile->put_contents(const char * path,const char * contents,::count len)
+////{
+////
+////            auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->create(::file_path_folder(path));
+////
+////   wstring wstr(path);
+////
+////
+////
+////   HANDLE hfile = ::create_file(path,GENERIC_WRITE,0,nullptr,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,nullptr);
+////   if(hfile == INVALID_HANDLE_VALUE)
+////      return false;
+////   count dwWrite;
+////   if(len < 0)
+////      dwWrite = ansi_length(contents);
+////   else
+////      dwWrite = len;
+////   ::u32 dwWritten = 0;
+////   bool bOk = ::WriteFile(hfile,contents,(u32)dwWrite,&dwWritten,nullptr) != false;
+////   ::CloseHandle(hfile);
+////   return dwWrite == dwWritten && bOk != false;
+////
+////}
+//
+//
+//
+//
+//string m_psystem->m_pacmefile->as_string(const char* path, strsize iReadAtMostByteCount)
+//{
+//
+//   string str;
+//
+//   hfile hfile = ::hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+//
+//   if (::is_nok(hfile))
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   DWORD dwSizeHigh;
+//
+//   u32 dwSize = ::GetFileSize(hfile, &dwSizeHigh);
+//
+//   if (iReadAtMostByteCount < 0)
+//   {
+//
+//      dwSize = dwSize + iReadAtMostByteCount + 1;
+//
+//   }
+//   else
+//   {
+//
+//      dwSize = iReadAtMostByteCount;
+//
+//   }
+//
+//   char* psz = str.get_string_buffer(dwSize);
+//
+//   DWORD dwRead;
+//
+//   ::ReadFile(hfile, psz, dwSize, &dwRead, nullptr);
+//
+//   psz[dwSize] = '\0';
+//
+//   str.release_string_buffer();
+//
+//   ::hfile_close(hfile);
+//
+//   return str;
+//
+//}
+//
+//
+//bool file_as_memory(memory_base& memory, const char* path, iptr iReadAtMostByteCount)
+//{
+//
+//   memory.set_size(0);
+//
+//   hfile hfile = ::hfile_create(path, GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+//
+//   if (::is_nok(hfile))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   ::filesize filesize = ::hfile_get_size(hfile);
+//
+//   iReadAtMostByteCount = (iptr) minimum_non_negative(filesize, iReadAtMostByteCount);
+//
+//   memory.set_size(iReadAtMostByteCount);
+//
+//   auto iRead = hfile_read(hfile, memory.get_data(), (u32)memory.get_size());
+//
+//   bool bOk = ::GetLastError() == NO_ERROR;
+//
+//   memory.set_size(iRead);
+//
+//   hfile_close(hfile);
+//
+//   return bOk;
+//
+//}
+//
+//
+//
+//
+//int_bool file_path_is_equal(const char* psz1, const char* psz2)
+//{
+//
+//   return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
+//
+//}
+//
+//
+//string file_get_mozilla_firefox_plugin_container_path()
+//{
+//
+//   __throw(::exception::exception(" todo "));
+//
+//   return "";
+//
+//}
+//
+//
+//
 
 //
 //
@@ -1893,73 +1897,73 @@ string file_get_mozilla_firefox_plugin_container_path()
 //   return _chsize_s(file,len);
 //}
 //
-
-
-int_bool file_set_length(const char* pszName, size_t iSize)
-{
-
-   int i = open(pszName, 0);
-
-   ftruncate(i, iSize);
-
-   ::close(i);
-
-   return true;
-
-}
-
-
-
-
-bool file_copy_dup(const char* pszNew, const char* pszSrc, bool bOverwrite)
-{
-
-   ::Windows::Storage::StorageFolder^ folder = nullptr;
-
-   try
-   {
-
-      folder = get_os_folder(::file_path_folder(pszNew));
-
-      if (folder == nullptr)
-         return false;
-
-   }
-   catch (::Exception^ ex)
-   {
-
-      return false;
-
-   }
-
-
-   ::Windows::Storage::StorageFile^ fileSrc = nullptr;
-
-   try
-   {
-
-      fileSrc = get_os_file(pszSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
-
-      if (fileSrc == nullptr)
-         return false;
-
-   }
-   catch (::Exception^ ex)
-   {
-
-      return false;
-
-   }
-
-   wstring wstrNew(pszNew);
-
-   return ::wait(fileSrc->CopyAsync(folder, wstrNew, bOverwrite ?
-      ::Windows::Storage::NameCollisionOption::ReplaceExisting :
-      ::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
-
-
-}
-
+//
+//
+//int_bool file_set_length(const char* pszName, size_t iSize)
+//{
+//
+//   int i = open(pszName, 0);
+//
+//   ftruncate(i, iSize);
+//
+//   ::close(i);
+//
+//   return true;
+//
+//}
+//
+//
+//
+//
+//bool file_copy_dup(const char* pszNew, const char* pszSrc, bool bOverwrite)
+//{
+//
+//   ::winrt::Windows::Storage::StorageFolder^ folder = nullptr;
+//
+//   try
+//   {
+//
+//      folder = get_os_folder(::file_path_folder(pszNew));
+//
+//      if (folder == nullptr)
+//         return false;
+//
+//   }
+//   catch (::Exception^ ex)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//
+//   ::winrt::Windows::Storage::StorageFile^ fileSrc = nullptr;
+//
+//   try
+//   {
+//
+//      fileSrc = get_os_file(pszSrc, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//
+//      if (fileSrc == nullptr)
+//         return false;
+//
+//   }
+//   catch (::Exception^ ex)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   wstring wstrNew(pszNew);
+//
+//   return ::wait(fileSrc->CopyAsync(folder, wstrNew, bOverwrite ?
+//      ::winrt::Windows::Storage::NameCollisionOption::ReplaceExisting :
+//      ::winrt::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
+//
+//
+//}
+//
 
 
 filesize hfile_get_size(HANDLE h)
@@ -1975,76 +1979,76 @@ filesize hfile_get_size(HANDLE h)
 
 
 
-
-CLASS_DECL_ACME memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
-{
-   
-   Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
-   
-   Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
-   
-   r->ReadBytes(a);
-
-   if (pos > (memsize) a->Length)
-   {
-
-      return 0;
-
-   }
-
-   if (size < 0)
-   {
-
-      size = a->Length - pos + size + 1;
-
-   }
-
-   if (pos + size > (memsize) a->Length)
-   {
-
-      size = a->Length - pos;
-
-   }
-
-   memcpy(p, &a->Data[pos], size);
-
-   return size;
-
-}
-
-
-CLASS_DECL_ACME memory_file_pointer create_memory_file(::Windows::Storage::Streams::IInputStream^ stream)
-{
-
-   auto pfile = create_memory_file();
-
-   while (::task_get_run())
-   {
-
-      ::Windows::Storage::Streams::IBuffer^ buffer = ref new ::Windows::Storage::Streams::Buffer(1_mb);
-
-      ::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::Windows::Storage::Streams::InputStreamOptions::None));
-
-      memory mem;
-
-      mem.set_os_buffer(buffer);
-
-      pfile->write(mem);
-
-      if (mem.get_size() < 1_mb)
-      {
-
-         break;
-
-      }
-
-   }
-
-   pfile->seek_begin();
-
-   return pfile;
-
-}
-
+//
+//CLASS_DECL_ACME memsize read_buffer(void* p, ::winrt::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
+//{
+//   
+//   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
+//   
+//   Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
+//   
+//   r->ReadBytes(a);
+//
+//   if (pos > (memsize) a->Length)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//   if (size < 0)
+//   {
+//
+//      size = a->Length - pos + size + 1;
+//
+//   }
+//
+//   if (pos + size > (memsize) a->Length)
+//   {
+//
+//      size = a->Length - pos;
+//
+//   }
+//
+//   memcpy(p, &a->Data[pos], size);
+//
+//   return size;
+//
+//}
+//
+//
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(::winrt::Windows::Storage::Streams::IInputStream^ stream)
+//{
+//
+//   auto pfile = create_memory_file();
+//
+//   while (::task_get_run())
+//   {
+//
+//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
+//
+//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::winrt::Windows::Storage::Streams::InputStreamOptions::None));
+//
+//      memory mem;
+//
+//      mem.set_os_buffer(buffer);
+//
+//      pfile->write(mem);
+//
+//      if (mem.get_size() < 1_mb)
+//      {
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//   pfile->seek_begin();
+//
+//   return pfile;
+//
+//}
+//
 
 

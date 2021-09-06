@@ -38,6 +38,9 @@ namespace aura
 
       virtual ::e_status on_initialize_object() override;
 
+      virtual void dpi_os_initialize();
+
+
 //#ifdef LINUX
 
   //    virtual ::linux::appindicator * appindicator_allocate();

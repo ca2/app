@@ -7,9 +7,9 @@
 #include "interaction_prodevian.h"
 #include "aura/node/_node.h"
 #include "acme/node/operating_system/_user.h"
-#ifdef _UWP
-#include "aura/node/operating_system/windows_common/draw2d_direct2d_global.h"
-#endif
+//#ifdef _UWP
+//#include "aura/node/operating_system/windows_common/draw2d_direct2d_global.h"
+//#endif
 
 point_i32 g_pointLastBottomRight;
 
@@ -93,7 +93,7 @@ namespace user
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
 
-      set_config_fps(20.0);
+      set_fps(20.0);
 
 #else
 
@@ -539,16 +539,35 @@ namespace user
    ::e_status interaction_impl::native_create_host()
    {
 
-      auto estatus = __construct(m_pwindow);
+      auto pwindowSoul = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul;
 
-      if (!estatus)
+      if (pwindowSoul && !pwindowSoul->m_pimpl)
       {
 
-         return estatus;
+         m_pwindow = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul;
+
+         m_pwindow->m_pimpl = this;
+
+         m_puserinteraction->m_pimpl = this;
+
+      }
+      else
+      {
+
+         auto estatus = __construct(m_pwindow);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul = m_pwindow;
 
       }
 
-      estatus = m_pwindow->create_window(this);
+      auto estatus = m_pwindow->create_window(this);
 
       if (!estatus)
       {
@@ -3849,7 +3868,7 @@ namespace user
 
          _synchronous_lock synchronouslock(psync);
 
-         ::draw2d::device_lock devicelock(m_puserinteraction);
+         windowing::graphics_lock graphicslock(m_pwindow);
 
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 

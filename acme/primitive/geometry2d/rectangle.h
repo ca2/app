@@ -355,7 +355,7 @@ public:
     this->bottom = (decltype(this->bottom))(this->bottom - b);
  }
 
- template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+   template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
    rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const noexcept
    { 
       return rectangle_type(

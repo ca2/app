@@ -13,8 +13,8 @@
       public:
 
 
-         ::Windows::Networking::Sockets::StreamSocket ^  m_streamsocket;
-         ::Windows::Storage::Streams::DataWriter ^       m_writer;
+         ::winrt::Windows::Networking::Sockets::StreamSocket ^  m_streamsocket;
+         ::winrt::Windows::Storage::Streams::DataWriter ^       m_writer;
 
 
          bool m_bConnecting; ///< Flag indicating connection in progress

@@ -228,14 +228,14 @@ namespace draw2d
    //}
 
 
-   bool graphics::IsPrinting()
-   {
+   //bool graphics::IsPrinting()
+   //{
 
 
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    void graphics::thread_select()

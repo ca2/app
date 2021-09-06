@@ -24,9 +24,13 @@ class sync_object;
 
 ::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout);
 
+#if !defined(_UWP)
+
 ::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pwaitableptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 
 ::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pwaitableptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+
+#endif
 
 ::u32 WaitForSingleObject(sync_object * pwaitable, ::u32 dwMilliseconds);
 

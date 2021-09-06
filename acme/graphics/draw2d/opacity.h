@@ -17,6 +17,7 @@ public:
 
    opacity() { m_bAlpha = 255; }
    opacity(const class ::opacity & opacity) : m_bAlpha(opacity.m_bAlpha) { }
+
    template < primitive_floating FLOATING >
    opacity(FLOATING f) { m_bAlpha = byte_clip(f * 255.); }
    template < primitive_integral INTEGRAL >
@@ -37,7 +38,6 @@ public:
    opacity & operator = (FLOATING f) { m_bAlpha = byte_clip(f * 255.); return *this; }
    template < primitive_integral INTEGRAL >
    opacity & operator = (INTEGRAL i) { m_bAlpha = byte_clip(i); return *this; }
-
 
    template < primitive_integral INTEGRAL >
    opacity operator + (INTEGRAL i) { return byte_clip(m_bAlpha + i); }

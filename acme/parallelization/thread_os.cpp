@@ -35,7 +35,7 @@
 //CLASS_DECL_ACME htask_t create_thread(
 //thread_proc proc,
 //void * p,
-//::e_priority epriority,
+//::enum_priority epriority,
 //::u32 nStackSize,
 //u32 uiCreateFlags,
 //LPSECURITY_ATTRIBUTES psa,

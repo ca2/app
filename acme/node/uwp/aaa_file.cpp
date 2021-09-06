@@ -2,7 +2,7 @@
 #include "acme/node/operating_system/windows_common/file.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -1104,7 +1104,7 @@ pacmedir->create(lpszFileName.folder());
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

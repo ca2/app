@@ -1962,7 +1962,7 @@ void object::task_erase(::task* ptask)
 
 //__pointer(thread) object::start(
 //   ::matter* pmatter,
-//   ::e_priority epriority = priority_normal,
+//   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0)
 //{

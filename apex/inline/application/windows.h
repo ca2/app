@@ -59,7 +59,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    auto pnode = psystem->node();
 
-   estatus = pnode->main();
+   estatus = pnode->implement();
 
    auto estatusEnd = psystem->end();
 

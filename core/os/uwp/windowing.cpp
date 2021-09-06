@@ -280,7 +280,7 @@ oswindow oswindow_get(::user::interaction_impl * pimpl)
 
 
 
-Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window)
+Agile < ::winrt::Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window)
 {
 
    return window->m_pimpl->m_puserinteraction->get_os_window();
@@ -580,7 +580,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
 // void update_session_cursor(class user::interaction_impl * puiimpl)
 // {
 
-//    __pointer(::uwp::interaction_impl) pimpl = puiimpl;
+//    __pointer(::universal_windows::interaction_impl) pimpl = puiimpl;
 
 //    if (pimpl.is_set())
 //    {

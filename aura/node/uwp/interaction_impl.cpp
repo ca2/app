@@ -9,10 +9,10 @@
 CLASS_DECL_ACME void set_core_window_once_visible();
 
 
-using namespace Windows::UI::Core;
-using namespace Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::Foundation;
 using namespace Microsoft::WRL;
-using namespace Windows::Graphics::Display;
+using namespace ::winrt::Windows::Graphics::Display;
 using namespace D2D1;
 
 static void __pre_init_dialog(::user::interaction * pWnd,RECTANGLE_I32 * lpRectOld,u32* pdwStyleOld);
@@ -20,7 +20,7 @@ static void __post_init_dialog(::user::interaction * pWnd,const RECTANGLE_I32& r
 LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,::u32 nMsg,WPARAM wParam,LPARAM lParam);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -93,13 +93,13 @@ namespace uwp
 
          manual_reset_event ev;
 
-         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([this, pusersystem, &ev]()
+         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new ::winrt::Windows::UI::Core::DispatchedHandler([this, pusersystem, &ev]()
                {
 
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
-                  m_view = Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
+                  m_view = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
@@ -119,9 +119,9 @@ namespace uwp
 
                   //auto Id2 = applicationview2->Id;
 
-                  ::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
+                  ::winrt::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
                      Id1,
-                     Windows::UI::ViewManagement::ViewSizePreference::UseMore);
+                     ::winrt::Windows::UI::ViewManagement::ViewSizePreference::UseMore);
 
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
@@ -144,16 +144,16 @@ namespace uwp
 
 
 
-                  //::wait(::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
+                  //::wait(::winrt::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
                   //   Id1,
-                  //   Windows::UI::ViewManagement::ViewSizePreference::UseMore,
+                  //   ::winrt::Windows::UI::ViewManagement::ViewSizePreference::UseMore,
                   //   Id2,
-                  //   Windows::UI::ViewManagement::ViewSizePreference::Default));
+                  //   ::winrt::Windows::UI::ViewManagement::ViewSizePreference::Default));
 
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
+                     m_applicationview->TryResizeView(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
 
                   }
 
@@ -162,8 +162,8 @@ namespace uwp
                }));
 
          //::wait(m_view->Dispatcher->RunAsync(
-         //   ::Windows::UI::Core::CoreDispatcherPriority::Normal,
-         //   ref new Windows::UI::Core::DispatchedHandler([this, cs]()
+         //   ::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+         //   ref new ::winrt::Windows::UI::Core::DispatchedHandler([this, cs]()
          //      {
 
          //      })));
@@ -342,7 +342,7 @@ namespace uwp
    // {
 
 
-   //    // uwp todo
+   //    // universal_windows todo
    //    return true;
 
    // }
@@ -525,7 +525,7 @@ namespace uwp
          //
          // In general, interaction_impl objects should be passed by oswindow from
          // one thread to another.  The receiving thread can wrap
-         // the oswindow with a interaction_impl object by using ::uwp::interaction_impl::from_handle.
+         // the oswindow with a interaction_impl object by using ::universal_windows::interaction_impl::from_handle.
          //
          // It is dangerous to pass C++ objects from one thread to
          // another, unless the objects are designed to be used in
@@ -632,10 +632,10 @@ namespace uwp
 
       ::wait(m_window->Dispatcher->RunAsync(
              CoreDispatcherPriority::Normal,
-             ref new Windows::UI::Core::DispatchedHandler([this]()
+             ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
-         Windows::UI::ViewManagement::ApplicationView ^ applicationview = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
 
          m_strWindowText = applicationview->Title->Begin();
 
@@ -736,7 +736,7 @@ namespace uwp
 
 #ifdef WINDOWS_DESKTOP
       ASSERT(::is_window((oswindow)get_os_data()));
-      return  ::uwp::interaction_impl::from_handle(::GetAncestor((oswindow)get_os_data(), gaFlags));
+      return  ::universal_windows::interaction_impl::from_handle(::GetAncestor((oswindow)get_os_data(), gaFlags));
 #else
       __throw(todo);
 #endif
@@ -817,7 +817,7 @@ namespace uwp
    {
       __throw(todo);
       //ASSERT(::is_window((oswindow)get_os_data()));
-      //return ::PrintWindow((oswindow)get_os_data(), (HDC)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), nFlags) != false;
+      //return ::PrintWindow((oswindow)get_os_data(), (HDC)(dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data(), nFlags) != false;
    }
 
 
@@ -887,10 +887,10 @@ namespace uwp
    }
 
 
-   ::e_status interaction_impl::main_async(const ::routine & routine, e_priority epriority)
+   ::e_status interaction_impl::main_async(const ::routine & routine, enum_priority epriority)
    {
 
-      Windows::UI::Core::CoreDispatcher ^ pdispatcher;
+      ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher;
 
       if (m_view.Get())
       {
@@ -905,7 +905,7 @@ namespace uwp
 
       }
 
-      pdispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([routine]()
+      pdispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([routine]()
          {
 
             routine();
@@ -920,7 +920,7 @@ namespace uwp
    void interaction_impl::_002OnDraw(::image * pimage)
    {
       __throw(todo);
-      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
+      //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
 
@@ -1221,7 +1221,7 @@ namespace uwp
 
    // special case for activation
    if (message == e_message_activate)
-   __handle_activate(this, wParam, ::uwp::interaction_impl::from_handle((oswindow)lParam));
+   __handle_activate(this, wParam, ::universal_windows::interaction_impl::from_handle((oswindow)lParam));
 
    // special case for set cursor HTERROR
    if (message == e_message_set_cursor &&
@@ -1320,7 +1320,7 @@ lResult = (this->*mmf.pfn_l_p)(point);
 break;
 }
 case ::ca2::Sig_b_D_v:
-lResult = (this->*mmf.pfn_b_D)(::uwp::graphics::from_handle(reinterpret_cast<HDC>(wParam)));
+lResult = (this->*mmf.pfn_b_D)(::universal_windows::graphics::from_handle(reinterpret_cast<HDC>(wParam)));
 break;
 
 case ::ca2::Sig_b_b_v:
@@ -1345,7 +1345,7 @@ break;
 
 case ::ca2::Sig_v_u_W:
 (this->*mmf.pfn_v_u_W)(static_cast<::u32>(wParam),
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
 break;
 
 case ::ca2::Sig_u_u_v:
@@ -1357,13 +1357,13 @@ lResult = (this->*mmf.pfn_b_v)();
 break;
 
 case ::ca2::Sig_b_W_uu:
-lResult = (this->*mmf.pfn_b_W_u_u)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
+lResult = (this->*mmf.pfn_b_W_u_u)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
 LOWORD(lParam), HIWORD(lParam));
 break;
 
 case ::ca2::Sig_b_W_COPYDATASTRUCT:
 lResult = (this->*mmf.pfn_b_W_COPYDATASTRUCT)(
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
 reinterpret_cast<COPYDATASTRUCT*>(lParam));
 break;
 
@@ -1382,7 +1382,7 @@ interaction_impl wndTemp;
 wndTemp.set_handle(pCtl->hWnd);
 ::u32 nCtlType = pCtl->nCtlType;
 // if not coming from a permanent interaction_impl, use stack temporary
-::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
+::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::FromHandlePermanent(wndTemp.get_handle());
 if (pWnd == nullptr)
 {
 pWnd = &wndTemp;
@@ -1412,7 +1412,7 @@ break;
 
 case ::ca2::Sig_i_u_W_u:
 lResult = (this->*mmf.pfn_i_u_W_u)(LOWORD(wParam),
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)), HIWORD(wParam));
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)), HIWORD(wParam));
 break;
 
 case ::ca2::Sig_i_uu_v:
@@ -1420,7 +1420,7 @@ lResult = (this->*mmf.pfn_i_u_u)(LOWORD(wParam), HIWORD(wParam));
 break;
 
 case ::ca2::Sig_i_W_uu:
-lResult = (this->*mmf.pfn_i_W_u_u)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
+lResult = (this->*mmf.pfn_i_W_u_u)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
 LOWORD(lParam), HIWORD(lParam));
 break;
 
@@ -1482,43 +1482,43 @@ break;
 
 case ::ca2::Sig_MDIACTIVATE:
 (this->*mmf.pfn_v_b_W_W)(get_handle() == reinterpret_cast<oswindow>(lParam),
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)),
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)));
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)),
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)));
 break;
 
 case ::ca2::Sig_v_D_v:
-(this->*mmf.pfn_v_D)(::uwp::graphics::from_handle(reinterpret_cast<HDC>(wParam)));
+(this->*mmf.pfn_v_D)(::universal_windows::graphics::from_handle(reinterpret_cast<HDC>(wParam)));
 break;
 
 
 case ::ca2::Sig_v_W_v:
-(this->*mmf.pfn_v_W)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)));
+(this->*mmf.pfn_v_W)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)));
 break;
 
 case ::ca2::Sig_v_v_W:
-(this->*mmf.pfn_v_W)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
+(this->*mmf.pfn_v_W)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
 break;
 
 case ::ca2::Sig_v_W_uu:
-(this->*mmf.pfn_v_W_u_u)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)), LOWORD(lParam),
+(this->*mmf.pfn_v_W_u_u)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)), LOWORD(lParam),
 HIWORD(lParam));
 break;
 
 case ::ca2::Sig_v_W_p:
 {
 ::point_i32 point(lParam);
-(this->*mmf.pfn_v_W_p)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)), point);
+(this->*mmf.pfn_v_W_p)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)), point);
 }
 break;
 
 case ::ca2::Sig_v_W_h:
-(this->*mmf.pfn_v_W_h)(::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
+(this->*mmf.pfn_v_W_h)(::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(wParam)),
 reinterpret_cast<HANDLE>(lParam));
 break;
 
 case ::ca2::Sig_ACTIVATE:
 (this->*mmf.pfn_v_u_W_b)(LOWORD(wParam),
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)), HIWORD(wParam));
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)), HIWORD(wParam));
 break;
 
 case ::ca2::Sig_SCROLL:
@@ -1531,7 +1531,7 @@ int nScrollCode = (short)LOWORD(wParam);
 int nPos = (short)HIWORD(wParam);
 if (lpEntry->nSig == ::ca2::Sig_SCROLL)
 (this->*mmf.pfn_v_u_u_W)(nScrollCode, nPos,
-::uwp::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
+::universal_windows::interaction_impl::from_handle(reinterpret_cast<oswindow>(lParam)));
 else
 (this->*mmf.pfn_v_u_u)(nScrollCode, nPos);
 }
@@ -1687,7 +1687,7 @@ return true;
    ///* trans oswindow CLASS_DECL_AURA __get_parent_owner(::user::interaction * hWnd)
    //{
    //// check for permanent-owned interaction_impl first
-   //::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(hWnd);
+   //::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::FromHandlePermanent(hWnd);
    //if (pWnd != nullptr)
    //return WIN_WINDOW(pWnd)->get_owner();
 
@@ -1728,7 +1728,7 @@ return true;
    //   //while ((hWndT = ::GetWindow(hWndOwner, GW_OWNER)) != nullptr)
    //   //   hWndOwner = hWndT;
 
-   //   //return ::uwp::interaction_impl::from_handle(hWndOwner);
+   //   //return ::universal_windows::interaction_impl::from_handle(hWndOwner);
    //}
 
    //::user::interaction *  interaction_impl::GetParentOwner()
@@ -1749,7 +1749,7 @@ return true;
    //   //   hWndParent = hWndT;
    //   //}
 
-   //   //return ::uwp::interaction_impl::from_handle(hWndParent);
+   //   //return ::universal_windows::interaction_impl::from_handle(hWndParent);
    //}
 
    //bool interaction_impl::IsTopParentActive()
@@ -1804,7 +1804,7 @@ return true;
    /*   ::user::interaction_impl * interaction_impl::GetSafeOwner(::user::interaction_impl * pParent, oswindow* pWndTop)
       {
       oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_os_data(), pWndTop);
-      return ::uwp::interaction_impl::from_handle(hWnd);
+      return ::universal_windows::interaction_impl::from_handle(hWnd);
       }
       */
    //int interaction_impl::message_box(const ::string & lpszText, const ::string & lpszCaption,::u32 nType)
@@ -2367,7 +2367,7 @@ return true;
    //      m_event.ResetEvent();
    //      m_hwnd = hwnd;
    //      m_hdc = hdc;
-   //      begin_thread(&print_window::s_print_window,(LPVOID) this,::priority_above_normal);
+   //      begin_thread(&print_window::s_print_window,(LPVOID) this,::e_priority_above_normal);
    //      if(m_event.wait(millis(tickTimeout)).timeout())
    //      {
    //         TRACE("print_window::time_out");
@@ -2453,7 +2453,7 @@ return true;
       //   rectUpdate = rectWindow;
       //   rectPaint = rectWindow;
       //   rectPaint.offset(-rectPaint.top_left());
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SelectClipRgn(nullptr);
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SelectClipRgn(nullptr);
       //   if(m_puserinteraction != nullptr)
       //   {
       //      m_puserinteraction->_001OnDeferPaintLayeredWindowBackground(pgraphics);
@@ -2462,13 +2462,13 @@ return true;
       //   {
       //      _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SelectClipRgn(nullptr);
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //   _000OnDraw(pgraphics);
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
-      //   //(dynamic_cast<::uwp::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //   (dynamic_cast<::uwp::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   //(dynamic_cast<::universal_windows::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SelectClipRgn(nullptr);
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
 
       //   pgraphics->SelectClipRgn( nullptr);
       //   pgraphics->BitBlt(rectPaint.left, rectPaint.top,
@@ -2723,7 +2723,7 @@ return true;
       state.m_pOther = &wndTemp;
 
       // check for reflect handlers in the child interaction_impl
-      ::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(hWndChild);
+      ::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::FromHandlePermanent(hWndChild);
       if (pWnd != nullptr)
       {
       // call it directly to disable any routing
@@ -2816,11 +2816,11 @@ return true;
 //            //if(!(dwFlags & MLF_NOIDLEMSG) && hWndParent != nullptr && lIdleCount == 0)
 //            //{
 //            //   // send WM_ENTERIDLE to the parent
-//            //   // uwp todo               ::SendMessage(hWndParent, WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM)get_handle());
+//            //   // universal_windows todo               ::SendMessage(hWndParent, WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM)get_handle());
 //            //}
 //            //if((dwFlags & MLF_NOKICKIDLE))
 //
-//            //   // uwp todo    ||           !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
+//            //   // universal_windows todo    ||           !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
 //            //{
 //            //   // stop idle processing next time
 //            //   bIdle = false;
@@ -3282,7 +3282,7 @@ return true;
 
    //   }
 
-   //   Windows::Foundation::Rect rectangle = m_pwindow->m_pwindow->get_window_rect();
+   //   ::winrt::Windows::Foundation::Rect rectangle = m_pwindow->m_pwindow->get_window_rect();
 
 
    //   lprect->left   = (i64)rectangle.X;
@@ -3403,7 +3403,7 @@ return true;
       //   return nullptr;
       //if(get_handle() == nullptr)
       //   return nullptr;
-      //return ::uwp::interaction_impl::from_handle(::get_parent(get_handle()));
+      //return ::universal_windows::interaction_impl::from_handle(::get_parent(get_handle()));
    }
 
    ::i32 interaction_impl::GetWindowLong(int nIndex)
@@ -3593,10 +3593,10 @@ return true;
 
       m_window->Dispatcher->RunAsync(
       CoreDispatcherPriority::Normal,
-      ref new Windows::UI::Core::DispatchedHandler([this]()
+      ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
-         Windows::UI::ViewManagement::ApplicationView ^ applicationview = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
 
          {
 
@@ -3719,11 +3719,11 @@ return true;
       //::draw2d::graphics_pointer g(this);
       //if(get_handle() == nullptr)
       //{
-      //   (dynamic_cast < ::uwp::graphics * >(g.m_p))->Attach(::GetDC(nullptr));
+      //   (dynamic_cast < ::universal_windows::graphics * >(g.m_p))->Attach(::GetDC(nullptr));
       //}
       //else
       //{
-      //   (dynamic_cast < ::uwp::graphics * >(g.m_p))->Attach(::GetDC(get_handle()));
+      //   (dynamic_cast < ::universal_windows::graphics * >(g.m_p))->Attach(::GetDC(get_handle()));
       //}
       //return g.detach();
    }
@@ -3747,12 +3747,12 @@ return true;
       //if(pgraphics == nullptr)
       //   return false;
 
-      //if(((Gdiplus::Graphics *)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data()) == nullptr)
+      //if(((Gdiplus::Graphics *)(dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data()) == nullptr)
       //   return false;
 
-      //::ReleaseDC(get_handle(), (dynamic_cast<::uwp::graphics * >(pgraphics))->m_hdc);
+      //::ReleaseDC(get_handle(), (dynamic_cast<::universal_windows::graphics * >(pgraphics))->m_hdc);
 
-      //(dynamic_cast<::uwp::graphics * >(pgraphics))->m_hdc = nullptr;
+      //(dynamic_cast<::universal_windows::graphics * >(pgraphics))->m_hdc = nullptr;
 
       //pgraphics->release();
 
@@ -4016,7 +4016,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), lprc, uFlags) != false;
+      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data(), lprc, uFlags) != false;
 
    }
 
@@ -4228,7 +4228,7 @@ return true;
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //return ::uwp::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
+      //return ::universal_windows::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
    }
 
    ::user::interaction_impl * interaction_impl::GetNextDlgTabItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
@@ -4237,7 +4237,7 @@ return true;
       __throw(todo);
 
       //ASSERT(::is_window(get_handle()));
-      //return ::uwp::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
+      //return ::universal_windows::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_os_data(), bPrevious));
    }
 
    ::u32 interaction_impl::IsDlgButtonChecked(int nIDButton) const
@@ -4312,7 +4312,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::uwp::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
+      //return ::universal_windows::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
 
    }
 
@@ -4323,7 +4323,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::uwp::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+      //return ::universal_windows::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
@@ -4337,7 +4337,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::uwp::interaction_impl::from_handle(::GetTopWindow(get_handle()));
+      //return ::universal_windows::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 
    }
 
@@ -4349,7 +4349,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::uwp::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
+      //return ::universal_windows::interaction_impl::from_handle(::GetWindow(get_handle(), nCmd));
 
    }
 
@@ -4360,7 +4360,7 @@ return true;
 
       //ASSERT(::is_window(get_handle()));
       //
-      //return ::uwp::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
+      //return ::universal_windows::interaction_impl::from_handle(::GetLastActivePopup(get_handle()));
 
    }
 
@@ -4370,7 +4370,7 @@ return true;
    //   __throw(todo);
 
    //   //ASSERT(::is_window(get_handle()));
-   //   //return ::uwp::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_os_data()));
+   //   //return ::universal_windows::interaction_impl::from_handle(::SetParent(get_handle(), (oswindow) pWndNewParent->get_os_data()));
    //}
 
    
@@ -4379,7 +4379,7 @@ return true;
 
       __throw(todo);
 
-      //return ::uwp::interaction_impl::from_handle(::WindowFromPoint(point));
+      //return ::universal_windows::interaction_impl::from_handle(::WindowFromPoint(point));
 
    }
 
@@ -4434,7 +4434,7 @@ return true;
 
       __throw(todo);
 
-      //return ::uwp::interaction_impl::from_handle(::GetOpenClipboardWindow());
+      //return ::universal_windows::interaction_impl::from_handle(::GetOpenClipboardWindow());
 
    }
 
@@ -4444,7 +4444,7 @@ return true;
 
       __throw(todo);
 
-      //return ::uwp::interaction_impl::from_handle(::GetClipboardOwner());
+      //return ::universal_windows::interaction_impl::from_handle(::GetClipboardOwner());
 
    }
 
@@ -4508,7 +4508,7 @@ return true;
 
       __throw(todo);
 
-      //return ::uwp::interaction_impl::from_handle(::GetForegroundWindow());
+      //return ::universal_windows::interaction_impl::from_handle(::GetForegroundWindow());
 
    }
 
@@ -4551,7 +4551,7 @@ return true;
       ASSERT(::is_window(get_handle()));
 
       __throw(error_not_implemented);
-      //      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
+      //      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
 
    }
 
@@ -4562,7 +4562,7 @@ return true;
       ASSERT(::is_window(get_handle()));
 
       __throw(error_not_implemented);
-      //const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::uwp::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
+      //const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::universal_windows::graphics * >(pgraphics))->get_os_data(), (LPARAM) dwFlags);
 
    }
 
@@ -5336,9 +5336,9 @@ run:
          if (pWndInit != nullptr)
          {
             // the interaction_impl should not be in the permanent ::map at this time
-            ASSERT(::uwp::interaction_impl::FromHandlePermanent(hWnd) == nullptr);
+            ASSERT(::universal_windows::interaction_impl::FromHandlePermanent(hWnd) == nullptr);
 
-            pWndInit->m_pthread = dynamic_cast < ::thread * > (::uwp::get_task());
+            pWndInit->m_pthread = dynamic_cast < ::thread * > (::universal_windows::get_task());
             pWndInit->m_pthread->add(pWndInit);
             pWndInit->m_puserinteraction->m_pthread = pWndInit->m_pthread;
             pWndInit->m_puserinteraction->m_pthread->add(pWndInit->m_puserinteraction);
@@ -5453,7 +5453,7 @@ lCallNextHook:
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 
@@ -5507,12 +5507,12 @@ LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LP
       return 1;
 
    // all other messages route through message ::map
-   ::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(hWnd);
+   ::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::FromHandlePermanent(hWnd);
    //ASSERT(pWnd != nullptr);
    //ASSERT(pWnd==nullptr || WIN_WINDOW(pWnd)->get_handle() == hWnd);
    if (pWnd == nullptr || WIN_WINDOW(pWnd)->get_handle() != hWnd)
       return ::DefWindowProc(hWnd, nMsg, wParam, lParam);
-   return uwp::__call_window_procedure(pWnd, hWnd, nMsg, wParam, lParam);
+   return universal_windows::__call_window_procedure(pWnd, hWnd, nMsg, wParam, lParam);
 }
 
 // always indirectly accessed via __get_window_procedure
@@ -5584,7 +5584,7 @@ CLASS_DECL_AURA const char * __register_window_class(::u32 nClassStyle,
    char * lpszName = __get_thread_state()->m_szTempClassName;
 
    // generate a synthetic name for this class
-   HINSTANCE hInst = Sys(::uwp::get_task()->get_application()).m_hInstance;
+   HINSTANCE hInst = Sys(::universal_windows::get_task()->get_application()).m_hInstance;
 
    if (hCursor == nullptr && hbrBackground == nullptr && hIcon == nullptr)
    {
@@ -5671,7 +5671,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
       if (pLastActive != nullptr)
          pLastActive = pLastActive->GetLastActivePopup();
       if (pLastActive != nullptr &&
-            pLastActive != ::uwp::interaction_impl::GetForegroundWindow() &&
+            pLastActive != ::universal_windows::interaction_impl::GetForegroundWindow() &&
             pLastActive->IsWindowEnabled())
       {
          pLastActive->SetForegroundWindow();
@@ -5734,7 +5734,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
    WNDCLASS wndcls;
    __memset(&wndcls, 0, sizeof(WNDCLASS));   // start with nullptr defaults
    wndcls.lpfnWndProc = DefWindowProc;
-   wndcls.hInstance = Sys(::uwp::get_task()->get_application()).m_hInstance;
+   wndcls.hInstance = Sys(::universal_windows::get_task()->get_application()).m_hInstance;
    //wndcls.hCursor = afxData.hcurArrow;
 
    INITCOMMONCONTROLSEX init;
@@ -5849,7 +5849,7 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
       {
          u32 uStyle;
          ::rectangle_i32 rectOld;
-         ::user::interaction_impl * pWnd = ::uwp::interaction_impl::from_handle(hWnd);
+         ::user::interaction_impl * pWnd = ::universal_windows::interaction_impl::from_handle(hWnd);
          __pre_init_dialog(pWnd, &rectOld, &uStyle);
          bCallDefault = false;
          lResult = CallWindowProc(oldWndProc, hWnd, nMsg, wParam, lParam);
@@ -5858,12 +5858,12 @@ __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM l
       break;
 
       case e_message_activate:
-         __handle_activate(::uwp::interaction_impl::from_handle(hWnd), wParam,
-                           ::uwp::interaction_impl::from_handle((oswindow)lParam));
+         __handle_activate(::universal_windows::interaction_impl::from_handle(hWnd), wParam,
+                           ::universal_windows::interaction_impl::from_handle((oswindow)lParam));
          break;
 
       case e_message_set_cursor:
-         bCallDefault = !__handle_set_cursor(::uwp::interaction_impl::from_handle(hWnd),
+         bCallDefault = !__handle_set_cursor(::universal_windows::interaction_impl::from_handle(hWnd),
                                              (short)LOWORD(lParam), HIWORD(lParam));
          break;
 
@@ -5950,7 +5950,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
 #endif
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -5963,7 +5963,7 @@ namespace uwp
    }
 
 
-   Agile<Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
+   Agile<::winrt::Windows::UI::Core::CoreWindow> interaction_impl::get_os_window()
    {
       
       return m_window;
@@ -6209,7 +6209,7 @@ namespace uwp
       ::user::interaction_impl::_001UpdateScreen();
 
       //alskdjfh++;
-      //::output_debug_string("::uwp::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
+      //::output_debug_string("::universal_windows::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
 
       //if (m_frameworkview)
       //{
@@ -6342,7 +6342,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

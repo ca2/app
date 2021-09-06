@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 #if false
@@ -65,6 +65,6 @@ namespace uwp
 
 #endif
 
-} // namespace uwp
+} // namespace universal_windows
 
 

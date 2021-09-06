@@ -2,7 +2,7 @@
 //#include "apex/xml/_.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -120,7 +120,7 @@ namespace uwp
    //::file::path dir_system::appdata()
    //{
 
-   //   return ::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+   //   return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
    //}
 
@@ -245,7 +245,7 @@ namespace uwp
    //::file::path dir_system::commonappdata()
    //{
 
-   //   return ::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
+   //   return ::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
 
    //}
 
@@ -294,7 +294,7 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

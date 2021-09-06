@@ -23,7 +23,7 @@ int g_i134 = 0;
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(_UWP)
 
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/os/universal_windows/_uwp.h"
 
 #endif // _UWP
 
@@ -34,13 +34,13 @@ namespace user
 {
 
 
-#ifdef _UWP
-
-
-   Agile<Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pinteraction) = &interaction::get_os_window_default;
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//   Agile<::winrt::Windows::UI::Core::CoreWindow>(*interaction::s_get_os_window)(interaction * pinteraction) = &interaction::get_os_window_default;
+//
+//
+//#endif
 
 
    interaction::interaction()
@@ -1232,7 +1232,7 @@ namespace user
          if (!pimplNew->create_host(this))
          {
 
-            __throw(::exception::exception("could not impl interaction"));
+            throw ::exception::exception(error_failed, "could not impl interaction");
 
          }
          else
@@ -1291,7 +1291,7 @@ namespace user
          if (!pimplNew->create_child(this, pparent))
          {
 
-            __throw(::exception::exception("could not impl interaction"));
+            throw ::exception::exception(error_failed, "could not impl interaction");
 
          }
 
@@ -2778,7 +2778,7 @@ namespace user
       catch (...)
       {
 
-         __throw(::exception::exception("no more a window"));
+         throw ::exception::exception(error_exception, "no more a window");
 
       }
 
@@ -3347,7 +3347,7 @@ auto tickEndWithLock = millis::now();
          else
          {
 
-            if (pstyle->is_dark_mode())
+            if (pstyle && pstyle->is_dark_mode())
             {
 
                pgraphics->fill_rectangle(rectangle, argb(255, 25, 25, 25));
@@ -3943,14 +3943,18 @@ return "";
    bool interaction::add_prodevian(::matter * pmatter)
    {
 
-      if (get_host_window() == nullptr)
+      auto phostwindow = get_host_window();
+
+      if (phostwindow == nullptr)
       {
 
          return false;
 
       }
 
-      return get_host_window()->m_pimpl->add_prodevian(pmatter);
+      auto pimpl = phostwindow->m_pimpl;
+
+      return pimpl->add_prodevian(pmatter);
 
    }
 
@@ -6462,24 +6466,26 @@ bool interaction::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::regi
 ::user::interaction * interaction::get_window(enum_next enext) const
 {
 
-      if (enext == e_next_sibling)
-      {
+   if (enext == e_next_sibling)
+   {
 
-         return get_next_window(true);
+      return get_next_window(true);
 
-      }
-      else if (enext == e_next_proper)
-      {
+   }
+   else if (enext == e_next_proper)
+   {
 
-         return get_next_window(false);
+      return get_next_window(false);
 
-      }
-      else
-      {
+   }
+   else
+   {
 
-         __throw(error_invalid_argument);
+      __throw(error_invalid_argument);
 
-      }
+   }
+
+   return nullptr;
 
 }
 

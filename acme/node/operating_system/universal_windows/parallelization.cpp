@@ -10,13 +10,13 @@
 #include "acme/parallelization/message_queue.h"
 
 
-#undef ::acme::get_system()
+//#undef ::acme::get_system()
 
-#pragma push_macro("::acme::get_system()")
-#undef ::acme::get_system()
-using namespace Windows::Foundation;
-using namespace Windows::::acme::get_system()::Threading;
-#pragma pop_macro("::acme::get_system()")
+//#pragma push_macro("::acme::get_system()")
+//#undef ::acme::get_system()
+//using namespace ::winrt::Windows::Foundation;
+//using namespace ::winrt::Windows::::acme::get_system()::Threading;
+//#pragma pop_macro("::acme::get_system()")
 
 
 ::mutex * g_pmutexThreadIdHandleLock = nullptr;
@@ -56,15 +56,15 @@ using namespace Windows::::acme::get_system()::Threading;
 
 
 // Converts a Win32 thread priority to WinRT format.
-WorkItemPriority GetWorkItemPriority(int nPriority)
-{
-   if (nPriority < 0)
-      return WorkItemPriority::Low;
-   else if (nPriority > 0)
-      return WorkItemPriority::High;
-   else
-      return WorkItemPriority::Normal;
-}
+//WorkItemPriority GetWorkItemPriority(int nPriority)
+//{
+//   if (nPriority < 0)
+//      return WorkItemPriority::Low;
+//   else if (nPriority > 0)
+//      return WorkItemPriority::High;
+//   else
+//      return WorkItemPriority::Normal;
+//}
 
 //
 //htask_t start_thread(u32 ( * pfn)(void *), void * pv, int iPriority)
@@ -204,24 +204,24 @@ void _on_os_hthread_end()
 }
 
 
-itask_t get_current_ithread()
-{
-
-   return ::GetCurrentThreadId();
-
-}
-
-
-htask_t get_current_hthread()
-{
-
-   return ::GetCurrentThread();
-
-}
+//itask_t get_current_ithread()
+//{
+//
+//   return ::GetCurrentThreadId();
+//
+//}
+//
+//
+//htask_t get_current_hthread()
+//{
+//
+//   return ::GetCurrentThread();
+//
+//}
 
 
 htask_t g_hMainThread = nullptr;
-::u32 g_iMainThread = -1;
+itask_t g_iMainThread = -1;
 
 
 void set_main_hthread(htask_t htask)
@@ -248,7 +248,7 @@ htask_t get_main_hthread()
 }
 
 
-::u32   get_main_ithread()
+itask_t get_main_ithread()
 {
 
    return g_iMainThread;

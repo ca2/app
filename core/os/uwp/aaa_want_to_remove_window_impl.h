@@ -34,5 +34,5 @@ CLASS_DECL_CORE int oswindow_find(::user::interaction * pinteraction);
 CLASS_DECL_CORE oswindow oswindow_get(::user::interaction * pinteraction);
 CLASS_DECL_CORE int oswindow_erase(::user::interaction * pinteraction);
 #if defined(__cplusplus_winrt)
-CLASS_DECL_CORE Windows::UI::Core::CoreWindow ^ get_os_window(oswindow window);
+CLASS_DECL_CORE ::winrt::Windows::UI::Core::CoreWindow ^ get_os_window(oswindow window);
 #endif

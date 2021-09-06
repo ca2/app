@@ -197,12 +197,12 @@ graphics::~graphics()
 }
 
 
-bool graphics::IsPrinting()
-{
-
-    return m_bPrinting;
-
-}
+//bool graphics::IsPrinting()
+//{
+//
+//    return m_bPrinting;
+//
+//}
 
 
 //bool graphics::CreateDC(const ::string & lpszDriverName, const ::string & lpszDeviceName, const ::string & lpszOutput, const void * lpInitData)

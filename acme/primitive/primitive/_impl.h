@@ -43,10 +43,10 @@ inline duration & duration::operator -= (const ::datetime::time_span & span)
 
 
 template < class T >
-inline string ___pointer < T >::type_str()
+inline const char * ___pointer < T >::type_c_str()
 {
 
-   return __type_str(T);
+   return __type_c_str(T);
 
 }
 
@@ -676,7 +676,9 @@ inline bool id::begins(const ::string & strPrefix) const
    else
    {
 
-      __throw(::exception::exception("Unexpected ::id m_etype"));
+      __throw(error_wrong_type, "Unexpected::id m_etype");
+
+      return false;
 
    }
 
@@ -718,7 +720,9 @@ inline bool id::begins_ci(const ::string & strPrefix) const
    else
    {
 
-      __throw(::exception::exception("Unexpected ::id m_etype"));
+      __throw(error_wrong_type, "Unexpected ::id m_etype");
+
+      return false;
 
    }
 
@@ -2157,7 +2161,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 //
 //template < typename PRED >
-//inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+//inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -2352,11 +2356,8 @@ void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 #endif
 
 
-inline bool millis::done(const ::millis & millis) const { return elapsed(millis) >= 0; }
-inline bool millis::done() const { return elapsed() >= 0; }
-
-
-
+inline bool millis::done(const ::millis & millis) const { return elapsed(millis).m_i >= 0; }
+inline bool millis::done() const { return elapsed().m_i >= 0; }
 
 
 template < >
@@ -3402,7 +3403,7 @@ inline ::file_transport object::get_writer(const ::payload& varFile, const ::fil
 
 
 template < typename TYPE >
-inline ::e_status object::__construct(::task_pointer& p, void (TYPE::* pfn)(), e_priority epriority)
+inline ::e_status object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
 {
 
    p = fork(pfn, epriority);
@@ -3423,13 +3424,13 @@ template < typename TYPE >
 inline ::e_status object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
 {
 
-   return __construct(p, pfn, priority_below_normal);
+   return __construct(p, pfn, e_priority_below_normal);
 
 }
 
 
 template < typename TYPE >
-inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), e_priority epriority)
+inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority)
 {
 
    auto pfork = fork(pfn, epriority);
@@ -3484,7 +3485,7 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 
 
 template < typename PREDICATE >
-inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+inline __transport(task) object::fork(PREDICATE predicate, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto proutine = __routine(predicate);
@@ -3839,5 +3840,35 @@ inline payload_cast::operator property_set () const
    return m_payload.propset(); 
 
 }
+
+
+inline id::id(const ::lparam & lparam)
+{
+
+   m_etype = e_type_integer;
+
+   m_u = lparam.m_lparam;
+
+}
+
+
+
+template < class T >
+inline ___pointer < T > ::___pointer(const lparam & lparam)
+{
+
+   auto * p = (::matter *)lparam.m_lparam;
+
+   m_p = dynamic_cast <T *> (p);
+
+   if (::is_null(m_p))
+   {
+
+      ::release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+
+   }
+
+}
+
 
 

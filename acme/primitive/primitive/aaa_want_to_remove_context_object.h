@@ -189,7 +189,7 @@ struct CLASS_DECL_ACME matter :
 
    // very close to the operating system
    htask_t __create_thread(
-      ::e_priority epriority = ::priority_normal,
+      ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0,
       LPSECURITY_ATTRIBUTES psa = nullptr,

@@ -242,7 +242,7 @@ namespace process
 {
 
 
-   CLASS_DECL_ACME bool set_priority(::e_priority epriority)
+   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
    {
 
       return true;

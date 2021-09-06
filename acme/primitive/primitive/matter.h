@@ -1,20 +1,39 @@
 #pragma once
 
 
+class system;
+class application;
+class thread;
 class property_object;
 class task;
+class task_pool;
 class action_context;
 class object;
 class dump_context;
 class synchronization_object;
 class __id;
 class string_exchange;
+namespace message { class message; }
+class payload;
+class stream;
+
+
+
+namespace subject
+{
+
+   class subject;
+   class context;
+
+} // namespace subject
+
 
 inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
 
 //inline ::object* __object(::p* playered);
 
 
+#include "referenceable.h"
 
 
 // ATTENTION
@@ -22,7 +41,8 @@ inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
 // Objective-C++
 
 
-class CLASS_DECL_ACME matter
+class CLASS_DECL_ACME matter :
+   virtual public referenceable
 {
 private:
 
@@ -51,6 +71,7 @@ public:
          bool        m_bCheckChildrenTaskPostQuit : 1;
          bool        m_bTaskReady : 1;
          bool        m_bDataStruct : 1;
+         bool        m_bExited : 1;
 
       };
 
@@ -72,7 +93,6 @@ public:
    };
 
    
-   ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
    class ::system *                    m_psystem;
 
@@ -90,18 +110,18 @@ public:
 //#endif
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) { if (matter.m_pmutex) defer_create_mutex(); increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) {  }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) {  }
+   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(1), m_eobject(e_object_none), m_psystem(nullptr) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(1), m_eobject(eobject), m_psystem(nullptr) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(1), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : referenceable(matter), m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
 #endif
 
-   virtual ~matter();
+   ~matter() override;
 
 
    virtual void assert_valid() const;
@@ -178,15 +198,6 @@ public:
    inline const char* type_name() const { return type_c_str(); }
 #endif
 
-#ifdef _DEBUG
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-#else
-   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-#endif
 
    
    virtual ::e_status initialize(::object * pobject);

@@ -47,9 +47,9 @@ namespace sockets
    public:
 
       memory   m_memoryRead;
-      Windows::Storage::Streams::IBuffer^ m_bufferRead;
+      ::winrt::Windows::Storage::Streams::IBuffer^ m_bufferRead;
       memory   m_memoryWrite;
-      Windows::Storage::Streams::IBuffer^ m_bufferWrite;
+      ::winrt::Windows::Storage::Streams::IBuffer^ m_bufferWrite;
       
 
       class on_connected
@@ -57,8 +57,8 @@ namespace sockets
       public:
       
          
-         ::Windows::Foundation::IAsyncAction ^     m_action;
-         ::Windows::Foundation::AsyncStatus        m_status;
+         ::winrt::Windows::Foundation::IAsyncAction ^     m_action;
+         ::winrt::Windows::Foundation::AsyncStatus        m_status;
 
 
       };
@@ -100,7 +100,7 @@ namespace sockets
 
    public:
 
-      //::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
+      //::winrt::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
       
       bool m_b_input_buffer_disabled;
       u64 m_bytes_sent;

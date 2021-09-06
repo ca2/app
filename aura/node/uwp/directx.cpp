@@ -6,10 +6,10 @@
 
 ::size_i32 winrt_get_big_back_buffer_size();
 
-using namespace Windows::UI::Core;
-using namespace Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::Foundation;
 using namespace Microsoft::WRL;
-using namespace Windows::Graphics::Display;
+using namespace ::winrt::Windows::Graphics::Display;
 using namespace D2D1;
 
 
@@ -19,7 +19,7 @@ extern CLASS_DECL_AURA image_array * g_pimagea;
 CLASS_DECL_ACME void dpi_os_initialize();
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -160,7 +160,7 @@ namespace uwp
 #endif // __DEBUG
 
 
-      ::uwp::throw_if_failed(
+      ::universal_windows::throw_if_failed(
       DWriteCreateFactory(
       DWRITE_FACTORY_TYPE_SHARED,
       __uuidof(IDWriteFactory),
@@ -168,7 +168,7 @@ namespace uwp
       )
       );
 
-      ::uwp::throw_if_failed(
+      ::universal_windows::throw_if_failed(
       CoCreateInstance(
       CLSID_WICImagingFactory,
       nullptr,
@@ -231,7 +231,7 @@ namespace uwp
 
 
       //// Create a DirectWrite text format object.
-      //::uwp::throw_if_failed(
+      //::universal_windows::throw_if_failed(
       //m_dwriteFactory->CreateTextFormat(
       //L"Gabriola",
       //nullptr,
@@ -245,12 +245,12 @@ namespace uwp
       //);
 
       //// Center the text horizontally.
-      //::uwp::throw_if_failed(
+      //::universal_windows::throw_if_failed(
       //m_textFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_CENTER)
       //);
 
       //// Center the text vertically.
-      //::uwp::throw_if_failed(
+      //::universal_windows::throw_if_failed(
       //m_textFormat->SetParagraphAlignment(DWRITE_PARAGRAPH_ALIGNMENT_CENTER)
       //);
 
@@ -286,7 +286,7 @@ namespace uwp
    {
       // Only handle window size_i32 changed if there is no pending DPI change.
 
-      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this,dpi]()
+      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([this,dpi]()
       {
          OnChangeDpi(dpi);
 
@@ -330,7 +330,7 @@ namespace uwp
    void directx_base::UpdateForWindowSizeChange()
    {
 
-      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new Windows::UI::Core::DispatchedHandler([this]()
+      m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal,ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
          OnWindowSizeChange();
@@ -511,7 +511,7 @@ namespace uwp
          {
             if (FAILED(hr))
             {
-               ::uwp::throw_if_failed(hr);
+               ::universal_windows::throw_if_failed(hr);
 
             }
          }
@@ -540,19 +540,19 @@ namespace uwp
          
          hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice);
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          ComPtr<IDXGIAdapter> dxgiAdapter;
 
          hr = dxgiDevice->GetAdapter(&dxgiAdapter);
             
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          ComPtr<IDXGIFactory2> dxgiFactory;
 
          hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          CoreWindow ^ window = m_window.Get();
 
@@ -564,13 +564,13 @@ namespace uwp
             &m_swapChain
          );
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          // Ensure that DXGI does not queue more than one frame at a time. This both reduces latency and
          // ensures that the application will only render after each VSync, minimizing power consumption.
          hr = dxgiDevice->SetMaximumFrameLatency(1);
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
       }
 
@@ -582,7 +582,7 @@ namespace uwp
 
          HRESULT hr = m_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
          
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3device->CreateRenderTargetView(
             backBuffer.Get(),
@@ -590,7 +590,7 @@ namespace uwp
             &m_d3dRenderTargetView
          );
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          // Cache the rendertarget dimensions in our helper class for convenient use.
          D3D11_TEXTURE2D_DESC backBufferDesc = { 0 };
@@ -615,7 +615,7 @@ namespace uwp
             &depthStencil
          );
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          auto viewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);
          
@@ -625,7 +625,7 @@ namespace uwp
          &m_d3dDepthStencilView
          );
 
-         ::uwp::throw_if_failed(hr);
+         ::universal_windows::throw_if_failed(hr);
 
          // Set the 3D rendering viewport to target the entire window.
          CD3D11_VIEWPORT viewport(
@@ -663,7 +663,7 @@ namespace uwp
       
       hr = m_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
 
-      ::uwp::throw_if_failed(hr);
+      ::universal_windows::throw_if_failed(hr);
 
       
       hr = m_pd2d1devicecontext->CreateBitmapFromDxgiSurface(
@@ -671,7 +671,7 @@ namespace uwp
          &bitmapProperties,
          &m_d2dTargetBitmap);
       
-      ::uwp::throw_if_failed(hr);
+      ::universal_windows::throw_if_failed(hr);
 
       m_pd2d1devicecontext->SetTarget(m_d2dTargetBitmap.Get());
 
@@ -707,7 +707,7 @@ namespace uwp
    void directx_base::Present()
    {
 
-      if (m_pimpl->m_pframeworkview->m_directx->m_ephase != ::uwp::e_phase_present)
+      if (m_pimpl->m_pframeworkview->m_directx->m_ephase != ::universal_windows::e_phase_present)
       {
 
          return ;
@@ -797,7 +797,7 @@ namespace uwp
                if (FAILED(hr))
                {
 
-                  ::uwp::throw_if_failed(hr);
+                  ::universal_windows::throw_if_failed(hr);
 
 
                }
@@ -810,7 +810,7 @@ namespace uwp
 
          }
 
-         m_pimpl->m_pframeworkview->m_directx->m_ephase = ::uwp::e_phase_draw;
+         m_pimpl->m_pframeworkview->m_directx->m_ephase = ::universal_windows::e_phase_draw;
 
       }
 
@@ -819,7 +819,7 @@ namespace uwp
 
       //   m_windowSizeChangeInProgress = false;
 
-      //   m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this]()
+      //   m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       //   {
 
       // A window size_i32 change has been initiated and the app has just completed presenting
@@ -846,18 +846,18 @@ namespace uwp
       ComPtr<IDXGIDevice1> dxgiDevice;
       ComPtr<IDXGIAdapter> deviceAdapter;
       DXGI_ADAPTER_DESC deviceDesc;
-      ::uwp::throw_if_failed(::aura::get_system()->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice));
-      ::uwp::throw_if_failed(dxgiDevice->GetAdapter(&deviceAdapter));
-      ::uwp::throw_if_failed(deviceAdapter->GetDesc(&deviceDesc));
+      ::universal_windows::throw_if_failed(::aura::get_system()->draw2d()->direct2d()->m_pd3device.As(&dxgiDevice));
+      ::universal_windows::throw_if_failed(dxgiDevice->GetAdapter(&deviceAdapter));
+      ::universal_windows::throw_if_failed(deviceAdapter->GetDesc(&deviceDesc));
 
       // Next, get the information for the default adapter.
 
       ComPtr<IDXGIFactory2> dxgiFactory;
       ComPtr<IDXGIAdapter1> currentAdapter;
       DXGI_ADAPTER_DESC currentDesc;
-      ::uwp::throw_if_failed(CreateDXGIFactory1(IID_PPV_ARGS(&dxgiFactory)));
-      ::uwp::throw_if_failed(dxgiFactory->EnumAdapters1(0,&currentAdapter));
-      ::uwp::throw_if_failed(currentAdapter->GetDesc(&currentDesc));
+      ::universal_windows::throw_if_failed(CreateDXGIFactory1(IID_PPV_ARGS(&dxgiFactory)));
+      ::universal_windows::throw_if_failed(dxgiFactory->EnumAdapters1(0,&currentAdapter));
+      ::universal_windows::throw_if_failed(currentAdapter->GetDesc(&currentDesc));
 
       // If the adapter LUIDs don't match, or if the device reports that it has been erased,
       // a new D3D device must be created.
@@ -892,7 +892,7 @@ namespace uwp
 
    //   m_pd2d1devicecontext->BeginDraw();
 
-   //   auto colorBackground = ::Windows::UI::ViewManagement::UISettings().GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+   //   auto colorBackground = ::winrt::Windows::UI::ViewManagement::UISettings().GetColorValue(::winrt::Windows::UI::ViewManagement::UIColorType::Background);
 
    //   D2D1_COLOR_F color32;
 
@@ -982,7 +982,7 @@ namespace uwp
    //}
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

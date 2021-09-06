@@ -206,7 +206,7 @@ namespace sockets
 #ifdef _UWP
 
       //Retrieve the ConnectionProfile
-      ::Windows::Networking::Connectivity::ConnectionProfile^ InternetConnectionProfile = Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
+      ::winrt::Windows::Networking::Connectivity::ConnectionProfile^ InternetConnectionProfile = ::winrt::Windows::Networking::Connectivity::NetworkInformation::GetInternetConnectionProfile();
 
       if(InternetConnectionProfile == nullptr)
          return;
@@ -217,9 +217,9 @@ namespace sockets
       //Pass the returned object to a function that accesses the connection data
       //::String^ strConnectionProfileInfo = GetConnectionProfileInfo(InternetConnectionProfile);
 
-      //Windows::Networking::Connectivity::NetworkAdapter ^ adp = InternetConnectionProfile->NetworkAdapter();
+      //::winrt::Windows::Networking::Connectivity::NetworkAdapter ^ adp = InternetConnectionProfile->NetworkAdapter();
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::HostName ^ > ^ names = ::Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Networking::HostName ^ > ^ names = ::winrt::Windows::Networking::Connectivity::NetworkInformation::GetHostNames();
 
       //strProfileInfo += connectionProfile->NetworkAdapter->NetworkAdapterId;
       //strProfileInfo += "\n";
@@ -227,7 +227,7 @@ namespace sockets
 
       for(unsigned int u = 0; u < names->Size; u++)
       {
-         ::Windows::Networking::HostName ^ name = names->GetAt(u);
+         ::winrt::Windows::Networking::HostName ^ name = names->GetAt(u);
          if(name == nullptr)
             continue;
          if(name->IPInformation == nullptr)
@@ -389,7 +389,7 @@ namespace sockets
    bool net::convert(in_addr & addr, const string & host,int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(host), "0"));
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::winrt::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::winrt::Windows::Networking::HostName(host), "0"));
 
       if (data->Size <= 0)
       {
@@ -417,7 +417,7 @@ namespace sockets
    bool net::convert(in6_addr & sa, const string & host, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(host), "0"));
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::winrt::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::winrt::Windows::Networking::HostName(host), "0"));
 
       if(data->Size <= 0)
          return false;
@@ -437,7 +437,7 @@ namespace sockets
    bool net::convert(string & str, const in_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string((in_addr &)addr)),"0"));
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::winrt::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::winrt::Windows::Networking::HostName(to_string((in_addr &)addr)),"0"));
 
       if(data->Size <= 0)
          return false;
@@ -452,7 +452,7 @@ namespace sockets
    bool net::convert(string & str, const in6_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string((in6_addr &) addr) ),"0"));
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::winrt::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::winrt::Windows::Networking::HostName(to_string((in6_addr &) addr) ),"0"));
 
       if(data->Size <= 0)
          return false;
@@ -512,7 +512,7 @@ namespace sockets
                return true;
             }
 
-            ::Windows::Networking::HostName ^ name = ref new ::Windows::Networking::HostName(rtstr(hostname));
+            ::winrt::Windows::Networking::HostName ^ name = ref new ::winrt::Windows::Networking::HostName(rtstr(hostname));
 
             if(name != nullptr)
             {
@@ -564,7 +564,7 @@ namespace sockets
             }
             // %! TODO: ipv6 reverse lookup
 
-            ::Windows::Networking::HostName ^ name = ref new ::Windows::Networking::HostName(rtstr(hostname));
+            ::winrt::Windows::Networking::HostName ^ name = ref new ::winrt::Windows::Networking::HostName(rtstr(hostname));
 
             if(name != nullptr)
             {

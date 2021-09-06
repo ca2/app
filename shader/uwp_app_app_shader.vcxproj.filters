@@ -4,22 +4,22 @@
     <None Include="uwp_app_simple_shader_TemporaryKey.pfx">
       <Filter>UWP</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\bzip2.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\bzip2.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\binary\Win32\basis\libeay32.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\binary\Win32\basis\libeay32.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\pcre.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\sqlite.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\sqlite.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\binary\Win32\basis\ssleay32.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\binary\Win32\basis\ssleay32.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
-    <None Include="..\..\..\..\__archive\storage-uwp\third\binary\Win32\basis\zlib.dll">
+    <None Include="..\..\..\..\__archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
       <Filter>Library\Win32\basis</Filter>
     </None>
   </ItemGroup>
@@ -99,7 +99,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="uwp\_.cpp">
+    <ClCompile Include="universal_windows\_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

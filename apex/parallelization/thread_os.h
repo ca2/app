@@ -10,7 +10,7 @@ typedef THREAD_PROC * thread_proc;
 //CLASS_DECL_APEX htask_t create_thread(
 //thread_proc proc,
 //void * p,
-//::e_priority epriority = ::priority_normal,
+//::enum_priority epriority = ::e_priority_normal,
 //::u32 nStackSize = 0,
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,

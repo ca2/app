@@ -57,7 +57,7 @@ extern "C"
 
 #ifdef _UWP
 
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 
@@ -1874,85 +1874,87 @@ namespace aura
    ::e_status session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
-#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
-
       return ::success;
 
-#else
-
-      if(m_puserinteractionHost)
-      {
-
-         return ::success;
-
-      }
-
-      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
-
-      if(!puserinteraction)
-      {
-
-         return ::error_failed;
-
-      }
-
-      auto estatus = puserinteraction->initialize(get_context_system());
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __refer(m_puserinteractionHost, puserinteraction);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      rectangle_i32 rectScreen(lpcrect);
-
-//      if(::is_null(lprect))
+//#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
+//
+//      return ::success;
+//
+//#else
+//
+//      if(m_puserinteractionHost)
 //      {
 //
-//         get_main_monitor(rectScreen);
+//         return ::success;
 //
 //      }
-//      else
+//
+//      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
+//
+//      if(!puserinteraction)
 //      {
 //
-//         rectScreen = *lprect;
+//         return ::error_failed;
 //
 //      }
-
-      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
-
-      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
-
-      if (!puserinteractionHost->create_window_ex(pcs))
-      {
-
-         return ::error_failed;
-
-      }
-
-//      puserinteraction->place(rectScreen);
 //
-//      puserinteraction->display(e_display_normal);
+//      auto estatus = puserinteraction->initialize(get_context_system());
 //
-//      puserinteraction->set_need_layout();
+//      if (!estatus)
+//      {
 //
-//      puserinteraction->set_need_redraw();
+//         return estatus;
 //
-//      puserinteraction->post_redraw();
-
-      return true;
-
-#endif
+//      }
+//
+//      estatus = __refer(m_puserinteractionHost, puserinteraction);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      rectangle_i32 rectScreen(lpcrect);
+//
+////      if(::is_null(lprect))
+////      {
+////
+////         get_main_monitor(rectScreen);
+////
+////      }
+////      else
+////      {
+////
+////         rectScreen = *lprect;
+////
+////      }
+//
+//      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
+//
+//      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
+//
+//      if (!puserinteractionHost->create_window_ex(pcs))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+////      puserinteraction->place(rectScreen);
+////
+////      puserinteraction->display(e_display_normal);
+////
+////      puserinteraction->set_need_layout();
+////
+////      puserinteraction->set_need_redraw();
+////
+////      puserinteraction->post_redraw();
+//
+//      return true;
+//
+//#endif
 
    }
 
@@ -2299,7 +2301,7 @@ namespace aura
       else
       {
 
-         __throw(::exception::exception("not expected enum_mouse value"));
+         throw unexpected_situation("not expected enum_mouse value");
 
       }
 

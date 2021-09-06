@@ -1,66 +1,6 @@
 #pragma once
 
 
-template < typename POINT >
-concept primitive_point = requires(POINT point)
-{
-   point.x;
-   point.y;
-};
-
-
-template < typename POINT >
-concept XY_point = requires(POINT point)
-{
-   point.X;
-   point.Y;
-};
-
-
-template < typename SIZE >
-concept primitive_size = requires(SIZE size)
-{
-   size.cx;
-   size.cy;
-};
-
-
-template < typename SIZE >
-concept Dim_size = requires(SIZE size)
-{
-   size.Width;
-   size.Height;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_rectangle = requires(RECTANGLE rectangle)
-{
-   rectangle.left;
-   rectangle.top;
-   rectangle.right;
-   rectangle.bottom;
-};
-
-
-template < typename RECTANGLE >
-concept XYDim_rectangle = requires(RECTANGLE rectangle)
-{
-   rectangle.X;
-   rectangle.Y;
-   rectangle.Width;
-   rectangle.Height;
-};
-
-
-template < typename RECTANGLE >
-concept xydim_rectangle = requires(RECTANGLE rectangle)
-{
-   rectangle.x;
-   rectangle.y;
-   rectangle.width;
-   rectangle.height;
-};
 
 
 #include "_struct.h"
@@ -1348,7 +1288,7 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 
 //#ifdef _UWP
 //
-//inline void copy(rectangle_i32 * prectDst, const ::Windows::Foundation::Rect * prectSrc)
+//inline void copy(rectangle_i32 * prectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 //{
 //   prectDst->left = (::i32) prectSrc->X;
 //   prectDst->top = (::i32)prectSrc->Y;
@@ -1356,7 +1296,7 @@ inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
 //   prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
 //}
 //
-//inline void copy(::Windows::Foundation::Rect* prectDst, rectangle_i32* prectSrc)
+//inline void copy(::winrt::Windows::Foundation::Rect* prectDst, rectangle_i32* prectSrc)
 //{
 //   prectDst->X = (float) prectSrc->left;
 //   prectDst->Y = (float) prectSrc->top;
@@ -1391,7 +1331,7 @@ inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size
 
 //#ifdef _UWP
 //
-//inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rectangle, double scale)
+//inline ::winrt::Windows::Foundation::Rect ScaleRect(::winrt::Windows::Foundation::Rect rectangle, double scale)
 //{
 //
 //   rectangle.X = (float)(rectangle.X*scale);
@@ -1471,11 +1411,6 @@ inline void collapse_rect(RECT1 * prectangle, const RECT2 & r)
 
 #include "ellipse.h"
 
-#include "shape.h"
-
-#include "bounding_rect.h"
-
-#include "contains.h"
 
 
 

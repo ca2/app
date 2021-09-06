@@ -42,7 +42,7 @@ namespace sockets
    private:
 
 
-      ::Windows::Networking::Sockets::DatagramSocket^ m_datagramsocket;
+      ::winrt::Windows::Networking::Sockets::DatagramSocket^ m_datagramsocket;
       char *m_ibuf; ///< Input buffer
       int m_ibufsz; ///< size_i32 of input buffer
       bool m_bind_ok; ///< Bind completed successfully

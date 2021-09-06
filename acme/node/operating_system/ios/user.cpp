@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority)
+CLASS_DECL_ACME void main_branch(::matter* pobjectTask, enum_priority epriority)
 {
 
    ns_main_sync(^()

@@ -13,9 +13,10 @@
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/node.h"
+#include "acme/parallelization/install_mutex.h"
 
 
-#include "apex/node/_node.h"
+//#include "apex/node/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
 
@@ -1768,7 +1769,7 @@ message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
 INFO("apex::application::init_application exit");
 
-__throw(exit_exception(this));
+throw exit_exception(this);
 
 }
 
@@ -5726,20 +5727,20 @@ bool application::can_close_application()
 void application::close_application()
 {
 
-#ifdef _UWP
-
-Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
-Windows::UI::Core::CoreDispatcherPriority::Normal,
-ref new Windows::UI::Core::DispatchedHandler([this]()
-{
-Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
-}));
-
-#else
+//#ifdef _UWP
+//
+//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+//::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+//{
+//::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+//}));
+//
+//#else
 
 set_finish();
 
-#endif
+//#endif
 
 }
 
@@ -9689,6 +9690,8 @@ void application::process_message_filter(i32 code, ::message::message* pmessage)
 {
 
    __throw(todo, "interaction");
+
+   return ::error_failed;
 
 }
 

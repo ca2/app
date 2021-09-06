@@ -142,7 +142,7 @@ namespace sockets
 
       m_bConnecting = true;
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket;
 
       //attach(data);
 
@@ -156,11 +156,11 @@ namespace sockets
       {
 
          m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed =
-            ref new ::Windows::Foundation::AsyncActionCompletedHandler
-            ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+            ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+            ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
                {
 
-                  if (status == ::Windows::Foundation::AsyncStatus::Completed)
+                  if (status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
                   {
 
                      m_bConnected = true;
@@ -211,19 +211,19 @@ namespace sockets
             }*/
 
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket;
 
-      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_hostname, ansi_string_from_i64(ad.get_service_number()));
+      ::winrt::Windows::Networking::EndpointPair ^ pair = ref new ::winrt::Windows::Networking::EndpointPair(bind_ad.m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_hostname, ansi_string_from_i64(ad.get_service_number()));
       //::sockets::socket::os_data data;
       //data.o = m_posdata->m_streamsocket;
       //attach(data);
 
       m_streamsocket->ConnectAsync(pair)->Completed =
-      ref new ::Windows::Foundation::AsyncActionCompletedHandler
-      ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+      ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
-         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         if(status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
          {
 
             OnConnect();
@@ -233,7 +233,7 @@ namespace sockets
       });
 
 
-      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
+      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket();
 
       //data.o = m_posdata->m_streamsocket;
       
@@ -453,7 +453,7 @@ namespace sockets
       m_bExpectRequest = false;
       m_bExpectResponse = false;
 
-      ::Windows::Storage::Streams::IInputStream ^ inputstream = m_streamsocket->InputStream;
+      ::winrt::Windows::Storage::Streams::IInputStream ^ inputstream = m_streamsocket->InputStream;
 
       //if(inputstream->UnconsumedBufferLength > 0)
       //{
@@ -468,10 +468,10 @@ namespace sockets
 
       //}
 
-      //reader->InputStreamOptions = ::Windows::Storage::Streams::InputStreamOptions::Partial;
+      //reader->InputStreamOptions = ::winrt::Windows::Storage::Streams::InputStreamOptions::Partial;
 
 
-      //::Windows::Storage::Streams::DataReaderLoadOperation ^ op  = nullptr;
+      //::winrt::Windows::Storage::Streams::DataReaderLoadOperation ^ op  = nullptr;
 
       m_memoryRead.set_size(16 * 1024);
 
@@ -481,7 +481,7 @@ namespace sockets
       try
       {
 
-         auto res = wait(inputstream->ReadAsync(m_bufferRead, m_memoryRead.get_size(), Windows::Storage::Streams::InputStreamOptions::Partial));
+         auto res = wait(inputstream->ReadAsync(m_bufferRead, m_memoryRead.get_size(), ::winrt::Windows::Storage::Streams::InputStreamOptions::Partial));
 
          m_memoryRead.set_os_buffer(res);
 
@@ -506,14 +506,14 @@ namespace sockets
 
 
       //op->Completed =
-      //ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
-      //      (::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
+      //ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
+      //      (::winrt::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::winrt::Windows::Foundation::AsyncStatus asyncStatus)
       //{
       //   if(IsCloseAndDelete())
       //   {
       //      TRACE("Close and delete set");
       //   }
-      //   else if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
+      //   else if(asyncStatus == ::winrt::Windows::Foundation::AsyncStatus::Completed)
       //   {
       //      //int n = reader->UnconsumedBufferLength;
       //      Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
@@ -687,10 +687,10 @@ namespace sockets
       m_bErrorWriting = false;
 
       m_streamsocket->OutputStream->WriteAsync(m_bufferWrite)
-         ->Completed = ref new ::Windows::Foundation::AsyncOperationWithProgressCompletedHandler <unsigned int, unsigned int >([this](::Windows::Foundation::IAsyncOperationWithProgress <unsigned int, unsigned int >^ operation, ::Windows::Foundation::AsyncStatus status)
+         ->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler <unsigned int, unsigned int >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress <unsigned int, unsigned int >^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
             {
 
-               if (status == ::Windows::Foundation::AsyncStatus::Completed)
+               if (status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
                {
 
                   if (m_bWaitingResponse)
@@ -940,7 +940,7 @@ namespace sockets
    void tcp_socket::OnSSLConnect()
    {
 
-      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_hostname));
+      ::wait(m_streamsocket->UpgradeToSslAsync(::winrt::Windows::Networking::Sockets::SocketProtectionLevel::Tls10, m_addressRemote.m_hostname));
 
       /*      SetNonblocking(true);
             {
@@ -1608,10 +1608,10 @@ namespace sockets
    }
 
    /*
-   void tcp_socket::OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+   void tcp_socket::OnConnected(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
    {
 
-      if(status == ::Windows::Foundation::Completed)
+      if(status == ::winrt::Windows::Foundation::Completed)
       {
          OnConnected();
       }

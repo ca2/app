@@ -157,8 +157,8 @@ namespace sockets
 
                
 
-         void StreamSocketListener_ConnectionReceived(::Windows::Networking::Sockets::StreamSocketListener^ listener,
-            ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs^ args)
+         void StreamSocketListener_ConnectionReceived(::winrt::Windows::Networking::Sockets::StreamSocketListener^ listener,
+            ::winrt::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs^ args)
          {
 
             m_p->StreamSocketListener_ConnectionReceived(listener, args);
@@ -167,15 +167,15 @@ namespace sockets
 
       };
 
-      ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
-      Windows::Foundation::EventRegistrationToken m_tokenConnectionReceived;
+      ::winrt::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
+      ::winrt::Windows::Foundation::EventRegistrationToken m_tokenConnectionReceived;
       bridge ^ m_bridge;
       //class on_listener_accept_data
       //{
       //public:
 
-      //   ::Windows::Networking::Sockets::StreamSocketListener ^ listener;
-      //   ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args;
+      //   ::winrt::Windows::Networking::Sockets::StreamSocketListener ^ listener;
+      //   ::winrt::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args;
 
       //};
 
@@ -289,7 +289,7 @@ namespace sockets
       int Bind(port_t port, const string & protocol, int depth = 20)
       {
 
-         m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+         m_listener = ref new ::winrt::Windows::Networking::Sockets::StreamSocketListener;
 
          m_listener->BindServiceNameAsync(__str(port));
 
@@ -325,9 +325,9 @@ namespace sockets
 
          create_socket();
 
-         m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+         m_listener = ref new ::winrt::Windows::Networking::Sockets::StreamSocketListener;
 
-         m_tokenConnectionReceived = m_listener->ConnectionReceived += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Networking::Sockets::StreamSocketListener^, ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs^>(m_bridge, &bridge::StreamSocketListener_ConnectionReceived);
+         m_tokenConnectionReceived = m_listener->ConnectionReceived += ref new ::winrt::Windows::Foundation::TypedEventHandler < ::winrt::Windows::Networking::Sockets::StreamSocketListener^, ::winrt::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs^>(m_bridge, &bridge::StreamSocketListener_ConnectionReceived);
 
          //SOCKET s;
          //m_iBindPort = ad.GetPort();
@@ -371,7 +371,7 @@ namespace sockets
       }
 
       /** OnRead on a listen_socket receives an incoming connection. */
-      void StreamSocketListener_ConnectionReceived(::Windows::Networking::Sockets::StreamSocketListener ^ listener, ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args)
+      void StreamSocketListener_ConnectionReceived(::winrt::Windows::Networking::Sockets::StreamSocketListener ^ listener, ::winrt::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args)
       {
 
          //struct sockaddr sa;

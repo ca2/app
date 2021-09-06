@@ -12,13 +12,13 @@ namespace aura
    public:
 
 
-#ifdef _UWP
-
-      
-      ::uwp::directx_application_source ^                   m_applicationsource;
-
-
-#endif
+//#ifdef _UWP
+//
+//      
+//      ::universal_windows::directx_application_source ^                   m_applicationsource;
+//
+//
+//#endif
 
       bool m_bAvoidFirstResponder;
 
@@ -116,7 +116,7 @@ namespace aura
 
 //#ifdef _UWP
 //
-//      ::uwp::directx_framework_view ^                          m_frameworkview;
+//      ::universal_windows::directx_framework_view ^                          m_frameworkview;
 //
 //#endif
 
@@ -255,8 +255,8 @@ namespace aura
 
 #ifdef _UWP
 
-      __reference(::uwp::interaction_impl)            m_pimplMain;
-      //Agile < Windows::UI::Core::CoreWindow >      m_window;
+      __reference(::universal_windows::interaction_impl)            m_pimplMain;
+      //Agile < ::winrt::Windows::UI::Core::CoreWindow >      m_window;
 
 #endif
 
@@ -384,7 +384,7 @@ namespace aura
 
       //virtual bool verb();
 
-      //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal) override;
+      //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -427,7 +427,7 @@ namespace aura
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-      //thread_tools * tools(::e_priority epriority);
+      //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       //class ::user::window_map                     &  window_map();
@@ -886,12 +886,12 @@ namespace aura
 
       //      u32 guess_code_page(const ::string & str);
 
-#ifdef _UWP
-
-      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
-
-
-#endif
+//#ifdef _UWP
+//
+//      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
+//
+//
+//#endif
 
       //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
 

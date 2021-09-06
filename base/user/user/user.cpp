@@ -1402,7 +1402,7 @@ namespace base
 
          message_box("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         __throw(exit_exception(get_system()));
+         throw exit_exception(get_system());
 
       }
 

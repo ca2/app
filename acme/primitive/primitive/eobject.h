@@ -6,7 +6,7 @@ inline bool __enum_is_ok(const ::enum_object& e) { return (e & e_object_success)
 inline bool __enum_is_failed(const ::enum_object & e) { return (e & e_object_failure) != 0 || ( e & e_object_timeout) != 0 ; }
 
 
-class eobject
+class CLASS_DECL_ACME eobject
 {
 public:
 
@@ -124,7 +124,7 @@ public:
 
    }
 
-    #ifndef __OBJC__
+    #if !defined(__OBJC__) && !defined(__cplusplus_winrt)
        IMPL_OPERATOR_PLUS(eobject);
     #endif
 

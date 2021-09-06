@@ -1,6 +1,6 @@
 // Created by CamiloSTTBS 2020-12-25 14:01 BRT <3ThomasBS_, Mummi and bilbo!!
 #include "framework.h"
-#include "aura/node/uwp/_uwp.h"
+#include "aura/node/universal_windows/_uwp.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
@@ -35,9 +35,9 @@ namespace aura
 
       //}
 
-      auto source = ::uwp::new_directx_application_source(this, m_strCommandLine);
+      auto source = ::universal_windows::new_directx_application_source(this, m_strCommandLine);
 
-      ::Windows::ApplicationModel::Core::CoreApplication::Run(source);
+      ::winrt::Windows::ApplicationModel::Core::CoreApplication::Run(source);
 
       return ::success;
 

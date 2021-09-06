@@ -323,17 +323,17 @@ enum enum_object : i64
 
 
 
-enum e_priority
+enum enum_priority
 {
 
-   priority_none = -1,
-   priority_idle = 1,
-   priority_lowest = 48,
-   priority_below_normal,
-   priority_normal,
-   priority_above_normal,
-   priority_highest,
-   priority_time_critical = 99
+   e_priority_none = -1,
+   e_priority_idle = 1,
+   e_priority_lowest = 48,
+   e_priority_below_normal,
+   e_priority_normal,
+   e_priority_above_normal,
+   e_priority_highest,
+   e_priority_time_critical = 99
 
 };
 

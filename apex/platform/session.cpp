@@ -36,7 +36,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwind
 
 #ifdef _UWP
 
-#include "apex/os/uwp/_uwp.h"
+#include "apex/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 

@@ -160,7 +160,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
 
 
 //template < typename PRED >
-//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+//auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority)
 //{
 //
 //   auto pobjectTask = __sync_predicate(pred);
@@ -187,7 +187,7 @@ inline bool predicate_Sleep(int iTime, PRED pred)
 
 
 template < typename PRED >
-void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
+void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, enum_priority epriority)
 {
 
    auto pobjectTask = __routine(pred);

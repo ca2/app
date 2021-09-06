@@ -473,7 +473,7 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\linux.h">
@@ -1100,6 +1100,9 @@
     <ClInclude Include="graphics\draw2d\load_image.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1480,9 +1483,6 @@
     <ClCompile Include="user\call_message_handler_task.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\device_lock.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="user\style_control.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1655,6 +1655,9 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\load_image.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>

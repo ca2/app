@@ -8,6 +8,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #endif
 
 
+#ifndef __cplusplus_winrt
+
+
 inline block::block(const memory_base & memory) :
    block(memory.get_data(), memory.get_size())
 {
@@ -22,11 +25,17 @@ inline block::block(const memory_base * pmemory) :
 }
 
 
+#endif // __cplusplus_winrt
+
+
 //inline fork_block::fork_block(const memory_base & memory) :
 //   fork_block(memory.get_data(), memory.get_size())
 //{
 //
 //}
+
+
+#ifndef __cplusplus_winrt
 
 
 template < typename BLOCK_TYPE >
@@ -45,6 +54,10 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    return *get_data();
 
 }
+
+
+#endif // __cplusplus_winrt
+
 
 struct lparam_debug :
    virtual matter
@@ -344,6 +357,9 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 #endif // !__DEBUG
 
 
+#ifndef __cplusplus_winrt
+
+
 namespace str
 {
 
@@ -378,7 +394,10 @@ namespace str
 } // namespace str
 
 
-inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
+#endif // __cplusplus_winrt
+
+
+inline void copy(void *, const void *) /* = 0 */ { throw_exception(error_interface_only); }
 
 
 namespace papaya
@@ -393,7 +412,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         __throw(::exception::exception("template only exception"));
+         __throw(error_interface_only, "template only exception");
 
       }
 
@@ -439,6 +458,9 @@ inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
 }
 
 #endif
+
+
+#ifndef __cplusplus_winrt
 
 
 template < primitive_integral MULTIPLICATOR, primitive_integral NUMERATOR, primitive_integral DENOMINATOR, primitive_integral RESULT >
@@ -522,6 +544,9 @@ template < typename TYPE >
 }
 
 
+#endif // __cplusplus_winrt
+
+
 template < class c_derived >
 inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
@@ -547,7 +572,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
    if (::is_null(pderived))
    {
 
-      __throw(::exception::exception(::error_wrong_type));
+      __throw(error_wrong_type);
 
    }
 
@@ -687,6 +712,8 @@ inline i64 ref_count(c_derived * pca)
 
 }
 
+
+#ifndef __cplusplus_winrt
 
 
 template < typename RESULT, typename TRANSPORT >
@@ -951,6 +978,8 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
 //
 //}
 
+
+#endif // __cplusplus_winrt
 
 
 

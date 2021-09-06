@@ -14,7 +14,7 @@
 bool uwp_get_file_image(::image * pimage, const char * psz);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -416,7 +416,7 @@ pacmedir->is(strPath))
    }
 
    
-} // namespace uwp
+} // namespace universal_windows
 
 
 bool uwp_get_file_image(::image * pimage, const char * psz)

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -25,7 +25,7 @@ namespace uwp
    CLASS_DECL_CORE void        TimeToFileTime(::object * pobject, const ::datetime::time& time, LPFILETIME pFileTime);
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

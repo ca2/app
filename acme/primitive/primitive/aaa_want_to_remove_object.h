@@ -64,7 +64,7 @@ public:
 
 
    __pointer(thread) fork(
-                           ::e_priority epriority = priority_normal,
+                           ::enum_priority epriority = e_priority_normal,
                            ::u32 nStackSize = 0,
                            u32 dwCreateFlags = 0,
                            LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
@@ -230,7 +230,7 @@ public:
 
 
    __pointer(thread) begin(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 dwCreateFlags = 0,
    LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);

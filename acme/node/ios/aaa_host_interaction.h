@@ -34,7 +34,7 @@ namespace ios
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

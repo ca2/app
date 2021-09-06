@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/parallelization/install_mutex.h"
 
 
 namespace acme
@@ -15,6 +16,8 @@ namespace acme
 
    node::node()
    {
+
+      m_uNodeFlags = 0;
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
@@ -230,12 +233,12 @@ namespace acme
    }
 
 
-   ::e_status node::on_start_system()
-   {
-      
-      return ::success;
+   //::e_status node::defer_()
+   //{
+   //   
+   //   return ::success;
 
-   }
+   //}
 
 
    ::e_status node::_will_finish_launching()
@@ -247,6 +250,16 @@ namespace acme
 
 
    ::e_status node::reboot()
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::implement()
    {
 
       __throw(error_interface_only);
@@ -1605,6 +1618,14 @@ namespace acme
       __throw(error_interface_only);
 
       return error_interface_only;
+
+   }
+
+
+   ::e_status node::on_start_system()
+   {
+
+      return ::success;
 
    }
 

@@ -21,7 +21,7 @@ namespace process
    }
 
 
-   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::enum_priority epriority)
    {
 
       if(bPiped)

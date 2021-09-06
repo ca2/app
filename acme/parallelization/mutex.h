@@ -1,9 +1,6 @@
 #pragma once
 
 
-CLASS_DECL_ACME __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName);
-
-
 class CLASS_DECL_ACME mutex :
    virtual public synchronization_object
 {
@@ -81,7 +78,7 @@ public:
    bool already_exists();
 
 
-   static __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
+   ///static __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
 
 
 };
@@ -94,66 +91,3 @@ CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const char * lpszName);
 CLASS_DECL_ACME ::mutex * get_ui_destroyed_mutex();
 
 
-
-
-
-#ifdef WINDOWS_DESKTOP
-
-class security_attributes
-{
-public:
-
-   char sz[32]; // I hope it is enough to hold SECURITY_ATTRIBUTES;
-
-};
-
-
-class null_dacl_security_attributes
-{
-public:
-
-   security_attributes m_securityattributes;
-
-   security_attributes m_securitydescriptor;
-
-   null_dacl_security_attributes();
-
-};
-
-#endif
-
-
-
-namespace install
-{
-
-
-   class CLASS_DECL_ACME mutex :
-#ifdef WINDOWS_DESKTOP
-      public null_dacl_security_attributes,
-#endif
-      public ::mutex
-   {
-   public:
-
-      mutex(::object * pobject, string strPlatform, string strSuffix = "");
-
-   };
-
-
-   class CLASS_DECL_ACME admin_mutex :
-#ifdef WINDOWS_DESKTOP
-      public null_dacl_security_attributes,
-#endif
-      public ::mutex
-   {
-   public:
-
-      admin_mutex(::object * pobject, string strPlatform, string strSuffix = "");
-
-   };
-
-
-
-
-} // namespace install

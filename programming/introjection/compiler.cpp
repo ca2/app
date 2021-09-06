@@ -1132,7 +1132,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
-      process->create_child_process("/tmp/introj.bash",true,nullptr,::priority_highest);
+      process->create_child_process("/tmp/introj.bash",true,nullptr,::e_priority_highest);
 
 #else
 
@@ -1140,7 +1140,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
       pcontext->m_papexcontext->file().put_contents(strCmdCompile, str);
 
-      process->create_child_process(str,true,m_pathProjectDir,::priority_highest);
+      process->create_child_process(str,true,m_pathProjectDir,::e_priority_highest);
 
 #endif
 
@@ -1308,7 +1308,7 @@ auto tickStart = ::millis::now();
 
          ::process::process_pointer process(e_create);
 
-         //         set_thread_priority(::priority_highest);
+         //         set_thread_priority(::e_priority_highest);
 
 #ifdef LINUX
 
@@ -1316,11 +1316,11 @@ auto tickStart = ::millis::now();
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
-         process->create_child_process("/tmp/introl.bash",true,nullptr,::priority_highest);
+         process->create_child_process("/tmp/introl.bash",true,nullptr,::e_priority_highest);
 
 #else
 
-         process->create_child_process(str,true,nullptr,::priority_highest);
+         process->create_child_process(str,true,nullptr,::e_priority_highest);
 #endif
 #else
 

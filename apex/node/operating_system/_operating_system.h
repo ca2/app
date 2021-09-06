@@ -32,8 +32,9 @@
 
 #elif defined(_UWP)
 
-#include "apex/os/ansios/_ansios.h"
-#include "apex/os/uwp/_uwp.h"
+#include "apex/node/operating_system/ansi/_ansi.h"
+#include "apex/node/operating_system/windows_common/_windows_common.h"
+#include "apex/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

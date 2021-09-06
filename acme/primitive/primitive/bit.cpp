@@ -11,10 +11,14 @@ namespace acme
 
       void int_aligned_copy(i32 * pDest, i32 iDest, i32 * pSrc, i32 iSrc, i32 iCount)
       {
+         
          if((iDest % INT_ALIGN) != (iSrc %INT_ALIGN))
          {
-            __throw(::exception::exception("i32 aligned only"));
+
+            __throw(error_invalid_argument, "i32 aligned only");
+
          }
+
          i32 * pFullDest = &pDest[iDest / INT_ALIGN];
          i32 * pFullSrc = &pSrc[iSrc / INT_ALIGN];
          if((iDest % INT_ALIGN) > 0)

@@ -213,7 +213,7 @@ virtual bool fill_contains(const point_f64 & point);
 
       virtual bool set_solid_pen(double dWidth, const ::color::color & color);
 
-      virtual bool IsPrinting();            // true if being used for printing
+      //virtual bool IsPrinting();            // true if being used for printing
 
       virtual ::draw2d::pen *      get_current_pen();
       virtual ::draw2d::brush *    get_current_brush();

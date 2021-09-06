@@ -17,7 +17,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #elif defined(_UWP)
-#include "acme/node/operating_system/uwp/file_winrt.h"
+#include "acme/node/operating_system/universal_windows/file_winrt.h"
 #endif
 
 
@@ -55,7 +55,7 @@ bool windows_file_find_is_dots(WIN32_FIND_DATAW & data);
 
 #undef get_system()
 
-using namespace ::Windows::get_system();
+using namespace ::winrt::Windows::get_system();
 
 #pragma pop_macro("get_system()")
 
@@ -974,7 +974,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
    #elif defined(_UWP)
 
-      ::Windows::Storage::StorageFolder ^ folder = nullptr;
+      ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;
 
       string strPrefix;
 
@@ -991,7 +991,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             try
             {
 
-               folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+               folder = ::winrt::Windows::Storage::KnownFolders::PicturesLibrary;
 
             }
             catch (...)
@@ -1010,7 +1010,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             try
             {
 
-               folder = ::Windows::Storage::KnownFolders::MusicLibrary;
+               folder = ::winrt::Windows::Storage::KnownFolders::MusicLibrary;
 
             }
             catch (...)
@@ -1029,7 +1029,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             try
             {
 
-               folder = ::Windows::Storage::KnownFolders::VideosLibrary;
+               folder = ::winrt::Windows::Storage::KnownFolders::VideosLibrary;
 
             }
             catch (...)
@@ -1048,7 +1048,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             try
             {
 
-               folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+               folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 
             }
             catch (...)
@@ -1070,7 +1070,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
                try
                {
 
-                  folder = ::Windows::Storage::KnownFolders::PicturesLibrary;
+                  folder = ::winrt::Windows::Storage::KnownFolders::PicturesLibrary;
 
                }
                catch (...)
@@ -1090,7 +1090,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
                try
                {
 
-                  folder = ::Windows::Storage::KnownFolders::MusicLibrary;
+                  folder = ::winrt::Windows::Storage::KnownFolders::MusicLibrary;
 
                }
                catch (...)
@@ -1110,7 +1110,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
                try
                {
 
-                  folder = ::Windows::Storage::KnownFolders::VideosLibrary;
+                  folder = ::winrt::Windows::Storage::KnownFolders::VideosLibrary;
 
                }
                catch (...)
@@ -1130,7 +1130,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
                try
                {
 
-                  folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+                  folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 
                }
                catch (...)
@@ -1173,7 +1173,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
             else
             {
 
-               folder = ::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str).get();
+               folder = ::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str).get();
 
                strPrefix = str + "/";
 
@@ -1209,7 +1209,7 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
          string str = path;
 
-         path.m_iDir = a->GetAt(u)->IsOfType( ::Windows::Storage::StorageItemTypes::Folder) ? 1 :0;
+         path.m_iDir = a->GetAt(u)->IsOfType( ::winrt::Windows::Storage::StorageItemTypes::Folder) ? 1 :0;
 
          stra.add(path);
 
@@ -1287,9 +1287,9 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
    #elif defined(_UWP)
 
-      ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
       for(u32 u = 0; u < a->Size; u++)
       {
@@ -1369,9 +1369,9 @@ pacmedir->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
    #elif defined(_UWP)
 
-      ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
+      ::winrt::Windows::Storage::StorageFolder ^ folder = wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(psz)));
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
       for(u32 u = 0; u < a->Size; u++)
       {

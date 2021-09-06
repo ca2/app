@@ -6,21 +6,6 @@ float g_DPIScaleX = 1.0f;
 float g_DPIScaleY = 1.0f;
 
 
-void dpi_os_initialize()
-{
-
-   //::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([]()
-     // {
-
-         //::Windows::Graphics::Display::DisplayInformation^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
-
-         //g_DPIScaleX = displayinformation->LogicalDpi;
-         //g_DPIScaleY = displayinformation->LogicalDpi;
-
-      //})));
-
-}
-
 
 CLASS_DECL_ACME float os_get_dpi()
 {

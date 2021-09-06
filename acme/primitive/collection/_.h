@@ -10,7 +10,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 //
 //
 //template < typename T >
-//inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
+//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ a)
 //{
 //
 //   return a.Size;
@@ -241,6 +241,17 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 #include "string_array_base.h"
 
 
+template < typename TYPE >
+inline const char * ___type_c_str()
+{
+
+   auto pszType = typeid(TYPE).name();
+
+   return pszType;
+
+}
+
+
 
 template < typename TYPE >
 inline string ___type_str()
@@ -255,6 +266,8 @@ inline string ___type_str()
 }
 
 #define __type_str(TYPE) ::___type_str < TYPE >()
+
+#define __type_c_str(TYPE) ::___type_c_str < TYPE >()
 
 
 #include "acme/graphics/draw2d/_const.h"

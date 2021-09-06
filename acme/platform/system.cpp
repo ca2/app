@@ -87,6 +87,23 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   ::e_status system::on_pre_run_task()
+   {
+
+      auto estatus = on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::main()
    {
 
@@ -363,7 +380,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   //   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+   //   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
    //   {
    //
    //      return ::error_interface_only;
@@ -371,7 +388,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //   }
    //
    //
-   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
+   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, enum_priority epriority)
    //   {
    //
    //      auto proutine = ___sync_routine(routine);
@@ -531,7 +548,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   task_group * system::task_group(enum e_priority)
+   task_group * system::task_group(enum enum_priority)
    {
 
       return nullptr;
@@ -1115,7 +1132,16 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::on_start_system()
    {
 
-      return ::success;
+      auto estatus = m_pnode->on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

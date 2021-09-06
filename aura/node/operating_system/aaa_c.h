@@ -26,7 +26,7 @@
 #include "aura/os/linux/_c.h"
 #elif defined(_UWP)
 #include "aura/os/windows_common/_c.h"
-#include "aura/os/uwp/_.h"
+#include "aura/os/universal_windows/_.h"
 #elif defined(WINDOWS_DESKTOP)
 #include "aura/os/windows_common/_c.h"
 #include "aura/os/windows/_c.h"

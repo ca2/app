@@ -57,7 +57,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
 
 
-::e_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    int iCa2Min;
@@ -68,7 +68,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
    if (iOsPolicy == SCHED_RR)
    {
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -78,15 +78,15 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
    else
    {
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
    }
 
@@ -98,7 +98,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
    if (iOsMax == iOsMin)
    {
-      iCa2Priority = (i32) ::priority_normal;
+      iCa2Priority = (i32) ::e_priority_normal;
    }
    else
    {
@@ -107,13 +107,13 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 
    iCa2Priority = maximum(iCa2Min, minimum(iCa2Max, iCa2Priority));
 
-   return (e_priority) iCa2Priority;
+   return (enum_priority) iCa2Priority;
 
 }
 
 
 
-::e_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority thread_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);
@@ -121,7 +121,7 @@ CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 }
 
 
-void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority)
+void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority)
 {
 
    get_os_priority(piPolicy, pparam, epriority);
@@ -129,7 +129,7 @@ void process_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority 
 }
 
 
-::e_priority process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
+::enum_priority process_get_scheduling_priority(i32 iOsPolicy, const sched_param * pparam)
 {
 
    return get_scheduling_priority(iOsPolicy, pparam);

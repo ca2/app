@@ -19,13 +19,6 @@
 CLASS_DECL_AURA i32 ca2_main();
 
 
-//void CLASS_DECL_AURA __cdecl _ca2_purecall()
-//{
-//
-//   __throw(::exception::exception());
-//
-//}
-
 
 //void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 

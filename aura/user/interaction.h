@@ -436,7 +436,7 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
 
       //virtual void enumerate_composite(matter_array& a) override;
@@ -1464,16 +1464,16 @@ namespace user
       //virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
-      static Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
-      Agile<Windows::UI::Core::CoreWindow> get_os_window()
+      static Agile<::winrt::Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
+      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window()
       {
          return get_os_window(this);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction* pinteraction)
+      static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window(interaction* pinteraction)
       {
          return (*s_get_os_window)(pinteraction);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
+      static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
          UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;

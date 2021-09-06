@@ -67,8 +67,6 @@
 
 
 
-
-
 namespace hex
 {
 
@@ -97,7 +95,7 @@ namespace hex
       else
       {
 
-         __throw(error_invalid_argument, "not hexadecimal digit");
+         throw "not hexadecimal digit";
 
       }
 
@@ -105,7 +103,6 @@ namespace hex
 
 
 } // namespace hex
-
 
 
 //template < typename TYPE_CHAR >
@@ -139,6 +136,9 @@ namespace hex
 //}
 
 
+#ifndef __cplusplus_winrt
+
+
 template < typename TYPE_CHAR >
 template < typename TYPE >
 inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYPE & t) const
@@ -147,10 +147,6 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYP
    return this->operator + (__str(t));
 
 }
-
-
-
-
 
 
 template < typename STRINGABLE >
@@ -177,3 +173,9 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
    }
 
 }
+
+
+#endif
+
+
+

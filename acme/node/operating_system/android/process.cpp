@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority epriority);
+void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 namespace acme
@@ -212,7 +212,7 @@ namespace process
 {
 
 
-   CLASS_DECL_ACME bool set_priority(::e_priority epriority)
+   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;

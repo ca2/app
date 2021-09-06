@@ -34,15 +34,15 @@ namespace sockets
    int udp_socket::Bind(port_t port, int range)
    {
 
-      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket;
+      m_datagramsocket = ref new ::winrt::Windows::Networking::Sockets::DatagramSocket;
       //::sockets::socket::os_data data;
       //data.o = m_datagramsocket;
       //attach(data);
       create_socket();
 
       m_datagramsocket->MessageReceived +=
-      ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Networking::Sockets::DatagramSocket ^, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ >
-      ([this](Windows::Networking::Sockets::DatagramSocket ^ socket, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ args)
+      ref new ::winrt::Windows::Foundation::TypedEventHandler < ::winrt::Windows::Networking::Sockets::DatagramSocket ^, ::winrt::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ >
+      ([this](::winrt::Windows::Networking::Sockets::DatagramSocket ^ socket, ::winrt::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ args)
       {
 
          Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(args->GetDataReader()->UnconsumedBufferLength);
@@ -54,11 +54,11 @@ namespace sockets
       });
 
       m_datagramsocket->BindServiceNameAsync(__str(port))->Completed =
-      ref new ::Windows::Foundation::AsyncActionCompletedHandler
-      ([this] (::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+      ([this] (::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
-         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         if(status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
          {
             m_bind_ok = true;
             OnAccept();
@@ -85,7 +85,7 @@ namespace sockets
 
       //         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
 
-      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+      m_datagramsocket = ref new ::winrt::Windows::Networking::Sockets::DatagramSocket();
 
       //::sockets::socket::os_data data;
       //data.o = m_datagramsocket;
@@ -96,11 +96,11 @@ namespace sockets
       SetNonblocking(true);
 
       m_datagramsocket->BindEndpointAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
-      ref new ::Windows::Foundation::AsyncActionCompletedHandler
-      ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+      ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
-         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         if(status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
          {
             m_bind_ok = true;
             OnAccept();
@@ -140,7 +140,7 @@ namespace sockets
    bool udp_socket::open(::net::address & ad)
    {
 
-      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+      m_datagramsocket = ref new ::winrt::Windows::Networking::Sockets::DatagramSocket();
 
       //::sockets::socket::os_data data;
       //data.o = m_datagramsocket;
@@ -151,11 +151,11 @@ namespace sockets
       SetNonblocking(true);
 
       m_datagramsocket->ConnectAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
-      ref new ::Windows::Foundation::AsyncActionCompletedHandler
-      ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+      ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
-         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         if(status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
          {
 
             OnConnect();
@@ -279,11 +279,11 @@ namespace sockets
 
       }
 
-      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_datagramsocket->OutputStream);
+      ::winrt::Windows::Storage::Streams::DataWriter ^ writer = ref new ::winrt::Windows::Storage::Streams::DataWriter(m_datagramsocket->OutputStream);
 
       writer->WriteBytes(ref new Array < unsigned char, 1U >((unsigned char *) data, len));
 
-      /*writer->FlushAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < bool >([this](::Windows::Foundation::IAsyncOperation<bool> asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
+      /*writer->FlushAsync()->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < bool >([this](::winrt::Windows::Foundation::IAsyncOperation<bool> asyncInfo, ::winrt::Windows::Foundation::AsyncStatus asyncStatus)
       {
 
 
@@ -482,7 +482,7 @@ namespace sockets
       __error("recvfrom", Errno, bsd_socket_error(Errno));
       }
       */
-      /*::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_datagramsocket->OutputStream);
+      /*::winrt::Windows::Storage::Streams::DataReader ^ reader = ref new ::winrt::Windows::Storage::Streams::DataReader(m_datagramsocket->OutputStream);
       //int n = reader->UnconsumedBufferLength;
       Array < unsigned char, 1U > ^ ucha = nullptr;
       reader->ReadBytes(ucha);

@@ -499,7 +499,7 @@ void stream::write(const ::payload & payload)
    }
    break;
    default:
-      __throw(::exception::exception("payload::write ::payload type not recognized"));
+      __throw(error_io, "payload::write ::payload type not recognized");
    }
 
 }

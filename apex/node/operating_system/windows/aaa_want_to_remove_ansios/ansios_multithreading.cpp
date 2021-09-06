@@ -10,162 +10,162 @@ CLASS_DECL_APEX int32_t thread_get_scheduling_priority(int iOsPolicy, const sche
 CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object * * pobjectptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
-{
-
-   ::u32 start = 0;
-
-   if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT)
-   {
-
-      start= ::millis::now();
-
-   }
-
-   __pointer(message_queue) pmq;
-
-   if(dwWakeMask > 0)
-   {
-
-      pmq = __get_mq(GetCurrentThreadId(), false);
-
-   }
-
-   int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
-
-   timespec delay;
-
-   delay.tv_sec = 0;
-
-   delay.tv_nsec = 1000000;
-
-   if(bWaitForAll)
-   {
-
-      while(true)
-      {
-
-         int32_t i;
-
-         int32_t j;
-
-         i = 0;
-
-         for(; comparison::lt(i, dwSize);)
-         {
-
-            if(pmq != nullptr)
-            {
-
-               synchronous_lock synchronouslock(&pmq->m_mutex);
-
-               if(pmq->ma.get_count() > 0)
-               {
-
-                  return WAIT_OBJECT_0 + dwSize;
-
-               }
-
-            }
-
-            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
-            {
-
-               for(j = 0; j < i; j++)
-               {
-
-                  pobjectptra[j]->unlock();
-
-               }
-
-               return WAIT_TIMEOUT;
-
-            }
-
-            if(pobjectptra[i]->lock(millis(1)))
-            {
-
-               i++;
-
-            }
-            else
-            {
-
-               nanosleep(&delay, nullptr);
-
-            }
-
-         }
-
-         return WAIT_OBJECT_0;
-
-      }
-
-   }
-   else
-   {
-
-      int32_t i;
-
-      while(true)
-      {
-
-         for(i = 0; comparison::lt(i, dwSize); i++)
-         {
-
-            if(pmq != nullptr)
-            {
-
-               synchronous_lock synchronouslock(&pmq->m_mutex);
-
-               if(pmq->ma.get_count() > 0)
-               {
-
-                  return WAIT_OBJECT_0 + dwSize;
-
-               }
-
-            }
-
-            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
-            {
-
-               return WAIT_TIMEOUT;
-
-            }
-
-            if(pobjectptra[i]->lock(millis(0)))
-            {
-
-               return WAIT_OBJECT_0 + i;
-
-            }
-
-         }
-
-         nanosleep(&delay, nullptr);
-
-      }
-
-   }
-
-}
-
-
-::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
-{
-
-   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
-
-}
-
-
-::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
-{
-
-   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
-
-}
+//::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, sync_object * * pobjectptra, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+//{
+//
+//   ::u32 start = 0;
+//
+//   if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT)
+//   {
+//
+//      start= ::millis::now();
+//
+//   }
+//
+//   __pointer(message_queue) pmq;
+//
+//   if(dwWakeMask > 0)
+//   {
+//
+//      pmq = __get_mq(GetCurrentThreadId(), false);
+//
+//   }
+//
+//   int_bool bWaitForAll        = dwFlags & MWMO_WAITALL;
+//
+//   timespec delay;
+//
+//   delay.tv_sec = 0;
+//
+//   delay.tv_nsec = 1000000;
+//
+//   if(bWaitForAll)
+//   {
+//
+//      while(true)
+//      {
+//
+//         int32_t i;
+//
+//         int32_t j;
+//
+//         i = 0;
+//
+//         for(; comparison::lt(i, dwSize);)
+//         {
+//
+//            if(pmq != nullptr)
+//            {
+//
+//               synchronous_lock synchronouslock(&pmq->m_mutex);
+//
+//               if(pmq->ma.get_count() > 0)
+//               {
+//
+//                  return WAIT_OBJECT_0 + dwSize;
+//
+//               }
+//
+//            }
+//
+//            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            {
+//
+//               for(j = 0; j < i; j++)
+//               {
+//
+//                  pobjectptra[j]->unlock();
+//
+//               }
+//
+//               return WAIT_TIMEOUT;
+//
+//            }
+//
+//            if(pobjectptra[i]->lock(millis(1)))
+//            {
+//
+//               i++;
+//
+//            }
+//            else
+//            {
+//
+//               nanosleep(&delay, nullptr);
+//
+//            }
+//
+//         }
+//
+//         return WAIT_OBJECT_0;
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      int32_t i;
+//
+//      while(true)
+//      {
+//
+//         for(i = 0; comparison::lt(i, dwSize); i++)
+//         {
+//
+//            if(pmq != nullptr)
+//            {
+//
+//               synchronous_lock synchronouslock(&pmq->m_mutex);
+//
+//               if(pmq->ma.get_count() > 0)
+//               {
+//
+//                  return WAIT_OBJECT_0 + dwSize;
+//
+//               }
+//
+//            }
+//
+//            if(tickTimeout != (::u32) U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            {
+//
+//               return WAIT_TIMEOUT;
+//
+//            }
+//
+//            if(pobjectptra[i]->lock(millis(0)))
+//            {
+//
+//               return WAIT_OBJECT_0 + i;
+//
+//            }
+//
+//         }
+//
+//         nanosleep(&delay, nullptr);
+//
+//      }
+//
+//   }
+//
+//}
+
+
+//::u32 MsgWaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+//{
+//
+//   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
+//
+//}
+
+
+//::u32 WaitForMultipleObjectsEx(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+//{
+//
+//   return MsgWaitForMultipleObjectsEx(dwSize, pobjectptra, tickTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
+//
+//}
 
 
 ::u32 WaitForMultipleObjects(::u32 dwSize, sync_object ** pobjectptra, int_bool bWaitForAll, ::u32 tickTimeout)
@@ -423,7 +423,7 @@ namespace parallelization
 {
 
 
-   CLASS_DECL_APEX bool set_priority(::e_priority epriority)
+   CLASS_DECL_APEX bool set_priority(::enum_priority epriority)
    {
 
       return (::SetThreadPriority(::GetCurrentThread(),priority) != 0);

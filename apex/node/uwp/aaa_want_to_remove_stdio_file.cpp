@@ -7,7 +7,7 @@
 #include <fcntl.h>
 
 
-namespace uwp
+namespace universal_windows
 {
 
    stdio_file::stdio_file()
@@ -353,7 +353,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

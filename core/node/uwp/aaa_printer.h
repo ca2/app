@@ -1,6 +1,6 @@
 #pragma once
 
-namespace uwp
+namespace universal_windows
 {
 
    class CLASS_DECL_CORE printer :

@@ -211,11 +211,6 @@ namespace apex
 
       //__pointer_array(::acme::library)                         m_libraryspa;
 
-#ifdef _UWP
-
-      Agile < Windows::UI::Core::CoreWindow >      m_window;
-
-#endif
 
 
 
@@ -252,7 +247,7 @@ namespace apex
 
 #elif defined(_UWP)
 
-      ::e_status system_construct(Array < String^ >^ refstra);
+      ::e_status system_construct(const ::string_array & stra);
 
 #else
 
@@ -271,7 +266,7 @@ namespace apex
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
-      virtual ::e_status on_pre_run_thread() override;
+      //::e_status on_pre_run_task() override;
 
       virtual ::e_status init_system() override;
       virtual void term_system();
@@ -327,7 +322,7 @@ namespace apex
       //virtual ::e_status create_gpu();
 
 
-      //::task_group * task_group(::e_priority epriority = ::priority_none);
+      //::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 
       //::task_tool * task_tool(::enum_task_tool etool);
 
@@ -453,7 +448,7 @@ namespace apex
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-      //thread_tools * tools(::e_priority epriority);
+      //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       // apex commented

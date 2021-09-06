@@ -11,7 +11,7 @@
 
 #elif defined(_UWP)
 
-#include "console/uwp.h"
+#include "console/universal_windows.h"
 
 #elif defined(WINDOWS)
 

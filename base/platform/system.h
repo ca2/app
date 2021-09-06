@@ -242,7 +242,7 @@ namespace base
 //
 //#ifdef _UWP
 //
-//      Agile < Windows::UI::Core::CoreWindow >      m_window;
+//      Agile < ::winrt::Windows::UI::Core::CoreWindow >      m_window;
 //
 //#endif
 //
@@ -280,7 +280,7 @@ namespace base
 //      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
 //      virtual ::e_status create_gpu();
 //
-//      ::task_group * task_group(::e_priority epriority = ::priority_none);
+//      ::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 //
 //      ::task_tool * task_tool(::enum_task_tool etool);
 //
@@ -390,7 +390,7 @@ namespace base
 //
 //
 //      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-//      //thread_tools * tools(::e_priority epriority);
+//      //thread_tools * tools(::enum_priority epriority);
 //      //thread_toolset * toolset(e_tool etool);
 //
 //      class ::user::window_map                     &  window_map();

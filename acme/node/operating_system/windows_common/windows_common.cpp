@@ -88,23 +88,42 @@ CLASS_DECL_ACME itask_t get_current_ithread()
 
 
 
-CLASS_DECL_ACME string get_last_error_message(DWORD dwError)
+CLASS_DECL_ACME string last_error_message(DWORD dwError)
 {
-   wstring wstr;
-   WCHAR * p = wstr.get_string_buffer(16 * 1024 / sizeof(unichar));
-   ::u32 dw = FormatMessageW(
-      FORMAT_MESSAGE_FROM_SYSTEM,
+
+   wstring wstrMessage;
+
+   LPWSTR lpBuffer = nullptr;
+
+   auto dwSize = FormatMessageW(
+      FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER,
       nullptr,
       dwError,
       0,
-      p,
-      (::u32)(wstr.get_length() / sizeof(unichar)),
+      (LPWSTR)&lpBuffer,
+      256,
       nullptr);
-   p[dw] = L'\0';
-   wstr.release_string_buffer();
-   string str(wstr);
-   return str;
+
+   if (::is_set(lpBuffer))
+   {
+
+      lpBuffer[dwSize] = L'\0';
+
+      wstrMessage = lpBuffer;
+
+      ::LocalFree(lpBuffer);
+
+   }
+
+   string strMessage;
+
+   strMessage = wstrMessage;
+
+   return strMessage;
+
 }
+
+
 //
 //
 //string get_last_error_message(u32 dwError)
@@ -151,8 +170,7 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
 
 
 
-
-::e_status os_error_to_status(DWORD dwError)
+::e_status last_error_to_status(DWORD dwError)
 {
 
    // NT Error codes
@@ -336,7 +354,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    }
 
-   string strErrorMessage = ::get_last_error_message(error);
+   string strErrorMessage = ::last_error_message(error);
 
    string strError;
 
@@ -345,6 +363,17 @@ CLASS_DECL_ACME void TRACELASTERROR()
    ::output_debug_string(strError);
 
 }
+
+
+
+void CLASS_DECL_ACME __cdecl _ca2_purecall()
+{
+
+   __throw(error_pure_call);
+
+}
+
+
 
 
 

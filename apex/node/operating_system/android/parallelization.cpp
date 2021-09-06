@@ -241,22 +241,22 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 
   int iCa2Max;
 
-/*   if(nCa2Priority == ::priority_normal)
+/*   if(nCa2Priority == ::e_priority_normal)
   {
 
      iOsPolicy = SCHED_OTHER;
 
-     iCa2Min = (int) ::priority_normal;
+     iCa2Min = (int) ::e_priority_normal;
 
-     iCa2Max = (int) ::priority_normal;
+     iCa2Max = (int) ::e_priority_normal;
 
   }*/
-  if(nCa2Priority > ::priority_normal)
+  if(nCa2Priority > ::e_priority_normal)
   {
 
      iOsPolicy = SCHED_RR;
 
-     iCa2Min = (int) ::priority_normal;
+     iCa2Min = (int) ::e_priority_normal;
 
      iCa2Max = 99;
 
@@ -269,7 +269,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 
      iCa2Min = 0;
 
-     iCa2Max = (int) ::priority_normal;
+     iCa2Max = (int) ::e_priority_normal;
 
   }
 
@@ -308,7 +308,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //   if(iOsPolicy == SCHED_RR)
 //   {
 //
-//      iCa2Min = (int) ::priority_normal;
+//      iCa2Min = (int) ::e_priority_normal;
 //
 //      iCa2Max = 99;
 //
@@ -318,16 +318,16 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //      iCa2Min = 0;
 //
-//      iCa2Max = (int) ::priority_normal;
+//      iCa2Max = (int) ::e_priority_normal;
 //
 //   }*/
 //   else
 //   {
 //
-//      //iCa2Min = (int) ::priority_normal;
+//      //iCa2Min = (int) ::e_priority_normal;
 //      iCa2Min = (int) 0;
 //
-//      iCa2Max = (int) ::priority_normal;
+//      iCa2Max = (int) ::e_priority_normal;
 //
 //   }
 //
@@ -339,7 +339,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //   if(iOsMax == iOsMin)
 //   {
-//      iCa2Priority = (i32) ::priority_normal;
+//      iCa2Priority = (i32) ::e_priority_normal;
 //   }
 //   else
 //   {

@@ -22,7 +22,7 @@ namespace process
       ~process() override;
 
 
-      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::e_priority epriority = ::priority_none);
+      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::enum_priority epriority = ::e_priority_none);
 
       virtual void wait_until_exit(i32 iWaitMax = 0);
       virtual bool has_exited();

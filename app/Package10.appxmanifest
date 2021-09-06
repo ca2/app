@@ -5,7 +5,7 @@
   <Properties>
     <DisplayName>App App</DisplayName>
     <PublisherDisplayName>ca2 Desenvolvimento de Software</PublisherDisplayName>
-    <Logo>assets\Square50.png</Logo>
+    <Logo>assets\Square50.scale-100.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,16 +15,11 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AppApp.AppApp">
-      <uap:VisualElements DisplayName="App App" Square150x150Logo="Assets\Square150.png" Square44x44Logo="Assets\Square44.png" Description="Simple Application" BackgroundColor="transparent">
-        <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.png" />
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.png" ShortName="Beat Mapper!!" Square310x310Logo="assets\Square310.png" Square71x71Logo="Assets\Square71.png">
-          <uap:ShowNameOnTiles>
-            <uap:ShowOn Tile="square150x150Logo" />
-            <uap:ShowOn Tile="wide310x150Logo" />
-            <uap:ShowOn Tile="square310x310Logo" />
-          </uap:ShowNameOnTiles>
+      <uap:VisualElements DisplayName="App App" Square150x150Logo="Assets\Square150.scale-100.png" Square44x44Logo="Assets\Square44.scale-100.png" Description="Simple Application" BackgroundColor="transparent">
+        <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.scale-100.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.scale-100.png" ShortName="Beat Mapper!!" Square310x310Logo="assets\Square310.scale-100.png" Square71x71Logo="Assets\Square71.png">
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\Wide620x300.png" />
+        <uap:SplashScreen Image="Assets\Wide620x300.scale-100.png" />
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="landscape"/>
           <uap:Rotation Preference="portrait"/>

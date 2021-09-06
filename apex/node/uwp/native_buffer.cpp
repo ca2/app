@@ -2,7 +2,7 @@
 #include "_uwp.h"
 
 
-CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
+CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPath, string & strPrefix)
 {
 
    if (str::begins_eat_ci(strPath, "image://"))
@@ -10,7 +10,7 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
       strPrefix = "image://";
 
-      return ::Windows::Storage::KnownFolders::PicturesLibrary;
+      return ::winrt::Windows::Storage::KnownFolders::PicturesLibrary;
 
    }
    else if (str::begins_eat_ci(strPath, "music://"))
@@ -18,7 +18,7 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
       strPrefix = "music://";
 
-      return ::Windows::Storage::KnownFolders::MusicLibrary;
+      return ::winrt::Windows::Storage::KnownFolders::MusicLibrary;
 
    }
    else if (str::begins_eat_ci(strPath, "video://"))
@@ -26,7 +26,7 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
       strPrefix = "video://";
 
-      return ::Windows::Storage::KnownFolders::VideosLibrary;
+      return ::winrt::Windows::Storage::KnownFolders::VideosLibrary;
 
    }
    else if (str::begins_eat_ci(strPath, "document://"))
@@ -34,7 +34,7 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
       strPrefix = "document://";
 
-      return ::Windows::Storage::KnownFolders::DocumentsLibrary;
+      return ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 
    }
    else if (str::begins_eat_ci(strPath, ::dir::sys_temp()))
@@ -42,15 +42,15 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
       strPrefix = ::dir::sys_temp();
 
-      return ::Windows::Storage::ApplicationData::Current->TemporaryFolder;
+      return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder;
 
    }
-   else if (::str::begins_eat_ci(strPath, string(begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
+   else if (::str::begins_eat_ci(strPath, string(begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path))))
    {
 
-      strPrefix = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+      strPrefix = begin(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
-      return ::Windows::Storage::ApplicationData::Current->LocalFolder;
+      return ::winrt::Windows::Storage::ApplicationData::Current->LocalFolder;
 
    }
    else
@@ -64,10 +64,10 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_folder1(string & strPat
 
 
 
-CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPath, string & strPrefix)
+CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_folder(string & strPath, string & strPrefix)
 {
 
-   ::Windows::Storage::StorageFolder ^ folder = winrt_folder1(strPath, strPrefix);
+   ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_folder1(strPath, strPrefix);
 
    if (folder != nullptr)
    {
@@ -86,7 +86,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPat
    for (auto & pathFolder : patha)
    {
 
-      ::Windows::Storage::StorageFolder ^ folder = ::wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder));
+      ::winrt::Windows::Storage::StorageFolder ^ folder = ::wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder));
 
       if (folder != nullptr)
       {
@@ -104,12 +104,12 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPat
 }
 
 
-CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix)
+CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix)
 {
 
    string strPath = strFolder;
 
-   ::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
+   ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
 
    if (folder == nullptr)
    {
@@ -136,7 +136,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::str
 }
 
 
-CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder)
+CLASS_DECL_APEX::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder)
 {
 
    string strPrefix;
@@ -146,12 +146,12 @@ CLASS_DECL_APEX::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::stri
 }
 
 
-CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix, string & strRelative)
+CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::string & strFolder, string & strPrefix, string & strRelative)
 {
 
    string strPath = strFolder;
 
-   ::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
+   ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
 
    if (folder == nullptr)
    {
@@ -178,7 +178,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder ^ winrt_get_folder(const ::str
 
 }
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -274,7 +274,7 @@ namespace uwp
 
       string strPrefix;
 
-      ::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
+      ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_folder(strPath, strPrefix);
 
       if (folder == nullptr)
       {
@@ -288,7 +288,7 @@ namespace uwp
    }
 
 
-   ::extended::status native_buffer::open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
+   ::extended::status native_buffer::open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
    {
 
       ::file::e_open eopen(efileopenParam);
@@ -407,13 +407,13 @@ namespace uwp
          if (eopen & ::file::e_open_no_truncate)
          {
 
-            m_file = ::wait(folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::OpenIfExists));
+            m_file = ::wait(folder->CreateFileAsync(strName, ::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists));
 
          }
          else
          {
 
-            m_file = ::wait(folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::ReplaceExisting));
+            m_file = ::wait(folder->CreateFileAsync(strName, ::winrt::Windows::Storage::CreationCollisionOption::ReplaceExisting));
 
          }
 
@@ -450,16 +450,16 @@ namespace uwp
       switch (eopen & 3)
       {
       case ::file::e_open_read:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read));
+         m_stream = ::wait(m_file->OpenAsync(::winrt::Windows::Storage::FileAccessMode::Read));
          break;
       case ::file::e_open_write:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
+         m_stream = ::wait(m_file->OpenAsync(::winrt::Windows::Storage::FileAccessMode::ReadWrite));
          break;
       case ::file::e_open_read_write:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
+         m_stream = ::wait(m_file->OpenAsync(::winrt::Windows::Storage::FileAccessMode::ReadWrite));
          break;
       default:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read));
+         m_stream = ::wait(m_file->OpenAsync(::winrt::Windows::Storage::FileAccessMode::Read));
          break;
       }
 
@@ -486,9 +486,9 @@ namespace uwp
    memsize native_buffer::read(void *  pdata,memsize nCount)
    {
 
-      ::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::Windows::Storage::Streams::Buffer(nCount);
+      ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(nCount);
 
-      ::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::Windows::Storage::Streams::InputStreamOptions::None));
+      ::winrt::Windows::Storage::Streams::IBuffer ^ buffer2 = ::wait(m_stream->ReadAsync(buffer,nCount,::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 
       auto read = minimum(nCount, (memsize) buffer->Length);
 
@@ -504,7 +504,7 @@ namespace uwp
 
       memory memory(pdata, nCount);
 
-      ::Windows::Storage::Streams::IBuffer ^ buffer = memory.get_os_buffer();
+      ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = memory.get_os_buffer();
 
       unsigned int u = ::wait(m_stream->WriteAsync(buffer));
 
@@ -751,7 +751,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

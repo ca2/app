@@ -10,7 +10,7 @@
 //CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShortName);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -28,7 +28,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

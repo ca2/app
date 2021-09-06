@@ -258,7 +258,7 @@ namespace http
                      while (true)
                      {
 
-                        strTime = t.FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\");
+                        strTime = FormatGmt("%Y\\%m\\%d\\%H\\%M\\%S\\", t);
 
                         strIndex.Format("%08x\\", i);
 

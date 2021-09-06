@@ -1,11 +1,11 @@
 ﻿#include "framework.h"
 #include "_uwp.h"
-#include "aura/os/uwp/_uwp.h"
+#include "aura/os/universal_windows/_uwp.h"
 #include "aura/message.h"
 #include "aura/user/_user.h"
 #include "buffer.h"
 #include <stdio.h>
-#include "aura/node/uwp/directx_application.h"
+#include "aura/node/universal_windows/directx_application.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
@@ -22,7 +22,7 @@
 #endif
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -50,7 +50,7 @@ namespace uwp
 
       }
 
-      auto puwpimpl = pimpl->cast < ::uwp::interaction_impl >();
+      auto puwpimpl = pimpl->cast < ::universal_windows::interaction_impl >();
 
       m_pframeworkview = puwpimpl->m_pframeworkview;
 
@@ -91,7 +91,7 @@ namespace uwp
       }
 
       if (!pframeworkview->m_directx->m_bCoreWindowVisible
-         || pframeworkview->m_directx->m_ephase != ::uwp::e_phase_draw)
+         || pframeworkview->m_directx->m_ephase != ::universal_windows::e_phase_draw)
       {
 
          return nullptr;
@@ -131,7 +131,7 @@ namespace uwp
 
       m_pd2d1devicecontext->BeginDraw();
 
-      auto colorBackground = m_pframeworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto colorBackground = m_pframeworkview->m_puisettings->GetColorValue(::winrt::Windows::UI::ViewManagement::UIColorType::Background);
 
       D2D1_COLOR_F color32 = {};
 
@@ -162,7 +162,7 @@ namespace uwp
          if (SUCCEEDED(hr))
          {
             
-            m_pframeworkview->m_directx->m_ephase = ::uwp::e_phase_present;
+            m_pframeworkview->m_directx->m_ephase = ::universal_windows::e_phase_present;
 
          }
          else
@@ -233,7 +233,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

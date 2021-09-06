@@ -255,7 +255,7 @@
 		<Unit filename="inline/aaa_application/ios.h" />
 		<Unit filename="inline/aaa_application/linux.h" />
 		<Unit filename="inline/aaa_application/macos.h" />
-		<Unit filename="inline/aaa_application/uwp.h" />
+		<Unit filename="inline/aaa_application/universal_windows.h" />
 		<Unit filename="inline/aaa_application/windows.h" />
 		<Unit filename="inline/aaa_console/linux.h" />
 		<Unit filename="inline/aaa_console/macos.h" />

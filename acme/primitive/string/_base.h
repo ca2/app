@@ -610,6 +610,8 @@ public:
 
    template < pointer_castable < TYPE_CHAR > PCHAR >
    string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
+
+
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'

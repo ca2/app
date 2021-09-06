@@ -59,6 +59,12 @@ void * __node_library_open(const char * pszPath, string & strMessage)
 
       plibrary = ::LoadPackagedLibrary(wstr, 0);
 
+      DWORD dwLastError = ::GetLastError();
+
+      string strLastError = last_error_message(dwLastError);
+
+      ::output_debug_string(strLastError);
+
    }
    catch(...)
    {

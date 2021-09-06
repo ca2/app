@@ -73,14 +73,14 @@ public:
 
 
    virtual ::e_status begin_task(
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
    virtual ::e_status start(
       ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
@@ -102,7 +102,7 @@ public:
 
    static ::task_pointer launch(
       ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 

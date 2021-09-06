@@ -196,7 +196,7 @@ namespace process
 {
 
 
-   CLASS_DECL_AURA bool set_priority(::e_priority epriority)
+   CLASS_DECL_AURA bool set_priority(::enum_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;

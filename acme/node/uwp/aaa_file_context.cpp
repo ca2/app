@@ -4,7 +4,7 @@
 
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -135,7 +135,7 @@ namespace uwp
       if (folder != nullptr)
       {
 
-         auto pbuffer = __new(::uwp::native_buffer);
+         auto pbuffer = __new(::universal_windows::native_buffer);
 
          //::extended::status ::extended::status = spfile->open(folder, strPath,nOpenFlags);
 
@@ -159,7 +159,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

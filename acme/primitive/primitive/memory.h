@@ -75,6 +75,8 @@ public:
 
    memory(::matter * pobject = nullptr) { m_memory.m_pprimitivememory = this; m_bAligned = false; }
    memory(enum_create_new, bool bAligned);
+   template < primitive_integral INTEGRAL >
+   memory(INTEGRAL i, bool bAligned = false) { m_memory.m_pprimitivememory = this; m_bAligned = bAligned; set_size(i); }
    memory(const ::std::initializer_list < int > & iaList);
    memory(const u8 *, memsize size);
    memory(const void *, memsize size);

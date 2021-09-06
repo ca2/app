@@ -64,7 +64,7 @@ namespace xml
    node & node::operator = (const node & node)
    {
 
-      __throw(unexpected_situation());
+      throw unexpected_situation();
 
       //if(&node == this)
       //   return *this;
@@ -238,8 +238,12 @@ namespace xml
          return nullptr;
       auto pnodeParent = __xml(m_pnodeParent);
       index i = pnodeParent->find(this);
-      if(i < 0)
-         __throw(::exception::exception("strange: this is not child of this->parent"));
+      if (i < 0)
+      {
+
+         throw ::exception::exception(error_parsing, "strange: this is not child of this->parent");
+
+      }
       i++;
       if(i >= pnodeParent->get_children_count())
          return nullptr;

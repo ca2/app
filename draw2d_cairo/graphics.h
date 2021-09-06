@@ -48,7 +48,7 @@ namespace draw2d_cairo
 
       virtual void * detach() override;
 
-      bool IsPrinting() override;            // true if being used for printing
+      // bool IsPrinting() override;            // true if being used for printing
 
       //::draw2d::pen *     get_current_pen() override;
       //::draw2d::brush *   get_current_brush() override;

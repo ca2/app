@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 /***
 *int _validdrive( unsigned drive ) -
@@ -236,7 +236,7 @@ return 1;
 }*/
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /*
@@ -748,7 +748,7 @@ namespace uwp
 //
 //
 //
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -262,19 +262,19 @@
     <Filter Include="Source Files\os">
       <UniqueIdentifier>{caca27e0-b88e-4f76-9a10-48b83a8f7c83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\uwp">
+    <Filter Include="Source Files\os\universal_windows">
       <UniqueIdentifier>{1d06f856-d73e-4b51-bd87-40eeb2b6d44f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{3a0788a7-7903-4668-86fe-34005a0f2802}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\uwp">
+    <Filter Include="Header Files\os\universal_windows">
       <UniqueIdentifier>{af63d04c-2b0d-4aa9-be36-9397a6ad8ad0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\node">
       <UniqueIdentifier>{db48ae43-0e33-4274-a363-bf6684db0ae5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\uwp">
+    <Filter Include="Header Files\node\universal_windows">
       <UniqueIdentifier>{009e7946-528e-4031-b7b6-820866a52476}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\os\windows_common">
@@ -517,7 +517,7 @@
     <Filter Include="Source Files\html\html_lite">
       <UniqueIdentifier>{8dac4670-f81d-4a84-a2cf-903a4c4754c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\uwp">
+    <Filter Include="Source Files\node\universal_windows">
       <UniqueIdentifier>{52cbc506-350c-4b24-b97d-399613fc8723}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\template">
@@ -1848,149 +1848,149 @@
     <ClInclude Include="primitive\primitive\virtual_memory.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\_.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\_.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\_uwp.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\_uwp.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\aaa_want_to_erase_window_impl.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\aaa_want_to_erase_window_impl.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\base_file.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\base_file.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\exception_engine.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\exception_engine.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\file_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\file_winrt.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\gdi_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\gdi_winrt.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\metrowin_metrowin.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\metrowin_metrowin.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\multithreading.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\multithreading.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\multithreading_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\multithreading_winrt.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\oswindow.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\oswindow.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\process.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\process.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\simple_hold_handle.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\simple_hold_handle.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\simple_ui.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\simple_ui.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\sockets.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\sockets.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\aaa_want_to_erase_folder_watch.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\aaa_want_to_erase_folder_watch.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\application.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\application.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\buffer.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\buffer.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\command.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\command.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\dir_context.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\dir_context.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\dir_system.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\dir_system.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\directx.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\directx_framework_view.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_framework_view.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\directx_impact.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_impact.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\directx_interaction.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\directx_interaction.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\exception.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\exception.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\factory_exchange.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\factory_exchange.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\file.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\file.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\file_context.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\file_context.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\file_find.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\file_find.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\file_system.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\file_system.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\file_watcher.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\file_watcher.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\implementation.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\implementation.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\interaction_impl.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\interaction_impl.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\internal.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\internal.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\metrowin1.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\metrowin1.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\native_buffer.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\native_buffer.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\os.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\os.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\pen.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\pen.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\printer.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\printer.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\registry.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\registry.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\shell.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\shell.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\shell_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\shell_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\thread.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\thread.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\tts_speaker.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\tts_speaker.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\uac_tools.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\uac_tools.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="os\_.h">
       <Filter>Header Files\os</Filter>
@@ -4131,7 +4131,7 @@
     <ClInclude Include="inline\application\macos.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
@@ -4245,8 +4245,8 @@
     <ClInclude Include="html\html_lite\tag.h">
       <Filter>Header Files\html\html_lite</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\_winrt.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\_winrt.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\_.h">
       <Filter>Header Files\primitive\collection</Filter>
@@ -4839,11 +4839,11 @@
     <ClInclude Include="multithreading\threading.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="os\uwp\host_interaction.h">
-      <Filter>Header Files\os\uwp</Filter>
+    <ClInclude Include="os\universal_windows\host_interaction.h">
+      <Filter>Header Files\os\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\copydesk.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\copydesk.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\function.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -6271,167 +6271,167 @@
     <ClCompile Include="multithreading\sync_task.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\util.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\util.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\uac_tools.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\uac_tools.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\tts_speaker.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\tts_speaker.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\trace.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\trace.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\timer.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\timer.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\thread.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\thread.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\shell_uwp.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\shell_uwp.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\shell.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\shell.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\registry.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\registry.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\os_context.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\os_context.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\native_buffer.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\native_buffer.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\interaction_impl.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\interaction_impl.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\graphics_buffer.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\graphics_buffer.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\folder_watch.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\folder_watch.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\file_watcher.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\file_watcher.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\file_system.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\file_system.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\file_find.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\file_find.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\file_context.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\file_context.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\file.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\file.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\factory_exchange.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\factory_exchange.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\error.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\error.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\directx_interaction.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\directx_interaction.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\directx_impact.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\directx_impact.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\directx_framework_view.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\directx_framework_view.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\directx.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\directx.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\dir_system.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\dir_system.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\dir_context.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\dir_context.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\command.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\command.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\application.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\application.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\aura.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\aura.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\base_file.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\base_file.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\debug.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\debug.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\direct2d_tls.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\direct2d_tls.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\dpi.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\dpi.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\dummy_ipc.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\dummy_ipc.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\exception_engine.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\exception_engine.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\file.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\file.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\file_memory_map.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\file_memory_map.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\graphics.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\graphics.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\language.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\language.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\launcher.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\launcher.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\library.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\library.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\lock.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\lock.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\main.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\main.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\multithreading.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\multithreading.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\os_message_box.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\os_message_box.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\process.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\process.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\simple_app.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\simple_app.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\simple_shell_launcher.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\simple_shell_launcher.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\small_ipca_channel.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\small_ipca_channel.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\sockets.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\sockets.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\time.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\time.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\user.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\user.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\windowing.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\windowing.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="os\_application.cpp">
       <Filter>Source Files\os</Filter>
@@ -8056,8 +8056,8 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\aaa_want_to_erase_main_uwp.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\aaa_want_to_erase_main_uwp.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="html\html_lite\attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
@@ -8078,10 +8078,10 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="node\windows_common\application.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\app_core.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\app_core.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="os\cross\windows\thread_local_storage.cpp">
       <Filter>Source Files\os\cross\windows</Filter>
@@ -8167,14 +8167,14 @@
     <ClCompile Include="programming\dynamic_source\script_main.cpp">
       <Filter>Source Files\programming\dynamic_source</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\copydesk.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\copydesk.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\obj_typ_ctr.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\application_system_run.cpp">
-      <Filter>Source Files\os\uwp</Filter>
+    <ClCompile Include="os\universal_windows\application_system_run.cpp">
+      <Filter>Source Files\os\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\aura_main_struct.cpp">
       <Filter>Source Files\platform</Filter>

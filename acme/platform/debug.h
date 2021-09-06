@@ -250,7 +250,7 @@ typedef struct _MEMORY_STATE
 
 
 
-CLASS_DECL_ACME string FormatMessageFromSystem(u32 dwError);
+//CLASS_DECL_ACME string FormatMessageFromSystem(u32 dwError);
 
 
 #ifdef MEMDLEAK

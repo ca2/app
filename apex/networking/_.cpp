@@ -95,7 +95,7 @@ namespace str
       /* Handle initial (double) colon */
       if (*s == ':')
       {
-         if (s[1] != ':') __throw(parsing_exception("to in6_addr"));
+         if (s[1] != ':') throw parsing_exception("to in6_addr");
          s += 2;
          addr.pr_s6_addr16[0] = 0;
          department = double_colon = 1;
@@ -103,10 +103,10 @@ namespace str
 
       while (*s)
       {
-         if (department == 8) __throw(parsing_exception("to in6_addr (too long)"));; /* too long */
+         if (department == 8) throw parsing_exception("to in6_addr (too long)"); /* too long */
          if (*s == ':')
          {
-            if (double_colon != -1) __throw(parsing_exception("to in6_addr (too double colons)"));; /* two double colons */
+            if (double_colon != -1) throw parsing_exception("to in6_addr (too double colons)"); /* two double colons */
             addr.pr_s6_addr16[department++] = 0;
             double_colon = department;
             s++;
@@ -118,17 +118,21 @@ namespace str
          }
          if (*s == '.')
          {
-            if (len == 0) __throw(parsing_exception("to in6_addr (nothing between : and . )")); /* nothing between : and . */
+            if (len == 0) throw parsing_exception("to in6_addr (nothing between : and . )"); /* nothing between : and . */
             break;
          }
          if (*s == ':')
          {
             s++;
-            if (!*s) __throw(parsing_exception("to in6_addr (cannot end with single colon)")); /* cannot end with single colon */
+            
+            if (!*s) throw parsing_exception("to in6_addr (cannot end with single colon)"); /* cannot end with single colon */
+
          }
          else if (*s)
          {
-            __throw(parsing_exception("to in6_addr (bad character)")); /* bad character */
+            
+            throw parsing_exception("to in6_addr (bad character)"); /* bad character */
+
          }
          addr.pr_s6_addr16[department++] = htons((u16)val);
       }
@@ -136,49 +140,49 @@ namespace str
       if (*s == '.')
       {
          /* Have a trailing v4 format address */
-         if (department > 6) __throw(parsing_exception("to in6_addr (not enough room)")); /* not enough room */
+         if (department > 6) throw parsing_exception("to in6_addr (not enough room)"); /* not enough room */
 
          /*
          * The number before the '.' is decimal, but we parsed it
          * as hex.  That means it is in BCD.  Check it for validity
          * and convert it to binary.
          */
-         if (val > 0x0255 || (val & 0xf0) > 0x90 || (val & 0xf) > 9) __throw(parsing_exception("to in6_addr (I)"));
+         if (val > 0x0255 || (val & 0xf0) > 0x90 || (val & 0xf) > 9) throw parsing_exception("to in6_addr (I)");
          val = (val >> 8) * 100 + ((val >> 4) & 0xf) * 10 + (val & 0xf);
          addr.pr_s6_addr[2 * department] = val;
 
          s++;
          val = index_hex[*s++];
-         if (val > 9) __throw(parsing_exception("to in6_addr (val > 9 .1)"));
+         if (val > 9) throw parsing_exception("to in6_addr (val > 9 .1)");
          while (*s >= '0' && *s <= '9')
          {
             val = val * 10 + *s++ - '0';
-            if (val > 255) __throw(parsing_exception("to in6_addr (val > 255 .1)"));
+            if (val > 255) throw parsing_exception("to in6_addr (val > 255 .1)");
          }
-         if (*s != '.') __throw(parsing_exception("to in6_addr (must have exactly 4 decimal numbers (I))")); /* must have exactly 4 decimal numbers */
+         if (*s != '.') throw parsing_exception("to in6_addr (must have exactly 4 decimal numbers (I))"); /* must have exactly 4 decimal numbers */
          addr.pr_s6_addr[2 * department + 1] = val;
          department++;
 
          s++;
          val = index_hex[*s++];
-         if (val > 9) __throw(parsing_exception("to in6_addr (val > 9 .2)"));
+         if (val > 9) throw parsing_exception("to in6_addr (val > 9 .2)");
          while (*s >= '0' && *s <= '9')
          {
             val = val * 10 + *s++ - '0';
-            if (val > 255) __throw(parsing_exception("to in6_addr (val > 255 .2)"));
+            if (val > 255) throw parsing_exception("to in6_addr (val > 255 .2)");
          }
-         if (*s != '.') __throw(parsing_exception("to in6_addr (must have exactly 4 decimal numbers (II)")); /* must have exactly 4 decimal numbers */
+         if (*s != '.') parsing_exception("to in6_addr (must have exactly 4 decimal numbers (II)"); /* must have exactly 4 decimal numbers */
          addr.pr_s6_addr[2 * department] = val;
 
          s++;
          val = index_hex[*s++];
-         if (val > 9) __throw(parsing_exception("to in6_addr (val > 9 .3)"));
+         if (val > 9) throw parsing_exception("to in6_addr (val > 9 .3)");
          while (*s >= '0' && *s <= '9')
          {
             val = val * 10 + *s++ - '0';
-            if (val > 255) __throw(parsing_exception("to in6_addr (val > 255 .3)"));
+            if (val > 255) throw parsing_exception("to in6_addr (val > 255 .3)");
          }
-         if (*s) __throw(parsing_exception("to in6_addr (must have exactly 4 decimal numbers (III))"));; /* must have exactly 4 decimal numbers */
+         if (*s) throw parsing_exception("to in6_addr (must have exactly 4 decimal numbers (III))"); /* must have exactly 4 decimal numbers */
          addr.pr_s6_addr[2 * department + 1] = val;
          department++;
       }
@@ -200,7 +204,7 @@ namespace str
       }
       else if (department != 8)
       {
-         __throw(parsing_exception("to in6_addr (too i16)")); /* too i16 */
+         throw parsing_exception("to in6_addr (too i16)"); /* too i16 */
       }
    }
 
@@ -358,27 +362,27 @@ CLASS_DECL_APEX void to(in_addr & addrParam, const ansichar * string)
    stra.add_tokens(string, ".");
 
    if(stra.get_count() != 4)
-      __throw(parsing_exception("to in_addr (stra.get_count() != 4)"));
+      throw parsing_exception("to in_addr (stra.get_count() != 4)");
 
    i32 i1 = ansi_to_i32(stra[0]);
 
    if(i1 < 0 || i1 > 255)
-      __throw(parsing_exception("to in_addr (i1 < 0 || i1 > 255) (I)"));
+      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (I)");
 
    i32 i2 = ansi_to_i32(stra[1]);
 
    if(i2 < 0 || i2 > 255)
-      __throw(parsing_exception("to in_addr (i1 < 0 || i1 > 255) (II)"));;
+      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (II)");
 
    i32 i3 = ansi_to_i32(stra[2]);
 
    if(i3 < 0 || i3 > 255)
-      __throw(parsing_exception("to in_addr (i1 < 0 || i1 > 255) (III)"));;
+      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (III)");
 
    i32 i4 = ansi_to_i32(stra[3]);
 
    if(i4 < 0 || i4 > 255)
-      __throw(parsing_exception("to in_addr (i1 < 0 || i1 > 255) (IV)"));;
+      throw parsing_exception("to in_addr (i1 < 0 || i1 > 255) (IV)");
 
    addr.S_un.S_un_b.s_b1 = i1;
 
@@ -493,7 +497,7 @@ namespace str
       else
       {
 
-         __throw(::exception::exception("unexpected address family"));
+         throw ::exception::exception(error_invalid_argument, "unexpected address family");
 
       }
 
@@ -518,7 +522,7 @@ namespace str
       else
       {
 
-         __throw(::exception::exception("unexpected address family"));
+         throw ::exception::exception(error_invalid_argument, "unexpected address family");
 
       }
 
@@ -697,7 +701,7 @@ CLASS_DECL_APEX u32 c_inet_addr(const char * src)
       else
       {
 
-         __throw(::exception::exception("not expected"));
+         throw ::exception::exception(error_invalid_argument, "not expected");
 
       }
 
@@ -720,17 +724,17 @@ CLASS_DECL_APEX u32 c_inet_addr(const char * src)
 CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
 {
 
-#ifdef _UWP
-
-   return (ref new ::Windows::Networking::HostName(string(hostname)))->DisplayName;
-
-#else
+//#ifdef _UWP
+//
+//   return (ref new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
+//
+//#else
 
    struct hostent * pentry = gethostbyname(hostname);
 
    return c_inet_ntop(pentry->h_addrtype, pentry->h_addr_list[0]);
 
-#endif
+//#endif
 
 }
 

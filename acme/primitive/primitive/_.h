@@ -58,7 +58,7 @@ void ___release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //CLASS_DECL_ACME ::e_status __fork(
 //   matter* pmatter,
-//   ::e_priority epriority = priority_normal,
+//   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0,
 //   itask_t* pithread = nullptr,

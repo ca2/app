@@ -2683,10 +2683,12 @@ string & payload::as_string(const char * pszOnNull)
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   long payload::get_long(long lDefault) const
+
+
+long payload::get_long(long lDefault) const
 {
    
-   return this->i64(lDefault);
+   return (long) this->i64(lDefault);
    
 }
 
@@ -2694,9 +2696,11 @@ string & payload::as_string(const char * pszOnNull)
 unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 {
    
-   return this->u64(ulDefault);
+   return (unsigned long) this->u64(ulDefault);
    
 }
+
+
 #endif
 
 //
@@ -4196,7 +4200,7 @@ property_set & payload::as_propset()
    if (m_etype != e_type_property)
    {
 
-      __throw(exception::exception("::payload is not a property (1)"));
+      __throw(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4212,7 +4216,7 @@ property & payload::as_property()
    if(m_etype != e_type_property)
    {
 
-      __throw(exception::exception("::payload is not a property (1)"));
+      __throw(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4346,13 +4350,21 @@ string payload::implode(const char * pszGlue) const
       }
       else
       {
-         __throw(::exception::exception("index out of bounds"));
+
+         __throw(error_index_out_of_bounds, "index out of bounds");
+
+         return error_failed;
+
       }
+
    }
+
 }
+
 
 bool payload::array_contains(const char * psz, index find, ::count count) const
 {
+
    switch(m_etype)
    {
    case e_type_i32_array:
@@ -6449,7 +6461,12 @@ bool payload::is_numeric() const
       case e_type_color:
          return true;
    default:
+   {
       __throw(error_not_implemented);
+
+      return false;
+
+   }
 
    };
 

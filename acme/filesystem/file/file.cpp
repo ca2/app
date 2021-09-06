@@ -990,7 +990,7 @@ namespace file
       memory buf;
       buf.set_size(uiBufMax);
       if(buf.get_data() == nullptr)
-         __throw(::exception::exception("no memory"));
+         __throw(error_no_memory, "no memory");
       try
       {
          while(true)

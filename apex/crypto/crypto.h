@@ -23,7 +23,7 @@ namespace crypto
 
 
       crypto();
-      virtual ~crypto();
+      ~crypto() override;
 
       
       virtual void defer_initialize();

@@ -46,6 +46,14 @@ namespace aura
    }
 
 
+   void node::dpi_os_initialize()
+   {
+
+      throw exception::exception(error_failed);
+
+   }
+
+
 //#ifdef LINUX
 //
 //   ::linux::appindicator * node::appindicator_allocate()

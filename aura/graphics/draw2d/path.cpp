@@ -427,7 +427,7 @@ namespace draw2d
       if(!m_bHasPoint)
       {
 
-         __throw(::exception::exception("there is no point_i32"));
+         throw ::exception::exception(error_wrong_state, "there is no current point");
 
       }
 

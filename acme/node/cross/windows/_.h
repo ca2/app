@@ -147,7 +147,7 @@ namespace parallelization
 {
 
 
-   CLASS_DECL_ACME bool set_priority(e_priority epriority);
+   CLASS_DECL_ACME bool set_priority(enum_priority epriority);
 
    CLASS_DECL_ACME i32 priority();
 
@@ -155,7 +155,7 @@ namespace parallelization
    //inline i32 get_priority_none()
    //{
 
-   //   return priority_none;
+   //   return e_priority_none;
 
    //}
 
@@ -163,7 +163,7 @@ namespace parallelization
    //inline i32 get_priority_normal()
    //{
 
-   //   return priority_normal;
+   //   return e_priority_normal;
 
    //}
 
@@ -216,6 +216,9 @@ class synchronous_lock;
 #include "synchronous_lock.h"
 #include "multi_lock.h"
 //#include "retry_multi_lock.h"
+
+//CLASS_DECL_ACME __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName);
+
 
 //#include "synch_index_ptr_array.h"
 //#include "synch_index_iterator.h"
@@ -338,7 +341,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchron
 
 #ifdef __cplusplus_winrt
 
-#include "acme/node/operating_system/uwp/parallelization_winrt.h"
+#include "acme/node/operating_system/universal_windows/parallelization_winrt.h"
 
 #endif
 

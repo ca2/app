@@ -379,7 +379,7 @@ namespace sqlite
          if (iResult != SQLITE_OK)
          {
             TRACE("Error: %s", err);
-            __throw(::database::exception(get_error_message()));
+            throw ::database::exception(get_error_message());
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {

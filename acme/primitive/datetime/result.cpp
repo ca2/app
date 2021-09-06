@@ -164,10 +164,15 @@ datetime::result operator + (const datetime::result & val1, const datetime::resu
    }
    else
    {
-      __throw(::exception::exception("cannot add two dates"));
+
+      __throw(error_invalid_argument, "cannot add two dates");
+
    }
+
    return val;
+
 }
+
 
 datetime::result operator - (const datetime::result & val1, const datetime::result & val2)
 {
@@ -186,7 +191,7 @@ datetime::result operator - (const datetime::result & val1, const datetime::resu
    }
    else if(val1.m_bSpan && !val2.m_bSpan)
    {
-      __throw(::exception::exception("cannot subtract a date from a span"));
+      __throw(error_invalid_argument, "cannot subtract a date from a span");
    }
    else if(val2.m_bSpan && !val1.m_bSpan)
    {
@@ -231,16 +236,20 @@ datetime::result operator * (const datetime::result & val1, double d)
    }
    else
    {
-      __throw(::exception::exception("cannot multiply a date"));
+      __throw(error_invalid_argument, "cannot multiply a date");
    }
    return val;
 }
 
+
 datetime::result operator / (const datetime::result & val1, double d)
 {
+   
    datetime::result val;
+
    if(val1.m_bSpan)
    {
+
       val.m_bSpan = true;
       double dTotalSecond
          = (val1.m_iSecond
@@ -254,12 +263,17 @@ datetime::result operator / (const datetime::result & val1, double d)
       val.m_iMinute = (i32) fmod(dTotalMinute, 60.0);
       val.m_iHour   = (i32) fmod(dTotalHour, 24.0);
       val.m_iDay    = (i32) dTotalDay;
+
    }
    else
    {
-      __throw(::exception::exception("cannot multiply a date"));
+      
+      __throw(error_invalid_argument, "cannot multiply a date");
+
    }
+
    return val;
+
 }
 
 

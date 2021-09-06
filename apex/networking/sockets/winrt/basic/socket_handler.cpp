@@ -330,8 +330,8 @@ namespace sockets
 
                   psocket->m_event.ResetEvent();
 
-                  writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=]
-                                                    (::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::Windows::Foundation::AsyncStatus status)
+                  writer->StoreAsync()->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=]
+                                                    (::winrt::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
                   {
                      writer->DetachStream();
                      psocket->m_event.SetEvent();

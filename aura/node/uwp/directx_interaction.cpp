@@ -3,7 +3,7 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -148,7 +148,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -93,7 +93,7 @@ bool ns_set_thread_name(const ::string & psz);
 //
 //
 //
-//CLASS_DECL_AURA void main_branch(::matter* pobjectTask, e_priority epriority)
+//CLASS_DECL_AURA void main_branch(::matter* pobjectTask, enum_priority epriority)
 //{
 //
 //   ns_main_sync(^()

@@ -148,8 +148,10 @@ namespace message
    {
    public:
 
+      
       mouse();
-      virtual ~mouse();
+      ~mouse() override;
+
 
       using ::user::message::set;
 

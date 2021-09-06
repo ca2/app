@@ -114,13 +114,13 @@ class processor
 {
 public:
 
-   virtual void schedule(::matter * pobjectTask, e_priority epriority = priority_normal) = 0;
+   virtual void schedule(::matter * pobjectTask, enum_priority epriority = e_priority_normal) = 0;
 
 };
 
 
 template < typename PRED >
-inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = priority_normal)
+inline auto schedule(processor * pprocessor, PRED pred, enum_priority epriority = e_priority_normal)
 {
 
    auto pobjectTask = create_predicate(pred);
@@ -133,7 +133,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 //
 //template < typename PRED >
-//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
+//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout = one_minute(), enum_priority epriority = e_priority_normal);
 
 
 
@@ -143,7 +143,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 
-//CLASS_DECL_ACME void main_branch(::matter * pobjectTask, e_priority epriority);
+//CLASS_DECL_ACME void main_branch(::matter * pobjectTask, enum_priority epriority);
 
 
 

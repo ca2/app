@@ -1,4 +1,6 @@
 #include "framework.h"
+
+
 #include "acme/node/operating_system/_const_console.h"
 #include "acme/node/operating_system/console.h"
 #include "acme/primitive/collection/strdup_array.h"
@@ -129,6 +131,9 @@ namespace console
 } // namespace console
 
 
+#if !defined(_UWP)
+
+
 void press_any_key_to_exit(const char * pszPrompt)
 {
 
@@ -153,6 +158,7 @@ void press_any_key_to_exit(const char * pszPrompt)
 
 }
 
+
 int safe_get_any_char(const ::duration & duration)
 {
 
@@ -171,8 +177,8 @@ int safe_get_any_char(const ::duration & duration)
 
    return iSafeChar;
 
-
 }
+
 
 int safe_get_char(FILE * pfile, const ::duration & duration)
 {
@@ -359,19 +365,19 @@ repeat:
 
    }
 
-
-
    return edialogresult;
 
 }
 
 
+#endif
+
 
 #if defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_H
 
+
 #include <unistd.h>
 #include <termios.h>
-
 
 
 int getche()
@@ -415,8 +421,6 @@ int getche()
 
 
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
-
-
 
 
 

@@ -4,7 +4,7 @@
 #elif defined(ANDROID)
 #include "apex/os/android/windowing.h"
 #elif defined(_UWP)
-#include "apex/os/uwp/_uwp.h"
+#include "apex/os/universal_windows/_uwp.h"
 #elif defined(MACOS)
 #include "apex/os/macos/oswindow_data.h"
 #elif defined(APPLE_IOS)

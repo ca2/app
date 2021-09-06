@@ -2,9 +2,9 @@
 #include "apex/operating_system.h"
 
 
-#ifdef _UWP
-CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, string& strPrefix);
-#endif
+//#ifdef _UWP
+//CLASS_DECL_APEX ::winrt::Windows::Storage::StorageFolder^ winrt_folder(string& strPath, string& strPrefix);
+//#endif
 
 
 //CLASS_DECL_APEX ::u32 windows_get_file_attributes(const char* path)
@@ -242,7 +242,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //            if (item != nullptr)
 //            {
 //
-//               if (item->IsOfType(::Windows::Storage::StorageItemTypes::Folder))
+//               if (item->IsOfType(::winrt::Windows::Storage::StorageItemTypes::Folder))
 //               {
 //
 //                  if (is_set(petype))
@@ -255,7 +255,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //                  return true;
 //
 //               }
-//               else if (item->IsOfType(::Windows::Storage::StorageItemTypes::File))
+//               else if (item->IsOfType(::winrt::Windows::Storage::StorageItemTypes::File))
 //               {
 //
 //                  if (is_set(petype))

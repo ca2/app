@@ -38,7 +38,7 @@ namespace user
       ::routine                              m_routineFailure;
       __pointer(::user::interaction_impl)    m_pimpl;
       __pointer(::create)                    m_pcreate;
-      ::windowing::window *                  m_pwindow;
+      __pointer(::windowing::window)         m_pwindow;
 
       bool                                   m_bAutoWindowFrame;
       bool                                   m_bWindowFrame;

@@ -91,11 +91,11 @@
 //      bool tx::send(const char * pszMessage,unsigned int tickTimeout)
 //      {
 //
-//         ::Windows::Storage::StorageFolder ^ folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+//         ::winrt::Windows::Storage::StorageFolder ^ folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 //
-//         ::Windows::Storage::StorageFolder ^ folderTopic = ::wait(folder->CreateFolderAsync(wstring(m_strBaseChannel),::Windows::Storage::CreationCollisionOption::OpenIfExists));
+//         ::winrt::Windows::Storage::StorageFolder ^ folderTopic = ::wait(folder->CreateFolderAsync(wstring(m_strBaseChannel),::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists));
 //
-//         ::Windows::Storage::StorageFile ^ file = ::wait(folderTopic->CreateFileAsync(wstring("acme.topic"),::Windows::Storage::CreationCollisionOption::OpenIfExists));
+//         ::winrt::Windows::Storage::StorageFile ^ file = ::wait(folderTopic->CreateFileAsync(wstring("acme.topic"),::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists));
 //
 //         string strMessage;
 //
@@ -103,7 +103,7 @@
 //
 //         strMessage += "\n";
 //
-//         ::wait(::Windows::Storage::FileIO::AppendTextAsync(file,wstring(strMessage)));
+//         ::wait(::winrt::Windows::Storage::FileIO::AppendTextAsync(file,wstring(strMessage)));
 //
 //         return true;
 //
@@ -134,9 +134,9 @@
 //      public:
 //
 //
-//         ::Windows::Storage::StorageFolder ^                      folder;
-//         ::Windows::Storage::StorageFolder ^                      folderTopic;
-//         ::Windows::Storage::Search::StorageFileQueryResult ^     result;
+//         ::winrt::Windows::Storage::StorageFolder ^                      folder;
+//         ::winrt::Windows::Storage::StorageFolder ^                      folderTopic;
+//         ::winrt::Windows::Storage::Search::StorageFileQueryResult ^     result;
 //
 //
 //      };
@@ -186,7 +186,7 @@
 //         try
 //         {
 //
-//            m_pp->folder = ::Windows::Storage::KnownFolders::DocumentsLibrary;
+//            m_pp->folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
 //
 //         }
 //         catch (...)
@@ -196,9 +196,9 @@
 //
 //         }
 //
-//         m_pp->folderTopic = ::wait(m_pp->folder->CreateFolderAsync(wstring(m_strBaseChannel),::Windows::Storage::CreationCollisionOption::OpenIfExists));
+//         m_pp->folderTopic = ::wait(m_pp->folder->CreateFolderAsync(wstring(m_strBaseChannel),::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists));
 //
-//         ::Windows::Storage::StorageFile ^ f = ::wait(m_pp->folderTopic->GetFileAsync(wstring("acme.topic")));
+//         ::winrt::Windows::Storage::StorageFile ^ f = ::wait(m_pp->folderTopic->GetFileAsync(wstring("acme.topic")));
 //
 //         if(f != nullptr)
 //         {
@@ -208,23 +208,23 @@
 //         }
 //
 //
-//         //::Windows::Storage::Search::QueryOptions ^ options = ref new ::Windows::Storage::Search::QueryOptions();
+//         //::winrt::Windows::Storage::Search::QueryOptions ^ options = ref new ::winrt::Windows::Storage::Search::QueryOptions();
 //
 //         //options->FileTypeFilter->Append(wstring(".topic"));
 //
-//         //::Windows::Storage::Search::StorageFileQueryResult  ^ result = m_pp->folderTopic->CreateFileQueryWithOptions(options);
+//         //::winrt::Windows::Storage::Search::StorageFileQueryResult  ^ result = m_pp->folderTopic->CreateFileQueryWithOptions(options);
 //
 //         m_pp->result = m_pp->folderTopic->CreateFileQuery();
 //
-//         m_pp->result->ContentsChanged += ref new TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this](::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+//         m_pp->result->ContentsChanged += ref new TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this](::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
 //         {
 //
-//            ::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("acme.topic")));
+//            ::winrt::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("acme.topic")));
 //
 //            if(f != nullptr)
 //            {
 //
-//               string str(::wait(::Windows::Storage::FileIO::ReadTextAsync(f)));
+//               string str(::wait(::winrt::Windows::Storage::FileIO::ReadTextAsync(f)));
 //
 //               ::wait(f->DeleteAsync());
 //

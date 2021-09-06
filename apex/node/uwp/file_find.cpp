@@ -1,10 +1,10 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 
 #ifdef WINDOWS_DESKTOP
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -342,7 +342,7 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

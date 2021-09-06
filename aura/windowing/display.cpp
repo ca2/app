@@ -293,6 +293,13 @@ namespace windowing
 
          __construct(pmonitor);
 
+         if (!pmonitor)
+         {
+
+            return false;
+
+         }
+
          pmonitor->m_iIndex = iWorkspace;
 
          pmonitor->m_pdisplay = this;

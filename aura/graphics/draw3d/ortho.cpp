@@ -168,7 +168,7 @@ namespace draw3d
 
             m_pdc->set(pen);
 
-            m_pdc->draw_line(__pointd(locationa[point1[iMax]]), __pointd(locationa[point2[iMax]]));
+            m_pdc->draw_line(__pointd(locationa[point1[iMax]].cxy()), __pointd(locationa[point2[iMax]].cxy()));
 
          }
 

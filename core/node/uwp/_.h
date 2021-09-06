@@ -14,12 +14,12 @@
 ////#include "exception.h"
 //
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //   ref class directx_framework_view;
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //
 //
 //

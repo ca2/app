@@ -20,16 +20,16 @@ void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
 
    int iOsMin = -20;
 
-   if(nCa2Priority == ::priority_normal)
+   if(nCa2Priority == ::e_priority_normal)
    {
 
       iOsPriority = 0;
 
    }
-   else if(nCa2Priority > ::priority_normal)
+   else if(nCa2Priority > ::e_priority_normal)
    {
 
-      iCa2Min = (int) ::priority_normal;
+      iCa2Min = (int) ::e_priority_normal;
 
       iCa2Max = 99;
 
@@ -41,7 +41,7 @@ void process_get_os_priority(i32 * piOsPriority,  i32 nCa2Priority)
 
       iCa2Min = 0;
 
-      iCa2Max = (int) ::priority_normal;
+      iCa2Max = (int) ::e_priority_normal;
 
       iOsPriority = (iOsMin + iOsMax) / 2;
 

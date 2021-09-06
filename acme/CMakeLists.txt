@@ -767,21 +767,21 @@ list(APPEND library_source
    node/operating_system/text.h
    node/operating_system/time.h
    node/operating_system/user.h
-   node/operating_system/uwp/_.h
-   node/operating_system/uwp/_uwp.h
-   node/operating_system/uwp/_winrt.h
-   node/operating_system/uwp/base_file.h
-   node/operating_system/uwp/exception_engine.h
-   node/operating_system/uwp/file_winrt.h
-   node/operating_system/uwp/gdi_winrt.h
-   node/operating_system/uwp/host_interaction.h
-   node/operating_system/uwp/metrowin_metrowin.h
-   node/operating_system/uwp/parallelization.h
-   node/operating_system/uwp/parallelization_winrt.h
-   node/operating_system/uwp/process.h
-   node/operating_system/uwp/simple_hold_handle.h
-   node/operating_system/uwp/simple_ui.h
-   node/operating_system/uwp/sockets.h
+   node/operating_system/universal_windows/_.h
+   node/operating_system/universal_windows/_uwp.h
+   node/operating_system/universal_windows/_winrt.h
+   node/operating_system/universal_windows/base_file.h
+   node/operating_system/universal_windows/exception_engine.h
+   node/operating_system/universal_windows/file_winrt.h
+   node/operating_system/universal_windows/gdi_winrt.h
+   node/operating_system/universal_windows/host_interaction.h
+   node/operating_system/universal_windows/metrowin_metrowin.h
+   node/operating_system/universal_windows/parallelization.h
+   node/operating_system/universal_windows/parallelization_winrt.h
+   node/operating_system/universal_windows/process.h
+   node/operating_system/universal_windows/simple_hold_handle.h
+   node/operating_system/universal_windows/simple_ui.h
+   node/operating_system/universal_windows/sockets.h
    node/operating_system/windows/_.h
    #node/operating_system/windows/_c.h
    node/operating_system/windows/_windows.h
@@ -1288,44 +1288,44 @@ list(APPEND library_source
 if (UWP)
    list(APPEND library_source
       exception/winrt/engine_winrt.cpp
-      node/uwp/error.cpp
-      node/uwp/factory_exchange.cpp
-      node/uwp/file.cpp
-      node/uwp/file_find.cpp
-      node/uwp/native_buffer.cpp
-      node/uwp/timer.cpp
-      node/uwp/util.cpp
-      os/uwp/_.cpp
-      os/uwp/_os_metrowin.cpp
-      os/uwp/application_system_run.cpp
-      os/uwp/aura.cpp
-      os/uwp/debug.cpp
-      os/uwp/direct2d_tls.cpp
-      os/uwp/dpi.cpp
-      os/uwp/dummy_ipc.cpp
-      os/uwp/exception_engine.cpp
-      os/uwp/file.cpp
-      os/uwp/file_memory_map.cpp
-      os/uwp/graphics.cpp
-      os/uwp/language.cpp
-      os/uwp/lock.cpp
-      os/uwp/main.cpp
-      os/uwp/parallelization.cpp
-      os/uwp/os_message_box.cpp
-      os/uwp/process.cpp
-      os/uwp/sockets.cpp
-      os/uwp/time.cpp
-      os/uwp/user.cpp)
+      node/universal_windows/error.cpp
+      node/universal_windows/factory_exchange.cpp
+      node/universal_windows/file.cpp
+      node/universal_windows/file_find.cpp
+      node/universal_windows/native_buffer.cpp
+      node/universal_windows/timer.cpp
+      node/universal_windows/util.cpp
+      os/universal_windows/_.cpp
+      os/universal_windows/_os_metrowin.cpp
+      os/universal_windows/application_system_run.cpp
+      os/universal_windows/aura.cpp
+      os/universal_windows/debug.cpp
+      os/universal_windows/direct2d_tls.cpp
+      os/universal_windows/dpi.cpp
+      os/universal_windows/dummy_ipc.cpp
+      os/universal_windows/exception_engine.cpp
+      os/universal_windows/file.cpp
+      os/universal_windows/file_memory_map.cpp
+      os/universal_windows/graphics.cpp
+      os/universal_windows/language.cpp
+      os/universal_windows/lock.cpp
+      os/universal_windows/main.cpp
+      os/universal_windows/parallelization.cpp
+      os/universal_windows/os_message_box.cpp
+      os/universal_windows/process.cpp
+      os/universal_windows/sockets.cpp
+      os/universal_windows/time.cpp
+      os/universal_windows/user.cpp)
 
    list(APPEND library_source
-      node/uwp/exception.h
-      node/uwp/factory_exchange.h
-      node/uwp/file.h
-      node/uwp/file_find.h
-      node/uwp/native_buffer.h
-      node/uwp/net/net_address.h
-      node/uwp/_.h
-      node/uwp/_uwp.h
+      node/universal_windows/exception.h
+      node/universal_windows/factory_exchange.h
+      node/universal_windows/file.h
+      node/universal_windows/file_find.h
+      node/universal_windows/native_buffer.h
+      node/universal_windows/net/net_address.h
+      node/universal_windows/_.h
+      node/universal_windows/_uwp.h
       )
 
 endif ()
@@ -1555,8 +1555,8 @@ endif ()
 
 if (MACOS)
    list(APPEND library_source
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
+      os/cross/universal_windows/cross_metrowin_user.cpp
+      os/cross/universal_windows/metrowin_user.cpp
       #node/macos/application.cpp
       #node/macos/factory_exchange.cpp
       #node/macos/file.cpp
@@ -1632,8 +1632,8 @@ endif ()
 
 if (IOS)
    list(APPEND library_source
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
+      os/cross/universal_windows/cross_metrowin_user.cpp
+      os/cross/universal_windows/metrowin_user.cpp
       node/ios/exception.cpp
       node/ios/factory_exchange.cpp
       node/ios/file.cpp
@@ -1729,8 +1729,8 @@ if (APPLE)
            #os/chronometer.h
            #timer.mm
            #exception/mm.mm
-           #os/cross/uwp/cross_metrowin_user.cpp
-           #os/cross/uwp/metrowin_user.cpp
+           #os/cross/universal_windows/cross_metrowin_user.cpp
+           #os/cross/universal_windows/metrowin_user.cpp
            #node/apple/apple_timer.cpp
            #os/apple/_.cpp
            #os/apple/_apple.mm
@@ -1755,8 +1755,8 @@ if (ANDROID)
 
 
    list(APPEND library_source
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
+      os/cross/universal_windows/cross_metrowin_user.cpp
+      os/cross/universal_windows/metrowin_user.cpp
       node/android/android.cpp
       node/android/android1.cpp
       node/android/error.cpp

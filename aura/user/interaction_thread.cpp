@@ -263,8 +263,12 @@ namespace user
 
       m_pwindowing = pwindowing;
 
-      if (!m_pimpl->native_create_host())
+      estatus = m_pimpl->native_create_host();
+
+      if(!estatus)
       {
+
+         m_pimpl->m_puserinteraction->m_pusersystem->m_routineFailure();
 
          if (is_debugger_attached())
          {
@@ -281,7 +285,15 @@ namespace user
 
          destroy();
 
-         return false;
+         return estatus;
+
+      }
+
+
+      if (m_pimpl->m_puserinteraction->m_pusersystem->m_routineSuccess)
+      {
+
+         m_pimpl->m_puserinteraction->m_pusersystem->m_routineSuccess();
 
       }
 

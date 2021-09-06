@@ -207,6 +207,8 @@ namespace sockets
       
       __throw(error_interface_only);
 
+      return -1;
+
    }
 
 

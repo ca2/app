@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/operating_system.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include "sal.h"
 
 
@@ -11,10 +11,10 @@ CLASS_DECL_ACME int ca2_main();
 
 //CLASS_DECL_BOOT fixed_alloc_array * new_wstring_manager();
 
-void CLASS_DECL_ACME __cdecl _ca2_purecall()
-{
-   __throw(::exception::exception());
-}
+//void CLASS_DECL_ACME __cdecl _ca2_purecall()
+//{
+//   __throw(::exception::exception());
+//}
 
 
 CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
@@ -42,7 +42,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //   int nReturnCode = 0;
 //
 //
-//   auto pcommand  = __new(::uwp::command);
+//   auto pcommand  = __new(::universal_windows::command);
 //
 //   //    pcommand->m_hInstance               = nullptr;
 //   //    pcommand->m_hPrevInstance           = nullptr;
@@ -152,7 +152,7 @@ CLASS_DECL_ACME void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //      int nReturnCode = 0;
 //
-//      ::uwp::main_init_data * pinitmaindata  = new ::uwp::main_init_data;
+//      ::universal_windows::main_init_data * pinitmaindata  = new ::universal_windows::main_init_data;
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;
@@ -246,7 +246,7 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //string executable_get_app_id()
 //{
 //
-//   string strAppId =  Windows::ApplicationModel::Package::Current->Id->Name;
+//   string strAppId =  ::winrt::Windows::ApplicationModel::Package::Current->Id->Name;
 //
 //   strAppId.replace(".", "/");
 //
@@ -254,41 +254,41 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //}
 
-string ca2_command_line()
-{
-
-   string strAppId = Windows::ApplicationModel::Package::Current->Id->Name;
-
-   if (strAppId.is_empty())
-   {
-
-      return "";
-
-   }
-
-   if (!::str::begins_eat_ci(strAppId, "com."))
-   {
-
-      ::str::begins_eat_ci(strAppId, "com.");
-
-   }
-
-   string_array stra;
-
-   stra.explode(".", strAppId);
-
-   stra.predicate_each([](auto & str)
-   {
-
-      str.replace("-", "_");
-
-   }, 1);
-
-   strAppId = stra.implode("/");
-
-   return "app.exe : app=" + strAppId + " client_only";
-
-}
+//string ca2_command_line()
+//{
+//
+//   string strAppId = ::winrt::Windows::ApplicationModel::Package::Current->Id->Name;
+//
+//   if (strAppId.is_empty())
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   if (!::str::begins_eat_ci(strAppId, "com."))
+//   {
+//
+//      ::str::begins_eat_ci(strAppId, "com.");
+//
+//   }
+//
+//   string_array stra;
+//
+//   stra.explode(".", strAppId);
+//
+//   stra.predicate_each([](auto & str)
+//   {
+//
+//      str.replace("-", "_");
+//
+//   }, 1);
+//
+//   strAppId = stra.implode("/");
+//
+//   return "app.exe : app=" + strAppId + " client_only";
+//
+//}
 
 
 

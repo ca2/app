@@ -381,6 +381,8 @@ inline bool myspace(char ch)
 
    __throw(error_interface_only, "this is an interface");
 
+   return listing;
+
 }
 
 
@@ -1323,14 +1325,24 @@ bool dir_context::name_is(const ::file::path & strPath)
 //      }
 //
 
+
 ::file::path dir_context::time()
 {
+   
    __throw(error_interface_only, "this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::stage()
 {
+
    __throw(error_interface_only, "this is an interface");
+
+   return "";
+
 }
 
 
@@ -1339,6 +1351,8 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    __throw(error_interface_only, "this is an interface");
 
+   return "";
+
 }
 
 
@@ -1346,6 +1360,8 @@ bool dir_context::name_is(const ::file::path & strPath)
 {
 
    __throw(error_interface_only, "this is an interface");
+
+   return "";
 
 }
 
@@ -1434,7 +1450,10 @@ bool dir_context::name_is(const ::file::path & strPath)
 {
 
    UNREFERENCED_PARAMETER(pszId);
+   
    __throw(error_interface_only, "this is an interface");
+
+   return "";
 
 }
 
@@ -1443,7 +1462,10 @@ bool dir_context::mk(const ::file::path & path)
 {
 
    UNREFERENCED_PARAMETER(path);
+
    __throw(error_interface_only, "this is an interface");
+
+   return false;
 
 }
 
@@ -1453,7 +1475,10 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 
    UNREFERENCED_PARAMETER(path);
    UNREFERENCED_PARAMETER(bRecursive);
+
    __throw(error_interface_only, "this is an interface");
+
+   return false;
 
 }
 
@@ -2143,6 +2168,8 @@ ret:
 
    __throw(error_interface_only, "this is an interface");
 
+   return "";
+
 }
 
 
@@ -2293,32 +2320,59 @@ ret:
 //   __throw(error_interface_only, "this is an interface");
 //}
 
+
 ::file::path dir_context::userquicklaunch()
 {
+
    __throw(error_interface_only, "this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::userprograms()
 {
+
    __throw(error_interface_only, "this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::commonprograms()
 {
+
    __throw(error_interface_only, "this is an interface");
+
+   return "";
+
 }
+
 
 bool dir_context::is_inside_time(const ::file::path & pszPath)
 {
+
    UNREFERENCED_PARAMETER(pszPath);
+
    __throw(error_interface_only, "this is an interface");
+
+   return false;
+
 }
+
 
 bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
 {
+
    UNREFERENCED_PARAMETER(pszDir);
    UNREFERENCED_PARAMETER(pszPath);
+
    __throw(error_interface_only, "this is an interface");
+
+   return false;
+
 }
 
 

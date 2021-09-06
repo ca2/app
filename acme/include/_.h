@@ -63,6 +63,9 @@
 #pragma once
 
 
+#define CPP20 1
+
+
 #define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
@@ -109,8 +112,6 @@ CLASS_DECL_ACME void acme_ref();
 //typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 //extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
-#define CPP20
-
 #ifdef __DEBUG
 
 #define INLINE
@@ -148,6 +149,7 @@ namespace acme
 
 
       class node;
+      class buffer;
 
 
    } // namespace PLATFORM_NAMESPACE
@@ -216,6 +218,26 @@ namespace aura
 
 
 } // namespace aura
+
+
+namespace windowing_universal_windows
+{
+
+   
+   class node;
+
+
+} // namespace windowing_universal_windows
+
+
+namespace PLATFORM_NAMESPACE
+{
+
+
+   class node;
+
+
+} // namespace PLATFORM_NAMESPACE
 
 
 namespace windowing_x11
@@ -308,9 +330,6 @@ namespace desktop_environment_xfce
 } // namespace desktop_environment_xfce
 
 
-typedef char ansichar;
-
-
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
 #define __IDENTIFIER(identifier) identifier
@@ -324,6 +343,9 @@ typedef char ansichar;
 
 
 #include "acme/constant/_.h"
+
+
+#include "acme/constant/exception.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -417,23 +439,7 @@ struct INT_STRING
 };
 
 
-#ifdef WINDOWS 
-#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
-#define ARG_SEC_ATTRS , void * psaAttributes
-#define PARAM_SEC_ATTRS (void *) psaAttributes
-#define PASS_SEC_ATTRS psaAttributes
-#define INSERT_PARAM_SEC_ATTRS(ATTRS) , ATTRS
-#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
-#define ADD_PASS_SEC_ATTRS , PASS_SEC_ATTRS
-#else
-#define ARG_SEC_ATTRS_DEF 
-#define ARG_SEC_ATTRS
-#define PARAM_SEC_ATTRS
-#define INSERT_PARAM_SEC_ATTRS(ATTRS) 
-#define ADD_PARAM_SEC_ATTRS
-#define ADD_PASS_SEC_ATTRS
-#endif
-
+#include "acme/node/operating_system/windows_common/arg_sec_attrs.h"
 
 
 template < typename CONCRETE >
@@ -461,9 +467,6 @@ class pointer_array;
 
 //#define __composite(TYPE) ::reference < TYPE >
 
-#define __pointer(TYPE) ::___pointer < TYPE >
-#define __pointer_array(TYPE) ::pointer_array < TYPE >
-#define __address_array(TYPE) ::comparable_array < TYPE * >
 
 #include <type_traits>
 
@@ -644,9 +647,6 @@ CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
-CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
-CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
-CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
 
 namespace windowing
 {
@@ -1032,6 +1032,9 @@ enum e_image_type
 };
 
 
+
+#include "acme/exception/throw.h"
+
 #include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
@@ -1052,13 +1055,13 @@ int ftruncate(int file, filesize len);
 #endif
 
 
-CLASS_DECL_ACME i32 get_os_thread_priority(::e_priority epriority);
+CLASS_DECL_ACME i32 get_os_thread_priority(::enum_priority epriority);
 
-CLASS_DECL_ACME i32 get_os_priority_class(::e_priority epriority);
+CLASS_DECL_ACME i32 get_os_priority_class(::enum_priority epriority);
 
-CLASS_DECL_ACME ::e_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
+CLASS_DECL_ACME ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
 
-CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
+CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
 
@@ -1073,8 +1076,6 @@ CLASS_DECL_ACME ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 
 
 class matter;
-
-
 
 
 CLASS_DECL_ACME void release_on_end(::matter *pmatter);
@@ -1564,6 +1565,9 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 // #define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
 // #define __exception(TYPE) __base(TYPE, pe, e)
 
+#define __rethrow(pe) throw pe;
+#define __throw_exit(estatus) __throw(exit_exception(estatus))
+
 
 #undef _
 
@@ -1610,70 +1614,8 @@ class synchronization_object;
 //CLASS_DECL_ACME ::e_status acme_run_system_term(class ::system * psystem);
 
 
-template<typename VAR>
-class payload_type
-{
-public:
+#include "acme/primitive/primitive/payload_type.h"
 
-   using VAR_TYPE = VAR;
-
-
-   VAR_TYPE *this_var() { return (VAR_TYPE *) this; }
-
-
-   const VAR_TYPE *this_var() const { return (const VAR_TYPE *) this; }
-
-};
-
-//// very short name ([{c}])ontext (switchers, as it as action_context) enums
-//enum nullptr_t
-//{
-//   nullptr
-//};
-
-// very short name ([{c}])ontext (switchers, as it as action_context) enums
-enum e_context_switcher_empty
-{
-   cempty
-};
-
-
-enum enum_create_new
-{
-
-   e_create_new
-
-};
-
-
-enum enum_create
-{
-
-   e_create
-
-};
-
-enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
-{
-
-   e_defer_new
-
-};
-
-enum enum_move_transfer
-{
-
-   e_move_transfer
-
-};
-
-
-enum enum_copy_clone
-{
-
-   e_copy_clone
-
-};
 
 #define IMPL_OPERATOR_PLUS(type) \
 template < typename TYPE > \
@@ -1681,7 +1623,7 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 #include "acme/memory/_heap.h"
 
-#include "acme/exception/_const.h"
+//#include "acme/exception/_const.h"
 
 #include "acme/primitive/primitive/bits.h"
 
@@ -1790,6 +1732,8 @@ typename erase_reference<T>::TYPE &&move(T &&t)
 class task;
 
 
+#include "_forward_declaration.h"
+
 
 namespace subject
 {
@@ -1887,17 +1831,6 @@ inline auto &__typed_defer_create(__pointer(T) &p)
    return *p;
 }
 
-
-template<typename T>
-inline __pointer(T) move_transfer(T *p);
-
-
-template < typename T >
-inline T * set_heap_allocated(T * p) { p->m_bHeapAllocated = true;  return p; }
-
-#define ___new(...) set_heap_allocated( new __VA_ARGS__ )
-
-#define __new(...) move_transfer( ___new(__VA_ARGS__ ) )
 
 
 template<typename TYPE1, typename TYPE2>
@@ -2425,7 +2358,7 @@ inline int type_is_null(const T *p)
 #include "acme/primitive/string/_uhash.h"
 
 
-class allocer;
+//class allocer;
 
 
 namespace acme
@@ -2837,7 +2770,7 @@ namespace text
 
 #include "acme/memory/new.h"
 
-#include "acme/platform/lparam.h"
+
 #include "acme/platform/muldiv64.h"
 
 
@@ -2887,9 +2820,7 @@ namespace primitive
 
 
 
-#define __member(TYPE) ::primitive::member < TYPE >
-#define __composite(TYPE) ::primitive::composite < TYPE >
-#define __reference(TYPE) ::primitive::reference < TYPE >
+#include "acme/primitive/primitive/member.h"
 
 
 template < typename T >
@@ -2900,60 +2831,6 @@ concept an_object = !std::is_pointer < T >::value
 && !std::is_integral < T >::value
 && !std::is_enum < T >::value
 && !std::is_floating_point < T >::value;
-
-
-template<typename TYPE>
-inline bool is_null(const __pointer(TYPE) & p)
-{
-
-   return ::is_null(p.m_p);
-
-}
-
-
-template<typename TYPE>
-inline bool is_null(const __composite(TYPE) & p)
-{
-
-   return p.is_null();
-
-}
-
-
-template<typename TYPE>
-inline bool is_null(const __reference(TYPE) & p)
-{
-
-   return p.is_null();
-
-}
-
-
-template < typename TYPE >
-inline bool is_set(const __pointer(TYPE) & p)
-{
-
-   return p.is_set();
-
-}
-
-
-template<typename TYPE>
-inline bool is_set(const __composite(TYPE) &p)
-{
-
-   return p.is_set();
-
-}
-
-
-template<typename TYPE>
-inline bool is_set(const __reference(TYPE) &p)
-{
-
-   return p.is_set();
-
-}
 
 
 
@@ -3052,6 +2929,9 @@ using wparam = c_number<iptr>;
 
 
 #include "acme/primitive/datetime/_.h"
+
+
+#include "acme/primitive/datetime/_string.h"
 
 
 #include "acme/platform/common.h"
@@ -3163,9 +3043,30 @@ class memory_base;
 
 CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFailed);
 
+#include "acme/constant/filesystem.h"
+
+#define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
+inline ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
+inline ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
+using ENUMERATION = enumeration < ENUM >
 
 
+namespace file
+{
 
+   DECLARE_ENUMERATION(e_open, enum_open);
+   DECLARE_ENUMERATION(e_state, enum_state);
+
+
+} // namespace file
 class thread;
 
 
@@ -3183,6 +3084,7 @@ namespace user
 class action_context;
 
 
+
 #include "acme/primitive/primitive/eobject.h"
 
 
@@ -3195,6 +3097,74 @@ namespace user
    class interaction;
 
 } // namespace user
+
+
+template < typename POINT >
+concept primitive_point = requires(POINT point)
+{
+   point.x;
+   point.y;
+};
+
+
+template < typename POINT >
+concept XY_point = requires(POINT point)
+{
+   point.X;
+   point.Y;
+};
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx;
+   size.cy;
+};
+
+
+template < typename SIZE >
+concept Dim_size = requires(SIZE size)
+{
+   size.Width;
+   size.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
+
+template < typename RECTANGLE >
+concept XYDim_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.X;
+   rectangle.Y;
+   rectangle.Width;
+   rectangle.Height;
+};
+
+
+template < typename RECTANGLE >
+concept xydim_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.x;
+   rectangle.y;
+   rectangle.width;
+   rectangle.height;
+};
+
+
+#include "acme/platform/lparam.h"
+
+
+#include "acme/primitive/geometry2d/_.h"
 
 
 #include "acme/platform/_global.h"
@@ -3227,7 +3197,8 @@ namespace factory
 #include "acme/constant/idpool.h"
 
 
-#include "acme/primitive/geometry2d/_.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+
 
 
 
@@ -3254,16 +3225,6 @@ class manual_reset_event;
 
 
 
-
-namespace file
-{
-
-
-   DECLARE_ENUMERATION(e_open, enum_open);
-   DECLARE_ENUMERATION(e_state, enum_state);
-
-
-} // namespace file
 
 
 using eiostate = ::enumeration<::file::e_iostate>;
@@ -3674,6 +3635,9 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 
 
 
+#include "acme/filesystem/file/status.h"
+#include "acme/filesystem/file/translatable.h"
+#include "acme/filesystem/file/streamable.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"
@@ -3734,6 +3698,8 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 DECLARE_ENUMERATION(e_source, enum_source);
 
 
+
+
 using lresult = iptr;
 
 
@@ -3788,8 +3754,8 @@ using lresult = iptr;
 //   interface class system_window
 //      {
 //
-//         virtual Windows::Foundation::Rect get_window_rect() = 0;
-//         virtual Windows::Foundation::Point get_cursor_position() = 0;
+//         virtual ::winrt::Windows::Foundation::Rect get_window_rect() = 0;
+//         virtual ::winrt::Windows::Foundation::Point get_cursor_position() = 0;
 //
 //
 //
@@ -3812,14 +3778,14 @@ using lresult = iptr;
 //#if defined _UWP
 //
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //
 //   ref class directx_framework_view;
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //
 //
 //#endif
@@ -4060,7 +4026,7 @@ struct lib_main_int
 #include "acme/primitive/text/context.h"
 
 
-#include "acme/primitive/datetime/_.h"
+//#include "acme/primitive/datetime/_.h"
 
 
 #include "acme/primitive/text/international_locale_schema.h"

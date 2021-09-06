@@ -63,7 +63,7 @@ namespace turboc
 
       //   papplication->load_ai_font();
 
-      //   __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+      //   __begin_thread(get_application(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
 
       //}
 

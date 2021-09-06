@@ -5028,7 +5028,7 @@ finished_update:
                         iCode |= 0x80000000;
                      }
                      //str = psession->keyboard().process_key(pkey);
-                     __throw(todo("keyboard"));
+                     __throw(todo, "keyboard");
                   }
 
                   insert_text(str, false, e_source_user);

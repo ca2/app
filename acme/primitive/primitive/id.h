@@ -8,6 +8,9 @@
 enum e_id : ::u64;
 
 
+class lparam;
+
+
 template <typename T>
 int sgn(T val)
 {
@@ -469,14 +472,6 @@ inline id::id(UNSIGNED u)
 }
 
 
-inline id::id(const ::lparam& lparam)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = lparam.m_lparam;
-
-}
 
 
 inline int id::compare(const id & id) const

@@ -39,8 +39,6 @@ namespace apex
 //
 //   }
 
-#endif
-
 
 
    ::e_status shell_launcher::setup(duration durationTimeout)
@@ -69,8 +67,10 @@ namespace apex
    }
 
 
-} // namespace apex
+#endif
 
+
+} // namespace apex
 
 
 

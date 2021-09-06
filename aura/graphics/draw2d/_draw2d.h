@@ -190,7 +190,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void *
 #ifdef WINDOWS
 
 
-namespace draw2d_direct2d
+namespace direct2d
 {
 
 
@@ -338,7 +338,7 @@ namespace factory
 } // namespace factory
 
 
-#include "device_lock.h"
+#include "lock.h"
 
 
 

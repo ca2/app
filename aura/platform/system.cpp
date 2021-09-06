@@ -12,7 +12,7 @@
 #include "aura/const/idpool.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 //#ifdef _UWP
-//#include "aura/node/uwp/directx_application.h"
+//#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
 
@@ -183,7 +183,7 @@ namespace aura
 
          //xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
 
-         __throw(::exception::exception("failed to initialize log"));
+         throw ::exception::exception(error_failed, "failed to initialize log");
 
       }
 
@@ -3413,7 +3413,7 @@ namespace aura
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
+//      ::winrt::Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -4012,26 +4012,26 @@ namespace aura
       if(has_property("client_only"))
       {
 
-#ifdef _UWP
-
-         //auto psession = get_session();
-
-         auto puserinteraction = __user_interaction(pframe);
-
-         __pointer(::uwp::interaction_impl) pimpl = puserinteraction->m_pimpl;
-
-         if (pimpl.is_set())
-         {
-
-            auto pframeworkview = pimpl->m_pframeworkview;
-
-            auto directx = pframeworkview->m_directx;
-
-            directx->UpdateForWindowSizeChange();
-
-         }
-
-#endif
+//#ifdef _UWP
+//
+//         //auto psession = get_session();
+//
+//         auto puserinteraction = __user_interaction(pframe);
+//
+//         __pointer(::universal_windows::interaction_impl) pimpl = puserinteraction->m_pimpl;
+//
+//         if (pimpl.is_set())
+//         {
+//
+//            auto pframeworkview = pimpl->m_pframeworkview;
+//
+//            auto directx = pframeworkview->m_directx;
+//
+//            directx->UpdateForWindowSizeChange();
+//
+//         }
+//
+//#endif
 
       }
 
@@ -4208,11 +4208,11 @@ namespace aura
 //
 //         string * pstrNew = new string(strUrl);
 //
-//         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
+//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
 //               {
 //
-//                  ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri(*pstrNew);
 //
 //                  delete pstrNew;
 //
@@ -4850,7 +4850,7 @@ namespace aura
 
 
 
-   //::task_group * system::task_group(::e_priority epriority)
+   //::task_group * system::task_group(::enum_priority epriority)
    //{
 
    //   //return nullptr;
@@ -4922,7 +4922,7 @@ namespace aura
 
    //   }
 
-   //   if (!m_toolmap[::priority_none]->select_toolset(pset))
+   //   if (!m_toolmap[::e_priority_none]->select_toolset(pset))
    //   {
 
    //      return nullptr;
@@ -5285,7 +5285,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 //#include "aura/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
 #endif
 
 
@@ -6392,47 +6392,47 @@ namespace aura
    //   }
 
 
-#ifdef _UWP
-
-
-   bool system::get_window_rect(RECTANGLE_I32* prectangle)
-   {
-
-      if (::is_null(get_session()))
-      {
-
-         return false;
-
-      }
-
-      try
-      {
-
-         if (::is_null(get_session()->m_puserinteractionHost))
-         {
-
-            return false;
-
-         }
-
-         auto puserinteractionHost = __user_interaction(get_session()->m_puserinteractionHost);
-
-         puserinteractionHost->get_window_rect(prectangle);
-
-      }
-      catch (...)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//   bool system::get_window_rect(RECTANGLE_I32* prectangle)
+//   {
+//
+//      if (::is_null(get_session()))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         if (::is_null(get_session()->m_puserinteractionHost))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         auto puserinteractionHost = __user_interaction(get_session()->m_puserinteractionHost);
+//
+//         puserinteractionHost->get_window_rect(prectangle);
+//
+//      }
+//      catch (...)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
    //::e_status     system::do_request(::create* pcreate)
@@ -6569,11 +6569,11 @@ namespace aura
       else if (psubject->m_id == id_os_dark_mode)
       {
 
-#ifdef _UWP
-
-         ::user::os_set_dark_mode_colors();
-
-#endif
+//#ifdef _UWP
+//
+//         ::user::os_set_dark_mode_colors();
+//
+//#endif
 
       }
 
@@ -6925,7 +6925,7 @@ namespace aura
    //}
 
 
-//   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+//   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
 //   {
 //
 //#ifdef _UWP

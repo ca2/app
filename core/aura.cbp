@@ -1656,8 +1656,8 @@
 		<Unit filename="os/cross/ansios/ansios_file_raw.h" />
 		<Unit filename="os/cross/ansios/exception_engine.h" />
 		<Unit filename="os/cross/cross.h" />
-		<Unit filename="os/cross/uwp/cross_metrowin_user.cpp" />
-		<Unit filename="os/cross/uwp/metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/cross_metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/metrowin_user.cpp" />
 		<Unit filename="os/cross/windows/_.h" />
 		<Unit filename="os/cross/windows/aaa_want_to_remote_cross_windows_nt.cpp" />
 		<Unit filename="os/cross/windows/aaa_want_to_remove_windows_message_loop.cpp" />

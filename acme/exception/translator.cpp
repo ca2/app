@@ -402,7 +402,7 @@ namespace exception
 //   }
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
 
    string translator::_get_standard_exception_name(u32 uiCode)

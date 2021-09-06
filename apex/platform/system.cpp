@@ -5,7 +5,7 @@
 #include "apex/platform/machine_event_central.h"
 #include "apex/platform/app_core.h"
 #include "acme/id.h"
-#include "apex/node/_node.h"
+//#include "apex/node/_node.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
 #include "apex/id.h"
@@ -15,6 +15,7 @@
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/parallelization/install_mutex.h"
 
 
 //extern ::apex::system* g_papexsystem;
@@ -336,7 +337,7 @@ namespace apex
       if (!initialize_log(strId))
       {
 
-         __throw(::exception::exception("failed to initialize log"));
+         throw ::exception::exception("failed to initialize log");
 
       }
 
@@ -1199,6 +1200,10 @@ namespace apex
 
       //string strAppId = m_papplicationStartup->m_strAppId;
 
+
+#if !defined(_UWP)
+
+
       if (is_true("show_application_information"))
       {
 
@@ -1213,6 +1218,10 @@ namespace apex
          output_debug_string("Process PID: " + __str(iPid) + "\n");
 
       }
+
+
+#endif
+
 
       //#ifdef LINUX
       //
@@ -1905,7 +1914,16 @@ pacmedir->create("/ca2core");
    ::e_status system::on_start_system()
    {
 
-      return ::success;
+      auto estatus = ::system::on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -2982,7 +3000,7 @@ pacmedir->create("/ca2core");
       {
 
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
-         ::mutex * pmutex = ::mutex::open_mutex(this, get_global_id_mutex_name(pszAppName,pszId));
+         auto pmutex = ::open_mutex(this, get_global_id_mutex_name(pszAppName,pszId));
 
          if(pmutex == nullptr)
          {
@@ -3018,7 +3036,7 @@ pacmedir->create("/ca2core");
       else
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
-         ::mutex * pmutex = ::mutex::open_mutex(this, get_global_mutex_name(pszAppName));
+         auto pmutex = ::open_mutex(this, get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp = pszAppName;
@@ -3056,7 +3074,7 @@ pacmedir->create("/ca2core");
       if(strId.has_char())
       {
          //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
-         ::mutex * pmutex = ::mutex::open_mutex(this, get_local_id_mutex_name(pszAppName,strId));
+         auto pmutex = ::open_mutex(this, get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -3090,7 +3108,7 @@ pacmedir->create("/ca2core");
       else
       {
          //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
-         ::mutex * pmutex = ::mutex::open_mutex(this, get_local_mutex_name(pszAppName));
+         auto pmutex = ::open_mutex(this, get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
             string strApp;
@@ -3895,7 +3913,7 @@ pacmedir->create("/ca2core");
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
+//      ::winrt::Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -4297,11 +4315,11 @@ pacmedir->create("/ca2core");
 
          string * pstrNew = new string(strUrl);
 
-         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
+         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
                {
 
-                  ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri(*pstrNew);
 
                   delete pstrNew;
 
@@ -4795,7 +4813,7 @@ pacmedir->create("/ca2core");
    }
 
    
-   //::task_group * system::task_group(::e_priority epriority)
+   //::task_group * system::task_group(::enum_priority epriority)
    //{
 
    //   if (m_bAvoidProcedureFork)
@@ -4917,7 +4935,7 @@ pacmedir->create("/ca2core");
 
 #ifdef WINDOWS_DESKTOP
 #elif defined(_UWP)
-#include "apex/os/uwp/_uwp.h"
+#include "apex/node/operating_system/universal_windows/_universal_windows.h"
 #endif
 
 
@@ -5390,23 +5408,6 @@ namespace apex
    }
 
 
-   ::e_status system::on_pre_run_thread()
-   {
-
-      auto estatus = m_pnode->on_start_system();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
-   }
-
-
    ::e_status system::main()
    {
 
@@ -5705,7 +5706,7 @@ namespace apex
 #elif defined(_UWP)
 
    
-   ::e_status system::system_construct(Array < String^ >^ refstra)
+   ::e_status system::system_construct(const ::string_array & stra)
    {
 
       return ::success;

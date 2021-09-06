@@ -7,9 +7,8 @@ class CLASS_DECL_ACME single_lock :
 public:
 
 
-   __pointer(synchronization_object)         m_psync;
-   //HANDLE                  m_hobject;
-   bool                    m_bAcquired;
+   synchronization_object *                  m_psync;
+   bool                                      m_bAcquired;
 
 
    explicit single_lock(synchronization_object * pobject, bool bInitialLock = false);
@@ -32,9 +31,8 @@ class CLASS_DECL_ACME _single_lock :
 public:
 
 
-   __pointer(synchronization_object)         m_psync;
-   //HANDLE                  m_hobject;
-   bool                    m_bAcquired;
+   synchronization_object *      m_psync;
+   bool                          m_bAcquired;
 
 
    explicit _single_lock(synchronization_object * pobject, bool bInitialLock = false);

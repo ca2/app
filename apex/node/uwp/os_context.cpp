@@ -5,7 +5,7 @@
 #undef USERNAME_LENGTH // mysql one
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -452,7 +452,7 @@ namespace uwp
 
                Platform::String^ strUri = strUrl;
 
-               Windows::Foundation::Uri^ uri = ref new Windows::Foundation::Uri(strUri);
+               ::winrt::Windows::Foundation::Uri^ uri = ref new ::winrt::Windows::Foundation::Uri(strUri);
 
                ::wait(Launcher::LaunchUriAsync(uri));
 
@@ -474,7 +474,7 @@ namespace uwp
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
+      ::winrt::Windows::Storage::StorageFile ^ fileSrc = nullptr;
 
       path = get_context()->defer_process_path(path);
 
@@ -963,7 +963,7 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -47,7 +47,7 @@ public:
 
    
    virtual bool create_isotropic(::image * pimage);
-   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority);
+   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority);
 
 
    virtual bool SetViewportOrg(const ::point_i32 & point);

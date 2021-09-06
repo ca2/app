@@ -29,7 +29,7 @@
 #elif defined(_UWP)
 
 #include "aura/os/ansios/_ansios.h"
-#include "aura/os/uwp/_uwp.h"
+#include "aura/os/universal_windows/_uwp.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

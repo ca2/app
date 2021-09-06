@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //
@@ -25,7 +25,7 @@
 //   } // namespace apex
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //
 //
 

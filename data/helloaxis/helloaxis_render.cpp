@@ -220,7 +220,7 @@ namespace helloaxis
    i32 render::run()
    {
 
-      ::parallelization::set_priority(::priority_time_critical);
+      ::parallelization::set_priority(::e_priority_time_critical);
 
 //      double dFps = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 

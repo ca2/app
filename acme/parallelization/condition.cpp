@@ -350,7 +350,11 @@ bool condition::is_signaled() const
 #endif
 
    __throw(error_not_supported);
+
+   return false;
+
 }
+
 
 //end**************************************************************************
 //
@@ -453,7 +457,15 @@ bool condition::unlock()
    return ResetEvent();
 }
 
+
 void* condition::get_os_data() const
 {
+   
    __throw(error_not_supported);
+
+   return nullptr;
+
 }
+
+
+

@@ -139,6 +139,8 @@ namespace user
 
       __throw(todo);
 
+      return "";
+
    }
 
 

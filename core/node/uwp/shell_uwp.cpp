@@ -13,7 +13,7 @@
 bool uwp_get_file_image(::image * pimage, const ::string & psz);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -415,7 +415,7 @@ pacmedir->is(strPath))
    }
 
    
-} // namespace uwp
+} // namespace universal_windows
 
 
 bool uwp_get_file_image(::image * pimage, const ::string & psz)
@@ -438,7 +438,7 @@ namespace core
       if (!m_pshell)
       {
 
-         estatus = __compose(m_pshell, __new(::uwp::shell));
+         estatus = __compose(m_pshell, __new(::universal_windows::shell));
 
          if (!estatus)
          {

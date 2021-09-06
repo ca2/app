@@ -187,7 +187,6 @@ public:
       operator = (eenum);
    }
 
-
    template < typename T >
    payload(const T & t)
    {
@@ -592,7 +591,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    {
       return operator =((::i64) eenum);
    }
-
 
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 

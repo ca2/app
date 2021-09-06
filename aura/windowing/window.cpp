@@ -955,6 +955,21 @@ namespace windowing
    }
 
 
+   void window::graphics_lock()
+   {
+
+
+   }
+
+
+   void window::graphics_unlock()
+   {
+
+
+
+   }
+
+
    bool window::client_to_screen(POINT_I32 *ppoint)
    {
 

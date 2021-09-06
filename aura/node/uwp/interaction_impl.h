@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -28,9 +28,9 @@ namespace uwp
       //point_f64                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
       millis                                                              m_millisLastMouseMove;
-      Agile < Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
-      Agile < Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
-      Agile < Windows::UI::Core::CoreWindow >                           m_window;
+      Agile < ::winrt::Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
+      Agile < ::winrt::Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
+      Agile < ::winrt::Windows::UI::Core::CoreWindow >                           m_window;
       ::thread *                                                        m_pthreadDraw;
       ::user::primitive *                                               m_pbasewnd;
       ::user::interaction *                                             m_pguieCapture;
@@ -91,7 +91,7 @@ namespace uwp
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -681,7 +681,7 @@ namespace uwp
       void _001OnTriggerMouseInside();
 
 
-      Agile < Windows::UI::Core::CoreWindow > get_os_window();
+      Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
       void set_view_port_org(::image * pimage);
 
@@ -709,14 +709,14 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 
-inline ::uwp::interaction_impl * __uwp_user_interaction_impl(::layered * playered)
+inline ::universal_windows::interaction_impl * __uwp_user_interaction_impl(::layered * playered)
 {
 
-   return (::uwp::interaction_impl *)playered->layer(LAYERED_OS_USER_INTERACTION_IMPL);
+   return (::universal_windows::interaction_impl *)playered->layer(LAYERED_OS_USER_INTERACTION_IMPL);
 
 }
 

@@ -8,10 +8,10 @@ float g_DPIScaleY = 1.0f;
 void dpi_os_initialize()
 {
 
-   //::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([]()
+   //::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([]()
      // {
 
-         ::Windows::Graphics::Display::DisplayInformation^ displayinformation = ::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+         ::winrt::Windows::Graphics::Display::DisplayInformation^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
          g_DPIScaleX = displayinformation->LogicalDpi;
          g_DPIScaleY = displayinformation->LogicalDpi;

@@ -46,6 +46,11 @@ void CLASS_DECL_ACME __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS*
 bool CLASS_DECL_ACME __windows_init();
 
 
+using hfile = HANDLE;
+
+CLASS_DECL_ACME hfile hfile_create(const char * lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile);
+
+
 //CLASS_DECL_ACME int WINAPI GetSystemMetrics(int i);
 
 namespace user
@@ -72,9 +77,9 @@ namespace user
 
 
 
-//CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
-//CLASS_DECL_ACME::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
-//CLASS_DECL_ACME bool get_filetime(::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
+//CLASS_DECL_ACME ::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);
+//CLASS_DECL_ACME::winrt::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFileName, dword dwDesiredAcces, dword dwShareMode, LPSECURITY_ATTRIBUTES lpSA, dword dwCreationDisposition, dword dwFlagsAndAttributes, HANDLE hTemplateFile);
+//CLASS_DECL_ACME bool get_filetime(::winrt::Windows::Storage::StorageFile ^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime);
 
 
 

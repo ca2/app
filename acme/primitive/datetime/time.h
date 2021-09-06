@@ -8,6 +8,17 @@ struct tm;
 #endif
 
 
+
+enum _CTIMESPANFORMATSTEP
+{
+   _CTFS_NONE = 0,
+   _CTFS_FORMAT = 1,
+   _CTFS_NZ = 2
+};
+#define _CTIMESPANFORMATS 3
+
+
+
 namespace datetime
 {
 
@@ -102,10 +113,10 @@ namespace datetime
       i32 GetGmtSecond() const noexcept;
       i32 GetGmtDayOfWeek() const noexcept;
 
-      string Format(string & str, const ::string & strFormat) const;
-      string FormatGmt(string & str, const ::string & strFormat) const;
-      string Format(const ::string & strFormat);
-      string FormatGmt(const ::string & strFormat);
+      //string Format(string & str, const ::string & strFormat) const;
+      //string FormatGmt(string & str, const ::string & strFormat) const;
+      //string Format(const ::string & strFormat);
+      //string FormatGmt(const ::string & strFormat);
 
       time get_sunday() const;
 
@@ -125,17 +136,6 @@ namespace datetime
       time_span abs_diff(const ::datetime::time & time) const;
 
    };
-
-
-
-   enum _CTIMESPANFORMATSTEP
-   {
-      _CTFS_NONE   = 0,
-      _CTFS_FORMAT = 1,
-      _CTFS_NZ     = 2
-   };
-#define _CTIMESPANFORMATS 3
-
 
 
 

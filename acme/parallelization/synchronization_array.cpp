@@ -204,6 +204,8 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    u32 windowsWaitResult;
 
+#if !defined(_UWP)
+
    if (uWakeMask)
    {
 
@@ -213,6 +215,9 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    }
    else
+
+#endif
+
    {
 
       auto millis = duration.u32_millis();
@@ -274,6 +279,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
          auto osduration = __os(duration);
 
+#if !defined(_UWP)
          if (uWakeMask)
          {
 
@@ -281,6 +287,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
          }
          else
+#endif
          {
 
             result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
@@ -300,7 +307,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 }
 
 
-synchronization_result synchronization_array::contains( const synchronization_result& result ) const
+synchronization_result synchronization_array::contains(const synchronization_result & result) const
 {
 
    __throw(todo);
@@ -324,6 +331,9 @@ synchronization_result synchronization_array::contains( const synchronization_re
 
    //return synchronization_result( e_synchronization_result_error );
 
+   return e_synchronization_result_error;
+
 }
+
 
 

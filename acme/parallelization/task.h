@@ -50,6 +50,9 @@ public:
 
    ::e_status on_initialize_object() override;
 
+   
+   virtual ::e_status on_pre_run_task();
+
 
    string get_tag() const override;
    string task_get_name() const;
@@ -105,7 +108,7 @@ public:
 
 
    virtual ::e_status branch(
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -127,7 +130,7 @@ public:
 
 //   static ::task_pointer launch(
 //      ::matter* pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0);
 

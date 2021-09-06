@@ -105,7 +105,7 @@ namespace sockets
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      __pointer(socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
+      __pointer(::sockets::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
       //__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
@@ -296,7 +296,7 @@ namespace sockets
       virtual void OnConnect();
       /** Called when an incoming connection has been completed. */
       virtual void OnAccept();
-      //void OnAccept(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
+      //void OnAccept(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status);
       /** Called when a complete line has been read and the base_socket is in
       * line protocol mode. */
       virtual void OnLine(const string & );

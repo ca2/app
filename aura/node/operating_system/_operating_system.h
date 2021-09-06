@@ -30,9 +30,9 @@
 
 #elif defined(_UWP)
 
-#include "aura/os/ansios/_ansios.h"
-#include "aura/os/uwp/_uwp.h"
-#include "aura/os/windows_common/_windows_common.h"
+#include "aura/node/operating_system/ansi/_ansi.h"
+#include "aura/node/operating_system/windows_common/_windows_common.h"
+#include "aura/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

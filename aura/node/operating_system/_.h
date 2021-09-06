@@ -25,9 +25,9 @@
 
 #elif defined(_UWP)
 
-#include "aura/os/ansios/_.h"
-#include "aura/os/windows_common/_.h"
-#include "aura/os/uwp/_.h"
+#include "aura/node/operating_system/ansi/_.h"
+#include "aura/node/operating_system/windows_common/_.h"
+#include "aura/node/operating_system/universal_windows/_.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

@@ -38,7 +38,7 @@ namespace datetime
       bool operator<=(time_span span) const noexcept;
       bool operator>=(time_span span) const noexcept;
 
-      string Format(const char * pszFormat) const;
+      //string Format(const char * pszFormat) const;
       
       operator duration() const
       {

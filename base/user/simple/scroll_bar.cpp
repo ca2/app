@@ -1290,7 +1290,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    catch (...)
    {
 
-      __throw(::exception::exception("no more a window"));
+      throw ::exception::exception("no more a window");
 
    }
 

@@ -788,6 +788,8 @@ namespace graphics
 
       __throw(error_not_implemented);
 
+      return "";
+
    }
 
 

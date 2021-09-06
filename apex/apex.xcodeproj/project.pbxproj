@@ -611,7 +611,7 @@
 		9A68BE082511444F008DABD2 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7412511444B008DABD2 /* linux.h */; };
 		9A68BE092511444F008DABD2 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7422511444B008DABD2 /* macos.h */; };
 		9A68BE0A2511444F008DABD2 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7432511444B008DABD2 /* windows.h */; };
-		9A68BE0B2511444F008DABD2 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7442511444B008DABD2 /* uwp.h */; };
+		9A68BE0B2511444F008DABD2 /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7442511444B008DABD2 /* universal_windows.h */; };
 		9A68BE0C2511444F008DABD2 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7452511444B008DABD2 /* android.h */; };
 		9A68BE0E2511444F008DABD2 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7472511444B008DABD2 /* application_common.h */; };
 		9A68BE0F2511444F008DABD2 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7482511444B008DABD2 /* _app_impl1.h */; };
@@ -943,7 +943,7 @@
 		9AD6940A251A754800C0EBD7 /* _application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7352511444B008DABD2 /* _application.h */; };
 		9AD6940C251A754800C0EBD7 /* native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B71C2511444B008DABD2 /* native_fs.h */; };
 		9AD69410251A754800C0EBD7 /* client.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40F2511444A008DABD2 /* client.h */; };
-		9AD69414251A754800C0EBD7 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7442511444B008DABD2 /* uwp.h */; };
+		9AD69414251A754800C0EBD7 /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7442511444B008DABD2 /* universal_windows.h */; };
 		9AD69415251A754800C0EBD7 /* dir_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7022511444B008DABD2 /* dir_context.h */; };
 		9AD69418251A754800C0EBD7 /* display.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B6042511444B008DABD2 /* display.h */; };
 		9AD69419251A754800C0EBD7 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B76F2511444B008DABD2 /* version.h */; };
@@ -1880,7 +1880,7 @@
 		9A68B7412511444B008DABD2 /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9A68B7422511444B008DABD2 /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 		9A68B7432511444B008DABD2 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
-		9A68B7442511444B008DABD2 /* uwp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uwp.h; sourceTree = "<group>"; };
+		9A68B7442511444B008DABD2 /* universal_windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal_windows.h; sourceTree = "<group>"; };
 		9A68B7452511444B008DABD2 /* android.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = android.h; sourceTree = "<group>"; };
 		9A68B7462511444B008DABD2 /* aaa_want_to_remove_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_application.cpp; sourceTree = "<group>"; };
 		9A68B7472511444B008DABD2 /* application_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_common.h; sourceTree = "<group>"; };
@@ -2312,7 +2312,7 @@
 				9A239E9126CDFC3400F98012 /* macos */,
 				9A239E8626CDFC3400F98012 /* posix */,
 				9A239FFB26CDFC3500F98012 /* solaris */,
-				9A23A02626CDFC3500F98012 /* uwp */,
+				9A23A02626CDFC3500F98012 /* universal_windows */,
 				9A239FD626CDFC3500F98012 /* windows */,
 				9A239FCF26CDFC3500F98012 /* windows_common */,
 				9A239F1126CDFC3400F98012 /* _application.cpp */,
@@ -2474,7 +2474,7 @@
 			children = (
 				9A239EE026CDFC3400F98012 /* cross.h */,
 				9A239F0A26CDFC3400F98012 /* windows */,
-				9A239F0D26CDFC3400F98012 /* uwp */,
+				9A239F0D26CDFC3400F98012 /* universal_windows */,
 			);
 			path = cross;
 			sourceTree = "<group>";
@@ -2488,13 +2488,13 @@
 			path = windows;
 			sourceTree = "<group>";
 		};
-		9A239F0D26CDFC3400F98012 /* uwp */ = {
+		9A239F0D26CDFC3400F98012 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A239F0E26CDFC3400F98012 /* metrowin_user.cpp */,
 				9A239F0F26CDFC3400F98012 /* cross_metrowin_user.cpp */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A239F1426CDFC3400F98012 /* ios */ = {
@@ -2753,7 +2753,7 @@
 			path = solaris;
 			sourceTree = "<group>";
 		};
-		9A23A02626CDFC3500F98012 /* uwp */ = {
+		9A23A02626CDFC3500F98012 /* universal_windows */ = {
 			isa = PBXGroup;
 			children = (
 				9A23A02826CDFC3500F98012 /* apex.cpp */,
@@ -2785,7 +2785,7 @@
 				9A23A04B26CDFC3500F98012 /* simple_ui.h */,
 				9A23A04526CDFC3500F98012 /* sockets.h */,
 			);
-			path = uwp;
+			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A23A27A26CDFF1A00F98012 /* progress */ = {
@@ -3254,7 +3254,7 @@
 				9A68B7412511444B008DABD2 /* linux.h */,
 				9A68B7422511444B008DABD2 /* macos.h */,
 				9A68B7432511444B008DABD2 /* windows.h */,
-				9A68B7442511444B008DABD2 /* uwp.h */,
+				9A68B7442511444B008DABD2 /* universal_windows.h */,
 				9A68B7452511444B008DABD2 /* android.h */,
 			);
 			path = application;
@@ -3851,7 +3851,7 @@
 				9A23A19526CDFC3600F98012 /* aaa_want_to_remove_android_window_impl.h in Headers */,
 				9A68BDEA2511444F008DABD2 /* native_fs.h in Headers */,
 				9A68BB3E2511444D008DABD2 /* client.h in Headers */,
-				9A68BE0B2511444F008DABD2 /* uwp.h in Headers */,
+				9A68BE0B2511444F008DABD2 /* universal_windows.h in Headers */,
 				9A786344264B937F003DF8A0 /* aaa_handler.h in Headers */,
 				9A23A15026CDFC3600F98012 /* file.h in Headers */,
 				9A68BDD22511444F008DABD2 /* dir_context.h in Headers */,
@@ -4128,7 +4128,7 @@
 				9AD6940A251A754800C0EBD7 /* _application.h in Headers */,
 				9AD6940C251A754800C0EBD7 /* native_fs.h in Headers */,
 				9AD69410251A754800C0EBD7 /* client.h in Headers */,
-				9AD69414251A754800C0EBD7 /* uwp.h in Headers */,
+				9AD69414251A754800C0EBD7 /* universal_windows.h in Headers */,
 				9AD69415251A754800C0EBD7 /* dir_context.h in Headers */,
 				9AD69418251A754800C0EBD7 /* display.h in Headers */,
 				9AD69419251A754800C0EBD7 /* version.h in Headers */,

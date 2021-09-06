@@ -196,10 +196,10 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{062c77e9-de3c-472e-b0b3-04717fc151ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\uwp">
+    <Filter Include="Source Files\node\universal_windows">
       <UniqueIdentifier>{87d20dfb-f4da-4de9-870b-5dab08de1043}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\uwp">
+    <Filter Include="Header Files\node\universal_windows">
       <UniqueIdentifier>{d9e0eae9-a79f-43e4-a757-5ccc1de8e877}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html\element">
@@ -1011,7 +1011,7 @@
     <ClInclude Include="inline\application\macos.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
@@ -1302,14 +1302,14 @@
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\shell_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\shell_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\element.h">
       <Filter>Header Files\html\impl</Filter>
@@ -1978,8 +1978,8 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\shell_uwp.cpp">
-      <Filter>Source Files\node\uwp</Filter>
+    <ClCompile Include="node\universal_windows\shell_uwp.cpp">
+      <Filter>Source Files\node\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="html\impl\element.cpp">
       <Filter>Source Files\html\impl</Filter>

@@ -87,7 +87,7 @@ namespace user
    //   public:
    //
    //
-   //      Agile < Windows::UI::Core::CoreWindow >         m_window;
+   //      Agile < ::winrt::Windows::UI::Core::CoreWindow >         m_window;
    //      ::aura::system_window ^                         m_pwindow;
    //
    //

@@ -44,7 +44,7 @@ namespace openssl
       BN_hex2bn(&dmq1, strDmq1);
       BN_hex2bn(&iqmp, strIqmp);
 
-#if defined(_UWP) && (OPENSSL_API_COMPAT < 0x10100000L)
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
       m_prsa->n = n;
       m_prsa->e = e;
       m_prsa->d = d;
@@ -73,7 +73,7 @@ namespace openssl
       BN_hex2bn(&n, nParam);
       BN_hex2bn(&e, "10001");
 
-#if (defined(_UWP)) && (OPENSSL_API_COMPAT < 0x10100000L)
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
       m_prsa->n = n;
       m_prsa->e = e;
 #else
@@ -127,7 +127,7 @@ namespace openssl
 
 
 
-      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
 
 
@@ -247,7 +247,7 @@ namespace openssl
 
 
 
-      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
 
 
@@ -285,7 +285,7 @@ namespace openssl
 
 
 
-      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 
 
 

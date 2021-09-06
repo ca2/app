@@ -23,7 +23,7 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
-CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority);
+CLASS_DECL_APEX void main_branch(::matter* pobjectTask, enum_priority epriority);
 
 
 property_set& _thread_property_set();
@@ -160,7 +160,7 @@ namespace parallelization
 {
 
 
-   //CLASS_DECL_APEX bool set_priority(e_priority epriority);
+   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
 
    //CLASS_DECL_APEX i32 priority();
 
@@ -168,7 +168,7 @@ namespace parallelization
    //inline i32 get_priority_none()
    //{
 
-   //   return priority_none;
+   //   return e_priority_none;
 
    //}
 
@@ -176,7 +176,7 @@ namespace parallelization
    //inline i32 get_priority_normal()
    //{
 
-   //   return priority_normal;
+   //   return e_priority_normal;
 
    //}
 
@@ -298,7 +298,7 @@ public:
 
 //#ifdef _UWP
 //
-//#include "apex/os/uwp/multithreading_winrt.h"
+//#include "apex/os/universal_windows/multithreading_winrt.h"
 //
 //#endif
 
@@ -314,7 +314,7 @@ string get_task_name(htask_t htask);
 
 
 
-inline void main_async(const ::routine & routine, e_priority epriority = priority_normal)
+inline void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal)
 {
 
    main_branch(routine, epriority);

@@ -311,7 +311,7 @@ namespace experience
 
          auto psystem = m_psystem->m_pbasesystem;
 
-         __throw(exit_exception(psystem, "no experience_* plugin installed"));
+         throw exit_exception(psystem, "no experience_* plugin installed");
 
       }
 

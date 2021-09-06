@@ -203,7 +203,7 @@ namespace turboc
 
       m_iErrorAiFont = -1;
 
-      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::priority_normal,0,0,NULL);
+      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::e_priority_normal,0,0,NULL);
 
    }
 

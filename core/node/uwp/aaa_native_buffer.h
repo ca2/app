@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@ namespace uwp
       virtual ::file::path get_file_path() const override;
       virtual void set_file_path(const ::file::path & pathNewName) override;
 
-      virtual ::extended::status open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::file::e_open & eopen);
+      virtual ::extended::status open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::file::e_open & eopen);
       virtual ::extended::status open(const ::file::path & lpszfileName, const ::file::e_open & eopen) override;
 
       //virtual bool GetStatus(const ::file::path & lpszfileName,::file::file_status& rStatus);
@@ -82,7 +82,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

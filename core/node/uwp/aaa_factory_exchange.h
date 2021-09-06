@@ -1,7 +1,7 @@
 #pragma once
 
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //
@@ -25,7 +25,7 @@
 //   } // namespace aura
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //
 //
 

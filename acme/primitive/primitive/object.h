@@ -530,7 +530,7 @@ public:
 
    template < typename PREDICATE >
    inline __transport(task) fork(PREDICATE predicate,
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -551,7 +551,7 @@ public:
 
    template < typename TYPE >
    inline __transport(task) branch_task(void (TYPE::* pfnMemberProcedure)(),
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF)
    {
@@ -573,7 +573,7 @@ public:
 
 
    __transport(::task) branch_task(matter* pmatter,
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -584,7 +584,7 @@ public:
    //using property_object::branch;
 
    __transport(::task) branch(
-      ::e_priority epriority = ::priority_normal,
+      ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -634,7 +634,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -653,22 +653,22 @@ public:
    ::task_pointer branch_below_normal(void (TYPE::* pfn)())
    {
 
-      return branch(pfn, ::priority_below_normal);
+      return branch(pfn, ::e_priority_below_normal);
 
    }
 
 
    template < typename TYPE >
-   ::e_status __construct(::task_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
+   ::e_status __construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
    ::e_status __construct_below_normal(::task_pointer& p, void (TYPE::* pfn)());
 
 
    template < typename TYPE >
-   ::task_pointer defer_branch(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   ::task_pointer defer_branch(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
-   ::task_pointer defer_branch(const ::id& id, const ::routine & routine, e_priority epriority = priority_normal);
+   ::task_pointer defer_branch(const ::id& id, const ::routine & routine, enum_priority epriority = e_priority_normal);
 
    virtual matter* get_taskpool_container() override;
 
@@ -1155,7 +1155,7 @@ public:
    //inline ::task_pointer predicate_run(bool bSync, PRED pred);
 
    //::task_pointer begin(
-   //   ::e_priority epriority = ::priority_normal,
+   //   ::enum_priority epriority = ::e_priority_normal,
    //   ::u32 nStackSize = 0,
    //   u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -1205,7 +1205,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -1224,20 +1224,20 @@ public:
    //::task_pointer start_below_normal(void (TYPE::* pfn)())
    //{
 
-   //   return fork(pfn, ::priority_below_normal);
+   //   return fork(pfn, ::e_priority_below_normal);
 
    //}
 
 
    //template < typename TYPE >
-   //::e_status __construct(::task_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
+   //::e_status __construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
    //::e_status __construct_below_normal(::task_pointer& p, void (TYPE::* pfn)());
 
 
    //template < typename TYPE >
-   //::task_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   //::task_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
    //virtual matter* get_taskpool_container() override;

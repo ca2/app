@@ -28,7 +28,7 @@ namespace windowing
    public:
 
 
-      __pointer(window)                         m_pwindowSoul;
+      __pointer(window)                         m_pwindowMain;
 
 
       void *                                    m_pWindowing;

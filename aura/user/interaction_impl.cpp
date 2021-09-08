@@ -539,12 +539,12 @@ namespace user
    ::e_status interaction_impl::native_create_host()
    {
 
-      auto pwindowSoul = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul;
+      auto pwindowMain = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain;
 
-      if (pwindowSoul && !pwindowSoul->m_pimpl)
+      if (pwindowMain && !pwindowMain->m_pimpl)
       {
 
-         m_pwindow = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul;
+         m_pwindow = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain;
 
          m_pwindow->m_pimpl = this;
 
@@ -563,7 +563,12 @@ namespace user
 
          }
 
-         m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowSoul = m_pwindow;
+         if (!m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain)
+         {
+
+            m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain = m_pwindow;
+
+         }
 
       }
 

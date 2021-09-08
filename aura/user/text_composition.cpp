@@ -148,6 +148,13 @@ namespace user
 	bool text_composition_composite::is_text_composition_active() const
 	{
 
+		if (!m_ptextcompositionclient)
+		{
+
+			return false;
+
+		}
+
 		bool bTextCompositionActive = m_ptextcompositionclient->is_text_composition_active();
 
 		return bTextCompositionActive;

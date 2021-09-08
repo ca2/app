@@ -20,7 +20,12 @@ namespace user
    void text::_001GetText(string & str) const
    {
 
-      str = strtext();
+      if (m_propertyText)
+      {
+
+         str = strtext();
+
+      }
 
    }
 

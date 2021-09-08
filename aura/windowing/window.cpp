@@ -9,6 +9,8 @@ namespace windowing
 {
 
 
+
+
    window::window()
    {
 
@@ -1106,20 +1108,56 @@ namespace windowing
       
    }
 
- ::e_status window::frame_toggle_restore()
-{
+   ::e_status window::frame_toggle_restore()
+   {
     
-    auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
+      auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
     
-    if(!estatus)
-    {
+      if(!estatus)
+      {
        
-       return estatus;
+         return estatus;
     
-    }
-    return estatus;
+      }
+
+      return estatus;
     
- }
+   }
+
+
+   ::e_status window::window_sync(const ::duration & duration, const ::routine & routine)
+   {
+
+      auto estatus = __sync_routine(duration, this, &window::window_branch, routine);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::window_branch(const ::routine & routine)
+   {
+
+      __throw(error_interface_only);
+
+      return error_interface_only;
+
+   }
+   
+   
+   bool window::is_branch_current() const
+   {
+
+      return false;
+
+   }
 
 
 } // namespace windowing

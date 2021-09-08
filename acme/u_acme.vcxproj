@@ -639,6 +639,11 @@
     <ClInclude Include="exception\_dump_context.h" />
     <ClInclude Include="exception\_impl.h" />
     <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\filesystem\aaaa_.h" />
+    <ClInclude Include="filesystem\filesystem\acme_dir.h" />
+    <ClInclude Include="filesystem\filesystem\acme_file.h" />
+    <ClInclude Include="filesystem\filesystem\acme_path.h" />
+    <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="include\_forward_declaration.h" />

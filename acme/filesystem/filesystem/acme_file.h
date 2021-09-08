@@ -23,7 +23,7 @@ public:
 
 
    virtual file_transport open(const ::file::path & path, const ::file::e_open & eopen);
-
+   virtual file_transport stdio_open(const char * path, const char * attrs, int iShare);
 
    virtual memory as_memory(const char * path, strsize iReadAtMostByteCount = -1);
    virtual memsize as_memory(const char * path, void * p, memsize s);

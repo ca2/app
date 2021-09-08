@@ -646,7 +646,7 @@ namespace apex
 
          ::str::begins_eat_ci(path, "appmatter://");
 
-         path = string(get_server_ca2_cc()) + "matter" / path;
+         path = "https://ca2.software/matter" / path;
 
          //if (file().exists(path, this))
          {

@@ -107,10 +107,25 @@ namespace file
    ::extended::status file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      UNREFERENCED_PARAMETER(path);
-      UNREFERENCED_PARAMETER(eopen);
+      auto pfile = __create <::file::file>();
 
-      return ::error_failed;
+      if (!pfile)
+      {
+
+         return pfile;
+
+      }
+
+      auto estatus = pfile->open(path, eopen);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return pfile;
 
    }
 
@@ -130,9 +145,18 @@ namespace file
    int file::getc()
    {
 
-      __throw(error_interface_only);
+      byte byte = 0;
 
-      return -1;
+      auto iRead = read(&byte, 1);
+
+      if (iRead <= 0)
+      {
+
+         return -1;
+
+      }
+
+      return byte;
 
    }
 

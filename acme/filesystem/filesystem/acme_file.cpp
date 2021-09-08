@@ -856,9 +856,16 @@ string_array acme_file::lines(const char * path)
 
    ::file::path path(pszPath);
 
-   m_pacmedir->create(path.folder());
+   auto estatus = m_pacmedir->create(path.folder());
 
-   auto pfile = open(path, ::file::e_open_read_write);
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   auto pfile = open(path, ::file::e_open_read_write | ::file::e_open_create | ::file::e_open_no_truncate);
 
    if (!pfile)
    {

@@ -9582,7 +9582,7 @@ http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 bool image::map(bool bApplyAlphaTransform)
 {
 
-   pixmap::map(bApplyAlphaTransform);
+   pixmap::map(this->rectangle());
 
    return true;
 

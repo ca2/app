@@ -1895,10 +1895,16 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       strMatter.trim();
 
-      if (strMatter.has_char())
+      string strToken = "/matter/";
+
+      auto iFind = strMatter.find_ci(strToken);
+
+      if (strMatter.has_char() && iFind >= 0)
       {
 
-         path = "appmatter://" + strMatter;
+         iFind += strToken.get_length();
+
+         path = "appmatter://" + strMatter.Mid(iFind);
 
          if (bDir)
          {

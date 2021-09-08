@@ -463,29 +463,26 @@ void copy_colorref(::color32_t * pcolorrefDst, int cxParam, int cyParam, int iSt
       else
       {
 
-         int wsrc = iStrideSrc / sizeof(::color32_t);
-         int wdst = iStrideDst / sizeof(::color32_t);
          int cw = cxParam * sizeof(::color32_t);
 
+         auto psrc = (byte *) pcolorrefSrc;
 
-         auto psrc = pcolorrefSrc;
-         auto pdst = pcolorrefDst;
+         auto pdst = (byte *) pcolorrefDst;
 
          for (int i = 0; i < cyParam; i++)
          {
 
             ::memcpy_dup(pdst, psrc, cw);
 
-            pdst += wdst;
+            pdst += iStrideDst;
 
-            psrc += wsrc;
+            psrc += iStrideSrc;
 
          }
 
       }
 
    }
-
    catch (...)
    {
 

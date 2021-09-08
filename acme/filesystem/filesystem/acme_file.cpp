@@ -185,8 +185,7 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
 }
 
 
-
-bool acme_file::as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount)
+::e_status acme_file::as_memory(memory_base & memory, const char * path, memsize iReadAtMostByteCount)
 {
 
    memory.set_size(0);
@@ -195,10 +194,10 @@ bool acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
 
    auto estatus = file.open(path, "r", _SH_DENYNO);
 
-   if (file == nullptr)
+   if (!estatus)
    {
 
-      return false;
+      return estatus;
 
    }
 
@@ -207,7 +206,9 @@ bool acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
    if (iSize < 0)
    {
 
-      return false;
+      memory.set_size(0);
+
+      return success;
 
    }
 
@@ -235,7 +236,7 @@ bool acme_file::as_memory(memory_base & memory, const char * path, memsize iRead
 
    memory.set_size(dwReadTotal);
 
-   return true;
+   return ::success;
 
 }
 
@@ -306,8 +307,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 }
 
 
-bool acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten)
-
+::e_status acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten)
 {
 
 #if OSBIT > 32
@@ -347,7 +347,11 @@ bool acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
       uiWrittenTotal += dw;
 
       if (dw != dwWrite)
+      {
+
          break;
+
+      }
 
       pos += dw;
 
@@ -360,14 +364,20 @@ bool acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 
    }
 
-   return uiWrittenTotal == nCount;
+   if (uiWrittenTotal != nCount)
+   {
+
+      return error_failed;
+
+   }
+
+   return ::success;
 
 #else
 
    ::u32 dw = 0;
 
    dw = ::fwrite(pdata, 1, (size_t)nCount, file);
-
 
    int_bool bOk = dw == nCount;
 
@@ -378,26 +388,38 @@ bool acme_file::write_memory_to_file(FILE * file, const void * pdata, memsize nC
 
    }
 
-   return bOk;
+   if (!bOk)
+   {
+
+      return error_failed;
+
+   }
+
+   return success;
 
 #endif
 
 }
 
 
-bool acme_file::append_wait(const char * strFile, const block & block, const ::duration & duration)
+::e_status acme_file::append_wait(const char * strFile, const block & block, const ::duration & duration)
 {
 
    auto pacmedir = m_pacmedir;
 
-pacmedir->create(::file_path_folder(strFile));
+   auto estatus = pacmedir->create(::file_path_folder(strFile));
 
-   if (!  
-
-pacmedir->is(::file_path_folder(strFile)))
+   if (!estatus)
    {
 
-      return false;
+      return estatus;
+
+   }
+
+   if (!pacmedir->is(::file_path_folder(strFile)))
+   {
+
+      return error_path_not_found;
 
    }
 
@@ -411,9 +433,13 @@ pacmedir->is(::file_path_folder(strFile)))
    {
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+      
       pfile = fopen(strFile, "ab");
+
 #else
+
       pfile = _wfopen(wstr, L"ab");
+
 #endif
 
       if (pfile != nullptr)
@@ -438,20 +464,12 @@ pacmedir->is(::file_path_folder(strFile)))
 
    fclose(pfile);
 
-   return true;
+   return success;
 
 }
 
 
-//bool acme_file::append_wait(const ::string & strFile, const ::string & str, ::u32 tickTimeout)
-//{
-//
-//   return acme_file::append_wait(strFile, str, str.get_length(), tickTimeout);
-//
-//}
-
-
-bool acme_file::append(const char * strFile, const block & block)
+::e_status acme_file::append(const char * strFile, const block & block)
 {
 
    return acme_file::append_wait(strFile, block, 0);
@@ -469,22 +487,22 @@ bool acme_file::exists(const char * path)
 }
 
 
-bool acme_file::put_contents(const char * path, const char * contents, strsize len)
+::e_status acme_file::put_contents(const char * path, const char * contents, strsize len)
 {
 
    __throw(error_interface_only);
 
-   return false;
+   return error_interface_only;
 
 }
 
 
-bool acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+::e_status acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate)
 {
 
    __throw(error_interface_only);
 
-   return false;
+   return error_interface_only;
 
 }
 
@@ -507,7 +525,6 @@ filesize acme_file::get_size(FILE * pfile)
 }
 
 
-
 filesize acme_file::get_size_fd(int iFile)
 {
 
@@ -516,173 +533,6 @@ filesize acme_file::get_size_fd(int iFile)
    return -1;
 
 }
-
-
-//FILE * acme_file::FILE_open(const char * path, const char * attrs, int iShare)
-//{
-//
-//#ifdef WINDOWS
-//
-//   wstring wstrPath(path);
-//
-//   wstring wstrAttrs(attrs);
-//
-//   auto pfile = _wfsopen(wstrPath, wstrAttrs, iShare);
-//
-//#else
-//
-//   auto pfile = fopen(path, attrs);
-//
-//#endif
-//
-//   if (!pfile)
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//   return pfile;
-//
-//}
-//
-//
-//i32 acme_file::FILE_printf(FILE * pfile, const char * pformat, ...)
-//{
-//
-//   va_list valist;
-//
-//   va_start(valist, pformat);
-//
-//   vfprintf(pfile, pformat, valist);
-//
-//   va_end(valist);
-//
-//   return -1;
-//
-//}
-//
-//
-//i32 acme_file::FILE_close(FILE * pfile)
-//{
-//
-//   return fclose(pfile);
-//
-//}
-//
-//
-//i32 acme_file::FILE_eof(FILE * pfile)
-//{
-//
-//   return feof(pfile);
-//
-//}
-//
-//
-//filesize acme_file::FILE_seek(FILE * pfile, filesize offset, i32 origin)
-//{
-//
-//   return fseek(pfile, (long)(offset), origin);
-//
-//}
-//
-//
-//filesize acme_file::FILE_tell(FILE * pfile)
-//{
-//
-//   return ftell(pfile);
-//
-//}
-//
-//
-//filesize acme_file::FILE_read(void * buffer, memsize size, memsize count, FILE * pfile)
-//{
-//
-//   return fread(buffer, (size_t)size, (size_t)count, pfile);
-//
-//}
-//
-//
-//filesize acme_file::FILE_write(const void * buffer, memsize size, memsize count, FILE * pfile)
-//{
-//
-//   return fwrite(buffer, (size_t)size, (size_t)count, pfile);
-//
-//}
-//
-//
-//char * acme_file::FILE_gets(char * str, strsize n, FILE * pfile)
-//{
-//
-//   return fgets(str, (int)n, pfile);
-//
-//}
-//
-//
-//i32 acme_file::FILE_getc(FILE * pfile)
-//{
-//
-//   return ::getc(pfile);
-//
-//}
-//
-//
-//i32 acme_file::FILE_ungetc(i32 c, FILE * pfile)
-//{
-//
-//   return ::ungetc(c, pfile);
-//
-//}
-//
-//
-//i32 acme_file::FILE_error(FILE * pfile)
-//{
-//
-//   return ferror(pfile);
-//
-//}
-//
-//
-//i32 acme_file::FILE_flush(FILE * pfile)
-//{
-//
-//   return fflush(pfile);
-//
-//}
-//
-//
-//filesize acme_file::FILE_get_size(FILE * pfile)
-//{
-//
-//#ifdef WINDOWS
-//   auto pos = _ftelli64(pfile);
-//#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(MACOS)
-//   auto pos = ftello(pfile);
-//#else
-//   auto pos = ftello64(pfile);
-//#endif
-//
-//   fseek(pfile, 0, SEEK_END);
-//
-//#ifdef WINDOWS
-//   auto len = _ftelli64(pfile);
-//#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(MACOS)
-//   auto len = ftello(pfile);
-//#else
-//   auto len = ftello64(pfile);
-//#endif
-//
-//#ifdef WINDOWS
-//   _fseeki64(pfile, (long)(pos), SEEK_SET);
-//#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(MACOS)
-//   fseeko(pfile, (long)(pos), SEEK_SET);
-//#else
-//   fseeko64(pfile, (long)(pos), SEEK_SET);
-//#endif
-//
-//   return len;
-//
-//}
 
 
 bool acme_file::is_true(const char * path)
@@ -695,7 +545,17 @@ bool acme_file::is_true(const char * path)
 }
 
 
-bool acme_file::set_size(const char * lpszName, filesize size)
+::e_status acme_file::set_size(const char * lpszName, filesize size)
+{
+
+   __throw(error_interface_only);
+
+   return success;
+
+}
+
+
+::e_status acme_file::set_size(int iFileDescriptor, filesize size)
 {
 
    __throw(error_interface_only);
@@ -705,7 +565,7 @@ bool acme_file::set_size(const char * lpszName, filesize size)
 }
 
 
-bool acme_file::set_size(int iFileDescriptor, filesize size)
+::e_status acme_file::set_size(FILE * pfile, filesize size)
 {
 
    __throw(error_interface_only);
@@ -715,17 +575,7 @@ bool acme_file::set_size(int iFileDescriptor, filesize size)
 }
 
 
-bool acme_file::set_size(FILE * pfile, filesize size)
-{
-
-   __throw(error_interface_only);
-
-   return false;
-
-}
-
-
-bool acme_file::move(const char * pszNewName, const char * pszOldName)
+::e_status acme_file::move(const char * pszNewName, const char * pszOldName)
 {
 
    auto bOk = copy(pszNewName, pszOldName, true);
@@ -751,7 +601,7 @@ bool acme_file::move(const char * pszNewName, const char * pszOldName)
 }
 
 
-bool acme_file::delete_file(const char * pszFileName)
+::e_status acme_file::delete_file(const char * pszFileName)
 {
 
    __throw(error_interface_only);
@@ -759,182 +609,6 @@ bool acme_file::delete_file(const char * pszFileName)
    return false;
 
 }
-
-
-//bool acme_file::set_line(const char * pszPath, index iLine, const char * pszLine)
-//{
-//
-//   if (iLine < 0)
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   string str;
-//
-//   ::file::path path(pszPath);
-//
-//   auto pacmedir = m_pacmedir;
-//
-//            auto psystem = m_psystem;
-
-//         auto pacmedir = psystem->m_pacmedir;
-//
-//pacmedir->create(path.folder());
-//
-//   FILE * file = FILE_open(path, "a+", _SH_DENYWR);
-//
-//   if (file == nullptr)
-//   {
-//
-//      ::e_status estatus = ::get_last_status();
-//
-//      return false;
-//
-//   }
-//
-//   int iChar;
-//
-//   string strLine;
-//
-//   int iLastChar = -1;
-//
-//   index iPosStart = -1;
-//
-//   index iPosEnd = -1;
-//
-//   while (iLine >= 0)
-//   {
-//
-//      iChar = fgetc(file);
-//
-//      if (iChar == EOF)
-//      {
-//
-//         break;
-//
-//      }
-//
-//      if (iChar == '\r')
-//      {
-//
-//         iLine--;
-//
-//      }
-//      else if (iChar == '\n')
-//      {
-//
-//         if (iLastChar != '\r')
-//         {
-//
-//            iLine--;
-//
-//         }
-//
-//      }
-//      else if (iLine == 0)
-//      {
-//
-//         if (iPosStart <= 0)
-//         {
-//
-//            iPosStart = ftell(file);
-//
-//         }
-//
-//      }
-//
-//      iLastChar = iChar;
-//
-//   }
-//
-//   if (iLine > 0)
-//   {
-//
-//      fwrite("\n", 1, (size_t)iLine, file);
-//
-//      fwrite(pszLine, 1, strlen(pszLine), file);
-//
-//      fclose(file);
-//
-//   }
-//   else
-//   {
-//
-//      iPosEnd = ftell(file);
-//
-//      ::file::path pathTime = path;
-//
-//      pathTime += ".time";
-//
-//      FILE * file2 = FILE_open(pathTime, "w", _SH_DENYWR);
-//
-//      if (iPosStart > 0)
-//      {
-//
-//         memory m;
-//
-//         fseek(file, 0, SEEK_SET);
-//
-//         m.set_size(iPosStart);
-//
-//         fread(m.get_data(), 1, (size_t)iPosStart, file);
-//
-//         fwrite(m.get_data(), 1, (size_t)iPosStart, file2);
-//
-//      }
-//
-//      fwrite(pszLine, 1, strlen(pszLine), file2);
-//
-//      index iEnd = fseek(file, 0, SEEK_END);
-//
-//      if (iEnd - iPosEnd > 0)
-//      {
-//
-//         memory m;
-//
-//         fseek(file, (long)iPosEnd, SEEK_SET);
-//
-//         m.set_size(iEnd - iPosEnd);
-//
-//         fread(m.get_data(), 1, (size_t)m.get_size(), file);
-//
-//         fwrite(m.get_data(), 1, (size_t)m.get_size(), file2);
-//
-//      }
-//
-//      fclose(file2);
-//
-//      fclose(file);
-//
-//#if defined(WINDOWS) || defined(APPLE_IOS)
-//
-//      if (!copy(path, pathTime.c_str(), true))
-//      {
-//
-//         return false;
-//
-//      }
-//
-//      delete_file(pathTime);
-//
-//#else
-//
-//      ::system("mv -f \"" + string(pathTime) + "\" \"" + string(path) + "\"");
-//
-//#endif
-//
-//   }
-//
-//   return true;
-//
-//}
-
-
-
-
-
 
 
 void replace_char(char * sz, char ch1, char ch2)
@@ -957,7 +631,37 @@ void replace_char(char * sz, char ch1, char ch2)
 }
 
 
-bool acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
+::e_status acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
+{
+
+   __throw(error_interface_only);
+
+   return error_interface_only;
+
+}
+
+
+::e_status acme_file::save_stra(const char * lpszName, const string_array & stra)
+{
+
+   __throw(error_interface_only);
+
+   return ::success;
+
+}
+
+
+::e_status acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
+{
+
+   __throw(error_interface_only);
+
+   return ::success;
+
+}
+
+
+::e_status acme_file::put_contents(const char * path, const memory_base & memory)
 {
 
    __throw(error_interface_only);
@@ -967,54 +671,24 @@ bool acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 }
 
 
-bool acme_file::save_stra(const char * lpszName, const string_array & stra)
+::e_status acme_file::put_contents(const char * path, const char * contents)
 {
 
-   __throw(error_interface_only);
+   auto estatus = put_contents(path, contents, ::str::string_safe_length(contents));
 
-   return false;
-
-}
-
-
-bool acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
-{
-
-   __throw(error_interface_only);
-
-   return false;
-
-}
-
-
-bool acme_file::put_contents(const char * path, const memory_base & memory)
-{
-
-   __throw(error_interface_only);
-
-   return false;
-
-}
-
-
-bool acme_file::put_contents(const char * path, const char * contents)
-{
-
-   auto bOk = put_contents(path, contents, ::str::string_safe_length(contents));
-
-   if (!bOk)
+   if (!estatus)
    {
 
-      return false;
+      return estatus;
 
    }
 
-   return true;
+   return estatus;
 
 }
 
 
-bool acme_file::put_block(const char * path, const block & block)
+::e_status acme_file::put_block(const char * path, const block & block)
 {
 
    return put_contents(path, (const char *) block.get_data(), block.get_size());
@@ -1023,7 +697,7 @@ bool acme_file::put_block(const char * path, const block & block)
 
 
 
-bool acme_file::as_block(block & block, const char * path)
+::e_status acme_file::as_block(block & block, const char * path)
 {
 
    return as_memory(path, block.get_data(), block.get_size()) == block.get_size();
@@ -1373,9 +1047,7 @@ string_array acme_file::lines(const char * path)
 //}
 
 
-
-
-bool acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten)
+::e_status acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten)
 {
 
 #if OSBIT > 32
@@ -1394,7 +1066,6 @@ bool acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
       dwWrite = (::u32)minimum(nCount - uiWrittenTotal, 0xffffffffu);
 
       dw = (::u32)(fwrite(&((u8 *)pdata)[pos], 1, dwWrite, file));
-
 
       if (dw != dwWrite)
       {
@@ -1415,7 +1086,11 @@ bool acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
       uiWrittenTotal += dw;
 
       if (dw != dwWrite)
+      {
+
          break;
+
+      }
 
       pos += dw;
 
@@ -1436,7 +1111,6 @@ bool acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
 
    dw = ::fwrite(pdata, 1, (size_t)nCount, file);
 
-
    int_bool bOk = dw == nCount;
 
    if (puiWritten != nullptr)
@@ -1453,8 +1127,7 @@ bool acme_file::write(FILE * file, const void * pdata, memsize nCount, memsize *
 }
 
 
-
-bool acme_file::append(const ::string & strFile, const block & block)
+::e_status acme_file::append(const ::string & strFile, const block & block)
 {
 
    return append_wait(strFile, block, 0);
@@ -1462,8 +1135,7 @@ bool acme_file::append(const ::string & strFile, const block & block)
 }
 
 
-
-bool acme_file::append_wait(const ::string & strFile, const block & block, const ::duration & duration)
+::e_status acme_file::append_wait(const ::string & strFile, const block & block, const ::duration & duration)
 {
 
    m_pacmedir->create(::file_path_folder(strFile));
@@ -1485,9 +1157,13 @@ bool acme_file::append_wait(const ::string & strFile, const block & block, const
    {
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+      
       pfile = fopen(strFile, "ab");
+
 #else
+      
       pfile = _wfopen(wstr, L"ab");
+
 #endif
 
       if (pfile != nullptr)
@@ -1512,15 +1188,9 @@ bool acme_file::append_wait(const ::string & strFile, const block & block, const
 
    fclose(pfile);
 
-   return true;
+   return ::success;
 
 }
 
 
-//bool file_append_wait(const ::string & strFile, const ::string & str, ::u32 tickTimeout)
-//{
-//
-//   return file_append_wait(strFile, str, str.get_length(), tickTimeout);
-//
-//}
 

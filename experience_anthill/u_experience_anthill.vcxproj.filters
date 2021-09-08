@@ -57,6 +57,9 @@
     <ClInclude Include="style.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="factory_exchange.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -98,11 +101,16 @@
     <ClCompile Include="frame_Minimal001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="library.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="style.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="factory_exchange.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="u_experience_anthill.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

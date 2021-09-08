@@ -1,2 +1,4 @@
 LIBRARY      "experience_tranquillum"
 
+EXPORTS
+experience_tranquillum_factory_exchange

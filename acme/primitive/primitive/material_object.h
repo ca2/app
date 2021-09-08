@@ -30,7 +30,7 @@ public:
    inline __pointer(TYPE) cast() const { return (::property_object*)this; }
 
    template < typename TYPE >
-   inline bool is() const { return cast < TYPE >(); }
+   inline bool is_a() const { return cast < TYPE >(); }
 
    
    

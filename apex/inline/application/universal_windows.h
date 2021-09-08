@@ -78,6 +78,8 @@ CLASS_DECL_EXPORT int unicode_main(int argc, wchar_t ** argv, const char * pszAp
 
    psystem->m_bConsole = false;
 
+   psystem->m_bPreferNoFrameWindow = true;
+
    application_common(psystem);
 
    psystem->system_construct(argc, argv, nullptr);

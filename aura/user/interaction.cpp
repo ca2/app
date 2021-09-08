@@ -1771,7 +1771,7 @@ namespace user
          if (m_pimpl)
          {
 
-            m_pimpl->m_bDestroying = true;
+            m_pimpl->set_destroying();
 
          }
 
@@ -1874,7 +1874,7 @@ namespace user
       try
       {
 
-         if (!m_pimpl->m_bDestroying)
+         if (!m_pimpl->is_destroying())
          {
 
             //synchronous_lock slChildren(::user::mutex_children());
@@ -1997,7 +1997,7 @@ namespace user
 
          auto pinteraction = get_wnd();
 
-         if (::is_null(pinteraction) || get_wnd()->m_pimpl->m_bDestroying)
+         if (::is_null(pinteraction) || get_wnd()->m_pimpl->is_destroying())
          {
 
             output_debug_string("destroying os window");
@@ -7217,9 +7217,9 @@ void interaction::post_non_client_destroy()
 
    }
 
-   m_bTaskReady = true;
+   set(e_matter_task_ready);
 
-   m_bTaskTerminated = true;
+   set(e_matter_task_terminated);
 
    if (::is_set(m_pobjectParentTask))
    {
@@ -8063,6 +8063,8 @@ bool interaction::design_layout(::draw2d::graphics_pointer & pgraphics)
 
       pgraphics = pdraw2d->create_memory_graphics();
 
+      pgraphics->m_puserinteraction = this;
+
    }
 
    m_pimpl->on_layout(pgraphics);
@@ -8270,7 +8272,7 @@ void interaction::message_handler(::message::message * pmessage)
 
    primitive_impl * pimpl = m_pimpl;
 
-   bool bDestroying = pimpl->m_bDestroying;
+   bool bDestroying = pimpl->is_destroying();
 
    pimpl->message_handler(pmessage);
 
@@ -9464,7 +9466,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
 {
 
-   if (m_bDestroying)
+   if (is(e_matter_destroying))
    {
 
       return false;
@@ -9483,7 +9485,7 @@ bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIM
 bool interaction::set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
 {
 
-   if (m_bDestroying)
+   if (is_destroying())
    {
 
       return false;
@@ -9505,7 +9507,7 @@ bool interaction::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTime
 
    }
 
-   if (m_bDestroying)
+   if (is_destroying())
    {
 
       return false;

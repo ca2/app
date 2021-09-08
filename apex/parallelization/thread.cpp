@@ -118,7 +118,7 @@ thread::thread()
 
 #ifdef APEX_MESSAGE_QUEUE
 
-   m_bClosedMq = false;
+   m_bClosedMessageQueue = false;
 
 #endif
 
@@ -396,7 +396,7 @@ void thread::term_thread()
 
 #ifndef WINDOWS_DESKTOP
 
-   __release(m_pmq);
+   __release(m_pmessagequeue);
 
 #endif
 
@@ -1304,32 +1304,30 @@ void thread::kick_idle()
 
    }
 
+   if (!task_active())
+   {
+
+      return;
+
+   }
+
    try
    {
 
-      if (task_active())
+      if (m_pmessagequeue && !m_bClosedMessageQueue)
       {
 
-         if (m_pmq && !m_bClosedMq)
-         {
-
-            synchronous_lock synchronouslock(m_pmq->mutex());
-
-            m_pmq->m_bKickIdle = true;
-
-            m_pmq->m_eventNewMessage.SetEvent();
-
-         }
-#ifdef WINDOWS_DESKTOP
-         else
-         {
-
-            ::PostThreadMessage((DWORD) m_itask, WM_KICKIDLE, 0, 0);
-
-         }
-#endif
+         m_pmessagequeue->kick_idle();
 
       }
+#ifdef WINDOWS_DESKTOP
+      else
+      {
+
+         ::PostThreadMessage((DWORD) m_itask, WM_KICKIDLE, 0, 0);
+
+      }
+#endif
 
    }
    catch (...)
@@ -1369,10 +1367,10 @@ void thread::post_quit()
 
    }
 
-   if (m_pmq)
+   if (m_pmessagequeue)
    {
 
-      m_pmq->post_message(nullptr, e_message_quit, 0, 0);
+      m_pmessagequeue->post_message(nullptr, e_message_quit, 0, 0);
 
    }
 
@@ -1579,7 +1577,7 @@ void thread::task_erase(::task * ptask)
 
       //m_pcompositea->erase(ptask);
 
-      if (finish_bit())
+      if (is_finishing())
       {
 
          if (strThreadThis == "veriwell_keyboard::application")
@@ -1724,10 +1722,10 @@ bool thread::task_get_run() const
    if (m_bMessageThread)
    {
 
-      if (m_pmq)
+      if (m_pmessagequeue)
       {
 
-         if (m_pmq->m_messagea.has_element())
+         if (m_pmessagequeue->m_messagea.has_element())
          {
 
             return true;
@@ -1736,17 +1734,17 @@ bool thread::task_get_run() const
 
       }
 
-      return !m_bSetFinish;
+      return !is_finishing();
 
    }
    else
    {
 
-      auto bSetFinish = m_bSetFinish;
+      auto bFinishing = is_finishing();
 
-      auto bDestroying = m_bDestroying;
+      auto bDestroying = is(e_matter_destroying);
 
-      return !bSetFinish;
+      return !bFinishing;
 
    }
 
@@ -2321,7 +2319,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   clear_finish_bit();
+   unset_finishing();
 
    ENSURE(m_htask == (htask_t) nullptr);
 
@@ -2686,10 +2684,10 @@ void thread::__os_finalize()
 
    m_bDedicated = true;
 
-   if (finish_bit())
+   if (is_finishing())
    {
 
-      clear_finish_bit();
+      unset_finishing();
 
    }
 
@@ -3410,18 +3408,18 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 //}
 
 
-message_queue* thread::_get_mq()
+message_queue* thread::_get_message_queue()
 {
 
    synchronous_lock synchronouslock(mutex());
 
-   if(m_bSetFinish || m_bThreadClosed)
+   if(is_finishing() || m_bThreadClosed)
    {
 
-      if (m_pmq)
+      if (m_pmessagequeue)
       {
 
-         __release(m_pmq);
+         __release(m_pmessagequeue);
 
       }
 
@@ -3429,10 +3427,10 @@ message_queue* thread::_get_mq()
 
    }
 
-   if (m_pmq)
+   if (m_pmessagequeue)
    {
 
-      return m_pmq;
+      return m_pmessagequeue;
 
    }
    
@@ -3452,7 +3450,7 @@ message_queue* thread::_get_mq()
 
    }
 
-   auto estatus = __compose(m_pmq, pmq);
+   auto estatus = __compose(m_pmessagequeue, pmq);
 
    if (!estatus)
    {
@@ -3461,7 +3459,7 @@ message_queue* thread::_get_mq()
 
    }
 
-   return m_pmq;
+   return m_pmessagequeue;
 
 }
 
@@ -3469,10 +3467,10 @@ message_queue* thread::_get_mq()
 int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
-   if (m_pmq)
+   if (m_pmessagequeue)
    {
 
-      if (m_pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
       {
 
          return true;
@@ -3800,9 +3798,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 
 
 
-
-
-int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+::e_status thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    bool bQuit = false;
@@ -3815,7 +3811,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
       if (!get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
       {
 
-         if (!finish_bit())
+         if (!is_finishing())
          {
 
             destroy();
@@ -3830,13 +3826,13 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
    }
 
-   if (m_pmq)
+   if (m_pmessagequeue)
    {
 
-      if (m_pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
+      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
-         set_finish_bit();
+         set_finishing();
 
          bQuit = pMsg->m_id == e_message_quit;
 
@@ -3847,7 +3843,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
          }
 
-         __release(m_pmq);
+         __release(m_pmessagequeue);
 
       }
 
@@ -3888,7 +3884,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
       //else
       //{
 
-      if (m_bSetFinish)
+      if (is_finishing())
       {
 
          DWORD timeout = 100; // 100 milliseconds;
@@ -3965,39 +3961,35 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
 #else
 
-   auto pmq = get_message_queue();
+   auto pmessagequeue = get_message_queue();
 
-   ::duration duration;
-
-   if(m_bSetFinish)
+   while(true)
    {
 
-      duration = 100_ms;
+      auto estatus = pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
-   }
-   else
-   {
-
-      duration = duration::infinite();
-
-   }
-
-   int iRet;
-
-   while((iRet = pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, duration)) != 0)
-   {
-
-      if (iRet > 0)
+      if (estatus == status_quit)
       {
 
-         return true;
+         return status_quit;
 
       }
-
-      if(is_ready_to_quit())
+      else if (::succeeded(estatus))
       {
 
-         break;
+         return estatus;
+
+      }
+      else if(is_ready_to_quit())
+      {
+
+         return status_quit;
+
+      }
+      else
+      {
+
+         return estatus;
 
       }
 
@@ -4005,7 +3997,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
 #endif
 
-   return false;
+   return status_quit;
 
 }
 

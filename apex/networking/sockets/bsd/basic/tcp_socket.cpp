@@ -1719,6 +1719,17 @@ namespace sockets
             else
             {
 
+               char msg[1024];
+               ERR_error_string_n(ERR_get_error(), msg, sizeof(msg));
+               if (r == SSL_ERROR_SYSCALL)
+               {
+
+                  DWORD dwLastError = WSAGetLastError();
+
+                  output_debug_string("");
+                
+               }
+
 
                INFO(log_this, "SSLNegotiate", -1, "SSL_connect() failed");
 

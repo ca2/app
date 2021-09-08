@@ -158,7 +158,8 @@ bool condition::pulse()
 #endif
 }
 
-synchronization_result condition::wait()
+
+::e_status condition::wait()
 {
 #ifdef WINDOWS
 
@@ -198,7 +199,7 @@ synchronization_result condition::wait()
 
 #endif
 
-   return e_synchronization_result_signaled_base;
+   return signaled_base;
 
 }
 
@@ -206,7 +207,7 @@ synchronization_result condition::wait()
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-synchronization_result condition::wait(const duration& duration)
+::e_status condition::wait(const duration& duration)
 {
 
 #ifdef WINDOWS
@@ -219,7 +220,7 @@ synchronization_result condition::wait(const duration& duration)
       timeout))
    {
 
-      return e_synchronization_result_signaled_base;
+      return signaled_base;
 
    }
    else
@@ -230,11 +231,11 @@ synchronization_result condition::wait(const duration& duration)
       if (dwLastError == ERROR_TIMEOUT)
       {
 
-         return e_synchronization_result_timed_out;
+         return error_wait_timeout;
 
       }
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 

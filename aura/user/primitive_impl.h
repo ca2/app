@@ -19,7 +19,7 @@ namespace user
 
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
-      bool                                      m_bDestroying;
+      //bool                                      m_bDestroying;
       int                                       m_iPendingRectMatch;
       __pointer(::user::interaction)            m_puserinteraction;
       __pointer(::user::box)                    m_puserbox;

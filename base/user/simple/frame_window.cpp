@@ -231,7 +231,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
          }
 
-         bool bDestroying = m_pimpl->m_bDestroying;
+         bool bDestroying = m_pimpl->is_destroying();
 
          if (bDestroying)
          {
@@ -739,6 +739,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          m_bWindowFrame = pusersystem->m_bWindowFrame;
 
+         if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         {
+
+            m_bWindowFrame = false;
+
+         }
+
       }
 
    }
@@ -784,6 +791,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 #endif
 
       }
+
+   }
+
+   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   {
+
+      m_bWindowFrame = false;
 
    }
 
@@ -2170,6 +2184,19 @@ void simple_frame_window::on_frame_position()
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
+
+   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   {
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return;
+
+   }
 
    auto papplication = get_application();
 

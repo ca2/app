@@ -461,7 +461,7 @@ namespace user
          return ::is_set(this)
             && m_pimpl.is_set()
             && (m_ewindowflag & e_window_flag_is_window)
-            && !m_pimpl->m_bDestroying;
+            && !m_pimpl->is_destroying();
 
       }
 

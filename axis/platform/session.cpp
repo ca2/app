@@ -49,7 +49,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, i
 
 #ifdef _UWP
 
-#include "aura/os/universal_windows/_uwp.h"
+//#include "aura/node/operating_system/_uwp.h"
 
 #elif defined(LINUX)
 

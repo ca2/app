@@ -78,6 +78,9 @@ enum enum_message : ::i64
    e_message_middle_button_up = 520,
    e_message_middle_button_double_click = 521,
    e_message_mouse_wheel = 522,
+   e_message_mouse_last = 526,
+
+
    e_message_capture_changed = 533,
 
    

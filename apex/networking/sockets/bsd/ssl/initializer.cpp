@@ -154,12 +154,14 @@ namespace sockets
 
 #if OPENSSL_API_COMPAT < 0x10100000L
 
-
+      ERR_load_crypto_strings();
+      //SSL_load_error_strings(); // just once
       SSL_load_error_strings();
       SSL_library_init();
+      OpenSSL_add_all_algorithms();
 #else
 
-      //OPENSSL_init_ssl(OPENSSL_INIT_SSL_DEFAULT, nullptr);
+      OPENSSL_init_ssl(OPENSSL_INIT_SSL_DEFAULT, nullptr);
 
 #endif
 

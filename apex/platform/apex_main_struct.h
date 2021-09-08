@@ -37,6 +37,7 @@ struct CLASS_DECL_APEX apex_main_struct
    ::logic::bit                  m_bGtkApp;
 #endif
    ::logic::bit                  m_bShowApplicationInformation;
+   ::logic::bit                  m_bPreferNoFrameWindow;
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 

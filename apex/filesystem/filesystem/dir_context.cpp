@@ -1884,7 +1884,8 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-      strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
+      //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
+      strMatter.replace("https://server.ca2.software/", "https://ca2.software/");
 
       TRACE("");
       TRACE("");
@@ -1894,7 +1895,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       strMatter.trim();
 
-      if (strMatter.has_char() && ::str::begins_eat_ci(strMatter, string(get_server_ca2_cc()) + "matter/"))
+      if (strMatter.has_char())
       {
 
          path = "appmatter://" + strMatter;

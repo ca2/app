@@ -381,7 +381,9 @@ namespace user
       try
       {
 
-         if (!get_message(&m_message, nullptr, 0, 0))
+         auto estatus = get_message(&m_message, nullptr, 0, 0);
+
+         if(estatus == status_quit)
          {
 
             if (m_strDebugType.contains("filemanager"))
@@ -414,7 +416,7 @@ namespace user
 
             if (m_pimpl 
                && m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_is_window
-               && ::thread::finish_bit())
+               && ::thread::is_finishing())
             {
 
                m_pimpl->m_puserinteraction->start_destroying_window();
@@ -457,7 +459,12 @@ namespace user
 
             }
 
-            process_message();
+            if (estatus != status_kick_idle)
+            {
+
+               process_message();
+
+            }
 
          }
 
@@ -900,6 +907,8 @@ namespace user
 
          while (task_get_run())
          {
+
+            m_pimpl->process_message();
 
             if (!pump_message())
             {

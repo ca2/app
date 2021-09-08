@@ -425,7 +425,7 @@ bool event::ResetEvent()
 }
 
 
-synchronization_result event::_wait ()
+::e_status event::_wait ()
 {
 
    //__throw(todo("thread"));
@@ -453,7 +453,7 @@ synchronization_result event::_wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -462,7 +462,7 @@ synchronization_result event::_wait ()
          if (!task_get_run())
          {
 
-            return e_synchronization_result_abandoned_base;
+            return abandoned_base;
 
          }
 
@@ -470,7 +470,7 @@ synchronization_result event::_wait ()
       else
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 
@@ -551,15 +551,15 @@ synchronization_result event::_wait ()
 
    //}
 
-   return e_synchronization_result_signaled_base;
+   return signaled_base;
 
 }
 
 
-synchronization_result event::_wait (const duration & durationTimeout)
+::e_status event::_wait (const duration & durationTimeout)
 {
 
-   synchronization_result result;
+   ::e_status estatus;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
@@ -585,7 +585,7 @@ synchronization_result event::_wait (const duration & durationTimeout)
 
    DWORD dwResult = ::WaitForSingleObjectEx(hsync, osduration, false);
 
-   result = windows_wait_result_to_synchronization_result(dwResult);
+   estatus = windows_wait_result_to_status(dwResult);
 
 #elif defined(ANDROID)
 
@@ -826,7 +826,7 @@ synchronization_result event::_wait (const duration & durationTimeout)
 
    //}
 
-   return result;
+   return estatus;
 
 }
 

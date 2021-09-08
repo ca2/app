@@ -35,7 +35,7 @@ namespace sockets
 
 #ifdef _UWP
 
-      string m_strTlsHostName;
+      //string m_strTlsHostName;
 
 #endif
 

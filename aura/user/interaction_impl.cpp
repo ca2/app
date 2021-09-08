@@ -280,12 +280,12 @@ namespace user
    }
 
 
-   void interaction_impl::set_destroying()
-   {
+   //void interaction_impl::set_destroying()
+   //{
 
-      m_bDestroying = true;
+   //   m_bDestroying = true;
 
-   }
+   //}
 
 
    bool interaction_impl::set_pending_focus()
@@ -1710,14 +1710,14 @@ namespace user
    bool interaction_impl::start_destroying_window()
    {
 
-      if (m_bDestroying)
+      if (is_destroying())
       {
 
          return true;
 
       }
 
-      if (!m_bDestroying)
+      if (!is_destroying())
       {
 
          if (m_pprodevian && m_pprodevian->task_active())
@@ -1729,7 +1729,7 @@ namespace user
          else
          {
 
-            m_bDestroying = true;
+            set_destroying();
 
             m_puserinteraction->post_message(e_message_destroy_window);
 
@@ -1758,8 +1758,7 @@ namespace user
 
       }
       
-      m_puserinteraction->m_bDestroying = true;
-      
+      m_puserinteraction->set(e_matter_destroying);
       
       m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
@@ -1887,6 +1886,180 @@ namespace user
 
    void interaction_impl::default_window_procedure(::message::message * pmessage)
    {
+
+   }
+
+
+   bool interaction_impl::on_mouse_message(::message::mouse * pmouse)
+   {
+
+      if (pmouse->m_id == e_message_left_button_down)
+      {
+
+         TRACE("e_message_left_button_down");
+
+         string strType = ::str::demangle(m_puserinteraction->type_name());
+
+         if (strType.contains_ci("list_box"))
+         {
+
+            ::output_debug_string("list_box e_message_left_button_down");
+
+         }
+
+      }
+      else if (pmouse->m_id == e_message_left_button_up)
+      {
+
+         TRACE("e_message_left_button_up");
+
+      }
+      else if (pmouse->m_id == e_message_non_client_left_button_up)
+      {
+
+         TRACE("e_message_non_client_left_button_up");
+
+      }
+      else if (pmouse->m_id == e_message_non_client_left_button_down)
+      {
+
+         TRACE("e_message_non_client_left_button_down");
+
+         string strType;
+
+         if (strType.contains_ci("list_box"))
+         {
+
+            ::output_debug_string("list_box e_message_non_client_left_button_down");
+
+         }
+
+      }
+
+      auto psession = get_session();
+
+      if (psession)
+      {
+
+         psession->on_ui_mouse_message(pmouse);
+
+      }
+
+      if (pmouse->m_id == e_message_mouse_move)
+      {
+         // We are at the message handler procedure.
+         // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+         // So the procedure starts by setting to the default cursor,
+         // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
+         // handler has set it to another one.
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_default);
+
+         pmouse->m_pcursor = pcursor;
+
+         //INFO("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
+
+         string strType;
+
+         if (m_puserinteraction)
+         {
+
+            strType = ::str::demangle(m_puserinteraction->type_name());
+
+            if (strType.contains_ci("list_box"))
+            {
+
+               //::output_debug_string("list_box e_message_mouse_move");
+
+            }
+
+         }
+
+      }
+      else if (pmouse->m_id == e_message_non_client_mouse_move)
+      {
+         // We are at the message handler procedure.
+         // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
+         // So the procedure starts by setting to the default cursor,
+         // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
+         // handler has set it to another one.
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pcursor = pwindowing->get_cursor(e_cursor_default);
+
+         pmouse->m_pcursor = pcursor;
+
+      }
+
+      _on_mouse_move_step(pmouse->m_point);
+
+      auto puserinteractionCapture = m_puserinteractionCapture;
+
+      if (::is_set(puserinteractionCapture))
+      {
+
+         puserinteractionCapture->route_message(pmouse);
+
+         return true;
+
+      }
+
+      auto pchild = m_puserinteraction->child_from_point(pmouse->m_point);
+
+      if (pchild)
+      {
+
+         string strType = ::str::demangle(pchild->type_name());
+
+         if (strType.contains_ci("button"))
+         {
+
+            output_debug_string("mouse move on button");
+
+         }
+         else if (strType.contains_ci("tab"))
+         {
+
+            output_debug_string("mouse move on tab");
+
+         }
+
+         auto puserinteraction = pchild;
+
+         while (::is_set(puserinteraction))
+         {
+
+            puserinteraction->route_message(pmouse);
+
+            if (pmouse->m_bRet)
+            {
+
+               break;
+
+            }
+
+            puserinteraction = puserinteraction->get_parent();
+
+         }
+
+      }
+      else
+      {
+
+         m_puserinteraction->route_message(pmouse);
+
+      }
+
+      return true;
 
    }
 
@@ -3836,7 +4009,7 @@ namespace user
    void interaction_impl::_001UpdateBuffer()
    {
 
-      if (!m_puserinteraction || m_bDestroying)
+      if (!m_puserinteraction || is_destroying())
       {
 
          return;
@@ -3876,7 +4049,7 @@ namespace user
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
-         if (m_bDestroying)
+         if (is_destroying())
          {
 
             return;
@@ -3924,7 +4097,7 @@ namespace user
 
             auto r = m_puserinteraction->screen_rect();
 
-            if (m_puserinteraction->m_bSetFinish)
+            if (m_puserinteraction->is_finishing())
             {
 
                output_debug_string("::user::interaction_impl set_finish");
@@ -4147,6 +4320,56 @@ namespace user
    //}
 
 
+   void interaction_impl::process_message()
+   {
+
+      while (true)
+      {
+
+         __pointer(::message::message) pmessage;
+
+         {
+
+            synchronous_lock synchronouslock(mutex());
+
+            if (m_messagelist.is_empty())
+            {
+
+               return;
+
+            }
+
+            pmessage = m_messagelist.pick_head();
+
+         }
+
+         message_handler(pmessage);
+
+      }
+
+   }
+
+
+   void interaction_impl::queue_message_handler(::message::message * pmessage)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      bool bWasEmpty = m_messagelist.is_empty();
+
+      m_messagelist.add_tail(pmessage);
+
+      if (bWasEmpty)
+      {
+
+         m_puserinteraction->m_pthreadUserInteraction->kick_idle();
+
+      }
+
+
+   }
+
+
    ::e_status interaction_impl::update_graphics_resources()
    {
 
@@ -4303,7 +4526,7 @@ namespace user
    }
 
 
-   void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
+   CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
    {
 
       ASSERT(::is_set(pinteraction));
@@ -4356,7 +4579,7 @@ namespace user
    ::e_status interaction_impl::set_finish(::object * pcontextobjectFinish)
    {
 
-      if(!m_bDestroying)
+      if(!is_destroying())
       {
 
          if (m_pgraphics)
@@ -4370,7 +4593,7 @@ namespace user
 
             slGraphics.unlock();
 
-            m_bDestroying = true;
+            set_destroying();
 
          }
 
@@ -4909,12 +5132,15 @@ namespace user
 
       //}
 
-      m_puserinteraction->post_routine(__routine([this, pmessage]()
-      {
+      //m_puserinteraction->post_routine(__routine([this, pmessage]()
+      //{
 
-         return m_puserinteraction->message_handler(pmessage);
+        // return m_puserinteraction->message_handler(pmessage);
 
-      }));
+      //}));
+
+
+      return m_puserinteraction->post(pmessage);
 
       return true;
 

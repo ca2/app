@@ -3,6 +3,7 @@
 
 /// tbs<---3btsE---->
 
+#define MAXIMUM_SYNCHRONIZING_OBJECTS 64
 
 #define STATUS_RANGE 1000 // should be enough for the categorization granularity
 
@@ -111,6 +112,9 @@ enum enum_status : ::i64
    error_json_parsing,
    error_pure_call,
    error_invalid_operation,
+   error_wait_io_completion,
+   error_wait_failed,
+   error_wait_timeout,
 
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
@@ -204,7 +208,8 @@ enum enum_status : ::i64
    error_on_connection_timeout,
    error_socket,
 
-
+   abandoned_base = 0xFFFFFFFE00000000ll,
+   abandoned_end = abandoned_base + MAXIMUM_SYNCHRONIZING_OBJECTS,
 
    success_login = INT_FAILURE_STATUS(STATUS_RANGE_AUTHENTICATION),
 
@@ -239,6 +244,8 @@ enum enum_status : ::i64
    success_already_added,
    success_started,
    success_scheduled,
+   status_quit,
+   status_kick_idle,
 
    success_http = INT_SUCCESS_STATUS(STATUS_RANGE_HTTP),
    success_http_redirection,
@@ -262,8 +269,13 @@ enum enum_status : ::i64
 #include "status_range_authentication.h"
 
    e_status_process_result_positive_base = 0x100000000, 
+   signaled_base = 0x100000000,
+   signaled_end = signaled_base + MAXIMUM_SYNCHRONIZING_OBJECTS,
 
 };
+
+
+#undef MAXIMUM_SYNCHRONIZING_OBJECTS
 
 
 inline constexpr bool is_exit_exception_status(::enum_status estatus)

@@ -5,43 +5,43 @@
 #include "acme/constant/parallelization.h"
 
 
-inline enum_synchronization_result windows_wait_result_to_synchronization_result(int iResult)
+inline ::e_status windows_wait_result_to_status(int iResult)
 {
 
    if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
    {
 
-      return (enum_synchronization_result)((int)e_synchronization_result_abandoned_base + (iResult - WAIT_ABANDONED_0));
+      return (e_status)((::i64)abandoned_base + (iResult - WAIT_ABANDONED_0));
 
    }
    else if (iResult == WAIT_IO_COMPLETION)
    {
 
-      return e_synchronization_result_io_completion;
+      return error_wait_io_completion;
 
    }
    else if (iResult == WAIT_FAILED)
    {
 
-      return e_synchronization_result_error;
+      return error_wait_failed;
 
    }
    else if (iResult == WAIT_TIMEOUT)
    {
 
-      return e_synchronization_result_timed_out;
+      return error_wait_timeout;
 
    }
    else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
    {
 
-      return (enum_synchronization_result)((int)e_synchronization_result_signaled_base + (iResult - WAIT_OBJECT_0));
+      return (e_status)((::i64)signaled_base + (iResult - WAIT_OBJECT_0));
 
    }
    else
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 

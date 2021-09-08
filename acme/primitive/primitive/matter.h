@@ -1,40 +1,6 @@
 #pragma once
 
 
-class system;
-class application;
-class thread;
-class property_object;
-class task;
-class task_pool;
-class action_context;
-class object;
-class dump_context;
-class synchronization_object;
-class __id;
-class string_exchange;
-namespace message { class message; }
-class payload;
-class stream;
-
-
-
-namespace subject
-{
-
-   class subject;
-   class context;
-
-} // namespace subject
-
-
-inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
-
-//inline ::object* __object(::p* playered);
-
-
-#include "referenceable.h"
-
 
 // ATTENTION
 // Shared with:
@@ -52,30 +18,8 @@ private:
 
 public:
 
-   union
-   {
-
-      ::u32       m_uObject;
-
-      struct
-      {
-
-         //bool        m_bTaskPending : 1;
-         bool        m_bHeapAllocated : 1;
-         bool        m_bSetFinish : 1;
-         bool        m_bDestroying : 1;
-         bool        m_bProcessed : 1;
-         bool        m_bTaskStarted : 1;
-         bool        m_bTaskTerminated : 1;
-         bool        m_bCheckingChildrenTask : 1;
-         bool        m_bCheckChildrenTaskPostQuit : 1;
-         bool        m_bTaskReady : 1;
-         bool        m_bDataStruct : 1;
-         bool        m_bExited : 1;
-
-      };
-
-   };
+   
+   enum_matter       m_ematter;
 
 
    union
@@ -110,15 +54,15 @@ public:
 //#endif
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) {  }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) {  }
-   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) {  }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) {  }
+   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
 #else
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : referenceable(matter), m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : referenceable(matter), m_pmutex(matter.m_pmutex), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
 #endif
 
    ~matter() override;
@@ -177,7 +121,6 @@ public:
    virtual const char * get_task_tag();
    //virtual ::index task_add(::task* pthread);
    virtual void task_erase(::task* pthread);
-
 
    virtual void notify_on_destroy(::property_object * pobject);
 
@@ -263,9 +206,24 @@ public:
    inline ::u64 get_object_flag() { return m_eobject; }
 
 
-   inline void clear_finish_bit() { m_bSetFinish = false; }
-   inline void set_finish_bit() { m_bSetFinish = true; }
-   inline bool finish_bit() const { return m_bSetFinish; }
+   inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }
+   inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((::u32)(m_ematter) | (::u32)(ematter)); }
+   inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((::u32)(m_ematter) & (~(::u32)(ematter))); }
+
+
+   inline bool is_finishing() const { return is(e_matter_finishing); }
+   inline void set_finishing() { set(e_matter_finishing); }
+   inline void unset_finishing() { unset(e_matter_finishing); }
+
+
+   inline void is_heap_allocated() const { is(e_matter_heap_allocated); }
+   inline void set_heap_allocated() { set(e_matter_heap_allocated); }
+   inline void unset_heap_allocated() { unset(e_matter_heap_allocated); }
+
+
+   inline bool is_destroying() const { return is(e_matter_destroying); }
+   inline void set_destroying() { set(e_matter_destroying); }
+   inline void unset_destroying() { unset(e_matter_destroying); }
 
 
    //virtual ::e_status on_finish();
@@ -328,8 +286,8 @@ public:
 
    virtual const char * topic_text() const;
 
-   virtual ::synchronization_result sync_wait();
-   virtual ::synchronization_result sync_wait(const ::duration & duration);
+   virtual ::e_status sync_wait();
+   virtual ::e_status sync_wait(const ::duration & duration);
 
    // <3ThomasBorregaardSørensen__!! likes handler concept...
    virtual void subject_handler(::subject::subject * psubject);

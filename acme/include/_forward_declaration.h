@@ -2,6 +2,33 @@
 #pragma once
 
 
+class system;
+class application;
+class thread;
+class property_object;
+class task;
+class task_pool;
+class action_context;
+class object;
+class dump_context;
+class synchronization_object;
+class __id;
+class string_exchange;
+namespace message { class message; }
+class payload;
+class stream;
+
+
+namespace subject
+{
+
+   class subject;
+   class context;
+
+} // namespace subject
+
+
+
 template<class T>
 class ___pointer;
 
@@ -34,4 +61,6 @@ CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
 CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
 
 
+
+inline bool is_set_ptr(const void * p) { return (uptr)p > 65536; }
 

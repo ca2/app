@@ -182,7 +182,7 @@ void synchronization_array::erase(index index)
 }
 
 
-synchronization_result synchronization_array::wait()
+::e_status synchronization_array::wait()
 {
 
    return wait(duration::infinite());
@@ -190,13 +190,13 @@ synchronization_result synchronization_array::wait()
 }
 
 
-synchronization_result synchronization_array::wait(const duration & duration, bool bWaitForAll, ::u32 uWakeMask)
+::e_status synchronization_array::wait(const duration & duration, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 
@@ -230,7 +230,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    }
 
-   return windows_wait_result_to_synchronization_result(windowsWaitResult);
+   return windows_wait_result_to_status(windowsWaitResult);
    
 #else
 
@@ -307,7 +307,7 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 }
 
 
-synchronization_result synchronization_array::contains(const synchronization_result & result) const
+::e_status synchronization_array::contains(const ::e_status & result) const
 {
 
    __throw(todo);
@@ -331,7 +331,7 @@ synchronization_result synchronization_array::contains(const synchronization_res
 
    //return synchronization_result( e_synchronization_result_error );
 
-   return e_synchronization_result_error;
+   return error_failed;
 
 }
 

@@ -34,8 +34,8 @@ public:
 
 
    bool                                               m_bBranchHandling : 1;
-   __composite(message_queue)                         m_pmq;
-   bool                                               m_bClosedMq;
+   __composite(message_queue)                         m_pmessagequeue;
+   bool                                               m_bClosedMessageQueue;
 
 
    MESSAGE                                            m_message;
@@ -133,11 +133,11 @@ public:
    void add_task(::object* pobjectTask) override;
 
 
-   inline message_queue* get_message_queue() { return m_pmq ? m_pmq : _get_mq(); }
-   message_queue* _get_mq();
+   inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue : _get_message_queue(); }
+   message_queue* _get_message_queue();
 
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   ::e_status get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
@@ -581,7 +581,7 @@ CLASS_DECL_APEX bool app_sleep(::application * papplication, millis millis);
 
 
 template < typename PRED >
-inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
+inline ::e_status while_predicateicate_Sleep(int iTime, PRED pred)
 {
 
    iTime += 99;
@@ -596,27 +596,25 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
       if (!pred())
       {
 
-         return  ::e_synchronization_result_signaled_base;
+         return  ::signaled_base;
 
       }
 
       if (!::task_get_run())
       {
 
-         return ::e_synchronization_result_abandoned_base;
+         return ::abandoned_base;
 
       }
 
    }
 
-   return ::e_synchronization_result_timed_out;
+   return ::error_wait_timeout;
 
 }
 
 
 CLASS_DECL_APEX void defer_create_thread(::object * pobject);
-
-
 
 
 template < typename PRED >

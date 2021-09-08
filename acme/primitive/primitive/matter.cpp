@@ -164,7 +164,7 @@ void matter::dump(dump_context & dumpcontext) const
 void matter::post_quit()
 {
 
-   set_finish_bit();
+   set_finishing();
 
 }
 
@@ -172,7 +172,7 @@ void matter::post_quit()
 ::e_status matter::set_finish()
 {
 
-   set_finish_bit();
+   set_finishing();
 
    //destroy();
 
@@ -698,18 +698,18 @@ const char * matter::topic_text() const
 }
 
 
-::synchronization_result matter::sync_wait()
+::e_status matter::sync_wait()
 {
 
-   return e_synchronization_result_error;
+   return error_failed;
 
 }
 
 
-::synchronization_result matter::sync_wait(const ::duration & duration)
+::e_status matter::sync_wait(const ::duration & duration)
 {
 
-   return e_synchronization_result_error;
+   return error_failed;
 
 }
 

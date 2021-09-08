@@ -143,7 +143,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!m_bDestroying && !m_bSetFinish)
+            if (!is(e_matter_destroying) && !is_finishing())
             {
 
                update_screen();
@@ -281,10 +281,10 @@ namespace user
          if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
          {
 
-            if (!m_pimpl->m_bDestroying)
+            if (!m_pimpl->is_destroying())
             {
 
-               m_pimpl->m_bDestroying = true;
+               m_pimpl->set_destroying();
 
                m_puserinteraction->post_message(e_message_destroy_window);
 
@@ -1137,10 +1137,10 @@ namespace user
 
          }
 
-         if (m_puserinteraction->m_bDestroying
-            || m_puserinteraction->m_bSetFinish
-            || m_pimpl->m_bDestroying
-            || m_pimpl->m_bSetFinish)
+         if (m_puserinteraction->is(e_matter_destroying)
+            || m_puserinteraction->is_finishing()
+            || m_pimpl->is(e_matter_destroying)
+            || m_pimpl->is_finishing())
          {
 
             bDraw = false;

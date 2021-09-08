@@ -3190,6 +3190,8 @@ namespace factory
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
+
+#include "acme/primitive/primitive/referenceable.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
 

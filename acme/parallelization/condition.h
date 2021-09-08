@@ -52,12 +52,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual synchronization_result wait ();
+   virtual ::e_status wait ();
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual synchronization_result wait (const duration & duration);
+   virtual ::e_status wait (const duration & duration);
 
    bool is_signaled() const;
 

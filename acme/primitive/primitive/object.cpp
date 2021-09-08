@@ -5,6 +5,8 @@
 #include "acme/platform/obj_ref_debug_impl.h"
 #endif
 #include "acme/primitive/text/_.h"
+#include "acme/primitive/primitive/set_bit.h"
+#include "acme/parallelization/synchronously_keep_bit.h"
 
 
 object::~object() = default;
@@ -1290,7 +1292,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if (!m_bSetFinish)
+   if (!is_finishing())
    {
 
       return m_pobjectaChildrenTask->has_element();
@@ -1306,7 +1308,7 @@ bool object::check_tasks_finished()
 
    }
 
-   m_bCheckingChildrenTask = true;
+   auto synchronouslykeepbitCheckingChildrenTask = synchronously_keep_bit(this, m_ematter, e_matter_checking_children_task, true, false);
 
    try
    {
@@ -1384,16 +1386,12 @@ bool object::check_tasks_finished()
    if (m_pobjectaChildrenTask->has_element())
    {
 
-      m_bCheckingChildrenTask = false;
-
       return true;
 
    }
 
-   if(!m_bCheckChildrenTaskPostQuit)
+   if(!is(e_matter_checking_children_task))
    {
-
-      m_bCheckChildrenTaskPostQuit = true;
 
       try
       {
@@ -1407,8 +1405,6 @@ bool object::check_tasks_finished()
       }
 
    }
-
-   m_bCheckingChildrenTask = false;
 
    return false;
 
@@ -1988,7 +1984,7 @@ void object::task_erase(::task* ptask)
       //}
 
       //if (finish_bit() && (!m_ptaska || ptaska->is_empty()))
-      if (finish_bit())
+      if (is_finishing())
       {
 
          if (strThreadThis == "veriwell_keyboard::application")
@@ -2052,7 +2048,7 @@ void object::task_erase(::task* ptask)
 
          }
 
-         if (m_psystem && m_psystem->finish_bit())
+         if (m_psystem && m_psystem->set_finish())
          {
 
             return error_exit_system;
@@ -2099,7 +2095,7 @@ void object::task_erase(::task* ptask)
    while (iTenths > 0)
    {
 
-      if (m_psystem && m_psystem->finish_bit())
+      if (m_psystem && m_psystem->is_finishing())
       {
 
          return error_exit_system;

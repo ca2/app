@@ -102,6 +102,8 @@ namespace user
       ::rectangle_i32                           m_rectUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
+      list < __pointer(::message::message) >    m_messagelist;
+
       bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;
       //::user::primitive *                       m_pprimitiveFocus;
@@ -183,6 +185,10 @@ namespace user
 
 
 
+      void queue_message_handler(::message::message * pmessage) override;
+
+
+      void process_message();
 
 
 
@@ -212,7 +218,7 @@ namespace user
       virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
-      virtual void set_destroying();
+      //virtual void set_destroying();
 
       virtual void _000OnMouseLeave(::message::message * pmessage) override;
       //virtual void _008OnMouse(::message::mouse * pmouse);
@@ -631,6 +637,9 @@ namespace user
       virtual void message_handler(::message::message * pusermessage) override;
       //virtual lresult default_window_procedure() override;
       virtual void default_window_procedure(::message::message * pmessage);
+
+
+      virtual bool on_mouse_message(::message::mouse * pmouse);
 
 
       virtual void post_non_client_destroy() override;

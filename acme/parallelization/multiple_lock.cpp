@@ -87,17 +87,17 @@ multiple_lock::~multiple_lock()
 }
 
 
-synchronization_result multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
+::e_status multiple_lock::lock(const duration & duration, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization_object())
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 
-   auto result = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
+   auto estatus = m_synchronizationa.wait(duration, bWaitForAll, dwWakeMask);
 
 
 
@@ -116,9 +116,9 @@ synchronization_result multiple_lock::lock(const duration & duration, bool bWait
 
    //::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.synchronization_object_count();
 
-   auto iSignaled = result.signaled_index();
+   auto iSignaled = __signaled_index(estatus);
 
-   if(result.failed())
+   if(iSignaled < 0)
    {
 
       ::e_status estatus = ::get_last_status();
@@ -149,7 +149,7 @@ synchronization_result multiple_lock::lock(const duration & duration, bool bWait
 
    }
 
-   return result;
+   return estatus;
 
 }
 

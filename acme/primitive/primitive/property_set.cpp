@@ -1193,7 +1193,7 @@ property_set& property_set::operator = (const ::payload & payload)
    if (payload.m_etype == e_type_property_set)
    {
 
-      if (m_bDataStruct)
+      if (is(e_matter_data_struct))
       {
 
          for (auto & pproperty : *this)

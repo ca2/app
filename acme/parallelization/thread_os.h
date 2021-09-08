@@ -139,7 +139,7 @@ CLASS_DECL_ACME bool task_get_run();
 ///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in synchronization_result
-inline synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite())
+inline ::e_status wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }
@@ -148,7 +148,7 @@ inline synchronization_result wait(synchronization_object * psync,const duration
 ///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
 ///  \lparam    duration time period to wait for item (default: infinite)
 ///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
+::e_status wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
 
 #else
 

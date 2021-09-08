@@ -115,8 +115,7 @@ bool synchronization_object::_lock(const duration & durationTimeout)
 }
 
 
-
-synchronization_result synchronization_object::_wait()
+::e_status synchronization_object::_wait()
 {
 
    return _wait(::duration::infinite());
@@ -124,7 +123,7 @@ synchronization_result synchronization_object::_wait()
 }
 
 
-synchronization_result synchronization_object::wait()
+::e_status synchronization_object::wait()
 {
 
    auto ptask = ::get_task();
@@ -146,23 +145,23 @@ synchronization_result synchronization_object::wait()
    while (ptask->task_get_run())
    {
 
-      auto result = _wait(100_ms);
+      auto estatus = _wait(100_ms);
 
-      if (!result.timed_out())
+      if (!__wait_timeout(estatus))
       {
 
-         return result;
+         return estatus;
 
       }
 
    }
 
-   return e_synchronization_result_thread_set_finish;
+   return abandoned_base;
 
 }
 
 
-synchronization_result synchronization_object::wait(const ::duration & durationTimeout)
+::e_status synchronization_object::wait(const ::duration & durationTimeout)
 {
    
    if (durationTimeout < 200_ms)
@@ -190,7 +189,7 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
 
    }
    
-   ;;millis millisStep(100_ms);
+   ::millis millisStep(100_ms);
 
    while (ptask->task_get_run())
    {
@@ -200,7 +199,7 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
       if (millisWait < 0)
       {
 
-         return e_synchronization_result_timed_out;
+         return error_wait_timeout;
 
       }
       
@@ -211,18 +210,18 @@ synchronization_result synchronization_object::wait(const ::duration & durationT
          
       }
 
-      auto result = _wait(millisWait);
+      auto estatus = _wait(millisWait);
 
-      if (!result.timed_out())
+      if (!__wait_timeout(estatus))
       {
 
-         return result;
+         return estatus;
 
       }
 
    }
 
-   return e_synchronization_result_thread_set_finish;
+   return abandoned_base;
 
 }
 
@@ -259,7 +258,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-synchronization_result synchronization_object::_wait(const duration & durationTimeout)
+::e_status synchronization_object::_wait(const duration & durationTimeout)
 {
 
 #ifdef WINDOWS
@@ -269,13 +268,13 @@ synchronization_result synchronization_object::_wait(const duration & durationTi
 
       auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false);
 
-      return windows_wait_result_to_synchronization_result(windowsWaitResult);
+      return windows_wait_result_to_status(windowsWaitResult);
 
    }
 
 #endif
 
-   return e_synchronization_result_error;
+   return error_failed;
 
 }
 

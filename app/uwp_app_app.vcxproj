@@ -626,15 +626,6 @@
     <None Include="uwp_app_app_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\acme_windows_common\w_acme_windows_common.vcxproj">
-      <Project>{4a44d9ca-a46e-4bb3-8ad5-8bcace5228ce}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\apex_windows_common\w_apex_windows_common.vcxproj">
-      <Project>{9b59539c-abd7-4ff5-a64b-521813534736}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\archive\platform-windows_common\aura_windows_common\w_aura_windows_common.vcxproj">
-      <Project>{e256890d-cf1e-420b-b1f9-8c88434ca1c1}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\archive\platform-windows_common\direct2d\u_direct2d.vcxproj">
       <Project>{91608259-0b1f-4deb-a867-873618075395}</Project>
     </ProjectReference>

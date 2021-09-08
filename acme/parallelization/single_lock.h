@@ -14,8 +14,8 @@ public:
    explicit single_lock(synchronization_object * pobject, bool bInitialLock = false);
    ~single_lock();
 
-   synchronization_result wait();
-   synchronization_result wait(const duration & duration);
+   ::e_status wait();
+   ::e_status wait(const duration & duration);
    bool unlock();
    bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked();
@@ -39,8 +39,8 @@ public:
    ~_single_lock();
 
 
-   synchronization_result _wait();
-   synchronization_result _wait(const duration & duration);
+   ::e_status _wait();
+   ::e_status _wait(const duration & duration);
    bool unlock();
    bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked();

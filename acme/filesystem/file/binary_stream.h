@@ -6,6 +6,7 @@ class CLASS_DECL_ACME binary_stream :
 {
 public:
 
+
    using RAW_POINTER = ::file::file *;
 
 

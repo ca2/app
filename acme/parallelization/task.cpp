@@ -20,9 +20,9 @@ task::task()
 
    //m_bTaskPending = true;
 
-   m_bSetFinish = false;
-   m_bTaskTerminated = false;
-   m_bTaskStarted = false;
+   //m_bSetFinish = false;
+   //m_bTaskTerminated = false;
+   //m_bTaskStarted = false;
    m_bCheckingChildrenTask = false;
    //m_pthread = nullptr;
    m_bMessageThread = false;
@@ -171,7 +171,7 @@ bool task::task_set_name(const char* pszTaskName)
 bool task::task_get_run() const
 {
 
-   return !m_bSetFinish;
+   return !is_finishing();
 
 }
 
@@ -181,7 +181,7 @@ bool task::is_ready_to_quit() const
 
    bool bShouldContinue = task_get_run();
 
-   return !bShouldContinue && m_bTaskReady;
+   return !bShouldContinue && has(e_matter_task_ready);
 
 }
 
@@ -207,7 +207,7 @@ bool task::check_tasks_finished()
 
    auto b = ::object::check_tasks_finished();
 
-   if (m_bSetFinish)
+   if (is_finishing())
    {
 
       update_task_ready_to_quit();
@@ -224,7 +224,6 @@ void task::update_task_ready_to_quit()
 
 
 }
-
 
 
 bool task::kick_thread()
@@ -355,7 +354,7 @@ void* task::s_os_task(void* p)
 
       clear_message_queue(ptask->m_itask);
 
-      ptask->m_bTaskTerminated = true;
+      ptask->set(e_matter_task_terminated);
 
       //ptask->m_ptaskParent.release();
 
@@ -850,7 +849,7 @@ bool task::has_message() const
 
    m_bIsRunning = true;
 
-   m_bTaskStarted = true;
+   set(e_matter_task_started);
 
    auto pobjectParentTask = ::get_task();
 

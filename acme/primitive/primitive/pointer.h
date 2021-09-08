@@ -487,92 +487,64 @@ inline void destruct(T * p)
 }
 
 
-// destroy solves this.
-
-template < class T >
-class guard____pointer :
-   public ::___pointer < T >
-{
-public:
-   guard____pointer() {}
-   guard____pointer(const lparam& lparam) : ::___pointer<T>(lparam) {}
-
-   guard____pointer(const ___pointer < T > & t): ::___pointer< T>(t) {}
-   guard____pointer(guard____pointer < T > && t): ::___pointer<T>(::move(t)) {}
-   //guard____pointer(const allocer & allocer): ::___pointer<T>(allocer) {}
-   template < class T2 >
-   guard____pointer(T2 * p) : ::___pointer <T>(p) {}
-   guard____pointer(T * p) : ::___pointer <T>(p) {}
-
-   template < class T2 >
-   guard____pointer(const T2 * p): ::___pointer <T>(p) {}
-
-   template < class T2 >
-   guard____pointer(const ___pointer < T2 > & t): ::___pointer <T>(t) {}
-
-
-   template < class T2 >
-   guard____pointer(guard____pointer < T2 > && t) :
-      ::___pointer <T>(::move(t)) {}
-
-   ~guard____pointer()
-   {
-
-      if(::is_set(this->m_p))
-      {
-
-         ::destruct(this->m_p);
-
-      }
-
-      this->release();
-
-   }
-
-
-};
+//// destroy solves this.
+//
+//template < class T >
+//class guard____pointer :
+//   public ::___pointer < T >
+//{
+//public:
+//   guard____pointer() {}
+//   guard____pointer(const lparam& lparam) : ::___pointer<T>(lparam) {}
+//
+//   guard____pointer(const ___pointer < T > & t): ::___pointer< T>(t) {}
+//   guard____pointer(guard____pointer < T > && t): ::___pointer<T>(::move(t)) {}
+//   //guard____pointer(const allocer & allocer): ::___pointer<T>(allocer) {}
+//   template < class T2 >
+//   guard____pointer(T2 * p) : ::___pointer <T>(p) {}
+//   guard____pointer(T * p) : ::___pointer <T>(p) {}
+//
+//   template < class T2 >
+//   guard____pointer(const T2 * p): ::___pointer <T>(p) {}
+//
+//
+//   template < class T2 >
+//   guard____pointer(const ___pointer < T2 > & t): ::___pointer <T>(t) {}
+//
+//
+//   template < class T2 >
+//   guard____pointer(guard____pointer < T2 > && t) :
+//      ::___pointer <T>(::move(t)) {}
+//
+//
+//   ~guard____pointer()
+//   {
+//
+//      if(::is_set(this->m_p))
+//      {
+//
+//         ::destruct(this->m_p);
+//
+//      }
+//
+//      this->release();
+//
+//   }
+//
+//
+//};
+//
 
 template < typename T >
 inline bool __found(const __pointer(T) & p) { return p.is_set(); }
+
 
 template < typename T >
 inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 
 
-
-//namespace papaya
-//{
-//
-//
-//   template < typename T>
-//   _____pointer(T) & defer_new(_____pointer(T) & t, ::matter * p)
-//   {
-//
-//      if (t.is_null())
-//      {
-//
-//         T * ptype = new T(p);
-//
-//         ptype->m_countReference--;
-//
-//         t = ptype;
-//
-//
-//
-//      }
-//
-//      return t;
-//   }
-//
-//} // namespace papaya
-
-
-
-
-
 template < typename T >
 inline __pointer(T) __move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
-
 
 
 template < typename TYPE >
@@ -600,7 +572,6 @@ inline __pointer(TYPE) __clone(const __pointer(TYPE) & p)
    return p->clone();
 
 }
-
 
 
 template < typename TYPE >
@@ -638,12 +609,13 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 template < typename TYPE >
 inline ::i64 release(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
+
 template < typename TYPE >
 inline ::i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
+
 template < class REFERENCE >
 inline ::i64 release(__reference(REFERENCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
 
 
 template<typename T>
@@ -651,11 +623,13 @@ inline __pointer(T) move_transfer(T * p);
 
 
 template < typename T >
-inline T * set_heap_allocated(T * p) { p->m_bHeapAllocated = true;  return p; }
+inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
-#define ___new(...) set_heap_allocated( new __VA_ARGS__ )
 
-#define __new(...) move_transfer( ___new(__VA_ARGS__ ) )
+#define ___new(...) ::set_heap_allocated( new __VA_ARGS__ )
+
+
+#define __new(...) ::move_transfer( ___new(__VA_ARGS__ ) )
 
 
 

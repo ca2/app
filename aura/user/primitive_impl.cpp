@@ -18,7 +18,7 @@ namespace user
 
       m_pinteractionimpl = nullptr;
       m_pinteractionchild = nullptr;
-      m_bDestroying = false;
+      //m_bDestroying = false;
       m_bDestroyImplOnly = false;
       m_iPendingRectMatch = -1;
       m_bPendingRedraw = false;

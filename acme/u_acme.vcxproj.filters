@@ -3432,6 +3432,15 @@
     <ClInclude Include="primitive\geometry2d\_geometry2d.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\synchronously_keep_bit.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\synchronously_set_bit.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\set_bit.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h">

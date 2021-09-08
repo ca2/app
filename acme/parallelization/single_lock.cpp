@@ -35,80 +35,80 @@ single_lock::~single_lock()
 }
 
 
-synchronization_result single_lock::wait()
+::e_status single_lock::wait()
 {
 
-   ::synchronization_result result(e_synchronization_result_signaled_base);
+   ::e_status estatus(signaled_base);
 
    if(m_bAcquired)
    {
 
-      return result;
+      return estatus;
 
    }
 
    if(m_psync == nullptr)
    {
 
-      return result;
+      return estatus;
 
    }
 
    try
    {
 
-      result = m_psync->wait();
+      estatus = m_psync->wait();
 
    }
    catch(...)
    {
 
-      result = ::synchronization_result(e_synchronization_result_error);
+      estatus = error_failed;
 
    }
 
-   m_bAcquired = result.succeeded();
+   m_bAcquired = __signaled(estatus);
 
-   return result;
+   return estatus;
 
 }
 
 
-::synchronization_result single_lock::wait(const duration & durationTimeOut)
+::e_status single_lock::wait(const duration & durationTimeOut)
 {
 
-   ::synchronization_result result(e_synchronization_result_signaled_base);
+   ::e_status estatus(signaled_base);
 
    if(m_bAcquired)
    {
 
-      return result;
+      return estatus;
 
    }
 
    if(m_psync == nullptr)
    {
 
-      return result;
+      return estatus;
 
    }
 
    try
    {
 
-      result = m_psync->wait(durationTimeOut);
+      estatus = m_psync->wait(durationTimeOut);
 
    }
    catch(...)
    {
 
-      result = ::synchronization_result(e_synchronization_result_error);
+      estatus = error_failed;
 
    }
 
-   m_bAcquired = result.succeeded();
+   m_bAcquired = __signaled(estatus);
 
-   return result;
+   return estatus;
 
 }
 
@@ -214,80 +214,80 @@ _single_lock::~_single_lock()
 }
 
 
-synchronization_result _single_lock::_wait()
+::e_status _single_lock::_wait()
 {
 
-   ::synchronization_result result(e_synchronization_result_signaled_base);
+   ::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {
 
-      return result;
+      return estatus;
 
    }
 
    if (m_psync == nullptr)
    {
 
-      return result;
+      return estatus;
 
    }
 
    try
    {
 
-      result = m_psync->_wait();
+      estatus = m_psync->_wait();
 
    }
    catch (...)
    {
 
-      result = ::synchronization_result(e_synchronization_result_error);
+      estatus = error_failed;
 
    }
 
-   m_bAcquired = result.succeeded();
+   m_bAcquired = __signaled(estatus);
 
-   return result;
+   return estatus;
 
 }
 
 
-::synchronization_result _single_lock::_wait(const duration & durationTimeOut)
+::e_status _single_lock::_wait(const duration & durationTimeOut)
 {
 
-   ::synchronization_result result(e_synchronization_result_signaled_base);
+   ::e_status estatus(signaled_base);
 
    if (m_bAcquired)
    {
 
-      return result;
+      return estatus;
 
    }
 
    if (m_psync == nullptr)
    {
 
-      return result;
+      return estatus;
 
    }
 
    try
    {
 
-      result = m_psync->_wait(durationTimeOut);
+      estatus = m_psync->_wait(durationTimeOut);
 
    }
    catch (...)
    {
 
-      result = ::synchronization_result(e_synchronization_result_error);
+      estatus = error_failed;
 
    }
 
-   m_bAcquired = result.succeeded();
+   m_bAcquired = __signaled(estatus);
 
-   return result;
+   return estatus;
 
 }
 

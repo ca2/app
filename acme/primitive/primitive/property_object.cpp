@@ -45,18 +45,10 @@ property_object::~property_object()
 }
 
 
-//::property_object * property_object::_get_context_object()
-//{
-//
-//   return this;
-//
-//}
-
-
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (m_bDestroying)
+   if (has(e_matter_destroying))
    {
 
       //finish(nullptr);
@@ -65,77 +57,6 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
    }
 
 }
-
-
-//void property_object::set_object(::object * pobject  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   m_pobject.reset(pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-//::e_status property_object::finish(::property_object * pcontextobjectFinish)
-//::e_status property_object::destroy()
-//{
-//
-//   //return ::matter::finish(pcontextobjectFinish);
-//
-//   auto estatus = ::material_object::destroy();
-//
-//   return estatus;
-//
-//}
-
-
-//::e_status property_object::on_finish()
-//{
-//
-//   auto estatus = material_object::on_finish();
-//
-//   return estatus;
-//
-//   //synchronous_lock synchronouslock(mutex());
-//
-//   //if (m_pnotifya)
-//   //{
-//
-//   //   auto pnotifya = m_pnotifya;
-//
-//   //   restart_notifya_loop:
-//
-//   //   for (auto pmatter : *pnotifya)
-//   //   {
-//
-//   //      if (pmatter && pmatter->m_bFinishing)
-//   //      {
-//
-//   //         synchronouslock.unlock();
-//
-//   //         sleep(10_ms);
-//
-//   //         auto estatus = pmatter->finish();
-//
-//   //         if (estatus == ::success)
-//   //         {
-//
-//   //            synchronouslock.lock();
-//
-//   //            pnotifya->erase(pmatter);
-//
-//   //            goto restart_notifya_loop;
-//
-//   //         }
-//
-//   //         synchronouslock.lock();
-//
-//   //      }
-//
-//   //   }
-//
-//   //}
-//   
-//}
 
 
 ::object * property_object::source_channel()

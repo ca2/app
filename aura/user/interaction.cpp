@@ -15411,20 +15411,20 @@ order(zorderParam);
             if(m_bClickDefaultMouseHandling)
             {
             
-            // For Windows: ... (please fill in...)
-            // For Linux: ...
-            // - control box button scenario:
-            //   user presses down the button,
-            //   m_itemLButtonDown turns e_element_client.
-            //   m_itemLButtonDown isn't e_element_none,
-            //   so it sets m_bRet to true
-            //   further processing is quit,
-            //   main frame handling (move_manager) is skipped. (OK)
-            //   Later l_button_up can trigger button on click using
-            //   interaction SimpleUIMouseHandling
-            pmouse->m_bRet = true;
+               // For Windows: ... (please fill in...)
+               // For Linux: ...
+               // - control box button scenario:
+               //   user presses down the button,
+               //   m_itemLButtonDown turns e_element_client.
+               //   m_itemLButtonDown isn't e_element_none,
+               //   so it sets m_bRet to true
+               //   further processing is quit,
+               //   main frame handling (move_manager) is skipped. (OK)
+               //   Later l_button_up can trigger button on click using
+               //   interaction SimpleUIMouseHandling
+               pmouse->m_bRet = true;
                
-            return;
+               return;
 
             }
 

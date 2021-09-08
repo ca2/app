@@ -851,6 +851,8 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
+#ifndef _UWP
+
       auto estatus = initialize_text_composition_client(this, this);
 
       if (!estatus)
@@ -861,6 +863,8 @@ namespace user
          return;
 
       }
+
+#endif
 
       auto psession = get_session();
 

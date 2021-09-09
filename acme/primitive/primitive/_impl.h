@@ -871,7 +871,7 @@ inline bool succeeded(const ::payload & payload)
    else
    {
 
-      __throw(error_unexpected_situation);
+      throw ::exception::exception(error_unexpected_situation);
 
    }
 

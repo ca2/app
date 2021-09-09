@@ -6,10 +6,16 @@
 //  Copyright © 2018 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/message.h"
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "apex/message/simple_command.h"
 
 

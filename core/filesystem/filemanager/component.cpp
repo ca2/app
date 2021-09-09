@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "aura/user/shell.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 

@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "aura/user/shell.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+
 
 
 string _001FileSizeText(i64 i)

@@ -494,7 +494,10 @@ namespace user
 
 
 
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 

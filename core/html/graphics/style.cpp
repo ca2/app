@@ -1,6 +1,9 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
+#if !BROAD_PRECOMPILED_HEADER
 #include "_graphics.h"
+#endif
+
 #endif
 #include "core/id.h"
 #include "core/html/html/_html.h"

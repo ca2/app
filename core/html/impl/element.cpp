@@ -1,5 +1,8 @@
 #include "framework.h"
-//#include "_impl.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_impl.h"
+#endif
+
 
 
 namespace html

@@ -17,7 +17,7 @@
 #include "core/_.h"
 
 #ifndef BROAD_PRECOMPILED_HEADER
-#define BROAD_PRECOMPILED_HEADER 0
+#define BROAD_PRECOMPILED_HEADER 1
 #endif // BROAD_PRECOMPILED_HEADER
 
 #if BROAD_PRECOMPILED_HEADER
@@ -25,8 +25,8 @@
 #include "core/user/rich_text/_rich_text.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "core/filesystem/filehandler/_filehandler.h"
-#include "core/user/userex/_userex.h"
-//#include "core/user/simple_ui/_simple_ui.h"
+#include "core/html/graphics/_graphics.h"
+#include "core/html/impl/_impl.h"
 #include "core/user/account/_account.h"
 #include "core/user/databaseuser/_databaseuser.h"
 #endif

@@ -1,6 +1,11 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "core/user/account/_account.h"
 #include "aura/update.h"
 #include "base/user/user/tab_pane.h"

@@ -213,14 +213,11 @@ namespace html
       bool                          m_bDrawFirstBody;
 
 
-
-
-
       core_data();
-      virtual ~core_data();
+      ~core_data() override;
 
 
-      virtual ::e_status initialize_html_data(html_data * pdata) override;
+      ::e_status initialize_html_data(html_data * pdata) override;
 
 
       virtual string process_url(const ::string & pszUrl);
@@ -228,17 +225,17 @@ namespace html
       //virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
-      virtual bool open_document(const ::payload & varFile) override;
+      bool open_document(const ::payload & varFile) override;
 
 
-      virtual ::e_status     open_html(const ::string & str) override;
+      ::e_status     open_html(const ::string & str) override;
 
 
-      virtual bool open_link(const ::string & pszPath) override;
+      bool open_link(const ::string & pszPath) override;
 
 
-      virtual ::user::form* get_form() override;
-      virtual __pointer(::user::interaction) get_frame() override;
+      ::user::form* get_form() override;
+      __pointer(::user::interaction) get_frame() override;
 
 
       //virtual bool is_locked();

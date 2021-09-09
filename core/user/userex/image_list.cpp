@@ -1,7 +1,10 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
-#include "image_list.h"
+//#include "image_list.h"
 
 
 namespace userex

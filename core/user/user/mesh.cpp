@@ -3958,7 +3958,7 @@ namespace user
 
       return (i32)cx;
 #else
-      __throw(todo);
+      throw ::exception::exception(todo);
 #endif
    }
 

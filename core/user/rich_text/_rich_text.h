@@ -53,6 +53,9 @@ namespace user
 #include "text_format.h"
 
 
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 

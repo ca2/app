@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 void trim001(string & str)

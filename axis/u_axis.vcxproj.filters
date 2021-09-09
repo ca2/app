@@ -43,21 +43,6 @@
     <Filter Include="Header Files\compress">
       <UniqueIdentifier>{2a068ab5-58df-4bc6-9a32-0b920fd4805d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{d0661fd2-af6f-47d1-a3e2-e708bc6fce09}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\netserver">
-      <UniqueIdentifier>{5960a1d1-56af-4f82-8ad4-26f1c492ca42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets">
-      <UniqueIdentifier>{0b2d355f-9834-4a20-9731-aa3905072f16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd">
-      <UniqueIdentifier>{3cd3142b-7235-4791-a6a0-abdbee5b2246}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{fc67d642-24e5-4382-b8b1-1293f3e1e3b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{8a85cb6e-6bd9-4a3e-ae49-ad515cfd70a1}</UniqueIdentifier>
     </Filter>
@@ -118,21 +103,6 @@
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{ecb65efa-7557-4258-a7dd-db36a7be6c27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{6d62dd40-4d63-40d5-9d9f-54de038a0c44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets">
-      <UniqueIdentifier>{b2d510a5-3128-4efa-8a33-4b72c2fccde5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd">
-      <UniqueIdentifier>{07e6ee8b-3d1c-48e2-9f0b-a5b602ea6057}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\sockets\bsd\smtp">
-      <UniqueIdentifier>{5a83b085-9d96-441a-9f1c-25ae53981a8b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\netserver">
-      <UniqueIdentifier>{62b1d2f2-12c3-4930-8d9e-62aec803af62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{f1a08788-e425-4d92-9cca-d4c40723d889}</UniqueIdentifier>
     </Filter>
@@ -144,6 +114,36 @@
     </Filter>
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{9b3eb761-6866-4960-be82-a0b2f17987c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking">
+      <UniqueIdentifier>{6d62dd40-4d63-40d5-9d9f-54de038a0c44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets">
+      <UniqueIdentifier>{b2d510a5-3128-4efa-8a33-4b72c2fccde5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd">
+      <UniqueIdentifier>{07e6ee8b-3d1c-48e2-9f0b-a5b602ea6057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\bsd\smtp">
+      <UniqueIdentifier>{5a83b085-9d96-441a-9f1c-25ae53981a8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\netserver">
+      <UniqueIdentifier>{62b1d2f2-12c3-4930-8d9e-62aec803af62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{d0661fd2-af6f-47d1-a3e2-e708bc6fce09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\netserver">
+      <UniqueIdentifier>{5960a1d1-56af-4f82-8ad4-26f1c492ca42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets">
+      <UniqueIdentifier>{0b2d355f-9834-4a20-9731-aa3905072f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd">
+      <UniqueIdentifier>{3cd3142b-7235-4791-a6a0-abdbee5b2246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets\bsd\smtp">
+      <UniqueIdentifier>{fc67d642-24e5-4382-b8b1-1293f3e1e3b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -326,39 +326,6 @@
     </ClInclude>
     <ClInclude Include="compress\bzip.h">
       <Filter>Header Files\compress</Filter>
-    </ClInclude>
-    <ClInclude Include="net\email_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_impl.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_net.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket_handler.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\socket_thread.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\netserver\_.h">
-      <Filter>Header Files\net\netserver</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\_sockets.h">
-      <Filter>Header Files\net\sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtpd_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\sockets\bsd\smtp\smtp_socket.h">
-      <Filter>Header Files\net\sockets\bsd\smtp</Filter>
     </ClInclude>
     <ClInclude Include="user\combo_box.h">
       <Filter>Header Files\user</Filter>
@@ -546,6 +513,42 @@
     <ClInclude Include="database\database\transaction.h">
       <Filter>Header Files\database\database</Filter>
     </ClInclude>
+    <ClInclude Include="networking\sockets\_sockets.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\smtp\smtp_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\smtp\smtpd_socket.h">
+      <Filter>Header Files\networking\sockets\bsd\smtp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_thread.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_handler.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_netserver.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\email_department.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_net.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_impl.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -674,24 +677,6 @@
     <ClCompile Include="compress\bz.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="net\email_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp">
-      <Filter>Source Files\net\sockets\bsd\smtp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_handler.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
-    <ClCompile Include="net\netserver\socket_thread.cpp">
-      <Filter>Source Files\net\netserver</Filter>
-    </ClCompile>
     <ClCompile Include="user\combo_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -766,6 +751,24 @@
     </ClCompile>
     <ClCompile Include="database\database\transaction.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\email_department.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp">
+      <Filter>Source Files\networking\sockets\bsd\smtp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_handler.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\netserver\socket_thread.cpp">
+      <Filter>Source Files\networking\netserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

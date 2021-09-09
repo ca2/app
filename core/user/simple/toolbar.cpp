@@ -49,6 +49,8 @@ public: // re-implementations only
 simple_toolbar::simple_toolbar()
 {
 
+   m_bClickDefaultMouseHandling = true;
+
    m_bStyleFlat = true;
 
    m_econtroltype = ::user::e_control_type_toolbar;
@@ -110,7 +112,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_non_client_hittest    , pchannel, this, &simple_toolbar::_001OnNcHitTest);
    //MESSAGE_LINK(e_message_mouse_leave   , pchannel, this, &simple_toolbar::on_message_mouse_leave);
 
-   install_click_default_mouse_handling(pchannel);
+   //install_click_default_mouse_handling(pchannel);
    
 }
 

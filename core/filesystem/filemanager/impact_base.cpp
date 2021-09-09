@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 filemanager_impact_base::filemanager_impact_base()

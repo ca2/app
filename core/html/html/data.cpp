@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"
+#endif
+
 
 
 html_data::html_data()

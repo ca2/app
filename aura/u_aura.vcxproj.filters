@@ -1282,6 +1282,9 @@
     <ClInclude Include="user\message_box.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\device_lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1798,6 +1801,9 @@
     </ClCompile>
     <ClCompile Include="windowing\graphics_lock.cpp">
       <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\device_lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

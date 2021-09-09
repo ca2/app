@@ -1,7 +1,13 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/node/operating_system/windows_common/graphics.h"
 
 

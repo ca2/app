@@ -3,7 +3,9 @@
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
 #include "core/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_element.h"
+#endif
 
 
 namespace html

@@ -454,6 +454,8 @@
     <ClCompile Include="filesystem\filemanager\fs_simple_view.cpp" />
     <ClCompile Include="filesystem\filemanager\icon.cpp" />
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact_base.cpp" />
     <ClCompile Include="filesystem\filemanager\left_view.cpp" />
     <ClCompile Include="filesystem\filemanager\main_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\main_impact.cpp" />
@@ -656,7 +658,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="node\universal_windows\shell_uwp.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
@@ -700,14 +701,6 @@
     <ClCompile Include="user\simple\toolbar.cpp" />
     <ClCompile Include="user\simple\tree_view.cpp" />
     <ClCompile Include="user\simple\_.cpp" />
-    <ClCompile Include="user\simple_ui\edit_box.cpp" />
-    <ClCompile Include="user\simple_ui\interaction.cpp" />
-    <ClCompile Include="user\simple_ui\label.cpp" />
-    <ClCompile Include="user\simple_ui\message_box.cpp" />
-    <ClCompile Include="user\simple_ui\password.cpp" />
-    <ClCompile Include="user\simple_ui\style.cpp" />
-    <ClCompile Include="user\simple_ui\tap.cpp" />
-    <ClCompile Include="user\simple_ui\top.cpp" />
     <ClCompile Include="user\userex\-ehrror_dialog.cpp" />
     <ClCompile Include="user\userex\calculator_edit_view.cpp" />
     <ClCompile Include="user\userex\color_view.cpp" />
@@ -753,7 +746,6 @@
     <ClCompile Include="user\user\mesh_cache.cpp" />
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
-    <ClCompile Include="user\user\shell.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />

@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "core/html/html/_html.h"
 #include "core/html/impl/_impl.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
 #include "core/user/simple/_simple.h"
+#endif
 //#include "core/user/simple/_simple.h"
 
 //#include <openssl/rsa.h>

@@ -133,9 +133,6 @@
     <Filter Include="Source Files\user\netuser">
       <UniqueIdentifier>{671a6698-75c2-4bda-9290-cf55891836cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{1eb44692-a156-40c3-97a6-dfb01baa3cf1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{32746bb1-d4d5-4962-b09c-4097d17fbafe}</UniqueIdentifier>
     </Filter>
@@ -1456,9 +1453,6 @@
     <ClCompile Include="user\user\mesh_data.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\shell.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\statusbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -1644,30 +1638,6 @@
     </ClCompile>
     <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
       <Filter>Source Files\user\netuser</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\top.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\ftpfs.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
@@ -1975,9 +1945,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\universal_windows\shell_uwp.cpp">
-      <Filter>Source Files\node\universal_windows</Filter>
-    </ClCompile>
     <ClCompile Include="html\impl\element.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
@@ -1986,6 +1953,12 @@
     </ClCompile>
     <ClCompile Include="user\user\list_column.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact_base.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

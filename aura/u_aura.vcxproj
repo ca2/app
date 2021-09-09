@@ -131,6 +131,7 @@
     <ClInclude Include="graphics\draw2d\context_image.h" />
     <ClInclude Include="graphics\draw2d\cursor.h" />
     <ClInclude Include="graphics\draw2d\cursor_set.h" />
+    <ClInclude Include="graphics\draw2d\device_lock.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\fastblur.h" />
     <ClInclude Include="graphics\draw2d\font.h" />
@@ -477,6 +478,7 @@
     <ClCompile Include="graphics\draw2d\cursor.cpp" />
     <ClCompile Include="graphics\draw2d\cursor_set.cpp" />
     <ClCompile Include="graphics\draw2d\debug.cpp" />
+    <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />

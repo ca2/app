@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "_user.h"
 #include "core/html/html/data.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace core

@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+
 #include "acme/constant/id.h"
 
 

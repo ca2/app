@@ -90,8 +90,7 @@ namespace axis
 //
 #endif
 
-#include "axis/net/_.h"
-
+#include "axis/networking/_.h"
 
 #include "axis/platform/openweather_city.h"
 
@@ -111,7 +110,7 @@ namespace axis
 
 #include "axis/platform/session.h"
 
-#include "axis/net/email_department.h"
+#include "axis/networking/email_department.h"
 
 #include "axis/html/html/_.h"
 
@@ -135,11 +134,7 @@ namespace axis
 
 
 
-
-
-
-#include "axis/net/_impl.h"
-
+#include "axis/networking/_impl.h"
 
 
 #include "axis/database/database/_impl.h"

@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "_data.h"
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+
 #include "core/user/user/_tree.h"
 
 

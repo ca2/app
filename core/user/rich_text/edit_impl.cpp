@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "acme/constant/timer.h"
 
 
@@ -1917,7 +1920,7 @@ namespace user
 
                      //str = psession->keyboard().process_key(pkey);
                                           //str = psession->keyboard().process_key(pkey);
-                     __throw(todo("keyboard"));
+                     throw exception::exception(todo, "keyboard");
 
 
                   }

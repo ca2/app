@@ -583,6 +583,7 @@
     <ClInclude Include="constant\status_range_authentication.h" />
     <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user_text.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="exception\aaa_assert.h" />

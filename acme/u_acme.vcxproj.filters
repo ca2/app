@@ -3456,6 +3456,9 @@
     <ClInclude Include="filesystem\filesystem\aaaa_.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="constant\user_text.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h">

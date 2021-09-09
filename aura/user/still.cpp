@@ -522,11 +522,13 @@ namespace user
 
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
 
+      ::enum_text_wrap etextwrap = m_etextwrap;
+
       m_textouta.text_outa().erase_all();
 
       auto pfont = get_font(pstyle, ::user::e_element_none);
 
-      pgraphics->create_simple_multiline_layout(m_textouta, strText, rectangleClient, pfont, ealign);
+      pgraphics->create_simple_multiline_layout(m_textouta, strText, rectangleClient, pfont, ealign, etextwrap);
 
    }
 

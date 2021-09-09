@@ -147,7 +147,8 @@ namespace user
       bool                                         m_bParentScrollX : 1;
       bool                                         m_bParentScrollY : 1;
       bool                                         m_bUserInteractionHost : 1;
-
+      
+      enum_text_wrap                               m_etextwrap;
 
       __pointer(::user::interaction_scaler)        m_pinteractionScaler;
 

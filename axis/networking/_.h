@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "axis/net/netserver/_.h"
+#include "axis/networking/netserver/_.h"
 
 
 #include "email_department.h"

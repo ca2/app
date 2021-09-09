@@ -1334,7 +1334,7 @@
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
     </None>
-    <None Include="core.def">
+    <None Include="u_core.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -1736,9 +1736,6 @@
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\left_view.cpp">

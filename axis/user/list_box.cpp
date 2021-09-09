@@ -29,6 +29,8 @@ namespace user
 
       defer_create_mutex();
 
+      m_bClickDefaultMouseHandling = true;
+
       m_bTransparent = true;
 
       m_bHoverDefaultMouseHandling = true;
@@ -61,7 +63,7 @@ namespace user
 
       ::user::scroll_base::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::on_message_destroy);
@@ -71,9 +73,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
@@ -977,105 +977,6 @@ namespace user
       UNREFERENCED_PARAMETER(pmessage);
 
    }
-
-
-//   void list_box::on_message_left_button_down(::message::message * pmessage)
-//   {
-//
-//      auto pmouse = pmessage->m_pmouse;
-//
-//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-//
-//      auto rectangleClient = get_client_rect();
-//
-//      auto psession = get_session();
-//
-//      psession->user()->set_mouse_focus_LButtonDown(this);
-//
-//      m_itemLButtonDown = -1;
-//
-//      if (rectangleClient.contains(point))
-//      {
-//
-//         m_itemLButtonDown = hit_test(pmouse);
-//
-//         set_mouse_capture();
-//
-//      }
-//
-//      pmessage->m_bRet = true;
-//
-//   }
-
-
-//   void list_box::on_message_left_button_up(::message::message * pmessage)
-//   {
-//
-//      auto pmouse = pmessage->m_pmouse;
-//
-//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-//
-//      auto rectangleClient = get_client_rect();
-//
-//      auto psession = get_session();
-//
-//      psession->user()->set_mouse_focus_LButtonDown(this);
-//
-//      auto puser = psession->user();
-//
-//      auto pwindowing = puser->windowing();
-//
-//      pwindowing->release_mouse_capture();
-//
-//      if (rectangleClient.contains(point))
-//      {
-//
-//         auto itemHit = hit_test(pmouse);
-//
-//         if (itemHit == m_itemLButtonDown)
-//         {
-//
-//            m_itemCurrent = itemHit;
-//
-//            if (::is_set(m_pcombo))
-//            {
-//
-//               m_pcombo->_001ShowDropDown(false);
-//
-//            }
-//
-//            if(has_control_event_handler())
-//            {
-//
-//               ::user::control_event ev;
-//
-//               ev.m_puserinteraction = this;
-//
-//               ev.m_id = m_id;
-//
-//               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-//
-//               ev.m_actioncontext = ::e_source_user;
-//
-//               ev.m_item = itemHit;
-//
-//               route_control_event(&ev);
-//
-//            }
-//
-//            set_need_redraw();
-//
-//            post_redraw();
-//
-//         }
-//
-//      }
-//
-//
-//
-//      pmouse->m_bRet = true;
-//
-//   }
 
 
    void list_box::on_message_middle_button_down(::message::message * pmessage)

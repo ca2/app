@@ -862,31 +862,6 @@ namespace user
    }
 
 
-//   ::user::item combo_box::current_item()
-//   {
-//
-//      if(!m_plistbox)
-//      {
-//
-//         return -1;
-//
-//      }
-//
-//      return m_plistbox->current_item();
-//
-//   }
-
-
-//   void combo_box::set_current_item(const ::user::item & item, const ::action_context & actioncontext)
-//   {
-//
-//      defer_create_list_box();
-//
-//      m_plistbox->set_current_item(item, actioncontext);
-//
-//   }
-
-
    void combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -940,13 +915,6 @@ namespace user
          auto itemCurrent = _001FindListText(str);
 
          set_current_item(itemCurrent, actioncontext);
-
-         //      if (m_plistbox.is_set())
-         //      {
-         //
-         //         m_plistbox->on_change_combo_sel(m_itemCurrent);
-         //
-         //      }
 
       }
 
@@ -1183,7 +1151,6 @@ namespace user
 
 
    index combo_box::Dir(index attr, const ::string & pszWildCard)
-
    {
 
 //      ASSERT(is_window());
@@ -1196,47 +1163,6 @@ namespace user
    }
 
 
-   //index combo_box::FindString(index nStartAfter, const ::string & pszString)
-
-   //{
-
-   //   for (index i = nStartAfter++; i < m_straList.get_count(); i++)
-   //   {
-
-   //      if (m_straList[i].compare(pszString) == 0)
-
-   //      {
-
-   //         return i;
-
-   //      }
-
-   //   }
-
-   //   return -1;
-
-   //}
-
-
-   //index combo_box::SelectString(index nStartAfter, const ::string & pszString, const ::action_context & context)
-
-   //{
-
-   //   index iSel = FindString(nStartAfter, pszString);
-
-
-   //   if (iSel >= 0)
-   //   {
-
-   //      set_current_item(iSel, context);
-
-   //   }
-
-   //   return -1;
-
-   //}
-
-   //
    void combo_box::clear()
    {
 
@@ -1256,6 +1182,7 @@ namespace user
 
    }
 
+
    void combo_box::Cut()
    {
 
@@ -1265,6 +1192,7 @@ namespace user
 
    }
 
+
    void combo_box::Paste()
    {
 
@@ -1273,6 +1201,7 @@ namespace user
       //send_message( WM_PASTE, 0, 0);
 
    }
+
 
    i32 combo_box::SetItemHeight(index nIndex, ::u32 cyItemHeight)
    {
@@ -1285,6 +1214,7 @@ namespace user
 
    }
 
+
    i32 combo_box::GetItemHeight(index nIndex)
    {
 
@@ -1296,8 +1226,8 @@ namespace user
 
    }
 
-   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
 
+   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
    {
 
       //ASSERT(is_window());
@@ -1308,6 +1238,7 @@ namespace user
       return -1;
 
    }
+
 
    i32 combo_box::SetExtendedUI(bool bExtended)
    {
@@ -1320,6 +1251,7 @@ namespace user
 
    }
 
+
    bool combo_box::GetExtendedUI()
    {
 
@@ -1331,8 +1263,8 @@ namespace user
 
    }
 
-   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
 
+   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
    {
 
       //ASSERT(is_window());
@@ -1341,6 +1273,7 @@ namespace user
 
 
    }
+
 
    bool combo_box::GetDroppedState()
    {
@@ -1352,6 +1285,7 @@ namespace user
       return false;
 
    }
+
 
 //   LCID combo_box::GetLocale()
 //   {
@@ -1375,6 +1309,7 @@ namespace user
 //
 //   }
 
+
    index combo_box::GetTopIndex()
    {
 
@@ -1386,6 +1321,7 @@ namespace user
 
    }
 
+
    index combo_box::SetTopIndex(index nIndex)
    {
 
@@ -1396,6 +1332,7 @@ namespace user
       return -1;
 
    }
+
 
    ::count combo_box::InitStorage(::count nItems, ::u32 nBytes)
    {
@@ -1417,6 +1354,7 @@ namespace user
 
    }
 
+
    ::u32 combo_box::GetHorizontalExtent()
    {
 
@@ -1428,6 +1366,7 @@ namespace user
 
    }
 
+
    i32 combo_box::SetDroppedWidth(::u32 nWidth)
    {
 
@@ -1438,6 +1377,7 @@ namespace user
       return -1;
 
    }
+
 
    i32 combo_box::GetDroppedWidth()
    {
@@ -1456,22 +1396,6 @@ namespace user
 
       return m_plistbox->_001GetListText(iSel, str);
 
-      //str.Empty();
-
-      //if (iSel < 0)
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (iSel >= m_straList.get_count())
-      //   return false;
-
-      //str = m_straList[iSel];
-
-      //return true;
-
    }
 
 
@@ -1479,49 +1403,6 @@ namespace user
    {
 
       return m_plistbox->_001FindListText(str);
-
-      //index combo_box::_001FindListText(const ::string & str) const
-      //{
-
-      //   ::count ca = _001GetListCount();
-
-      //   string strItem;
-
-      //   for(index i = 0; i < ca; i++)
-      //   {
-
-      //      _001GetListText(i,strItem);
-
-      //      if(m_bCaseSensitiveMatch)
-      //      {
-
-      //         if(str.compare(strItem) == 0)
-      //            return i;
-
-      //      }
-      //      else
-      //      {
-
-      //         if(str.compare_ci(strItem) == 0)
-      //            return i;
-
-      //      }
-
-      //   }
-
-      //   return -1;
-
-      //}
-
-
-      //if(m_bCaseSensitiveMatch)
-      //{
-      //   return m_straList.find_first(str);
-      //}
-      //else
-      //{
-      //   return m_straList.find_first_ci(str);
-      //}
 
    }
 
@@ -1624,35 +1505,10 @@ namespace user
    }
 
 
-   //bool combo_box::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
-   //{
-
-   //   if (!::user::interaction::create_interaction(pinteractionParent, id))
-   //   {
-
-   //      TRACE("Failed to create control");
-
-   //      return false;
-
-   //   }
-
-   //   display(e_display_none);
-
-   //   m_bMultiLine = false;
-
-   //   return true;
-
-   //}
-
-
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");
-
       on_message_left_button_down(pmessage);
-
-      //pmessage->m_bRet = true;
 
    }
 
@@ -1669,55 +1525,6 @@ namespace user
          {
 
             set_current_item(pevent->m_item, pevent->m_actioncontext);
-
-//            if(m_plistbox)
-//            {}
-//
-//            m_plistbox
-//
-//            ::id id = translate_property_id(m_id);
-//
-//            if(has_control_event_handler())
-//            {
-//
-//               ::user::control_event ev;
-//
-//               ev.m_puserinteraction = this;
-//
-//               ev.m_id = id;
-//
-//               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-//
-//               ev.m_pmessage = pevent->m_pmessage;
-//
-//               ev.m_item = pevent->m_item;
-//
-//               ev.m_actioncontext = pevent->m_actioncontext;
-//
-//               route_control_event(&ev);
-//
-//               pevent->m_bRet = ev.m_bRet;
-//
-//               set_need_redraw();
-//
-//            }
-
-//            string strItem;
-//
-//            _001GetListText(m_itemCurrent, strItem);
-//
-//            //if (m_bEdit)
-//            //{
-//
-//               _001SetText(strItem, ::e_source_sync);
-//
-//            //}
-//            //else
-//            //{
-//
-//              // _001SetText(strItem, ::e_source_sync);
-//
-//            //}
 
             _001ShowDropDown(false);
 

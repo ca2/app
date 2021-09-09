@@ -22,6 +22,8 @@ namespace user
    check_box::check_box(e_style estyle)
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       m_millisAnimationPeriod = 300_ms;
 
       m_estyle = estyle;
@@ -671,7 +673,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
       
       MESSAGE_LINK(e_message_create, pchannel, this, &check_box::on_message_create);
 

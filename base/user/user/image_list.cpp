@@ -11,6 +11,8 @@ namespace user
    image_list::image_list()
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       m_sizeImage.set(0, 0);
 
       m_iTextHeight = 30;
@@ -107,7 +109,7 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);

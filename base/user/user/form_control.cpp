@@ -12,6 +12,8 @@ namespace user
    form_control::form_control()
    {
 
+      m_bDataUpdateDefaultHandling = true;
+
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
       m_bInitialized          = false;
@@ -671,7 +673,7 @@ namespace user
       //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
       MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
-      install_update_data_message_routing(pchannel);
+      //install_update_data_message_routing(pchannel);
 
    }
 

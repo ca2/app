@@ -41,6 +41,8 @@ namespace user
    void button::user_button_construct()
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       m_econtroltype = e_control_type_button;
 
       m_bMouseHoverOnCapture = true;
@@ -126,7 +128,7 @@ namespace user
       MESSAGE_LINK(e_message_create    , pchannel, this, &button::on_message_create);
       MESSAGE_LINK(e_message_key_down   , pchannel, this, &button::on_message_key_down);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
       
    }
 

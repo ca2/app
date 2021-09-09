@@ -60,7 +60,17 @@ void output_debug_string(const ansichar * psz)
 
 #ifdef WINDOWS
 
-   ::OutputDebugStringW(wstring(psz));
+   auto len = utf8_to_unichar_len(psz);
+
+   memory memory;
+
+   memory.set_size((len + 1) * sizeof(wchar_t));
+
+   auto pwsz = (wchar_t *)memory.get_data();
+
+   utf8_to_unichar(pwsz, psz, len);
+
+   ::OutputDebugStringW(pwsz);
 
 #else
 

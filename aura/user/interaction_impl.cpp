@@ -2069,26 +2069,21 @@ namespace user
    }
 
 
-   //bool interaction_impl::OnNotify(::message::message * pmessage)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pmessage);
-
-   //   ::exception::throw_interface_only();
-
-   //}
-
-
    bool interaction_impl::IsTopParentActive()
    {
+
       ::exception::throw_interface_only();
 
       return false;
+
    }
+
 
    void interaction_impl::ActivateTopParent()
    {
+
       ::exception::throw_interface_only();
+
    }
 
 

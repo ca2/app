@@ -32,6 +32,12 @@ namespace base
 simple_frame_window::simple_frame_window()
 {
 
+   m_bEnableDragMove = false;
+
+   m_bClickDefaultMouseHandling = false;
+
+   m_bHoverDefaultMouseHandling = false;
+
    m_bFramePayloadFlags = false;
 
    m_bProdevianFrame = true;

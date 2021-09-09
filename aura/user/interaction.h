@@ -143,10 +143,12 @@ namespace user
       bool                                         m_bHoverDefaultMouseHandling : 1;
       bool                                         m_bEditDefaultHandling : 1;
       bool                                         m_bKeyboardMultipleSelectionDefaultHandling : 1;
+      bool                                         m_bDataUpdateDefaultHandling : 1;
       bool                                         m_bLockSketchToDesign : 1;
       bool                                         m_bParentScrollX : 1;
       bool                                         m_bParentScrollY : 1;
       bool                                         m_bUserInteractionHost : 1;
+      bool                                         m_bEnableDragMove : 1;
       
       enum_text_wrap                               m_etextwrap;
 
@@ -1737,9 +1739,9 @@ namespace user
       virtual void clear_bitmap_source() override;
 
 
-      void install_click_default_mouse_handling(::channel* pchannel);
-      void install_hover_default_mouse_handling(::channel* pchannel);
-      void install_update_data_message_routing(::channel * pchannel);
+      //void install_click_default_mouse_handling(::channel* pchannel);
+      //void install_hover_default_mouse_handling(::channel* pchannel);
+      //void install_update_data_message_routing(::channel * pchannel);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);

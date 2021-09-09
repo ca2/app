@@ -9,9 +9,13 @@ namespace user
    main_window::main_window()
    {
 
-      m_bExtendOnParentIfClientOnly = true;
+      m_bEnableDragMove = true;
 
-      enable_drag_move();
+      m_bClickDefaultMouseHandling = true;
+
+      m_bHoverDefaultMouseHandling = true;
+
+      m_bExtendOnParentIfClientOnly = true;
 
    }
 
@@ -27,9 +31,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
       
-      install_hover_default_mouse_handling(pchannel);
+      //install_hover_default_mouse_handling(pchannel);
 
    }
 

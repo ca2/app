@@ -16,6 +16,8 @@ namespace user
       m_pen(e_create)
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.erase(non_client_background);
@@ -60,7 +62,7 @@ namespace user
 
       ::user::impact::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::on_message_destroy);

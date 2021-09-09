@@ -54,6 +54,8 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bEnableDragMove = false;
+
       //m_bTaskPending = true;
 
       //m_pimplBase = nullptr;
@@ -1484,6 +1486,40 @@ namespace user
          MESSAGE_LINK(e_message_display_change, pchannel, this, &interaction::on_message_display_change);
          MESSAGE_LINK(e_message_control_event, pchannel, this, &interaction::on_message_control_event);
          MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
+
+         if (m_bDataUpdateDefaultHandling)
+         {
+
+            MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
+            MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
+
+         }
+         
+         if (m_bClickDefaultMouseHandling)
+         {
+
+            MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+
+            m_bHoverDefaultMouseHandling = true;
+
+#if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
+
+            MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+            MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+
+#endif
+
+         }
+
+
+         if (m_bHoverDefaultMouseHandling)
+         {
+
+            MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+            MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+
+         }
+
          //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &::user::interaction::on_message_set_cursor);
 
          if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
@@ -1501,21 +1537,19 @@ namespace user
       //MESSAGE_LINK(e_message_command, pchannel, this, &interaction::_001OnCommand);
       MESSAGE_LINK(e_message_simple_command, pchannel, this, &interaction::on_message_simple_command);
 
-      if (m_bClickDefaultMouseHandling)
-      {
+      //if (m_bClickDefaultMouseHandling)
+      //{
 
-         install_click_default_mouse_handling(pchannel);
-         
-         m_bHoverDefaultMouseHandling = true;
-         
-      }
+      //   install_click_default_mouse_handling(pchannel);
+      //   
+      //}
       
-      if (m_bHoverDefaultMouseHandling)
-      {
+      //if (m_bHoverDefaultMouseHandling)
+      //{
 
-         install_hover_default_mouse_handling(pchannel);
+      //   install_hover_default_mouse_handling(pchannel);
 
-      }
+      //}
 
    }
 
@@ -4388,6 +4422,13 @@ return "";
 
       UNREFERENCED_PARAMETER(pmessage);
 
+      if (m_bEnableDragMove)
+      {
+
+         enable_drag_move();
+
+      }
+
       auto psystem = m_psystem->m_paurasystem;
 
       auto psubject = psystem->subject(id_os_dark_mode);
@@ -5244,23 +5285,23 @@ return "";
 
       auto pointClient = point;
 
-      ::user::interaction * puserinteractionParent;
+      ::user::interaction * puserinteractionParent = nullptr;
 
       ::user::interaction * puserinteractionSearchChildren = this;
 
       do
       {
 
+         if (!puserinteractionSearchChildren->is_this_visible())
+         {
+
+            break;
+
+         }
+
          puserinteractionParent = puserinteractionSearchChildren;
 
          puserinteractionParent->parent_to_client(pointClient);
-
-         if(ansi_str(puserinteractionParent->type_c_str(), "button"))
-         {
-
-            //            output_debug_string("button");
-
-         }
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -5273,24 +5314,29 @@ return "";
 
          puserinteractionSearchChildren = nullptr;
 
-         for(::index iChild = puserinteractionpointeraChild->interaction_last_index();
-         iChild >= 0; iChild--)
+         for (::index iChild = puserinteractionpointeraChild->interaction_last_index();
+            iChild >= 0; iChild--)
          {
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
+            if (puserinteractionChild->is_this_visible())
             {
 
-               puserinteractionSearchChildren = puserinteractionChild;
+               if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
+               {
 
-               break;
+                  puserinteractionSearchChildren = puserinteractionChild;
+
+                  break;
+
+               }
 
             }
 
          }
 
-      }while (puserinteractionSearchChildren != nullptr);
+      } while (puserinteractionSearchChildren != nullptr);
 
       return puserinteractionParent;
 
@@ -15176,49 +15222,51 @@ order(zorderParam);
    }
 
 
-   void interaction::install_click_default_mouse_handling(::channel* pchannel)
-   {
-
-      m_bClickDefaultMouseHandling = true;
-
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
-      
-      
-#if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
-      
-      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
-      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
-      
-#endif
-//      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
-//      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
-
-   }
-
-
-   void interaction::install_hover_default_mouse_handling(::channel* pchannel)
-   {
-
-      m_bHoverDefaultMouseHandling = true;
-
-//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+//   void interaction::install_click_default_mouse_handling(::channel* pchannel)
+//   {
+//
+//      m_bClickDefaultMouseHandling = true;
+//
+//      // this is not needed, user::interaction hooks left_button_down by default.
+//      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+//
 //      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+//      
+//      
+//#if MOUSE_MIDDLE_BUTTON_MESSAGE_HANDLING_DEBUG
+//      
 //      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
 //      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
-      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+//      
+//#endif
+////      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+////      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+//
+//   }
+//
 
-   }
+//   void interaction::install_hover_default_mouse_handling(::channel* pchannel)
+//   {
+//
+//      m_bHoverDefaultMouseHandling = true;
+//
+////      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &interaction::on_message_left_button_down);
+////      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &interaction::on_message_left_button_up);
+////      MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &interaction::on_message_middle_button_down);
+////      MESSAGE_LINK(e_message_middle_button_up, pchannel, this, &interaction::on_message_middle_button_up);
+//      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &interaction::on_message_mouse_move);
+//      MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &interaction::on_message_mouse_leave);
+//
+//   }
 
 
-   void interaction::install_update_data_message_routing(::channel * pchannel)
-   {
+   //void interaction::install_update_data_message_routing(::channel * pchannel)
+   //{
 
-      MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
-      MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
+   //   MESSAGE_LINK(e_message_need_load_form_data, pchannel, this, &interaction::on_message_need_load_form_data);
+   //   MESSAGE_LINK(e_message_need_save_form_data, pchannel, this, &interaction::on_message_need_save_form_data);
 
-   }
+   //}
 
 
 

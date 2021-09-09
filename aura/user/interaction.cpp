@@ -6676,6 +6676,10 @@ void interaction::set_window_text(const ::string & pszString)
 
    }
 
+   set_need_layout();
+
+   set_need_redraw();
+
 }
 
 

@@ -216,7 +216,7 @@ public:
    inline void unset_finishing() { unset(e_matter_finishing); }
 
 
-   inline void is_heap_allocated() const { is(e_matter_heap_allocated); }
+   inline bool is_heap_allocated() const { return is(e_matter_heap_allocated); }
    inline void set_heap_allocated() { set(e_matter_heap_allocated); }
    inline void unset_heap_allocated() { unset(e_matter_heap_allocated); }
 

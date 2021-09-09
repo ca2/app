@@ -40,6 +40,9 @@ namespace aura
 
       virtual void dpi_os_initialize();
 
+      virtual void message_box_factory();
+
+
 
 //#ifdef LINUX
 
@@ -64,6 +67,9 @@ namespace aura
       //virtual void user_fork(const ::routine & routine) override;
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
+
+
+      virtual __pointer(::extended::future < ::conversation >) _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox);
 
 
    };

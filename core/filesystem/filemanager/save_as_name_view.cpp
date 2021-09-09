@@ -245,7 +245,7 @@ namespace filemanager
 
                //   });
 
-               message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
+               message_box(this, "Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no)
                   ->then([this, strPath](auto pfuture)
                      {
 
@@ -306,7 +306,7 @@ namespace filemanager
       else
       {
 
-         //message_box("Failed to save document");
+         //output_message_box_error("Failed to save document");
 
          //psubject->id() = id_topic_save_failed;
 
@@ -432,7 +432,7 @@ namespace filemanager
       if (!m_pedit)
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_message_box_error("Could not create file list ::user::impact");
 
       }
 

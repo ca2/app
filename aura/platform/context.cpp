@@ -24,8 +24,6 @@ namespace aura
 
       auto estatus = ::apex::context::initialize_context();
 
-      
-
       if (!estatus)
       {
 
@@ -51,6 +49,19 @@ namespace aura
 
    }
 
+
+   __pointer(::extended::future < ::conversation >) context::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   {
+
+      auto pmessagebox = __create < ::user::message_box >();
+
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+
+      auto pextendedfuture = pmessagebox->show(oswindow, strMessage, strTitle, emessagebox);
+
+      return pextendedfuture;
+
+   }
 
 
 //   ::file::path context::defer_make_file_system_url(string str)

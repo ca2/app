@@ -824,9 +824,6 @@
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\device_lock.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="user\style_control.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1101,6 +1098,9 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\device_lock.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1658,6 +1658,9 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\device_lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>

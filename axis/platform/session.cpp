@@ -677,7 +677,7 @@ namespace axis
       //if (!InitializeLocalDataCentral())
       //{
 
-      //   message_box("Could not initialize Local data central");
+      //   output_message_box_error("Could not initialize Local data central");
 
       //   return ::error_failed;
 
@@ -963,7 +963,7 @@ namespace axis
    //   if (!InitializeLocalDataCentral())
    //   {
 
-   //      message_box("Could not initialize Local data central");
+   //      output_message_box_error("Could not initialize Local data central");
 
    //      return false;
 

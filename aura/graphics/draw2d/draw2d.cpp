@@ -345,7 +345,7 @@ namespace draw2d
       catch (...)
       {
 
-         message_box("except", "except", e_message_box_ok);
+         output_message_box_error("except", "except", e_message_box_ok);
 
       }
 
@@ -1294,7 +1294,7 @@ breakFilter2:
          if (!estatus)
          {
 
-            message_box("Failed to initialize draw2d library.");
+            output_message_box_error("Failed to initialize draw2d library.");
 
             estatus = error_failed;
 
@@ -1518,6 +1518,22 @@ breakFilter2:
       //return PLATFORM_COMMON_STRING;
 
 #endif
+
+   }
+
+
+   ::e_status draw2d::lock_device()
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status draw2d::unlock_device()
+   {
+
+      return ::success;
 
    }
 

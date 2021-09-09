@@ -925,7 +925,7 @@ namespace android
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
       {
       // android message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-      message_box("Failed to launch help");
+      output_message_box_error("Failed to launch help");
       }*/
    }
 
@@ -953,7 +953,7 @@ namespace android
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    {
    // android message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   message_box("Failed to launch help");
+   output_message_box_error("Failed to launch help");
    }*/
    //}
 

@@ -682,7 +682,7 @@ namespace aura
       //if (!create_session())
       //{
 
-      //   message_box("Failed to allocate Session!!");
+      //   output_message_box_error("Failed to allocate Session!!");
 
       //   return false;
 
@@ -693,7 +693,7 @@ namespace aura
       //if (!m_papplicationStartup)
       //{
 
-      //   message_box("Failed to allocate papplication!!");
+      //   output_message_box_error("Failed to allocate papplication!!");
 
       //   return false;
 
@@ -1080,7 +1080,7 @@ namespace aura
          if (!draw2d_factory_exchange(::factory::get_factory_map()))
          {
 
-            message_box("Failed to initialize draw2d library.");
+            output_debug_string("ERROR: Failed to initialize draw2d library.");
 
             estatus = error_failed;
 
@@ -1118,7 +1118,7 @@ namespace aura
 
 #if !defined(MOBILE_PLATFORM)
 
-               message_box("Failed to initialize imaging library.");
+               output_message_box_error("Failed to initialize imaging library.");
 
 #endif
                // Non fatal? Missing images (if using images)?

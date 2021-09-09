@@ -1109,6 +1109,7 @@
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\color_filter.cpp" />
     <ClCompile Include="graphics\draw2d\context_image.cpp" />
+    <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
     <ClCompile Include="graphics\draw2d\load_image.cpp" />

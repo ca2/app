@@ -60,7 +60,7 @@ namespace filemanager
       if(pusertree.is_null())
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_message_box_error("Could not create file list ::user::impact");
 
       }
 

@@ -741,7 +741,8 @@ namespace apex
                else
                {
 
-                  message_box("Could not create requested application: \"" + strApp + "\"");
+                  //output_message_box_error("Could not create requested application: \"" + strApp + "\"");
+                  output_debug_string("Could not create requested application: \"" + strApp + "\"");
 
                   ::count c = psystem->payload("app").array_get_count();
 
@@ -1322,7 +1323,9 @@ ret:
       if (!InitializeLocalDataCentral())
       {
 
-         message_box("Could not initialize Local data central");
+         //output_message_box_error("Could not initialize Local data central");
+
+         output_debug_string("Could not initialize Local data central");
 
          return false;
 

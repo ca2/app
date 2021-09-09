@@ -39,6 +39,8 @@ namespace aura
 
       }
 
+      message_box_factory();
+
       m_psystem->m_pauranode = this;
 
       return estatus;
@@ -50,6 +52,14 @@ namespace aura
    {
 
       throw exception::exception(error_failed);
+
+   }
+
+
+   void node::message_box_factory()
+   {
+
+      create_factory < ::user::default_message_box, ::user::message_box >();
 
    }
 
@@ -131,6 +141,19 @@ namespace aura
 //
 //   }
 
+   
+   __pointer(::extended::future < ::conversation >) node::_message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   {
+
+      auto pmessagebox = __create < ::user::message_box >();
+
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+
+      auto pextendedfuture = pmessagebox->show(oswindow, strMessage, strTitle, emessagebox);
+
+      return pextendedfuture;
+
+   }
 
 
 } // namespace aura

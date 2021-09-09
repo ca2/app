@@ -106,7 +106,7 @@ namespace user
          TRACE(trace_category_appmsg, e_trace_level_warning, "impact_system::create_new_document returned nullptr.\n");
 
          // TODO Translate
-         message_box("failed to create ::user::document");
+         output_message_box_error("failed to create ::user::document");
 
          return;
 
@@ -135,7 +135,7 @@ namespace user
          if (strId.find_ci("userex::message_box") < 0)
          {
 
-            message_box("Failed to create ::user::document");
+            output_message_box_error("Failed to create ::user::document");
 
          }
 

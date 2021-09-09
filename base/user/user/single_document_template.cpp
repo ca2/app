@@ -152,7 +152,7 @@ namespace user
       {
          // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         message_box("Failed to create document");
+         output_message_box_error("Failed to create document");
 
          return;
 
@@ -187,7 +187,7 @@ namespace user
             if(!result.get_exit_status(estatus))
             {
 
-               message_box("Failed to create Document");
+               output_message_box_error("Failed to create Document");
 
             }
 

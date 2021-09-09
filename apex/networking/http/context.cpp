@@ -447,7 +447,9 @@ namespace http
    string context::get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
    {
 
-      message_box("What?!", nullptr, e_message_box_ok);
+      //output_message_box_error("What?!", nullptr, e_message_box_ok);
+
+      output_debug_string("What?!");
 
       string strUrl = locale_schema_url(pszUrl, pszLocale, pszSchema);
 

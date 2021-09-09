@@ -386,7 +386,7 @@ namespace user
       //   if(is_debugger_attached())
       //   {
 
-      //      message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
+      //      output_message_box_error("keyboard default.xml has no keyboard entries?!?!?!?!");
 
       //   }
 

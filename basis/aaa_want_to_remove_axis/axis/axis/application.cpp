@@ -1475,7 +1475,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
          if (mutex.already_exists())
          {
 
-//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
 
             return -35;
 

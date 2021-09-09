@@ -45,7 +45,7 @@ namespace acme
 
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       inline ::context_image* context_image() { return m_pcontextimage; }

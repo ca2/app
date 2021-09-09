@@ -227,7 +227,9 @@ namespace user
 
          strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.name().c_str());
 
-         message_box(strMessage);
+         //message_box(strMessage);
+
+         output_message_box_error(strMessage);
 
          return nullptr;
 

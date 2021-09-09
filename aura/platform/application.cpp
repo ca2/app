@@ -2037,9 +2037,9 @@ retry_license:
          if (!estatus)
          {
 
-            TRACE("context_image required but missing");
+            TRACE("ERROR: context_image required but missing.");
 
-            message_box("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+            //output_message_box_error("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
             return estatus;
 
@@ -5546,7 +5546,7 @@ retry_license:
 //         if (::mutex.already_exists())
 //         {
 //
-//            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            //            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
 //
 //            return -35;
 //
@@ -8438,7 +8438,9 @@ namespace aura
 
       auto puserinteractionMain = m_puserinteractionMain;
 
-      puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+      //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+
+      output_message_box_error(strMessage, pszTopic, iMessageFlags);
 
    }
 

@@ -337,7 +337,7 @@ namespace account
 
       bool bWasWaiting = false;
 
-      while (!synchronouslock.wait(one_second()).signaled())
+      while (!__signaled(synchronouslock.wait(one_second())))
       {
 
          if (!::task_get_run())

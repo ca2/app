@@ -260,10 +260,8 @@ namespace aura
 
 #endif
 
-
-
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void common_construct();
@@ -360,7 +358,7 @@ namespace aura
       virtual string crypto_md5_text(const ::string & str) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual __pointer(::extended::future < ::conversation >) _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 

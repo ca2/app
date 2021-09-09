@@ -2855,6 +2855,32 @@ inline bool is_set(const TYPE & t)
 //#include "acme/user/primitive.h"
 
 
+template < typename TYPE >
+inline ::i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+
+template < typename TYPE >
+inline ::i64 __finalize(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+
+template < class REFERENCE >
+inline ::i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+
+template<typename T>
+inline __pointer(T) move_transfer(T * p);
+
+
+template < typename T >
+inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
+
+
+#define ___new(...) ::set_heap_allocated( new __VA_ARGS__ )
+
+
+#define __new(...) ::move_transfer( ___new(__VA_ARGS__ ) )
+
+
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/pointer2.h"
 

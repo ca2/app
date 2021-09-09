@@ -40,12 +40,8 @@ namespace apex
       // virtual ~context_thread();
 
 
-
-
-
-
       context();
-      virtual ~context();
+      ~context() override;
 
 
       virtual void on_command_create(::create* pcreate);

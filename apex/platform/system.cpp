@@ -631,7 +631,7 @@ namespace apex
 ////      if (!bOk)
 //  //    {
 //
-//         //message_box("Could not open platform audio library.");
+//         //output_message_box_error("Could not open platform audio library.");
 //
 //    //  }
 //
@@ -1797,7 +1797,9 @@ pacmedir->create("/ca2core");
       if (!estatus)
       {
 
-         message_box("Failed to allocate get_session()!!");
+         //output_message_box_error("Failed to allocate get_session()!!");
+
+         output_debug_string("Failed to allocate get_session()!!");
 
          return estatus;
 
@@ -5877,12 +5879,12 @@ namespace apex
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //{
 
-      return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
+   //   return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
 
-   }
+   //}
 
    // https://github.com/umpirsky/tld-list/blob/master/data/en/tld.txt
    

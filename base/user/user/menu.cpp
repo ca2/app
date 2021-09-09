@@ -254,7 +254,7 @@ namespace user
          if (is_debugger_attached())
          {
 
-            message_box("menu::load_xml_string_menu\n\nBad XML document!!");
+            output_message_box_error("menu::load_xml_string_menu\n\nBad XML document!!");
 
          }
 

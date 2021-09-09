@@ -788,7 +788,9 @@ namespace apex
 
          string strMessage = e.get_message();
 
-         message_box(strMessage);
+         //message_box(strMessage);
+
+         output_debug_string(strMessage);
 
          return nullptr;
 

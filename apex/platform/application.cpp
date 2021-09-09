@@ -1765,7 +1765,9 @@ strMessage = "Another instance of \"" + m_strAppName + "\" is already running (a
 
 //message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
-message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+//message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+
+output_debug_string(strMessage + m_strAppName);
 
 INFO("apex::application::init_application exit");
 
@@ -6812,7 +6814,7 @@ auto pmutex = __new(::install::mutex(this, process_platform_dir_name2()));
 if (pmutex->already_exists())
 {
 
-//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
 
 return -35;
 
@@ -9830,14 +9832,14 @@ void application::close(::apex::enum_end eend)
 }
 
 
-__pointer(::extended::future < ::conversation >) application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
-{
-
-   auto psystem = get_system()->m_papexsystem;
-
-   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
-
-}
+//__pointer(::extended::future < ::conversation >) application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+//{
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
+//
+//}
 
 
 string application::get_version()

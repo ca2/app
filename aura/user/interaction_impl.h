@@ -102,7 +102,7 @@ namespace user
       ::rectangle_i32                           m_rectUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      list < __pointer(::message::message) >    m_messagelist;
+      ::list < __pointer(::message::message) >  m_messagelist;
 
       bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;

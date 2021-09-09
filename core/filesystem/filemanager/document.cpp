@@ -124,7 +124,7 @@ namespace filemanager
          if (str == "uifs:// You have not logged in!")
          {
 
-            message_box("You have not logged in! Cannot access your User Intelligent File System - uifs://");
+            output_message_box_error("You have not logged in! Cannot access your User Intelligent File System - uifs://");
 
             // assume can resume at least from this exception one time
 

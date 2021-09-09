@@ -1055,7 +1055,7 @@ namespace html
             psz++;
          if (*psz != '/' && *psz != '>')
          {
-            __throw(::exception::exception("run tag fixer tabjs"));
+            throw ::exception::exception(error_parsing, "run tag fixer tabjs");
          }
          if (*psz == '/')
          {
@@ -1064,7 +1064,7 @@ namespace html
                psz++;
             if (*psz != '>')
             {
-               __throw(::exception::exception("run tag fixer tabjs"));
+               throw ::exception::exception(error_parsing, "run tag fixer tabjs");
             }
             return true;
          }
@@ -1111,7 +1111,7 @@ namespace html
          psz++;
       if (*psz != '<')
       {
-         __throw(::exception::exception("run tag fixer tabjs"));
+         throw ::exception::exception(error_parsing, "run tag fixer tabjs");
       }
       psz++;
       // skip white space
@@ -1129,7 +1129,7 @@ namespace html
          return true;
       }
 
-      __throw(::exception::exception("invalid xml file"));
+      throw ::exception::exception(error_parsing, "invalid xml file");
 
    }
 

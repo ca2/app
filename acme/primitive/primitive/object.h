@@ -397,7 +397,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual __pointer(::extended::future < ::conversation >)  message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >)  message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);

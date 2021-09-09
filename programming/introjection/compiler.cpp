@@ -1478,14 +1478,14 @@ auto tickStart = ::millis::now();
       if(!plibrary->m_plibrary->open(strTargetPath))
       {
 
-         message_box("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_message_box_error("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 
       if(!plibrary->m_plibrary->open_library(strLibTitle))
       {
 
-         message_box("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_message_box_error("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 

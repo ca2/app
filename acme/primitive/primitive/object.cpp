@@ -2526,61 +2526,12 @@ string object::get_text(const ::payload& payload, const ::id& id)
 }
 
 
-__pointer(::extended::future < ::conversation >) object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
+__pointer(::extended::future < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
 {
-
-   //auto edialogresult =
 
    auto psystem = m_psystem;
 
-   auto presult = psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
-
-   //auto psession = get_session();
-
-   ////future.m_id = DIALOG_RESULT_PROCESS;
-
-   //if (::is_set(psession))
-   //{
-
-   //   //auto puserex = psession->userex();
-
-   //   //if (::is_set(puserex))
-   //   //{
-
-   //   //   estatus = puserex->ui_message_box(this, puiOwner, pszMessage, pszTitle, emessagebox, callback);
-
-   //   //}
-
-   //}
-
-   //if (!estatus)
-   //{
-
-   //   string strMessage(pszMessage);
-
-   //   string strTitle(pszTitle);
-
-   //   if(strTitle.is_empty())
-   //   {
-
-   //      auto papp = get_application();
-
-   //      if(papp)
-   //      {
-
-   //         strTitle = papp->get_app_user_friendly_task_bar_name();
-
-   //      }
-
-   //   }
-
-   //   estatus = ::os_message_box(strMessage, strTitle, emessagebox, process);
-
-   //}
-
-   //return estatus;
-
-   //return edialogresult;
+   auto presult = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 
    return presult;
 

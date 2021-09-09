@@ -272,7 +272,7 @@ public:
 #endif
 
 
-   virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const ::string &pszText, const ::string &pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
 
 
 

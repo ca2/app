@@ -121,7 +121,7 @@ namespace userex
       if (m_ptopview == nullptr)
       {
 
-         message_box("Could not create folder edit impact");
+         output_message_box_error("Could not create folder edit impact");
 
       }
 
@@ -130,7 +130,7 @@ namespace userex
       if (m_pimpact == nullptr)
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_message_box_error("Could not create file list ::user::impact");
 
       }
 

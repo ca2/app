@@ -476,7 +476,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //         if(FAILED(hresult))
 //         {
 //
-//            os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+//            os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 //
 //            return false;
 //
@@ -486,7 +486,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //      else
 //      {
 //
-//         os_message_box("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+//         os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 //
 //         return false;
 //

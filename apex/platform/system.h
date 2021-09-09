@@ -1020,7 +1020,7 @@ namespace apex
       virtual int console_end(::e_status estatus);
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra) override;

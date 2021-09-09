@@ -338,6 +338,7 @@ namespace factory
 } // namespace factory
 
 
+#include "device_lock.h"
 #include "lock.h"
 
 

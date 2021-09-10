@@ -325,9 +325,6 @@ namespace color
 } // namespace color
 
 
-#define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
-
-
 CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, ::color32_t color);
 CLASS_DECL_ACME ::color::color alpha_color(byte bAlpha, enum_color ecolor);
 CLASS_DECL_ACME ::color::color opaque_color(::color32_t color32);

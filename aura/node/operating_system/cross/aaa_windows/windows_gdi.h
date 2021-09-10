@@ -449,9 +449,9 @@ typedef LPEXTLOGPEN HPEN;
 
 #define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
-#define GetRValue(rgb)      (LOBYTE(rgb))
-#define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
-#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
+#define GetRValue(rgb)      (__LOBYTE(rgb))
+#define GetGValue(rgb)      (__LOBYTE(((::u16)(rgb)) >> 8))
+#define GetBValue(rgb)      (__LOBYTE((rgb)>>16))
 
 /* Background Modes */
 #define TRANSPARENT         1

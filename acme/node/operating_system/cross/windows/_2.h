@@ -111,7 +111,7 @@ using dummy_pointer = void *;
 #define MAKELONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 //#define LOWORD(l)           ((::u16)(((dword_ptr)(l)) & 0xffff))
 //#define HIWORD(l)           ((::u16)((((dword_ptr)(l)) >> 16) & 0xffff))
-#define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
+#define __LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
 #define HIBYTE(w)           ((byte)((((dword_ptr)(w)) >> 8) & 0xff))
 
 #define MAKEWPARAM(l, h)      ((WPARAM)(::u32)MAKELONG(l, h))
@@ -207,9 +207,9 @@ typedef ::i32 errno_t;
 
 
 
-#define GetRValue(rgb)      (LOBYTE(rgb))
-#define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
-#define GetBValue(rgb)      (LOBYTE((rgb)>>16))
+#define GetRValue(rgb)      (__LOBYTE(rgb))
+#define GetGValue(rgb)      (__LOBYTE(((::u16)(rgb)) >> 8))
+#define GetBValue(rgb)      (__LOBYTE((rgb)>>16))
 
 #define rgb(r,g,b)          ((::color::color)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 

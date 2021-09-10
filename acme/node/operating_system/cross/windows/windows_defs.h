@@ -510,7 +510,7 @@ typedef i32 errno_t;
 #define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((DWORD_PTR)(a)) & 0xffff)) | ((::u32)((::u16)(((DWORD_PTR)(b)) & 0xffff))) << 16))
 #define LOWORD(l)           ((::u16)(((DWORD_PTR)(l)) & 0xffff))
 #define HIWORD(l)           ((::u16)((((DWORD_PTR)(l)) >> 16) & 0xffff))
-#define LOBYTE(w)           ((byte)(((DWORD_PTR)(w)) & 0xff))
+#define __LOBYTE(w)           ((byte)(((DWORD_PTR)(w)) & 0xff))
 #define HIBYTE(w)           ((byte)((((DWORD_PTR)(w)) >> 8) & 0xff))*/
 
 #define MAKEWPARAM(l, h)      ((WPARAM)(::u32)__MAKE_LONG(l, h))

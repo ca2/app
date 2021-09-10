@@ -25,7 +25,7 @@
 #endif
 
 
-#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), LOBYTE(x))
+#define SWAPWORD(x)		MAKEWORD(HIBYTE(x), __LOBYTE(x))
 #define SWAPLONG(x)		__MAKE_LONG(SWAPWORD(HIWORD(x)), SWAPWORD(LOWORD(x)))
 
 

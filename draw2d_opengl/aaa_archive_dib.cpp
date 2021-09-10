@@ -2497,7 +2497,7 @@ namespace draw2d_opengl
 //////      #pragma omp parallel for
 //////                     for(index i = 0; i < size; i+=4)
 //////                     {
-//////                           dst[i] = LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
+//////                           dst[i] = __LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
 //////                     }
 //////                  }
 //////
@@ -2524,7 +2524,7 @@ namespace draw2d_opengl
 ////////               {
 ////////                  if(dstA[i] > 3)
 ////////                  {
-////////                     dst[i] = LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
+////////                     dst[i] = __LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
 ////////                  }
 ////////               }
 ////////            }
@@ -2532,9 +2532,9 @@ namespace draw2d_opengl
 //////#else
 //////         for(index i = 0; i < size; i+=4)
 //////         {
-//////            dstR[i] = LOBYTE(((i32)dstR[i] * (i32)dstA[i]) >> 8);
-//////            dstG[i] = LOBYTE(((i32)dstG[i] * (i32)dstA[i]) >> 8);
-//////            dstB[i] = LOBYTE(((i32)dstB[i] * (i32)dstA[i]) >> 8);
+//////            dstR[i] = __LOBYTE(((i32)dstR[i] * (i32)dstA[i]) >> 8);
+//////            dstG[i] = __LOBYTE(((i32)dstG[i] * (i32)dstA[i]) >> 8);
+//////            dstB[i] = __LOBYTE(((i32)dstB[i] * (i32)dstA[i]) >> 8);
 //////         }
 //////#endif
 //////

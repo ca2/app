@@ -332,15 +332,15 @@ CLASS_DECL_ACME ::color::color pure_color(enum_color ecolor);
 CLASS_DECL_ACME ::color::color opaque_color(enum_color ecolor);
 
 
-#define rgb_get_r_value(rgb)      (LOBYTE(rgb))
-#define rgb_get_g_value(rgb)      (LOBYTE((rgb)>>8))
-#define rgb_get_b_value(rgb)      (LOBYTE((rgb)>>16))
-#define rgb_get_a_value(rgb)      (LOBYTE((rgb)>>24))
+#define rgb_get_r_value(rgb)      (__LOBYTE(rgb))
+#define rgb_get_g_value(rgb)      (__LOBYTE((rgb)>>8))
+#define rgb_get_b_value(rgb)      (__LOBYTE((rgb)>>16))
+#define rgb_get_a_value(rgb)      (__LOBYTE((rgb)>>24))
 
-#define bgr_get_b_value(bgr)      (LOBYTE(bgr))
-#define bgr_get_g_value(bgr)      (LOBYTE((bgr)>>8))
-#define bgr_get_r_value(bgr)      (LOBYTE((bgr)>>16))
-#define bgr_get_a_value(bgr)      (LOBYTE((bgr)>>24))
+#define bgr_get_b_value(bgr)      (__LOBYTE(bgr))
+#define bgr_get_g_value(bgr)      (__LOBYTE((bgr)>>8))
+#define bgr_get_r_value(bgr)      (__LOBYTE((bgr)>>16))
+#define bgr_get_a_value(bgr)      (__LOBYTE((bgr)>>24))
 
 
 

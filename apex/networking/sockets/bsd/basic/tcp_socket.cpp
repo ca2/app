@@ -242,7 +242,7 @@ namespace sockets
       m_memRead.set_size(TCP_BUFSIZE_READ + 1);
       m_bCertCommonNameCheckEnabled = true;
       //m_pmutexSslCtx = nullptr;
-      UNREFERENCED_PARAMETER(osize);
+      __UNREFERENCED_PARAMETER(osize);
    }
 #ifdef _MSC_VER
 #pragma warning(default:4355)
@@ -2095,7 +2095,7 @@ namespace sockets
    i32 tcp_socket_SSL_password_cb(char *buf,i32 num,i32 rwflag,void *userdata)
    {
 
-      UNREFERENCED_PARAMETER(rwflag);
+      __UNREFERENCED_PARAMETER(rwflag);
 
       socket * psocket = static_cast<socket *>(userdata);
 
@@ -2290,10 +2290,10 @@ namespace sockets
    void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,SOCKET s)
    {
 
-      UNREFERENCED_PARAMETER(family);
-      UNREFERENCED_PARAMETER(type);
-      UNREFERENCED_PARAMETER(protocol);
-      UNREFERENCED_PARAMETER(s);
+      __UNREFERENCED_PARAMETER(family);
+      __UNREFERENCED_PARAMETER(type);
+      __UNREFERENCED_PARAMETER(protocol);
+      __UNREFERENCED_PARAMETER(s);
       //TRACE("socket::OnOptions()\n");
 #ifdef SO_NOSIGPIPE
       SetSoNosigpipe(true);

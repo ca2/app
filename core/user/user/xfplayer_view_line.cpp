@@ -98,7 +98,7 @@ bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, str
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   UNREFERENCED_PARAMETER(flags);
+   __UNREFERENCED_PARAMETER(flags);
 
    m_straLink.erase_all();
    m_iaLinkStart.erase_all();
@@ -157,7 +157,7 @@ void xfplayer_view_line::add_char(widechar wch, strsize & index, ::write_text::f
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   UNREFERENCED_PARAMETER(pFont);
+   __UNREFERENCED_PARAMETER(pFont);
    index++;
    if (m_iaPosition.get_size() < index + 2)
    {
@@ -299,7 +299,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                ::image_pointer pimage;
                if (rectangle.area() > 0)
                {
-                  pimage = create_image(rectangle.size());
+                  pimage = m_pcontext->context_image()->create_image(rectangle.size());
                   pimage->fill(255, 255, 255, 255);
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
@@ -1219,7 +1219,7 @@ void xfplayer_view_line::SetAnimateIncrement(double dIncrement)
 
 void xfplayer_view_line::SetRenderCriticalSection(critical_section * pcs)
 {
-   UNREFERENCED_PARAMETER(pcs);
+   __UNREFERENCED_PARAMETER(pcs);
    //    m_pcsRender =   pcs;
 }
 
@@ -1365,7 +1365,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
    single_lock synchronouslock(m_pContainer->mutex());
 
-   UNREFERENCED_PARAMETER(pimageCache);
+   __UNREFERENCED_PARAMETER(pimageCache);
 
    bool bSaveProcessing = !m_bEnhancedEmboss;
 
@@ -1549,7 +1549,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    size.cy += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
 
 
-   pimageCache = create_image(size);
+   pimageCache = m_pcontext->context_image()->create_image(size);
 
    if (!pimageCache)
       return;
@@ -1887,7 +1887,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
 void xfplayer_view_line::OnSetCursor(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    //if(is_hover())
    //{
@@ -1966,7 +1966,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 {
 
-   UNREFERENCED_PARAMETER(ptimer);
+   __UNREFERENCED_PARAMETER(ptimer);
 
    //if(GetSelection().OnTimer(*this, user))
    //{

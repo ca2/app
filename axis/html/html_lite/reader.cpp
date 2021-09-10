@@ -36,42 +36,42 @@
 
 void ILiteHTMLReaderEvents::BeginParse(uptr dwAppData, bool &bAbort)
 {
-   UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(dwAppData);
    bAbort = false;
 }
 
 void ILiteHTMLReaderEvents::StartTag(lite_html_tag *pTag, uptr dwAppData, bool &bAbort)
 {
-   UNREFERENCED_PARAMETER(pTag);
-   UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(pTag);
+   __UNREFERENCED_PARAMETER(dwAppData);
    bAbort = false;
 }
 
 void ILiteHTMLReaderEvents::EndTag(lite_html_tag *pTag, uptr dwAppData, bool &bAbort)
 {
-   UNREFERENCED_PARAMETER(pTag);
-   UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(pTag);
+   __UNREFERENCED_PARAMETER(dwAppData);
    bAbort = false;
 }
 
 void ILiteHTMLReaderEvents::Characters(const string &rText, uptr dwAppData, bool &bAbort)
 {
-   UNREFERENCED_PARAMETER(rText);
-   UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(rText);
+   __UNREFERENCED_PARAMETER(dwAppData);
    bAbort = false;
 }
 
 void ILiteHTMLReaderEvents::Comment(const string &rComment, uptr dwAppData, bool &bAbort)
 {
-   UNREFERENCED_PARAMETER(rComment);
-   UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(rComment);
+   __UNREFERENCED_PARAMETER(dwAppData);
    bAbort = false;
 }
 
 void ILiteHTMLReaderEvents::EndParse(uptr dwAppData, bool bIsAborted)
 {
-   UNREFERENCED_PARAMETER(dwAppData);
-   UNREFERENCED_PARAMETER(bIsAborted);
+   __UNREFERENCED_PARAMETER(dwAppData);
+   __UNREFERENCED_PARAMETER(bIsAborted);
 }
 
 ILiteHTMLReaderEvents::~ILiteHTMLReaderEvents()

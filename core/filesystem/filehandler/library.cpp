@@ -84,13 +84,13 @@ namespace filehandler
 
    void library::get_extension_list(string_array & stra)
    {
-      UNREFERENCED_PARAMETER(stra);
+      __UNREFERENCED_PARAMETER(stra);
    }
 
 
    void library::get_mime_type_list(string_array & stra)
    {
-      UNREFERENCED_PARAMETER(stra);
+      __UNREFERENCED_PARAMETER(stra);
    }
 
 

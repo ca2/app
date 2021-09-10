@@ -53,7 +53,7 @@ public:
 
    inline bool find(void * p,bool bRemove)
    {
-      UNREFERENCED_PARAMETER(bRemove);
+      __UNREFERENCED_PARAMETER(bRemove);
 
       for(i32 mi = 0; mi < this->get_count(); mi++)
       {

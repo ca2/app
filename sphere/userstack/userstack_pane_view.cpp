@@ -250,7 +250,7 @@ namespace userstack
 
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_id);
    }
 
@@ -484,7 +484,7 @@ namespace userstack
 
    void pane_view::on_message_right_button_up(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_pmouse;
       /*if(get_view_id() == ::bergedge::impact_winactionarea)
       {
@@ -499,7 +499,7 @@ namespace userstack
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       //if(get_view_id() == ::bergedge::impact_winactionarea)
       //{
@@ -520,7 +520,7 @@ namespace userstack
    */
    void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
       //set_current_tab_by_id(::bergedge::impact_properties);
    }
@@ -529,7 +529,7 @@ namespace userstack
 
    void pane_view::_001OnProperties(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      if(get_view_id() == ::bergedge::impact_winactionarea)
 //      {
 //
@@ -584,7 +584,7 @@ namespace userstack
    void pane_view::on_control_event(::user::control_event * pevent)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
    }
 

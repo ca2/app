@@ -134,7 +134,7 @@
 //   void control::_003CustomWindowProc(::message::message* pmessage)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //
 //   }
 //
@@ -721,7 +721,7 @@
 ////   bool control_view_impl::BaseControlExOnCommand(WPARAM wParam, LPARAM lParam)
 ////   {
 ////
-////      UNREFERENCED_PARAMETER(lParam);
+////      __UNREFERENCED_PARAMETER(lParam);
 ////
 ////      if (get_window() != nullptr)
 ////      {
@@ -750,8 +750,8 @@
 //
 //   //void control::BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point)
 //   //{
-//   //   UNREFERENCED_PARAMETER(nFlags);
-//   //   UNREFERENCED_PARAMETER(point);
+//   //   __UNREFERENCED_PARAMETER(nFlags);
+//   //   __UNREFERENCED_PARAMETER(point);
 //   //   __pointer(::user::interaction) puserinteraction = ControlExGetWnd();
 //
 //   //   ::point_i32 pointCursor;
@@ -958,7 +958,7 @@
 //   void control::on_message_key_down(::message::message * pmessage)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //      //      auto pkey = pmessage->m_pkey;
 //
 //

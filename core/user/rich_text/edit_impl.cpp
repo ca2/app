@@ -213,7 +213,7 @@ namespace user
       {
 
 
-         //UNREFERENCED_PARAMETER(pmessage);
+         //__UNREFERENCED_PARAMETER(pmessage);
 
          //__pointer(::message::set_focus) psetfocus(pmessage);
 

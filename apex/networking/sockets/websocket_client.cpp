@@ -438,9 +438,9 @@ namespace sockets
 
    //   m_emethod = http_method_get;
 
-   //   UNREFERENCED_PARAMETER(host);
+   //   __UNREFERENCED_PARAMETER(host);
 
-   //   UNREFERENCED_PARAMETER(port);
+   //   __UNREFERENCED_PARAMETER(port);
 
    //}
 

@@ -149,9 +149,9 @@ namespace crypto
 extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const char* file, i32 line)
 {
 
-   UNREFERENCED_PARAMETER(file);
+   __UNREFERENCED_PARAMETER(file);
 
-   UNREFERENCED_PARAMETER(line);
+   __UNREFERENCED_PARAMETER(line);
 
    synchronous_lock synchronouslock(::crypto::g_pmutexMap);
 
@@ -220,8 +220,8 @@ extern "C" unsigned long crypto_initializer_SSL_id_function()
 
 extern "C" int crypto_initializer_rand_seed(const void* buf, i32 num)
 {
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
+   __UNREFERENCED_PARAMETER(buf);
+   __UNREFERENCED_PARAMETER(num);
    return 1;
 }
 
@@ -244,9 +244,9 @@ extern "C" void crypto_initializer_rand_cleanup()
 
 extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entropy)
 {
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
-   UNREFERENCED_PARAMETER(entropy);
+   __UNREFERENCED_PARAMETER(buf);
+   __UNREFERENCED_PARAMETER(num);
+   __UNREFERENCED_PARAMETER(entropy);
    return 1;
 }
 

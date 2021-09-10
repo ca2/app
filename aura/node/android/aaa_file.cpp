@@ -589,7 +589,7 @@ namespace android
    //                            void ** /*ppBufStart*/, void ** /*ppBufMax*/)
    //{
    //   ASSERT(nCommand == bufferCheck);
-   //   UNREFERENCED_PARAMETER(nCommand);    // not used in retail build
+   //   __UNREFERENCED_PARAMETER(nCommand);    // not used in retail build
 
    //   return 0;   // no support
    //}

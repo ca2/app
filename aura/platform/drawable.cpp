@@ -21,7 +21,7 @@ namespace aura
    void drawable::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -37,8 +37,8 @@ namespace aura
    void drawable::hit_test(::user::item& item, const ::point_i32& point)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(point);
 
    }
 
@@ -46,7 +46,7 @@ namespace aura
    void drawable::on_hit_test(::user::item& item)
    {
 
-      UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(item);
 
    }
 

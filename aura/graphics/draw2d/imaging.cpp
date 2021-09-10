@@ -230,12 +230,12 @@ i32                 cy)
 //   i32 cy,
 //   ::color::color crAlpha)
 //{
-//   UNREFERENCED_PARAMETER(pgraphics);
-//   UNREFERENCED_PARAMETER(x);
-//   UNREFERENCED_PARAMETER(y);
-//   UNREFERENCED_PARAMETER(cx);
-//   UNREFERENCED_PARAMETER(cy);
-//   UNREFERENCED_PARAMETER(crAlpha);
+//   __UNREFERENCED_PARAMETER(pgraphics);
+//   __UNREFERENCED_PARAMETER(x);
+//   __UNREFERENCED_PARAMETER(y);
+//   __UNREFERENCED_PARAMETER(cx);
+//   __UNREFERENCED_PARAMETER(cy);
+//   __UNREFERENCED_PARAMETER(crAlpha);
 //   ::exception::throw_not_implemented();
 //   ASSERT(false);
 //
@@ -425,7 +425,7 @@ return pil;
 //
 //   return false;
 //
-////   UNREFERENCED_PARAMETER(crAlpha);
+////   __UNREFERENCED_PARAMETER(crAlpha);
 ////   //::color::color cr3dface = psession->get_default_color(COLOR_3DFACE);
 ////
 ////#ifdef WINDOWS_DESKTOP
@@ -917,7 +917,7 @@ return pil;
 //   ::u32 & uiScanLineCountParam,
 //   i32 & iLimitYParam)
 //{
-//   UNREFERENCED_PARAMETER(pitmap);
+//   __UNREFERENCED_PARAMETER(pitmap);
 
 //   ::rectangle_i32 rectangle(rectParam);
 //
@@ -2920,7 +2920,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageDst = create_image(size);
+   ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -2929,7 +2929,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageSrc = create_image(size);
+   ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -2996,7 +2996,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageDst = create_image(size);
+   ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3005,7 +3005,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageSrc = create_image(size);
+   ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -3678,7 +3678,7 @@ byte * pFilter)
 
    }
 
-   ::image_pointer pimageDst = create_image(size);
+   ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3687,7 +3687,7 @@ byte * pFilter)
 
    }
 
-   ::image_pointer pimageSrc = create_image(size);
+   ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -4186,7 +4186,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 //   else
 //   {
 //
-//      ::image_pointer pimage = create_image(size);
+//      ::image_pointer pimage = m_pcontext->context_image()->create_image(size);
 //
 //      if (!pimage)
 //      {
@@ -4669,10 +4669,10 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
 {
 
-   UNREFERENCED_PARAMETER(xDest);
-   UNREFERENCED_PARAMETER(yDest);
-   UNREFERENCED_PARAMETER(xSrc);
-   UNREFERENCED_PARAMETER(ySrc);
+   __UNREFERENCED_PARAMETER(xDest);
+   __UNREFERENCED_PARAMETER(yDest);
+   __UNREFERENCED_PARAMETER(xSrc);
+   __UNREFERENCED_PARAMETER(ySrc);
    i32 iFilterWidth = 2 * 2 + 1;
    i32 iFilterHeight = 2 * 2 + 1;
    i32 divisor = iFilterWidth * iFilterHeight;
@@ -4883,7 +4883,7 @@ i32 iChannel,i32 iRadius,
    if(size.is_empty())
       return true;
 
-   ::image_pointer pimageDst = create_image(size);
+   ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -4892,7 +4892,7 @@ i32 iChannel,i32 iRadius,
 
    }
 
-   ::image_pointer pimageSrc = create_image(size);
+   ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -4995,7 +4995,7 @@ i32 iRadius,
    if(size.is_empty())
       return true;
 
-   ::image_pointer pimageDst = create_image(size);
+   ::image_pointer pimageDst = m_pcontext->context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -5004,7 +5004,7 @@ i32 iRadius,
 
    }
 
-   ::image_pointer pimageSrc = create_image(size);
+   ::image_pointer pimageSrc = m_pcontext->context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -5851,10 +5851,10 @@ i32      ySrc,
 i32      wSrc,
 i32      iSize)
 {
-   UNREFERENCED_PARAMETER(xDest);
-   UNREFERENCED_PARAMETER(yDest);
-   UNREFERENCED_PARAMETER(xSrc);
-   UNREFERENCED_PARAMETER(ySrc);
+   __UNREFERENCED_PARAMETER(xDest);
+   __UNREFERENCED_PARAMETER(yDest);
+   __UNREFERENCED_PARAMETER(xSrc);
+   __UNREFERENCED_PARAMETER(ySrc);
    i32      divisor;
    byte *   pSource;
 
@@ -6438,12 +6438,12 @@ i32 wSrc2,
 i32 iSize,
 i32 iAlpha)
 {
-   UNREFERENCED_PARAMETER(xDest);
-   UNREFERENCED_PARAMETER(yDest);
-   UNREFERENCED_PARAMETER(xSrc1);
-   UNREFERENCED_PARAMETER(ySrc1);
-   UNREFERENCED_PARAMETER(xSrc2);
-   UNREFERENCED_PARAMETER(ySrc2);
+   __UNREFERENCED_PARAMETER(xDest);
+   __UNREFERENCED_PARAMETER(yDest);
+   __UNREFERENCED_PARAMETER(xSrc1);
+   __UNREFERENCED_PARAMETER(ySrc1);
+   __UNREFERENCED_PARAMETER(xSrc2);
+   __UNREFERENCED_PARAMETER(ySrc2);
    //   const i32 constFilterWidth = 3;
    //   const i32 constFilterHeight = 3;
    i32 divisor = iSize * iSize;
@@ -7040,7 +7040,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
       synchronouslock.unlock();
 
-      return create_image();
+      return m_pcontext->context_image()->create_image();
 
    }
 
@@ -7051,7 +7051,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
    if (pimpl.is_null())
    {
 
-      pimpl = create_image();
+      pimpl = m_pcontext->context_image()->create_image();
 
    }
 

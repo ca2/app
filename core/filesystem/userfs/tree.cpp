@@ -111,13 +111,13 @@ namespace userfs
 
    void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void tree::on_message_context_menu(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
       //   i32 iItem;
       //   HRESULT hr;
@@ -221,7 +221,7 @@ namespace userfs
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -237,7 +237,7 @@ namespace userfs
    void tree::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -388,7 +388,7 @@ namespace userfs
 
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
    }
 
    bool tree::_001IsTranslucent()

@@ -36,7 +36,7 @@ namespace graphics
    bool buffer::update_window(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
       return false;
 

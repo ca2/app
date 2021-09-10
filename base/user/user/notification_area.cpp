@@ -67,7 +67,7 @@ Contact : nish@voidnish.com
 //   void notification_area::ListTrayIcons(i32 defindex /*= 0*/)
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      UNREFERENCED_PARAMETER(defindex);
+//      __UNREFERENCED_PARAMETER(defindex);
 //      m_infoa.erase_all();
 //
 //      m_pil16->erase_all();
@@ -174,7 +174,7 @@ Contact : nish@voidnish.com
 //
 //   void notification_area::EditCopy(i32 iItem)
 //   {
-//      UNREFERENCED_PARAMETER(iItem);
+//      __UNREFERENCED_PARAMETER(iItem);
 //      /*   POSITION pos = GetListCtrl().GetFirstSelectedItemPosition();
 //         if(pos)
 //         {

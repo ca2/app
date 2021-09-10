@@ -577,7 +577,7 @@ namespace user
    void combo_box::on_message_key_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -625,7 +625,7 @@ namespace user
    void combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_itemHover = e_element_none;
 

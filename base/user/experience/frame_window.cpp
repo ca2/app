@@ -1031,7 +1031,7 @@ namespace experience
    void frame_window::FrameWnd(::user::interaction * pframewindow)
    {
 
-      UNREFERENCED_PARAMETER(pframewindow);
+      __UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -1039,8 +1039,8 @@ namespace experience
    void frame_window::ChildWnd(::user::interaction * pframewindow, ::user::interaction * puserinteractionParent)
    {
 
-      UNREFERENCED_PARAMETER(pframewindow);
-      UNREFERENCED_PARAMETER(puserinteractionParent);
+      __UNREFERENCED_PARAMETER(pframewindow);
+      __UNREFERENCED_PARAMETER(puserinteractionParent);
 
    }
 

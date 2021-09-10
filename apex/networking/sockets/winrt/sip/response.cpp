@@ -10,7 +10,7 @@ namespace sip
    transaction(pobject),
    m_memfileBody(papp )
    {
-      UNREFERENCED_PARAMETER(version);
+      __UNREFERENCED_PARAMETER(version);
    }
 
 

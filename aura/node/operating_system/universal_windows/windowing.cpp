@@ -573,9 +573,9 @@
 //CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
 //{
 //
-//   UNREFERENCED_PARAMETER(oswindow);
-//   UNREFERENCED_PARAMETER(edisplay);
-//   UNREFERENCED_PARAMETER(eactivation);
+//   __UNREFERENCED_PARAMETER(oswindow);
+//   __UNREFERENCED_PARAMETER(edisplay);
+//   __UNREFERENCED_PARAMETER(eactivation);
 //
 //   return true;
 //

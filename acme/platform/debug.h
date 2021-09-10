@@ -216,9 +216,9 @@ typedef struct _MEMORY_STATE
 // inline i32 FUNCTION_XXDEBUGBOX(const char * pszMessage, const char * pszTitle, i32 iFlags)
 // {
 
-//    UNREFERENCED_PARAMETER(pszMessage);
-//    UNREFERENCED_PARAMETER(pszTitle);
-//    UNREFERENCED_PARAMETER(iFlags);
+//    __UNREFERENCED_PARAMETER(pszMessage);
+//    __UNREFERENCED_PARAMETER(pszTitle);
+//    __UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
 
@@ -227,9 +227,9 @@ typedef struct _MEMORY_STATE
 // inline i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags)
 // {
 
-//    UNREFERENCED_PARAMETER(pszMessage);
-//    UNREFERENCED_PARAMETER(pszTitle);
-//    UNREFERENCED_PARAMETER(iFlags);
+//    __UNREFERENCED_PARAMETER(pszMessage);
+//    __UNREFERENCED_PARAMETER(pszTitle);
+//    __UNREFERENCED_PARAMETER(iFlags);
 
 //    return 0;
 

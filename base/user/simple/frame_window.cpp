@@ -1105,7 +1105,7 @@ void simple_frame_window::_001OnUpdateNotifyIcon(::message::message * pmessage)
 void simple_frame_window::on_message_size(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    //m_millisLastVisualChange.Now();
 
@@ -1122,7 +1122,7 @@ void simple_frame_window::on_message_size(::message::message * pmessage)
 void simple_frame_window::on_message_move(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    m_millisLastVisualChange.Now();
 
@@ -1250,9 +1250,9 @@ void simple_frame_window::on_reposition()
 
 void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
 {
-   UNREFERENCED_PARAMETER(pview);
-   UNREFERENCED_PARAMETER(user);
-   UNREFERENCED_PARAMETER(pframe);
+   __UNREFERENCED_PARAMETER(pview);
+   __UNREFERENCED_PARAMETER(user);
+   __UNREFERENCED_PARAMETER(pframe);
    //   if(pview != nullptr)
    //      pview->OnActivateFrame(WA_INACTIVE, (__pointer(::user::simple_frame_window)) pframe);
 }
@@ -1394,7 +1394,7 @@ void simple_frame_window::_001OnExitFullScreen()
 void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    ToggleFullScreen();
 
@@ -1404,7 +1404,7 @@ void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 void simple_frame_window::on_message_mouse_move(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -1477,7 +1477,7 @@ bool simple_frame_window::_001CanEnterScreenSaver()
 void simple_frame_window::_001OnToggleCustomFrame(::message::message * pmessage)
 {
    
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
    
    SetCustomFrame(!GetCustomFrame());
 
@@ -1849,7 +1849,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 //void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS * pncsp)
 //
 //{
-//   UNREFERENCED_PARAMETER(bCalcValidRects);
+//   __UNREFERENCED_PARAMETER(bCalcValidRects);
 //   if(is_frame_experience_enabled() && m_pframe != nullptr)
 //   {
 //      OnNcCalcSize(&pncsp->rgrc[0]);
@@ -1947,7 +1947,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    m_id = pusersystem->m_id.to_string() + "::frame";
 
-   UNREFERENCED_PARAMETER(puiParent);
+   __UNREFERENCED_PARAMETER(puiParent);
 
    m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
@@ -3047,7 +3047,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 ////void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 ////{
 ////
-////   UNREFERENCED_PARAMETER(hDropInfo);
+////   __UNREFERENCED_PARAMETER(hDropInfo);
 ////
 ////}
 ////
@@ -3818,7 +3818,7 @@ void simple_frame_window::on_simple_command(::message::simple_command * psimplec
 class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uStyle)
 {
 
-   UNREFERENCED_PARAMETER(uStyle);
+   __UNREFERENCED_PARAMETER(uStyle);
 
    return nullptr;
 
@@ -3989,7 +3989,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 //{
 //
-//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//   __UNREFERENCED_PARAMETER(uNotifyIcon);
 //
 //}
 //
@@ -3999,7 +3999,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //
 //   default_notify_icon_topic();
 //
-//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//   __UNREFERENCED_PARAMETER(uNotifyIcon);
 //
 //}
 

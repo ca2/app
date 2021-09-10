@@ -65,7 +65,7 @@ namespace user
 
    ::count mesh_data::_001GetGroupMetaItemCount(index iGroup)
    {
-      UNREFERENCED_PARAMETER(iGroup);
+      __UNREFERENCED_PARAMETER(iGroup);
       return 0;
    }
 
@@ -73,7 +73,7 @@ namespace user
    void mesh_data::_001OnDeleteRange(::user::range & range)
    {
 
-      UNREFERENCED_PARAMETER(range);
+      __UNREFERENCED_PARAMETER(range);
 
    }
 

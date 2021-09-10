@@ -131,13 +131,13 @@ string acme_file::as_string(const char * path, strsize iReadAtMostByteCount)
    if(iReadAtMostByteCount < 0)
    {
       
-      iReadAtMostByteCount = uSize;
+      iReadAtMostByteCount = (strsize) uSize;
       
    }
    else
    {
       
-      iReadAtMostByteCount = minimum(iReadAtMostByteCount, uSize);
+      iReadAtMostByteCount = minimum(iReadAtMostByteCount, (strsize)uSize);
       
    }
 
@@ -247,7 +247,7 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
    while (dwReadTotal < iReadAtMostByteCount)
    {
 
-      auto dwRead = file.read(memory.get_data() + dwReadTotal, (u32)iReadAtMostByteCount - dwReadTotal);
+      auto dwRead = file.read(memory.get_data() + dwReadTotal, (memsize)(iReadAtMostByteCount - dwReadTotal));
 
       if (dwRead <= 0)
       {
@@ -260,7 +260,7 @@ memsize acme_file::as_memory(const char * path, void * p, memsize s)
 
    }
 
-   memory.set_size(dwReadTotal);
+   memory.set_size((memsize) dwReadTotal);
 
    return ::success;
 
@@ -882,9 +882,9 @@ string_array acme_file::lines(const char * path)
 
    int iLastChar = -1;
 
-   index iPosStart = -1;
+   filesize iPosStart = -1;
 
-   index iPosEnd = -1;
+   filesize iPosEnd = -1;
 
    while (iLine >= 0)
    {
@@ -971,17 +971,17 @@ string_array acme_file::lines(const char * path)
 
          pfile->seek_to_begin();
 
-         m.set_size(iPosStart);
+         m.set_size((memsize) iPosStart);
 
-         pfile->read(m.get_data(), iPosStart);
+         pfile->read(m.get_data(), (memsize) iPosStart);
 
-         pfile2->write(m.get_data(), iPosStart);
+         pfile2->write(m.get_data(), (memsize) iPosStart);
 
       }
 
       pfile2->write(pszLine);
 
-      index iEnd = pfile->get_size();
+      auto iEnd = pfile->get_size();
 
       if (iEnd - iPosEnd > 0)
       {
@@ -990,7 +990,7 @@ string_array acme_file::lines(const char * path)
 
          pfile->set_position(iPosEnd);
 
-         m.set_size(iEnd - iPosEnd);
+         m.set_size((memsize) (iEnd - iPosEnd));
 
          pfile->read(m.get_data(), m.get_size());
 

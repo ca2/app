@@ -107,8 +107,8 @@ namespace filemanager
 
    void operation_info_view::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
-      UNREFERENCED_PARAMETER(iOperation);
-      UNREFERENCED_PARAMETER(bFinal);
+      __UNREFERENCED_PARAMETER(iOperation);
+      __UNREFERENCED_PARAMETER(bFinal);
    }
 
    __pointer(operation_document) operation_info_view::get_document()
@@ -126,7 +126,7 @@ namespace filemanager
 
    void operation_info_view::on_message_create(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //SetTimer(123, 184, nullptr);
    }
 

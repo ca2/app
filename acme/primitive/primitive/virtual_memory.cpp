@@ -66,7 +66,7 @@
    virtual_memory::virtual_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
    {
 
-      UNREFERENCED_PARAMETER(nAllocFlags);
+      __UNREFERENCED_PARAMETER(nAllocFlags);
 
       m_memory.m_pbStorage          = nullptr;
       m_memory.m_pdata = nullptr;

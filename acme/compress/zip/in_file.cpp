@@ -380,9 +380,9 @@ namespace zip
    void in_file::write(const void * pdata,memsize nCount)
 
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nCount);
       //ASSERT_VALID(this);
       ASSERT(get_zip_file() != nullptr);
 
@@ -390,7 +390,7 @@ namespace zip
    }
 
 
-   ::index in_file::translate(::count c, ::enum_seek eseek)
+   filesize in_file::translate(filesize offset, ::enum_seek eseek)
    {
 
       u64 iNewPosition;
@@ -398,25 +398,25 @@ namespace zip
       if(eseek == ::e_seek_set)
       {
 
-         iNewPosition = c;
+         iNewPosition = offset;
 
       }
       else if(eseek == ::e_seek_from_end)
       {
 
-         iNewPosition = UNZ_FILE_INFO->uncompressed_size - c;
+         iNewPosition = UNZ_FILE_INFO->uncompressed_size - offset;
 
       }
       else if(eseek == ::e_seek_current)
       {
 
-         iNewPosition = m_iPosition + c;
+         iNewPosition = m_iPosition + offset;
 
       }
       else
       {
 
-         __throw(error_invalid_argument, "zip::in_file::seek invalid seek option");
+         throw ::exception::exception(error_invalid_argument, "zip::in_file::seek invalid seek option");
 
       }
 

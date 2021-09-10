@@ -832,7 +832,7 @@ namespace user
 
          rectDib.inflate(iShift, iShift);
 
-         pimageDropShadow = create_image(rectDib.size());
+         pimageDropShadow = m_pcontext->context_image()->create_image(rectDib.size());
 
          if (pimageDropShadow)
          {

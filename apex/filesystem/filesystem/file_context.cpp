@@ -1504,8 +1504,8 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 bool file_context::get_status(const ::file::path &path, ::file::file_status &status)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   UNREFERENCED_PARAMETER(status);
+   __UNREFERENCED_PARAMETER(path);
+   __UNREFERENCED_PARAMETER(status);
 
    __throw(error_interface_only);
 
@@ -1517,8 +1517,8 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
 ::extended::status file_context::set_status(const ::file::path &path, const ::file::file_status &status)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   UNREFERENCED_PARAMETER(status);
+   __UNREFERENCED_PARAMETER(path);
+   __UNREFERENCED_PARAMETER(status);
 
    __throw(error_interface_only);
 

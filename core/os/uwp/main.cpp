@@ -237,8 +237,8 @@ CLASS_DECL_CORE void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 
 void CLASS_DECL_CORE __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   UNREFERENCED_PARAMETER(uiCode);
-   UNREFERENCED_PARAMETER(ppointers);
+   __UNREFERENCED_PARAMETER(uiCode);
+   __UNREFERENCED_PARAMETER(ppointers);
 }
 
 

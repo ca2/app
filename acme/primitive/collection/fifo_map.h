@@ -319,7 +319,7 @@
 //void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::construct(::count nBlockSize)
 //{
 //
-//   UNREFERENCED_PARAMETER(nBlockSize);
+//   __UNREFERENCED_PARAMETER(nBlockSize);
 //
 //}
 //

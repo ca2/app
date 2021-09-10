@@ -11,7 +11,7 @@ namespace filehandler
    string item::data_item_get_text(object * pobject) const
    {
 
-      UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pobject);
 
       return m_strTopic;
 

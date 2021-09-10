@@ -1199,7 +1199,7 @@ namespace aura
    //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(nCode);
 
    //}
 
@@ -2889,7 +2889,7 @@ retry_license:
    ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    ////{
 
-   ////   UNREFERENCED_PARAMETER(durationTimeOut);
+   ////   __UNREFERENCED_PARAMETER(durationTimeOut);
 
    ////   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -2958,8 +2958,8 @@ retry_license:
    //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -2968,8 +2968,8 @@ retry_license:
    //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -3258,8 +3258,8 @@ retry_license:
    //void application::play_audio(::payload varFile, bool bSynch)
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(bSynch);
+   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(bSynch);
 
    //}
 //
@@ -5288,9 +5288,9 @@ retry_license:
 
    //   //__pointer(::user::message) pusermessage(pmessage);
 
-   //   UNREFERENCED_PARAMETER(code);
+   //   __UNREFERENCED_PARAMETER(code);
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
 
    //}
@@ -5440,8 +5440,8 @@ retry_license:
    //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(nIDSTitle);
+   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(nIDSTitle);
 
    //   return false;
 
@@ -5599,8 +5599,8 @@ retry_license:
    //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(pdocument);
+   //   __UNREFERENCED_PARAMETER(varFile);
    //   return true;
 
    //}
@@ -5609,8 +5609,8 @@ retry_license:
    //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(pdocument);
+   //   __UNREFERENCED_PARAMETER(varFile);
    //   return true;
 
    //}
@@ -5948,9 +5948,9 @@ namespace aura
    //lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
-   //   UNREFERENCED_PARAMETER(wParam);
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(wParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
 
    //   return 0;
 
@@ -5960,9 +5960,9 @@ namespace aura
    bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
    {
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
-      UNREFERENCED_PARAMETER(pcszFilePath);
+      __UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(pcszType);
+      __UNREFERENCED_PARAMETER(pcszFilePath);
 
       return false;
 
@@ -5975,7 +5975,7 @@ namespace aura
 //   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pmsg);
+//      __UNREFERENCED_PARAMETER(pmsg);
 //
 //
 //      return false;
@@ -5987,7 +5987,7 @@ namespace aura
 //   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
 //   {
 //
-//      UNREFERENCED_PARAMETER(pXevent);
+//      __UNREFERENCED_PARAMETER(pXevent);
 //
 //      return false;
 //
@@ -5998,7 +5998,7 @@ namespace aura
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
 
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -6007,10 +6007,10 @@ namespace aura
 
    //{
 
-   //   UNREFERENCED_PARAMETER(nID);
-   //   UNREFERENCED_PARAMETER(pcszType);
+   //   __UNREFERENCED_PARAMETER(nID);
+   //   __UNREFERENCED_PARAMETER(pcszType);
 
-   //   UNREFERENCED_PARAMETER(storage);
+   //   __UNREFERENCED_PARAMETER(storage);
 
    //   return false;
 
@@ -6042,7 +6042,7 @@ namespace aura
 //
 //   void application::EnableModelessEx(bool bEnable)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -6506,7 +6506,7 @@ namespace aura
 
    /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
-   UNREFERENCED_PARAMETER(nMaxMRU);
+   __UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
 
    // 0 by default means not set
@@ -6667,8 +6667,8 @@ namespace aura
    //
    //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6683,9 +6683,9 @@ namespace aura
    //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
-   //      UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(dwData);
    //
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6697,8 +6697,8 @@ namespace aura
    //
    //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
@@ -6721,7 +6721,7 @@ namespace aura
 //   void application::DevModeChange(char * pDeviceName)
 //
 //   {
-//      UNREFERENCED_PARAMETER(pDeviceName);
+//      __UNREFERENCED_PARAMETER(pDeviceName);
 //
 //
 //#ifdef WINDOWS
@@ -6751,7 +6751,7 @@ namespace aura
    //bool application::final_handle_exception(const ::exception::exception & e)
    //{
 
-   //   UNREFERENCED_PARAMETER(pexception);
+   //   __UNREFERENCED_PARAMETER(pexception);
 
    //   if (!is_system())
    //   {
@@ -6772,8 +6772,8 @@ namespace aura
 
    /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
    {
-   UNREFERENCED_PARAMETER(pszLink);
-   UNREFERENCED_PARAMETER(pszTarget);
+   __UNREFERENCED_PARAMETER(pszLink);
+   __UNREFERENCED_PARAMETER(pszTarget);
    return false;
    }
    */
@@ -6952,7 +6952,7 @@ namespace aura
 
    //void application::UpdatePrinterSelection(bool bForceDefaults)
    //{
-   //   UNREFERENCED_PARAMETER(bForceDefaults);
+   //   __UNREFERENCED_PARAMETER(bForceDefaults);
    //}
 
 
@@ -6967,9 +6967,9 @@ namespace aura
 //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hDevNames);
-//      UNREFERENCED_PARAMETER(hDevMode);
-//      UNREFERENCED_PARAMETER(bFreeOld);
+//      __UNREFERENCED_PARAMETER(hDevNames);
+//      __UNREFERENCED_PARAMETER(hDevMode);
+//      __UNREFERENCED_PARAMETER(bFreeOld);
 //      ::exception::throw_not_implemented();
 //
 //   }
@@ -7083,7 +7083,7 @@ namespace aura
 //
 //   void application::DoEnableModeless(bool bEnable)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -7169,7 +7169,7 @@ namespace aura
 
    void application::SetRegistryKey(::u32 nIDRegistryKey)
    {
-      //UNREFERENCED_PARAMETER(nIDRegistryKey);
+      //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
       //::exception::throw_not_implemented();
       ///*char szRegistryKey[256];
@@ -7819,9 +7819,9 @@ namespace aura
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
    //{
    //
-   //   UNREFERENCED_PARAMETER(propertyset);
+   //   __UNREFERENCED_PARAMETER(propertyset);
    //
-   //   UNREFERENCED_PARAMETER(pszMatter);
+   //   __UNREFERENCED_PARAMETER(pszMatter);
    //
    //   return "";
 
@@ -8058,7 +8058,7 @@ namespace aura
    void application::on_application_signal(::message::message* pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -8082,9 +8082,9 @@ namespace aura
    i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
    {
 
-      UNREFERENCED_PARAMETER(pszMatter);
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(puie);
+      __UNREFERENCED_PARAMETER(pszMatter);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(puie);
 
       return 1;
 
@@ -8210,7 +8210,7 @@ namespace aura
    //oswindow application::get_ca2_app_wnd(const ::string & psz)
    //{
 
-   //   UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(psz);
 
    //   return nullptr;
 

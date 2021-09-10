@@ -44,7 +44,7 @@ public:
 };
 
 
-class interlocked_i32
+class CLASS_DECL_ACME interlocked_i32
 {
 protected:
 

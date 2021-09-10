@@ -87,7 +87,7 @@ namespace filemanager
 
    void operation_view::on_message_destroy(::message::message *pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 

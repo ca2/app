@@ -8,8 +8,8 @@ int_bool WINAPI DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID pReserved)
 
 {
 
-   //UNREFERENCED_PARAMETER(hModule);
-   //UNREFERENCED_PARAMETER(pReserved);
+   //__UNREFERENCED_PARAMETER(hModule);
+   //__UNREFERENCED_PARAMETER(pReserved);
 
 
    //switch (ul_reason_for_call)

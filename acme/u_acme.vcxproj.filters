@@ -1411,6 +1411,12 @@
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\file\streamable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\streamable_composite.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3458,6 +3464,12 @@
     </ClInclude>
     <ClInclude Include="constant\user_text.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\streamable_composite.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_macro.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

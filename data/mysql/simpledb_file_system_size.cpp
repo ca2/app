@@ -195,8 +195,8 @@ index file_size_table::item::FindName(::object * pobject, const ::string & pszNa
 
 void file_size_table::item::update_size(::object * pobject, index & iIteration)
 {
-   UNREFERENCED_PARAMETER(pobject);
-   UNREFERENCED_PARAMETER(iIteration);
+   __UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(iIteration);
    if(m_bDir)
    {
       m_iSize = 0;

@@ -277,7 +277,7 @@ namespace prompt
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       set_current_tab_by_id(m_pimpactdataOld->m_id);
 
@@ -349,7 +349,7 @@ namespace prompt
    void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       if(itema.get_size() > 0)
       {

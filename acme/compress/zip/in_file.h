@@ -77,12 +77,15 @@ namespace zip
 
       bool dump(memory & m);
 
+      
       ::zip::file * get_zip_file();
       const ::zip::file * get_zip_file() const;
 
-      ::index translate(::count c, ::enum_seek eseek) override;
+      
+      filesize translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;
       filesize get_size() const override;
+
 
       using ::file::file::read;
       memsize read(void * pdata, memsize nCount) override;

@@ -2723,7 +2723,7 @@ namespace str
 
    void consume(const char * & pszParse, const char * psz, const char * pszEnd)
    {
-      UNREFERENCED_PARAMETER(pszEnd);
+      __UNREFERENCED_PARAMETER(pszEnd);
       strsize idx;
       strsize len = strlen(psz);
       for(idx = 0; idx < len; idx++)
@@ -2739,7 +2739,7 @@ namespace str
 
    void consume(const char * & pszParse, const char * psz, strsize len, const char * pszEnd)
    {
-      UNREFERENCED_PARAMETER(pszEnd);
+      __UNREFERENCED_PARAMETER(pszEnd);
       i32 idx;
       for(idx = 0; idx < len; idx++)
       {

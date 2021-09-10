@@ -99,7 +99,7 @@ CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint);
 //CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
 //{
 //
-//   UNREFERENCED_PARAMETER(bDock);
+//   __UNREFERENCED_PARAMETER(bDock);
 //
 //}
 

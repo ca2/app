@@ -132,7 +132,7 @@ public:
    wstring(const unichar * pchSrc, strsize nLength,manager * pstringmanager = nullptr);
    inline wstring(const wstring_data * pdata,manager * pstringmanager = nullptr)
    {
-      UNREFERENCED_PARAMETER(pstringmanager);
+      __UNREFERENCED_PARAMETER(pstringmanager);
       m_pwsz = (unichar *) &pdata->m_wchFirst;
    }
    ~wstring();
@@ -155,7 +155,7 @@ public:
    }
 
 
-   void reserve(strsize n) { UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
+   void reserve(strsize n) { __UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
 
    wstring & operator = (const wstring & wstr);
    wstring & operator = (const unichar * pwsz);

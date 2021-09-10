@@ -639,7 +639,7 @@ namespace filemanager
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
 
    }
 
@@ -762,7 +762,7 @@ namespace filemanager
    void tree::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      UNREFERENCED_PARAMETER(pusertree);
+      __UNREFERENCED_PARAMETER(pusertree);
 
    }
 

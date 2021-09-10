@@ -43,7 +43,7 @@ namespace experience
       void frame::OnMove(__pointer(::user::interaction) pframewindow)
       {
 
-         UNREFERENCED_PARAMETER(pframewindow);
+         __UNREFERENCED_PARAMETER(pframewindow);
 
       }
 
@@ -177,7 +177,7 @@ namespace experience
 
       frame::enum_element operator++(frame::enum_element & eelement, i32 i)
       {
-         UNREFERENCED_PARAMETER(i);
+         __UNREFERENCED_PARAMETER(i);
          return (frame::enum_element) (*((i32*)&eelement))++;
       }
 
@@ -827,7 +827,7 @@ namespace experience
       void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pgraphics);
 
       }
 

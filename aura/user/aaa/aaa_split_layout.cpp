@@ -51,7 +51,7 @@ namespace user
    void split_layout::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //__pointer(::message::show_window) pshowwindow(pmessage);
 
@@ -1048,9 +1048,9 @@ namespace user
    void split_layout::SetPaneFixedSize(index iIndex, SIZE32 * pSize)
    {
 
-      UNREFERENCED_PARAMETER(iIndex);
+      __UNREFERENCED_PARAMETER(iIndex);
 
-      UNREFERENCED_PARAMETER(pSize);
+      __UNREFERENCED_PARAMETER(pSize);
 
       ASSERT(iIndex >= 0);
 

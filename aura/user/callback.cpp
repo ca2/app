@@ -21,7 +21,7 @@ namespace user
    void callback::on_control_event(::user::control_event* pevent)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
    }
 

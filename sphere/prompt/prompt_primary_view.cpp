@@ -28,7 +28,7 @@ namespace prompt
    void primary_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
@@ -229,7 +229,7 @@ namespace prompt
 
    void primary_view::_001OnEditCopy(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_copy();
    }
 
@@ -242,7 +242,7 @@ namespace prompt
 
    void primary_view::_001OnEditPaste(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_paste();
    }
 

@@ -259,7 +259,7 @@ db_str_set::~db_str_set()
 // true if deleted
 bool db_str_set::erase(const ::string & lpKey)
 {
-   UNREFERENCED_PARAMETER(lpKey);
+   __UNREFERENCED_PARAMETER(lpKey);
    return false;
 }
 

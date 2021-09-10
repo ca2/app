@@ -126,7 +126,7 @@ namespace write_text
    }
 
    
-   ::e_status drawer::split_text(string_array & stra, int w, enum_text_wrap etextwrap)
+   ::e_status drawer::split_text(string_array & stra, double w, enum_text_wrap etextwrap)
    {
 
       if (etextwrap == e_text_wrap_none)
@@ -145,10 +145,12 @@ namespace write_text
 
       }
 
+      return ::success;
+
    }
 
 
-   ::count drawer::_split_text(string_array & stra, ::index i, int w, enum_text_wrap etextwrap)
+   ::count drawer::_split_text(string_array & stra, ::index i, double w, enum_text_wrap etextwrap)
    {
 
       switch (etextwrap)
@@ -166,7 +168,7 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text_word(string_array & stra, ::index i, int w)
+   ::count drawer::_split_text_word(string_array & stra, ::index i, double w)
    {
 
       return _split_text_character(stra, i, w);
@@ -174,7 +176,7 @@ namespace write_text
    }
    
    
-   ::count drawer::_split_text_word_then_character(string_array & stra, ::index i, int w)
+   ::count drawer::_split_text_word_then_character(string_array & stra, ::index i, double w)
    {
       
       return _split_text_character(stra, i, w);
@@ -182,7 +184,7 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text_character(string_array & stra, ::index i, int w)
+   ::count drawer::_split_text_character(string_array & stra, ::index i, double w)
    {
 
       ::count c = 0;

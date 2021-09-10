@@ -80,7 +80,7 @@ namespace windows
 
    bool printer::document_properties::initialize(::windows::printer * pprinter, DEVMODE * pdevmode)
    {
-      UNREFERENCED_PARAMETER(pdevmode);
+      __UNREFERENCED_PARAMETER(pdevmode);
       if(m_pdevmode != nullptr)
          return false;
       if(m_hdc != nullptr)

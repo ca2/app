@@ -29,9 +29,10 @@ public:
    virtual ::e_status open(const ::file::path & path, const ::string & strAttributes, int iShare);
 
 
-   ::index translate(::count c, ::enum_seek eseek) override;
+   filesize translate(filesize offset, ::enum_seek eseek) override;
    void set_size(filesize dwNewLen) override;
    filesize get_size() const override;
+
 
    void lock(filesize dwPos,filesize dwCount) override;
    void unlock(filesize dwPos,filesize dwCount) override;

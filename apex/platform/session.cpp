@@ -1507,7 +1507,7 @@ namespace apex
    void session::launch_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -1515,7 +1515,7 @@ namespace apex
    void session::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -1600,7 +1600,7 @@ namespace apex
 //   bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pdata);
+//      __UNREFERENCED_PARAMETER(pdata);
 //
 //      if (itema.get_size() > 0)
 //      {
@@ -1662,7 +1662,7 @@ namespace apex
    //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
    //{
 
-   //   UNREFERENCED_PARAMETER(pcreate);
+   //   __UNREFERENCED_PARAMETER(pcreate);
 
    //   ::user::place_holder_ptra holderptra;
 

@@ -231,7 +231,7 @@ namespace axis
    //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(nCode);
 
    //}
 
@@ -1581,8 +1581,8 @@ namespace axis
    //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -1591,8 +1591,8 @@ namespace axis
    //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}

@@ -21,7 +21,7 @@ namespace file
 
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
 
    }
@@ -29,7 +29,7 @@ namespace file
 
    bool text_file::read_string(string & str)
    {
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
       return false;
    }
 

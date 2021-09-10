@@ -452,7 +452,6 @@ auto tickC1 = ::millis::now();
 #else
       u32 * pdata = (u32 *)pimage->colorref();
 
-      u8 * point_i32;
       vector4 * t = timage;
 
       int w = m_size.cx;
@@ -467,16 +466,24 @@ auto tickC1 = ::millis::now();
 
       int s = pimage->scan_size() / 4;
 
+      u8 * p;
+
       {
-auto tickA0 = ::millis::now();
+         
+         auto tickA0 = ::millis::now();
 
          for(index y = 0; y < hj; y++)
          {
+
             for(index x = 0; x < wj; x++)
             {
+
                p = (u8 *)&pdata[y * s + x];
-               t[y * wj + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
+
+               t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
+
             }
+
          }
          
          auto tickA1 = ::millis::now();
@@ -550,10 +557,10 @@ auto tickC0 = ::millis::now();
             {
                p = (u8 *)&pdata[y * s + x];
                t = &timage[y * wj + x];
-               point_i32[0] = (byte)t->w;
-               point_i32[1] = (byte)t->x;
-               point_i32[2] = (byte)t->y;
-               point_i32[3] = (byte)t->z;
+               p[0] = (byte)t->w;
+               p[1] = (byte)t->x;
+               p[2] = (byte)t->y;
+               p[3] = (byte)t->z;
             }
          }
          
@@ -1116,7 +1123,7 @@ auto tick2 = ::millis::now();
 
             // put pixel in the stack
             vector4& sir = stack[i + radius];
-            sir = point;
+            sir = p;
 
             // rbs is a weight from (1)...(radius+1)...(1)
             const int rbs = r1 - abs(i);
@@ -1169,7 +1176,7 @@ auto tick2 = ::millis::now();
 
             // now this (same) stack entry is the "right" side
             // add new pixel to the stack, and update accumulators
-            sir = point;
+            sir = p;
             insum += sir;
             sum += insum;
 
@@ -1208,7 +1215,7 @@ auto tick2 = ::millis::now();
             yi = maximum(0,yp) + x;
             const vector4& p = tsurface[yi];
 
-            sir = point;
+            sir = p;
 
             const int rbs = r1 - abs(i);
             sum += sir * (float) rbs;
@@ -1383,6 +1390,8 @@ auto tick2 = ::millis::now();
 
       }
 
+      int workstride = w * sizeof(u32);
+
       i32 * pix = (i32 *)pdata;
       u8 * pb = (u8 *)pdata;
       u8 * pwork = (u8 *)prgba;
@@ -1391,7 +1400,7 @@ auto tick2 = ::millis::now();
       for(y = 0; y < h; y++)
       {
 
-         pwork = &pwk[stride * y];
+         pwork = &pwk[workstride * y];
 
          asum = 0;
          rsum = 0;
@@ -1495,7 +1504,7 @@ auto tick2 = ::millis::now();
             yp += stride;
          }
 
-         u8 * r1 = &pwk[(x * 4) + (radius + 1) * stride];
+         u8 * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
          u8 * r2 = &pwk[(x * 4)];
 
          pu8_1 = (u8 *)&pix[x];
@@ -1514,7 +1523,7 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r1 += stride;
+            r1 += workstride;
 
          }
 
@@ -1532,13 +1541,13 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r1 += stride;
-            r2 += stride;
+            r1 += workstride;
+            r2 += workstride;
 
          }
 
          pu8_1 -= stride;
-         r1 -= stride;
+         r1 -= workstride;
 
          for(; y < h; y++)
          {
@@ -1554,7 +1563,7 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r2 += stride;
+            r2 += workstride;
 
          }
 

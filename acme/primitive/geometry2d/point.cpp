@@ -42,12 +42,12 @@
 
 //::u32 point_i32::u32() const noexcept
 //{
-//   return MAKELONG(x, y);
+//   return __MAKE_LONG(x, y);
 //}
 //
 //::u64 point_i32::u64() const noexcept
 //{
-//   return MAKELONG64(x, y);
+//   return __MAKE_LONG64(x, y);
 //}
 //
 //::lparam point_i32::lparam() const noexcept
@@ -104,12 +104,12 @@
 //
 //::u32 point_i64::u32() const noexcept
 //{
-//   return MAKELONG(x, y);
+//   return __MAKE_LONG(x, y);
 //}
 //
 //::u64 point_i64::u64() const noexcept
 //{
-//   return MAKELONG64(x, y);
+//   return __MAKE_LONG64(x, y);
 //}
 //
 //LPARAM point_i64::lparam() const noexcept
@@ -168,12 +168,12 @@
 //
 //::u32 point_f64::u32() const noexcept
 //{
-//   return MAKELONG((i32) x, (i32) y);
+//   return __MAKE_LONG((i32) x, (i32) y);
 //}
 //
 //::u64 point_f64::u64() const noexcept
 //{
-//   return MAKELONG64((i32) x, (i32) y);
+//   return __MAKE_LONG64((i32) x, (i32) y);
 //}
 //
 //LPARAM point_f64::lparam() const noexcept

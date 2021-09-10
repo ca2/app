@@ -71,7 +71,7 @@ namespace datetime
 //      static id idCalendarHour("calendar:hour");
 //      static id idCalendarHours("calendar:hours");
 //      static id idCalendarNow("calendar:now");
-//      UNREFERENCED_PARAMETER(pobject);
+//      __UNREFERENCED_PARAMETER(pobject);
 //      value time;
 //      time.m_bSpan = true;
 //      string str(pszSpanExpression);

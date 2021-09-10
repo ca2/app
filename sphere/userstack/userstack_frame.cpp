@@ -194,7 +194,7 @@ namespace userstack
    void frame::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      auto pmouse = pmessage->m_pmouse;
 //      m_bMouseOver = false;

@@ -30,8 +30,8 @@
 //
 //   filesize seekable::seek(filesize offset, enum_seek seekOrigin)
 //   {
-//      UNREFERENCED_PARAMETER(offset);
-//      UNREFERENCED_PARAMETER(seekOrigin);
+//      __UNREFERENCED_PARAMETER(offset);
+//      __UNREFERENCED_PARAMETER(seekOrigin);
 //      ::exception::throw_interface_only();
 //      return 0;
 //   }

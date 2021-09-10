@@ -77,7 +77,7 @@ public:
    explicit operator ::file::file * ()  { return m_p; }
 
 
-   virtual ::index translate(::count c, ::enum_seek eseek);
+   virtual filesize translate(filesize offset, ::enum_seek eseek);
 
 
    string factory_id_to_text(const ::id & id) override;

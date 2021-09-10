@@ -69,7 +69,7 @@ namespace user
    void tab_view::_001OnSetFocus(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if(get_view_uie() != nullptr)
       {
@@ -419,7 +419,7 @@ namespace user
    void tab_view::_001DropTargetWindowRelay(::user::tab * pchannel)
    {
 
-      UNREFERENCED_PARAMETER(pchannel);
+      __UNREFERENCED_PARAMETER(pchannel);
 
       set_need_redraw();
 
@@ -428,7 +428,7 @@ namespace user
 
    void tab_view::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
-      UNREFERENCED_PARAMETER(pchannel);
+      __UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
          //psystem->erase_frame(m_pdroptargetwindow);

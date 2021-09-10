@@ -1022,19 +1022,16 @@ public:
  }
 
 
-#ifndef UNREFERENCED_PARAMETER
-#define UNREFERENCED_PARAMETER(u)	(void)(u)
-#endif
 
 
- void SubtractRectMinor(const rectangle_type & rectMajor, const rectangle_type & rectMinor)
- {
+ //void SubtractRectMinor(const rectangle_type & rectMajor, const rectangle_type & rectMinor)
+ //{
 
-    UNREFERENCED_PARAMETER(rectMajor);
+ //   //__UNREFERENCED_PARAMETER(rectMajor);
 
-    UNREFERENCED_PARAMETER(rectMinor);
+ //   //__UNREFERENCED_PARAMETER(rectMinor);
 
- }
+ //}
 
 
  UNIT_TYPE minimum_signed_absolute_dimension(bool bNegativePreference = true) const noexcept

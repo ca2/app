@@ -1146,8 +1146,8 @@ i32 simple_scroll_bar::_001SetScrollPos(i32 iPos)
 
 //LRESULT simple_scroll_bar::OnEconoModeChange(WPARAM wParam, LPARAM lParam)
 //{
-//   UNREFERENCED_PARAMETER(wParam);
-//   UNREFERENCED_PARAMETER(lParam);
+//   __UNREFERENCED_PARAMETER(wParam);
+//   __UNREFERENCED_PARAMETER(lParam);
 //   update_drawing_objects();
 //   //set_need_redraw();
 //
@@ -1633,7 +1633,7 @@ void simple_scroll_bar::on_message_show_window(::message::message * pmessage)
 
 void simple_scroll_bar::on_message_destroy(::message::message * pmessage)
 {
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 }
 
 

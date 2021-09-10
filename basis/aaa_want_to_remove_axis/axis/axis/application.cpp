@@ -1208,9 +1208,9 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 
       //__pointer(::user::message) pusermessage(pmessage);
 
-      UNREFERENCED_PARAMETER(code);
+      __UNREFERENCED_PARAMETER(code);
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 
    }
@@ -1319,8 +1319,8 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    bool application::do_prompt_file_name(::payload & varFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
    {
 
-      UNREFERENCED_PARAMETER(varFile);
-      UNREFERENCED_PARAMETER(nIDSTitle);
+      __UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(nIDSTitle);
 
       return false;
 
@@ -1528,8 +1528,8 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    bool application::on_open_document(::user::document * pdocument,::payload varFile)
    {
 
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(varFile);
       return true;
 
    }
@@ -1538,8 +1538,8 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    bool application::on_save_document(::user::document * pdocument,::payload varFile)
    {
 
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(varFile);
       return true;
 
    }

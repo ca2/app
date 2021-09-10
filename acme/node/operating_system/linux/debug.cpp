@@ -206,6 +206,6 @@ void WINAPI output_debug_string(const widechar * pOutputString)
 //
 //void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 //{
-//   UNREFERENCED_PARAMETER(uiCode);
-//   UNREFERENCED_PARAMETER(ppointers);
+//   __UNREFERENCED_PARAMETER(uiCode);
+//   __UNREFERENCED_PARAMETER(ppointers);
 //}

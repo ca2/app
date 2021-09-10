@@ -4,9 +4,9 @@
 //void double_scalar_source::listener::on_set_scalar(double_scalar_source * psource,e_scalar escalar,double dValue,int iFlags)
 //{
 //
-//   UNREFERENCED_PARAMETER(psource);
-//   UNREFERENCED_PARAMETER(escalar);
-//   UNREFERENCED_PARAMETER(dValue);
+//   __UNREFERENCED_PARAMETER(psource);
+//   __UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(dValue);
 //
 //}
 //
@@ -177,11 +177,11 @@
 //void double_scalar_source::on_set_scalar(e_scalar escalar,double d,int iFlags)
 //{
 //
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //
-//   UNREFERENCED_PARAMETER(d);
+//   __UNREFERENCED_PARAMETER(d);
 //
-//   UNREFERENCED_PARAMETER(iFlags);
+//   __UNREFERENCED_PARAMETER(iFlags);
 //
 //   // does nothing.
 //
@@ -190,7 +190,7 @@
 //void double_scalar_source::get_scalar_minimum(e_scalar escalar, double & d)
 //{
 //
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //
 //   d = 1.0; // by default
 //
@@ -199,7 +199,7 @@
 //void double_scalar_source::get_scalar(e_scalar escalar, double & d)
 //{
 //
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //
 //   d = 1.0; // by default
 //
@@ -208,7 +208,7 @@
 //void double_scalar_source::get_scalar_maximum(e_scalar escalar, double & d)
 //{
 //
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //
 //   d = 1.0; // by default
 //
@@ -249,10 +249,10 @@
 //void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,e_scalar escalar,i64 iValue,int iFlags)
 //{
 //
-//   UNREFERENCED_PARAMETER(psource);
-//   UNREFERENCED_PARAMETER(escalar);
-//   UNREFERENCED_PARAMETER(iValue);
-//   UNREFERENCED_PARAMETER(iFlags);
+//   __UNREFERENCED_PARAMETER(psource);
+//   __UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(iValue);
+//   __UNREFERENCED_PARAMETER(iFlags);
 //
 //}
 //
@@ -380,11 +380,11 @@
 //void int_scalar_source::on_set_scalar(e_scalar escalar,i64 iValue,int iFlags)
 //{
 //   
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //   
-//   UNREFERENCED_PARAMETER(iValue);
+//   __UNREFERENCED_PARAMETER(iValue);
 //
-//   UNREFERENCED_PARAMETER(iFlags);
+//   __UNREFERENCED_PARAMETER(iFlags);
 //
 //   // does nothing by default.
 //
@@ -393,7 +393,7 @@
 //void int_scalar_source::get_scalar_minimum(e_scalar escalar, i64 & i)
 //{
 //   
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //
 //   i = 0; // by default
 //
@@ -402,7 +402,7 @@
 //void int_scalar_source::get_scalar(e_scalar escalar, i64 & i)
 //{
 //   
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //   
 //   i = 1; // by default
 //
@@ -411,7 +411,7 @@
 //void int_scalar_source::get_scalar_maximum(e_scalar escalar, i64 & i)
 //{
 //   
-//   UNREFERENCED_PARAMETER(escalar);
+//   __UNREFERENCED_PARAMETER(escalar);
 //   
 //   i = 1; // by default
 //
@@ -479,9 +479,9 @@ double scalar_base::get_rate(double dDefault)
 bool scalar_base::set_rate(double dValue, int iFlags)
 {
 
-   UNREFERENCED_PARAMETER(dValue);
+   __UNREFERENCED_PARAMETER(dValue);
 
-   UNREFERENCED_PARAMETER(iFlags);
+   __UNREFERENCED_PARAMETER(iFlags);
 
    return false;
 
@@ -491,7 +491,7 @@ bool scalar_base::set_rate(double dValue, int iFlags)
 string scalar_base::Format(const ::string & strFormat)
 {
 
-   UNREFERENCED_PARAMETER(strFormat);
+   __UNREFERENCED_PARAMETER(strFormat);
 
    return "";
 

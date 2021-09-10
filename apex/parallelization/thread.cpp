@@ -1754,7 +1754,7 @@ bool thread::task_get_run() const
 void thread::message_queue_message_handler(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 

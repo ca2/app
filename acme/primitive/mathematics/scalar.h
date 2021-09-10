@@ -191,10 +191,10 @@ template < typename SCALAR >
 void scalar_source < SCALAR > ::listener::on_set_scalar(scalar_source * psource,e_scalar escalar,SCALAR iValue,int iFlags)
 {
 
-   UNREFERENCED_PARAMETER(psource);
-   UNREFERENCED_PARAMETER(escalar);
-   UNREFERENCED_PARAMETER(iValue);
-   UNREFERENCED_PARAMETER(iFlags);
+   __UNREFERENCED_PARAMETER(psource);
+   __UNREFERENCED_PARAMETER(escalar);
+   __UNREFERENCED_PARAMETER(iValue);
+   __UNREFERENCED_PARAMETER(iFlags);
 
 }
 
@@ -323,11 +323,11 @@ template < typename SCALAR >
 void scalar_source < SCALAR > ::on_set_scalar(e_scalar escalar,SCALAR iValue,int iFlags)
 {
 
-   UNREFERENCED_PARAMETER(escalar);
+   __UNREFERENCED_PARAMETER(escalar);
 
-   UNREFERENCED_PARAMETER(iValue);
+   __UNREFERENCED_PARAMETER(iValue);
 
-   UNREFERENCED_PARAMETER(iFlags);
+   __UNREFERENCED_PARAMETER(iFlags);
 
    // does nothing by default.
 
@@ -336,7 +336,7 @@ template < typename SCALAR >
 void scalar_source < SCALAR > ::get_scalar_minimum(e_scalar escalar,SCALAR & i)
 {
 
-   UNREFERENCED_PARAMETER(escalar);
+   __UNREFERENCED_PARAMETER(escalar);
 
    i = 0; // by default
 
@@ -345,7 +345,7 @@ template < typename SCALAR >
 void scalar_source < SCALAR > ::get_scalar(e_scalar escalar,SCALAR & i)
 {
 
-   UNREFERENCED_PARAMETER(escalar);
+   __UNREFERENCED_PARAMETER(escalar);
 
    i = 1; // by default
 
@@ -354,7 +354,7 @@ template < typename SCALAR >
 void scalar_source < SCALAR > ::get_scalar_maximum(e_scalar escalar,SCALAR & i)
 {
 
-   UNREFERENCED_PARAMETER(escalar);
+   __UNREFERENCED_PARAMETER(escalar);
 
    i = 1; // by default
 

@@ -594,7 +594,7 @@ namespace android
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //::parallelization::post_quit_and_wait(m_pprodevian, seconds(10));
 
@@ -736,7 +736,7 @@ namespace android
 
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -827,8 +827,8 @@ namespace android
 
    bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
-      UNREFERENCED_PARAMETER(bEnable);
-      UNREFERENCED_PARAMETER(nFlag);
+      __UNREFERENCED_PARAMETER(bEnable);
+      __UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -914,8 +914,8 @@ namespace android
 
    void interaction_impl::WinHelp(uptr dwData,::u32 nCmd)
    {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
+      __UNREFERENCED_PARAMETER(dwData);
+      __UNREFERENCED_PARAMETER(nCmd);
       ::exception::throw_not_implemented();
 
       /*      application* pApp = ::aura::get_system();
@@ -1006,8 +1006,8 @@ namespace android
 
    void interaction_impl::WinHelpInternal(uptr dwData,::u32 nCmd)
    {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
+      __UNREFERENCED_PARAMETER(dwData);
+      __UNREFERENCED_PARAMETER(nCmd);
       ::exception::throw_not_implemented();
       /*
       application* pApp = ::aura::get_system();
@@ -1348,7 +1348,7 @@ namespace android
 
    bool interaction_impl::OnCommand(::user::message * pusermessage)
    {
-      UNREFERENCED_PARAMETER(pusermessage);
+      __UNREFERENCED_PARAMETER(pusermessage);
       return false;
    }
 
@@ -1467,7 +1467,7 @@ namespace android
 
    //bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask)
    //{
-   //   UNREFERENCED_PARAMETER(nMask);
+   //   __UNREFERENCED_PARAMETER(nMask);
    //   ASSERT(lpScrollInfo != nullptr);
 
    //   oswindow oswindow = get_handle();
@@ -1644,7 +1644,7 @@ namespace android
 //
 //bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
 //{
-//   UNREFERENCED_PARAMETER(wparam);
+//   __UNREFERENCED_PARAMETER(wparam);
 //   // Note: reflected messages are send directly to interaction_impl::OnWndMsg
 //   //  and interaction_impl::_001OnCommand for speed and because these messages are not
 //   //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -1827,7 +1827,7 @@ namespace android
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
@@ -1985,7 +1985,7 @@ namespace android
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2294,9 +2294,9 @@ namespace android
    void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
 
-      //UNREFERENCED_PARAMETER(pTarget);
+      //__UNREFERENCED_PARAMETER(pTarget);
 
-      //UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      //__UNREFERENCED_PARAMETER(bDisableIfNoHndler);
 
       //::message::command state(this);
 
@@ -2900,7 +2900,7 @@ namespace android
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
@@ -3025,8 +3025,8 @@ namespace android
    //i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
    //{
 
-   //   UNREFERENCED_PARAMETER(hRgn);
-   //   UNREFERENCED_PARAMETER(bRedraw);
+   //   __UNREFERENCED_PARAMETER(hRgn);
+   //   __UNREFERENCED_PARAMETER(bRedraw);
 
    //   //__throw(error_not_implemented);
 
@@ -3396,7 +3396,7 @@ namespace android
    //   //return ::user::interaction_impl::SetTimer(uEvent, nElapse, lpfnTimer);
 
 
-   //   //UNREFERENCED_PARAMETER(lpfnTimer);
+   //   //__UNREFERENCED_PARAMETER(lpfnTimer);
 
    //   //m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
@@ -4049,7 +4049,7 @@ namespace android
 
    void interaction_impl::on_message_size(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //size_i32 sizeRequest = m_puserinteraction->m_rectParentClientRequest.size();
 
@@ -4503,7 +4503,7 @@ namespace android
 
 //void interaction_impl::on_delete(::object * pinteraction)
 //{
-//   UNREFERENCED_PARAMETER(pinteraction);
+//   __UNREFERENCED_PARAMETER(pinteraction);
 //}
 
 

@@ -929,3 +929,48 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
 }
 
+
+::image_pointer context_image::create_image()
+{
+
+   auto ptype = __create < ::image >();
+
+   if (!ptype)
+   {
+
+      return nullptr;
+
+   }
+
+   return ptype;
+
+}
+
+
+::image_pointer context_image::create_image(const ::size_i32 & size, ::eobject eobjectFlag)
+{
+
+   auto ptype = __create < ::image >();
+
+   if (!ptype)
+   {
+
+      return nullptr;
+
+   }
+
+   auto estatus = ptype->create(size, eobjectFlag);
+
+   if (!estatus)
+   {
+
+      return nullptr;
+
+   }
+
+   return ptype;
+
+}
+
+
+

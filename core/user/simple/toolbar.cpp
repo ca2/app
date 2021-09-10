@@ -408,7 +408,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
    
    //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
-   m_pimageDraft = create_image({20,  20 });
+   m_pimageDraft = m_pcontext->context_image()->create_image({20,  20 });
 
 }
 
@@ -1553,7 +1553,7 @@ void simple_toolbar::_001DiscardImageList()
 void simple_toolbar::_001SetImageList(__pointer(::image_list) imagelist)
 {
 
-   UNREFERENCED_PARAMETER(imagelist);
+   __UNREFERENCED_PARAMETER(imagelist);
 
    /*
 

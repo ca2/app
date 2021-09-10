@@ -54,9 +54,9 @@ namespace filemanager
    bool document::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
 
-      UNREFERENCED_PARAMETER(nIDSTitle);
-      UNREFERENCED_PARAMETER(lFlags);
-      UNREFERENCED_PARAMETER(ptemplate);
+      __UNREFERENCED_PARAMETER(nIDSTitle);
+      __UNREFERENCED_PARAMETER(lFlags);
+      __UNREFERENCED_PARAMETER(ptemplate);
 
       ASSERT(bOpenFileDialog == false);
 
@@ -933,7 +933,7 @@ namespace filemanager
    void document::_001OnReplaceText(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       id_update_all_views(id_replace_name);
 
@@ -957,7 +957,7 @@ namespace filemanager
    void document::_001OnNewFolder(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       id_update_all_views(id_new_folder);
 
@@ -976,7 +976,7 @@ namespace filemanager
 
    void document::_001OnEditPaste(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //pcontext->m_papexcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_views(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
@@ -1004,7 +1004,7 @@ namespace filemanager
    void document::_001OnFileSaveAs(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
@@ -1025,7 +1025,7 @@ namespace filemanager
    void document::_001OnFileImport(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::mode_import)
       {
@@ -1044,7 +1044,7 @@ namespace filemanager
    void document::_001OnFileExport(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_emode == ::userfs::mode_saving)
       {

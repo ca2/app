@@ -107,9 +107,9 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
    void * paligned;
 
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
+   __UNREFERENCED_PARAMETER(nBlockUse);
+   __UNREFERENCED_PARAMETER(szFileName);
+   __UNREFERENCED_PARAMETER(nLine);
 
    align = align <= 0 ? ALIGN_BYTE_COUNT : align;
 

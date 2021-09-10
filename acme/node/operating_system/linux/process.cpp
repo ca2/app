@@ -17,9 +17,9 @@
 //CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array & straProcesses, const char * pszDll)
 //{
 //
-//   UNREFERENCED_PARAMETER(dwa);
-//   UNREFERENCED_PARAMETER(straProcesses);
-//   UNREFERENCED_PARAMETER(pszDll);
+//   __UNREFERENCED_PARAMETER(dwa);
+//   __UNREFERENCED_PARAMETER(straProcesses);
+//   __UNREFERENCED_PARAMETER(pszDll);
 //
 //}
 //

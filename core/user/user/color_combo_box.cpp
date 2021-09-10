@@ -196,7 +196,7 @@ namespace user
 
       //auto pmouse = pmessage->m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (!m_itemHover.is_set())
       {
@@ -217,7 +217,7 @@ namespace user
 
       //auto pmouse = pmessage->m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_itemHover = ::user::e_element_none;
 

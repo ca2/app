@@ -104,10 +104,10 @@ void binary_stream::close()
 }
 
 
-::index binary_stream::translate(::count c, ::enum_seek eseek)
+filesize binary_stream::translate(filesize offset, ::enum_seek eseek)
 {
 
-   return m_p->translate(c, eseek);
+   return m_p->translate(offset, eseek);
 
 }
 

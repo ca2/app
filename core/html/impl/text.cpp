@@ -151,6 +151,8 @@ namespace html
          if (pgraphics == nullptr)
             return;
 
+         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
+
          font * pfont = pdata->get_font(m_pelemental);
 
          if (pfont != nullptr)
@@ -1026,7 +1028,7 @@ namespace html
       i32 text::hit_test(html_data * pdocument, const ::point_f32 & point)
       {
 
-         UNREFERENCED_PARAMETER(pdocument);
+         __UNREFERENCED_PARAMETER(pdocument);
 
          float x = left();
          float cy = 0.f;
@@ -1236,7 +1238,7 @@ namespace html
       void text::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pgraphics);
 
       }
 

@@ -817,8 +817,8 @@ namespace apex
    string context::http_get(const ::string & strUrl, ::property_set & set)
    {
 
-      UNREFERENCED_PARAMETER(strUrl);
-      UNREFERENCED_PARAMETER(set);
+      __UNREFERENCED_PARAMETER(strUrl);
+      __UNREFERENCED_PARAMETER(set);
 
       return "";
 

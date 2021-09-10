@@ -575,7 +575,7 @@ namespace sphere
    //void department::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdata);
+   //   __UNREFERENCED_PARAMETER(pdata);
 
    //}
 
@@ -590,7 +590,7 @@ namespace sphere
    ::filemanager::data * pdata,
    ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       if (itema.get_size() > 0)
       {
          return true;
@@ -621,13 +621,13 @@ namespace sphere
 
    void application::launch_app(const ::string & psz)
    {
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
    }
 
    void application::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 

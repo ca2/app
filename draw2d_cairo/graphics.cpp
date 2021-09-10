@@ -103,8 +103,8 @@ string_to_string * g_pmapFontPath;
 //   //else
 //   //   return false;
 //
-//   //UNREFERENCED_PARAMETER(lplf);
-//   //UNREFERENCED_PARAMETER(lpntm);
+//   //__UNREFERENCED_PARAMETER(lplf);
+//   //__UNREFERENCED_PARAMETER(lpntm);
 //
 //
 //   return true;

@@ -56,7 +56,7 @@ namespace apex
 //   bool application::_001OnDDECommand(const char * pcsz)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }

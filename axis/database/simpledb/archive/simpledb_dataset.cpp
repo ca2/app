@@ -498,7 +498,7 @@ namespace simpledb
 
    string dataset::sql_consume_join_on(const char * & pszSql)
    {
-      UNREFERENCED_PARAMETER(pszSql);
+      __UNREFERENCED_PARAMETER(pszSql);
       return "";
    }
 
@@ -622,7 +622,7 @@ namespace simpledb
 
    bool dataset::query(const ::string &query)
    {
-      UNREFERENCED_PARAMETER(query);
+      __UNREFERENCED_PARAMETER(query);
       if(db == nullptr)
       {
          TRACE("dataset::query: database is not Defined");
@@ -779,7 +779,7 @@ namespace simpledb
 
    long dataset::nextid(const ::string &seq_name)
    {
-      UNREFERENCED_PARAMETER(seq_name);
+      __UNREFERENCED_PARAMETER(seq_name);
       /*      if(handle())
                return db->nextid(seq_name);
             else*/

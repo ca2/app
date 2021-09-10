@@ -167,7 +167,7 @@ concrete < ::size_i32 > image::image_source_size() const
 bool image::realize(::draw2d::graphics* pgraphics) const
 {
 
-   UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pgraphics);
 
    return true;
 
@@ -236,7 +236,7 @@ bool image::on_host_read_pixels(const ::pixmap* ppixmap)
 bool image::dc_select(bool bSelect)
 {
 
-   UNREFERENCED_PARAMETER(bSelect);
+   __UNREFERENCED_PARAMETER(bSelect);
 
    ::exception::throw_interface_only();
 
@@ -493,10 +493,10 @@ bool image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 //{
 //
 //
-//   UNREFERENCED_PARAMETER(pgraphics);
-//   UNREFERENCED_PARAMETER(point);
-//   UNREFERENCED_PARAMETER(size);
-//   UNREFERENCED_PARAMETER(pointSrc);
+//   __UNREFERENCED_PARAMETER(pgraphics);
+//   __UNREFERENCED_PARAMETER(point);
+//   __UNREFERENCED_PARAMETER(size);
+//   __UNREFERENCED_PARAMETER(pointSrc);
 //   ::exception::throw_interface_only();
 //
 //   return false;
@@ -2341,8 +2341,8 @@ bool image::from_alpha()
 
 bool image::mult_alpha(::image* pimage, bool bPreserveAlpha)
 {
-   UNREFERENCED_PARAMETER(pimage);
-   UNREFERENCED_PARAMETER(bPreserveAlpha);
+   __UNREFERENCED_PARAMETER(pimage);
+   __UNREFERENCED_PARAMETER(bPreserveAlpha);
 
    u8* dst = (u8*)get_data();
    i64 size = scan_area();
@@ -6929,8 +6929,8 @@ bool image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 i32 image::cos(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
    ::exception::throw_interface_only();
 
@@ -6942,8 +6942,8 @@ i32 image::cos(i32 i, i32 iAngle)
 i32 image::sin(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
    ::exception::throw_interface_only();
 
@@ -6955,8 +6955,8 @@ i32 image::sin(i32 i, i32 iAngle)
 i32 image::cos10(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
    ::exception::throw_interface_only();
 
@@ -6968,8 +6968,8 @@ i32 image::cos10(i32 i, i32 iAngle)
 i32 image::sin10(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
    ::exception::throw_interface_only();
 
@@ -8248,8 +8248,8 @@ bool image::set_mapped()
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      UNREFERENCED_PARAMETER(puserinteraction);
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(puserinteraction);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
 //      // and ready to be queried if post queried
@@ -8265,8 +8265,8 @@ bool image::set_mapped()
 //bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(puserinteraction);
-//   UNREFERENCED_PARAMETER(pmessage);
+//   __UNREFERENCED_PARAMETER(puserinteraction);
+//   __UNREFERENCED_PARAMETER(pmessage);
 
 //   ::exception::throw_interface_only();
 
@@ -9054,7 +9054,7 @@ __pointer(::image) image::get_image(const ::size_i32 & size)
 
    }
 
-   auto pimageNew = create_image(size);
+   auto pimageNew = m_pcontext->context_image()->create_image(size);
 
    image_source imagesource(this, this->rectangle());
 

@@ -563,10 +563,10 @@ namespace draw2d
 
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
-      UNREFERENCED_PARAMETER(bFill);
-      UNREFERENCED_PARAMETER(dRateX);
-      UNREFERENCED_PARAMETER(ppointOffset);
+      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(bFill);
+      __UNREFERENCED_PARAMETER(dRateX);
+      __UNREFERENCED_PARAMETER(ppointOffset);
 
 
       //pdraw2d->api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);

@@ -963,12 +963,12 @@ enum enum_optional
 
 #ifdef __cplusplus
 
-#define MAKELONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 #else
 
-#define MAKELONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 #define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 
 #endif
@@ -3666,6 +3666,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"
+#include "acme/filesystem/file/streamable_composite.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"

@@ -1287,7 +1287,7 @@
 //      application& operator = (const application& app)
 //      {
 //
-//         UNREFERENCED_PARAMETER(app);
+//         __UNREFERENCED_PARAMETER(app);
 //
 //         // do nothing
 //

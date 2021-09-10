@@ -1263,9 +1263,9 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 void _android_size(float xDummy, float yDummy, float cx, float cy)
 {
 
-   UNREFERENCED_PARAMETER(xDummy);
+   __UNREFERENCED_PARAMETER(xDummy);
 
-   UNREFERENCED_PARAMETER(yDummy);
+   __UNREFERENCED_PARAMETER(yDummy);
 
    if (::get_context_system() == nullptr)
       return;
@@ -1534,7 +1534,7 @@ namespace aura
 CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 
 }

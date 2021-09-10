@@ -10,7 +10,7 @@ namespace http
       m_pmemfileBody(e_create_new)
    {
 
-      UNREFERENCED_PARAMETER(version);
+      __UNREFERENCED_PARAMETER(version);
 
    }
 

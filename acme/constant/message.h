@@ -127,7 +127,7 @@ enum enum_message : ::i64
 // lParam = dwContext
 //#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
    e_message_help_hit_test,
-// lParam = MAKELONG(x,y)
+// lParam = __MAKE_LONG(x,y)
 //#define WM_EXITHELPMODE     0x0367  // (params unused)
    e_message_exit_help_mode,
 //#define WM_RECALCPARENT     0x0368  // force on_layout on frame interaction_impl

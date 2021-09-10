@@ -45,7 +45,7 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::InitBody( memsize sz )
    {
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(sz);
       m_memfileBody.set_size(0);
       /*if (!m_file.get())
          m_file = pointer<IFile>(new MemFile);

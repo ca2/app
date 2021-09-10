@@ -60,8 +60,8 @@
 #include "__standard_type.h"
 
 
-typedef i64 memsize_storage;
-typedef i64 strsize_storage;
+typedef iptr memsize_storage;
+typedef iptr strsize_storage;
 
 
 typedef iptr memsize;

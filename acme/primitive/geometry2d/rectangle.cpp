@@ -275,9 +275,9 @@
 //void rectangle_i64::SubtractRectMinor(const ::rectangle_i64 & rectMajor, const ::rectangle_i64 & rectMinor)
 //
 //{
-//   UNREFERENCED_PARAMETER(rectMajor);
+//   __UNREFERENCED_PARAMETER(rectMajor);
 //
-//   UNREFERENCED_PARAMETER(rectMinor);
+//   __UNREFERENCED_PARAMETER(rectMinor);
 //
 //}
 //

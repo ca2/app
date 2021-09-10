@@ -50,7 +50,7 @@ namespace process
    string process::read(bool bUntilExit)
    {
 
-      UNREFERENCED_PARAMETER(bUntilExit);
+      __UNREFERENCED_PARAMETER(bUntilExit);
 
       return m_pipe.m_ppipeOut->read();
 

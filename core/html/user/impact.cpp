@@ -125,7 +125,7 @@ string html_view::GetLocationURL()
 bool html_view::Refresh2(i32 i)
 {
 
-   UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(i);
 
    get_document()->on_open_document(GetLocationURL());
 
@@ -154,7 +154,7 @@ bool html_view::Navigate(const ::string & pszUrl)
 void html_view::on_document_complete(const ::string & strUrl)
 {
 
-   UNREFERENCED_PARAMETER(strUrl);
+   __UNREFERENCED_PARAMETER(strUrl);
 
 }
 

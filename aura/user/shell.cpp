@@ -1301,7 +1301,7 @@ namespace user
          else
          {
 
-            image16 = create_image({16, 16});
+            image16 = m_pcontext->context_image()->create_image({16, 16});
 
             if (!::is_ok(image16))
             {
@@ -1335,7 +1335,7 @@ namespace user
          else
          {
 
-            image48 = create_image({48, 48});
+            image48 = m_pcontext->context_image()->create_image({48, 48});
 
             if (!::is_ok(image48))
             {

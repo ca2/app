@@ -447,7 +447,7 @@ public:
    inline void set_nok() { m_pimpl->set_nok(); }
 
 
-   inline bool create_image(::object * pobject, const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   inline bool create_image(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
    inline bool has_flag(e_object eobject) const { return m_pimpl && m_pimpl->has_flag(eobject); }
@@ -551,7 +551,7 @@ public:
 };
 
 
-inline bool image::create_image(::object * pobject, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+inline bool image::create_image(const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 {
 
    if (m_pimpl.is_null())

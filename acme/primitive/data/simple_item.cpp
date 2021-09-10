@@ -24,7 +24,7 @@ namespace data
 
    string simple_item::data_item_get_text(matter * pobject) const
    {
-      UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pobject);
       return m_str;
    }
    

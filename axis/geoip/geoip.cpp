@@ -1671,7 +1671,7 @@ char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum)
 
 char *_GeoIP_num_to_addr (GeoIP* gi, u32 ipnum)
 {
-   UNREFERENCED_PARAMETER(gi);
+   __UNREFERENCED_PARAMETER(gi);
    char *ret_str;
    char *cur_str;
    i32 octet[4];

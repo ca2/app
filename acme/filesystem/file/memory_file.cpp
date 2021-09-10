@@ -284,7 +284,7 @@ filesize memory_file::get_position() const
 }
 
 
-::index memory_file::translate(::count offset, ::enum_seek eseek)
+filesize memory_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    ASSERT(is_valid());

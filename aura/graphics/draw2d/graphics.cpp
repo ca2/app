@@ -250,13 +250,13 @@ namespace draw2d
    bool graphics::CreateDC(const ::string & pszDriverName,  const ::string & pszDeviceName, const ::string & pszOutput, const void * pInitData)
    {
 
-      UNREFERENCED_PARAMETER(pszDriverName);
+      __UNREFERENCED_PARAMETER(pszDriverName);
 
-      UNREFERENCED_PARAMETER(pszDeviceName);
+      __UNREFERENCED_PARAMETER(pszDeviceName);
 
-      UNREFERENCED_PARAMETER(pszOutput);
+      __UNREFERENCED_PARAMETER(pszOutput);
 
-      UNREFERENCED_PARAMETER(pInitData);
+      __UNREFERENCED_PARAMETER(pInitData);
 
 
 
@@ -269,13 +269,13 @@ namespace draw2d
 
    {
 
-      UNREFERENCED_PARAMETER(pszDriverName);
+      __UNREFERENCED_PARAMETER(pszDriverName);
 
-      UNREFERENCED_PARAMETER(pszDeviceName);
+      __UNREFERENCED_PARAMETER(pszDeviceName);
 
-      UNREFERENCED_PARAMETER(pszOutput);
+      __UNREFERENCED_PARAMETER(pszOutput);
 
-      UNREFERENCED_PARAMETER(pInitData);
+      __UNREFERENCED_PARAMETER(pInitData);
 
 
 
@@ -302,7 +302,7 @@ namespace draw2d
    bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
 
 
@@ -313,7 +313,7 @@ namespace draw2d
    bool graphics::CreateWindowDC(oswindow wnd)
    {
 
-      UNREFERENCED_PARAMETER(wnd);
+      __UNREFERENCED_PARAMETER(wnd);
 
 
 
@@ -324,14 +324,14 @@ namespace draw2d
 
    /*   i32 graphics::ExcludeUpdateRgn(::user::interaction_impl * pwindow)
       {
-         UNREFERENCED_PARAMETER(pwindow);
+         __UNREFERENCED_PARAMETER(pwindow);
 
       }
       */
 
    i32 graphics::GetDeviceCaps(i32 nIndex)
    {
-      UNREFERENCED_PARAMETER(nIndex);
+      __UNREFERENCED_PARAMETER(nIndex);
 
 
       return -1;
@@ -381,8 +381,8 @@ namespace draw2d
    point_f64 graphics::SetBrushOrg(double x, double y)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
 
       return nullptr;
 
@@ -392,7 +392,7 @@ namespace draw2d
    point_f64 graphics::SetBrushOrg(const ::point_f64 & point)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       return nullptr;
 
@@ -402,10 +402,10 @@ namespace draw2d
    i32 graphics::EnumObjects(i32 nObjectType, i32 (CALLBACK* pfn)(LPVOID, lparam), lparam pData)
 
    {
-      UNREFERENCED_PARAMETER(nObjectType);
-      UNREFERENCED_PARAMETER(pfn);
+      __UNREFERENCED_PARAMETER(nObjectType);
+      __UNREFERENCED_PARAMETER(pfn);
 
-      UNREFERENCED_PARAMETER(pData);
+      __UNREFERENCED_PARAMETER(pData);
 
 
 
@@ -487,7 +487,7 @@ namespace draw2d
    //::color::color graphics::GetNearestColor(const ::color::color & colorColor)
    //{
 
-   //   UNREFERENCED_PARAMETER(crColor);
+   //   __UNREFERENCED_PARAMETER(crColor);
 
    //   return 0;
 
@@ -584,7 +584,7 @@ namespace draw2d
    size_f64 graphics::SetViewportExt(const ::size_f64 & size)
    {
 
-      UNREFERENCED_PARAMETER(size);
+      __UNREFERENCED_PARAMETER(size);
 
       return ::size_f64(0, 0);
 
@@ -594,7 +594,7 @@ namespace draw2d
    point_f64 graphics::SetWindowOrg(const ::point_f64 & point)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       return nullptr;
 
@@ -604,7 +604,7 @@ namespace draw2d
    size_f64 graphics::set_window_ext(const ::size_f64 & size)
    {
 
-      UNREFERENCED_PARAMETER(size);
+      __UNREFERENCED_PARAMETER(size);
 
       return ::size_f64(0, 0);
 
@@ -614,8 +614,8 @@ namespace draw2d
    void graphics::DPtoLP(point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(nCount);
 
    }
 
@@ -623,7 +623,7 @@ namespace draw2d
    void graphics::DPtoLP(::rectangle_f64 * prectangle)
    {
 
-      UNREFERENCED_PARAMETER(prectangle);
+      __UNREFERENCED_PARAMETER(prectangle);
 
    }
 
@@ -631,8 +631,8 @@ namespace draw2d
    void graphics::LPtoDP(::point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(nCount);
 
    }
 
@@ -640,7 +640,7 @@ namespace draw2d
    void graphics::LPtoDP(::rectangle_f64 * prectangle)
    {
 
-      UNREFERENCED_PARAMETER(prectangle);
+      __UNREFERENCED_PARAMETER(prectangle);
 
    }
 
@@ -648,8 +648,8 @@ namespace draw2d
    bool graphics::fill_region(::draw2d::region* pregion, ::draw2d::brush* pbrush)
    {
 
-      UNREFERENCED_PARAMETER(pregion);
-      UNREFERENCED_PARAMETER(pbrush);
+      __UNREFERENCED_PARAMETER(pregion);
+      __UNREFERENCED_PARAMETER(pbrush);
 
       return false;
 
@@ -659,10 +659,10 @@ namespace draw2d
    bool graphics::frame_region(::draw2d::region * pregion, ::draw2d::brush * pbrush, double nWidth, double nHeight)
    {
 
-      UNREFERENCED_PARAMETER(pregion);
-      UNREFERENCED_PARAMETER(pbrush);
-      UNREFERENCED_PARAMETER(nWidth);
-      UNREFERENCED_PARAMETER(nHeight);
+      __UNREFERENCED_PARAMETER(pregion);
+      __UNREFERENCED_PARAMETER(pbrush);
+      __UNREFERENCED_PARAMETER(nWidth);
+      __UNREFERENCED_PARAMETER(nHeight);
 
       return false;
 
@@ -672,7 +672,7 @@ namespace draw2d
    bool graphics::invert_region(::draw2d::region * pregion)
    {
 
-      UNREFERENCED_PARAMETER(pregion);
+      __UNREFERENCED_PARAMETER(pregion);
 
       return false;
 
@@ -682,7 +682,7 @@ namespace draw2d
    bool graphics::paint_region(::draw2d::region * pregion)
    {
 
-      UNREFERENCED_PARAMETER(pregion);
+      __UNREFERENCED_PARAMETER(pregion);
 
       return false;
 
@@ -836,9 +836,9 @@ namespace draw2d
    bool graphics::polyline(const ::point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(ppoints);
 
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return false;
 
@@ -848,8 +848,8 @@ namespace draw2d
    bool graphics::frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(pbrush);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(pbrush);
 
       return false;
 
@@ -859,7 +859,7 @@ namespace draw2d
    bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(rectangle);
 
       return false;
 
@@ -869,14 +869,14 @@ namespace draw2d
    bool graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      UNREFERENCED_PARAMETER(x3);
-      UNREFERENCED_PARAMETER(y3);
-      UNREFERENCED_PARAMETER(x4);
-      UNREFERENCED_PARAMETER(y4);
+      __UNREFERENCED_PARAMETER(x1);
+      __UNREFERENCED_PARAMETER(y1);
+      __UNREFERENCED_PARAMETER(x2);
+      __UNREFERENCED_PARAMETER(y2);
+      __UNREFERENCED_PARAMETER(x3);
+      __UNREFERENCED_PARAMETER(y3);
+      __UNREFERENCED_PARAMETER(x4);
+      __UNREFERENCED_PARAMETER(y4);
 
       return false;
 
@@ -886,9 +886,9 @@ namespace draw2d
    bool graphics::Chord(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(pointStart);
-      UNREFERENCED_PARAMETER(pointEnd);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(pointStart);
+      __UNREFERENCED_PARAMETER(pointEnd);
 
       return false;
 
@@ -898,7 +898,7 @@ namespace draw2d
    void graphics::DrawFocusRect(const ::rectangle_f64 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(rectangle);
 
    }
 
@@ -964,7 +964,7 @@ namespace draw2d
    bool graphics::fill_ellipse(const ::rectangle_f64 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(rectangle);
 
       return false;
 
@@ -974,14 +974,14 @@ namespace draw2d
    bool graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
 
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      UNREFERENCED_PARAMETER(x3);
-      UNREFERENCED_PARAMETER(y3);
-      UNREFERENCED_PARAMETER(x4);
-      UNREFERENCED_PARAMETER(y4);
+      __UNREFERENCED_PARAMETER(x1);
+      __UNREFERENCED_PARAMETER(y1);
+      __UNREFERENCED_PARAMETER(x2);
+      __UNREFERENCED_PARAMETER(y2);
+      __UNREFERENCED_PARAMETER(x3);
+      __UNREFERENCED_PARAMETER(y3);
+      __UNREFERENCED_PARAMETER(x4);
+      __UNREFERENCED_PARAMETER(y4);
 
       return false;
 
@@ -991,9 +991,9 @@ namespace draw2d
    bool graphics::Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(pointStart);
-      UNREFERENCED_PARAMETER(pointEnd);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(pointStart);
+      __UNREFERENCED_PARAMETER(pointEnd);
 
       return false;
 
@@ -1117,7 +1117,7 @@ namespace draw2d
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = create_image(size);
+            ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
 
             if (!pimage1)
             {
@@ -1145,7 +1145,7 @@ namespace draw2d
 
             }
 
-            ::image_pointer pimage2 = create_image(size);
+            ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
 
             if (!pimage2)
             {
@@ -1442,8 +1442,8 @@ namespace draw2d
    ::color::color graphics::GetPixel(double x, double y)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
 
       return 0;
 
@@ -1453,7 +1453,7 @@ namespace draw2d
    ::color::color graphics::GetPixel(const ::point_f64 & point)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       return 0;
 
@@ -1463,9 +1463,9 @@ namespace draw2d
    ::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(color);
 
       return 0;
 
@@ -1475,8 +1475,8 @@ namespace draw2d
    ::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color& color)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(color);
 
       return 0;
 
@@ -1486,8 +1486,8 @@ namespace draw2d
    ::color::color graphics::blend_pixel(const ::point_f64 & point, const ::color::color & color)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(color);
 
       return 0;
 
@@ -1584,7 +1584,7 @@ namespace draw2d
 //            g_pimagea.add(pimage1);
 //#endif
 
-         pimage1 = create_image(rectText.size());
+         pimage1 = m_pcontext->context_image()->create_image(rectText.size());
 
          pimage1->get_graphics()->set(get_current_font());
 
@@ -1634,13 +1634,13 @@ namespace draw2d
    bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & pszString, strsize nCount, i32 * pDxWidths)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nOptions);
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(pDxWidths);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(nOptions);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(pszString);
+      __UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(pDxWidths);
 
       return false;
 
@@ -1650,12 +1650,12 @@ namespace draw2d
    bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * pDxWidths)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nOptions);
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(pDxWidths);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(nOptions);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(pDxWidths);
 
       return false;
 
@@ -1665,13 +1665,13 @@ namespace draw2d
    size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
-      UNREFERENCED_PARAMETER(nTabOrigin);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(pszString);
+      __UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(nTabOrigin);
 
       return size_f64(0, 0);
 
@@ -1681,12 +1681,12 @@ namespace draw2d
    size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
-      UNREFERENCED_PARAMETER(nTabOrigin);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(nTabOrigin);
 
       return size_f64(0, 0);
 
@@ -1696,10 +1696,10 @@ namespace draw2d
    size_f64 graphics::GetTabbedTextExtent(const char * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
    {
 
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(pszString);
+      __UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
       return size_f64(0, 0);
 
@@ -1709,9 +1709,9 @@ namespace draw2d
    size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
    {
 
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
       return size_f64(0, 0);
 
@@ -1721,10 +1721,10 @@ namespace draw2d
    size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
    {
 
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(pszString);
+      __UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
       return size_f64(0, 0);
 
@@ -1734,9 +1734,9 @@ namespace draw2d
    size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
    {
 
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(nTabPositions);
-      UNREFERENCED_PARAMETER(pnTabStopPositions);
+      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(nTabPositions);
+      __UNREFERENCED_PARAMETER(pnTabStopPositions);
 
       return size_f64(0, 0);
 
@@ -1754,8 +1754,8 @@ namespace draw2d
    i32 graphics::GetTextFace(count nCount, char * pszFacename)
    {
 
-      UNREFERENCED_PARAMETER(nCount);
-      UNREFERENCED_PARAMETER(pszFacename);
+      __UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(pszFacename);
 
       return -1;
 
@@ -1765,7 +1765,7 @@ namespace draw2d
    i32 graphics::GetTextFace(string & rString)
    {
    
-      UNREFERENCED_PARAMETER(rString);
+      __UNREFERENCED_PARAMETER(rString);
 
       return -1;
 
@@ -1775,7 +1775,7 @@ namespace draw2d
    ::e_status graphics::get_text_metrics(::write_text::text_metric * pMetrics)
    {
 
-      UNREFERENCED_PARAMETER(pMetrics);
+      __UNREFERENCED_PARAMETER(pMetrics);
 
       return false;
 
@@ -1785,7 +1785,7 @@ namespace draw2d
    bool graphics::get_output_text_metrics(::write_text::text_metric * pMetrics)
    {
 
-      UNREFERENCED_PARAMETER(pMetrics);
+      __UNREFERENCED_PARAMETER(pMetrics);
 
       return false;
 
@@ -1796,8 +1796,8 @@ namespace draw2d
    ::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags)
    {
 
-      UNREFERENCED_PARAMETER(rectBounds);
-      UNREFERENCED_PARAMETER(flags);
+      __UNREFERENCED_PARAMETER(rectBounds);
+      __UNREFERENCED_PARAMETER(flags);
 
       return -1;
 
@@ -1807,8 +1807,8 @@ namespace draw2d
    ::u32 graphics::GetBoundsRect(::rectangle_f64 * pRectBounds, ::u32 flags)
    {
 
-      UNREFERENCED_PARAMETER(pRectBounds);
-      UNREFERENCED_PARAMETER(flags);
+      __UNREFERENCED_PARAMETER(pRectBounds);
+      __UNREFERENCED_PARAMETER(flags);
 
       return -1;
 
@@ -1821,7 +1821,7 @@ namespace draw2d
 //   bool graphics::ResetDC(const DEVMODE* pDevMode)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pDevMode);
+//      __UNREFERENCED_PARAMETER(pDevMode);
 //
 //      return false;
 //
@@ -1838,7 +1838,7 @@ namespace draw2d
 //   i32 graphics::StartDoc(LPDOCINFO pDocInfo)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pDocInfo);
+//      __UNREFERENCED_PARAMETER(pDocInfo);
 //
 //      return -1;
 //
@@ -1883,9 +1883,9 @@ namespace draw2d
    bool graphics::SetPixelV(double x, double y, const ::color::color& color)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(color);
 
       return false;
 
@@ -1895,8 +1895,8 @@ namespace draw2d
    bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color& color)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(color);
 
       return false;
 
@@ -1906,11 +1906,11 @@ namespace draw2d
    bool graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
-      UNREFERENCED_PARAMETER(nRadius);
-      UNREFERENCED_PARAMETER(fStartAngle);
-      UNREFERENCED_PARAMETER(fSweepAngle);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(nRadius);
+      __UNREFERENCED_PARAMETER(fStartAngle);
+      __UNREFERENCED_PARAMETER(fSweepAngle);
 
       return false;
 
@@ -1920,9 +1920,9 @@ namespace draw2d
    bool graphics::ArcTo(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(pointStart);
-      UNREFERENCED_PARAMETER(pointEnd);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(pointStart);
+      __UNREFERENCED_PARAMETER(pointEnd);
 
       return false;
 
@@ -1940,11 +1940,11 @@ namespace draw2d
    bool graphics::poly_polyline(const ::point_f64 * ppoints, const ::i32 * pPolyPoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(ppoints);
 
-      UNREFERENCED_PARAMETER(pPolyPoints);
+      __UNREFERENCED_PARAMETER(pPolyPoints);
 
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nCount);
 
 
       return false;
@@ -1957,7 +1957,7 @@ namespace draw2d
 //   bool graphics::GetColorAdjustment(LPCOLORADJUSTMENT pColorAdjust)
 //
 //   {
-//      UNREFERENCED_PARAMETER(pColorAdjust);
+//      __UNREFERENCED_PARAMETER(pColorAdjust);
 //
 //
 //      return false;
@@ -2001,8 +2001,8 @@ namespace draw2d
    bool graphics::poly_bezier(const ::point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return false;
 
@@ -2068,9 +2068,9 @@ namespace draw2d
 //   i32 graphics::GetPath(::point_f64 * ppoints, byte * pTypes, count nCount)
 //   {
 //
-//      UNREFERENCED_PARAMETER(ppoints);
-//      UNREFERENCED_PARAMETER(pTypes);
-//      UNREFERENCED_PARAMETER(nCount);
+//      __UNREFERENCED_PARAMETER(ppoints);
+//      __UNREFERENCED_PARAMETER(pTypes);
+//      __UNREFERENCED_PARAMETER(nCount);
 //
 //      return false;
 //
@@ -2080,7 +2080,7 @@ namespace draw2d
    bool graphics::SetMiterLimit(float fMiterLimit)
    {
 
-      UNREFERENCED_PARAMETER(fMiterLimit);
+      __UNREFERENCED_PARAMETER(fMiterLimit);
 
       return false;
 
@@ -2158,8 +2158,8 @@ namespace draw2d
    bool graphics::AddMetaFileComment(::u32 nDataSize, const byte* pCommentData)
    {
 
-      UNREFERENCED_PARAMETER(nDataSize);
-      UNREFERENCED_PARAMETER(pCommentData);
+      __UNREFERENCED_PARAMETER(nDataSize);
+      __UNREFERENCED_PARAMETER(pCommentData);
 
       return false;
 
@@ -2172,8 +2172,8 @@ namespace draw2d
 //   bool graphics::PlayMetaFile(HENHMETAFILE henhmetafile, const rectangle_f64 & rectBounds)
 //   {
 //
-//      UNREFERENCED_PARAMETER(henhmetafile);
-//      UNREFERENCED_PARAMETER(rectBounds);
+//      __UNREFERENCED_PARAMETER(henhmetafile);
+//      __UNREFERENCED_PARAMETER(rectBounds);
 //
 //      return false;
 //
@@ -2186,7 +2186,7 @@ namespace draw2d
    void graphics::DPtoHIMETRIC(::size_f64 * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      __UNREFERENCED_PARAMETER(psize);
 
    }
 
@@ -2194,7 +2194,7 @@ namespace draw2d
    void graphics::HIMETRICtoDP(::size_f64 * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      __UNREFERENCED_PARAMETER(psize);
 
    }
 
@@ -2482,7 +2482,7 @@ namespace draw2d
    void graphics::dump(dump_context & dumpcontext) const
    {
 
-      UNREFERENCED_PARAMETER(dumpcontext);
+      __UNREFERENCED_PARAMETER(dumpcontext);
 
 
 
@@ -2523,7 +2523,7 @@ namespace draw2d
 
    {
 
-      UNREFERENCED_PARAMETER(pszDocName);
+      __UNREFERENCED_PARAMETER(pszDocName);
 
 
 
@@ -2570,7 +2570,7 @@ namespace draw2d
    //i32 graphics::SetPolyFillMode(i32 nPolyFillMode)
    //{
 
-   //   UNREFERENCED_PARAMETER(nPolyFillMode);
+   //   __UNREFERENCED_PARAMETER(nPolyFillMode);
 
    //   return -1;
 
@@ -2580,7 +2580,7 @@ namespace draw2d
    //i32 graphics::SetROP2(i32 nDrawMode)
    //{
 
-   //   UNREFERENCED_PARAMETER(nDrawMode);
+   //   __UNREFERENCED_PARAMETER(nDrawMode);
 
    //   return -1;
 
@@ -2590,7 +2590,7 @@ namespace draw2d
 //   i32 graphics::set_interpolation_mode(i32 nStretchMode)
 //   {
 //
-//      UNREFERENCED_PARAMETER(nStretchMode);
+//      __UNREFERENCED_PARAMETER(nStretchMode);
 //
 //      return -1;
 //
@@ -2600,7 +2600,7 @@ namespace draw2d
    //i32 graphics::SetGraphicsMode(i32 iMode)
    //{
 
-   //   UNREFERENCED_PARAMETER(iMode);
+   //   __UNREFERENCED_PARAMETER(iMode);
 
    //   return -1;
 
@@ -2612,7 +2612,7 @@ namespace draw2d
 //   bool graphics::SetWorldTransform(const XFORM* pXform)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pXform);
+//      __UNREFERENCED_PARAMETER(pXform);
 //
 //      return false;
 //
@@ -2621,8 +2621,8 @@ namespace draw2d
 //   bool graphics::ModifyWorldTransform(const XFORM* pXform, u32 iMode)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pXform);
-//      UNREFERENCED_PARAMETER(iMode);
+//      __UNREFERENCED_PARAMETER(pXform);
+//      __UNREFERENCED_PARAMETER(iMode);
 //
 //      return false;
 //
@@ -2633,7 +2633,7 @@ namespace draw2d
    //i32 graphics::SetMapMode(i32 nMapMode)
    //{
 
-   //   UNREFERENCED_PARAMETER(nMapMode);
+   //   __UNREFERENCED_PARAMETER(nMapMode);
 
    //   return -1;
 
@@ -2683,9 +2683,9 @@ namespace draw2d
    size_f64 graphics::SetViewportExt(double x, double y)
    {
 
-      UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(x);
 
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(y);
 
       return size_f64(0, 0);
 
@@ -2709,8 +2709,8 @@ namespace draw2d
    point_f64 graphics::SetWindowOrg(double x, double y)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
 
       return nullptr;
 
@@ -2720,9 +2720,9 @@ namespace draw2d
    point_f64 graphics::offset_window_org(double nWidth, double nHeight)
    {
 
-      UNREFERENCED_PARAMETER(nWidth);
+      __UNREFERENCED_PARAMETER(nWidth);
 
-      UNREFERENCED_PARAMETER(nHeight);
+      __UNREFERENCED_PARAMETER(nHeight);
 
       return nullptr;
 
@@ -2732,8 +2732,8 @@ namespace draw2d
    size_f64 graphics::set_window_ext(double x, double y)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
 
       return size_f64(0, 0);
 
@@ -2743,10 +2743,10 @@ namespace draw2d
    size_f64 graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
    {
 
-      UNREFERENCED_PARAMETER(xNum);
-      UNREFERENCED_PARAMETER(xDenom);
-      UNREFERENCED_PARAMETER(yNum);
-      UNREFERENCED_PARAMETER(yDenom);
+      __UNREFERENCED_PARAMETER(xNum);
+      __UNREFERENCED_PARAMETER(xDenom);
+      __UNREFERENCED_PARAMETER(yNum);
+      __UNREFERENCED_PARAMETER(yDenom);
 
       return size_f64(0, 0);
 
@@ -2756,7 +2756,7 @@ namespace draw2d
    //i32 graphics::get_clip_box(::rectangle_f64 * rectangle_i32)
    //{
 
-   //   UNREFERENCED_PARAMETER(rectangle);
+   //   __UNREFERENCED_PARAMETER(rectangle);
 
    //   return -1;
 
@@ -2782,10 +2782,10 @@ namespace draw2d
 //   i32 graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
 //   {
 //
-//      UNREFERENCED_PARAMETER(x1);
-//      UNREFERENCED_PARAMETER(y1);
-//      UNREFERENCED_PARAMETER(x2);
-//      UNREFERENCED_PARAMETER(y2);
+//      __UNREFERENCED_PARAMETER(x1);
+//      __UNREFERENCED_PARAMETER(y1);
+//      __UNREFERENCED_PARAMETER(x2);
+//      __UNREFERENCED_PARAMETER(y2);
 //
 //      return -1;
 //
@@ -2795,7 +2795,7 @@ namespace draw2d
 //   i32 graphics::ExcludeClipRect(const ::rectangle_f64 & rectangle)
 //   {
 //
-//      UNREFERENCED_PARAMETER(rectangle);
+//      __UNREFERENCED_PARAMETER(rectangle);
 //
 //
 //
@@ -2903,8 +2903,8 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(double x, double y)
 //   {
 //
-//      UNREFERENCED_PARAMETER(x);
-//      UNREFERENCED_PARAMETER(y);
+//      __UNREFERENCED_PARAMETER(x);
+//      __UNREFERENCED_PARAMETER(y);
 //
 //
 //
@@ -2916,7 +2916,7 @@ namespace draw2d
 //   i32 graphics::OffsetClipRgn(const ::size_i32 & size)
 //   {
 //
-//      UNREFERENCED_PARAMETER(size);
+//      __UNREFERENCED_PARAMETER(size);
 //
 //
 //
@@ -2927,29 +2927,29 @@ namespace draw2d
 
    ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
-      UNREFERENCED_PARAMETER(nFlags);
+      __UNREFERENCED_PARAMETER(nFlags);
 
       return -1;
    }
 
    //i32 graphics::SetTextJustification(i32 nBreakExtra, i32 nBreakCount)
    //{
-   //   UNREFERENCED_PARAMETER(nBreakExtra);
-   //   UNREFERENCED_PARAMETER(nBreakCount);
+   //   __UNREFERENCED_PARAMETER(nBreakExtra);
+   //   __UNREFERENCED_PARAMETER(nBreakCount);
 
    //   return -1;
    //}
 
    //i32 graphics::SetTextCharacterExtra(i32 nCharExtra)
    //{
-   //   UNREFERENCED_PARAMETER(nCharExtra);
+   //   __UNREFERENCED_PARAMETER(nCharExtra);
 
    //   return -1;
    //}
 
    //u32 graphics::SetMapperFlags(u32 dwFlag)
    //{
-   //   UNREFERENCED_PARAMETER(dwFlag);
+   //   __UNREFERENCED_PARAMETER(dwFlag);
 
    //   return -1;
    //}
@@ -2962,7 +2962,7 @@ namespace draw2d
 
    u32 graphics::SetLayout(u32 dwSetLayout)
    {
-      UNREFERENCED_PARAMETER(dwSetLayout);
+      __UNREFERENCED_PARAMETER(dwSetLayout);
 
       return -1;
    }
@@ -2972,21 +2972,21 @@ namespace draw2d
 
    bool graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
    {
-      UNREFERENCED_PARAMETER(x1);
-      UNREFERENCED_PARAMETER(y1);
-      UNREFERENCED_PARAMETER(x2);
-      UNREFERENCED_PARAMETER(y2);
-      UNREFERENCED_PARAMETER(x3);
-      UNREFERENCED_PARAMETER(y3);
-      UNREFERENCED_PARAMETER(x4);
-      UNREFERENCED_PARAMETER(y4);
+      __UNREFERENCED_PARAMETER(x1);
+      __UNREFERENCED_PARAMETER(y1);
+      __UNREFERENCED_PARAMETER(x2);
+      __UNREFERENCED_PARAMETER(y2);
+      __UNREFERENCED_PARAMETER(x3);
+      __UNREFERENCED_PARAMETER(y3);
+      __UNREFERENCED_PARAMETER(x4);
+      __UNREFERENCED_PARAMETER(y4);
 
       return false;
    }
 
    //i32 graphics::SetArcDirection(i32 nArcDirection)
    //{
-   //   UNREFERENCED_PARAMETER(nArcDirection);
+   //   __UNREFERENCED_PARAMETER(nArcDirection);
 
    //   return -1;
    //}
@@ -2995,9 +2995,9 @@ namespace draw2d
    bool graphics::polydraw(const ::point_f64 * ppoints, const byte* pTypes, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(pTypes);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(pTypes);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return false;
    
@@ -3007,8 +3007,8 @@ namespace draw2d
    bool graphics::polyline_to(const ::point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return false;
 
@@ -3018,8 +3018,8 @@ namespace draw2d
    bool graphics::poly_bezier_to(const ::point_f64 * ppoints, count nCount)
    {
 
-      UNREFERENCED_PARAMETER(ppoints);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(ppoints);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return false;
 
@@ -3029,7 +3029,7 @@ namespace draw2d
    bool graphics::SelectClipPath(i32 nMode)
    {
 
-      UNREFERENCED_PARAMETER(nMode);
+      __UNREFERENCED_PARAMETER(nMode);
 
       return false;
 
@@ -3341,7 +3341,7 @@ namespace draw2d
 //
 //   bool graphics::PlayMetaFile(HMETAFILE hMF)
 //   {
-//      UNREFERENCED_PARAMETER(hMF);
+//      __UNREFERENCED_PARAMETER(hMF);
 //
 //      return false;
 //   }
@@ -3354,7 +3354,7 @@ namespace draw2d
    void graphics::LPtoDP(::size_f64 * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      __UNREFERENCED_PARAMETER(psize);
 
    }
 
@@ -3362,7 +3362,7 @@ namespace draw2d
    void graphics::DPtoLP(::size_f64 * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      __UNREFERENCED_PARAMETER(psize);
 
    }
 
@@ -3560,8 +3560,8 @@ namespace draw2d
    size_f64 graphics::GetOutputTextExtent(const char * pszString, strsize nCount)
    {
 
-      UNREFERENCED_PARAMETER(pszString);
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(pszString);
+      __UNREFERENCED_PARAMETER(nCount);
 
       return size_f64(0, 0);
 
@@ -3571,7 +3571,7 @@ namespace draw2d
    size_f64 graphics::GetOutputTextExtent(const ::string & str)
    {
 
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
 
       return size_f64(0, 0);
 
@@ -3705,10 +3705,10 @@ namespace draw2d
    bool graphics::draw_text_ex(const ::string & str, const rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
-      UNREFERENCED_PARAMETER(str);
-      UNREFERENCED_PARAMETER(rectangle);
-      UNREFERENCED_PARAMETER(ealign);
-      UNREFERENCED_PARAMETER(edrawtext);
+      __UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(ealign);
+      __UNREFERENCED_PARAMETER(edrawtext);
 
       return false;
 
@@ -5268,7 +5268,7 @@ namespace draw2d
    //void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
    //{
 
-   //   UNREFERENCED_PARAMETER(itema);
+   //   __UNREFERENCED_PARAMETER(itema);
 
 
 

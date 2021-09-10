@@ -189,23 +189,23 @@ namespace user
 //
 //
 //// Styles for toolbar buttons
-//#define TBBS_BUTTON     MAKELONG(TBSTYLE_BUTTON, 0) // this entry is button
-//#define e_toolbar_item_style_separator  MAKELONG(TBSTYLE_SEP, 0)    // this entry is a separator
-//#define TBBS_CHECKBOX   MAKELONG(TBSTYLE_CHECK, 0)  // this is an auto check button
-//#define TBBS_GROUP      MAKELONG(TBSTYLE_GROUP, 0)  // marks the start of a group
+//#define TBBS_BUTTON     __MAKE_LONG(TBSTYLE_BUTTON, 0) // this entry is button
+//#define e_toolbar_item_style_separator  __MAKE_LONG(TBSTYLE_SEP, 0)    // this entry is a separator
+//#define TBBS_CHECKBOX   __MAKE_LONG(TBSTYLE_CHECK, 0)  // this is an auto check button
+//#define TBBS_GROUP      __MAKE_LONG(TBSTYLE_GROUP, 0)  // marks the start of a group
 //#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
-//#define TBBS_DROPDOWN   MAKELONG(TBSTYLE_DROPDOWN, 0) // drop down style
-//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+//#define TBBS_DROPDOWN   __MAKE_LONG(TBSTYLE_DROPDOWN, 0) // drop down style
+//#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
 //
 //// styles for display states
-//#define TBBS_CHECKED    MAKELONG(0, TBSTATE_CHECKED)    // button is checked/down
-//#define TBBS_PRESSED    MAKELONG(0, TBSTATE_PRESSED)    // button is being depressed
-//#define e_toolbar_item_style_disabled   MAKELONG(0, TBSTATE_ENABLED)    // button is disabled
-//#define TBBS_INDETERMINATE  MAKELONG(0, TBSTATE_INDETERMINATE)  // third state
-//#define TBBS_HIDDEN     MAKELONG(0, e_toolbar_button_hidden) // button is hidden
-//#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
-//#define TBBS_ELLIPSES   MAKELONG(0, TBSTATE_ELIPSES)
-//#define TBBS_MARKED      MAKELONG(0, TBSTATE_MARKED)
+//#define TBBS_CHECKED    __MAKE_LONG(0, TBSTATE_CHECKED)    // button is checked/down
+//#define TBBS_PRESSED    __MAKE_LONG(0, TBSTATE_PRESSED)    // button is being depressed
+//#define e_toolbar_item_style_disabled   __MAKE_LONG(0, TBSTATE_ENABLED)    // button is disabled
+//#define TBBS_INDETERMINATE  __MAKE_LONG(0, TBSTATE_INDETERMINATE)  // third state
+//#define TBBS_HIDDEN     __MAKE_LONG(0, e_toolbar_button_hidden) // button is hidden
+//#define TBBS_WRAPPED    __MAKE_LONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
+//#define TBBS_ELLIPSES   __MAKE_LONG(0, TBSTATE_ELIPSES)
+//#define TBBS_MARKED      __MAKE_LONG(0, TBSTATE_MARKED)
 //
 

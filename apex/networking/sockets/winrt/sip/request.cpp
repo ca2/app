@@ -43,7 +43,7 @@ namespace sip
 
    void request::InitBody( memsize sz )
    {
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
          m_file = std::auto_ptr<IFile>(new MemFile);

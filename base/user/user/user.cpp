@@ -444,12 +444,12 @@ namespace base
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(pClassName);
-      UNREFERENCED_PARAMETER(pWindowName);
-      UNREFERENCED_PARAMETER(uStyle);
-      UNREFERENCED_PARAMETER(hInstance);
-      UNREFERENCED_PARAMETER(pParam);
+      __UNREFERENCED_PARAMETER(dwExStyle);
+      __UNREFERENCED_PARAMETER(pClassName);
+      __UNREFERENCED_PARAMETER(pWindowName);
+      __UNREFERENCED_PARAMETER(uStyle);
+      __UNREFERENCED_PARAMETER(hInstance);
+      __UNREFERENCED_PARAMETER(pParam);
 
       auto pinteraction = __new(::user::interaction);
 

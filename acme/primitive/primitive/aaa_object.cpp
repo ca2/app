@@ -813,7 +813,7 @@ void object::destruct()
 void object::system(const char * pszProjectName)
 {
 
-   UNREFERENCED_PARAMETER(pszProjectName);
+   __UNREFERENCED_PARAMETER(pszProjectName);
 
 }
 

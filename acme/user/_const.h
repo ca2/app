@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#define MAKELONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 enum enum_position
@@ -599,16 +599,16 @@ enum enum_toolbar_item_style
    e_toolbar_item_style_dropdown = e_toolbar_style_dropdown,
    e_toolbar_item_style_autosize = e_toolbar_style_autosize,
    e_toolbar_item_style_noprefix = e_toolbar_style_noprefix,
-//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-   e_toolbar_item_style_checked = MAKELONG(0, e_toolbar_item_state_checked),
-   e_toolbar_item_style_pressed = MAKELONG(0, e_toolbar_item_state_pressed),
-   e_toolbar_item_style_disabled = MAKELONG(0, e_toolbar_item_state_enabled),
-   e_toolbar_item_style_indeterminate = MAKELONG(0, e_toolbar_item_state_indeterminate),
-   e_toolbar_item_style_hidden = MAKELONG(0, e_toolbar_item_state_hidden),
-   e_toolbar_item_style_wrapped = MAKELONG(0, e_toolbar_item_state_wrap),
-   e_toolbar_item_style_ellipses = MAKELONG(0, e_toolbar_item_state_ellipses),
-   e_toolbar_item_style_marked = MAKELONG(0, e_toolbar_item_state_marked),
+//#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+   e_toolbar_item_style_checked = __MAKE_LONG(0, e_toolbar_item_state_checked),
+   e_toolbar_item_style_pressed = __MAKE_LONG(0, e_toolbar_item_state_pressed),
+   e_toolbar_item_style_disabled = __MAKE_LONG(0, e_toolbar_item_state_enabled),
+   e_toolbar_item_style_indeterminate = __MAKE_LONG(0, e_toolbar_item_state_indeterminate),
+   e_toolbar_item_style_hidden = __MAKE_LONG(0, e_toolbar_item_state_hidden),
+   e_toolbar_item_style_wrapped = __MAKE_LONG(0, e_toolbar_item_state_wrap),
+   e_toolbar_item_style_ellipses = __MAKE_LONG(0, e_toolbar_item_state_ellipses),
+   e_toolbar_item_style_marked = __MAKE_LONG(0, e_toolbar_item_state_marked),
 };
 
 

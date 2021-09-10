@@ -540,7 +540,7 @@
     <ClInclude Include="networking\email_department.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="networking\_net.h">
+    <ClInclude Include="networking\_networking.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="networking\_impl.h">

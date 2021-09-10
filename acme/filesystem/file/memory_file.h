@@ -46,14 +46,17 @@ public:
 
 
    void load_string(string & str);
-   ::index translate(::count c, ::enum_seek eseek) override;
+   filesize translate(filesize offset, ::enum_seek eseek) override;
    filesize get_position() const override;
 
+
    ::file::path get_file_path() const override;
+
 
    void set_size(filesize dwNewLen) override;
    ::filesize get_size() const override;
    void clear();
+
 
 
    using ::file::file::read;

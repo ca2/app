@@ -728,7 +728,7 @@ namespace core
    __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
-      UNREFERENCED_PARAMETER(puiOwner);
+      __UNREFERENCED_PARAMETER(puiOwner);
 
       auto pbox = pobject->__create_new < ::userex::message_box >();
 
@@ -780,9 +780,9 @@ namespace core
    i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie)
    {
 
-      UNREFERENCED_PARAMETER(pszMatter);
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(puie);
+      __UNREFERENCED_PARAMETER(pszMatter);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(puie);
 
       return 1;
 
@@ -953,7 +953,7 @@ namespace core
 
    {
 
-      UNREFERENCED_PARAMETER(pszPathName);
+      __UNREFERENCED_PARAMETER(pszPathName);
 
 
    }
@@ -1427,7 +1427,7 @@ namespace core
    void user::route_command_message(::message::command * pcommand)
    {
 
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -1561,7 +1561,7 @@ namespace core
    //bool user::impl_set_os_desktop_theme(string strTheme)
    //{
 
-   //   UNREFERENCED_PARAMETER(strTheme);
+   //   __UNREFERENCED_PARAMETER(strTheme);
 
    //   return true;
 
@@ -1704,7 +1704,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      UNREFERENCED_PARAMETER(strTheme);
+//      __UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -1750,7 +1750,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      UNREFERENCED_PARAMETER(strTheme);
+//      __UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -1793,7 +1793,7 @@ namespace core
 //   bool user::impl_set_os_desktop_theme(string strTheme)
 //   {
 //
-//      UNREFERENCED_PARAMETER(strTheme);
+//      __UNREFERENCED_PARAMETER(strTheme);
 //
 //      return true;
 //
@@ -1921,7 +1921,7 @@ namespace core
    void user::on_file_manager_open(::filemanager::data * pdata, ::file::item_array & itema)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       //m_pdocs->m_ptemplate_html->open_document_file(get_application(), itema[0]->get_user_path());
 

@@ -114,7 +114,7 @@ namespace filehandler
    void impact::item::draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist)
    {
 
-      UNREFERENCED_PARAMETER(plist);
+      __UNREFERENCED_PARAMETER(plist);
 
 
 

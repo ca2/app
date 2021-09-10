@@ -197,7 +197,7 @@ typedef unsigned char TBYTE, *PTBYTE ;
 typedef void * LPSECURITY_ATTRIBUTES;
 #define _MAX_PATH 260
 #define MAX_PATH _MAX_PATH
-#define UNREFERENCED_PARAMETER(u)	(void)(u)
+#define __UNREFERENCED_PARAMETER(u)	(void)(u)
 //#define U32_INFINITE_TIMEOUT 0xffffffff
 typedef ::i32 errno_t;
 

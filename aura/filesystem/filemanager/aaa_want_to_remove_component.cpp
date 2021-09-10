@@ -1080,7 +1080,7 @@ pacmedir->localconfig() / "user.component";
 //document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
-//   UNREFERENCED_PARAMETER(bMakeVisible);
+//   __UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   __pointer(::create) pcreate(e_create);
 
@@ -1138,7 +1138,7 @@ pacmedir->localconfig() / "user.component";
 //document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
-//   UNREFERENCED_PARAMETER(bMakeVisible);
+//   __UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   __pointer(::create) pcreate(e_create);
 

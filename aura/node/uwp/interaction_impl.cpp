@@ -423,7 +423,7 @@ namespace universal_windows
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
       
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       
       Default();
 
@@ -621,7 +621,7 @@ namespace universal_windows
 
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -723,8 +723,8 @@ namespace universal_windows
 
    bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
-      UNREFERENCED_PARAMETER(bEnable);
-      UNREFERENCED_PARAMETER(nFlag);
+      __UNREFERENCED_PARAMETER(bEnable);
+      __UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -838,8 +838,8 @@ namespace universal_windows
 #ifdef WINDOWS_DESKTOP
    void interaction_impl::WinHelpInternal(dword_ptr dwData, ::u32 nCmd)
    {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
+      __UNREFERENCED_PARAMETER(dwData);
+      __UNREFERENCED_PARAMETER(nCmd);
       __throw(error_not_implemented);
       /*
       application* pApp = ::aura::get_system();
@@ -880,7 +880,7 @@ namespace universal_windows
    void interaction_impl::on_control_event(::user::control_event * pevent)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
 //      return false;
 
@@ -1625,8 +1625,8 @@ return true;
    bool interaction_impl::OnCommand(WPARAM wParam,LPARAM lParam)
    {
       
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
+      __UNREFERENCED_PARAMETER(wParam);
+      __UNREFERENCED_PARAMETER(lParam);
 
       return false;
 
@@ -1870,7 +1870,7 @@ return true;
 
    bool interaction_impl::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, ::u32 nMask)
    {
-      UNREFERENCED_PARAMETER(nMask);
+      __UNREFERENCED_PARAMETER(nMask);
       ASSERT(lpScrollInfo != nullptr);
 
       oswindow hWnd = get_handle();
@@ -2063,7 +2063,7 @@ return true;
 
    bool interaction_impl::ReflectChildNotify(::u32 uMsg,WPARAM wParam,LPARAM lParam,LRESULT* pResult)
    {
-      UNREFERENCED_PARAMETER(wParam);
+      __UNREFERENCED_PARAMETER(wParam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
       //  and interaction_impl::_001OnCommand for speed and because these messages are not
       //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -2200,7 +2200,7 @@ return true;
 
    void interaction_impl::OnDevModeChange(char * lpDeviceName)
    {
-      UNREFERENCED_PARAMETER(lpDeviceName);
+      __UNREFERENCED_PARAMETER(lpDeviceName);
       __throw(error_not_implemented);
       /*application* pApp = ::aura::get_system();
       if (pApp != nullptr && pApp->GetMainWnd() == this)
@@ -2302,7 +2302,7 @@ return true;
       //m_pframeworkview->on_size(m_rectangle.size());
 
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
@@ -2320,13 +2320,13 @@ return true;
 
    //void interaction_impl::OnHScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
-   //   UNREFERENCED_PARAMETER(pScrollBar);
+   //   __UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
    //}
 
    //void interaction_impl::OnVScroll(::u32,::u32,CScrollBar* pScrollBar)
    //{
-   //   UNREFERENCED_PARAMETER(pScrollBar);
+   //   __UNREFERENCED_PARAMETER(pScrollBar);
    //   Default();
    //}
 
@@ -2400,7 +2400,7 @@ return true;
 
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      ::aura::get_system()->get_event(m_pthread)->SetEvent();
       //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
    }
@@ -2708,8 +2708,8 @@ return true;
 
    void interaction_impl::UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler)
    {
-      UNREFERENCED_PARAMETER(pTarget);
-      UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      __UNREFERENCED_PARAMETER(pTarget);
+      __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
       //::message::command state(this);
       //interaction_impl wndTemp;       // very temporary interaction_impl just for CmdUI update
 
@@ -3635,7 +3635,7 @@ return true;
 
    void interaction_impl::SetFont(::write_text::font* pfont,bool bRedraw)
    {
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
       ASSERT(::is_window(get_handle()));
       m_pfont = new ::write_text::font(*pfont);
    }
@@ -5463,7 +5463,7 @@ lCallNextHook:
 
 //hwnd_map* afxMapHWND(bool bCreate)
 //{
-//   UNREFERENCED_PARAMETER(bCreate);
+//   __UNREFERENCED_PARAMETER(bCreate);
 //   try
 //   {
 //      __MODULE_STATE* pState = __get_module_state();

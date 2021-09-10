@@ -93,7 +93,7 @@ namespace user
    {
 
 //      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = true;
 
@@ -104,7 +104,7 @@ namespace user
    {
 
 //      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bLButtonDown)
       {
@@ -127,7 +127,7 @@ namespace user
    {
 
 //      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -135,7 +135,7 @@ namespace user
    {
 
 //      __pointer(::message::mouse) pleave(pmessage);
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = false;
 

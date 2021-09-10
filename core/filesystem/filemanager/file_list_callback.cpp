@@ -84,31 +84,31 @@ namespace filemanager
 
    void file_list_callback::OnButtonAction(id i, __pointer(::file::item)  item)
    {
-      UNREFERENCED_PARAMETER(i);
-      UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(item);
    }
 
 
 
    bool file_list_callback::GetMenuItemCallback(id iId)
    {
-      UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(iId);
       return false;
    }
 
    void file_list_callback::OnMenuItemAction(id iId, const ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
    }
 
 
    void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -116,7 +116,7 @@ namespace filemanager
    __pointer(::image_list) file_list_callback::GetActionButtonImageList(id i)
    {
 
-      UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(i);
 
       return nullptr;
 

@@ -90,7 +90,7 @@ namespace filehandler
    void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
@@ -174,7 +174,7 @@ namespace filehandler
 
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_id);
    }
 

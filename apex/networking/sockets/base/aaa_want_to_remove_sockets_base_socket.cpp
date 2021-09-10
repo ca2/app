@@ -159,7 +159,7 @@ namespace sockets
    i32 base_socket::close_socket(SOCKET s)
    {
 
-      UNREFERENCED_PARAMETER(s);
+      __UNREFERENCED_PARAMETER(s);
 
       return 0;
 
@@ -384,8 +384,8 @@ namespace sockets
    bool base_socket::SetNonblocking(bool bNb, SOCKET s)
    {
 
-      UNREFERENCED_PARAMETER(bNb);
-      UNREFERENCED_PARAMETER(s);
+      __UNREFERENCED_PARAMETER(bNb);
+      __UNREFERENCED_PARAMETER(s);
 
       return false;
 

@@ -141,7 +141,7 @@ message_box_w::message_box_w()
 ::e_status os_message_box(oswindow oswindow, const ::string & pszText, const ::string & pszCaption, emessagebox emessagebox, ::callback callback)
 {
 
-   UNREFERENCED_PARAMETER(oswindow);
+   __UNREFERENCED_PARAMETER(oswindow);
 
    message_box_w a;
 

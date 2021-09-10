@@ -153,7 +153,7 @@ namespace userex
 
                   ::image_pointer pimageSmall;
 
-                  pimageSmall = create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = m_pcontext->context_image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
 
                   image_source imagesource(pimage1);
 

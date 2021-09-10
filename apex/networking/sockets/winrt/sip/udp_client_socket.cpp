@@ -19,17 +19,17 @@ namespace sockets
 
    void sip_udp_client_socket::OnRawData(char *buf,memsize len,struct sockaddr *sa,socklen_t sa_len)
    {
-      UNREFERENCED_PARAMETER(sa);
-      UNREFERENCED_PARAMETER(sa_len);
+      __UNREFERENCED_PARAMETER(sa);
+      __UNREFERENCED_PARAMETER(sa_len);
       // TODO: should validate sa and sa_len
       sip_base_client_socket::OnRawData(buf, len);
    }
 
    void sip_udp_client_socket::OnRawData(char *buf,memsize len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts)
    {
-      UNREFERENCED_PARAMETER(sa);
-      UNREFERENCED_PARAMETER(sa_len);
-      UNREFERENCED_PARAMETER(ts);
+      __UNREFERENCED_PARAMETER(sa);
+      __UNREFERENCED_PARAMETER(sa_len);
+      __UNREFERENCED_PARAMETER(ts);
       // TODO: should validate sa, sa_len and organize using ts
       sip_base_client_socket::OnRawData(buf, len);
    }

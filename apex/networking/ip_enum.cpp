@@ -21,7 +21,7 @@ namespace net
    ::count ip_enum::enumerate(array < ::net::address > & ipa)
    {
 
-      UNREFERENCED_PARAMETER(ipa);
+      __UNREFERENCED_PARAMETER(ipa);
 
       ::exception::throw_interface_only();
 

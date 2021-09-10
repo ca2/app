@@ -35,7 +35,7 @@ namespace simple_ui
    void edit_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      auto pmouse = pmessage->m_pmouse;
 
@@ -50,7 +50,7 @@ namespace simple_ui
    void edit_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //pmessage->previous();
 
 //      auto pmouse = pmessage->m_pmouse;

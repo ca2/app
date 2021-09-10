@@ -501,7 +501,7 @@ namespace universal_windows
 //      ::u32 cbFileInfo,
 //      ::u32 uFlags)
 //   {
-//      UNREFERENCED_PARAMETER(cbFileInfo);
+//      __UNREFERENCED_PARAMETER(cbFileInfo);
 //      string strPath;
 //      ::str::international::UnicodeToACP(strPath, pszPath);
 //      SHFILEINFOA shia;

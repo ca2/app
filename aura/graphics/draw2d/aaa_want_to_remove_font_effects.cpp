@@ -173,9 +173,9 @@ namespace draw2d
    {
 
 
-      UNREFERENCED_PARAMETER(piCharsPositions);
+      __UNREFERENCED_PARAMETER(piCharsPositions);
 
-      UNREFERENCED_PARAMETER(iCharsPositions);
+      __UNREFERENCED_PARAMETER(iCharsPositions);
       SetDC(pgraphics);
       SelectFont();
 

@@ -35,7 +35,7 @@ namespace http
 
    void get_socket::OnDataArrived(const char *, memsize len)
    {
-      UNREFERENCED_PARAMETER(len);
+      __UNREFERENCED_PARAMETER(len);
    }
 
    void get_socket::OnHeader(id key, const string & value)

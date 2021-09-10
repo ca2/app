@@ -30,7 +30,7 @@ void simple_list_view::install_message_routing(::channel * pchannel)
 void simple_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
    
-   UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pgraphics);
    
    ASSERT(false);
 

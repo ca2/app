@@ -172,47 +172,32 @@
 //}
 
 
-inline ::image_pointer create_image()
-{
-
-   auto ptype = __create < ::image >();
-
-   if (!ptype)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptype;
-
-}
 
 
-inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
-{
-
-   auto ptype = __create < ::image >();
-
-   if (!ptype)
-   {
-
-      return nullptr;
-
-   }
-
-   auto estatus = ptype->create(size, eobjectFlag);
-
-   if (!estatus)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptype;
-
-}
+//inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
+//{
+//
+//   auto ptype = __create < ::image >();
+//
+//   if (!ptype)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto estatus = ptype->create(size, eobjectFlag);
+//
+//   if (!estatus)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptype;
+//
+//}
 
 
 // inline ::image_transport __create_image(::object * pobject)

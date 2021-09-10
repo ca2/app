@@ -57,7 +57,7 @@ bool image_list::create(i32 cx, i32 cy)
 bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 {
 
-   UNREFERENCED_PARAMETER(nFlags);
+   __UNREFERENCED_PARAMETER(nFlags);
 
    if(cx <= 0)
       return false;
@@ -133,7 +133,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
    try
    {
 
-      UNREFERENCED_PARAMETER(iFlag);
+      __UNREFERENCED_PARAMETER(iFlag);
 
       point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
@@ -166,7 +166,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(mutex());
 
-   UNREFERENCED_PARAMETER(iFlag);
+   __UNREFERENCED_PARAMETER(iFlag);
 
    if (opacity.is_opaque())
    {
@@ -227,7 +227,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   UNREFERENCED_PARAMETER(iFlag);
+   __UNREFERENCED_PARAMETER(iFlag);
 
    pointOffset.x = minimum(m_size.cx, pointOffset.x);
    pointOffset.y = minimum(m_size.cy, pointOffset.y);
@@ -579,7 +579,7 @@ i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 ::image_pointer image_list::get_image(int iImage)
 {
 
-   ::image_pointer pimage = create_image(m_size);
+   ::image_pointer pimage = m_pcontext->context_image()->create_image(m_size);
 
    if (!pimage)
    {

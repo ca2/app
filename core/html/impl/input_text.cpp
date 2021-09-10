@@ -174,7 +174,7 @@ namespace html
       void input_text::on_change_layout(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pedit->place(m_box);
 

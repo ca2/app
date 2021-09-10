@@ -108,7 +108,7 @@ void xfplayer_view_linea::SetEffect(i32 iEffect)
 
 void xfplayer_view_linea::SetRenderWindow(::user::interaction_impl * pwindow)
 {
-   UNREFERENCED_PARAMETER(pwindow);
+   __UNREFERENCED_PARAMETER(pwindow);
 }
 
 index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)

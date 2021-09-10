@@ -2214,7 +2214,7 @@ namespace aura
    void session::launch_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2222,7 +2222,7 @@ namespace aura
    void session::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2311,7 +2311,7 @@ namespace aura
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       if (itema.get_size() > 0)
       {

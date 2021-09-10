@@ -100,7 +100,7 @@ int g_iMouseY = 0;
 CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 }
 
@@ -702,7 +702,7 @@ namespace user
 //   void _os_process_user_theme(string strTheme)
 //   {
 //
-//      UNREFERENCED_PARAMETER(strTheme);
+//      __UNREFERENCED_PARAMETER(strTheme);
 //
 //   }
 

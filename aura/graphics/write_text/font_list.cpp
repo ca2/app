@@ -930,6 +930,8 @@ namespace write_text
 
          auto pgraphics = pdraw2d->create_memory_graphics();
 
+         pgraphics->m_puserinteraction = m_puserinteraction;
+
       restart:
 
          index iSerial = pfontlistdata->m_iSerial;
@@ -1068,6 +1070,8 @@ namespace write_text
             auto pdraw2d = psystem->draw2d();
 
             auto pgraphics = pdraw2d->create_memory_graphics();
+
+            pgraphics->m_puserinteraction = m_puserinteraction;
 
             string strText = m_strTextLayout;
 

@@ -581,7 +581,7 @@ namespace http
 
       auto tickTimeProfile1 = ::millis::now();
 
-      UNREFERENCED_PARAMETER(pszVersion);
+      __UNREFERENCED_PARAMETER(pszVersion);
 
       string strServer = pszHost;
 

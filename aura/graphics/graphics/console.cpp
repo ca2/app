@@ -179,7 +179,7 @@ namespace graphics
 
       ::size_i32 sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
 
-      m_pimage = create_image(sizeImage);
+      m_pimage = m_pcontext->context_image()->create_image(sizeImage);
 
       m_pimage->g()->m_pfont.create();
 

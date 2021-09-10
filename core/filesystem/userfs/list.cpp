@@ -77,7 +77,7 @@ namespace userfs
 
    void list::_001OnTimer(::timer * ptimer)
    {
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::form_list_view::_001OnTimer(ptimer);
 
@@ -164,7 +164,7 @@ namespace userfs
 
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_pmouse;
       /*         index iItem;
             list_data * pdata = fslist();
@@ -178,7 +178,7 @@ namespace userfs
 
    void list::_001OnCancelMode(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
@@ -497,8 +497,8 @@ namespace userfs
    void list::_017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -506,8 +506,8 @@ namespace userfs
    void list::_017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -515,7 +515,7 @@ namespace userfs
    void list::_017OpenContextMenu(const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -523,8 +523,8 @@ namespace userfs
    void list::_017OpenFolder(__pointer(::file::item) item, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(context);
       ASSERT(false);
 
    }
@@ -533,16 +533,16 @@ namespace userfs
    //void list::_017OpenFolder(const ::userfs::list_item &item, const ::action_context & context)
    //{
 
-   //   UNREFERENCED_PARAMETER(item);
-   //   UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(item);
+   //   __UNREFERENCED_PARAMETER(context);
    //   ASSERT(false);
 
    //}
 
    void list::_017OpenFile(const ::file::item_array &itema, const ::action_context & context)
    {
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(context);
       ASSERT(false);
    }
 
@@ -564,7 +564,7 @@ namespace userfs
 
    void list::_001OnButtonAction(::user::interaction * pinteraction)
    {
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
       //      list_data * pdata = fslist();
       /* filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
@@ -696,7 +696,7 @@ namespace userfs
    void list::_001OnFileRename(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::range range;
 
@@ -729,7 +729,7 @@ namespace userfs
 
    void list::on_message_show_window(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::message::show_window) pshow(pmessage);
 
       //db_server * pcentral = dynamic_cast < db_server * > (psystem->m_psimpledb->db());

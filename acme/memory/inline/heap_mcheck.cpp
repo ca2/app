@@ -191,9 +191,9 @@ void * aligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * sz
 
 #else
 
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
+   __UNREFERENCED_PARAMETER(nBlockUse);
+   __UNREFERENCED_PARAMETER(szFileName);
+   __UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
    //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
@@ -259,9 +259,9 @@ void * unaligned_memory_allocate_debug(size_t size, i32 nBlockUse, const char * 
 
 #else
 
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
+   __UNREFERENCED_PARAMETER(nBlockUse);
+   __UNREFERENCED_PARAMETER(szFileName);
+   __UNREFERENCED_PARAMETER(nLine);
 
    //TODO: to do the dbg version
    //byte * p = (byte *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);

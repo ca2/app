@@ -483,7 +483,7 @@ namespace ios
 //      void file_system::lines(string_array & stra, ::payload varFile, ::aura::application *  papp)
 //      {
 //
-//         UNREFERENCED_PARAMETER(pobject);
+//         __UNREFERENCED_PARAMETER(pobject);
 //
 //         ::file::text_buffer_pointer spfile(e_create);
 //

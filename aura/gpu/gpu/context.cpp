@@ -155,7 +155,7 @@ namespace gpu
 
       }
 
-      m_pbuffer->m_pimage = create_image(size);
+      m_pbuffer->m_pimage = m_pcontext->context_image()->create_image(size);
 
       if (!::is_ok(m_pbuffer->m_pimage))
       {

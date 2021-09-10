@@ -1900,7 +1900,7 @@ namespace user
    void tab::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::user::message) pusermessage(pmessage);
 
    }
@@ -2769,7 +2769,7 @@ namespace user
    void tab::_001OnAppLanguage(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       set_need_layout();
 
@@ -3121,7 +3121,7 @@ namespace user
    void tab::_001ConnectParent(::channel * pchannel)
    {
 
-      UNREFERENCED_PARAMETER(pchannel);
+      __UNREFERENCED_PARAMETER(pchannel);
 
    }
 
@@ -4021,7 +4021,7 @@ namespace user
    void tab::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      __pointer(::message::show_window) pshowwindow(pmessage);
 

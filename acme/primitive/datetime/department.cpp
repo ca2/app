@@ -217,7 +217,7 @@ namespace datetime
 
       }
 
-      UNREFERENCED_PARAMETER(iPath);
+      __UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
       iPathCount = 1;
       ::datetime::result val = ::datetime::result(time) +

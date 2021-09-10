@@ -25,9 +25,9 @@ namespace draw2d
 //   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hPackedDIB);
+//      __UNREFERENCED_PARAMETER(hPackedDIB);
 //
-//      UNREFERENCED_PARAMETER(nUsage);
+//      __UNREFERENCED_PARAMETER(nUsage);
 //
 //      ::exception::throw_interface_only();
 //
@@ -57,7 +57,7 @@ namespace draw2d
    void brush::dump(dump_context & dumpcontext) const
    {
 
-      UNREFERENCED_PARAMETER(dumpcontext);
+      __UNREFERENCED_PARAMETER(dumpcontext);
 
       ::exception::throw_interface_only();
 
@@ -100,9 +100,9 @@ namespace draw2d
    bool brush::CreateHatchBrush(i32 nIndex, ::color::color color)
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
+      __UNREFERENCED_PARAMETER(nIndex);
 
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(color);
 
       ::exception::throw_interface_only();
 
@@ -114,7 +114,7 @@ namespace draw2d
 //   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pLogBrush);
+//      __UNREFERENCED_PARAMETER(pLogBrush);
 //
 //      ::exception::throw_interface_only();
 //
@@ -145,9 +145,9 @@ namespace draw2d
    bool brush::CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage)
    {
 
-      UNREFERENCED_PARAMETER(pPackedDIB);
+      __UNREFERENCED_PARAMETER(pPackedDIB);
 
-      UNREFERENCED_PARAMETER(nUsage);
+      __UNREFERENCED_PARAMETER(nUsage);
 
       ::exception::throw_interface_only();
 
@@ -159,7 +159,7 @@ namespace draw2d
    bool brush::CreateSysColorBrush(i32 nIndex)
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
+      __UNREFERENCED_PARAMETER(nIndex);
 
       ::exception::throw_interface_only();
 
@@ -171,7 +171,7 @@ namespace draw2d
 //   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pLogBrush);
+//      __UNREFERENCED_PARAMETER(pLogBrush);
 //
 //      ::exception::throw_interface_only();
 //

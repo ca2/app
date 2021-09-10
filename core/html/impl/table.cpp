@@ -265,7 +265,7 @@ namespace html
       void table::layout_phase2(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -273,7 +273,7 @@ namespace html
       void table::layout_phase3(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          move_to(pdata);
 

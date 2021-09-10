@@ -34,7 +34,7 @@ namespace user
 
    void elastic_slider::on_message_create(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       SetTimer(84 +77 +51 +33 + 23 + 49, 50, nullptr);
    }
 
@@ -104,7 +104,7 @@ namespace user
 
    void elastic_slider::on_message_mouse_move(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_pmouse;
    }
 

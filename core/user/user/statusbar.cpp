@@ -636,7 +636,7 @@ namespace user
    void status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       UpdateAllPanes(false, true);
 
@@ -985,19 +985,19 @@ namespace user
 
    //void status_bar::SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   UNREFERENCED_PARAMETER(nIndex);
-   //   UNREFERENCED_PARAMETER(iId);
-   //   UNREFERENCED_PARAMETER(nStyle);
-   //   UNREFERENCED_PARAMETER(cxWidth);
+   //   __UNREFERENCED_PARAMETER(nIndex);
+   //   __UNREFERENCED_PARAMETER(iId);
+   //   __UNREFERENCED_PARAMETER(nStyle);
+   //   __UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    //}
 
    //void status_bar::SetPaneInfo(i32 nIndex, const ::string & pszId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   UNREFERENCED_PARAMETER(nIndex);
-   //   UNREFERENCED_PARAMETER(pszId);
-   //   UNREFERENCED_PARAMETER(nStyle);
-   //   UNREFERENCED_PARAMETER(cxWidth);
+   //   __UNREFERENCED_PARAMETER(nIndex);
+   //   __UNREFERENCED_PARAMETER(pszId);
+   //   __UNREFERENCED_PARAMETER(nStyle);
+   //   __UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, pszId, nStyle, cxWidth);
    //}
 

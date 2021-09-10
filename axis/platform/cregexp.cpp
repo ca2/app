@@ -1097,7 +1097,7 @@
 //
 //bool cregexp::parse(string str, strsize pos, strsize eol, SMatches *mtch, PMatchHash nmtch, i32 soScheme, i32 posMoves)
 //{
-//   UNREFERENCED_PARAMETER(nmtch);
+//   __UNREFERENCED_PARAMETER(nmtch);
 //   bool nms = positionMoves;
 //   if (posMoves != -1) positionMoves = (posMoves != 0);
 //#ifdef COLORERMODE

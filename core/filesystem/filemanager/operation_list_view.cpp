@@ -28,7 +28,7 @@ namespace filemanager
    void operation_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -120,7 +120,7 @@ namespace filemanager
    void operation_list_view::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
 
-      UNREFERENCED_PARAMETER(iOperation);
+      __UNREFERENCED_PARAMETER(iOperation);
 
       if(bFinal || m_millisLastUpdate.elapsed() > 200)
       {

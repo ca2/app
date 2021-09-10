@@ -101,7 +101,7 @@ namespace windowing
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
-      UNREFERENCED_PARAMETER(pimpl);
+      __UNREFERENCED_PARAMETER(pimpl);
 
       __throw(error_interface_only);
 

@@ -210,16 +210,16 @@ namespace user
 
    bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
    {
-      UNREFERENCED_PARAMETER(pDesktopWnd);
-      UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(iResult);
+      __UNREFERENCED_PARAMETER(pDesktopWnd);
+      __UNREFERENCED_PARAMETER(nHitTest);
+      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
 
    void form_mesh::_001OnNotify(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void form_mesh::_001OnTimer(::timer * ptimer)
@@ -229,7 +229,7 @@ namespace user
 
    void form_mesh::_001OnMessageNotify(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // linux na verdade revamp
       /*
       lresult = user::NotifyRetContinue;

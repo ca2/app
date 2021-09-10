@@ -95,7 +95,7 @@ CLASS_DECL_APEX int_bool defer_apex_term();
 //
 //void gen_CrtErrorCheck(i32 i)
 //{
-//   UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(i);
 //}
 //
 //

@@ -288,7 +288,7 @@ namespace user
    void plain_edit::OnDraw(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
    }
 
@@ -1492,7 +1492,7 @@ namespace user
 
       }
 
-      return peditfile->get_length();
+      return (strsize) peditfile->get_length();
 
    }
 
@@ -5651,8 +5651,8 @@ finished_update:
 
    void plain_edit::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(iCount);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(iCount);
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
@@ -5717,8 +5717,8 @@ finished_update:
    void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(pcszWhat);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(pcszWhat);
 
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
@@ -6266,7 +6266,7 @@ finished_update:
    void plain_edit::_001OnHScroll(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -6291,7 +6291,7 @@ finished_update:
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
       
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -6463,7 +6463,7 @@ finished_update:
    void plain_edit::_001OnEditCut(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -6498,7 +6498,7 @@ finished_update:
    void plain_edit::_001OnEditCopy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -6523,7 +6523,7 @@ finished_update:
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (is_window_enabled())
       {
@@ -6576,7 +6576,7 @@ finished_update:
    void plain_edit::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

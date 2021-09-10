@@ -439,7 +439,7 @@ namespace user
 
                   ::size_i32 szNew = pimageSrc->get_size() * dMin;
 
-                  pimage = create_image(szNew);
+                  pimage = m_pcontext->context_image()->create_image(szNew);
 
                   pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 

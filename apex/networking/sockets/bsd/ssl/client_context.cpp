@@ -79,16 +79,16 @@ namespace sockets
    void ssl_client_context::set_context(const char * pszContext)
    {
 
-      UNREFERENCED_PARAMETER(pszContext);
+      __UNREFERENCED_PARAMETER(pszContext);
 
    }
 
    void ssl_client_context::set_context(const char * pszFontopus, const char * pszSessId)
    {
 
-      UNREFERENCED_PARAMETER(pszFontopus);
+      __UNREFERENCED_PARAMETER(pszFontopus);
 
-      UNREFERENCED_PARAMETER(pszSessId);
+      __UNREFERENCED_PARAMETER(pszSessId);
 
    }
 

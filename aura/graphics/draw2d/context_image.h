@@ -81,6 +81,12 @@ public:
    virtual void _os_load_image(::image * pimage, memory & memory);
 
 
+   virtual ::image_pointer create_image();
+
+
+   virtual ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK);
+
+
 };
 
 

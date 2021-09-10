@@ -132,9 +132,9 @@ namespace experience
    bool menu_manager::OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point)
    {
 
-      UNREFERENCED_PARAMETER(nFlags);
+      __UNREFERENCED_PARAMETER(nFlags);
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       if (m_pframewindow == nullptr)
       {

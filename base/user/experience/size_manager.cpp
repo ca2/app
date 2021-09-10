@@ -757,7 +757,7 @@ namespace experience
    void size_manager::NotifyFramework(e_hittest emode)
    {
 
-      UNREFERENCED_PARAMETER(emode);
+      __UNREFERENCED_PARAMETER(emode);
 
    }
 

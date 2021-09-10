@@ -870,7 +870,7 @@ namespace html
    {
 
       const char * psz = strParam;
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
          const char * pszStart = psz;

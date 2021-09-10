@@ -49,7 +49,7 @@ namespace user
    //void notify_icon_listener::OnNotifyIconContextMenu(::u32 uNotifyIcon)
    //{
 
-   //   UNREFERENCED_PARAMETER(uNotifyIcon);
+   //   __UNREFERENCED_PARAMETER(uNotifyIcon);
 
    //}
 
@@ -57,7 +57,7 @@ namespace user
    //void notify_icon_listener::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
    //{
 
-   //   UNREFERENCED_PARAMETER(uNotifyIcon);
+   //   __UNREFERENCED_PARAMETER(uNotifyIcon);
 
    //}
 
@@ -65,7 +65,7 @@ namespace user
    //void notify_icon_listener::OnNotifyIconLButtonDown(::u32 uNotifyIcon)
    //{
 
-   //   UNREFERENCED_PARAMETER(uNotifyIcon);
+   //   __UNREFERENCED_PARAMETER(uNotifyIcon);
 
    //}
 

@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
-#include "core/net/ftp/_.h"
+#include "core/filesystem/fs/_fs.h"
+#include "core/networking/ftp/_.h"
 #include "ftp_file.h"
 
 

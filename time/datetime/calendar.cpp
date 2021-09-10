@@ -48,7 +48,7 @@ namespace datetime
       void calendar::_001OnDraw(::draw2d::graphics* pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pgraphics);
 
       }
 
@@ -66,9 +66,9 @@ namespace datetime
       void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect)
       {
 
-         UNREFERENCED_PARAMETER(iWeekDay);
-         UNREFERENCED_PARAMETER(iLine);
-         UNREFERENCED_PARAMETER(lprect);
+         __UNREFERENCED_PARAMETER(iWeekDay);
+         __UNREFERENCED_PARAMETER(iLine);
+         __UNREFERENCED_PARAMETER(lprect);
 
       }
 
@@ -76,8 +76,8 @@ namespace datetime
       void calendar::GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement)
       {
 
-         UNREFERENCED_PARAMETER(lprect);
-         UNREFERENCED_PARAMETER(eelement);
+         __UNREFERENCED_PARAMETER(lprect);
+         __UNREFERENCED_PARAMETER(eelement);
 
       }
 
@@ -120,8 +120,8 @@ namespace datetime
       void calendar::set_pos(point_i32 point, size_i32 sz)
       {
 
-         UNREFERENCED_PARAMETER(point);
-         UNREFERENCED_PARAMETER(sz);
+         __UNREFERENCED_PARAMETER(point);
+         __UNREFERENCED_PARAMETER(sz);
 
       }
 

@@ -43,12 +43,12 @@ namespace user
 
    void plain_text_command::Undo(plain_text_tree * pedit)
    {
-      UNREFERENCED_PARAMETER(pedit);
+      __UNREFERENCED_PARAMETER(pedit);
    }
 
    void plain_text_command::Redo(plain_text_tree * pedit)
    {
-      UNREFERENCED_PARAMETER(pedit);
+      __UNREFERENCED_PARAMETER(pedit);
    }
 
 
@@ -56,7 +56,7 @@ namespace user
    void plain_text_set_sel_command::Undo(plain_text_tree * pdocument)
    {
 
-      UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(pdocument);
 
       pdocument->m_iSelBeg = m_iPreviousSelBeg;
 
@@ -66,7 +66,7 @@ namespace user
 
    void plain_text_set_sel_command::Redo(plain_text_tree * pdocument)
    {
-      UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(pdocument);
       pdocument->m_iSelBeg = m_iSelBeg;
       pdocument->m_iSelEnd = m_iSelEnd;
    }

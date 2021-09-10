@@ -1,31 +1,25 @@
 #pragma once
 
 
-
-
 namespace file
 {
 
 
-   enum e_buffer
+   enum enum_buffer
    {
-      buffer_read,
-      buffer_write,
-      buffer_commit,
-      buffer_check
+
+      e_buffer_read,
+      e_buffer_write,
+      e_buffer_commit,
+      e_buffer_check
+
    };
-
-
 
 
    class exception;
    struct file_status;
 
    class file;
-
-
-
-
 
 
    class CLASS_DECL_ACME file :
@@ -66,8 +60,7 @@ namespace file
       virtual filesize seek_to_begin();
       virtual filesize seek_to_end();
       virtual filesize seek_from_end(filesize offset);
-      //virtual filesize seek(filesize offset, ::enum_seek eseek);
-      ::index translate(::count c, ::enum_seek eseek) override;
+      filesize translate(filesize offset, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
 

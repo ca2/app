@@ -1306,8 +1306,8 @@ pacmedir->create(pathDVP_Folder);
 //      { \r\n \
 //\r\n  \
 // \r\n \r\n \
-//         UNREFERENCED_PARAMETER(hInstance); \r\n \
-//         UNREFERENCED_PARAMETER(lpReserved); \r\n \
+//         __UNREFERENCED_PARAMETER(hInstance); \r\n \
+//         __UNREFERENCED_PARAMETER(lpReserved); \r\n \
 // \r\n \
 // \r\n \
 //         if(dwReason == DLL_PROCESS_ATTACH) \r\n \

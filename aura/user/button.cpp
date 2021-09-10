@@ -268,7 +268,7 @@ namespace user
    void button::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_estyle == style_none)
       {

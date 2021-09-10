@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "core/net/ftp/_.h"
-#include "apex/filesystem/fs/_fs.h"
+#include "core/networking/ftp/_.h"
+#include "core/filesystem/fs/_fs.h"
 #include "ftpnet.h"
 #include "ftp_file.h"
 
@@ -389,8 +389,8 @@ int ftpfs::is_dir(const ::file::path & path)
 
 bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 {
-   UNREFERENCED_PARAMETER(pszDst);
-   UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(pszDst);
+   __UNREFERENCED_PARAMETER(pszSrc);
    return true;
 }
 

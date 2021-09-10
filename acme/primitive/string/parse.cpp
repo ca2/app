@@ -90,7 +90,7 @@ namespace str {
    ,m_bQuote(false)
    ,m_iLen(iLen)
    {
-      UNREFERENCED_PARAMETER(nospace);
+      __UNREFERENCED_PARAMETER(nospace);
    }
 
 

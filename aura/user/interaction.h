@@ -1478,7 +1478,7 @@ namespace user
       }
       static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
-         UNREFERENCED_PARAMETER(pinteraction);
+         __UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;
       }
 #endif

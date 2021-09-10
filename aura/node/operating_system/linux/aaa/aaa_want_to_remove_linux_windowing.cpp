@@ -3457,7 +3457,7 @@ void wm_full_screen(oswindow w, const ::rectangle & rectangle)
 CLASS_DECL_AURA void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 }
 

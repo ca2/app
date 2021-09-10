@@ -569,8 +569,8 @@ CLASS_DECL_CORE oswindow get_window(oswindow oswindow, int iWindow)
 CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
 {
 
-   UNREFERENCED_PARAMETER(oswindow);
-   UNREFERENCED_PARAMETER( iShowCmd);
+   __UNREFERENCED_PARAMETER(oswindow);
+   __UNREFERENCED_PARAMETER( iShowCmd);
 
    return true;
 

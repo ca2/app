@@ -417,8 +417,8 @@ pacmedir->ca2roaming() / "home";
    ::file::path dir_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
    {
 
-      UNREFERENCED_PARAMETER(strPrefix);
-      UNREFERENCED_PARAMETER(strSuffix);
+      __UNREFERENCED_PARAMETER(strPrefix);
+      __UNREFERENCED_PARAMETER(strSuffix);
       return time() / "time";
 
    }
@@ -645,7 +645,7 @@ try1:;
    //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return appdata() / strPrefix;
 
@@ -680,7 +680,7 @@ try1:;
    //::file::path dir_context::default_os_user_path_prefix()
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return "CurrentUser";
 

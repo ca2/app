@@ -83,7 +83,7 @@
 //
 //{
 //
-//   UNREFERENCED_PARAMETER(bCaseInsensitive);
+//   __UNREFERENCED_PARAMETER(bCaseInsensitive);
 //
 //   return __new(cregexp(pszExp));
 //

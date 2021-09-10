@@ -11,16 +11,18 @@ namespace file
    public:
 
 
-      virtual ::index translate(::count c, enum_seek eseek) = 0;
+      virtual filesize translate(filesize offset, enum_seek eseek) = 0;
 
-      ::index operator++()
+
+      filesize operator++()
       {
 
          return translate(1, ::e_seek_current);
 
       }
 
-      ::index operator--()
+
+      filesize operator--()
       {
 
          return translate(-1, ::e_seek_current);
@@ -28,23 +30,23 @@ namespace file
       }
 
 
-      ::index operator+=(::count c)
+      filesize operator+=(filesize offset)
       {
 
-         return translate(c, ::e_seek_current);
+         return translate(offset, ::e_seek_current);
 
       }
 
 
-      ::index operator-=(::count c)
+      filesize operator-=(filesize offset)
       {
 
-         return translate(-c, ::e_seek_current);
+         return translate(-offset, ::e_seek_current);
 
       }
 
 
-      explicit operator ::index() const
+      explicit operator filesize() const
       {
 
          return ((translatable *)this)->translate(0, ::e_seek_current);
@@ -53,7 +55,6 @@ namespace file
 
 
    };
-
 
 
 } // namespace file

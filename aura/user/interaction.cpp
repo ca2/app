@@ -1826,7 +1826,7 @@ namespace user
 
       }
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
 
@@ -4420,7 +4420,7 @@ return "";
    void interaction::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bEnableDragMove)
       {
@@ -5345,28 +5345,28 @@ return "";
 
    //void interaction::_002OnLButtonDown(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnLButtonUp(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseMove(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseEnter(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -5374,7 +5374,7 @@ return "";
    //void interaction::_002OnKeyDown(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -5382,7 +5382,7 @@ return "";
    //void interaction::_002OnKeyUp(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -5390,7 +5390,7 @@ return "";
    //void interaction::_002OnTimer(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -5644,7 +5644,7 @@ void interaction::route_message_to_descendants(::message::message * pmessage)
 //void interaction::pre_translate_message(::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(pmessage);
+//   __UNREFERENCED_PARAMETER(pmessage);
 
 //   //__pointer(::message::message) pmessage(pmessage);
 
@@ -10472,7 +10472,7 @@ void interaction::_001UpdateWindow()
 void interaction::GuieProc(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -11001,7 +11001,7 @@ void interaction::on_message_mouse_enter(::message::message * pmessage)
 bool interaction::can_merge(::user::interaction * pinteraction)
 {
 
-   UNREFERENCED_PARAMETER(pinteraction);
+   __UNREFERENCED_PARAMETER(pinteraction);
 
    return false;
 
@@ -11011,7 +11011,7 @@ bool interaction::can_merge(::user::interaction * pinteraction)
 bool interaction::merge(::user::interaction * pinteraction)
 {
 
-   UNREFERENCED_PARAMETER(pinteraction);
+   __UNREFERENCED_PARAMETER(pinteraction);
 
    return false;
 
@@ -11923,7 +11923,7 @@ void interaction::on_command(::message::command * pcommand)
 bool interaction::is_selected(::data::item * pitem)
 {
 
-   UNREFERENCED_PARAMETER(pitem);
+   __UNREFERENCED_PARAMETER(pitem);
 
    return false;
 

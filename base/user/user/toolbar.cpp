@@ -1370,7 +1370,7 @@ return { 0,0 };
    void toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       //if (m_bDelayedButtonLayout)
       //{
@@ -1466,7 +1466,7 @@ return { 0,0 };
 
    void toolbar::_001OnSysColorChange(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // re-color bitmap for toolbar
 //      if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
       {

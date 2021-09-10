@@ -137,7 +137,7 @@ namespace html
       void input_button::on_change_layout(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pbutton->place(m_box);
 

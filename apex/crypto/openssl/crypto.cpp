@@ -1173,7 +1173,7 @@ namespace crypto
    /*void crypto::free_rsa_key(__pointer(::crypto::rsa) prsa)
    {
 
-      UNREFERENCED_PARAMETER(prsa);
+      __UNREFERENCED_PARAMETER(prsa);
 
    }*/
 

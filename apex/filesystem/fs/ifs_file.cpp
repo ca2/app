@@ -53,7 +53,7 @@ filesize ifs_file::get_size() const
 }
 
 
-::index ifs_file::translate(::count offset, ::enum_seek eseek)
+filesize ifs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    if((m_nOpenFlags & ::file::e_open_read) != 0)

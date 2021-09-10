@@ -40,7 +40,7 @@ namespace aura
       //bool tx::open(const ::string & pszChannel, launcher * plauncher)
       //{
 
-      //   UNREFERENCED_PARAMETER(plauncher);
+      //   __UNREFERENCED_PARAMETER(plauncher);
 
       //   if (m_strBaseChannel.has_char())
       //      close();

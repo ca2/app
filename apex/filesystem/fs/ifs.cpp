@@ -321,8 +321,8 @@ int ifs::is_dir(const ::file::path & path)
 
 bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 {
-   UNREFERENCED_PARAMETER(pszDst);
-   UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(pszDst);
+   __UNREFERENCED_PARAMETER(pszSrc);
    return true;
 }
 

@@ -32,8 +32,8 @@ namespace trace
 
    void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
    {
-      UNREFERENCED_PARAMETER(pszFileName);
-      UNREFERENCED_PARAMETER(nLine);
+      __UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(nLine);
       /*      const category *pCategory;
       trace_module * pmodule = nullptr;
       static const i32 nCount = 1024;
@@ -109,10 +109,10 @@ namespace trace
    CLASS_DECL_ACME void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
    {
 
-      UNREFERENCED_PARAMETER(pszFileName);
-      UNREFERENCED_PARAMETER(nLine);
-      UNREFERENCED_PARAMETER(dwCategory);
-      UNREFERENCED_PARAMETER(nLevel);
+      __UNREFERENCED_PARAMETER(pszFileName);
+      __UNREFERENCED_PARAMETER(nLine);
+      __UNREFERENCED_PARAMETER(dwCategory);
+      __UNREFERENCED_PARAMETER(nLevel);
 
       string str;
 

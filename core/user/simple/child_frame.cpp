@@ -77,7 +77,7 @@ void simple_child_frame::route_command_message(::message::command * pcommand)
 void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pgraphics);
 
 
 }

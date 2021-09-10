@@ -406,7 +406,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
 
 bool db_long_set::find(const ::string & lpKey)
 {
-   UNREFERENCED_PARAMETER(lpKey);
+   __UNREFERENCED_PARAMETER(lpKey);
    /*    single_lock synchronouslock(&m_CriticalSection, true);
    HRESULT hr;
    if(m_bIndexed)

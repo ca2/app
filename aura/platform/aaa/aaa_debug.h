@@ -214,9 +214,9 @@
 //// inline i32 FUNCTION_XXDEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, i32 iFlags)
 //// {
 //
-////    UNREFERENCED_PARAMETER(pszMessage);
-////    UNREFERENCED_PARAMETER(pszTitle);
-////    UNREFERENCED_PARAMETER(iFlags);
+////    __UNREFERENCED_PARAMETER(pszMessage);
+////    __UNREFERENCED_PARAMETER(pszTitle);
+////    __UNREFERENCED_PARAMETER(iFlags);
 //
 ////    return 0;
 //
@@ -225,9 +225,9 @@
 //// inline i32 FUNCTION_XXDEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags)
 //// {
 //
-////    UNREFERENCED_PARAMETER(pszMessage);
-////    UNREFERENCED_PARAMETER(pszTitle);
-////    UNREFERENCED_PARAMETER(iFlags);
+////    __UNREFERENCED_PARAMETER(pszMessage);
+////    __UNREFERENCED_PARAMETER(pszTitle);
+////    __UNREFERENCED_PARAMETER(iFlags);
 //
 ////    return 0;
 //

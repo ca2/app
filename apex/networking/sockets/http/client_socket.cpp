@@ -458,8 +458,8 @@ namespace sockets
    void http_client_socket::OnDataArrived(const char * buf, memsize len)
    {
 
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(len);
+      __UNREFERENCED_PARAMETER(buf);
+      __UNREFERENCED_PARAMETER(len);
    }
 
 

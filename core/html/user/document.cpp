@@ -104,7 +104,7 @@ void html_document::dump(dump_context & dumpcontext) const
 void html_document::data_on_after_change(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 

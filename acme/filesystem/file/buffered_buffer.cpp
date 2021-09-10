@@ -37,28 +37,38 @@ namespace file
    }
 
 
-   ::index buffered_file::translate(::count c, ::enum_seek eseek)
+   filesize buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
       u64 uiBegBufPosition = m_uiBufLPos;
+
       u64 uiEndBufPosition = m_uiBufUPos;
+
       u64 uiNewPos;
+
       if(eseek == ::e_seek_set)
       {
-         if(c < 0)
-            c = 0;
-         uiNewPos = c;
+         
+         if (offset < 0)
+         {
+
+            offset = 0;
+
+         }
+
+         uiNewPos = offset;
+
       }
       else if(eseek == ::e_seek_from_end)
       {
 
-         uiNewPos = m_pfile->get_size() + c;
+         uiNewPos = m_pfile->get_size() + offset;
 
       }
       else if(eseek == ::e_seek_current)
       {
          
-         i64 iNewPosition = m_uiPosition + c;
+         i64 iNewPosition = m_uiPosition + offset;
 
          if (iNewPosition < 0)
          {

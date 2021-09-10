@@ -301,7 +301,7 @@ namespace os
 
                            //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                            //                  lpMsg->wParam        = 0;
-                           //              lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+                           //              lpMsg->lParam        = __MAKE_LONG(e.xbutton.x_root, e.xbutton.y_root);
 
                         }
 
@@ -430,7 +430,7 @@ namespace os
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->wParam        = e.xkey.keycode;
-                        //lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
+                        //lpMsg->lParam        = __MAKE_LONG(0, e.xkey.keycode);
 
 
 
@@ -441,7 +441,7 @@ namespace os
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->message       = e_message_mouse_move;
                         //lpMsg->wParam        = 0;
-                        //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
+                        //lpMsg->lParam        = __MAKE_LONG(e.xmotion.x_root, e.xmotion.y_root);
 
                         on_mouse_move(e.xmotion.x, e.xmotion.y);
 

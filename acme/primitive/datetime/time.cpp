@@ -171,7 +171,7 @@ namespace datetime
 
    ::datetime::time & time::operator+=( date_span span )
    {
-      UNREFERENCED_PARAMETER(span);
+      __UNREFERENCED_PARAMETER(span);
       __throw(error_not_implemented);
 
       return *this;
@@ -181,7 +181,7 @@ namespace datetime
    ::datetime::time& time::operator-=( date_span span )
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
 
@@ -193,7 +193,7 @@ namespace datetime
    ::datetime::time time::operator-( date_span span ) const
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
 
@@ -205,7 +205,7 @@ namespace datetime
    ::datetime::time time::operator+( date_span span ) const
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
 

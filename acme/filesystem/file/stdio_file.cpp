@@ -122,7 +122,7 @@ stdio_file::~stdio_file()
 }
 
 
-::index stdio_file::translate(::count offset, ::enum_seek eseek)
+filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    int nFrom = SEEK_SET;
@@ -272,8 +272,8 @@ void stdio_file::write(const void * pdata,memsize nCount)
 void stdio_file::lock(filesize dwPos,filesize dwCount)
 {
 
-   UNREFERENCED_PARAMETER(dwPos);
-   UNREFERENCED_PARAMETER(dwCount);
+   __UNREFERENCED_PARAMETER(dwPos);
+   __UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -281,8 +281,8 @@ void stdio_file::lock(filesize dwPos,filesize dwCount)
 void stdio_file::unlock(filesize dwPos,filesize dwCount)
 {
 
-   UNREFERENCED_PARAMETER(dwPos);
-   UNREFERENCED_PARAMETER(dwCount);
+   __UNREFERENCED_PARAMETER(dwPos);
+   __UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -290,7 +290,7 @@ void stdio_file::unlock(filesize dwPos,filesize dwCount)
 void stdio_file::set_size(filesize dwNewLen)
 {
 
-   UNREFERENCED_PARAMETER(dwNewLen);
+   __UNREFERENCED_PARAMETER(dwNewLen);
 
 }
 
@@ -320,7 +320,7 @@ void stdio_file::assert_valid() const
 void stdio_file::dump(dump_context & dumpcontext) const
 {
 
-   UNREFERENCED_PARAMETER(dumpcontext);
+   __UNREFERENCED_PARAMETER(dumpcontext);
 
 }
 
@@ -336,7 +336,7 @@ void stdio_file::dump(dump_context & dumpcontext) const
 bool stdio_file::get_status(::file::file_status & rStatus) const
 {
 
-   UNREFERENCED_PARAMETER(rStatus);
+   __UNREFERENCED_PARAMETER(rStatus);
 
    return false;
 

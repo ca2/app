@@ -84,7 +84,7 @@ namespace colorertake5
 
    void Outliner::startParsing(index lno)
    {
-      UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(lno);
       curLevel = 0;
    }
 
@@ -99,8 +99,8 @@ namespace colorertake5
 
    void Outliner::clearLine(index lno, const ::string & line)
    {
-      UNREFERENCED_PARAMETER(lno);
-      UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(line);
       lineIsEmpty = true;
    }
 
@@ -134,24 +134,24 @@ namespace colorertake5
 
    void Outliner::enterScheme(index lno, const ::string &line, index sx, index ex, class region * region, class scheme * scheme)
    {
-      UNREFERENCED_PARAMETER(lno);
-      UNREFERENCED_PARAMETER(line);
-      UNREFERENCED_PARAMETER(sx);
-      UNREFERENCED_PARAMETER(ex);
-      UNREFERENCED_PARAMETER(region);
-      UNREFERENCED_PARAMETER(scheme);
+      __UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(sx);
+      __UNREFERENCED_PARAMETER(ex);
+      __UNREFERENCED_PARAMETER(region);
+      __UNREFERENCED_PARAMETER(scheme);
 
       curLevel++;
    }
 
    void Outliner::leaveScheme(index lno, const ::string &line, index sx, index ex, class region * region, class scheme * scheme)
    {
-      UNREFERENCED_PARAMETER(lno);
-      UNREFERENCED_PARAMETER(line);
-      UNREFERENCED_PARAMETER(sx);
-      UNREFERENCED_PARAMETER(ex);
-      UNREFERENCED_PARAMETER(region);
-      UNREFERENCED_PARAMETER(scheme);
+      __UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(sx);
+      __UNREFERENCED_PARAMETER(ex);
+      __UNREFERENCED_PARAMETER(region);
+      __UNREFERENCED_PARAMETER(scheme);
 
       curLevel--;
    }

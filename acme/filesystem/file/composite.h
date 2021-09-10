@@ -35,9 +35,10 @@ namespace file
       ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
 
-      ::index translate(::count c, ::enum_seek eseek) override;
+      filesize translate(filesize offset, ::enum_seek eseek) override;
       void set_size(filesize dwNewLen) override;
       filesize get_size() const override;
+
 
       void lock(filesize dwPos, filesize dwCount) override;
       void unlock(filesize dwPos, filesize dwCount) override;

@@ -315,8 +315,8 @@ namespace user
    void mesh::_001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast)
    {
 
-      UNREFERENCED_PARAMETER(iItemFirst);
-      UNREFERENCED_PARAMETER(iItemLast);
+      __UNREFERENCED_PARAMETER(iItemFirst);
+      __UNREFERENCED_PARAMETER(iItemLast);
 
       index iGroup;
 
@@ -822,7 +822,7 @@ namespace user
 
    void mesh::on_message_size(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::size) psize(pmessage);
       //set_need_layout();
       //psize->m_bRet = false;
@@ -893,7 +893,7 @@ namespace user
    bool mesh::_001OnUpdateColumnCount(u32 dwFlags)
    {
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      __UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -937,7 +937,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      UNREFERENCED_PARAMETER(dwFlags);
+      __UNREFERENCED_PARAMETER(dwFlags);
 
       if(m_eview == impact_grid)
       {
@@ -1540,11 +1540,11 @@ namespace user
 
    bool mesh::_001HitTest_(const ::point_i32 & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement)
    {
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(iItem);
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      UNREFERENCED_PARAMETER(eelement);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iSubItem);
+      __UNREFERENCED_PARAMETER(iListItem);
+      __UNREFERENCED_PARAMETER(eelement);
       return false;
    }
 
@@ -1586,11 +1586,11 @@ namespace user
    bool mesh::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::enum_element &eelement)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(iItem);
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      UNREFERENCED_PARAMETER(eelement);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iSubItem);
+      __UNREFERENCED_PARAMETER(iListItem);
+      __UNREFERENCED_PARAMETER(eelement);
 
       return false;
 
@@ -3084,8 +3084,8 @@ namespace user
    bool mesh::_001OnRightClick(uptr nFlag,const ::point_i32 & point)
    {
 
-      UNREFERENCED_PARAMETER(nFlag);
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(nFlag);
+      __UNREFERENCED_PARAMETER(point);
       return false;
 
    }
@@ -3170,7 +3170,7 @@ namespace user
    string mesh::_001GetColumnText(index iColumn)
    {
 
-      UNREFERENCED_PARAMETER(iColumn);
+      __UNREFERENCED_PARAMETER(iColumn);
       
       return "";
 
@@ -4123,7 +4123,7 @@ namespace user
    bool mesh::_001OnRemoveItem(index iItem)
    {
 
-      UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iItem);
 
       return false;
 
@@ -4185,7 +4185,7 @@ namespace user
    index mesh::_001StrictToDisplay(index iStrict)
    {
 
-      UNREFERENCED_PARAMETER(iStrict);
+      __UNREFERENCED_PARAMETER(iStrict);
 
       return -1;
 
@@ -4718,7 +4718,7 @@ namespace user
    i32 mesh::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
    {
 
-      UNREFERENCED_PARAMETER(iColumn);
+      __UNREFERENCED_PARAMETER(iColumn);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -4769,7 +4769,7 @@ namespace user
    void mesh::_OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -5009,7 +5009,7 @@ namespace user
 
    id mesh::data_get_sort_id(EView eview)
    {
-      UNREFERENCED_PARAMETER(eview);
+      __UNREFERENCED_PARAMETER(eview);
       switch(m_eview)
       {
       case impact_grid:
@@ -5220,9 +5220,9 @@ namespace user
    bool mesh::do_drop(index iDisplayDrop,index iDisplayDrag)
    {
 
-      UNREFERENCED_PARAMETER(iDisplayDrop);
+      __UNREFERENCED_PARAMETER(iDisplayDrop);
 
-      UNREFERENCED_PARAMETER(iDisplayDrag);
+      __UNREFERENCED_PARAMETER(iDisplayDrag);
 
       if(m_eview == impact_icon)
       {
@@ -5372,7 +5372,7 @@ namespace user
 
    void mesh::_001OnMeshViewAutoArrange(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
@@ -5495,7 +5495,7 @@ namespace user
 
    ::count mesh::_001GetGroupItemCount(index iGroup)
    {
-      UNREFERENCED_PARAMETER(iGroup);
+      __UNREFERENCED_PARAMETER(iGroup);
       return -1;
    }
 
@@ -5652,13 +5652,13 @@ namespace user
             size.cy += 4;
 
             ::image_pointer pimage1;
-            pimage1 = create_image(size);
+            pimage1 = m_pcontext->context_image()->create_image(size);
             pimage1->fill(0,0,0,0);
             ::draw2d::brush_pointer brushText(e_create);
             brushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(brushText);
             ::image_pointer pimage2;
-            pimage2 = create_image(size);
+            pimage2 = m_pcontext->context_image()->create_image(size);
             pimage2->fill(0,0,0,0);
 
             ::rectangle_i32 rectCache;

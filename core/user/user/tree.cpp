@@ -964,7 +964,7 @@ namespace user
 
       //::data::simple_lock lock(pitem->m_pitem);
 
-      UNREFERENCED_PARAMETER(bLayout);
+      __UNREFERENCED_PARAMETER(bLayout);
 
       auto pointOffset = get_viewport_offset();
 

@@ -103,7 +103,7 @@ namespace user
    bool impact_host::on_prepare_impact_data(impact_data * pimpactdata)
    {
 
-      UNREFERENCED_PARAMETER(pimpactdata);
+      __UNREFERENCED_PARAMETER(pimpactdata);
 
       return false;
 
@@ -113,7 +113,7 @@ namespace user
    bool impact_host::on_after_create_impact_data(impact_data * pimpactdata)
    {
 
-      UNREFERENCED_PARAMETER(pimpactdata);
+      __UNREFERENCED_PARAMETER(pimpactdata);
 
       return false;
 

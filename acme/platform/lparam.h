@@ -1,12 +1,6 @@
 #pragma once
 
-#ifndef MAKELONG
-#define MAKELONG(a, b)          ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-#endif
 
-#ifndef MAKELPARAM
-#define MAKELPARAM(l, h)        ((::lparam)(::uptr)(::u32)MAKELONG(l, h))
-#endif
 
 
 class CLASS_DECL_ACME lparam
@@ -20,15 +14,15 @@ public:
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
 
-   lparam(iptr i) { m_lparam = (iptr) i; }
+   lparam(i64 i) { m_lparam = (iptr) i; }
    lparam(i32 i) { m_lparam = (iptr)i; }
-   lparam(uptr u) { m_lparam = (iptr)u; }
+   lparam(u64 u) { m_lparam = (iptr)u; }
    lparam(u32 u) { m_lparam = (iptr)u; }
    template < primitive_size SIZE >
    lparam(const SIZE & size):lparam((::i32)size.cx, (::i32) size.cy) {}
    template < primitive_point POINT >
    lparam(const POINT & point) : lparam((::i32)point.x, (::i32)point.y) {}
-   lparam(::i32 x, ::i32 y) { m_lparam = MAKELPARAM(x, y); }
+   lparam(::i32 x, ::i32 y) { m_lparam = __MAKE_LPARAM(x, y); }
 
 
    /// catching/receiving matter

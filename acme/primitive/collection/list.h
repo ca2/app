@@ -1618,7 +1618,7 @@ template < class TYPE, class ARG_TYPE >
 void list<TYPE, ARG_TYPE>::splice(iterator position, list & l, iterator i)
 {
 
-   UNREFERENCED_PARAMETER(l);
+   __UNREFERENCED_PARAMETER(l);
 
    l.detach(i.item());
 
@@ -1630,7 +1630,7 @@ template < class TYPE, class ARG_TYPE >
 void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator first, iterator last)
 {
 
-   UNREFERENCED_PARAMETER(l);
+   __UNREFERENCED_PARAMETER(l);
 
    l.detach(first.item(), last.item());
 

@@ -128,7 +128,7 @@ namespace colorertake5
    void LineRegionsSupport::startParsing(index lno)
    {
 
-      UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(lno);
 
       while(schemeStack.get_size() > 1)
       {
@@ -148,7 +148,7 @@ namespace colorertake5
    void LineRegionsSupport::clearLine(index lno, const ::string & pszLine)
    {
 
-      UNREFERENCED_PARAMETER(pszLine);
+      __UNREFERENCED_PARAMETER(pszLine);
 
       if(!checkLine(lno))
          return;
@@ -174,7 +174,7 @@ namespace colorertake5
    void LineRegionsSupport::addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region* region)
    {
 
-      UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(line);
 
       // ignoring out of cached interval lines
 
@@ -203,8 +203,8 @@ namespace colorertake5
 
    void LineRegionsSupport::enterScheme(index lno, const ::string &line, strsize sx, strsize ex, class region* region, class scheme *scheme)
    {
-      UNREFERENCED_PARAMETER(line);
-      UNREFERENCED_PARAMETER(ex);
+      __UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(ex);
       LineRegion * lr = new LineRegion();
       lr->region = region;
       lr->scheme = scheme;
@@ -241,10 +241,10 @@ namespace colorertake5
 
    void LineRegionsSupport::leaveScheme(index lno, const ::string &line, strsize sx, strsize ex, class region* region, class scheme * scheme)
    {
-      UNREFERENCED_PARAMETER(line);
-      UNREFERENCED_PARAMETER(sx);
-      UNREFERENCED_PARAMETER(region);
-      UNREFERENCED_PARAMETER(scheme);
+      __UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(sx);
+      __UNREFERENCED_PARAMETER(region);
+      __UNREFERENCED_PARAMETER(scheme);
       class region* scheme_region = schemeStack.last()->region;
       delete schemeStack.last();
       schemeStack.allocate(schemeStack.get_size()-1);

@@ -70,7 +70,7 @@ namespace calculator
    void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
@@ -94,7 +94,7 @@ namespace calculator
    void impact::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -102,7 +102,7 @@ namespace calculator
    void impact::_001OnPaint(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -110,7 +110,7 @@ namespace calculator
    void impact:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -150,18 +150,18 @@ namespace calculator
 
    void impact::_001OnWavePlayerEvent(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::user::message) pusermessage(pmessage);
    }
 
    void impact::_001OnUpdateViewEncoding(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::command) pcommand(pmessage);
    }
    void impact::_001OnViewEncoding(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::command) pcommand(pmessage);
    }
 

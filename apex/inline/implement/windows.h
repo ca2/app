@@ -19,6 +19,8 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 
    string strAppId;
 
+#if !defined(_UWP)
+
 #ifdef _APP_ID
 
    strAppId = _APP_ID;
@@ -27,7 +29,9 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 
    strAppId = executable_get_app_id(nullptr);
 
-#endif;
+#endif
+
+#endif
 
    auto psystem = platform_create_system(strAppId);
 

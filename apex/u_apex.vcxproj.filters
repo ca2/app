@@ -1932,6 +1932,9 @@
     <ClInclude Include="inline\main\universal_windows.h">
       <Filter>Header Files\inline\main</Filter>
     </ClInclude>
+    <ClInclude Include="inline\console\universal_windows.h">
+      <Filter>Header Files\inline\console</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">

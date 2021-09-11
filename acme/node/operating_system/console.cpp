@@ -130,8 +130,7 @@ namespace console
 
 } // namespace console
 
-
-#if !defined(_UWP)
+#if !defined(_UWP) || defined(_UWP_CONSOLE)
 
 
 void press_any_key_to_exit(const char * pszPrompt)
@@ -139,7 +138,7 @@ void press_any_key_to_exit(const char * pszPrompt)
 
    string strPrompt;
 
-   if(pszPrompt)
+   if (pszPrompt)
    {
 
       strPrompt = pszPrompt;
@@ -171,7 +170,15 @@ int safe_get_any_char(const ::duration & duration)
 
       millisStart.Now();
 
+#ifdef _UWP
+
+      iSafeChar = getchar();
+
+#else
+
       iSafeChar = getche();
+
+#endif
 
    } while (millisStart.elapsed() < duration);
 
@@ -187,27 +194,27 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 
    ::millis millisStart;
 
-   while(true)
+   while (true)
    {
 
       millisStart.Now();
-      
+
       iSafeChar = getc(pfile);
-      
-      if(!ansi_char_is_space(iSafeChar) && millisStart.elapsed() > duration)
+
+      if (!ansi_char_is_space(iSafeChar) && millisStart.elapsed() > duration)
       {
-         
+
          break;
-         
+
       }
-      
-      if(iSafeChar == -1)
+
+      if (iSafeChar == -1)
       {
-       
+
          clearerr(pfile);
-         
+
       }
-      
+
    }
 
    return iSafeChar;

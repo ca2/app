@@ -2507,7 +2507,16 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    if (!m_pcontext->m_papexcontext->file().exists(pathJson))
    {
 
+#ifdef _UWP_CONSOLE
+
+      auto home = getenv("USERPROFILE");
+      ::file::path pathTxt =::file::path(home) / "dropbox.txt";
+
+#else
+
       ::file::path pathTxt = m_pcontext->m_papexcontext->dir().home() / "dropbox.txt";
+
+#endif
 
       string strPath = m_pcontext->m_papexcontext->file().as_string(pathTxt);
 

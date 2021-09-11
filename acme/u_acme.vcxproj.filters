@@ -59,12 +59,6 @@
     <Filter Include="Header Files\inline\application">
       <UniqueIdentifier>{1cd12e49-178b-4993-9572-9f1c5f661682}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\inline\console">
-      <UniqueIdentifier>{6aab211a-2f6a-4c16-b23f-03fac8743441}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\inline\NewFilter1">
-      <UniqueIdentifier>{cb264b97-4d78-48c6-9cec-b13f7aeee3bb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{043131c3-7593-46df-ba48-6b0a8339727c}</UniqueIdentifier>
     </Filter>
@@ -2529,12 +2523,6 @@
     <ClInclude Include="inline\application\windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\console\linux.h">
-      <Filter>Header Files\inline\console</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\console\windows.h">
-      <Filter>Header Files\inline\console</Filter>
-    </ClInclude>
     <ClInclude Include="include\objc.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
@@ -3562,6 +3550,9 @@
     </None>
     <None Include="u_acme.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="node\operating_system\console.inl">
+      <Filter>Header Files\node\windows</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -8,6 +8,10 @@
 class ::system * acme_system_init();
 void acme_system_term();
 
+#ifdef _UWP
+#include "acme/node/operating_system/console.inl"
+
+#endif
 
 CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
 

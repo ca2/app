@@ -108,10 +108,14 @@ stdio_file::~stdio_file()
 
 #endif
 
+   int iErrNo = errno;
+
+   auto estatus = errno_to_status(iErrNo);
+
    if(!m_pfile)
    {
 
-      return error_failed;
+      return estatus;
 
    }
 

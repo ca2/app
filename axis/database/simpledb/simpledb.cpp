@@ -161,7 +161,7 @@ namespace simpledb
 
             stritem.m_tick.Now();
 
-            stritem.m_memory.assign(getmemory.get_data(), getmemory.get_size());
+            stritem.m_memory.assign(getmemory.get_data(), (memsize) getmemory.get_size());
 
             pstorage->m_map[strKey] = stritem;
 

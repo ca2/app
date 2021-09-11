@@ -239,17 +239,25 @@ public:
       }
    }
 
-   inline i64 get_size() const
+
+   inline memsize get_size() const
    {
+
       if(::is_set(m_pmemory))
       {
+
          return m_pmemory->get_size();
+
       }
       else
       {
+
          return m_block.get_size();
+
       }
+
    }
+
 
 };
 

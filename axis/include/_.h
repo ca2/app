@@ -12,22 +12,7 @@
 //
 //  c(s)t(s)<tb(s)!!
 //
-
-
 #pragma once
-
-
-//#undef System
-//#undef Sess
-//#undef App
-//
-//
-//#define System (psystem->m_paxissystem)
-//#define Sess(pcontextsession) (pcontextsession->m_paxissession)
-//#define App(pobject) (*pobject->get_app()->m_paxisapplication)
-
-
-#define __spin_namespace axis // back bone / four-letter "spin*" namespace name
 
 
 namespace axis
@@ -39,15 +24,11 @@ namespace axis
    class application;
    class user;
 
-   //inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
-
 
 } // namespace axis
 
 
-
 #include "axis/account/_.h"
-
 
 
 #if defined(LINUX)

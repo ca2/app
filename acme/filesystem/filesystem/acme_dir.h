@@ -95,6 +95,7 @@ public:
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
 
+   virtual bool is(const char * path1);
    virtual bool _is(const char * path1);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_dir.h
@@ -125,8 +126,6 @@ public:
          virtual ::e_status create_directory(const char * path);
          virtual ::e_status _create_directory(const char * path);
 
-
-         virtual bool is(const char * path);
 
          virtual void rls(::file::patha & stra, const char * psz);
          virtual void rls_dir(::file::patha & stra, const char * psz);

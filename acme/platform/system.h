@@ -34,6 +34,10 @@ public:
 
    __pointer(::trace::log)                      m_ptracelog;
 
+   string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
+
+
+
 
    string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;

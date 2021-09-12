@@ -30,10 +30,13 @@ namespace windowing
       ::size_i32                                m_size;
       __pointer(::windowing::icon)              m_picon;
       __pointer(::windowing::windowing)         m_pwindowing;
+      __composite(::user::copydesk)             m_pcopydesk;
+
+
 
 
       window();
-      virtual ~window();
+      ~window() override;
 
 
       void user_common_construct();
@@ -74,6 +77,8 @@ namespace windowing
 
       virtual ::windowing::display * display();
 
+      virtual ::user::copydesk * copydesk();
+
       oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
       void set_oswindow(oswindow oswindow);
 
@@ -90,6 +95,8 @@ namespace windowing
       virtual ::e_status exit_zoomed();
 
       virtual ::e_status destroy_window();
+
+      ::e_status on_destroy() override;
 
       virtual ::e_status show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 

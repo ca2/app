@@ -2950,7 +2950,7 @@ namespace user
                   else
                   {
 
-                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
+                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, __MAKE_LPARAM(point.x, point.y));
 
                   }
 

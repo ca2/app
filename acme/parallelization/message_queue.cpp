@@ -95,7 +95,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 void message_queue::kick_idle()
 {
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    m_bKickIdle = true;
 

@@ -97,7 +97,7 @@ namespace apex
       virtual ::file::path defer_make_file_system_url(string str);
       virtual string defer_get_file_title(string str);
 
-      virtual ::file::path defer_process_path(::file::path path);
+      ::file::path defer_process_path(::file::path path) override;
       virtual ::file::path _defer_process_path(::file::path path);
       virtual ::file::path __defer_process_path(::file::path path);
 

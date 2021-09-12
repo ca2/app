@@ -149,6 +149,35 @@ namespace windowing
    }
 
 
+   ::user::copydesk * window::copydesk()
+   {
+
+      if (!m_pcopydesk)
+      {
+
+         __raw_compose(m_pcopydesk);
+
+         if (m_pcopydesk)
+         {
+
+            auto estatus = m_pcopydesk->initialize_copydesk(this);
+
+            if (!estatus)
+            {
+
+               __release(m_pcopydesk);
+
+            }
+
+         }
+
+      }
+
+      return m_pcopydesk;
+
+   }
+
+
    ::e_status window::set_mouse_capture()
    {
 
@@ -186,6 +215,32 @@ namespace windowing
       __throw(error_interface_only);
 
       return ::error_interface_only;
+
+   }
+
+
+   ::e_status window::on_destroy()
+   {
+
+      try
+      {
+
+         if (m_pcopydesk.is_set())
+         {
+
+            m_pcopydesk->destroy();
+
+            __release(m_pcopydesk);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return ::success;
 
    }
 

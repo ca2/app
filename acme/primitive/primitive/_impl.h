@@ -1693,42 +1693,6 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 
 
-#ifndef _DEBUG
-
-
-inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   return ++m_countReference;
-
-}
-
-
-inline i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   return --m_countReference;
-
-}
-
-
-inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   if (i == 0)
-   {
-
-      delete_this();
-
-   }
-
-   return i;
-
-}
-
-#endif
 
 
 

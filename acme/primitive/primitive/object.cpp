@@ -1427,7 +1427,7 @@ bool object::check_tasks_finished()
 ::e_status object::destroy_tasks()
 {
 
-   set_finish();
+   //set_finish();
 
 //   while (check_tasks_finished())
 //   {
@@ -1446,11 +1446,21 @@ bool object::check_tasks_finished()
 
    auto estatus = destroy_tasks();
 
+   estatus = on_destroy();
+
    estatus = destroy_composites();
 
    estatus = release_references();
 
    estatus = property_object::destroy();
+
+   return ::success;
+
+}
+
+
+::e_status object::on_destroy()
+{
 
    return ::success;
 
@@ -2048,7 +2058,7 @@ void object::task_erase(::task* ptask)
 
          }
 
-         if (m_psystem && m_psystem->set_finish())
+         if (m_psystem && m_psystem->is_finishing())
          {
 
             return error_exit_system;

@@ -4042,7 +4042,7 @@ namespace user
                   else
                   {
 
-                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, MAKELPARAM(point.x, point.y));
+                     send_message(e_message_left_button_double_click, pmouse->m_nFlags, __MAKE_LPARAM(point.x, point.y));
 
                   }
 
@@ -4775,7 +4775,7 @@ namespace user
    list_column * list_column_array::get_by_control_id(const ::id & id)
    {
 
-      index iIndex = subitem_index(id);
+      auto iIndex = subitem_index(id);
 
       return get_by_index(iIndex);
 

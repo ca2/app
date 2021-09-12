@@ -136,10 +136,10 @@ filesize ftpfs_file::get_size() const
 }
 
 
-::index ftpfs_file::translate(::count c, ::enum_seek eseek)
+filesize ftpfs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   return m_pfile->translate(c, eseek);
+   return m_pfile->translate(offset, eseek);
 
 }
 

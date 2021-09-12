@@ -49,7 +49,7 @@ acme_file::~acme_file()
 file_transport acme_file::open(const ::file::path & path, const ::file::e_open & eopen)
 {
 
-   auto pfile = __create_new < ::file::file >();
+   auto pfile = m_psystem->__create_new < ::file::file >();
 
    if(!pfile)
    {
@@ -955,46 +955,56 @@ string_array acme_file::lines(const char * path)
 
       pathTime += ".time";
 
-      auto pfile2 = open(path, ::file::e_open_write | ::file::e_open_share_exclusive);
-
-      if(!pfile2)
       {
 
-         return pfile2;
+         auto pfile2 =
+            open(
+               pathTime, 
+               ::file::e_open_write 
+               | ::file::e_open_share_exclusive 
+               | ::file::e_open_defer_create_directory
+               | ::file::e_open_create);
 
-      }
+         if (!pfile2)
+         {
 
-      if (iPosStart > 0)
-      {
+            return pfile2;
 
-         memory m;
+         }
 
-         pfile->seek_to_begin();
+         if (iPosStart > 0)
+         {
 
-         m.set_size((memsize) iPosStart);
+            memory m;
 
-         pfile->read(m.get_data(), (memsize) iPosStart);
+            pfile->seek_to_begin();
 
-         pfile2->write(m.get_data(), (memsize) iPosStart);
+            m.set_size((memsize)iPosStart);
 
-      }
+            pfile->read(m.get_data(), (memsize)iPosStart);
 
-      pfile2->write(pszLine);
+            pfile2->write(m.get_data(), (memsize)iPosStart);
 
-      auto iEnd = pfile->get_size();
+         }
 
-      if (iEnd - iPosEnd > 0)
-      {
+         pfile2->write(pszLine);
 
-         memory m;
+         auto iEnd = pfile->get_size();
 
-         pfile->set_position(iPosEnd);
+         if (iEnd - iPosEnd > 0)
+         {
 
-         m.set_size((memsize) (iEnd - iPosEnd));
+            memory m;
 
-         pfile->read(m.get_data(), m.get_size());
+            pfile->set_position(iPosEnd);
 
-         pfile2->write(m.get_data(), m.get_size());
+            m.set_size((memsize)(iEnd - iPosEnd));
+
+            pfile->read(m.get_data(), m.get_size());
+
+            pfile2->write(m.get_data(), m.get_size());
+
+         }
 
       }
 

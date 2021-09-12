@@ -139,6 +139,14 @@ namespace acme
    }
 
 
+   ::file::path context::defer_process_path(::file::path path)
+   {
+
+      return path;
+
+   }
+
+
 } // namespace acme
 
 

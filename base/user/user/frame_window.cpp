@@ -515,7 +515,9 @@ namespace user
 
                   pimage1->get_graphics()->draw(imagedrawing);
 
-                  auto pcopydesk = psession->copydesk();
+                  auto pwindow = window();
+
+                  auto pcopydesk = pwindow->copydesk();
 
                   pcopydesk->image_to_desk(pimage1);
 

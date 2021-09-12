@@ -6188,9 +6188,9 @@ finished_update:
 
       str.replace("\r", "\r\n");
       
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
       
       pcopydesk->set_plain_text(str);
 
@@ -6210,9 +6210,9 @@ finished_update:
 
       string str;
 
-      auto psession = get_session();
+      auto pwindow = get_window();
       
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
 
       if(!pcopydesk->get_plain_text(str))
       {
@@ -6511,9 +6511,9 @@ finished_update:
 
       __pointer(::message::command) pcommand(pmessage);
 
-      auto psession = get_session();
+      auto pwindow = window();
       
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
       
       pcommand->enable(pcopydesk->has_plain_text());
 

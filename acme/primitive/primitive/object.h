@@ -191,6 +191,8 @@ public:
 
    ::e_status destroy() override;
 
+   virtual ::e_status on_destroy();
+
    virtual ::e_status destroy_tasks();
 
    ::e_status destroy_composites() override;

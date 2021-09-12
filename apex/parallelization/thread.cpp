@@ -924,7 +924,9 @@ bool thread::pump_message()
    try
    {
 
-      if(!get_message(&m_message,nullptr,0,0))
+      auto estatus = get_message(&m_message, nullptr, 0, 0);
+
+      if(estatus == status_quit)
       {
 
          string strType = type_name();
@@ -960,15 +962,25 @@ bool thread::pump_message()
          return false;
 
       }
-
-      if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+      else if (estatus == status_kick_idle)
       {
 
-         INFO("notify_icon");
+         //output_debug_string("status_kick_idle");
 
       }
+      else
+      {
 
-      process_message();
+         if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+         {
+
+            INFO("notify_icon");
+
+         }
+
+         process_message();
+
+      }
 
       return true;
 
@@ -2987,10 +2999,16 @@ bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)
 bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 {
 
-   if (id.umessage() == e_message_close)
+   if (id == e_message_close)
    {
 
       output_debug_string("thread::post_message e_message_close");
+
+   }
+   else if (id == e_message_branch)
+   {
+
+      output_debug_string("thread::post_message e_message_branch");
 
    }
 

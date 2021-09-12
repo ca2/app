@@ -21,8 +21,6 @@ namespace aura
 
       //__pointer_array(::user::interaction)                  m_uiptraToolWindow;
 
-      __composite(::user::copydesk)                         m_pcopydesk;
-
       ::user::interaction *                                 m_puiMouseMoveCapture;
       ::user::interaction *                                 m_puiLastLButtonDown;
 
@@ -197,8 +195,6 @@ namespace aura
 //      virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
       //inline ::account::department * account() { return m_paccount; }
-
-      ::user::copydesk * copydesk();
 
       //virtual ::account::user * get_user(::file::path pathUrl = nullptr, bool bFetch = false, bool bInteractive = true);
 

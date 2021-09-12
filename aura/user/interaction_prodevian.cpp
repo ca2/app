@@ -170,7 +170,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      set_fps(20);
+      set_fps(60);
 
       string strType;
 

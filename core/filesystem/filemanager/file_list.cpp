@@ -560,9 +560,9 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
 
       pcopydesk->set_filea(patha, ::user::copydesk::op_copy);
 

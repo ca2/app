@@ -91,9 +91,13 @@ namespace user
       m_bPendingRedraw                       = false;
       m_bTransparentMouseEvents              = false;
 
-#if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(ANDROID)
 
       set_fps(20.0);
+
+#elif defined(_UWP)
+
+      set_fps(60.0);
 
 #else
 
@@ -539,12 +543,12 @@ namespace user
    ::e_status interaction_impl::native_create_host()
    {
 
-      auto pwindowMain = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain;
+      auto pwindowMain = m_psystem->m_paurasystem->m_pwindowMain;
 
       if (pwindowMain && !pwindowMain->m_pimpl)
       {
 
-         m_pwindow = m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain;
+         m_pwindow = m_psystem->m_paurasystem->m_pwindowMain;
 
          m_pwindow->m_pimpl = this;
 
@@ -563,10 +567,10 @@ namespace user
 
          }
 
-         if (!m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain)
+         if (!m_psystem->m_paurasystem->m_pwindowMain)
          {
 
-            m_psystem->m_paurasystem->get_session()->m_puser->m_pwindowing->m_pwindowMain = m_pwindow;
+            m_psystem->m_paurasystem->m_pwindowMain = m_pwindow;
 
          }
 

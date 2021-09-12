@@ -120,9 +120,9 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 
    __pointer(::message::command) pcommand(pmessage);
 
-   auto psession = get_session();
+   auto pwindow = window();
    
-   auto pcopydesk = psession->copydesk();
+   auto pcopydesk = pwindow->copydesk();
    
    bool bHasFile = pcopydesk->has_filea();
          
@@ -142,9 +142,9 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    ::user::copydesk::e_op eop;
 
-   auto psession = get_session();
+   auto pwindow = window();
    
-   auto pcopydesk = psession->copydesk();
+   auto pcopydesk = pwindow->copydesk();
    
    bool bOk = pcopydesk->get_filea(listing, eop);
 

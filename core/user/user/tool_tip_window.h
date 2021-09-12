@@ -95,7 +95,7 @@ namespace user
       void OnPaint();
       void OnTimer(::u32 uEvent);
       void OnSize(::u32 nType, i32 cx, i32 cy);
-      void on_destroy();
+      ::e_status on_destroy() override;
 
 
    };

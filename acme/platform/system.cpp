@@ -5,6 +5,9 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/static_start_internal.h"
+#ifdef CUBE
+#include "acme/platform/static_setup.h"
+#endif
 #include "simple_log.h"
 
 
@@ -586,7 +589,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      pfnFactoryExchange();
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfnFactoryExchange(pfactorymap);
 
       return ::success;
 
@@ -914,7 +919,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      pfnFactoryExchange();
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfnFactoryExchange(pfactorymap);
 
       return ::success;
 
@@ -960,9 +967,9 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       pfn_factory_exchange(plibrary->m_pfactorymap);
 
-   #endif
-
       return plibrary;
+
+#endif
 
    }
 

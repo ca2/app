@@ -44,10 +44,11 @@ namespace aura
       //__composite(::sockets::sockets)                    m_psockets;
 
 
+      __pointer(::windowing::window)                       m_pwindowMain;
 
 
-      __pointer(::matter)                                      m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                              m_pdraw2d;
+      __pointer(::matter)                                  m_pDraw2dFactoryExchange;
+      __pointer(::draw2d::draw2d)                          m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
       //::file::path                                       m_pathCa2Roaming;

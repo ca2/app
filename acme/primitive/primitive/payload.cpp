@@ -1122,28 +1122,28 @@ void payload::increment_reference_count()
    switch(m_etype)
    {
       case e_type_element:
-         m_p->increment_reference_count();
+         if(m_p) m_p->increment_reference_count();
          break;
       case e_type_string_array:
-         m_pstra->increment_reference_count();
+         if (m_pstra) m_pstra->increment_reference_count();
          break;
       case e_type_i32_array:
-         m_pia->increment_reference_count();
+         if (m_pia) m_pia->increment_reference_count();
          break;
       case e_type_payload_array:
-         m_ppayloada->increment_reference_count();
+         if (m_ppayloada) m_ppayloada->increment_reference_count();
          break;
       case e_type_property_set:
-         m_ppropertyset->increment_reference_count();
+         if (m_ppropertyset) m_ppropertyset->increment_reference_count();
          break;
       case e_type_i64_array:
-         m_p->increment_reference_count();
+         if (m_p) m_p->increment_reference_count();
          break;
       case e_type_memory:
-         m_pmemory->increment_reference_count();
+         if (m_pmemory) m_pmemory->increment_reference_count();
          break;
       case e_type_path:
-         m_ppath->increment_reference_count();
+         if (m_ppath) m_ppath->increment_reference_count();
          break;
       default:
          break;

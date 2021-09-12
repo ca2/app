@@ -30,7 +30,7 @@ namespace draw2d
 
 
       draw2d();
-      virtual ~draw2d();
+      ~draw2d() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;

@@ -67,7 +67,7 @@ public:
 
 
    predicate_routine(PRED pred) : m_predicate(pred) { }
-   virtual ~predicate_routine() {}
+   ~predicate_routine() override {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 

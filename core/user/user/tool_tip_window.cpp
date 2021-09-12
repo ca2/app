@@ -454,9 +454,12 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::on_destroy()
+   ::e_status tool_tip_window::on_destroy()
    {
       //    window::on_destroy();
+
+      return ::success;
+
    }
 
    ///////////////////////////////////////////////////////////

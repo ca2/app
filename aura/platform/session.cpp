@@ -1482,19 +1482,6 @@ namespace aura
    }
 
 
-   ::user::copydesk * session::copydesk()
-   {
-
-      if (!m_pcopydesk)
-      {
-
-         __compose(m_pcopydesk);
-
-      }
-
-      return m_pcopydesk;
-
-   }
 
 
    //index session::get_main_workspace(RECTANGLE_I32 * prectangle)
@@ -2081,24 +2068,6 @@ namespace aura
 
       }
 
-
-      try
-      {
-
-         if (m_pcopydesk.is_set())
-         {
-
-            m_pcopydesk->destroy();
-
-            __release(m_pcopydesk);
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
 
       auto puser = m_puser;
 

@@ -712,7 +712,7 @@ namespace experience
       if (pgraphics->m_pfont)
       {
 
-         m_iTitleBottom = m_pcontrolbox->m_iDefaultButtonMargin + pgraphics->m_pfont->get_height(pgraphics);
+         m_iTitleBottom = (::i32) (m_pcontrolbox->m_iDefaultButtonMargin + pgraphics->m_pfont->get_height(pgraphics));
 
       }
       else

@@ -2,25 +2,27 @@
 
 
 template < typename OBJECT, typename TRANSPORT = transport < OBJECT > >
-class future :
+class sequence :
    virtual public ::matter
 {
 public:
 
-   class receptor :
+
+   class function :
       virtual public matter
    {
    public:
 
 
-      virtual void get(future & future) {}
+      virtual void process(sequence & sequence) {}
 
 
    };
 
+
    template < typename PREDICATE >
-   class predicate_receptor :
-      virtual public receptor
+   class function_predicate :
+      virtual public function
    {
    public:
 
@@ -28,32 +30,30 @@ public:
       PREDICATE   m_predicate;
 
 
-      predicate_receptor(PREDICATE predicate) :
+      function_predicate(PREDICATE predicate) :
          m_predicate(predicate)
       {
 
       }
 
 
-      virtual void get(future & pfuture) override
+      virtual void process(sequence & sequence) override
       {
 
-         m_predicate(pfuture);
+         m_predicate(sequence);
 
       }
-
 
    };
 
 
-
    TRANSPORT                              m_transport;
    __pointer(manual_reset_event)          m_pevent;
-   __pointer(receptor)                    m_preceptor;
+   __pointer_array(function)              m_functiona;
    ::task_pointer                         m_ptask;
 
 
-   future();
+   sequence();
 
 
    ///void set_object(const OBJECT & result, const ::e_status & estatus = ::success);
@@ -67,10 +67,10 @@ public:
 
 
    template < typename PREDICATE >
-   future& then(PREDICATE predicate);
+   sequence & then(PREDICATE predicate);
 
    template < typename PREDICATE >
-   future& then(const ::duration& duration, PREDICATE predicate);
+   sequence & then(const ::duration& duration, PREDICATE predicate);
 
    auto operator ->() { return m_transport.operator ->(); }
    auto operator ->() const { return m_transport.operator ->(); }
@@ -78,13 +78,11 @@ public:
 };
 
 
-CLASS_DECL_ACME critical_section* get_future_critical_section();
+CLASS_DECL_ACME critical_section* get_sequence_critical_section();
 
-CLASS_DECL_ACME void initialize_future_critical_section();
+CLASS_DECL_ACME void initialize_sequence_critical_section();
 
-CLASS_DECL_ACME void finalize_future_critical_section();
-
-
+CLASS_DECL_ACME void finalize_sequence_critical_section();
 
 
 template < typename OBJECT, typename TRANSPORT = ::transport < OBJECT >, typename FUTURE = ::future < OBJECT > >

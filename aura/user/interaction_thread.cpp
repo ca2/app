@@ -289,11 +289,12 @@ namespace user
 
       }
 
+      auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
 
-      if (m_pimpl->m_puserinteraction->m_pusersystem->m_routineSuccess)
+      if(pusersystem && pusersystem->m_routineSuccess)
       {
 
-         m_pimpl->m_puserinteraction->m_pusersystem->m_routineSuccess();
+         pusersystem->m_routineSuccess();
 
       }
 

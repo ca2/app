@@ -1,6 +1,7 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#include "core/filesystem/filemanager/_filemanager.h"
 #endif
 
 #include "core/user/account/_account.h"
@@ -569,7 +570,7 @@ namespace core
 
       //auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
       // todo add property set to list;
       pbox->get_property_set().merge(propertyset);
@@ -597,7 +598,7 @@ namespace core
 
       auto pbox = pobject->__create_new < ::userex::message_box >();
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
       property_set & propertyset = pbox->get_property_set();
 
@@ -732,7 +733,7 @@ namespace core
 
       auto pbox = pobject->__create_new < ::userex::message_box >();
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::future();
+      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
       pbox->payload("message") = pszMessage;
 

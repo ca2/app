@@ -23,7 +23,7 @@ namespace userfs
 
 
       tree();
-      virtual ~tree();
+      ~tree() override;
 
 
 
@@ -45,9 +45,12 @@ namespace userfs
 
       void update_list();
 
+
       void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
 
+
       ::userfs::document * get_document();
+
 
       virtual void _001InsertColumns();
 

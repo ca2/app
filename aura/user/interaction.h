@@ -357,6 +357,9 @@ namespace user
       virtual bool is_branch_current() const;
 
 
+      bool is_ready_to_quit() const override;
+
+
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
       inline ::aura::application * get_application() const;

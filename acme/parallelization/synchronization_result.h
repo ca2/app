@@ -69,7 +69,7 @@
 //};
 
 
-inline ::i32 __signaled_index(::enum_status estatus)
+inline ::i32 signaled_index(::enum_status estatus)
 {
 
    return (estatus >= signaled_base && estatus < signaled_end) ? ((::i32)estatus - (::i32)signaled_base) : -1;
@@ -77,15 +77,15 @@ inline ::i32 __signaled_index(::enum_status estatus)
 }
 
 
-inline bool __signaled(::enum_status estatus)
+inline bool signaled(::enum_status estatus)
 {
 
-   return __signaled_index(estatus) >= 0;
+   return signaled_index(estatus) >= 0;
 
 }
 
 
-inline ::i32 __abandoned_index(::enum_status estatus)
+inline ::i32 abandoned_index(::enum_status estatus)
 {
 
    return (estatus >= abandoned_base && estatus < abandoned_end) ? ((::i32)estatus - (::i32)abandoned_base) : -1;
@@ -93,16 +93,16 @@ inline ::i32 __abandoned_index(::enum_status estatus)
 }
 
 
-inline bool __abandoned(::enum_status estatus)
+inline bool abandoned(::enum_status estatus)
 {
 
-   return __abandoned_index(estatus) >= 0;
+   return abandoned_index(estatus) >= 0;
 
 }
 
 
 
-inline bool __wait_timeout(::e_status estatus)
+inline bool wait_timeout(::enum_status estatus)
 {
 
    return estatus == error_wait_timeout;

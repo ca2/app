@@ -717,7 +717,7 @@ inline i64 ref_count(c_derived * pca)
 
 
 template < typename RESULT, typename TRANSPORT >
-future < RESULT, TRANSPORT > ::future()
+sequence < RESULT, TRANSPORT > ::sequence()
 {
 
    m_ptask = ::get_task();
@@ -731,7 +731,7 @@ future < RESULT, TRANSPORT > ::future()
 //void future < RESULT > ::set_object(const RESULT& result, const ::e_status& estatus)
 //{
 //
-//   critical_section_lock lock(get_future_critical_section());
+//   critical_section_lock lock(get_sequence_critical_section());
 //
 //   if (m_transport.m_estatus == error_not_initialized)
 //   {
@@ -760,45 +760,48 @@ future < RESULT, TRANSPORT > ::future()
 
 
 template < typename RESULT, typename TRANSPORT >
-void future < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
+void sequence < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   m_transport.m_estatus = estatus;
+
+   if (m_pevent)
    {
 
-      m_transport.m_estatus = estatus;
-
-      if (m_pevent)
-      {
-
-         m_pevent->SetEvent();
-
-      }
-
-      if (m_preceptor)
-      {
-
-         m_ptask->post(__routine([this]()
-            {
-
-               m_preceptor->get(*this);
-
-            }));
-
-      }
+      m_pevent->SetEvent();
 
    }
+
+   m_ptask->post(__routine([this]()
+      {
+
+         critical_section_lock lock(get_sequence_critical_section());
+
+         while(m_functiona.has_element())
+         {
+
+            auto pfunction = m_functiona.get_first_pointer();
+
+            lock.unlock();
+
+            pfunction->process(*this);
+
+            lock.lock();
+
+         }
+
+      }));
 
 }
 
 
 template < typename OBJECT, typename TRANSPORT >
-TRANSPORT & future < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
+TRANSPORT & sequence < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
@@ -829,10 +832,10 @@ TRANSPORT & future < OBJECT, TRANSPORT > ::get_object(const ::duration& duration
 
 
 template < typename OBJECT, typename TRANSPORT >
-::e_status future < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
+::e_status sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
@@ -866,15 +869,15 @@ template < typename OBJECT, typename TRANSPORT >
 
 template < typename OBJECT, typename TRANSPORT >
 template < typename PREDICATE >
-future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
+sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
 
-      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
 
    }
    else
@@ -893,15 +896,15 @@ future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE pre
 
 template < typename OBJECT, typename TRANSPORT >
 template < typename PREDICATE >
-future < OBJECT, TRANSPORT >& future < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
+sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
 
-      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
 
       m_pevent = new manual_reset_event();
 

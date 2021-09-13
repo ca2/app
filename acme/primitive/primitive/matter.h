@@ -99,6 +99,8 @@ public:
    inline bool is_shared() const { return m_countReference > 1; }
 
 
+   virtual bool is_ready_to_quit() const;
+
    // synchronization_object/::mutex
    inline synchronization_object* mutex() const { return ::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
@@ -195,6 +197,8 @@ public:
 
    // <3TBS_!! handle -> call_member <3TBS_!!
    virtual ::e_status call_member(::i64 i64);
+   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
+   virtual ::e_status handle(enum_message emessage, i64 iData = 0, ::matter * pmatter = nullptr);
 
 
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }

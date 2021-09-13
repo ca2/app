@@ -601,7 +601,7 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
-      ::initialize_future_critical_section();
+      ::initialize_sequence_critical_section();
 
       //::update::g_pcs = new critical_section();
 
@@ -1038,7 +1038,7 @@ namespace acme
 
       delete_all_release_on_end();
 
-      ::finalize_future_critical_section();
+      ::finalize_sequence_critical_section();
 
       ::acme::del(g_pcsGlobal);
 

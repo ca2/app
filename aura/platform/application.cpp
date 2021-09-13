@@ -2046,6 +2046,24 @@ retry_license:
          }
 
       }
+      else
+      {
+
+         estatus = __compose_new(m_pcontextimage);
+
+         if (!estatus)
+         {
+
+            TRACE("ERROR: context_image required but missing.");
+
+            //output_message_box_error("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+
+            return estatus;
+
+         }
+
+      }
+
 
       INFO("start");
 

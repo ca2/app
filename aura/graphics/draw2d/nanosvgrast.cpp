@@ -7,6 +7,10 @@
 //#pragma warning(disable:4101)
 //#endif
 
+
+#include "acme/_start.h"
+
+
 #include "third/nanosvg/nanosvg.h"
 #define NANOSVGRAST_IMPLEMENTATION
 #include "third/nanosvg/nanosvgrast.h"

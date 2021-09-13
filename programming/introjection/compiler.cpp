@@ -153,7 +153,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            message_box(strMessage, strMessage, e_message_box_ok);
+            //message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -587,7 +587,7 @@ namespace introjection
       if (m_strApp.is_empty())
       {
 
-         __throw(::exception::exception("call compiler::initialize"));
+         throw ::exception::exception(error_failed, "call compiler::initialize");
 
       }
 

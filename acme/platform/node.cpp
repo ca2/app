@@ -555,6 +555,13 @@ namespace acme
    }
 
 
+   ::e_status node::unregister_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   {
+
+      return ::success;
+
+   }
+
    ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {
 

@@ -356,7 +356,7 @@ namespace dynamic_source
 
             TRACE("Error Message Id: %d\n", dwMessageId);
 
-            string strError = get_last_error_message(dwMessageId);
+            string strError = last_error_message(dwMessageId);
 
             string str;
 

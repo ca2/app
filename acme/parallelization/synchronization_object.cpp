@@ -147,7 +147,7 @@ bool synchronization_object::_lock(const duration & durationTimeout)
 
       auto estatus = _wait(100_ms);
 
-      if (!__wait_timeout(estatus))
+      if (!estatus.wait_timeout())
       {
 
          return estatus;
@@ -212,7 +212,7 @@ bool synchronization_object::_lock(const duration & durationTimeout)
 
       auto estatus = _wait(millisWait);
 
-      if (!__wait_timeout(estatus))
+      if (!estatus.wait_timeout())
       {
 
          return estatus;

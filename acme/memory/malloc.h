@@ -146,7 +146,7 @@ namespace acme
 
 
       POINTER     m_p;
-      i64     m_iSize;
+      memsize     m_iSize;
 
       memory_allocate(void * p = nullptr)
       {

@@ -67,7 +67,7 @@ single_lock::~single_lock()
 
    }
 
-   m_bAcquired = __signaled(estatus);
+   m_bAcquired = estatus.signaled();
 
    return estatus;
 
@@ -106,7 +106,7 @@ single_lock::~single_lock()
 
    }
 
-   m_bAcquired = __signaled(estatus);
+   m_bAcquired = estatus.signaled();
 
    return estatus;
 
@@ -246,7 +246,7 @@ _single_lock::~_single_lock()
 
    }
 
-   m_bAcquired = __signaled(estatus);
+   m_bAcquired = estatus.signaled();
 
    return estatus;
 
@@ -285,7 +285,7 @@ _single_lock::~_single_lock()
 
    }
 
-   m_bAcquired = __signaled(estatus);
+   m_bAcquired = estatus.signaled();
 
    return estatus;
 

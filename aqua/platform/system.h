@@ -18,10 +18,8 @@ namespace aqua
       __composite(::aqua::estamira)                      m_pestamira;
 
 
-
-
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void aqua_construct();

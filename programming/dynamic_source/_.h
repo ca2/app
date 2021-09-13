@@ -4,10 +4,10 @@
 #include "apex/filesystem/fs/fs.h"
 
 
-#include "axis/net/netserver/_.h"
+#include "axis/networking/netserver/_.h"
 
 
-#include "axis/net/netserver/_netserver.h"
+#include "axis/networking/netserver/_netserver.h"
 
 
 namespace dynamic_source

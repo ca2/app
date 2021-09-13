@@ -50,14 +50,14 @@ namespace aura
    }
 
 
-   __pointer(::extended::future < ::conversation >) context::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto pmessagebox = __create < ::user::message_box >();
 
       auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 
-      auto pextendedfuture = pmessagebox->show(oswindow, strMessage, strTitle, emessagebox);
+      auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 
       return pextendedfuture;
 

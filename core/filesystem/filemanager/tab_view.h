@@ -14,7 +14,7 @@ namespace filemanager
       
 
       tab_view();
-      virtual ~tab_view();
+      ~tab_view() override;
 
 
       virtual void assert_valid() const override;

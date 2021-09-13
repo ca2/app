@@ -97,7 +97,7 @@ namespace dynamic_source
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            message_box(strMessage, strMessage, e_message_box_ok);
+            //message_box(this, strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -423,7 +423,7 @@ namespace dynamic_source
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      string strCompileLogUnique = timeNow.Format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
+      string strCompileLogUnique = Format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
       strClog.Format(m_strTime / "dynamic_source/%s-compile-log-%s.txt",strTransformName.c_str(), strCompileLogUnique.c_str());
       strLlog.Format(m_strTime / "dynamic_source/%s-link-log.txt",strTransformName.c_str());

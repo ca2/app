@@ -1427,7 +1427,7 @@ bool object::check_tasks_finished()
 ::e_status object::destroy_tasks()
 {
 
-   //set_finish();
+   set_finish();
 
 //   while (check_tasks_finished())
 //   {
@@ -2536,14 +2536,14 @@ string object::get_text(const ::payload& payload, const ::id& id)
 }
 
 
-__pointer(::extended::future < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
 {
 
    auto psystem = m_psystem;
 
-   auto presult = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 
-   return presult;
+   return psequence;
 
 }
 

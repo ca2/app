@@ -10,14 +10,12 @@ namespace filemanager
    {
    public:
 
-      
-
 
       id m_idTab;
 
 
       frame();
-      virtual ~ frame();
+      ~frame() override;
 
 
       virtual bool on_create_bars();

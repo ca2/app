@@ -5755,9 +5755,9 @@ string get_bundle_app_library_name();
 ::apex::system* platform_create_system(const char * pszAppId)
 {
 
-#if !defined(CUBE)
-
    string strAppId(pszAppId);
+
+#if !defined(CUBE)
 
    if (strAppId.has_char())
    {
@@ -5771,8 +5771,6 @@ string get_bundle_app_library_name();
       strLibrary.replace("-", "_");
 
       strLibrary.replace(".", "_");
-
-
 
       auto plibrary = __node_library_open(strLibrary, strMessage);
 

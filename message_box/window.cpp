@@ -308,27 +308,27 @@ namespace app_message_box
    void window::show_message_box()
    {
 
-      auto pprocess = output_message_box_error("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      //auto pprocess = output_message_box_error("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-      pprocess->then([this](auto future)
-         {
+      //pprocess->then([this](auto future)
+      //   {
 
-            if (future->m_edialogresult == e_dialog_result_yes)
-            {
+      //      if (future->m_edialogresult == e_dialog_result_yes)
+      //      {
 
-               auto papplication = get_application();
+      //         auto papplication = get_application();
 
-               papplication->_001TryCloseApplication();
+      //         papplication->_001TryCloseApplication();
 
-            }
-            else if (future->m_edialogresult == e_dialog_result_cancel)
-            {
+      //      }
+      //      else if (future->m_edialogresult == e_dialog_result_cancel)
+      //      {
 
-               show_message_box();
+      //         show_message_box();
 
-            }
+      //      }
 
-         });
+      //   });
 
    }
 

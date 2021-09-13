@@ -562,7 +562,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
+   __pointer(::extended::sequence < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
    {
 
       auto pbox = pobject->__create_new < class ::userex::message_box >();
@@ -592,7 +592,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::sequence < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       auto pbox = pobject->__create_new < ::userex::message_box >();
@@ -725,7 +725,7 @@ namespace core
    }
 
 
-   __pointer(::extended::future < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   __pointer(::extended::sequence < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       __UNREFERENCED_PARAMETER(puiOwner);

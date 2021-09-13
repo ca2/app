@@ -7327,6 +7327,16 @@ void interaction::post_non_client_destroy()
 }
 
 
+bool interaction::is_ready_to_quit() const
+{
+
+   bool bShouldContinue = task_get_run();
+
+   return !bShouldContinue && is(e_matter_task_ready);
+
+}
+
+
 //void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
 //{
 

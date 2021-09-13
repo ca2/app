@@ -354,11 +354,13 @@ namespace extended
 
    };
 
-   template < typename OBJECT >
-   using future = ::future < OBJECT, ::extended::transport < OBJECT > >;
 
    template < typename OBJECT >
-   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT >, ::extended::future < OBJECT > >;
+   using sequence = ::sequence < OBJECT, ::extended::transport < OBJECT > >;
+
+
+   template < typename OBJECT >
+   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT >, ::extended::sequence < OBJECT > >;
 
 
 } // namespace extended

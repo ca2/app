@@ -181,7 +181,7 @@ bool task::is_ready_to_quit() const
 
    bool bShouldContinue = task_get_run();
 
-   return !bShouldContinue && has(e_matter_task_ready);
+   return !bShouldContinue;
 
 }
 

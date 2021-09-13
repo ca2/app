@@ -7,6 +7,9 @@
 #pragma once
 
 
+#include "acme/parallelization/synchronization_result.h"
+
+
 inline bool succeeded(::i64 i)
 {
 
@@ -48,6 +51,16 @@ public:
    bool succeeded() const { return ::succeeded(m_estatus); }
 
    bool failed() const { return ::failed(m_estatus); }
+
+   bool signaled() const { return ::signaled(m_estatus); }
+
+   ::i32 signaled_index() const { return ::signaled_index(m_estatus); }
+
+   bool abandoned() const { return ::abandoned(m_estatus); }
+
+   ::i32 abandoned_index() const { return ::abandoned_index(m_estatus); }
+
+   bool wait_timeout() const { return ::wait_timeout(m_estatus); }
 
    int error_status() const { return succeeded() ? 0 : (int)m_estatus; }
 
@@ -134,4 +147,18 @@ inline bool status_io_failed(const ::e_status & estatus) { return ::failed(estat
 
 
 inline void defer_authentication_failure(::e_status & estatus) { ::defer_failed(estatus, STATUS_RANGE_AUTHENTICATION); }
+
+
+CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2);
+inline ::e_status worst(e_status e1, enum_status e2) { return worst((enum_status)e1, (enum_status)e2); }
+inline ::e_status worst(enum_status e1, e_status e2) { return worst((enum_status)e1, (enum_status)e2); }
+inline ::e_status worst(e_status e1, e_status e2) { return worst((enum_status)e1, (enum_status)e2); }
+
+
+CLASS_DECL_ACME::e_status operator & (enum_status e1, enum_status e2);
+inline ::e_status operator & (e_status e1, enum_status e2) { return( (enum_status)e1) &((enum_status)e2); }
+inline ::e_status operator & (enum_status e1, e_status e2) { return((enum_status)e1) & ((enum_status)e2); }
+inline ::e_status operator & (e_status e1, e_status e2) { return((enum_status)e1) & ((enum_status)e2); }
+
+
 

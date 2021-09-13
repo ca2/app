@@ -28,7 +28,7 @@ namespace user
    }
 
 
-   __pointer(::extended::future < ::conversation >) message_box::show(oswindow oswindow, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   __pointer(::extended::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -82,7 +82,7 @@ namespace user
    }
 
 
-   __pointer(::extended::future < ::conversation >) default_message_box::show(oswindow oswindow, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::extended::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
       ///acme_defer_os_init_windowing();
@@ -110,7 +110,7 @@ namespace user
       m_pbuttonClose->m_flagNonClient -= non_client_background;
       m_pbuttonClose->m_flagNonClient -= non_client_focus_rect;
 
-      ::user::message_box::show(oswindow, strMessageParam, strTitle, emessagebox);
+      ::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 
       m_pbuttonClose->initialize(this);
 

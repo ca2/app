@@ -989,16 +989,16 @@ namespace aura
 
       virtual ::e_status initialize_estamira();
 
-
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
-
-      //virtual bool on_application_menu_action(const ::string & pszCommand);
+      __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    };
 
+
    CLASS_DECL_AURA ::mutex * get_image_mutex();
+
 
 } // namespace aura
 

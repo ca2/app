@@ -116,7 +116,7 @@ multiple_lock::~multiple_lock()
 
    //::i32 iUpperBound = WAIT_OBJECT_0 + (::i32) m_synchronizationa.synchronization_object_count();
 
-   auto iSignaled = __signaled_index(estatus);
+   auto iSignaled = estatus.signaled_index();
 
    if(iSignaled < 0)
    {

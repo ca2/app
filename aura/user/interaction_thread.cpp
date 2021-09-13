@@ -908,7 +908,12 @@ namespace user
          while (task_get_run())
          {
 
-            m_pimpl->process_message();
+            if (m_pimpl)
+            {
+
+               m_pimpl->process_message();
+
+            }
 
             if (!pump_message())
             {

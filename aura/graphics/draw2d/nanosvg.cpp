@@ -6,6 +6,10 @@
 //#pragma warning(disable:4101)
 //#endif
 
+
+#include "acme/_start.h"
+
+
 #define NANOSVG_IMPLEMENTATION  // Expands implementation
 #include "third/nanosvg/nanosvg.h"
 

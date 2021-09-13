@@ -69,7 +69,7 @@ namespace aura
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox);
+      __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
 
 
    };

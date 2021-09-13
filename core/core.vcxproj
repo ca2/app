@@ -341,13 +341,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableModules>false</EnableModules>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -601,11 +600,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableModules>false</EnableModules>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -767,14 +765,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <EnableModules>false</EnableModules>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -1021,11 +1018,10 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <EnableModules>false</EnableModules>
       <WholeProgramOptimization>true</WholeProgramOptimization>
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -1184,6 +1180,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="html\user\impact.cpp" />
     <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="networking\ftp\client_socket.cpp" />
+    <ClCompile Include="networking\ftp\data_types.cpp" />
+    <ClCompile Include="networking\ftp\file.cpp" />
+    <ClCompile Include="networking\ftp\file_list_parser.cpp" />
+    <ClCompile Include="networking\ftp\file_status.cpp" />
+    <ClCompile Include="networking\ftp\output.cpp" />
+    <ClCompile Include="networking\ftp\output_stream.cpp" />
     <ClCompile Include="node\windows\aaa_want_to_erase\aaa_want_to_erase_handle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -1779,7 +1782,18 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="net\_impl.h" />
+    <ClInclude Include="networking\ftp\client_socket.h" />
+    <ClInclude Include="networking\ftp\data_types.h" />
+    <ClInclude Include="networking\ftp\file.h" />
+    <ClInclude Include="networking\ftp\file_list_parser.h" />
+    <ClInclude Include="networking\ftp\file_status.h" />
+    <ClInclude Include="networking\ftp\interface.h" />
+    <ClInclude Include="networking\ftp\output.h" />
+    <ClInclude Include="networking\ftp\output_stream.h" />
+    <ClInclude Include="networking\ftp\transfer_notification.h" />
+    <ClInclude Include="networking\ftp\_.h" />
+    <ClInclude Include="networking\_.h" />
+    <ClInclude Include="networking\_impl.h" />
     <ClInclude Include="net\_net_impl.h" />
     <ClInclude Include="node\opengl\buffer.h" />
     <ClInclude Include="node\opengl\context.h" />
@@ -1947,13 +1961,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filemanager\_filemanager.h" />
     <ClCompile Include="filesystem\fs\ftpfs.cpp" />
     <ClCompile Include="filesystem\fs\ftp_file.cpp" />
-    <ClCompile Include="net\ftp\client_socket.cpp" />
-    <ClCompile Include="net\ftp\data_types.cpp" />
-    <ClCompile Include="net\ftp\file.cpp" />
-    <ClCompile Include="net\ftp\file_list_parser.cpp" />
-    <ClCompile Include="net\ftp\file_status.cpp" />
-    <ClCompile Include="net\ftp\output.cpp" />
-    <ClCompile Include="net\ftp\output_stream.cpp" />
     <ClCompile Include="user\user\tooltip.cpp" />
     <ClInclude Include="const\check.h" />
     <ClInclude Include="const\context.h" />
@@ -1994,17 +2001,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="inline\library.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="net\ftp\client_socket.h" />
-    <ClInclude Include="net\ftp\data_types.h" />
-    <ClInclude Include="net\ftp\file.h" />
-    <ClInclude Include="net\ftp\file_list_parser.h" />
-    <ClInclude Include="net\ftp\file_status.h" />
-    <ClInclude Include="net\ftp\interface.h" />
-    <ClInclude Include="net\ftp\output.h" />
-    <ClInclude Include="net\ftp\output_stream.h" />
-    <ClInclude Include="net\ftp\transfer_notification.h" />
-    <ClInclude Include="net\ftp\_.h" />
-    <ClInclude Include="net\_.h" />
     <ClInclude Include="user\account\_.h" />
     <ClInclude Include="user\account\dialog.h" />
     <ClInclude Include="user\account\login.h" />

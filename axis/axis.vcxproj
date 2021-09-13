@@ -256,8 +256,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <EnableModules>false</EnableModules>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -317,8 +316,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <EnableModules>false</EnableModules>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -408,8 +406,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <EnableModules>false</EnableModules>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -469,8 +466,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <EnableModules>false</EnableModules>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -717,12 +713,12 @@
     <ClCompile Include="math\kissfft\fft_shared.cpp" />
     <ClCompile Include="math\kissfft\ifft.cpp" />
     <ClCompile Include="math\kissfft\ifftd.cpp" />
-    <ClCompile Include="net\email_department.cpp" />
-    <ClCompile Include="net\netserver\socket.cpp" />
-    <ClCompile Include="net\netserver\socket_handler.cpp" />
-    <ClCompile Include="net\netserver\socket_thread.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\smtpd_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\smtp\smtp_socket.cpp" />
+    <ClCompile Include="networking\email_department.cpp" />
+    <ClCompile Include="networking\netserver\socket.cpp" />
+    <ClCompile Include="networking\netserver\socket_handler.cpp" />
+    <ClCompile Include="networking\netserver\socket_thread.cpp" />
+    <ClCompile Include="networking\sockets\bsd\smtp\smtpd_socket.cpp" />
+    <ClCompile Include="networking\sockets\bsd\smtp\smtp_socket.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />

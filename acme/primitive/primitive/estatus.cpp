@@ -45,4 +45,19 @@ int e_status::exit_code() const
 }
 
 
+CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2)
+{
 
+   // heuristic/simple/easy implementation
+
+   return (::e_status)minimum((::i64)e1, (::i64)e2);
+
+}
+
+
+CLASS_DECL_ACME::e_status operator & (enum_status e1, enum_status e2)
+{
+
+   return worst(e1, e2);
+
+}

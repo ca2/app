@@ -4775,7 +4775,7 @@ namespace user
    list_column * list_column_array::get_by_control_id(const ::id & id)
    {
 
-      auto iIndex = subitem_index(id);
+      auto iIndex = subitem_index((::index) id);
 
       return get_by_index(iIndex);
 

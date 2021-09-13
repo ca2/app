@@ -21,7 +21,7 @@ namespace aura
       virtual ::e_status initialize_context() override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    };

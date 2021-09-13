@@ -13,8 +13,7 @@ public:
 
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
-
-   lparam(i64 i) { m_lparam = (iptr) i; }
+   lparam(i64 i) { m_lparam = (iptr)i; }
    lparam(i32 i) { m_lparam = (iptr)i; }
    lparam(u64 u) { m_lparam = (iptr)u; }
    lparam(u32 u) { m_lparam = (iptr)u; }

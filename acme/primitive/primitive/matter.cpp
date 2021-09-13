@@ -251,13 +251,20 @@ const char* matter::debug_note() const
 }
 
 
-//::e_status matter::command_handler(const char * pszCommand)
-//{
-//   
-//   return ::success_none;
-//
-//}
+::e_status matter::handle(enum_message emessage, i64 iData, ::matter * pmatter)
+{
 
+   return ::success;
+
+}
+
+
+bool matter::is_ready_to_quit() const
+{
+
+   return true;
+
+}
 
 
 void matter::set_mutex(synchronization_object* psync)

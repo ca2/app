@@ -17,9 +17,6 @@ typedef unsigned char         uchar;
 typedef unsigned char         byte;
 
 
-typedef char            ansichar;
-typedef wchar_t         wd16char;
-typedef unsigned int    wd32char;
 
 
 

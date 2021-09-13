@@ -135,61 +135,61 @@ gdb_check(void)
 
 
 
-::u32
-WINAPI
-FormatMessage(
-::u32 dwFlags,
-const void * pSource,
+//::u32
+//WINAPI
+//FormatMessage(
+//::u32 dwFlags,
+//const void * pSource,
+//
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
+//char * pBuffer,
+//
+//::u32 nSize,
+//va_list *Arguments
+//)
+//{
+//
+//
+//   return 0;
+//
+//
+//}
 
-::u32 dwMessageId,
-::u32 dwLanguageId,
-char * pBuffer,
-
-::u32 nSize,
-va_list *Arguments
-)
-{
-
-
-   return 0;
-
-
-}
-
-
-void output_debug_string(const ::string & pOutputString)
-{
-
-   if(::acme::should_output_debug_string())
-   {
-
-      if(strstr(pOutputString, "font_list"))
-      {
-
-         printf("a");
-
-      }
-
-      printf("%s", pOutputString.c_str());
-
-      fflush(stdout);
-
-   }
-
-}
-
-
-void output_debug_string(const widechar * pOutputString)
-{
-
-   if(::acme::should_output_debug_string())
-   {
-
-      output_debug_string(string(pOutputString));
-
-   }
-
-}
+//
+//void output_debug_string(const ::string & pOutputString)
+//{
+//
+//   if(::acme::should_output_debug_string())
+//   {
+//
+//      if(strstr(pOutputString, "font_list"))
+//      {
+//
+//         printf("a");
+//
+//      }
+//
+//      printf("%s", pOutputString.c_str());
+//
+//      fflush(stdout);
+//
+//   }
+//
+//}
+//
+//
+//void output_debug_string(const widechar * pOutputString)
+//{
+//
+//   if(::acme::should_output_debug_string())
+//   {
+//
+//      output_debug_string(string(pOutputString));
+//
+//   }
+//
+//}
 
 
 

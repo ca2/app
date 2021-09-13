@@ -638,8 +638,8 @@ if (UWP)
 else ()
 
    list(APPEND library_source
-      node/operating_system/cross/universal_windows/cross_metrowin_user.cpp
-      node/operating_system/cross/universal_windows/metrowin_user.cpp
+      #node/operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      #node/operating_system/cross/universal_windows/metrowin_user.cpp
       )
 
 endif ()

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/user/_user.h"
 
 
 namespace aura
@@ -55,7 +56,7 @@ namespace aura
 
       auto pmessagebox = __create < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
       auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 

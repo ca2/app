@@ -587,17 +587,17 @@ public:
    strsize replace(CHAR_TYPE chOld, CHAR_TYPE chNew, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    strsize replace(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    strsize replace_ci(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    ::count replace_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    ::count replace_ci_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    //::count utf8_replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
@@ -608,7 +608,7 @@ public:
    // erase all occurrences of character 'chRemove'
    strsize erase_character(CHAR_TYPE chRemove);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR >
    string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
 
 
@@ -810,7 +810,7 @@ public:
    string_base& trim(CHAR_TYPE chTarget);
 
    // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
-   template < pointer_castable < TYPE_CHAR > PCHAR >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR >
    string_base & trim(PCHAR pcharTargets);
 
    // trimming anything (either side)

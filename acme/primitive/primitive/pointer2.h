@@ -391,12 +391,6 @@ inline bool operator !=(const ___pointer < T1 > & t1, const ___pointer < T2 > & 
 }
 
 
-template < class T >
-inline bool operator ==(lparam l, const ___pointer < T > & sp) { return ((T *) l) == sp.m_p; }
-
-
-template < class T >
-inline bool operator !=(lparam l, const ___pointer < T > & sp) { return ((T *) l) != sp.m_p; }
 
 
 template < typename TYPE >

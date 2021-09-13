@@ -261,25 +261,25 @@ list(APPEND library_source
    inline/console.h
    inline/console_common.h
    inline/library.h
-   net/ftp/_.h
-   net/ftp/client_socket.cpp
-   net/ftp/client_socket.h
-   net/ftp/data_types.cpp
-   net/ftp/data_types.h
-   net/ftp/file.cpp
-   net/ftp/file.h
-   net/ftp/file_list_parser.cpp
-   net/ftp/file_list_parser.h
-   net/ftp/file_status.cpp
-   net/ftp/file_status.h
-   net/ftp/interface.h
-   net/ftp/output.cpp
-   net/ftp/output.h
-   net/ftp/output_stream.cpp
-   net/ftp/output_stream.h
-   net/ftp/transfer_notification.h
-   net/_.h
-   net/_impl.h
+   networking/ftp/_.h
+   networking/ftp/client_socket.cpp
+   networking/ftp/client_socket.h
+   networking/ftp/data_types.cpp
+   networking/ftp/data_types.h
+   networking/ftp/file.cpp
+   networking/ftp/file.h
+   networking/ftp/file_list_parser.cpp
+   networking/ftp/file_list_parser.h
+   networking/ftp/file_status.cpp
+   networking/ftp/file_status.h
+   networking/ftp/interface.h
+   networking/ftp/output.cpp
+   networking/ftp/output.h
+   networking/ftp/output_stream.cpp
+   networking/ftp/output_stream.h
+   networking/ftp/transfer_notification.h
+   networking/_.h
+   networking/_impl.h
    node/dummy/frame_window.cpp
    node/_.h
    node/_node.h

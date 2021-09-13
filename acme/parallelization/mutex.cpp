@@ -668,7 +668,8 @@ bool mutex::already_exists()
 
 #if !defined(WINDOWS)
 
-synchronization_result mutex::_wait(const duration & duration)
+
+::e_status mutex::_wait(const duration & duration)
 {
 
    if(duration.is_pos_infinity())
@@ -725,7 +726,7 @@ synchronization_result mutex::_wait(const duration & duration)
       if (rc < 0)
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 
@@ -748,7 +749,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return e_synchronization_result_signaled_base;
+               return signaled_base;
 
             }
 
@@ -769,7 +770,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
                ASSERT(iError == 0);
 
-               return e_synchronization_result_signaled_base;
+               return signaled_base;
 
             }
             else
@@ -784,7 +785,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
                   ASSERT(iError == 0);
 
-                  return e_synchronization_result_error;
+                  return error_failed;
 
                }
 
@@ -797,7 +798,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
                ASSERT(false);
 
-               return e_synchronization_result_error;
+               return error_failed;
 
             }
 
@@ -806,7 +807,7 @@ synchronization_result mutex::_wait(const duration & duration)
             if (tickElapsed >= tickTimeout)
             {
 
-               return e_synchronization_result_timed_out;
+               return error_wait_timeout;
 
             }
 
@@ -817,7 +818,7 @@ synchronization_result mutex::_wait(const duration & duration)
             if (rc < 0)
             {
 
-               return e_synchronization_result_error;
+               return error_failed;
 
             }
 
@@ -886,7 +887,7 @@ synchronization_result mutex::_wait(const duration & duration)
       if(rc < 0)
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 
@@ -976,7 +977,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return e_synchronization_result_timed_out;
+            return error_wait_timeout;
 
          }
          else if(rc != 0)
@@ -986,7 +987,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
             ASSERT(iError == 0);
 
-            return e_synchronization_result_error;
+            return error_failed;
 
          }
 
@@ -1005,7 +1006,7 @@ synchronization_result mutex::_wait(const duration & duration)
 
       ASSERT(iError == 0);
 
-      return e_synchronization_result_signaled_base;
+      return signaled_base;
 
    }
 
@@ -1311,9 +1312,9 @@ bool mutex::lock()
 bool mutex::lock(const duration & duration)
 {
 
-   synchronization_result result = wait(duration);
+   auto estatus = wait(duration);
 
-   if (!result.signaled())
+   if (!estatus.signaled())
    {
 
       return false;
@@ -1325,19 +1326,20 @@ bool mutex::lock(const duration & duration)
 }
 
 
-synchronization_result mutex::_wait()
+::e_status mutex::_wait()
 {
 
    if (!lock())
    {
 
-      return synchronization_result(e_synchronization_result_error);
+      return error_failed;
 
    }
 
-   return synchronization_result(e_synchronization_result_signaled_base);
+   return signaled_base;
 
 }
+
 
 #endif
 

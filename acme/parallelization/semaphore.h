@@ -17,22 +17,22 @@ public:
 
 #elif defined(LINUX) || defined(__APPLE__)
 
-   ::i32              m_lMaxCount;
+   ::i32         m_lMaxCount;
    i32           m_hsync;
 
 #endif
 
    semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr ARG_SEC_ATTRS_DEF);
-   virtual ~semaphore();
+   ~semaphore() override;
 
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 //   using matter::lock;
-   virtual synchronization_result wait(const duration & durationTimeout) override;
+   ::e_status wait(const duration & durationTimeout) override;
 #endif
 
-   virtual bool unlock() override;
-   virtual bool unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
+   bool unlock() override;
+   bool unlock(::i32 lCount, ::i32 * prevCount = nullptr) override;
 
 
 };

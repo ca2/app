@@ -29,7 +29,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 //CLASS_DECL_ACME::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
 
 
-enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    millis start;
@@ -78,7 +78,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
                if (pmq->m_messagea.get_count() > 0)
                {
 
-                  return (enum_synchronization_result)(e_synchronization_result_signaled_base + dwSize);
+                  return (::enum_status)(((::i32) signaled_base) + dwSize);
 
                }
 
@@ -94,7 +94,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 
                }
 
-               return e_synchronization_result_timed_out;
+               return error_wait_timeout;
 
             }
 
@@ -117,9 +117,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
          //     hsynca[j]->unlock();
          //}
 
-         return i==dwSize ?
-         e_synchronization_result_signaled_base :
-         e_synchronization_result_timed_out;
+         return i == dwSize ? signaled_base : error_wait_timeout;
 
       }
 
@@ -138,7 +136,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
             if (pmq->m_eventNewMessage.lock(millis(0)))
             {
 
-               return (enum_synchronization_result)(e_synchronization_result_signaled_base + dwSize);
+               return (enum_status)(((::i32) signaled_base) + dwSize);
 
             }
 
@@ -150,7 +148,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
             if (synca[i]->lock(0_ms))
             {
 
-               return (enum_synchronization_result)(e_synchronization_result_signaled_base + i);
+               return (enum_status)(((::i32) signaled_base) + dwSize);
 
             }
 
@@ -161,7 +159,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
          if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
          {
 
-            return e_synchronization_result_timed_out;
+            return error_wait_timeout;
 
          }
 
@@ -172,7 +170,7 @@ enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * sy
 }
 
 
-enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+::e_status MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -180,7 +178,7 @@ enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * sync
 }
 
 
-enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -188,7 +186,7 @@ enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca
 }
 
 
-enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
+::e_status WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -196,7 +194,7 @@ enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, 
 }
 
 
-enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
+::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
@@ -204,7 +202,7 @@ enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout
 }
 
 
-enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
+::e_status WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
    return WaitForSingleObjectEx(hsync, tickTimeout, false);

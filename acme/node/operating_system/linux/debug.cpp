@@ -128,29 +128,29 @@ gdb_check(void)
 
 
 
-::u32
-WINAPI
-FormatMessage(
-::u32 dwFlags,
-const void * pSource,
+//::u32
+//WINAPI
+//FormatMessage(
+//::u32 dwFlags,
+//const void * pSource,
+//
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
+//char * pBuffer,
+//
+//::u32 nSize,
+//va_list *Arguments
+//)
+//{
+//
+//
+//   return 0;
+//
+//
+//}
 
-::u32 dwMessageId,
-::u32 dwLanguageId,
-char * pBuffer,
 
-::u32 nSize,
-va_list *Arguments
-)
-{
-
-
-   return 0;
-
-
-}
-
-
-void WINAPI output_debug_string(const char * pOutputString)
+void output_debug_string(const char * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -172,9 +172,7 @@ void WINAPI output_debug_string(const char * pOutputString)
 }
 
 
-
-
-void WINAPI output_debug_string(const widechar * pOutputString)
+void output_debug_string(const widechar * pOutputString)
 {
 
    if(::acme::g_bOutputDebugString)
@@ -185,9 +183,6 @@ void WINAPI output_debug_string(const widechar * pOutputString)
    }
 
 }
-
-
-
 
 
 ////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;

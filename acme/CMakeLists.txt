@@ -84,6 +84,10 @@ list(APPEND library_source
    filesystem/file/serialize.cpp
    #filesystem/file/stdio_file.cpp
    filesystem/file/stream.cpp
+   filesystem/file/streamable.cpp
+   filesystem/file/streamable.h
+   filesystem/file/streamable_composite.cpp
+   filesystem/file/streamable_composite.h
    filesystem/file/string_file.cpp
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
@@ -169,6 +173,7 @@ list(APPEND library_source
    parallelization/critical_section.cpp
    parallelization/event.cpp
    #parallelization/file_change_event.cpp
+   parallelization/install_mutex.cpp
    parallelization/manual_reset_event.cpp
    parallelization/multiple_lock.cpp
    parallelization/multiple_lock.h
@@ -222,6 +227,8 @@ list(APPEND library_source
    platform/predicate_holder.cpp
    platform/predicate_holder.h
    platform/profiler.cpp
+   platform/routine.cpp
+   platform/routine.h
    #platform/regex.cpp
    platform/serial.cpp
    #platform/simple_trace.cpp
@@ -387,6 +394,8 @@ list(APPEND library_source
    primitive/primitive/property_set.cpp
    primitive/primitive/property_set_composite.cpp
    primitive/primitive/property_set_papaya.cpp
+   primitive/primitive/referenceable.cpp
+   primitive/primitive/referenceable.h
    primitive/primitive/runnable.cpp
    primitive/primitive/shared_memory.cpp
    primitive/primitive/traits.cpp
@@ -519,7 +528,7 @@ list(APPEND library_source
    constant/timer.h
    exception/_.h
    exception/_c.h
-   exception/_const.h
+   #exception/_const.h
    exception/_dump_context.h
    #exception/assert.h
    #exception/base.h
@@ -672,7 +681,7 @@ list(APPEND library_source
    #memory/plex.h
    #memory/plex_heap1.h
    #memory/plex_heap_impl1.h
-   node/_.h
+   #node/_.h
    #node/_node2.h
    node/android/Kerr/LocalMemory.h
    node/android/Kerr/kerr.h
@@ -768,12 +777,12 @@ list(APPEND library_source
    node/operating_system/time.h
    node/operating_system/user.h
    node/operating_system/universal_windows/_.h
-   node/operating_system/universal_windows/_uwp.h
-   node/operating_system/universal_windows/_winrt.h
+   #node/operating_system/universal_windows/_uwp.h
+   #node/operating_system/universal_windows/_winrt.h
    node/operating_system/universal_windows/base_file.h
    node/operating_system/universal_windows/exception_engine.h
-   node/operating_system/universal_windows/file_winrt.h
-   node/operating_system/universal_windows/gdi_winrt.h
+   #ode/operating_system/universal_windows/file_winrt.h
+   #node/operating_system/universal_windows/gdi_winrt.h
    node/operating_system/universal_windows/host_interaction.h
    node/operating_system/universal_windows/metrowin_metrowin.h
    node/operating_system/universal_windows/parallelization.h
@@ -894,8 +903,6 @@ list(APPEND library_source
    platform/fixed_alloc.h
    platform/fixed_alloc_impl.h
    platform/flags.h
-   platform/future.cpp
-   platform/future.h
    platform/hyperlink.h
    platform/keep.h
    platform/keep_true.h
@@ -918,6 +925,8 @@ list(APPEND library_source
    platform/profiler.h
    #platform/regex.h
    platform/restore.h
+   platform/sequence.cpp
+   platform/sequence.h
    platform/serial.h
    #platform/serial_impl.h
    platform/simple_app.h
@@ -1509,6 +1518,7 @@ if (LINUX)
       #os/linux/gdk.cpp
       node/operating_system/linux/graphics.cpp
       node/operating_system/linux/library.cpp
+      node/operating_system/linux/linux.cpp
       node/operating_system/linux/linux.inl
       #node/operating_system/linux/list_serial_ports.cpp
       node/operating_system/linux/parallelization.cpp

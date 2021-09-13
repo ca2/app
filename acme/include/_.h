@@ -455,17 +455,15 @@ public:
 };
 
 
-
-
-template<class T>
-class ___pointer;
-
-
-template<class T>
-class pointer_array;
-
-
 //#define __composite(TYPE) ::reference < TYPE >
+
+template<class T>
+   class ___pointer;
+
+
+template<class T>
+   class pointer_array;
+
 
 
 #include <type_traits>
@@ -502,11 +500,6 @@ concept primitive_character =
    std::same_as < T, ::wd16char > ||
    std::same_as < T, ::wd32char >;
 
-template < typename FROM, typename TO_POINTER >
-concept pointer_castable =
-::std::is_convertible < FROM, TO_POINTER * >::value ||
-::std::is_convertible < FROM, const TO_POINTER * >::value ||
-::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
 
 template < typename T >
 concept const_c_string =
@@ -545,6 +538,12 @@ struct base_const_c_string
 
 };
 
+template < typename FROM, typename TO_POINTER >
+concept raw_pointer_castable =
+   ::std::is_convertible < FROM, TO_POINTER * >::value ||
+   ::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+
 template < typename T >
 concept non_const_c_string =
 std::is_convertible < T, ::ansichar * >::value ||
@@ -559,13 +558,6 @@ non_const_c_string < T >;
 template < typename DERIVED, typename BASE >
 concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
-
-template < typename FROM >
-concept matter_pointer_castable = pointer_castable < FROM, ::matter >;
-
-
-template < typename FROM >
-concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 template < bool, typename T1, typename T2 >
 struct boolean_type_selection { using type = T1; };
@@ -2884,6 +2876,21 @@ inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 #include "acme/primitive/primitive/pointer.h"
 #include "acme/primitive/primitive/pointer2.h"
+
+
+template < typename FROM, typename TO_POINTER >
+concept pointer_castable =
+   ::std::is_convertible < FROM, TO_POINTER * >::value ||
+   ::std::is_convertible < FROM, const TO_POINTER * >::value ||
+   ::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
+
+
+template < typename FROM >
+concept matter_pointer_castable = pointer_castable < FROM, ::matter >;
+
+
+template < typename FROM >
+concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 
 using matter_pointer = __pointer(::matter);

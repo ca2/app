@@ -20,215 +20,215 @@
 #ifdef ANDROID
 #include <sys/prctl.h>
 #endif
-
 //
-//static __thread char thread_name_buffer[17] = { 0 };
+////
+////static __thread char thread_name_buffer[17] = { 0 };
+////
+////const char * thread_name(void)
+////{
+////   /* Try obtaining the thread name.
+////    * If this fails, we'll return a pointer to an empty string. */
+////   if (!thread_name_buffer[0])
+////      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
 //
-//const char * thread_name(void)
-//{
-//   /* Try obtaining the thread name.
-//    * If this fails, we'll return a pointer to an empty string. */
-//   if (!thread_name_buffer[0])
-//      prctl(PR_GET_NAME, thread_name_buffer, 0L, 0L, 0L);
-
-message_queue * get_message_queue(itask_t idthread, bool bCreate);
-
-
+//message_queue * get_message_queue(itask_t idthread, bool bCreate);
+//
+//
 CLASS_DECL_APEX void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
-
+//
 CLASS_DECL_APEX void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
-
+//
 CLASS_DECL_APEX::enum_priority thread_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
-
+//
 CLASS_DECL_APEX::enum_priority process_get_scheduling_priority(int iOsPolicy, const sched_param * pparam);
-
-
-enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
-{
-
-   millis start;
-
-   if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
-   {
-
-      start = ::millis::now();
-
-   }
-
-   __pointer(message_queue) pmq;
-
-   if (dwWakeMask > 0)
-   {
-
-      pmq = ::get_message_queue(get_current_ithread(), false);
-
-   }
-
-   int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
-   //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
-   //   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
-
-   timespec delay;
-
-   delay.tv_sec = 0;
-   delay.tv_nsec = 1000000;
-
-   if (bWaitForAll)
-   {
-
-      i32 i;
-
-      i32 j;
-
-      i = 0;
-
-      while (true)
-      {
-
-         for (; comparison::lt(i, dwSize);)
-         {
-
-            if (pmq.is_set())
-            {
-
-               synchronous_lock synchronouslock(pmq->mutex());
-
-               if (pmq->m_messagea.has_element())
-               {
-
-                  return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
-
-               }
-
-            }
-
-            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
-            {
-
-               for (j = 0; j < i; j++)
-               {
-
-                  synca[j]->unlock();
-
-               }
-
-               return e_synchronization_result_error;
-
-            }
-
-            if (synca[i]->lock(0))
-            {
-
-               i++;
-
-            }
-            else
-            {
-
-               nanosleep(&delay, nullptr);
-
-               break;
-
-            }
-
-         }
-
-         if(i >= dwSize)
-         {
-
-            return e_synchronization_result_signaled_base;
-
-         }
-
-      }
-
-   }
-   else
-   {
-
-      i32 i;
-
-      while (true)
-      {
-
-         if (pmq.is_set())
-         {
-
-            if (pmq->m_eventNewMessage.lock(millis(0)))
-            {
-
-               return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
-
-            }
-
-         }
-
-         for (i = 0; comparison::lt(i, dwSize); i++)
-         {
-
-            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
-            {
-
-               return e_synchronization_result_timed_out;
-
-            }
-
-            if (synca[i]->lock(millis(0)))
-            {
-
-               return (enum_synchronization_result) (e_synchronization_result_signaled_base + i);
-
-            }
-
-         }
-
-         nanosleep(&delay, nullptr);
-
-      }
-
-   }
-
-}
-
-
-::enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
-{
-
-   return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
-
-}
-
-
-::enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
-{
-
-   return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
-
-}
-
-
-::enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
-{
-
-   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
-
-}
-
-
-::enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
-{
-
-   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
-
-}
-
-
-::enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
-{
-
-   return WaitForSingleObjectEx(hsync, tickTimeout, false);
-
-}
+//
+//
+//enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
+//{
+//
+//   millis start;
+//
+//   if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
+//   {
+//
+//      start = ::millis::now();
+//
+//   }
+//
+//   __pointer(message_queue) pmq;
+//
+//   if (dwWakeMask > 0)
+//   {
+//
+//      pmq = ::get_message_queue(get_current_ithread(), false);
+//
+//   }
+//
+//   int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
+//   //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
+//   //   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+//
+//   timespec delay;
+//
+//   delay.tv_sec = 0;
+//   delay.tv_nsec = 1000000;
+//
+//   if (bWaitForAll)
+//   {
+//
+//      i32 i;
+//
+//      i32 j;
+//
+//      i = 0;
+//
+//      while (true)
+//      {
+//
+//         for (; comparison::lt(i, dwSize);)
+//         {
+//
+//            if (pmq.is_set())
+//            {
+//
+//               synchronous_lock synchronouslock(pmq->mutex());
+//
+//               if (pmq->m_messagea.has_element())
+//               {
+//
+//                  return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
+//
+//               }
+//
+//            }
+//
+//            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            {
+//
+//               for (j = 0; j < i; j++)
+//               {
+//
+//                  synca[j]->unlock();
+//
+//               }
+//
+//               return e_synchronization_result_error;
+//
+//            }
+//
+//            if (synca[i]->lock(0))
+//            {
+//
+//               i++;
+//
+//            }
+//            else
+//            {
+//
+//               nanosleep(&delay, nullptr);
+//
+//               break;
+//
+//            }
+//
+//         }
+//
+//         if(i >= dwSize)
+//         {
+//
+//            return e_synchronization_result_signaled_base;
+//
+//         }
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      i32 i;
+//
+//      while (true)
+//      {
+//
+//         if (pmq.is_set())
+//         {
+//
+//            if (pmq->m_eventNewMessage.lock(millis(0)))
+//            {
+//
+//               return (enum_synchronization_result) (e_synchronization_result_signaled_base + dwSize);
+//
+//            }
+//
+//         }
+//
+//         for (i = 0; comparison::lt(i, dwSize); i++)
+//         {
+//
+//            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+//            {
+//
+//               return e_synchronization_result_timed_out;
+//
+//            }
+//
+//            if (synca[i]->lock(millis(0)))
+//            {
+//
+//               return (enum_synchronization_result) (e_synchronization_result_signaled_base + i);
+//
+//            }
+//
+//         }
+//
+//         nanosleep(&delay, nullptr);
+//
+//      }
+//
+//   }
+//
+//}
+//
+//
+//::enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask)
+//{
+//
+//   return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
+//
+//}
+//
+//
+//::enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable)
+//{
+//
+//   return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
+//
+//}
+//
+//
+//::enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
+//{
+//
+//   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
+//
+//}
+//
+//
+//::enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
+//{
+//
+//   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
+//
+//}
+//
+//
+//::enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
+//{
+//
+//   return WaitForSingleObjectEx(hsync, tickTimeout, false);
+//
+//}
 
 
 //thread_data::thread_data()

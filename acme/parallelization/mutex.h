@@ -65,9 +65,9 @@ public:
 
    virtual bool lock(const duration & durationTimeout) override;
 
-   virtual synchronization_result _wait() override;
+   virtual ::e_status _wait() override;
 
-   virtual synchronization_result _wait(const duration & durationTimeout) override;
+   virtual ::e_status _wait(const duration & durationTimeout) override;
 
 #endif
 

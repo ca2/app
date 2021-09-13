@@ -320,8 +320,8 @@ list(APPEND apex_source
    networking/port_forward.cpp
    networking/port_forward.h
    networking/sockets.cpp
-   node/_.h
-   node/_node.h
+   #node/_.h
+   #node/_node.h
    node/operating_system/ansi/_.h
    node/operating_system/ansi/_ansi.h
    #os/ansios/_c.h
@@ -784,8 +784,9 @@ if (UWP)
 else ()
 
    list(APPEND apex_source
-      node/operating_system/cross/universal_windows/cross_metrowin_user.cpp
-      node/operating_system/cross/universal_windows/metrowin_user.cpp)
+      #node/operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      #node/operating_system/cross/universal_windows/metrowin_user.cpp
+      )
 
 endif ()
 
@@ -825,6 +826,8 @@ if (LINUX)
       node/linux/util.cpp
       #node/posix/file_os_watcher.cpp
       #node/posix/file_os_watcher.cpp
+      node/operating_system/posix/_posix.h
+      node/operating_system/posix/_.h
       node/operating_system/linux/_.h
       node/operating_system/linux/_c.h
       node/operating_system/linux/_linux.h
@@ -1267,7 +1270,8 @@ endif ()
 if (PTHREAD)
 
    list(APPEND apex_source
-      node/operating_system/posix/pthread.cpp)
+      node/operating_system/posix/pthread.cpp
+      )
 
 endif ()
 
@@ -1279,7 +1283,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} node/operating_system/posix/_posix.h node/operating_system/posix/_.h)
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 

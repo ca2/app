@@ -135,34 +135,18 @@ CLASS_DECL_ACME bool task_get_run();
 
 #ifdef WINDOWS
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
 inline ::e_status wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
 ::e_status wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
 
 #else
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite());
+::e_status wait(synchronization_object * psynchronizationobject,const duration & duration = duration::infinite());
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(size_t numberOfItems, synchronization_object ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
+::e_status wait(size_t numberOfItems, synchronization_object ** psynchronizationobject, const duration& duration = duration::infinite(),bool waitForAll = false);
 
 #endif
 

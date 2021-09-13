@@ -949,8 +949,8 @@ sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::d
 
 
 
-template < typename OBJECT, typename TRANSPORT , typename FUTURE >
-FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
+template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
+SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
 {
 
     if (!m_pfuture)

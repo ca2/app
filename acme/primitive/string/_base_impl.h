@@ -1047,7 +1047,7 @@ strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, str
 }
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1113,7 +1113,7 @@ strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1178,7 +1178,7 @@ strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strs
 }
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 ::count string_base < TYPE_CHAR >::replace_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1259,7 +1259,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 ::count string_base < TYPE_CHAR >::replace_ci_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -2303,7 +2303,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(CHAR_TYPE chTarget)
 
 // erase all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(PCHAR szTargets)
 {
    return(trim_right(szTargets).trim_left(szTargets));
@@ -4946,7 +4946,7 @@ bool string_base < TYPE_CHAR >::contains_all_wci(const STRINGA & stra) const
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, strsize & iStart) const
 {
    ASSERT(iStart >= 0);

@@ -727,7 +727,7 @@ string Format(const ::string & strFormat, const ::datetime::time & time)
 
 #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
    char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-   struct tm * ptmTemp = localtime(&m_time);
+   struct tm * ptmTemp = localtime(&time.m_time);
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {
       szBuffer[0] = '\0';
@@ -818,7 +818,7 @@ string FormatGmt(const string & strFormat, const ::datetime::time & time)
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   struct tm * ptmTemp = gmtime(&m_time);
+   struct tm * ptmTemp = gmtime(&time.m_time);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {

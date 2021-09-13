@@ -85,16 +85,20 @@ CLASS_DECL_ACME void initialize_sequence_critical_section();
 CLASS_DECL_ACME void finalize_sequence_critical_section();
 
 
-template < typename OBJECT, typename TRANSPORT = ::transport < OBJECT >, typename FUTURE = ::future < OBJECT > >
+template < typename OBJECT, typename TRANSPORT = ::transport < OBJECT >, typename SEQUENCE = ::sequence < OBJECT > >
 class asynchronous :
    virtual public matter
 {
 public:
 
 
-   __pointer(FUTURE)          m_pfuture;
+   __pointer(SEQUENCE)          m_pfuture;
 
 
-   FUTURE* future();
+   SEQUENCE * sequence();
+
 
 };
+
+
+

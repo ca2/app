@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "aura/user/_user.h"
 #ifdef LINUX
 #include "aura/node/operating_system/linux/x11.h"
 #endif
@@ -62,27 +63,6 @@ namespace aura
       create_factory < ::user::default_message_box, ::user::message_box >();
 
    }
-
-
-//#ifdef LINUX
-//
-//   ::linux::appindicator * node::appindicator_allocate()
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//
-//   void node::appindicator_destroy(::linux::appindicator * pappindicator)
-//   {
-//
-//      //return nullptr;
-//
-//   }
-//
-//
-//#endif
 
 
    ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
@@ -147,7 +127,7 @@ namespace aura
 
       auto pmessagebox = __create < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
       auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 

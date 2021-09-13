@@ -208,7 +208,7 @@ enum enum_status : ::i64
    error_on_connection_timeout,
    error_socket,
 
-   abandoned_base = 0xFFFFFFFE00000000ll,
+   abandoned_base = -0x7FFFFFFE00000000ll,
    abandoned_end = abandoned_base + MAXIMUM_SYNCHRONIZING_OBJECTS,
 
    success_login = INT_FAILURE_STATUS(STATUS_RANGE_AUTHENTICATION),

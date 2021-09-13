@@ -9276,9 +9276,9 @@ void interaction::EndModalLoop(id idResult)
    if (::extended::asynchronous < ::conversation >::m_pfuture)
    {
 
-      ::extended::asynchronous < ::conversation >::future()->m_transport->m_idResult = idResult;
+      ::extended::asynchronous < ::conversation >::sequence()->m_transport->m_idResult = idResult;
        
-      ::extended::asynchronous < ::conversation >::future()->set_status(::success);
+      ::extended::asynchronous < ::conversation >::sequence()->set_status(::success);
 
    }
 

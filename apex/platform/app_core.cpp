@@ -381,7 +381,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+         //message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 

@@ -87,7 +87,7 @@ namespace user
 
       ///acme_defer_os_init_windowing();
 
-      auto pfuture = this->future();
+      auto pfuture = this->sequence();
 
       string strMessage(strMessageParam);
 
@@ -447,7 +447,7 @@ namespace user
 
          m_edialogresult = (enum_dialog_result) pevent->m_id.i64();
 
-         ::extended::asynchronous <::conversation>::future()->set_status(::success);
+         ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 
          set_finish();
 

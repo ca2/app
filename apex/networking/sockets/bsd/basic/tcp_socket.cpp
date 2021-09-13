@@ -33,6 +33,8 @@ static int SSL_app_data2_idx = -1;
 static int SSL_app_data3_idx = -1;
 
 
+i64 networking_last_error();
+
 
 void SSL_init_app_data2_3_idx(void)
 {
@@ -1720,11 +1722,13 @@ namespace sockets
             {
 
                char msg[1024];
+
                ERR_error_string_n(ERR_get_error(), msg, sizeof(msg));
+
                if (r == SSL_ERROR_SYSCALL)
                {
 
-                  DWORD dwLastError = WSAGetLastError();
+                  auto last_error = networking_last_error();
 
                   output_debug_string("");
                 
@@ -2632,6 +2636,30 @@ namespace sockets
 } // namespace sockets
 
 
+
+#ifdef WINDOWS
+
+
+i64 networking_last_error()
+{
+
+   return WSAGetLastError();
+
+}
+
+
+#else
+
+
+i64 networking_last_error()
+{
+
+   return errno;
+
+}
+
+
+#endif
 
 
 

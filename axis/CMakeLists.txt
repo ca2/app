@@ -180,41 +180,41 @@ list(APPEND library_source
         math/kissfft/ifftd.cpp
         math/kissfft/ifftd.h
         math/_.h
-        net/netserver/_.h
-        net/netserver/socket.cpp
-        net/netserver/socket.h
-        net/netserver/socket_handler.cpp
-        net/netserver/socket_handler.h
-        net/netserver/socket_thread.cpp
-        net/netserver/socket_thread.h
-        net/sockets/bsd/smtp/smtp_socket.cpp
-        net/sockets/bsd/smtp/smtp_socket.h
-        net/sockets/bsd/smtp/smtpd_socket.cpp
-        net/sockets/bsd/smtp/smtpd_socket.h
-        net/sockets/bsd/timer/_.h
-        net/sockets/bsd/timer/Event.cpp
-        net/sockets/bsd/timer/event.h
-        net/sockets/bsd/timer/event_handler.h
-        net/sockets/bsd/timer/event_time.h
-        net/sockets/bsd/timer/EventHandler.cpp
-        net/sockets/bsd/timer/EventTime.cpp
-        net/sockets/bsd/timer/ievent_handler.h
-        net/sockets/bsd/timer/ievent_owner.h
-        net/sockets/bsd/timer/IEventOwner.cpp
-        net/sockets/bsd/webserver/ajp13.h
-        net/sockets/bsd/webserver/ajp13_socket.h
-        net/sockets/bsd/webserver/ajp_base_socket.h
-        net/sockets/bsd/_.h
-        net/sockets/bsd/_strconv.h
-        net/sockets/bsd/config.h
-        net/sockets/bsd/socket_id_list.h
-        net/sockets/bsd/sockets.h
-        net/sockets/_sockets.h
-        net/_.h
-        net/_impl.h
-        net/_net.h
-        net/email_department.cpp
-        net/email_department.h
+        networking/netserver/_.h
+        networking/netserver/socket.cpp
+        networking/netserver/socket.h
+        networking/netserver/socket_handler.cpp
+        networking/netserver/socket_handler.h
+        networking/netserver/socket_thread.cpp
+        networking/netserver/socket_thread.h
+        networking/sockets/bsd/smtp/smtp_socket.cpp
+        networking/sockets/bsd/smtp/smtp_socket.h
+        networking/sockets/bsd/smtp/smtpd_socket.cpp
+        networking/sockets/bsd/smtp/smtpd_socket.h
+        networking/sockets/bsd/timer/_.h
+        networking/sockets/bsd/timer/Event.cpp
+        networking/sockets/bsd/timer/event.h
+        networking/sockets/bsd/timer/event_handler.h
+        networking/sockets/bsd/timer/event_time.h
+        networking/sockets/bsd/timer/EventHandler.cpp
+        networking/sockets/bsd/timer/EventTime.cpp
+        networking/sockets/bsd/timer/ievent_handler.h
+        networking/sockets/bsd/timer/ievent_owner.h
+        networking/sockets/bsd/timer/IEventOwner.cpp
+        networking/sockets/bsd/webserver/ajp13.h
+        networking/sockets/bsd/webserver/ajp13_socket.h
+        networking/sockets/bsd/webserver/ajp_base_socket.h
+        networking/sockets/bsd/_.h
+        networking/sockets/bsd/_strconv.h
+        networking/sockets/bsd/config.h
+        networking/sockets/bsd/socket_id_list.h
+        networking/sockets/bsd/sockets.h
+        networking/sockets/_sockets.h
+        networking/_.h
+        networking/_impl.h
+        networking/_networking.h
+        networking/email_department.cpp
+        networking/email_department.h
         platform/_.cpp
         platform/_features.h
         platform/_generic_object_constructor_impl.h

@@ -159,7 +159,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-synchronization_result semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const duration & durationTimeout)
 {
 
    int iRet = 0;
@@ -189,7 +189,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(iRet == EINTR || iRet == EAGAIN)
       {
 
-         return e_synchronization_result_timed_out;
+         return error_wait_timeout;
 
       }
 
@@ -198,13 +198,13 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    if(iRet == 0)
    {
 
-      return e_synchronization_result_signaled_base;
+      return signaled_base;
 
    }
    else
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 

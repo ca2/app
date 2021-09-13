@@ -245,7 +245,7 @@ void synchronization_array::erase(index index)
 
    bool FoundExternal=false;
 
-   ::synchronization_result result;
+   ::e_status estatus;
 
 //   ::duration durationWaitNow;
 
@@ -283,14 +283,14 @@ void synchronization_array::erase(index index)
          if (uWakeMask)
          {
 
-            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), osduration, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), osduration, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
 
          }
 
@@ -300,7 +300,7 @@ void synchronization_array::erase(index index)
 //   }
 //   while (result == e_synchronization_result_timed_out);
 
-   return result;
+   return estatus;
 
 #endif
 

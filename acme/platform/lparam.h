@@ -1,10 +1,7 @@
 #pragma once
 
 
-
-
 class CLASS_DECL_ACME lparam
-
 {
 public:
 
@@ -130,6 +127,15 @@ public:
 
 
 };
+
+
+
+template < class T >
+   inline bool operator ==(lparam l, const ___pointer < T > & pointer) { return ((T *) l) == pointer.m_p; }
+
+
+template < class T >
+   inline bool operator !=(lparam l, const ___pointer < T > & pointer) { return ((T *) l) != pointer.m_p; }
 
 
 

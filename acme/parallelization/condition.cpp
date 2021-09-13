@@ -306,7 +306,7 @@ bool condition::pulse()
          else
          {
 
-            return e_synchronization_result_error;
+            return error_failed;
 
          }
 
@@ -314,13 +314,13 @@ bool condition::pulse()
       else
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
 
    }
 
-   return synchronization_result(e_synchronization_result_timed_out);
+   return error_wait_timeout;
 
 #endif
 

@@ -1627,7 +1627,7 @@ namespace url
       if (rc != IDNA_SUCCESS)
       {
 
-         __throw(::exception::exception(idna_strerror(rc)));
+         throw ::exception::exception(idna_strerror(rc));
 
       }
 
@@ -1689,7 +1689,7 @@ namespace url
       if (rc != IDNA_SUCCESS)
       {
 
-         __throw(::exception::exception(idna_strerror(rc)));
+         throw ::exception::exception(idna_strerror(rc));
 
       }
 

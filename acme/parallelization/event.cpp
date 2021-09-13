@@ -414,7 +414,7 @@ bool event::ResetEvent()
    else
    {
 
-      __throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
+      throw ::exception::exception(error_failed,"It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted.");
 
    }
 
@@ -630,7 +630,6 @@ bool event::ResetEvent()
 
    result =  m_bSignaled ? synchronization_result(e_synchronization_result_signaled_base) : synchronization_result(e_synchronization_result_timed_out);
 
-
 #else
 
    if(m_bManualEvent)
@@ -664,13 +663,13 @@ bool event::ResetEvent()
          if(m_bSignaled)
          {
 
-            result = synchronization_result(e_synchronization_result_signaled_base);
+            estatus = signaled_base;
 
          }
          else
          {
 
-            result = synchronization_result(e_synchronization_result_error);
+            estatus = error_failed;
 
          }
 
@@ -729,7 +728,7 @@ bool event::ResetEvent()
 
                pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-               return e_synchronization_result_timed_out;
+               return error_wait_timeout;
 
             }
 
@@ -740,13 +739,13 @@ bool event::ResetEvent()
          if(m_bSignaled)
          {
 
-            result = e_synchronization_result_signaled_base;
+            estatus = signaled_base;
 
          }
          else
          {
 
-            result = e_synchronization_result_error;
+            estatus = error_failed;
 
          }
 
@@ -790,7 +789,7 @@ bool event::ResetEvent()
             else
             {
 
-               return e_synchronization_result_error;
+               return error_failed;
 
             }
 
@@ -798,13 +797,13 @@ bool event::ResetEvent()
          else
          {
 
-            return e_synchronization_result_signaled_base;
+            return signaled_base;
 
          }
 
       }
 
-      result= e_synchronization_result_timed_out;
+      estatus = error_wait_timeout;
 
    }
 

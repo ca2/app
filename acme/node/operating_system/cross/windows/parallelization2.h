@@ -28,17 +28,17 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
 #else
 
-enum_synchronization_result WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
 
-enum_synchronization_result WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout);
+::e_status WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout);
 
-enum_synchronization_result MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
+::e_status MsgWaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout, ::u32 dwWakeMask);
 
-enum_synchronization_result MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
-enum_synchronization_result WaitForSingleObject(HSYNC hsync, ::u32 dwMilliseconds);
+::e_status WaitForSingleObject(HSYNC hsync, ::u32 dwMilliseconds);
 
-enum_synchronization_result WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseconds, int_bool bAlertable);
+::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseconds, int_bool bAlertable);
 
 
 //#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)

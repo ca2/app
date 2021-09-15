@@ -492,7 +492,7 @@ __pointer(::application) application_container::start_application(const char * p
          else
          {
 
-            //output_message_box_error("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            //output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
             output_debug_string("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;

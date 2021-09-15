@@ -66,7 +66,7 @@ namespace file
 
       inline filesize get_remaining_byte_count() const { return get_size() - get_position(); }
 
-      virtual memsize read(void* pdata, memsize nCount);
+      memsize read(void* pdata, memsize nCount) override;
 
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
@@ -78,7 +78,7 @@ namespace file
 
       virtual void write(const memory_base & memory);
 
-      virtual void write(const void* pdata, memsize nCount);
+      void write(const void* pdata, memsize nCount) override;
 
       virtual void write(const void* pdata, memsize nCount, memsize* dwWritten);
 
@@ -93,9 +93,9 @@ namespace file
 
 
 
-      virtual void close();
+      void close() override;
 
-      virtual void flush();
+      void flush() override;
 
       virtual file & put(char ch);
 
@@ -157,8 +157,8 @@ namespace file
 
 
       //virtual filesize seek_begin(filesize lPos = 0);
-      virtual void set_size(filesize dwNewLen);
-      virtual filesize get_size() const;
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
       inline bool is_empty() const { return get_size() <= 0; }
       inline void clear() { set_size(0); }
 

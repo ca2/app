@@ -4975,7 +4975,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //output_message_box_error("VK_RETURN reached plain_edit");
+                     //output_error_message("VK_RETURN reached plain_edit");
                   }
 
                   string str;

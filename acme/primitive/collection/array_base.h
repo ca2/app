@@ -541,7 +541,6 @@ public:
    ::index erase_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
 
-
    ::index make_room_at(::index nIndex, ::count nCount = 1);
 
    

@@ -6814,7 +6814,7 @@ auto pmutex = __new(::install::mutex(this, process_platform_dir_name2()));
 if (pmutex->already_exists())
 {
 
-//            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 
 return -35;
 

@@ -631,7 +631,7 @@ namespace apex
 ////      if (!bOk)
 //  //    {
 //
-//         //output_message_box_error("Could not open platform audio library.");
+//         //output_error_message("Could not open platform audio library.");
 //
 //    //  }
 //
@@ -1797,7 +1797,7 @@ pacmedir->create("/ca2core");
       if (!estatus)
       {
 
-         //output_message_box_error("Failed to allocate get_session()!!");
+         //output_error_message("Failed to allocate get_session()!!");
 
          output_debug_string("Failed to allocate get_session()!!");
 

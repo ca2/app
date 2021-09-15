@@ -845,7 +845,7 @@ namespace user
       if (pBestTemplate == nullptr)
       {
 
-         output_message_box_error("Failed to open document");
+         output_error_message("Failed to open document");
 
          return;
 

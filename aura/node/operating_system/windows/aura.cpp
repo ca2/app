@@ -128,7 +128,7 @@ bool __node_aura_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   os_output_message_box_error("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   os_output_error_message("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
    //   return 0;
 
@@ -139,7 +139,7 @@ bool __node_aura_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   os_output_message_box_error("Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   os_output_error_message("Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
    //   return 0;
 

@@ -154,9 +154,4 @@ CLASS_DECL_ACME ::e_status create_directory(const char * path);
 
 CLASS_DECL_ACME ::e_status file_delete(const char * path);
 
-CLASS_DECL_ACME ::file::path dir_ca2_module();
-
-CLASS_DECL_ACME ::file::path dir_base_module();
-
-
 

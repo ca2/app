@@ -239,3 +239,26 @@ public:
 //};
 //
 //#endif
+
+
+class CLASS_DECL_ACME error_number :
+   public exception::exception
+{
+public:
+   
+   
+   int m_iErrNo;
+
+   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
+   ::exception::exception(
+                          estatus, pszMessage, iSkip, caller_address),
+   m_iErrNo(iError)
+   {
+   }
+   
+   ~error_number()
+   {
+      
+   }
+   
+};

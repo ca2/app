@@ -308,7 +308,7 @@ namespace filemanager
       else
       {
 
-         //output_message_box_error("Failed to save document");
+         //output_error_message("Failed to save document");
 
          //psubject->id() = id_topic_save_failed;
 
@@ -434,7 +434,7 @@ namespace filemanager
       if (!m_pedit)
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 

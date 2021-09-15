@@ -379,7 +379,8 @@ namespace file
       void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path)
       {
 
-         throw exception(estatus, ::file::dos_to_os_error(lDOSError), path);
+         throw exception(estatus,
+                         0, ::file::dos_to_os_error(lDOSError), path);
 
       }
 

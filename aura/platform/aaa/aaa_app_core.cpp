@@ -618,7 +618,7 @@ pacmedir->ca2roaming() / "program";
 //         if (!m_plibrary->open(strLibrary, false, true))
 //         {
 //
-//            output_message_box_error("failed to open application initialization library (1)");
+//            output_error_message("failed to open application initialization library (1)");
 //
 //            return;
 //
@@ -627,7 +627,7 @@ pacmedir->ca2roaming() / "program";
 //         if (!m_plibrary->open_ca2_library(strLibrary))
 //         {
 //
-//            output_message_box_error("failed to open application initialization library (2)");
+//            output_error_message("failed to open application initialization library (2)");
 //
 //            return;
 //
@@ -683,7 +683,7 @@ pacmedir->ca2roaming() / "program";
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      output_message_box_error("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -1921,7 +1921,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
 #ifndef _UWP
 
-               output_message_box_error("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 

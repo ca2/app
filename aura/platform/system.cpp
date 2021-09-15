@@ -682,7 +682,7 @@ namespace aura
       //if (!create_session())
       //{
 
-      //   output_message_box_error("Failed to allocate Session!!");
+      //   output_error_message("Failed to allocate Session!!");
 
       //   return false;
 
@@ -693,7 +693,7 @@ namespace aura
       //if (!m_papplicationStartup)
       //{
 
-      //   output_message_box_error("Failed to allocate papplication!!");
+      //   output_error_message("Failed to allocate papplication!!");
 
       //   return false;
 
@@ -1118,7 +1118,7 @@ namespace aura
 
 #if !defined(MOBILE_PLATFORM)
 
-               output_message_box_error("Failed to initialize imaging library.");
+               output_error_message("Failed to initialize imaging library.");
 
 #endif
                // Non fatal? Missing images (if using images)?

@@ -98,7 +98,7 @@ namespace filemanager
       if(pleftview == nullptr)
       {
 
-         output_message_box_error("Could not create folder tree ::user::impact");
+         output_error_message("Could not create folder tree ::user::impact");
 
       }
 
@@ -109,7 +109,7 @@ namespace filemanager
       if(m_pfilelist == nullptr)
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 

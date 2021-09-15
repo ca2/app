@@ -189,7 +189,7 @@ public:
    //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
 
 
-   virtual void delete_this();
+   void delete_this() override;
 
 
    virtual const char* debug_note() const;

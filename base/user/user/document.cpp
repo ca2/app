@@ -1269,7 +1269,7 @@ namespace user
          //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
          //message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
 
-         output_message_box_error(strPrompt);
+         output_error_message(strPrompt);
 
       }
       catch (...)

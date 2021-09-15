@@ -597,6 +597,18 @@ public:
 
    }
 
+   
+   __pointer(T) pop_first(::index n = 0)
+   {
+
+      auto p = ::move(this->comparable_array < ___pointer < T >, const T* >::first(n));
+      
+      this->comparable_array < ___pointer < T >, const T* >::erase_at(n);
+      
+      return p;
+
+   }
+
 
    ___pointer < T > & first_pointer(::index n = 0)
    {

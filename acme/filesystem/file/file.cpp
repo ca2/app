@@ -112,7 +112,7 @@ namespace file
       if (!pfile)
       {
 
-         return pfile;
+         return ::move(pfile);
 
       }
 
@@ -125,7 +125,7 @@ namespace file
 
       }
 
-      return pfile;
+      return ::move(pfile);
 
    }
 

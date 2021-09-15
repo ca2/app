@@ -229,7 +229,7 @@ namespace user
 
          //message_box(strMessage);
 
-         output_message_box_error(strMessage);
+         output_error_message(strMessage);
 
          return nullptr;
 

@@ -447,7 +447,7 @@ namespace http
    string context::get_locale_schema(const char * pszUrl, const char * pszLocale, const char * pszSchema)
    {
 
-      //output_message_box_error("What?!", nullptr, e_message_box_ok);
+      //output_error_message("What?!", nullptr, e_message_box_ok);
 
       output_debug_string("What?!");
 

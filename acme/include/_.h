@@ -394,6 +394,12 @@ namespace desktop_environment_xfce
 
 #include "acme/platform/object_reference_count_debug.h"
 
+template < class root_derived >
+inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+template < class root_derived >
+inline i64 release(root_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
 
 namespace opengl
 {

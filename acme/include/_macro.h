@@ -11,7 +11,7 @@
 
 #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
-#define __MAKE_LPARAM(l, h)         ((::lparam)(::uptr)(::u32)__MAKE_LONG(l, h))
+#define __MAKE_LPARAM(l, h)         ((::uptr)(::u32)__MAKE_LONG(l, h))
 
 #define __LOBYTE(w)                 ((byte)(((dword_ptr)(w)) & 0xff))
 

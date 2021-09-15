@@ -1400,7 +1400,7 @@ namespace base
       if (!pstyle)
       {
 
-         output_message_box_error("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
+         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
          throw exit_exception(get_system());
 

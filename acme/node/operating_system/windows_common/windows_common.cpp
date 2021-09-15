@@ -30,7 +30,7 @@ CLASS_DECL_ACME::i64 _get_nanos()
 }
 
 
-CLASS_DECL_ACME void output_message_box_error(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
+CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
 {
 
    string strMessage(pszMessage);

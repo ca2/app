@@ -547,7 +547,15 @@ namespace acme
    }
 
 
-   ::e_status node::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+   
+      return ::success;
+      
+   }
+
+
+   ::e_status node::install_keyboard_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -555,12 +563,37 @@ namespace acme
    }
 
 
-   ::e_status node::unregister_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   ::e_status node::uninstall_keyboard_hook(::matter * pmatterListener)
    {
 
       return ::success;
 
    }
+
+
+   ::e_status node::install_mouse_hook(::matter * pmatterListener)
+   {
+
+      return ::success;
+
+   }
+
+   
+   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+
+      return ::success;
+   
+   }
+
+
+   ::e_status node::uninstall_mouse_hook(::matter * pmatterListener)
+   {
+
+      return ::success;
+
+   }
+
 
    ::e_status node::datetime_to_filetime(::filetime_t* pfiletime, const ::datetime::time& time)
    {

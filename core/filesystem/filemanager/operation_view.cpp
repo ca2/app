@@ -41,7 +41,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         output_message_box_error("Could not create transfer list ::user::impact");
+         output_error_message("Could not create transfer list ::user::impact");
 
       }
 
@@ -51,7 +51,7 @@ namespace filemanager
       m_pinfoview = create_view < operation_info_view >();
       if(m_pinfoview == nullptr)
       {
-         output_message_box_error("Could not create transfer information ::user::impact");
+         output_error_message("Could not create transfer information ::user::impact");
       }
       SetPane(1,m_pinfoview,false);
 

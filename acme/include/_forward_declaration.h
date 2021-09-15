@@ -48,15 +48,7 @@ class pointer_array;
 #define __throw(...) throw_exception(__VA_ARGS__)
 
 
-
-template < class root_derived >
-inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-template < class root_derived >
-inline i64 release(root_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-
-CLASS_DECL_ACME void output_message_box_error(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);
+CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);
 CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
 CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
 CLASS_DECL_ACME void output_debug_string(const wd32char * psz);

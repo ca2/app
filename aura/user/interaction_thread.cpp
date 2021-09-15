@@ -273,7 +273,7 @@ namespace user
          if (is_debugger_attached())
          {
 
-            output_message_box_error("Window not created", "Window not created", e_message_box_icon_warning);
+            output_error_message("Window not created", "Window not created", e_message_box_icon_warning);
 
          }
 

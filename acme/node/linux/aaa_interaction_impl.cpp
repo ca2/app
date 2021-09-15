@@ -424,7 +424,7 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     ::acme::get_system()->output_message_box_error("cannot create a top-level child interaction_impl.");
+                     ::acme::get_system()->output_error_message("cannot create a top-level child interaction_impl.");
 
                   }
                   else

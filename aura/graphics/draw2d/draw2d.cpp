@@ -345,7 +345,7 @@ namespace draw2d
       catch (...)
       {
 
-         output_message_box_error("except", "except", e_message_box_ok);
+         output_error_message("except", "except", e_message_box_ok);
 
       }
 
@@ -1294,7 +1294,7 @@ breakFilter2:
          if (!estatus)
          {
 
-            output_message_box_error("Failed to initialize draw2d library.");
+            output_error_message("Failed to initialize draw2d library.");
 
             estatus = error_failed;
 

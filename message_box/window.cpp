@@ -308,7 +308,7 @@ namespace app_message_box
    void window::show_message_box()
    {
 
-      //auto pprocess = output_message_box_error("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      //auto pprocess = output_error_message("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
       //pprocess->then([this](auto future)
       //   {

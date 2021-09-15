@@ -440,7 +440,7 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     output_message_box_error("cannot create a top-level child interaction_impl.");
+                     output_error_message("cannot create a top-level child interaction_impl.");
 
                   }
                   else

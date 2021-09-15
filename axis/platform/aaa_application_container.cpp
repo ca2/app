@@ -408,7 +408,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          else
          {
 
-            output_message_box_error("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 

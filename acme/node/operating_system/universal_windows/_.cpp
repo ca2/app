@@ -24,7 +24,7 @@ bool __node_acme_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   output_message_box_error("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   output_error_message("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
    //   return 0;
 

@@ -42,8 +42,8 @@ namespace windowing
       void user_common_construct();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       inline ::aura::application* get_application() const;
@@ -51,7 +51,7 @@ namespace windowing
       inline ::aura::system* get_system() const;
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::e_status create_window(::user::interaction_impl * pimpl);
@@ -141,10 +141,10 @@ namespace windowing
 
 
 
-      virtual void message_handler(::message::message* pusermessage);
+      void message_handler(::message::message* pusermessage);
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      void route_command_message(::message::command * pcommand) override;
 
       virtual void present();
 

@@ -50,9 +50,8 @@ public:
    TRANSPORT                              m_transport;
    __pointer(manual_reset_event)          m_pevent;
    __pointer_array(function)              m_functiona;
-   ::task_pointer                         m_ptask;
 
-
+   
    sequence();
 
 

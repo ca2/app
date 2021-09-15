@@ -130,6 +130,11 @@ typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 
 
 
+CLASS_DECL_ACME ::file::path dir_ca2_module();
+
+CLASS_DECL_ACME ::file::path dir_base_module();
+
+
 
 
 

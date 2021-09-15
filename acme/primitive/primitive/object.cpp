@@ -2355,6 +2355,13 @@ void object::install_message_routing(::channel* pchannel)
 
 ::property_object* object::parent_property_set_holder() const
 {
+   
+   if(m_pcontext == this)
+   {
+      
+      return nullptr;
+      
+   }
 
    return m_pcontext;
 

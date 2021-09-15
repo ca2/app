@@ -52,7 +52,7 @@ namespace filemanager
       if(m_pusertree == nullptr)
       {
 
-         output_message_box_error("Could not create folder tree impact");
+         output_error_message("Could not create folder tree impact");
 
       }
 
@@ -61,7 +61,7 @@ namespace filemanager
       if(ptree == nullptr)
       {
 
-         output_message_box_error("Could not create folder tree");
+         output_error_message("Could not create folder tree");
       
       }
       else
@@ -80,7 +80,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         output_message_box_error("Could not create file list");
+         output_error_message("Could not create file list");
 
       }
 

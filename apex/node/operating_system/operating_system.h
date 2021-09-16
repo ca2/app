@@ -36,12 +36,6 @@ inline bool IsDirSep(widechar wch);
 //CLASS_DECL_APEX oswindow get_splash(void);
 
 //CLASS_DECL_APEX int get_processor_count(void);
-
-//CLASS_DECL_APEX void output_debug_string(const char * psz);
-//CLASS_DECL_APEX void w_output_debug_string(const widechar * psz);
-//#ifdef __cplusplus
-//CLASS_DECL_APEX void output_debug_string(const widechar * pwsz);
-//#endif
 //CLASS_DECL_APEX void writeln(const char * psz);
 
 

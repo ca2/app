@@ -52,16 +52,6 @@
 
 
 
-//void output_debug_string(const char * psz)
-//{
-//
-//   output_debug_string(psz);
-//
-//}
-
-
-
-
 
 
 CLASS_DECL_APEX bool __node_apex_pre_init()

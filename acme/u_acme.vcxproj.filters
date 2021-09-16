@@ -808,9 +808,6 @@
     <ClCompile Include="platform\hyperlink.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\future.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\flags.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1412,6 +1409,9 @@
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="platform\routine.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\sequence.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
@@ -3461,6 +3461,9 @@
     </ClInclude>
     <ClInclude Include="include\_macro.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\sequence.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

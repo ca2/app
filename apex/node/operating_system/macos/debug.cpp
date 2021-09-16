@@ -221,36 +221,3 @@
 // }
 
 // void ns_log(const char * pszLog);
-
-
-// // void output_debug_string(const char * pszOutputString)
-// // {
-
-// //    string strOutputString(pszOutputString);
-
-// //    strOutputString.replace("\r\n", "\n");
-
-// //    strOutputString.replace("\n", "\r");
-
-// //    wd32char * pusz = ansi_to_wd32_dup(strOutputString);
-
-// //    wprintf(L"%S", pusz);
-
-// //    memory_free(pusz);
-
-// // }
-
-
-
-
-// // void output_debug_string(const widechar * pOutputString)
-// // {
-
-
-// //    output_debug_string(string(pOutputString));
-
-
-// // }
-
-
-

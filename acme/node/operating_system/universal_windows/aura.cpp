@@ -320,15 +320,6 @@ string key_to_char(wparam wparam, lparam lparam)
 
 
 
-
-//void output_debug_string(const char * psz)
-//{
-//
-//   ::output_debug_string(wstring(psz));
-//
-//}
-
-
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
 //{
 //

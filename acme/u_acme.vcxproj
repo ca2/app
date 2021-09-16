@@ -869,6 +869,7 @@
     <ClInclude Include="parallelization\install_mutex.h" />
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\synchronously_set_bit.h" />
+    <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\payload_type.h" />
@@ -2054,7 +2055,6 @@
     <ClCompile Include="platform\factory.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
-    <ClCompile Include="platform\future.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
@@ -2074,6 +2074,7 @@
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\routine.cpp" />
     <ClCompile Include="platform\routine_array.cpp" />
+    <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />

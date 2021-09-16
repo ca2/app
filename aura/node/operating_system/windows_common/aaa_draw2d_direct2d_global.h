@@ -54,22 +54,22 @@ namespace draw2d_direct2d
    protected:
 
 
-      static Microsoft::WRL::ComPtr<IDWriteFactory>      s_pwritefactory;
-      static Microsoft::WRL::ComPtr<ID2D1Factory1>       s_pd2factory;
+      static comptr<IDWriteFactory>      s_pwritefactory;
+      static comptr<ID2D1Factory1>       s_pd2factory;
 
 
    public:
 
 
-      Microsoft::WRL::ComPtr<ID2D1Device> m_pd2device;
-      Microsoft::WRL::ComPtr<ID2D1DeviceContext> m_pd2devicecontext;
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pd3devicecontext;
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext1> m_pd3devicecontext1;
-      Microsoft::WRL::ComPtr<ID3D11Device> m_pd3device;
-      Microsoft::WRL::ComPtr<ID3D11Device1> m_pd3device1;
-      Microsoft::WRL::ComPtr<IDXGIDevice> m_pdxgidevice;
+      comptr<ID2D1Device> m_pd2device;
+      comptr<ID2D1DeviceContext> m_pd2devicecontext;
+      comptr<ID3D11DeviceContext> m_pd3devicecontext;
+      comptr<ID3D11DeviceContext1> m_pd3devicecontext1;
+      comptr<ID3D11Device> m_pd3device;
+      comptr<ID3D11Device1> m_pd3device1;
+      comptr<IDXGIDevice> m_pdxgidevice;
 
-      Microsoft::WRL::ComPtr<ID2D1Multithread> m_d2dMultithread;
+      comptr<ID2D1Multithread> m_d2dMultithread;
 
       D3D_FEATURE_LEVEL m_featurelevel;
 

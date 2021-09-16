@@ -19,7 +19,7 @@ public:
    void add_shape(const GEOMETRY & geometry)
    {
 
-      add(__new_shape(geometry));
+      add(__create_shape(geometry));
 
    }
 

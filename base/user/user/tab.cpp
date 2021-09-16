@@ -2533,7 +2533,6 @@ namespace user
 
       m_iRestoredTabCount = restore_tabs();
 
-
       on_create_tabs();
 
 

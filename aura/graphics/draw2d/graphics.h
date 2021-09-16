@@ -35,6 +35,7 @@ namespace draw2d
    public:
 
 
+      bool                                   m_bBeginDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;

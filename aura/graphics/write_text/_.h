@@ -54,19 +54,19 @@ namespace write_text
 
 
 template < >
-inline ___shape* __new_shape(const ::write_text::text_out& textout)
+inline __pointer(___shape) __create_shape(const ::write_text::text_out& textout)
 {
 
-   return new ::write_text::text_out_shape(textout);
+   return __new(::write_text::text_out_shape(textout));
 
 }
 
 
 template < >
-inline ___shape* __new_shape(const ::write_text::draw_text& drawtext)
+inline __pointer(___shape) __create_shape(const ::write_text::draw_text& drawtext)
 {
 
-   return new ::write_text::draw_text_shape(drawtext);
+   return __new(::write_text::draw_text_shape(drawtext));
 
 }
 

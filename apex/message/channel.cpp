@@ -103,7 +103,7 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr || pmessage->m_phandlera->is_empty()) return;
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_phandlera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {

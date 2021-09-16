@@ -401,7 +401,7 @@ namespace universal_windows
          m_d3dContext->ClearState();
          m_d2dDevice->ClearResources();
          {
-            Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
+            comptr < ID3D11CommandList > pcommandlist;
             hr = m_d3dContext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {

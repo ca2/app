@@ -44,7 +44,7 @@ class dxgidebug
 {
 public:
 
-   Microsoft::WRL::ComPtr<IDXGIDebug> d;
+   comptr<IDXGIDebug> d;
 
    void init()
    {
@@ -53,7 +53,7 @@ public:
       HRESULT hr = DXGIGetDebugInterface1(0, IID_IDXGIDebug1, &d);
 #else
 
-      Microsoft::WRL::ComPtr<IDXGIInfoQueue> dxgiInfoQueue;
+      comptr<IDXGIInfoQueue> dxgiInfoQueue;
 
       typedef HRESULT(WINAPI * LPDXGIGETDEBUGINTERFACE)(REFIID, void **);
 
@@ -115,8 +115,8 @@ namespace draw2d_direct2d
 
 
 
-   Microsoft::WRL::ComPtr<IDWriteFactory>      plugin::s_pwritefactory;
-   Microsoft::WRL::ComPtr<ID2D1Factory1>       plugin::s_pd2factory;
+   comptr<IDWriteFactory>      plugin::s_pwritefactory;
+   comptr<ID2D1Factory1>       plugin::s_pd2factory;
 
 
     //plugin * g_pdirect2dplugin = nullptr;
@@ -176,9 +176,9 @@ namespace draw2d_direct2d
       };
 
       // Create the Direct3D 11 API device object and a corresponding context.
-      Microsoft::WRL::ComPtr<ID3D11Device> device;
+      comptr<ID3D11Device> device;
 
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext> context;
+      comptr<ID3D11DeviceContext> context;
 
       HRESULT hr = D3D11CreateDevice(
                    nullptr,                    // Specify nullptr to use the default adapter.

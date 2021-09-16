@@ -30,29 +30,29 @@ CLASS_DECL_ACME::i64 _get_nanos()
 }
 
 
-CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
-{
-
-   string strMessage(pszMessage);
-
-   string strTitle(pszTitle);
-
-   if (strTitle.is_empty())
-   {
-
-      output_debug_string("ERRORMSG: " + strMessage + "\n");
-
-   }
-   else
-   {
-
-      strTitle.make_upper();
-
-      output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
-
-   }
-
-}
+//CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
+//{
+//
+//   string strMessage(pszMessage);
+//
+//   string strTitle(pszTitle);
+//
+//   if (strTitle.is_empty())
+//   {
+//
+//      output_debug_string("ERRORMSG: " + strMessage + "\n");
+//
+//   }
+//   else
+//   {
+//
+//      strTitle.make_upper();
+//
+//      output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
+//
+//   }
+//
+//}
 
 
 void output_debug_string(const ansichar * psz)

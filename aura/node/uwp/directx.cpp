@@ -478,7 +478,7 @@ namespace universal_windows
          ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->ClearState();
          ::aura::get_system()->draw2d()->direct2d()->m_pd2device->ClearResources();
          {
-            Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
+            comptr < ID3D11CommandList > pcommandlist;
             hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_APEX check :
+   class CLASS_DECL_ACME check :
       virtual public object
    {
    public:
@@ -15,7 +15,7 @@ namespace user
 
 
       check();
-      virtual ~check();
+      ~check() override;
 
       inline ::enum_check get_echeck() const { return !m_propertyCheck ? enum_check::check_undefined : m_propertyCheck->m_echeck; }
       inline bool get_bcheck() const { return !m_propertyCheck ? false : m_propertyCheck->get_bool(); }
@@ -27,6 +27,8 @@ namespace user
       virtual void _001SetCheck(::enum_check check, const ::action_context & action_context);
       virtual void _001ToggleCheck(const ::action_context & action_context);
 
+      
+      virtual void on_check_change();
 
 
    };

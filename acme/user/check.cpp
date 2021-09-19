@@ -45,10 +45,6 @@ namespace user
 
          m_propertyCheck->as_echeck() = echeck;
 
-         auto psubject = get_application()->subject(m_propertyCheck->m_id);
-
-         get_application()->handle_subject(psubject);
-
       }
 
    }
@@ -69,6 +65,13 @@ namespace user
          _001SetCheck(::check_checked, context);
 
       }
+
+   }
+
+
+   void check::on_check_change()
+   {
+
 
    }
 

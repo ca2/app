@@ -19,7 +19,7 @@ namespace subject
    //}
 
 
-   handler::handler(::subject::manager * pbacking, const ::id &id) :
+   handler::handler(::manager * pbacking, const ::id &id) :
            m_pbacking(pbacking)
    {
 
@@ -73,7 +73,7 @@ namespace subject
 
       auto psubject = __new(subject(this));
 
-      while (!::subject::manager::g_bDestroyAll && ptask->task_get_run())
+      while (!::manager::g_bDestroyAll && ptask->task_get_run())
       {
 
          process(psubject);
@@ -138,7 +138,7 @@ namespace subject
    }
 
 
-   ::subject::context * handler::context(::matter *pmatter)
+   ::context * handler::context(::matter *pmatter)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -148,7 +148,7 @@ namespace subject
       if (!pcontext)
       {
 
-         pcontext = __new(::subject::context);
+         pcontext = __new(::context);
 
       }
 
@@ -172,7 +172,7 @@ namespace subject
          if (!pcontext)
          {
 
-            pcontext = __new(::subject::context);
+            pcontext = __new(::context);
 
          }
 
@@ -185,9 +185,9 @@ namespace subject
          else
          {
 
-            ::subject::subject subject(this, pcontext, pmatter);
+            ::subject subject(this, pcontext, pmatter);
 
-            e_id eid = (e_id) m_id.i64();
+            ::enum_id eid = (::enum_id) m_id.i64();
 
             m_pbacking->process(&subject);
 
@@ -201,7 +201,7 @@ namespace subject
    void handler::process(const ::action_context &actioncontext)
    {
 
-      ::subject::subject subject(m_id, actioncontext);
+      ::subject subject(m_id, actioncontext);
 
       m_pbacking->process(&subject);
 
@@ -211,7 +211,7 @@ namespace subject
    void handler::process()
    {
 
-      ::subject::subject subject(this);
+      ::subject subject(this);
 
       m_pbacking->process(&subject);
 
@@ -221,7 +221,7 @@ namespace subject
    void handler::process(const ::payload & payload)
    {
 
-      ::subject::subject subject(this);
+      ::subject subject(this);
 
       subject.m_var = payload;
 
@@ -235,7 +235,7 @@ namespace subject
       //
       //   auto& pchange = matterchange.m_element2;
 
-      //   ::subject::subject action(this, pchange, pmatter);
+      //   ::subject action(this, pchange, pmatter);
 
       //   pchange->apply(&action);
 
@@ -254,7 +254,7 @@ namespace subject
 
          auto &pcontext = mattercontext.m_element2;
 
-         ::subject::subject subject(this, pcontext, pmatter);
+         ::subject subject(this, pcontext, pmatter);
 
          subject.m_actioncontext = actioncontext;
 
@@ -296,7 +296,7 @@ namespace subject
       if (!pchange)
       {
 
-         pchange = __new(::subject::context);
+         pchange = __new(::context);
 
       }
 

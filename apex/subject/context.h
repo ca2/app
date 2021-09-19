@@ -1,9 +1,9 @@
 #pragma once
 
 
-namespace subject
-{
-
+//namespace subject
+//{
+//
 
    class CLASS_DECL_APEX context :
       virtual public matter
@@ -23,9 +23,9 @@ namespace subject
       virtual ::e_status start_task();
 
 
-      virtual bool is_up_to_date(const ::subject::subject * phandler) const;
+      virtual bool is_up_to_date(const ::subject * phandler) const;
 
-      virtual void set_up_to_date(const ::subject::subject * phandler);
+      virtual void set_up_to_date(const ::subject * phandler);
 
 
    };
@@ -33,8 +33,8 @@ namespace subject
 
    using context_pointer = __pointer(context);
 
-
-} // namespace subject
-
-
-
+//
+//} // namespace subject
+//
+//
+//

@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_APEX text :
+   class CLASS_DECL_ACME text :
       virtual public object
    {
    public:

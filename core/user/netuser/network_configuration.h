@@ -25,7 +25,7 @@ namespace usernet
 
       void on_show();
 
-      void on_control_event(::user::control_event * pevent);
+      void handle(::subject * psubject, ::context * pcontext);
 
    };
 

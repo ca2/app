@@ -132,7 +132,7 @@ enum SCRIPTVAR_FLAGS
 string getJSString(const string &str);
 
 class CLASS_DECL_APP_SCRIPTING CScriptException :
-   virtual public ::exception::exception
+   virtual public ::exception
 {
 public:
    string text;

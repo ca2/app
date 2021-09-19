@@ -235,11 +235,11 @@ SizingNone:;
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  colorMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+                  colorMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
                }
 
@@ -974,13 +974,13 @@ SizingNone:;
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
 
-               auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+               auto crButtonFace = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
                pgraphics->draw_inset_3drect(rectangle, crButtonHilite, crButtonDarkShadow);
 

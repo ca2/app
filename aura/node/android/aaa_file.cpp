@@ -691,7 +691,7 @@ namespace android
 
 
 
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::exception)
+   // IMPLEMENT_DYNAMIC(WinFileException, ::exception)
 
    /////////////////////////////////////////////////////////////////////////////
 

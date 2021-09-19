@@ -213,7 +213,7 @@ namespace axis
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
@@ -1208,19 +1208,19 @@ namespace axis
    }
 
 
-   ::user::style * session::get_user_style()
-   {
+   //::user::style * session::get_user_style()
+   //{
 
-      if (!m_puser)
-      {
+   //   if (!m_puser)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puser->m_puserstyle;
+   //   return m_puser->m_puserstyle;
 
-   }
+   //}
 
 
    void session::on_user_logon(::account::user* puser)
@@ -1263,9 +1263,7 @@ namespace axis
          if (papp.is_set())
          {
 
-            auto psubject = papp->subject(id_change_user);
-
-            papp->handle_subject(psubject);
+            papp->signal(id_change_user);
 
          }
 

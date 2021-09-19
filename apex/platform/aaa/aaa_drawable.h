@@ -39,14 +39,14 @@ namespace apex
 
       virtual bool is_composite();
 
-      virtual void hit_test(::user::item & item, const ::point & point);
-      virtual void on_hit_test(::user::item & item);
+      virtual void hit_test(::item & item, const ::point & point);
+      virtual void on_hit_test(::item & item);
 
-      virtual void hit_test(::user::item & item, ::message::mouse * pmouse);
+      virtual void hit_test(::item & item, ::message::mouse * pmouse);
 
-      virtual ::user::item hit_test(const ::point & point);
+      virtual ::item hit_test(const ::point & point);
 
-      virtual ::user::item hit_test(::message::mouse * pmouse);
+      virtual ::item hit_test(::message::mouse * pmouse);
 
 
 

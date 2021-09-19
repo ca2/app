@@ -43,9 +43,9 @@ namespace helloworld
    }
 
 
-   void main_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
@@ -138,13 +138,13 @@ namespace helloworld
    }
 
 
-   void main_impact::on_control_event(::user::control_event * pevent)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "helloworld_toggle")
+         if(psubject->m_puserinteraction->m_id == "helloworld_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

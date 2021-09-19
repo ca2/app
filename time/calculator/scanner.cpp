@@ -389,7 +389,7 @@ namespace datetime
                      input = scanner;
                      if(!check_expression_separator(input, scanner))
                      {
-                        __throw(::exception::exception("invalid date"));
+                        __throw(::exception("invalid date"));
                      }
                      return string(start, scanner - start);
                   }
@@ -404,13 +404,13 @@ namespace datetime
                      input = scanner;
                      if(!check_expression_separator(input, scanner))
                      {
-                        __throw(::exception::exception("invalid date"));
+                        __throw(::exception("invalid date"));
                      }
                      return string(start, scanner - start);
                   }
                   else
                   {
-                     __throw(::exception::exception("invalid date"));
+                     __throw(::exception("invalid date"));
                   }
                }
                else if(!strSep2.has_char())
@@ -418,13 +418,13 @@ namespace datetime
                   input = scanner;
                   if(!check_expression_separator(input, scanner))
                   {
-                     __throw(::exception::exception("invalid date"));
+                     __throw(::exception("invalid date"));
                   }
                   return string(start, scanner - start);
                }
                else
                {
-                  __throw(::exception::exception("invalid date"));
+                  __throw(::exception("invalid date"));
                }
             }
             else
@@ -444,7 +444,7 @@ namespace datetime
                         input = scanner;
                         if(!check_expression_separator(input, scanner))
                         {
-                           __throw(::exception::exception("invalid date"));
+                           __throw(::exception("invalid date"));
                         }
                         return string(start, scanner - start);
                      }
@@ -459,18 +459,18 @@ namespace datetime
                         input = scanner;
                         if(!check_expression_separator(input, scanner))
                         {
-                           __throw(::exception::exception("invalid date"));
+                           __throw(::exception("invalid date"));
                         }
                         return string(start, scanner - start);
                      }
                      else
                      {
-                        __throw(::exception::exception("invalid date"));
+                        __throw(::exception("invalid date"));
                      }
                   }
                   else
                   {
-                     __throw(::exception::exception("invalid date"));
+                     __throw(::exception("invalid date"));
                   }
                }
             }
@@ -533,7 +533,7 @@ namespace datetime
                return string(start, scanner - start);
             else
             {
-               __throw(::exception::exception("invalid date expression"));
+               __throw(::exception("invalid date expression"));
             }
          }
          else
@@ -543,7 +543,7 @@ namespace datetime
                return string(start, scanner - start);
             else
             {
-               __throw(::exception::exception("invalid date expression"));
+               __throw(::exception("invalid date expression"));
             }
          }
       }
@@ -561,7 +561,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  __throw(::exception::exception("invalid date expression"));
+                  __throw(::exception("invalid date expression"));
                }
             }
             else
@@ -571,7 +571,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  __throw(::exception::exception("invalid date expression"));
+                  __throw(::exception("invalid date expression"));
                }
             }
          }
@@ -586,7 +586,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  __throw(::exception::exception("invalid date expression"));
+                  __throw(::exception("invalid date expression"));
                }
             }
             else
@@ -596,7 +596,7 @@ namespace datetime
                   return string(start, scanner - start);
                else
                {
-                  __throw(::exception::exception("invalid date expression"));
+                  __throw(::exception("invalid date expression"));
                }
             }
          }

@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AXIS numeric_parser_exception:
-   public ::exception::exception
+   public ::exception
 {
 public:
 

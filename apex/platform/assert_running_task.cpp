@@ -44,7 +44,7 @@ namespace apex
             //e.finish(psystem);
 
          }
-         catch(::exception::exception &)
+         catch(::exception &)
          {
 
          }

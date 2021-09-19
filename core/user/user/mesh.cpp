@@ -143,9 +143,9 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
-      connect_command("mesh_view_auto_arrange",&mesh::_001OnMeshViewAutoArrange);
+      add_command_handler("mesh_view_auto_arrange", this, &mesh::_001OnMeshViewAutoArrange);
 
-      connect_command_probe("mesh_view_auto_arrange",&mesh::_001OnUpdateMeshViewAutoArrange);
+      add_command_prober("mesh_view_auto_arrange", this, &mesh::_001OnUpdateMeshViewAutoArrange);
 
    }
 
@@ -183,7 +183,7 @@ namespace user
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         brushText->create_solid(get_color(pstyle, ::user::e_element_text));
+         brushText->create_solid(get_color(pstyle, ::e_element_text));
 
          const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
 
@@ -328,7 +328,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
       m_pdrawmeshitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
@@ -351,7 +351,7 @@ namespace user
             if(!bHoverFont)
             {
                
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -362,7 +362,7 @@ namespace user
             if(bHoverFont)
             {
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
             }
 
@@ -470,7 +470,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
       pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
@@ -528,7 +528,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -541,7 +541,7 @@ namespace user
 
                bHoverFont = false;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
             }
 
@@ -576,11 +576,11 @@ namespace user
       if(pdrawitem->m_bListItemHover)
       {
          pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(128,255,255,255));
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
+         pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
       }
       else
       {
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+         pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
       }
 //      pdrawitem->m_pgraphics->set_font(pfont);
 
@@ -1952,7 +1952,7 @@ namespace user
             }
             else
             {
-               ::exception::throw_not_implemented();
+               throw interface_only_exception();
             }
          }
          else
@@ -2054,7 +2054,7 @@ namespace user
             }
             else
             {
-               ::exception::throw_not_implemented();
+               throw interface_only_exception();
             }
          }
          else
@@ -2181,7 +2181,7 @@ namespace user
          return_(pdrawitem->m_bOk,true);
 
          //return;
-         //__throw(::exception::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
+         //__throw(::exception("subitem rectangle_i32 on icon impact? why are you asking for that now?"));
       }
 
       pdrawitem->m_bOk = false;
@@ -3048,21 +3048,21 @@ namespace user
    }
 
 
-   bool mesh::on_click(const ::user::item & item)
+   bool mesh::on_click(const ::item & item)
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_puserinteraction = this;
+      subject.m_puserelement = this;
 
-      ev.m_eevent = ::user::e_event_list_clicked;
+      subject.m_id = ::e_subject_list_clicked;
 
-      on_control_event(&ev);
+      route(&subject);
 
       /*if(m_pformcallback != nullptr)
       {
 
-         m_p->on_control_event(&ev);
+         m_p->route(&subject);
 
       }
       else if(get_form() != nullptr)
@@ -3382,7 +3382,7 @@ namespace user
    //   //      __pointer(::image_list) pil = pcolumn->m_pil;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   /*if(!pil->create(
    //   MAKEINTRESOURCE(pcolumn->m_uiSmallBitmap),
    //   pcolumn->m_iSmallImageWidth,
@@ -3792,7 +3792,7 @@ namespace user
    void mesh::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::size_array sizea;
 
@@ -3906,7 +3906,7 @@ namespace user
    //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem,index iSubItem)
    //{
 
-   //   pgraphics->set_font(this, ::user::e_element_none);
+   //   pgraphics->set_font(this, ::e_element_none);
 
    //   index cx = _001CalcItemWidth(pgraphics,iItem,iSubItem);
 
@@ -3927,7 +3927,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::image_list::info ii;
       ::rectangle_i32 rectangle;
@@ -3958,7 +3958,7 @@ namespace user
 
       return (i32)cx;
 #else
-      throw ::exception::exception(todo);
+      throw ::exception(todo);
 #endif
    }
 
@@ -4720,7 +4720,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       i32 iMaxWidth = 0;
 
@@ -5416,7 +5416,7 @@ namespace user
    }
 
 
-   ::e_status mesh::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status mesh::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       m_rangeSelection.clear();
@@ -5622,7 +5622,7 @@ namespace user
 
          auto estate = get_user_state();
 
-         m_colorText = m_pmesh->get_color(pstyle, ::user::e_element_text, estate);
+         m_colorText = m_pmesh->get_color(pstyle, ::e_element_text, estate);
 
       }
 

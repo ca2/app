@@ -787,7 +787,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         m_pedit->on_after_change(::user::e_event_after_change_text);
+         m_pedit->on_after_change(::e_subject_after_change_text);
 
       }
 
@@ -929,7 +929,7 @@ namespace user
 
          }
 
-         m_pedit->on_after_change(::user::e_event_after_change_text_format);
+         m_pedit->on_after_change(::e_subject_after_change_text_format);
 
       }
 

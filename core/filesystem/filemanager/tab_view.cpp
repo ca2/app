@@ -82,34 +82,36 @@ namespace filemanager
 
          form * pformview = pdocument->get_typed_view < form >();
 
-         auto psubject = subject(BROWSE_ID);
+         ::subject subject(BROWSE_ID);
 
          if (pimpactdata->m_id == "new_folder")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            subject.payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            subject.payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            subject.payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
-         pformview->m_idCreator = pimpactdata->m_id;
+         subject.payload("creator") = pimpactdata->m_id;
 
-         pdocument->update_all_views(psubject);
+         pdocument->update_all_views(&subject);
 
          //psubject->m_pcontext = psubject->context(id_after_browse);
 
-         pdocument->update_all_views(psubject);
+         subject.m_id = id_after_browse;
+
+         pdocument->update_all_views(&subject);
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -274,12 +276,12 @@ namespace filemanager
 
 
 
-   void tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact::on_subject(psubject, pcontext);
+      impact::handle(psubject, pcontext);
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
 
       ////__update(::update)
       {

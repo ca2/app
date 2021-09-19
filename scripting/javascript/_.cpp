@@ -1849,7 +1849,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
           * have messed up and left us with the wrong ScriptLex, so
           * we want to be careful here... */
 
-         ::exception::exception exception;
+         ::exception exception;
 
          CScriptLex *oldLex = l;
          CScriptLex *newLex = new CScriptLex(function->payload->getString());

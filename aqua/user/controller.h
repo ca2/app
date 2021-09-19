@@ -6,7 +6,8 @@ namespace user
 
 
    class CLASS_DECL_AQUA controller :
-      virtual public channel
+      virtual public channel,
+      virtual public ::manager
    {
    public:
 

@@ -189,7 +189,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::subject::subject * psubject)
+   void frame_window::update_active_document(::subject * psubject)
    {
 
       auto pdocument = get_active_document();
@@ -792,7 +792,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
@@ -1290,7 +1290,7 @@ namespace user
    void frame_window::OnClose()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*if (m_lpfnCloseProc != nullptr)
       (*m_lpfnCloseProc)(this);
 
@@ -1363,15 +1363,15 @@ namespace user
    }
 
 
-   void frame_window::on_command_message(::message::command* pcommand)
-   {
+   //void frame_window::on_command(::message::command* pcommand)
+   //{
 
-      ::user::frame::on_command_message(pcommand);
+   //   ::user::frame::on_command(pcommand);
 
-   }
+   //}
 
 
-   void frame_window::route_command_message(::message::command* pcommand)
+   void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
       // pump through current ::user::impact FIRST
@@ -1380,7 +1380,7 @@ namespace user
       if (pview != nullptr)
       {
 
-         pview->on_command_message(pcommand);
+         pview->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -1394,7 +1394,7 @@ namespace user
          if (pdocument)
          {
 
-            pdocument->on_command_message(pcommand);
+            pdocument->command_handler(pcommand);
 
             if (pcommand->m_bRet)
             {
@@ -1431,7 +1431,7 @@ namespace user
       //if (pview != nullptr)
       //{
 
-      //   pview->route_command_message(pcommand);
+      //   pview->route_command(pcommand);
 
       //   if (pcommand->m_bRet)
       //   {
@@ -1446,7 +1446,7 @@ namespace user
       //{
 
       //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
+      //   ::user::frame_window::route_command(pcommand);
 
       //   if (pcommand->m_bRet)
       //   {
@@ -1457,7 +1457,7 @@ namespace user
 
       //}
 
-      on_command_message(pcommand);
+      command_handler(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -1472,7 +1472,7 @@ namespace user
       while (puiParent)
       {
 
-         puiParent->on_command_message(pcommand);
+         puiParent->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -1491,7 +1491,7 @@ namespace user
       if (papp != nullptr)
       {
 
-         papp->on_command_message(pcommand);
+         papp->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -1514,7 +1514,7 @@ namespace user
          if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
          {
 
-            ptarget->on_command_message(pcommand);
+            ptarget->command_handler(pcommand);
 
             if (pcommand->m_bRet)
             {
@@ -1551,7 +1551,7 @@ namespace user
       //if (pview != nullptr)
       //{
 
-      //   pview->route_command_message(pcommand);
+      //   pview->route_command(pcommand);
 
       //   if (pcommand->m_bRet)
       //   {
@@ -1566,7 +1566,7 @@ namespace user
       //{
 
       //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
+      //   ::user::frame_window::route_command(pcommand);
 
       //   if (pcommand->m_bRet)
       //   {
@@ -1628,7 +1628,7 @@ namespace user
       //}
 
 
-      ////::user::box::route_command_message(pcommand);
+      ////::user::box::route_command(pcommand);
 
       ////if (pcommand->m_bRet)
       ////{
@@ -1641,7 +1641,7 @@ namespace user
       ////{
 
       ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
+      ////   ::user::frame::route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1658,7 +1658,7 @@ namespace user
       ////if (pview != nullptr)
       ////{
 
-      ////   pview->route_command_message(pcommand);
+      ////   pview->route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1675,7 +1675,7 @@ namespace user
       ////   if (pview != nullptr && pview != get_active_view())
       ////   {
 
-      ////      pview->route_command_message(pcommand);
+      ////      pview->route_command(pcommand);
 
       ////      if (pcommand->m_bRet)
       ////      {
@@ -1693,7 +1693,7 @@ namespace user
       ////if (pview != nullptr)
       ////{
 
-      ////   pview->route_command_message(pcommand);
+      ////   pview->route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1708,7 +1708,7 @@ namespace user
       ////{
 
       ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
+      ////   ::user::frame::route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1725,7 +1725,7 @@ namespace user
       ////if (puiParent != nullptr)
       ////{
 
-      ////   puiParent->route_command_message(pcommand);
+      ////   puiParent->route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1742,7 +1742,7 @@ namespace user
       ////if (papp != nullptr)
       ////{
 
-      ////   papp->route_command_message(pcommand);
+      ////   papp->route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -1758,7 +1758,7 @@ namespace user
       ////if (ptarget != nullptr && ptarget != this)
       ////{
 
-      ////   ptarget->route_command_message(pcommand);
+      ////   ptarget->route_command(pcommand);
 
       ////   if (pcommand->m_bRet)
       ////   {
@@ -2131,7 +2131,7 @@ namespace user
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
@@ -2595,7 +2595,7 @@ namespace user
 //
 //#else
 //
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //
 //#endif
 //
@@ -2698,7 +2698,7 @@ namespace user
    bool frame_window::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -2799,10 +2799,10 @@ namespace user
    }
 
 
-   void frame_window::on_control_event(::user::control_event * pevent)
+   void frame_window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 

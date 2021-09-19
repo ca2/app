@@ -56,12 +56,12 @@ namespace user
    }
 
 
-   void tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      tab::on_subject(psubject, pcontext);
+      tab::handle(psubject, pcontext);
 
-      impact::on_subject(psubject, pcontext);
+      impact::handle(psubject, pcontext);
 
    }
 
@@ -1039,17 +1039,19 @@ namespace user
    }
 
 
-   void tab_view::route_command_message(::message::command * pcommand)
+   void tab_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      if (!handle(pcommand))
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
       {
 
          return;
 
       }
 
-      impact::route_command_message(pcommand);
+      impact::route_command(pcommand);
 
    }
 
@@ -1164,7 +1166,7 @@ namespace user
    }
 
 
-   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
+   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction)
    //{
 
    //   etranslucency = e_translucency_present;

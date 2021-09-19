@@ -17,7 +17,7 @@ namespace user
    }
 
 
-   void picture_interaction::hit_test(::user::item & item, const ::point_i32 & point)
+   void picture_interaction::hit_test(::item & item, const ::point_i32 & point)
    {
 
       if (is_picture_enabled())
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   void picture_interaction::on_hit_test(::user::item & item)
+   void picture_interaction::on_hit_test(::item & item)
    {
 
       if (is_picture_enabled())

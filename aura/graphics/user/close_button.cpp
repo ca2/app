@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -21,7 +21,7 @@ namespace user
 
       ::rectangle_f64 rectangle(pitem->m_rectangle);
 
-      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
       ppen->create_solid(rectangle.minimum_dimension() / 10.0, color);
 
@@ -29,7 +29,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::user::e_element_close_button)
+      if (puserinteraction->m_itemHover == ::e_element_close_button)
       {
 
          color.alpha = 180;
@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item* pitem)
+   void draw_switch_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -85,13 +85,13 @@ namespace user
 
       ::rectangle_f64 rectangle(pitem->m_rectangle);
 
-      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
       pbrush->create_solid(color);
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::user::e_element_switch_button)
+      if (puserinteraction->m_itemHover == ::e_element_switch_button)
       {
 
          color.alpha = 180;

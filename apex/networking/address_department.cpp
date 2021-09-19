@@ -734,7 +734,7 @@ namespace net
          ::str::to(sa, host);
 
       }
-      catch (const ::exception::exception& e)
+      catch (const ::exception& e)
       {
 
          output_debug_string(e.m_strMessage);

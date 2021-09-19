@@ -104,20 +104,20 @@ namespace data
    }
 
 
-   void data::subject_handler(::subject::subject * psubject)
-   {
+   //void data::signal(::signal * psignal)
+   //{
 
-      //if (m_pdatacontainerbase)
-      //{
+   //  //if (m_pdatacontainerbase)
+   //  //{
 
-      //   m_pdatacontainerbase->process(psubject);
+   //  //   m_pdatacontainerbase->process(psubject);
 
-      //}
+   //  //}
 
-   }
+   //}
 
 
-   void data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void data::handle(::subject * psubject, ::context * pcontext)
    {
 
       //if (m_pdatacontainerbase)

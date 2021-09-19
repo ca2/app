@@ -14,7 +14,7 @@ namespace user
 
 
 class CLASS_DECL_APEX object :
-   virtual public ::subject::manager
+   virtual public ::manager
 {
 protected:
 
@@ -318,11 +318,11 @@ public:
 
    virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception::exception& e);
+   virtual ::e_status handle_exception(const ::exception& e);
 
-   virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   virtual ::e_status top_handle_exception(const ::exception& e);
 
-   virtual ::e_status process_exception(const ::exception::exception& e);
+   virtual ::e_status process_exception(const ::exception& e);
 
 
    ::object* parent_property_set_holder() const override;

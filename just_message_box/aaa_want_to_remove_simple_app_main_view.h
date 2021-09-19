@@ -25,7 +25,7 @@ namespace simple_drawing
 
       void on_create_split_impact() override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

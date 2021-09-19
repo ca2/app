@@ -81,7 +81,7 @@ namespace draw2d_opengl
       m_pdevmode = (DEVMODE *)malloc(iSize);
       if (!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *)(const ::string &)pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       {
-         __throw(::exception::exception("failed to get printer DocumentProperties"));
+         __throw(::exception("failed to get printer DocumentProperties"));
          return false;
       }
       return true;

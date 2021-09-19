@@ -38,7 +38,7 @@ namespace colorertake5
          if (idx >= paramVector.get_size() || idx < 0)
          {
 
-            __throw(::exception::exception("integer_exception 127"));
+            __throw(::exception("integer_exception 127"));
 
          }
 

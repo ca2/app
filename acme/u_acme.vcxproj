@@ -758,6 +758,7 @@
     <ClInclude Include="constant\status_range_authentication.h" />
     <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user.h" />
     <ClInclude Include="constant\user_text.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
@@ -766,7 +767,7 @@
     <ClInclude Include="exception\aaa_debug_stream.h" />
     <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
     <ClInclude Include="exception\aaa_installing.h" />
-    <ClInclude Include="exception\aaa_interface_only.h" />
+    <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\aaa_invalid_argument.h" />
     <ClInclude Include="exception\aaa_invalid_character.h" />
     <ClInclude Include="exception\aaa_invalid_handle.h" />
@@ -774,7 +775,7 @@
     <ClInclude Include="exception\aaa_invalid_type.h" />
     <ClInclude Include="exception\aaa_io.h" />
     <ClInclude Include="exception\aaa_memory.h" />
-    <ClInclude Include="exception\aaa_not_implemented.h" />
+    <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="exception\aaa_not_installed.h" />
     <ClInclude Include="exception\aaa_not_licensed.h" />
     <ClInclude Include="exception\aaa_not_supported.h" />
@@ -825,6 +826,7 @@
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="include\_macro.h" />
+    <ClInclude Include="memory\chunk.h" />
     <ClInclude Include="node\operating_system\aaa_c2.h" />
     <ClInclude Include="node\operating_system\argcargv.h" />
     <ClInclude Include="node\operating_system\chronometer.h" />
@@ -869,6 +871,7 @@
     <ClInclude Include="parallelization\install_mutex.h" />
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\synchronously_set_bit.h" />
+    <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
@@ -879,6 +882,12 @@
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\topic.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="subject\handler.h" />
+    <ClInclude Include="subject\item.h" />
+    <ClInclude Include="subject\subject.h" />
+    <ClInclude Include="user\check.h" />
+    <ClInclude Include="user\element.h" />
+    <ClInclude Include="user\text.h" />
     <ClInclude Include="_start.h" />
     <None Include="filesystem\_impl.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
@@ -1442,6 +1451,8 @@
     <ClCompile Include="compress\zip\unzip.cpp" />
     <ClCompile Include="compress\zip\zip.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="exception\interface_only.cpp" />
+    <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
     <ClCompile Include="exception\const.cpp" />
@@ -2249,8 +2260,14 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\topic.cpp" />
+    <ClCompile Include="subject\handler.cpp" />
+    <ClCompile Include="subject\item.cpp" />
+    <ClCompile Include="subject\subject.cpp" />
+    <ClCompile Include="user\check.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
+    <ClCompile Include="user\element.cpp" />
+    <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>

@@ -97,7 +97,7 @@ namespace user
       virtual bool set_topic_view_by_id(const ::id & id);
 
 
-      virtual void update_active_document(::subject::subject * psubject);
+      virtual void update_active_document(::subject * psubject);
       virtual void update_active_document(const ::id & id);
 
 
@@ -204,8 +204,8 @@ namespace user
       virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP) override;
 
       
-      virtual void on_command_message(::message::command * pcommand) override;
-      virtual void route_command_message(::message::command* pcommand) override;
+      //virtual void on_command(::message::command * pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual void on_update_frame_title(bool bAddToTitle);
 
@@ -281,7 +281,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       __pointer(::user::interaction) WindowDataGetWnd();

@@ -24,7 +24,7 @@ namespace user
    ::e_status notify_icon::create_notify_icon(const ::id & id, ::user::interaction * pinteractionNotify, ::windowing::icon * picon)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return error_interface_only;
 
@@ -49,7 +49,7 @@ namespace user
 
       }
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -135,27 +135,25 @@ namespace user
 
       auto pcommand = __new(::message::command(id));
 
-      route_command_message(pcommand);
+      route_command(pcommand);
 
 //      m_plistener->call_notification_area_action(pszId);
 
    }
 
 
-   void notify_icon::route_command_message(::message::command* pcommand)
+   void notify_icon::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      //::channel::route_command_message(pcommand);
-
-      m_puserinteractionNotify->route_command_message(pcommand);
+      m_puserinteractionNotify->route_command(pcommand);
 
    }
 
 
-   void notify_icon::on_command_message(::message::command* pcommand)
+   void notify_icon::on_command(::message::command* pcommand)
    {
 
-      ::channel::on_command_message(pcommand);
+      ::channel::on_command(pcommand);
 
       //if (pcommand->m_id.is_text())
       //{

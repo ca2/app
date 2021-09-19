@@ -101,7 +101,7 @@ file_transport acme_file::stdio_open(const char * path, const char * attrs, int 
 memory acme_file::as_memory(const char * path, strsize iReadAtMostByteCount)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return ::memory();
 
@@ -506,7 +506,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 bool acme_file::exists(const char * path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -516,7 +516,7 @@ bool acme_file::exists(const char * path)
 ::e_status acme_file::put_contents(const char * path, const char * contents, strsize len)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -526,7 +526,7 @@ bool acme_file::exists(const char * path)
 ::e_status acme_file::get_temporary_file_name_template(char * szRet, strsize iBufferSize, const char * lpszName, const char * pszExtension, const char * pszTemplate)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -536,7 +536,7 @@ bool acme_file::exists(const char * path)
 filesize acme_file::get_size(const char * path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return -1;
 
@@ -554,7 +554,17 @@ filesize acme_file::get_size(FILE * pfile)
 filesize acme_file::get_size_fd(int iFile)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
+
+   return -1;
+
+}
+
+
+::e_status acme_file::clear_application_data()
+{
+
+   throw ::interface_only_exception();
 
    return -1;
 
@@ -564,7 +574,7 @@ filesize acme_file::get_size_fd(int iFile)
 bool acme_file::is_true(const char * path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -574,7 +584,7 @@ bool acme_file::is_true(const char * path)
 ::e_status acme_file::set_size(const char * lpszName, filesize size)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return success;
 
@@ -584,7 +594,7 @@ bool acme_file::is_true(const char * path)
 ::e_status acme_file::set_size(int iFileDescriptor, filesize size)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -594,7 +604,7 @@ bool acme_file::is_true(const char * path)
 ::e_status acme_file::set_size(FILE * pfile, filesize size)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -630,7 +640,7 @@ bool acme_file::is_true(const char * path)
 ::e_status acme_file::delete_file(const char * pszFileName)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -660,7 +670,7 @@ void replace_char(char * sz, char ch1, char ch2)
 ::e_status acme_file::copy(const char * pszDup, const char * pszSrc, bool bOverwrite)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -670,7 +680,7 @@ void replace_char(char * sz, char ch1, char ch2)
 ::e_status acme_file::save_stra(const char * lpszName, const string_array & stra)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return ::success;
 
@@ -680,7 +690,7 @@ void replace_char(char * sz, char ch1, char ch2)
 ::e_status acme_file::load_stra(const char * lpszName, string_array & stra, bool bAddEmpty)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return ::success;
 
@@ -690,7 +700,7 @@ void replace_char(char * sz, char ch1, char ch2)
 ::e_status acme_file::put_contents(const char * path, const memory_base & memory)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 

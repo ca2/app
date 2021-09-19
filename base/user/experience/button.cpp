@@ -127,14 +127,14 @@ namespace experience
       catch (...)
       {
 
-         throw ::exception::exception(error_failed, "no more a u");
+         throw ::exception(error_failed, "no more a u");
 
       }
 
    }
 
 
-   void button::on_hit_test(::user::item & item)
+   void button::on_hit_test(::item & item)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -148,7 +148,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               item = ::user::e_element_non_client;
+               item = ::e_element_non_client;
 
                return;
 
@@ -161,7 +161,7 @@ namespace experience
             if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
             {
 
-               item = ::user::e_element_non_client;
+               item = ::e_element_non_client;
 
                return;
 

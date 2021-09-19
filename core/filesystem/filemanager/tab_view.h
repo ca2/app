@@ -29,7 +29,7 @@ namespace filemanager
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       __pointer(document) get_document();
 

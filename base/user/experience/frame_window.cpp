@@ -249,15 +249,15 @@ namespace experience
 
       pframe->m_pframewindow = this;
 
-      auto psubject = subject(id_user_style_change);
+      auto psignal = get_signal(id_user_style_change);
 
-      psubject->add_listener(pframe);
+      psignal->add_handler(pframe);
 
       set_user_style(strStyle);
 
       auto pframewindow = this;
 
-      pframewindow->handle_subject(psubject);
+      pframewindow->handle(psignal, nullptr);
 
       return pframe;
 
@@ -639,17 +639,17 @@ namespace experience
    }
 
 
-   void frame_window::on_control_event(::user::control_event * pevent)
+   void frame_window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_click && m_pframe != nullptr)
+      if (psubject->m_id == ::e_subject_click && m_pframe != nullptr)
       {
 
-         ::id id = pevent->m_puserinteraction->GetDlgCtrlId();
+         ::id id = psubject->user_interaction()->GetDlgCtrlId();
 
          string str(__str(id));
 
-         TRACE("frame_window::on_control_event btn_clkd=%s", str.c_str());
+         TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
 
@@ -663,7 +663,7 @@ namespace experience
 
             set_need_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -675,7 +675,7 @@ namespace experience
 
             set_need_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -693,7 +693,7 @@ namespace experience
 
             post_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -703,7 +703,7 @@ namespace experience
 
             frame_experience_restore();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -715,7 +715,7 @@ namespace experience
 
             set_need_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -727,7 +727,7 @@ namespace experience
 
             set_need_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -747,7 +747,7 @@ namespace experience
 
             post_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -759,7 +759,7 @@ namespace experience
 
             set_need_redraw();
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
             return;
 
@@ -770,11 +770,17 @@ namespace experience
          }
 
       }
+      else if (psubject->id() == id_app_activated)
+      {
+
+         frame_toggle_restore();
+
+      }
 
    }
 
 
-   void frame_window::on_command_message(::message::command * pcommand)
+   void frame_window::on_command(::message::command * pcommand)
    {
 
       if (pcommand->m_id == ::e_message_system_command && m_pframe != nullptr)
@@ -872,16 +878,16 @@ namespace experience
 
       }
 
-      ::user::frame_window::on_command_message(pcommand);
+      //::user::frame_window::on_command_message(pcommand);
 
    }
 
 
-   void frame_window::route_command_message(::message::command* pcommand)
+   void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::user::frame_window::route_command_message(pcommand);
-      //::experience::frame_window::route_command_message(pcommand);
+      ::user::frame_window::route_command(pcommand);
+      //::experience::frame_window::route_command(pcommand);
 
       //if (pcommand->m_bRet)
       //{
@@ -894,7 +900,7 @@ namespace experience
       //{
 
       //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
+      //   ::user::frame_window::route_command(pcommand);
 
       //   if (pcommand->m_bRet)
       //   {
@@ -2072,7 +2078,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectWindow;
 //
-//         //pevent->m_puserinteraction->get_window_rect(rectWindow);
+//         //psubject->m_puserinteraction->get_window_rect(rectWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectWindow.center();
 //
@@ -2288,17 +2294,17 @@ namespace experience
 
 
 
-   void frame_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
+   //void frame_window::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if(psubject->id() == id_app_activated)
-      {
+   //   if(psubject->id() == id_app_activated)
+   //   {
 
-         frame_toggle_restore();
+   //      frame_toggle_restore();
 
-      }
+   //   }
 
-   }
+   //}
 
 
 } // namespace experience

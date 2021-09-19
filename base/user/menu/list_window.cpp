@@ -119,7 +119,7 @@ namespace user
 
          }
 
-         pgraphics->set_font(pitem->m_puserinteraction, ::user::e_element_none);
+         pgraphics->set_font(pitem->m_puserinteraction, ::e_element_none);
 
          string strWindowText = pitem->m_puserinteraction->get_window_text();
 
@@ -179,7 +179,7 @@ namespace user
 
       get_parent()->get_client_rect(rectangleClient);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
 

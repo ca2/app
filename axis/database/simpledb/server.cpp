@@ -260,7 +260,7 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject::subject * psubject)
+   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * psubject)
    {
 
       ::database::key key;
@@ -288,7 +288,7 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject::subject * psubject)
+   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject)
    {
 
       ::database::key key;

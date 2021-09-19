@@ -219,7 +219,7 @@ namespace multimedia
    }
 
 
-   bool decoder::multimedia_get_attribute(::e_id eattribute, ::payload & payload)
+   bool decoder::multimedia_get_attribute(::enum_id eattribute, ::payload & payload)
    {
 
       synchronous_lock lock(mutex());

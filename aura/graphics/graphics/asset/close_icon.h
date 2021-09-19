@@ -4,7 +4,7 @@ namespace user
 {
 
 
-   inline void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   inline void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -40,9 +40,9 @@ namespace user
 
       }
 
-      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      if (puserinteraction->m_itemHover == ::user::e_element_close_icon)
+      if (puserinteraction->m_itemHover == ::e_element_close_icon)
       {
 
          color.m_iA = 180;

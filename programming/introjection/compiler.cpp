@@ -587,7 +587,7 @@ namespace introjection
       if (m_strApp.is_empty())
       {
 
-         throw ::exception::exception(error_failed, "call compiler::initialize");
+         throw ::exception(error_failed, "call compiler::initialize");
 
       }
 

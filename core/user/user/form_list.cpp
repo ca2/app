@@ -53,7 +53,7 @@ namespace user
 
 
 
-   bool form_list::on_right_click(const ::user::item & item)
+   bool form_list::on_right_click(const ::item & item)
    {
 
       if (!item.is_set())
@@ -76,16 +76,13 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
+               auto psubject = __new(::subject(e_subject_click));
 
-               ::user::control_event ev;
-
-               ev.m_puserinteraction = pinteraction;
-
-               ev.m_eevent = ::user::e_event_click;
+               psubject->m_puserelement = pinteraction;
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (lparam)&ev);
+               send_message(e_message_subject, 0, psubject);
 
             }
 
@@ -143,7 +140,7 @@ namespace user
 
 
 
-   bool form_list::on_click(const ::user::item & item)
+   bool form_list::on_click(const ::item & item)
    {
 
       if(!item.is_set())
@@ -166,15 +163,15 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               ::user::control_event ev;
+               auto psubject = __new(::subject);
 
-               ev.m_puserinteraction = pinteraction;
+               psubject->m_puserelement = pinteraction;
 
-               ev.m_eevent = ::user::e_event_click;
+               psubject->m_id = ::e_subject_click;
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (lparam)& ev);
+               send_message(e_message_subject, 0, psubject);
 
             }
 
@@ -831,11 +828,15 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pformlist = this;
+         //auto pformlist = this;
 
-         auto psubject = pformlist->subject(id_control_saved);
+         ::subject subject(id_control_saved);
 
-         pformlist->handle_subject(psubject);
+         subject.m_puserelement = pinteraction;
+
+         route(&subject);
+         
+         //pformlist->handle_subject(psubject);
 
          return true;
 
@@ -905,11 +906,15 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pformlist = this;
+         //auto pformlist = this;
 
-         auto psubject = pformlist->subject(id_control_saved);
+         ::subject subject(id_control_saved);
 
-         pformlist->handle_subject(psubject);
+         subject.m_puserelement = pinteraction;
+
+         route(&subject);
+
+         //pformlist->handle_subject(psubject);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
@@ -1865,13 +1870,13 @@ break_click:;
 
 
 
-   void form_list::on_control_event(::user::control_event * pevent)
+   void form_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_set_check)
+      if (psubject->m_id == ::e_subject_set_check)
       {
 
-         auto puserinteraction = pevent->m_puserinteraction;
+         auto puserinteraction = psubject->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1885,10 +1890,10 @@ break_click:;
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+      else if (psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == pevent->m_puserinteraction)
+         if (m_pcontrolEdit == psubject->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1896,14 +1901,14 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_enter_key)
+      else if (psubject->m_id == ::e_subject_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1913,12 +1918,12 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_tab_key)
+      else if (psubject->m_id == ::e_subject_tab_key)
       {
 
          index iItem = 0;
@@ -1936,7 +1941,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
@@ -1964,15 +1969,15 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_key_down)
+      else if (psubject->m_id == ::e_subject_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, pevent->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, psubject->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2032,7 +2037,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
@@ -2094,7 +2099,7 @@ break_click:;
 
                }
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
@@ -2102,14 +2107,14 @@ break_click:;
 
       }
 
-      if (pevent->m_bRet)
+      if (psubject->m_bRet)
       {
 
          return;
 
       }
 
-      return form_mesh::on_control_event(pevent);
+      return form_mesh::handle(psubject, pcontext);
    }
 
 
@@ -2151,7 +2156,7 @@ break_click:;
 
             pinteraction->create_child(this);
 
-            pinteraction->add_control_event_handler(this);
+            pinteraction->add_handler(this);
 
             pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
 
@@ -2200,7 +2205,7 @@ break_click:;
 
             auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-            auto crBackHover = get_color(pstyle, ::user::e_element_background, ::user::e_state_hover);
+            auto crBackHover = get_color(pstyle, ::e_element_background, ::user::e_state_hover);
 
             if (!crBackHover.is_ok())
             {

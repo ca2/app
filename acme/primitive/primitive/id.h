@@ -5,7 +5,7 @@
 #include "acme/primitive/comparison/hash.h"
 
 
-enum e_id : ::u64;
+enum enum_id : ::u64;
 
 
 class lparam;
@@ -88,7 +88,7 @@ public:
             ::u64                m_u;
             ::i64                m_i;
             const char *         m_psz;
-            e_id                 m_eid;
+            enum_id              m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
             enum_task_tool       m_etasktool;
@@ -125,7 +125,7 @@ public:
 
    inline id();
    inline id(enum_type etype);
-   inline id(e_id eid);
+   inline id(enum_id eid);
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
    inline id(enum_task_tool etasktool);
@@ -255,13 +255,13 @@ public:
    inline bool operator >= (INTEGRAL i) const;
 
 
-   inline int compare(::e_id i) const;
-   inline bool operator == (::e_id eid) const;
-   inline bool operator != (::e_id eid) const;
-   inline bool operator < (::e_id eid) const;
-   inline bool operator <= (::e_id eid) const;
-   inline bool operator > (::e_id eid) const;
-   inline bool operator >= (::e_id eid) const;
+   inline int compare(::enum_id i) const;
+   inline bool operator == (::enum_id eid) const;
+   inline bool operator != (::enum_id eid) const;
+   inline bool operator < (::enum_id eid) const;
+   inline bool operator <= (::enum_id eid) const;
+   inline bool operator > (::enum_id eid) const;
+   inline bool operator >= (::enum_id eid) const;
 
 
    inline int compare(::enum_message emessage) const;
@@ -374,7 +374,7 @@ inline id::id(enum_type etype)
 }
 
 
-inline id::id(e_id eid) :
+inline id::id(enum_id eid) :
    m_etype(e_type_id),
    m_eid(eid) // used m_i to reset 64-bit field
 {
@@ -810,7 +810,7 @@ inline bool id::operator >= (INTEGRAL i) const
 }
 
 
-inline int id::compare(::e_id eid) const
+inline int id::compare(::enum_id eid) const
 {
 
    return __COMPARE_SQUARE(m_etype - e_type_id, m_i - eid);
@@ -818,7 +818,7 @@ inline int id::compare(::e_id eid) const
 }
 
 
-inline bool id::operator == (::e_id eid) const
+inline bool id::operator == (::enum_id eid) const
 {
 
    return compare(eid) == 0;
@@ -826,7 +826,7 @@ inline bool id::operator == (::e_id eid) const
 }
 
 
-inline bool id::operator != (::e_id eid) const
+inline bool id::operator != (::enum_id eid) const
 {
 
    return compare(eid) != 0;
@@ -834,7 +834,7 @@ inline bool id::operator != (::e_id eid) const
 }
 
 
-inline bool id::operator < (::e_id eid) const
+inline bool id::operator < (::enum_id eid) const
 {
 
    return compare(eid) < 0;
@@ -842,7 +842,7 @@ inline bool id::operator < (::e_id eid) const
 }
 
 
-inline bool id::operator <= (::e_id eid) const
+inline bool id::operator <= (::enum_id eid) const
 {
 
    return compare(eid) <= 0;
@@ -850,7 +850,7 @@ inline bool id::operator <= (::e_id eid) const
 }
 
 
-inline bool id::operator > (::e_id eid) const
+inline bool id::operator > (::enum_id eid) const
 {
 
    return compare(eid) > 0;
@@ -858,7 +858,7 @@ inline bool id::operator > (::e_id eid) const
 }
 
 
-inline bool id::operator >= (::e_id eid) const
+inline bool id::operator >= (::enum_id eid) const
 {
 
    return compare(eid) >= 0;

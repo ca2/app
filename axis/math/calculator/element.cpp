@@ -35,7 +35,7 @@ namespace calculator
          }
          else
          {
-            throw ::exception::exception(error_failed, "unknown identifier");
+            throw ::exception(error_failed, "unknown identifier");
          }
          return result;
       }
@@ -139,7 +139,7 @@ namespace calculator
          }
          else
          {
-            throw ::exception::exception(error_failed, "unknown function");
+            throw ::exception(error_failed, "unknown function");
          }
       }
 
@@ -212,7 +212,7 @@ namespace calculator
          else
          {
 
-            throw ::exception::exception(error_failed, "unknown function");
+            throw ::exception(error_failed, "unknown function");
 
          }
 

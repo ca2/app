@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME invalid_argument_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

@@ -70,7 +70,7 @@ namespace user
    }
 
 
-   bool menu_view::on_click(const ::user::item & item)
+   bool menu_view::on_click(const ::item & item)
    {
 
       if (!is_window_enabled())
@@ -133,7 +133,7 @@ namespace user
 
          command.m_id = idCommand;
 
-         route_command_message(&command);
+         route_command(&command);
 
          return command.m_bRet;
 
@@ -216,17 +216,17 @@ namespace user
    }
 
 
-   void menu_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void menu_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
+         if (peditview != nullptr && psubject->m_puserelement == peditview)
          {
 
             string strText;
@@ -292,7 +292,7 @@ namespace user
    }
 
 
-   void menu_view::on_hit_test(::user::item & item)
+   void menu_view::on_hit_test(::item & item)
    {
 
       index iPos = 0;
@@ -320,7 +320,7 @@ namespace user
          if (rectangle.contains(item.m_pointHitTest))
          {
 
-            item = { ::user::e_element_item, iPos, iMenu, -1 };
+            item = { ::e_element_item, iPos, iMenu, -1 };
 
             return;
 
@@ -336,7 +336,7 @@ namespace user
             if (rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { ::user::e_element_item, iPos, iMenu, iCommand };
+               item = { ::e_element_item, iPos, iMenu, iCommand };
 
                return;
 
@@ -348,7 +348,7 @@ namespace user
 
       }
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
    }
 
@@ -463,7 +463,7 @@ namespace user
 
                pgraphics->set(m_pen);
 
-               ::user::item item(::user::e_element_item, iPos, i, j);
+               ::item item(::e_element_item, iPos, i, j);
 
                if (m_itemHover == item)
                {

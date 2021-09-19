@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum e_id : u64
+enum enum_id : u64
 {
 
 
@@ -208,7 +208,8 @@ enum e_id : u64
    id_before_show_main_dialog,
    id_after_show_main_dialog,
    id_run,
-   id_os_dark_mode,
+   id_user_color,
+   //id_os_dark_mode,
    id_os_user_theme,
    id_os_font_change,
    id_font_enumeration,
@@ -216,6 +217,7 @@ enum e_id : u64
    id_font_list_layout,
    id_font_list_total_size,
    id_font_list_redraw,
+   //id_check_os_dark_mode,
 
 
    id_application,

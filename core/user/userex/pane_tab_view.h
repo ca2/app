@@ -23,6 +23,8 @@ namespace userex
       __pointer(::user::document)             m_pdocAppOptions;
       font_view *                      m_pfontview;
       color_view *                     m_pcolorview;
+      ::form_document *                m_pdocumentMenu;
+
 
 
       pane_tab_view();
@@ -83,16 +85,18 @@ namespace userex
 
       virtual bool create_app_options(::user::impact_data * pimpactdata);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void prepare_form(id id, ::form_document * pdocument);
 
       //virtual ::form_property_set * get_form_property_set() override;
       
+
+
 
    };
 

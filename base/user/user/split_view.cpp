@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   void split_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void split_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

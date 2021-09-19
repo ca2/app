@@ -134,7 +134,7 @@ namespace experience
 
             get_window_text(str);
 
-            pgraphics->set_font(this, ::user::e_element_none);
+            pgraphics->set_font(this, ::e_element_none);
 
             pgraphics->set_text_color(crText);
 

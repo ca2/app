@@ -212,10 +212,10 @@ namespace user
    }
 
 
-   //void document::route_command_message(::message::command * pcommand)
+   //void document::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    //{
 
-   //   channel::route_command_message(pcommand);
+   //   channel::route_command(pcommand);
 
    //   if (pcommand->m_bRet)
    //      return;
@@ -223,7 +223,7 @@ namespace user
    //   if (m_pimpactsystem != nullptr)
    //   {
 
-   //      m_pimpactsystem->route_command_message(pcommand);
+   //      m_pimpactsystem->route_command(pcommand);
 
    //      if (pcommand->m_bRet)
    //         return;
@@ -233,7 +233,7 @@ namespace user
    //}
 
 
-   //void document::route_command_message(::message::command* pcommand)
+   //void document::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    //{
 
    //   on_command_message(pcommand);
@@ -356,11 +356,11 @@ namespace user
    ::id document::get_topic_view_id()
    {
 
-      auto psubject = subject(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_view_id);
 
-      update_all_views(psubject);
+      update_all_views(psignal);
 
-      return psubject->payload(id_id);
+      return psignal->payload(id_id);
 
    }
 
@@ -368,13 +368,13 @@ namespace user
    bool document::set_topic_view_by_id(::id id)
    {
 
-      auto psubject = subject(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_view_id);
 
-      psubject->payload(id_id) = id;
+      psignal->payload(id_id) = id;
 
-      update_all_views(psubject);
+      update_all_views(psignal);
 
-      return psubject->m_bRet;
+      return psignal->m_bRet;
 
    }
 
@@ -955,7 +955,7 @@ namespace user
          preader->close();
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          report_load_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
@@ -1012,7 +1012,7 @@ namespace user
          pwriter->close();
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          report_save_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
@@ -1213,7 +1213,7 @@ namespace user
          //   else*/ if (base_class < ::file::exception >::bases(e))
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
-         //      // ::exception::throw_not_implemented();
+         //      // throw interface_only_exception();
          //      TRACE(trace_category_appmsg, e_trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
@@ -1261,7 +1261,7 @@ namespace user
          //{
          //   string strTitle = ::file::path(pszPathName).title();
 
-         //   //::exception::throw_not_implemented();
+         //   //throw interface_only_exception();
          //   /*
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
@@ -1516,7 +1516,7 @@ namespace user
                pcontext->m_papexcontext->file().del(newName);
 
             }
-            catch(const ::exception::exception &)
+            catch(const ::exception &)
             {
 
                TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
@@ -1871,7 +1871,7 @@ namespace user
    }
 
 
-   void document::update_all_views(::subject::subject * psubject)
+   void document::update_all_views(::subject * psubject)
    {
 
       ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
@@ -1884,7 +1884,7 @@ namespace user
          if (pview != psubject->m_psender)
          {
 
-            pview->on_subject(psubject, nullptr);
+            pview->handle(psubject, nullptr);
 
             if(psubject->m_bRet)
             {
@@ -1900,7 +1900,7 @@ namespace user
    }
 
 
-   void document::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void document::handle(::subject * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -1908,14 +1908,14 @@ namespace user
    }
 
 
-   void document::update_all_views(impact * pimpact, const ::id & id)
+   void document::update_all_views(impact * pimpactSender, const ::id & id)
    {
 
-      auto psubject = subject(id);
+      ::subject subject(id);
 
-      psubject->m_psender = pimpact;
+      subject.m_psender = pimpactSender;
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
    }
 

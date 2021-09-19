@@ -148,17 +148,17 @@ namespace user
 
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction                        = this;
+         subject.m_puserelement              = this;
 
-         ev.m_eevent                      = ::user::e_event_on_create_impact;
+         subject.m_id                      = ::e_subject_on_create_impact;
 
-         ev.m_actioncontext.m_pmessage    = pmessage;
+         subject.m_actioncontext.m_pmessage    = pmessage;
 
-         ev.m_actioncontext.add(e_source_initialize);
+         subject.m_actioncontext.add(e_source_initialize);
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 
@@ -280,11 +280,11 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   void impact::route_command_message(::message::command * pcommand)
+   void impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       // ::user::layout intentional
-      on_command_message(pcommand);
+      command_handler(pcommand);
 
       if(pcommand->m_bRet)
       {
@@ -298,7 +298,7 @@ namespace user
       if (pdocument)
       {
 
-         pdocument->on_command_message(pcommand);
+         pdocument->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -334,7 +334,7 @@ namespace user
       while (puiParent)
       {
 
-         puiParent->on_command_message(pcommand);
+         puiParent->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -353,7 +353,7 @@ namespace user
       if (papp != nullptr)
       {
 
-         papp->on_command_message(pcommand);
+         papp->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -374,7 +374,7 @@ namespace user
          if (ptarget != nullptr && ptarget != this && ptarget != this)
          {
 
-            ptarget->on_command_message(pcommand);
+            ptarget->command_handler(pcommand);
 
             if (pcommand->m_bRet)
             {
@@ -390,7 +390,7 @@ namespace user
    }
 
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -398,10 +398,10 @@ namespace user
    //}
 
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
-   //   ::user::box::on_subject(psubject, pcontext);
+   //   ::user::box::handle(psubject, pcontext);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -705,7 +705,7 @@ namespace user
 
    }
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //   __pointer(::user::message) pusermessage(pmessage);
@@ -894,9 +894,7 @@ namespace user
 
          auto pdocument = pview->get_document();
 
-         auto psubject = pdocument->subject(id_initial_update);
-
-         pdocument->handle_subject(psubject);
+         pdocument->signal(id_initial_update);
 
       }
 
@@ -972,7 +970,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::subject::context * pcontext)
+   i32 impact::get_total_page_count(::context * pcontext)
    {
 
       return 1;
@@ -1073,14 +1071,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   /*void impact::handle(::subject * psubject, ::context * pcontext)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::on_subject(psubject, pcontext);
+   ::user::impact::handle(psubject, pcontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1338,7 +1336,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   pview->handle(::subject * psubject, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1374,7 +1372,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   ( (pview))->handle(::subject * psubject, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is

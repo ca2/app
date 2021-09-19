@@ -134,7 +134,7 @@ namespace user
 
       screen_to_client(&pointCursor, ::user::e_layout_design);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       auto itemHover = hover_item();
 
@@ -293,7 +293,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -775,19 +775,19 @@ namespace user
 
             }
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserinteraction = this;
 
-            ev.m_id = m_id;
+            //subject.m_id = m_id;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            subject.m_id = ::e_subject_after_change_cur_sel;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_item = itemHit;
+            subject.m_item = itemHit;
 
-            route_control_event(&ev);
+            route(&subject);
 
          }
 
@@ -906,13 +906,13 @@ namespace user
    }
 
 
-   void list_box::on_hit_test(::user::item & item)
+   void list_box::on_hit_test(::item & item)
    {
 
       if (m_pcombo == nullptr)
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 
@@ -943,7 +943,7 @@ namespace user
          if (rectItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::user::e_element_item, iItem };
+            item  = {::e_element_item, iItem };
 
             return;
 

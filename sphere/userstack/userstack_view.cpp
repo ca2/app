@@ -91,7 +91,7 @@ namespace userstack
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(psubject);
@@ -304,7 +304,7 @@ namespace userstack
    }
 
 
-   void impact::on_hit_test(::user::item & item)
+   void impact::on_hit_test(::item & item)
    {
       
       ::rectangle_i32 rectArea;
@@ -314,7 +314,7 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
       
-         item ={ ::user::e_element_area, m_iV };
+         item ={ ::e_element_area, m_iV };
 
          return;
          
@@ -325,7 +325,7 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
 
-         item = { ::user::e_element_area, m_i_veriwell };
+         item = { ::e_element_area, m_i_veriwell };
 
          return;
 
@@ -336,13 +336,13 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
          
-         item = { ::user::e_element_area, m_i_winactionarea };
+         item = { ::e_element_area, m_i_winactionarea };
 
          return;
 
       }
       
-      item = ::user::e_element_none;
+      item = ::e_element_none;
       
    }
 

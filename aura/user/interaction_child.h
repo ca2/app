@@ -17,8 +17,8 @@ namespace user
       // on m_rectParentClient values of the interaction_impl and its ascendants.
       size_i32                                m_size;
       bool                                m_bCreate;
-      __pointer(::user::interaction)      m_puiMessage;
-      __pointer(primitive)                m_puiOwner;
+      __pointer(::user::interaction)      m_puserinteractionMessage;
+      __pointer(primitive)                m_puserprimitiveOwner;
       ::mutex                             m_mutexLongPtr;
       //iptr_to_iptr                  m_longptr;
       uptr                                m_uStyle;

@@ -157,7 +157,7 @@ namespace universal_windows
 
                   }
 
-                  ev.set_event();
+                  subject.set_event();
 
                }));
 
@@ -167,7 +167,7 @@ namespace universal_windows
          //      {
 
          //      })));
-         ev.wait(15_s);
+         subject.wait(15_s);
 
       }
       else
@@ -862,10 +862,10 @@ namespace universal_windows
 
 #endif
 
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -877,7 +877,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::on_control_event(::user::control_event * pevent)
+   void interaction_impl::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);
@@ -1162,11 +1162,11 @@ namespace universal_windows
       {
          if(m_puserinteraction != nullptr)
          {
-            m_puserinteraction->on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
+            m_puserinteraction->handle_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
          }
          else
          {
-            on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
+            handle_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
          }
          return;
       }
@@ -3294,7 +3294,7 @@ return true;
    //   lprect->bottom = (i64)(lprect->top + rectangle.Height);
 
    //   /*if(!::is_window(get_handle()))
-   //      __throw(::exception::exception("no more a window"));
+   //      __throw(::exception("no more a window"));
    //      // if it is temporary interaction_impl - probably not ca2 wrapped interaction_impl
    //      if(m_puserinteraction == nullptr || m_puserinteraction == this)
    //      {
@@ -5236,11 +5236,11 @@ return true;
          if (nMsg == WM_INITDIALOG)
             __post_init_dialog(pinteraction, rectOld, uStyle);
       }
-      catch(const const ::exception::exception & e)
+      catch(const const ::exception & e)
       {
          try
          {
-            if(App(pinteraction->get_application()).on_run_exception((::exception::exception &) e))
+            if(App(pinteraction->get_application()).on_run_exception((::exception &) e))
                goto run;
          }
          catch(...)

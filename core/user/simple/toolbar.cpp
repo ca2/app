@@ -252,7 +252,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, ::user::e_element_background));
+   pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, ::e_element_background));
 
    //::user::interaction::_001OnDraw(pgraphics);
 
@@ -486,7 +486,7 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this, ::user::e_element_none);
+   pgraphics->set_font(this, ::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -687,7 +687,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    ::rectangle_i32 rectImage;
 
-   pgraphics->set_font(this, ::user::e_element_none);
+   pgraphics->set_font(this, ::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -705,9 +705,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    
    auto estate = get_item_user_state(iItem);
 
-   _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
+   _001GetElementRect(iItem, rectItem, ::e_element_item, estate);
 
-   _001GetElementRect(iItem, rectImage, ::user::e_element_image, estate);
+   _001GetElementRect(iItem, rectImage, ::e_element_image, estate);
 
    if (estyle & e_toolbar_item_style_separator)
    {
@@ -734,9 +734,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if (estate & ::user::e_state_checked)
          {
 
-            _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
+            _001GetElementRect(iItem, rectItem, ::e_element_item, estate);
 
-            _001GetElementRect(iItem, rectImage,::user::e_element_image, estate);
+            _001GetElementRect(iItem, rectImage,::e_element_image, estate);
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
@@ -773,7 +773,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rectangle_i32 rectShadow;
 
-            _001GetElementRect(iItem, rectShadow, ::user::e_element_item, estate);
+            _001GetElementRect(iItem, rectShadow, ::e_element_item, estate);
 
             if ((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
@@ -799,7 +799,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rectangle_i32 rectangle;
 
-               _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
+               _001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
                image_source imagesource(item.m_pimage);
 
@@ -817,7 +817,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rectangle_i32 rectangle;
 
-               _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
+               _001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
                pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -855,7 +855,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rectangle_i32 rectangle;
 
-            _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
+            _001GetElementRect(iItem, rectangle, ::e_element_image, estate);
 
             image_source imagesource(item.m_pimage);
 
@@ -880,7 +880,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
          if (!(estate & ::user::e_state_disabled))
          {
 
-            _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
+            _001GetElementRect(iItem, rectItem, ::e_element_item, estate);
 
             pgraphics->fill_rectangle(rectItem, argb(190, 255, 255, 255));
 
@@ -898,7 +898,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rectangle_i32 rectangle;
 
-            if(_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate))
+            if(_001GetElementRect(iItem, rectangle, ::e_element_image, estate))
             {
 
 //            if(rectangle.width() > 10000)
@@ -948,7 +948,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    if (item.m_str.has_char())
    {
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -971,7 +971,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       pgraphics->set(brushText);
 
-      if (_001GetElementRect(iItem, rectText, ::user::e_element_text, estate) && rectText.right > 0)
+      if (_001GetElementRect(iItem, rectText, ::e_element_text, estate) && rectText.right > 0)
       {
 
          pgraphics->_DrawText(item.m_str, rectText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -983,7 +983,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle, ::user::enum_element eelement, ::user::enum_state estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle, ::enum_element eelement, ::user::enum_state estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -1012,12 +1012,12 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
 
       switch (eelement)
       {
-         case ::user::e_element_item:
+         case ::e_element_item:
 
          rectangle = item.m_rectangle;
 
          break;
-      case ::user::e_element_image:
+      case ::e_element_image:
 
          if (item.m_pimage->is_null() || item.m_pimage->area() <= 0)
          {
@@ -1034,7 +1034,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
          rectangle.right = rectangle.left + item.m_pimage->width();
 
          break;
-      case ::user::e_element_text:
+      case ::e_element_text:
       {
 
          rectangle = item.m_rectangle;
@@ -1382,7 +1382,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-void simple_toolbar::on_hit_test(::user::item & item)
+void simple_toolbar::on_hit_test(::item & item)
 {
 
    for (index iItem = 0; iItem < m_itema.get_size(); iItem++)
@@ -1391,7 +1391,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
       if (m_itema[iItem]->m_rectangle.contains(item.m_pointHitTest))
       {
 
-         item = {::user::e_element_item, iItem};
+         item = {::e_element_item, iItem};
 
          return;
 
@@ -1404,7 +1404,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    if (has_mouse_capture())
    {
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
       return;
 
@@ -1419,7 +1419,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    if (rectWindow.contains(item.m_pointHitTest))
    {
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
       return;
 
@@ -1427,7 +1427,7 @@ void simple_toolbar::on_hit_test(::user::item & item)
    else
    {
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
       return;
 
@@ -1500,7 +1500,7 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 }
 
 
-bool simple_toolbar::on_click(const ::user::item & item)
+bool simple_toolbar::on_click(const ::item & item)
 {
 
    __pointer(::user::interaction) puserinteraction = get_owner();
@@ -1849,7 +1849,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
    ASSERT(nCount > 0);
 
-   pgraphics->set_font(this, ::user::e_element_none);
+   pgraphics->set_font(this, ::e_element_none);
 
    m_dFontSize = pgraphics->m_pfont->m_dFontSize;
 
@@ -2513,7 +2513,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 //
 //   __pointer(::user::message) pusermessage(pmessage);
 //
-//   m_itemHover = ::user::e_element_none;
+//   m_itemHover = ::e_element_none;
 //
 //   OnUpdateHover();
 //

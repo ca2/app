@@ -4,7 +4,7 @@
 
 
 class CLASS_DECL_ACME invalid_character :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

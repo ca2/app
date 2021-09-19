@@ -195,11 +195,11 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
       }
 
-      pevent->SetEvent();
+      psubject->SetEvent();
 
    });
 
-   pevent->wait(durationTimeout);
+   psubject->wait(durationTimeout);
 
 }
 

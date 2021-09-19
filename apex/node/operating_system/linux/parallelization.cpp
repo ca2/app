@@ -152,11 +152,11 @@ bool __os_term_thread()
 //
 //      }
 //
-//      pevent->SetEvent();
+//      psubject->SetEvent();
 //
 //   });
 //
-//   pevent->wait(durationTimeout);
+//   psubject->wait(durationTimeout);
 //
 //}
 

@@ -44,7 +44,7 @@
 //      //
 //      //#else
 //      //
-//      //      //::exception::throw_not_implemented();
+//      //      //throw interface_only_exception();
 //      //
 //      //#endif
 //      //
@@ -67,13 +67,13 @@
 //
 //      pcreate->previous();
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_eevent = ::user::e_event_create;
+//      subject.m_id = ::e_subject_create;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
 //   }
 //
@@ -477,15 +477,15 @@
 //
 //      //}
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_eevent = ::user::e_event_set_focus;
+//      subject.m_id = ::e_subject_set_focus;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
-//      pmessage->m_bRet =  ev.m_bRet;
+//      pmessage->m_bRet =  subject.m_bRet;
 //
 //   }
 //
@@ -495,17 +495,17 @@
 //
 //      __pointer(::message::kill_focus) pkillfocus(pmessage);
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_id = m_id;
+//      //subject.m_id = m_id;
 //
-//      ev.m_eevent = ::user::e_event_kill_focus;
+//      subject.m_id = ::e_subject_kill_focus;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
-//      pkillfocus->m_bRet = ev.m_bRet;
+//      pkillfocus->m_bRet = subject.m_bRet;
 //
 //   }
 //
@@ -811,7 +811,7 @@
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
-//   //      ::user::enum_element eelementHover = hit_test(pmouse);
+//   //      ::enum_element eelementHover = hit_test(pmouse);
 //
 //   //      if (m_eelementHover != eelementHover)
 //   //      {
@@ -846,22 +846,22 @@
 //
 //   //   }
 //
-//   //   ::user::control_event ev;
+//   //   ::subject subject;
 //
-//   //   ev.m_id = m_id;
+//   //   //subject.m_id = m_id;
 //
-//   //   ev.m_puserinteraction = this;
+//   //   subject.m_puserinteraction = this;
 //
-//   //   ev.m_eevent = e_event_mouse_leave;
+//   //   subject.m_id = e_event_mouse_leave;
 //
-//   //   ev.m_pmessage = pmessage;
+//   //   subject.m_pmessage = pmessage;
 //
-//   //   on_control_event(&ev);
+//   //   route(&subject);
 //
 //   //}
 //
 //
-//   //void control::on_hit_test(::user::item & item)
+//   //void control::on_hit_test(::item & item)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();
@@ -892,10 +892,10 @@
 //   //}
 //
 //
-//   void control::route_control_event(::user::control_event* pevent)
+//   void control::route(::subject * psubject, ::context * pcontext)
 //   {
 //
-//      ::user::box::route_control_event(pevent);
+//      ::user::box::route_handling(pevent);
 //
 //   }
 //
@@ -908,10 +908,10 @@
 //   }
 //
 //
-//   void control::on_control_event(::user::control_event * pevent)
+//   void control::handle(::subject * psubject, ::context * pcontext)
 //   {
 //
-//      ::user::box::on_control_event(pevent);
+//      ::user::box::handle(psubject, pcontext);
 //
 //   }
 //
@@ -923,10 +923,10 @@
 //   }
 //
 //
-//   void control::route_command_message(::message::command * pcommand)
+//   void control::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 //   {
 //
-//      ::user::box::route_command_message(pcommand);
+//      ::user::box::route_command(pcommand);
 //
 //      if (pcommand->m_bRet)
 //      {
@@ -947,7 +947,7 @@
 //      if (puiParent != nullptr)
 //      {
 //
-//         puiParent->route_command_message(pcommand);
+//         puiParent->route_command(pcommand);
 //
 //      }
 //

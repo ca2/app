@@ -48,7 +48,7 @@
 //                if (sNewProcesses == 0) {
 //                        if (sProcesses)
 //                                free(sProcesses);
-//                                __throw(::exception::exception("could not reallocate memory"));
+//                                __throw(::exception("could not reallocate memory"));
 //                }
 //                sProcesses = sNewProcesses;
 //                iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, nullptr, 0);
@@ -128,7 +128,7 @@ extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr i
 //                if (sNewProcesses == 0) {
 //                        if (sProcesses)
 //                                free(sProcesses);
-//                                __throw(::exception::exception("could not reallocate memory"));
+//                                __throw(::exception("could not reallocate memory"));
 //                }
 //                sProcesses = sNewProcesses;
 //                iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, nullptr, 0);

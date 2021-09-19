@@ -178,7 +178,7 @@ namespace core
       virtual ::e_status initialize_html();
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
 
       virtual void _001OnFileNew();
@@ -536,7 +536,7 @@ namespace core
 
       //void _001OnFileNew();
 
-      ////virtual void route_command_message(::message::command * pcommand) override;
+      ////void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 

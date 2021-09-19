@@ -88,7 +88,7 @@ CLASS_DECL_ACME void manage_memory_free(enum_memory_heap ememoryheap, void* p)
 
       output_debug_string("unknown ememoryheap\n");
 
-      throw ::exception::exception(error_index_out_of_bounds);
+      throw ::exception(error_index_out_of_bounds);
 
    }
 

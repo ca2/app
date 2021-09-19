@@ -321,7 +321,7 @@ namespace write_text
          if (bCheckHover && rectangle.contains_y(pointCursor.y))
          {
 
-            m_puserinteraction->m_itemHover = __new(::user::item({ ::user::e_element_item, i }));
+            m_puserinteraction->m_itemHover = __new(::item({ ::e_element_item, i }));
 
             m_iHover = i;
 
@@ -337,13 +337,13 @@ namespace write_text
             if (!bCheckHover && i == m_iHover)
             {
 
-               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected));
+               pgraphics->fill_rectangle(rectangle, m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_selected));
 
             }
 
@@ -351,7 +351,7 @@ namespace write_text
          else if (!bCheckHover && i == m_iHover)
          {
 
-            auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_hover);
+            auto color = m_puserinteraction->get_color(pgraphics->m_puserstyle, ::e_element_background, ::user::e_state_hover);
 
             int iA = color.alpha;
 
@@ -575,29 +575,29 @@ namespace write_text
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto psubject = psystem->subject(id_os_dark_mode);
+      auto psignal = psystem->get_signal(id_user_color);
 
-      psubject->add_listener(this);
+      psignal->add_handler(this);
 
-      on_subject(psubject, psubject->m_mattercontext[this]);
+      call(id_user_color);
 
       return estatus;
 
    }
 
 
-//   void font_list::on_subject(::subject::subject * psubject)
+//   void font_list::on_subject(::subject * psubject)
 //   {
 //
-//      ::subject::manager::on_subject(psubject);
+//      ::manager::on_subject(psubject);
 //
 //   }
 
 
-   void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void font_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      e_id eid = (e_id)psubject->id().i64();
+      ::enum_id eid = (::enum_id)psubject->id().i64();
 
       if (eid == id_font_enumeration)
       {
@@ -641,14 +641,14 @@ namespace write_text
          m_puserinteraction->post_redraw();
 
       }
-      else if (eid == id_os_dark_mode)
+      else if (eid == id_user_color)
       {
 
          auto psystem = m_psystem;
 
          auto pnode = psystem->node();
 
-         m_bDarkMode = pnode->is_app_dark_mode();
+         m_bDarkMode = pnode->dark_mode();
 
       }
 
@@ -767,9 +767,7 @@ namespace write_text
 
             auto pfontlist = this;
 
-            auto psubject = pfontlist->subject(id_font_list_layout);
-
-            pfontlist->handle_subject(psubject);
+            pfontlist->signal(id_font_list_layout);
 
             return;
 
@@ -783,9 +781,7 @@ namespace write_text
 
                auto pfontlist = this;
 
-               auto psubject = pfontlist->subject(id_font_list_layout);
-
-               pfontlist->handle_subject(psubject);
+               pfontlist->signal(id_font_list_layout);
 
                return;
 
@@ -818,9 +814,7 @@ namespace write_text
 
             auto pfontlist = this;
 
-            auto psubject = pfontlist->subject(id_font_list_layout);
-
-            pfontlist->handle_subject(psubject);
+            pfontlist->signal(id_font_list_layout);
 
             return;
 
@@ -1464,7 +1458,7 @@ namespace write_text
 
 
 
-   ::user::item font_list::hit_test(const ::point_i32& point)
+   ::item font_list::hit_test(const ::point_i32& point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1485,7 +1479,7 @@ namespace write_text
    }
 
 
-   ::user::item font_list::hit_test_wide(const ::point_i32 & point)
+   ::item font_list::hit_test_wide(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1495,7 +1489,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return ::user::e_element_none;
+         return ::e_element_none;
 
       }
 
@@ -1505,7 +1499,7 @@ namespace write_text
          if (pfontlistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rectangle.contains(point))
          {
 
-            return ::user::item(::user::e_element_item, m_iHover);
+            return ::item(::e_element_item, m_iHover);
 
          }
 
@@ -1524,18 +1518,18 @@ namespace write_text
          if (pfontlistdata->element_at(iItem)->m_box[BOX].m_rectangle.contains(point))
          {
 
-            return ::user::item(::user::e_element_item, iItem);
+            return ::item(::e_element_item, iItem);
 
          }
 
       }
 
-      return ::user::e_element_none;
+      return ::e_element_none;
 
    }
 
 
-   ::user::item font_list::hit_test_single_column(const ::point_i32 & point)
+   ::item font_list::hit_test_single_column(const ::point_i32 & point)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1545,7 +1539,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return ::user::e_element_none;
+         return ::e_element_none;
 
       }
 
@@ -1566,13 +1560,13 @@ namespace write_text
          if (rectangle.contains(point))
          {
 
-            return { ::user::e_element_item, iItem };
+            return { ::e_element_item, iItem };
 
          }
 
       }
 
-      return ::user::e_element_none;
+      return ::e_element_none;
 
    }
 

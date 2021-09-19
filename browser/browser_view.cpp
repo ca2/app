@@ -254,10 +254,10 @@ namespace browser
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact_base::on_subject(psubject, pcontext);
+      impact_base::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {

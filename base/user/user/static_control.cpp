@@ -111,12 +111,12 @@ namespace user
 
          m_bLButtonDown = false;
 
-         ::user::control_event ev;
-         ev.m_puserinteraction = this;
-         ev.m_eevent = ::user::e_event_click;
-         ev.m_actioncontext = ::e_source_user;
+         ::subject subject;
+         subject.m_puserelement = this;
+         subject.m_id = ::e_subject_click;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 
@@ -186,7 +186,7 @@ namespace user
 
       pgraphics->set_text_color(crText);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->text_out(0, 0, get_window_text());
 

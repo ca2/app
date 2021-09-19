@@ -66,20 +66,20 @@ namespace user
 
          check::_001SetCheck(echeck, context);
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_id = m_id;
+            //subject.m_id = m_id;
 
-            ev.m_eevent = ::user::e_event_set_check;
+            subject.m_id = ::e_subject_set_check;
 
-            ev.m_actioncontext = context;
+            subject.m_actioncontext = context;
 
-            route_control_event(&ev);
+            route(&subject);
             
          }
 
@@ -232,7 +232,7 @@ namespace user
          
          ::e_draw_text edrawtext = e_draw_text_single_line;
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          ::color::color crText;
 
@@ -643,7 +643,7 @@ namespace user
    }
 
 
-   bool check_box::on_click(const ::user::item & item)
+   bool check_box::on_click(const ::item & item)
    {
 
       m_dPosition = 0.0;
@@ -660,10 +660,10 @@ namespace user
    }
 
 
-   void check_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void check_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      interaction::on_subject(psubject, pcontext);
+      interaction::handle(psubject, pcontext);
 
    }
 

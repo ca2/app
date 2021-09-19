@@ -150,7 +150,7 @@ namespace ansios
 {
 
 
-   process::process()
+   operating_system::process()
    {
 
    }
@@ -165,7 +165,7 @@ namespace ansios
    bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir, ::enum_priority epriority)
    {
 
-      if(!::process::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
+      if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
       {
 
          return false;

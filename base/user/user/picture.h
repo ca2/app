@@ -73,10 +73,10 @@ namespace user
       virtual bool is_picture_enabled() const;
 
       using ::aura::drawable::hit_test;
-      virtual void hit_test(::user::item & item, const ::point_i32 & point) override;
+      virtual void hit_test(::item & item, const ::point_i32 & point) override;
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;

@@ -275,7 +275,7 @@ namespace user
 
       virtual ::e_status destroy() override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       DECLARE_MESSAGE_HANDLER(_002OnDraw);
 

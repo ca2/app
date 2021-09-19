@@ -150,7 +150,7 @@ namespace user
 
       get_element_rect(rectText, e_element_text);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       int iDrawTextFlags = e_align_left_center;
 
@@ -453,7 +453,7 @@ namespace user
    }
 
 
-   void combo_box::on_hit_test(::user::item & item)
+   void combo_box::on_hit_test(::item & item)
    {
 
       ::rectangle rectElement;
@@ -803,7 +803,7 @@ namespace user
    }
 
 
-   void combo_box::set_current_item(const ::user::item & item, const ::action_context & context)
+   void combo_box::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       if (m_itemCurrent != item)
@@ -811,19 +811,19 @@ namespace user
 
          m_itemCurrent = item;
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserinteraction = this;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         ev.m_item = item;
+         subject.m_item = item;
 
-         ev.m_actioncontext = context;
+         subject.m_actioncontext = context;
 
-         route_control_event(&ev);
+         route(&subject);
 
          set_need_redraw();
 
@@ -922,19 +922,19 @@ namespace user
    }
 
 
-   void combo_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::on_subject(psubject, pcontext);
+         ::user::plain_edit::handle(psubject, pcontext);
 
       }
       //else
       //{
 
-      //   ::user::interaction::on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      //   ::user::interaction::handle(::subject * psubject, ::context * pcontext);
 
       //}
 
@@ -1668,25 +1668,25 @@ namespace user
    }
 
 
-   void combo_box::on_control_event(::user::control_event * pevent)
+   void combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+      if(psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         if(pevent->m_puserinteraction == m_plist)
+         if(psubject->m_puserinteraction == m_plist)
          {
 
-            if (pevent->m_item == e_element_item)
+            if (psubject->m_item == e_element_item)
             {
 
-               set_current_item((::index) pevent->m_item.m_iItem, ::e_source_user);
+               set_current_item((::index) psubject->m_item.m_iItem, ::e_source_user);
 
             }
 
             _001ShowDropDown(false);
 
-            pevent->Ret();
+            psubject->Ret();
 
             set_need_redraw();
 
@@ -1700,7 +1700,7 @@ namespace user
 
       }
 
-      ::user::plain_edit::on_control_event(pevent);
+      ::user::plain_edit::handle(psubject, pcontext);
 
    }
 

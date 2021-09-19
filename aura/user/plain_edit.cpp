@@ -262,14 +262,14 @@ namespace user
 
 
 
-      connect_command_probe("edit_cut", &plain_edit::_001OnUpdateEditCut);
-      connect_command("edit_cut", &plain_edit::_001OnEditCut);
-      connect_command_probe("edit_copy", &plain_edit::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &plain_edit::_001OnEditCopy);
-      connect_command_probe("edit_paste", &plain_edit::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &plain_edit::_001OnEditPaste);
-      connect_command_probe("edit_delete", &plain_edit::_001OnUpdateEditDelete);
-      connect_command("edit_delete", &plain_edit::_001OnEditDelete);
+      add_command_prober("edit_cut", this, &plain_edit::_001OnUpdateEditCut);
+      add_command_handler("edit_cut", this, &plain_edit::_001OnEditCut);
+      add_command_prober("edit_copy", this, &plain_edit::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", this, &plain_edit::_001OnEditCopy);
+      add_command_prober("edit_paste", this, &plain_edit::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", this, &plain_edit::_001OnEditPaste);
+      add_command_prober("edit_delete", (interaction *) this, &interaction::_001OnUpdateEditDelete);
+      add_command_handler("edit_delete", (interaction *) this, &interaction::_001OnEditDelete);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -293,7 +293,7 @@ namespace user
    }
 
 
-   void plain_edit::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void plain_edit::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(psubject->id() == id_current_text_changed)
@@ -314,7 +314,7 @@ namespace user
       else
       {
 
-         ::user::interaction::on_subject(psubject, pcontext);
+         ::user::interaction::handle(psubject, pcontext);
 
       }
 
@@ -478,7 +478,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -933,7 +933,7 @@ namespace user
 
       //}
 
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -1143,19 +1143,19 @@ namespace user
 
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_key_down;
+         subject.m_id = ::e_subject_key_down;
 
-         ev.m_actioncontext.m_pmessage = pmessage;
+         subject.m_actioncontext.m_pmessage = pmessage;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if (ev.m_bRet)
+         if (subject.m_bRet)
          {
 
             return;
@@ -1185,17 +1185,17 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_enter_key;
+            subject.m_id = ::e_subject_enter_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                on_action("submit");
@@ -1228,17 +1228,17 @@ namespace user
 
             pkey->previous();
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_tab_key;
+            subject.m_id = ::e_subject_tab_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                keyboard_set_focus_next();
@@ -1263,17 +1263,17 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_escape;
+         subject.m_id = ::e_subject_escape;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("escape");
@@ -2115,7 +2115,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -2558,7 +2558,7 @@ namespace user
 
       ::index iLine;
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -3080,7 +3080,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -3223,7 +3223,7 @@ namespace user
 
       pgraphics.defer_create();
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::rectangle_i32 rectangleClient;
 
@@ -6119,10 +6119,10 @@ finished_update:
    }
 
 
-   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & context)
+   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext)
    {
 
-      if(context.is_user_source())
+      if(actioncontext.is_user_source())
       {
 
          if(::is_set(m_propertyText))
@@ -6132,9 +6132,7 @@ finished_update:
 
             auto papplication = get_application();
 
-            auto psubject = papplication->subject(m_propertyText->m_id);
-
-            papplication->handle_subject(psubject);
+            papplication->on_property_changed(m_propertyText.m_pproperty, actioncontext);
 
          }
 
@@ -6152,20 +6150,16 @@ finished_update:
 
 #endif
       
-      if(has_control_event_handler())
+      if(has_handler())
       {
 
-         auto pevent = __new(::user::control_event);
+         auto psubject = __new(::subject(::e_subject_after_change_text));
 
-         pevent->m_puserinteraction = this;
+         psubject->m_puserelement = this;
 
-         pevent->m_id = m_id;
+         psubject->m_actioncontext = actioncontext;
 
-         pevent->m_eevent = ::user::e_event_after_change_text;
-
-         pevent->m_actioncontext = context;
-
-         post_object(e_message_control_event, 0, pevent);
+         post_object(e_message_subject, 0, psubject);
 
       }
 
@@ -6226,17 +6220,17 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_enter_key;
+         subject.m_id = ::e_subject_enter_key;
 
-         ev.m_actioncontext = ::e_source_paste;
+         subject.m_actioncontext = ::e_source_paste;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("submit");

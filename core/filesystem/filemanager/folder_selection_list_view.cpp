@@ -124,10 +124,10 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void folder_selection_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 
@@ -175,11 +175,11 @@ namespace filemanager
 
       auto pdocument = get_document();
 
-      auto psubject = pdocument->subject(id_synchronize_folder_selection);
+      ::subject subject(id_synchronize_folder_selection);
 
-      psubject->m_actioncontext = context + ::e_source_selection;
+      subject.m_actioncontext = context + ::e_source_selection;
 
-      pdocument->update_all_views(psubject);
+      pdocument->update_all_views(&subject);
 
    }
 

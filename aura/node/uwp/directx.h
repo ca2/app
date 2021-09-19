@@ -54,7 +54,7 @@ namespace universal_windows
 
       ///__pointer(::draw2d_direct2d::plugin)            m_pplugin;
       
-      ::logic::bit                                    m_bCoreWindowVisible;
+      ::boolean                                    m_bCoreWindowVisible;
 
       bool                             m_b3D;
       ::aura::system *                 m_psystem;

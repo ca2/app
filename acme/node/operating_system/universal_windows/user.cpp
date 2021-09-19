@@ -791,7 +791,7 @@ namespace user
 
 
 
-   ::logic::bit      g_bLastDarkModeApp;
+   ::boolean      g_bLastDarkModeApp;
 
 
    //void os_calc_dark_mode()

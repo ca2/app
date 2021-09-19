@@ -85,7 +85,7 @@ namespace file
       }
 
       exception::exception(const ::e_status& estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
-         ::exception::exception(estatus)
+         ::exception(estatus)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 

@@ -19,7 +19,7 @@ void debug_puts(const char*psz) noexcept
 
 //void foo()
 //{
-//   __throw(::exception::exception());
+//   __throw(::exception());
 //}
 
 

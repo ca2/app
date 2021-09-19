@@ -2,7 +2,7 @@
 
 
 #define MESSAGE_LINK(id, pchannel, preceiver, phandler) \
-   pchannel->add_message_handler(id, preceiver, phandler)
+   pchannel->add_message_handler(id, { preceiver, phandler } )
 
 //#define ON_TYPED_MESSAGE(id, MESSAGE, name) \
 //   this->get_typed_route < typename ::erase_reference < decltype(*this) >::TYPE, MESSAGE >(id, this) = [this](MESSAGE * p ## name)
@@ -43,10 +43,10 @@ namespace message
 {
 
 
-   inline void handler::operator()(::message::message* pmessage) const { (*m_p)(pmessage); }
+   //inline void handler::operator()(::message::message* pmessage) const { (*m_p)(pmessage); }
 
 
-   inline bool handler::should_run_async() const { return m_p->should_run_async(); }
+   //inline bool handler::should_run_async() const { return m_p->should_run_async(); }
 
 
 

@@ -259,7 +259,7 @@ else
 
 #if MEMDLEAK
 
-   __throw(::exception::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
+   __throw(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
 
 
    synchronous_lock lock(g_pmutgen);
@@ -292,7 +292,7 @@ else
    {
       piUse[i] = pblock->m_iBlockUse;
       pszFile[i] = pblock->m_pszFileName== nullptr ? nullptr : _strdup(pblock->m_pszFileName);
-      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::exception::engine().stack_trace(pblock->m_puiStack, pblock->m_iStack));
+      pszCallStack[i] = pblock->m_iStack <= 0 ? nullptr :_strdup(::exception_engine().stack_trace(pblock->m_puiStack, pblock->m_iStack));
       puiLine[i] = pblock->m_uiLine;
       psize] = pblock->m_size;
 
@@ -324,7 +324,7 @@ else
 //
 //#ifndef MEMDLEAK
 //
-//   __throw(::exception::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
+//   __throw(::exception("plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined"));
 //
 //#endif
 //

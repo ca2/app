@@ -104,7 +104,7 @@ namespace user
 
 
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void post_non_client_destroy() override;
@@ -142,7 +142,7 @@ namespace user
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
-      virtual i32  get_total_page_count(::subject::context * psubject) override;
+      virtual i32  get_total_page_count(::context * psubject) override;
 
 
       virtual ::user::interaction::enum_type get_window_type() override;
@@ -180,14 +180,14 @@ namespace user
       //virtual void OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pDeactiveView);
       //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
 
-      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
       //    virtual void assert_valid() const;
 
 
 
-      //      virtual void route_command_message(::message::command * pcommand);
+      //      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
       //      virtual bool pre_create_window(::user::system * pusersystem);
 
@@ -288,10 +288,10 @@ namespace user
       }
 
 
-      virtual void route_command_message(::message::command * pcommand) override
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override
       {
 
-         ::user::impact::route_command_message(pcommand);
+         ::user::impact::route_command(pcommand);
 
       }
 
@@ -313,12 +313,44 @@ namespace user
       }
 
       //using ::user::impact::update;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override
+      void handle(::subject * psubject, ::context * pcontext) override
       {
 
-         ::user::impact::on_subject(psubject, pcontext);
+         ::user::impact::handle(psubject, pcontext);
 
-         VIEW::on_subject(psubject, pcontext);
+         VIEW::handle(psubject, pcontext);
+
+         ////VIEW::handle(psubject, pcontext);
+
+         //if (psubject->m_bRet)
+         //{
+
+         //   return;
+
+         //}
+
+         //if (m_puserinteractionImpactNotify)
+         //{
+
+         //   m_puserinteractionImpactNotify->handle(pevent);
+
+         //}
+
+         //::user::interaction * puiParent = get_parent();
+
+         //if (puiParent != nullptr)
+         //{
+
+         //   puiParent->handle(pevent);
+
+         //   if (psubject->m_bRet)
+         //   {
+
+         //      return;
+
+         //   }
+
+         //}
 
       }
 
@@ -353,44 +385,44 @@ namespace user
       }
 
 
-      virtual void on_control_event(::user::control_event * pevent) override
-      {
+      //virtual void handle(::subject * psubject, ::context * pcontext) override
+      //{
 
-         VIEW::on_control_event(pevent);
+      //   VIEW::handle(psubject, pcontext);
 
-         if(pevent->m_bRet)
-         {
+      //   if(psubject->m_bRet)
+      //   {
 
-            return;
+      //      return;
 
-         }
+      //   }
 
-         if(m_puserinteractionImpactNotify)
-         {
+      //   if(m_puserinteractionImpactNotify)
+      //   {
 
-            m_puserinteractionImpactNotify->on_control_event(pevent);
+      //      m_puserinteractionImpactNotify->handle(psubject, pcontext);
 
-         }
+      //   }
 
-         ::user::interaction * puiParent = get_parent();
+      //   ::user::interaction * puiParent = get_parent();
 
-         if (puiParent != nullptr)
-         {
+      //   if (puiParent != nullptr)
+      //   {
 
-            puiParent->on_control_event(pevent);
+      //      puiParent->handle(psubject, pcontext);
 
-            if (pevent->m_bRet)
-            {
+      //      if (psubject->m_bRet)
+      //      {
 
-               return;
+      //         return;
 
-            }
+      //      }
 
-         }
+      //   }
 
 
 
-      }
+      //}
 
    };
 

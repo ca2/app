@@ -72,7 +72,7 @@ namespace user
 
 
 
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -105,7 +105,7 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      void on_hit_test(::user::item& item) override;
+      void on_hit_test(::item& item) override;
 
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;

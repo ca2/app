@@ -14,7 +14,7 @@
 //   public:
 //
 //
-//      virtual void on_control_event(::user::control_event * pcontrolevent) = 0;
+//      virtual void handle_event(::user::control_event * pcontrolevent) = 0;
 //
 //
 //   };

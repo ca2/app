@@ -55,6 +55,8 @@ namespace apex
 
       bool                                                  m_bProgrammerMode;
 
+      //bool                                                  m_bOnInitializeWindowObject;
+
       bool                                                  m_bSystemSynchronizedCursor;
       point_i32                                                 m_pointCursor;
 
@@ -133,9 +135,16 @@ namespace apex
 
       void install_message_routing(::channel* pchannel) override;
 
+
+      //virtual ::e_status on_initialize_window_object();
+      //virtual ::e_status _on_initialize_window_object();
+
+
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
+
+
 
       //virtual void enum_display_monitors();
 
@@ -402,7 +411,7 @@ namespace apex
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::message::command * pcommand) override;
+      //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 

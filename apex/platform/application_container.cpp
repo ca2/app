@@ -572,7 +572,7 @@ __pointer(::application) application_container::start_application(const char * p
       papp = create_application(pszAppId, bSynch, pcreate);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))

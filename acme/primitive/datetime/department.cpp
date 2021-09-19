@@ -580,7 +580,7 @@ namespace datetime
          return 30;
       }
       
-      throw ::exception::exception(error_invalid_argument);
+      throw ::exception(error_invalid_argument);
 
 
    }

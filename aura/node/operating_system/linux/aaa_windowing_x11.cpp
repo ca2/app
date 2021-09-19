@@ -2983,7 +2983,7 @@ bool x11_on_event(XEvent * pevent)
             if(g_pobjectaExtendedEventListener)
             {
 
-               cookie = &pevent->xcookie;
+               cookie = &psubject->xcookie;
 
             }
             else
@@ -3339,7 +3339,7 @@ bool x11_message_loop_step()
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&ev.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&
@@ -3431,7 +3431,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(g_pobjectaExtendedEventListener && g_pobjectaExtendedEventListener->get_count() > 0)
          {
 
-            e_id eid;
+            ::enum_id eid;
 
             switch (cookie->evtype)
             {
@@ -3457,7 +3457,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
-            ::subject::context context;
+            ::context context;
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {

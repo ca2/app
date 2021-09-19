@@ -360,7 +360,7 @@ inline bool myspace(char ch)
 
 //   __UNREFERENCED_PARAMETER(pcszRelative);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
@@ -372,14 +372,14 @@ inline bool myspace(char ch)
 //   __UNREFERENCED_PARAMETER(pcszRelative);
 
 //   __UNREFERENCED_PARAMETER(psz2);
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
 ::file::listing & dir_context::root_ones(::file::listing & listing)
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return listing;
 
@@ -408,7 +408,7 @@ inline bool myspace(char ch)
       if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
-         //__throw(::exception::exception("should implement recursive zip"));
+         //__throw(::exception("should implement recursive zip"));
 
          //m_pziputil->ls(papp,l);
 
@@ -468,7 +468,7 @@ inline bool myspace(char ch)
       if (l.m_eextract != extract_none && ::thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
       {
 
-         //__throw(::exception::exception("should implement recursive zip"));
+         //__throw(::exception("should implement recursive zip"));
 
          //m_pziputil->ls(papp,l);
 
@@ -1329,7 +1329,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::time()
 {
    
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -1339,7 +1339,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::stage()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -1349,7 +1349,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::stageapp()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -1359,7 +1359,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::netseed()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -1451,7 +1451,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 
    __UNREFERENCED_PARAMETER(pszId);
    
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -1463,7 +1463,7 @@ bool dir_context::mk(const ::file::path & path)
 
    __UNREFERENCED_PARAMETER(path);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return false;
 
@@ -1476,7 +1476,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(bRecursive);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return false;
 
@@ -2173,7 +2173,7 @@ ret:
 
    __UNREFERENCED_PARAMETER(psz);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -2188,7 +2188,7 @@ ret:
 
       auto psystem = get_system()->m_papexsystem;
 
-      //__throw(error_interface_only, "this is an interface");
+      //throw interface_only_exception("this is an interface");
 
       return psystem->m_pdirsystem->m_pathAppData;
 
@@ -2260,7 +2260,7 @@ ret:
 //   __UNREFERENCED_PARAMETER(pobject);
 //   __UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
@@ -2269,7 +2269,7 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2279,7 +2279,7 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2289,7 +2289,7 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2302,7 +2302,7 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 //::file::path dir_context::default_userdata(const string & pcszPrefix, const string & lpcszLogin)
@@ -2313,7 +2313,7 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 //::file::path dir_context::default_userfolder(const string & pcszPrefix, const string & lpcszLogin)
@@ -2324,14 +2324,14 @@ ret:
 
 //   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
 ::file::path dir_context::userquicklaunch()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -2341,7 +2341,7 @@ ret:
 ::file::path dir_context::userprograms()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -2351,7 +2351,7 @@ ret:
 ::file::path dir_context::commonprograms()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return "";
 
@@ -2363,7 +2363,7 @@ bool dir_context::is_inside_time(const ::file::path & pszPath)
 
    __UNREFERENCED_PARAMETER(pszPath);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return false;
 
@@ -2376,7 +2376,7 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
    __UNREFERENCED_PARAMETER(pszDir);
    __UNREFERENCED_PARAMETER(pszPath);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
 
    return false;
 

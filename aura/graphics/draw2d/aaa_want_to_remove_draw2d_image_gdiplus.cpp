@@ -265,7 +265,7 @@ const char * pszType,
 const char * pszId)
 
 {
-::exception::throw_not_implemented();
+throw interface_only_exception();
 /*
 ::memory_file file(this);
 

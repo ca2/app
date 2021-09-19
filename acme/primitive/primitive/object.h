@@ -74,6 +74,7 @@ public:
    //object() : m_pmeta(nullptr) { }
    object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    //object(::object * pobject);
+   object(const ::id & id):property_object(id){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    object(enum_default_initialization) : ::object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; };
    ~object() override;
 
@@ -364,11 +365,11 @@ public:
 
    //virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception::exception& e) override;
+   virtual ::e_status handle_exception(const ::exception& e) override;
 
-   virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   virtual ::e_status top_handle_exception(const ::exception& e);
 
-   virtual ::e_status process_exception(const ::exception::exception& e);
+   virtual ::e_status process_exception(const ::exception& e);
 
 
    ::property_object* parent_property_set_holder() const override;
@@ -941,11 +942,11 @@ public:
 
    //virtual ::e_status enable_application_events(bool bEnable = true);
 
-   //virtual ::e_status handle_exception(const ::exception::exception& e);
+   //virtual ::e_status handle_exception(const ::exception& e);
 
-   //virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   //virtual ::e_status top_handle_exception(const ::exception& e);
 
-   //virtual ::e_status process_exception(const ::exception::exception& e);
+   //virtual ::e_status process_exception(const ::exception& e);
 
 
    //::object* parent_property_set_holder() const override;

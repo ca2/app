@@ -169,22 +169,22 @@ namespace user
 
          }
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            subject.m_id = ::e_subject_after_change_cur_sel;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_item = item;
+            subject.m_item = item;
 
-            ev.m_id = m_idView;
+            subject.m_id = m_idView;
 
-            route_control_event(&ev);
+            route(&subject);
             
          }
 
@@ -222,20 +222,20 @@ namespace user
 
          }
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_id = m_idView;
+            subject.m_id = m_idView;
 
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -246,10 +246,10 @@ namespace user
    }
 
 
-   void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void font_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      list_box::on_subject(psubject, pcontext);
+      list_box::handle(psubject, pcontext);
 
    }
 
@@ -323,7 +323,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         ::color::color colorBackground = get_color(pstyle, ::user::e_element_background);
+         ::color::color colorBackground = get_color(pstyle, ::e_element_background);
 
          auto rectBackground(rectangleClient);
 
@@ -519,7 +519,7 @@ namespace user
    }
 
 
-   void font_list::on_hit_test(::user::item & item)
+   void font_list::on_hit_test(::item & item)
    {
 
       item = m_pfontlist->hit_test(item.m_pointHitTest);
@@ -587,9 +587,9 @@ namespace user
 
             auto psystem = m_psystem->m_paurasystem;
 
-            auto psubject = psystem->subject(id_font_enumeration);
+            psystem->signal(id_font_enumeration);
 
-            psystem->handle_subject(psubject);
+            //psystem->handle_subject(psubject);
 
             //fork([this]()
   //             {

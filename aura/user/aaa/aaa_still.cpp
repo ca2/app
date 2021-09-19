@@ -149,7 +149,7 @@ namespace user
             else
             {
 
-               pgraphics->set_font(this, ::user::e_element_none);
+               pgraphics->set_font(this, ::e_element_none);
 
             }
 
@@ -198,7 +198,7 @@ namespace user
    //   if (hit_test(pmouse->)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_button_down))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_button_down))
    //      {
 
    //         psession->m_puiLastLButtonDown = this;
@@ -228,7 +228,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_down))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -258,7 +258,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_up))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -305,15 +305,15 @@ namespace user
    //   //   else
    //   //   {
 
-   //   //      ::user::control_event ev;
+   //   //      ::subject subject;
 
-   //   //      ev.m_puserinteraction = this;
+   //   //      subject.m_puserinteraction = this;
 
-   //   //      ev.m_eevent = ::user::e_event_click;
+   //   //      subject.m_id = ::e_subject_click;
 
-   //   //      on_control_event(&ev);
+   //   //      route(&subject);
 
-   //   //      pmessage->m_bRet = ev.m_bRet;
+   //   //      pmessage->m_bRet = subject.m_bRet;
 
    //   //      if (!pmessage->m_bRet)
    //   //      {
@@ -368,18 +368,18 @@ namespace user
 
    //   //   if (iOldHover == -1)
    //   //   {
-   //   //      ::user::control_event ev;
-   //   //      ev.m_puserinteraction = this;
-   //   //      ev.m_eevent = ::user::e_event_mouse_enter;
+   //   //      ::subject subject;
+   //   //      subject.m_puserinteraction = this;
+   //   //      subject.m_id = ::e_subject_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
    //   //   {
-   //   //      ::user::control_event ev;
-   //   //      ev.m_puserinteraction = this;
-   //   //      ev.m_eevent = ::user::e_event_mouse_leave;
+   //   //      ::subject subject;
+   //   //      subject.m_puserinteraction = this;
+   //   //      subject.m_id = ::e_subject_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -399,9 +399,9 @@ namespace user
    //   //if (iOldHover >= 0)
    //   //{
    //   //   set_need_redraw();
-   //   //   ::user::control_event ev;
-   //   //   ev.m_puserinteraction = this;
-   //   //   ev.m_eevent = ::user::e_event_mouse_leave;
+   //   //   ::subject subject;
+   //   //   subject.m_puserinteraction = this;
+   //   //   subject.m_id = ::e_subject_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
    //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -412,7 +412,7 @@ namespace user
 
    //}
 
-   //void still::on_hit_test(::user::item & item)
+   //void still::on_hit_test(::item & item)
    //{
 
    //   return control::hit_test(pmouse);
@@ -444,7 +444,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -471,7 +471,7 @@ namespace user
       if (m_estyle == style_text)
       {
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          string str;
 
@@ -758,7 +758,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
@@ -784,12 +784,12 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::user::control_event ev;
-         ev.m_puserinteraction = this;
-         ev.m_eevent = ::user::e_event_click;
-         ev.m_pmessage = pmessage;
-         on_control_event(&ev);
-         pmessage->m_bRet = ev.m_bRet;
+         ::subject subject;
+         subject.m_puserinteraction = this;
+         subject.m_id = ::e_subject_click;
+         subject.m_pmessage = pmessage;
+         route(&subject);
+         pmessage->m_bRet = subject.m_bRet;
          if (pmessage->m_bRet)
          {
 

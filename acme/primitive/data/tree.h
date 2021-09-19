@@ -96,8 +96,8 @@ namespace data
       virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
 
-      void subject_handler(::subject::subject * psubject) override;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void signal(::signal * psignal) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual void on_fill_children() override;

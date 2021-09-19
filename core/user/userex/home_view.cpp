@@ -70,20 +70,20 @@ namespace userex
    }
 
 
-   void home_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void home_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
 
-   void home_view::on_control_event(::user::control_event * pevent)
-   {
+   //void home_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::user::impact::on_control_event(pevent);
+   //   ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    void home_view::on_message_create(::message::message * pmessage)
@@ -216,17 +216,17 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_eevent = ::user::e_event_after_change_cur_sel;
+      subject.m_id = ::e_subject_after_change_cur_sel;
 
-      ev.m_id = m_idView;
+      subject.m_id = m_idView;
 
-      ev.m_puserinteraction = this;
+      subject.m_puserelement = this;
 
-      ev.m_actioncontext = ::e_source_user;
+      subject.m_actioncontext = ::e_source_user;
 
-      on_control_event(&ev);
+      route(&subject);
 
    }
 

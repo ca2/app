@@ -6,7 +6,7 @@ namespace database
 
 
    class CLASS_DECL_AXIS exception :
-      public ::exception::exception
+      public ::exception
    {
    public:
 

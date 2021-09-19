@@ -661,7 +661,7 @@ pacmedir->create(pathDVP_Folder);
          }
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
          //::exception_pointer esp(pexception);
@@ -681,7 +681,7 @@ pacmedir->create(pathDVP_Folder);
          }
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
          //::exception_pointer esp(pexception);
@@ -701,7 +701,7 @@ pacmedir->create(pathDVP_Folder);
          }
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
          //::exception_pointer esp(pexception);
@@ -2404,7 +2404,7 @@ auto tickStart = ::millis::now();
                      strResult += ":*<invalid-syntax>*:"; // fatal;
                      break;
                      break;
-                     //__throw(::exception::exception("invalid syntax."));
+                     //__throw(::exception("invalid syntax."));
                   }
                }
                continue;
@@ -3273,7 +3273,7 @@ ch_else:
                output_debug_string("script_compiler::parse_pstr_set");
 
             }
-            catch (const ::exception::exception & )
+            catch (const ::exception & )
             {
 
                output_debug_string("script_compiler::parse_pstr_set");

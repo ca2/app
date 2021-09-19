@@ -118,7 +118,7 @@ namespace user
 
       pcreate->previous();
       
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -165,12 +165,12 @@ namespace user
    }
 
 
-   ::user::callback* form::get_user_callback()
-   {
+   //::handler* form::get_user_callback()
+   //{
 
-      return get_form_callback();
+   //   return get_form_callback();
 
-   }
+   //}
 
 
    ::user::form * form::get_parent_form()

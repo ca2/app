@@ -12,7 +12,7 @@ CLASS_DECL_APEX int ca2_main();
 
 void CLASS_DECL_APEX __cdecl _ca2_purecall()
 {
-   __throw(::exception::exception());
+   __throw(::exception());
 }
 
 

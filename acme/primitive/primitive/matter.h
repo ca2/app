@@ -1,13 +1,13 @@
 #pragma once
 
 
-
 // ATTENTION
 // Shared with:
 // Objective-C++
 
 
 class CLASS_DECL_ACME matter :
+   virtual public handler,
    virtual public referenceable
 {
 private:
@@ -198,7 +198,10 @@ public:
    // <3TBS_!! handle -> call_member <3TBS_!!
    virtual ::e_status call_member(::i64 i64);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   virtual ::e_status handle(enum_message emessage, i64 iData = 0, ::matter * pmatter = nullptr);
+   //::e_status handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
+   void handle(::subject * psubject, ::context * pcontext) override;
+   void handle(::message::message * pmessage) override;
+
 
 
    inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
@@ -293,9 +296,12 @@ public:
    virtual ::e_status sync_wait();
    virtual ::e_status sync_wait(const ::duration & duration);
 
+
    // <3ThomasBorregaardSørensen__!! likes handler concept...
-   virtual void subject_handler(::subject::subject * psubject);
-   virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   //void route(::signal * psignal) override;
+   //void signal(::signal * psignal) override;
+   //void route(::subject * psubject, ::context * pcontext) override;
+   //void post_process(::subject * psubject, ::context * pcontext) override;
 
 
    virtual ::e_status operator()();

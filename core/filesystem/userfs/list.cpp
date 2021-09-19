@@ -84,7 +84,7 @@ namespace userfs
    }
 
 
-   bool list::on_click(const ::user::item & item)
+   bool list::on_click(const ::item & item)
    {
 
       ::user::range range;
@@ -156,7 +156,7 @@ namespace userfs
    }
 
 
-   void list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void list::handle(::subject * psubject, ::context * pcontext)
    {
 
 

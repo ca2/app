@@ -50,9 +50,9 @@ namespace hi5
          virtual void on_change_cur_sel();
 
 
-         virtual void on_control_event(::user::control_event * pevent) override;
+         virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-         virtual bool style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element);
+         virtual bool style_translucency(::user::enum_translucency & etranslucency, ::enum_element);
 
 
       };

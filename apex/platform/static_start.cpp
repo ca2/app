@@ -132,7 +132,7 @@ namespace apex
    ::mutex * g_pmutexCred;
 
 
-   class ::exception::engine* g_pexceptionengine;
+   class ::exception_engine* g_pexceptionengine;
 
    ::mutex * g_pmutexMessageDispatch;
 

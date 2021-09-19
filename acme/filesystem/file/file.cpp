@@ -164,7 +164,7 @@ namespace file
    int file::ungetc(int iChar)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return -1;
 
@@ -591,7 +591,7 @@ namespace file
    int file::put_character_back(int iCharacter)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return -1;
 
@@ -1097,7 +1097,7 @@ namespace file
    void file::write(const void *pdata, memsize nCount, memsize * dwWritten)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -1212,122 +1212,122 @@ namespace file
    void file::write (char ch)
    {
       __UNREFERENCED_PARAMETER(ch);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (uchar uch)
    {
       __UNREFERENCED_PARAMETER(uch);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (i16 sh)
    {
       __UNREFERENCED_PARAMETER(sh);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (u16 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (unichar wch)
    {
       __UNREFERENCED_PARAMETER(wch);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (bool b)
    {
       __UNREFERENCED_PARAMETER(b);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (i32 i)
    {
       __UNREFERENCED_PARAMETER(i);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (u32 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (i64 i)
    {
       __UNREFERENCED_PARAMETER(i);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (u64 u)
    {
       __UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (float f)
    {
       __UNREFERENCED_PARAMETER(f);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (double d)
    {
       __UNREFERENCED_PARAMETER(d);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::rectangle_i32 & rectangle)
    {
       __UNREFERENCED_PARAMETER(pcrect);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const size_i32 & & size)
    {
       __UNREFERENCED_PARAMETER(size);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (::type info)
    {
       __UNREFERENCED_PARAMETER(info);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (matter & matter)
    {
       __UNREFERENCED_PARAMETER(matter);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const char * psz)
    {
       __UNREFERENCED_PARAMETER(psz);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const id & id)
    {
       __UNREFERENCED_PARAMETER(id);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::payload & payload)
    {
       __UNREFERENCED_PARAMETER(payload);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::string & str)
    {
       __UNREFERENCED_PARAMETER(str);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
    */
 

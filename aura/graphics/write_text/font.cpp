@@ -101,7 +101,7 @@ namespace write_text
 
       __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 

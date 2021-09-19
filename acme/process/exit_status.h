@@ -2,7 +2,7 @@
 
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -25,7 +25,7 @@ namespace process
    //CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
-} // namespace process
+} // namespace operating_system
 
 
 

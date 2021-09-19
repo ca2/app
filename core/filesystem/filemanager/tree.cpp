@@ -24,6 +24,35 @@ namespace filemanager
    }
 
 
+#ifdef _DEBUG
+
+
+   i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 tree::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 tree::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+#endif
+
+
    ::e_status tree::initialize_filemanager_tree(document * pdocument)
    {
 
@@ -767,10 +796,10 @@ namespace filemanager
    }
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 

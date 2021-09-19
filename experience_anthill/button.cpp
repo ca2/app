@@ -125,7 +125,7 @@ namespace experience
 
          get_window_text(str);
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          pgraphics->set_text_color(crText);
 
@@ -200,7 +200,7 @@ namespace experience
    }
 
 
-   void button::on_hit_test(::user::item & item)
+   void button::on_hit_test(::item & item)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -208,7 +208,7 @@ namespace experience
       if (m_spregion.is_null())
       {
 
-         item= ::user::e_element_none;
+         item= ::e_element_none;
          return;
 
       }
@@ -224,12 +224,12 @@ namespace experience
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
          return;
 
       }
 
-      item= ::user::e_element_client;
+      item= ::e_element_client;
 
    }
 

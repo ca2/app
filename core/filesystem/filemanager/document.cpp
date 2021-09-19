@@ -24,24 +24,24 @@ namespace filemanager
 
       //command_signalid id;
 
-      connect_command_probe("levelup", &document::_001OnUpdateLevelUp);
-      connect_command("levelup", &document::_001OnLevelUp);
-      connect_command_probe("add_location", &document::_001OnUpdateAddLocation);
-      connect_command("add_location", &document::_001OnAddLocation);
-      connect_command_probe("replace_text_in_file_system", &document::_001OnUpdateReplaceText);
-      connect_command("replace_text_in_file_system", &document::_001OnReplaceText);
-      connect_command_probe("edit_paste", &document::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &document::_001OnEditPaste);
-      connect_command_probe("file_save", &document::_001OnUpdateFileSaveAs);
-      connect_command("file_save", &document::_001OnFileSaveAs);
-      connect_command_probe("cancel", &document::_001OnUpdateEditPaste);
-      connect_command("cancel", &document::_001OnEditPaste);
-      connect_command_probe("new_manager", &document::_001OnUpdateNewManager);
-      connect_command("new_manager", &document::_001OnNewManager);
-      connect_command_probe("del_manager", &document::_001OnUpdateDelManager);
-      connect_command("del_manager", &document::_001OnDelManager);
-      connect_command_probe("new_folder", &document::_001OnUpdateNewFolder);
-      connect_command("new_folder", &document::_001OnNewFolder);
+      add_command_prober("levelup", this, &document::_001OnUpdateLevelUp);
+      add_command_handler("levelup", this, &document::_001OnLevelUp);
+      add_command_prober("add_location", this, &document::_001OnUpdateAddLocation);
+      add_command_handler("add_location", this, &document::_001OnAddLocation);
+      add_command_prober("replace_text_in_file_system", this, &document::_001OnUpdateReplaceText);
+      add_command_handler("replace_text_in_file_system", this, &document::_001OnReplaceText);
+      add_command_prober("edit_paste", this, &document::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", this, &document::_001OnEditPaste);
+      add_command_prober("file_save", this, &document::_001OnUpdateFileSaveAs);
+      add_command_handler("file_save", this, &document::_001OnFileSaveAs);
+      add_command_prober("cancel", this, &document::_001OnUpdateEditPaste);
+      add_command_handler("cancel", this, &document::_001OnEditPaste);
+      add_command_prober("new_manager", this, &document::_001OnUpdateNewManager);
+      add_command_handler("new_manager", this, &document::_001OnNewManager);
+      add_command_prober("del_manager", this, &document::_001OnUpdateDelManager);
+      add_command_handler("del_manager", this, &document::_001OnDelManager);
+      add_command_prober("new_folder", this, &document::_001OnUpdateNewFolder);
+      add_command_handler("new_folder", this, &document::_001OnNewFolder);
 
    }
 
@@ -239,13 +239,13 @@ namespace filemanager
 
          __pointer(document) pdocument = this;
 
-         auto psubject = subject(TOPIC_OK_ID);
+         ::subject subject(TOPIC_OK_ID);
 
-         psubject->payload(DOCUMENT_ID) = pdocument;
+         subject.payload(DOCUMENT_ID) = pdocument;
 
-         psubject->m_pfileitem = itema.get_first_pointer();
+         subject.m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(psubject);
+         pdocument->update_all_views(&subject);
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -661,13 +661,13 @@ namespace filemanager
       if (!fs_data()->is_zero_latency(pitem->m_filepathFinal))
       {
 
-         auto psubject = subject(SYNCHRONIZE_PATH_ID);
+         ::subject subject(SYNCHRONIZE_PATH_ID);
 
-         psubject->m_actioncontext = context + ::e_source_sync + ::e_source_system;
+         subject.m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
-         psubject->m_pfileitem = pitem;
+         subject.m_pfileitem = pitem;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -694,13 +694,13 @@ namespace filemanager
 
       }
 
-      auto psubject = subject(SYNCHRONIZE_PATH_ID);
+      ::subject subject(SYNCHRONIZE_PATH_ID);
 
-      psubject->m_actioncontext = context + ::e_source_sync;
+      subject.m_actioncontext = context + ::e_source_sync;
 
-      psubject->m_pfileitem = pitem;
+      subject.m_pfileitem = pitem;
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
    }
 
@@ -1009,11 +1009,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
       {
 
-         auto psubject = subject(id_topic_ok);
+         ::subject subject(id_topic_ok);
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1030,11 +1030,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_import)
       {
 
-         auto psubject = subject(id_topic_ok);
+         ::subject subject(id_topic_ok);
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1049,11 +1049,11 @@ namespace filemanager
       if (m_emode == ::userfs::mode_saving)
       {
 
-         auto psubject = subject(id_topic_ok);
+         ::subject subject(id_topic_ok);
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1067,20 +1067,20 @@ namespace filemanager
 
       CreateViews();
 
-      auto psubject = subject(id_create_bars);
+      ::subject subject(id_create_bars);
 
-      psubject->payload(id_document) = this;
+      subject.payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
       if (bMakeVisible)
       {
 
-         auto psubject = subject(id_pop);
+         ::subject subject(id_pop);
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1092,9 +1092,9 @@ namespace filemanager
 
       CreateViews();
 
-      auto psubject = subject(id_create_bars);
+      ::subject subject(id_create_bars);
 
-      psubject->payload(id_document) = this;
+      subject.payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1105,7 +1105,7 @@ namespace filemanager
 
          auto path = pfilemanagerdata->get_last_browse_path(this, pfilemanagerdata->m_pathDefault);
 
-            browse(path, ::e_source_initialize);
+         browse(path, ::e_source_initialize);
 
 //         if (get_file.data_get({true, "last_browse_folder"}, str))
 //         {
@@ -1184,23 +1184,23 @@ namespace filemanager
 
       {
 
-         auto psubject = subject(id_initialize);
+         ::subject subject(id_initialize);
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
       {
 
-         auto psubject = subject(id_synchronize_locations);
+         ::subject subject(id_synchronize_locations);
 
-         psubject->m_actioncontext = ::e_source_sync;
+         subject.m_actioncontext = ::e_source_sync;
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1212,19 +1212,19 @@ namespace filemanager
 
       {
 
-         auto psubject = subject(id_create_bars);
+         subject subject(id_create_bars);
 
-         psubject->payload(id_document) = this;
+         subject.payload(id_document) = this;
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
       {
 
-         auto psubject = subject(id_pop);
+         ::subject subject(id_pop);
 
-         update_all_views(psubject);
+         update_all_views(&subject);
 
       }
 
@@ -1332,11 +1332,11 @@ namespace filemanager
    void document::GetActiveViewSelection(::file::item_array & itema)
    {
 
-      auto psubject = subject(id_get_active_view_selection);
+      ::subject subject(id_get_active_view_selection);
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
-      itema = *psubject->cast < ::file::item_array>(id_selected);
+      itema = *subject.cast < ::file::item_array>(id_selected);
 
    }
 
@@ -1354,19 +1354,19 @@ namespace filemanager
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_topic_start);
+         ::subject subject(id_topic_start);
 
-         psubject->payload(id_document) = pdocumentFilemanager;
+         subject.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_create_bars);
+         ::subject subject(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 
@@ -1386,19 +1386,19 @@ namespace filemanager
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_topic_start);
+         ::subject subject(id_topic_start);
 
-         psubject->payload(id_document) = pdocumentFilemanager;
+         subject.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_create_bars);
+         ::subject subject(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 
@@ -1418,19 +1418,19 @@ namespace filemanager
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_topic_start);
+         ::subject subject(id_topic_start);
 
-         psubject->payload(id_document) = pdocumentFilemanager;
+         subject.payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 
       {
 
-         auto psubject = pdocumentFilemanager->subject(id_create_bars);
+         ::subject subject(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(psubject);
+         pdocumentFilemanager->update_all_views(&subject);
 
       }
 

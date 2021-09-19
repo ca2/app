@@ -82,9 +82,9 @@ namespace universal_windows
 
       virtual oswindow _get_handle();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       void _002OnDraw(::image * pimage);
 

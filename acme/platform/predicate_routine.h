@@ -45,7 +45,7 @@
 //   void receive_response(const ::payload&) override
 //   {
 //
-//      __throw(error_interface_only);
+//      throw ::interface_only_exception();
 //
 //   }
 //

@@ -52,7 +52,7 @@ namespace aura
    void node::dpi_os_initialize()
    {
 
-      throw exception::exception(error_failed);
+      throw ::exception(error_failed);
 
    }
 
@@ -65,10 +65,24 @@ namespace aura
    }
 
 
+   string node::system_options_html()
+   {
+
+      string strFooter__;
+
+      strFooter__ += system_options_main_body();
+
+      strFooter__ += ::apex::node::system_options_html();
+
+      return strFooter__;
+
+   }
+
+
    ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return nullptr;
       
@@ -78,7 +92,7 @@ namespace aura
    ::image_pointer node::get_file_image(int iSize, const char * pszPath)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return nullptr;
       
@@ -134,6 +148,25 @@ namespace aura
       return pextendedfuture;
 
    }
+
+
+   void node::BeginWaitCursor()
+   {
+
+   }
+
+
+   void node::EndWaitCursor()
+   {
+
+   }
+
+
+   void node::RestoreWaitCursor()
+   {
+
+   }
+
 
 
 } // namespace aura

@@ -22,7 +22,7 @@ namespace draw2d
 //   {
 //      __UNREFERENCED_PARAMETER(pLogPalette);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //      return false;
 //   }
 
@@ -32,7 +32,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(pgraphics);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return false;
 //
@@ -46,7 +46,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //      return 0;
 //   }
 
@@ -57,7 +57,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //      return 0;
 //   }
 
@@ -69,7 +69,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(nNumEntries);
 //      __UNREFERENCED_PARAMETER(pPaletteColors);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -79,7 +79,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(color);
       
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
       
       return 0;
 
@@ -90,7 +90,7 @@ namespace draw2d
 //   {
 //
 //      __UNREFERENCED_PARAMETER(nNumEntries);
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //      return false;
 //
 //   }
@@ -99,7 +99,7 @@ namespace draw2d
    i32 palette::GetEntryCount()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
       return 0;
 
    }

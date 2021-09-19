@@ -1,3 +1,4 @@
+// Injected/Split in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 #pragma once
 
 
@@ -5,87 +6,22 @@ namespace user
 {
 
 
-   enum enum_next
-   {
-
-      e_next_sibling,
-      e_next_proper,
-
-   };
-
-
    class CLASS_DECL_APEX primitive :
-      virtual public channel,
-      virtual public ::user::check,
-      virtual public ::user::text
+      virtual public ::user::element,
+      virtual public ::channel,
+      virtual public ::source,
+      virtual public ::manager
    {
    public:
 
 
-      enum RepositionFlags
-      {
-
-         reposDefault = 0,
-         reposQuery = 1,
-         reposExtra = 2,
-         reposNoPosLeftOver = 0x8000
-
-      };
-
-
-      enum EProperty
-      {
-
-         PropertyBaseWndInterface = 0,
-         PropertyDrawBaseWndInterface
-
-      };
-
-
-      enum EGeneralEvent
-      {
-
-         GeneralEventPosCreate1,
-         GeneralEventPosCreate2,
-         GeneralEventPosCreate3,
-         GeneralEventPosCreate4,
-         GeneralEventPosCreate5
-
-      };
-
-      enum enum_type
-      {
-
-         type_window,
-         type_frame,
-         type_view
-
-      };
-
-      enum EOptimize
-      {
-
-         OptimizeNone,
-         OptimizeThis
-
-      };
-
-      enum AdjustType
-      {
-
-         adjustBorder = 0,
-         adjustOutside = 1
-
-      };
-
-
-      //bool                          m_bFocus;
-      millis                        m_millisFocusStart;
-      bool                          m_bUserPrimitiveOk;
+      millis                           m_millisFocusStart;
+      //bool                             m_bUserElementOk;
+      //::user::interaction *            m_puserinteraction;
 
 
       primitive();
-      virtual ~primitive();
+      ~primitive() override;
 
 
       virtual void _001OnTimer(::timer * ptimer);
@@ -102,8 +38,11 @@ namespace user
       //__pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
-      virtual ::user::interaction* get_host_window() const;
+      virtual ::user::interaction * get_host_window() const;
 
+      virtual ::user::form * get_form();
+
+      virtual ::user::form * get_parent_form();
 
       virtual bool enable_window(bool bEnable = true);
 
@@ -132,7 +71,7 @@ namespace user
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
-      
+
       virtual string get_title();
 
 
@@ -404,6 +343,7 @@ namespace user
 
       virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::primitive * get_primitive_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
 
 
       virtual ::user::interaction * get_wnd() const;
@@ -475,7 +415,7 @@ namespace user
       virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
 
 
-      virtual void GuieProc(::message::message * pmessage);
+      //virtual void GuieProc(::message::message * pmessage);
 
 
 
@@ -516,6 +456,9 @@ namespace user
       virtual enum_type get_window_type();
 
 
+      virtual ::e_status add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false);
+
+
       virtual void on_simple_command(::message::simple_command * psimplecommand);
       virtual void on_command(::message::command * pcommand) override;
 
@@ -527,11 +470,18 @@ namespace user
 
 
 
+
       virtual bool is_selected(::data::item * pitem);
 
       //virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
 
       virtual bool has_command_handler(::message::command * pcommand) override;
+
+      //virtual void route(::subject * psubject, ::context * pcontext);
+
+      virtual void handle(::subject * psubject, ::context * pcontext);
+
+      //virtual void on_notify_control_event(control_event* pevent);
 
 
 
@@ -679,9 +629,6 @@ namespace user
 
 
 
-      interaction * m_puiThis;
-
-
       //primitive();
       //virtual ~primitive();
 
@@ -700,7 +647,7 @@ namespace user
       //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
-      virtual i32 get_total_page_count(::subject::context * pcontext);
+      virtual i32 get_total_page_count(::context * pcontext);
 
 
       virtual void edit_on_text(string str);
@@ -741,6 +688,8 @@ namespace user
       virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x);
       virtual index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
 
+
+      void on_check_change() override;
 
       //virtual void set_window_text(const ::string & pszString);
 

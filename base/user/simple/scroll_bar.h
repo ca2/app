@@ -77,21 +77,21 @@ public:
 
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void on_hit_test(::user::item & item) override;
-   //virtual ::user::enum_element _001HitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem) override;
+   virtual void on_hit_test(::item & item) override;
+   //virtual ::enum_element _001HitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem) override;
 
-   virtual bool scrollbar_action(const ::user::item & item, ::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_action(const ::item & item, ::draw2d::graphics_pointer & pgraphics);
 
    virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_pageB(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_pageA(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
 
-   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement) override;
-   virtual ::color::color scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)override;
+   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement) override;
+   virtual ::color::color scrollbar_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)override;
 
 
 };

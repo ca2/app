@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -10,12 +10,11 @@ namespace process
    {
    public:
 
-
       
-      ::process::bidirectional_pipe       m_pipe;
-      bool                                m_bPiped;
-      int                                 m_iPid;
-      ::process::exit_status              m_exitstatus;
+      ::operating_system::bidirectional_pipe       m_pipe;
+      bool                                         m_bPiped;
+      int                                          m_iPid;
+      ::operating_system::exit_status              m_exitstatus;
 
 
       process();
@@ -40,26 +39,7 @@ namespace process
    typedef __pointer(process) process_pointer;
 
 
-} // namespace process
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace operating_system
 
 
 

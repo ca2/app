@@ -21,7 +21,7 @@ namespace experience
       virtual ~orto_button();
 
 
-      virtual void on_hit_test(::user::item & item);
+      virtual void on_hit_test(::item & item);
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);

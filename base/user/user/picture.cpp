@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void picture::on_hit_test(::user::item & item)
+   void picture::on_hit_test(::item & item)
    {
 
       ASSERT(is_picture_enabled());
@@ -891,7 +891,7 @@ namespace user
    }
 
 
-   void picture::hit_test(::user::item & item, const ::point_i32 & point)
+   void picture::hit_test(::item & item, const ::point_i32 & point)
    {
 
       item.m_pointScreen = point;

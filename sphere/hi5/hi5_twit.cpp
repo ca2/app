@@ -518,7 +518,7 @@ namespace hi5
          v.parse_json(p);
 
       }
-      catch (exception::exception * pe)
+      catch (::exception * pe)
       {
 
          ::exception_pointer esp(pe);
@@ -638,7 +638,7 @@ namespace hi5
          v.parse_json(p);
 
       }
-      catch (exception::exception * pe)
+      catch (::exception * pe)
       {
 
          ::exception_pointer esp(pe);
@@ -702,7 +702,7 @@ namespace hi5
          v.parse_json(p);
 
       }
-      catch (exception::exception * pe)
+      catch (::exception * pe)
       {
 
          ::exception_pointer esp(pe);

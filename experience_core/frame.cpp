@@ -432,12 +432,12 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_text));
-               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_background));
-               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_hilite));
-               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_shadow));
-               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow));
-               m_colorDkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
+               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_text));
+               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_background));
+               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_hilite));
+               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_shadow));
+               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_dark_shadow));
+               m_colorDkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
                m_colorFrameBorder = argb(255, 0, 0, 0);
 
             }
@@ -723,11 +723,11 @@ namespace experience
 
                      auto pstyle = pframewindow->get_style(pgraphics);
 
-                     crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+                     crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-                     crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+                     crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-                     crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+                     crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
                   }
 
@@ -765,7 +765,7 @@ namespace experience
 
                   pgraphics->set_text_color(m_colorCaptionText);
 
-                  pgraphics->set_font(pframewindow, ::user::e_element_window_title);
+                  pgraphics->set_font(pframewindow, ::e_element_window_title);
 
                   pgraphics->_DrawText(wstrWindowText, m_rectWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 

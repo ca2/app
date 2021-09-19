@@ -168,16 +168,16 @@ namespace primitive
 } // namespace primitive
 
 
-namespace exception
-{
-
-
-   class exception;
-   class base;
-
-
-} // namespace exception
-
+//namespace exception
+//{
+//
+//
+//   class exception;
+//   class base;
+//
+//
+//} // namespace exception
+//
 
 
 //CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

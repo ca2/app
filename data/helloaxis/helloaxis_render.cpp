@@ -1312,7 +1312,7 @@ auto m_tick23 = ::millis::now();
 /*            if (!m_mapDib23[strImage].load_image(strImage, true, true))
             {
 
-               __throw(::exception::exception("Failed to load \"" + strImage + "\""));
+               __throw(::exception("Failed to load \"" + strImage + "\""));
 
             }
 

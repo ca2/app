@@ -29,7 +29,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(nUsage);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return false;
 //
@@ -59,7 +59,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -104,7 +104,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(color);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -116,7 +116,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(pLogBrush);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return false;
 //
@@ -149,7 +149,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(nUsage);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -161,7 +161,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(nIndex);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -173,7 +173,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(pLogBrush);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return 0;
 //

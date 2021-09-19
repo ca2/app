@@ -228,11 +228,11 @@ SizingNone:;
                else
                {
 
-                  colorMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+                  colorMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
                }
 

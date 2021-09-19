@@ -66,10 +66,10 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_child_frame::route_command_message(::message::command * pcommand)
+void simple_child_frame::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   simple_frame_window::route_command_message(pcommand);
+   simple_frame_window::route_command(pcommand);
 
 }
 
@@ -83,7 +83,7 @@ void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-//bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
+//bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
 //{
 //
 //   // etranslucency = ::user::e_translucency_present for children that may ask the translucency guideline for this as parent,

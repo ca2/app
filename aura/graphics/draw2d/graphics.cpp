@@ -158,7 +158,7 @@ namespace draw2d
    bool graphics::attach_hdc(hdc hdc)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return false;
 
@@ -168,7 +168,7 @@ namespace draw2d
    hdc graphics::detach_hdc()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return nullptr;
 
@@ -178,7 +178,7 @@ namespace draw2d
    bool graphics::AttachPrinter(hdc hdc)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return false;
 
@@ -188,7 +188,7 @@ namespace draw2d
    hdc graphics::DetachPrinter()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return nullptr;
 
@@ -348,7 +348,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate)
+   bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
    {
 
       auto pstyle = pinteraction->get_style(m_puserstyle);
@@ -766,7 +766,7 @@ namespace draw2d
    bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1004,7 +1004,7 @@ namespace draw2d
    bool graphics::fill_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1014,7 +1014,7 @@ namespace draw2d
    bool graphics::draw_polygon(const POINT_F64 * ppoints, count nCount)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -3090,7 +3090,7 @@ namespace draw2d
    ::e_status graphics::_intersect_clip()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -3100,7 +3100,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::rectangle_f64 & rectangle)
    {
    
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return error_interface_only;
    
@@ -3110,7 +3110,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::rectangle_f64 & rectangle)
    //{
    //
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
    //
    //   return error_interface_only;
    //
@@ -3120,7 +3120,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::ellipse & ellipse)
    //{
    //
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
    //
    //   return error_interface_only;
    //
@@ -3130,7 +3130,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::ellipse & ellipse)
    {
    
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return error_interface_only;
    
@@ -3140,7 +3140,7 @@ namespace draw2d
    //::e_status graphics::_add_shape(const ::polygon_i32 & polygon_i32)
    //{
    //
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
    //
    //   return error_interface_only;
    //
@@ -3150,7 +3150,7 @@ namespace draw2d
    ::e_status graphics::_add_shape(const ::polygon_f64 & polygon_i32)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -4835,7 +4835,7 @@ namespace draw2d
       else
       {
 
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
 
       }
 

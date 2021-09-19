@@ -39,9 +39,9 @@ namespace userex
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

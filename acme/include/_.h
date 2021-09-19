@@ -854,10 +854,10 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-namespace subject
-{
+//namespace subject
+//{
 
-
+   class signal;
    class backing;
    class manager;
    class subject;
@@ -868,7 +868,7 @@ namespace subject
 
 
 
-} // namespace subject
+//} // namespace subject
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -1733,17 +1733,18 @@ class task;
 
 #include "_forward_declaration.h"
 
-
-namespace subject
-{
-
-
-   using manager_pointer = __pointer(manager);
-   using subject_pointer = __pointer(subject);
-   using context_pointer = __pointer(context);
+//
+//namespace subject
+//{
 
 
-} // namespace subject
+using handler_pointer = __pointer(handler);
+using manager_pointer = __pointer(manager);
+using subject_pointer = __pointer(subject);
+using context_pointer = __pointer(context);
+
+
+//} // namespace subject
 
 
 template<typename THREAD_POINTER>
@@ -2321,7 +2322,7 @@ namespace audio
 
 
 
-#include "acme/primitive/logic/bit.h"
+#include "acme/primitive/logic/boolean.h"
 
 
 #include "acme/platform/auto.h"
@@ -3027,8 +3028,8 @@ class parents;
 class children;
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
    class exception;
@@ -3036,7 +3037,7 @@ namespace exception
    //using exception_pointer = __pointer(exception);
 
 
-} // namespace exception
+//} // namespace exception
 
 
 class event_map;
@@ -3069,6 +3070,9 @@ class memory_base;
 #include "acme/primitive/primitive/block.h"
 
 
+#include "acme/memory/chunk.h"
+
+
 #include "acme/memory/memory.h"
 
 
@@ -3078,6 +3082,11 @@ class memory_base;
 #include "acme/primitive/primitive/enumeration.h"
 
 
+//#include "acme/constant/user.h"
+
+
+
+
 #include "acme/exception/status.h"
 
 
@@ -3085,18 +3094,6 @@ CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFa
 
 #include "acme/constant/filesystem.h"
 
-#define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
-inline ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
-inline ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
-using ENUMERATION = enumeration < ENUM >
 
 
 namespace file
@@ -3134,7 +3131,11 @@ DECLARE_ENUMERATION(e_message_box, enum_message_box);
 namespace user
 {
 
+   
    class interaction;
+
+   class form;
+
 
 } // namespace user
 
@@ -3210,6 +3211,9 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/_global.h"
 
 
+
+
+
 class function;
 
 
@@ -3232,6 +3236,7 @@ namespace factory
 
 
 #include "acme/primitive/primitive/referenceable.h"
+#include "acme/subject/handler.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
 
@@ -3257,7 +3262,7 @@ class manual_reset_event;
 
 
 #include "acme/platform/status.h"
-#include "acme/primitive/primitive/enumeration.h"
+//#include "acme/primitive/primitive/enumeration.h"
 
 
 
@@ -3422,6 +3427,8 @@ using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, 
 
 using routine_array = ::array < routine >;
 using routine_list = ::list < routine >;
+using routine_map = ::id_map < ::routine_array >;
+
 
 //using process_array = ::array < process >;
 
@@ -3436,7 +3443,7 @@ void add_routine(routine_array& array, PRED pred);
 //} // namespace subject
 
 
-using exception_array = ::array < ::exception::exception >;
+using exception_array = ::array < ::exception >;
 
 
 #include "acme/primitive/primitive/linked_property.h"
@@ -3496,6 +3503,11 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 #include "acme/primitive/primitive/object.h"
 
 
+
+
+
+
+
 namespace draw2d
 {
 
@@ -3513,8 +3525,8 @@ public:                                                                         
    ::e_status on_initialize_object() override { return ::success; }         \
    void assert_valid() const override {}                                    \
    void dump(dump_context&) const override {}                               \
-   void subject_handler(::subject::subject*) override {}    \
-   void on_subject(::subject::subject*, ::subject::context*) override {} \
+   void handle(::subject*,::context*) override {}    \
+   //void on_subject(::subject::subject*, ::context*) override {} \
 
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
@@ -4553,6 +4565,35 @@ class wcsdup_array;
 #include "acme/platform/log.h"
 
 
+
+namespace user
+{
+
+
+   class primitive;
+   class element;
+
+
+   DECLARE_ENUMERATION(e_flag, enum_flag);
+
+
+} // namespace user
+
+
+DECLARE_ENUMERATION(e_element, enum_element);
+
+
+#include "acme/subject/item.h"
+#include "acme/subject/subject.h"
+
+
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+
+
+#include "acme/user/element.h"
+
+
 #include "acme/platform/system.h"
 
 
@@ -4658,7 +4699,7 @@ class wcsdup_array;
 //#include "acme/graphics/draw2d/_impl.h"
 
 
-#include "acme/exception/_.inl"
+//#include "acme/exception/_.inl"
 
 
 //#include "acme/graphics/draw2d/_image_impl.h"

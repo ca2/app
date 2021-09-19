@@ -16,7 +16,7 @@ public:
 
    virtual void install_message_routing(::channel * pchannel);
 
-   virtual bool on_click(const ::user::item & item);
+   virtual bool on_click(const ::item & item);
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
 

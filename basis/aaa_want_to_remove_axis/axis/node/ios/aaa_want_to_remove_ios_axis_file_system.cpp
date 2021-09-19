@@ -218,7 +218,7 @@ namespace ios
 //         {
 //            pcontext->m_papexcontext->dir().mk(str, papp);
 //            if(!pcontext->m_papexcontext->dir().is(str, papp))
-//               __throw(::exception::exception("time square dir does not exist"));
+//               __throw(::exception("time square dir does not exist"));
 //            straTitle.erase_all();
 //            pcontext->m_papexcontext->dir().ls(papp, str, nullptr, &straTitle);
 //            if(i < iMaxLevel)
@@ -684,7 +684,7 @@ namespace ios
 //         if(bFailIfExists)
 //         {
 //            if(exists(pszNew, papp))
-//               __throw(::exception::exception("Failed to copy file"));
+//               __throw(::exception("Failed to copy file"));
 //         }
 //         if(pcontext->m_papexcontext->dir().is(psz, papp) && (eextract == extract_first || eextract == extract_all || !(::str::ends_ci(psz, ".zip"))))
 //         {
@@ -832,7 +832,7 @@ namespace ios
 //         ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz,  0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //         if(file == nullptr)
-//            __throw(::exception::exception("file::file_system::move Could not move file, could not open source file"));
+//            __throw(::exception("file::file_system::move Could not move file, could not open source file"));
 //
 //         string strDirOld     = pcontext->m_papexcontext->dir().name(psz);
 //         string strDirNew     = pcontext->m_papexcontext->dir().name(pszNew);

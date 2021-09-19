@@ -73,10 +73,10 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
-   virtual ::e_status handle_exception(const ::exception::exception& e);
+   virtual ::e_status handle_exception(const ::exception& e);
 
 
-   virtual void add_exception(const ::exception::exception & e);
+   virtual void add_exception(const ::exception & e);
    virtual void on_catch_all_exception();
 
 

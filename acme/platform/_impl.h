@@ -412,7 +412,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         __throw(error_interface_only, "template only exception");
+         throw interface_only_exception("template only exception");
 
       }
 

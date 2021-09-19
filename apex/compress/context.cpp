@@ -93,7 +93,7 @@ bool compress_context::gz(::file::file * pfileOut, ::file::file * pfileIn, int i
 bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -113,7 +113,7 @@ bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBlockSize, int iVerbosity, int iWorkFactor)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 

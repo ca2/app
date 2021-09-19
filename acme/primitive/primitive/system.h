@@ -10,7 +10,7 @@ namespace apex
       virtual public class ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
-      ,virtual public ::exception::translator
+      ,virtual public ::exception_translator
 #endif
    {
    public:
@@ -105,7 +105,7 @@ namespace apex
 
       bool                                               m_bGudoNetCache;
 
-      __composite(::process::department)                 m_pprocess;
+      __composite(::operating_system::department)                 m_pprocess;
 
       __composite(::parallelization::threading)           m_pthreading;
       ::e_display                                         m_edisplay;
@@ -298,7 +298,7 @@ namespace apex
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
+      virtual __pointer(::subject) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
@@ -447,7 +447,7 @@ namespace apex
 
 
       ::apex::str                                  &  str();
-      ::process::department                        &  process();
+      ::operating_system::department                        &  process();
 
       //using acme::system::process;
 
@@ -993,8 +993,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject::subject * psubject) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void on_subject(::subject * psubject) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

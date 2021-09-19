@@ -64,13 +64,13 @@ namespace userstack
       virtual void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       ::user::document * get_document();
 
       void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
 
-      void on_hit_test(::user::item & item) override;
+      void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);

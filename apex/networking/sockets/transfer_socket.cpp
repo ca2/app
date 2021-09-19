@@ -45,7 +45,7 @@ namespace sockets
 
    transfer_socket_exception::transfer_socket_exception(const char * pszMessage) :
       m_nError(get_error()),
-      ::exception::exception(pszMessage)
+      ::exception(pszMessage)
    {
    }
 

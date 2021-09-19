@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void menu_list_view::route_command_message(::message::command * pcommand)
+   void menu_list_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       __pointer(::user::interaction) puserinteractionNotify;
@@ -64,7 +64,7 @@ namespace user
                || !puserinteractionNotify->is_ascendant_of(this, true)))
       {
 
-         m_pchannelNotify->route_command_message(pcommand);
+         m_pchannelNotify->route_command(pcommand);
 
          //if(pcommand->m_bRet)
          {
@@ -75,7 +75,7 @@ namespace user
 
       }
 
-      return impact::route_command_message(pcommand);
+      return impact::route_command(pcommand);
 
    }
 

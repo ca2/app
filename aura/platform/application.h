@@ -8,7 +8,6 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
       virtual public ::aura::context,
-      virtual public ::user::callback,
       virtual public ::filemanager::callback
    {
    public:
@@ -149,7 +148,7 @@ namespace aura
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -264,7 +263,7 @@ namespace aura
       //virtual void SetCurrentHandles() override;
 
 
-      //virtual ::e_status process_exception(const ::exception::exception & e) override;
+      //virtual ::e_status process_exception(const ::exception & e) override;
 
 
       //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
@@ -344,9 +343,9 @@ namespace aura
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      virtual void on_control_event(::user::control_event* pevent) override;
-      virtual void on_notify_control_event(::user::control_event* pevent);
-      virtual void route_control_event(::user::control_event* pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void on_notify_control_event(::user::control_event* pevent);
+      //virtual void route(::subject * psubject, ::context * pcontext);
 
 
 
@@ -486,7 +485,7 @@ namespace aura
       //virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
 
 
-      //virtual bool process_exception(const ::exception::exception & e) override;
+      //virtual bool process_exception(const ::exception & e) override;
 
 
       //virtual bool is_system() const override;
@@ -763,7 +762,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -826,7 +825,7 @@ namespace aura
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void on_control_event(::user::control_event * pevent);
+      //virtual void handle(::subject * psubject, ::context * pcontext);
 
 
 
@@ -906,7 +905,7 @@ namespace aura
 
 
       virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
-      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
 //      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
@@ -922,7 +921,7 @@ namespace aura
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
-      virtual void route_command_message(::message::command* pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual void EnableHtmlHelp();
 
@@ -1008,7 +1007,7 @@ namespace aura
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
+      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
@@ -1017,7 +1016,7 @@ namespace aura
       virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      void report_error(const ::exception::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
+      void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
 
 
       bool can_close_application() override;
@@ -1045,6 +1044,7 @@ namespace aura
       bool os_on_start_application() override;
 
 #endif
+
 
 
    };

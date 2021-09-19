@@ -301,12 +301,12 @@ bool property_object::is_alive()
 void property_object::exchange(::stream & stream)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
 
-::e_status property_object::handle_exception(const ::exception::exception& e)
+::e_status property_object::handle_exception(const ::exception& e)
 {
 
    return ::success;
@@ -315,7 +315,7 @@ void property_object::exchange(::stream & stream)
 
 
 
-void property_object::add_exception(const ::exception::exception & e)
+void property_object::add_exception(const ::exception & e)
 {
 
    m_estatus = error_exception;

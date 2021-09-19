@@ -388,7 +388,7 @@ namespace dynamic_source
             {
 
             }
-            catch (const ::exception::exception & e)
+            catch (const ::exception & e)
             {
 
                string str = e.get_message();
@@ -415,7 +415,7 @@ namespace dynamic_source
             pinstance->m_pmain->main_finalize();
 
          }
-         catch(const ::exception::exception &)
+         catch(const ::exception &)
          {
 
             TRACE("Error: exception at script_manager::handle main_finalize");
@@ -460,7 +460,7 @@ namespace dynamic_source
       //   {
       //      pinst2->release();
       //   }
-      //   catch (const ::exception::exception&)
+      //   catch (const ::exception&)
       //   {
       //      TRACE("Error: exception at script_manager::handle destroy pinstance");
       //   }
@@ -477,7 +477,7 @@ namespace dynamic_source
       //{
       //   pinstance.release();
       //}
-      //catch (const ::exception::exception&)
+      //catch (const ::exception&)
       //{
       //   TRACE("Error: exception at script_manager::handle destroy pinstance");
       //}

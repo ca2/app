@@ -15,10 +15,10 @@ namespace axis
 
 
       session();
-      virtual ~session();
+      ~session() override;
 
 
-      virtual ::e_status     initialize(::object * pobject) override;
+      virtual ::e_status initialize(::object * pobject) override;
 
 
       virtual ::e_status process_init() override;
@@ -40,7 +40,7 @@ namespace axis
 
       virtual void on_instantiate_application(::application* papp) override;
 
-      virtual ::user::style* get_user_style() override;
+      //virtual ::user::style* user_style() override;
 
       inline ::account::department * account() { return m_paccount; }
 

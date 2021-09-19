@@ -2,7 +2,7 @@
 
 
 resource_exception::resource_exception(const char * pszMessage) :
-   ::exception::exception(pszMessage)
+   ::exception(pszMessage)
 {
 
 }

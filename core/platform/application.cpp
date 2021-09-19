@@ -61,6 +61,79 @@ namespace core
    }
 
 
+   string application::prepare_menu_impact()
+   {
+
+      string strHeader = prepare_menu_impact_header();
+
+      string strMainBody = prepare_menu_impact_main_body();
+
+      string strFooter = prepare_menu_impact_footer();
+
+      string strMenuImpact;
+
+      strMenuImpact = strHeader + strMainBody + strFooter;
+
+      return strMenuImpact;
+
+   }
+
+
+   string application::prepare_menu_impact_header()
+   {
+
+      string strApplicationTitle;
+
+      strApplicationTitle = get_application()->title();
+
+      string strHeader__;
+
+      strHeader__ += "<html>\n";
+      strHeader__ += "<head>\n";
+      strHeader__ += "<style>\n";
+      strHeader__ += "  h1\n";
+      strHeader__ += "  {\n";
+      strHeader__ += "     font-family: Tahoma;\n";
+      strHeader__ += "  }\n";
+      strHeader__ += "\n";
+      strHeader__ += "  h2\n";
+      strHeader__ += "  {\n";
+      strHeader__ += "     font-family: Tahoma;\n";
+      strHeader__ += "  }\n";
+      strHeader__ += "</style>\n";
+      strHeader__ += "</head>\n";
+      strHeader__ += "<body style=\"background-color: #80ffffff;\">\n";
+      strHeader__ += "\n";
+      strHeader__ += "<h1>" + strApplicationTitle + "</h1>\n";
+
+      return strHeader__;
+
+   }
+
+
+   string application::prepare_menu_impact_main_body()
+   {
+
+      return "";
+
+   }
+
+
+   string application::prepare_menu_impact_footer()
+   {
+
+      string strOptionsHtml;
+
+      strOptionsHtml += m_psystem->m_pnode->m_pauranode->system_options_html();
+
+      strOptionsHtml += "</body>";
+      strOptionsHtml += "</html>";
+
+      return strOptionsHtml;
+
+   }
+
+
 } // namespace core
 
 

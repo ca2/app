@@ -480,8 +480,8 @@ void application::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
-   connect_command("app_exit", this, &application::on_message_app_exit);
-   connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+   add_command_handler("app_exit", this, &application::on_message_app_exit );
+   add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
 }
 
@@ -524,67 +524,67 @@ return true;
 }
 
 
-string application::get_title()
+string application::title()
 {
 
-if(m_textAppTitle.get_text().has_char())
-{
+   if(m_textAppTitle.get_text().has_char())
+   {
 
-return m_textAppTitle.get_text();
+      return m_textAppTitle.get_text();
 
-}
+   }
 
-string_array stra;
+   string_array stra;
 
-stra.explode("/", m_strAppName);
+   stra.explode("/", m_strAppName);
 
-string strTitle;
+   string strTitle;
 
-if(stra.get_count() > 1)
-{
+   if(stra.get_count() > 1)
+   {
 
-strTitle = stra.implode("/", 1);
+      strTitle = stra.implode("/", 1);
 
-if(strTitle.length() > 0)
-{
+      if(strTitle.length() > 0)
+      {
 
-return strTitle;
+         return strTitle;
 
-}
+      }
 
-}
+   }
 
-if(m_strAppName.has_char())
-{
+   if(m_strAppName.has_char())
+   {
 
-return m_strAppName;
+      return m_strAppName;
 
-}
+   }
 
-stra.explode("/", m_strAppId);
+   stra.explode("/", m_strAppId);
 
-if(stra.get_count() > 1)
-{
+   if(stra.get_count() > 1)
+   {
 
-strTitle = stra.implode("/", 1);
+      strTitle = stra.implode("/", 1);
 
-if(strTitle.length() > 0)
-{
+      if(strTitle.length() > 0)
+      {
 
-return strTitle;
+         return strTitle;
 
-}
+      }
 
-}
+   }
 
-if(m_strAppId.has_char())
-{
+   if(m_strAppId.has_char())
+   {
 
-return m_strAppId;
+      return m_strAppId;
 
-}
+   }
 
-return m_pcontext->m_papexcontext->file().module().title();
+   return m_pcontext->m_papexcontext->file().module().title();
 
 }
 
@@ -821,7 +821,7 @@ do_request(pcreate);
 //    __throw(exit_exception(esp->get_application(), ::exit_application));
 
 // }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -1214,7 +1214,7 @@ return bIsUserService && bIsService;
 bool application::_001OnDDECommand(const ::string & str)
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return false;
 
@@ -1261,7 +1261,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-::e_status application::process_exception(const ::exception::exception & e)
+::e_status application::process_exception(const ::exception & e)
 {
 
    return ::thread::process_exception(e);
@@ -1269,7 +1269,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-//bool application::final_handle_exception(const ::exception::exception & e)
+//bool application::final_handle_exception(const ::exception & e)
 //{
 
 //   __UNREFERENCED_PARAMETER(pe);
@@ -1316,7 +1316,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         }
 ////
 ////      }
-////      catch (const ::exception::exception & e)
+////      catch (const ::exception & e)
 ////      {
 ////
 ////         if (!handle_exception(e))
@@ -1352,7 +1352,7 @@ return false;
 }
 
 }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -1463,7 +1463,7 @@ INFO("apex::application::pre_run success");
 return true;
 
 }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -1564,7 +1564,7 @@ return false;
 //            estatus = run();
 //
 //         }
-//         catch (const ::exception::exception & e)
+//         catch (const ::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -2195,7 +2195,7 @@ m_millisHeartBeat.Now();
 //throw pe;
 //
 //}
-//catch (const ::exception::exception * pe)
+//catch (const ::exception * pe)
 //{
 //
 ////thisexc << 1 << m_iErrorCode;
@@ -2237,7 +2237,7 @@ catch (::exit_exception * pe)
 throw pe;
 
 }
-catch (const ::exception::exception * pe)
+catch (const ::exception * pe)
 {
 
 ::acme::del(pe);
@@ -2271,7 +2271,7 @@ return false;
 }
 
 }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -2331,7 +2331,7 @@ catch (const ::exit_exception & exception)
 __rethrow(exception);
 
 }
-catch(const ::exception::exception & e)
+catch(const ::exception & e)
 {
 
 m_result.add(e);
@@ -4200,7 +4200,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
 {
 
-::exception::throw_interface_only();
+throw ::interface_only_exception();
 
 return "";
 
@@ -4630,14 +4630,14 @@ m_pcontext->m_papexcontext->os().file_open(strFile);
 }
 
 
-void application::subject_handler(::subject::subject * psubject)
-{
+//void application::signal(::signal * psignal)
+//{
+//
+//
+//}
 
 
-}
-
-
-void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void application::handle(::subject * psubject, ::context * pcontext)
 {
 
 
@@ -4929,7 +4929,7 @@ bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam
 
 //}
 
-__throw(error_interface_only);
+throw ::interface_only_exception();
 
 return false;
 
@@ -4939,7 +4939,7 @@ return false;
 bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
 {
 
-__throw(error_interface_only);
+throw ::interface_only_exception();
 
 //__pointer(::user::interaction) puserinteraction;
 
@@ -5747,7 +5747,7 @@ set_finish();
 }
 
 
-//bool application::process_exception(const ::exception::exception & e)
+//bool application::process_exception(const ::exception & e)
 //{
 
 //   return apex::application::process_exception(e);
@@ -5819,7 +5819,7 @@ string strType = type_name();
       m_estatus = run();
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))
@@ -5834,7 +5834,7 @@ string strType = type_name();
       }
 
    }
-   catch (const ::exception::exception &)
+   catch (const ::exception &)
    {
 
    }
@@ -6636,7 +6636,7 @@ pnode->show_wait_cursor(true);
 //void application::TermThread(HINSTANCE hInstTerm)
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //}
 
@@ -6646,7 +6646,7 @@ pnode->show_wait_cursor(true);
 //string application::get_version()
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return "";
 
@@ -6658,7 +6658,7 @@ pnode->show_wait_cursor(true);
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -6667,7 +6667,7 @@ pnode->show_wait_cursor(true);
 //::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return nullptr;
 
@@ -6863,7 +6863,7 @@ return -1;
 
 
 
-//void application::on_control_event(::user::control_event * pevent)
+//void application::handle(::subject * psubject, ::context * pcontext)
 //{
 
 //}
@@ -6895,7 +6895,7 @@ return -1;
 
 //}
 
-//void application::on_control_event(::user::control_event* pevent)
+//void application::handle(::subject * psubject, ::context * pcontext)
 //{
 
 //}
@@ -6908,12 +6908,12 @@ return -1;
 //}
 
 
-//void application::route_control_event(::user::control_event* pevent)
+//void application::route(::subject * psubject, ::context * pcontext)
 //{
 
-//   on_control_event(pevent);
+//   handle(psubject, pcontext);
 
-//   if (pevent->m_bRet)
+//   if (psubject->m_bRet)
 //   {
 
 //      return;
@@ -6922,7 +6922,7 @@ return -1;
 
 //   on_notify_control_event(pevent);
 
-//   if (pevent->m_bRet)
+//   if (psubject->m_bRet)
 //   {
 
 //      return;
@@ -7281,7 +7281,7 @@ return false;
 }
 
 
-void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
+void application::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage)
 {
 
 ENSURE_ARG(pmessage != nullptr);
@@ -7335,10 +7335,10 @@ report_error(e, e_message_box_icon_stop, nullptr);
 }
 
 
-void application::route_command_message(::message::command* pcommand)
+void application::route_command(::message::command * pcommand, bool bRouteKeyToDescedant)
 {
 
-::thread::route_command_message(pcommand);
+   ::thread::route_command(pcommand);
 
 }
 
@@ -7952,7 +7952,7 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //}
 
 
-//bool application::process_exception(const ::exception::exception & e)
+//bool application::process_exception(const ::exception & e)
 //{
 
 //   return ::application::on_run_exception(pexception))
@@ -7967,7 +7967,7 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //}
 
 
-//bool application::final_handle_exception(const ::exception::exception & e)
+//bool application::final_handle_exception(const ::exception & e)
 //{
 
 //   __UNREFERENCED_PARAMETER(pexception);
@@ -8187,7 +8187,7 @@ return true;
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //   }
 //
 //
@@ -8195,7 +8195,7 @@ return true;
 
 //::draw2d::graphics* application::CreatePrinterDC()
 //{
-//::exception::throw_not_implemented();
+//throw interface_only_exception();
 //return nullptr;
 //}
 
@@ -8384,7 +8384,7 @@ return true;
 //{
 ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
 ////ASSERT(m_pszRegistryKey == nullptr);
-////::exception::throw_not_implemented();
+////throw interface_only_exception();
 /////*char szRegistryKey[256];
 ////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
 ////SetRegistryKey(szRegistryKey);*/
@@ -8921,7 +8921,7 @@ pmessage->m_bRet = true;
 //bool application::_001OnDDECommand(const ::string & pcsz)
 
 //{
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -9016,7 +9016,7 @@ pmessage->m_bRet = true;
 
 //   apex::application::install_message_routing(pchannel);
 
-//   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+//   add_command_handler("switch_context_theme", &application::_001OnSwitchContextTheme);
 
 //}
 
@@ -9572,10 +9572,10 @@ catch(const ::exit_exception & e)
 __throw(e);
 
 }
-catch(const const ::exception::exception & e)
+catch(const const ::exception & e)
 {
 
-if(!get_application()->on_run_exception((::exception::exception &) e))
+if(!get_application()->on_run_exception((::exception &) e))
 __throw(exit_exception());
 
 }
@@ -9613,7 +9613,7 @@ return papp;
 
 
 
-void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
 {
 
 
@@ -9628,7 +9628,7 @@ __pointer(::application) application::create_platform(::apex::session* psession)
 }
 
 
-void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
+void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
 {
 
    string strMessage;

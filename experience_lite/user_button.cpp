@@ -195,7 +195,7 @@ namespace user
    }
 
 
-   void button::on_hit_test(::user::item & item)
+   void button::on_hit_test(::item & item)
    {
 
       synchronous_lock synchronouslock(mutex());

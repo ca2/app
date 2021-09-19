@@ -303,13 +303,13 @@ namespace user
 
    }
 
-   void tree_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree_data::handle(::subject * psubject, ::context * pcontext)
    {
 
       for (auto& pusertree : m_usertreea)
       {
 
-         pusertree->on_subject(psubject, pcontext);
+         pusertree->handle(psubject, pcontext);
 
       }
 

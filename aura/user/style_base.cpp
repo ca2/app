@@ -25,7 +25,7 @@ namespace user
    ::e_status style_base::on_initialize_object()
    {
 
-      auto estatus = ::subject::manager::on_initialize_object();
+      auto estatus = ::manager::on_initialize_object();
 
       if (!estatus)
       {
@@ -36,41 +36,36 @@ namespace user
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto psubject = psystem->subject(id_os_dark_mode);
+      auto psignal = psystem->get_signal(id_user_color);
 
-      psubject->add_listener(this);
+      psignal->add_handler(this);
 
-      on_change_dark_mode();
+      on_user_color();
 
       return estatus;
 
    }
 
 
-   void style_base::on_change_dark_mode()
+   void style_base::on_user_color()
    {
 
-      m_psystem->post(__routine([this]()
-      {
+      auto psystem = m_psystem;
 
-         auto psystem = m_psystem;
-
-         auto pnode = psystem->node();
+      auto pnode = psystem->node();
          
-         m_bDarkMode = pnode->is_app_dark_mode();
-         
-      }));
+      m_bDarkMode = pnode->dark_mode();
 
    }
 
 
-   void style_base::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void style_base::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->m_id == id_os_dark_mode)
+      if (psubject->m_id == id_user_color)
       {
 
-         on_change_dark_mode();
+         on_user_color();
 
       }
 
@@ -142,7 +137,7 @@ namespace user
    }
 
 
-   ::color::color style_base::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style_base::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -153,7 +148,7 @@ namespace user
          if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::e_element_background)
+            if (eelement == ::e_element_background)
             {
 
                return ::color::color(0, 0, 0, 0);

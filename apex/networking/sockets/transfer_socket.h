@@ -43,7 +43,7 @@ namespace sockets
 
 
    class CLASS_DECL_APEX transfer_socket_exception :
-      public ::exception::exception
+      public ::exception
    {
    public:
 

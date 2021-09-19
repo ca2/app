@@ -287,7 +287,7 @@ namespace sockets
             }
             put_string(msg, ptr, name);
          }
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
          /*      list<string> vec = m_response.CookieNames();
                {
                   for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)

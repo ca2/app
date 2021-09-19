@@ -168,14 +168,14 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
-   connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
-   connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
+   add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
+   add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
 
-   connect_command_probe("impact_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
-   connect_command("impact_full_screen", &simple_frame_window::_001OnViewFullScreen);
+   add_command_prober("impact_full_screen", this, &simple_frame_window::_001OnUpdateViewFullScreen);
+   add_command_handler("impact_full_screen", this, &simple_frame_window::_001OnViewFullScreen);
 
-   connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
-   connect_command("app_exit", &simple_frame_window::on_message_app_exit);
+   add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
+   add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -602,9 +602,9 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if(::is_set(pframe))
             {
 
-               auto psubject = subject(id_user_style_change);
+               auto psignal = get_signal(id_user_style_change);
 
-               psubject->add_listener(pframe);
+               psignal->add_handler(pframe);
 
                return pframe;
 
@@ -622,9 +622,9 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    
    strStyle = m_varFrame["style"];
 
-   auto psubject = subject(id_user_style_change);
+   auto psignal = get_signal(id_user_style_change);
 
-   psubject->add_listener(pframe);
+   psignal->add_handler(pframe);
 
    if (strStyle.has_char())
    {
@@ -671,7 +671,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       pexperienceframe = ::move_transfer(experience_get_frame());
 
    }
-   catch (const ::exception::exception &)
+   catch (const ::exception &)
    {
 
    }
@@ -2891,7 +2891,7 @@ void simple_frame_window::defer_create_notification_icon()
 
       }
 
-      m_bitMinimizeToTray.defer(e_bit_true);
+      m_bitMinimizeToTray.defer(e_boolean_true);
 
    }));
 
@@ -2991,10 +2991,10 @@ void simple_frame_window::design_up()
 //}
 
 
-void simple_frame_window::route_command_message(::message::command * pcommand)
+void simple_frame_window::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   ::experience::frame_window::route_command_message(pcommand);
+   ::experience::frame_window::route_command(pcommand);
 
 }
 
@@ -3091,7 +3091,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3154,7 +3154,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3171,7 +3171,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3261,16 +3261,16 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 }
 
 
-void simple_frame_window::on_control_event(::user::control_event * pevent)
+void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
 {
 
-   if(pevent->m_puserinteraction == m_pnotifyicon)
+   if(psubject->user_interaction() == m_pnotifyicon)
    {
 
-      if(pevent->m_eevent == ::user::e_event_context_menu)
+      if(psubject->m_id == ::e_subject_context_menu)
       {
 
-         //OnNotifyIconContextMenu(pevent->m_id);
+         //OnNotifyIconContextMenu(psubject->m_puserelement->m_id);
 
          auto psession = get_session();
 
@@ -3285,16 +3285,16 @@ void simple_frame_window::on_control_event(::user::control_event * pevent)
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
-      else if(pevent->m_eevent == ::user::e_event_left_button_double_click)
+      else if(psubject->m_id == ::e_subject_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(pevent->m_id);
+         //OnNotifyIconLButtonDblClk(psubject->m_puserelement->m_id);
 
       }
-      else if(pevent->m_eevent == ::user::e_event_left_button_down)
+      else if(psubject->m_id == ::e_subject_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(pevent->m_id);
+         //OnNotifyIconLButtonDown(psubject->m_puserelement->m_id);
 
          default_notify_icon_topic();
 
@@ -3305,16 +3305,16 @@ void simple_frame_window::on_control_event(::user::control_event * pevent)
 
 //#endif
 
-   ::experience::frame_window::on_control_event(pevent);
+   ::experience::frame_window::handle(psubject, pcontext);
 
-   if(pevent->m_bRet)
+   if(psubject->m_bRet)
    {
 
       return;
 
    }
 
-   return ::user::frame_window::on_control_event(pevent);
+   return ::user::frame_window::handle(psubject, pcontext);
 
 }
 
@@ -4009,43 +4009,43 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //}
 
 
-::e_status simple_frame_window::command_handler(const ::id & id)
-{
-
-   if(id == "notify_icon_topic")
-   {
-
-      _001OnNotifyIconTopic(nullptr);
-
-      return ::success;
-
-   }
-   else if (id == "transparent_frame")
-   {
-
-      _001OnToggleTransparentFrame(nullptr);
-
-      return ::success;
-
-   }
-
-   auto estatus = ::experience::frame_window::command_handler(id);
-
-   if(estatus)
-   {
-
-      return estatus;
-
-   }
-
-   //::message::command command
-
-   //route_command_message()
-
-   return estatus;
-
-
-}
+//::e_status simple_frame_window::command_handler(const ::id & id)
+//{
+//
+//   if(id == "notify_icon_topic")
+//   {
+//
+//      _001OnNotifyIconTopic(nullptr);
+//
+//      return ::success;
+//
+//   }
+//   else if (id == "transparent_frame")
+//   {
+//
+//      _001OnToggleTransparentFrame(nullptr);
+//
+//      return ::success;
+//
+//   }
+//
+//   auto estatus = ::experience::frame_window::command_handler(id);
+//
+//   if(estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   //::message::command command
+//
+//   //route_command_message()
+//
+//   return estatus;
+//
+//
+//}
 
 
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
@@ -4228,7 +4228,7 @@ void simple_frame_window::call_notification_area_action(const ::string & pszId)
    post_routine(__routine([this, id]()
    {
 
-      command_handler(id);
+      handle_command(id);
 
    }));
 

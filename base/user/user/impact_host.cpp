@@ -143,7 +143,7 @@ namespace user
          on_prepare_impact_data(pimpactdata);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          auto ptask = ::get_task();
@@ -169,7 +169,7 @@ namespace user
          on_after_create_impact_data(pimpactdata);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(exception);
@@ -214,7 +214,7 @@ namespace user
 
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(exception);
@@ -314,7 +314,7 @@ namespace user
          throw ::move(exception);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          m_impactdatamap.erase_key(pimpactdata->m_id);
@@ -697,7 +697,7 @@ namespace user
    }
 
 
-   void impact_host::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact_host::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

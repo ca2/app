@@ -103,7 +103,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       m_mutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_mutex,&attr)))
       {
-         __throw(::exception::exception("RC_OBJECT_NOT_CREATED"));
+         __throw(::exception("RC_OBJECT_NOT_CREATED"));
       }
 
 
@@ -366,7 +366,7 @@ bool event::ResetEvent()
    else
    {
 
-      __throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
+      __throw(::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
 
    }
 

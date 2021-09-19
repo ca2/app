@@ -197,9 +197,9 @@ namespace file_watcher
          {
             struct inotify_event *pevent = (struct inotify_event *)&buff[i];
 
-            watch_struct* watch = m_watchmap[(id &)pevent->wd];
-            handle_action(watch, pevent->name, pevent->mask);
-            i += sizeof(struct inotify_event) + pevent->len;
+            watch_struct* watch = m_watchmap[(id &)psubject->wd];
+            handle_action(watch, psubject->name, psubject->mask);
+            i += sizeof(struct inotify_event) + psubject->len;
          }
 
       }

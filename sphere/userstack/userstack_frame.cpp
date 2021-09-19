@@ -410,7 +410,7 @@ namespace userstack
          }
 
       }
-      catch(const ::exception::exception & )
+      catch(const ::exception & )
       {
       }
       catch(...)

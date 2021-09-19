@@ -230,7 +230,7 @@ namespace axis
          if (!pinteraction->m_flagNonClient.has(::user::interaction::non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            brush->create_solid(pinteraction->get_color(this, ::user::e_element_background, ::user::e_state_hover));
+            brush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
             pgraphics->set(brush);
 
@@ -253,7 +253,7 @@ namespace axis
 
                   pen.create();
 
-                  pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border, ::user::e_state_hover));
+                  pen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
 
                }
 
@@ -480,7 +480,7 @@ namespace axis
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border));
+         pen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
          pgraphics->draw_rectangle(rectangleClient, pen);
 
@@ -866,7 +866,7 @@ namespace axis
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -877,7 +877,7 @@ namespace axis
          if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::e_element_background)
+            if (eelement == ::e_element_background)
             {
 
                return ::color::color(0, 0, 0, 0);

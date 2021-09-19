@@ -80,7 +80,7 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 }
 
 
-bool simple_printer_list_view::on_click(const ::user::item & itemClick)
+bool simple_printer_list_view::on_click(const ::item & itemClick)
 {
 
    if (!itemClick.is_set())

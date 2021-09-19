@@ -331,7 +331,7 @@ namespace core
 //enum e_simple_command : ::i64;
 //enum e_message : ::i64;
 //enum e_impact : ::i64;
-//enum e_id : ::u64;
+//enum ::enum_id : ::u64;
 //enum enum_check: ::i32;
 
 
@@ -828,7 +828,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/primitive/subject/_.h"
+#include "apex/subject/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 
@@ -928,8 +928,8 @@ namespace windowing
 } // namespace windowing
 
 
-#include "apex/user/check.h"
-#include "apex/user/text.h"
+//#include "apex/user/check.h"
+//#include "apex/user/text.h"
 #include "apex/user/primitive.h"
 
 
@@ -1113,9 +1113,9 @@ namespace user
 
 #include "apex/_.h"
 
-#include "apex/user/text.h"
+//#include "apex/user/text.h"
 
-#include "apex/user/check.h"
+//#include "apex/user/check.h"
 
 #include "apex/user/menu_shared_command.h"
 

@@ -124,14 +124,14 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = m_pcheckbox;
-            ev.m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
-            ev.m_eevent = ::user::e_event_initialize_control;
-            ev.m_uiEvent = 0;
+            subject.m_puserelement = m_pcheckbox;
+            subject.m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+            subject.m_id = ::e_subject_initialize_control;
+            subject.m_uiEvent = 0;
 
-            pdata->m_pcoredata->m_pform->on_control_event(&ev);
+            pdata->m_pcoredata->m_pform->route(&subject);
 
          }
 

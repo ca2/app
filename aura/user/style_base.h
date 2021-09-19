@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA style_base :
-      virtual public subject::manager
+      virtual public ::manager
    {
    public:
 
@@ -21,7 +21,7 @@ namespace user
       ::e_status on_initialize_object() override; 
 
 
-      void on_subject(::subject::subject* psubject, ::subject::context* pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) = 0;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
@@ -32,7 +32,7 @@ namespace user
 
       //virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_change_dark_mode();
+      virtual void on_user_color();
 
       bool is_dark_mode() const { return m_bDarkMode; }
 
@@ -58,7 +58,7 @@ namespace user
       virtual enum_control_type get_control_type() const;
 
 
-      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const;
+      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const;
       virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const;
       virtual bool get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const;
 

@@ -768,7 +768,7 @@ namespace user
    }
 
 
-   bool tree::on_click(const ::user::item & item)
+   bool tree::on_click(const ::item & item)
    {
 
       return false;
@@ -776,7 +776,7 @@ namespace user
    }
 
 
-   bool tree::on_right_click(const ::user::item & item)
+   bool tree::on_right_click(const ::item & item)
    {
 
       return false;
@@ -1152,7 +1152,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_colorTreeBackground = get_color(pstyle, ::user::e_element_background);
+      m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
       __defer_construct(m_brushTextSelectedHighlight);
       __defer_construct(m_brushTextSelected);
@@ -1161,10 +1161,10 @@ namespace user
 
       __defer_construct(m_fontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
+      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
+      m_brushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_brushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_brushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
       m_fontTreeItem = get_font(pstyle);
 
@@ -1524,7 +1524,7 @@ namespace user
       //font->set_bold();
       //g->set_font(font);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::size_i32 size;
 
@@ -2219,13 +2219,13 @@ namespace user
    }
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->on_subject(psubject, pcontext);
+         m_ptree->handle(psubject, pcontext);
 
       }
 

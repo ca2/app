@@ -50,7 +50,7 @@ namespace database
    }
 
 
-   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::subject::subject * psubject)
+   bool server::_data_server_load(client * pclient, const key & id, get_memory getmemory, ::subject * psubject)
    {
 
 #if MEMDLEAK
@@ -64,7 +64,7 @@ namespace database
    }
 
 
-   bool server::_data_server_save(client * pclient, const key & id, block block, ::subject::subject * psubject)
+   bool server::_data_server_save(client * pclient, const key & id, block block, ::subject * psubject)
    {
 
       return true;
@@ -72,7 +72,7 @@ namespace database
    }
 
 
-   bool server::data_pulse_change(client * pclient, const key & id, ::subject::subject * psubject)
+   bool server::data_pulse_change(client * pclient, const key & id, ::subject * psubject)
    {
 
       return on_after_data_change(pclient, id, psubject);
@@ -80,7 +80,7 @@ namespace database
    }
 
 
-   bool server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::subject::subject * psubject)
+   bool server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
    {
 
       //::database::change_event signal(payload);
@@ -109,7 +109,7 @@ namespace database
    }
 
 
-   bool server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject::subject * psubject)
+   bool server::on_after_data_change(client * pclient, const key & id, const ::payload & payload, ::subject * psubject)
    {
 
       //::database::change_event signal;
@@ -137,7 +137,7 @@ namespace database
    }
 
 
-   ::payload server::data_load(client * pclient, const key & id, ::subject::subject * psubject)
+   ::payload server::data_load(client * pclient, const key & id, ::subject * psubject)
    {
 
       ::memory_stream is;
@@ -162,7 +162,7 @@ namespace database
    }
 
 
-   bool server::data_save(client * pclient, const key & id, ::payload & payload, ::subject::subject * psubject)
+   bool server::data_save(client * pclient, const key & id, ::payload & payload, ::subject * psubject)
    {
 
       ::memory_stream writer;

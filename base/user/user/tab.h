@@ -63,7 +63,7 @@ namespace user
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
-      ::logic::bit                     m_bitLastShowTabs;
+      ::boolean                     m_bitLastShowTabs;
       enum_display                        m_edisplayParentFrameAutoHide;
       int                              m_iTabScroll;
       int                              m_iTabScrollMax;
@@ -101,7 +101,7 @@ namespace user
       virtual void _001CloseTab(::index iTab);
 
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void rotate();
 
@@ -153,7 +153,7 @@ namespace user
       virtual void _001OnTabClick(::index iTab);
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      void on_hit_test(::user::item & item) override;
+      void on_hit_test(::item & item) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
       virtual void GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition);
 

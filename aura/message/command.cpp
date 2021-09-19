@@ -270,7 +270,7 @@
 //
 //         pcommand->m_id.set_compounded_type(::id::e_type_command);
 //
-//         route_command_message(pcommand);
+//         route_command(pcommand);
 //
 //      }
 //
@@ -288,14 +288,14 @@
 //
 //         pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 //
-//         route_command_message(pcommand);
+//         route_command(pcommand);
 //
 //      }
 //
 //   }
 //
 //
-//   void channel::route_command_message(::message::command * pcommand)
+//   void channel::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 //   {
 //
 //      on_command_message(pcommand);

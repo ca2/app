@@ -76,19 +76,19 @@ namespace user
    }
 
 
-   void style::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void style::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change 
          || psubject->m_id == id_os_user_theme
-         || psubject->m_id == id_os_dark_mode)
+         || psubject->m_id == id_user_color)
       {
 
          m_iUpdate++;
 
       }
 
-      style_base::on_subject(psubject, pcontext);
+      style_base::handle(psubject, pcontext);
 
    }
 
@@ -921,7 +921,7 @@ namespace user
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -941,7 +941,7 @@ namespace user
          if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::e_element_background)
+            if (eelement == ::e_element_background)
             {
 
                return ::color::color(0, 0, 0, 0);
@@ -953,7 +953,7 @@ namespace user
          {
 
 
-            if (eelement == ::user::e_element_border)
+            if (eelement == ::e_element_border)
             {
 
                if(estate & e_state_hover)
@@ -1001,7 +1001,7 @@ namespace user
                }
 
             }
-            else if (eelement == ::user::e_element_background)
+            else if (eelement == ::e_element_background)
             {
 
                if(estate & e_state_hover)
@@ -1053,7 +1053,7 @@ namespace user
 
       }
 
-      if (eelement == ::user::e_element_background)
+      if (eelement == ::e_element_background)
       {
 
          ::color::color crBk;
@@ -1074,7 +1074,7 @@ namespace user
          return crBk;
 
       }
-      else if (eelement == ::user::e_element_face)
+      else if (eelement == ::e_element_face)
       {
 
          ::color::color crBk;
@@ -1095,7 +1095,7 @@ namespace user
          return crBk;
 
       }
-      else if (eelement == ::user::e_element_text)
+      else if (eelement == ::e_element_text)
       {
 
          ::color::color crText;
@@ -1116,7 +1116,7 @@ namespace user
          return crText;
 
       }
-      else if (eelement == ::user::e_element_border)
+      else if (eelement == ::e_element_border)
       {
 
          ::color::color crText;

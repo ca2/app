@@ -172,21 +172,21 @@ namespace user
    }
 
 
-   void color_combo_box::on_control_event(::user::control_event * pevent)
+   void color_combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_puserinteraction == m_pimpact)
+      if(psubject->m_puserelement == m_pimpact)
       {
 
-         pevent->m_puserinteraction = this;
+         psubject->m_puserelement = this;
 
-         pevent->m_id = m_id;
+         psubject->m_puserelement->m_id = m_id;
 
          m_hls = m_pimpact->m_hls;
 
       }
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -201,7 +201,7 @@ namespace user
       if (!m_itemHover.is_set())
       {
 
-         m_itemHover = ::user::e_element_client;
+         m_itemHover = ::e_element_client;
 
          set_need_redraw();
 
@@ -219,7 +219,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = ::user::e_element_none;
+      m_itemHover = ::e_element_none;
 
       set_need_redraw();
 
@@ -374,7 +374,7 @@ namespace user
 
          {
 
-            auto colorBackground = get_color(pstyle, ::user::e_element_background, estate);
+            auto colorBackground = get_color(pstyle, ::e_element_background, estate);
 
             if (!colorBackground.is_ok())
             {

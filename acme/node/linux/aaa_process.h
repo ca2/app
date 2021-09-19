@@ -6,7 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_ACME process :
-      virtual public ::process::process
+      virtual public ::operating_system::process
    {
    public:
 

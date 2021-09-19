@@ -326,13 +326,13 @@ namespace experience
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
-         auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+         auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
+         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
 
-         auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+         auto crButtonFace = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-         auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+         auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
          m_penText1->create_solid(1, argb(255, 255, 255, 255));
          m_penFace1->create_solid(1, opaque(crButtonFace));
@@ -499,7 +499,7 @@ namespace experience
       }
 
 
-      //void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+      //void frame::handle(::subject * psubject, ::context * pcontext)
       //{
 
       //   if(psubject->m_id == id_user_style_change)
@@ -751,11 +751,11 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+               crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-               crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+               crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-               crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+               crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
             }
 
@@ -813,7 +813,7 @@ namespace experience
 
             pgraphics->set(brushText);
 
-            pgraphics->set_font(pframewindow, ::user::e_element_window_title);
+            pgraphics->set_font(pframewindow, ::e_element_window_title);
 
             pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
 

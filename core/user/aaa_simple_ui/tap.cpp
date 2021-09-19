@@ -128,7 +128,7 @@ namespace simple_ui
 
          track_mouse_hover();
 
-         m_itemHover = ::user::e_element_client;
+         m_itemHover = ::e_element_client;
 
          set_need_redraw();
 
@@ -144,7 +144,7 @@ namespace simple_ui
 
       m_bMouseMove = false;
 
-      m_itemHover = ::user::e_element_none;
+      m_itemHover = ::e_element_none;
 
       set_need_redraw();
 

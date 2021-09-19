@@ -152,8 +152,8 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::on_message_create);
 
-      connect_command("file_save_as", &pane_tab_view::_001OnFileSaveAs);
-      connect_command_probe("file_save_as", &pane_tab_view::_001OnUpdateFileSaveAs);
+      add_command_handler("file_save_as", this, &pane_tab_view::_001OnFileSaveAs);
+      add_command_prober("file_save_as", this, &pane_tab_view::_001OnUpdateFileSaveAs);
 
    }
 
@@ -243,17 +243,17 @@ namespace userex
 
       ::user::tab_view::on_change_cur_sel();
 
-      if(m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
+      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
       {
 
-         if(get_parent_frame()->ContinueModal())
+         if (get_parent_frame()->ContinueModal())
          {
 
             get_parent_frame()->EndModalLoop("yes");
 
          }
 
-         if(::is_set(filemanager_document()))
+         if (::is_set(filemanager_document()))
          {
 
             filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
@@ -261,6 +261,34 @@ namespace userex
          }
 
       }
+      else
+      {
+
+         auto str = get_application()->prepare_menu_impact();
+
+   #ifdef _DEBUG
+
+         auto pcontext = m_pcontext->m_papexcontext;
+
+         pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", str);
+
+   #endif
+
+         if (!m_pdocumentMenu->open_document(str))
+         {
+
+            output_error_message("Failed to open the menu.");
+
+            return;
+
+         }
+
+         ::user::impact * pview = m_pdocumentMenu->get_view(0);
+
+         pview->set_need_load_form_data();
+
+      }
+
 
    }
 
@@ -444,6 +472,16 @@ namespace userex
          }
 
       }
+      else if (pimpactdata->m_id == MENU_IMPACT)
+      {
+
+         auto puser = user()->m_pcoreuser;
+
+         m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+
+         pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
+
+      }
       else if (is_font_sel(pimpactdata->m_id))
       {
 
@@ -481,14 +519,14 @@ namespace userex
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview->m_pimpact->add_control_event_handler(this);
+         m_pfontview->m_pimpact->add_handler(this);
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pview)
          {
 
-            m_pfontview->m_pimpact->add_control_event_handler(pview);
+            m_pfontview->m_pimpact->add_handler(pview);
 
          }
 
@@ -516,14 +554,14 @@ namespace userex
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorview->add_control_event_handler(this);
+         m_pcolorview->add_handler(this);
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pview)
          {
 
-            m_pcolorview->add_control_event_handler(pview);
+            m_pcolorview->add_handler(pview);
 
          }
 
@@ -784,10 +822,29 @@ namespace userex
    }
 
 
-   void pane_tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_context_menu_close)
+      {
+
+         if (m_pimpactdataOld != nullptr)
+         {
+
+            set_current_tab_by_id(m_pimpactdataOld->m_id);
+
+            psubject->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+      ::user::tab_view::handle(psubject, pcontext);
+
 
    }
 
@@ -801,28 +858,29 @@ namespace userex
 
    }
 
-   void pane_tab_view::on_control_event(::user::control_event * pevent)
-   {
 
-      if (pevent->m_eevent == ::user::e_event_context_menu_close)
-      {
+   //void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-         if (m_pimpactdataOld != nullptr)
-         {
+   //   if (psubject->m_id == ::e_subject_context_menu_close)
+   //   {
 
-            set_current_tab_by_id(m_pimpactdataOld->m_id);
+   //      if (m_pimpactdataOld != nullptr)
+   //      {
 
-            pevent->m_bRet = true;
+   //         set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-            return;
+   //         psubject->m_bRet = true;
 
-         }
+   //         return;
 
-      }
+   //      }
 
-      ::user::tab_view::on_control_event(pevent);
+   //   }
 
-   }
+   //   ::user::tab_view::handle(psubject, pcontext);
+
+   //}
 
 
    bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)

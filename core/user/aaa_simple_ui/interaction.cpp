@@ -20,7 +20,7 @@ namespace simple_ui
 //   {
 //
 //      m_iIndex = -1;
-//      //m_eelementHover = ::user::e_element_none;
+//      //m_eelementHover = ::e_element_none;
 //
 //   }
 //
@@ -64,29 +64,29 @@ namespace simple_ui
 //   }
 //
 //
-//   bool interaction::simple_process_system_message(::message::message * pmessage, ::user::enum_event eevent)
+//   bool interaction::simple_process_system_message(::message::message * pmessage, ::enum_subject esubject)
 //   {
 //
 //      __pointer(::user::message) pusermessage(pmessage);
 //
-//      if (eevent == ::user::e_event_button_down)
+//      if (eevent == ::e_subject_button_down)
 //      {
 //
 //         psession->m_puiLastLButtonDown = this;
 //
 //      }
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_eevent = eevent;
+//      subject.m_id = eevent;
 //
-//      ev.m_pmessage = pmessage;
+//      subject.m_pmessage = pmessage;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
-//      pmessage->m_bRet = ev.m_bRet;
+//      pmessage->m_bRet = subject.m_bRet;
 //
 //      if (pmessage->m_bRet)
 //      {
@@ -100,7 +100,7 @@ namespace simple_ui
 //
 //      }
 //
-//      return ev.m_bRet;
+//      return subject.m_bRet;
 //
 //   }
 //
@@ -139,7 +139,7 @@ namespace simple_ui
 //
 //         }
 //
-//         if (!simple_process_system_message(pmessage, ::user::e_event_button_down))
+//         if (!simple_process_system_message(pmessage, ::e_subject_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -163,7 +163,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::user::e_event_m_button_down))
+//         if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -187,7 +187,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::user::e_event_m_button_up))
+//         if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -235,23 +235,23 @@ namespace simple_ui
 //         else
 //         {
 //
-//            ::user::control_event ev;
+//            ::subject subject;
 //
-//            ev.m_puserinteraction = this;
+//            subject.m_puserinteraction = this;
 //
-//            ev.m_id = m_id;
+//            //subject.m_id = m_id;
 //
-//            ev.m_eevent = ::user::e_event_click;
+//            subject.m_id = ::e_subject_click;
 //
-//            ev.m_pmessage = pmouse->
+//            subject.m_pmessage = pmouse->
 //
-//            ev.m_item = item;
+//            subject.m_item = item;
 //
-//            ev.m_context.add(::e_source_user);
+//            subject.m_context.add(::e_source_user);
 //
-//            on_control_event(&ev);
+//            route(&subject);
 //
-//            pmessage->m_bRet = ev.m_bRet;
+//            pmessage->m_bRet = subject.m_bRet;
 //
 //            if (!pmessage->m_bRet)
 //            {
@@ -317,25 +317,25 @@ namespace simple_ui
 //         if (!itemOldHover)
 //         {
 //
-//            ::user::control_event ev;
+//            ::subject subject;
 //
-//            ev.m_puserinteraction = this;
+//            subject.m_puserinteraction = this;
 //
-//            ev.m_eevent = ::user::e_event_mouse_enter;
+//            subject.m_id = ::e_subject_mouse_enter;
 //
-//            on_control_event(&ev);
+//            route(&subject);
 //
 //         }
 //         else if (!item)
 //         {
 //
-//            ::user::control_event ev;
+//            ::subject subject;
 //
-//            ev.m_puserinteraction = this;
+//            subject.m_puserinteraction = this;
 //
-//            ev.m_eevent = ::user::e_event_mouse_leave;
+//            subject.m_id = ::e_subject_mouse_leave;
 //
-//            on_control_event(&ev);
+//            route(&subject);
 //
 //         }
 //
@@ -353,20 +353,20 @@ namespace simple_ui
 //
 //      auto itemOldHover = m_itemHover;
 //
-//      m_itemHover = ::user::e_element_none;
+//      m_itemHover = ::e_element_none;
 //
 //      if (itemOldHover)
 //      {
 //
 //         set_need_redraw();
 //
-//         ::user::control_event ev;
+//         ::subject subject;
 //
-//         ev.m_puserinteraction = this;
+//         subject.m_puserinteraction = this;
 //
-//         ev.m_eevent = ::user::e_event_mouse_leave;
+//         subject.m_id = ::e_subject_mouse_leave;
 //
-//         on_control_event(&ev);
+//         route(&subject);
 //
 //      }
 //
@@ -375,7 +375,7 @@ namespace simple_ui
 //   }
 //
 //
-//   ::user::item interaction::hit_test(::message::mouse* pmouse->
+//   ::item interaction::hit_test(::message::mouse* pmouse->
 //   {
 //
 //      auto point = pmouse->m_point;
@@ -387,24 +387,24 @@ namespace simple_ui
 //
 //   }
 //
-//   void interaction::on_hit_test(::user::item & item)
+//   void interaction::on_hit_test(::item & item)
 //   {
 //
-//      auto rectangle = this->rectangle(::user::e_element_client);
+//      auto rectangle = this->rectangle(::e_element_client);
 //
 //      if (!rectangle.contains(point))
 //      {
 //
-//         return ::user::e_element_none;
+//         return ::e_element_none;
 //
 //      }
 //
-//      return ::user::e_element_client;
+//      return ::e_element_client;
 //
 //   }
 //
 //
-//   bool interaction::get_rect(::rectangle_i32 & rectangle, const ::user::item& item)
+//   bool interaction::get_rect(::rectangle_i32 & rectangle, const ::item& item)
 //   {
 //
 //      if (!item)
@@ -930,7 +930,7 @@ namespace simple_ui
 //   }
 //
 //
-//   //void interaction::on_hit_test(::user::item & item)
+//   //void interaction::on_hit_test(::item & item)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();
@@ -938,11 +938,11 @@ namespace simple_ui
 //   //   if (!rectangleClient.contains(point))
 //   //   {
 //
-//   //      return ::user::e_element_none;
+//   //      return ::e_element_none;
 //
 //   //   }
 //
-//   //   return ::user::e_element_client;
+//   //   return ::e_element_client;
 //
 //   //}
 //

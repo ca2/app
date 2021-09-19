@@ -208,7 +208,7 @@ namespace acme
 
       }
 
-      ::exception::engine().reset();
+      ::exception_engine().reset();
 
       PFN_NEW_LIBRARY pfnNewAcmeLibrary = nullptr;
 

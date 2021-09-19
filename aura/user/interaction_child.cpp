@@ -15,7 +15,7 @@ namespace user
 
       m_pinteractionchild = this;
       m_bCreate = false;
-      m_puiOwner = nullptr;
+      m_puserprimitiveOwner = nullptr;
 
    }
 
@@ -25,7 +25,7 @@ namespace user
    //{
 
    //   m_bCreate = false;
-   //   m_puiOwner = nullptr;
+   //   m_puserprimitiveOwner = nullptr;
 
    //}
 
@@ -420,27 +420,27 @@ namespace user
       if (m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->GuieProc(pmessage);
+         //m_puserinteraction->GuieProc(pmessage);
 
-         if (pmessage->m_bRet)
-         {
+         //if (pmessage->m_bRet)
+         //{
 
-            return;
+         //   return;
 
-         }
-
-      }
-
-      if (message == e_message_event)
-      {
-
-         ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
-
-         m_puserinteraction->on_control_event(pevent);
-
-         return;
+         //}
 
       }
+
+      //if (message == e_message_event)
+      //{
+
+      //   ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
+
+      //   m_puserinteraction->handle(psubject, pcontext);
+
+      //   return;
+
+      //}
 
       if (::is_set(m_puserinteraction))
       {
@@ -551,7 +551,7 @@ namespace user
    bool interaction_child::_is_window() const
    {
 
-      if (!m_bUserPrimitiveOk)
+      if (!m_bUserElementOk)
       {
 
          return false;
@@ -715,9 +715,9 @@ namespace user
    ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
-      m_puiOwner = pinteraction;
+      m_puserprimitiveOwner = pinteraction;
 
-      return m_puiOwner->m_puiThis;
+      return m_puserprimitiveOwner->m_puserinteraction;
 
    }
 
@@ -725,10 +725,10 @@ namespace user
    ::user::interaction * interaction_child::get_owner() const
    {
 
-      if (m_puiOwner != nullptr)
+      if (m_puserprimitiveOwner != nullptr)
       {
 
-         return m_puiOwner->m_puiThis;
+         return m_puserprimitiveOwner->m_puserinteraction;
 
       }
 

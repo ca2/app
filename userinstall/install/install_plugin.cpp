@@ -33,7 +33,7 @@
 
 void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   //__throw(::exception::exception("integer_exception" + __str($1)));
+   //__throw(::exception("integer_exception" + __str($1)));
 }
 
 #endif // defined WINDOWS
@@ -103,7 +103,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo")); // aura::ipc::ipc
+      __throw(::exception("todo")); // aura::ipc::ipc
 
 #else
 
@@ -250,7 +250,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo"));
+      __throw(::exception("todo"));
 
 #else
 
@@ -837,7 +837,7 @@ run_install:
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo"));
+      __throw(::exception("todo"));
 
 #else
 
@@ -1625,7 +1625,7 @@ restart:
 
 #ifdef _UWP
 
-         __throw(::exception::exception("todo"));
+         __throw(::exception("todo"));
 
 #else
 

@@ -193,7 +193,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -594,7 +594,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
       v.parse_json(pszJson);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       TRACE(e.get_message());
@@ -798,7 +798,7 @@ bool file_context::put_contents(const ::payload &varFile, const void *pvoidConte
                         ::file::e_open_defer_create_directory);
 
    }
-   catch(const ::exception::exception &)
+   catch(const ::exception &)
    {
 
       return false;
@@ -1218,7 +1218,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::extended::status file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1278,7 +1278,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //
 //      //output_debug_string("test");
 //
-//      __throw(::exception::exception("file::file_context::move Could not move file, could not open source file"));
+//      __throw(::exception("file::file_context::move Could not move file, could not open source file"));
 //
 //   }
 //
@@ -1318,7 +1318,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //      i32 err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
-//      __throw(::exception::exception(strError));
+//      __throw(::exception(strError));
 //   }
 //#endif
 //
@@ -1330,7 +1330,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::extended::status file_context::del(const ::file::path & path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1385,7 +1385,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //      {
 //         string strError;
 //         strError.Format("Failed to delete file error=%d", err);
-//         __throw(::exception::exception(strError));
+//         __throw(::exception(strError));
 //      }
 //   }
 //#endif
@@ -1507,7 +1507,7 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -1520,7 +1520,7 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
    __UNREFERENCED_PARAMETER(path);
    __UNREFERENCED_PARAMETER(status);
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return ::success;
 
@@ -1590,7 +1590,7 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   //__throw(error_interface_only);
+   //throw ::interface_only_exception();
 
    return false;
 
@@ -1628,7 +1628,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 ::extended::transport < ::file::file > file_context::resource_get_file(const ::file::path & path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -1818,7 +1818,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   if (spfile.is_null())
 //   {
 //
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   }
 //
@@ -1860,7 +1860,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //      string strRelative = stra[i].relative();
 //      write_gen_string(spfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
-//         __throw(::exception::exception("failed"));
+//         __throw(::exception("failed"));
 //      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
@@ -1887,7 +1887,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   file_pointer spfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (spfile.is_null())
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   read_gen_string(spfile, nullptr, strVersion);
 //
@@ -1919,7 +1919,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         m_pcontext->m_papexcontext->dir().mk(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
-//            __throw(::exception::exception("failed"));
+//            __throw(::exception("failed"));
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
@@ -1933,7 +1933,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         pfile2->close();
 //         strMd5New = __str(ctx);
 //         if (strMd5 != strMd5New)
-//            __throw(::exception::exception("failed"));
+//            __throw(::exception("failed"));
 //      }
 //   }
 //
@@ -1986,7 +1986,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   }
 //
 //   if (ch != 'n')
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   if (pctx != nullptr)
 //   {
@@ -2127,7 +2127,7 @@ string file_context::nessie(const ::payload &varFile)
 bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -2307,7 +2307,7 @@ file_transport file_context::file_get_file(::file::path path, const ::file::e_op
       }
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       return e.m_estatus;
@@ -3231,7 +3231,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
       return get_file(varFile, eopenFlags);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       return e;
@@ -3291,7 +3291,7 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 bool file_context::crypto_set(const ::payload &varFile, const char *pszData, const char *pszSalt)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -3301,7 +3301,7 @@ bool file_context::crypto_set(const ::payload &varFile, const char *pszData, con
 bool file_context::crypto_get(const ::payload &varFile, string &str, const char *pszSalt)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 

@@ -2,11 +2,11 @@
 #include "framework.h"
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
-   translator::translator()
+   exception_translator::exception_translator()
    {
 
       m_bSet = false;
@@ -20,7 +20,7 @@ namespace exception
    }
 
 
-   translator::~translator()
+   exception_translator::~exception_translator()
    {
 
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
@@ -106,7 +106,7 @@ namespace exception
 //   }
 
 
-   bool translator::attach()
+   bool exception_translator::attach()
    {
 
       if (!m_bSet)
@@ -196,7 +196,7 @@ namespace exception
    }
 
 
-   bool translator::detach()
+   bool exception_translator::detach()
    {
 
       if (m_bSet)
@@ -405,7 +405,7 @@ namespace exception
 #ifdef WINDOWS
 
 
-   string translator::_get_standard_exception_name(u32 uiCode)
+   string exception_translator::_get_standard_exception_name(u32 uiCode)
    {
 
       return "";
@@ -413,7 +413,7 @@ namespace exception
    }
 
 
-   string translator::_get_standard_exception_description(u32 uiCode)
+   string exception_translator::_get_standard_exception_description(u32 uiCode)
    {
 
       return "";
@@ -423,8 +423,8 @@ namespace exception
 
 #endif
 
-
-} // namespace translator
-
-
+//
+//} // namespace translator
+//
+//
 

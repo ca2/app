@@ -154,10 +154,10 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void operation_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      BASE::on_subject(psubject, pcontext);
+      BASE::handle(psubject, pcontext);
 
       if (psubject->id() == INITIAL_UPDATE)
       {

@@ -867,7 +867,7 @@ namespace android
    //   ::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return false;
    //   /*      return ::UpdateLayeredWindow(get_handle(), WIN_HDC(pDCDst), pptDst, psize,
    //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != false;*/
@@ -883,7 +883,7 @@ namespace android
    //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   //      return ::PrintWindow(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), nFlags) != false;
    //   return false;
    //}
@@ -905,7 +905,7 @@ namespace android
    {
       __UNREFERENCED_PARAMETER(dwData);
       __UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       /*      application* pApp = System;
       ASSERT_VALID(pApp);
@@ -931,7 +931,7 @@ namespace android
 
    //void interaction_impl::HtmlHelp(uptr dwData, ::u32 nCmd)
    //{
-   // ::exception::throw_not_implemented();
+   // throw interface_only_exception();
    /*
    application* pApp = System;
    ASSERT_VALID(pApp);
@@ -997,7 +997,7 @@ namespace android
    {
       __UNREFERENCED_PARAMETER(dwData);
       __UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*
       application* pApp = System;
       ASSERT_VALID(pApp);
@@ -1019,10 +1019,10 @@ namespace android
 
 
 
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -1038,7 +1038,7 @@ namespace android
 
       channel * pcmdtarget = dynamic_cast <channel *> (this);
 
-      pcmdtarget->channel::route_command_message(pcommand);
+      pcmdtarget->channel::route_command(pcommand);
 
    }
 
@@ -1046,7 +1046,7 @@ namespace android
    void interaction_impl::_002OnDraw(::image * pimage)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::android::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
@@ -1307,7 +1307,7 @@ namespace android
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+            m_puserinteraction->handle_event((::user::control_event *) pmessage->m_lparam.m_lparam);
 
          }
          return;
@@ -4560,7 +4560,7 @@ namespace android
       else
       {
 
-         __throw(error_interface_only);
+         throw ::interface_only_exception();
 
       }
 

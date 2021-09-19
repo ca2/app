@@ -42,6 +42,9 @@ namespace windowing
       void user_common_construct();
 
 
+      ::e_status on_initialize_object() override;
+
+
       void assert_valid() const override;
       void dump(dump_context & dumpcontext) const override;
 
@@ -144,7 +147,8 @@ namespace windowing
       void message_handler(::message::message* pusermessage);
 
 
-      void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
+
 
       virtual void present();
 
@@ -232,6 +236,9 @@ namespace windowing
 
 
       virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
+
+
+      virtual ::point_i32 get_mouse_cursor_position();
 
 
       virtual ::e_status set_tool_window(bool bSet);

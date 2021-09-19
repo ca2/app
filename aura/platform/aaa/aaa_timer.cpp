@@ -424,7 +424,7 @@ void timer::impl_init()
    //if (e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
    //{
 
-   //   __throw(::exception::exception("e_timer_create failed"));
+   //   __throw(::exception("e_timer_create failed"));
 
    //}
 

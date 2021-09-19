@@ -489,7 +489,7 @@ namespace account
       catch (...)
       {
 
-         throw ::exception::exception(error_failed, "no more a window");
+         throw ::exception(error_failed, "no more a window");
 
       }
 

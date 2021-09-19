@@ -59,7 +59,7 @@ namespace extended
     }
 
 
-    status::status(const ::exception::exception& e) :
+    status::status(const ::exception& e) :
        m_estatus(undefined) 
     { 
        
@@ -68,7 +68,7 @@ namespace extended
     }
 
 
-    status::status(const std::initializer_list < ::exception::exception >& list) :
+    status::status(const std::initializer_list < ::exception >& list) :
        m_estatus(undefined)
     { 
        
@@ -121,7 +121,7 @@ namespace extended
         else
         {
 
-            add(::exception::exception(estatus,nullptr, g_iSkipCallStack));
+            add(::exception(estatus,nullptr, g_iSkipCallStack));
 
         }
 
@@ -146,13 +146,13 @@ namespace extended
 
 
 
-    void status::add(const ::exception::exception& e)
+    void status::add(const ::exception& e)
     {
 
        if (m_pexceptiona.is_null())
        {
 
-          m_pexceptiona = __new(::array < ::exception::exception >);
+          m_pexceptiona = __new(::array < ::exception >);
 
           if (m_estatus != undefined)
           {
@@ -196,18 +196,18 @@ namespace extended
        //void status::add(::enum_status estatus)
        //{
 
-       //   add(::exception::exception(estatus));
+       //   add(::exception(estatus));
 
        //}
 
 
-    bool status::get_exception(::exception::exception& e, const ::e_status& estatus)
+    bool status::get_exception(::exception& e, const ::e_status& estatus)
     {
 
        if (m_estatus == estatus)
        {
 
-          e = ::exception::exception(m_estatus);
+          e = ::exception(m_estatus);
 
           return true;
 
@@ -305,7 +305,7 @@ namespace extended
     }
 
 
-    //void status::add(const std::initializer_list < ::exception::exception >& list)
+    //void status::add(const std::initializer_list < ::exception >& list)
     //{
 
     //   for (auto& e : list)
@@ -331,7 +331,7 @@ namespace extended
     }
 
 
-    void status::add(const std::initializer_list < ::exception::exception >& list)
+    void status::add(const std::initializer_list < ::exception >& list)
     {
 
        for (auto& e : list)

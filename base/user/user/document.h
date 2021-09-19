@@ -255,10 +255,10 @@ namespace user
       // Update Views (simple update - DAG only)
       void id_update_all_views(const ::id & id);
       void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject::subject * psubject);
+      virtual void update_all_views(::subject * psubject);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);
@@ -314,7 +314,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      //virtual void route_command_message(::message::command * pcommand) override;
+      //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       friend class impact_system;
 

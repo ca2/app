@@ -45,16 +45,16 @@ dialog::~dialog()
 }
 
 
-void dialog::on_control_event(::user::control_event * pevent)
+void dialog::handle(::subject * psubject, ::context * pcontext)
 {
 
-   if(::is_set(pevent->m_puserinteraction) && m_pform == nullptr)
+   if(::is_set(psubject->user_interaction()) && m_pform == nullptr)
    {
 
-      if(pevent->m_eevent == ::user::e_event_create)
+      if(psubject->m_id == ::e_subject_create)
       {
 
-         m_pform = pevent->m_puserinteraction;
+         m_pform = psubject->user_interaction();
 
       }
 

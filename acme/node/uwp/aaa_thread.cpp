@@ -9,7 +9,7 @@ namespace universal_windows
 } // namespace universal_windows
 
 bool CLASS_DECL_ACME __internal_pump_message();
-LRESULT CLASS_DECL_ACME __internal_process_wnd_proc_exception(::exception::exception*, const MSG* pMsg);
+LRESULT CLASS_DECL_ACME __internal_process_wnd_proc_exception(::exception*, const MSG* pMsg);
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
 //__STATIC void CLASS_DECL_ACME __pre_init_dialog(__pointer(::user::interaction) pWnd, RECTANGLE_I32 * lpRectOld, u32* pdwStyleOld);
@@ -48,7 +48,7 @@ bool __node_init_thread(::thread * pthread)
    try
    {
 
-      pthread->::exception::translator::attach();
+      pthread->::exception_translator::attach();
 
    }
    catch(...)
@@ -75,7 +75,7 @@ bool __node_term_thread(::thread * pthread)
       if(pthread != nullptr)
       {
 
-         pthread->::exception::translator::detach();
+         pthread->::exception_translator::detach();
 
       }
 

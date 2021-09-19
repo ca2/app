@@ -170,7 +170,7 @@ namespace simple_ui
       if(!create_interaction(puiParent))
       {
 
-         __throw(::exception::exception("not excepted! Failing Message box!!"));
+         __throw(::exception("not excepted! Failing Message box!!"));
 
       }
 
@@ -240,7 +240,7 @@ namespace simple_ui
 
       auto pnode = Node;
 
-      color32_t crBk = pnode->get_simple_ui_color(::user::e_element_background);
+      color32_t crBk = pnode->get_simple_ui_color(::e_element_background);
 
       pgraphics->fill_rectangle(rectangleClient,crBk);
 
@@ -254,7 +254,7 @@ namespace simple_ui
 
       pgraphics->get_text_metrics(&tm);
 
-      color32_t crText = pnode->get_simple_ui_color(::user::e_element_text);
+      color32_t crText = pnode->get_simple_ui_color(::e_element_text);
 
       pgraphics->set_text_color(crText);
 

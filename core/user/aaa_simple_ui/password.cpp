@@ -31,10 +31,10 @@ namespace simple_ui
 
       auto pstyle = get_style(pgraphics);
 
-      color32          = get_color(pstyle, ::user::e_element_text);
-      crBk        = get_color(pstyle, ::user::e_element_background);
-      crSel       = get_color(pstyle, ::user::e_element_text, ::user::e_state_selected);
-      crBkSel     = get_color(pstyle, ::user::e_element_background, ::user::e_state_selected);
+      color32          = get_color(pstyle, ::e_element_text);
+      crBk        = get_color(pstyle, ::e_element_background);
+      crSel       = get_color(pstyle, ::e_element_text, ::user::e_state_selected);
+      crBkSel     = get_color(pstyle, ::e_element_background, ::user::e_state_selected);
 
 
       //::job * pjob = pgraphics->m_pjob;

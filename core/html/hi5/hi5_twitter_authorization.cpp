@@ -294,13 +294,13 @@ namespace hi5
       }
 
 
-      void authorization::on_control_event( ::user::control_event * pevent)
+      void authorization::handle(::subject * psubject, ::context *pcontext)   
       {
 
-         if(pevent->m_eevent == ::user::e_event_click || pevent->m_eevent == ::user::e_event_enter_key)
+         if(psubject->m_id == ::e_subject_click || psubject->m_id == ::e_subject_enter_key)
          {
 
-            if(pevent->m_puserinteraction->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)
+            if(psubject->user_interaction()->m_id == "submit" || psubject->m_id == ::e_subject_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");
@@ -318,7 +318,7 @@ namespace hi5
       }
 
 
-      bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element)
+      bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::enum_element)
       {
 
          etranslucency = ::user::e_translucency_present;

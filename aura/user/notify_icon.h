@@ -44,10 +44,9 @@ namespace user
       ::e_status step() override;
 
 
-      void route_command_message(::message::command* pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      
-      void on_command_message(::message::command * pcommand) override;
+      void on_command(::message::command * pcommand) override;
 
 
       virtual int _get_notification_area_action_count() override;

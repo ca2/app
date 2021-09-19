@@ -1326,7 +1326,7 @@ namespace str
 //inline bool string_format::defer_get_additional_argument(const ansichar * & s)
 //{
 //
-//   __throw(::exception::exception("missing argument value"));
+//   __throw(::exception("missing argument value"));
 //
 //}
 //
@@ -1356,13 +1356,13 @@ namespace str
 //   if(m_estate == state_waiting_width)
 //   {
 //
-//      __throw(::exception::exception("width should plain i32"));
+//      __throw(::exception("width should plain i32"));
 //
 //   }
 //   else if(m_estate == state_waiting_precision)
 //   {
 //
-//      __throw(::exception::exception("width should plain i32"));
+//      __throw(::exception("width should plain i32"));
 //
 //   }
 //

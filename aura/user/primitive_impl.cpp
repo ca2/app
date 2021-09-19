@@ -25,7 +25,7 @@ namespace user
       m_puserinteraction = nullptr;
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
-      m_bUserPrimitiveOk = true;
+      m_bUserElementOk = true;
 
    }
 
@@ -39,7 +39,7 @@ namespace user
    bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return true;
 
@@ -49,7 +49,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -60,7 +60,7 @@ namespace user
 
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return false;
 
@@ -70,7 +70,7 @@ namespace user
    //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -80,7 +80,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -1266,14 +1266,14 @@ namespace user
    bool primitive_impl::start_destroying_window()
    {
 
-      if (!m_bUserPrimitiveOk)
+      if (!m_bUserElementOk)
       {
 
          return true;
 
       }
 
-      m_bUserPrimitiveOk = false;
+      m_bUserElementOk = false;
 
       if (m_puserinteraction == nullptr && !m_bDestroyImplOnly)
       {

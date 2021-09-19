@@ -55,7 +55,7 @@ namespace draw2d_cairo
 
       default:
 
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
 
       }
 
@@ -196,7 +196,7 @@ namespace draw2d_cairo
 
       default:
 
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
 
       }
 
@@ -437,7 +437,7 @@ namespace draw2d_cairo
 
       default:
 
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
 
       }
 

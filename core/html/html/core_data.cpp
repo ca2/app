@@ -198,10 +198,10 @@ namespace html
    }
 
 
-   void core_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void core_data::handle(::subject * psubject, ::context * pcontext)
    {
 
-      html_data::on_subject(psubject, pcontext);
+      html_data::handle(psubject, pcontext);
 
    }
 
@@ -316,15 +316,13 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            ::user::control_event event;
+            ::subject subject(::e_subject_initialize_control);
 
-            event.m_eevent = ::user::e_event_initialize_control;
+            subject.m_puserelement = pinteraction;
 
-            event.m_puserinteraction = pinteraction;
+            subject.m_id = pinteraction->m_id;
 
-            event.m_id = pinteraction->m_id;
-
-            m_pform->route_control_event(&event);
+            m_pform->route(&subject);
 
          }
 
@@ -396,10 +394,10 @@ namespace html
 
       if (m_pcallback != nullptr)
       {
-         ::user::control_event ev;
-         ev.m_puserinteraction = m_puserinteraction;
-         ev.m_eevent = ::user::e_event_form_initialize;
-         m_puserinteraction->on_control_event(&ev);
+         ::subject subject;
+         subject.m_puserelement = m_puserinteraction;
+         subject.m_id = ::e_subject_form_initialize;
+         m_puserinteraction->route(&subject);
 
       }
 

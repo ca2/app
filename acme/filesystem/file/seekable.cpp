@@ -32,7 +32,7 @@
 //   {
 //      __UNREFERENCED_PARAMETER(offset);
 //      __UNREFERENCED_PARAMETER(seekOrigin);
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //      return 0;
 //   }
 //

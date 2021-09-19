@@ -107,7 +107,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
@@ -126,7 +126,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -145,7 +145,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -183,7 +183,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)
@@ -270,7 +270,7 @@ namespace user
       catch (...)
       {
 
-         throw ::exception::exception(error_exception, "no more a window");
+         throw ::exception(error_exception, "no more a window");
 
       }
 

@@ -79,7 +79,7 @@ namespace filehandler
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      void on_hit_test(::user::item & item);
+      void on_hit_test(::item & item);
 
 
       void layout_list(list * plist);

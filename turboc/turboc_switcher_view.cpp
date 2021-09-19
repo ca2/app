@@ -39,7 +39,7 @@ namespace turboc
 
    void switcher_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
@@ -89,13 +89,13 @@ namespace turboc
 
 
 
-   void switcher_view::on_control_event(::user::control_event * pevent)
+   void switcher_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "switcher_toggle")
+         if(psubject->m_puserinteraction->m_id == "switcher_toggle")
          {
 
             __pointer(impact) pview = m_pimpact;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace operating_system
 {
 //
 //
@@ -24,7 +24,7 @@ namespace process
       
 
 
-} // namespace process
+} // namespace operating_system
 
 
 

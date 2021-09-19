@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -113,10 +113,7 @@ auto tickStart = ::millis::now();
    }
 
 
-   
-
-} // namespace process
-
+} // namespace operating_system
 
 
 

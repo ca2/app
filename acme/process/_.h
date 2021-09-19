@@ -4,14 +4,7 @@
 #include "exit_status.h"
 
 
-namespace process
-{
-
-
-   CLASS_DECL_ACME string app_id_to_app_name(string strId);
-
-
-} // namespace process
+CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
 #if !defined(_UWP)

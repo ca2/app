@@ -74,7 +74,7 @@ namespace user
    }
 
 
-   //bool tooltip::get_translucency(::user::enum_translucency  & etranslucency, ::user::enum_element eelement, style_context * pcontext)
+   //bool tooltip::get_translucency(::user::enum_translucency  & etranslucency, ::enum_element eelement, style_context * pcontext)
    //{
 
    //   etranslucency = ::user::e_translucency_present;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//class CLASS_DECL_ACME veri::exception::exception:
+//class CLASS_DECL_ACME veri::exception:
 //   public callstack
 //{
 //public:
@@ -10,8 +10,8 @@
 //   string m_strMessage;
 //
 //
-//   veri::exception::exception(const string& strMessage = "");
-//   virtual ~veri::exception::exception();
+//   veri::exception(const string& strMessage = "");
+//   virtual ~veri::exception();
 //
 //
 //};
@@ -20,7 +20,7 @@
 //
 //#ifdef _DEBUG
 //
-//CLASS_DECL_ACME stream & operator << (stream & dumpcontext, vericonst ::exception::exception & e);
+//CLASS_DECL_ACME stream & operator << (stream & dumpcontext, vericonst ::exception & e);
 //
 //#endif
 

@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   void draw_close_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -17,7 +17,7 @@ namespace user
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
-      if (!pitem->m_ppath)
+      if (!pitem->m_pDraw2dPath)
       {
 
          ::rectangle_f64 rectangle(pitem->m_rectangle);
@@ -36,17 +36,21 @@ namespace user
 
          //double h2 = rectangle.height();
 
-         pitem->m_ppath.create(puserinteraction);
+         ::draw2d::path_pointer ppath;
 
-         pitem->m_ppath->add_rect(rectangle, 45_degrees);
+         ppath.create(puserinteraction);
 
-         pitem->m_ppath->add_rect(rectangle, -45_degrees);
+         ppath->add_rect(rectangle, 45_degrees);
+
+         ppath->add_rect(rectangle, -45_degrees);
+
+         pitem->m_pDraw2dPath = ppath;
 
       }
 
-      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
-      if (puserinteraction->m_itemHover == ::user::e_element_close_icon)
+      if (puserinteraction->m_itemHover == ::e_element_close_icon)
       {
 
          color.alpha = 180;
@@ -63,12 +67,12 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      pgraphics->fill_path(pitem->m_ppath);
+      pgraphics->fill_path(pitem->m_pDraw2dPath.cast < ::draw2d::path>());
 
    }
 
 
-   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::user::item* pitem)
+   void draw_switch_icon(::draw2d::graphics_pointer& pgraphics, ::user::interaction* puserinteraction, ::item* pitem)
    {
 
       draw_switch_button(pgraphics, puserinteraction, pitem);

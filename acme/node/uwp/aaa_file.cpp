@@ -47,7 +47,7 @@ namespace universal_windows
    //   {
    //      delete pFile;
    //      //xxx      Ex1::file::throw_os_error((::i32)::GetLastError(), m_path);
-   //      __throw(::exception::exception("integer_exception 1"));
+   //      __throw(::exception("integer_exception 1"));
    //   }
    //   pFile->m_hfile = (::u32)hFile;
    //   ASSERT(pFile->m_hfile != (::u32)hfile_null);

@@ -666,7 +666,7 @@ bool object::is_running() const
 ::e_status object::post(const ::routine& routine)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1848,7 +1848,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::handle_exception(const ::exception::exception& e)
+::e_status object::handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1863,7 +1863,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::top_handle_exception(const ::exception::exception& e)
+::e_status object::top_handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1911,7 +1911,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 //}
 
 
-::e_status object::process_exception(const ::exception::exception& e)
+::e_status object::process_exception(const ::exception& e)
 {
 
    if (e.m_bHandled)
@@ -2247,7 +2247,7 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message* pmessage)
 {
 
-   //::subject::subject subject(this, (::iptr)pmessage->m_wparam);
+   //::subject subject(this, (::iptr)pmessage->m_wparam);
 
    //subject.m_payload = (::matter*)(::iptr)pmessage->m_lparam;
 
@@ -2472,7 +2472,7 @@ bool __no_continue(::e_status estatus)
             }
 
          }
-         catch (const ::exception::exception& e)
+         catch (const ::exception& e)
          {
 
             if (__no_continue(e.m_estatus))
@@ -3187,14 +3187,14 @@ matter* object::get_taskpool_container()
 //
 //}
 
-//::e_status object::handle_exception(const ::exception::exception& e)
+//::e_status object::handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
 //
 //}
 //
-//::e_status object::top_handle_exception(const ::exception::exception& e)
+//::e_status object::top_handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
@@ -3202,7 +3202,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//::e_status object::process_exception(const ::exception::exception& e)
+//::e_status object::process_exception(const ::exception& e)
 //{
 //
 //   return ::success;

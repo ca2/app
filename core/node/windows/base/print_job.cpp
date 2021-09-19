@@ -32,12 +32,12 @@ namespace windows
       {
          // TODO:
          // m_printer.open(&callback_form);
-         __throw(::exception::exception("printer not opened"));
+         __throw(::exception("printer not opened"));
       }
 
       if (m_puserinteraction == nullptr)
       {
-         __throw(::exception::exception("a impact should collaborate"));
+         __throw(::exception("a impact should collaborate"));
       }
 
       ::draw2d::graphics_pointer & pgraphics = m_phprinter->create_graphics();

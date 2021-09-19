@@ -143,7 +143,7 @@ concrete < ::size_i32 > image::image_source_size() const
 ::draw2d::bitmap_pointer image::get_bitmap() const
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -154,7 +154,7 @@ concrete < ::size_i32 > image::image_source_size() const
 ::draw2d::bitmap_pointer image::detach_bitmap()
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -238,7 +238,7 @@ bool image::dc_select(bool bSelect)
 
    __UNREFERENCED_PARAMETER(bSelect);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return false;
 
@@ -257,7 +257,7 @@ bool image::dc_select(bool bSelect)
 
    }
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
    return ::error_failed;
 
@@ -497,7 +497,7 @@ bool image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 //   __UNREFERENCED_PARAMETER(point);
 //   __UNREFERENCED_PARAMETER(size);
 //   __UNREFERENCED_PARAMETER(pointSrc);
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 //
 //   return false;
 //
@@ -5178,7 +5178,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -5203,7 +5203,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -5225,7 +5225,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -6932,7 +6932,7 @@ i32 image::cos(i32 i, i32 iAngle)
    __UNREFERENCED_PARAMETER(i);
    __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6945,7 +6945,7 @@ i32 image::sin(i32 i, i32 iAngle)
    __UNREFERENCED_PARAMETER(i);
    __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6958,7 +6958,7 @@ i32 image::cos10(i32 i, i32 iAngle)
    __UNREFERENCED_PARAMETER(i);
    __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6971,7 +6971,7 @@ i32 image::sin10(i32 i, i32 iAngle)
    __UNREFERENCED_PARAMETER(i);
    __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6979,12 +6979,12 @@ i32 image::sin10(i32 i, i32 iAngle)
 
 /*   i32 image::width()
    {
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    i32 image::height()
    {
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    i64 image::area()
@@ -8254,7 +8254,7 @@ bool image::set_mapped()
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
 //      // and ready to be queried if post queried
 //
-////      ::exception::throw_interface_only();
+////      throw ::interface_only_exception();
 //
 //
 //      return true;
@@ -8268,7 +8268,7 @@ bool image::set_mapped()
 //   __UNREFERENCED_PARAMETER(puserinteraction);
 //   __UNREFERENCED_PARAMETER(pmessage);
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return false;
 

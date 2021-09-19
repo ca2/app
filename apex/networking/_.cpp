@@ -497,7 +497,7 @@ namespace str
       else
       {
 
-         throw ::exception::exception(error_invalid_argument, "unexpected address family");
+         throw ::exception(error_invalid_argument, "unexpected address family");
 
       }
 
@@ -522,7 +522,7 @@ namespace str
       else
       {
 
-         throw ::exception::exception(error_invalid_argument, "unexpected address family");
+         throw ::exception(error_invalid_argument, "unexpected address family");
 
       }
 
@@ -701,7 +701,7 @@ CLASS_DECL_APEX u32 c_inet_addr(const char * src)
       else
       {
 
-         throw ::exception::exception(error_invalid_argument, "not expected");
+         throw ::exception(error_invalid_argument, "not expected");
 
       }
 

@@ -38,7 +38,7 @@ namespace xml
          if(m_pdocument == nullptr)
          {
          
-            throw ::exception::exception("Cannot output to a nullptr document");
+            throw ::exception("Cannot output to a nullptr document");
 
          }
 

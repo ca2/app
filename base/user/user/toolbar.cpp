@@ -1153,7 +1153,7 @@ return { 0,0 };
 
          // add new string to toolbar list
          string strTemp(str);
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
          // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
          if (nString == -1)
             return false;

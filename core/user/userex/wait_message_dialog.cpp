@@ -36,15 +36,15 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_control_event(::user::control_event * pevent)
+   void wait_message_dialog::handle(::subject * psubject, ::context * pcontext)
    {
       
-      dialog::on_control_event(pevent);
+      dialog::handle(psubject, pcontext);
       
-      if(pevent->m_puserinteraction == m_pform)
+      if(psubject->user_interaction() == m_pform)
       {
       
-         if(pevent->m_eevent == ::user::e_event_create)
+         if(psubject->m_id == ::e_subject_create)
          {
             
             if(m_millisDelay > 0)
@@ -59,10 +59,10 @@ namespace userex
             m_millisStart.Now();
 
          }
-         else if(pevent->m_eevent == ::user::e_event_timer)
+         else if(psubject->m_id == ::e_subject_timer)
          {
             
-            if(pevent->m_etimer == e_timer_reload)
+            if(psubject->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();
@@ -72,14 +72,14 @@ namespace userex
          }
          
       }
-      else if(pevent->m_eevent == ::user::e_event_click)
+      else if(psubject->m_id == ::e_subject_click)
       {
 
-         m_idResponse = pevent->m_puserinteraction->m_id;
+         m_idResponse = psubject->user_interaction()->m_id;
 
          EndModalLoop(m_idResponse);
 
-         pevent->m_bRet = true;
+         psubject->m_bRet = true;
 
       }
 

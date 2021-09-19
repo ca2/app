@@ -30,7 +30,7 @@ namespace user
       inline ::base::user * user() const { return form_control::user(); }
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual ::e_status open_document(const ::payload & varFile) override;
       
@@ -52,7 +52,7 @@ namespace user
 
       virtual void set_need_load_form_data() override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
       
       form_document * get_document();
       

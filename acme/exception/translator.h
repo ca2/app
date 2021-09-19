@@ -31,12 +31,12 @@
 
 //extern CLASS_DECL_ACME bool g_bExiting;
 
+//
+//namespace exception
+//{
 
-namespace exception
-{
 
-
-   class CLASS_DECL_ACME translator :
+   class CLASS_DECL_ACME exception_translator :
       virtual public matter
    {
    protected:
@@ -51,8 +51,8 @@ namespace exception
 //
 //#endif
 
-      translator();
-      ~translator() override;
+      exception_translator();
+      ~exception_translator() override;
 
 //#ifdef WINDOWS
 //      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
@@ -77,7 +77,7 @@ namespace exception
 
    };
 
-
-} // namespace exception
-
-
+//
+//} // namespace exception
+//
+//

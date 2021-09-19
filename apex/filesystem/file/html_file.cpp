@@ -50,7 +50,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(str);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -60,7 +60,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(str);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -84,7 +84,7 @@ namespace html
 
       __UNREFERENCED_PARAMETER(pcsz);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 

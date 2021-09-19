@@ -149,18 +149,18 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 }
 
 
-bool simple_scroll_bar::scrollbar_action(const ::user::item & item, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::scrollbar_action(const ::item & item, ::draw2d::graphics_pointer & pgraphics)
 {
 
    switch(item.m_eelement)
    {
-   case ::user::e_element_scrollbar_rectA:
+   case ::e_element_scrollbar_rectA:
       return scrollbar_lineA(pgraphics);
-   case ::user::e_element_scrollbar_rectB:
+   case ::e_element_scrollbar_rectB:
       return scrollbar_lineB(pgraphics);
-   case ::user::e_element_scrollbar_pageA:
+   case ::e_element_scrollbar_pageA:
       return scrollbar_pageA(item.m_pointClient, pgraphics);
-   case ::user::e_element_scrollbar_pageB:
+   case ::e_element_scrollbar_pageB:
       return scrollbar_pageB(item.m_pointClient, pgraphics);
    default:
       return false;
@@ -196,7 +196,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
    auto pgraphics = pdraw2d->create_memory_graphics();
 
-   if(m_itemCurrent == ::user::e_element_scrollbar_rect)
+   if(m_itemCurrent == ::e_element_scrollbar_rect)
    {
 
       m_bTracking = true;
@@ -277,7 +277,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    
    }
          
-   m_itemCurrent = ::user::e_element_none;
+   m_itemCurrent = ::e_element_none;
 
    pmouse->m_bRet = true;
 
@@ -1290,7 +1290,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    catch (...)
    {
 
-      throw ::exception::exception("no more a window");
+      throw ::exception("no more a window");
 
    }
 
@@ -1344,7 +1344,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    auto pstyle = get_style(pgraphics);
 
-   auto crBackground = get_color(pstyle, ::user::e_element_background);
+   auto crBackground = get_color(pstyle, ::e_element_background);
 
    ::rectangle_i32 rectangleClient;
 
@@ -1380,7 +1380,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_window_rect(rectWindow);
 
-   m_brushDraw->create_solid(scrollbar_color_strong(pstyle, ::user::e_element_scrollbar_rect));
+   m_brushDraw->create_solid(scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect));
 
    pgraphics->set(m_brushDraw);
 
@@ -1549,7 +1549,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //}
 
-   ::color32_t color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectA);
+   ::color32_t color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectA);
 
    m_brushDraw->create_solid(color32);
 
@@ -1557,7 +1557,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->fill_rectangle(m_rectA);
 
-   color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectB);
+   color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectB);
 
    m_brushDraw->create_solid(color32);
 
@@ -1567,12 +1567,12 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rectangle_i32 rectangle;
 
-   if (m_itemCurrent == ::user::e_element_scrollbar_pageA || m_itemHover== ::user::e_element_scrollbar_pageA)
+   if (m_itemCurrent == ::e_element_scrollbar_pageA || m_itemHover== ::e_element_scrollbar_pageA)
    {
 
       GetPageARect(rectangleClient, rectTrack, rectangle, pgraphics);
 
-      color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
+      color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageA);
 
       m_brushDraw->create_solid(color32);
 
@@ -1581,12 +1581,12 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       pgraphics->fill_rectangle(rectangle);
 
    }
-   else if (m_itemCurrent == ::user::e_element_scrollbar_pageB || m_itemHover== ::user::e_element_scrollbar_pageB)
+   else if (m_itemCurrent == ::e_element_scrollbar_pageB || m_itemHover== ::e_element_scrollbar_pageB)
    {
 
       GetPageBRect(rectangleClient, rectTrack, rectangle, pgraphics);
 
-      color32 = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
+      color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageB);
 
       m_brushDraw->create_solid(color32);
 
@@ -1604,7 +1604,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-   color32 = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectA);
+   color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectA);
 
    penArrow->create_solid(1.0, color32);
 
@@ -1612,7 +1612,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->polyline(m_ptaA, 3);
 
-   color32 = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
+   color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectB);
 
    penArrow->create_solid(1.0, color32);
 
@@ -1776,7 +1776,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 }
 
 
-void simple_scroll_bar::on_hit_test(::user::item & item)
+void simple_scroll_bar::on_hit_test(::item & item)
 {
 
    ::rectangle_i32 rectTrack;
@@ -1792,7 +1792,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    if(rectTrack.contains(item.m_pointClient))
    {
 
-      item = ::user::e_element_scrollbar_rect;
+      item = ::e_element_scrollbar_rect;
 
    }
    else
@@ -1809,7 +1809,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (rectangle.contains(item.m_pointClient))
       {
 
-         item = ::user::e_element_scrollbar_pageA;
+         item = ::e_element_scrollbar_pageA;
 
          return;
 
@@ -1820,7 +1820,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (rectangle.contains(item.m_pointClient))
       {
 
-         item = ::user::e_element_scrollbar_pageB;
+         item = ::e_element_scrollbar_pageB;
 
          return;
 
@@ -1829,7 +1829,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (m_rectA.contains(item.m_pointClient))
       {
 
-         item = ::user::e_element_scrollbar_rectA;
+         item = ::e_element_scrollbar_rectA;
 
          return;
 
@@ -1838,26 +1838,26 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (m_rectB.contains(item.m_pointClient))
       {
 
-         item = ::user::e_element_scrollbar_rectB;
+         item = ::e_element_scrollbar_rectB;
 
          return;
 
       }
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
    }
 
 }
 
 
-::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_element_scrollbar_strong, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::e_element_scrollbar_strong, ::user::e_state_hover);
 
       return color.is_ok() ? color : argb(130, 190, 180, 250);
 
@@ -1865,7 +1865,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::e_element_scrollbar_strong);
+      auto color = get_color(pstyle, ::e_element_scrollbar_strong);
 
       return color.is_ok() ? color : argb(150, 150, 150, 150);
 
@@ -1874,7 +1874,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1897,13 +1897,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_element_border, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::e_element_border, ::user::e_state_hover);
 
       return color.is_ok() ? color : argb(190, 180, 180, 180);
 
@@ -1911,7 +1911,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::e_element_border);
+      auto color = get_color(pstyle, ::e_element_border);
 
       return color.is_ok() ? color : argb(190, 160, 160, 160);
 
@@ -1920,13 +1920,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_element_lite_border, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::e_element_lite_border, ::user::e_state_hover);
 
       return color.is_ok() ? color : argb(190, 90, 110, 180);
 
@@ -1934,7 +1934,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::e_element_lite_border);
+      auto color = get_color(pstyle, ::e_element_lite_border);
 
       return color.is_ok() ? color : argb(190, 110, 110, 100);
 
@@ -1943,13 +1943,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover == eelement)
    {
 
-      auto color = get_color(pstyle, ::user::e_element_scrollbar_draw, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::e_element_scrollbar_draw, ::user::e_state_hover);
 
       return color.is_ok() ? color : argb(127, 90, 90, 90);
 
@@ -1957,7 +1957,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::e_element_scrollbar_draw);
+      auto color = get_color(pstyle, ::e_element_scrollbar_draw);
 
       return color.is_ok() ? color : argb(127, 65, 65, 65);
 

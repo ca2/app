@@ -522,14 +522,14 @@ void object::delete_this()
 
     }
 
-    ::e_status object::handle_exception(const ::exception::exception& e)
+    ::e_status object::handle_exception(const ::exception& e)
     {
 
        return ::success;
 
     }
 
-    ::e_status object::top_handle_exception(const ::exception::exception& e)
+    ::e_status object::top_handle_exception(const ::exception& e)
     {
 
        return ::success;
@@ -537,7 +537,7 @@ void object::delete_this()
     }
 
 
-    ::e_status object::process_exception(const ::exception::exception& e)
+    ::e_status object::process_exception(const ::exception& e)
     {
 
        return ::success;

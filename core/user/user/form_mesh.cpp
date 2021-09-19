@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   bool form_mesh::on_click(const ::user::item & item)
+   bool form_mesh::on_click(const ::item & item)
    {
       
       if (!item.is_set())
@@ -63,16 +63,18 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
+               auto psubject = __new(::subject(::e_subject_click));
 
-               ::user::control_event ev;
-               ev.m_puserinteraction                  = pinteraction;
-               ev.m_eevent                = ::user::e_event_click;
+               psubject->m_puserelement        = pinteraction;
+
+               //subject.m_id                = ;
 
                m_itemControl              = item;
 
-               send_message(e_message_event,0,(lparam)&ev);
+               send_message(e_message_subject,0,psubject);
 
             }
+
          }
          else
          {
@@ -658,7 +660,7 @@ namespace user
    }
 
 
-   void form_mesh::on_control_event(::user::control_event * pevent)
+   void form_mesh::handle(::subject * psubject, ::context * pcontext)
    {
 
 
@@ -666,7 +668,7 @@ namespace user
       //{
       ///pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
       //}
-      return form::on_control_event(pevent);
+      return form::handle(psubject, pcontext);
    }
 
 

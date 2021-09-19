@@ -118,12 +118,12 @@ namespace app_message_box
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      auto pitem = get_user_item(::user::e_element_close_button);
+      auto pitem = get_user_item(::e_element_close_button);
 
       if (::is_set(pitem))
       {
 
-         bool bHover = m_itemHover == ::user::e_element_close_button;
+         bool bHover = m_itemHover == ::e_element_close_button;
 
          double dSourcePeriod;
          
@@ -213,7 +213,7 @@ namespace app_message_box
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
    {
 
       if (::is_null(pitem))
@@ -223,7 +223,7 @@ namespace app_message_box
 
       }
 
-      if (pitem->m_eelement == ::user::e_element_close_button)
+      if (pitem->m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);
@@ -273,14 +273,14 @@ namespace app_message_box
    }
 
 
-   void window::on_control_event(::user::control_event * pevent)
+   void window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_click)
+      if (psubject->m_id == ::e_subject_click)
       {
 
-         if (pevent->m_puserinteraction == m_pbuttonShowMessageBox
-            && pevent->m_actioncontext.is_user_source())
+         if (psubject->m_puserinteraction == m_pbuttonShowMessageBox
+            && psubject->m_actioncontext.is_user_source())
          {
 
             try
@@ -288,7 +288,7 @@ namespace app_message_box
 
                show_message_box();
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
                return;
 

@@ -52,6 +52,7 @@ namespace apex
    session::session()
    {
 
+      //m_bOnInitializeWindowObject = false;
       m_papexsession = this;
       ::object::m_pcontext = this;
       m_pcontext = this;
@@ -153,6 +154,40 @@ namespace apex
    }
 
 
+   //::e_status session::on_initialize_window_object()
+   //{
+
+   //   if (m_bOnInitializeWindowObject)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bOnInitializeWindowObject = true;
+
+   //   auto estatus = _on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
+
+
+   //::e_status session::_on_initialize_window_object()
+   //{
+
+   //   return ::success;
+
+   //}
+
+
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
@@ -175,7 +210,15 @@ namespace apex
 
    }
 
+
+   //::e_status session::ui_init()
+   //{
+
+   //   return ::success;
+
+   //}
    
+
    //void session::enum_display_monitors()
    //{
 
@@ -376,7 +419,7 @@ namespace apex
       //if(!estatus)
       //{
 
-      //   __throw(::exception::exception(estatus));
+      //   __throw(::exception(estatus));
 
       //}
 
@@ -808,7 +851,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return nullptr;
 
@@ -956,7 +999,7 @@ namespace apex
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
@@ -1586,7 +1629,7 @@ namespace apex
    //   }
    //   else
    //   {
-   //      __throw(::exception::exception("not expected enum_mouse value"));
+   //      __throw(::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -1977,7 +2020,7 @@ namespace apex
    //            rectEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
+   //            if (ptab->m_itemHover == (::enum_element)(::e_element_split + i))
    //            {
    //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_brushTextHover);
@@ -2089,7 +2132,7 @@ namespace apex
       //         }
 
       //      }
-      //      catch (const ::exception::exception & e)
+      //      catch (const ::exception & e)
       //      {
 
       //         if (e.is < ::exit_exception>())
@@ -2107,7 +2150,7 @@ namespace apex
       //   }
 
       //}
-      //catch (const ::exception::exception & e)
+      //catch (const ::exception & e)
       //{
 
       //   if (e.is < ::exit_exception>())

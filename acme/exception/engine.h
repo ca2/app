@@ -29,12 +29,12 @@
 
 class os_engine;
 
+//
+//namespace exception
+//{
+//
 
-namespace exception
-{
-
-
-   class CLASS_DECL_ACME engine :
+   class CLASS_DECL_ACME exception_engine :
       virtual public matter
    {
    public:
@@ -43,9 +43,9 @@ namespace exception
       critical_section m_criticalsection;
 
 
-      engine();
+      exception_engine();
 
-      virtual ~engine();
+      virtual ~exception_engine();
 
 
       static const char * default_format()
@@ -55,13 +55,16 @@ namespace exception
       virtual void reset();
 
 
+      static ::exception_engine & get();
+
+
    };
 
+//
+//} // namespace exception
 
-} // namespace exception
 
 
-CLASS_DECL_ACME ::exception::engine & engine();
 
 
 

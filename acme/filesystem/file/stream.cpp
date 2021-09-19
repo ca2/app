@@ -14,7 +14,7 @@
 }
 
 
-void stream::add_exception(const ::exception::exception & exception)
+void stream::add_exception(const ::exception & exception)
 {
 
    set_fail_bit();

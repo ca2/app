@@ -93,7 +93,7 @@
 //      if (!psystem->system_beg())
 //      {
 //
-//         throw ::exception::exception("The application didn't started.");
+//         throw ::exception("The application didn't started.");
 //
 //      }
 //
@@ -102,7 +102,7 @@
 //      if (!bOk)
 //      {
 //
-//         throw ::exception::exception("The application didn't started. (2)");
+//         throw ::exception("The application didn't started. (2)");
 //
 //      }
 //

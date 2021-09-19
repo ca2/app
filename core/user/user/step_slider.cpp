@@ -197,7 +197,7 @@ namespace user
    }
 
 
-   void step_slider::on_hit_test(::user::item & item)
+   void step_slider::on_hit_test(::item & item)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -207,7 +207,7 @@ namespace user
       if (rectangleClient.width() == 0)
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 

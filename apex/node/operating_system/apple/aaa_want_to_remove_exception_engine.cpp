@@ -394,12 +394,12 @@ return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpN
 #endif
 */
 
-//class ::exception::engine * g_pexceptionengine = nullptr;
+//class ::exception_engine * g_pexceptionengine = nullptr;
 
 namespace exception
 {
 
-//   CLASS_DECL_APEX class ::exception::engine & engine()
+//   CLASS_DECL_APEX class ::exception_engine & engine()
 //   {
 //
 //      return *g_pexceptionengine;
@@ -663,7 +663,7 @@ namespace exception
 
          }
 
-         ::exception::engine().reset();
+         ::exception_engine().reset();
 
          bRetry = true;
 
@@ -981,7 +981,7 @@ namespace exception
    PVOID Context
    )
    {
-      class ::exception::engine * pengine = (class ::exception::engine *)Context;
+      class ::exception_engine * pengine = (class ::exception_engine *)Context;
       if (NotificationReason == LDR_DLL_NOTIFICATION_REASON_LOADED)
       {
 

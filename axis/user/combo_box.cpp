@@ -152,7 +152,7 @@ namespace user
 
       get_element_rect(rectText, e_element_text);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::e_align ealign = e_align_left_center;
 
@@ -482,7 +482,7 @@ namespace user
    }
 
 
-   void combo_box::on_hit_test(::user::item & item)
+   void combo_box::on_hit_test(::item & item)
    {
 
       ::rectangle_i32 rectElement;
@@ -825,7 +825,7 @@ namespace user
    }
 
 
-   ::e_status combo_box::set_current_item(const ::user::item & item, const ::action_context & actioncontext)
+   ::e_status combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
    {
 
       auto estatus = ::user::plain_edit::set_current_item(item, actioncontext);
@@ -921,13 +921,39 @@ namespace user
    }
 
 
-   void combo_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      //if(m_bEdit)
+      ////if(m_bEdit)
+      //{
+
+      //   ::user::plain_edit::handle(psubject, pcontext);
+
+      //}
+
+      if (psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         ::user::plain_edit::on_subject(psubject, pcontext);
+         auto puserinteraction = psubject->user_interaction();
+
+         if (puserinteraction == m_plistbox)
+         {
+
+            set_current_item(psubject->m_item, psubject->m_actioncontext);
+
+            _001ShowDropDown(false);
+
+            psubject->Ret();
+
+            set_need_redraw();
+
+            post_redraw();
+
+            keyboard_set_focus_next();
+
+            return;
+
+         }
 
       }
 
@@ -1513,38 +1539,38 @@ namespace user
    }
 
 
-   void combo_box::on_control_event(::user::control_event * pevent)
-   {
+   //void combo_box::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
-      {
+   //   if(psubject->m_id == ::e_subject_after_change_cur_sel)
+   //   {
 
-         auto puserinteraction = pevent->m_puserinteraction;
+   //      auto puserinteraction = psubject->user_interaction();
 
-         if(puserinteraction == m_plistbox)
-         {
+   //      if(puserinteraction == m_plistbox)
+   //      {
 
-            set_current_item(pevent->m_item, pevent->m_actioncontext);
+   //         set_current_item(psubject->m_item, psubject->m_actioncontext);
 
-            _001ShowDropDown(false);
+   //         _001ShowDropDown(false);
 
-            pevent->Ret();
+   //         psubject->Ret();
 
-            set_need_redraw();
+   //         set_need_redraw();
 
-            post_redraw();
+   //         post_redraw();
 
-            keyboard_set_focus_next();
+   //         keyboard_set_focus_next();
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      ::user::plain_edit::on_control_event(pevent);
+   //   ::user::plain_edit::handle(psubject, pcontext);
 
-   }
+   //}
 
 
 } // namespace user

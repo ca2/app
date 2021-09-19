@@ -248,7 +248,7 @@ string normalize_path(const ::string & lpcszPath)
 
 string key_to_char(wparam wparam, lparam lparam)
 {
-   __throw(::exception::exception("todo"));
+   __throw(::exception("todo"));
 }
 
 

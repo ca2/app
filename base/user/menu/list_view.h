@@ -22,7 +22,7 @@ namespace user
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;

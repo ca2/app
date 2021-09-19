@@ -386,10 +386,10 @@ namespace user
    }
 
 
-   void impact_system::route_command_message(::message::command * pcommand)
+   void impact_system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
    }
 
@@ -434,7 +434,7 @@ namespace user
    }
 
 
-   void impact_system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact_system::handle(::subject * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -442,7 +442,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::subject::subject * psubject)
+   void impact_system::update_all_views(::subject * psubject)
    {
 
       ::count count = get_document_count();

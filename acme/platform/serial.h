@@ -681,12 +681,12 @@ namespace serial
 
 
 
-   //::exception::exception exception(const string& description);
-   //::exception::exception io_exception(string file, int line, int errnum);
-   //::exception::exception io_exception_descripton(string file, int line, const char* description);
-   //::exception::exception port_opened_exception_descripton(string file, int line, const char* description);
+   //::exception exception(const string& description);
+   //::exception io_exception(string file, int line, int errnum);
+   //::exception io_exception_descripton(string file, int line, const char* description);
+   //::exception port_opened_exception_descripton(string file, int line, const char* description);
 
-   class serial_exception : public ::exception::exception
+   class serial_exception : public ::exception
    {
    //   
    //   // Disable copy constructors
@@ -697,7 +697,7 @@ namespace serial
    public:
 
       serial_exception(const string & description) :
-         ::exception::exception(error_serial)
+         ::exception(error_serial)
       {
 //         ::string_stream str;
   //       str << "serial_exception " << description << " failed.";
@@ -711,7 +711,7 @@ namespace serial
    //   }
    };
 
-   class io_exception : public ::exception::exception
+   class io_exception : public ::exception
    {
 //      // Disable copy constructors
 //      io_exception& operator=(const io_exception&);
@@ -721,7 +721,7 @@ namespace serial
 //      int errno_;
    public:
       explicit io_exception(string file, int line, int errnum) :
-         ::exception::exception(error_serial_io)
+         ::exception(error_serial_io)
       {
          //: file_(file), line_(line), errno_(errnum)
 //            ::string_stream str;
@@ -738,7 +738,7 @@ namespace serial
       }
 
       explicit io_exception(string file, int line, const char * description) :
-         ::exception::exception(error_serial_io)
+         ::exception(error_serial_io)
       {
 //         ::string_stream str;
 //         str << "IO Exception: " << description;
@@ -760,7 +760,7 @@ namespace serial
 //      }
    };
 
-   class port_not_opened_exception : public ::exception::exception
+   class port_not_opened_exception : public ::exception
    {
       // Disable copy constructors
    //   const port_not_opened_exception& operator=(port_not_opened_exception);

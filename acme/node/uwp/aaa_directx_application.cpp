@@ -55,7 +55,7 @@ namespace universal_windows
       if (!main_initialize())
       {
 
-         __throw(::exception::exception("Failed to run main_initialize at directx_framework_view constructor."));
+         __throw(::exception("Failed to run main_initialize at directx_framework_view constructor."));
 
       }
 
@@ -84,7 +84,7 @@ namespace universal_windows
       if (!m_psystem->begin_synch())
       {
 
-         __throw(::exception::exception("failed to begin_synch the system"));
+         __throw(::exception("failed to begin_synch the system"));
 
       }
 

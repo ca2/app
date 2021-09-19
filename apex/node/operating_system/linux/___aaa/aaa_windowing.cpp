@@ -3042,7 +3042,7 @@ extern bool b_prevent_xdisplay_lock_log;
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&ev.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&
@@ -3138,7 +3138,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             auto pupdate = new_update();
 
-            e_id eid;
+            ::enum_id eid;
 
             switch (cookie->evtype)
             {

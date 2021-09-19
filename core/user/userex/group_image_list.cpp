@@ -44,10 +44,30 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_item_clicked)
+      {
+
+
+      }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         if (psubject->user_interaction()->m_id == m_id)
+         {
+
+            show_menu();
+
+         }
+
+      }
+
+      return ::user::impact::handle(psubject, pcontext);
+
 
    }
 
@@ -219,7 +239,7 @@ namespace userex
    }
 
 
-   ::e_status group_image_list_view::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       auto estatus = ::user::impact::set_current_item(item, context);
@@ -332,29 +352,29 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_control_event(::user::control_event * pevent)
-   {
+   //void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if (pevent->m_eevent == ::user::e_event_item_clicked)
-      {
+   //   if (psubject->m_id == ::e_subject_item_clicked)
+   //   {
 
 
-      }
-      else if (pevent->m_eevent == ::user::e_event_click)
-      {
+   //   }
+   //   else if (psubject->m_id == ::e_subject_click)
+   //   {
 
-         if (pevent->m_puserinteraction->m_id == m_id)
-         {
+   //      if (psubject->user_interaction()->m_id == m_id)
+   //      {
 
-            show_menu();
+   //         show_menu();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return ::user::impact::on_control_event(pevent);
+   //   return ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    string group_image_list_view::get_menu_xml()

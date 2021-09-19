@@ -88,7 +88,7 @@ namespace user
 
          pdrawitem->m_pgraphics->set(pfont);
 
-         auto color = get_color(pstyle, ::user::e_element_text);
+         auto color = get_color(pstyle, ::e_element_text);
 
          pgraphics->set_text_color(color);
          
@@ -807,7 +807,7 @@ namespace user
       //catch (...)
       //{
 
-      //   __throw(::exception::exception("no more a window"));
+      //   __throw(::exception("no more a window"));
 
       //}
 
@@ -844,7 +844,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->fill_rectangle(rectUpdate, get_color(pstyle, ::user::e_element_background));
+      pgraphics->fill_rectangle(rectUpdate, get_color(pstyle, ::e_element_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
@@ -852,7 +852,7 @@ namespace user
       ::rectangle_i32 rectDivider;
       ::draw2d::pen_pointer ppen(e_create);
 
-      auto color = get_color(pstyle, ::user::e_element_separator);
+      auto color = get_color(pstyle, ::e_element_separator);
 
       ppen->create_solid(1.0, color);
 

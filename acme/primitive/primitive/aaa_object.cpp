@@ -509,7 +509,7 @@ void object::set_topic_text(const ::string & strTopicText)
 ::e_status object::initialize(::object * pobject)
 {
 
-   auto estatus = ::subject::manager::initialize(pobject);
+   auto estatus = ::manager::initialize(pobject);
 
    if (!estatus)
    {
@@ -1589,7 +1589,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::handle_exception(const ::exception::exception & e)
+::e_status object::handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1604,7 +1604,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::top_handle_exception(const ::exception::exception & e)
+::e_status object::top_handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1652,7 +1652,7 @@ void object::process_exit_status(const ::e_status& estatus)
 }
 
 
-::e_status object::process_exception(const ::exception::exception & e)
+::e_status object::process_exception(const ::exception & e)
 {
 
    if (e.m_bHandled)
@@ -1986,7 +1986,7 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-   ::subject::subject subject(this, (::iptr)pmessage->m_wparam);
+   ::subject subject(this, (::iptr)pmessage->m_wparam);
 
    subject.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
 
@@ -2203,7 +2203,7 @@ bool __no_continue(::e_status estatus)
             }
 
          }
-         catch(const ::exception::exception & e)
+         catch(const ::exception & e)
          {
 
             if(__no_continue(e.m_estatus))

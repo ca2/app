@@ -29,7 +29,7 @@ namespace user
       void GetStepRect(RECTANGLE_I32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & lpcrectClient);
 
 
-      void on_hit_test(::user::item & item);
+      void on_hit_test(::item & item);
 
       void update_hover();
 

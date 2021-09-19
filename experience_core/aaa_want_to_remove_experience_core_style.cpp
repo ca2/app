@@ -60,19 +60,19 @@ namespace experience_lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rectangle, ::user::e_element_tab))
+         if(!ptab->get_element_rect(iTab,rectangle, ::e_element_tab))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
+         if(!ptab->get_element_rect(iTab,rectBorder, ::e_element_border))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectangleClient, ::user::e_element_client))
+         if(!ptab->get_element_rect(iTab,rectangleClient, ::e_element_client))
             continue;
 
          if(ptab->get_data()->m_bVertical)
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -126,7 +126,7 @@ namespace experience_lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && ptab->m_eelementHover < ::user::e_element_split && ptab->m_eelementHover >(::user::e_element_split + 100))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::e_element_close_tab_button && ptab->m_eelementHover < ::e_element_split && ptab->m_eelementHover >(::e_element_split + 100))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -171,7 +171,7 @@ namespace experience_lite
          else
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -230,7 +230,7 @@ namespace experience_lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::e_element_close_tab_button && (ptab->m_eelementHover < ::e_element_split || ptab->m_eelementHover >(::e_element_split + 100)))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
@@ -276,7 +276,7 @@ namespace experience_lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectText, ::user::e_element_text))
+            if(ptab->get_element_rect(iTab,rectText, ::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane,ptab,pgraphics,rectText,brushText);
@@ -288,12 +288,12 @@ namespace experience_lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectClose, ::user::e_element_close_tab_button))
+            if(ptab->get_element_rect(iTab,rectClose, ::e_element_close_tab_button))
             {
 
                pgraphics->set_font(ptab->get_data()->m_fontBold);
 
-               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::user::e_element_close_tab_button)
+               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::e_element_close_tab_button)
                {
 
                   brushText = ptab->get_data()->m_brushCloseHover;
@@ -357,7 +357,7 @@ namespace experience_lite
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)::user::e_element_split + i)
+               if(ptab->m_eelementHover == (int)::e_element_split + i)
                {
                   pgraphics->FillSolidRect(rectEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
@@ -671,9 +671,9 @@ namespace experience_lite
 
       pbar->GetWindowRect(rectWindow);
 
-      pbar->m_penDraw->create_solid(1, pbar->scrollbar_border_color(::user::e_element_scrollbar_rect));
+      pbar->m_penDraw->create_solid(1, pbar->scrollbar_border_color(::e_element_scrollbar_rect));
 
-      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_rect));
+      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::e_element_scrollbar_rect));
 
       pgraphics->SelectObject(pbar->m_penDraw);
 
@@ -814,7 +814,7 @@ namespace experience_lite
 
       ::draw2d::pen_pointer penGrip(this_create);
 
-      penGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rect));
+      penGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(::e_element_scrollbar_rect));
 
       pgraphics->SelectObject(penGrip);
 
@@ -847,21 +847,21 @@ namespace experience_lite
 
       ::draw2d::pen_pointer penArrow(this_create);
 
-      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rectA));
+      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::e_element_scrollbar_rectA));
 
       pgraphics->SelectObject(penArrow);
 
-      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_rectA));
+      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::e_element_scrollbar_rectA));
 
       pgraphics->SelectObject(pbar->m_brushDraw);
 
       pgraphics->Rectangle(pbar->m_rectA);
 
-      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rectB));
+      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::e_element_scrollbar_rectB));
 
       pgraphics->SelectObject(penArrow);
 
-      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_rectB));
+      pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::e_element_scrollbar_rectB));
 
       pgraphics->SelectObject(pbar->m_brushDraw);
 
@@ -869,24 +869,24 @@ namespace experience_lite
 
       ::rectangle rectangle;
 
-      if (pbar->m_eelement == ::user::e_element_scrollbar_pageA || pbar->m_eelementHover == ::user::e_element_scrollbar_pageA)
+      if (pbar->m_eelement == ::e_element_scrollbar_pageA || pbar->m_eelementHover == ::e_element_scrollbar_pageA)
       {
 
          pbar->GetPageARect(rectangleClient, rectTrack, rectangle);
 
-         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_pageA));
+         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::e_element_scrollbar_pageA));
 
          pgraphics->SelectObject(pbar->m_brushDraw);
 
          pgraphics->FillRectangle(rectangle);
 
       }
-      else if (pbar->m_eelement == ::user::e_element_scrollbar_pageB || pbar->m_eelementHover == ::user::e_element_scrollbar_pageB)
+      else if (pbar->m_eelement == ::e_element_scrollbar_pageB || pbar->m_eelementHover == ::e_element_scrollbar_pageB)
       {
 
          pbar->GetPageBRect(rectangleClient, rectTrack, rectangle);
 
-         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::user::e_element_scrollbar_pageB));
+         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(::e_element_scrollbar_pageB));
 
          pgraphics->SelectObject(pbar->m_brushDraw);
 
@@ -900,13 +900,13 @@ namespace experience_lite
       penArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
       penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rectA));
+      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::e_element_scrollbar_rectA));
 
       pgraphics->SelectObject(penArrow);
 
       pgraphics->polyline(pbar->m_ptaA, 3);
 
-      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rectB));
+      penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::e_element_scrollbar_rectB));
 
       pgraphics->SelectObject(penArrow);
 

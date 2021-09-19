@@ -26,7 +26,7 @@ public:
    virtual __pointer(::fs::data)                   fs_data();
 
 
-   void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   void handle(::subject * psubject, ::context * pcontext);
 
 
    virtual void browse_sync(const ::action_context & action_context);
@@ -72,11 +72,11 @@ public:
    }
 
 
-   virtual void on_subject(::subject::subject* psubject, ::subject::context* pcontext) override
+   virtual void handle(::subject * psubject, ::context * pcontext) override
    {
 
-      IMPACT::on_subject(psubject, pcontext);
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      IMPACT::handle(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 

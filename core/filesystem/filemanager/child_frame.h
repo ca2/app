@@ -25,7 +25,7 @@ namespace filemanager
 
       bool on_create_bars() override;
       bool DestroyBars();
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);

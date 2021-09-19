@@ -20,12 +20,26 @@ namespace user
    }
 
 
-   void form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void form_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      //::user::impact::handle(psubject, pcontext);
 
-      if (psubject->id() == id_browse)
+      form_window::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+      {
+
+         if (get_document())
+         {
+
+            //call_sync(get_document()->m_mapMethod["load"]);
+            get_document()->call_routine("load");
+
+         }
+
+      }
+      else if (psubject->id() == id_browse)
       {
 
          if (!psubject->payload(id_form).is_empty())
@@ -53,7 +67,7 @@ namespace user
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->on_subject(psubject, pcontext);
+         m_pcallback->handle(psubject, pcontext);
 
       }
 
@@ -288,25 +302,25 @@ namespace user
    }
 
 
-   void form_view::on_control_event(::user::control_event * pevent)
-   {
+   //void form_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      form_window::on_control_event(pevent);
+   //   form_window::handle(psubject, pcontext);
 
-      if (pevent->m_eevent == ::user::e_event_form_initialize && pevent->m_puserinteraction == this)
-      {
+   //   if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+   //   {
 
-         if (get_document())
-         {
+   //      if (get_document())
+   //      {
 
-            //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_routine("load");
+   //         //call_sync(get_document()->m_mapMethod["load"]);
+   //         get_document()->call_routine("load");
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void form_view::set_need_load_form_data()

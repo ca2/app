@@ -17,15 +17,15 @@ namespace prompt
 
       m_iCompromised = 0;
 
-      connect_command_probe("edit_copy", &primary_view::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &primary_view::_001OnEditCopy);
-      connect_command_probe("edit_paste", &primary_view::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &primary_view::_001OnEditPaste);
+      add_command_prober("edit_copy", &primary_view::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", &primary_view::_001OnEditCopy);
+      add_command_prober("edit_paste", &primary_view::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", &primary_view::_001OnEditPaste);
 
    }
 
 
-   void primary_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void primary_view::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(psubject);

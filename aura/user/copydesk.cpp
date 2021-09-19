@@ -539,7 +539,7 @@ namespace user
    bool copydesk::_has_filea()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return 0;
 
@@ -551,7 +551,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(stra);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -563,7 +563,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(patha);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -575,7 +575,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(str);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -585,7 +585,7 @@ namespace user
    ::e_status copydesk::_get_plain_text(string & str)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -595,7 +595,7 @@ namespace user
    bool copydesk::_has_plain_text()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return 0;
 
@@ -607,7 +607,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pimage);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -619,7 +619,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pimage);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -629,7 +629,7 @@ namespace user
    bool copydesk::_has_image()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return 0;
 

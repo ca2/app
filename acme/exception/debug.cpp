@@ -61,7 +61,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNum
 //
 //
 //misc_exception::misc_exception(const char * pszMessage) :
-//   ::exception::exception(pszMessage)
+//   ::exception(pszMessage)
 //{
 //
 //}

@@ -362,7 +362,7 @@ string & property::get_http_post(::string & str) const
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)
 //         return const_cast<property *>(this)->get_value();
-//      __throw(::exception::exception("unsuported!!"));
+//      __throw(::exception("unsuported!!"));
 //   }
 //}
 //
@@ -435,7 +435,7 @@ string & property::get_http_post(::string & str) const
 ////   if(pchannel)
 ////   {
 ////
-////      pchannel->send_update((::e_id) m_id.i64(), context);
+////      pchannel->send_update((::enum_id) m_id.i64(), context);
 ////
 ////   }
 ////

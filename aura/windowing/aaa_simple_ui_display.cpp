@@ -259,7 +259,7 @@ namespace windowing
    }
 
 
-   void simple_ui_display::on_subject(::subject::subject *psubject, ::subject::context *pcontext)
+   void simple_ui_display::on_subject(::subject *psubject, ::context *pcontext)
    {
 
       if (psubject->id() == id_os_user_theme)
@@ -336,7 +336,7 @@ namespace windowing
 //
 //         {
 //
-//            color32_t crBk = get_simple_ui_color(::user::e_element_background);
+//            color32_t crBk = get_simple_ui_color(::e_element_background);
 //
 //            int iY = m_iMarginTop;
 //

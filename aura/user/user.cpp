@@ -33,6 +33,7 @@ namespace user
       ::initialize_user_mutex();
       initialize_children_mutex();
 
+      m_bOnInitializeWindowObject = false;
 
    }
 
@@ -58,15 +59,6 @@ namespace user
 
       }
 
-      estatus = __construct_new(m_puserstyle);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       estatus = create_windowing();
 
       if (!estatus)
@@ -81,6 +73,54 @@ namespace user
       return estatus;
 
    }
+
+
+   ::e_status user::on_initialize_window_object()
+   {
+
+      if (m_bOnInitializeWindowObject)
+      {
+
+         return ::success_none;
+
+      }
+
+      m_bOnInitializeWindowObject = true;
+
+      auto estatus = _on_initialize_window_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status user::_on_initialize_window_object()
+   {
+
+      auto estatus = __construct_new(m_puserstyle);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_pnode->fetch_user_color();
+
+      m_puserstyle->default_style_construct();
+
+      return estatus;
+
+   }
+
 
 
    ::user::shell* user::shell()
@@ -332,10 +372,10 @@ namespace user
    }
 
 
-   ::user::style* user::get_user_style()
+   ::user::style* user::user_style()
    {
 
-      return nullptr;
+      return m_puserstyle;
 
    }
 
@@ -1070,8 +1110,32 @@ namespace aura
    }
 
 
+   //::e_status system::_on_initialize_window_object()
+   //{
 
+   //   auto estatus = ::aqua::system::_on_initialize_window_object();
 
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   auto psession = session();
+
+   //   estatus = psession->on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
 
    //::count session::get_monitor_count()
    //{

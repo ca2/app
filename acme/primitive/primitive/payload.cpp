@@ -4321,7 +4321,7 @@ string payload::implode(const char * pszGlue) const
 //      }
 //      else
 //      {
-//         __throw(::exception::exception("index out of bounds"));
+//         __throw(::exception("index out of bounds"));
 //      }
 //   }
 //}
@@ -4597,9 +4597,9 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //   switch(payload.m_etype)
 //   {
 //   case ::e_type_null:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   case ::e_type_empty:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   case ::e_type_i32:
 //      return (iptr) ul / payload.m_i32;
 //   case ::e_type_u32:
@@ -4623,7 +4623,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 //   case ::e_type_property:
 //      return operator / (ul, *payload.m_pproperty);
 //   default:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   }
 //
 //}

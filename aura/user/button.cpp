@@ -190,7 +190,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -444,7 +444,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
@@ -469,19 +469,19 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_click;
+         subject.m_id = ::e_subject_click;
 
-         ev.m_actioncontext.m_pmessage = pkey;
+         subject.m_actioncontext.m_pmessage = pkey;
 
-         ev.m_actioncontext.add(e_source_user);
+         subject.m_actioncontext.add(e_source_user);
 
-         on_control_event(&ev);
+         route(&subject);
 
-         pmessage->m_bRet = ev.m_bRet;
+         pmessage->m_bRet = subject.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -565,10 +565,10 @@ namespace user
    }
 
 
-   void button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void button::handle(::subject * psubject, ::context * pcontext)
    {
 
-      interaction::on_subject(psubject, pcontext);
+      interaction::handle(psubject, pcontext);
 
    }
 
@@ -582,7 +582,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorBackground = get_color(pstyle, ::user::e_element_background, get_state());
+      auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
       //::color::color crBackground = _001GetButtonBackgroundColor();
 
@@ -743,7 +743,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::rectangle_i32 rectMargin(2, 2,2, 2);
 

@@ -59,7 +59,7 @@ namespace filemanager
 
       //auto pstyle = get_style(pgraphics);
 
-      //::color::color crBackground = get_color(pstyle, ::user::e_element_background);
+      //::color::color crBackground = get_color(pstyle, ::e_element_background);
 
       //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
@@ -179,12 +179,12 @@ namespace filemanager
    }
 
 
-   void main_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
       if (psubject->id() == OPEN_DOCUMENT_UPDATE)
       {

@@ -166,10 +166,10 @@ namespace hellobase
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact_base::on_subject(psubject, pcontext);
+      impact_base::handle(psubject, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 

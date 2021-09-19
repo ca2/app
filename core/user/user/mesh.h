@@ -470,7 +470,7 @@ namespace user
       virtual void on_enable_hover_select();
 
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
       virtual bool _001OnRightClick(uptr uFlags,const ::point_i32 & point);
 
       virtual void _001GetSelection(range& selection);

@@ -339,17 +339,17 @@ namespace browser
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pevent->get_form()) == m_pdocMenu->get_view(0) && pevent->m_puserinteraction != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->m_puserinteraction != nullptr)
       {
 
-         if(pevent->m_eevent == ::user::e_event_after_change_text)
+         if(psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puserinteraction->m_id == "roll_fps" && !pevent->m_context.is(::e_source_initialize)
-                  && !pevent->m_context.is(::e_source_database))
+            if(m_prollfps != nullptr && psubject->m_puserinteraction->m_id == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
+                  && !psubject->m_context.is(::e_source_database))
             {
 
                try
@@ -395,12 +395,12 @@ namespace browser
                {
                }
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
                return;
 
 
             }
-            //else if(pevent->m_puserinteraction->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
+            //else if(psubject->m_puserinteraction->m_id == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -427,22 +427,22 @@ namespace browser
 
 
          }
-         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puserinteraction != nullptr)
+         else if (psubject->m_id == ::e_subject_set_check && psubject->m_puserinteraction != nullptr)
          {
 
-            string strCheck = pevent->m_puserinteraction->m_id;
+            string strCheck = psubject->m_puserinteraction->m_id;
 
 
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (pevent->m_puserinteraction != nullptr && !pevent->m_context.is(::e_source_initialize)
-                     && !pevent->m_context.is(::e_source_sync))
+               if (psubject->m_puserinteraction != nullptr && !psubject->m_context.is(::e_source_initialize)
+                     && !psubject->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = pevent->m_puserinteraction;
+                  __pointer(::user::check) pcheck = psubject->m_puserinteraction;
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -457,7 +457,7 @@ namespace browser
 
                   }
 
-                  pevent->m_bRet = true;
+                  psubject->m_bRet = true;
                   return;
 
 
@@ -470,10 +470,10 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && pevent->m_puserinteraction == m_pfontview->m_pimpact)
+         if (m_pfontview != nullptr && psubject->m_puserinteraction == m_pfontview->m_pimpact)
          {
 
-            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+            if (psubject->m_id == ::e_subject_after_change_cur_sel)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
@@ -492,7 +492,7 @@ namespace browser
                }
 
             }
-            else if (pevent->m_eevent == ::user::e_event_after_change_cur_hover)
+            else if (psubject->m_id == ::e_subject_after_change_cur_hover)
             {
 
                string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
@@ -509,17 +509,17 @@ namespace browser
             }
 
          }
-         else if (pevent->m_puserinteraction == m_pcolorview)
+         else if (psubject->m_puserinteraction == m_pcolorview)
          {
 
 
-            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel
-                  || pevent->m_eevent == ::user::e_event_after_change_cur_hover)
+            if (psubject->m_id == ::e_subject_after_change_cur_sel
+                  || psubject->m_id == ::e_subject_after_change_cur_hover)
             {
 
                m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
 
-               if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+               if (psubject->m_id == ::e_subject_after_change_cur_sel)
                {
 
                   m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);
@@ -536,7 +536,7 @@ namespace browser
       }
 
 
-      ::userex::pane_tab_view::on_control_event(pevent);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 
@@ -607,12 +607,12 @@ namespace browser
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
 
 
-      ::userex::pane_tab_view::on_subject(psubject, pcontext);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 

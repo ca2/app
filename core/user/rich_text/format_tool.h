@@ -56,7 +56,7 @@ namespace user
 
          virtual void show_for_ui(::user::interaction * pinteraction);
 
-         virtual void on_control_event(::user::control_event * pevent) override;
+         virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
          virtual bool update_data(bool bSaveAndValidate) override;

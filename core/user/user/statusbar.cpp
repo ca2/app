@@ -458,7 +458,7 @@ namespace user
          else
             pSBP->strText.Empty();
       }
-      catch(::exception::exception *)
+      catch(::exception *)
       {
          // Note: DELETE_EXCEPTION(e) not required
          return false;
@@ -494,7 +494,7 @@ namespace user
 //      TEXTMETRICW tm;
       {
          // os independence
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
          /*      CClientDC spgraphics(nullptr);
                HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
                HGDIOBJ hOldFont = nullptr;

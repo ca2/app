@@ -669,7 +669,7 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
-      pbutton->add_control_event_handler(m_pframewindow);
+      pbutton->add_handler(m_pframewindow);
 
       // if(ebutton == e_button_dock)
       // {
@@ -1212,7 +1212,7 @@ namespace experience
       catch (...)
       {
 
-         throw ::exception::exception(error_failed, "no more a u");
+         throw ::exception(error_failed, "no more a u");
 
       }
 

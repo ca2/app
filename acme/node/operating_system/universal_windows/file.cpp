@@ -1880,7 +1880,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 //string file_get_mozilla_firefox_plugin_container_path()
 //{
 //
-//   __throw(::exception::exception(" todo "));
+//   __throw(::exception(" todo "));
 //
 //   return "";
 //

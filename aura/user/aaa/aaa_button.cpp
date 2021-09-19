@@ -163,7 +163,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -190,7 +190,7 @@ namespace user
       if (m_estyle == style_simple)
       {
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          string str;
          get_window_text(str);
@@ -437,7 +437,7 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
@@ -462,12 +462,12 @@ namespace user
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::user::control_event ev;
-         ev.m_puserinteraction = this;
-         ev.m_eevent = ::user::e_event_click;
-         ev.m_pmessage = pmessage;
-         on_control_event(&ev);
-         pmessage->m_bRet = ev.m_bRet;
+         ::subject subject;
+         subject.m_puserinteraction = this;
+         subject.m_id = ::e_subject_click;
+         subject.m_pmessage = pmessage;
+         route(&subject);
+         pmessage->m_bRet = subject.m_bRet;
          if (pmessage->m_bRet)
          {
             pkey->m_lresult = 1;
@@ -548,10 +548,10 @@ namespace user
    }
 
 
-   void button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void button::handle(::subject * psubject, ::context * pcontext)
    {
 
-      interaction::on_subject(psubject, pcontext);
+      interaction::handle(psubject, pcontext);
 
    }
 
@@ -713,7 +713,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::rectangle rectMargin(2, 2,2, 2);
 

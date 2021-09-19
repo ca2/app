@@ -63,7 +63,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -152,7 +152,7 @@ namespace user
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
       __UNREFERENCED_PARAMETER(bCompat);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   void document_manager::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void document_manager::handle(::subject * psubject, ::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -897,7 +897,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->on_subject(psubject, pcontext);
+         ptemplate->handle(psubject, pcontext);
 
       }
 

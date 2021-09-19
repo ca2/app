@@ -292,7 +292,7 @@ namespace user
          return true;
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(pe);

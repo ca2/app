@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -17,14 +17,14 @@ namespace process
       public:
 
          string                                    m_strCmdLine;
-         __pointer(::process::process)             m_pprocess;
+         __pointer(::operating_system::process)    m_pprocess;
          string *                                  m_pstrRead;
          manual_reset_event *                      m_pevReady;
          millis                                    m_millisTimeout;
          millis                                    m_millisStart;
          bool *                                    m_pbInitFailure;
          bool *                                    m_pbPotentialTimeout;
-         ::process::exit_status *                  m_pexitstatus;
+         ::operating_system::exit_status *         m_pexitstatus;
          bool                                      m_bElevated;
 
 
@@ -70,10 +70,10 @@ namespace process
 
 
       department();
-      virtual ~department();
+      ~department() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
 
       // run process and get output
@@ -86,6 +86,6 @@ namespace process
    };
 
 
-} // namespace process
+} // namespace operating_system
 
 

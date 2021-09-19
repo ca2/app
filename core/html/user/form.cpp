@@ -199,13 +199,13 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    get_html_data()->layout(this);
 
-   ::user::control_event ev;
+   ::subject subject;
 
-   ev.m_eevent = ::user::e_event_layout;
+   subject.m_id = ::e_subject_layout;
 
-   ev.m_puserinteraction = this;
+   subject.m_puserelement = this;
 
-   on_control_event(&ev);
+   route(&subject);
 
    if (m_bNeedLoadFormData)
    {
@@ -774,10 +774,10 @@ bool html_form::load_html(const ::string & str)
 
 
 
-void html_form::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_form::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::user::form_view::on_subject(psubject, pcontext);
+   ::user::form_view::handle(psubject, pcontext);
 
    ////__update(::update)
    {
@@ -809,10 +809,10 @@ void html_form::on_subject(::subject::subject * psubject, ::subject::context * p
 
 
 
-void html_form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_form_view::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::html_form::on_subject(psubject, pcontext);
+   ::html_form::handle(psubject, pcontext);
 
    ////__update(::update)
    {
@@ -884,7 +884,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->on_subject(psubject, pcontext);
+         m_pcallback->handle(psubject, pcontext);
 
       }
 
@@ -893,10 +893,10 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 }
 
 
-void html_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_view::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::html_form::on_subject(psubject, pcontext);
+   ::html_form::handle(psubject, pcontext);
 
    ////__update(::update)
    {

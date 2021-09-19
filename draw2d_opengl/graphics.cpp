@@ -272,7 +272,7 @@ namespace draw2d_opengl
    i32 graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
    {
       // ASSERT(m_hdc != nullptr);
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       ////return ::ExcludeUpdateRgn(m_hdc, WIN_WINDOW(pwindow)->get_handle());
       return 0;
    }
@@ -1915,7 +1915,7 @@ namespace draw2d_opengl
 
       //return ::GetTextMetricsW(m_hdc, lpMetrics) != false;
 
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
 
       return false;
 
@@ -2749,7 +2749,7 @@ namespace draw2d_opengl
       ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, BLENDFUNCTION blend)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       //if(m_hdc == nullptr)
         // return false;
 
@@ -3060,7 +3060,7 @@ namespace draw2d_opengl
    void graphics::DrawDragRect(const RECTANGLE_I32 &  rectangle, const ::size_i32 & size, const RECTANGLE_I32 &  lpRectLast, const ::size_i32 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       /*
 

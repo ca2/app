@@ -1,48 +1,6 @@
 #include "framework.h"
 
 
-template < typename PREDICATE >
-class subject_listener :
-   virtual public ::matter
-{
-public:
-
-
-   PREDICATE m_predicate;
-
-
-   subject_listener(PREDICATE predicate) : m_predicate(predicate) { }
-   virtual ~subject_listener() {}
-   //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
-   //method(const ::method & method) : matter_pointer(method) { }
-
-
-   //inline ::e_status operator()() const;
-
-   void on_subject(::subject::subject*psubject, ::subject::context*pcontext) override
-   {
-
-      m_predicate(psubject, pcontext);
-
-   }
-
-   //template < typename PRED >
-   //void pred(PRED pred);
-
-   //inline method & operator = (const ::method & method) { m_pmatter = method.m_pmatter; return *this; }
-   //method & operator = (const ::payload & payload);
-
-
-};
-
-
-template < typename PREDICATE >
-::matter_pointer __subject_listener(PREDICATE predicate)
-{
-
-   return __new(subject_listener<PREDICATE>(predicate));
-
-}
 
 
 
@@ -78,9 +36,9 @@ namespace database
 
       //auto linkedproperty = fetch_property(id);
 
-      auto psubject = get_application()->subject(linkedproperty->m_id);
+      auto psignal = get_application()->get_signal(linkedproperty->m_id);
 
-      psubject->add_listener(__subject_listener([this, id, linkedproperty](::subject::subject * psubject, ::subject::context * pcontext)
+      psignal->add_handler(predicate([this, id, linkedproperty](::subject * psubject, ::context * pcontext)
 
       //connect(id, [id, linkedproperty](::message::message* pmessage)
          {
@@ -183,7 +141,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const ::payload & payload, ::subject::subject * psubject)
+   bool client::_data_set(const key & key, const ::payload & payload, ::subject * psubject)
    {
 
       if(::is_null(m_pdataserver))
@@ -202,7 +160,7 @@ namespace database
    }
 
 
-   bool client::_data_set(const selection & selection, const ::payload & payload, ::subject::subject * psubject)
+   bool client::_data_set(const selection & selection, const ::payload & payload, ::subject * psubject)
    {
 
       if (::is_null(m_pdataserver))
@@ -290,7 +248,7 @@ namespace database
    }
 
 
-   bool client::data_pulse_change(const key & key, ::subject::subject * psubject)
+   bool client::data_pulse_change(const key & key, ::subject * psubject)
    {
 
       if(m_pdataserver != nullptr)
@@ -457,14 +415,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject::subject * psubject)
+   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::subject * psubject)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject::subject * psubject)
+   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::subject * psubject)
    {
 
    }

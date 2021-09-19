@@ -141,10 +141,10 @@ bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
 }*/
 
 
-void simple_menu_bar::route_command_message(::message::command * pcommand)
+void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   simple_toolbar::route_command_message(pcommand);
+   simple_toolbar::route_command(pcommand);
 
 }
 
@@ -165,7 +165,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_itemPressed = iItem;
    set_need_redraw();
    ::rectangle_i32 rectangle;
-   _001GetElementRect(iItem, rectangle, ::user::e_element_item, ::user::e_state_none);
+   _001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_none);
    client_to_screen(rectangle);
 
    /*#ifdef WINDOWS_DESKTOP
@@ -879,7 +879,7 @@ void simple_menu_bar::_001OnDropDown(index iItem)
 }
 
 
-bool simple_menu_bar::on_click(const ::user::item & item)
+bool simple_menu_bar::on_click(const ::item & item)
 {
    
    return false;

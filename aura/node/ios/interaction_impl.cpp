@@ -1019,15 +1019,15 @@ namespace ios
    }
 
 
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
    }
 
 
-   void interaction_impl::on_control_event(::user::control_event * pevent)
+   void interaction_impl::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);
@@ -1283,13 +1283,13 @@ namespace ios
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event(pusermessage->m_lparam.cast < ::user::control_event >());
+            m_puserinteraction->handle_event(pusermessage->m_lparam.cast < ::user::control_event >());
 
          }
          else
          {
 
-            on_control_event(pusermessage->m_lparam.cast < ::user::control_event > ());
+            handle_event(pusermessage->m_lparam.cast < ::user::control_event > ());
 
          }
 
@@ -2770,7 +2770,7 @@ namespace ios
 //   bool interaction_impl::get_window_rect(RECTANGLE_I64 * lprect)
 //   {
 //      //      if(!::is_window(get_handle()))
-//      //       __throw(::exception::exception("no more a user::interaction"));
+//      //       __throw(::exception("no more a user::interaction"));
 //      if(!::is_window(get_handle()))
 //      {
 //

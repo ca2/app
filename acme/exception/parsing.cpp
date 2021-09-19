@@ -5,7 +5,7 @@
 
 
 parsing_exception::parsing_exception(const char * pszMessage) :
-   ::exception::exception(pszMessage)
+   ::exception(pszMessage)
 {
 
    output_debug_string("parsing_exception");

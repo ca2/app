@@ -49,12 +49,12 @@ namespace axis
    }
 
 
-   ::user::style* user::get_user_style()
-   {
+   //::user::style* user::_user_style()
+   //{
 
-      return m_puserstyle;
+   //   return m_puserstyle;
 
-   }
+   //}
 
 
 } // namespace axis

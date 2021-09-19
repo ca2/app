@@ -117,7 +117,7 @@ namespace user
    }
 
 
-   bool image_list::on_click(const ::user::item & item)
+   bool image_list::on_click(const ::item & item)
    {
 
       index_array iaSel = m_iaSel;
@@ -154,17 +154,13 @@ namespace user
 
       }
 
-      ::user::control_event event;
+      ::subject subject(e_subject_image_list_action);
 
-      event.m_eevent    = ::user::e_event_image_list_action;
+      subject.m_item      = item;
 
-      event.m_item      = item;
+      subject.m_puserelement      = this;
 
-      event.m_puserinteraction      = this;
-
-      event.m_id        = m_id;
-
-      on_control_event(&event);
+      route(&subject);
 
       _001SetSelection(iaSel, ::e_source_user);
 
@@ -196,10 +192,10 @@ namespace user
    }
 
 
-   bool image_list::get_rect(::user::item & item)
+   bool image_list::get_rect(::item & item)
    {
 
-      if (item == ::user::e_element_item)
+      if (item == ::e_element_item)
       {
 
          if (!item.is_valid_item(m_imagea.get_count()))
@@ -277,7 +273,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::e_element_icon)
+      else if (item == ::e_element_icon)
       {
 
          {
@@ -303,7 +299,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::e_element_text)
+      else if (item == ::e_element_text)
       {
 
          if (m_bNoName)
@@ -337,7 +333,7 @@ namespace user
    }
 
 
-   void image_list::on_hit_test(::user::item& item)
+   void image_list::on_hit_test(::item& item)
    {
 
       ::count c = m_imagea.get_count();
@@ -363,7 +359,7 @@ namespace user
 
       item = -1;
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
    }
 
@@ -389,10 +385,10 @@ namespace user
 
       ::count cCount = m_imagea.get_count();
 
-      for (::user::item item = 0; item.m_iItem < cCount; item.m_iItem++)
+      for (::item item = 0; item.m_iItem < cCount; item.m_iItem++)
       {
 
-         ::user::item itemText;
+         ::item itemText;
 
          ::rectangle_i32 rectSel;
 
@@ -611,7 +607,7 @@ namespace user
       for (index i = 0; i < m_imagea.get_count(); i++)
       {
 
-         ::user::item item(e_element_item, i);
+         ::item item(e_element_item, i);
 
          if (get_rect(item))
          {
@@ -712,10 +708,10 @@ namespace user
    }
 
 
-   void image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void image_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
@@ -737,7 +733,7 @@ namespace user
    }
 
 
-   ::user::item image_list::current_item()
+   ::item image_list::current_item()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -786,17 +782,17 @@ namespace user
 
          m_iaSel = ia;
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         ev.m_item = current_item();
+         subject.m_item = current_item();
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 

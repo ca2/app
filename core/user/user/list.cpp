@@ -95,9 +95,11 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
-      connect_command("list_view_auto_arrange", &list::_001OnListViewAutoArrange);
-      connect_command_probe("list_view_auto_arrange", &list::_001OnUpdateListViewAutoArrange);
+      add_command_handler("list_view_auto_arrange", this, &list::_001OnListViewAutoArrange);
+      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListViewAutoArrange);
+
    }
+
 
    bool list::CreateHeaderCtrl()
    {
@@ -192,7 +194,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         brushText->create_solid(get_color(pstyle,::user::e_element_text));
+         brushText->create_solid(get_color(pstyle,::e_element_text));
 
          auto pointViewportOrg = pgraphics->GetViewportOrg();
 
@@ -386,7 +388,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
       //pdrawitem->m_pgraphics->set(pfont);
 
       m_pdrawlistitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
@@ -408,7 +410,7 @@ namespace user
          {
             if (!bHoverFont)
             {
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, e_state_hover);
                //pdrawitem->m_pgraphics->set(m_pdrawlistitem->m_pfont);
             }
          }
@@ -418,7 +420,7 @@ namespace user
             {
                //m_pdrawlistitem->m_pfont = pfont;
                //pdrawitem->m_pgraphics->set(pfont);
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
             }
          }
 
@@ -496,7 +498,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+      pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
       pdrawitem->m_pfont = pdrawitem->m_pgraphics->m_pfont;
 
@@ -555,7 +557,7 @@ namespace user
 
                bHoverFont = true;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
             }
 
@@ -568,7 +570,7 @@ namespace user
 
                bHoverFont = false;
 
-               pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+               pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
             }
 
@@ -666,7 +668,7 @@ namespace user
 
       auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-      pdrawitem->m_colorText = get_color(pstyle, ::user::e_element_item_text);
+      pdrawitem->m_colorText = get_color(pstyle, ::e_element_item_text);
 
       pdrawitem->m_colorTextBackground = 0;
 
@@ -785,7 +787,7 @@ namespace user
          if (pdrawitem->m_plist->m_bMorePlain)
          {
 
-            auto color = get_color(pstyle, ::user::e_element_item_text);
+            auto color = get_color(pstyle, ::e_element_item_text);
 
             if (!color.is_ok())
             {
@@ -824,13 +826,13 @@ namespace user
       if (pdrawitem->m_bListItemHover)
       {
 
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
+         pdrawitem->m_pgraphics->set_font(this, ::e_element_none, ::user::e_state_hover);
 
       }
       else
       {
 
-         pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none);
+         pdrawitem->m_pgraphics->set_font(this, ::e_element_none);
 
       }
 
@@ -1454,7 +1456,7 @@ namespace user
 
       //draw_select ds(this, pgraphics);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       auto pfont = pgraphics->get_current_font();
 
@@ -2599,7 +2601,7 @@ namespace user
             else
             {
 
-               ::exception::throw_not_implemented();
+               throw interface_only_exception();
 
             }
 
@@ -4029,7 +4031,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     if (!on_click({::user::e_element_item, _001DisplayToStrict(iDisplayItemLButtonUp)}))
+                     if (!on_click({::e_element_item, _001DisplayToStrict(iDisplayItemLButtonUp)}))
                      {
 
                         //index iItem = _001DisplayToStrict(iDisplayItemLButtonUp);
@@ -4142,21 +4144,21 @@ namespace user
 
 
 
-   bool list::on_click(const ::user::item & item)
+   bool list::on_click(const ::item & item)
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_puserinteraction = this;
+      subject.m_puserelement = this;
 
-      ev.m_eevent = ::user::e_event_list_clicked;
+      subject.m_id = ::e_subject_list_clicked;
 
-      route_control_event(&ev);
+      route(&subject);
 
       //if (m_pformcallback != nullptr)
       //{
 
-      //   m_pformcallback->on_control_event(&ev);
+      //   m_pformcallback->route(&subject);
 
       //}
       //else if (get_form() != nullptr)
@@ -4172,12 +4174,12 @@ namespace user
 
       //}
 
-      return ev.m_bRet;
+      return subject.m_bRet;
 
    }
 
 
-   bool list::on_right_click(const ::user::item & item)
+   bool list::on_right_click(const ::item & item)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -4384,7 +4386,7 @@ namespace user
                {
 
                   //_001OnItemClick(iItem);
-                  on_click({ ::user::e_element_item, iItem });
+                  on_click({ ::e_element_item, iItem });
 
                }
 
@@ -5406,7 +5408,7 @@ namespace user
 
       }
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       /*
       if(!pil->create(
@@ -5528,7 +5530,7 @@ namespace user
    void list::_001LayoutTopText(::draw2d::graphics_pointer& pgraphics)
    {
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::size_array sizea;
 
@@ -5641,7 +5643,7 @@ namespace user
    //i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
    //{
 
-   //   pgraphics->set_font(this, ::user::e_element_none);
+   //   pgraphics->set_font(this, ::e_element_none);
 
    //   index cx = _001CalcItemWidth(pgraphics, iItem, iSubItem);
 
@@ -5706,7 +5708,7 @@ namespace user
       if (item.m_bOk)
       {
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          m_dcextension.get_text_extent(pgraphics, item.m_strText, item.m_strText.get_length(), size);
 
@@ -6526,7 +6528,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(iColumn);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       i32 iMaxWidth = 0;
 
@@ -7186,19 +7188,20 @@ namespace user
    void list::_001OnSelectionChange()
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_puserinteraction = this;
-      ev.m_eevent = ::user::e_event_after_change_cur_sel;
+      subject.m_puserelement = this;
 
-      on_control_event(&ev);
+      subject.m_id = ::e_subject_after_change_cur_sel;
+
+      route(&subject);
 
       set_need_redraw();
 
    }
 
 
-   ::e_status list::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status list::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       auto iCurrentSelection = m_rangeSelection.get_current_item();
@@ -7592,9 +7595,9 @@ namespace user
 
       auto pstyle = m_plist->get_style(m_pgraphics);
 
-      m_colorText = m_plist->get_color(pstyle, ::user::e_element_item_text, estate);
+      m_colorText = m_plist->get_color(pstyle, ::e_element_item_text, estate);
 
-      m_colorItemBackground = m_plist->get_color(pstyle, ::user::e_element_item_background, estate);
+      m_colorItemBackground = m_plist->get_color(pstyle, ::e_element_item_background, estate);
 
    }
 

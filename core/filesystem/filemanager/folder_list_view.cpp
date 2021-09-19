@@ -180,10 +180,10 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void folder_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      FILEMANAGER_SHOW_IMPACT::on_subject(psubject, pcontext);
+      FILEMANAGER_SHOW_IMPACT::handle(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

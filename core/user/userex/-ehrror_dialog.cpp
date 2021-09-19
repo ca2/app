@@ -15,7 +15,7 @@ namespace userex
    }
 
 
-   void error_dialog::Initialize(const ::exception::exception & e)
+   void error_dialog::Initialize(const ::exception & e)
    {
 
       m_exception = e;

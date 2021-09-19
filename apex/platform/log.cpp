@@ -601,7 +601,7 @@ namespace apex
 //            }
 //
 //         }
-//         catch(::exception::exception &)
+//         catch(::exception &)
 //         {
 //
 //            // Ignore exception here because this class/function is used for debugging

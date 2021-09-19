@@ -289,9 +289,9 @@ namespace user
 
                auto pstyle = get_style(pgraphics);
 
-               auto colorDarkShadow = pstyle->get_color(this, ::user::e_element_dark_shadow);
+               auto colorDarkShadow = pstyle->get_color(this, ::e_element_dark_shadow);
 
-               auto colorHilite = pstyle->get_color(this, ::user::e_element_hilite);
+               auto colorHilite = pstyle->get_color(this, ::e_element_hilite);
 
                pgraphics->draw_inset_3drect(rectImageBorder, colorDarkShadow, colorHilite);
 
@@ -365,7 +365,7 @@ namespace user
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
-      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
+      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
 
       string strButtonText;
 

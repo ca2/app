@@ -226,7 +226,7 @@ namespace userex
    }
 
 
-   void progress_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void progress_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

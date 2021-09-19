@@ -55,7 +55,7 @@ namespace universal_windows
       if (!main_initialize())
       {
 
-         __throw(::exception::exception("Failed to run main_initialize at directx_framework_view constructor."));
+         __throw(::exception("Failed to run main_initialize at directx_framework_view constructor."));
 
       }
 
@@ -87,7 +87,7 @@ namespace universal_windows
          if (!m_psystem->begin_synch())
          {
 
-            __throw(::exception::exception("failed to begin_synch the system"));
+            __throw(::exception("failed to begin_synch the system"));
 
          }
 
@@ -133,11 +133,11 @@ namespace universal_windows
 
                on_window_size_changed(m_window.Get(), size);
 
-               ev.set_event();
+               subject.set_event();
 
             }));
 
-         ev.wait(15_s);
+         subject.wait(15_s);
 
          auto puserinteractionHost = __user_interaction(m_psystem->get_session()->m_puserinteractionHost);
 

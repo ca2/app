@@ -363,7 +363,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pinteraction)
    single_lock slOsWindow(s_pmutex, true);
 
    if(this == nullptr)
-      __throw(::exception::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 
    m_puserinteraction = pinteraction;
 

@@ -707,7 +707,7 @@ namespace experience
 
       i32 iCaptionTextHeight = calc_caption_height(pgraphics);
 
-      pgraphics->set_font(pframewindow, ::user::e_element_window_title);
+      pgraphics->set_font(pframewindow, ::e_element_window_title);
 
       if (pgraphics->m_pfont)
       {
@@ -977,7 +977,7 @@ namespace experience
    }
 
 
-   void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void frame::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)

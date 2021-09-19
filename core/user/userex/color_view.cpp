@@ -416,20 +416,20 @@ namespace userex
    }
 
 
-   void color_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void color_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
 
-   void color_view::on_control_event(::user::control_event * pevent)
-   {
+   //void color_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::user::impact::on_control_event(pevent);
+   //   ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    void color_view::on_message_create(::message::message * pmessage)
@@ -561,20 +561,20 @@ namespace userex
 
          rebuild_luminance();
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_id = m_idView;
+            subject.m_id = m_idView;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -590,20 +590,20 @@ namespace userex
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_id = m_idView;
+            subject.m_id = m_idView;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -883,20 +883,20 @@ namespace userex
 
       m_bLButtonPressed = false;
       
-      if(has_control_event_handler())
+      if(has_handler())
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         ev.m_id = m_idView;
+         subject.m_id = m_idView;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         route_control_event(&ev);
+         route(&subject);
             
       }
 

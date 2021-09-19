@@ -472,7 +472,7 @@ namespace user
          return true;
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception & e)
       {
 
          if (m_strDebugType.contains("filemanager"))

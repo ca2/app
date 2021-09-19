@@ -877,13 +877,13 @@ namespace user
    void menu::defer_close()
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_eevent = ::user::e_event_context_menu_close;
+      subject.m_id = ::e_subject_context_menu_close;
 
-      on_control_event(&ev);
+      route(&subject);
 
-      if (!m_bInline && !ev.m_bRet)
+      if (!m_bInline && !subject.m_bRet)
       {
 
          post_message(e_message_close);
@@ -893,13 +893,13 @@ namespace user
    }
 
 
-   void menu::on_control_event(::user::control_event * pevent)
+   void menu::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_click)
+      if (psubject->m_id == ::e_subject_click)
       {
 
-         if (m_pitemClose.is_set() && pevent->m_puserinteraction == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && psubject->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -908,12 +908,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (pevent->m_puserinteraction->m_id.begins(astr.ingSysCommand))
+               if (psubject->user_interaction()->m_id.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -921,11 +921,11 @@ namespace user
                   if (::is_set(pchannelNotify))
                   {
 
-                     //::message::command command(pevent->m_puserinteraction->m_id);
+                     //::message::command command(psubject->m_puserinteraction->m_id);
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->command_handler(pevent->m_puserinteraction->m_id);
+                     pchannelNotify->handle_command(psubject->user_interaction()->m_id);
 
                   }
 
@@ -935,7 +935,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  id idCommand = pevent->m_puserinteraction->m_id;
+                  id idCommand = psubject->user_interaction()->m_id;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -948,11 +948,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = pevent->m_actioncontext;
+                     command.m_actioncontext = psubject->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     pevent->m_bRet = command.m_bRet;
+                     psubject->m_bRet = command.m_bRet;
 
                   }
 
@@ -963,22 +963,22 @@ namespace user
          }
 
       }
-//      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
+//      else if (psubject->m_id == ::e_subject_mouse_enter)
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && pevent->m_puserinteraction != m_pitemClose->m_puserinteraction)
+//               && psubject->m_puserinteraction != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (pevent->m_puserinteraction->m_pmenuitem != m_pmenuitemSub)
+//               if (psubject->m_puserinteraction->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = psubject->m_puserinteraction->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1007,7 +1007,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           pevent->m_puserinteraction->get_window_rect(rectangle);
+//                           psubject->m_puserinteraction->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1017,11 +1017,11 @@ namespace user
 //                        else
 //                        {
 //
-//                           ::user::control_event ev;
+//                           ::subject subject;
 //
-//                           ev.m_eevent = ::user::e_event_menu_hover;
+//                           subject.m_id = ::e_subject_menu_hover;
 //
-//                           ev.m_id = pitem->m_id;
+//                           subject.m_id = pitem->m_id;
 //
 //                           ::user::interaction * puiTarget = get_target_window();
 //
@@ -1032,7 +1032,7 @@ namespace user
 //
 //                           }
 //
-//                           return puiTarget->on_control_event(&ev);
+//                           return puiTarget->route(&subject);
 //
 //                        }
 //
@@ -1046,26 +1046,26 @@ namespace user
 //
 //         }
 //
-//         pevent->m_bRet = true;
+//         psubject->m_bRet = true;
 //
 //         return;
 //
 //      }
-//      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
+//      else if (psubject->m_id == ::e_subject_mouse_leave)
 //      {
-//         if (pevent->m_puserinteraction->m_id == m_idTimerMenu)
+//         if (psubject->m_puserinteraction->m_id == m_idTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
 //            m_idTimerMenu.is_empty();
 //         }
 //
-//         pevent->m_bRet = true;
+//         psubject->m_bRet = true;
 //
 //         return;
 //
 //      }
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -1553,15 +1553,15 @@ namespace user
 
       pinteraction->m_pmaterialCommandHandler = this;
       
-      pinteraction->add_control_event_handler(this);
+      pinteraction->add_handler(this);
 
       return pinteraction;
 
    }
 
 
-   // <3ThomasBorregaardS�rensen__!!
-   ::e_status menu::command_handler(const ::id& id)
+   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
+   ::e_status menu::handle_command(const ::id& id)
    {
 
       if (m_pmaterialCommandHandler)
@@ -1569,7 +1569,7 @@ namespace user
 
          defer_close();
 
-         auto estatus = m_pmaterialCommandHandler->command_handler(id);
+         auto estatus = m_pmaterialCommandHandler->handle_command(id);
 
          if (!estatus)
          {

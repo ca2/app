@@ -87,7 +87,7 @@ namespace user
 
       pmessage->previous();
 
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -286,19 +286,19 @@ namespace user
    }
 
 
-   void list_box::on_control_event(::user::control_event * pevent)
+   void list_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction == this)
+         if(psubject->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(pevent->m_item, pevent->m_actioncontext);
+               m_pcombo->set_current_item(psubject->m_item, psubject->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -306,7 +306,7 @@ namespace user
             else
             {
 
-               set_current_item(pevent->m_item, pevent->m_actioncontext);
+               set_current_item(psubject->m_item, psubject->m_actioncontext);
 
             }
 
@@ -392,7 +392,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      colorBackground = get_color(pstyle, ::user::e_element_background);
+      colorBackground = get_color(pstyle, ::e_element_background);
 
       ::draw2d::brush_pointer brBk(e_create);
 
@@ -425,7 +425,7 @@ namespace user
 
       screen_to_client(pointCursor, ::user::e_layout_design);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       auto itemHover = hover_item();
 
@@ -474,9 +474,9 @@ namespace user
 
          }
 
-         colorBackground = get_color(pstyle, ::user::e_element_item_background, estate);
+         colorBackground = get_color(pstyle, ::e_element_item_background, estate);
 
-         colorText = get_color(pstyle, ::user::e_element_item_text, estate);
+         colorText = get_color(pstyle, ::e_element_item_text, estate);
 
          brBk->create_solid(colorBackground);
 
@@ -547,7 +547,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -1085,13 +1085,13 @@ namespace user
    }
 
 
-   void list_box::on_hit_test(::user::item & item)
+   void list_box::on_hit_test(::item & item)
    {
 
       /*if (m_pcombo == nullptr)
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 
@@ -1122,7 +1122,7 @@ namespace user
          if (rectItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::user::e_element_item, iItem };
+            item  = {::e_element_item, iItem };
 
             return;
 
@@ -1294,7 +1294,7 @@ namespace user
    }
 
 
-   ::e_status list_box::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status list_box::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       if(m_pcombo)

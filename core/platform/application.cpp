@@ -114,7 +114,7 @@ namespace core
    string application::prepare_menu_impact_main_body()
    {
 
-      return "";
+      return file().as_string("matter://menu_impact.partial.html");
 
    }
 

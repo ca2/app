@@ -92,6 +92,9 @@ public:
    void Nok();
 
 
+   ::id user_element_id() const;
+
+
    virtual ::user::form * get_form();
    virtual ::user::form * get_parent_form();
    virtual ::user::interaction * user_interaction();

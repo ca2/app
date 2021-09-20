@@ -151,6 +151,22 @@ void subject::Ok()
 
 }
 
+
+::id subject::user_element_id() const
+{
+
+   if (::is_null(m_puserelement))
+   {
+
+      return ::id::e_type_null;
+
+   }
+
+   return m_puserelement->m_id;
+
+}
+
+
 //impact * subject::get_view()
 //{
 

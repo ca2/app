@@ -97,10 +97,7 @@ namespace userex
          }
 
       }
-
-      ::user::impact::handle(psubject, pcontext);
-
-      if (psubject->m_puserelement->m_id == impact_font_sel)
+      else if (psubject->user_element_id() == impact_font_sel)
       {
 
          if (psubject->m_id == ::e_subject_after_change_cur_sel)
@@ -126,6 +123,10 @@ namespace userex
          }
 
       }
+
+      ::user::impact::handle(psubject, pcontext);
+
+
 
 
    }

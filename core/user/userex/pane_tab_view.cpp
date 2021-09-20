@@ -261,7 +261,7 @@ namespace userex
          }
 
       }
-      else
+      else if(m_pimpactdata->m_id == MENU_IMPACT)
       {
 
          auto str = get_application()->prepare_menu_impact();

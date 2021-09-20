@@ -568,8 +568,6 @@ namespace userex
 
             subject.m_id = ::e_subject_after_change_cur_hover;
 
-            subject.m_id = m_idView;
-
             subject.m_puserelement = this;
 
             subject.m_actioncontext = ::e_source_user;
@@ -596,8 +594,6 @@ namespace userex
             ::subject subject;
 
             subject.m_id = ::e_subject_after_change_cur_hover;
-
-            subject.m_id = m_idView;
 
             subject.m_puserelement = this;
 
@@ -889,8 +885,6 @@ namespace userex
          ::subject subject;
 
          subject.m_id = ::e_subject_after_change_cur_sel;
-
-         subject.m_id = m_idView;
 
          subject.m_puserelement = this;
 

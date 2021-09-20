@@ -216,6 +216,8 @@ public:
 
    virtual ::e_status create(::draw2d::graphics* pgraphics);
    virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   using ::object::initialize;
+   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan);
    inline ::e_status preserve(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
    {
 
@@ -317,7 +319,8 @@ public:
 
    virtual bool lighten(double dRate);
 
-   virtual bool copy_from(::image * pimage, i32 x = 0, i32 y = 0);
+   virtual bool copy_from(::image * pimage, i32 x, i32 y);
+   virtual bool copy_from(::image * pimage);
    virtual bool copy_to(::image * pimage, i32 x = 0, i32 y = 0);
 
    virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);

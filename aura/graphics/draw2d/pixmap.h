@@ -69,6 +69,7 @@ struct pixmap
       }
 
 
+
       int scan_size() const { return m_iScan; }
 
       inline ::color32_t * colorref() { return m_pcolorref1; }

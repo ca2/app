@@ -209,6 +209,16 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
+::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
 //::e_status     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
@@ -3989,7 +3999,7 @@ bool image::Screen(::image* pimage)
 bool image::copy_from(::image* pimage, i32 x, i32 y)
 {
 
-   ::size_i32 s(pimage->width() - x, pimage->height());
+   ::size_i32 s(pimage->width() - x, pimage->height() - y);
 
    if (size() != s)
    {
@@ -4024,6 +4034,14 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
    }
 
    return true;
+
+}
+
+
+bool image::copy_from(::image * pimage)
+{
+
+   return copy_from(pimage, 0, 0);
 
 }
 

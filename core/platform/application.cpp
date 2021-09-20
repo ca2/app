@@ -16,6 +16,8 @@ namespace core
 
       m_pcoreapplication = this;
 
+      m_strAppId = "app-complex/drawing";
+
    }
 
 
@@ -114,7 +116,9 @@ namespace core
    string application::prepare_menu_impact_main_body()
    {
 
-      return file().as_string("matter://menu_impact.partial.html");
+      auto strMenuImpactPartialHtml = file().as_string("matter://menu_impact.partial.html");
+
+      return strMenuImpactPartialHtml;
 
    }
 

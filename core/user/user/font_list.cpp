@@ -182,8 +182,6 @@ namespace user
 
             subject.m_item = item;
 
-            subject.m_id = m_idView;
-
             route(&subject);
             
          }
@@ -232,8 +230,6 @@ namespace user
             subject.m_id = ::e_subject_after_change_cur_hover;
 
             subject.m_actioncontext = ::e_source_user;
-
-            subject.m_id = m_idView;
 
             route(&subject);
                

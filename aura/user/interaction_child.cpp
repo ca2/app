@@ -112,19 +112,19 @@ namespace user
          //m_puserinteraction->set_window_long_ptr(GWL_STYLE, pusersystem->m_createstruct.style);
          //m_puserinteraction->set_window_long_ptr(GWL_STYLE, m_puserinteraction-());
 
-         //auto rectChild = pusersystem->get_rect();
+         //auto rectangleChild = pusersystem->get_rect();
 
-         //if (rectChild.is_set())
+         //if (rectangleChild.is_set())
          //{
 
          //   INFO("-------------------------------------------------------------------");
          //   INFO("");
          //   INFO("");
-         //   INFO("interaction_child::create_window_ex (rectChild %d, %d, (%d, %d))", rectChild.origin().x, rectChild.origin().y, rectChild.width(), rectChild.height());
+         //   INFO("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
          //   INFO("");
          //   INFO("");
 
-         //   m_puserinteraction->layout().sketch() = rectChild;
+         //   m_puserinteraction->layout().sketch() = rectangleChild;
 
          //}
 
@@ -663,18 +663,18 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
+         m_puserinteraction->get_window_rect(rectangleWindow, ::user::e_layout_design);
 
          auto puserinteraction = get_wnd();
 
          if (::is_set(puserinteraction))
          {
 
-            puserinteraction->viewport_screen_to_client(rectWindow);
+            puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetViewportOrg(rectWindow.top_left());
+            pgraphics->SetViewportOrg(rectangleWindow.top_left());
 
          }
 
@@ -687,7 +687,7 @@ namespace user
    }
 
 
-   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();
@@ -699,7 +699,7 @@ namespace user
 
       }
 
-      pinteraction->RedrawWindow(rectUpdate, prgnUpdate, flags);
+      pinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
       return true;
 

@@ -59,7 +59,7 @@ namespace account
       m_strPassword = credentials.m_strPassword;
       m_strPasshash = credentials.m_strPasshash;
 
-      m_rectDialog = credentials.m_rectDialog;
+      m_rectangleDialog = credentials.m_rectangleDialog;
 
       m_estatusHttp = credentials.m_estatusHttp;
 
@@ -138,7 +138,7 @@ namespace account
    /// input
    /// m_strToken
    /// m_strTitle
-   /// m_rectDialog
+   /// m_rectangleDialog
    /// m_pinteractive (optionally?)
    ///
    /// output

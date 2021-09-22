@@ -427,15 +427,15 @@ namespace user
 
       string strDisplay;
 
-      //::rectangle rectNormal;
+      //::rectangle rectangleNormal;
 
-      //get_rect_normal(rectNormal);
+      //get_rect_normal(rectangleNormal);
 
-      ::rectangle rectMainMonitor;
+      ::rectangle rectangleMainMonitor;
 
-      psession->get_main_monitor(rectMainMonitor);
+      psession->get_main_monitor(rectangleMainMonitor);
 
-      strDisplay.Format("Display(%d, %d)", rectMainMonitor.width(), rectMainMonitor.height());
+      strDisplay.Format("Display(%d, %d)", rectangleMainMonitor.width(), rectangleMainMonitor.height());
 
       return strDisplay;
 

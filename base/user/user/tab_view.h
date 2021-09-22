@@ -79,7 +79,7 @@ namespace user
 
       virtual void rotate() override;
 
-      virtual ::user::tab_pane * create_tab_by_id(id id) override;
+      virtual ::user::tab_pane * create_tab_by_id(const ::id & idTab) override;
 
       virtual void _001OnShowTab(::user::tab * ptab) override;
 

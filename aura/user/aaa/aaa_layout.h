@@ -45,8 +45,8 @@ namespace user
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;
-      ::rectangle                                    m_rectHint;
-      ::rectangle                                    m_rectPadding;
+      ::rectangle                                    m_rectangleHint;
+      ::rectangle                                    m_rectanglePadding;
       int                                       m_iCellPadding;
       ::size                                    m_sizeSpan;
       ::sized                                   m_sizeWeight;

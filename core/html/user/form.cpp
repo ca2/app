@@ -193,6 +193,8 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
    if(get_html_data() == nullptr)
    {
 
+      set_need_layout();
+
       return;
 
    }

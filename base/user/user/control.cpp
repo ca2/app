@@ -994,18 +994,18 @@
 //         //i32 iMargin = rectangleClient.height() / 8;
 //         i32 iMargin = 0;
 //
-//         ::rectangle_i32 rectDropDown;
+//         ::rectangle_i32 rectangleDropDown;
 //
-//         rectDropDown = rectangleClient;
+//         rectangleDropDown = rectangleClient;
 //
 //         i32 iW = rectangleClient.height() * 5 / 8;
 //
-//         rectDropDown.right -= iMargin;
-//         rectDropDown.bottom -= iMargin;
-//         rectDropDown.top += iMargin;
-//         rectDropDown.left = rectDropDown.right - iW;
+//         rectangleDropDown.right -= iMargin;
+//         rectangleDropDown.bottom -= iMargin;
+//         rectangleDropDown.top += iMargin;
+//         rectangleDropDown.left = rectangleDropDown.right - iW;
 //
-//         *prectangle = rectDropDown;
+//         *prectangle = rectangleDropDown;
 //
 //
 //         return true;
@@ -1018,19 +1018,19 @@
 //
 //         get_client_rect(rectangleClient);
 //
-//         ::rectangle_i32 rectDropDown;
+//         ::rectangle_i32 rectangleDropDown;
 //
-//         get_element_rect(rectDropDown, e_element_drop_down);
+//         get_element_rect(rectangleDropDown, e_element_drop_down);
 //
-//         ::rectangle_i32 rectEdit = rectangleClient;
+//         ::rectangle_i32 rectangleEdit = rectangleClient;
 //
-//         rectEdit.right = rectDropDown.left;
+//         rectangleEdit.right = rectangleDropDown.left;
 //
-//         //::rectangle_i32 rectPadding = _001GetRect(::user::rect_edit_padding);
+//         //::rectangle_i32 rectanglePadding = _001GetRect(::user::rect_edit_padding);
 //
-//         //rectEdit.deflate(rectPadding);
+//         //rectangleEdit.deflate(rectanglePadding);
 //
-//         *prectangle = rectEdit;
+//         *prectangle = rectangleEdit;
 //
 //
 //         return true;
@@ -1045,15 +1045,15 @@
 //   void control::get_simple_drop_down_open_arrow_polygon(point_f64_array & pointa)
 //   {
 //
-//      ::rectangle_i32 rectDropDown;
+//      ::rectangle_i32 rectangleDropDown;
 //
-//      get_element_rect(rectDropDown, e_element_drop_down);
+//      get_element_rect(rectangleDropDown, e_element_drop_down);
 //
-//      i32 cx = rectDropDown.width() / 3;
+//      i32 cx = rectangleDropDown.width() / 3;
 //
 //      i32 cy = cx * 2 / 3;
 //
-//      ::point_i32 pointCenter = rectDropDown.center();
+//      ::point_i32 pointCenter = rectangleDropDown.center();
 //
 //      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 //

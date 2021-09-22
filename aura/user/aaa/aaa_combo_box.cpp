@@ -146,15 +146,15 @@ namespace user
 
       //}
 
-      ::rectangle rectText;
+      ::rectangle rectangleText;
 
-      get_element_rect(rectText, e_element_text);
+      get_element_rect(rectangleText, e_element_text);
 
       pgraphics->set_font(this, ::e_element_none);
 
       int iDrawTextFlags = e_align_left_center;
 
-      pgraphics->draw_text(strText, rectText, iDrawTextFlags);
+      pgraphics->draw_text(strText, rectangleText, iDrawTextFlags);
 
    }
 
@@ -162,15 +162,15 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
    {
 
-      ::rectangle rectDropDown;
+      ::rectangle rectangleDropDown;
 
-      get_element_rect(rectDropDown, e_element_drop_down);
+      get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      i32 cx = rectDropDown.width() / 3;
+      i32 cx = rectangleDropDown.width() / 3;
 
       i32 cy = cx * 2 / 3;
 
-      ::point pointCenter = rectDropDown.center();
+      ::point pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -188,7 +188,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
       if(m_bEdit)
       {
@@ -207,11 +207,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle rectDropDown;
+      ::rectangle rectangleDropDown;
 
-      get_element_rect(rectDropDown, e_element_drop_down);
+      get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      ::rectangle rectDropIn(rectDropDown);
+      ::rectangle rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
@@ -299,21 +299,21 @@ namespace user
 
       c.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(c);
+      pbrush->create_solid(c);
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
-      pgraphics->fill_rectangle(rectDropIn);
+      pgraphics->fill_rectangle(rectangleDropIn);
 
-      ::draw2d::path_pointer path(e_create);
+      auto ppath = __create < ::draw2d::path > ();
 
       point_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(argb(210, 0, 0, 0));
+      pbrush->create_solid(argb(210, 0, 0, 0));
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
       pgraphics->fill_polygon(pointa);
 
@@ -456,12 +456,12 @@ namespace user
    void combo_box::on_hit_test(::item & item)
    {
 
-      ::rectangle rectElement;
+      ::rectangle rectangleElement;
 
-      if(get_element_rect(rectElement, e_element_drop_down))
+      if(get_element_rect(rectangleElement, e_element_drop_down))
       {
 
-         if (rectElement.contains(item.m_pointHitTest))
+         if (rectangleElement.contains(item.m_pointHitTest))
          {
 
             item = e_element_drop_down;
@@ -514,11 +514,11 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rectangle rectWindow;
+         ::rectangle rectangleWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectangleWindow);
 
-         m_plist->on_drop_down(rectWindow, m_sizeFull);
+         m_plist->on_drop_down(rectangleWindow, m_sizeFull);
 
       }
 
@@ -743,11 +743,11 @@ namespace user
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
-         ::rectangle rectWindow;
+         ::rectangle rectangleWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectangleWindow);
 
-         m_plist->on_drop_down(rectWindow, m_sizeFull);
+         m_plist->on_drop_down(rectangleWindow, m_sizeFull);
 
       }
       else

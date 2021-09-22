@@ -7,33 +7,12 @@ namespace user
 {
 
 
-   tab_data::tab_data() :
-      m_pen(e_create),
-      //m_brushTextHover(e_create),
-      //m_brushTextSel(e_create),
-      //m_brushText(e_create),
-      m_brushCloseHover(e_create),
-      m_brushCloseSel(e_create),
-      m_brushClose(e_create)
-      //,
-      //m_penBorder(e_create),
-      //m_penBorderSel(e_create),
-      //m_penBorderHover(e_create)
+   tab_data::tab_data()
    {
 
       m_bNoClient = false;
-      //m_brushTextHover->create_solid(argb(255, 0, 127, 255));
-      //m_brushTextSel->create_solid(argb(255, 0, 0, 0));
-      //m_brushText->create_solid(argb(163, 0, 0, 0));
-      m_brushCloseHover->create_solid(argb(255, 255, 127, 0));
-      m_brushCloseSel->create_solid(argb(255, 0, 0, 0));
-      m_brushClose->create_solid(argb(163, 0, 0, 0));
-      //m_penBorderHover->create_solid(1.0, argb(255, 0, 0, 0));
-      //m_penBorderSel->create_solid(1.0, argb(255, 0, 0, 0));
-      //m_penBorder->create_solid(1.0, argb(163, 90, 90, 80));
-
       m_bEnableCloseAll = false;
-      m_rectTabClient.set(0, 0, 0, 0);
+      m_rectangleTabClient.set(0, 0, 0, 0);
 
    }
 
@@ -41,6 +20,45 @@ namespace user
    tab_data::~tab_data()
    {
 
+
+   }
+
+
+   ::e_status tab_data::initialize(::object * pobject)
+   {
+
+      auto estatus = ::data::data::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_ppen.create(this);
+         //m_pbrushTextHover(e_create),
+         //m_pbrushTextSel(e_create),
+         //m_pbrushText(e_create),
+         m_pbrushCloseHover.create(this);
+         m_pbrushCloseSel.create(this);
+         m_pbrushClose.create(this);
+         //,
+         //m_ppenBorder(e_create),
+         //m_ppenBorderSel(e_create),
+         //m_ppenBorderHover(e_create)
+         //m_pbrushTextHover->create_solid(argb(255, 0, 127, 255));
+      //m_pbrushTextSel->create_solid(argb(255, 0, 0, 0));
+      //m_pbrushText->create_solid(argb(163, 0, 0, 0));
+         m_pbrushCloseHover->create_solid(argb(255, 255, 127, 0));
+      m_pbrushCloseSel->create_solid(argb(255, 0, 0, 0));
+      m_pbrushClose->create_solid(argb(163, 0, 0, 0));
+      //m_ppenBorderHover->create_solid(1.0, argb(255, 0, 0, 0));
+      //m_ppenBorderSel->create_solid(1.0, argb(255, 0, 0, 0));
+      //m_ppenBorder->create_solid(1.0, argb(163, 90, 90, 80));
+
+
+      return estatus;
 
    }
 

@@ -33,7 +33,7 @@ namespace write_text
 
       m_puserinteraction = nullptr;
 
-      m_rectMargin = rectangle_i32(5, 5, 5, 5);
+      m_rectangleMargin = rectangle_i32(5, 5, 5, 5);
 
       m_iSel = -1;
 
@@ -544,9 +544,9 @@ namespace write_text
 
          }
 
-         s.cx += m_rectMargin.left + m_rectMargin.right;
+         s.cx += m_rectangleMargin.left + m_rectangleMargin.right;
 
-         s.cy += m_rectMargin.top + m_rectMargin.bottom;
+         s.cy += m_rectangleMargin.top + m_rectangleMargin.bottom;
 
          pbox->m_size = s;
 
@@ -837,9 +837,9 @@ namespace write_text
 
          m_pfontlistdata = pfontlistdata;
 
-         auto fontCount = m_pfontenumerationitema->get_count();
+         auto countFont = m_pfontenumerationitema->get_count();
 
-         pfontlistdata->set_size(fontCount);
+         pfontlistdata->set_size(countFont);
 
       }
       else
@@ -1298,7 +1298,7 @@ namespace write_text
 
          }
 
-         //pgraphics->text_out(x + m_rectMargin.left,y + m_rectMargin.top,strText);
+         //pgraphics->text_out(x + m_rectangleMargin.left,y + m_rectangleMargin.top,strText);
 
          rectangle.left = x;
 

@@ -12,10 +12,8 @@
 namespace user
 {
 
-   tab_pane::tab_pane() :
-      m_brushFill(e_create),
-      m_brushFillSel(e_create),
-      m_brushFillHover(e_create)
+   
+   tab_pane::tab_pane()
    {
 
       m_bTabPaneVisible = true;
@@ -52,6 +50,10 @@ namespace user
       }
 
       m_ptab = ptab;
+
+      m_pbrushFill.create(ptab);
+      m_pbrushFillSel.create(ptab);
+      m_pbrushFillHover.create(ptab);
 
       return estatus;
 

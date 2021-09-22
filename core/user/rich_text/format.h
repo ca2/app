@@ -31,7 +31,7 @@ namespace user
 
          // cache or transport (not serialized)
          mutable bool                 m_bUpdated;
-         mutable ::write_text::font_pointer    m_font;
+         mutable ::write_text::font_pointer    m_pfont;
          mutable ::e_align              m_ealign;
 
 

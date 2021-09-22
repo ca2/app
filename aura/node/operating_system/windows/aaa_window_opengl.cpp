@@ -75,7 +75,7 @@ namespace opengl
 
       //}
 
-      //m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_rectParentClient.size());
+      //m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_rectangleParentClient.size());
 
       //return m_spgraphics;
 

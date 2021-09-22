@@ -20,7 +20,6 @@ namespace operating_system
    };
 
 
-   CLASS_DECL_ACME bool set_priority(::enum_priority epriority);
 
    //CLASS_DECL_ACME string app_id_to_app_name(string strId);
 

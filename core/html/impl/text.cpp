@@ -105,7 +105,7 @@ namespace html
          if(pfont != nullptr)
          {
 
-            pgraphics->set(pfont->m_font);
+            pgraphics->set(pfont->m_pfont);
 
          }
 
@@ -158,7 +158,7 @@ namespace html
          if (pfont != nullptr)
          {
 
-            pgraphics->set(pfont->m_font);
+            pgraphics->set(pfont->m_pfont);
 
          }
 
@@ -313,7 +313,7 @@ namespace html
             if (pdata->m_pcoredata->m_layoutstate1.m_cy <= 0)
             {
 
-               pgraphics->set(pdata->get_font(m_pelemental)->m_font);
+               pgraphics->set(pdata->get_font(m_pelemental)->m_pfont);
 
                m_box.set_width(0);
 
@@ -351,7 +351,7 @@ namespace html
          if (pgraphics == nullptr)
             return false;
 
-         pgraphics->set(pdata->get_font(m_pelemental)->m_font);
+         pgraphics->set(pdata->get_font(m_pelemental)->m_pfont);
 
          string str = m_pelemental->m_strBody;
 
@@ -589,8 +589,8 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectWindow;
-         //m_pcheckbox->get_window_rect(rectWindow);
+         //::rectangle_i32 rectangleWindow;
+         //m_pcheckbox->get_window_rect(rectangleWindow);
          ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
 
          pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
@@ -616,18 +616,18 @@ namespace html
 
             pgraphics->set(pfont);
 
-            ::rectangle_i32 rectLine;
+            ::rectangle_i32 rectangleLine;
 
             for (index i = 0; i < m_straLines.get_count(); i++)
             {
 
                string str = m_straLines[i];
 
-               rectLine.top = rectLine.top;
+               rectangleLine.top = rectangleLine.top;
 
-               rectLine.set_size(m_sizea[i]);
+               rectangleLine.set_size(m_sizea[i]);
 
-               pgraphics->text_out(rectLine.left, rectLine.top, str);
+               pgraphics->text_out(rectangleLine.left, rectangleLine.top, str);
 
             }
 
@@ -751,27 +751,27 @@ namespace html
             //pgraphics->SetBkMode(TRANSPARENT);
          }
 
-         ::draw2d::brush_pointer brushText(e_create);
+         auto pbrushText = __create < ::draw2d::brush > ();
 
          if(m_bHover && m_pelemental->m_pstyle->get_color("color", "hover", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(color32);
+            pbrushText->create_solid(color32);
          }
          else if(has_link() && m_pelemental->m_pstyle->get_color("color", "link", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(color32);
+            pbrushText->create_solid(color32);
          }
          else if(has_link())
          {
-            brushText->create_solid(argb(255, 127, 127, 255));
+            pbrushText->create_solid(argb(255, 127, 127, 255));
          }
          else if(m_pelemental->m_pstyle->get_color("color", "", pdata, m_pelemental, color32))
          {
-            brushText->create_solid(color32);
+            pbrushText->create_solid(color32);
          }
          else
          {
-            brushText->create_solid(argb(255, 0, 0, 0));
+            pbrushText->create_solid(argb(255, 0, 0, 0));
          }
 
 
@@ -792,7 +792,7 @@ namespace html
          if(pfont != nullptr)
          {
 
-            pgraphics->set(pfont->m_font);
+            pgraphics->set(pfont->m_pfont);
 
          }
 
@@ -820,12 +820,12 @@ namespace html
          string strExtent3;
          strsize lim = 0;
 
-         ::draw2d::brush_pointer brushBackground(e_create);
+         auto pbrushBackground = __create < ::draw2d::brush > ();
 
          if(!pdata->m_pcoredata->m_bEdit)
          {
-//            brushText->create_solid(color32);
-            pgraphics->set(brushText);
+//            pbrushText->create_solid(color32);
+            pgraphics->set(pbrushText);
          }
 
 
@@ -856,26 +856,26 @@ namespace html
                   strExtent2.replace("\t","   ");
                   strExtent3.replace("\t","   ");
                   //pgraphics->SetBkMode(TRANSPARENT);
-                  brushText->create_solid(color32);
-                  pgraphics->set(brushText);
+                  pbrushText->create_solid(color32);
+                  pgraphics->set(pbrushText);
                   //pgraphics->SetBkColor(crBkSel);
                   pgraphics->text_out(left,y,strExtent1);
                   ::size_f32 size1 = pgraphics->get_text_extent(strExtent1);
 
-                  brushBackground->create_solid(crBkSel);
+                  pbrushBackground->create_solid(crBkSel);
                   //pgraphics->SetBkMode(OPAQUE);
-                  pgraphics->set(brushBackground);
+                  pgraphics->set(pbrushBackground);
                   ::size_f32 size2 = pgraphics->get_text_extent(strExtent2);
                   pgraphics->fill_solid_rect_dim((i32)(left + size1.cx),(i32)y,size2.cx,size2.cy,crBkSel);
 
                   //pgraphics->set_text_color(crSel);
-                  brushText->create_solid(crSel);
-                  pgraphics->set(brushText);
+                  pbrushText->create_solid(crSel);
+                  pgraphics->set(pbrushText);
                   pgraphics->text_out(left + size1.cx,y,strExtent2);
 
                   //            pgraphics->set_text_color(color32);
-                  brushText->create_solid(color32);
-                  pgraphics->set(brushText);
+                  pbrushText->create_solid(color32);
+                  pgraphics->set(pbrushText);
                   //pgraphics->SetBkColor(rgb(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
                   pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
@@ -1149,7 +1149,7 @@ namespace html
 
          ::rectangle_i32 rectangle(m_box);
 
-         pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
+         pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_pfont);
 
          float x = left();
 

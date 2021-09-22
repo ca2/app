@@ -23,8 +23,8 @@ public:
    ::size_i32                  m_sizePress;
    ::size_i32                  m_sizeSpacing;
    ::size_i32                  m_sizeSeparator;
-   ::rectangle_i32                m_rectBorder;
-   ::rectangle_i32                m_rectItemPad;
+   ::rectangle_i32                m_rectangleBorder;
+   ::rectangle_i32                m_rectangleItemPad;
    //bool                       m_bTransparentBackground;
    bool                    m_bSimpleLayout;
    double                  m_dFontSize;

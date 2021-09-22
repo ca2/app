@@ -870,19 +870,19 @@ namespace user
 
             get_window_rect(rWindow);
 
-            rectangle_f64 rectWindow;
+            rectangle_f64 rectangleWindow;
 
-            __copy(rectWindow, rWindow);
+            __copy(rectangleWindow, rWindow);
 
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
-            copy(rectWindow, rectWindow);
+            copy(rectangleWindow, rectangleWindow);
 
-            point += rectWindow.top_left();
+            point += rectangleWindow.top_left();
 
             _rtransform_point(point);
 
-            point -= rectWindow.top_left();
+            point -= rectangleWindow.top_left();
 
             auto rectangleClient = get_client_rect();
 
@@ -2036,18 +2036,18 @@ namespace user
 
          m_pdata->write(stream);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         ((edit_impl *)this)->get_window_rect(rectWindow);
+         ((edit_impl *)this)->get_window_rect(rectangleWindow);
 
          if (get_parent() != nullptr)
          {
 
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
          }
 
-         stream << rectWindow;
+         stream << rectangleWindow;
 
          return stream;
 
@@ -2061,11 +2061,11 @@ namespace user
 
          m_pdata->read(stream);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         stream >> rectWindow;
+         stream >> rectangleWindow;
 
-         place(rectWindow);
+         place(rectangleWindow);
 
          display(e_display_normal);
 

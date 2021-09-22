@@ -587,13 +587,7 @@
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\callback.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\control_descriptor.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_event.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\copydesk.h">
@@ -612,9 +606,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\interaction_thread.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\item.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\key.h">
@@ -1315,13 +1306,7 @@
     <ClCompile Include="user\_.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\callback.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\control_event.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
@@ -1340,9 +1325,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction_thread.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\item.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\key.cpp">

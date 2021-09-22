@@ -7,24 +7,23 @@ class CLASS_DECL_BASE simple_scroll_bar :
 public:
 
 
-   ::draw2d::pen_pointer            m_penDraw;
-   ::draw2d::brush_pointer          m_brushDraw;
+   ::draw2d::pen_pointer            m_ppenDraw;
+   ::draw2d::brush_pointer          m_pbrushDraw;
    ::image_pointer                  m_pimageDots;
    bool                             m_bTrackOffsetThumbAdjusted;
-   point_i32                            m_pointTrack;
-   ::rectangle_i32                           m_rectTrack;
-   ::rectangle_i32                           m_rectA;
-   ::rectangle_i32                           m_rectB;
-   point_f64                           m_ptaA[4]; // pontos da primeira seta
-   point_f64                           m_ptaB[4]; // pontos da segunda seta
-   ::draw2d::region_pointer         m_rgnA; // região da primeira seta
-   ::draw2d::region_pointer         m_rgnB; // região da segunda seta
+   point_i32                        m_pointTrack;
+   ::rectangle_i32                  m_rectangleTrack;
+   ::rectangle_i32                  m_rectangleA;
+   ::rectangle_i32                  m_rectangleB;
+   point_f64                        m_pointaA[4]; // pontos da primeira seta
+   point_f64                        m_pointaB[4]; // pontos da segunda seta
+   ::draw2d::region_pointer         m_pregionA; // região da primeira seta
+   ::draw2d::region_pointer         m_pregionB; // região da segunda seta
    ::u32                            m_uiTimer;
 
 
    simple_scroll_bar();
-   virtual ~simple_scroll_bar();
-
+   ~simple_scroll_bar() override;
 
 
    virtual void pre_translate_message(::message::message * pmessage) override;
@@ -69,9 +68,9 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
 
-   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
 
 
 

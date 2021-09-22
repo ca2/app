@@ -51,29 +51,9 @@ void sort_image_rgb(TYPE& R, TYPE& G, TYPE& B)
 }
 
 
-/*
-byte byte_clip(double d);
-
-
-inline byte byte_clip(double d)
-{
-   if(d >= 255.0)
-      return 255;
-   if(d <= 0.0)
-      return 0;
-   return (byte) d;
-}
-
-inline byte byte_clip(int i)
-{
-   return minimum(255, maximum(0, i));
-}
-*/
-
-
 image::image()
 {
-
+   
 }
 
 
@@ -82,20 +62,6 @@ image::~image()
 
 }
 
-
-//void image::delete_this()
-//{
-//
-//   ::object::delete_this();
-//
-//}
-
-
-//void image::common_construct()
-//{
-//
-//
-//}
 
 
 ::size_i32 image::get_image_drawer_size() const
@@ -201,15 +167,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
-{
-
-   return ::error_interface_only;
-
-}
-
-
-::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan)
+::e_status image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 {
 
    throw interface_only_exception();
@@ -217,6 +175,32 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
    return error_interface_only;
 
 }
+
+
+::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+{
+
+   return create_ex(size, nullptr, 0, eobjectCreate, iGoodStride, bPreserve);
+
+}
+
+
+::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
+{
+
+   return create_ex(size, pcolorref, iScan, eobjectCreate);
+
+}
+
+
+//::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
+//{
+//
+//   throw interface_only_exception();
+//
+//   return error_interface_only;
+//
+//}
 
 
 //::e_status     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
@@ -552,7 +536,7 @@ bool image::stretch_image(::image* pimage)
 }
 
 
-bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam)
+bool image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam)
 {
 
    ::image* pimageDst = this;
@@ -574,9 +558,9 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      image_source imagesource(pimageSrc, { pointSrcParam, rectDstParam.size() } );
+      image_source imagesource(pimageSrc, { pointSrcParam, rectangleDstParam.size() } );
 
-      rectangle_f64 rectangle(rectDstParam);
+      rectangle_f64 rectangle(rectangleDstParam);
 
       image_drawing_options imagedrawingoptions(rectangle);
 
@@ -590,7 +574,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectangleTarget(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectangleDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
@@ -704,7 +688,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 }
 
 
-bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, byte bA)
+bool image::blend(const ::rectangle_i32& rectangleDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, byte bA)
 {
 
    ::image* pimageDst = this;
@@ -713,7 +697,7 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectangleTarget(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectangleDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
@@ -1678,14 +1662,14 @@ bool image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 }
 
 
-bool image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image* pimage, const ::rectangle_i32& rectSrcParam)
+bool image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image* pimage, const ::rectangle_i32& rectangleSrcParam)
 {
 
    ::point_i32 pointDst(pointDstParam);
 
-   ::point_i32 pointSrc(rectSrcParam.top_left());
+   ::point_i32 pointSrc(rectangleSrcParam.top_left());
 
-   ::size_i32 size(rectSrcParam.size());
+   ::size_i32 size(rectangleSrcParam.size());
 
    if (pointDst.x < 0)
    {
@@ -3329,7 +3313,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage)
 }
 
 
-bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectParam)
+bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectangleParam)
 {
 
    map();
@@ -3338,7 +3322,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const 
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectangleParam))
 
    {
 
@@ -3407,7 +3391,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const 
 
 
 
-bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectParam, bool bIfAlphaIgnorePreDivPosMult)
+bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectangleParam, bool bIfAlphaIgnorePreDivPosMult)
 {
 
    map();
@@ -3416,7 +3400,7 @@ bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, co
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectangleParam))
 
    {
 
@@ -3579,54 +3563,54 @@ bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //}
 
 
-bool image::copy(const ::image* pimage, ::eobject eobjectCreate)
-{
-
-   if (size() != pimage->size())
-   {
-
-      create(pimage->size(), eobjectCreate);
-
-   }
-   else
-   {
-
-      m_eobject = eobjectCreate;
-
-   }
-
-   //pimage->defer_realize(pimage->get_graphics());
-   //defer_realize(pimage->get_graphics());
-
-   map();
-
-   ((::image*)pimage)->map();
-   // If DibSize Wrong Re-create image_impl
-   // do Paste
-
-   if (m_iScan == pimage->m_iScan)
-   {
-
-      ::memcpy_dup(get_data(), pimage->get_data(), height() * m_iScan);
-
-   }
-   else
-   {
-
-      int iScan = minimum(m_iScan, pimage->m_iScan);
-
-      for (int i = 0; i < height(); i++)
-      {
-
-         ::memcpy_dup(&((u8*)get_data())[m_iScan * i], &((u8*)pimage->get_data())[pimage->m_iScan * i], iScan);
-
-      }
-
-   }
-
-   return true;
-
-}
+//bool image::copy_from(::image* pimage, ::eobject eobjectCreate)
+//{
+//
+//   if (size() != pimage->size())
+//   {
+//
+//      create(pimage->size(), eobjectCreate);
+//
+//   }
+//   else
+//   {
+//
+//      m_eobject = eobjectCreate;
+//
+//   }
+//
+//   //pimage->defer_realize(pimage->get_graphics());
+//   //defer_realize(pimage->get_graphics());
+//
+//   map();
+//
+//   ((::image*)pimage)->map();
+//   // If DibSize Wrong Re-create image_impl
+//   // do Paste
+//
+//   if (m_iScan == pimage->m_iScan)
+//   {
+//
+//      ::memcpy_dup(get_data(), pimage->get_data(), height() * m_iScan);
+//
+//   }
+//   else
+//   {
+//
+//      int iScan = minimum(m_iScan, pimage->m_iScan);
+//
+//      for (int i = 0; i < height(); i++)
+//      {
+//
+//         ::memcpy_dup(&((u8*)get_data())[m_iScan * i], &((u8*)pimage->get_data())[pimage->m_iScan * i], iScan);
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 //bool image::bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangle)
@@ -3992,14 +3976,10 @@ bool image::Screen(::image* pimage)
 }
 
 
-//////////////////////////////////////////////////////////////////////
-// rectangle_i32 Functions
-//////////////////////////////////////////////////////////////////////
-
-bool image::copy_from(::image* pimage, i32 x, i32 y)
+bool image::copy_from(::image* pimage, const ::point_i32  & point, ::eobject eobjectCreate)
 {
 
-   ::size_i32 s(pimage->width() - x, pimage->height() - y);
+   ::size_i32 s(pimage->size() - point);
 
    if (size() != s)
    {
@@ -4016,7 +3996,7 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      image_source imagesource(pimage, { ::point_f64(x, y), s } );
+      image_source imagesource(pimage, { point, s } );
 
       ::rectangle_f64 rectangle(s);
 
@@ -4038,20 +4018,20 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
 }
 
 
-bool image::copy_from(::image * pimage)
+bool image::copy_from(::image * pimage, eobject eobjectCreate)
 {
 
-   return copy_from(pimage, 0, 0);
+   return copy_from(pimage, nullptr, eobjectCreate);
 
 }
 
 
-bool image::copy_to(::image* pimage, i32 x, i32 y)
-{
-
-   return pimage->copy_from(this);
-
-}
+//bool image::copy_to(::image* pimage, const point_i32 & point)
+//{
+//
+//   return pimage->copy_from(this);
+//
+//}
 
 
 bool image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B)
@@ -8201,11 +8181,14 @@ bool image::map(bool bApplyAlphaTransform) const
    if (!m_bMapped)
    {
 
-      ((::image*)this)->map(bApplyAlphaTransform);
+      if (((::image *)this)->_map(bApplyAlphaTransform))
+      {
 
-      pixmap::map();
+         pixmap::map();
 
-      m_bMapped = true;
+         m_bMapped = true;
+
+      }
 
    }
 
@@ -8225,14 +8208,14 @@ bool image::unmap() const
       if (_get_graphics() != nullptr)
       {
 
-         ::rectangle_i32 rectThis(m_size);
+         ::rectangle_i32 rectangleThis(m_size);
 
-         ::rectangle_i32 rectMap(rectangle());
+         ::rectangle_i32 rectangleMap(rectangle());
 
-         if (rectThis.contains(rectMap.origin()))
+         if (rectangleThis.contains(rectangleMap.origin()))
          {
 
-            _get_graphics()->SetViewportOrg(rectMap.origin());
+            _get_graphics()->SetViewportOrg(rectangleMap.origin());
 
          }
          else
@@ -8736,7 +8719,7 @@ bool image::create_framed_square(::image* pimage, int inner, int outer, color32_
 void image_copy(::image* pimagethis, ::image* pimage)
 {
 
-   pimagethis->copy(pimage);
+   pimagethis->copy_from(pimage);
 
 }
 
@@ -9496,7 +9479,7 @@ stream& image::read(::stream& stream)
 
    auto pimage = ((::image*)this)->__create<::image>();
 
-   pimage->copy(this);
+   pimage->copy_from((::image *) this);
 
    pimage->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -9594,10 +9577,7 @@ http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 }
 
 
-
-
-
-bool image::map(bool bApplyAlphaTransform)
+bool image::_map(bool bApplyAlphaTransform)
 {
 
    pixmap::map(this->rectangle());

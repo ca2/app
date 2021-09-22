@@ -27,7 +27,7 @@ namespace os
 
       oswindow                   m_window;
       bool                       m_bShiftKey;
-      ::rectangle_i32                     m_rectDesktop;
+      ::rectangle_i32                     m_rectangleDesktop;
 
       XWindowAttributes          m_attr;
       i32                    m_iDepth;

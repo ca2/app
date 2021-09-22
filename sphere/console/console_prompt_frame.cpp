@@ -87,11 +87,11 @@ namespace console
 //      // every 100 ms approximately
 //      else if(uEvent == 4033)
 //      {
-//   /*      ::rectangle_i32 rectWindow;
-//         get_window_rect(rectWindow);
+//   /*      ::rectangle_i32 rectangleWindow;
+//         get_window_rect(rectangleWindow);
 //         ::point_i32 point;
 //         point = psession->get_cursor_position();
-//         if(rectWindow.is_empty().contains(point) && !m_bTimerHide)
+//         if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
 //         {
 //            m_bTimerHide = true;
 //            SetTimer(1001, 800, nullptr);
@@ -272,20 +272,20 @@ namespace console
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();
-         ::rectangle_i32 rectDesktop;
-         ::get_window_rect(oswindowDesktop, rectDesktop);
-         ::rectangle_i32 rectWindow;
-         get_window_rect(rectWindow);
-         double a = (double) rectDesktop.height() / (double) rectDesktop.width();
-         if(rectWindow.left < (rectDesktop.width() / 2))
+         ::rectangle_i32 rectangleDesktop;
+         ::get_window_rect(oswindowDesktop, rectangleDesktop);
+         ::rectangle_i32 rectangleWindow;
+         get_window_rect(rectangleWindow);
+         double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
+         if(rectangleWindow.left < (rectangleDesktop.width() / 2))
          {
             // to the left
-            if(rectWindow.top < rectWindow.left * a)
+            if(rectangleWindow.top < rectangleWindow.left * a)
             {
                // top
                m_eposition = e_position_top;
             }
-            else if(rectWindow.top > (rectDesktop.height() - rectWindow.left * a))
+            else if(rectangleWindow.top > (rectangleDesktop.height() - rectangleWindow.left * a))
             {
                // bottom
                m_eposition = e_position_bottom;
@@ -300,12 +300,12 @@ namespace console
          {
             // to the right
             // to the left
-            if(rectWindow.top > rectWindow.left * a)
+            if(rectangleWindow.top > rectangleWindow.left * a)
             {
                // bottom
                m_eposition = e_position_bottom;
             }
-            else if(rectWindow.top < (rectDesktop.height() - rectWindow.left * a))
+            else if(rectangleWindow.top < (rectangleDesktop.height() - rectangleWindow.left * a))
             {
                // top
                m_eposition = e_position_top;
@@ -337,25 +337,25 @@ namespace console
    void prompt_frame::ToFront()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
       
       display();
       
       bool bChanged = false;
-      if(rectWindow.width() < 400)
+      if(rectangleWindow.width() < 400)
       {
-         rectWindow.right = rectWindow.left + 400;
+         rectangleWindow.right = rectangleWindow.left + 400;
          bChanged = true;
       }
-      if(rectWindow.height() < 200)
+      if(rectangleWindow.height() < 200)
       {
-         rectWindow.bottom = rectWindow.top + 200;
+         rectangleWindow.bottom = rectangleWindow.top + 200;
          bChanged = true;
       }
 
-      set_window_position(      e_zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
+      set_window_position(      e_zorder_top_most,      rectangleWindow,      SWP_SHOWWINDOW);
 
    }
 
@@ -500,7 +500,7 @@ namespace console
 
       psystem->get_monitor_rectangle(0,rectangle_i32);
 
-      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
+      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
 
       rectangle.left += 100;
 

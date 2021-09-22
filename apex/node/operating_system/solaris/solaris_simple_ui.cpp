@@ -220,7 +220,7 @@ namespace os
 
       //bool bShow = true;
 
-//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectDesktop.right-m_point.x, m_rectDesktop.bottom-m_point.y, m_size.cx, m_size.cy);
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right-m_point.x, m_rectangleDesktop.bottom-m_point.y, m_size.cx, m_size.cy);
 
       //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
 
@@ -593,37 +593,37 @@ namespace os
    void simple_ui::on_draw_framebuffer()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      ::get_window_rect(m_window, rectWindow);
+      ::get_window_rect(m_window, rectangleWindow);
 
-      if(rectWindow.size() != m_rectangleWindow.size())
+      if(rectangleWindow.size() != m_rectangleWindow.size())
       {
 
-         on_size(rectWindow.width(), rectWindow.height());
+         on_size(rectangleWindow.width(), rectangleWindow.height());
 
       }
 
-      if(rectWindow.top_left() != m_rectangleWindow.top_left())
+      if(rectangleWindow.top_left() != m_rectangleWindow.top_left())
       {
 
-         on_move(rectWindow.left, rectWindow.top);
+         on_move(rectangleWindow.left, rectangleWindow.top);
 
       }
 
-      m_rectangleWindow = rectWindow;
+      m_rectangleWindow = rectangleWindow;
 
 
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectangleClient = rectWindow;
+         ::rectangle_i32 rectangleClient = rectangleWindow;
 
-         rectangleClient -= rectWindow.top_left();
+         rectangleClient -= rectangleWindow.top_left();
 
          ::rectangle_i32 rectangle;
 
-         rectangle = rectWindow;
+         rectangle = rectangleWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
 

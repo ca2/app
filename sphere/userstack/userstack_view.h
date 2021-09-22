@@ -39,11 +39,11 @@ namespace userstack
       oswindow                   m_oswindowBergedge;
 
 
-      ::write_text::font_pointer          m_font;
+      ::write_text::font_pointer          m_pfont;
       ::file::listing            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
-      rectangle_i32_array                 m_rectaUpdate;
+      rectangle_i32_array                 m_rectangleaUpdate;
       millis                       m_millisLastUpdate;
       ::mutex                      m_mutexDraw;
 

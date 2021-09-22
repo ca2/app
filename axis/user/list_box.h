@@ -91,7 +91,7 @@ namespace user
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull);
+      void on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull);
 
 
       virtual void _on_show_window() override;

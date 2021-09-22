@@ -40,11 +40,11 @@ namespace user
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
-      ::draw2d::brush_pointer                   m_brushTextSelected;
-      ::draw2d::brush_pointer                   m_brushTextSelectedHighlight;
-      ::draw2d::brush_pointer                   m_brushTextHighlight;
-      ::draw2d::brush_pointer                   m_brushText;
-      ::write_text::font_pointer                m_fontTreeItem;
+      ::draw2d::brush_pointer                   m_pbrushTextSelected;
+      ::draw2d::brush_pointer                   m_pbrushTextSelectedHighlight;
+      ::draw2d::brush_pointer                   m_pbrushTextHighlight;
+      ::draw2d::brush_pointer                   m_pbrushText;
+      ::write_text::font_pointer                m_pfontTreeItem;
       status < ::color::color >          m_colorTreeBackground;
 
 

@@ -87,11 +87,11 @@ namespace draw2d_cairo
 
       }
 
-      m_rectBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
+      m_rectangleBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
-      max_bounding_box(m_rectBoundingBoxInternal);
+      max_bounding_box(m_rectangleBoundingBoxInternal);
 
-      m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
+      m_psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       if(m_psurface == nullptr)
       {
@@ -104,9 +104,9 @@ namespace draw2d_cairo
 
       cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
-      int x = m_rectBoundingBoxInternal.left;
+      int x = m_rectangleBoundingBoxInternal.left;
 
-      int y = m_rectBoundingBoxInternal.top;
+      int y = m_rectangleBoundingBoxInternal.top;
 
       cairo_translate(m_pcairo, -x, -y);
 
@@ -116,11 +116,11 @@ namespace draw2d_cairo
 
       cairo_pop_group_to_source(m_pcairo);
 
-      cairo_rectangle(m_pcairo, 0, 0, m_rectBoundingBoxInternal.width(), m_rectBoundingBoxInternal.height());
+      cairo_rectangle(m_pcairo, 0, 0, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       cairo_fill(m_pcairo);
 
-      cairo_mask_surface(pgraphics, m_psurface, m_rectBoundingBoxInternal.left, m_rectBoundingBoxInternal.top);
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
 
       cairo_destroy(m_pcairo);
 

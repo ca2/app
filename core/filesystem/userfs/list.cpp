@@ -17,10 +17,10 @@ namespace userfs
       m_iNameSubItem = -1;
       m_iIconSubItem = -1;
 
-      m_rectMargin.left = 0;
-      m_rectMargin.top = 0;
-      m_rectMargin.bottom = 0;
-      m_rectMargin.right = 0;
+      m_rectangleMargin.left = 0;
+      m_rectangleMargin.top = 0;
+      m_rectangleMargin.bottom = 0;
+      m_rectangleMargin.right = 0;
 
       //create_int(::user::int_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
 

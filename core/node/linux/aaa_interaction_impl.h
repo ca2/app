@@ -23,7 +23,7 @@ namespace linux
       bool                          m_bEnabled;
 
       //::task_pointer         m_pthreadDraw;
-      ::rect64                      m_rectLastPos;
+      ::rect64                      m_rectangleLastPos;
       millis                        m_millisLastPos;
 
       ::point                       m_pointLastMove;
@@ -302,7 +302,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -404,7 +404,7 @@ namespace linux
 
       //virtual i32 GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const;
 
-      //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
+      //virtual i32 GetChildByIdText(i32 nID, string & rectangleString) const;
 //      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
 //      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
 //      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
@@ -419,7 +419,7 @@ namespace linux
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
 //                                const ::rectangle & rectangleClient = nullptr,
-//                                const ::rectangle & rectClip = nullptr);
+//                                const ::rectangle & rectangleClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,

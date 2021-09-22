@@ -18,7 +18,7 @@ public:
    bool                 m_bDirty;
 
    bool                 m_bDirtyBoundingRect;
-   RECTANGLE_TYPE            m_rectBounding;
+   RECTANGLE_TYPE            m_rectangleBounding;
 
 
    polygon_base();
@@ -72,7 +72,7 @@ inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon_i32) :
    
    m_bDirty = polygon_i32.m_bDirty;
    m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-   m_rectBounding = polygon_i32.m_rectBounding;
+   m_rectangleBounding = polygon_i32.m_rectangleBounding;
 
 }
 
@@ -124,7 +124,7 @@ polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygo
       point_array_base < POINT_TYPE >::operator = (polygon_i32);
       m_bDirty = polygon_i32.m_bDirty;
       m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-      m_rectBounding = polygon_i32.m_rectBounding;
+      m_rectangleBounding = polygon_i32.m_rectangleBounding;
 
    }
 
@@ -142,7 +142,7 @@ polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&
       point_array_base < POINT_TYPE >::operator = (::move(polygon_i32));
       m_bDirty = polygon_i32.m_bDirty;
       m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
-      m_rectBounding = polygon_i32.m_rectBounding;
+      m_rectangleBounding = polygon_i32.m_rectangleBounding;
 
    }
 
@@ -343,14 +343,14 @@ template < typename POINT_TYPE >
 void polygon_base < POINT_TYPE >::set_rect(const RECTANGLE_TYPE & rectangle)
 {
 
-   m_rectBounding = rectangle;
+   m_rectangleBounding = rectangle;
 
    this->set_size(4);
 
-   this->element_at(0) = m_rectBounding.top_left();
-   this->element_at(1) = m_rectBounding.top_right();
-   this->element_at(2) = m_rectBounding.bottom_right();
-   this->element_at(3) = m_rectBounding.bottom_left();
+   this->element_at(0) = m_rectangleBounding.top_left();
+   this->element_at(1) = m_rectangleBounding.top_right();
+   this->element_at(2) = m_rectangleBounding.bottom_right();
+   this->element_at(3) = m_rectangleBounding.bottom_left();
 
    m_bDirty = false;
    m_bDirtyBoundingRect = false;
@@ -369,24 +369,24 @@ const typename polygon_base < POINT_TYPE >::RECTANGLE_TYPE & polygon_base < POIN
 
       ((polygon_base *)this)->m_bDirtyBoundingRect = false;
 
-      ((polygon_base *)this)->m_rectBounding.left = this->element_at(0).x;
-      ((polygon_base *)this)->m_rectBounding.top = this->element_at(0).y;
-      ((polygon_base *)this)->m_rectBounding.right = this->element_at(0).x;
-      ((polygon_base *)this)->m_rectBounding.bottom = this->element_at(0).y;
+      ((polygon_base *)this)->m_rectangleBounding.left = this->element_at(0).x;
+      ((polygon_base *)this)->m_rectangleBounding.top = this->element_at(0).y;
+      ((polygon_base *)this)->m_rectangleBounding.right = this->element_at(0).x;
+      ((polygon_base *)this)->m_rectangleBounding.bottom = this->element_at(0).y;
 
       for (index i = 1; i < this->get_count(); i++)
       {
 
-         ((polygon_base *)this)->m_rectBounding.left = minimum(m_rectBounding.left, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.right = maximum(m_rectBounding.right, this->element_at(i).x);
-         ((polygon_base *)this)->m_rectBounding.top = minimum(m_rectBounding.top, this->element_at(i).y);
-         ((polygon_base *)this)->m_rectBounding.bottom = maximum(m_rectBounding.bottom, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectangleBounding.left = minimum(m_rectangleBounding.left, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectangleBounding.right = maximum(m_rectangleBounding.right, this->element_at(i).x);
+         ((polygon_base *)this)->m_rectangleBounding.top = minimum(m_rectangleBounding.top, this->element_at(i).y);
+         ((polygon_base *)this)->m_rectangleBounding.bottom = maximum(m_rectangleBounding.bottom, this->element_at(i).y);
 
       }
 
    }
 
-   return m_rectBounding;
+   return m_rectangleBounding;
 
 }
 

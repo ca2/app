@@ -58,9 +58,9 @@ public:
    // 08, May 2004 attributes
    ::draw2d::graphics_pointer                m_dc1;
    ::draw2d::bitmap_pointer                  m_bmp1;
-   ::write_text::font_pointer                    m_font;
-   ::write_text::font_pointer                    m_fontPrefix;
-   ::write_text::font_pointer                    m_fontLink;
+   ::write_text::font_pointer                    m_pfont;
+   ::write_text::font_pointer                    m_pfontPrefix;
+   ::write_text::font_pointer                    m_pfontLink;
    ::color::color                         m_cr;
    ::color::color                         m_colorOutline;
    ::rectangle_i32                           m_rectangleClient;
@@ -83,7 +83,7 @@ public:
 
    double                           m_dXfplayerViewLineBlend;
    i32                              m_nFont;
-   ::rectangle_i32                           m_rectInvalidate;
+   ::rectangle_i32                           m_rectangleInvalidate;
    i32                              m_iAnimateType;
    double                           m_dAnimateProgress;
    double                           m_dAnimateProgressIncrement;

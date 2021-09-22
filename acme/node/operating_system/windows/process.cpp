@@ -622,12 +622,12 @@ CLASS_DECL_ACME::u32 get_current_process_id()
 
 
 
+//
+//namespace process
+//{
 
-namespace process
-{
 
-
-   bool set_priority(::enum_priority epriority)
+   bool set_process_priority(::enum_priority epriority)
    {
 
       return (::SetPriorityClass(::GetCurrentProcess(), get_os_priority_class(epriority)) != 0);
@@ -635,8 +635,8 @@ namespace process
 
    }
 
-
-} // namespace process
+//
+//} // namespace process
 
 
 //CLASS_DECL_ACME_WINDOWS_COMMON::u32 get_current_process_id()

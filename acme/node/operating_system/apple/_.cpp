@@ -217,10 +217,10 @@ i32 defer_run_system()
 //void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
 //{
 //
-//   CGRect rectWorkspace = mm_get_workspace_rect();
+//   CGRect rectangleWorkspace = mm_get_workspace_rect();
 //
 //   prectTarget->origin.x       = prectSource->left;
-//   prectTarget->origin.y       = rectWorkspace.size.height - prectSource->bottom;
+//   prectTarget->origin.y       = rectangleWorkspace.size.height - prectSource->bottom;
 //   prectTarget->size.width     = prectSource->right - prectSource->left;
 //   prectTarget->size.height    = prectSource->bottom - prectSource->top;
 //
@@ -230,10 +230,10 @@ i32 defer_run_system()
 //void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 //{
 //
-//   CGRect rectWorkspace = mm_get_workspace_rect();
+//   CGRect rectangleWorkspace = mm_get_workspace_rect();
 //
 //   prectTarget->left        = prectSource->origin.x;
-//   prectTarget->bottom      = rectWorkspace.size.height - prectSource->origin.y;
+//   prectTarget->bottom      = rectangleWorkspace.size.height - prectSource->origin.y;
 //   prectTarget->right       = prectTarget->left + prectSource->size.width;
 //   prectTarget->top         = prectTarget->bottom - prectSource->size.height;
 //

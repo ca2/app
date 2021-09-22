@@ -71,7 +71,7 @@ namespace helloworld
       //bool                             m_bVoidTransfer;
       //bool                             m_bFirstDone;
 
-      //::write_text::font_pointer                m_font;
+      //::write_text::font_pointer                m_pfont;
 
       //double                           m_dMinRadius;
       //double                           m_dMaxRadius;

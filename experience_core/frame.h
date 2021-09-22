@@ -21,20 +21,20 @@
                status < ::color::color >    m_colorMoveableBorderDkShadow;
                status < ::color::color >    m_colorCaptionTextBk;
                status < ::color::color >    m_colorCaptionText;
-               ::draw2d::pen_pointer               m_penText1;
-               ::draw2d::pen_pointer               m_penFace1;
-               ::draw2d::pen_pointer               m_penHilight1;
-               ::draw2d::pen_pointer               m_penShadow1;
-               ::draw2d::pen_pointer               m_penDkShadow1;
+               ::draw2d::pen_pointer               m_ppenText1;
+               ::draw2d::pen_pointer               m_ppenFace1;
+               ::draw2d::pen_pointer               m_ppenHilight1;
+               ::draw2d::pen_pointer               m_ppenShadow1;
+               ::draw2d::pen_pointer               m_ppenDkShadow1;
                status < ::color::color >    m_colorDkShadow;
                size_i32                            m_minSize;
 
-               ::draw2d::pen_pointer               m_penHollow0;
-               ::draw2d::pen_pointer               m_penHollow1;
-               ::draw2d::pen_pointer               m_penHollow2;
-               ::draw2d::pen_pointer               m_penHollow3;
-               ::draw2d::pen_pointer               m_penHollow4;
-               ::draw2d::pen_pointer               m_penHollow5;
+               ::draw2d::pen_pointer               m_ppenHollow0;
+               ::draw2d::pen_pointer               m_ppenHollow1;
+               ::draw2d::pen_pointer               m_ppenHollow2;
+               ::draw2d::pen_pointer               m_ppenHollow3;
+               ::draw2d::pen_pointer               m_ppenHollow4;
+               ::draw2d::pen_pointer               m_ppenHollow5;
                ::size_i32                          m_sizeIcon;
 
                frame();

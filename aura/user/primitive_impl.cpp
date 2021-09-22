@@ -467,7 +467,7 @@ namespace user
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -477,7 +477,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->RedrawWindow(rectUpdate, prgnUpdate, flags);
+      return m_puserinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
    }
 

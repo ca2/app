@@ -420,19 +420,19 @@ namespace user
             
             get_window_rect(rWindow);
 
-            rectangle_f64 rectWindow;
+            rectangle_f64 rectangleWindow;
 
-            __copy(rectWindow, rWindow);
+            __copy(rectangleWindow, rWindow);
             
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
-            copy(rectWindow, rectWindow);
+            copy(rectangleWindow, rectangleWindow);
 
-            point += rectWindow.top_left();
+            point += rectangleWindow.top_left();
 
             _rtransform_point(point);
 
-            point -= rectWindow.top_left();
+            point -= rectangleWindow.top_left();
 
             auto rectangleClient = get_client_rect();
 

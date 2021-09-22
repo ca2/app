@@ -305,6 +305,15 @@ namespace user
 
       }
 
+ /*     auto papplication = get_application();
+
+      if (papplication)
+      {
+
+         papplication->defer_process_activation_message();
+
+      }*/
+
       if (pcreate->m_pcommandline)
       {
 

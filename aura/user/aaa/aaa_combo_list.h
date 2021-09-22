@@ -92,7 +92,7 @@ namespace user
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::rectangle & rectWindow, const ::size & sizeFull);
+      void on_drop_down(const ::rectangle & rectangleWindow, const ::size & sizeFull);
 
 
       //virtual bool get_font(::write_text::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;

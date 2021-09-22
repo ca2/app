@@ -92,7 +92,7 @@ namespace user
       virtual bool window_move(i32 x, i32 y);
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);

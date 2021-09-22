@@ -390,7 +390,7 @@ namespace user
 
          ::item itemText;
 
-         ::rectangle_i32 rectSel;
+         ::rectangle_i32 rectangleSel;
 
          itemText = e_element_text;
 
@@ -425,7 +425,7 @@ namespace user
                if (pimage->area() <= 0)
                {
 
-                  ::rectangle_i32 rectImage;
+                  ::rectangle_i32 rectangleImage;
 
                   double dW = (double)rectangle.width() / (double)pimageSrc->width();
 
@@ -451,26 +451,26 @@ namespace user
 
                }
 
-               ::rectangle_i32 rectImage;
+               ::rectangle_i32 rectangleImage;
 
-               rectImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
+               rectangleImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
 
-               rectImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
+               rectangleImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
 
-               rectImage.right = rectImage.left + pimage->width();
+               rectangleImage.right = rectangleImage.left + pimage->width();
 
-               rectImage.bottom = rectImage.top + pimage->height();
+               rectangleImage.bottom = rectangleImage.top + pimage->height();
 
-               rectSel = rectImage;
+               rectangleSel = rectangleImage;
 
                if (!m_bNoName)
                {
 
-                  rectSel.bottom = itemText.m_rectangle.bottom;
+                  rectangleSel.bottom = itemText.m_rectangle.bottom;
 
                }
 
-               rectSel.inflate(5, 5);
+               rectangleSel.inflate(5, 5);
 
                ::color::color crBorder = 0;
 
@@ -536,13 +536,13 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_rectangle(rectSel, crSel);
+                  pgraphics->fill_rectangle(rectangleSel, crSel);
 
                }
 
                image_source imagesource(pimage);
 
-               image_drawing_options imagedrawingoptions(rectImage);
+               image_drawing_options imagedrawingoptions(rectangleImage);
 
                image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -552,13 +552,13 @@ namespace user
                {
 
 
-                  rectImage.inflate(1, 1);
+                  rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
-                  rectImage.inflate(1, 1);
+                  rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_inset_rectangle(rectSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
                }
 
@@ -600,7 +600,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      ::rectangle_i32 rectTotal(0, 0, 0, 0);
+      ::rectangle_i32 rectangleTotal(0, 0, 0, 0);
 
       ::size_i32 sizeImage;
 
@@ -619,7 +619,7 @@ namespace user
 
             }
 
-            rectTotal.unite(rectTotal, item.m_rectangle);
+            rectangleTotal.unite(rectangleTotal, item.m_rectangle);
 
          }
 
@@ -636,13 +636,13 @@ namespace user
 
       }
 
-      rectTotal.left = 0;
+      rectangleTotal.left = 0;
 
-      rectTotal.top = 0;
+      rectangleTotal.top = 0;
 
-      rectTotal.bottom += m_iPad;
+      rectangleTotal.bottom += m_iPad;
 
-      //m_sizeTotal = rectTotal.size();
+      //m_sizeTotal = rectangleTotal.size();
 
       //m_scrolldataVertical.m_iPage = rectangleClient.height();
 

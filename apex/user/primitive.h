@@ -180,7 +180,7 @@ namespace user
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation);
       virtual void sketch_prepare_window_maximize();
-      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32 & rectHint = nullptr);
+      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint = nullptr);
       virtual void sketch_prepare_window_restore(edisplay edisplay);
       virtual void sketch_prepare_window_dock(edisplay edisplayDock);
 
@@ -240,7 +240,7 @@ namespace user
 
 //#ifdef WINDOWS
 
-  //    virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 //#else
 

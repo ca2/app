@@ -1538,7 +1538,7 @@ namespace user
    //}
 
 
-   //bool primitive::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool primitive::RedrawWindow(const ::rectangle_i32& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only_exception();
@@ -2571,7 +2571,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectHint)
+   void primitive::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectangleHint)
    {
 
       throw ::interface_only_exception();
@@ -2752,15 +2752,15 @@ namespace user
    //::size_f64 primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::rectangle_f64 rectPadding(2.0, 2.0, 2.0, 2.0);
+   //   ::rectangle_f64 rectanglePadding(2.0, 2.0, 2.0, 2.0);
 
    //   auto sizeFitting = _001CalculateFittingSize(pgraphics);
 
    //   ::size_f64 sizePaddedFitting;
 
-   //   sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
+   //   sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-   //   sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
+   //   sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
    //   return sizePaddedFitting;
 

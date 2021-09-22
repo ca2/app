@@ -1536,19 +1536,19 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * p
 
     auto nSrcHeight = rectangleSource.height();
 
-    rectangle_f64 rectFinal = rectangleTarget;
+    rectangle_f64 rectangleFinal = rectangleTarget;
 
-    auto nDstWidth = rectFinal.width();
+    auto nDstWidth = rectangleFinal.width();
 
-    auto nDstHeight = rectFinal.height();
+    auto nDstHeight = rectangleFinal.height();
 
     auto xSrc = rectangleSource.left;
 
     auto ySrc = rectangleSource.top;
 
-    auto xDst = rectFinal.left;
+    auto xDst = rectangleFinal.left;
 
-    auto yDst = rectFinal.top;
+    auto yDst = rectangleFinal.top;
 
     if (nSrcWidth <= 0 || nSrcHeight <= 0 || nDstWidth <= 0 || nDstHeight <= 0)
     {
@@ -2026,7 +2026,7 @@ bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 //}
 //
 //
-//bool graphics::ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip, ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
+//bool graphics::ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
 //{
 //
 //    throw interface_only_exception();
@@ -2048,7 +2048,7 @@ bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 
 
 // graphics 3.1 Specific functions
-::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags)
+::u32 graphics::SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags)
 {
 
     throw interface_only_exception();
@@ -2058,7 +2058,7 @@ bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
 }
 
 
-::u32 graphics::GetBoundsRect(::rectangle_f64 * rectBounds, ::u32 flags)
+::u32 graphics::GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags)
 {
 
     throw interface_only_exception();
@@ -3001,7 +3001,7 @@ void graphics::HIMETRICtoDP(::size_f64 * psize)
 //}
 
 
-//   void graphics::DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_f64 & size_f64, const ::rectangle_i32 & rectLast, const ::size_f64 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+//   void graphics::DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_f64 & size_f64, const ::rectangle_i32 & rectangleLast, const ::size_f64 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
 //      throw interface_only_exception();
@@ -3591,7 +3591,7 @@ void graphics::DPtoLP(::size_f64 * psize)
 #if defined(USE_PANGO)
 
 
-bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -3600,7 +3600,7 @@ bool graphics::draw_text(const ::string & strParam, const ::rectangle_f64 & rect
 
     rectangle_f64 rectangle;
 
-    __copy(rectangle, rectParam);
+    __copy(rectangle, rectangleParam);
 
     return internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
@@ -3615,7 +3615,7 @@ bool graphics::internal_draw_text(const block & block, const ::rectangle_f64 & r
 }
 
 
-bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f64 & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_PANGO_TEXT pfnPango)
+bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f64 & rectangleParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, PFN_PANGO_TEXT pfnPango)
 {
 
     _synchronous_lock ml(cairo_mutex());
@@ -3650,9 +3650,9 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     // drawing will start from).
     playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
 
-    //pango_layout_set_width(playout, width(rectParam));
+    //pango_layout_set_width(playout, width(rectangleParam));
 
-    //pango_layout_set_height(playout, height(rectParam));
+    //pango_layout_set_height(playout, height(rectangleParam));
 
     pango_layout_set_text(playout, (const ::string &)block.m_pdata, block.m_iSize);          // sets the text to be associated with the layout (final arg is length, -1
 
@@ -3669,50 +3669,50 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
     if(ealign & e_align_bottom)
     {
 
-        cairo_translate(m_pdc, 0, rectParam.bottom - rectangle.height);
+        cairo_translate(m_pdc, 0, rectangleParam.bottom - rectangle.height);
 
-        ptRef.y = rectParam.bottom - rectangle.height;
+        ptRef.y = rectangleParam.bottom - rectangle.height;
 
     }
     else if(ealign & e_align_vertical_center)
     {
 
-        cairo_translate(m_pdc, 0, ((rectParam.top + rectParam.bottom) / 2 - (rectangle.height / 2)));
+        cairo_translate(m_pdc, 0, ((rectangleParam.top + rectangleParam.bottom) / 2 - (rectangle.height / 2)));
 
-        ptRef.y = ((rectParam.top + rectParam.bottom) / 2 - (rectangle.height / 2));
+        ptRef.y = ((rectangleParam.top + rectangleParam.bottom) / 2 - (rectangle.height / 2));
 
     }
     else
     {
 
-        cairo_translate(m_pdc, 0, rectParam.top);
+        cairo_translate(m_pdc, 0, rectangleParam.top);
 
-        ptRef.y = rectParam.top;
+        ptRef.y = rectangleParam.top;
 
     }
 
     if(ealign & e_align_right)
     {
 
-        cairo_translate(m_pdc, rectParam.right - rectangle.width, 0);
+        cairo_translate(m_pdc, rectangleParam.right - rectangle.width, 0);
 
-        ptRef.x = rectParam.right - rectangle.width;
+        ptRef.x = rectangleParam.right - rectangle.width;
 
     }
     else if(ealign & e_align_horizontal_center)
     {
 
-        cairo_translate(m_pdc, ((rectParam.left + rectParam.right) / 2) - (rectangle.width/2), 0);
+        cairo_translate(m_pdc, ((rectangleParam.left + rectangleParam.right) / 2) - (rectangle.width/2), 0);
 
-        ptRef.x = ((rectParam.left + rectParam.right) / 2) - (rectangle.width/2);
+        ptRef.x = ((rectangleParam.left + rectangleParam.right) / 2) - (rectangle.width/2);
 
     }
     else
     {
 
-        cairo_translate(m_pdc, rectParam.left, 0);
+        cairo_translate(m_pdc, rectangleParam.left, 0);
 
-        ptRef.x = rectParam.left;
+        ptRef.x = rectangleParam.left;
 
     }
 

@@ -70,26 +70,26 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         auto rectPadding = get_padding(pstyle);
+         auto rectanglePadding = get_padding(pstyle);
 
-         rectangleClient.deflate(rectPadding);
+         rectangleClient.deflate(rectanglePadding);
 
          if (m_estockicon != e_stock_icon_none)
          {
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->m_color = pgraphics->get_current_brush()->m_color;
+            ppen->m_color = pgraphics->get_current_brush()->m_color;
 
-            pen->m_dWidth = 1.0;
+            ppen->m_dWidth = 1.0;
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
-            ::rectangle_i32 rectIcon(rectangleClient);
+            ::rectangle_i32 rectangleIcon(rectangleClient);
 
-            rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+            rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-            pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+            pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
          }
          else
@@ -101,13 +101,13 @@ namespace user
 
             //pgraphics->draw_text(strText, rectangleClient, ealign, edrawtext);
 
-            //m_rectTextBoundingBox.left = 0;
+            //m_rectangleTextBoundingBox.left = 0;
 
-            //m_rectTextBoundingBox.top = 0;
+            //m_rectangleTextBoundingBox.top = 0;
 
-            //m_rectTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
+            //m_rectangleTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
 
-            //m_rectTextBoundingBox.Align(ealign, rectangleClient);
+            //m_rectangleTextBoundingBox.Align(ealign, rectangleClient);
 
          }
 
@@ -347,9 +347,9 @@ namespace user
 
    //   return control::hit_test(pmouse);
 
-   //   //::rectangle_i32 rectWindow;
-   //   //get_window_rect(rectWindow);
-   //   //if (rectWindow.contains(point))
+   //   //::rectangle_i32 rectangleWindow;
+   //   //get_window_rect(rectangleWindow);
+   //   //if (rectangleWindow.contains(point))
    //   //{
    //   //   eelement = element_area;
    //   //   return 0;
@@ -510,7 +510,7 @@ namespace user
 
       rectangle.bottom = (::i32) (rectangle.top + sizeText.cy);
 
-      m_rectText = rectangle;
+      m_rectangleText = rectangle;
 
       string strText;
 
@@ -651,23 +651,23 @@ namespace user
 
       rectangleClient.top += 3;
 
-      ::rectangle_i32 rectText = m_rectText;
+      ::rectangle_i32 rectangleText = m_rectangleText;
 
       //      string str = ::str::international::utf8_to_unicode(str);
 
       if (m_pimage->is_ok())
       {
-         ::rectangle_i32 rectDib;
-         rectDib = m_rectText;
-         rectDib.bottom = minimum(rectText.top + m_pimage->height(), rectText.bottom);
-         rectDib.right = minimum(rectText.left + m_pimage->width(), rectText.right);
-         //m_pimage->to(pgraphics, rectDib);
+         ::rectangle_i32 rectangleDib;
+         rectangleDib = m_rectangleText;
+         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
+         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
+         //m_pimage->to(pgraphics, rectangleDib);
 
          {
 
             image_source imagesource(m_pimage);
 
-            auto rectangle = rectDib;
+            auto rectangle = rectangleDib;
 
             image_drawing_options imagedrawingoptions(rectangle);
 
@@ -677,44 +677,44 @@ namespace user
 
          }
 
-         rectText.left += m_pimage->width();
+         rectangleText.left += m_pimage->width();
 
       }
 
 
-      ::draw2d::brush_pointer brushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())
       {
 
          //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextPress);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_itemHover.is_set())
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextHover);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
-         brushText->create_solid(get_color(pstyle, e_element_text));
+         pbrushText->create_solid(get_color(pstyle, e_element_text));
       }
 
-      pgraphics->set(brushText);
+      pgraphics->set(pbrushText);
 
       string strText(get_window_text());
 
       pgraphics->set_font(this, ::e_element_none);
 
-      pgraphics->draw_text(strText, rectText, e_align_top_left);
+      pgraphics->draw_text(strText, rectangleText, e_align_top_left);
 
    }
 
@@ -834,11 +834,11 @@ namespace user
       if (pimage->area() > 0 && rectangleClient.area() > 0)
       {
 
-         ::rectangle_i32 rectAspect;
+         ::rectangle_i32 rectangleAspect;
 
-         rectAspect.left = 0;
+         rectangleAspect.left = 0;
 
-         rectAspect.top = 0;
+         rectangleAspect.top = 0;
 
          double dW = (double)rectangleClient.width() / (double)pimage->width();
 
@@ -846,11 +846,11 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
-         rectAspect.Align(e_align_center, rectangleClient);
+         rectangleAspect.Align(e_align_center, rectangleClient);
 
          {
 

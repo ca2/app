@@ -217,7 +217,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -241,12 +241,12 @@ namespace user
 
          prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
-         if(prectangle->bottom > rectBound.bottom)
+         if(prectangle->bottom > rectangleBound.bottom)
          {
 
             prectangle->left += iMaxWidth + 16;
 
-            prectangle->top = rectBound.top;
+            prectangle->top = rectangleBound.top;
 
             prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
@@ -263,7 +263,7 @@ namespace user
 
             pitem->m_puserinteraction->display();
 
-            layout_buttons(pitem, iMaxWidth, prectangle, rectBound);
+            layout_buttons(pitem, iMaxWidth, prectangle, rectangleBound);
 
          }
 

@@ -613,18 +613,18 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam)
 
    {
 
       if(m_phost != nullptr && !m_phost->m_bShowProgress)
          return;
 
-      ::rectangle_i32 rectWindow(rectParam);
+      ::rectangle_i32 rectangleWindow(rectangleParam);
 
-      i32 cx = rectWindow.right - rectWindow.left;
+      i32 cx = rectangleWindow.right - rectangleWindow.left;
 
-      i32 cy = rectWindow.bottom - rectWindow.top;
+      i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       double dRate = get_progress_rate();
 
@@ -632,13 +632,13 @@ namespace hotplugin
 
       i32 x;
 
-      i32 y = rectWindow.top;
+      i32 y = rectangleWindow.top;
 
       i32 pcx = cx;
 
       i32 pcy = cy / iLineCount;
 
-      ::rectangle_i32 rectP;
+      ::rectangle_i32 rectangleP;
 
       for(i32 iLine = 0; iLine < iLineCount; iLine++)
       {
@@ -651,22 +651,22 @@ namespace hotplugin
          {
 
             if(dRate < dStart)
-               x = rectWindow.left;
+               x = rectangleWindow.left;
             else
-               x = (i32) (rectWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
+               x = (i32) (rectangleWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
 
             if(iLine >= (iLineCount - 1))
-               pcy = rectWindow.bottom - y;
+               pcy = rectangleWindow.bottom - y;
 
-            rectP.top      = y;
+            rectangleP.top      = y;
 
-            rectP.bottom   = y + pcy;
+            rectangleP.bottom   = y + pcy;
 
-            rectP.left     = x;
+            rectangleP.left     = x;
 
-            rectP.right    = rectWindow.right;
+            rectangleP.right    = rectangleWindow.right;
 
-            pgraphics->fill_rectangle(rectP, argb(90, 90, 90, 80));
+            pgraphics->fill_rectangle(rectangleP, argb(90, 90, 90, 80));
 
          }
 

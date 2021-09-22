@@ -15,7 +15,7 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       __composite(::experience::frame)             m_pframe;
-      ::rectangle_i32                                       m_rectPending;
+      ::rectangle_i32                                       m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -142,7 +142,7 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
+      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
 
 

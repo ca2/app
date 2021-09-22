@@ -9,11 +9,7 @@ namespace user
 {
 
 
-   menu_view::menu_view() :
-      m_brBkSel(e_create),
-      m_brBkHoverSel(e_create),
-      m_penBkSel(e_create),
-      m_pen(e_create)
+   menu_view::menu_view() 
    {
 
       m_bClickDefaultMouseHandling = true;
@@ -24,13 +20,13 @@ namespace user
 
       m_flagNonClient.erase(non_client_focus_rect);
 
-      m_brBkHoverSel->create_solid(argb(255, 230, 230, 230));
+      m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
 
-      m_brBkSel->create_solid(argb(255, 240, 240, 240));
+      m_pbrushBkSel->create_solid(argb(255, 240, 240, 240));
 
-      m_penBkSel->create_solid(3.0, argb(255, 0, 148, 202));
+      m_ppenBkSel->create_solid(3.0, argb(255, 0, 148, 202));
 
-      m_pen->create_solid(1.0, argb(255, 210, 210, 210));
+      m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
 
    }
 
@@ -147,6 +143,11 @@ namespace user
    void menu_view::on_message_create(::message::message * pmessage)
    {
 
+      m_pbrushBkSel.create(this);
+      m_pbrushBkHoverSel.create(this);
+      m_ppenBkSel.create(this);
+      m_ppen.create(this);
+
       __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
@@ -181,17 +182,17 @@ namespace user
 
       m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", false);
 
-      m_fontTitle.create(this);
+      m_pfontTitle.create(this);
 
       auto psystem = m_psystem->m_pbasesystem;
 
       auto pnode = psystem->node();
 
-      m_fontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
+      m_pfontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
 
-      m_font.create(this);
+      m_pfont.create(this);
 
-      m_font->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
+      m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
 
       if (GetTypedParent<::user::split_view>() != nullptr)
       {
@@ -243,7 +244,7 @@ namespace user
    bool menu_view::get_item_rect(index i, RECTANGLE_I32 * prectangle)
    {
 
-      int iHeight = (int) ( m_fontTitle->m_dFontSize * 1.25 + 20);
+      int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);
 
       int x = 10;
 
@@ -431,11 +432,11 @@ namespace user
          
          strTitle = pnode->attribute("title");
 
-         pgraphics->set(m_fontTitle);
+         pgraphics->set(m_pfontTitle);
 
          get_item_rect(iPos, rMenu);
 
-         pgraphics->set(m_pen);
+         pgraphics->set(m_ppen);
 
          draw_header_rectangle(pgraphics, rMenu);
 
@@ -461,7 +462,7 @@ namespace user
 
                rMenu.unite(rMenu, rectangle);
 
-               pgraphics->set(m_pen);
+               pgraphics->set(m_ppen);
 
                ::item item(::e_element_item, iPos, i, j);
 
@@ -471,7 +472,7 @@ namespace user
                   if (m_itemCurrent == item)
                   {
 
-                     pgraphics->set(m_brBkHoverSel);
+                     pgraphics->set(m_pbrushBkHoverSel);
 
                      draw_item_rectangle_hover_sel001(pgraphics, rectangle);
 
@@ -479,7 +480,7 @@ namespace user
                   else
                   {
 
-                     pgraphics->set(m_brBkSel);
+                     pgraphics->set(m_pbrushBkSel);
 
                      draw_item_rectangle_hover001(pgraphics, rectangle);
 
@@ -489,7 +490,7 @@ namespace user
                else if (m_itemCurrent == item)
                {
 
-                  pgraphics->set(m_brBkSel);
+                  pgraphics->set(m_pbrushBkSel);
 
                   draw_item_rectangle_sel001(pgraphics, rectangle);
 
@@ -501,7 +502,7 @@ namespace user
 
                }
 
-               pgraphics->set(m_font);
+               pgraphics->set(m_pfont);
 
                if (m_itemCurrent == item)
                {
@@ -525,7 +526,7 @@ namespace user
                if (m_itemCurrent == item)
                {
 
-                  pgraphics->set(m_penBkSel);
+                  pgraphics->set(m_ppenBkSel);
 
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
@@ -543,15 +544,15 @@ namespace user
                if (pimage1->is_set())
                {
 
-                  ::rectangle_i32 rectDib;
+                  ::rectangle_i32 rectangleDib;
 
-                  rectDib.left = rectangle.right - pimage1->width() - 10;
-                  rectDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
-                  rectDib.set_size(pimage1->width(), pimage1->height());
+                  rectangleDib.left = rectangle.right - pimage1->width() - 10;
+                  rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
+                  rectangleDib.set_size(pimage1->width(), pimage1->height());
 
                   image_source imagesource(pimage1);
 
-                  image_drawing_options imagedrawingoptions(rectDib);
+                  image_drawing_options imagedrawingoptions(rectangleDib);
 
                   image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -578,7 +579,7 @@ namespace user
 
          get_item_rect(iPos, rectangle);
 
-         pgraphics->set(m_pen);
+         pgraphics->set(m_ppen);
 
          draw_header_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
 

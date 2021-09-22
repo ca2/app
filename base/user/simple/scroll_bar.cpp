@@ -3,14 +3,10 @@
 //#include "acme/node/operating_system/cross.h"
 
 
-simple_scroll_bar::simple_scroll_bar() :
-   m_penDraw(e_create),
-   m_brushDraw(e_create),
-   m_rgnA(e_create), // região da primeira seta
-   m_rgnB(e_create) // região da segunda seta
+simple_scroll_bar::simple_scroll_bar()
 {
 
-   //m_brushNull->CreateStockObject(NULL_BRUSH);
+   //m_pbrushNull->CreateStockObject(NULL_BRUSH);
    m_flagNonClient.erase(non_client_background);
    // m_flagNonClient.erase(non_client_focus_rect);
    m_bTracking          = false;
@@ -205,9 +201,9 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
       m_pointTrack = m_itemCurrent.m_pointClient;
 
-      GetTrackRect(m_rectTrack, pgraphics);
+      GetTrackRect(m_rectangleTrack, pgraphics);
 
-      m_sizeTrackOffset = m_pointTrack - m_rectTrack.top_left();
+      m_sizeTrackOffset = m_pointTrack - m_rectangleTrack.top_left();
 
    }
    else
@@ -655,108 +651,108 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
    if(m_eorientation == e_orientation_horizontal)
    {
 
-      m_rectA.left   = 0;
-      m_rectA.top    = 0;
-      m_rectA.right  = minimum(iScrollBarWidth,size.cx / 2);
-      m_rectA.bottom = size.cy;
+      m_rectangleA.left   = 0;
+      m_rectangleA.top    = 0;
+      m_rectangleA.right  = minimum(iScrollBarWidth,size.cx / 2);
+      m_rectangleA.bottom = size.cy;
 
       /*
-      m_ptaA[0].x = 0;
-      m_ptaA[0].y = size.cy / 2;
-      m_ptaA[1].x = minimum(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
-      m_ptaA[1].y = size.cy - 1;
-      m_ptaA[2].x = m_ptaA[1].x;
-      m_ptaA[2].y = 1;
-      m_ptaA[3].x = m_ptaA[0].x;
-      m_ptaA[3].y = m_ptaA[0].y;
+      m_pointaA[0].x = 0;
+      m_pointaA[0].y = size.cy / 2;
+      m_pointaA[1].x = minimum(GetSystemMetrics(SM_CXHSCROLL), size.cx / 2);
+      m_pointaA[1].y = size.cy - 1;
+      m_pointaA[2].x = m_pointaA[1].x;
+      m_pointaA[2].y = 1;
+      m_pointaA[3].x = m_pointaA[0].x;
+      m_pointaA[3].y = m_pointaA[0].y;
       */
 
-      m_ptaA[0].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
-      m_ptaA[0].y = m_rectA.top + (m_rectA.height() - iArrowStability) / 2;
-      m_ptaA[1].x = m_rectA.left + (m_rectA.width() - iArrowForce) / 2;
-      m_ptaA[1].y = m_rectA.top + m_rectA.height() / 2;
-      m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowForce) / 2;
-      m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowStability) / 2;;
+      m_pointaA[0].x = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
+      m_pointaA[0].y = m_rectangleA.top + (m_rectangleA.height() - iArrowStability) / 2;
+      m_pointaA[1].x = m_rectangleA.left + (m_rectangleA.width() - iArrowForce) / 2;
+      m_pointaA[1].y = m_rectangleA.top + m_rectangleA.height() / 2;
+      m_pointaA[2].x = m_rectangleA.left + (m_rectangleA.width() + iArrowForce) / 2;
+      m_pointaA[2].y = m_rectangleA.top + (m_rectangleA.height() + iArrowStability) / 2;;
 
-      m_rectB.left   = maximum(size.cx - iScrollBarWidth,size.cx / 2);
-      m_rectB.top    = 0;
-      m_rectB.right  = size.cx;
-      m_rectB.bottom = size.cy;
+      m_rectangleB.left   = maximum(size.cx - iScrollBarWidth,size.cx / 2);
+      m_rectangleB.top    = 0;
+      m_rectangleB.right  = size.cx;
+      m_rectangleB.bottom = size.cy;
 
       /*
-      m_ptaB[0].x = size.cx;
-      m_ptaB[0].y = size.cy / 2;
-      m_ptaB[1].x = ;
-      m_ptaB[1].y = 1;
-      m_ptaB[2].x = m_ptaB[1].x;
-      m_ptaB[2].y = size.cy - 1;
-      m_ptaB[3].x = m_ptaB[0].x;
-      m_ptaB[3].y = m_ptaA[0].y;
+      m_pointaB[0].x = size.cx;
+      m_pointaB[0].y = size.cy / 2;
+      m_pointaB[1].x = ;
+      m_pointaB[1].y = 1;
+      m_pointaB[2].x = m_pointaB[1].x;
+      m_pointaB[2].y = size.cy - 1;
+      m_pointaB[3].x = m_pointaB[0].x;
+      m_pointaB[3].y = m_pointaA[0].y;
       */
 
-      m_ptaB[0].x = m_rectB.left + (m_rectB.width() - iArrowForce) / 2;
-      m_ptaB[0].y = m_rectB.top + (m_rectB.height() - iArrowStability) / 2;
-      m_ptaB[1].x = m_rectB.left + (m_rectB.width() + iArrowForce) / 2;
-      m_ptaB[1].y = m_rectB.top + m_rectB.height() / 2;
-      m_ptaB[2].x = m_rectB.left + (m_rectB.width() - iArrowForce) / 2;
-      m_ptaB[2].y = m_rectB.top + (m_rectB.height() + iArrowStability) / 2;;
+      m_pointaB[0].x = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
+      m_pointaB[0].y = m_rectangleB.top + (m_rectangleB.height() - iArrowStability) / 2;
+      m_pointaB[1].x = m_rectangleB.left + (m_rectangleB.width() + iArrowForce) / 2;
+      m_pointaB[1].y = m_rectangleB.top + m_rectangleB.height() / 2;
+      m_pointaB[2].x = m_rectangleB.left + (m_rectangleB.width() - iArrowForce) / 2;
+      m_pointaB[2].y = m_rectangleB.top + (m_rectangleB.height() + iArrowStability) / 2;;
 
    }
    else if(m_eorientation == e_orientation_vertical)
    {
 
-      m_rectA.left   = 0;
-      m_rectA.top    = 0;
-      m_rectA.right  = size.cx;
-      m_rectA.bottom = minimum(iScrollBarWidth,size.cy / 2);
+      m_rectangleA.left   = 0;
+      m_rectangleA.top    = 0;
+      m_rectangleA.right  = size.cx;
+      m_rectangleA.bottom = minimum(iScrollBarWidth,size.cy / 2);
 
       /*
-      m_ptaA[0].x = size.cx / 2;
-      m_ptaA[0].y = 0;
-      m_ptaA[1].x = 1;
-      m_ptaA[1].y = minimum(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
-      m_ptaA[2].x = size.cx - 1;
-      m_ptaA[2].y = m_ptaA[1].y;
-      m_ptaA[3].x = m_ptaA[0].x;
-      m_ptaA[3].y = m_ptaA[0].y;
+      m_pointaA[0].x = size.cx / 2;
+      m_pointaA[0].y = 0;
+      m_pointaA[1].x = 1;
+      m_pointaA[1].y = minimum(GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_pointaA[2].x = size.cx - 1;
+      m_pointaA[2].y = m_pointaA[1].y;
+      m_pointaA[3].x = m_pointaA[0].x;
+      m_pointaA[3].y = m_pointaA[0].y;
       */
 
-      m_ptaA[0].x = m_rectA.left + (m_rectA.width() - iArrowStability) / 2;
-      m_ptaA[0].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;
-      m_ptaA[1].x = m_rectA.left + m_rectA.width() / 2;
-      m_ptaA[1].y = m_rectA.top +( m_rectA.height() - iArrowForce) / 2;
-      m_ptaA[2].x = m_rectA.left + (m_rectA.width() + iArrowStability) / 2;
-      m_ptaA[2].y = m_rectA.top + (m_rectA.height() + iArrowForce) / 2;;
+      m_pointaA[0].x = m_rectangleA.left + (m_rectangleA.width() - iArrowStability) / 2;
+      m_pointaA[0].y = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;
+      m_pointaA[1].x = m_rectangleA.left + m_rectangleA.width() / 2;
+      m_pointaA[1].y = m_rectangleA.top +( m_rectangleA.height() - iArrowForce) / 2;
+      m_pointaA[2].x = m_rectangleA.left + (m_rectangleA.width() + iArrowStability) / 2;
+      m_pointaA[2].y = m_rectangleA.top + (m_rectangleA.height() + iArrowForce) / 2;;
 
-      m_rectB.left   = 0;
-      m_rectB.top    = maximum(size.cy - iScrollBarWidth,size.cy / 2);
-      m_rectB.right  = size.cx;
-      m_rectB.bottom = size.cy;
+      m_rectangleB.left   = 0;
+      m_rectangleB.top    = maximum(size.cy - iScrollBarWidth,size.cy / 2);
+      m_rectangleB.right  = size.cx;
+      m_rectangleB.bottom = size.cy;
 
       /*
-      m_ptaB[0].x = size.cx / 2;
-      m_ptaB[0].y = size.cy;
-      m_ptaB[1].x = size.cx - 1;
-      m_ptaB[1].y = maximum(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
-      m_ptaB[2].x = 1;
-      m_ptaB[2].y = m_ptaB[1].y;
-      m_ptaB[3].x = m_ptaA[0].x;
-      m_ptaB[3].y = m_ptaB[0].y;
+      m_pointaB[0].x = size.cx / 2;
+      m_pointaB[0].y = size.cy;
+      m_pointaB[1].x = size.cx - 1;
+      m_pointaB[1].y = maximum(size.cy - GetSystemMetrics(SM_CYVSCROLL), size.cy / 2);
+      m_pointaB[2].x = 1;
+      m_pointaB[2].y = m_pointaB[1].y;
+      m_pointaB[3].x = m_pointaA[0].x;
+      m_pointaB[3].y = m_pointaB[0].y;
       */
-      m_ptaB[0].x = m_rectB.left + (m_rectB.width() - iArrowStability) / 2;
-      m_ptaB[0].y = m_rectB.top + (m_rectB.height() - iArrowForce) / 2;
-      m_ptaB[1].x = m_rectB.left + m_rectB.width() / 2;
-      m_ptaB[1].y = m_rectB.top + (m_rectB.height() + iArrowForce) / 2;
-      m_ptaB[2].x = m_rectB.left + (m_rectB.width() + iArrowStability) / 2;
-      m_ptaB[2].y = m_rectB.top + (m_rectB.height() - iArrowForce) / 2;;
+      m_pointaB[0].x = m_rectangleB.left + (m_rectangleB.width() - iArrowStability) / 2;
+      m_pointaB[0].y = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;
+      m_pointaB[1].x = m_rectangleB.left + m_rectangleB.width() / 2;
+      m_pointaB[1].y = m_rectangleB.top + (m_rectangleB.height() + iArrowForce) / 2;
+      m_pointaB[2].x = m_rectangleB.left + (m_rectangleB.width() + iArrowStability) / 2;
+      m_pointaB[2].y = m_rectangleB.top + (m_rectangleB.height() - iArrowForce) / 2;;
    }
    else
    {
       ASSERT(false);
    }
 
-   m_rgnA->create_rectangle(m_rectA);
-   m_rgnB->create_rectangle(m_rectB);
+   m_pregionA->create_rectangle(m_rectangleA);
+   m_pregionB->create_rectangle(m_rectangleB);
 
 
 //   psize->m_bRet = false;
@@ -914,15 +910,15 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point_i32 & point, ::draw2d::gra
 
    ::rectangle_i32 rectangleClient;
 
-   ::rectangle_i32 rectTrack;
+   ::rectangle_i32 rectangleTrack;
 
    ::rectangle_i32 rectangle;
 
    get_client_rect(rectangleClient);
 
-   GetTrackRect(rectTrack, pgraphics);
+   GetTrackRect(rectangleTrack, pgraphics);
 
-   GetPageARect(rectangleClient,rectTrack,rectangle, pgraphics);
+   GetPageARect(rectangleClient,rectangleTrack,rectangle, pgraphics);
 
    if(!rectangle.contains(point))
       return false;
@@ -962,15 +958,15 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::gra
 
    ::rectangle_i32 rectangleClient;
 
-   ::rectangle_i32 rectTrack;
+   ::rectangle_i32 rectangleTrack;
 
    ::rectangle_i32 rectangle;
 
    get_client_rect(rectangleClient);
 
-   GetTrackRect(rectTrack, pgraphics);
+   GetTrackRect(rectangleTrack, pgraphics);
 
-   GetPageBRect(rectangleClient,rectTrack,rectangle, pgraphics);
+   GetPageBRect(rectangleClient,rectangleTrack,rectangle, pgraphics);
 
    if(!rectangle.contains(point))
       return false;
@@ -1011,6 +1007,12 @@ puiParent->SendMessage(e_message_vscroll, MAKEWPARAM(e_scroll_command_LINEDOWN, 
 
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
+
+   m_ppenDraw.create(this);
+      m_pbrushDraw.create(this);
+      m_pregionA.create(this); // região da primeira seta
+      m_pregionB.create(this); // região da segunda seta
+
 
 
    __pointer(::message::create) pcreate(pmessage);
@@ -1231,7 +1233,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       //   rectangleClient.bottom++;
       //   rectangleClient.right++;
 
-      //   rectClip = rectangleClient;
+      //   rectangleClip = rectangleClient;
 
       //   bFirst = false;
 
@@ -1244,7 +1246,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
          ::user::interaction * pinteraction = this;
 
-         ::rectangle_i32 rectFocus;
+         ::rectangle_i32 rectangleFocus;
 
          index i = 0;
 
@@ -1254,21 +1256,21 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
             if (i == 1)
             {
 
-               pinteraction->::user::interaction::get_client_rect(rectFocus);
+               pinteraction->::user::interaction::get_client_rect(rectangleFocus);
 
             }
             else
             {
 
-               pinteraction->get_client_rect(rectFocus);
+               pinteraction->get_client_rect(rectangleFocus);
 
             }
 
-            pinteraction->client_to_screen(rectFocus);
+            pinteraction->client_to_screen(rectangleFocus);
 
-            screen_to_client(rectFocus);
+            screen_to_client(rectangleFocus);
             
-            m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
+            m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
 
             m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -1372,19 +1374,19 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    }
 
-   ::rectangle_i32 rectTrack;
+   ::rectangle_i32 rectangleTrack;
 
-   GetTrackRect(rectTrack, pgraphics);
+   GetTrackRect(rectangleTrack, pgraphics);
 
-   ::rectangle_i32 rectWindow;
+   ::rectangle_i32 rectangleWindow;
 
-   get_window_rect(rectWindow);
+   get_window_rect(rectangleWindow);
 
-   m_brushDraw->create_solid(scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect));
+   m_pbrushDraw->create_solid(scrollbar_color_strong(pstyle, ::e_element_scrollbar_rect));
 
-   pgraphics->set(m_brushDraw);
+   pgraphics->set(m_pbrushDraw);
 
-   pgraphics->fill_rectangle(rectTrack);
+   pgraphics->fill_rectangle(rectangleTrack);
 
    //if (m_bTracking || (bool)prop("tracking_on"))
    //{
@@ -1414,17 +1416,17 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //         if (prop("tracking_simple").i32() == 2)
    //         {
 
-   //            int iDeflate = rectTrack.size().get_normal(m_eorientation);
+   //            int iDeflate = rectangleTrack.size().get_normal(m_eorientation);
 
    //            iDeflate /= 2;
 
-   //            ::rectangle_i32 rectConstraint(m_rectTrack);
+   //            ::rectangle_i32 rectangleConstraint(m_rectangleTrack);
 
-   //            rectConstraint.deflate(iDeflate, iDeflate);
+   //            rectangleConstraint.deflate(iDeflate, iDeflate);
 
-   //            constraint(m_pointTrack, rectConstraint);
+   //            constraint(m_pointTrack, rectangleConstraint);
 
-   //            m_sizeTrackOffset = m_pointTrack - m_rectTrack.top_left();
+   //            m_sizeTrackOffset = m_pointTrack - m_rectangleTrack.top_left();
 
    //         }
 
@@ -1447,7 +1449,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   }
 
-   //   const ::point_i32 & point1 = rectTrack.top_left() + m_sizeTrackOffset;
+   //   const ::point_i32 & point1 = rectangleTrack.top_left() + m_sizeTrackOffset;
 
    //   client_to_screen(point1);
 
@@ -1506,42 +1508,42 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      uchAlpha = 255;
    //   }
 
-   //   ::rectangle_i32 rectMachineThumb;
+   //   ::rectangle_i32 rectangleMachineThumb;
 
    //   i32 iType = prop("tracking_type").i32();
 
    //   if (iType == 1)
    //   {
 
-   //      int iSize = rectTrack.size().get_normal(m_eorientation);
+   //      int iSize = rectangleTrack.size().get_normal(m_eorientation);
 
-   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
+   //      rectangleMachineThumb.top_left() = rectangleTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
-   //      rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+   //      rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + size(iSize, iSize);
 
-   //      ::rectangle_i32 rectIntersect;
+   //      ::rectangle_i32 rectangleIntersect;
 
-   //      rectIntersect.intersect(rectMachineThumb, rectTrack);
+   //      rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-   //      i32 iArea = (i32)(maximum(1, rectIntersect.area()));
+   //      i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
 
-   //      rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+   //      rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-   //      draw_mac_thumb_simple(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+   //      draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
    //   }
    //   else
    //   {
 
-   //      int iSize = rectTrack.size().get_normal(m_eorientation);
+   //      int iSize = rectangleTrack.size().get_normal(m_eorientation);
 
-   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
+   //      rectangleMachineThumb.top_left() = rectangleTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
-   //      rectMachineThumb.set_size(iSize, iSize);
+   //      rectangleMachineThumb.set_size(iSize, iSize);
 
-   //      rectMachineThumb.assign_normal(rectTrack, m_eorientation);
+   //      rectangleMachineThumb.assign_normal(rectangleTrack, m_eorientation);
 
-   //      draw_mac_thumb_dots(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+   //      draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
    //   }
 
@@ -1551,32 +1553,32 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::color32_t color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectA);
 
-   m_brushDraw->create_solid(color32);
+   m_pbrushDraw->create_solid(color32);
 
-   pgraphics->set(m_brushDraw);
+   pgraphics->set(m_pbrushDraw);
 
-   pgraphics->fill_rectangle(m_rectA);
+   pgraphics->fill_rectangle(m_rectangleA);
 
    color32 = scrollbar_color(pstyle, ::e_element_scrollbar_rectB);
 
-   m_brushDraw->create_solid(color32);
+   m_pbrushDraw->create_solid(color32);
 
-   pgraphics->set(m_brushDraw);
+   pgraphics->set(m_pbrushDraw);
 
-   pgraphics->fill_rectangle(m_rectB);
+   pgraphics->fill_rectangle(m_rectangleB);
 
    ::rectangle_i32 rectangle;
 
    if (m_itemCurrent == ::e_element_scrollbar_pageA || m_itemHover== ::e_element_scrollbar_pageA)
    {
 
-      GetPageARect(rectangleClient, rectTrack, rectangle, pgraphics);
+      GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
       color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageA);
 
-      m_brushDraw->create_solid(color32);
+      m_pbrushDraw->create_solid(color32);
 
-      pgraphics->set(m_brushDraw);
+      pgraphics->set(m_pbrushDraw);
 
       pgraphics->fill_rectangle(rectangle);
 
@@ -1584,41 +1586,41 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    else if (m_itemCurrent == ::e_element_scrollbar_pageB || m_itemHover== ::e_element_scrollbar_pageB)
    {
 
-      GetPageBRect(rectangleClient, rectTrack, rectangle, pgraphics);
+      GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
       color32 = scrollbar_color(pstyle, ::e_element_scrollbar_pageB);
 
-      m_brushDraw->create_solid(color32);
+      m_pbrushDraw->create_solid(color32);
 
-      pgraphics->set(m_brushDraw);
+      pgraphics->set(m_pbrushDraw);
 
       pgraphics->fill_rectangle(rectangle);
 
    }
 
-   ::draw2d::pen_pointer penArrow(e_create);
+   auto ppenArrow = __create < ::draw2d::pen > ();
 
-   penArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+   ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
-   penArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+   ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
 
-   penArrow->m_elinejoin = ::draw2d::e_line_join_round;
+   ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
    color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectA);
 
-   penArrow->create_solid(1.0, color32);
+   ppenArrow->create_solid(1.0, color32);
 
-   pgraphics->set(penArrow);
+   pgraphics->set(ppenArrow);
 
-   pgraphics->polyline(m_ptaA, 3);
+   pgraphics->polyline(m_pointaA, 3);
 
    color32 = scrollbar_draw_color(pstyle, ::e_element_scrollbar_rectB);
 
-   penArrow->create_solid(1.0, color32);
+   ppenArrow->create_solid(1.0, color32);
 
-   pgraphics->set(penArrow);
+   pgraphics->set(ppenArrow);
 
-   pgraphics->polyline(m_ptaB, 3);
+   pgraphics->polyline(m_pointaB, 3);
 
 }
 
@@ -1637,49 +1639,49 @@ void simple_scroll_bar::on_message_destroy(::message::message * pmessage)
 }
 
 
-void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDrawParam,const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDrawParam,const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
 {
 
    ::draw2d::savedc dc(pgraphics);
 
    pgraphics->reset_clip();
 
-   ::rectangle_i32 rectDraw(rectDrawParam);
+   ::rectangle_i32 rectangleDraw(rectangleDrawParam);
 
-   rectDraw.deflate(1,1);
+   rectangleDraw.deflate(1,1);
 
-   ::draw2d::pen_pointer pen(e_create);
+   auto ppen = __create < ::draw2d::pen > ();
 
-   pen->create_solid(2.0,argb(150 * uchAlpha / 255,108, 108, 100));
+   ppen->create_solid(2.0,argb(150 * uchAlpha / 255,108, 108, 100));
 
-   pgraphics->set(pen);
+   pgraphics->set(ppen);
 
-   pgraphics->draw_ellipse(rectDraw);
+   pgraphics->draw_ellipse(rectangleDraw);
 
-   ::draw2d::brush_pointer brush(e_create);
+   auto pbrush = __create < ::draw2d::brush >();
 
-   ::rectangle_i32 rectDotto(0,0,5,5);
+   ::rectangle_i32 rectangleDotto(0,0,5,5);
 
-   brush->create_solid(argb(150 * uchAlpha / 255,108,108,100));
+   pbrush->create_solid(argb(150 * uchAlpha / 255,108,108,100));
 
-   pgraphics->set(brush);
+   pgraphics->set(pbrush);
 
-   rectDotto.Align(e_align_center, rectDraw);
+   rectangleDotto.Align(e_align_center, rectangleDraw);
 
-   pgraphics->fill_ellipse(rectDotto);
+   pgraphics->fill_ellipse(rectangleDotto);
 
 }
 
 
 
-void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectDrawParam, const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleDrawParam, const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
 {
 
-   ::rectangle_f64 rectDraw(rectDrawParam);
+   ::rectangle_f64 rectangleDraw(rectangleDrawParam);
 
-   rectDraw.bottom--;
+   rectangleDraw.bottom--;
 
-   rectDraw.right--;
+   rectangleDraw.right--;
 
    double iDiv = 10;
 
@@ -1695,7 +1697,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       }
 
-      estatus = m_pimageDots->create({ (int)(rectDraw.width() * iDiv), (int)(rectDraw.height() * iDiv) });
+      estatus = m_pimageDots->create({ (int)(rectangleDraw.width() * iDiv), (int)(rectangleDraw.height() * iDiv) });
 
       if (!estatus)
       {
@@ -1755,7 +1757,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   auto rectangleTarget = rectDraw;
+   auto rectangleTarget = rectangleDraw;
 
    auto pointSrc = ::point_f64(iDiv, iDiv);
 
@@ -1779,7 +1781,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 void simple_scroll_bar::on_hit_test(::item & item)
 {
 
-   ::rectangle_i32 rectTrack;
+   ::rectangle_i32 rectangleTrack;
 
    auto psystem = m_psystem->m_paurasystem;
 
@@ -1787,9 +1789,9 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
    auto pgraphics = pdraw2d->create_memory_graphics();
 
-   GetTrackRect(rectTrack, pgraphics);
+   GetTrackRect(rectangleTrack, pgraphics);
 
-   if(rectTrack.contains(item.m_pointClient))
+   if(rectangleTrack.contains(item.m_pointClient))
    {
 
       item = ::e_element_scrollbar_rect;
@@ -1804,7 +1806,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
       get_client_rect(rectangleClient);
 
-      GetPageARect(rectangleClient, rectTrack, rectangle, pgraphics);
+      GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
       if (rectangle.contains(item.m_pointClient))
       {
@@ -1815,7 +1817,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
       }
 
-      GetPageBRect(rectangleClient, rectTrack, rectangle, pgraphics);
+      GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
       if (rectangle.contains(item.m_pointClient))
       {
@@ -1826,7 +1828,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
       }
 
-      if (m_rectA.contains(item.m_pointClient))
+      if (m_rectangleA.contains(item.m_pointClient))
       {
 
          item = ::e_element_scrollbar_rectA;
@@ -1835,7 +1837,7 @@ void simple_scroll_bar::on_hit_test(::item & item)
 
       }
 
-      if (m_rectB.contains(item.m_pointClient))
+      if (m_rectangleB.contains(item.m_pointClient))
       {
 
          item = ::e_element_scrollbar_rectB;

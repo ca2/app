@@ -189,12 +189,12 @@ namespace user
 
       bool                             m_bTopText;
       string                           m_strTopText;
-      ::rectangle_i32                           m_rectTopText;
+      ::rectangle_i32                           m_rectangleTopText;
       __pointer(mesh_data)                    m_pmeshdata;
-//      ::write_text::font_pointer                m_font;
-      //    ::write_text::font_pointer                m_fontHover;
-      ::draw2d::pen_pointer                 m_penFocused;
-      ::draw2d::pen_pointer                 m_penHighlight;
+//      ::write_text::font_pointer                m_pfont;
+      //    ::write_text::font_pointer                m_pfontHover;
+      ::draw2d::pen_pointer                 m_ppenFocused;
+      ::draw2d::pen_pointer                 m_ppenHighlight;
       EView                            m_eview;
       flags < enum_flag >                 m_flags;
       __pointer(icon_layout)           m_piconlayout;

@@ -48,7 +48,7 @@ namespace user
       u32                                       m_dwPromptContext;    // current help prompt action_context for message box
       bool                                      m_bHelpMode;           // if true, then Shift+F1 help mode is active
       ::user::frame_window *                    m_pNextFrameWnd; // next frame_window in cast global list
-      ::rectangle_i32                           m_rectBorder;         // for OLE border space negotiation
+      ::rectangle_i32                           m_rectangleBorder;         // for OLE border space negotiation
 
       i32                                       m_nShowDelay;           // SW_ command for delay show/hide
 

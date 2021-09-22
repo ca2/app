@@ -62,7 +62,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pimageCompose->copy(pimageFrame, 0);
+         pimageCompose->copy_from(pimageFrame, ::e_object_none);
 
       }
       else
@@ -118,7 +118,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
         }*/
 
 
-   m_pimage->copy(pimageCompose, 0);
+   m_pimage->copy_from(pimageCompose, ::e_object_none);
 
    m_pimage->create_helper_map();
 

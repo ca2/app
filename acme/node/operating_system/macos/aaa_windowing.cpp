@@ -736,14 +736,14 @@ void ns_main_async(dispatch_block_t block);
 //      if(rectangle.size.width > 0 && rectangle.size.height > 0)
 //      {
 //
-//         ::rectangle_i32 rectCopy;
+//         ::rectangle_i32 rectangleCopy;
 //
-//         rectCopy.left = rectangle.origin.x;
-//         rectCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
-//         rectCopy.bottom = rectCopy.top + rectangle.size.height;
-//         rectCopy.right = rectangle.origin.x + rectangle.size.width;
+//         rectangleCopy.left = rectangle.origin.x;
+//         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
+//         rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 //
-//         recta.add(rectCopy);
+//         recta.add(rectangleCopy);
 //
 //      }
 //
@@ -1013,14 +1013,14 @@ void ns_main_async(dispatch_block_t block);
 //               if(CGRectIntersectsRect(rect1, rectangle))
 //               {
 //
-//                  ::rectangle_i32 rectCopy;
+//                  ::rectangle_i32 rectangleCopy;
 //
-//                  rectCopy.left = rectangle.origin.x;
-//                  rectCopy.right = rectangle.origin.x + rectangle.size.width;
-//                  rectCopy.top = rectangle.origin.y;
-//                  rectCopy.bottom = rectangle.origin.y + rectangle.size.height;
+//                  rectangleCopy.left = rectangle.origin.x;
+//                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//                  rectangleCopy.top = rectangle.origin.y;
+//                  rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 //
-//                  recta.add(rectCopy);
+//                  recta.add(rectangleCopy);
 //
 //               }
 //
@@ -1223,19 +1223,19 @@ void ns_main_async(dispatch_block_t block);
 //
 //         CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
 //
-//         ::rectangle_i32 rectCopy;
+//         ::rectangle_i32 rectangleCopy;
 //
-//         //rectCopy.left = rectangle.origin.x;
-//         //rectCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
-//         //rectCopy.bottom = rectCopy.top + rectangle.size.height;
-//         //rectCopy.right = rectangle.origin.x + rectangle.size.width;
+//         //rectangleCopy.left = rectangle.origin.x;
+//         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
+//         //rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+//         //rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 //
-//         rectCopy.left = rectangle.origin.x;
-//         rectCopy.right = rectangle.origin.x + rectangle.size.width;
-//         rectCopy.top = rectangle.origin.y;
-//         rectCopy.bottom = rectangle.origin.y + rectangle.size.height;
+//         rectangleCopy.left = rectangle.origin.x;
+//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//         rectangleCopy.top = rectangle.origin.y;
+//         rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 //
-//         recta.add(rectCopy);
+//         recta.add(rectangleCopy);
 //         windowida.add(iWindowId);
 //
 //         CFRelease(dictRect);
@@ -1302,14 +1302,14 @@ void ns_main_async(dispatch_block_t block);
 ////
 ////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
 ////
-////   ::rectangle_i32 rectTest;
+////   ::rectangle_i32 rectangleTest;
 ////
 ////   for(int i = 0; i < recta.get_size(); i++)
 ////   {
 ////
-////      auto rectAbove = recta[i];
+////      auto rectangleAbove = recta[i];
 ////
-////      if(rectTest.intersect(recta[i], rectangle))
+////      if(rectangleTest.intersect(recta[i], rectangle))
 ////      {
 ////
 ////         return true;
@@ -1336,7 +1336,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   cg_get_window_rect_list(recta, windowida);
 //
-//   ::rectangle_i32 rectTest;
+//   ::rectangle_i32 rectangleTest;
 //
 //   for(index i = 0; i < recta.get_size(); i++)
 //   {
@@ -1352,13 +1352,13 @@ void ns_main_async(dispatch_block_t block);
 //
 //      auto rectangle = recta[i];
 //
-//      ::rectangle_i32 rectHitTest;
+//      ::rectangle_i32 rectangleHitTest;
 //
-//      rectHitTest.set(rectangle.origin(), ::size());
+//      rectangleHitTest.set(rectangle.origin(), ::size());
 //
-//      rectHitTest.inflate(iMargin+1);
+//      rectangleHitTest.inflate(iMargin+1);
 //
-//      if(rectHitTest.contains(pointHitTest))
+//      if(rectangleHitTest.contains(pointHitTest))
 //      {
 //
 //         return true;

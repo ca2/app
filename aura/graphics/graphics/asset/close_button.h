@@ -10,7 +10,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::pen_pointer ppen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
       ::draw2d::brush_pointer pbrush(e_create);
 

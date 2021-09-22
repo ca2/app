@@ -93,11 +93,11 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //::draw2d::pen_pointer pen(e_create);
+      //auto ppen = __create < ::draw2d::pen > ();
 
-      //pen->create_solid(1.0, argb(255, 255, 255, 255));
+      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(pen);
+      //m_pimageBeam->g()->set(ppen);
 
       //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
 
@@ -255,27 +255,27 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectColors;
+      ::rectangle_i32 rectangleColors;
 
-      get_client_rect(rectColors);
+      get_client_rect(rectangleColors);
 
       //if (!m_bCompact)
       //{
 
-      //   rectColors.left = rectangleClient.center().x;
-      //   rectColors.bottom = rectangleClient.center().y;
+      //   rectangleColors.left = rectangleClient.center().x;
+      //   rectangleColors.bottom = rectangleClient.center().y;
 
-      //   rectColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
+      //   rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 
       //}
 
-      //m_rectColors = rectColors;
+      //m_rectangleColors = rectangleColors;
 
-      //m_pimage = create_image({m_rectColors->width() / 2,  m_rectColors->height()});
+      //m_pimage = create_image({m_rectangleColors->width() / 2,  m_rectangleColors->height()});
 
       //m_pimage->g()->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
-      //m_pimageLuminance = create_image({m_rectColors->width() / 8,  m_rectColors->height()});
+      //m_pimageLuminance = create_image({m_rectangleColors->width() / 8,  m_rectangleColors->height()});
 
       //rebuild_luminance();
 

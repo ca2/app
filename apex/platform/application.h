@@ -74,6 +74,7 @@
 #endif
       semaphore                                       m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+      string_array                                    m_straActivationMessage;
 
       ::u32                                           m_dwInstallGoodToCheckAgain;
 
@@ -82,6 +83,8 @@
       __composite(::install::installer)               m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
+
+      bool                                            m_bAttendedFirstRequest;
 
       //bool                                            m_bAgreeExit;
       //bool                                            m_bAgreeExitOk;
@@ -298,6 +301,12 @@
 
       virtual bool is_running();
 
+
+      virtual void add_activation_message(const ::string & strMessage);
+
+      virtual bool has_activation_message() const;
+
+      virtual bool defer_process_activation_message();
 
 
       virtual void on_request(::create * pcreate) override;

@@ -987,12 +987,12 @@ run_install:
 
       RECTANGLE_I32 rectangle_i32;
 
-      RECTANGLE_I32 rectWindow;
+      RECTANGLE_I32 rectangleWindow;
 
-      get_window_rect(&rectWindow);
+      get_window_rect(&rectangleWindow);
 
-      i32 cx = rectWindow.right - rectWindow.left;
-      i32 cy = rectWindow.bottom - rectWindow.top;
+      i32 cx = rectangleWindow.right - rectangleWindow.left;
+      i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       rectangle.left         = 0;
       rectangle.top          = 0;
@@ -1003,7 +1003,7 @@ run_install:
 
 
 
-      pgraphics->OffsetViewportOrg(rectWindow.left, rectWindow.top);
+      pgraphics->OffsetViewportOrg(rectangleWindow.left, rectangleWindow.top);
 
       //b.create(cx, cy, pgraphics);
 
@@ -1634,12 +1634,12 @@ restart:
 
          get_window_rect(rectangle);
 
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectangleSent != rectangle)
          {
 
             m_phost->m_pbasecomposer->m_bRectSent = true;
 
-            m_rectSent = rectangle;
+            m_rectangleSent = rectangle;
 
             if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(RECTANGLE_I32)))
             {

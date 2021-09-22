@@ -65,7 +65,7 @@ namespace base
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText)
    {
 
 
@@ -236,7 +236,7 @@ namespace base
 //   //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
 //   //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
 //   //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * pbutton) override;
-//   //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText) override;
+//   //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText) override;
 
 //   //virtual bool _001OnTabLayout(::user::tab * ptab) override;
 //   //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient, ::enum_check echeck) override;
@@ -262,7 +262,7 @@ namespace base
 //   //virtual ::write_text::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::write_text::font * pfont = nullptr);
 //   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
-//   //virtual const rectangle_i32 &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
+//   //virtual const rectangle_i32 &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rectangle_i32 rectangleDefault = nullptr);
 //   //virtual int                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, int iDefault = 0);
 //   //virtual double             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, double dDefault = 0.0);
 //

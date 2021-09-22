@@ -10,11 +10,11 @@ namespace experience
 
 
             frame::frame() :
-               m_penText1(e_create),
-               m_penFace1(e_create),
-               m_penHilight1(e_create),
-               m_penShadow1(e_create),
-               m_penDkShadow1(e_create)
+               m_ppenText1(e_create),
+               m_ppenFace1(e_create),
+               m_ppenHilight1(e_create),
+               m_ppenShadow1(e_create),
+               m_ppenDkShadow1(e_create)
             {
 
                m_pointWindowIcon.x = 5;
@@ -62,7 +62,7 @@ namespace experience
             }
 
 
-            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectParam)
+            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleParam)
             {
 
                auto pframewindow = m_pframewindow;
@@ -71,9 +71,9 @@ namespace experience
 
                auto imaging = psystem->imaging();
 
-               ::rectangle_i32 rectangleClient(rectParam);
+               ::rectangle_i32 rectangleClient(rectangleParam);
 
-               ::rectangle_i32 rectInflate;
+               ::rectangle_i32 rectangleInflate;
 
                if(rectangleClient.is_empty())
                {
@@ -85,13 +85,13 @@ namespace experience
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectInflate = rectangleClient;
+               rectangleInflate = rectangleClient;
 
-               rectInflate.inflate(iInflate, iInflate);
+               rectangleInflate.inflate(iInflate, iInflate);
 
-               ::rectangle_i32 rectScreen;
+               ::rectangle_i32 rectangleScreen;
 
-               pframewindow->best_monitor(rectScreen);
+               pframewindow->best_monitor(rectangleScreen);
 
                ::image_pointer pimage1;
 
@@ -101,9 +101,9 @@ namespace experience
 
                pimage2 = m_pcontext->context_image()->create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
-               ::rectangle_i32 rectWindow = rectangleClient;
+               ::rectangle_i32 rectangleWindow = rectangleClient;
 
-               pframewindow->client_to_screen(rectWindow);
+               pframewindow->client_to_screen(rectangleWindow);
 
                ::point_i32 pointInflate(iInflate, iInflate);
 
@@ -432,11 +432,11 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_text));
-               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_background));
-               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_hilite));
-               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_shadow));
-               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_dark_shadow));
+               m_ppenText1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_text));
+               m_ppenFace1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_background));
+               m_ppenHilight1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_hilite));
+               m_ppenShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_shadow));
+               m_ppenDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::e_element_button_dark_shadow));
                m_colorDkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
                m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -534,10 +534,10 @@ namespace experience
             //}
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleParam,enum_border eborder, const ::color::color & colorTopLeft, const ::color::color& colorBottomRight)
             {
 
-               ::rectangle_i32 rectangle(rectParam);
+               ::rectangle_i32 rectangle(rectangleParam);
 
                i32 x = rectangle.left;
                i32 y = rectangle.top;
@@ -546,16 +546,16 @@ namespace experience
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               ::draw2d::pen_pointer pen;
+               ::draw2d::pen_pointer ppen;
 
                if(eborder & e_border_top || eborder & e_border_left)
                {
 
-                  pen.create(this);
+                  ppen.create(this);
 
-                  pen->create_solid(1.0, colorTopLeft);
+                  ppen->create_solid(1.0, colorTopLeft);
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
                }
 
@@ -577,14 +577,14 @@ namespace experience
 
                }
 
-               if((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != colorBottomRight))
+               if((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != colorBottomRight))
                {
 
-                  pen.create(this);
+                  ppen.create(this);
 
-                  pen->create_solid(1.0,colorBottomRight);
+                  ppen->create_solid(1.0,colorBottomRight);
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
                }
 
@@ -645,9 +645,9 @@ namespace experience
                if(pframewindow->layout().is_minimal())
                {
 
-                  ::rectangle_i32 rectIcon;
+                  ::rectangle_i32 rectangleIcon;
 
-                  if(get_element_rect(rectIcon,ElementTopLeftIcon))
+                  if(get_element_rect(rectangleIcon,ElementTopLeftIcon))
                   {
 
                      auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -657,7 +657,7 @@ namespace experience
 
                         image_source imagesource(pdrawicon);
 
-                        image_drawing_options imagedrawingoptions(rectIcon);
+                        image_drawing_options imagedrawingoptions(rectangleIcon);
 
                         image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -667,17 +667,17 @@ namespace experience
 
                   }
 
-                  ::rectangle_i32 rectGrip;
+                  ::rectangle_i32 rectangleGrip;
 
-                  if(get_element_rect(rectGrip,ElementMoveGripMinimal))
+                  if(get_element_rect(rectangleGrip,ElementMoveGripMinimal))
                   {
 
                      int i = 0;
 
-                     while(i < rectGrip.width() - 5 + 1)
+                     while(i < rectangleGrip.width() - 5 + 1)
                      {
 
-                        ::rectangle_f64 rectangle(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
+                        ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
                         pgraphics->draw_inset_3drect(rectangle, argb(110,230,230,230),argb(110,130,130,130));
 
@@ -691,10 +691,10 @@ namespace experience
                else if(!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
                {
 
-                  //pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
-                  pgraphics->fill_rectangle(m_rectCaption, m_colorCaptionTextBk);
+                  //pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
+                  pgraphics->fill_rectangle(m_rectangleCaption, m_colorCaptionTextBk);
 
-                  ::rectangle_i32 rectIcon;
+                  ::rectangle_i32 rectangleIcon;
 
                   auto pframewindow = m_pframewindow;
 
@@ -737,7 +737,7 @@ namespace experience
 
                   rectangle -= rectangle.top_left();
 
-                  if(get_element_rect(rectIcon, ElementTopLeftIcon))
+                  if(get_element_rect(rectangleIcon, ElementTopLeftIcon))
                   {
 
                      auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -749,7 +749,7 @@ namespace experience
 
                         image_source imagesource(pdrawicon);
 
-                        image_drawing_options imagedrawingoptions(rectIcon);
+                        image_drawing_options imagedrawingoptions(rectangleIcon);
 
                         image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -767,7 +767,7 @@ namespace experience
 
                   pgraphics->set_font(pframewindow, ::e_element_window_title);
 
-                  pgraphics->_DrawText(wstrWindowText, m_rectWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
+                  pgraphics->_DrawText(wstrWindowText, m_rectangleWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 
                }
 

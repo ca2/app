@@ -44,21 +44,21 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       
       auto pointCursor = __point(pusermessage->m_lparam);
 
-      ::rectangle_i32 rectPlacement;
+      ::rectangle_i32 rectanglePlacement;
       
-      viewline.GetPlacement(rectPlacement);
+      viewline.GetPlacement(rectanglePlacement);
       
-      bInside = rectPlacement.contains(pointCursor) != 0;
+      bInside = rectanglePlacement.contains(pointCursor) != 0;
       
       if(!bInside && GetState() == StateTracking)
       {
          if(message == e_message_left_button_up
                || message == e_message_mouse_move)
          {
-            if(pointCursor.y < rectPlacement.top
+            if(pointCursor.y < rectanglePlacement.top
                   ||
-                  (pointCursor.y <= rectPlacement.bottom &&
-                   pointCursor.x < rectPlacement.left))
+                  (pointCursor.y <= rectanglePlacement.bottom &&
+                   pointCursor.x < rectanglePlacement.left))
             {
                SetSelBefore(viewline);
                //                   viewline.get_interaction()->set_need_redraw();
@@ -466,9 +466,9 @@ bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u
 
    index iLine;
    strsize iChar;
-   ::rectangle_i32 rectPlacement;
-   viewline.GetPlacement(rectPlacement);
-   bInside = rectPlacement.contains(point1) != 0;
+   ::rectangle_i32 rectanglePlacement;
+   viewline.GetPlacement(rectanglePlacement);
+   bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == StateTracking)
    {
       return false;
@@ -520,18 +520,18 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
 
    strsize iChar;
 
-   ::rectangle_i32 rectPlacement;
+   ::rectangle_i32 rectanglePlacement;
 
-   viewline.GetPlacement(rectPlacement);
+   viewline.GetPlacement(rectanglePlacement);
 
-   bInside = rectPlacement.contains(point1) != 0;
+   bInside = rectanglePlacement.contains(point1) != 0;
 
    if(!bInside && GetState() == StateTracking)
    {
-      if(point1.y < rectPlacement.top
+      if(point1.y < rectanglePlacement.top
             ||
-            (rectPlacement.contains_y(point1.y) &&
-             point1.x < rectPlacement.left))
+            (rectanglePlacement.contains_y(point1.y) &&
+             point1.x < rectanglePlacement.left))
       {
          SetSelBefore(viewline);
          //             viewline.get_interaction()->set_need_redraw();
@@ -604,15 +604,15 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
    index iLine;
    strsize iChar;
 
-   ::rectangle_i32 rectPlacement;
-   viewline.GetPlacement(rectPlacement);
-   bInside = rectPlacement.contains(point1) != 0;
+   ::rectangle_i32 rectanglePlacement;
+   viewline.GetPlacement(rectanglePlacement);
+   bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == StateTracking)
    {
-      if(point1.y < rectPlacement.top
+      if(point1.y < rectanglePlacement.top
             ||
-            (point1.y <= rectPlacement.bottom &&
-             point1.x < rectPlacement.left))
+            (point1.y <= rectanglePlacement.bottom &&
+             point1.x < rectanglePlacement.left))
       {
          SetSelBefore(viewline);
          //             viewline.get_interaction()->set_need_redraw();
@@ -695,8 +695,8 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
 
          if(!viewline.is_hover())
          {
-            ::rectangle_i32 rectPlacement;
-            viewline.GetPlacement(rectPlacement);
+            ::rectangle_i32 rectanglePlacement;
+            viewline.GetPlacement(rectanglePlacement);
             viewline.get_interaction()->set_need_redraw();
          }
       }

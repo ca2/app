@@ -43,9 +43,9 @@ namespace hotplugin
 
    //
 
-   ////::rectangle_i32(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
+   ////::rectangle_i32(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
-   ////rectBar.deflate(2,2);
+   ////rectangleBar.deflate(2,2);
 
    //::SetTextColor(hdc,rgb(84,255,84));
 
@@ -57,26 +57,26 @@ namespace hotplugin
 
    ////::SelectObject(hdc,hpen);
 
-   ////rectBar.right++;
+   ////rectangleBar.right++;
 
-   ////rectBar.bottom++;
+   ////rectangleBar.bottom++;
 
    //int old = SetROP2(hdc,R2_MASKPEN);
 
    //
 
-   //::rectangle_i32(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
+   //::rectangle_i32(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
    //::SetTextColor(hdc,rgb(184,184,177));
 
-   //::rectangle_i32(hdc,rectBar.left-1,rectBar.top-1,rectBar.right + 1,rectBar.top);
-   //::rectangle_i32(hdc,rectBar.left - 1,rectBar.bottom,rectBar.right + 1,rectBar.bottom+1);
-   //::rectangle_i32(hdc,rectBar.left - 1,rectBar.top - 1,rectBar.left,rectBar.bottom+1);
-   //::rectangle_i32(hdc,rectBar.right,rectBar.top - 1,rectBar.right+1,rectBar.bottom + 1);
+   //::rectangle_i32(hdc,rectangleBar.left-1,rectangleBar.top-1,rectangleBar.right + 1,rectangleBar.top);
+   //::rectangle_i32(hdc,rectangleBar.left - 1,rectangleBar.bottom,rectangleBar.right + 1,rectangleBar.bottom+1);
+   //::rectangle_i32(hdc,rectangleBar.left - 1,rectangleBar.top - 1,rectangleBar.left,rectangleBar.bottom+1);
+   //::rectangle_i32(hdc,rectangleBar.right,rectangleBar.top - 1,rectangleBar.right+1,rectangleBar.bottom + 1);
 
    //SetROP2(hdc,old);
 
-   ////::rectangle_i32(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
+   ////::rectangle_i32(hdc,rectangleBar.left,rectangleBar.top,rectangleBar.right,rectangleBar.bottom);
 
    //
 
@@ -90,33 +90,33 @@ namespace hotplugin
 
    //::SelectObject(hdc,hbrushGren);
 
-   //int x = v % rectBar.width();
+   //int x = v % rectangleBar.width();
 
-   //::rectangle_i32 rectBrick(left + x,rectBar.top,left + x + w,rectBar.bottom);
-   //::rectangle_i32 rectDraw;
+   //::rectangle_i32 rectangleBrick(left + x,rectangleBar.top,left + x + w,rectangleBar.bottom);
+   //::rectangle_i32 rectangleDraw;
 
-   //if(rectDraw.intersect(rectBar,rectBrick))
+   //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectDraw.left,rectDraw.top,rectDraw.right,rectDraw.bottom);
+   //   ::rectangle_i32(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
-   //rectBrick.offset(-rectBar.width(),0);
+   //rectangleBrick.offset(-rectangleBar.width(),0);
 
-   //if(rectDraw.intersect(rectBar,rectBrick))
+   //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectDraw.left,rectDraw.top,rectDraw.right,rectDraw.bottom);
+   //   ::rectangle_i32(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
-   //rectBrick.offset(rectBar.width() * 2,0);
+   //rectangleBrick.offset(rectangleBar.width() * 2,0);
 
-   //if(rectDraw.intersect(rectBar,rectBrick))
+   //if(rectangleDraw.intersect(rectangleBar,rectangleBrick))
    //{
 
-   //   ::rectangle_i32(hdc,rectDraw.left,rectDraw.top,rectDraw.right,rectDraw.bottom);
+   //   ::rectangle_i32(hdc,rectangleDraw.left,rectangleDraw.top,rectangleDraw.right,rectangleDraw.bottom);
 
    //}
 
@@ -140,20 +140,20 @@ namespace hotplugin
 
    ////HFONT hfontOld = (HFONT) ::SelectObject(hdc,hStockFont);
 
-   ////::text_out(hdc,rectBar.left - 1,rectBar.bottom + 2,str,str.get_length());
+   ////::text_out(hdc,rectangleBar.left - 1,rectangleBar.bottom + 2,str,str.get_length());
 
-   ////rectBar.left++;
-   ////rectBar.top++;
-   ////rectBar.right--;
-   ////rectBar.bottom--;
+   ////rectangleBar.left++;
+   ////rectangleBar.top++;
+   ////rectangleBar.right--;
+   ////rectangleBar.bottom--;
 
-   //rectBar.left += 4;
+   //rectangleBar.left += 4;
 
    //HFONT hFont = CreateFont(23,0,0,0,FW_DONTCARE,false,false,false,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
    //   CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY,VARIABLE_PITCH,TEXT("Calibri"));
    //HFONT hfontOld = (HFONT) ::SelectObject(hdc,hFont);
 
-   //::DrawText(hdc,str,str.get_length(),&rectBar,DT_SINGLELINE| e_align_left_center);
+   //::DrawText(hdc,str,str.get_length(),&rectangleBar,DT_SINGLELINE| e_align_left_center);
 
    //::DeleteObject(hFont);
 
@@ -205,7 +205,7 @@ namespace hotplugin
 
 //}
 
-//::rectangle_i32 rectBar(left,top,right,bottom);
+//::rectangle_i32 rectangleBar(left,top,right,bottom);
 
 
 } // namespace hotplugin

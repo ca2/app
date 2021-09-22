@@ -1171,10 +1171,10 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //         else if(br > 1)
 //         {
 //            // This is the hard part: must peek ahead one byte
-//            ::u32 br2 = 0;
+//            ::u32 pbrush2 = 0;
 //            char peekChar = 0;
-//            ReadFile(hFile,&peekChar,1,&br2,0);
-//            if(!br2)
+//            ReadFile(hFile,&peekChar,1,&pbrush2,0);
+//            if(!pbrush2)
 //               *dst++ = src[i];
 //            else if(peekChar == '\n')
 //               *dst++ = '\n';

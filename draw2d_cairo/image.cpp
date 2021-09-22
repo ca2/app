@@ -462,7 +462,7 @@ namespace draw2d_cairo
    //}
 
 
-   bool image::map(bool bApplyAlphaTransform)
+   bool image::_map(bool bApplyAlphaTransform)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -743,15 +743,15 @@ namespace draw2d_cairo
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      rectangle_i64 rectWindow;
+//      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectangleWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
 //      map(true);
 //
-//      ::rectangle_i32 rectangle(rectWindow);
+//      ::rectangle_i32 rectangle(rectangleWindow);
 //
 //      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
@@ -787,13 +787,13 @@ namespace draw2d_cairo
 //      try
 //      {
 //
-//         ::rectangle_i32 rectWindow;
+//         ::rectangle_i32 rectangleWindow;
 //
-//         puserinteraction->get_window_rect(rectWindow);
+//         puserinteraction->get_window_rect(rectangleWindow);
 //
 //         ::image_pointer pimage1(this);
 //
-//         if (!pimage1->create(rectWindow.bottom_right()))
+//         if (!pimage1->create(rectangleWindow.bottom_right()))
 //         {
 //
 //            return false;
@@ -809,25 +809,25 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::rectangle_i32 rectPaint;
-//         ::rectangle_i32 rectUpdate;
-//         rectUpdate = rectWindow;
-//         rectPaint = rectWindow;
-//         rectPaint.offset(-rectPaint.top_left());
+//         ::rectangle_i32 rectanglePaint;
+//         ::rectangle_i32 rectangleUpdate;
+//         rectangleUpdate = rectangleWindow;
+//         rectanglePaint = rectangleWindow;
+//         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> SetViewportOrg(::point_i32());
 //         puserinteraction->_000OnDraw(pimage1->g());
 //         m_spgraphics->SetViewportOrg(::point_i32());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics->SetViewportOrg(::point_i32());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
-//         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
-//                              rectPaint.width(), rectPaint.height(),
-//                              pgraphics, rectUpdate.left, rectUpdate.top,
+//         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
+//                              rectanglePaint.width(), rectanglePaint.height(),
+//                              pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //                              SRCCOPY);
 //
 //      }
@@ -872,15 +872,15 @@ namespace draw2d_cairo
 ////   {
 ////
 ////
-////      rectangle_i64 rectWindow;
+////      rectangle_i64 rectangleWindow;
 ////
-////      puserinteraction->get_window_rect(rectWindow);
+////      puserinteraction->get_window_rect(rectangleWindow);
 ////
 ////      m_spgraphics->SetViewportOrg(0, 0);
 ////
 ////      map(true);
 ////
-////      ::rectangle_i32 rectangle(rectWindow);
+////      ::rectangle_i32 rectangle(rectangleWindow);
 ////
 //////      papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
@@ -917,15 +917,15 @@ namespace draw2d_cairo
 //   {
 //
 //
-//      rectangle_i64 rectWindow;
+//      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectangleWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
 //      map(false);
 //
-//      ::rectangle_i32 rectangle(rectWindow);
+//      ::rectangle_i32 rectangle(rectangleWindow);
 //
 //      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //

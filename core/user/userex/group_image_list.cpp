@@ -411,13 +411,13 @@ namespace userex
 
       ::user::interaction * pinteraction = &m_buttonMenu;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      pinteraction->get_window_rect(rectWindow);
+      pinteraction->get_window_rect(rectangleWindow);
 
       auto puser = user();
 
-      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
+      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
@@ -502,22 +502,22 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectMenu(rectangleClient);
+      ::rectangle_i32 rectangleMenu(rectangleClient);
 
-      rectMenu.bottom = rectangleClient.top + 32;
+      rectangleMenu.bottom = rectangleClient.top + 32;
 
-      m_buttonMenu.display_child(rectMenu);
+      m_buttonMenu.display_child(rectangleMenu);
 
-      ::rectangle_i32 rectList(rectangleClient);
+      ::rectangle_i32 rectangleList(rectangleClient);
 
-      rectList.top = rectangleClient.top + 32;
+      rectangleList.top = rectangleClient.top + 32;
 
       auto * plist = get_current_list();
 
       if (plist != nullptr)
       {
 
-         plist->place(rectList);
+         plist->place(rectangleList);
 
          plist->order_top();
 

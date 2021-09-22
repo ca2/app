@@ -1544,14 +1544,14 @@ namespace aura
 
    //      index iMainWorkspace = m_iMainWorkspace;
 
-   //      if (iMainWorkspace < 0 || iMainWorkspace >= m_rectaWorkspace.get_count())
+   //      if (iMainWorkspace < 0 || iMainWorkspace >= m_rectangleaWorkspace.get_count())
    //      {
 
    //         iMainWorkspace = 0;
 
    //      }
 
-   //      if (m_rectaWorkspace.get_count() <= 0)
+   //      if (m_rectangleaWorkspace.get_count() <= 0)
    //      {
 
    //         return -1;
@@ -1561,7 +1561,7 @@ namespace aura
    //      if(prectangle != nullptr)
    //      {
 
-   //         *prectangle = m_rectaWorkspace[iMainWorkspace];
+   //         *prectangle = m_rectangleaWorkspace[iMainWorkspace];
 
    //      }
 
@@ -1924,22 +1924,22 @@ namespace aura
 //
 //      }
 //
-//      rectangle_i32 rectScreen(lpcrect);
+//      rectangle_i32 rectangleScreen(lpcrect);
 //
 ////      if(::is_null(lprect))
 ////      {
 ////
-////         get_main_monitor(rectScreen);
+////         get_main_monitor(rectangleScreen);
 ////
 ////      }
 ////      else
 ////      {
 ////
-////         rectScreen = *lprect;
+////         rectangleScreen = *lprect;
 ////
 ////      }
 //
-//      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
+//      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen));
 //
 //      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 //
@@ -1950,7 +1950,7 @@ namespace aura
 //
 //      }
 //
-////      puserinteraction->place(rectScreen);
+////      puserinteraction->place(rectangleScreen);
 ////
 ////      puserinteraction->display(e_display_normal);
 ////

@@ -106,15 +106,15 @@ acme_dir::~acme_dir()
 
 
 
-
-::file::path acme_dir::module_folder()
-{
-
-   throw ::interface_only_exception();
-
-   return "";
-
-}
+//
+//::file::path acme_dir::module_folder()
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return "";
+//
+//}
 
 
 ::file::path acme_dir::appdata()

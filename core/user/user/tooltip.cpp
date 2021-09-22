@@ -7,7 +7,7 @@ namespace user
 
 
    tooltip::tooltip(::object * pobject):
-      m_font(e_create)
+      m_pfont(e_create)
    {
 
       m_bError = false;
@@ -59,7 +59,7 @@ namespace user
 
       auto strFontName = pnode->font_name(e_font_sans_ex);
 
-      m_font->create_point_font(strFontName, 12.0);
+      m_pfont->create_point_font(strFontName, 12.0);
 
    }
 
@@ -93,23 +93,23 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      ::draw2d::path_pointer path(e_create);
+      auto ppath = __create < ::draw2d::path > ();
 
-      path->set_current_point(rectangleClient.left, rectangleClient.bottom);
+      ppath->set_current_point(rectangleClient.left, rectangleClient.bottom);
 
-      ::rectangle_i32 rectBody;
+      ::rectangle_i32 rectangleBody;
 
-      rectBody = rectangleClient;
+      rectangleBody = rectangleClient;
 
-      rectBody.left += 16;
-      rectBody.bottom -= 16;
+      rectangleBody.left += 16;
+      rectangleBody.bottom -= 16;
 
-      path->add_line(rectBody.left, rectBody.top + rectBody.height()/2);
-      path->add_line(rectBody.left,rectBody.top);
-      path->add_line(rectBody.right,rectBody.top);
-      path->add_line(rectBody.right,rectBody.bottom);
-      path->add_line(rectBody.left + rectBody.height() / 2,rectBody.bottom);
-      path->close_figure();
+      ppath->add_line(rectangleBody.left, rectangleBody.top + rectangleBody.height()/2);
+      ppath->add_line(rectangleBody.left,rectangleBody.top);
+      ppath->add_line(rectangleBody.right,rectangleBody.top);
+      ppath->add_line(rectangleBody.right,rectangleBody.bottom);
+      ppath->add_line(rectangleBody.left + rectangleBody.height() / 2,rectangleBody.bottom);
+      ppath->close_figure();
 
       ::draw2d::brush_pointer b(e_create);
 
@@ -117,33 +117,33 @@ namespace user
 
       pgraphics->set(b);
 
-      pgraphics->fill_path(path);
+      pgraphics->fill_path(ppath);
 
-      ::draw2d::pen_pointer ppen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
       pgraphics->set(ppen);
 
       ppen->create_solid(1.0, argb(190, 120, 120, 255));
 
-      pgraphics->draw_path(path);
+      pgraphics->draw_path(ppath);
 
       pgraphics->set_text_color(argb(255, 120, 120, 255));
 
       //::rectangle_i32 rectangle;
 
-      //rectText.left = 0;
+      //rectangleText.left = 0;
 
-      //rectText.top = 0;
+      //rectangleText.top = 0;
 
-      //rectText.right = m_size.cx;
+      //rectangleText.right = m_size.cx;
 
-      //rectText.bottom = m_size.cy;
+      //rectangleText.bottom = m_size.cy;
 
-      pgraphics->set(m_font);
+      pgraphics->set(m_pfont);
 
-      rectBody.offset(4,0);
+      rectangleBody.offset(4,0);
 
-      pgraphics->draw_text(m_str,rectBody,e_align_vertical_center);
+      pgraphics->draw_text(m_str,rectangleBody,e_align_vertical_center);
 
    }
 
@@ -162,7 +162,7 @@ namespace user
 
       g->CreateCompatibleDC(nullptr);
 
-      g->set(m_font);
+      g->set(m_pfont);
 
       for(auto strLine : stra)
       {

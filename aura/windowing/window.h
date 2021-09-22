@@ -166,7 +166,7 @@ namespace windowing
 
       virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
 
-      virtual void get_window_text(string & rectString);
+      virtual void get_window_text(string & rectangleString);
       virtual strsize get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -198,7 +198,7 @@ namespace windowing
       virtual void UnlockWindowUpdate();
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
       // Window State Functions
       virtual bool is_this_enabled();

@@ -180,7 +180,7 @@ namespace account
    }
 
 
-   string main_window::do_account(const ::rectangle_i32 & rectParam)
+   string main_window::do_account(const ::rectangle_i32 & rectangleParam)
    {
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
@@ -189,15 +189,15 @@ namespace account
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
-      ::rectangle_i32 rectDesktop;
+      ::rectangle_i32 rectangleDesktop;
 
       if(puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectDesktop);
+         puiParent->get_window_rect(rectangleDesktop);
 
       }
-      else if (is_empty(&rectParam))
+      else if (is_empty(&rectangleParam))
       {
 
          auto puser = psession->user();
@@ -206,19 +206,19 @@ namespace account
 
          auto pdisplay = pwindowing->display();
 
-         pdisplay->get_main_monitor(rectDesktop);
+         pdisplay->get_main_monitor(rectangleDesktop);
 
       }
       else
       {
 
-         rectDesktop = rectParam;
+         rectangleDesktop = rectangleParam;
 
       }
 
-      ::rectangle_i32 rectFontopus;
+      ::rectangle_i32 rectangleFontopus;
 
-      ::rectangle_i32 rectLogin;
+      ::rectangle_i32 rectangleLogin;
 
       int stdw = 800;
 
@@ -228,29 +228,29 @@ namespace account
 
       int h = stdh;
 
-      if(w > rectDesktop.width())
+      if(w > rectangleDesktop.width())
       {
 
-         w = rectDesktop.width();
+         w = rectangleDesktop.width();
 
       }
 
-      if(h > rectDesktop.height())
+      if(h > rectangleDesktop.height())
       {
 
-         h = rectDesktop.height();
+         h = rectangleDesktop.height();
 
       }
 
-      rectFontopus.left = rectDesktop.left + (rectDesktop.width() - w) / 2;
-      rectFontopus.top = rectDesktop.top + (rectDesktop.height() - h) / 3;
-      rectFontopus.right = rectFontopus.left + w;
-      rectFontopus.bottom = rectFontopus.top + h;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.right = rectangleFontopus.left + w;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
       if(puiParent != nullptr)
-         puiParent->screen_to_client(rectFontopus);
+         puiParent->screen_to_client(rectangleFontopus);
 
-      if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
+      if((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
          auto phyperlink = __create_new < ::hyperlink >();
@@ -263,7 +263,7 @@ namespace account
 
       }
 
-      //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectangleFontopus));
 
       if (!create_host())
       {
@@ -276,7 +276,7 @@ namespace account
 
       order(e_zorder_top);
 
-      place(rectFontopus);
+      place(rectangleFontopus);
 
       m_plogin->m_peditUser->set_keyboard_focus();
 
@@ -357,20 +357,20 @@ namespace account
 
          keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
 
-         ::rectangle_i32 rectClient1;
+         ::rectangle_i32 rectangleClient1;
 
-         get_client_rect(rectClient1);
+         get_client_rect(rectangleClient1);
 
          bool bParentChange = false;
 
          if(get_parent() != nullptr)
          {
 
-            ::rectangle_i32 rectParent;
+            ::rectangle_i32 rectangleParent;
 
-            get_parent()->get_window_rect(rectParent);
+            get_parent()->get_window_rect(rectangleParent);
 
-            if(rectParent != m_rectParent)
+            if(rectangleParent != m_rectangleParent)
             {
 
                bParentChange = true;
@@ -380,15 +380,15 @@ namespace account
          }
 
 
-         if(rectClient1.area() < 100 * 100 || bParentChange)
+         if(rectangleClient1.area() < 100 * 100 || bParentChange)
          {
 
-            ::rectangle_i32 rectDesktop;
+            ::rectangle_i32 rectangleDesktop;
 
             if(get_parent() != nullptr)
             {
 
-               get_parent()->get_window_rect(rectDesktop);
+               get_parent()->get_window_rect(rectangleDesktop);
 
             }
             else
@@ -400,13 +400,13 @@ namespace account
 
                auto pdisplay = pwindowing->display();
 
-               pdisplay->get_main_monitor(rectDesktop);
+               pdisplay->get_main_monitor(rectangleDesktop);
 
             }
 
-            ::rectangle_i32 rectFontopus;
+            ::rectangle_i32 rectangleFontopus;
 
-            ::rectangle_i32 rectLogin;
+            ::rectangle_i32 rectangleLogin;
 
             int stdw = 800;
 
@@ -416,31 +416,31 @@ namespace account
 
             int h = stdh;
 
-            if(w > rectDesktop.width())
+            if(w > rectangleDesktop.width())
             {
 
-               w = rectDesktop.width();
+               w = rectangleDesktop.width();
 
             }
 
-            if(h > rectDesktop.height())
+            if(h > rectangleDesktop.height())
             {
 
-               h = rectDesktop.height();
+               h = rectangleDesktop.height();
 
             }
 
-            rectFontopus.left = rectDesktop.left + (width(rectDesktop) - w) / 2;
-            rectFontopus.top = rectDesktop.top + (height(rectDesktop) - h) / 3;
-            rectFontopus.right = rectFontopus.left + w;
-            rectFontopus.bottom = rectFontopus.top + h;
+            rectangleFontopus.left = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
+            rectangleFontopus.top = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
+            rectangleFontopus.right = rectangleFontopus.left + w;
+            rectangleFontopus.bottom = rectangleFontopus.top + h;
 
 
             if(get_parent() != nullptr)
-               get_parent()->screen_to_client(rectFontopus);
+               get_parent()->screen_to_client(rectangleFontopus);
 
 
-            set_window_position(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
+            set_window_position(e_zorder_top,rectangleFontopus,SWP_SHOWWINDOW);
 
          }
 

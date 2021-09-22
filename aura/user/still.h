@@ -27,18 +27,18 @@ namespace user
 
       ::write_text::font_pointer          m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::rectangle_i32                   m_rectMargin;
-      //::rectangle_i32                   m_rectBorder;
-      //::rectangle_i32                   m_rectPadding;
+      //::rectangle_i32                   m_rectangleMargin;
+      //::rectangle_i32                   m_rectangleBorder;
+      //::rectangle_i32                   m_rectanglePadding;
       ::e_align                           m_ealignText;
       e_style                             m_estyle;
-      ::rectangle_i32                     m_rectText;
+      ::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
 
       ::write_text::text_out_array        m_textouta;
 
-      ::rectangle_i32                     m_rectCheckBox;
+      ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
       
 

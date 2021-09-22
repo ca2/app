@@ -379,12 +379,12 @@ namespace draw2d
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-      ::rectangle_i32 rectEmboss = rectangle;
+      ::rectangle_i32 rectangleEmboss = rectangle;
 
-      rectEmboss.left -= (::i32)(iR * g_dEmboss);
-      rectEmboss.top -= (::i32)(iR * g_dEmboss);
-      rectEmboss.right += (::i32)(iR * g_dEmboss);
-      rectEmboss.bottom += (::i32)(iR * g_dEmboss);
+      rectangleEmboss.left -= (::i32)(iR * g_dEmboss);
+      rectangleEmboss.top -= (::i32)(iR * g_dEmboss);
+      rectangleEmboss.right += (::i32)(iR * g_dEmboss);
+      rectangleEmboss.bottom += (::i32)(iR * g_dEmboss);
 
       if (bUpdate || !pimageBlur->is_ok())
       {
@@ -393,19 +393,19 @@ namespace draw2d
 
          int iEffectiveBlurRadius = iBlurRadius;
 
-         const ::size_i32 & size = rectEmboss.size();
+         const ::size_i32 & size = rectangleEmboss.size();
 
-         pimageBlur->create(rectEmboss);
+         pimageBlur->create(rectangleEmboss);
 
          pimageBlur->fill(0, 0, 0, 0);
 
-         ::rectangle_i32 rectCache;
+         ::rectangle_i32 rectangleCache;
 
-         rectCache.left = (::i32)(iR * g_dEmboss);
-         rectCache.top = (::i32)(iR * g_dEmboss);
-         rectCache.right = rectCache.left + rectangle.width();
+         rectangleCache.left = (::i32)(iR * g_dEmboss);
+         rectangleCache.top = (::i32)(iR * g_dEmboss);
+         rectangleCache.right = rectangleCache.left + rectangle.width();
 
-         rectCache.bottom = rectCache.top + rectangle.height();
+         rectangleCache.bottom = rectangleCache.top + rectangle.height();
 
          ::image_pointer pimage;
 
@@ -429,16 +429,16 @@ namespace draw2d
 
          pimage->fill(0, 0, 0, 0);
 
-         ::draw2d::brush_pointer brushText(e_create);
+         auto pbrushText = __create < ::draw2d::brush > ();
 
-         brushText->create_solid(argb(255, 255, 255, 255));
-         pimage->get_graphics()->set(brushText);
+         pbrushText->create_solid(argb(255, 255, 255, 255));
+         pimage->get_graphics()->set(pbrushText);
 
-         pimage->get_graphics()->OffsetViewportOrg(rectCache.left - rectangle.left, rectCache.top - rectangle.top);
+         pimage->get_graphics()->OffsetViewportOrg(rectangleCache.left - rectangle.left, rectangleCache.top - rectangle.top);
 
          pred(pimage->get_graphics());
 
-         pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rectangle.left, -rectCache.top + rectangle.top);
+         pimage->get_graphics()->OffsetViewportOrg(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
 
          __pointer(::aura::system) psystem = m_psystem;
 
@@ -461,7 +461,7 @@ namespace draw2d
 
       image_source imagesource(pimageBlur);
 
-      image_drawing_options imagedrawingoptions(rectEmboss);
+      image_drawing_options imagedrawingoptions(rectangleEmboss);
 
       imagedrawingoptions = colorfilter;
 

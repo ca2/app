@@ -56,52 +56,52 @@ namespace filemanager
 
 
 
-      /*::fill_rectangle(hdc, &rectProgress, g_hbrushProgress3);
-      rectProgress.left++;
-      rectProgress.right--;
-      rectProgress.top++;
-      rectProgress.bottom--;*/
+      /*::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress3);
+      rectangleProgress.left++;
+      rectangleProgress.right--;
+      rectangleProgress.top++;
+      rectangleProgress.bottom--;*/
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);
       i32 iLineCount = 23;
       double dBarHeight = (double)rectangleClient.height() / (double)iLineCount;
       double dTop = 0.0;
-      ::rectangle_i32 rectProgress;
-      rectProgress = rectangleClient;
-      //rectProgress.left += 23;
-      //rectProgress.right -= 23;
-      rectProgress.top += (::i32)dTop;
-      rectProgress.bottom = (::i32)(dTop + dBarHeight);
+      ::rectangle_i32 rectangleProgress;
+      rectangleProgress = rectangleClient;
+      //rectangleProgress.left += 23;
+      //rectangleProgress.right -= 23;
+      rectangleProgress.top += (::i32)dTop;
+      rectangleProgress.bottom = (::i32)(dTop + dBarHeight);
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
-      ::rectangle_i32 rectBar;
+      ::rectangle_i32 rectangleBar;
       double dProgress;
       dProgress = get_document()->m_thread.get_progress_rate();
       for(i32 iLine = 0; iLine < iLineCount; iLine++)
       {
 
-         rectBar = rectProgress;
+         rectangleBar = rectangleProgress;
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pgraphics->fill_rectangle(rectProgress,rgb(255,240,200));
+            pgraphics->fill_rectangle(rectangleProgress,rgb(255,240,200));
          }
          if(dProgress > dProgressL)
          {
             if(dProgress < dProgressU)
             {
-               rectBar.right = ((i32)((rectProgress.right - rectProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectProgress.left;
+               rectangleBar.right = ((i32)((rectangleProgress.right - rectangleProgress.left) * (dProgress - dProgressL) * ((double)iLineCount))) + rectangleProgress.left;
             }
-            DoBar(pgraphics,rectBar.left,rectBar.top,
-                  rectBar.right - rectBar.left,rectBar.bottom - rectBar.top,m_dAnimation);
+            DoBar(pgraphics,rectangleBar.left,rectangleBar.top,
+                  rectangleBar.right - rectangleBar.left,rectangleBar.bottom - rectangleBar.top,m_dAnimation);
          }
          dTop += dBarHeight;
-         rectProgress.top = (::i32)dTop;
-         rectProgress.bottom = (::i32)(dTop + dBarHeight);
+         rectangleProgress.top = (::i32)dTop;
+         rectangleProgress.bottom = (::i32)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
-      //::fill_rectangle(hdc, &rectProgress, g_hbrushProgress1);
+      //::fill_rectangle(hdc, &rectangleProgress, g_hbrushProgress1);
 
    }
 

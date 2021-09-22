@@ -231,15 +231,15 @@ void simple_ui_display::on_expose()
 //   // "*helvetica-normal-r-*-180-*"
 //   // "-adobe-new century schoolbook-bold-r-normal--24-240-75-75-p-149-iso8859-9"
 //
-//   auto fontDesired = XLoadQueryFont(m_display, "*helvetica-normal-r-*-180-*");
+//   auto pfontDesired = XLoadQueryFont(m_display, "*helvetica-normal-r-*-180-*");
 //
 //
-//   if (fontDesired)
+//   if (pfontDesired)
 //   {
 //
-//      iFontHeight = fontDesired->ascent + fontDesired->descent;
+//      iFontHeight = pfontDesired->ascent + pfontDesired->descent;
 //
-//      XSetFont(m_display, gc, fontDesired->fid);
+//      XSetFont(m_display, gc, pfontDesired->fid);
 //
 //   }
 //   else
@@ -247,14 +247,14 @@ void simple_ui_display::on_expose()
 //
       auto gcontext = XGContextFromGC(gc);
 
-      auto fontDefault = XQueryFont(d, gcontext);
+      auto pfontDefault = XQueryFont(d, gcontext);
 
-      if (fontDefault)
+      if (pfontDefault)
       {
 
-         iFontHeight = fontDefault->ascent + fontDefault->descent;
+         iFontHeight = pfontDefault->ascent + pfontDefault->descent;
 
-         XSetFont(d, gc, fontDefault->fid);
+         XSetFont(d, gc, pfontDefault->fid);
 
       }
       else

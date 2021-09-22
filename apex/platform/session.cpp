@@ -1983,12 +1983,12 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array& straTitle = pane.m_straTitle;
 
-   //   pgraphics->set(brushText);
+   //   pgraphics->set(pbrushText);
 
    //   if (straTitle.get_count() <= 1)
    //   {
@@ -1999,43 +1999,43 @@ namespace apex
    //   else
    //   {
 
-   //      ::rectangle_i32 rectText(rectangle);
+   //      ::rectangle_i32 rectangleText(rectangle);
 
 
-   //      ::write_text::font_pointer font;
+   //      ::write_text::font_pointer pfont;
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
-   //      ::rectangle_i32 rectEmp;
+   //      ::rectangle_i32 rectangleEmp;
    //      for (index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
    //         size_i32 s = pane.m_sizeaText[i];
-   //         rectText.right = rectText.left + s.cx;
-   //         pgraphics->_DrawText(str, rectTexte_bottom_left, e_draw_text_no_prefix);
-   //         rectText.left += s.cx;
+   //         rectangleText.right = rectangleText.left + s.cx;
+   //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
+   //         rectangleText.left += s.cx;
    //         if (i < straTitle.get_upper_bound())
    //         {
-   //            rectText.right = rectText.left + sSep.cx;
-   //            rectEmp = rectText;
-   //            rectEmp.deflate(1, 1);
+   //            rectangleText.right = rectangleText.left + sSep.cx;
+   //            rectangleEmp = rectangleText;
+   //            rectangleEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //            if (ptab->m_itemHover == (::enum_element)(::e_element_split + i))
    //            {
-   //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
-   //               pgraphics->set(ptab->get_data()->m_brushTextHover);
+   //               pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
+   //               pgraphics->set(ptab->get_data()->m_pbrushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rectangle(rectEmp,argb(128,208,223,233));
-   //               pgraphics->set(ptab->get_data()->m_brushText);
+   //               //pgraphics->fill_rectangle(rectangleEmp,argb(128,208,223,233));
+   //               pgraphics->set(ptab->get_data()->m_pbrushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);
    //            pgraphics->set_alpha_mode(emode);
-   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_center, e_draw_text_no_prefix);
-   //            rectText.left += sSep.cx;
-   //            pgraphics->set(font);
-   //            pgraphics->set(brushText);
+   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+   //            rectangleText.left += sSep.cx;
+   //            pgraphics->set(pfont);
+   //            pgraphics->set(pbrushText);
    //         }
    //      }
 

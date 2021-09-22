@@ -14,7 +14,7 @@ namespace user
       // interaction_impl rectangle_i32 relative to the parent
       // this rectangle_i32 comes before in importance compared to m_rectangleWindow
       // m_rectangleWindow should be sychronized and recalculated based
-      // on m_rectParentClient values of the interaction_impl and its ascendants.
+      // on m_rectangleParentClient values of the interaction_impl and its ascendants.
       size_i32                                m_size;
       bool                                m_bCreate;
       __pointer(::user::interaction)      m_puserinteractionMessage;
@@ -105,7 +105,7 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       virtual ::user::interaction * set_owner(::user::primitive * pinteraction) override;
       virtual ::user::interaction * get_owner() const override;

@@ -14,11 +14,11 @@ namespace experience
       m_bHollow = true;
       m_bFirstLayoutDone = false;
 
-      m_rectCaptionTextPadding.set(0, 0, 0, 0);
+      m_rectangleCaptionTextPadding.set(0, 0, 0, 0);
 
-      m_rectMarginFullScreen.set(0, 0, 0, 0);
-      m_rectMarginZoomed.set(0, 0, 0, 0);
-      m_rectMarginNormal.set(5, 5, 5, 5);
+      m_rectangleMarginFullScreen.set(0, 0, 0, 0);
+      m_rectangleMarginZoomed.set(0, 0, 0, 0);
+      m_rectangleMarginNormal.set(5, 5, 5, 5);
 
       m_bControlBoxAlignRight = true;
       m_bInitialControlBoxPosition = true;
@@ -144,11 +144,11 @@ namespace experience
 
       synchronous_lock synchronouslock(pframewindow->mutex());
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      pframewindow->get_window_rect(rectWindow);
+      pframewindow->get_window_rect(rectangleWindow);
 
-      if (rectWindow.is_empty())
+      if (rectangleWindow.is_empty())
       {
 
          return;
@@ -185,16 +185,16 @@ namespace experience
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposQuery,
                                  &rectangle, &rectangle, false);
             rectangle.offset(rectangleClient.top_left());
-            ::rectangle_i32 rectBorder;
-            pframewindow->GetBorderRect(rectBorder);
+            ::rectangle_i32 rectangleBorder;
+            pframewindow->GetBorderRect(rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra,
-                                 &rectBorder, &rectangle, true);
-            pframewindow->SetBorderRect(rectBorder);
+                                 &rectangleBorder, &rectangle, true);
+            pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
-            //::rectangle_i32 rectSnap(0, 0, 0, 0);
-            //CalcWndClient(rectSnap, rectSnap);
-            //rectangle.deflate(rectSnap);
+            //::rectangle_i32 rectangleSnap(0, 0, 0, 0);
+            //CalcWndClient(rectangleSnap, rectangleSnap);
+            //rectangle.deflate(rectangleSnap);
             pframewindow->set_size(rectangle.size());
             pframewindow->display();
 //                  pframewindow->display();(zorder_none, 0, 0, rectangle.width(), rectangle.height(),
@@ -204,13 +204,13 @@ namespace experience
          else
          {
 
-            ::rectangle_i32 rectBorder;
+            ::rectangle_i32 rectangleBorder;
 
-            pframewindow->GetBorderRect(rectBorder);
+            pframewindow->GetBorderRect(rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra, &rectBorder, &rectangleClient);
+            pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra, &rectangleBorder, &rectangleClient);
 
-            pframewindow->SetBorderRect(rectBorder);
+            pframewindow->SetBorderRect(rectangleBorder);
 
          }
 
@@ -699,9 +699,9 @@ namespace experience
 
       }
 
-      rectangle_i32 rectMargin = get_margin_rect();
+      rectangle_i32 rectangleMargin = get_margin_rect();
 
-      rectangle_i32 rectCaptionTextPadding = get_caption_text_padding();
+      rectangle_i32 rectangleCaptionTextPadding = get_caption_text_padding();
 
       i32 iControlBoxWidth = m_pcontrolbox->calc_control_box_width(pgraphics);
 
@@ -723,16 +723,16 @@ namespace experience
       }
 
 
-      i32 iCaptionHeight = iCaptionTextHeight + rectCaptionTextPadding.top + rectCaptionTextPadding.bottom;
+      i32 iCaptionHeight = iCaptionTextHeight + rectangleCaptionTextPadding.top + rectangleCaptionTextPadding.bottom;
 
-      m_rectCaption.left = rectangleClient.left + rectMargin.left;
-      m_rectCaption.top = rectangleClient.top + rectMargin.top;
-      m_rectCaption.right = rectangleClient.right - rectMargin.right;
-      m_rectCaption.bottom = m_rectCaption.top + iCaptionHeight;
+      m_rectangleCaption.left = rectangleClient.left + rectangleMargin.left;
+      m_rectangleCaption.top = rectangleClient.top + rectangleMargin.top;
+      m_rectangleCaption.right = rectangleClient.right - rectangleMargin.right;
+      m_rectangleCaption.bottom = m_rectangleCaption.top + iCaptionHeight;
 
-      rectangleClient.deflate(rectMargin);
+      rectangleClient.deflate(rectangleMargin);
 
-      rectangleClient.top = m_rectCaption.bottom - 1;
+      rectangleClient.top = m_rectangleCaption.bottom - 1;
 
       m_rectangleClient = rectangleClient;
 
@@ -751,55 +751,55 @@ namespace experience
 
       }
 
-      ::rectangle_i32 rectControlBox;
+      ::rectangle_i32 rectangleControlBox;
 
-      rectControlBox.left = m_iControlBoxPosition;
-      rectControlBox.right = rectControlBox.left + iControlBoxWidth;
-      rectControlBox.top = m_rectCaption.top;
-      rectControlBox.bottom = m_rectCaption.bottom;
+      rectangleControlBox.left = m_iControlBoxPosition;
+      rectangleControlBox.right = rectangleControlBox.left + iControlBoxWidth;
+      rectangleControlBox.top = m_rectangleCaption.top;
+      rectangleControlBox.bottom = m_rectangleCaption.bottom;
 
       if (m_pframewindow->layout().is_this_screen_visible() && !is_iconic(m_pframewindow->layout().design().display()))
       {
 
-         get_control_box()->place(rectControlBox);
+         get_control_box()->place(rectangleControlBox);
 
       }
 
       m_rectangleWindow = rectangleClient;
 
-      ::rectangle_i32 rectIcon;
+      ::rectangle_i32 rectangleIcon;
 
-      bool bIcon = get_element_rect(rectIcon, ElementTopLeftIcon);
+      bool bIcon = get_element_rect(rectangleIcon, ElementTopLeftIcon);
 
       //if (bIcon)
       //{
 
-      //   m_pointWindowIcon.x = rectIcon.left;
+      //   m_pointWindowIcon.x = rectangleIcon.left;
 
       //}
 
       //m_pointMoveGripMinimal.x = m_pointWindowIcon.x - 2;
 
-      //m_pointMoveGripMinimal.y = rectMargin.top + rectControlBoxMargin.top;
+      //m_pointMoveGripMinimal.y = rectangleMargin.top + rectangleControlBoxMargin.top;
 
-      m_pointWindowIcon.y = rectMargin.top + ((iCaptionHeight - rectIcon.height()) /2 );
+      m_pointWindowIcon.y = rectangleMargin.top + ((iCaptionHeight - rectangleIcon.height()) /2 );
 
       if (bIcon)
       {
 
-         m_rectWindowText.left = rectIcon.right + rectCaptionTextPadding.left;
+         m_rectangleWindowText.left = rectangleIcon.right + rectangleCaptionTextPadding.left;
 
       }
       else
       {
 
-         m_rectWindowText.left = m_rectCaption.left + rectCaptionTextPadding.left;
+         m_rectangleWindowText.left = m_rectangleCaption.left + rectangleCaptionTextPadding.left;
 
       }
 
-      m_rectWindowText.top = m_rectCaption.top + rectCaptionTextPadding.top;
-      m_rectWindowText.right = m_rectCaption.right - rectCaptionTextPadding.right;
-      m_rectWindowText.bottom = m_iTitleBottom;
+      m_rectangleWindowText.top = m_rectangleCaption.top + rectangleCaptionTextPadding.top;
+      m_rectangleWindowText.right = m_rectangleCaption.right - rectangleCaptionTextPadding.right;
+      m_rectangleWindowText.bottom = m_iTitleBottom;
 
       if (bVisible)
       {
@@ -1013,7 +1013,7 @@ namespace experience
    rectangle_i32 frame::get_caption_text_padding()
    {
 
-      return m_rectCaptionTextPadding;
+      return m_rectangleCaptionTextPadding;
 
    }
 
@@ -1024,19 +1024,19 @@ namespace experience
       if (m_pframewindow->layout().is_full_screen())
       {
 
-         return m_rectMarginFullScreen;
+         return m_rectangleMarginFullScreen;
 
       }
       else if (m_pframewindow->layout().is_zoomed())
       {
 
-         return m_rectMarginZoomed;
+         return m_rectangleMarginZoomed;
 
       }
       else
       {
 
-         return m_rectMarginDock;
+         return m_rectangleMarginDock;
 
       }
 
@@ -1092,11 +1092,11 @@ namespace experience
 
       ::rectangle_i32 rectangle;
 
-      ::rectangle_i32 rectRequest;
+      ::rectangle_i32 rectangleRequest;
 
       bool bPreserveSize;
 
-      rectRequest = m_pframewindow->screen_rect();
+      rectangleRequest = m_pframewindow->screen_rect();
 
       bool bMoving = m_pframewindow->move_manager()->window_is_moving();
 
@@ -1111,9 +1111,9 @@ namespace experience
 
          //auto sizeMove = m_pframewindow->m_windowrectangle.m_rectangleRestored.size().maximum(sizeMinimum);
 
-         //rectRequest.set(pointMove, sizeMove);
+         //rectangleRequest.set(pointMove, sizeMove);
 
-         rectRequest.move_to(pointMove);
+         rectangleRequest.move_to(pointMove);
 
          bPreserveSize = true;
 
@@ -1136,7 +1136,7 @@ namespace experience
 
       }
 
-      auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectRequest, bPreserveSize);
+      auto iWorkspace = m_pframewindow->get_best_zoneing(edisplay, &rectangle, rectangleRequest, bPreserveSize);
 
       if(edisplay != m_pframewindow->layout().sketch().display() ||
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
@@ -1245,7 +1245,7 @@ namespace experience
 
       edisplay edisplay = m_pframewindow->layout().sketch().display();
 
-      auto rectMargin = m_rectMarginNormal;
+      auto rectangleMargin = m_rectangleMarginNormal;
 
       e_grip egrip;
       e_border eborder;
@@ -1258,7 +1258,7 @@ namespace experience
          eborder = e_border_none;
          edock = e_dock_none;
 
-         rectMargin.Null();
+         rectangleMargin.Null();
 
       }
       else if (is_docking_appearance(edisplay))
@@ -1331,28 +1331,28 @@ namespace experience
          if (edisplay & e_display_top)
          {
 
-            rectMargin.top = 0;
+            rectangleMargin.top = 0;
 
          }
 
          if(edisplay & e_display_bottom)
          {
 
-            rectMargin.bottom = 0;
+            rectangleMargin.bottom = 0;
 
          }
 
          if (edisplay & e_display_right)
          {
 
-            rectMargin.right = 0;
+            rectangleMargin.right = 0;
 
          }
 
          if (edisplay & e_display_left)
          {
 
-            rectMargin.left = 0;
+            rectangleMargin.left = 0;
 
          }
 
@@ -1387,10 +1387,10 @@ namespace experience
       m_pframewindow->m_pmovemanager->SetBorderMask(eborder);
       m_pframewindow->set_dock_mask(edock);
 
-      if (rectMargin != m_rectMarginDock)
+      if (rectangleMargin != m_rectangleMarginDock)
       {
 
-         m_rectMarginDock = rectMargin;
+         m_rectangleMarginDock = rectangleMargin;
 
          m_pframewindow->set_need_layout();
 
@@ -1442,19 +1442,19 @@ namespace experience
 //      if(m_pframewindow->layout().is_full_screen())
 //      {
 //
-//         return &m_rectControlBoxFullScreen;
+//         return &m_rectangleControlBoxFullScreen;
 //
 //      }
 //      else if(m_pframewindow->layout().is_zoomed())
 //      {
 //
-//         return &m_rectControlBoxZoomed;
+//         return &m_rectangleControlBoxZoomed;
 //
 //      }
 //      else
 //      {
 //
-//         return &m_rectControlBoxNormal;
+//         return &m_rectangleControlBoxNormal;
 //
 //      }
 //

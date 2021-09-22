@@ -334,7 +334,7 @@ namespace windowing
 
    }
 
-   void window::get_window_text(string & rectString)
+   void window::get_window_text(string & rectangleString)
    {
 
       throw ::interface_only_exception();
@@ -544,7 +544,7 @@ namespace windowing
    }
 
 
-   bool window::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       throw ::interface_only_exception();

@@ -399,13 +399,13 @@ void android_exchange()
 
       premote->setEditFocusSet(true);
 
-      premote->setEditFocusLeft(plocal->m_rectEditFocus.left);
+      premote->setEditFocusLeft(plocal->m_rectangleEditFocus.left);
 
-      premote->setEditFocusTop(plocal->m_rectEditFocus.top);
+      premote->setEditFocusTop(plocal->m_rectangleEditFocus.top);
 
-      premote->setEditFocusRight(plocal->m_rectEditFocus.right);
+      premote->setEditFocusRight(plocal->m_rectangleEditFocus.right);
 
-      premote->setEditFocusBottom(plocal->m_rectEditFocus.bottom);
+      premote->setEditFocusBottom(plocal->m_rectangleEditFocus.bottom);
 
    }
 
@@ -466,10 +466,10 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszT
 
    plocal->m_bEditFocusKill = false;
 
-   plocal->m_rectEditFocus.left = l;
-   plocal->m_rectEditFocus.top = t;
-   plocal->m_rectEditFocus.right = r;
-   plocal->m_rectEditFocus.bottom = b;
+   plocal->m_rectangleEditFocus.left = l;
+   plocal->m_rectangleEditFocus.top = t;
+   plocal->m_rectangleEditFocus.right = r;
+   plocal->m_rectangleEditFocus.bottom = b;
 
    plocal->m_iEditorSelectionStart = iBeg;
    plocal->m_iEditorSelectionEnd = iEnd;

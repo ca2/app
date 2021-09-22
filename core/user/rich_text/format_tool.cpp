@@ -215,16 +215,16 @@ namespace user
    void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::brush_pointer brBk(e_create);
+      auto pbrushBk = __create < ::draw2d::brush > ();
 
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);
 
-      brBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
+      pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectangleClient, brBk);
+      pgraphics->fill_rectangle(rectangleClient, pbrushBk);
 
    }
 
@@ -702,28 +702,28 @@ namespace user
    void format_tool::show_for_ui(::user::interaction* pinteraction)
    {
 
-      ::rectangle_i32 rectOther;
+      ::rectangle_i32 rectangleOther;
       
-      pinteraction->get_window_rect(rectOther);
+      pinteraction->get_window_rect(rectangleOther);
 
       set_owner(pinteraction);
 
-      ::rectangle_i32 rectangle(rectOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
+      ::rectangle_i32 rectangle(rectangleOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
-      ::rectangle_i32 rectRequest;
+      ::rectangle_i32 rectangleRequest;
 
-      rectRequest.left = rectangle.left - 32;
-      rectRequest.top = rectangle.top - 32;
-      rectRequest.right = rectRequest.left + 400;
-      rectRequest.bottom = rectRequest.top + 32;
+      rectangleRequest.left = rectangle.left - 32;
+      rectangleRequest.top = rectangle.top - 32;
+      rectangleRequest.right = rectangleRequest.left + 400;
+      rectangleRequest.bottom = rectangleRequest.top + 32;
 
       enable_window();
 
-      place(rectRequest);
+      place(rectangleRequest);
 
       order(e_zorder_top_most);
 

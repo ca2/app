@@ -321,11 +321,11 @@ namespace user
 
          ::color::color colorBackground = get_color(pstyle, ::e_element_background);
 
-         auto rectBackground(rectangleClient);
+         auto rectangleBackground(rectangleClient);
 
-         rectBackground += m_pointScroll;
+         rectangleBackground += m_pointScroll;
 
-         pgraphics->fill_rectangle(rectBackground, colorBackground);
+         pgraphics->fill_rectangle(rectangleBackground, colorBackground);
 
       }
 
@@ -366,16 +366,16 @@ namespace user
       if (m_pfontlist->get_box_rect(rectangle, iSel) && rectangle.area() > 0)
       {
 
-         ::rectangle_i32 rectImpact;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(rectImpact);
+         get_client_rect(rectangleImpact);
 
-         rectImpact.offset(m_pointScroll);
+         rectangleImpact.offset(m_pointScroll);
 
-         if (!rectImpact.contains(rectangle))
+         if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectImpact.height()) / 2;
+            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
 
          }
 
@@ -389,9 +389,9 @@ namespace user
    void font_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectFontList = get_client_rect();
+      auto rectangleFontList = get_client_rect();
 
-      if(rectFontList.is_empty())
+      if(rectangleFontList.is_empty())
       {
 
          return;
@@ -414,13 +414,13 @@ namespace user
       if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
       {
 
-         rectFontList.right -= iScrollBarWidth;
+         rectangleFontList.right -= iScrollBarWidth;
 
       }
 
-      rectFontList.bottom -= iScrollBarWidth;
+      rectangleFontList.bottom -= iScrollBarWidth;
 
-      m_pfontlist->set_client_rectangle(rectFontList);
+      m_pfontlist->set_client_rectangle(rectangleFontList);
 
       m_sizeTotal = m_pfontlist->m_size;
 

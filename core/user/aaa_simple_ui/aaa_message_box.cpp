@@ -92,7 +92,7 @@ namespace simple_ui
    i32 message_box::show()
    {
 
-      ::rectangle_i32 rectDesktop;
+      ::rectangle_i32 rectangleDesktop;
 
       string_array stra;
 
@@ -113,7 +113,7 @@ namespace simple_ui
       if(puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectDesktop);
+         puiParent->get_window_rect(rectangleDesktop);
 
       }
       else
@@ -125,7 +125,7 @@ namespace simple_ui
 
          auto pdisplay = pwindowing->display();
 
-         pdisplay->get_main_monitor(rectDesktop);
+         pdisplay->get_main_monitor(rectangleDesktop);
 
       }
 
@@ -133,7 +133,7 @@ namespace simple_ui
 
       set_window_text(strTitle);
 
-      ::rectangle_i32 rectFontopus;
+      ::rectangle_i32 rectangleFontopus;
 
       int stdw = 800;
 
@@ -143,29 +143,29 @@ namespace simple_ui
 
       int h = stdh;
 
-      if(w > rectDesktop.width())
+      if(w > rectangleDesktop.width())
       {
 
-         w = rectDesktop.width();
+         w = rectangleDesktop.width();
 
       }
 
-      if(h > rectDesktop.height())
+      if(h > rectangleDesktop.height())
       {
 
-         h = rectDesktop.height();
+         h = rectangleDesktop.height();
 
       }
 
-      rectFontopus.left = rectDesktop.left + (rectDesktop.width() - w) / 2;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
-      rectFontopus.top = rectDesktop.top + (rectDesktop.height() - h) / 3;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
 
-      rectFontopus.right = rectFontopus.left + w;
+      rectangleFontopus.right = rectangleFontopus.left + w;
 
-      rectFontopus.bottom = rectFontopus.top + h;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
-      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus));
 
       if(!create_interaction(puiParent))
       {
@@ -220,7 +220,7 @@ namespace simple_ui
 
       order(e_zorder_top);
 
-      place(rectFontopus);
+      place(rectangleFontopus);
 
       display(e_display_normal, e_activation_set_foreground);
 
@@ -246,9 +246,9 @@ namespace simple_ui
 
       __pointer(::write_text::font) font(e_create);
 
-      font->create_point_font(pnode->font_name(e_font_sans),12);
+      pfont->create_point_font(pnode->font_name(e_font_sans),12);
 
-      pgraphics->set(font);
+      pgraphics->set(pfont);
 
       ::write_text::text_metric tm;
 

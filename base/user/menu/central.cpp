@@ -7,8 +7,7 @@ namespace user
 {
 
 
-   menu_central::menu_central() :
-      m_fontMenu(e_create)
+   menu_central::menu_central()
    {
 
       defer_create_mutex();
@@ -98,13 +97,16 @@ namespace user
 
    ::write_text::font * menu_central::MenuV033GetFont()
    {
+      
       return GetMenuFont();
+
    }
+
 
    ::write_text::font * menu_central::GetMenuFont()
    {
 
-      return m_fontMenu;
+      return m_pfontMenu;
 
    }
 
@@ -155,6 +157,8 @@ namespace user
 
       }
 
+      m_pfontMenu.create(this);
+
       __construct_new(m_pil);
       __construct_new(m_pilHue);
       __construct_new(m_pilBlend);
@@ -164,7 +168,7 @@ namespace user
 
       auto pnode = psystem->node();
 
-      VERIFY(m_fontMenu->create_point_font(pnode->font_name(e_font_sans), 11));
+      VERIFY(m_pfontMenu->create_point_font(pnode->font_name(e_font_sans), 11));
 
 //#ifdef WINDOWS_DESKTOP
 //      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))

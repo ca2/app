@@ -22,10 +22,10 @@ namespace hotplugin
 
       }
 
-      ::rectangle_i32 rectWindow;
-      get_window_rect(&rectWindow);
-      //  i32 cx = rectWindow.right - rectWindow.left;
-      //i32 cy = rectWindow.bottom - rectWindow.top;
+      ::rectangle_i32 rectangleWindow;
+      get_window_rect(&rectangleWindow);
+      //  i32 cx = rectangleWindow.right - rectangleWindow.left;
+      //i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
 
 
@@ -63,18 +63,18 @@ namespace hotplugin
 
       }
 
-      ::rectangle_i32 rectBar(left,top,right,bottom);
+      ::rectangle_i32 rectangleBar(left,top,right,bottom);
 
 
 
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
-      pen->create_null();
+      ppen->create_null();
 
-      ::draw2d::brush_pointer brush(e_create);
+      auto pbrush = __create < ::draw2d::brush >();
 
-      brush->create_solid(argb(190, 49, 50, 49));
+      pbrush->create_solid(argb(190, 49, 50, 49));
 
       pgraphics->SelectObject(pen);
 
@@ -85,29 +85,29 @@ namespace hotplugin
       get_client_rect(rectangleClient);
 
 
-      ::rectangle_i32 rectProgress(rectBar);
+      ::rectangle_i32 rectangleProgress(rectangleBar);
 
-      rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * minimum(1.0, maximum(0.0, dRate)));
+      rectangleProgress.right = (::i32) (rectangleProgress.left + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
-      ::rectangle_i32 rectProgressComplement(rectBar);
+      ::rectangle_i32 rectangleProgressComplement(rectangleBar);
 
-      rectProgressComplement.left = rectProgress.right;
+      rectangleProgressComplement.left = rectangleProgress.right;
 
-      pgraphics->rectangle(rectProgressComplement);
+      pgraphics->rectangle(rectangleProgressComplement);
 
       {
 
          byte uchR,uchG,uchB;
-         ::draw2d::brush_pointer br(e_create);
+         auto pbrush = __create < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
-         br->create_solid(argb(184,uchR,uchG,uchB));
-         pgraphics->fill_rectangle(rectProgress,br);
+         pbrush->create_solid(argb(184,uchR,uchG,uchB));
+         pgraphics->fill_rectangle(rectangleProgress,br);
 
       }
 
-      pen->create_solid(1.0,argb(149, 150, 149, 142));
+      ppen->create_solid(1.0,argb(149, 150, 149, 142));
 
-      pgraphics->draw_rectangle(rectBar, pen);
+      pgraphics->draw_rectangle(rectangleBar, ppen);
 
       ::write_text::font_pointer f(e_create);
 
@@ -119,15 +119,15 @@ namespace hotplugin
 
       strProgress.Format("%0.3f%%",dRate * 100.0);
 
-      rectBar.left +=4;
+      rectangleBar.left +=4;
 
-      rectBar.top += 5;
+      rectangleBar.top += 5;
 
       pgraphics->set_text_color(argb(255, 255, 255, 255));
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
-      pgraphics->text_out(rectBar.left, rectBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
+      pgraphics->text_out(rectangleBar.left, rectangleBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 
    }
 

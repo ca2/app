@@ -122,6 +122,9 @@ CLASS_DECL_ACME int * process_get_pargc();
 CLASS_DECL_ACME int process_get_argc();
 
 
+CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority);
+
+
 #include "pipe.h"
 #include "bidirectional_pipe.h"
 

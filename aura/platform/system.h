@@ -170,8 +170,8 @@ namespace aura
 //
 //#else
 //
-//      rectangle_i32_array                                         m_rectaMonitor;
-//      rectangle_i32_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectangleaMonitor;
+//      rectangle_i32_array                                         m_rectangleaWork;
 //
 //#endif
 //

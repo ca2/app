@@ -56,7 +56,7 @@ namespace user
       for (auto & text : m_texta)
       {
 
-         pgraphics->set(text.m_font);
+         pgraphics->set(text.m_pfont);
 
          pgraphics->set_text_color(text.m_color.get_rgba());
 

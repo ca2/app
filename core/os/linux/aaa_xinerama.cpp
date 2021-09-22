@@ -159,24 +159,24 @@ int xinerama_get_screen_size(int& width, int& height)
 
    ::count cMonitor = system.get_monitor_count();
 
-   ::rectangle rectMonitor;
+   ::rectangle rectangleMonitor;
 
    rectaMonitor.set_size(cMonitor);
 
    for(; iMonitor < cMonitor; iMonitor++)
    {
 
-      system.get_monitor_rectangle(iMonitor, &rectMonitor);
+      system.get_monitor_rectangle(iMonitor, &rectangleMonitor);
 
-      rectaMonitor[iMonitor] = rectMonitor;
+      rectaMonitor[iMonitor] = rectangleMonitor;
 
-      output_debug_string(__str(rectMonitor.left));
+      output_debug_string(__str(rectangleMonitor.left));
 
-      output_debug_string(__str(rectMonitor.top));
+      output_debug_string(__str(rectangleMonitor.top));
 
-      output_debug_string(__str(rectMonitor.right));
+      output_debug_string(__str(rectangleMonitor.right));
 
-      output_debug_string(__str(rectMonitor.bottom));
+      output_debug_string(__str(rectangleMonitor.bottom));
 
    }
 
@@ -188,16 +188,16 @@ int xinerama_get_screen_size(int& width, int& height)
 
    ::sort::predicate_stable_sort(rectaMonitor, [](auto & r1, auto & r2) { return r1.top <= r2.top; });
 
-   for(auto & rectItem: rectaMonitor)
+   for(auto & rectangleItem: rectaMonitor)
    {
 
-      output_debug_string(__str(rectItem.left));
+      output_debug_string(__str(rectangleItem.left));
 
-      output_debug_string(__str(rectItem.top));
+      output_debug_string(__str(rectangleItem.top));
 
-      output_debug_string(__str(rectItem.right));
+      output_debug_string(__str(rectangleItem.right));
 
-      output_debug_string(__str(rectItem.bottom));
+      output_debug_string(__str(rectangleItem.bottom));
 
    }
 
@@ -215,7 +215,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 
    index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, false, 0, zorder_none);
 
-   index iOrdered = rectaOrdered.predicate_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
+   index iOrdered = rectaOrdered.predicate_find_first([&](auto & rectangleMonitorSorted) { return rectangleMonitorSorted == *prectRet; });
 
    output_debug_string(__str(iJustForComparison));
 
@@ -226,12 +226,12 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle & rectParam, RECT32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle & rectangleParam, RECT32 * prectRet)
 {
 
    ::null_rect(prectRet);
 
-   ::rectangle rectangle(rectParam);
+   ::rectangle rectangle(rectangleParam);
 
    if(rectangle == nullptr)
    {
@@ -244,14 +244,14 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle 
 
    ::count cMonitor = xinerama_get_monitor_count();
 
-   ::rectangle rectMonitor;
+   ::rectangle rectangleMonitor;
 
    for(index i = 0; i < cMonitor; i++)
    {
 
-      int iScreen = xinerama_get_monitor_rect(i, &rectMonitor);
+      int iScreen = xinerama_get_monitor_rect(i, &rectangleMonitor);
 
-      if(rectMonitor == rectangle)
+      if(rectangleMonitor == rectangle)
       {
 
          iOrdered = iScreen;
@@ -279,12 +279,12 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rectangle & rectParam, RECT32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rectangle & rectangleParam, RECT32 * prectRet)
 {
 
    ::rectangle rNull = nullptr;
 
-   ::rectangle rectangle(rectParam);
+   ::rectangle rectangle(rectangleParam);
 
    if(rectangle == nullptr)
    {

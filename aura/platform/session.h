@@ -257,7 +257,7 @@ namespace aura
       //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);

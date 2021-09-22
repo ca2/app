@@ -105,12 +105,12 @@ namespace user
 
 
 
-   //void interaction_layout::set_placement(const ::rectangle_i32 & rectParam)
+   //void interaction_layout::set_placement(const ::rectangle_i32 & rectangleParam)
    //{
 
-   //   ::rectangle_i32 rectangle(rectParam);
+   //   ::rectangle_i32 rectangle(rectangleParam);
 
-   //   rectangle.deflate(m_rectPadding);
+   //   rectangle.deflate(m_rectanglePadding);
 
    //   request() = rectangle;
 

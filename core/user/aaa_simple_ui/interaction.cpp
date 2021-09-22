@@ -490,17 +490,17 @@ namespace simple_ui
 //
 //      i32 iBorderH = minimum(rectangle.height() / 2, 49);
 //
-//      ::draw2d::brush_pointer br(e_create);
+//      auto pbrush = __create < ::draw2d::brush > ();
 //
-//      br->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
+//      pbrush->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 //
 //      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
 //
-//      br->create_solid(crIn);
+//      pbrush->create_solid(crIn);
 //
 //      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
 //
-//      br->CreateLinearGradientBrush(point_i32(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
+//      pbrush->CreateLinearGradientBrush(point_i32(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 //
 //      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
 //
@@ -607,14 +607,14 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_fuzzy_color_spread(::draw2d::graphics_pointer & pgraphics)
 //   {
 //      /*
-//      ::rectangle_i32 rectWindow;
+//      ::rectangle_i32 rectangleWindow;
 //
-//      get_window_rect(rectWindow);
+//      get_window_rect(rectangleWindow);
 //
 //      int i = 0;
 //      int j = 0;
-//      int iCount = rectWindow.width();
-//      int jCount = rectWindow.height();
+//      int iCount = rectangleWindow.width();
+//      int jCount = rectangleWindow.height();
 //
 //      byte * point = (byte *)m_pimage->get_data();
 //
@@ -688,11 +688,11 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_dark_glass(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectWindow;
+//      ::rectangle_i32 rectangleWindow;
 //
-//      get_client_rect(rectWindow);
+//      get_client_rect(rectangleWindow);
 //
-//      pgraphics->fill_rectangle(rectWindow, argb(90, 127, 127, 127));
+//      pgraphics->fill_rectangle(rectangleWindow, argb(90, 127, 127, 127));
 //
 //   }
 //
@@ -701,13 +701,13 @@ namespace simple_ui
 //   void interaction::simple_ui_draw_pestana(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
-//      ::rectangle_i32 rectWindow;
+//      ::rectangle_i32 rectangleWindow;
 //
-//      get_client_rect(rectWindow);
+//      get_client_rect(rectangleWindow);
 //
 //      pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
 //
-//      int iCount = rectWindow.height();
+//      int iCount = rectangleWindow.height();
 //      ::draw2d::pen_pointer point_i32(e_create);
 //      for (int i = 0; i < iCount; i += 2)
 //      {
@@ -719,7 +719,7 @@ namespace simple_ui
 //         byte b1 = brate(dRate, 23, 127);
 //         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
 //         pgraphics->set(point);
-//         pgraphics->draw_line(rectWindow.left, i, rectWindow.right, i);
+//         pgraphics->draw_line(rectangleWindow.left, i, rectangleWindow.right, i);
 //
 //      }
 //

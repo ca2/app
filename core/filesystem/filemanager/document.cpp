@@ -66,13 +66,13 @@ namespace filemanager
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
-//      ::rectangle_i32 rectOpen;
-//      ::GetWindowRect(oswindowDesktop, rectOpen);
-//      i32 iWidth = rectOpen.width();
-//      i32 iHeight = rectOpen.width();
-//      rectOpen.deflate(iWidth / 5, iHeight / 5);
+//      ::rectangle_i32 rectangleOpen;
+//      ::GetWindowRect(oswindowDesktop, rectangleOpen);
+//      i32 iWidth = rectangleOpen.width();
+//      i32 iHeight = rectangleOpen.width();
+//      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
 //      pview->get_parent_frame()->order(e_zorder_top);
-//      pview->get_parent_frame()->place(rectOpen);
+//      pview->get_parent_frame()->place(rectangleOpen);
 //      pview->get_parent_frame()->display();
 //
 //#endif

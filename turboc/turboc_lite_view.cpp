@@ -121,7 +121,7 @@ namespace turboc
 
 //      i32 iCount = 30;
 
-      ::draw2d::brush_pointer brushText(this_create);
+      ::draw2d::brush_pointer pbrushText(this_create);
 
       double T = 2.3;
 
@@ -162,7 +162,7 @@ namespace turboc
       //   iBlur = iCount - i;
       string strHelloMultiverse = get_processed_turboc();
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       ::size_i32 size = pgraphics->get_text_extent(strHelloMultiverse);
 
@@ -183,15 +183,15 @@ namespace turboc
 
 /*            m_pimage->Fill(0,0,0,0);
 
-/*            m_pimage->g()->set_font(m_font);
+/*            m_pimage->g()->set_font(m_pfont);
 
 /*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            brushText->create_solid(argb(255,255,255,255));
+            pbrushText->create_solid(argb(255,255,255,255));
 
-/*            m_pimage->g()->SelectObject(brushText);
+/*            m_pimage->g()->SelectObject(pbrushText);
 
 /*            m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2,(m_cyCache1 - size_i32->cy) / 2,strHelloMultiverse);
 
@@ -265,14 +265,14 @@ namespace turboc
 
       //pgraphics->BitBlt(rectangleClient,m_pimageTemplate->get_graphics());
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         pbrushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
       }
       else
@@ -281,19 +281,19 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            brushText->create_solid(argb(255,184,184,177));
+            pbrushText->create_solid(argb(255,184,184,177));
 
          }
          else
          {
 
-            brushText->create_solid(argb(255,255,255,255));
+            pbrushText->create_solid(argb(255,255,255,255));
 
          }
 
       }
 
-      pgraphics->SelectObject(brushText);
+      pgraphics->SelectObject(pbrushText);
 
       //if(!m_bAlternate)
       {

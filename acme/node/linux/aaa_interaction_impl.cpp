@@ -55,7 +55,7 @@ void CLASS_DECL_ACME __pre_init_dialog(
 ::user::interaction * pWnd, RECT32 * pRectOld, ::u32* pdwStyleOld);
 
 void CLASS_DECL_ACME __post_init_dialog(
-::user::interaction * pWnd, const rectangle & rectOld, ::u32 dwStyleOld);
+::user::interaction * pWnd, const rectangle & rectangleOld, ::u32 dwStyleOld);
 LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam);
 
@@ -1183,28 +1183,28 @@ namespace linux
    }
 
 
-   void interaction_impl::get_window_text(string & rectString)
+   void interaction_impl::get_window_text(string & rectangleString)
    {
 
-      rectString = m_strWindowText;
+      rectangleString = m_strWindowText;
 
    }
 
    /*
-      i32 interaction_impl::GetDlgItemText(i32 nID, string & rectString) const
+      i32 interaction_impl::GetDlgItemText(i32 nID, string & rectangleString) const
       {
          ASSERT(::is_window((oswindow) get_handle()));
-         rectString = "";    // is_empty without deallocating
+         rectangleString = "";    // is_empty without deallocating
 
          oswindow hWnd = ::GetDlgItem(get_handle(), nID);
          if (hWnd != nullptr)
          {
             i32 nLen = ::GetWindowTextLength(hWnd);
-            ::GetWindowText(hWnd, rectString.get_string_buffer(nLen), nLen+1);
-            rectString.ReleaseBuffer();
+            ::GetWindowText(hWnd, rectangleString.get_string_buffer(nLen), nLen+1);
+            rectangleString.ReleaseBuffer();
          }
 
-         return (i32)rectString.get_length();
+         return (i32)rectangleString.get_length();
       }
    */
 
@@ -1506,34 +1506,34 @@ namespace linux
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
             pmouse->m_bTranslated = true;
-            ::rectangle rectWindow;
+            ::rectangle rectangleWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
                INFO("Screen Relative Mouse Message Position");
-               ::rectangle rectWindow32;
-               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
-               ::copy(rectWindow, rectWindow32);
+               ::rectangle rectangleWindow32;
+               ::get_window_rect((oswindow) get_handle(), &rectangleWindow32);
+               ::copy(rectangleWindow, rectangleWindow32);
             }
             else
             {
-               m_puserinteraction->get_window_rect(rectWindow);
+               m_puserinteraction->get_window_rect(rectangleWindow);
             }
             if(::acme::get_system()->get_monitor_count() > 0)
             {
                ::rectangle rcMonitor;
                ::acme::get_system()->get_monitor_rectangle(0, &rcMonitor);
-               if(rectWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (::i32) rectWindow.left;
-               if(rectWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+               if(rectangleWindow.left >= rcMonitor.left)
+                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+               if(rectangleWindow.top >= rcMonitor.top)
+                  pmouse->m_point.y += (::i32) rectangleWindow.top;
             }
             else
             {
-               if(rectWindow.left >= 0)
-                  pmouse->m_point.x += (::i32) rectWindow.left;
-               if(rectWindow.top >= 0)
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+               if(rectangleWindow.left >= 0)
+                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+               if(rectangleWindow.top >= 0)
+                  pmouse->m_point.y += (::i32) rectangleWindow.top;
             }
          }
 
@@ -2443,12 +2443,12 @@ namespace linux
 //      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
-//      ::rectangle rectUpdate;
-//      m_puserinteraction->get_window_rect(rectUpdate);
+//      ::rectangle rectangleUpdate;
+//      m_puserinteraction->get_window_rect(rectangleUpdate);
 ////      SetViewportOrgEx(hdc, 0, 0, nullptr);
-//      ::rectangle rectPaint;
-//      rectPaint = rectUpdate;
-//      m_puserinteraction->screen_to_client(rectPaint);
+//      ::rectangle rectanglePaint;
+//      rectanglePaint = rectangleUpdate;
+//      m_puserinteraction->screen_to_client(rectanglePaint);
 //      user::oswindow_array wndaApp;
 //
 //
@@ -2600,16 +2600,16 @@ namespace linux
 //   ::point interaction_impl::client_screen_top_left()
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return pointd(0.0,0.0);
 //
 //      }
 //
-//      return rectWindow.top_left();
+//      return rectangleWindow.top_left();
 //
 //   }
 //
@@ -2618,22 +2618,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   += (::i32) rectWindow.left;
+//      prect->left   += (::i32) rectangleWindow.left;
 
-//      prect->right  += (::i32) rectWindow.left;
+//      prect->right  += (::i32) rectangleWindow.left;
 
-//      prect->top    += (::i32) rectWindow.top;
+//      prect->top    += (::i32) rectangleWindow.top;
 
-//      prect->bottom += (::i32) rectWindow.top;
+//      prect->bottom += (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2645,18 +2645,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     += (::i32) rectWindow.left;
+//      ppoint->x     += (::i32) rectangleWindow.left;
 
-//      ppoint->y     += (::i32) rectWindow.top;
+//      ppoint->y     += (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2668,22 +2668,22 @@ namespace linux
 
 //   {
 //
-//      ::rectangle rectWindow;
+//      ::rectangle rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   += rectWindow.left;
+//      prect->left   += rectangleWindow.left;
 
-//      prect->right  += rectWindow.left;
+//      prect->right  += rectangleWindow.left;
 
-//      prect->top    += rectWindow.top;
+//      prect->top    += rectangleWindow.top;
 
-//      prect->bottom += rectWindow.top;
+//      prect->bottom += rectangleWindow.top;
 
 //
 //      return true;
@@ -2695,18 +2695,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     += rectWindow.left;
+//      ppoint->x     += rectangleWindow.left;
 
-//      ppoint->y     += rectWindow.top;
+//      ppoint->y     += rectangleWindow.top;
 
 //
 //      return true;
@@ -2718,22 +2718,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   -= (::i32) rectWindow.left;
+//      prect->left   -= (::i32) rectangleWindow.left;
 
-//      prect->right  -= (::i32) rectWindow.left;
+//      prect->right  -= (::i32) rectangleWindow.left;
 
-//      prect->top    -= (::i32) rectWindow.top;
+//      prect->top    -= (::i32) rectangleWindow.top;
 
-//      prect->bottom -= (::i32) rectWindow.top;
+//      prect->bottom -= (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2745,18 +2745,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     -= (::i32) rectWindow.left;
+//      ppoint->x     -= (::i32) rectangleWindow.left;
 
-//      ppoint->y     -= (::i32) rectWindow.top;
+//      ppoint->y     -= (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2768,22 +2768,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   -= rectWindow.left;
+//      prect->left   -= rectangleWindow.left;
 
-//      prect->right  -= rectWindow.left;
+//      prect->right  -= rectangleWindow.left;
 
-//      prect->top    -= rectWindow.top;
+//      prect->top    -= rectangleWindow.top;
 
-//      prect->bottom -= rectWindow.top;
+//      prect->bottom -= rectangleWindow.top;
 
 //
 //      return true;
@@ -2795,18 +2795,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     -= rectWindow.left;
+//      ppoint->x     -= rectangleWindow.left;
 
-//      ppoint->y     -= rectWindow.top;
+//      ppoint->y     -= rectangleWindow.top;
 
 //
 //      return true;
@@ -2899,7 +2899,7 @@ namespace linux
 //
 //         //}
 //
-//         rect64 r = m_puserinteraction->m_rectParentClient;
+//         rect64 r = m_puserinteraction->m_rectangleParentClient;
 //
 //         rectangle.offset(rectangle.top_left());
 //
@@ -3622,7 +3622,7 @@ namespace linux
 //   }
 //
 
-//   bool interaction_impl::RedrawWindow(const ::rectangle& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+//   bool interaction_impl::RedrawWindow(const ::rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
 //   {
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));

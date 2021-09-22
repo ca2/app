@@ -43,6 +43,8 @@ public:
 
 
    subject(const ::id & id = e_type_null) :
+      ::material_object(id),
+      ::property_object(id),
       ::object(id)
    {
 

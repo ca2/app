@@ -463,11 +463,11 @@ namespace user
       if(item.m_bOk)
       {
 
-         rectangle_f64 rectControl(item.m_rectSubItem);
+         rectangle_f64 rectangleControl(item.m_rectangleSubItem);
 
          auto pointViewport = get_viewport_offset();
 
-         rectControl.offset(pointViewport);
+         rectangleControl.offset(pointViewport);
 
          if (!bOnlySizeAndPosition)
          {
@@ -478,7 +478,7 @@ namespace user
 
          pinteraction->order_top();
 
-         pinteraction->place(rectControl);
+         pinteraction->place(rectangleControl);
 
          if (bOnlySizeAndPosition)
          {
@@ -642,7 +642,7 @@ break_click:;
       //if (pedit.is_set())
       //{
 
-      //   pedit->m_pfont = m_font;
+      //   pedit->m_pfont = m_pfont;
 
       //}
 
@@ -1221,11 +1221,11 @@ break_click:;
             if(pinteraction == _001GetEditControl())
             {
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
                
-               pinteraction->get_window_rect(rectWindow);
+               pinteraction->get_window_rect(rectangleWindow);
 
-               return rectWindow.contains(point);
+               return rectangleWindow.contains(point);
 
             }
             else
@@ -1236,7 +1236,7 @@ break_click:;
             }
          }
       }
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
       ::rectangle_i32 rectangle;
       draw_list_item item(this);
 
@@ -1256,15 +1256,15 @@ break_click:;
 //      item.m_iOrder = _001MapSubItemToOrder(item.subitem_index());
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
-//      rectControl = item.m_rectSubItem;
-//      client_to_screen(rectControl);
-//      rectangle_i64 rectForm;
-//      get_window_rect(rectForm);
+//      rectangleControl = item.m_rectangleSubItem;
+//      client_to_screen(rectangleControl);
+//      rectangle_i64 rectangleForm;
+//      get_window_rect(rectangleForm);
 //      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectForm.top;
-//      rectangleClient.bottom = rectForm.bottom;
-//      rectangleClient.left = rectControl.left;
-//      rectangleClient.right = rectControl.right;
+//      rectangleClient.top = rectangleForm.top;
+//      rectangleClient.bottom = rectangleForm.bottom;
+//      rectangleClient.left = rectangleControl.left;
+//      rectangleClient.right = rectangleControl.right;
 //      return rectangleClient.contains(point) != false;
    }
 
@@ -1538,7 +1538,7 @@ break_click:;
 
       }
 
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
 
       draw_list_item item(this);
 
@@ -1575,9 +1575,9 @@ break_click:;
 
       _001GetElementRect(&item,::user::mesh::element_sub_item);
 
-      rectControl = item.m_rectSubItem;
+      rectangleControl = item.m_rectangleSubItem;
 
-      ::rectangle_i32 rectangle(rectControl);
+      ::rectangle_i32 rectangle(rectangleControl);
 
       *prectangle = rectangle;
 
@@ -2194,7 +2194,7 @@ break_click:;
       if (pdrawitem->m_pcolumn->m_id)
       {
 
-         auto rScreen = pdrawitem->m_rectSubItem;
+         auto rScreen = pdrawitem->m_rectangleSubItem;
 
          client_to_screen(rScreen);
 
@@ -2214,7 +2214,7 @@ break_click:;
 
             }
 
-            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectSubItem, crBackHover);
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleSubItem, crBackHover);
 
          }
 
@@ -2241,7 +2241,7 @@ break_click:;
          //            rectangle.right = 15;
          //            rectangle.bottom = 15;
 
-         //            rectangle.Align(::e_align_center, pdrawitem->m_rectSubItem);
+         //            rectangle.Align(::e_align_center, pdrawitem->m_rectangleSubItem);
 
          //            _001GetItemText(pdrawitem);
 
@@ -2290,24 +2290,24 @@ break_click:;
          if (pinteraction)
          {
 //
-//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
+//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
 //
 //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
 //
-            pinteraction->place(pdrawitem->m_rectSubItem);
+            pinteraction->place(pdrawitem->m_rectangleSubItem);
 
             pinteraction->display();
 
 //
             //client_to_screen(pdrawitem->m_rectangleWindow);
 
-            //::rectangle_i32 rectWindow;
+            //::rectangle_i32 rectangleWindow;
 
-            //pinteraction->get_window_rect(rectWindow);
+            //pinteraction->get_window_rect(rectangleWindow);
 
-            //screen_to_client(rectWindow);
+            //screen_to_client(rectangleWindow);
 
-            //if (rectWindow != pdrawitem->m_rectangleClient)
+            //if (rectangleWindow != pdrawitem->m_rectangleClient)
             {
 
                // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);

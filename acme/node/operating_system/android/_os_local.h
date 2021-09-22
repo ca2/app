@@ -33,7 +33,7 @@ public:
 
 
    bool           m_bEditFocusSet;
-   rectangle_i32           m_rectEditFocus;
+   rectangle_i32           m_rectangleEditFocus;
    bool           m_bEditFocusKill;
    
    bool           m_bRedraw;

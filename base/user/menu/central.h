@@ -18,7 +18,7 @@ namespace user
       __pointer(::image_list)      m_pilHue;
       __pointer(::image_list)      m_pilBlend;
       __pointer(::image_list)      m_pilHueLight;
-      ::write_text::font_pointer       m_fontMenu;
+      ::write_text::font_pointer       m_pfontMenu;
 
 
       menu_central();

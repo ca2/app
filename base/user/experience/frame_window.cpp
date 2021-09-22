@@ -1738,17 +1738,17 @@ namespace experience
 #define ZONEING_COMPARE ::comparison
 
 
-      index frame_window::get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest, bool bPreserveSize)
+      index frame_window::get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
       {
 
          //i64 g_i_get_best_zoneing = 0;
 
          ::rectangle_i32 rectangle;
 
-         if (rectRequest.is_set())
+         if (rectangleRequest.is_set())
          {
 
-            rectangle = rectRequest;
+            rectangle = rectangleRequest;
 
          }
          else
@@ -1758,9 +1758,9 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectWorkspace;
+         ::rectangle_i32 rectangleWorkspace;
 
-         index iBestWorkspace = get_best_workspace(&rectWorkspace, rectangle);
+         index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
          if(rectangle.is_empty())
          {
@@ -1776,7 +1776,7 @@ namespace experience
 
             rectangle.set_height(sizeMinimum.cy);
 
-            rectangle._001ConstraintY(rectWorkspace);
+            rectangle._001ConstraintY(rectangleWorkspace);
 
          }
 
@@ -1785,14 +1785,14 @@ namespace experience
 
             rectangle.set_width(sizeMinimum.cx);
 
-            rectangle._001ConstraintX(rectWorkspace);
+            rectangle._001ConstraintX(rectangleWorkspace);
 
          }
 
          if (iBestWorkspace >= 0)
          {
 
-            rectangle._001Constraint(rectWorkspace);
+            rectangle._001Constraint(rectangleWorkspace);
 
          }
 
@@ -1824,9 +1824,9 @@ namespace experience
 
          auto psystem = m_psystem->m_pbasesystem;
 
-         double dMargin = psystem->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectWorkspace.area()));
+         double dMargin = psystem->m_dpi * 0.75 * (1.0 - sqrt((double) rectangle.area() / (double) rectangleWorkspace.area()));
 
-         if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+         if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
          {
 
             edisplay |= e_display_top;
@@ -1834,13 +1834,13 @@ namespace experience
             if (bPreserveSize)
             {
 
-               rectangle.move_top_to(rectWorkspace.top);
+               rectangle.move_top_to(rectangleWorkspace.top);
 
             }
             else
             {
 
-               rectangle.top = rectWorkspace.top;
+               rectangle.top = rectangleWorkspace.top;
 
             }
 
@@ -1852,7 +1852,7 @@ namespace experience
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+         if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
          {
 
             edisplay |= e_display_bottom;
@@ -1860,13 +1860,13 @@ namespace experience
             if (bPreserveSize)
             {
 
-               rectangle.move_bottom_to(rectWorkspace.bottom);
+               rectangle.move_bottom_to(rectangleWorkspace.bottom);
 
             }
             else
             {
 
-               rectangle.bottom = rectWorkspace.bottom;
+               rectangle.bottom = rectangleWorkspace.bottom;
 
             }
 
@@ -1878,7 +1878,7 @@ namespace experience
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectangle.left, rectWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
+         if (ZONEING_COMPARE::is_equal(rectangle.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
          {
 
             edisplay |= e_display_left;
@@ -1886,13 +1886,13 @@ namespace experience
             if (bPreserveSize)
             {
 
-               rectangle.move_left_to(rectWorkspace.left);
+               rectangle.move_left_to(rectangleWorkspace.left);
 
             }
             else
             {
 
-               rectangle.left = rectWorkspace.left;
+               rectangle.left = rectangleWorkspace.left;
 
             }
 
@@ -1904,7 +1904,7 @@ namespace experience
 
          }
 
-         if (ZONEING_COMPARE::is_equal(rectWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
+         if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
          {
 
             edisplay |= e_display_right;
@@ -1912,13 +1912,13 @@ namespace experience
             if (bPreserveSize)
             {
 
-               rectangle.move_right_to(rectWorkspace.right);
+               rectangle.move_right_to(rectangleWorkspace.right);
 
             }
             else
             {
 
-               rectangle.right = rectWorkspace.right;
+               rectangle.right = rectangleWorkspace.right;
 
             }
 
@@ -1934,7 +1934,7 @@ namespace experience
             && is_different(edisplay & e_display_left, edisplay & e_display_right))
          {
 
-            if (ZONEING_COMPARE::is_centered(rectWorkspace.top, rectangle.top, rectangle.bottom, rectWorkspace.bottom))
+            if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
             {
 
                if (dock_manager()->window_is_docking())
@@ -1944,9 +1944,9 @@ namespace experience
 
                   edisplay |= e_display_top;
 
-                  rectangle.bottom = rectWorkspace.bottom;
+                  rectangle.bottom = rectangleWorkspace.bottom;
 
-                  rectangle.top = rectWorkspace.top;
+                  rectangle.top = rectangleWorkspace.top;
 
                }
 
@@ -1965,7 +1965,7 @@ namespace experience
             && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
          {
 
-            if (ZONEING_COMPARE::is_centered(rectWorkspace.left, rectangle.left, rectangle.right, rectWorkspace.right))
+            if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
             {
 
                if (dock_manager()->window_is_docking())
@@ -1975,9 +1975,9 @@ namespace experience
 
                   edisplay |= e_display_right;
 
-                  rectangle.left = rectWorkspace.left;
+                  rectangle.left = rectangleWorkspace.left;
 
-                  rectangle.right = rectWorkspace.right;
+                  rectangle.right = rectangleWorkspace.right;
 
                }
 
@@ -2038,13 +2038,13 @@ namespace experience
          else if (edisplay == e_display_zoomed)
          {
 
-            *prectangle = rectWorkspace;
+            *prectangle = rectangleWorkspace;
 
          }
          else
          {
 
-            *prectangle = rectRequest;
+            *prectangle = rectangleRequest;
 
          }
 
@@ -2076,11 +2076,11 @@ namespace experience
 //
 //         dock_manager()->on_message_left_button_down(pmouse);
 //
-//         //::rectangle_i32 rectWindow;
+//         //::rectangle_i32 rectangleWindow;
 //
-//         //psubject->m_puserinteraction->get_window_rect(rectWindow);
+//         //psubject->m_puserinteraction->get_window_rect(rectangleWindow);
 //
-//         ///dock_manager()->m_pointCursorOrigin = rectWindow.center();
+//         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
 //
 //      }
 
@@ -2240,7 +2240,7 @@ namespace experience
 
       calculate_broad_and_compact_restore();
 
-      auto rectRequest = screen_rect();
+      auto rectangleRequest = screen_rect();
 
       edisplay edisplay = layout().sketch().display();
 
@@ -2250,7 +2250,7 @@ namespace experience
          defer_restore(m_windowrectangle.m_rectangleRestored);
 
       }
-      else if(rectRequest.size() == m_sizeRestoreBroad)
+      else if(rectangleRequest.size() == m_sizeRestoreBroad)
       {
 
          if (m_windowrectangle.m_rectangleRestored.size() == m_sizeRestoreBroad)
@@ -2267,7 +2267,7 @@ namespace experience
          }
 
       }
-      else if (rectRequest.size() == m_sizeRestoreCompact)
+      else if (rectangleRequest.size() == m_sizeRestoreCompact)
       {
 
          display(e_display_broad);

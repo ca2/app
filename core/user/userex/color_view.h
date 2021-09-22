@@ -26,7 +26,7 @@ namespace userex
 
       ::color::hls                            m_hls;
 
-      ::rectangle_i32                           m_rectColors;
+      ::rectangle_i32                           m_rectangleColors;
 
 
       color_view();
@@ -46,7 +46,7 @@ namespace userex
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point);
-      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectW, int y);
+      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int y);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

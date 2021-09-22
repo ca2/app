@@ -653,7 +653,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    draw2d::brush_pointer pen(e_create_new);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for (index i = 0; i < stra.get_count(); i++)
    {
@@ -1602,7 +1602,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
 
    return true;
 
@@ -1612,7 +1612,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   ::acme::get_system()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
 
    return true;
 

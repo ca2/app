@@ -197,17 +197,17 @@ namespace hi5
       void authorization::display_main_frame()
       {
 
-         ::rectangle_i32 rectOpen;
+         ::rectangle_i32 rectangleOpen;
 
-         m_ptabview->get_parent_frame()->best_top_level_parent(rectOpen);
+         m_ptabview->get_parent_frame()->best_top_level_parent(rectangleOpen);
 
-         i32 iWidth = rectOpen.width();
+         i32 iWidth = rectangleOpen.width();
 
-         i32 iHeight = rectOpen.height();
+         i32 iHeight = rectangleOpen.height();
 
-         rectOpen.deflate(iWidth / 5, iHeight / 50);
+         rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 
-         rectOpen.top = iHeight * 2 / 3;
+         rectangleOpen.top = iHeight * 2 / 3;
 
          //__pointer(::user::frame_window) pframe = m_pviewAuth->get_parent_frame();
 
@@ -220,7 +220,7 @@ namespace hi5
 
          m_ptabview->get_parent_frame()->order_front();
 
-         m_ptabview->get_parent_frame()->place(rectOpen);
+         m_ptabview->get_parent_frame()->place(rectangleOpen);
 
          m_pviewAuth->get_parent_frame()->set_foreground_window();
 

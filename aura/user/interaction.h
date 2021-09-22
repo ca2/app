@@ -634,7 +634,7 @@ namespace user
       virtual void _001OnAfterAppearance();
 
 
-      virtual void defer_restore(const ::rectangle_i32& rectRequest);
+      virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
       ::property_object * parent_property_set_holder() const override;
 
       virtual void set_reposition(bool bSetThis = true);
@@ -670,7 +670,7 @@ namespace user
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
-      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectHint = nullptr) override;
+      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
@@ -1026,13 +1026,13 @@ namespace user
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
 //         ::draw2d::region* prgnUpdate = nullptr,
 //         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
 //
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
          ::draw2d::region* prgnUpdate = nullptr,
          ::u32 flags = 0);
 
@@ -1171,7 +1171,7 @@ namespace user
       virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount) override;
 
       virtual string get_window_text() override;
-      virtual void get_window_text(string& rectString) override;
+      virtual void get_window_text(string& rectangleString) override;
       virtual strsize get_window_text_length() override;
 
       virtual ::user::frame* frame() const;
@@ -1210,7 +1210,7 @@ namespace user
       oswindow get_safe_oswindow() const;
       virtual oswindow get_oswindow() const override;
 
-      //virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
+      //virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       ////      virtual void Invalidate(bool bErase = true);
       //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
@@ -1523,7 +1523,7 @@ namespace user
       virtual edisplay initial_restore_display();
 
 
-      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
 
        //virtual void reset_window_state();
 
@@ -1535,7 +1535,7 @@ namespace user
       virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectRequest = ::rectangle_i32(), bool bPreserveSize = false);
+      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECTANGLE_I32* prectangle);
@@ -1902,7 +1902,7 @@ namespace user
 
       bool _001InitialFramePosition();
 
-      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectOptionalRateOrSize = {0., 0., 0., 0.});
+      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 

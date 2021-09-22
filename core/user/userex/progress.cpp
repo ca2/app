@@ -320,7 +320,7 @@ namespace userex
 
       pgraphics->set_text_color(argb(255, 80, 80, 80));
 
-      pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectStatus, e_align_center);
+      pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectangleStatus, e_align_center);
 
    }
 
@@ -340,15 +340,15 @@ namespace userex
       int cxBorder = rectangleClient.width() / 16;
       int h = rectangleClient.height() / 4;
 
-      ::rectangle_i32 rectIndicator(rectangleClient);
+      ::rectangle_i32 rectangleIndicator(rectangleClient);
 
-      rectIndicator.deflate(cxBorder, h, cxBorder, h * 2);
+      rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 
-      m_rectStatus = rectangleClient;
+      m_rectangleStatus = rectangleClient;
 
-      m_rectStatus.deflate(cxBorder, h * 2, cxBorder, h);
+      m_rectangleStatus.deflate(cxBorder, h * 2, cxBorder, h);
 
-      m_pprogress->display_child(rectIndicator);
+      m_pprogress->display_child(rectangleIndicator);
 
    }
 

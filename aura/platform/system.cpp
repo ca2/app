@@ -3543,7 +3543,7 @@ namespace aura
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_rectaMonitor.get_count();
+      return m_rectangleaMonitor.get_count();
 
 #else
 
@@ -3594,7 +3594,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaMonitor[iMonitor];
+//      *prectangle = m_rectangleaMonitor[iMonitor];
 //
 //
 //#elif defined(__APPLE__)
@@ -3749,7 +3749,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaWork[iWorkspace];
+//      *prectangle = m_rectangleaWork[iWorkspace];
 //
 //
 //      return true;

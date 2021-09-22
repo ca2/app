@@ -266,12 +266,12 @@ namespace datetime
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
          ::datetime::time_span timespan(1, 0, 0, 0);
-         rectangle_i32 rectDay;
+         rectangle_i32 rectangleDay;
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time, rectDay);
-            if (rectDay.contains(point))
+            GetRectDay(time, rectangleDay);
+            if (rectangleDay.contains(point))
             {
                timeRet = time;
                return true;

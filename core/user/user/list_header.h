@@ -84,7 +84,7 @@ namespace user
       };
 
       int                           m_iImageSpacing;
-      //::write_text::font_pointer                 m_font;
+      //::write_text::font_pointer                 m_pfont;
       string                        m_strBuffer;
       draw2d::graphics_extension    m_dcextension;
 

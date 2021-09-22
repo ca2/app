@@ -276,7 +276,7 @@ namespace draw2d_cairo
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      ::draw2d::brush_pointer pbrushText(e_create);
+//      auto pbrushText = __create < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);

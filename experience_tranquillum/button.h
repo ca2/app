@@ -16,8 +16,8 @@ namespace experience
 
 
       ::draw2d::region_pointer                 m_spregion;
-      ::draw2d::pen_pointer                    m_pen;
-      ::draw2d::brush_pointer                  m_brush;
+      ::draw2d::pen_pointer                    m_ppen;
+      ::draw2d::brush_pointer                  m_pbrush;
 
 
       button();

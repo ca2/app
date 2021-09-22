@@ -49,13 +49,13 @@ namespace experience
 
       ::point_i32 point;
 
-      ::rectangle_i32 rectDockButtonWindow;
+      ::rectangle_i32 rectangleDockButtonWindow;
 
       auto pbutton = dock_button();
 
-      pbutton->get_window_rect(rectDockButtonWindow);
+      pbutton->get_window_rect(rectangleDockButtonWindow);
 
-      ::point_i32 pointDock = rectDockButtonWindow.center();
+      ::point_i32 pointDock = rectangleDockButtonWindow.center();
 
       auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
 
@@ -63,19 +63,19 @@ namespace experience
 
       point = __point(pointCursor - pointDock);
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectWindow);
+      m_pframewindow->get_window_rect(rectangleWindow);
 
-      ::rectangle_i32 rectEvent = rectWindow;
+      ::rectangle_i32 rectangleEvent = rectangleWindow;
 
-      rectEvent.move_to(point);
+      rectangleEvent.move_to(point);
 
-      ::rectangle_i32 rectCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
+      ::rectangle_i32 rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
 
       ::rectangle_i32 screen;
 
-      ::rectangle_i32 rectWork;
+      ::rectangle_i32 rectangleWork;
 
       __pointer(::base::session) psession = get_session();
 
@@ -85,187 +85,187 @@ namespace experience
 
       auto pdisplay = pwindowing->display();
 
-      int iMonitor = (int)pdisplay->get_best_monitor(screen, rectCursor);
+      int iMonitor = (int)pdisplay->get_best_monitor(screen, rectangleCursor);
 
-      pdisplay->get_workspace_rectangle(iMonitor, rectWork);
+      pdisplay->get_workspace_rectangle(iMonitor, rectangleWork);
 
-      if (rectWork.is_empty())
+      if (rectangleWork.is_empty())
       {
 
          __throw(error_failed);
 
       }
 
-      int cxCenterArea = rectWork.width() / 2;
+      int cxCenterArea = rectangleWork.width() / 2;
 
-      int cyCenterArea = rectWork.height() / 2;
+      int cyCenterArea = rectangleWork.height() / 2;
 
-      ::rectangle_i32 rectCenter;
+      ::rectangle_i32 rectangleCenter;
 
-      auto pointScreenCenter = rectWork.center();
+      auto pointScreenCenter = rectangleWork.center();
 
-      rectCenter.left = pointScreenCenter.x - cxCenterArea / 2;
+      rectangleCenter.left = pointScreenCenter.x - cxCenterArea / 2;
 
-      rectCenter.top = pointScreenCenter.y - cyCenterArea / 2;
+      rectangleCenter.top = pointScreenCenter.y - cyCenterArea / 2;
 
-      rectCenter.right = pointScreenCenter.x + cxCenterArea / 2;
+      rectangleCenter.right = pointScreenCenter.x + cxCenterArea / 2;
 
-      rectCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
+      rectangleCenter.bottom = pointScreenCenter.y + cyCenterArea / 2;
 
       if (m_pframewindow->layout().design().display() & e_display_bottom)
       {
 
-         rectCenter.bottom -= cyCenterArea / 4;
-         rectCenter.left -= cxCenterArea / 16;
-         rectCenter.right += cxCenterArea / 16;
+         rectangleCenter.bottom -= cyCenterArea / 4;
+         rectangleCenter.left -= cxCenterArea / 16;
+         rectangleCenter.right += cxCenterArea / 16;
 
       }
       else
       {
 
-         rectCenter.bottom += cyCenterArea / 8;
+         rectangleCenter.bottom += cyCenterArea / 8;
 
       }
 
       if (m_pframewindow->layout().design().display() & e_display_top)
       {
 
-         rectCenter.top += cyCenterArea / 4;
-         rectCenter.left -= cxCenterArea / 16;
-         rectCenter.right += cxCenterArea / 16;
+         rectangleCenter.top += cyCenterArea / 4;
+         rectangleCenter.left -= cxCenterArea / 16;
+         rectangleCenter.right += cxCenterArea / 16;
 
       }
       else
       {
 
-         rectCenter.top -= cyCenterArea / 8;
+         rectangleCenter.top -= cyCenterArea / 8;
 
       }
 
       if (m_pframewindow->layout().design().display() & e_display_right)
       {
 
-         rectCenter.right -= cxCenterArea / 4;
-         rectCenter.top -= cyCenterArea / 8;
-         rectCenter.bottom += cyCenterArea / 8;
+         rectangleCenter.right -= cxCenterArea / 4;
+         rectangleCenter.top -= cyCenterArea / 8;
+         rectangleCenter.bottom += cyCenterArea / 8;
 
       }
       else
       {
 
-         rectCenter.right += cxCenterArea / 8;
+         rectangleCenter.right += cxCenterArea / 8;
 
       }
 
       if (m_pframewindow->layout().design().display() & e_display_left)
       {
 
-         rectCenter.left += cxCenterArea / 4;
-         rectCenter.top -= cyCenterArea / 16;
-         rectCenter.bottom += cyCenterArea / 16;
+         rectangleCenter.left += cxCenterArea / 4;
+         rectangleCenter.top -= cyCenterArea / 16;
+         rectangleCenter.bottom += cyCenterArea / 16;
 
       }
       else
       {
 
-         rectCenter.left -= cxCenterArea / 8;
+         rectangleCenter.left -= cxCenterArea / 8;
 
       }
 
-      ::rectangle_i32 rectDock;
+      ::rectangle_i32 rectangleDock;
 
       enum_display edisplayDock = e_display_none;
 
       enum_display edisplayOld = m_pframewindow->layout().sketch().display();
 
-      ::rectangle_i32 rectScreenOld = m_pframewindow->screen_rect();
+      ::rectangle_i32 rectangleScreenOld = m_pframewindow->screen_rect();
 
-      if (rectCenter.contains_x(pointCursor.x))
+      if (rectangleCenter.contains_x(pointCursor.x))
       {
 
-         if (rectCenter.contains_y(pointCursor.y))
+         if (rectangleCenter.contains_y(pointCursor.y))
          {
 
             edisplayDock = ::e_display_normal;
 
          }
-         else if (pointCursor.y < rectCenter.top)
+         else if (pointCursor.y < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_full_top;
 
-            rectDock = rectangle_i32_dimension(rectWork.left, rectWork.top, rectWork.width(), rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width(), rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectCenter.bottom)
+         else if (pointCursor.y > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_full_bottom;
 
-            rectDock = rectangle_i32_dimension(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width(), rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top + rectangleWork.height() / 2, rectangleWork.width(), rectangleWork.height() / 2);
 
          }
 
       }
-      else if (rectCenter.contains_y(pointCursor.y))
+      else if (rectangleCenter.contains_y(pointCursor.y))
       {
 
-         if (pointCursor.x < rectCenter.left)
+         if (pointCursor.x < rectangleCenter.left)
          {
 
             edisplayDock = ::e_display_full_left;
 
-            rectDock = rectangle_i32_dimension(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height());
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height());
 
          }
-         else if (pointCursor.x > rectCenter.right)
+         else if (pointCursor.x > rectangleCenter.right)
          {
 
             edisplayDock = ::e_display_full_right;
 
-            rectDock = rectangle_i32_dimension(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height());
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left + rectangleWork.width() / 2, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height());
 
          }
 
       }
-      else if (pointCursor.x < rectCenter.left)
+      else if (pointCursor.x < rectangleCenter.left)
       {
 
-         if (pointCursor.y < rectCenter.top)
+         if (pointCursor.y < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_top_left;
 
-            rectDock = rectangle_i32_dimension(rectWork.left, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectCenter.bottom)
+         else if (pointCursor.y > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_bottom_left;
 
-            rectDock = rectangle_i32_dimension(rectWork.left, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left, rectangleWork.top + rectangleWork.height() / 2, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
 
       }
-      else if (pointCursor.x > rectCenter.right)
+      else if (pointCursor.x > rectangleCenter.right)
       {
 
-         if (pointCursor.y < rectCenter.top)
+         if (pointCursor.y < rectangleCenter.top)
          {
 
             edisplayDock = ::e_display_top_right;
 
-            rectDock = rectangle_i32_dimension(rectWork.left + rectWork.width() / 2, rectWork.top, rectWork.width() / 2, rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left + rectangleWork.width() / 2, rectangleWork.top, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
-         else if (pointCursor.y > rectCenter.bottom)
+         else if (pointCursor.y > rectangleCenter.bottom)
          {
 
             edisplayDock = ::e_display_bottom_right;
 
-            rectDock = rectangle_i32_dimension(rectWork.left + rectWork.width() / 2, rectWork.top + rectWork.height() / 2, rectWork.width() / 2, rectWork.height() / 2);
+            rectangleDock = rectangle_i32_dimension(rectangleWork.left + rectangleWork.width() / 2, rectangleWork.top + rectangleWork.height() / 2, rectangleWork.width() / 2, rectangleWork.height() / 2);
 
          }
 
@@ -287,11 +287,11 @@ namespace experience
          else
          {
 
-            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
+            ::rectangle_i32 rectangleNew(pointMove, m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
 
-            rectNew._001Constraint(rectWork);
+            rectangleNew._001Constraint(rectangleWork);
 
-            if(rectNew != rectScreenOld)
+            if(rectangleNew != rectangleScreenOld)
             {
 
                m_pframewindow->move_to(pointMove);
@@ -319,12 +319,12 @@ namespace experience
       else if (is_docking_appearance(edisplayDock))
       {
 
-         if (edisplayDock == edisplayOld || rectDock != rectWindow)
+         if (edisplayDock == edisplayOld || rectangleDock != rectangleWindow)
          {
 
             m_pframewindow->order(e_zorder_top);
 
-            m_pframewindow->place(rectDock);
+            m_pframewindow->place(rectangleDock);
 
             m_pframewindow->display(edisplayDock);
 
@@ -370,7 +370,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_point;
 
-      auto rectWindow = m_pframewindow->screen_rect();
+      auto rectangleWindow = m_pframewindow->screen_rect();
 
       auto pointDockOrigin = pointCursor;
 
@@ -378,11 +378,11 @@ namespace experience
 
       m_pointCursorDockOrigin = pointDockOrigin;
 
-      m_pointWindowOrigin = rectWindow.top_left();
+      m_pointWindowOrigin = rectangleWindow.top_left();
 
       m_pointMove = m_pointWindowOrigin;
 
-      m_sizeOrigin = rectWindow.size();
+      m_sizeOrigin = rectangleWindow.size();
 
       m_edisplayOrigin = m_pframewindow->layout().design().display();
 

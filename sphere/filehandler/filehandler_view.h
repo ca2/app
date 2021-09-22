@@ -25,9 +25,9 @@ namespace filehandler
          string         m_strApp;
          ::index        m_iIndex;
 
-         ::rectangle_i32         m_rectItem;
-         ::rectangle_i32         m_rectStatusImage;
-         ::rectangle_i32         m_rectName;
+         ::rectangle_i32         m_rectangleItem;
+         ::rectangle_i32         m_rectangleStatusImage;
+         ::rectangle_i32         m_rectangleName;
 
          item(::object * pobject);
 

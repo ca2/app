@@ -2038,9 +2038,9 @@ namespace user
 
    //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   //         auto rectDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
+   //         auto rectangleDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
 
-   //         m_pilHover[iSize]->m_pimage->g()->draw(rectDraw, pimage->get_graphics());
+   //         m_pilHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 
    //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

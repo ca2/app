@@ -112,11 +112,11 @@ namespace user
    //{
    //public:
 
-   //   ::draw2d::pen_pointer              m_penCaret;
-   //   ::draw2d::brush_pointer            m_brushText;
-   //   ::draw2d::brush_pointer            m_brushTextCr;
-   //   ::draw2d::brush_pointer            m_brushTextSel;
-   //   ::draw2d::brush_pointer            m_brushTextEmpty;
+   //   ::draw2d::pen_pointer              m_ppenCaret;
+   //   ::draw2d::brush_pointer            m_pbrushText;
+   //   ::draw2d::brush_pointer            m_pbrushTextCr;
+   //   ::draw2d::brush_pointer            m_pbrushTextSel;
+   //   ::draw2d::brush_pointer            m_pbrushTextEmpty;
 
    //   plain_edit_internal();
    //   ~plain_edit_internal();
@@ -420,9 +420,9 @@ namespace user
 
       
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      rectangleClient.deflate(rectPadding);
+      rectangleClient.deflate(rectanglePadding);
 
       double left = rectangleClient.left;
 
@@ -432,13 +432,13 @@ namespace user
       strsize iSelEndOriginal;
       strsize lim = 0;
 
-      ::draw2d::pen_pointer & penCaret = m_pcontrolstyle->m_penCaret;
+      ::draw2d::pen_pointer & ppenCaret = m_pcontrolstyle->m_ppenCaret;
 
-      ::draw2d::brush_pointer & brushText = m_pcontrolstyle->m_brushText;
+      ::draw2d::brush_pointer & pbrushText = m_pcontrolstyle->m_pbrushText;
 
-      ::draw2d::brush_pointer & brushTextCr = m_pcontrolstyle->m_brushTextCr;
+      ::draw2d::brush_pointer & pbrushTextCr = m_pcontrolstyle->m_pbrushTextCr;
 
-      ::draw2d::brush_pointer & brushTextSel = m_pcontrolstyle->m_brushTextSel;
+      ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
       auto pointOffset = get_viewport_offset();
 
@@ -507,7 +507,7 @@ namespace user
          if (m_strEmtpyText.has_char())
          {
 
-            pgraphics->set(m_pcontrolstyle->m_brushTextEmpty);
+            pgraphics->set(m_pcontrolstyle->m_pbrushTextEmpty);
 
             pgraphics->text_out(left, y, m_strEmtpyText);
 
@@ -695,7 +695,7 @@ namespace user
                (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                crBkSel);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -709,7 +709,7 @@ namespace user
                   (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                   colorComposeBk);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -717,15 +717,15 @@ namespace user
             if(bOverride)
             {
 
-               brushText->create_solid(crOverride);
+               pbrushText->create_solid(crOverride);
 
-               pgraphics->set(brushText);
+               pgraphics->set(pbrushText);
 
             }
             else
             {
 
-               pgraphics->set(brushTextCr);
+               pgraphics->set(pbrushTextCr);
 
             }
 
@@ -752,7 +752,7 @@ namespace user
             else
             {
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -771,11 +771,11 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               ::draw2d::pen_pointer pen(e_create);
+               auto ppen = __create < ::draw2d::pen > ();
 
-               pen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
 
-               pgraphics->set(pen);
+               pgraphics->set(ppen);
 
                pgraphics->draw_error_line((int)xA, (int) m_dLineHeight, (int)xB, 1);
 
@@ -796,7 +796,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x1, y);
 
@@ -818,7 +818,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x2, y);
 
@@ -1061,30 +1061,30 @@ namespace user
 
             screen_to_client(pointCursor);
 
-            ::rectangle_i32 rectActiveClient;
+            ::rectangle_i32 rectangleActiveClient;
 
-            GetActiveClientRect(rectActiveClient);
+            GetActiveClientRect(rectangleActiveClient);
 
-            if (pointCursor.x < rectActiveClient.left)
+            if (pointCursor.x < rectangleActiveClient.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x > rectActiveClient.right)
+            else if (pointCursor.x > rectangleActiveClient.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y < rectActiveClient.top)
+            if (pointCursor.y < rectangleActiveClient.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y > rectActiveClient.bottom)
+            else if (pointCursor.y > rectangleActiveClient.bottom)
             {
 
                scroll_down_line();
@@ -1927,11 +1927,11 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectWindow);
+               get_window_rect(rectangleWindow);
 
-               if (pmouse->m_point.x < rectWindow.left - 30)
+               if (pmouse->m_point.x < rectangleWindow.left - 30)
                {
 
                   output_debug_string("test06");
@@ -6927,42 +6927,43 @@ finished_update:
    }
 
 
+
    void plain_edit_style::on_update(::draw2d::graphics_pointer& pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
    {
 
-      m_penCaret.release();
+      m_ppenCaret.release();
 
-      m_brushText.release();
+      m_pbrushText.release();
 
-      m_brushTextCr.release();
+      m_pbrushTextCr.release();
 
-      m_brushTextSel.release();
+      m_pbrushTextSel.release();
 
-      m_brushTextEmpty.release();
+      m_pbrushTextEmpty.release();
 
-      __construct(m_penCaret);
+      puserinteraction->__construct(m_ppenCaret);
 
-      __construct(m_brushText);
+      puserinteraction->__construct(m_pbrushText);
 
-      __construct(m_brushTextCr);
+      puserinteraction->__construct(m_pbrushTextCr);
 
-      __construct(m_brushTextSel);
+      puserinteraction->__construct(m_pbrushTextSel);
 
-      __construct(m_brushTextEmpty);
+      puserinteraction->__construct(m_pbrushTextEmpty);
 
       auto color = puserinteraction->get_color(pstyle, e_element_text);
 
-      m_penCaret->create_solid(1.0, color);
+      m_ppenCaret->create_solid(1.0, color);
 
-      m_brushTextCr->create_solid(color);
+      m_pbrushTextCr->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
 
-      m_brushTextSel->create_solid(color);
+      m_pbrushTextSel->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
 
-      m_brushTextEmpty->create_solid(color);
+      m_pbrushTextEmpty->create_solid(color);
 
    }
 

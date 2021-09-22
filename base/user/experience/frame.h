@@ -31,12 +31,12 @@ namespace experience
       bool                                   m_bHollow;
       string                                 m_strLibrary;
       string                                 m_strName;
-      ::rectangle_i32                        m_rectCaption;
-      ::rectangle_i32                        m_rectWindowText;
+      ::rectangle_i32                        m_rectangleCaption;
+      ::rectangle_i32                        m_rectangleWindowText;
       int                                    m_iControlBoxPosition;
-      //::rectangle_i32                      m_rectControlBoxFullScreen;
-      //::rectangle_i32                      m_rectControlBoxZoomed;
-      //::rectangle_i32                      m_rectControlBoxNormal;
+      //::rectangle_i32                      m_rectangleControlBoxFullScreen;
+      //::rectangle_i32                      m_rectangleControlBoxZoomed;
+      //::rectangle_i32                      m_rectangleControlBoxNormal;
       point_i32                              m_pointWindowIcon;
       ///point_i32                           m_pointMoveGripMinimal;
 
@@ -52,12 +52,12 @@ namespace experience
       i32                                    m_iCaptionHeight;
       i32                                    m_iTitleBottom;
 
-      ::rectangle_i32                        m_rectMarginFullScreen;
-      ::rectangle_i32                        m_rectMarginZoomed;
-      ::rectangle_i32                        m_rectMarginNormal;
-      ::rectangle_i32                        m_rectMarginDock;
+      ::rectangle_i32                        m_rectangleMarginFullScreen;
+      ::rectangle_i32                        m_rectangleMarginZoomed;
+      ::rectangle_i32                        m_rectangleMarginNormal;
+      ::rectangle_i32                        m_rectangleMarginDock;
 
-      ::rectangle_i32                        m_rectCaptionTextPadding;
+      ::rectangle_i32                        m_rectangleCaptionTextPadding;
 
 
       ::rectangle_i32                        m_rectangleClient;
@@ -94,7 +94,7 @@ namespace experience
 
       //virtual void update_drawing_objects();
       virtual void update_window_client_rect();
-      //virtual void update_window_region(const ::rectangle_i32 & rectWindow);
+      //virtual void update_window_region(const ::rectangle_i32 & rectangleWindow);
 
       //virtual void update_window();
       //virtual void update_window_style();
@@ -154,7 +154,7 @@ namespace experience
       virtual void OnActivate();
       virtual void OnNcCalcSize(RECTANGLE_I32 * prectangle);
 
-      //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectWindow);
+      //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow);
 
       virtual e_hittest _001HitTest(const ::point_i32 & point);
 

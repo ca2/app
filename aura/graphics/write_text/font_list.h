@@ -50,7 +50,7 @@ namespace write_text
       string                                    m_strText;
       string                                    m_strTextLayout;
 
-      ::rectangle_i32                           m_rectMargin;
+      ::rectangle_i32                           m_rectangleMargin;
       int                                       m_iBaseSizeLayout;
       millis                                    m_millisLastLayout;
       ::task_pointer                            m_pthreadLayout;

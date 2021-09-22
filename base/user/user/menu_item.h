@@ -23,7 +23,7 @@ namespace user
       i32                              m_iLevel;
       __pointer(::user::menu)          m_pmenu;
       string                           m_strTitle;
-      ::rectangle_i32                           m_rectUi;
+      ::rectangle_i32                           m_rectangleUi;
       int                              m_iColumn;
       __composite(::image)             m_pimage;
 

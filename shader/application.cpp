@@ -62,11 +62,11 @@ namespace app_shader
 
       __compose(m_pmainwindow, __create_new < ::app_shader::main_window > ());
 
-      rectangle_i32 rectWindow;
+      rectangle_i32 rectangleWindow;
 
-      m_pmainwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
+      m_pmainwindow->_001InitialFramePosition(rectangleWindow, { 0.05, 0.05, 0.4, 0.4 });
 
-      //auto pusersystem = __new(::user::system(0, nullptr, "app_app", WS_VISIBLE, rectWindow));
+      //auto pusersystem = __new(::user::system(0, nullptr, "app_app", WS_VISIBLE, rectangleWindow));
 
       //m_pmainwindow->create_window_ex(pusersystem);
 
@@ -74,7 +74,7 @@ namespace app_shader
 
       m_pmainwindow->display(e_display_normal);
 
-      m_pmainwindow->place(rectWindow);
+      m_pmainwindow->place(rectangleWindow);
 
       m_pmainwindow->set_need_layout();
 

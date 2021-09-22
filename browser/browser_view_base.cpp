@@ -10,12 +10,12 @@ namespace browser
    impact_base::impact_base(::object * pobject):
       object(pobject),
 
-      m_fontDrawStatus(e_create)
+      m_pfontDrawStatus(e_create)
    {
 
       m_prender = nullptr;
 
-      m_fontDrawStatus->create_pixel_font("Arial", 20, 400);
+      m_pfontDrawStatus->create_pixel_font("Arial", 20, 400);
 
       m_colorDrawStatus = argb(255, 255, 255, 0);
 
@@ -239,7 +239,7 @@ auto m_millisRoll = ::millis::now();
 pacmedir->system() / "obs.png");
 
 
-      //pdcParam->set_font(m_fontDrawStatus);
+      //pdcParam->set_font(m_pfontDrawStatus);
 
       //pdcParam->set_text_color(m_colorDrawStatus);
 
@@ -247,13 +247,13 @@ pacmedir->system() / "obs.png");
       //str1 = "FPS: " + __str((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
       //m_yDrawStatus = 10;
       //pdcParam->TextOutA(10, m_yDrawStatus, str1);
-      //m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+      //m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //if (m_prender != nullptr)
       //{
       //
       //   str1 = "Render FPS: " + __str((int) m_prender->m_dRenderFps);
       //   pdcParam->TextOutA(10, m_yDrawStatus, str1);
-      //   m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+      //   m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //}
 
 #if SHOW_FPS
@@ -262,17 +262,17 @@ pacmedir->system() / "obs.png");
 
       string str;
       str.Format("Window FPS: %0.1d", get_output_fps());
-      pgraphicsParam->selectFont(m_fontDrawStatus);
+      pgraphicsParam->selectFont(m_pfontDrawStatus);
       pgraphicsParam->text_out(10, m_yDrawStatus, str);
-      m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+      m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
 
       if (m_prender != nullptr)
       {
          string str;
          str.Format("Hello Browser FPS: %0.1d", m_prender->get_fps());
-         pgraphicsParam->selectFont(m_fontDrawStatus);
+         pgraphicsParam->selectFont(m_pfontDrawStatus);
          pgraphicsParam->text_out(10, m_yDrawStatus, str);
-         m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+         m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       }
 #endif
 
@@ -413,9 +413,9 @@ pacmedir->system() / "obs.png");
 
             }
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(0.5, argb(84, 0, 0, 0));
+            ppen->create_solid(0.5, argb(84, 0, 0, 0));
 
             pgraphics->SelectObject(pen);
 

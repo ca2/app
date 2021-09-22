@@ -33,7 +33,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics = pdrawitem->m_pgraphics;
 
-      ::rectangle_i32 rectColumn = pdrawitem->rcItem;
+      ::rectangle_i32 rectangleColumn = pdrawitem->rcItem;
 
       i32 iColumn = pdrawitem->itemID;
 
@@ -51,7 +51,7 @@ namespace user
 
          ::rectangle_i32 rC;
 
-         rC = rectColumn;
+         rC = rectangleColumn;
 
          rC.left += 2;
 
@@ -65,7 +65,7 @@ namespace user
 
          pgraphics->draw(imagedrawing);
 
-         rectColumn.left = rectangle.right + m_iImageSpacing;
+         rectangleColumn.left = rectangle.right + m_iImageSpacing;
 
       }
 
@@ -96,9 +96,9 @@ namespace user
          
          ::e_draw_text edrawtext = plist->get_draw_text_flags(plist->m_eview);
 
-         //rectColumn.bottom += rectColumn.height() * 2;
+         //rectangleColumn.bottom += rectangleColumn.height() * 2;
 
-         pgraphics->draw_text(str, rectColumn, ealign, edrawtext);
+         pgraphics->draw_text(str, rectangleColumn, ealign, edrawtext);
 
       }
 
@@ -219,39 +219,39 @@ namespace user
       {
          if(iItem == iItemLButtonDown)
          {
-            ::rectangle_i32 rectA;
-            if(!GetItemRect(rectA, element_item_Box, iItem - 1))
+            ::rectangle_i32 rectangleA;
+            if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
             {
-               GetItemRect(rectA, element_item_Box, iItem);
+               GetItemRect(rectangleA, element_item_Box, iItem);
             }
 
             ::rectangle_i32 rectangle;
             GetItemRect(rectangle, element_item_Box, iItem);
 
-            ::rectangle_i32 rectB;
-            if(!GetItemRect(rectA, element_item_Box, iItem + 1))
+            ::rectangle_i32 rectangleB;
+            if(!GetItemRect(rectangleA, element_item_Box, iItem + 1))
             {
-               GetItemRect(rectA, element_item_Box, iItem);
+               GetItemRect(rectangleA, element_item_Box, iItem);
             }
 
-            rectangle.left = rectA.left + rectA.width() / 2;
-            rectangle.right = rectB.left + rectB.width() / 2;
+            rectangle.left = rectangleA.left + rectangleA.width() / 2;
+            rectangle.right = rectangleB.left + rectangleB.width() / 2;
             *prectangle = rectangle;
 
             return true;
          }
          else if(iItem <= iItemLButtonDown - 1)
          {
-            ::rectangle_i32 rectA;
-            if(!GetItemRect(rectA, element_item_Box, iItem - 1))
+            ::rectangle_i32 rectangleA;
+            if(!GetItemRect(rectangleA, element_item_Box, iItem - 1))
             {
-               GetItemRect(rectA, element_item_Box, iItem);
+               GetItemRect(rectangleA, element_item_Box, iItem);
             }
 
             ::rectangle_i32 rectangle;
             GetItemRect(rectangle, element_item_Box, iItem);
 
-            rectangle.left = rectA.left + rectA.width() / 2;
+            rectangle.left = rectangleA.left + rectangleA.width() / 2;
             rectangle.right = rectangle.left + rectangle.width() / 2;
             *prectangle = rectangle;
 
@@ -259,17 +259,17 @@ namespace user
          }
          else if(iItem >= iItemLButtonDown + 1)
          {
-            ::rectangle_i32 rectB;
-            if(!GetItemRect(rectB, element_item_Box, iItem + 1))
+            ::rectangle_i32 rectangleB;
+            if(!GetItemRect(rectangleB, element_item_Box, iItem + 1))
             {
-               GetItemRect(rectB, element_item_Box, iItem);
+               GetItemRect(rectangleB, element_item_Box, iItem);
             }
 
             ::rectangle_i32 rectangle;
             GetItemRect(rectangle, element_item_Box, iItem);
 
             rectangle.left = rectangle.left + rectangle.width() / 2;
-            rectangle.right = rectB.left + rectB.width() / 2;
+            rectangle.right = rectangleB.left + rectangleB.width() / 2;
             *prectangle = rectangle;
 
             return true;
@@ -657,7 +657,7 @@ namespace user
       //try
       //{
 
-      //   ::rectangle_i32 rectClip;
+      //   ::rectangle_i32 rectangleClip;
 
       //   ::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -684,7 +684,7 @@ namespace user
       //      rectangleClient.bottom++;
       //      rectangleClient.right++;
 
-      //      rectClip = rectangleClient;
+      //      rectangleClip = rectangleClient;
 
       //      bFirst = false;
 
@@ -697,7 +697,7 @@ namespace user
 
       //      __construct_new(m_pshapeaClip);
 
-      //      ::rectangle_i32 rectIntersect;
+      //      ::rectangle_i32 rectangleIntersect;
 
       //      while (pinteraction != nullptr)
       //      {
@@ -727,7 +727,7 @@ namespace user
       //   //try
       ////{
 
-      ////   ::rectangle_i32 rectClip;
+      ////   ::rectangle_i32 rectangleClip;
 
       ////   ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -745,7 +745,7 @@ namespace user
       ////      rectangleClient.bottom++;
       ////      rectangleClient.right++;
 
-      ////      rectClip = rectangleClient;
+      ////      rectangleClip = rectangleClient;
 
       ////      bFirst = false;
 
@@ -758,9 +758,9 @@ namespace user
       ////      
       ////      ::user::interaction * pinteraction = this;
 
-      ////      ::rectangle_i32 rectFocus;
+      ////      ::rectangle_i32 rectangleFocus;
 
-      ////      ::rectangle_i32 rectIntersect;
+      ////      ::rectangle_i32 rectangleIntersect;
 
       ////      index i = 0;
 
@@ -770,25 +770,25 @@ namespace user
       ////         if (i == 1)
       ////         {
       ////            // guess list client rectangle_i32 doesn't include header?
-      ////            pinteraction->::user::interaction::get_client_rect(rectFocus);
+      ////            pinteraction->::user::interaction::get_client_rect(rectangleFocus);
 
       ////         }
       ////         else
       ////         {
 
-      ////            pinteraction->get_client_rect(rectFocus);
+      ////            pinteraction->get_client_rect(rectangleFocus);
 
       ////         }
 
-      ////         pinteraction->client_to_screen(rectFocus);
+      ////         pinteraction->client_to_screen(rectangleFocus);
 
-      ////         screen_to_client(rectFocus);
+      ////         screen_to_client(rectangleFocus);
 
-      ////         rectFocus.bottom++;
+      ////         rectangleFocus.bottom++;
 
-      ////         rectFocus.right++;
+      ////         rectangleFocus.right++;
 
-      ////         m_pshapeaClip->add_item(__new(rectangle_shape(rectIntersect)));
+      ////         m_pshapeaClip->add_item(__new(rectangle_shape(rectangleIntersect)));
 
       ////         m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
@@ -823,34 +823,34 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      ::rectangle_i32 rectUpdate(rectangleClient);
+      ::rectangle_i32 rectangleUpdate(rectangleClient);
 
-      ::rectangle_f64 rectClipBox;
+      ::rectangle_f64 rectangleClipBox;
 
-      pgraphics->get_clip_box(&rectClipBox);
+      pgraphics->get_clip_box(&rectangleClipBox);
 
-      rectClipBox.right--;
+      rectangleClipBox.right--;
 
-      if(rectClipBox.is_empty())
+      if(rectangleClipBox.is_empty())
       {
          
-         rectClipBox = rectangleClient;
+         rectangleClipBox = rectangleClient;
 
       }
 
-      rectUpdate.intersect(rectUpdate, rectClipBox);
+      rectangleUpdate.intersect(rectangleUpdate, rectangleClipBox);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->fill_rectangle(rectUpdate, get_color(pstyle, ::e_element_background));
+      pgraphics->fill_rectangle(rectangleUpdate, get_color(pstyle, ::e_element_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
       list * plist = m_plistctrlinterface;
-      ::rectangle_i32 rectDivider;
-      ::draw2d::pen_pointer ppen(e_create);
+      ::rectangle_i32 rectangleDivider;
+      auto ppen = __create < ::draw2d::pen > ();
 
       auto color = get_color(pstyle, ::e_element_separator);
 
@@ -865,15 +865,15 @@ namespace user
 
          DrawItem(&drawitem);
 
-         GetItemRect(rectDivider, ElementDivider, iItem);
+         GetItemRect(rectangleDivider, ElementDivider, iItem);
 
          pgraphics->set(ppen);
 
-         pgraphics->move_to(rectDivider.left, rectDivider.top);
+         pgraphics->move_to(rectangleDivider.left, rectangleDivider.top);
 
-         pgraphics->line_to(rectDivider.left, rectDivider.bottom);
+         pgraphics->line_to(rectangleDivider.left, rectangleDivider.bottom);
 
-         //pgraphics->draw3d_rect(rectDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
+         //pgraphics->draw3d_rect(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 
       }
 

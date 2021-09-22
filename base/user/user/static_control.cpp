@@ -159,11 +159,11 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectangleWindow);
 
-         if(rectWindow.contains(pointCursor))
+         if(rectangleWindow.contains(pointCursor))
          {
 
             crText = ::color::color(255, 0, 0, 0);

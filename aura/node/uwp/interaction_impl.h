@@ -260,7 +260,7 @@ namespace universal_windows
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
                                 ::draw2d::region* prgnUpdate = nullptr,
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);

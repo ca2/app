@@ -20,7 +20,7 @@ namespace hellobase
 
 
       int                     m_yDrawStatus;
-      ::write_text::font_pointer       m_fontDrawStatus;
+      ::write_text::font_pointer       m_pfontDrawStatus;
       color32_t                m_colorDrawStatus;
 
       double                  m_dFps;

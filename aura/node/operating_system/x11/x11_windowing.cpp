@@ -43,7 +43,7 @@ public:
    wstring           m_wstrLabel;
    bool              m_bTextRect;
    ::rectangle_i32            m_rectangle;
-   XRectangle        m_rectText;
+   XRectangle        m_rectangleText;
    bool              m_bPress;
    bool              m_bHover;
    string            m_strResult;

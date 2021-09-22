@@ -1778,9 +1778,9 @@ namespace html
    ::write_text::font_pointer element::get_font()
    {
 
-      //font = m_pdata->get_font(this)->m_font;
+      //font = m_pdata->get_font(this)->m_pfont;
 
-      return m_pdata->get_font(this)->m_font;
+      return m_pdata->get_font(this)->m_pfont;
 
       //if (font.is_null())
       //{

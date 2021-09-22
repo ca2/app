@@ -983,7 +983,7 @@ namespace user
 
          //__pointer(::user::interaction) pinteraction;
 
-         //::rectangle_i32 rectUi;
+         //::rectangle_i32 rectangleUi;
 
          //auto psession = get_session();
 
@@ -1796,22 +1796,22 @@ namespace user
    }
 
 
-   //void interaction_impl::GetWindowText(string & rectString)
+   //void interaction_impl::GetWindowText(string & rectangleString)
    //{
 
-   //   __UNREFERENCED_PARAMETER(rectString);
+   //   __UNREFERENCED_PARAMETER(rectangleString);
 
    //   throw ::interface_only_exception();
 
    //}
 
 
-   //i32 interaction_impl::GetChildByIdText(i32 nID,string & rectString) const
+   //i32 interaction_impl::GetChildByIdText(i32 nID,string & rectangleString) const
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
 
-   //   __UNREFERENCED_PARAMETER(rectString);
+   //   __UNREFERENCED_PARAMETER(rectangleString);
 
    //   throw ::interface_only_exception();
 
@@ -3157,7 +3157,7 @@ namespace user
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -4018,9 +4018,9 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_puserinteraction->get_window_rect(rectWindow);
+      m_puserinteraction->get_window_rect(rectangleWindow);
 
       windowing_output_debug_string("\n_001UpdateBuffer : after get_window_rect");
 
@@ -4088,7 +4088,7 @@ namespace user
          if (pgraphics->m_pimage)
          {
 
-            pgraphics->m_pimage->m_rectTag.Null();
+            pgraphics->m_pimage->m_rectangleTag.Null();
 
             sizeDrawn = pgraphics->m_pimage->m_size;
 
@@ -4112,7 +4112,7 @@ namespace user
 
             }
 
-            m_rectUpdateBuffer = r;
+            m_rectangleUpdateBuffer = r;
 
             //TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
@@ -4130,7 +4130,7 @@ namespace user
          if (pgraphics->m_pimage)
          {
 
-            pgraphics->m_pimage->m_rectTag = m_rectUpdateBuffer;
+            pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
 
             m_sizeDrawn = sizeDrawn;
 
@@ -4537,11 +4537,11 @@ namespace user
 
       ASSERT(puiParent != nullptr);
 
-      ::rectangle_i32 rectOld;
+      ::rectangle_i32 rectangleOld;
 
-      pinteraction->get_window_rect(rectOld);
+      pinteraction->get_window_rect(rectangleOld);
 
-      puiParent->screen_to_client(rectOld);
+      puiParent->screen_to_client(rectangleOld);
 
       pinteraction->place(rectangle);
 
@@ -5280,7 +5280,7 @@ namespace user
       if(sizeOutput.is_empty())
       {
 
-         INFO("window_show rectUi isEmpty");
+         INFO("window_show rectangleUi isEmpty");
 
          return;
 

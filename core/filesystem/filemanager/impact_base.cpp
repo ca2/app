@@ -214,7 +214,7 @@ void filemanager_impact_base::handle(::subject * psubject, ::context * pcontext)
 
    ::user::impact::handle(psubject, pcontext);
 
-   if (psubject->id() == INITIALIZE_ID)
+   if (psubject->id() == id_initialize)
    {
 
       if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
@@ -236,7 +236,7 @@ void filemanager_impact_base::handle(::subject * psubject, ::context * pcontext)
       }
 
    }
-   else if (psubject->id() == SYNCHRONIZE_PATH_ID)
+   else if (psubject->id() == id_synchronize_path)
    {
 
       __pointer(::core::application) papplication = get_application();

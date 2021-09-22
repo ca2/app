@@ -40,7 +40,7 @@ namespace draw2d
       virtual enum_line_join get_line_join();
       virtual bool set_line_join(enum_line_join elinejoin);
 
-      pen & operator = (const pen & penSrc);
+      pen & operator = (const pen & ppenSrc);
 
 
 

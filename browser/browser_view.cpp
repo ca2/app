@@ -690,20 +690,20 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::rectangle_i32 rectWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::rectangle_i32 rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
 
-         ::rectangle_i32 rectImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::rectangle_i32 rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
-         rectImage.FitOnCenterOf(rectWork);
+         rectangleImage.FitOnCenterOf(rectangleWork);
 
          m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
          if (m_prender->m_pimageImageStretched->is_null()
-               || m_prender->m_pimageImageStretched->get_size() != rectImage->size()
+               || m_prender->m_pimageImageStretched->get_size() != rectangleImage->size()
                || m_prender->m_bImageChanged)
          {
 
-            ::size_i32 size = rectImage.size();
+            ::size_i32 size = rectangleImage.size();
 
             m_prender->m_pimageImageStretched->release();
             {
@@ -736,7 +736,7 @@ namespace browser
          if (!m_prender->m_bImageChanged && m_prender->m_pimageImageStretched->is_set() && m_prender->m_pimageImageStretched->area() > 0)
          {
 
-            m_pimagePost->g()->draw(rectImage, m_prender->m_pimageImageStretched->g());
+            m_pimagePost->g()->draw(rectangleImage, m_prender->m_pimageImageStretched->g());
 
          }
 
@@ -861,9 +861,9 @@ namespace browser
    bool impact::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) 
    {
 
-      auto rectWindow = get_top_level()->get_window_rect();
+      auto rectangleWindow = get_top_level()->get_window_rect();
 
-      rectangle.Set(rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height());
+      rectangle.Set(rectangleWindow.left, rectangleWindow.top, rectangleWindow.width(), rectangleWindow.height());
 
       return true;
 

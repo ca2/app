@@ -290,29 +290,29 @@ public:
 
    }
 
- rectangle_type operator+(const rectangle_type & rectAdd) const noexcept
+ rectangle_type operator+(const rectangle_type & rectangleAdd) const noexcept
  {
- rectangle_type rectangle(this); rectangle.inflate(rectAdd); return rectangle;
+ rectangle_type rectangle(this); rectangle.inflate(rectangleAdd); return rectangle;
  }
- rectangle_type operator-(const rectangle_type & rectSub) const noexcept
+ rectangle_type operator-(const rectangle_type & rectangleSub) const noexcept
 
  {
- rectangle_type rectangle(this); rectangle.deflate(rectSub); return rectangle;
+ rectangle_type rectangle(this); rectangle.deflate(rectangleSub); return rectangle;
  }
  rectangle_type operator&(const rectangle_type& rect2) const noexcept
  {
  rectangle_type rectangle; ::intersect_rect(&rectangle,this, & rect2);
  return rectangle;
  }
- rectangle_type operator|(const rectangle_type& rectOr) const noexcept
+ rectangle_type operator|(const rectangle_type& rectangleOr) const noexcept
  {
- rectangle_type rectangle; ::union_rect(&rectangle, this, & rectOr);
+ rectangle_type rectangle; ::union_rect(&rectangle, this, & rectangleOr);
  return rectangle;
  }
 
- bool subtract(const rectangle_type& rectSrc1, const rectangle_type& rectSrc2) noexcept
+ bool subtract(const rectangle_type& rectangleSrc1, const rectangle_type& rectangleSrc2) noexcept
  {
-   return ::subtract_rect(this, &rectSrc1, &rectSrc2);
+   return ::subtract_rect(this, &rectangleSrc1, &rectangleSrc2);
  }
 
  void normalize() noexcept;
@@ -919,104 +919,104 @@ public:
  }
 
  // Subtract minor from major and return the greatest box around.
- void SubtractRectMajor(const rectangle_type & rectMajor, const rectangle_type& rectMinor)
+ void SubtractRectMajor(const rectangle_type & rectangleMajor, const rectangle_type& rectangleMinor)
 
  {
-    rectangle_type rectIntersect;
-    rectangle_type rectRet(*this);
-    if (!rectIntersect.intersect(rectMajor, rectMinor))
+    rectangle_type rectangleIntersect;
+    rectangle_type rectangleRet(*this);
+    if (!rectangleIntersect.intersect(rectangleMajor, rectangleMinor))
     {
 
-       rectRet = rectMajor;
+       rectangleRet = rectangleMajor;
 
     }
     else
     {
-       if (rectIntersect == rectMajor)
+       if (rectangleIntersect == rectangleMajor)
 
        {
-          rectRet.set(0, 0, 0, 0);
+          rectangleRet.set(0, 0, 0, 0);
        }
        else
        {
-          if (rectIntersect.left == rectMajor.left
+          if (rectangleIntersect.left == rectangleMajor.left
 
-             && rectIntersect.right == rectMajor.right)
+             && rectangleIntersect.right == rectangleMajor.right)
 
           {
-             if (rectIntersect.top == rectMajor.top)
+             if (rectangleIntersect.top == rectangleMajor.top)
 
              {
-                ::set_rect(&rectRet,
-                   rectMajor.left,
+                ::set_rect(&rectangleRet,
+                   rectangleMajor.left,
 
-                   rectIntersect.top,
-                   rectMajor.right,
+                   rectangleIntersect.top,
+                   rectangleMajor.right,
 
-                   rectMajor.bottom);
+                   rectangleMajor.bottom);
 
              }
-             else if (rectIntersect.bottom == rectMajor.bottom)
+             else if (rectangleIntersect.bottom == rectangleMajor.bottom)
 
              {
-                ::set_rect(&rectRet,
-                   rectMajor.left,
+                ::set_rect(&rectangleRet,
+                   rectangleMajor.left,
 
-                   rectMajor.top,
+                   rectangleMajor.top,
 
-                   rectMajor.right,
+                   rectangleMajor.right,
 
-                   rectIntersect.bottom);
+                   rectangleIntersect.bottom);
              }
              else
              {
-                rectRet = rectMajor;
+                rectangleRet = rectangleMajor;
 
              }
           }
-          else if (rectIntersect.top == rectMajor.top
+          else if (rectangleIntersect.top == rectangleMajor.top
 
-             && rectIntersect.bottom == rectMajor.bottom)
+             && rectangleIntersect.bottom == rectangleMajor.bottom)
 
           {
-             if (rectIntersect.left == rectMajor.left)
+             if (rectangleIntersect.left == rectangleMajor.left)
 
              {
-                rectRet.set(
-                   rectIntersect.left,
-                   rectMajor.top,
+                rectangleRet.set(
+                   rectangleIntersect.left,
+                   rectangleMajor.top,
 
-                   rectMajor.right,
+                   rectangleMajor.right,
 
-                   rectMajor.bottom);
+                   rectangleMajor.bottom);
 
              }
-             else if (rectIntersect.right == rectMajor.right)
+             else if (rectangleIntersect.right == rectangleMajor.right)
 
              {
-                rectRet.set(
-                   rectMajor.left,
+                rectangleRet.set(
+                   rectangleMajor.left,
 
-                   rectMajor.top,
+                   rectangleMajor.top,
 
-                   rectIntersect.right,
-                   rectMajor.bottom);
+                   rectangleIntersect.right,
+                   rectangleMajor.bottom);
 
              }
              else
              {
-                rectRet = rectMajor;
+                rectangleRet = rectangleMajor;
 
              }
           }
           else
           {
-             rectRet = rectMajor;
+             rectangleRet = rectangleMajor;
 
           }
        }
     }
-    *this = rectRet;
+    *this = rectangleRet;
     return;
 
  }
@@ -1024,12 +1024,12 @@ public:
 
 
 
- //void SubtractRectMinor(const rectangle_type & rectMajor, const rectangle_type & rectMinor)
+ //void SubtractRectMinor(const rectangle_type & rectangleMajor, const rectangle_type & rectangleMinor)
  //{
 
- //   //__UNREFERENCED_PARAMETER(rectMajor);
+ //   //__UNREFERENCED_PARAMETER(rectangleMajor);
 
- //   //__UNREFERENCED_PARAMETER(rectMinor);
+ //   //__UNREFERENCED_PARAMETER(rectangleMinor);
 
  //}
 

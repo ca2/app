@@ -108,12 +108,8 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matt
 
       auto & dispatcherItem = dispatchera[i];
 
-      if (dispatcherItem.m_phandlerTarget.m_p == dispatcher.m_phandlerTarget.m_p
-         && (dispatcherItem.m_p == dispatcher.m_p
-         || dispatcherItem.m_chunkMemberFunction == dispatcher.m_chunkMemberFunction))
+      if (dispatcherItem == dispatcher)
       {
-
-         // Already Added
 
          return nullptr;
 

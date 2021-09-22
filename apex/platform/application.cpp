@@ -143,7 +143,7 @@ m_bInitializeDataCentral = false;
 
 m_bContextTheme = false;
 
-
+m_bAttendedFirstRequest = false;
 
 m_strLocale = "_std";
 m_strSchema = "_std";
@@ -6311,7 +6311,88 @@ void application::term()
 bool application::is_running()
 {
 
-return is_alive();
+   return is_alive();
+
+}
+
+
+void application::add_activation_message(const ::string & strMessage)
+{
+
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      m_straActivationMessage.add(strMessage);
+
+   }
+
+   defer_process_activation_message();
+
+}
+
+
+bool application::has_activation_message() const
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   return m_straActivationMessage.has_element();
+
+}
+
+
+bool application::defer_process_activation_message()
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   if (!m_bAttendedFirstRequest)
+   {
+
+      return false;
+
+   }
+
+   if (m_straActivationMessage.is_empty())
+   {
+
+      return false;
+
+   }
+
+   auto pinterprocesscommunication = m_pinterprocessintercommunication;
+
+   if (::is_null(pinterprocesscommunication))
+   {
+
+      return false;
+
+   }
+
+   auto prx = pinterprocesscommunication->m_prx;
+
+   if (::is_null(prx))
+   {
+
+      return false;
+
+   }
+
+   do
+   {
+
+      auto strMessage = m_straActivationMessage.pick_first();
+
+      synchronouslock.unlock();
+
+      prx->on_interprocess_receive(::move(strMessage));
+
+      synchronouslock.lock();
+
+   } while (m_straActivationMessage.has_element());
+
+   return true;
 
 }
 

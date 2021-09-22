@@ -508,6 +508,9 @@ namespace aura
 
       }
 
+      m_bAttendedFirstRequest = true;
+
+      defer_process_activation_message();
       //return ::success;
 
    }

@@ -1185,11 +1185,9 @@
     <ClCompile Include="platform\theme.cpp" />
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\button.cpp" />
-    <ClCompile Include="user\callback.cpp" />
     <ClCompile Include="user\call_message_handler_task.cpp" />
     <ClCompile Include="user\check_box.cpp" />
     <ClCompile Include="user\control_descriptor.cpp" />
-    <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
     <ClCompile Include="user\interaction_scaler.cpp" />
     <ClCompile Include="user\menu_command.cpp" />
@@ -1209,7 +1207,6 @@
     <ClCompile Include="user\interaction_impl.cpp" />
     <ClCompile Include="user\interaction_prodevian.cpp" />
     <ClCompile Include="user\interaction_thread.cpp" />
-    <ClCompile Include="user\item.cpp" />
     <ClCompile Include="user\key.cpp" />
     <ClCompile Include="user\keyboard.cpp" />
     <ClCompile Include="user\interaction_layout.cpp" />
@@ -1507,11 +1504,9 @@
     <ClInclude Include="update.h" />
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\button.h" />
-    <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\check_box.h" />
     <ClInclude Include="user\controller.h" />
     <ClInclude Include="user\control_descriptor.h" />
-    <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
     <ClInclude Include="user\aaa_create.h" />
     <ClInclude Include="user\interaction_scaler.h" />
@@ -1535,7 +1530,6 @@
     <ClInclude Include="user\interaction_impl.h" />
     <ClInclude Include="user\interaction_prodevian.h" />
     <ClInclude Include="user\interaction_thread.h" />
-    <ClInclude Include="user\item.h" />
     <ClInclude Include="user\key.h" />
     <ClInclude Include="user\keyboard.h" />
     <ClInclude Include="user\language.h" />

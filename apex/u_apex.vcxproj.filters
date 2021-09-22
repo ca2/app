@@ -826,6 +826,9 @@
     <ClCompile Include="subject\signal.cpp">
       <Filter>Source Files\subject</Filter>
     </ClCompile>
+    <ClCompile Include="message\dispatcher.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">

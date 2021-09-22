@@ -238,18 +238,18 @@ namespace draw2d
    }
 
 
-   brush & brush::operator = (const brush & brushSrc)
+   brush & brush::operator = (const brush & pbrushSrc)
    {
 
-      m_etype           = brushSrc.m_etype;
-      m_color           = brushSrc.m_color;
-      m_point1          = brushSrc.m_point1;
-      m_point2          = brushSrc.m_point2;
-      m_color1          = brushSrc.m_color1;
-      m_color2          = brushSrc.m_color2;
-      m_point           = brushSrc.m_point;
-      m_size            = brushSrc.m_size;
-      m_pimage          = brushSrc.m_pimage;
+      m_etype           = pbrushSrc.m_etype;
+      m_color           = pbrushSrc.m_color;
+      m_point1          = pbrushSrc.m_point1;
+      m_point2          = pbrushSrc.m_point2;
+      m_color1          = pbrushSrc.m_color1;
+      m_color2          = pbrushSrc.m_color2;
+      m_point           = pbrushSrc.m_point;
+      m_size            = pbrushSrc.m_size;
+      m_pimage          = pbrushSrc.m_pimage;
       set_modified();
 
       return *this;

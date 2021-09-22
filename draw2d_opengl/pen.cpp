@@ -129,8 +129,8 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const ::u32   CP_ROP = 0xE20746;
-      ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
-         brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
+      ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
+         pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
       if(graphicsMem->CreateCompatibleDC(nullptr) &&
          graphicsMask->CreateCompatibleDC(nullptr))
@@ -160,10 +160,10 @@ namespace draw2d_opengl
 
                graphicsMem->SetBkColor(rgb(255, 255, 255));
 
-               spbr = graphicsMem->SelectObject(brHighLight);
+               spbr = graphicsMem->SelectObject(pbrushHighLight);
                graphicsMem->BitBlt(1, 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
-               graphicsMem->SelectObject(brShadow);
+               graphicsMem->SelectObject(pbrushShadow);
                graphicsMem->BitBlt(0, 0, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
                graphicsMem->SelectObject(spbr);
@@ -187,8 +187,8 @@ namespace draw2d_opengl
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldMem;
       const ::u32   CP_ROP = 0xE20746;
-      ::draw2d::brush_pointer brHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
-         brShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
+      ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
+         pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
       if(graphicsMem->CreateCompatibleDC(pgraphics) &&
          graphicsMask->CreateCompatibleDC(pgraphics) &&
@@ -211,10 +211,10 @@ namespace draw2d_opengl
 
          pgraphics->SetBkColor(rgb(255, 255, 255));
 
-         spbr = pgraphics->SelectObject(brHighLight);
+         spbr = pgraphics->SelectObject(pbrushHighLight);
          pgraphics->BitBlt(x + 1, y + 1, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
-         pgraphics->SelectObject(brShadow);
+         pgraphics->SelectObject(pbrushShadow);
          pgraphics->BitBlt(x, y, bm.bmWidth, bm.bmHeight, graphicsMask, 0, 0, CP_ROP);
 
          pgraphics->SelectObject(spbr);
@@ -234,7 +234,7 @@ namespace draw2d_opengl
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
-      ::draw2d::brush brChecker;
+      ::draw2d::brush pbrushChecker;
       static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(nullptr) &&
@@ -248,7 +248,7 @@ namespace draw2d_opengl
             {
                // create checker brush
                bmpMask->CreateBitmap(8, 8, 1, 1, wPat);
-               brChecker.CreatePatternBrush(bmpMask);
+               pbrushChecker.CreatePatternBrush(bmpMask);
                //bmpMask->delete_object();
 
                // Mask
@@ -276,7 +276,7 @@ namespace draw2d_opengl
                {
                   cr1 = graphicsDest->SetTextColor(cr1);
                   cr2 = graphicsDest->SetBkColor(cr2);
-                  graphicsDest->FillRect(rectangle_i32(0, 0, bm.bmWidth, bm.bmHeight), &brChecker);
+                  graphicsDest->FillRect(rectangle_i32(0, 0, bm.bmWidth, bm.bmHeight), &pbrushChecker);
                   graphicsDest->SetTextColor(cr1);
                   graphicsDest->SetBkColor(cr2);
 
@@ -303,7 +303,7 @@ namespace draw2d_opengl
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pobject);
       ::draw2d::bitmap *pOldMask, *pOldSrc;
-      ::draw2d::brush brChecker;
+      ::draw2d::brush pbrushChecker;
       static const ::u16 wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
       if(graphicsSrc->CreateCompatibleDC(pgraphics) &&
@@ -312,7 +312,7 @@ namespace draw2d_opengl
       {
          // create checker brush
          bmpMask->CreateBitmap(8, 8, 1, 1, wPat);
-         brChecker.CreatePatternBrush(bmpMask);
+         pbrushChecker.CreatePatternBrush(bmpMask);
          //bmpMask->delete_object();
 
          // Mask
@@ -336,7 +336,7 @@ namespace draw2d_opengl
          // Checker the background with white and crBackground
          cr1 = pgraphics->SetTextColor(cr1);
          cr2 = pgraphics->SetBkColor(cr2);
-         pgraphics->FillRect(rectangle_i32(x, y, x + bm.bmWidth, y + bm.bmHeight), &brChecker);
+         pgraphics->FillRect(rectangle_i32(x, y, x + bm.bmWidth, y + bm.bmHeight), &pbrushChecker);
          pgraphics->SetTextColor(cr1);
          pgraphics->SetBkColor(cr2);
 

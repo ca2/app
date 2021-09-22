@@ -665,19 +665,19 @@ int_bool is_window_occluded(oswindow oswindow)
 
    string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectTest;
+   ::rectangle rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectHigher;
+      ::rectangle rectangleHigher;
 
-      if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+      if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
 
-         if(rectTest.intersect(rectHigher, rectangle))
+         if(rectangleTest.intersect(rectangleHigher, rectangle))
          {
 
             return true;
@@ -1334,7 +1334,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    draw2d::brush_pointer pen(e_create_new, pgraphics);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for(index i = 0; i < stra.get_count(); i++)
    {

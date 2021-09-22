@@ -731,14 +731,14 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
       if(rectangle.size.width > 0 && rectangle.size.height > 0)
       {
 
-         ::rectangle rectCopy;
+         ::rectangle rectangleCopy;
 
-         rectCopy.left = rectangle.origin.x;
-         rectCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
-         rectCopy.bottom = rectCopy.top + rectangle.size.height;
-         rectCopy.right = rectangle.origin.x + rectangle.size.width;
+         rectangleCopy.left = rectangle.origin.x;
+         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
+         rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 
-         recta.add(rectCopy);
+         recta.add(rectangleCopy);
 
       }
          
@@ -1006,14 +1006,14 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
                if(CGRectIntersectsRect(rect1, rectangle))
                {
 
-                  ::rectangle rectCopy;
+                  ::rectangle rectangleCopy;
 
-                  rectCopy.left = rectangle.origin.x;
-                  rectCopy.right = rectangle.origin.x + rectangle.size.width;
-                  rectCopy.top = rectangle.origin.y;
-                  rectCopy.bottom = rectangle.origin.y + rectangle.size.height;
+                  rectangleCopy.left = rectangle.origin.x;
+                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+                  rectangleCopy.top = rectangle.origin.y;
+                  rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 
-                  recta.add(rectCopy);
+                  recta.add(rectangleCopy);
 
                }
                
@@ -1215,19 +1215,19 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
          
          CGRectMakeWithDictionaryRepresentation(dictRect, &rectangle);
          
-         ::rectangle rectCopy;
+         ::rectangle rectangleCopy;
          
-         //rectCopy.left = rectangle.origin.x;
-         //rectCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
-         //rectCopy.bottom = rectCopy.top + rectangle.size.height;
-         //rectCopy.right = rectangle.origin.x + rectangle.size.width;
+         //rectangleCopy.left = rectangle.origin.x;
+         //rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
+         //rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+         //rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 
-         rectCopy.left = rectangle.origin.x;
-         rectCopy.right = rectangle.origin.x + rectangle.size.width;
-         rectCopy.top = rectangle.origin.y;
-         rectCopy.bottom = rectangle.origin.y + rectangle.size.height;
+         rectangleCopy.left = rectangle.origin.x;
+         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+         rectangleCopy.top = rectangle.origin.y;
+         rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 
-         recta.add(rectCopy);
+         recta.add(rectangleCopy);
          windowida.add(iWindowId);
          
          CFRelease(dictRect);
@@ -1294,14 +1294,14 @@ int_bool is_window_occluded(oswindow oswindow)
 //
 //   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
 //
-//   ::rectangle rectTest;
+//   ::rectangle rectangleTest;
 //
 //   for(int i = 0; i < recta.get_size(); i++)
 //   {
 //      
-//      auto rectAbove = recta[i];
+//      auto rectangleAbove = recta[i];
 //
-//      if(rectTest.intersect(recta[i], rectangle))
+//      if(rectangleTest.intersect(recta[i], rectangle))
 //      {
 //
 //         return true;
@@ -1328,7 +1328,7 @@ int_bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, 
    
    cg_get_window_rect_list(recta, windowida);
    
-   ::rectangle rectTest;
+   ::rectangle rectangleTest;
 
    for(index i = 0; i < recta.get_size(); i++)
    {
@@ -1344,13 +1344,13 @@ int_bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, 
 
       auto rectangle = recta[i];
 
-      ::rectangle rectHitTest;
+      ::rectangle rectangleHitTest;
       
-      rectHitTest.set(rectangle.origin(), ::size());
+      rectangleHitTest.set(rectangle.origin(), ::size());
       
-      rectHitTest.inflate(iMargin+1);
+      rectangleHitTest.inflate(iMargin+1);
       
-      if(rectHitTest.contains(pointHitTest))
+      if(rectangleHitTest.contains(pointHitTest))
       {
          
          return true;

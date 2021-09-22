@@ -41,7 +41,7 @@ namespace user
       int                                    m_iTextSpreadRadius;
       int                                    m_iTextBlurRadius;
       int                                    m_iTextBlur;
-      ::rectangle_i32                                 m_rectSpot;
+      ::rectangle_i32                                 m_rectangleSpot;
       ::image_pointer                        m_pimageSpot;
       ::image_pointer                        m_pimageTime;
       bool                                   m_bHighHighLight;

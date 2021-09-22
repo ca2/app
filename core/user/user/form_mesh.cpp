@@ -367,7 +367,7 @@ namespace user
       //   ::user::interaction * pinteraction = _001GetControlBySubItem(pdrawitem->m_iSubItem);
       //   if(pinteraction != nullptr)
       //   {
-      //      pdrawitem->m_rectangleClient = pdrawitem.m_rectSubItem;
+      //      pdrawitem->m_rectangleClient = pdrawitem.m_rectangleSubItem;
       //      pdrawitem->m_rectangleWindow = pdrawitem.m_rectangleClient;
       //      client_to_screen(pdrawitem->m_rectangleWindow);
       //      control_keep controlkeep(this,pdrawitem->m_iItem,pdrawitem->m_iSubItem);
@@ -398,11 +398,11 @@ namespace user
             if(pinteraction == _001GetEditControl())
             {
                
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
                
-               pinteraction->get_window_rect(rectWindow);
+               pinteraction->get_window_rect(rectangleWindow);
 
-               return rectWindow.contains(point);
+               return rectangleWindow.contains(point);
 
             }
             else
@@ -414,7 +414,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
 
       ::rectangle_i32 rectangle;
 
@@ -436,15 +436,15 @@ namespace user
 //      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
-//      rectControl = item.m_rectSubItem;
-//      client_to_screen(rectControl);
-//      rectangle_i64 rectForm;
-//      get_window_rect(rectForm);
+//      rectangleControl = item.m_rectangleSubItem;
+//      client_to_screen(rectangleControl);
+//      rectangle_i64 rectangleForm;
+//      get_window_rect(rectangleForm);
 //      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectForm.top;
-//      rectangleClient.bottom = rectForm.bottom;
-//      rectangleClient.left = rectControl.left;
-//      rectangleClient.right = rectControl.right;
+//      rectangleClient.top = rectangleForm.top;
+//      rectangleClient.bottom = rectangleForm.bottom;
+//      rectangleClient.left = rectangleControl.left;
+//      rectangleClient.right = rectangleControl.right;
 //      return rectangleClient.contains(point) != false;
    }
 
@@ -595,7 +595,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
 
       draw_mesh_item item(this);
 
@@ -632,9 +632,9 @@ namespace user
 
       _001GetElementRect(&item,::user::mesh::element_sub_item);
 
-      rectControl = item.m_rectSubItem;
+      rectangleControl = item.m_rectangleSubItem;
 
-      ::rectangle_i32 rectangle(rectControl);
+      ::rectangle_i32 rectangle(rectangleControl);
 
       *prectangle = rectangle;
 

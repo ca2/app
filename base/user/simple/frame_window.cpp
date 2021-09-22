@@ -1562,7 +1562,7 @@ void simple_frame_window::ActivateFrame(edisplay edisplay)
 void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 {
 
-   *prectangle = m_rectBorder;
+   *prectangle = m_rectangleBorder;
 
 }
 
@@ -1570,7 +1570,7 @@ void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 void simple_frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
 {
    
-   m_rectBorder = rectangle;
+   m_rectangleBorder = rectangle;
 
 }
 
@@ -1965,14 +1965,14 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   ::rectangle_i32 rectFrame;
+   ::rectangle_i32 rectangleFrame;
 
    __pointer(::user::place_holder) pholder;
 
    if(puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      pholder->get_client_rect(rectFrame);
+      pholder->get_client_rect(rectangleFrame);
 
    }
 
@@ -1999,9 +1999,9 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = screen_rect();
+         rectangleFrame = screen_rect();
 
-         INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
+         INFO("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
          INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
@@ -2041,17 +2041,17 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
             display(e_display_zoomed);
 
-          //  psession->get_main_workspace(rectFrame);
+          //  psession->get_main_workspace(rectangleFrame);
 
          }
 
       }
 
-      rectFrame = screen_rect();
+      rectangleFrame = screen_rect();
 
-      //pusersystem->set_rect(rectFrame);
+      //pusersystem->set_rect(rectangleFrame);
 
-      INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
+      INFO("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
       INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)

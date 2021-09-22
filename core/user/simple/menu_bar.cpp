@@ -67,7 +67,7 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
          m_pimagelist,
          m_pimagelistDisabled,
          m_prel,
-         &m_font);
+         &m_pfont);
 
       m_menu.LoadMenu(m_uResourceId);*/
 
@@ -330,29 +330,29 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
 
 /*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, size_i32 & size)
 {
-    ::rectangle_i32 rectItem;
-    ::rectangle_i32 rectSize(0, 0, 0, 0);
+    ::rectangle_i32 rectangleItem;
+    ::rectangle_i32 rectangleSize(0, 0, 0, 0);
 
     for(index i = 0; i < tbc.GetButtonCount(); i++)
     {
-        tbc.GetItemRect(i, rectItem);
-        rectSize.union(rectSize, rectItem);
+        tbc.GetItemRect(i, rectangleItem);
+        rectangleSize.union(rectangleSize, rectangleItem);
     }
-    size = rectSize.size();
+    size = rectangleSize.size();
     return ;
 }
 
 bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size_i32 & size)
 {
-    ::rectangle_i32 rectItem;
-    ::rectangle_i32 rectSize(0, 0, 0, 0);
+    ::rectangle_i32 rectangleItem;
+    ::rectangle_i32 rectangleSize(0, 0, 0, 0);
 
     for(index i = 0; i < tbc.GetButtonCount(); i++)
     {
-        tbc.GetItemRect(i, rectItem);
-        rectSize.union(rectSize, rectItem);
+        tbc.GetItemRect(i, rectangleItem);
+        rectangleSize.union(rectangleSize, rectangleItem);
     }
-    size = rectSize.size();
+    size = rectangleSize.size();
     return ;
 }*/
 
@@ -391,7 +391,7 @@ i32_spreadset * prel,
    m_pimagelistDisabled = imagelistDisabled;
    m_prel = prel;
 
-   //m_font->operator=(*pfont);
+   //m_pfont->operator=(*pfont);
 
    return true;
 
@@ -740,8 +740,8 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 /*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, index iItem)
 {
-   ::rectangle_i32 rectItem;
-   ::rectangle_i32 rectText;
+   ::rectangle_i32 rectangleItem;
+   ::rectangle_i32 rectangleText;
 
    SimpleMenuBarButton & button = m_buttona[iItem];
 
@@ -765,25 +765,25 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       }
    }
 
-   _001GetItemRect(iItem, rectItem, eelement);
-   _001GetItemRect(iItem, rectText, eelementText);
+   _001GetItemRect(iItem, rectangleItem, eelement);
+   _001GetItemRect(iItem, rectangleText, eelementText);
 
    if(eelement == element_item_hover)
    {
-      ::rectangle_i32 rectShadow;
-      _001GetItemRect(iItem, rectShadow, e_element_item);
+      ::rectangle_i32 rectangleShadow;
+      _001GetItemRect(iItem, rectangleShadow, e_element_item);
 
-      ::draw2d::pen_pointer penShadow(get_application(), PS_SOLID, 1, rgb(127, 127, 127));
-      ::draw2d::brush_pointer brushShadow(get_application(), rgb(127, 127, 127));
-      ::draw2d::pen * ppenOld = pgraphics->set(penShadow);
-      ::draw2d::brush * pbrushOld = pgraphics->set(brushShadow);
-      pgraphics->rectangle(rectShadow);
+      ::draw2d::pen_pointer ppenShadow(get_application(), PS_SOLID, 1, rgb(127, 127, 127));
+      ::draw2d::brush_pointer pbrushShadow(get_application(), rgb(127, 127, 127));
+      ::draw2d::pen * ppenOld = pgraphics->set(ppenShadow);
+      ::draw2d::brush * pbrushOld = pgraphics->set(pbrushShadow);
+      pgraphics->rectangle(rectangleShadow);
 
       ::draw2d::pen_pointer pen(get_application(), PS_SOLID, 1, rgb(92, 92, 92));
       ::draw2d::brush_pointer brush(get_application(), rgb(255, 255, 255));
-      pgraphics->set(pen);
-      pgraphics->set(brush);
-      pgraphics->rectangle(rectItem);
+      pgraphics->set(ppen);
+      pgraphics->set(pbrush);
+      pgraphics->rectangle(rectangleItem);
       pgraphics->set(ppenOld);
       pgraphics->set(pbrushOld);
 
@@ -799,7 +799,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    pgraphics->set_text_color(rgb(0, 0, 0));
    draw2d::graphics_extension::_DrawText(pgraphics,
       button.m_wstr,
-      rectText,
+      rectangleText,
       e_align_left_center);
 
 

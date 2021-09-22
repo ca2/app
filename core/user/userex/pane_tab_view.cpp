@@ -296,7 +296,7 @@ namespace userex
    bool pane_tab_view::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
-      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
 
       if (pimpactdata->m_pplaceholder == nullptr)
       {
@@ -415,10 +415,10 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_view::create_tab_by_id(id id)
+   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::id & id)
    {
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectangleTabClient);
 
       if(pimpactdata == nullptr)
       {

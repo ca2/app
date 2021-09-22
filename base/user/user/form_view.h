@@ -13,7 +13,7 @@ namespace user
 
       string                           m_strPath;
       string                           m_strOpenOnCreate;
-      ::rectangle_i32                  m_rectOpen;
+      ::rectangle_i32                  m_rectangleOpen;
 
 
 

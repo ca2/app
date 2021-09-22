@@ -289,7 +289,7 @@ namespace user
 
 //#ifdef WINDOWS
 
-  //    virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 //#else
 

@@ -62,7 +62,7 @@ namespace draw2d
 
       //virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
 
-      brush & operator = (const ::draw2d::brush & brushSrc);
+      brush & operator = (const ::draw2d::brush & pbrushSrc);
 
    };
 

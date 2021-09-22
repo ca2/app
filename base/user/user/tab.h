@@ -15,6 +15,7 @@ namespace user
    {
    public:
 
+
       enum enum_state
       {
 
@@ -73,6 +74,9 @@ namespace user
 
       tab();
       ~tab() override;
+
+
+      ::e_status on_initialize_object() override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -170,24 +174,24 @@ namespace user
       virtual void GetTabClientRect(RECTANGLE_I64 * prectangle);
 
 
-      virtual bool add_tab(const ::string & pcsz, id idTab = id(), bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
+      virtual bool add_tab(const ::string & pcsz, const ::id & idTab = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
-      virtual bool set_tab(const ::string & pcsz, id idTab = id(), bool bVisible = true);
+      virtual bool set_tab(const ::string & pcsz, const ::id & idTab = nullptr, bool bVisible = true);
 
-      virtual bool add_image_tab(const ::string & pcsz, const ::string & pszImage, id idTab = id(), bool bVisible = true, bool bPermanent = false);
+      virtual bool add_image_tab(const ::string & pcsz, const ::string & pszImage, const ::id & idTab = nullptr, bool bVisible = true, bool bPermanent = false);
 
-      virtual bool set_image_tab(const ::string & pcsz, const ::string & pszImage, id idTab = id(), bool bVisible = true);
+      virtual bool set_image_tab(const ::string & pcsz, const ::string & pszImage, const ::id & idTab = nullptr, bool bVisible = true);
 
-      virtual bool erase_tab_by_id(id idTab = id());
+      virtual bool erase_tab_by_id(const ::id & idTab);
       virtual void erase_tab(::index iTab, bool bVisible = true);
       virtual void erase_all_tabs();
-      virtual bool show_tab_by_id(id idTab = id(), bool bShow = true);
+      virtual bool show_tab_by_id(const ::id & idTab, bool bShow = true);
       virtual bool show_pane(::index iPane, bool bShow = true);
       virtual bool hide_tab(::index iTab);
 
 
       virtual bool set_title(::index iTab, const ::string & psz);
-      virtual bool set_title_by_id(id id, const ::string & psz);
+      virtual bool set_title_by_id(const ::id & idTab, const ::string & psz);
 
 
       virtual index find_child_pane(::user::interaction * pinteraction);
@@ -199,9 +203,9 @@ namespace user
       void on_hide_child(::user::interaction * pinteraction) override;
       void on_hide_place_holder_child(::user::interaction * pinteraction) override;
 
-      //virtual ::index id_tab_index(id id);
+      //virtual ::index id_tab_index(const ::id & idTab);
       //virtual id tab_index_id(::index iTab);
-      //virtual ::index id_pane(id id);
+      //virtual ::index id_pane(const ::id & idTab);
       //virtual id pane_id(::index iPane);
 
       //virtual ::index tab_pane(index iTab);
@@ -212,8 +216,8 @@ namespace user
       virtual ::user::tab_pane * get_visible_tab(::index iVisibleTab);
 
 
-      virtual ::user::tab_pane * get_tab_by_id(id id);
-      virtual ::user::tab_pane* create_tab_by_id(id id);
+      virtual ::user::tab_pane * get_tab_by_id(const ::id & idTab);
+      virtual ::user::tab_pane* create_tab_by_id(const ::id & idTab);
 
       virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >());
 

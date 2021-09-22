@@ -9,10 +9,10 @@ namespace user
    margin_base::margin_base()
    {
 
-      m_rectMargin.left    = 0;
-      m_rectMargin.top     = 0;
-      m_rectMargin.right   = 0;
-      m_rectMargin.bottom  = 0;
+      m_rectangleMargin.left    = 0;
+      m_rectangleMargin.top     = 0;
+      m_rectangleMargin.right   = 0;
+      m_rectangleMargin.bottom  = 0;
 
    }
 
@@ -27,7 +27,7 @@ namespace user
 
    {
 
-      *prectMargin = m_rectMargin;
+      *prectMargin = m_rectangleMargin;
 
 
    }

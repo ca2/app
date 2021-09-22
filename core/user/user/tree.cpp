@@ -434,9 +434,9 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
+         auto rectangleFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
+         data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
       }
 
@@ -452,19 +452,19 @@ namespace user
          //else
          //{
 
-         //   ::rectangle_i32 rectUnion;
+         //   ::rectangle_i32 rectangleUnion;
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
 
-         //      rectUnion = rectangle;
+         //      rectangleUnion = rectangle;
 
          //   }
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_text))
          //   {
 
-         //      rectUnion.unite(rectangle, rectUnion);
+         //      rectangleUnion.unite(rectangle, rectangleUnion);
 
          //   }
 
@@ -472,8 +472,8 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
-         //   rectUnion.width(), rectUnion.height(),
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
+         //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
          //}
@@ -506,7 +506,7 @@ namespace user
       if(strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
       {
 
-         ::draw2d::brush_pointer brushText;
+         ::draw2d::brush_pointer pbrushText;
 
          if(bSelected) // selected
          {
@@ -514,13 +514,13 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelectedHighlight;
+               pbrushText = m_pbrushTextSelectedHighlight;
 
             }
             else
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
 
@@ -531,21 +531,21 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
             else
             {
 
-               brushText = m_brushText;
+               pbrushText = m_pbrushText;
 
             }
 
          }
 
-         data.m_pdc->set(brushText);
+         data.m_pdc->set(pbrushText);
 
-         data.m_pdc->set(m_fontTreeItem);
+         data.m_pdc->set(m_pfontTreeItem);
 
          data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
 
@@ -1154,19 +1154,19 @@ namespace user
 
       m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      __defer_construct(m_brushTextSelectedHighlight);
-      __defer_construct(m_brushTextSelected);
-      __defer_construct(m_brushTextHighlight);
-      __defer_construct(m_brushText);
+      __defer_construct(m_pbrushTextSelectedHighlight);
+      __defer_construct(m_pbrushTextSelected);
+      __defer_construct(m_pbrushTextHighlight);
+      __defer_construct(m_pbrushText);
 
-      __defer_construct(m_fontTreeItem);
+      __defer_construct(m_pfontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::e_element_item_text));
+      m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
+      m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
-      m_fontTreeItem = get_font(pstyle);
+      m_pfontTreeItem = get_font(pstyle);
 
    }
 
@@ -1519,9 +1519,9 @@ namespace user
 
       pgraphics->CreateCompatibleDC(nullptr);
 
-      //::write_text::font_pointer font(e_create);
-      //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
-      //font->set_bold();
+      //auto pfont = __create < ::write_text::font > ();
+      //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
+      //pfont->set_bold();
       //g->set_font(font);
 
       pgraphics->set_font(this, ::e_element_none);

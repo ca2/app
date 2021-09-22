@@ -170,9 +170,9 @@ namespace simple_ui
    bool tap::is_hover()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(&rectWindow);
+      get_window_rect(&rectangleWindow);
 
       auto psession = get_session();
 
@@ -182,7 +182,7 @@ namespace simple_ui
 
       auto pointCursor = pwindowing->get_cursor_position();
 
-      bool bHover = rectWindow.contains(pointCursor);
+      bool bHover = rectangleWindow.contains(pointCursor);
 
       if (!bHover)
       {
@@ -207,15 +207,15 @@ namespace simple_ui
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         ::draw2d::brush_pointer br(e_create);
+         auto pbrush = __create < ::draw2d::brush > ();
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         br->create_solid(argb(190, 255, 184, 240));
+         pbrush->create_solid(argb(190, 255, 184, 240));
 
 #else
 
-         br->create_solid(argb(190, 190, 255, 177));
+         pbrush->create_solid(argb(190, 190, 255, 177));
 
 #endif
 
@@ -364,19 +364,19 @@ namespace simple_ui
 
             //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-            ::draw2d::brush_pointer br(e_create);
+            auto pbrush = __create < ::draw2d::brush > ();
 
-            br->create_solid(crBorderIn);
+            pbrush->create_solid(crBorderIn);
 
-            pgraphics->set(br);
+            pgraphics->set(pbrush);
 
             pgraphics->fill_rectangle(rectangleClient,br);
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(m_dStockIconPenWidth,crBorderOut);
+            ppen->create_solid(m_dStockIconPenWidth,crBorderOut);
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
             pgraphics->draw_stock_icon(rectangleClient,m_estockicon);
 
@@ -386,25 +386,25 @@ namespace simple_ui
 
          i32 iBorderH = rectangleClient.height() / 2;
 
-         ::draw2d::brush_pointer br(e_create);
+         auto pbrush = __create < ::draw2d::brush > ();
 
-         br->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH + 2), crOut, crIn);
+         pbrush->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH + 2), crOut, crIn);
 
          pgraphics->fill_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + 1, (i32)rectangleClient.width(), iBorderH), br);
 
-         br->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top + iBorderH - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH * 2 + 2), crIn, crOut);
+         pbrush->CreateLinearGradientBrush(point_i32(rectangleClient.left, rectangleClient.top + iBorderH - 1), point_i32(rectangleClient.left, rectangleClient.top + iBorderH * 2 + 2), crIn, crOut);
 
          pgraphics->fill_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + iBorderH, rectangleClient.left + (i32)rectangleClient.width(), rectangleClient.top + iBorderH + iBorderH), br);
 
-         /*Gdiplus::Pen pen1(crBorderOut);
+         /*Gdiplus::Pen ppen1(crBorderOut);
 
-         graphics2.DrawRectangle(&pen1, rectangleClient.left, rectangleClient.top, rectangleClient.width(), iBorderH * 2);*/
+         graphics2.DrawRectangle(&ppen1, rectangleClient.left, rectangleClient.top, rectangleClient.width(), iBorderH * 2);*/
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
-         pen->create_solid(1.0, crBorderIn);
+         ppen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + 1, rectangleClient.left + (i32)rectangleClient.width() - 2, rectangleClient.top + iBorderH * 2 - 2), pen);
+         pgraphics->draw_rectangle(::rectangle_i32(rectangleClient.left + 1, rectangleClient.top + 1, rectangleClient.left + (i32)rectangleClient.width() - 2, rectangleClient.top + iBorderH * 2 - 2), ppen);
 
       }
 

@@ -211,7 +211,7 @@ namespace user
          //return;
          
          
-         ::rectangle_i32 rectClip;
+         ::rectangle_i32 rectangleClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -227,7 +227,7 @@ namespace user
             rectangleClient.bottom++;
             rectangleClient.right++;
 
-            rectClip = rectangleClient;
+            rectangleClip = rectangleClient;
 
             bFirst = false;
 
@@ -235,7 +235,7 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         ::rectangle_i32 rectFocus;
+         ::rectangle_i32 rectangleFocus;
 
          index i = 0;
 
@@ -247,16 +247,16 @@ namespace user
 
                pinteraction->get_window_rect(rectangleClient, e_layout_design);
 
-               pinteraction->get_client_rect(rectFocus);
+               pinteraction->get_client_rect(rectangleFocus);
 
-               rectFocus.offset(rectangleClient.top_left());
+               rectangleFocus.offset(rectangleClient.top_left());
 
-               screen_to_client(rectFocus, e_layout_design);
+               screen_to_client(rectangleFocus, e_layout_design);
 
-               rectFocus.bottom++;
-               rectFocus.right++;
+               rectangleFocus.bottom++;
+               rectangleFocus.right++;
 
-               pgraphics->intersect_clip(rectFocus);
+               pgraphics->intersect_clip(rectangleFocus);
 
             }
 

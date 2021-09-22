@@ -12,7 +12,7 @@ namespace user
 
 
       string               m_str;
-      ::write_text::font_pointer    m_font;
+      ::write_text::font_pointer    m_pfont;
       ::size_i32               m_size;
       bool                 m_bError;
 

@@ -23,12 +23,12 @@ namespace user
       //virtual bool create_interaction(::user::interaction * puiParent,id id);
 
 
-      virtual ::user::place_holder * get_new_place_holder(const ::rectangle_i32 & rectCreate);
+      virtual ::user::place_holder * get_new_place_holder(const ::rectangle_i32 & rectangleCreate);
 
       virtual bool erase_place_holder(::user::place_holder * pholder);
 
 
-      virtual ::user::place_holder * place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectCreate);
+      virtual ::user::place_holder * place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectangleCreate);
 
       virtual bool unplace(::user::interaction * pinteraction);
 
@@ -43,7 +43,7 @@ namespace user
    {
    public:
 
-      virtual place_holder_ptra place(::user::interaction * pinteraction, const ::rectangle_i32 & rectCreate);
+      virtual place_holder_ptra place(::user::interaction * pinteraction, const ::rectangle_i32 & rectangleCreate);
 
       virtual i32 unplace(::user::interaction * pinteraction);
 

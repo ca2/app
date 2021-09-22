@@ -29,12 +29,12 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 ///*  , m_logicalFunction(wxCOPY)
 // , m_backgroundMode(wxTRANSPARENT)
 // , m_mappingMode(wxMM_TEXT)
-// , m_pen() */
-///* , m_brush()
+// , m_ppen() */
+///* , m_pbrush()
 // , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
 // , m_textForegroundColour(*wxBLACK)
 // , m_textBackgroundColour(*wxWHITE)
-// , m_font()
+// , m_pfont()
 // #if wxUSE_PALETTE
 // , m_palette()
 // , m_hasCustomPalette(false)
@@ -594,12 +594,12 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // /*  , m_logicalFunction(wxCOPY)
 //  , m_backgroundMode(wxTRANSPARENT)
 //  , m_mappingMode(wxMM_TEXT)
-//  , m_pen() */
-// /* , m_brush()
+//  , m_ppen() */
+// /* , m_pbrush()
 //  , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
 //  , m_textForegroundColour(*wxBLACK)
 //  , m_textBackgroundColour(*wxWHITE)
-//  , m_font()
+//  , m_pfont()
 //  #if wxUSE_PALETTE
 //  , m_palette()
 //  , m_hasCustomPalette(false)
@@ -752,17 +752,17 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 //   //if(!hwnd->m_bNsWindowRect)
 //   {
 //
-//      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
+//      get_nswindow_rect(hwnd, &hwnd->m_rectangleNsWindow);
 //
 //      // hwnd->m_bNsWindowRect = true;
 //
 //   }
 //
-//   *prect = hwnd->m_rectNsWindow;
+//   *prect = hwnd->m_rectangleNsWindow;
 //
 //
 //
-//   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
+//   //::copy(prect, hwnd->m_pimpl->m_rectangleParentClient);
 //
 //
 //   return true;
@@ -1222,17 +1222,17 @@ int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
    //if(!hwnd->m_bNsWindowRect)
    {
       
-      get_nswindow_rect(hwnd, &hwnd->m_rectNsWindow);
+      get_nswindow_rect(hwnd, &hwnd->m_rectangleNsWindow);
       
       // hwnd->m_bNsWindowRect = true;
       
    }
    
-   *prect = hwnd->m_rectNsWindow;
+   *prect = hwnd->m_rectangleNsWindow;
    
    
    
-   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
+   //::copy(prect, hwnd->m_pimpl->m_rectangleParentClient);
    
    
    return true;

@@ -79,8 +79,8 @@ namespace draw2d_cairo
       virtual i32 SaveDC() override;
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDevicecaps(i32 nIndex);
-      ::u32 SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags) override;
-      ::u32 GetBoundsRect(::rectangle_f64 * rectBounds, ::u32 flags) override;
+      ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode) override;
 
       // Drawing-Tool Functions
@@ -397,7 +397,7 @@ namespace draw2d_cairo
 //      bool DrawFrameControl(const ::rectangle_f64 & rectangle_f64, ::u32 nType, ::u32 nState) override;
 
 //      // Scrolling Functions
-//      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectScroll, const ::rectangle_f64 & rectClip,
+//      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
 //                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 
 //      // font Functions
@@ -443,7 +443,7 @@ namespace draw2d_cairo
 
       // MetaFile Functions
       //xxx      bool PlayMetaFile(HMETAFILE hMF) override;
-//      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectBounds) override;
+//      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectangleBounds) override;
       //    bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData) override;
       // can be used for enhanced metafiles only
 
@@ -472,7 +472,7 @@ namespace draw2d_cairo
       // Misc Helper Functions
       //static ::draw2d::brush* PASCAL GetHalftoneBrush(::object * pobject);
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
-//                        const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
+//                        const ::rectangle_f64 & rectangleLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
       //void fill_rectangle(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
       //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;

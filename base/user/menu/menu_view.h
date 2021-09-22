@@ -14,47 +14,49 @@ namespace user
       ::image_pointer                     m_pimageMem;
       __composite(::xml::document)        m_pxmldoc;
       ::image_pointer                     m_pimageLogo;
-      ::write_text::font_pointer              m_fontTitle;
-      ::write_text::font_pointer              m_font;
-      ::draw2d::brush_pointer             m_brBkSel;
-      ::draw2d::brush_pointer             m_brBkHoverSel;
-      ::draw2d::pen_pointer               m_penBkSel;
-      ::draw2d::pen_pointer               m_pen;
+      ::write_text::font_pointer          m_pfontTitle;
+      ::write_text::font_pointer          m_pfont;
+      ::draw2d::brush_pointer             m_pbrushBkSel;
+      ::draw2d::brush_pointer             m_pbrushBkHoverSel;
+      ::draw2d::pen_pointer               m_ppenBkSel;
+      ::draw2d::pen_pointer               m_ppen;
       string_map < ::image_pointer >      m_pimageMap;
       string_map < ::image_pointer >      m_pimageMapGray;
       int_array                           m_iaPopup;
 
 
       menu_view();
-      virtual ~menu_view();
+      ~menu_view() override;
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
 #endif
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       ::user::document * get_document();
 
       bool load_xml(::payload varFile);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -65,10 +67,10 @@ namespace user
       virtual bool get_item_rect(index i, RECTANGLE_I32 * prectangle);
 
 
-      virtual void on_hit_test(::item & item) override;
+      void on_hit_test(::item & item) override;
 
 
-      virtual bool on_click(const ::item & item) override;
+      bool on_click(const ::item & item) override;
 
       virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
       virtual void draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32& point2);

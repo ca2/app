@@ -13,7 +13,7 @@ namespace account
 
 
       index                               m_iDelay;
-      ::rectangle_i32                              m_rectFontopus;
+      ::rectangle_i32                              m_rectangleFontopus;
 
       __reference(::account::credentials) m_pcredentials;
 
@@ -24,7 +24,7 @@ namespace account
 
       bool                                m_bDrag;
       bool                                m_bFontopusSimpleUiLayout;
-      ::rectangle_i32                              m_rectParent;
+      ::rectangle_i32                              m_rectangleParent;
 
       dialog **                           m_psimpleuiDeferTranslate;
 

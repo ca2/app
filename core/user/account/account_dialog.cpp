@@ -201,7 +201,7 @@ namespace account
 
             order(e_zorder_top);
 
-            place(m_rectFontopus);
+            place(m_rectangleFontopus);
 
             m_plogin->m_peditUser->set_keyboard_focus();
 
@@ -231,12 +231,12 @@ namespace account
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
-      ::rectangle_i32 rectDesktop;
+      ::rectangle_i32 rectangleDesktop;
 
       if(puiParent != nullptr)
       {
 
-         puiParent->get_window_rect(rectDesktop);
+         puiParent->get_window_rect(rectangleDesktop);
 
       }
       else if (rectangle.is_empty())
@@ -248,17 +248,17 @@ namespace account
 
          auto pdisplay = pwindowing->display();
 
-         pdisplay->get_main_monitor(rectDesktop);
+         pdisplay->get_main_monitor(rectangleDesktop);
 
       }
       else
       {
 
-         rectDesktop = rectangle;
+         rectangleDesktop = rectangle;
 
       }
 
-      ::rectangle_i32 rectLogin;
+      ::rectangle_i32 rectangleLogin;
 
       int stdw = 800;
 
@@ -268,38 +268,38 @@ namespace account
 
       int h = stdh;
 
-      if(w > rectDesktop.width())
+      if(w > rectangleDesktop.width())
       {
 
-         w = rectDesktop.width();
+         w = rectangleDesktop.width();
 
       }
 
-      if(h > rectDesktop.height())
+      if(h > rectangleDesktop.height())
       {
 
-         h = rectDesktop.height();
+         h = rectangleDesktop.height();
 
       }
 
-      ::rectangle_i32 rectFontopus;
+      ::rectangle_i32 rectangleFontopus;
 
-      rectFontopus.left = rectDesktop.left + (rectDesktop.width() - w) / 2;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
-      rectFontopus.top = rectDesktop.top + (rectDesktop.height() - h) / 3;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
 
-      rectFontopus.right = rectFontopus.left + w;
+      rectangleFontopus.right = rectangleFontopus.left + w;
 
-      rectFontopus.bottom = rectFontopus.top + h;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
       if (puiParent != nullptr)
       {
 
-         puiParent->screen_to_client(rectFontopus);
+         puiParent->screen_to_client(rectangleFontopus);
 
       }
 
-      if((rectFontopus.width() < 300 || rectFontopus.height() < 300) && puiParent != nullptr)
+      if((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
          __pointer(::application) papp = puiParent->get_application();
@@ -365,7 +365,7 @@ namespace account
 
 #endif
 
-      // auto pusersystem = __new(::user::system(rectFontopus));
+      // auto pusersystem = __new(::user::system(rectangleFontopus));
 
       if(!create_child(puiParent))
       {
@@ -374,7 +374,7 @@ namespace account
 
       }
 
-      m_rectFontopus = rectFontopus;
+      m_rectangleFontopus = rectangleFontopus;
 
       set_window_text("account Auth Windows");
 
@@ -478,7 +478,7 @@ namespace account
 
       }
 
-      do_modal(pcredentials->m_rectDialog);
+      do_modal(pcredentials->m_rectangleDialog);
 
    }
 

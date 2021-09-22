@@ -12,17 +12,17 @@ namespace simple_shader
    void render::draw_arc(::draw2d::graphics_pointer & pgraphics, rectangle_i32& r, double dStart, double dAngle, bool bPath)
    {
 
-      ::write_text::font_pointer font(e_create);
+      auto pfont = __create < ::write_text::font > ();
 
       string strFontFamily = get_font();
 
-      font->create_pixel_font(strFontFamily, 14.0, FW_LIGHT);
+      pfont->create_pixel_font(strFontFamily, 14.0, FW_LIGHT);
 
       ::color::color color(m_hlsText);
 
       pgraphics->set_text_color(color);
 
-      pgraphics->set(font);
+      pgraphics->set(pfont);
 
       string str1;
 
@@ -50,25 +50,25 @@ namespace simple_shader
 
       size = size1.maximum(size2);
 
-      ::rectangle_i32 rectBack(r);
+      ::rectangle_i32 rectangleBack(r);
 
-      rectBack.deflate(2, 2);
+      rectangleBack.deflate(2, 2);
 
-      rectBack.bottom = rectBack.top + size.cy * 2 + 4 * 3;
+      rectangleBack.bottom = rectangleBack.top + size.cy * 2 + 4 * 3;
 
-      pgraphics->fill_rectangle(rectBack, argb(127, 80, 80, 80));
+      pgraphics->fill_rectangle(rectangleBack, argb(127, 80, 80, 80));
 
-      pgraphics->text_out(rectBack.left + 4, rectBack.top + 4, str1);
+      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + 4, str1);
 
-      pgraphics->text_out(rectBack.left + 4, rectBack.top + size.cy + 8, str2);
+      pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + size.cy + 8, str2);
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
-      ::draw2d::brush_pointer brush(e_create);
+      auto pbrush = __create < ::draw2d::brush >();
 
-      brush->create_null();
+      pbrush->create_null();
 
-      pgraphics->set(brush);
+      pgraphics->set(pbrush);
 
       if (__bool(papplication->m_echeckSimple))
       {
@@ -76,13 +76,13 @@ namespace simple_shader
          if (dAngle < 0.0)
          {
 
-            pen->create_solid(4.0, argb(255, 120, 120, 120));
+            ppen->create_solid(4.0, argb(255, 120, 120, 120));
 
          }
          else
          {
 
-            pen->create_solid(4.0, argb(255, 255, 255, 255));
+            ppen->create_solid(4.0, argb(255, 255, 255, 255));
 
          }
 
@@ -96,13 +96,13 @@ namespace simple_shader
             if (bPath)
             {
 
-               pen->create_solid(4.0, dk_red());
+               ppen->create_solid(4.0, dk_red());
 
             }
             else
             {
 
-               pen->create_solid(4.0, argb(255, 255, 230, 155));
+               ppen->create_solid(4.0, argb(255, 255, 230, 155));
 
             }
 
@@ -113,13 +113,13 @@ namespace simple_shader
             if (bPath)
             {
 
-               pen->create_solid(4.0, argb(255, 255, 255, 255));
+               ppen->create_solid(4.0, argb(255, 255, 255, 255));
 
             }
             else
             {
 
-               pen->create_solid(4.0, argb(255, 50, 180, 255));
+               ppen->create_solid(4.0, argb(255, 50, 180, 255));
 
             }
 
@@ -127,7 +127,7 @@ namespace simple_shader
 
       }
 
-      pgraphics->set(pen);
+      pgraphics->set(ppen);
 
       pgraphics->Arc(r, dStart, dAngle);
 

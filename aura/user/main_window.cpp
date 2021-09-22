@@ -51,11 +51,11 @@ namespace user
    ::e_status main_window::create_main_window()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
+      bool bInitialFramePosition = _001InitialFramePosition(rectangleWindow, m_rectangleInitialRateOrSize);
 
-      place(rectWindow);
+      place(rectangleWindow);
 
       __pointer(::aura::application) papplication = get_application();
 

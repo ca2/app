@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      ::rectangle_i32      m_rectMargin;
+      ::rectangle_i32      m_rectangleMargin;
 
 
       margin_base();
@@ -55,13 +55,13 @@ namespace user
       //     BASE::screen_to_client(prectangle);
 
 
-      /*prectangle->left   -= m_rectMargin.left;
+      /*prectangle->left   -= m_rectangleMargin.left;
 
-      prectangle->right  -= m_rectMargin.left;
+      prectangle->right  -= m_rectangleMargin.left;
 
-      prectangle->top    -= m_rectMargin.top;
+      prectangle->top    -= m_rectangleMargin.top;
 
-      prectangle->bottom -= m_rectMargin.top;*/
+      prectangle->bottom -= m_rectangleMargin.top;*/
 
 
       // }
@@ -71,9 +71,9 @@ namespace user
 
          auto pointOffset = BASE::get_viewport_offset();
 
-         pointOffset.x += m_rectMargin.left;
+         pointOffset.x += m_rectangleMargin.left;
 
-         pointOffset.y += m_rectMargin.top;
+         pointOffset.y += m_rectangleMargin.top;
 
          return pointOffset;
 
@@ -83,7 +83,7 @@ namespace user
       void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
       {
 
-         BASE::set_viewport_offset(pgraphics, x - m_rectMargin.left, y - m_rectMargin.top);
+         BASE::set_viewport_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
 
       }
 
@@ -93,7 +93,7 @@ namespace user
 
          auto s = BASE::get_total_size();
 
-         return decltype(s)(s.cx + m_rectMargin.left + m_rectMargin.right,s.cy + m_rectMargin.top + m_rectMargin.bottom);
+         return decltype(s)(s.cx + m_rectangleMargin.left + m_rectangleMargin.right,s.cy + m_rectangleMargin.top + m_rectangleMargin.bottom);
 
       }
 

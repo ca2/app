@@ -1,6 +1,8 @@
 #pragma once
 
 
+CLASS_DECL_APEX int get_member_function_offset();
+CLASS_DECL_APEX int get_member_function_size();
 
 
 namespace message
@@ -31,11 +33,11 @@ namespace message
       dispatcher(T1 * p, void (T2:: * pfn)(::message::message * pmessage))
       {
 
-         auto s = sizeof(void (T2:: *)(::message::message * pmessage));
+         auto s = sizeof(pfn);
 
-         const char * ptrptr = static_cast<const char *>(static_cast<const void *>(&pfn));
+         auto ptrptr = (byte*)&pfn;
 
-         m_chunkMemberFunction.assign(ptrptr, s);
+         m_chunkMemberFunction.assign(ptrptr + get_member_function_offset(), get_member_function_size());
 
          ::function_pointer::operator = (::message::__handler([p, pfn](::message::message * pmessage)
             {
@@ -84,6 +86,27 @@ namespace message
          }
 
          return *this;
+
+      }
+
+
+      bool operator == (const dispatcher & dispatcher) const
+      {
+
+         if (this == &dispatcher)
+         {
+
+            return true;
+
+         }
+
+         bool bSameHandler = m_phandlerTarget == dispatcher.m_phandlerTarget;
+
+         bool bExactlySamePredicateHolder = m_p == dispatcher.m_p;
+
+         bool bSameMemberIfSet = m_chunkMemberFunction.size() > 0 && m_chunkMemberFunction == dispatcher.m_chunkMemberFunction;
+
+         return bSameHandler && (bExactlySamePredicateHolder || bSameMemberIfSet);
 
       }
 

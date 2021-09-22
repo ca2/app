@@ -349,12 +349,12 @@ namespace user
    void form_control::handle(::subject * psubject, ::context * pcontext)
    {
 
-      for(auto pinteraction : proper_children())
-      {
+      //for(auto pinteraction : proper_children())
+      //{
 
-         _001Update(pinteraction);
+      //   _001Update(pinteraction);
 
-      }
+      //}
 
       if (psubject->m_id == ::e_subject_create)
       {

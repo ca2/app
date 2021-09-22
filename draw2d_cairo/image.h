@@ -22,7 +22,7 @@ namespace draw2d_cairo
       ~image() override;
 
 
-      virtual bool map(bool bApplyAlphaTransform = true) override;
+      virtual bool _map(bool bApplyAlphaTransform = true) override;
       virtual bool _unmap() override;
 
 

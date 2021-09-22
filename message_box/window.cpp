@@ -13,7 +13,7 @@ namespace app_message_box
 
       m_bTransparent = true;
 
-      m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+      m_rectangleInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
       m_dBreathPeriod = 60.0;
 

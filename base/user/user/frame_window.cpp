@@ -48,7 +48,7 @@ namespace user
 #endif
 
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
 
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
@@ -1049,20 +1049,20 @@ namespace user
 
       //dwDefaultStyle &= ~WS_VISIBLE;
 
-      ::rectangle_i32 rectFrame;
+      ::rectangle_i32 rectangleFrame;
 
       __pointer(::user::place_holder) pholder;
 
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->get_client_rect(rectFrame);
+         pholder->get_client_rect(rectangleFrame);
 
       }
       else
       {
 
-         rectFrame = nullptr;
+         rectangleFrame = nullptr;
 
       }
 
@@ -1072,7 +1072,7 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
       //{
@@ -1135,7 +1135,7 @@ namespace user
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
 
       string strTitle = m_strTitle;
-      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
+      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectangleDefault,
 
       puiParent, nIDResource, (LPVOID) pContext))
       {
@@ -2462,7 +2462,7 @@ namespace user
 
          RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, false);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, true);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder, &rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2474,7 +2474,7 @@ namespace user
       else
       {
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2504,10 +2504,10 @@ namespace user
          if (pRectBorder == nullptr)
 
          {
-            if (!m_rectBorder.is_null())
+            if (!m_rectangleBorder.is_null())
             {
                // releasing all border space -- recalc needed
-               m_rectBorder.Null();
+               m_rectangleBorder.Null();
                return true;
             }
             // original rectangle_i32 is is_empty & pRectBorder is nullptr, no recalc needed
@@ -2516,11 +2516,11 @@ namespace user
 
          }
 
-         if (m_rectBorder != *pRectBorder)
+         if (m_rectangleBorder != *pRectBorder)
          {
 
             // the rects are different -- recalc needed
-            m_rectBorder.copy(pRectBorder);
+            m_rectangleBorder.copy(pRectBorder);
 
             return true;
 
@@ -2717,7 +2717,7 @@ namespace user
 
       m_cModalStack = 0;              // initialize modality support
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = nullptr;         // not in list yet

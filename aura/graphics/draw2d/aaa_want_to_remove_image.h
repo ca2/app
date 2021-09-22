@@ -539,7 +539,7 @@ class CLASS_DECL_AURA work_image :
 public:
 
 
-   ::rectangle       m_rectMap;
+   ::rectangle       m_rectangleMap;
 
 
    work_image(::object * pobject, const ::size & size);

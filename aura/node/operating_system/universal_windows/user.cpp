@@ -668,7 +668,7 @@ CLASS_DECL_AURA int_bool get_cursor_position(POINT_I32 * lppoint);
 //
 //   auto puserinteractionHost = __user_interaction(psession->get_user_interaction_host());
 //
-//   *lprect = puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+//   *lprect = puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
 //
 //   return true;
 //

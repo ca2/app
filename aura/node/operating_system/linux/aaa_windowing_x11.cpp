@@ -951,14 +951,14 @@ bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, in
 
       }
 
-      ::rectangle_i32 rectTest;
+      ::rectangle_i32 rectangleTest;
 
       for(index i = 0; i < windowa.get_size(); i++)
       {
 
          string strItem = x11_get_name(display, windowa[i]);
 
-         ::rectangle_i32 rectHigher;
+         ::rectangle_i32 rectangleHigher;
 
          if(::is_set(oswindowExclude) && windowa[i] == oswindowExclude->window())
          {
@@ -967,16 +967,16 @@ bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, in
 
          }
 
-         if(x11_get_window_rect(display, windowa[i], rectHigher))
+         if(x11_get_window_rect(display, windowa[i], rectangleHigher))
          {
 
-            ::rectangle_i32 rectHitTest;
+            ::rectangle_i32 rectangleHitTest;
 
-            rectHitTest.set(rectHigher.origin(), ::size());
+            rectangleHitTest.set(rectangleHigher.origin(), ::size());
 
-            rectHitTest.inflate(iMargin+1);
+            rectangleHitTest.inflate(iMargin+1);
 
-            if(rectHitTest.contains(pointHitTest))
+            if(rectangleHitTest.contains(pointHitTest))
             {
 
                bIsOrigin = true;
@@ -1055,19 +1055,19 @@ bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, in
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
-//    ::rectangle_i32 rectTest;
+//    ::rectangle_i32 rectangleTest;
 
 //    for(iFind++; iFind < windowa.get_size(); iFind++)
 //    {
 
 //       string strItem = x11_get_name(display, windowa[iFind]);
 
-//       ::rectangle_i32 rectHigher;
+//       ::rectangle_i32 rectangleHigher;
 
-//       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+//       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
 //       {
 
-//          if(rectTest.intersect(rectHigher, rectangle))
+//          if(rectangleTest.intersect(rectangleHigher, rectangle))
 //          {
 
 //             return true;
@@ -1145,19 +1145,19 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle_i32 rectTest;
+   ::rectangle_i32 rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       //string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle_i32 rectHigher;
+      ::rectangle_i32 rectangleHigher;
 
-      if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+      if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
 
-         ra.add(rectHigher);
+         ra.add(rectangleHigher);
 
       }
 
@@ -1684,7 +1684,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //   ::draw2d::brush_pointer pen(e_create_new);
 //
-//   pen->create_solid(0);
+//   ppen->create_solid(0);
 //
 //   for(index i = 0; i < stra.get_count(); i++)
 //   {

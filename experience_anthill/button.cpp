@@ -12,8 +12,8 @@ namespace experience
 
    button::button() :
       m_spregion(e_create),
-      m_pen(e_create),
-      m_brush(e_create)
+      m_ppen(e_create),
+      m_pbrush(e_create)
    {
 
    }
@@ -64,9 +64,9 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->set(m_pcontrolbox->m_brushButtonBackDisabled);
+         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-         pgraphics->set(m_pcontrolbox->m_penButtonBackDisabled);
+         pgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
 
          crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -74,9 +74,9 @@ namespace experience
       else if (hover_item().is_set())
       {
 
-         pgraphics->set(m_pcontrolbox->m_brushButtonBackSel);
+         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
 
-         pgraphics->set(m_pcontrolbox->m_penButtonBackSel);
+         pgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
 
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -84,9 +84,9 @@ namespace experience
       else if (has_keyboard_focus())
       {
 
-         pgraphics->set(m_pcontrolbox->m_brushButtonBackFocus);
+         pgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-         pgraphics->set(m_pcontrolbox->m_penButtonBackFocus);
+         pgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
 
          crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -94,29 +94,29 @@ namespace experience
       else
       {
 
-         pgraphics->set(m_pcontrolbox->m_brushButtonBack);
+         pgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
 
-         pgraphics->set(m_pcontrolbox->m_penButtonBack);
+         pgraphics->set(m_pcontrolbox->m_ppenButtonBack);
 
          crText = m_pcontrolbox->m_colorButtonFore;
 
       }
 
-      ::rectangle_i32 rectEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleClient);
 
       ::rectangle_i32 rW;
 
       get_window_rect(rW);
 
-      rectEllipse.deflate(0, 0, 2, 2);
+      rectangleEllipse.deflate(0, 0, 2, 2);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_color);
 
-      //pgraphics->FillEllipse(rectEllipse);
+      //pgraphics->FillEllipse(rectangleEllipse);
 
-      //pgraphics->DrawEllipse(rectEllipse);
+      //pgraphics->DrawEllipse(rectangleEllipse);
 
       if (m_estockicon == e_stock_icon_none)
       {
@@ -135,23 +135,23 @@ namespace experience
       else
       {
 
-         m_brush->create_solid(::is_set(pgraphics->get_current_pen())
+         m_pbrush->create_solid(::is_set(pgraphics->get_current_pen())
                                ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
-         pgraphics->set(m_brush);
+         pgraphics->set(m_pbrush);
 
-         m_pen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
+         m_ppen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
                              ? pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
-         pgraphics->set(m_pen);
+         pgraphics->set(m_ppen);
 
-         ::rectangle_i32 rectIcon(rectEllipse);
+         ::rectangle_i32 rectangleIcon(rectangleEllipse);
 
-         rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+         rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
-         //pgraphics->FillSolidRect(rectEllipse, argb(255, 255, 255, 255));
+         //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 
       }
 

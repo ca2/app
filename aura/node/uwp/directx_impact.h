@@ -101,10 +101,10 @@ namespace universal_windows
       // Apps can also ask the keyboard to show or hide.
       Agile < ::winrt::Windows::UI::ViewManagement::InputPane >         m_inputpane;
 
-      ::winrt::Windows::Foundation::EventRegistrationToken              m_tokenActivated;
-      ::winrt::Windows::Foundation::EventRegistrationToken              m_tokenClosed;
-      ::winrt::Windows::Foundation::EventRegistrationToken              m_tokenKeyDown;
-      ::winrt::Windows::Foundation::EventRegistrationToken              m_tokenPointerPressed;
+      ::winrt::event_token              m_tokenActivated;
+      ::winrt::event_token              m_tokenClosed;
+      ::winrt::event_token              m_tokenKeyDown;
+      ::winrt::event_token              m_tokenPointerPressed;
 
 
       impact();

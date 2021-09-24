@@ -2994,7 +2994,7 @@ void simple_frame_window::design_up()
 void simple_frame_window::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   ::experience::frame_window::route_command(pcommand);
+   ::experience::frame_window::route_command(pcommand, bRouteToKeyDescendant);
 
 }
 

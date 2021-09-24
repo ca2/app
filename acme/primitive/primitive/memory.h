@@ -262,6 +262,6 @@ public:
 };
 
 
-inline memory_file_pointer create_memory_file_copy(const memory& memory) { return __new(::memory_file(__create_new < ::memory > (memory))); }
+inline memory_file_pointer create_memory_file_copy(const memory& memory) { return __new(::memory_file(__new(::memory(memory)))); }
 
 

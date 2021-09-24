@@ -4305,7 +4305,9 @@ return "";
    void interaction::on_message_subject(::message::message* pmessage)
    {
 
-      __pointer(::subject) psubject(pmessage->m_lparam);
+      __pointer(::subject) psubject;
+      
+      __move(psubject, pmessage->m_lparam);
 
       if(!psubject)
       { 
@@ -10594,7 +10596,7 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
             else
             {
 
-               puiptraChildNew.create_new();
+               __construct_new(puiptraChildNew);
 
             }
 
@@ -17116,23 +17118,30 @@ order(zorderParam);
 
       ::user::primitive::route_command(pcommand);
 
-      __pointer(::user::frame) puiFrame = get_parent_frame();
-
-      if (puiFrame)
+      if (pcommand->m_bRet)
       {
 
-         puiFrame->route_command(pcommand);
+         return;
+
+      }
+
+      __pointer(::user::interaction) puserinteractionParent = get_parent();
+
+      if (puserinteractionParent)
+      {
+
+         puserinteractionParent->route_command(pcommand, false);
 
       }
       else
       {
 
-         __pointer(::aura::application) papplication = get_application();
+         __pointer(::apex::context) pcontext = get_context();
 
-         if (papplication)
+         if (pcontext)
          {
 
-            papplication->route_command(pcommand);
+            pcontext->route_command(pcommand);
 
          }
 

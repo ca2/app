@@ -28,9 +28,7 @@
          {
 
 
-            frame_005::frame_005() :
-               m_pbrushGrip(e_create),
-               m_pbrushTextCaption(e_create)
+            frame_005::frame_005()
             {
 
                //set_style(StyleLightGreen);
@@ -55,6 +53,11 @@
 
             void frame_005::on_initialize_experience_frame()
             {
+
+
+               __construct(m_pbrushGrip);
+               __construct(m_pbrushTextCaption);
+
 
                frame::on_initialize_experience_frame();
 

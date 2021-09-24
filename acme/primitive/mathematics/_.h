@@ -9,6 +9,8 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
+
+
 template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
 inline constexpr bool __lt(const INTEGER1 & a, const INTEGER2 & b) { return a < b; }
 template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
@@ -115,10 +117,12 @@ template < typename TYPE1, typename TYPE2 >
 constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? a : ((TYPE1)b); }
 
 
+
 #include "count.h"
 
 
 #include "index.h"
+
 
 
 template < primitive_integer INTEGER >
@@ -228,7 +232,7 @@ inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
 
 
 
-
+//#endif
 
 
 

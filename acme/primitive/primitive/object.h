@@ -267,7 +267,7 @@ public:
 
    }
 
-
+   virtual ::subject_pointer create_subject(const ::id & id);
    //virtual ::user::primitive* get_user_interaction_host();
    //virtual ::user::interaction * get_host_window();
 
@@ -1257,6 +1257,38 @@ public:
                                                                      \
 
 CLASS_DECL_ACME ::e_status call_sync(const ::routine_array& routinea);
+
+
+
+
+
+
+
+
+
+
+
+#define __PROPERTIES(xxx)\
+class xxx ## _properties: \
+   public property_set \
+{ \
+public: \
+
+
+#define __PROPERTY(type, name, ID) type & name = payload_reference(topic(ID))
+
+
+
+#define __END_PROPERTIES(xxx) }; \
+xxx ## _properties & properties() {return *m_pobjectproperties;} \
+const xxx ## _properties & properties() const {return *m_pobjectproperties;} \
+inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __new(xxx ## _properties());} \
+__pointer(xxx ## _properties) m_pobjectproperties
+
+
+
+
+
 
 
 

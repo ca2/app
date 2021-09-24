@@ -557,7 +557,7 @@ namespace apex
 
 #endif
 
-      __construct_new(::channel::s_pmutexChannel);
+      ::channel::s_pmutexChannel = __new(mutex);
 
       //g_papexstrpool = new apex_str_pool();
 

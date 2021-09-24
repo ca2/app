@@ -93,7 +93,7 @@ namespace sockets
 
 
 #ifdef WINDOWS
-      m_pportforward.create();
+      __construct(m_pportforward);
 #endif
 
 

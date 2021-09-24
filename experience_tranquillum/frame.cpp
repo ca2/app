@@ -9,12 +9,7 @@ namespace experience
    {
 
 
-      frame::frame() :
-         m_ppenText1(e_create),
-         m_ppenFace1(e_create),
-         m_ppenHilight1(e_create),
-         m_ppenShadow1(e_create),
-         m_ppenDkShadow1(e_create)
+      frame::frame()
       {
 
          m_colorActiveCaptionTextBk = 0;
@@ -359,6 +354,13 @@ namespace experience
             pcontrolbox->set_button_color_system_default_001();
 
          }
+
+         __construct(m_ppenText1);
+         __construct(m_ppenFace1);
+         __construct(m_ppenHilight1);
+         __construct(m_ppenShadow1);
+         __construct(m_ppenDkShadow1);
+
          set_frame_color_system_default_001();
          set_moveable_border_color(m_pframewindow->get_moveable_border_color());
 

@@ -94,7 +94,7 @@ string object::to_string() const
 
    _synchronous_lock synchronouslock(mutex());
 
-   m_pcompositea.defer_create_new();
+   __defer_construct_new(m_pcompositea);
 
    if (!m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
@@ -119,7 +119,7 @@ string object::to_string() const
 
    _synchronous_lock synchronouslock(mutex());
 
-   m_preferencea.defer_create_new();
+   __defer_construct_new(m_preferencea);
 
    m_preferencea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
@@ -268,6 +268,18 @@ string object::to_string() const
 //   return __user_interaction(m_psession->m_puserinteractionHost);
 //
 //}
+
+
+::subject_pointer object::create_subject(const ::id & id)
+{
+
+   auto psubject = __new(subject(id));
+
+   psubject->initialize(this);
+
+   return ::move(psubject);
+
+}
 
 
 void object::dev_log(string strMessage) const
@@ -1079,12 +1091,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   if (!m_pobjectaChildrenTask)
-   {
-
-      m_pobjectaChildrenTask.create_new();
-
-   }
+   __defer_construct_new(m_pobjectaChildrenTask);
 
    string strType = type_c_str();
 
@@ -1206,12 +1213,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   if (!m_pobjectaChildrenTask)
-   {
-
-      m_pobjectaChildrenTask.create_new();
-
-   }
+   __defer_construct_new(m_pobjectaChildrenTask);
 
    __pointer_array(::object) objectaChildrenTask;
 

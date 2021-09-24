@@ -186,7 +186,7 @@ namespace xml
 
          m_nodea.erase_all();
 
-         m_pnodeRoot.release();
+         //m_pnodeRoot.release();
 
          return false;
 

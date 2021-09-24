@@ -8724,20 +8724,20 @@ void image_copy(::image* pimagethis, ::image* pimage)
 }
 
 
-void image_create(::object* pobject, ::image_pointer& pimage)
-{
+//void image_create(::object* pobject, ::image_pointer& pimage)
+//{
+//
+//   __construct(pimage, pobject);
+//
+//}
 
-   __construct(pimage, pobject);
-
-}
-
-
-void image_create_image(::image* pimage, const ::size_i32& size)
-{
-
-   pimage->create(size);
-
-}
+//
+//void image_create_image(::image* pimage, const ::size_i32& size)
+//{
+//
+//   pimage->create(size);
+//
+//}
 
 
 unsigned int* image_get_data(::image* pimage)

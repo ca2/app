@@ -906,7 +906,7 @@ namespace user
       void edit_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         ::draw2d::graphics_pointer graphics(e_create);
+         ::draw2d::graphics_pointer graphics(e_create, this);
 
          pgraphics->CreateCompatibleDC(NULL);
 

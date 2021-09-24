@@ -75,7 +75,7 @@ file_transport acme_file::open(const ::file::path & path, const ::file::e_open &
 file_transport acme_file::stdio_open(const char * path, const char * attrs, int iShare)
 {
 
-   auto pfile = __create_new < ::stdio_file >();
+   auto pfile = m_psystem->__create_new < ::stdio_file >();
 
    if (!pfile)
    {

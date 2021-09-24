@@ -136,170 +136,170 @@ namespace factory
 
 } // namespace factory
 
-
-template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create()
-{
-
-   auto pfactory = ::factory::get_factory < BASE_TYPE >();
-
-   if (!pfactory)
-   {
-
-      return nullptr;
-
-   }
-
-   __pointer(::matter) ptypeNew = pfactory->call_new();
-
-   if (!ptypeNew)
-   {
-
-      return nullptr;
-
-   }
-
-   __pointer(BASE_TYPE) pusermessage = ptypeNew;
-
-   if (!pusermessage)
-   {
-
-      return nullptr;
-
-   }
-
-   return pusermessage;
-
-}
-
-
-template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __create(::object * pobject)
-{
-
-   auto p = __create < BASE_TYPE >();
-
-   if (!p)
-   {
-
-      return nullptr;
-
-   }
-
-   auto estatus = p->initialize(pobject);
-
-   if (!estatus)
-   {
-
-      return nullptr;
-
-   }
-
-   return p;
-
-}
-
-
-template < typename BASE_TYPE >
-inline __pointer(BASE_TYPE) __id_create(const ::id & id)
-{
-
-   auto pfactory = ::factory::get_factory(id);
-
-   if (!pfactory)
-   {
-
-      return nullptr;
-
-   }
-
-   auto ptypeNew = pfactory->call_new();
-
-   if (!ptypeNew)
-   {
-
-      return nullptr;
-
-   }
-
-   __pointer(BASE_TYPE) pusermessage = ptypeNew;
-
-   if (!pusermessage)
-   {
-
-      return nullptr;
-
-   }
-
-   pusermessage->m_eobject |= e_object_factory;
-
-   return pusermessage;
-
-}
-
-
-template < typename TYPE >
-inline __pointer(TYPE) __create_new()
-{
-
-   auto ptype = __new(TYPE);
-
-   if (!ptype)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptype;
-
-}
-
-
-template < typename TYPE >
-inline __pointer(TYPE) __create_new(const TYPE & t)
-{
-
-   auto ptype = __new(TYPE(t));
-
-   if (!ptype)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptype;
-
-}
-
-
-template < typename TYPE >
-inline __pointer(TYPE) __create_new(::object * pobject)
-{
-
-   auto ptype = __create_new< TYPE > ();
-
-   if (!ptype)
-   {
-
-      return ptype;
-
-   }
-
-   auto estatus = ptype->initialize(pobject);
-
-   if (!estatus)
-   {
-
-      return nullptr;
-
-   }
-
-   return ptype;
-
-}
-
+//
+//template < typename BASE_TYPE >
+//inline __pointer(BASE_TYPE) __create()
+//{
+//
+//   auto pfactory = ::factory::get_factory < BASE_TYPE >();
+//
+//   if (!pfactory)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   __pointer(::matter) ptypeNew = pfactory->call_new();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   __pointer(BASE_TYPE) pusermessage = ptypeNew;
+//
+//   if (!pusermessage)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pusermessage;
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline __pointer(BASE_TYPE) __create(::object * pobject)
+//{
+//
+//   auto p = __create < BASE_TYPE >();
+//
+//   if (!p)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto estatus = p->initialize(pobject);
+//
+//   if (!estatus)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return p;
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline __pointer(BASE_TYPE) __id_create(const ::id & id)
+//{
+//
+//   auto pfactory = ::factory::get_factory(id);
+//
+//   if (!pfactory)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   auto ptypeNew = pfactory->call_new();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   __pointer(BASE_TYPE) pusermessage = ptypeNew;
+//
+//   if (!pusermessage)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   pusermessage->m_eobject |= e_object_factory;
+//
+//   return pusermessage;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline __pointer(TYPE) __create_new()
+//{
+//
+//   auto ptype = __new(TYPE);
+//
+//   if (!ptype)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptype;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline __pointer(TYPE) __create_new(const TYPE & t)
+//{
+//
+//   auto ptype = __new(TYPE(t));
+//
+//   if (!ptype)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptype;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline __pointer(TYPE) __create_new(::object * pobject)
+//{
+//
+//   auto ptype = __create_new< TYPE > ();
+//
+//   if (!ptype)
+//   {
+//
+//      return ptype;
+//
+//   }
+//
+//   auto estatus = ptype->initialize(pobject);
+//
+//   if (!estatus)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ptype;
+//
+//}
+//
 
 // __compose __composite
 
@@ -447,47 +447,47 @@ inline __pointer(TYPE) __create_new(::object * pobject)
 //
 //}
 
-
-template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
-{
-
-   return __refer(pobject, preference, psource.m_p);
-
-}
-
-
-template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
-{
-
-   return __refer(pobject, preference, psource.operator SOURCE * ());
-
-}
-
-
-template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
-{
-
-//#ifdef _DEBUG
 //
-//   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
+//template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
+//inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
+//{
 //
-//   const char * psz = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
+//   return __refer(pobject, preference, psource.m_p);
 //
-//#endif
+//}
 //
-//   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
-//   {
 //
-//      __throw(::status_exception(error_composite_not_composer_member));
+//template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
+//inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
+//{
 //
-//   }
-
-   return pobject->add_reference(preference, psource);
-
-}
+//   return __refer(pobject, preference, psource.operator SOURCE * ());
+//
+//}
+//
+//
+//template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
+//inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
+//{
+//
+////#ifdef _DEBUG
+////
+////   auto size = sizeof(typename ::raw_type < OBJECT>::RAW_TYPE);
+////
+////   const char * psz = typeid(typename ::raw_type < OBJECT>::RAW_TYPE).name();
+////
+////#endif
+////
+////   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
+////   {
+////
+////      __throw(::status_exception(error_composite_not_composer_member));
+////
+////   }
+//
+//   return pobject->add_reference(preference, psource);
+//
+//}
 
 
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
@@ -550,139 +550,139 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 
 
 // __construct
+//
+//
+//template < typename BASE_TYPE >
+//inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage)
+//{
+//
+//   auto & pfactory = ::factory::get_factory < BASE_TYPE >();
+//
+//   if (pfactory)
+//   {
+//
+//      auto ptypeNew = pfactory->call_new();
+//
+//      if (!ptypeNew)
+//      {
+//
+//         ::release(pusermessage);
+//
+//         return ::error_no_memory;
+//
+//      }
+//
+//      __dynamic_cast(pusermessage, ptypeNew);
+//
+//   }
+//   else
+//   {
+//
+//       return ::error_not_implemented;
+//
+//   }
+//
+//
+//   if (!pusermessage)
+//   {
+//
+//      return ::error_wrong_type;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+
+//
+//template < typename BASE_TYPE >
+//inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage)
+//{
+//
+//   ::e_status estatus = ::success_none;
+//
+//   if(!pusermessage)
+//   {
+//
+//      estatus = __construct(pusermessage);
+//
+//   }
+//
+//   return estatus;
+//
+//}
 
 
-template < typename BASE_TYPE >
-inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage)
-{
-
-   auto & pfactory = ::factory::get_factory < BASE_TYPE >();
-
-   if (pfactory)
-   {
-
-      auto ptypeNew = pfactory->call_new();
-
-      if (!ptypeNew)
-      {
-
-         ::release(pusermessage);
-
-         return ::error_no_memory;
-
-      }
-
-      __dynamic_cast(pusermessage, ptypeNew);
-
-   }
-   else
-   {
-
-       return ::error_not_implemented;
-
-   }
-
-
-   if (!pusermessage)
-   {
-
-      return ::error_wrong_type;
-
-   }
-
-   return ::success;
-
-}
+//template < typename BASE_TYPE >
+//inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
+//{
+//
+//   auto pfactory = ::factory::get_factory(id);
+//
+//   if (!pfactory)
+//   {
+//
+//      ::release(pusermessage);
+//
+//      return ::error_no_factory;
+//
+//   }
+//
+//   auto ptypeNew = pfactory->call_new();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      ::release(pusermessage);
+//
+//      return ::error_no_memory;
+//
+//   }
+//
+//   pusermessage = ptypeNew;
+//
+//   if (!pusermessage)
+//   {
+//
+//      return ::error_wrong_type;
+//
+//   }
+//
+//   return ::success;
+//
+//}
 
 
-template < typename BASE_TYPE >
-inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage)
-{
-
-   ::e_status estatus = ::success_none;
-
-   if(!pusermessage)
-   {
-
-      estatus = __construct(pusermessage);
-
-   }
-
-   return estatus;
-
-}
+//template < typename BASE_TYPE >
+//inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __construct(pusermessage, id) : ::success; }
 
 
-template < typename BASE_TYPE >
-inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
-{
-
-   auto pfactory = ::factory::get_factory(id);
-
-   if (!pfactory)
-   {
-
-      ::release(pusermessage);
-
-      return ::error_no_factory;
-
-   }
-
-   auto ptypeNew = pfactory->call_new();
-
-   if (!ptypeNew)
-   {
-
-      ::release(pusermessage);
-
-      return ::error_no_memory;
-
-   }
-
-   pusermessage = ptypeNew;
-
-   if (!pusermessage)
-   {
-
-      return ::error_wrong_type;
-
-   }
-
-   return ::success;
-
-}
-
-
-template < typename BASE_TYPE >
-inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __construct(pusermessage, id) : ::success; }
-
-
-template < typename TYPE >
-inline ::e_status __construct_new(__pointer(TYPE) & ptype)
-{
-
-   ptype = __new(TYPE());
-
-   if (!ptype)
-   {
-
-      return ::error_no_memory;
-
-   }
-
-   return ::success;
-
-}
-
-
-template < typename TYPE >
-inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype)
-{
-
-   return !ptype ? __construct_new(ptype) : ::e_status(::success);
-
-}
-
+//template < typename TYPE >
+//inline ::e_status __construct_new(__pointer(TYPE) & ptype)
+//{
+//
+//   ptype = __new(TYPE());
+//
+//   if (!ptype)
+//   {
+//
+//      return ::error_no_memory;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype)
+//{
+//
+//   return !ptype ? __construct_new(ptype) : ::e_status(::success);
+//
+//}
+//
 
 
 

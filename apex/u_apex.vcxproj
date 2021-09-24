@@ -247,7 +247,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -260,7 +260,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -272,7 +272,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -285,7 +285,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -321,7 +321,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -334,7 +334,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
@@ -353,6 +353,9 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -360,6 +363,7 @@
       <AdditionalDependencies>libcrypto.lib;libssl.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|Win32'">
@@ -401,6 +405,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -408,6 +413,7 @@
       <AdditionalDependencies>libcrypto.lib;libssl.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
@@ -449,6 +455,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -456,6 +466,7 @@
       <AdditionalDependencies>libcrypto.lib;libssl.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|arm'">
@@ -497,6 +508,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -504,6 +516,7 @@
       <AdditionalDependencies>libcrypto.lib;libssl.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
@@ -545,6 +558,8 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -638,6 +653,9 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -645,6 +663,7 @@
       <AdditionalDependencies>libcrypto.lib;libssl.lib;zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|x64'">
@@ -686,6 +705,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <CompileAsWinRT>false</CompileAsWinRT>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -694,6 +714,7 @@
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">

@@ -4282,7 +4282,9 @@ void thread::message_handler(::message::message * pmessage)
          if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate((lparam)message.lParam);
+            __pointer(::create) pcreate;
+            
+            __move(pcreate, message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4295,7 +4297,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_method)
          {
 
-            const ::routine & routine(message.lParam);
+            ::routine routine(message.lParam);
 
             routine();
 

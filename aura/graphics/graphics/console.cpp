@@ -124,7 +124,8 @@ namespace graphics
    }
 
 
-   console::console(::size_i32 sizeTile) :
+   console::console(::user::interaction * puserinteraction, ::size_i32 sizeTile) :
+      m_puserinteraction(puserinteraction),
       m_sizeTile(sizeTile)
    {
 
@@ -181,7 +182,9 @@ namespace graphics
 
       m_pimage = m_pcontext->context_image()->create_image(sizeImage);
 
-      m_pimage->g()->m_pfont.create();
+      m_pimage->g()->m_puserinteraction = m_puserinteraction;
+
+      __construct(m_pimage->g()->m_pfont);
 
 #ifdef LINUX
 

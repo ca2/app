@@ -271,7 +271,7 @@ namespace user
          if (!m_bUpdated || m_pfont.is_null())
          {
 
-            ((format*)this)->m_pfont.create();
+            pgraphics->__defer_construct(((format*)this)->m_pfont);
 
             if (m_dFontSize < 6.0)
             {

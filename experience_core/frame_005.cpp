@@ -21,14 +21,9 @@
          {
 
 
-            frame_005::frame_005() :
-               m_pbrushGrip(e_create),
-               m_pbrushTextCaption(e_create)
+            frame_005::frame_005()
             {
 
-               //m_strStyle = "LightGreen";
-
-               m_pbrushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
             }
 
@@ -49,6 +44,14 @@
             
             void frame_005::on_initialize_experience_frame()
             {
+
+               __construct(m_pbrushGrip);
+               __construct(m_pbrushTextCaption);
+
+                  //m_strStyle = "LightGreen";
+
+                  m_pbrushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
+
 
                frame::on_initialize_experience_frame();
 

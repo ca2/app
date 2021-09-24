@@ -886,7 +886,7 @@ namespace experience
    void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::user::frame_window::route_command(pcommand);
+      ::user::frame_window::route_command(pcommand, bRouteToKeyDescendant);
       //::experience::frame_window::route_command(pcommand);
 
       //if (pcommand->m_bRet)

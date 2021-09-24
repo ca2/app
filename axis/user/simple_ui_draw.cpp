@@ -32,7 +32,7 @@ namespace simple_ui
 
       rectangleDraw.deflate(0, 0, 1, 1);
 
-      ::draw2d::brush_pointer b(e_create);
+      ::draw2d::brush_pointer b(e_create, this);
 
       b->create_solid(argb(255, 255, 255, 255));
 
@@ -216,7 +216,7 @@ namespace simple_ui
 
       {
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer b(e_create, this);
 
          b->create_solid(argb(192, 220, 220, 220));
 
@@ -256,7 +256,7 @@ namespace simple_ui
 
       {
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer b(e_create, this);
 
          b->create_solid(argb(180, 210, 210, 210));
 
@@ -282,7 +282,7 @@ namespace simple_ui
       pc[2].y = pb[3].y;
       {
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer b(e_create, this);
 
          b->create_solid(argb(123, 120, 120, 123));
 
@@ -308,7 +308,7 @@ namespace simple_ui
       pc[1].y = pb[2].y;
       {
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer b(e_create, this);
 
          b->create_solid(argb(149, 192, 192, 192));
 
@@ -334,7 +334,7 @@ namespace simple_ui
       pc[3].y = pb[2].y;
       {
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer b(e_create, this);
 
          b->create_solid(argb(90, 150, 149, 149));
 

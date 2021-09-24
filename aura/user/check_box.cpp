@@ -337,7 +337,7 @@ namespace user
 
       //double dNow = ::get_millis();
 
-      ::draw2d::path_pointer ppath(e_create);
+      ::draw2d::path_pointer ppath(e_create, this);
 
       ::rectangle_i32 rectangleL(1, 1, h-2, h-2);
 
@@ -359,9 +359,9 @@ namespace user
 
       auto ppen = __create < ::draw2d::pen > ();
 
-      ::draw2d::pen_pointer p0(e_create);
+      ::draw2d::pen_pointer p0(e_create, this);
 
-      ::draw2d::brush_pointer pbrush1(e_create);
+      ::draw2d::brush_pointer pbrush1(e_create, this);
 
       ppen->create_solid(2.0, argb(255, 0, 0, 0));
 

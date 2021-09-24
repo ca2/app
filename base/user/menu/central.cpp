@@ -65,7 +65,7 @@ namespace user
 
       }
 
-      ::draw2d::graphics_pointer spgraphics(e_create);
+      ::draw2d::graphics_pointer spgraphics(e_create, this);
 
       spgraphics->CreateCompatibleDC(nullptr);
 

@@ -18,8 +18,6 @@ namespace experience
       style::style()
       {
 
-         m_pfont.create(e_create);
-
       }
 
 
@@ -33,6 +31,8 @@ namespace experience
       {
 
          ::base::style::initialize_theme();
+
+         __defer_construct(m_pfont);
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -887,7 +887,7 @@ namespace experience
          ::rectangle_i32 rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
-         font = pgraphics->get_current_font();
+         pfont = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectangleEmp;
          for(index i = 0; i < straTitle.get_size(); i++)

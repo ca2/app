@@ -226,4 +226,3 @@ inline bool is_set(const ::item * pitem)
 }
 
 
-

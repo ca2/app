@@ -17,10 +17,6 @@ namespace http
    context::context()
    {
 
-      m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
-
-      payload("dw")= ::millis::now();
-
       m_pmutexPac = nullptr;
       m_pmutexProxy = nullptr;
       m_pmutexDownload = nullptr;
@@ -120,13 +116,13 @@ namespace http
    ::e_status context::_get(const char * pszUrl, property_set & set)
    {
 
-      ::http::message message;
+      auto pmessage = __create_new < ::http::message >();
 
-      message.m_ppropertyset = &set;
+      pmessage->m_ppropertyset = &set;
 
-      message.m_strUrl = pszUrl;
+      pmessage->m_strUrl = pszUrl;
 
-      get(&message);
+      get(pmessage);
 
       return set["get_estatus"].estatus();
 
@@ -505,14 +501,25 @@ namespace http
    }
 
 
+   ::e_status context::on_initialize_object()
+   {
 
+      auto estatus = ::object::on_initialize_object();
 
+      if (!estatus)
+      {
 
+         return estatus;
 
-   //context::~context()
-   //{
+      }
 
-   //}
+      m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
+
+      payload("dw") = ::millis::now();
+
+      return estatus;
+
+   }
 
 
    void context::http_system_destruct()

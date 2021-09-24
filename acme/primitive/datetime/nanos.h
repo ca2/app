@@ -58,7 +58,7 @@ inline nanos operator +(const ::nanos& nanos1, const ::nanos& nanos2)
 }
 
 
-#ifdef CPP20
+
 
 
 template < primitive_number NUMBER >
@@ -78,8 +78,6 @@ inline nanos operator /(const ::nanos& nanos, const NUMBER& number)
 
 }
 
-
-#endif
 
 
 inline ::nanos first_nano() { return _first_nano(); }

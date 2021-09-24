@@ -11,8 +11,6 @@ namespace http
    public:
 
 
-      ::property_set       m_setHttp;
-
 
       class CLASS_DECL_APEX pac :
          virtual public ::object
@@ -53,21 +51,26 @@ namespace http
 
       };
 
-      ::mutex * m_pmutexPac;
+      ::property_set                         m_setHttp;
+
+      ::mutex *                              m_pmutexPac;
       string_map < __pointer(pac)  >         m_mapPac;
-      ::mutex * m_pmutexProxy;
+      ::mutex *                              m_pmutexProxy;
       string_map < __pointer(proxy)  >       m_mapProxy;
 
-      ::mutex * m_pmutexDownload;
-      string_array                                m_straDownloading;
-      string_array                                m_straExists;
+      ::mutex *                              m_pmutexDownload;
+      string_array                           m_straDownloading;
+      string_array                           m_straExists;
       //::sockets::socket_handler *          m_phandler;
 
 
 
       //context(::object * pobject);
       context();
-      virtual ~context();
+      ~context();
+
+
+      ::e_status on_initialize_object() override;
 
 
       void http_system_destruct();

@@ -1092,9 +1092,9 @@ namespace filemanager
 
       CreateViews();
 
-      ::subject subject(id_create_bars);
+      auto psubject = create_subject(id_create_bars);
 
-      subject.payload(id_document) = this;
+      psubject->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1184,23 +1184,23 @@ namespace filemanager
 
       {
 
-         ::subject subject(id_initialize);
+         auto psubject = create_subject(id_initialize);
 
-         subject.payload(id_document) = this;
+         psubject->payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(psubject);
 
       }
 
       {
 
-         ::subject subject(id_synchronize_locations);
+         auto psubject = create_subject(id_synchronize_locations);
 
-         subject.m_actioncontext = ::e_source_sync;
+         psubject->m_actioncontext = ::e_source_sync;
 
-         subject.payload(id_document) = this;
+         psubject->payload(id_document) = this;
 
-         update_all_views(&subject);
+         update_all_views(psubject);
 
       }
 

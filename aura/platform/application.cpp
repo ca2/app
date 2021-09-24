@@ -6140,7 +6140,21 @@ namespace aura
    void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::thread::route_command(pcommand);
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsession)
+      {
+
+         m_papexsession->route_command(pcommand, false);
+
+      }
 
    }
 

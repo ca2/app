@@ -316,13 +316,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            ::subject subject(::e_subject_initialize_control);
+            auto psubject = create_subject(::e_subject_initialize_control);
 
-            subject.m_puserelement = pinteraction;
+            psubject->m_puserelement = pinteraction;
 
-            subject.m_id = pinteraction->m_id;
-
-            m_pform->route(&subject);
+            m_pform->route(psubject);
 
          }
 
@@ -394,10 +392,12 @@ namespace html
 
       if (m_pcallback != nullptr)
       {
-         ::subject subject;
-         subject.m_puserelement = m_puserinteraction;
-         subject.m_id = ::e_subject_form_initialize;
-         m_puserinteraction->route(&subject);
+         
+         auto psubject = create_subject(::e_subject_form_initialize);
+
+         psubject->m_puserelement = m_puserinteraction;
+         
+         m_puserinteraction->route(psubject);
 
       }
 

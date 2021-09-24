@@ -134,7 +134,9 @@ template < typename OBJECT >
 inline void __exchange(::var_stream& s, __pointer(OBJECT)& pobject)
 {
 
-   __exchange(s, __typed_defer_create(pobject));
+   s.__defer_construct(pobject);
+
+   __exchange(s, *pobject);
 
 }
 

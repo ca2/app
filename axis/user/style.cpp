@@ -42,52 +42,6 @@ namespace axis
    }
 
 
-   //void style::select_default()
-   //{
-
-   //   if (pstyle.is_set())
-   //   {
-
-   //      m_puserstyleSelect = pstyle;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_puserstyleSelect = this;
-
-   //   }
-
-   //}
-
-
-
-
-
-
-
-
-   //void style::initialize_style()
-   //{
-
-   //   ::user::style::initialize_style();
-
-   //   ::color::color color;
-   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
-
-   //   class ::color::color colorHover(color);
-   //   colorHover.hls_rate(0.0, 0.3, 0.0);
-
-   //   class ::color::color colorPress(color);
-   //   colorPress.hls_rate(0.0, 0.7, 0.0);
-
-   //   m_eschema = schema_default;
-
-   //   create_opaque_color(color_text, ::color_black);
-
-   //}
-
-
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
    {
 

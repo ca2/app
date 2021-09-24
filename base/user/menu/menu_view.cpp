@@ -359,12 +359,7 @@ namespace user
 
       ::image_pointer pimage1;
 
-      if (!m_pimageMem)
-      {
-
-         m_pimageMem.create();
-
-      }
+      __defer_construct_new(m_pimageMem);
 
       pimage1 = m_pimageMem;
 

@@ -699,7 +699,7 @@ namespace user
    {
       // prompt the ::account::user (with all document templates)
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled

@@ -41,7 +41,6 @@ namespace user
       m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
-      m_pimagelist               = nullptr;
       m_uchHoverAlphaInit        = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
@@ -66,66 +65,6 @@ namespace user
 
       }
 
-
-      fork([this]()
-         {
-
-            task_set_name(string(type_name()) + "::Expand");
-
-            auto pthread = ::get_task();
-
-            while (pthread->task_get_run())
-            {
-
-               m_evExpand.wait(500_ms);
-
-               if (m_treeitemaExpand.has_element())
-               {
-
-                  auto pitem = m_treeitemaExpand.pop();
-
-                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
-
-                  m_treeitemaExpand.erase_all();
-
-               }
-
-               m_evExpand.ResetEvent();
-
-            }
-
-         });
-
-      fork([this]()
-         {
-
-            task_set_name(string(type_name()) + "::Open");
-
-            auto pthread = ::get_task();
-
-            while (pthread->task_get_run())
-            {
-
-               m_evOpen.wait(500_ms);
-
-               if (m_treeitemaOpen.has_element())
-               {
-
-                  auto pitem = m_treeitemaOpen.pop();
-
-                  _001OnOpenItem(pitem, ::e_source_user);
-
-               }
-               else
-               {
-
-                  m_evOpen.ResetEvent();
-
-               }
-
-            }
-
-         });
 
       auto estatus = __compose_new(m_ptree);
 
@@ -161,13 +100,70 @@ namespace user
       }
 
       fork([this]()
-      {
+         {
 
-         _001SetCollapseImage("matter://list/collapse.png");
+            _001SetExpandImage("matter://list/expand.png");
 
-         _001SetExpandImage("matter://list/expand.png");
+            task_set_name(string(type_name()) + "::Expand");
 
-      });
+            auto pthread = ::get_task();
+
+            while (pthread->task_get_run())
+            {
+
+               m_evExpand.wait(500_ms);
+
+               if (m_treeitemaExpand.has_element())
+               {
+
+                  auto pitem = m_treeitemaExpand.pop();
+
+                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+
+                  m_treeitemaExpand.erase_all();
+
+               }
+
+               m_evExpand.ResetEvent();
+
+            }
+
+         });
+
+
+      fork([this]()
+         {
+
+            _001SetCollapseImage("matter://list/collapse.png");
+
+            task_set_name(string(type_name()) + "::Open");
+
+            auto pthread = ::get_task();
+
+            while (pthread->task_get_run())
+            {
+
+               m_evOpen.wait(500_ms);
+
+               if (m_treeitemaOpen.has_element())
+               {
+
+                  auto pitem = m_treeitemaOpen.pop();
+
+                  _001OnOpenItem(pitem, ::e_source_user);
+
+               }
+               else
+               {
+
+                  m_evOpen.ResetEvent();
+
+               }
+
+            }
+
+         });
+
 
 
    }

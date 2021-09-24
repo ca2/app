@@ -649,25 +649,25 @@
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="R:\basis\source\app\acme\u_acme.vcxproj">
+    <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\apex\u_apex.vcxproj">
+    <ProjectReference Include="..\apex\u_apex.vcxproj">
       <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\aqua\u_aqua.vcxproj">
+    <ProjectReference Include="..\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\aura\u_aura.vcxproj">
+    <ProjectReference Include="..\aura\u_aura.vcxproj">
       <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\axis\u_axis.vcxproj">
+    <ProjectReference Include="..\axis\u_axis.vcxproj">
       <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\base\u_base.vcxproj">
+    <ProjectReference Include="..\base\u_base.vcxproj">
       <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
     </ProjectReference>
-    <ProjectReference Include="R:\basis\source\app\bred\u_bred.vcxproj">
+    <ProjectReference Include="..\bred\u_bred.vcxproj">
       <Project>{08c317fc-6ee8-4371-84cb-18150e439021}</Project>
     </ProjectReference>
   </ItemGroup>
@@ -894,11 +894,12 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
@@ -942,11 +943,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
@@ -968,11 +969,13 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
@@ -1016,11 +1019,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
@@ -1109,11 +1112,12 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
@@ -1157,11 +1161,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>
-      </IgnoreAllDefaultLibraries>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>

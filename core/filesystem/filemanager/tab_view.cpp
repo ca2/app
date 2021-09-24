@@ -57,7 +57,7 @@ namespace filemanager
                || pimpactdata->m_id == "new_folder")
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -119,7 +119,7 @@ namespace filemanager
       else if(pimpactdata->m_id == "filemanager::operation")
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -162,7 +162,7 @@ namespace filemanager
 
          pfilemanagerdata->m_bTransparentBackground = true;
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = true;
 

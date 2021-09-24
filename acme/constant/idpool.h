@@ -1,6 +1,9 @@
 #pragma once
 
 
+class system;
+
+
 namespace acme
 {
 
@@ -276,7 +279,7 @@ namespace acme
 
       idpool();
 
-      static void init();
+      static void init(class ::system * psystem);
       static void term();
 
       void reset() const

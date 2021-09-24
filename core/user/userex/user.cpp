@@ -528,7 +528,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = true;
 
@@ -1002,7 +1002,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1952,7 +1952,7 @@ namespace core
       for (auto & path : patha)
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_pcommandline->m_varFile = path;
 

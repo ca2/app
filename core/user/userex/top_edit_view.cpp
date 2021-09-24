@@ -126,13 +126,13 @@ namespace userex
             if (::is_set(pdocument))
             {
 
-               ::subject subject(id_after_change_text_delayed);
+               auto psubject = create_subject(id_after_change_text_delayed);
 
-               subject.m_puserelement = this;
+               psubject->m_puserelement = this;
 
-               subject.payload(id_enter_key_pressed) = bEnterKeyPressed;
+               psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
-               pdocument->update_all_views(&subject);
+               pdocument->update_all_views(psubject);
 
             }
 
@@ -157,13 +157,13 @@ namespace userex
 
          auto ptopeditview = this;
 
-         ::subject subject(id_after_change_text);
+         auto psubject = create_subject(id_after_change_text);
 
-         subject.m_psender = this;
+         psubject->m_psender = this;
 
-         subject.m_puserelement = this;
+         psubject->m_puserelement = this;
 
-         get_document()->update_all_views(&subject);
+         get_document()->update_all_views(psubject);
 
          if (m_millisDelayedAfterChange > 0)
          {

@@ -960,7 +960,7 @@ SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
    if (!m_pfuture)
    {
 
-      ::__construct_new(m_pfuture);
+      m_psystem->__construct_new(m_pfuture);
        
       m_pfuture->m_psystem = m_psystem;
 

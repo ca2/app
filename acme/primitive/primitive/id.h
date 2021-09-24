@@ -134,10 +134,12 @@ public:
    inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
    id(const char * psz);
+
    template < primitive_integer INTEGER >
    id(INTEGER i);
    template < primitive_natural NATURAL >
    id(NATURAL n);
+//#endif
    id(const ::lparam & lparam);
    id(const ::string & str);
    id(const ::payload & payload);
@@ -239,6 +241,7 @@ public:
    inline bool operator >= (const ::string & str) const;
 
 
+
    template < primitive_integral INTEGRAL >
    inline int compare(INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
@@ -253,7 +256,7 @@ public:
    inline bool operator > (INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
    inline bool operator >= (INTEGRAL i) const;
-
+//#endif
 
    inline int compare(::enum_id i) const;
    inline bool operator == (::enum_id eid) const;
@@ -278,10 +281,12 @@ public:
    id & operator = (const id & id);
    id & operator = (const char * psz);
    id & operator = (const ::string & str);
+
    template < primitive_integer INTEGER >
    id & operator = (INTEGER i);
    template < primitive_natural NATURAL >
    id & operator = (NATURAL u);
+//#endif
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_task_tool & etasktool);
@@ -450,6 +455,7 @@ inline id::id(const char * psz, id_space *)
 }
 
 
+
 template < primitive_integer INTEGER >
 inline id::id(INTEGER i)
 {
@@ -471,7 +477,7 @@ inline id::id(UNSIGNED u)
 
 }
 
-
+//#endif
 
 
 inline int id::compare(const id & id) const
@@ -809,6 +815,7 @@ inline bool id::operator >= (INTEGRAL i) const
 
 }
 
+//#endif
 
 inline int id::compare(::enum_id eid) const
 {

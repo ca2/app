@@ -18,9 +18,7 @@ namespace user
    const ::u32 mesh::MESSAGE_COLUMNHEADERTRACK = WM_USER + 26;
    const ::u32 mesh::MESSAGE_ENDCOLUMNHEADERTRACK = WM_USER + 27;
 
-   mesh::mesh():
-      m_ppenFocused(e_create),
-      m_ppenHighlight(e_create)
+   mesh::mesh()
    {
 
       m_sizeMaximumItem.cx = 16;
@@ -3272,6 +3270,10 @@ namespace user
 
    void mesh::on_message_create(::message::message * pmessage)
    {
+
+
+      m_ppenFocused.create(this);
+      m_ppenHighlight.create(this);
 
       __pointer(::message::create) pcreate(pmessage);
 

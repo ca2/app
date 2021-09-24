@@ -10,6 +10,7 @@ public:
 
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
+
    template < primitive_integral INTEGRAL >
    lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
@@ -72,12 +73,17 @@ public:
 
 
    template < typename T >
-   __pointer(T) cast() const
+   __pointer(T) move()
    {
 
-      return *this;
+      auto p = ___pointer < T > ( e_move_transfer, (::matter *)m_lparam );
+
+      m_lparam = 0;
+
+      return p;
 
    }
+
 
    template < typename T >
    T raw_cast() const

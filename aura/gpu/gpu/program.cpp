@@ -25,7 +25,7 @@ namespace gpu
       m_strFragment = strFragment;
       m_strGeometry = strGeometry;
 
-      ::e_status estatus = __construct_new(m_pshader);
+      ::e_status estatus = m_psystem->__construct_new(m_pshader);
 
       if (!estatus)
       {

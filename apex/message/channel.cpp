@@ -353,7 +353,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
-      route_command(pcommand);
+      route_command(pcommand, true);
 
    }
 
@@ -433,22 +433,6 @@ void channel::command_handler(::message::command * pcommand)
 }
 
 
-void channel::on_command(::message::command * pcommand)
-{
-
-   {
-
-      __scoped_restore(pcommand->m_id.m_etype);
-
-      pcommand->m_id.set_compounded_type(::id::e_type_command);
-
-      route_message(pcommand);
-
-   }
-
-}
-
-
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
@@ -496,22 +480,30 @@ bool channel::has_command_handler(::message::command * pcommand)
 void channel::on_command_probe(::message::command * pcommand)
 {
 
-   {
+   __scoped_restore(pcommand->m_id.m_etype);
 
-      __scoped_restore(pcommand->m_id.m_etype);
+   pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+   route_message(pcommand);
 
-      route_message(pcommand);
+   pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
 
-      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
+   pcommand->m_bRet =
+      pcommand->m_bEnableChanged
+      || pcommand->m_bRadioChanged
+      || pcommand->m_echeck != check_undefined;
 
-      pcommand->m_bRet =
-         pcommand->m_bEnableChanged
-         || pcommand->m_bRadioChanged
-         || pcommand->m_echeck != check_undefined;
+}
 
-   }
+
+void channel::on_command(::message::command * pcommand)
+{
+
+   __scoped_restore(pcommand->m_id.m_etype);
+
+   pcommand->m_id.set_compounded_type(::id::e_type_command);
+
+   route_message(pcommand);
 
 }
 

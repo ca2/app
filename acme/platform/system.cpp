@@ -197,14 +197,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::process_init()
    {
 
-      ::acme::idpool::init();
+      ::acme::idpool::init(this);
 
-      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
+      auto estatus = __defer_construct_new(m_pfactorymapsquare);
 
-      if (!m_pfactorymapsquare)
+      if (!estatus)
       {
 
-         return ::error_no_memory;
+         return estatus;
 
       }
 
@@ -226,7 +226,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      auto estatus = __raw_compose(m_pacmedir);
+      estatus = __raw_compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -1001,7 +1001,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      ::__construct_new(plibrary->m_pfactorymap);
+      __construct_new(plibrary->m_pfactorymap);
 
       plibrary->m_pfactorymap->initialize_matter(this);
 

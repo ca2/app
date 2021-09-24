@@ -82,8 +82,8 @@ CLASS_DECL_ACME ::e_status last_error_to_status(DWORD dwLastError);
 
 
 
-//#include "io.h"
-//#include "resource.h"
+#include "io.h"
+#include "resource.h"
 //#include "user.h"
 
 

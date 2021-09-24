@@ -47,7 +47,7 @@ handler_manager::~handler_manager()
    m_strThreadName = strThreadName;
    //m_bSingleThread = bSingleThread;
    m_iAliveCount = iAliveCount;
-   m_pevTaskOnQueue.create_new();
+   __construct_new(m_pevTaskOnQueue);
    m_iAlive = 0;
    m_bUseDedicatedThread = false;
 

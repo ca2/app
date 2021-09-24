@@ -357,7 +357,7 @@ namespace user
 
          color.alpha = 255;
 
-         ::draw2d::brush_pointer pbrush(e_create);
+         ::draw2d::brush_pointer pbrush(e_create, this);
 
          if (!is_window_enabled())
          {

@@ -3792,12 +3792,7 @@ namespace draw2d
    bool graphics::set_solid_pen(double dWidth, const ::color::color & color)
    {
 
-      if(m_ppen.is_null())
-      {
-
-         m_ppen.create();
-
-      }
+      __defer_construct(m_ppen);
 
       m_ppen->create_solid(dWidth, color);
 
@@ -5077,7 +5072,7 @@ namespace draw2d
    void graphics::draw_ca2(int x, int y, int z, const ::color::color & colorBk, const ::color::color & color)
    {
 
-      ::draw2d::brush_pointer b(e_create);
+      ::draw2d::brush_pointer b(e_create, this);
 
       // black rectangle_i32
 
@@ -5751,7 +5746,7 @@ namespace draw2d
 
       __pointer(pen) point = m_ppen;
 
-      pen_pointer point1(e_create);
+      pen_pointer point1(e_create, this);
 
       point1->create_solid(iWidth, color);
 

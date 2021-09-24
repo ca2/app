@@ -436,6 +436,9 @@ namespace message
 //};
 
 
+template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if (!p) p = new TYPE; return p; }
+
+
 struct INT_STRING
 {
 
@@ -476,6 +479,8 @@ template<class T>
 
 class matter;
 
+
+
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
 
@@ -512,6 +517,8 @@ concept const_c_string =
 std::is_convertible < T, const ::ansichar * >::value ||
 std::is_convertible < T, const ::wd16char * >::value ||
 std::is_convertible < T, const ::wd32char * >::value;
+
+
 
 
 template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
@@ -612,6 +619,9 @@ inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : 
 template < typename TYPE, std::size_t SIZE >
 inline array_reference < TYPE, SIZE > & __zero(TYPE(&)[SIZE]);
 
+
+
+
 template < a_pointer POINTER>
 inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p);
 
@@ -620,16 +630,17 @@ inline NON_POINTER & __zero(NON_POINTER & t);
 
 
 
-
-
 template < typename TYPE, std::size_t Size >
 inline bool __is_zero(TYPE(&array)[Size]);
+
+
 
 template < a_pointer POINTER >
 inline bool __is_zero(const POINTER p);
 
 template < non_pointer NON_POINTER >
 inline bool __is_zero(const NON_POINTER & t);
+
 
 
 #define ___PREFIX_UNDERSCORE(prefix,name) prefix##_##name
@@ -1823,13 +1834,13 @@ inline auto &__typed_defer_new(__pointer(T) &p)
    return *p;
 }
 
-
-template<class T>
-inline auto &__typed_defer_create(__pointer(T) &p)
-{
-   if (!p) { __construct(p); }
-   return *p;
-}
+//
+//template<class T>
+//inline auto &__typed_defer_create(__pointer(T) &p)
+//{
+//   if (!p) { __construct(p); }
+//   return *p;
+//}
 
 
 
@@ -1902,6 +1913,7 @@ template<typename TYPE>
 inline TYPE __random();
 
 
+
 template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT = typename ::largest_type < FLOATING1, FLOATING2 >::type >
 inline FLOATING_RESULT __random(FLOATING1 i1, FLOATING2 i2);
 
@@ -1942,6 +1954,9 @@ inline bool is_null(const void * p, size_t s)
 }
 
 
+
+
+
 template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
@@ -1962,6 +1977,7 @@ inline bool is_set(POINTER p)
    return !is_null(p);
 
 }
+
 
 
 template<typename TYPE>

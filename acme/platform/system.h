@@ -40,7 +40,7 @@ public:
 
 
 
-   string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
+   __pointer(string_map < __pointer(::factory_map) > )                         m_pfactorymapsquare;
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 #ifdef MACOS

@@ -58,8 +58,7 @@ public:
       if (pimage->is_null())
       {
 
-         __construct(pimage);
-         
+         m_psystem->__construct(pimage);
          
          pimage->create(key.m_size);
 

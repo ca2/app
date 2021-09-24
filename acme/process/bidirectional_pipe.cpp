@@ -5,9 +5,7 @@ namespace operating_system
 {
 
 
-   bidirectional_pipe::bidirectional_pipe() :
-      m_ppipeIn(e_create),
-      m_ppipeOut(e_create)
+   bidirectional_pipe::bidirectional_pipe()
    {
 
    }
@@ -21,6 +19,10 @@ namespace operating_system
 
    bool bidirectional_pipe::create(bool bBlock,bool bInherit)
    {
+
+      m_psystem->__construct(m_ppipeIn);
+      
+      m_psystem->__construct(m_ppipeOut);
 
       if(!m_ppipeIn->create(bBlock,bInherit))
       {

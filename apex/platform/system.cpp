@@ -2249,12 +2249,12 @@ pacmedir->create("/ca2core");
 
       __refer(m_papplicationStartup, papplicationStartup);
 
+      m_papplicationStartup->initialize(this);
+
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
       
-      m_papplicationStartup->m_psystem = this;
-
       return estatus;
 
    }
@@ -3728,7 +3728,7 @@ pacmedir->create("/ca2core");
       if(papp != nullptr)
       {
 
-         __pointer(::create) pcreate(e_create_new);
+         __pointer(::create) pcreate(e_create_new, this);
 
          merge_accumulated_on_open_file(pcreate);
 
@@ -3761,7 +3761,7 @@ pacmedir->create("/ca2core");
 
       m_straCommandLineExtra.erase_all();
 
-      command_line_pointer line(e_create_new);
+      command_line_pointer line(e_create_new, this);
 
       string strExtra = straExtra.implode(" ");
 
@@ -5466,6 +5466,28 @@ namespace apex
    }
 
 
+   void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   {
+
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      //if (m_papexnode)
+      //{
+
+      //   m_papexnode->route_command(pcommand, false);
+
+      //}
+
+   }
+
+   
    void system::handle(::subject * psubject, ::context * pcontext)
    {
 

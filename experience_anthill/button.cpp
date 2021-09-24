@@ -10,10 +10,7 @@ namespace experience
 
 
 
-   button::button() :
-      m_spregion(e_create),
-      m_ppen(e_create),
-      m_pbrush(e_create)
+   button::button()
    {
 
    }
@@ -192,6 +189,12 @@ namespace experience
 
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
+
+
+      __construct(m_spregion);
+      __construct(m_ppen);
+      __construct(m_pbrush);
+
 
       auto rectangleClient = get_client_rect();
 

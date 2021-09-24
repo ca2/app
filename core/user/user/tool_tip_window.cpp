@@ -9,8 +9,7 @@ namespace user
 {
 
 
-   tool_tip_window::tool_tip_window():
-      m_pfont(e_create)
+   tool_tip_window::tool_tip_window()
    {
 
       m_ealignDefault = (EAlign) (AlignRight | AlignTop);
@@ -494,6 +493,8 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::update_drawing_objects()
    {
+      __construct(m_pfont);
+
       /*::draw2d::region rgn;
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);

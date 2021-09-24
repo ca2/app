@@ -17,10 +17,10 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::e_status                                         m_estatus;
+   ::e_status                                      m_estatus;
    __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
-   __pointer(property_set)                            m_ppropertyset;
+   __pointer(property_set)                         m_ppropertyset;
 
 
    property_object() { }

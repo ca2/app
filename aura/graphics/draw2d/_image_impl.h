@@ -294,85 +294,85 @@
 // }
 
 
-inline ::e_status __construct(::image_pointer & pimage)
-{
+//inline ::e_status __construct(::image_pointer & pimage)
+//{
+//
+//   if (!pimage)
+//   {
+//
+//      return __construct < ::image >(pimage);
+//
+//   }
+//
+//   return ::success;
+//
+//}
 
-   if (!pimage)
-   {
+//
+//inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource)
+//{
+//
+//   auto estatus = __construct(pimage);
+//
+//   if(estatus.succeeded())
+//   {
+//
+//      if (!pimage->copy_from(pimageSource))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+//   }
+//
+//   return estatus;
+//
+//}
+//
+//
+//inline ::image_pointer & __construct(::image_pointer & pimage, ::object * pobjectSource)
+//{
+//
+//   __construct(pimage);
+//
+//   pimage->initialize(pobjectSource);
+//
+//   return pimage;
+//
+//}
 
-      return __construct < ::image >(pimage);
-
-   }
-
-   return ::success;
-
-}
-
-
-inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource)
-{
-
-   auto estatus = __construct(pimage);
-
-   if(estatus.succeeded())
-   {
-
-      if (!pimage->copy_from(pimageSource))
-      {
-
-         return ::error_failed;
-
-      }
-
-   }
-
-   return estatus;
-
-}
-
-
-inline ::image_pointer & __construct(::image_pointer & pimage, ::object * pobjectSource)
-{
-
-   __construct(pimage);
-
-   pimage->initialize(pobjectSource);
-
-   return pimage;
-
-}
-
-
-inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
-{
-
-   auto estatus = __construct(pimage);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
-   if (pimage && pimage->get_size() != size)
-   {
-
-      estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
-
-   }
-
-   return estatus;
-
-}
-
-
-inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
-{
-
-   return __construct(pimage, size, eobjectCreate, iGoodStride, true);
-
-}
+//
+//inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//{
+//
+//   auto estatus = __construct(pimage);
+//
+//   if (!estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   if (pimage && pimage->get_size() != size)
+//   {
+//
+//      estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
+//
+//   }
+//
+//   return estatus;
+//
+//}
+//
+//
+//inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
+//{
+//
+//   return __construct(pimage, size, eobjectCreate, iGoodStride, true);
+//
+//}
 
 
 inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc)

@@ -39,7 +39,7 @@ namespace file
 
       property ::winrt::Windows::Storage::StorageFolder ^                     m_folder;
       property ::winrt::Windows::Storage::Search::StorageItemQueryResult ^    m_queryresult;
-      property ::winrt::Windows::Foundation::EventRegistrationToken           m_evtoken;
+      property ::winrt::event_token           m_evtoken;
       property bool                                                  m_bRecursive;
       property bool                                                  m_bOwn;
 

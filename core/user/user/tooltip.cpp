@@ -6,8 +6,7 @@ namespace user
 {
 
 
-   tooltip::tooltip(::object * pobject):
-      m_pfont(e_create)
+   tooltip::tooltip()
    {
 
       m_bError = false;
@@ -43,6 +42,8 @@ namespace user
 
    void tooltip::on_message_create(::message::message * pmessage)
    {
+
+      __construct(m_pfont);
 
       pmessage->previous();
 
@@ -111,7 +112,7 @@ namespace user
       ppath->add_line(rectangleBody.left + rectangleBody.height() / 2,rectangleBody.bottom);
       ppath->close_figure();
 
-      ::draw2d::brush_pointer b(e_create);
+      ::draw2d::brush_pointer b(e_create, this);
 
       b->create_solid(argb(190, 255, 255, 123));
 
@@ -158,7 +159,7 @@ namespace user
 
       ::size_i32 sizeLine;
 
-      ::draw2d::graphics_pointer g(e_create);
+      ::draw2d::graphics_pointer g(e_create, this);
 
       g->CreateCompatibleDC(nullptr);
 

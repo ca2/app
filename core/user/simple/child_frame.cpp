@@ -69,7 +69,7 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 void simple_child_frame::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   simple_frame_window::route_command(pcommand);
+   simple_frame_window::route_command(pcommand, bRouteToKeyDescendant);
 
 }
 

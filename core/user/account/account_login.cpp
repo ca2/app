@@ -300,7 +300,7 @@ namespace account
 
          float fHeight = 18.0;
 
-         ::write_text::font_pointer f(e_create);
+         ::write_text::font_pointer f(e_create, this);
 
          /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
 

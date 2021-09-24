@@ -1583,10 +1583,10 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
     <ClCompile Include="windowing\buffer.cpp">

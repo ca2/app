@@ -161,7 +161,7 @@ namespace draw2d
 
       bool bExists;
 
-      __defer_construct_new(m_pimagemap);
+      m_psystem->__defer_construct_new(m_pimagemap);
 
       auto & pimage = m_pimagemap->get(size, bExists);
 

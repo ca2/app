@@ -208,5 +208,5 @@ public:
 
 //auto __create_memory_stream() { return ::memory_stream(; }
 
-inline memory_file_pointer create_memory_file() { return __create_new < ::memory_file >(); }
+inline memory_file_pointer create_memory_file() { return __new(::memory_file); }
 inline memory_file_pointer create_memory_file(::memory_base & memory) { return __new(::memory_file(memory)); }

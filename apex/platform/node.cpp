@@ -89,6 +89,9 @@ namespace apex
 
       string strFooter__;
 
+      strFooter__ += "<br/>";
+      strFooter__ += "<br/>";
+
       strFooter__ += system_options_main_body();
 
       strFooter__ += "</body>";

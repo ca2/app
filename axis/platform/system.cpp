@@ -295,14 +295,14 @@ namespace axis
 
       ::e_status estatus = ::aura::system::inline_term();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      ::acme::del(m_pfactorymapsquare);
+      m_pfactorymapsquare.release();
 
       return estatus;
 

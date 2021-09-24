@@ -1444,6 +1444,12 @@
     <ClCompile Include="subject\handler.cpp">
       <Filter>Source Files\subject</Filter>
     </ClCompile>
+    <ClCompile Include="exception\io.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\resource.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3177,7 +3183,7 @@
     <ClInclude Include="exception\aaa_invalid_type.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_io.h">
+    <ClInclude Include="exception\io.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_memory.h">
@@ -3207,7 +3213,7 @@
     <ClInclude Include="exception\aaa_range.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_resource.h">
+    <ClInclude Include="exception\resource.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_runtime.h">

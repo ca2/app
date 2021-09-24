@@ -97,16 +97,16 @@ namespace draw2d
 
    //};
 
-   inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
-   {
+   //inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
+   //{
 
-      auto ppen = ::__create < pen >();
+   //   auto ppen = ::__create < pen >();
 
-      ppen->create_solid(dWidth, color);
+   //   ppen->create_solid(dWidth, color);
 
-      return ppen;
+   //   return ppen;
 
-   }
+   //}
 
 
 } // namespace draw2d

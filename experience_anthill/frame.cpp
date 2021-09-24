@@ -10,12 +10,7 @@ namespace experience
 
 
 
-            frame::frame() :
-               m_ppenText1(e_create),
-               m_ppenFace1(e_create),
-               m_ppenHilight1(e_create),
-               m_ppenShadow1(e_create),
-               m_ppenDkShadow1(e_create)
+            frame::frame()
             {
                
                m_colorActiveCaptionTextBk = 0;
@@ -398,6 +393,13 @@ namespace experience
 
                }
 
+               __construct(m_ppenText1);
+               __construct(m_ppenFace1);
+               __construct(m_ppenHilight1);
+               __construct(m_ppenShadow1);
+               __construct(m_ppenDkShadow1);
+
+
                m_minSize = size_i32(144, 48);
                m_minSize.cy = 48;
 
@@ -512,7 +514,7 @@ namespace experience
 
                }
 
-               if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || ppen->m_color != crBottomRight))
+               if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
                {
 
                   ppen.create(this);

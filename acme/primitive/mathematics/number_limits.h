@@ -4,6 +4,8 @@
 #include <limits.h>
 
 
+
+
 template < primitive_integral INTEGRAL >
 inline bool fits_i32(INTEGRAL i)
 {

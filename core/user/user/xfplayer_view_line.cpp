@@ -1564,7 +1564,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    pdcCache->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   draw2d::brush_pointer pbrushText(e_create);
+   draw2d::brush_pointer pbrushText(e_create, this);
 
    pbrushText->create_solid(argb(96, 96, 96, 96));
 

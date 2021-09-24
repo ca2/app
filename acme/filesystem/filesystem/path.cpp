@@ -352,11 +352,11 @@ namespace file
       {
          straParam[0] = "\\\\?\\" + straParam[0];
       }
-      else if(strPath.begins_ci("/"))
+      else if(this->begins_ci("/"))
       {
          straParam[0] = "/" + straParam[0];
       }
-      else if(strPath.begins_ci("\\\\"))
+      else if(this->begins_ci("\\\\"))
       {
          straParam[0] = "\\\\" + straParam[0];
       }

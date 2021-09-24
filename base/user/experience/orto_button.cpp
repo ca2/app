@@ -7,8 +7,7 @@ namespace experience
 {
 
 
-   orto_button::orto_button() :
-      m_spregion(e_create)
+   orto_button::orto_button()
    {
 
 
@@ -228,6 +227,8 @@ namespace experience
       ::rectangle_i32 rectangleClient;
 
       ::user::interaction::get_client_rect(rectangleClient);
+
+      __defer_construct(m_spregion);
 
       m_spregion->create_ellipse(rectangleClient);
 

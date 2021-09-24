@@ -578,7 +578,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.cast <::application>();
+      auto papplication = pmessage->m_lparam.move <::application>();
 
       erase_application(papplication);
 
@@ -2083,6 +2083,28 @@ namespace apex
 
       return m_puserprimitiveHost;
    
+   }
+
+
+   void session::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   {
+
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsystem)
+      {
+
+         m_papexsystem->route_command(pcommand, false);
+
+      }
+
    }
 
 

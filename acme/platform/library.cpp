@@ -980,7 +980,7 @@ namespace acme
       if (pfactorymap == nullptr)
       {
 
-         __construct_new(m_pfactorymap);
+         m_psystem->__construct_new(m_pfactorymap);
 
          pfactorymap = m_pfactorymap;
 

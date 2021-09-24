@@ -9,10 +9,7 @@ namespace experience
    {
 
    
-      button::button() :
-         m_spregion(e_create),
-         m_ppen(e_create),
-         m_pbrush(e_create)
+      button::button()
       {
 
       }
@@ -161,6 +158,7 @@ namespace experience
 
       }
 
+
       void button::on_message_show_window(::message::message * pmessage)
       {
 
@@ -187,6 +185,10 @@ namespace experience
       void button::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
+         __construct(m_spregion);
+         __construct(m_ppen);
+         __construct(m_pbrush);
+         
          ::rectangle_i32 rectangleClient;
 
          get_client_rect(rectangleClient);

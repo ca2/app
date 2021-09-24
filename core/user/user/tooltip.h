@@ -17,8 +17,8 @@ namespace user
       bool                 m_bError;
 
 
-      tooltip(::object * pobject);
-      virtual ~tooltip();
+      tooltip();
+      ~tooltip() override;
 
 
       virtual void assert_valid() const override;

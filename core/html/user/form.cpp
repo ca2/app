@@ -201,13 +201,15 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    get_html_data()->layout(this);
 
-   ::subject subject;
+   {
 
-   subject.m_id = ::e_subject_layout;
+      auto psubject = create_subject(::e_subject_layout);
 
-   subject.m_puserelement = this;
+      psubject->m_puserelement = this;
 
-   route(&subject);
+      route(psubject);
+
+   }
 
    if (m_bNeedLoadFormData)
    {

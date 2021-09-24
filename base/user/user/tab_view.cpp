@@ -1045,16 +1045,7 @@ namespace user
    void tab_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      command_handler(pcommand);
-
-      if (pcommand->m_bRet)
-      {
-
-         return;
-
-      }
-
-      impact::route_command(pcommand);
+      impact::route_command(pcommand, bRouteToKeyDescendant);
 
    }
 

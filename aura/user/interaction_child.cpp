@@ -169,7 +169,10 @@ namespace user
          }
 
          //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
-         m_puserinteraction->send_message(e_message_create, 0, 0);
+         if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
+         {
+            m_puserinteraction->send_message(e_message_create, 0, 0);
+         }
 
       }
       catch (...)

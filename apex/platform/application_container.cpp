@@ -425,7 +425,7 @@ __pointer(::application) application_container::assert_running(const char * pszA
   if (papp.is_null())
   {
 
-     __pointer(::create) spcreate(e_create_new);
+     __pointer(::create) spcreate(e_create_new, this);
 
      papp = start_application(pszAppId, spcreate, strLocale, strSchema);
 

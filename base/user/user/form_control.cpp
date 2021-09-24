@@ -932,16 +932,16 @@ namespace user
 
       ::user::interaction::update_data(bSaveAndValidate);
 
-      ::subject subject;
+      auto psubject = create_subject(id_none);
 
-      subject.m_bOk = true;
+      psubject->m_bOk = true;
 
-      subject.m_puserelement = this;
+      psubject->m_puserelement = this;
 
       if (bSaveAndValidate)
       {
 
-         subject.m_id = ::e_subject_save_form_data;
+         psubject->m_id = ::e_subject_save_form_data;
 
          m_bNeedSaveFormData = false;
 
@@ -949,15 +949,15 @@ namespace user
       else
       {
 
-         subject.m_id = ::e_subject_load_form_data;
+         psubject->m_id = ::e_subject_load_form_data;
 
          m_bNeedLoadFormData = false;
 
       }
 
-      route(&subject);
+      route(psubject);
 
-      return subject.m_bOk;
+      return psubject->m_bOk;
 
    }
 

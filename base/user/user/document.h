@@ -212,7 +212,7 @@ namespace user
       __transport(DATA) __create_data()
       {
 
-         auto pdata = ::__create_new<DATA>();
+         auto pdata = __create_new<DATA>();
 
          if (!pdata)
          {

@@ -21,21 +21,16 @@ namespace experience
    {
 
 
+      frame_005::frame_005()
+      {
+
+      }
 
 
-            frame_005::frame_005() :
-               m_pbrushGrip(e_create),
-               m_pbrushTextCaption(e_create)
-            {
+      frame_005::~frame_005()
+      {
 
-            }
-
-            frame_005::~frame_005()
-            {
-
-            }
-
-
+      }
 
 
             string frame_005::get_default_user_style() const
@@ -48,6 +43,10 @@ namespace experience
 
             void frame_005::on_initialize_experience_frame()
             {
+
+               __construct(m_pbrushGrip);
+               
+               __construct(m_pbrushTextCaption);
 
                auto psession = get_session();
 

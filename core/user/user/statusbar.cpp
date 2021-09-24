@@ -109,7 +109,7 @@ namespace user
 
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-      ::draw2d::graphics_pointer spgraphicsScreen(e_create);
+      ::draw2d::graphics_pointer spgraphicsScreen(e_create, this);
 
       //__throw(todo);
       /*         HGDIOBJ hOldFont = nullptr;

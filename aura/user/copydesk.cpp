@@ -391,7 +391,7 @@ namespace user
       if (_has_image())
       {
 
-         __construct(pimage);
+         m_pwindow->__construct(pimage);
 
          auto estatus = _desk_to_image(pimage);
 

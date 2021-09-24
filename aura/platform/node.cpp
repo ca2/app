@@ -68,13 +68,15 @@ namespace aura
    string node::system_options_html()
    {
 
-      string strFooter__;
+      return ::apex::node::system_options_html();
 
-      strFooter__ += system_options_main_body();
+      //string strFooter__;
 
-      strFooter__ += ::apex::node::system_options_html();
+      //strFooter__ += system_options_main_body();
 
-      return strFooter__;
+      //strFooter__ += ::apex::node::system_options_html();
+
+      //return strFooter__;
 
    }
 

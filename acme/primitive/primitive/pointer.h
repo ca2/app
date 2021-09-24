@@ -28,18 +28,18 @@ public:
 
    inline ___pointer();
    inline ___pointer(std::nullptr_t);
-   inline ___pointer(const lparam & lparam);
+   //inline explicit ___pointer(const lparam & lparam);
 
    inline ___pointer(const ___pointer & t);
    inline ___pointer(___pointer && t);
    //inline ___pointer(const ::trait & trait);
 
 
-   inline ___pointer(enum_create_new) :
-      m_p(new T)
-   {
+   //inline ___pointer(enum_create_new) :
+   //   m_p(new T)
+   //{
 
-   }
+   //}
 
 
    inline ___pointer(enum_create_new, ::object * pobject) :
@@ -50,25 +50,16 @@ public:
 
    }
 
-   template < TEMPLATE_TYPE >
-   inline ___pointer(enum_create, TEMPLATE_ARG) :
-      m_p(nullptr)
-   {
+   //template < TEMPLATE_TYPE >
+   //inline ___pointer(enum_create, TEMPLATE_ARG) :
+   //   m_p(nullptr)
+   //{
 
-      create();
+   //   create();
 
-   }
+   //}
 
-   template < typename OBJECT >
-   inline ___pointer(enum_create, OBJECT * p) :
-      m_p(nullptr)
-   {
-
-      create();
-
-      m_p->initialize(p);
-
-   }
+   inline ___pointer(enum_create, ::object * p);
 
    inline ___pointer(enum_move_transfer, T * p) : m_p(p) {}
 
@@ -407,35 +398,35 @@ public:
    inline bool operator ==(const T * p) const { return m_p == p; }
    inline bool operator !=(const T * p) const { return m_p != p; }
 
-   template < typename TYPE = T >
-   inline __pointer(T) & defer_create_new();
+   //template < typename TYPE = T >
+   //inline __pointer(T) & defer_create_new();
 
    template < typename TYPE >
    inline __pointer(T) & defer_assign_to(TYPE * & p);
 
+   //template < typename TYPE = T >
+   //inline __pointer(T) & create_new();
+
    template < typename TYPE = T >
-   inline __pointer(T) & create_new();
+   inline __pointer(T) & defer_create_new(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & defer_create_new(OBJECT * pobject);
+   template < typename TYPE = T >
+   inline __pointer(T) & create_new(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create_new(OBJECT * pobject);
+   //template < TEMPLATE_TYPE >
+   //inline __pointer(T) & defer_create(TEMPLATE_ARG);
 
-   template < TEMPLATE_TYPE >
-   inline __pointer(T) & defer_create(TEMPLATE_ARG);
+   //template < TEMPLATE_TYPE >
+   //inline __pointer(T) & create(TEMPLATE_ARG);
 
-   template < TEMPLATE_TYPE >
-   inline __pointer(T) & create(TEMPLATE_ARG);
+   template < typename TYPE = T >
+   inline __pointer(T) & defer_create(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT  >
-   inline __pointer(T) & defer_create(OBJECT * pobject);
+   template < typename TYPE = T >
+   inline __pointer(T) & create(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobject);
-
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobject, bool bCreate);
+   template < typename TYPE = T >
+   inline __pointer(T) & create(::object * pobject, bool bCreate);
 
    inline __pointer(T) & clone(::matter * pobject);
 
@@ -604,4 +595,11 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
    return p = p->clone();
 
 }
+
+
+
+template < class T >
+inline ___pointer < T > & __move(___pointer < T > & p, ::lparam & lparam);
+
+
 

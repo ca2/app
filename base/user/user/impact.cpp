@@ -309,79 +309,23 @@ namespace user
 
       }
 
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
+      __pointer(::user::interaction) puserinteractionParent = get_parent();
 
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      // then pump through parent
-      __pointer(::user::interaction) puiParent = get_parent();
-
-      while (puiParent)
+      if (puserinteractionParent)
       {
 
-         puiParent->command_handler(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-         puiParent = puiParent->get_parent();
+         puserinteractionParent->route_command(pcommand, false);
 
       }
-
-      // last but not least, pump through cast
-      ::application* papp = get_application();
-
-      if (papp != nullptr)
+      else
       {
 
-         papp->command_handler(pcommand);
+         __pointer(::apex::context) pcontext = get_context();
 
-         if (pcommand->m_bRet)
+         if (pcontext)
          {
 
-            return;
-
-         }
-
-      }
-
-      auto puser = user();
-
-      if(puser)
-      {
-
-         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
-
-         if (ptarget != nullptr && ptarget != this && ptarget != this)
-         {
-
-            ptarget->command_handler(pcommand);
-
-            if (pcommand->m_bRet)
-            {
-
-               return;
-
-            }
+            pcontext->route_command(pcommand);
 
          }
 
@@ -731,7 +675,7 @@ namespace user
    __pointer(::user::interaction) impact::create_view(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       auto pusersystem = __new(::user::system);
 
@@ -751,9 +695,9 @@ namespace user
    __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create_new, this);
 
-      auto pusersystem = __new(::user::system);
+      auto pusersystem = __create_new < ::user::system >();
 
       pcreate->m_pmatterUserPayload = pusersystem;
 

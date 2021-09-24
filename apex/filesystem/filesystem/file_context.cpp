@@ -1084,7 +1084,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
          string strError;
          strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
-         __throw(::error_io, strError);
+         throw ::exception(::error_io, strError);
       }
 
       bool bGeneralFailure = false;

@@ -3221,7 +3221,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics.defer_create();
+      __defer_construct(pgraphics);
 
       pgraphics->set_font(this, ::e_element_none);
 

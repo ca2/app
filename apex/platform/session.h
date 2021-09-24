@@ -280,6 +280,8 @@ namespace apex
 
       virtual ::color::color get_default_color(u64 u);
 
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
+
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
       virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);

@@ -75,7 +75,7 @@ namespace hotplugin
 
       }
 
-      auto pbrush = __create < ::draw2d::brush >();
+      auto pbrush = pgraphics->__create < ::draw2d::brush >();
 
       pbrush->create_solid(argb(190, 49, 50, 49));
 
@@ -84,7 +84,7 @@ namespace hotplugin
       if (!bStatic)
       {
 
-         auto pbrushGreen = __create < ::draw2d::brush > ();
+         auto pbrushGreen = pgraphics->__create < ::draw2d::brush > ();
 
          pbrushGreen->create_solid(argb(190, 80, 190, 123));
 
@@ -115,13 +115,13 @@ namespace hotplugin
 
       }
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = pgraphics->__create < ::draw2d::pen > ();
 
       ppen->create_solid(1.0f, argb(149, 150, 149, 142));
 
       pgraphics->draw_rectangle(rectangleBar, ppen);
 
-      ::write_text::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create, pgraphics);
 
       f->create_pixel_font("Calibri", 18.0);
 

@@ -5135,7 +5135,7 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   pmemory.defer_create_new();
+   m_psystem->__construct_new(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {

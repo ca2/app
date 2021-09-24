@@ -1003,6 +1003,7 @@ namespace apex
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
       //void signal(::signal * psignal) override;
       void handle(::subject * psubject, ::context * pcontext) override;

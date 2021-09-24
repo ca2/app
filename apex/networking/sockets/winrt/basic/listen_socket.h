@@ -168,7 +168,7 @@ namespace sockets
       };
 
       ::winrt::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
-      ::winrt::Windows::Foundation::EventRegistrationToken m_tokenConnectionReceived;
+      ::winrt::event_token m_tokenConnectionReceived;
       bridge ^ m_bridge;
       //class on_listener_accept_data
       //{

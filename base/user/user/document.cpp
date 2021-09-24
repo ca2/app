@@ -1911,11 +1911,11 @@ namespace user
    void document::update_all_views(impact * pimpactSender, const ::id & id)
    {
 
-      ::subject subject(id);
+      auto psubject = create_subject(id);
 
-      subject.m_psender = pimpactSender;
+      psubject->m_psender = pimpactSender;
 
-      update_all_views(&subject);
+      update_all_views(psubject);
 
    }
 

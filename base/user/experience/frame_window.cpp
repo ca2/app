@@ -878,7 +878,7 @@ namespace experience
 
       }
 
-      //::user::frame_window::on_command_message(pcommand);
+      ::user::frame_window::on_command(pcommand);
 
    }
 

@@ -4313,7 +4313,9 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage(message.lParam);
+            __pointer(::send_thread_message) pmessage;
+
+            __move(pmessage, message.lParam);
 
             m_message = pmessage->m_message;
 

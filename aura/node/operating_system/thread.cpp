@@ -68,7 +68,12 @@ property_set& _thread_property_set()
 
    auto& ppropertyset = t_ppropertyset;
 
-   ppropertyset.defer_create_new();
+   if(!ppropertyset)
+   {
+
+      ppropertyset = __new(property_set);
+
+   }
 
    return *ppropertyset;
 

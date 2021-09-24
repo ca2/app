@@ -237,7 +237,7 @@ namespace linux
 
       auto papplication = get_application();
 
-      string strTitle = papplication->get_title();
+      string strTitle = papplication->title();
 
       string_array straCategories = proper_category(papplication->get_categories());
 

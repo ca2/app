@@ -224,22 +224,20 @@ graphics::~graphics()
    ::e_status graphics::initialize(::object * pobject)
    {
 
-   auto estatus = ::draw2d::graphics::initialize(pobject);
+      auto estatus = ::draw2d::graphics::initialize(pobject);
 
-   if(!estatus)
-   {
+      if(!estatus)
+      {
 
-      return estatus;
+         return estatus;
 
-   }
+      }
 
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
 
-
-      m_pfont.create();
-
+      m_pfont.create(this);
 
       m_pfont->m_strFontFamilyName = pnode->font_name(e_font_sans);
 

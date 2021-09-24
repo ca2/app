@@ -162,11 +162,11 @@ namespace aura
 
       g_pmutexImage = new ::mutex();
 
-#ifndef WINDOWS
-
-      exception::translator::attach();
-
-#endif
+//#ifndef WINDOWS
+//
+//      exception_translator::attach();
+//
+//#endif
 
       m_bProdevianMouse = false;
 

@@ -136,7 +136,6 @@ gdb_check(void)
 
 
 ::u32
-WINAPI
 FormatMessage(
 ::u32 dwFlags,
 const void * pSource,

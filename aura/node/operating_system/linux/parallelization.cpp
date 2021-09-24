@@ -12,31 +12,31 @@
 #endif
 
 
-namespace process
-{
+//namespace process
+//{
+//
 
-
-   CLASS_DECL_AURA bool set_priority(::enum_priority epriority)
-   {
-
-      i32 iPolicy = SCHED_OTHER;
-
-      sched_param schedparam;
-
-      schedparam.sched_priority = 0;
-
-      get_os_priority(&iPolicy, &schedparam, epriority);
-
-      sched_setscheduler(0, iPolicy, &schedparam);
-
-      return true;
-
-   }
-
-
-
-
-} // namespace aura
+//   CLASS_DECL_AURA bool set_priority(::enum_priority epriority)
+//   {
+//
+//      i32 iPolicy = SCHED_OTHER;
+//
+//      sched_param schedparam;
+//
+//      schedparam.sched_priority = 0;
+//
+//      get_os_priority(&iPolicy, &schedparam, epriority);
+//
+//      sched_setscheduler(0, iPolicy, &schedparam);
+//
+//      return true;
+//
+//   }
+//
+//
+//
+//
+//} // namespace aura
 
 
 
@@ -195,11 +195,11 @@ CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
       }
 
-      psubject->SetEvent();
+      pevent->SetEvent();
 
    });
 
-   psubject->wait(durationTimeout);
+   pevent->wait(durationTimeout);
 
 }
 

@@ -115,9 +115,9 @@ namespace draw2d_cairo
 
       }
 
-      auto pbitmap = ::__create < ::draw2d::bitmap >();
+      auto pbitmap = __create < ::draw2d::bitmap >();
 
-      auto pgraphics = ::__create < ::draw2d::graphics >();
+      auto pgraphics = __create < ::draw2d::graphics >();
 
       if(pbitmap.is_null() || pgraphics.is_null())
       {

@@ -51,7 +51,7 @@ namespace sockets
       m_eventplist.each([](auto & pevent)
          {
 
-            psubject->GetFrom()->SetHandlerInvalid();
+            pevent->GetFrom()->SetHandlerInvalid();
 
             ::acme::del(pevent);
 
@@ -115,14 +115,14 @@ namespace sockets
 
          Event * pevent = *p;
 
-         if (!(psubject->get_time() < now))
+         if (!(pevent->get_time() < now))
          {
 
             break;
 
          }
 
-         socket * psocket = dynamic_cast < socket * > (psubject->GetFrom());
+         socket * psocket = dynamic_cast < socket * > (pevent->GetFrom());
 
          /*
          s == nullptr    This is another object implementing 'IEventOwner' and not a socket.
@@ -132,7 +132,7 @@ namespace sockets
          if (!psocket || (psocket && Valid(psocket)))
          {
 
-            psubject->GetFrom()->OnEvent(psubject->GetID());
+            pevent->GetFrom()->OnEvent(pevent->GetID());
 
          }
 
@@ -263,7 +263,7 @@ namespace sockets
       for(; pevent; pevent++)
       {
 
-         if(pownerFrom == psubject->GetFrom() && lEid == psubject->GetID())
+         if(pownerFrom == pevent->GetFrom() && lEid == pevent->GetID())
          {
 
             ::delete_erase(pevent);
@@ -271,7 +271,9 @@ namespace sockets
             break;
 
          }
+
       }
+
    }
 
 

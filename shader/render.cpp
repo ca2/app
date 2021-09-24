@@ -207,7 +207,7 @@ namespace app_shader
       if (::succeeded(estatus))
       {
 
-         estatus = m_pprogram->create_program(strProjection, strFragment);
+         estatus = m_pprogram->create_program(this, strProjection, strFragment);
 
       }
 
@@ -387,15 +387,15 @@ namespace app_shader
 
             colorBackground.alpha = 128;
 
-            ::draw2d::brush_pointer brush;
+            ::draw2d::brush_pointer pbrush;
 
-            brush.create();
+            pbrush.create(this);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create();
+            pfont.create(this);
 
             auto pnode = m_psystem->m_paurasystem->node();
 
@@ -403,7 +403,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-            m_pimageLabel.defer_create();
+            m_pimageLabel.defer_create(this);
 
             if(m_pimageLabel->g() == nullptr)
             {
@@ -506,15 +506,15 @@ namespace app_shader
 
             colorBackground.alpha = 128;
 
-            ::draw2d::brush_pointer brush;
+            ::draw2d::brush_pointer pbrush;
 
-            brush.create();
+            pbrush.create(this);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create();
+            pfont.create(this);
 
             auto pnode = m_psystem->m_paurasystem->node();
 
@@ -522,8 +522,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-
-            m_pimageError.defer_create();
+            m_pimageError.defer_create(this);
 
             if(m_pimageError->g() == nullptr)
             {

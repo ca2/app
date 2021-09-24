@@ -253,7 +253,7 @@ namespace imaging_freeimage
 
       image_pointer pimageFrame;
 
-      auto estatus = __construct(pimageFrame);
+      auto estatus = pimageCompose->__construct(pimageFrame);
 
       if (!estatus || !pimageFrame)
       {

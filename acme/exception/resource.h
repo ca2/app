@@ -8,7 +8,7 @@ public:
 
 
    resource_exception(const char * pszMessage = nullptr);
-   virtual ~resource_exception();
+   ~resource_exception() override;
 
 
 };

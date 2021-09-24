@@ -802,7 +802,7 @@ pacmedir->create(pathDVP_Folder);
 
       bool bTimeout = false;
 
-      ::process::process_pointer process(e_create);
+      ::operating_system::process_pointer process(e_create, this);
 
       ::parallelization::set_priority(::e_priority_highest);
 
@@ -994,7 +994,7 @@ pacmedir->create(pathDVP_Folder);
 
          bTimeout = false;
 
-         ::process::process_pointer process(e_create);
+         ::operating_system::process_pointer process(e_create, this);
 
          ::parallelization::set_priority(::e_priority_highest);
 
@@ -1944,12 +1944,13 @@ pacmedir->create(pathDVP_Folder);
 
          bool bTimeout = false;
 
-         ::process::process_pointer process(e_create);
+         ::operating_system::process_pointer process(e_create, this);
 
          ::parallelization::set_priority(::e_priority_highest);
 
          process->create_child_process(str,true,nullptr,::e_priority_highest);
-auto tickStart = ::millis::now();
+
+         auto tickStart = ::millis::now();
 
          //u32 dwExitCode;
 
@@ -2093,7 +2094,7 @@ auto tickStart = ::millis::now();
       //m_pcontext->m_papexcontext->file().put_contents_utf8(strCmd, str);
       bool bTimeout = false;
 
-      ::process::process_pointer process(e_create);
+      ::operating_system::process_pointer process(e_create, this);
 
       ::parallelization::set_priority(::e_priority_highest);
 

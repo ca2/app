@@ -1124,7 +1124,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
       str.replace("%TARGET_PATH%",strTargetPath);
 
-      ::process::process_pointer process(e_create);
+      ::operating_system::process_pointer process(e_create, this);
 
 #ifdef LINUX
 
@@ -1306,7 +1306,7 @@ auto tickStart = ::millis::now();
 
          bTimeout = false;
 
-         ::process::process_pointer process(e_create);
+         ::operating_system::process_pointer process(e_create, this);
 
          //         set_thread_priority(::e_priority_highest);
 

@@ -26,8 +26,6 @@ namespace dynamic_source
 
       defer_create_mutex();
 
-      m_pfileError.create_new();
-
       m_streamError.m_p = m_pfileError;
 
    }
@@ -39,9 +37,31 @@ namespace dynamic_source
    }
 
 
+
+   ::e_status script::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pfileError.create_new(this);
+
+      return estatus;
+
+   }
+
+
    void script::run(script_instance * pinstance)
    {
+
       pinstance->run();
+
    }
 
 

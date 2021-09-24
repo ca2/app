@@ -53,7 +53,7 @@ i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 #endif
 
 
-::signal * manager::get_signal(const ::id & id, const ::action_context& actioncontext)
+class ::signal * manager::get_signal(const ::id & id, const ::action_context& actioncontext)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -72,7 +72,7 @@ i64 manager::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    if (!psignal)
    {
 
-      psignal = __new(::signal(id, this));
+      psignal = __new(class ::signal(id, this));
 
       psignal->initialize(this);
 

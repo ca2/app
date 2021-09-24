@@ -2871,6 +2871,10 @@ inline bool is_set(const TYPE & t)
 //#include "acme/user/primitive.h"
 
 
+
+
+
+
 template < typename TYPE >
 inline ::i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
@@ -2898,7 +2902,6 @@ inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 
 #include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/primitive/pointer2.h"
 
 
 template < typename FROM, typename TO_POINTER >
@@ -3474,6 +3477,11 @@ using exception_array = ::array < ::exception >;
 
 
 #include "acme/exception/_.h"
+
+
+
+#include "acme/primitive/primitive/pointer2.h"
+
 
 
 #include "acme/exception/extended_transport.h"

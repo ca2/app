@@ -305,7 +305,7 @@ namespace apex
 
 #ifndef WINDOWS
 
-      exception::translator::attach();
+      exception_translator::attach();
 
 #endif
 
@@ -937,7 +937,7 @@ namespace apex
 
 #ifndef WINDOWS
 
-      exception::translator::detach();
+      exception_translator::detach();
 
 #endif
 

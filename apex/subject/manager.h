@@ -33,7 +33,7 @@ public:
 #endif
 
 
-   virtual ::signal * get_signal(const ::id& id, const ::action_context& actioncontext = ::action_context());
+   virtual class ::signal * get_signal(const ::id& id, const ::action_context& actioncontext = ::action_context());
 
 
    // <3ThomasBorregaardSørensen handle...!!

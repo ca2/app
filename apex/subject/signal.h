@@ -83,7 +83,7 @@ public:
 };
 
 
-using signal_map = ::id_map < __pointer(::signal) >;
+using signal_map = ::id_map < __pointer(class ::signal) >;
 
 
 

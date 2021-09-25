@@ -851,40 +851,44 @@ bool task::has_message() const
 
    set(e_matter_task_started);
 
-   auto pobjectParentTask = ::get_task();
-
-   if (::is_null(pobjectParentTask))
+   if (::is_null(m_pobjectParentTask))
    {
 
-      pobjectParentTask = m_pcontext;
+      auto pobjectParentTask = ::get_task();
 
-   }
-
-   if (::is_null(pobjectParentTask))
-   {
-
-      pobjectParentTask = m_psystem;
-
-   }
-
-   if (pobjectParentTask)
-   {
-
-      if (pobjectParentTask != this)
+      if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask->add_task(this);
+         pobjectParentTask = m_pcontext;
+
+      }
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_psystem;
+
+      }
+
+      if (pobjectParentTask)
+      {
+
+         if (pobjectParentTask != this)
+         {
+
+            pobjectParentTask->add_task(this);
+
+         }
+
+      }
+      else
+      {
+
+         __throw(error_invalid_usage);
 
       }
 
    }
-   else
-   {
-
-      __throw(error_invalid_usage);
-
-   }
-
 
 #ifdef WINDOWS
 

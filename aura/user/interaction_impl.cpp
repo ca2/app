@@ -677,6 +677,15 @@ namespace user
 
          __refer(m_puserthread, puserthread);
 
+         auto papplication = get_application();
+
+         if (::is_set(papplication))
+         {
+
+            papplication->add_task(m_puserthread);
+
+         }
+
          m_puserthread->initialize_user_thread(this);
 
          m_puserthread->add_task(m_puserinteraction);

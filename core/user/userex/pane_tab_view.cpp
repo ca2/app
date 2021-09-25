@@ -189,23 +189,25 @@ namespace userex
       }
 
 
-      __pointer(simple_frame_window) pframe = get_parent();
+      //__pointer(simple_frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
-      {
+      //if (pframe.is_set())
+      //{
 
-         string strAppOptions(pframe->m_varFrame["app_options"]["resource"]);
+      //   string strAppOptions(pframe->m_varFrame["options_impact"]["resource"]);
 
-         if (strAppOptions.has_char())
-         {
+      //   if (strAppOptions.has_char())
+      //   {
 
-            string strTitle(pframe->m_varFrame["app_options"]["title"]);
+      //      string strTitle(pframe->m_varFrame["options_impact"]["title"]);
 
-            add_tab(strTitle, "app_options");
+      //      if(strTitle.is_empty())
 
-         }
+      //      add_tab(strTitle, "options_impact");
 
-      }
+      //   }
+
+      //}
 
    }
 
@@ -238,6 +240,21 @@ namespace userex
    }
 
 
+   ::e_status pane_tab_view::prepare_impact_menu(::user::menu * pmenu)
+   {
+
+      if (pmenu->load_xml_menu("matter://impact_menu.xml"))
+      {
+
+         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
+
+      }
+
+      return ::success;
+
+   }
+
+
    void pane_tab_view::on_change_cur_sel()
    {
 
@@ -261,20 +278,32 @@ namespace userex
          }
 
       }
-      else if(m_pimpactdata->m_id == MENU_IMPACT)
+      else if (m_pimpactdata->m_id == MENU_IMPACT)
       {
 
-         auto str = get_application()->prepare_menu_impact();
+         __pointer(::user::menu) pmenu = get_view_uie();
+
+         pmenu->destroy_menu();
+
+         prepare_impact_menu(pmenu);
+
+         return;
+
+      }
+      else if(m_pimpactdata->m_id == OPTIONS_IMPACT)
+      {
+
+         auto strOptionsImpact = get_application()->prepare_impact_options();
 
    #ifdef _DEBUG
 
          auto pcontext = m_pcontext->m_papexcontext;
 
-         pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", str);
+         pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
 
    #endif
 
-         if (!m_pdocumentMenu->open_document(str))
+         if (!m_pdocumentMenu->open_document(strOptionsImpact))
          {
 
             output_error_message("Failed to open the menu.");
@@ -443,6 +472,14 @@ namespace userex
    }
 
 
+   void pane_tab_view::create_menu_impact(::user::impact_data * pimpactdata)
+   {
+
+      ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);
+
+   }
+
+
    void pane_tab_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
@@ -473,6 +510,12 @@ namespace userex
 
       }
       else if (pimpactdata->m_id == MENU_IMPACT)
+      {
+
+         create_menu_impact(pimpactdata);
+
+      }
+      else if (pimpactdata->m_id == OPTIONS_IMPACT)
       {
 
          auto puser = user()->m_pcoreuser;
@@ -707,12 +750,12 @@ namespace userex
       //   }
 
       //}
-      else if (pimpactdata->m_id == "app_options")
-      {
+      //else if (pimpactdata->m_id == "app_options")
+      //{
 
-         create_app_options(pimpactdata);
+      //   create_app_options(pimpactdata);
 
-      }
+      //}
       else if (pimpactdata->m_id.is_text())
       {
 
@@ -883,52 +926,52 @@ namespace userex
    //}
 
 
-   bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)
-   {
+   //bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)
+   //{
 
-      string strAppOptions = "matter://options.html";
+   //   string strAppOptions = "matter://options.html";
 
-      __pointer(simple_frame_window) pframe = get_parent();
+   //   __pointer(simple_frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
-      {
+   //   if (pframe.is_set())
+   //   {
 
-         strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+   //      strAppOptions = pframe->m_varFrame["app_options"]["resource"];
 
-      }
+   //   }
 
-      payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
+   //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
 
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+   //   auto pcontext = m_pcontext;
+   //   
+   //   auto psession = pcontext->m_pcoresession;
+   //   
+   //   auto puser = psession->m_puser->m_pcoreuser;
 
-      m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
+   //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-      //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
 
-      //if (pform)
-      //{
+   //   //if (pform)
+   //   //{
 
-      //   if (pform->m_puserinteractionpointeraChild)
-      //   {
+   //   //   if (pform->m_puserinteractionpointeraChild)
+   //   //   {
 
-      //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
-      //      {
+   //   //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
+   //   //      {
 
-      //         p->add_control_event_handler(this);
+   //   //         p->add_control_event_handler(this);
 
-      //      }
+   //   //      }
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void pane_tab_view::prepare_form(id id, ::form_document * pdocument)

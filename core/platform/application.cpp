@@ -63,14 +63,14 @@ namespace core
    }
 
 
-   string application::prepare_menu_impact()
+   string application::prepare_impact_options()
    {
 
-      string strHeader = prepare_menu_impact_header();
+      string strHeader = prepare_impact_options_header();
 
-      string strMainBody = prepare_menu_impact_main_body();
+      string strMainBody = prepare_impact_options_main_body();
 
-      string strFooter = prepare_menu_impact_footer();
+      string strFooter = prepare_impact_options_footer();
 
       string strMenuImpact;
 
@@ -81,7 +81,7 @@ namespace core
    }
 
 
-   string application::prepare_menu_impact_header()
+   string application::prepare_impact_options_header()
    {
 
       string strApplicationTitle;
@@ -113,7 +113,7 @@ namespace core
    }
 
 
-   string application::prepare_menu_impact_main_body()
+   string application::prepare_impact_options_main_body()
    {
 
       auto strMenuImpactPartialHtml = file().as_string("matter://menu_impact.partial.html");
@@ -123,7 +123,7 @@ namespace core
    }
 
 
-   string application::prepare_menu_impact_footer()
+   string application::prepare_impact_options_footer()
    {
 
       string strOptionsHtml;

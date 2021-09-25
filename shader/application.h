@@ -15,7 +15,7 @@ namespace app_shader
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
  
       virtual ::e_status init_instance() override;

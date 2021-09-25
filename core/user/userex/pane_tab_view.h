@@ -63,6 +63,10 @@ namespace userex
 
       ::user::tab_pane * create_tab_by_id(const ::id & id) override;
 
+      virtual void create_menu_impact(::user::impact_data * pimpactdata);
+      
+      ::e_status prepare_impact_menu(::user::menu * pmenu);
+
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
       virtual ::filemanager::document * filemanager_document();
@@ -77,7 +81,7 @@ namespace userex
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      virtual bool create_app_options(::user::impact_data * pimpactdata);
+      //virtual bool create_app_options(::user::impact_data * pimpactdata);
 
       void handle(::subject * psubject, ::context * pcontext) override;
 

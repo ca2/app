@@ -1289,7 +1289,7 @@ namespace user
       try
       {
 
-         send_message(e_message_destroy);
+         puiThis->send_message(e_message_destroy);
 
       }
       catch (...)
@@ -1300,7 +1300,7 @@ namespace user
       try
       {
 
-         send_message(e_message_non_client_destroy);
+         puiThis->send_message(e_message_non_client_destroy);
 
       }
       catch (...)

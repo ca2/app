@@ -413,6 +413,36 @@ namespace user
    }
 
 
+   void interaction_child::destroy_window()
+   {
+
+      try
+      {
+
+         m_puserinteraction->send_message(e_message_destroy);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      try
+      {
+
+         m_puserinteraction->send_message(e_message_non_client_destroy);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+   }
+
+
    void interaction_child::message_handler(::message::message * pmessage)
    {
 

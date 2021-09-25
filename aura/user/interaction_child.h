@@ -40,11 +40,13 @@ namespace user
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
-      virtual bool start_window_visual() override;
+      bool start_window_visual() override;
 
       //virtual bool is_active() const override;
 
-      virtual bool start_destroying_window() override;
+      bool start_destroying_window() override;
+
+      void destroy_window() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;

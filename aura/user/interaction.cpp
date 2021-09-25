@@ -2448,16 +2448,36 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
+            string strType = pinteraction->type_c_str();
+
+            if (strType == "auraclick::impact")
+            {
+
+               output_debug_string("auraclick::impact");
+
+            }
+
             try
             {
 
-               pinteraction->destroy();
+               pinteraction->destroy_window();
 
             }
             catch (...)
             {
 
             }
+
+            //try
+            //{
+
+            //   pinteraction->destroy();
+
+            //}
+            //catch (...)
+            //{
+
+            //}
 
          }
 

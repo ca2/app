@@ -578,7 +578,10 @@ namespace user
 
       }
 
-      if (m_pimpactdataOld && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus)
+      if (m_pimpactdataOld 
+         && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
+         && m_pimpactdataOld->m_id != MENU_IMPACT
+         && m_pimpactdataOld->m_id != OPTIONS_IMPACT)
       {
 
          output_debug_string("::user::e_flag_hide_on_kill_focus");

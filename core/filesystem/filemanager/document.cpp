@@ -1354,19 +1354,19 @@ namespace filemanager
 
       {
 
-         ::subject subject(id_topic_start);
+         auto psubject = create_subject(id_topic_start);
 
-         subject.payload(id_document) = pdocumentFilemanager;
+         psubject->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 
       {
 
-         ::subject subject(id_create_bars);
+         auto psubject = create_subject(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(&subject);
+         pdocumentFilemanager->update_all_views(psubject);
 
       }
 

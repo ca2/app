@@ -38,6 +38,14 @@ namespace file
    }
 
 
+   void streamable::flush()
+   {
+
+      throw error_interface_only;
+
+   }
+
+
    void streamable::close()
    {
 
@@ -46,7 +54,7 @@ namespace file
    }
 
 
-   void streamable::flush()
+   void streamable::abort()
    {
 
       throw error_interface_only;

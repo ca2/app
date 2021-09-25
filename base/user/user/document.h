@@ -30,15 +30,15 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < ::routine_array > m_mapRoutine;
+      id_map < ::routine_array >          m_mapRoutine;
 
 
       document();
       ~document() override;
 
 
-      virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void dump(dump_context &) const override;
+      void assert_valid() const override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -47,8 +47,8 @@ namespace user
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::user::interaction* impact_at(::index iImpact) const override;
-      virtual ::count impact_count() const override;
+      ::user::interaction* impact_at(::index iImpact) const override;
+      ::count impact_count() const override;
 
       ::user::interaction_array get_top_level_windows();
 
@@ -56,10 +56,6 @@ namespace user
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
-
-      //virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);
-      //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, ::payload varFile = payload(), bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-      //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
       void on_request(::create* pcreate) override;
 
 

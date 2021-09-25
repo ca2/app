@@ -34,6 +34,8 @@ list(APPEND library_source
    exception/extended_status.cpp
    exception/extended_status.h
    exception/extended_transport.h
+   exception/file.cpp
+   exception/file.h
    #exception/hresult.cpp
    #exception/index_out_of_bounds.cpp
    #exception/installing.cpp

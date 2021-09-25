@@ -20,9 +20,10 @@ namespace file
 
       virtual void write(const void * pdata, memsize nCount);
 
-      virtual void close();
-
       virtual void flush();
+      virtual void close();
+      virtual void abort();
+
 
       virtual void set_size(filesize dwNewLen);
 

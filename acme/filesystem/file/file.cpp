@@ -227,6 +227,11 @@ namespace file
    }
 
 
+   void file::abort()
+   {
+
+   }
+
 
    void file::flush()
    {

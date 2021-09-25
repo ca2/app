@@ -818,7 +818,12 @@ bool file_context::put_contents(const ::payload &varFile, const void *pvoidConte
 
    }
 
-   pfile->write(pvoidContents, count);
+   if(count > 0)
+   {
+
+      pfile->write(pvoidContents, count);
+
+   }
 
    return true;
 

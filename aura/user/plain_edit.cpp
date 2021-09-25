@@ -354,8 +354,6 @@ namespace user
    }
 
 
-   
-
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 

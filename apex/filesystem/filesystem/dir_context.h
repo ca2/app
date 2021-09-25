@@ -11,8 +11,12 @@
    public:
 
 
+      bool                          m_bDropboxCalculated;
+      ::file::path                  m_pathDropbox;
+
+
       dir_context();
-      virtual ~dir_context();
+      ~dir_context() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;

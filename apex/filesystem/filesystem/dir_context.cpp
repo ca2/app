@@ -38,6 +38,8 @@ namespace zip
 dir_context::dir_context()
 {
 
+   m_bDropboxCalculated = false;
+
    //if (::file::dir_context::g_pthis == nullptr)
    //{
 
@@ -2502,6 +2504,14 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::dropbox()
 {
 
+   if(m_bDropboxCalculated)
+   {
+
+
+      return m_pathDropbox;
+
+   }
+
    ::file::path pathJson = m_pcontext->m_papexcontext->file().dropbox_info_json();
 
    if (!m_pcontext->m_papexcontext->file().exists(pathJson))
@@ -2522,10 +2532,13 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
       strPath.trim();
 
+      m_pathDropbox = strPath;
+
+      m_bDropboxCalculated = true;
+
       return strPath;
 
    }
-
 
    string strJson = m_pcontext->m_papexcontext->file().as_string(pathJson);
 
@@ -2533,7 +2546,11 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    set.parse_json(strJson);
 
-   return set["personal"]["path"];
+   m_pathDropbox = set["personal"]["path"];
+
+   m_bDropboxCalculated = true;
+
+   return m_pathDropbox;
 
 }
 

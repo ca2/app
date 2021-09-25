@@ -10,6 +10,7 @@ namespace user
    tab_data::tab_data()
    {
 
+      m_bVertical = false;
       m_bNoClient = false;
       m_bEnableCloseAll = false;
       m_rectangleTabClient.set(0, 0, 0, 0);

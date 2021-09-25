@@ -92,10 +92,10 @@ namespace file
       virtual void read_file(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
 
 
-
+      void abort() override;
+      void flush() override;
       void close() override;
 
-      void flush() override;
 
       virtual file & put(char ch);
 

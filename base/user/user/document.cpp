@@ -1024,17 +1024,21 @@ namespace user
    }
 
 
-
    bool document::on_save_document(::file::file * pfile)
    {
 
-      ::binary_stream writer(pfile);
-      
-      write(writer);
+      {
+
+         ::binary_stream writer(pfile);
+
+         write(writer);
+
+      }
 
       return true;
 
    }
+
 
    void document::on_close_document()
    {

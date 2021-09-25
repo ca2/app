@@ -67,25 +67,21 @@ namespace user
 
       }
 
-      estatus = __construct_new(m_pdata);
+      estatus = __defer_construct_new(m_pdata);
 
-      if (!estatus)
+      if (estatus == ::success)
       {
 
-         return estatus;
+         auto pdata = get_data();
+
+         pdata->m_iHeightAddUp = 0;
+         pdata->m_pcallback = nullptr;
+         pdata->m_bCreated = false;
+         pdata->m_iTabHeight = 16;
+         pdata->m_iTabWidth = 48;
+         pdata->m_iClickTab = -1;
 
       }
-
-      auto pdata = get_data();
-
-      pdata->m_iHeightAddUp = 0;
-      pdata->m_pcallback = nullptr;
-      pdata->m_bCreated = false;
-      pdata->m_iTabHeight = 16;
-      pdata->m_iTabWidth = 48;
-      pdata->m_iClickTab = -1;
-
-      _001SetVertical(false);
 
       return estatus;
 

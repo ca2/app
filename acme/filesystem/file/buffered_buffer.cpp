@@ -240,7 +240,18 @@ namespace file
 
       }
 
-      memsize uRead    = m_pfile->read(m_storage.get_data(), uiCopy);
+      memsize uRead    = 0;
+
+      try
+      {
+
+         uRead = m_pfile->read(m_storage.get_data(), uiCopy);
+
+      }
+      catch(...)
+      {
+
+      }
 
       m_uiBufLPos       = m_uiPosition;
 

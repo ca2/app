@@ -12590,7 +12590,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
 
    auto pdisplay = pwindowing->display();
 
-   if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
+   if (window() && (eactivation & e_activation_under_mouse_cursor || rectangle.is_null()))
    {
 
       ::point_i32 pointCursor = window()->get_mouse_cursor_position();

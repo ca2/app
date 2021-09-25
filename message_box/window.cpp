@@ -42,7 +42,7 @@ namespace app_message_box
 
       m_pbuttonShowMessageBox->set_window_text("Show message box");
 
-      m_pbuttonShowMessageBox->add_control_event_handler(this);
+      m_pbuttonShowMessageBox->add_handler(this);
 
 #if !STEPPY_DEBUG
 
@@ -279,8 +279,7 @@ namespace app_message_box
       if (psubject->m_id == ::e_subject_click)
       {
 
-         if (psubject->m_puserinteraction == m_pbuttonShowMessageBox
-            && psubject->m_actioncontext.is_user_source())
+         if (psubject->user_interaction() == m_pbuttonShowMessageBox && psubject->m_actioncontext.is_user_source())
          {
 
             try

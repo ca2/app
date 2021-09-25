@@ -704,6 +704,13 @@ namespace acme
    void node::background_color(const ::color::color & color)
    {
 
+      if (m_colorBackground == color)
+      {
+
+         return;
+
+      }
+
       m_colorBackground = color;
 
       m_dLuminance = m_colorBackground.get_luminance();
@@ -711,6 +718,8 @@ namespace acme
       m_bDarkMode = m_dLuminance < 0.5;
 
       on_user_color();
+
+
 
    }
 

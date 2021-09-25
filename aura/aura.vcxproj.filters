@@ -1246,9 +1246,6 @@
     <ClCompile Include="graphics\draw3d\ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
-      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
@@ -1630,9 +1627,6 @@
     <ClCompile Include="node\operating_system\windows\windowing.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
-      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
-    </ClCompile>
     <ClCompile Include="user\interaction_scaler.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1644,6 +1638,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\device_lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

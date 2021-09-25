@@ -193,12 +193,6 @@ namespace acme
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
-      //virtual ::e_status set_user_dark_mode(bool bSet = true);
-
-      //virtual ::e_status set_internal_system_dark_mode(bool bSet = true);
-
-      //virtual ::e_status set_internal_app_dark_mode(bool bSet = true);
-
       inline bool dark_mode() const { return m_bDarkMode; }
 
       inline ::color::color background_color() const { return m_colorBackground; }
@@ -207,25 +201,13 @@ namespace acme
 
       virtual void background_color(const ::color::color & color);
 
-      // virtual void set_userystem_app_luminance(double dLuminance);
-
       virtual int get_simple_ui_darkness();
 
       virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      //virtual bool get_app_dark_mode();
-
-      //virtual bool get_system_dark_mode();
-
-      //virtual bool get_user_dark_mode();
-
-      //virtual void check_user_dark_mode_change();
-
       virtual void fetch_user_color();
 
       virtual void on_user_color();
-
-      //virtual void defer_update_dark_mode();
 
       virtual string os_get_user_theme();
 

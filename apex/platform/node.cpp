@@ -190,14 +190,6 @@ namespace apex
    }
 
 
-   //void node::on_dark_mode_change()
-   //{
-
-   //   m_psystem->m_papexsystem->signal(id_os_dark_mode);
-
-   //}
-
-
    ::e_status node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 

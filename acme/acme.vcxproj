@@ -1103,6 +1103,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\aaa_not_installed.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
+    <ClCompile Include="exception\io.cpp" />
     <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
@@ -1115,6 +1116,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\dump_output.cpp" />
     <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exit.cpp" />
+    <ClCompile Include="exception\resource.cpp" />
     <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />

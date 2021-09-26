@@ -148,7 +148,7 @@ namespace dynamic_source
       else
       {
 
-         __throw(error_interface_only);
+         throw ::exception::exception(error_interface_only);
 
       }
 

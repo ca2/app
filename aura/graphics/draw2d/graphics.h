@@ -42,6 +42,8 @@ namespace draw2d
 
       bool                                   m_bPat;
 
+      bool                                   m_bAlphaBlend;
+
       __reference(::text::context)       m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
       ::image_pointer                        m_pimageAlphaBlend;

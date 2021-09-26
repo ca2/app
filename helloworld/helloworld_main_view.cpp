@@ -144,7 +144,7 @@ namespace helloworld
       if(psubject->m_id == ::e_subject_click)
       {
 
-         if(psubject->m_puserinteraction->m_id == "helloworld_toggle")
+         if(psubject->user_element_id() == "helloworld_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

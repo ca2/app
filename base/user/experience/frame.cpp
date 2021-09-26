@@ -993,6 +993,8 @@ namespace experience
    void frame::on_style_change()
    {
 
+
+
       m_bPendingStyleChange = true;
 
    }

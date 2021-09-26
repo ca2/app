@@ -921,7 +921,7 @@ namespace user
                   if (::is_set(pchannelNotify))
                   {
 
-                     //::message::command command(psubject->m_puserinteraction->m_id);
+                     //::message::command command(psubject->user_element_id());
 
                      //puiTarget->_001SendCommand(&command);
 
@@ -967,18 +967,18 @@ namespace user
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && psubject->m_puserinteraction != m_pitemClose->m_puserinteraction)
+//               && psubject->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (psubject->m_puserinteraction->m_pmenuitem != m_pmenuitemSub)
+//               if (psubject->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = psubject->m_puserinteraction->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1007,7 +1007,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           psubject->m_puserinteraction->get_window_rect(rectangle);
+//                           psubject->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1053,7 +1053,7 @@ namespace user
 //      }
 //      else if (psubject->m_id == ::e_subject_mouse_leave)
 //      {
-//         if (psubject->m_puserinteraction->m_id == m_idTimerMenu)
+//         if (psubject->user_element_id() == m_idTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
 //            m_idTimerMenu.is_empty();

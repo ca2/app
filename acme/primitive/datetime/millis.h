@@ -291,9 +291,12 @@ inline millis operator "" _tick(unsigned long long int u) { return u; }
 
 #ifdef CPP20
 
-typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
+
+typedef CLASS_DECL_ACME numeric_array < millis > millis_array;
+
 
 #endif
+
 
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 

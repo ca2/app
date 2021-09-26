@@ -950,7 +950,7 @@ namespace user
 
       //      psubject->id() = id_place_child_title_change;
 
-      //      psubject->m_puserinteraction = pholder;
+      //      psubject->user_interaction() = pholder;
 
       //      pparent->apply(psubject);
 

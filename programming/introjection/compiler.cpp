@@ -474,8 +474,7 @@ namespace introjection
 
       }
 
-      ::process::process_pointer process(e_create);
-
+      ::operating_system::process_pointer process(e_create, this);
 
       ::file::path pathEnvTxt;
 

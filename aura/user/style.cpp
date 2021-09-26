@@ -407,11 +407,11 @@ namespace user
 
                   //   pathRound.create();
 
-                  //   pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //   ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //   pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //   pathRound->end_figure(true);
+                  //   ppathRound->end_figure(true);
 
                   //}
 
@@ -439,13 +439,13 @@ namespace user
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
                   auto ppen = __create < ::draw2d::pen > ();
@@ -466,13 +466,13 @@ namespace user
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
                   auto ppen = __create < ::draw2d::pen > ();
@@ -494,13 +494,13 @@ namespace user
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
                   auto ppen = __create < ::draw2d::pen > ();

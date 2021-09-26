@@ -342,13 +342,13 @@ namespace browser
    void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->m_puserinteraction != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
       {
 
          if(psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if(m_prollfps != nullptr && psubject->m_puserinteraction->m_id == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
+            if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
                   && !psubject->m_context.is(::e_source_database))
             {
 
@@ -400,7 +400,7 @@ namespace browser
 
 
             }
-            //else if(psubject->m_puserinteraction->m_id == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
+            //else if(psubject->user_element_id() == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -427,22 +427,22 @@ namespace browser
 
 
          }
-         else if (psubject->m_id == ::e_subject_set_check && psubject->m_puserinteraction != nullptr)
+         else if (psubject->m_id == ::e_subject_set_check && psubject->user_interaction() != nullptr)
          {
 
-            string strCheck = psubject->m_puserinteraction->m_id;
+            string strCheck = psubject->user_element_id();
 
 
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (psubject->m_puserinteraction != nullptr && !psubject->m_context.is(::e_source_initialize)
+               if (psubject->user_interaction() != nullptr && !psubject->m_context.is(::e_source_initialize)
                      && !psubject->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = psubject->m_puserinteraction;
+                  __pointer(::user::check) pcheck = psubject->user_interaction();
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -470,7 +470,7 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && psubject->m_puserinteraction == m_pfontview->m_pimpact)
+         if (m_pfontview != nullptr && psubject->user_interaction() == m_pfontview->m_pimpact)
          {
 
             if (psubject->m_id == ::e_subject_after_change_cur_sel)
@@ -509,7 +509,7 @@ namespace browser
             }
 
          }
-         else if (psubject->m_puserinteraction == m_pcolorview)
+         else if (psubject->user_interaction() == m_pcolorview)
          {
 
 

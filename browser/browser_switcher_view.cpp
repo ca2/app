@@ -91,7 +91,7 @@ namespace browser
       if(psubject->m_id == ::e_subject_click)
       {
 
-         if(psubject->m_puserinteraction->m_id == "switcher_toggle")
+         if(psubject->user_element_id() == "switcher_toggle")
          {
 
             __pointer(impact) pview = m_pimpact;
@@ -102,7 +102,7 @@ namespace browser
             return;
 
          }
-         else if(psubject->m_puserinteraction->m_id == "browser_toggle")
+         else if(psubject->user_element_id() == "browser_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

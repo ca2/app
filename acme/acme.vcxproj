@@ -1191,6 +1191,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>

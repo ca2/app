@@ -22,6 +22,7 @@ namespace draw2d
    graphics::graphics()
    {
 
+      m_bAlphaBlend = false;
       m_bBeginDraw = false;
       //m_puserstyle = nullptr;
 
@@ -1100,95 +1101,102 @@ namespace draw2d
    bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
    {
 
-      if (m_pimageAlphaBlend->is_ok())
+      if (!m_bAlphaBlend)
       {
 
-         ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
-
-         if (rectangleIntersect.intersect(rectangleIntersect, imagedrawing.m_rectangleTarget))
+         if (m_pimageAlphaBlend->is_ok())
          {
 
-            auto rectangleSource = imagedrawing.source_rectangle();
+            ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
-            auto & rectangleTarget = imagedrawing.m_rectangleTarget;
-
-            ::point_i32 pointSrc(rectangleSource.top_left());
-
-            ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
-
-            ::size_i32 size(imagedrawing.m_rectangleTarget.size());
-
-            ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
-
-            if (!pimage1)
+            if (rectangleIntersect.intersect(rectangleIntersect, imagedrawing.m_rectangleTarget))
             {
 
-               return false;
+               auto rectangleSource = imagedrawing.source_rectangle();
 
-            }
+               auto & rectangleTarget = imagedrawing.m_rectangleTarget;
 
-            {
+               ::point_i32 pointSrc(rectangleSource.top_left());
 
-               image_source imagesource(imagedrawing.m_pimagesource, {pointSrc, size});
+               ::point_i32 pointDst(imagedrawing.m_rectangleTarget.top_left());
 
-               rectangle_f64 rectangle(size);
+               ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image_pointer pimage1 = m_pcontext->context_image()->create_image(size);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               if (!pimage1->draw(imagedrawing))
+               if (!pimage1)
                {
 
                   return false;
 
                }
 
+               {
+
+                  image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
+
+                  rectangle_f64 rectangle(size);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  if (!pimage1->draw(imagedrawing))
+                  {
+
+                     return false;
+
+                  }
+
+               }
+
+               ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
+
+               if (!pimage2)
+               {
+
+                  return false;
+
+               }
+
+               pimage2->fill(255, 0, 0, 0);
+
+               {
+
+                  image_source imagesource(m_pimageAlphaBlend,
+                     { ::point_f64(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
+
+                  rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage2->g()->draw(imagedrawing);
+
+               }
+
+               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
+
+               {
+
+                  image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
+
+                  rectangle_f64 rectangle(pointDst, size);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  __keep(m_bAlphaBlend);
+
+                  draw(imagedrawing);
+
+               }
+
+               return true;
+
             }
-
-            ::image_pointer pimage2 = m_pcontext->context_image()->create_image(size);
-
-            if (!pimage2)
-            {
-
-               return false;
-
-            }
-
-            pimage2->fill(255, 0, 0, 0);
-
-            {
-
-               image_source imagesource(m_pimageAlphaBlend,
-                  { ::point_f64(maximum(0, rectangleTarget.left - m_pointAlphaBlend.x), maximum(0, rectangleTarget.top - m_pointAlphaBlend.y)), size });
-
-               rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x - rectangleTarget.left), maximum(0, m_pointAlphaBlend.y - rectangleTarget.top)), size);
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               pimage2->g()->draw(imagedrawing);
-
-            }
-
-            pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
-
-            {
-
-               image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
-
-               rectangle_f64 rectangle(pointDst, size);
-
-               image_drawing_options imagedrawingoptions(rectangle);
-
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
-
-               draw(imagedrawing);
-
-            }
-
-            return true;
 
          }
 

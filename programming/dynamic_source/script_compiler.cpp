@@ -1371,8 +1371,8 @@ pacmedir->create(pathDVP_Folder);
          strBuildCmd = "\"" + strBuildCmd + "\" " + m_strPlat2 + " " + papplication->get_visual_studio_build();
 
       }
-      ::process::process_pointer process(e_create);
 
+      ::operating_system::process_pointer process(e_create, this);
 
       ::file::path pathEnvTxt;
 

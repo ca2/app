@@ -115,7 +115,7 @@ auto m_millisSync = ::millis::now();
 
       i32 iBorder1 = maximum(cx / iRate1, cy / iRate1);
 
-      ::draw2d::path_pointer pathClip1(e_create);
+      auto ppathClip1 = __create < ::draw2d::path >();
 
       RECTANGLE_I32 rectangleClip1;
 
@@ -124,11 +124,11 @@ auto m_millisSync = ::millis::now();
       rectangleClip1.right = rectangleClip1.left + cx - iBorder1 * 2;
       rectangleClip1.bottom = rectangleClip1.top + cy - iBorder1 * 2;
 
-      pathClip1->begin_figure(true, ::draw2d::fill_mode_winding);
+      ppathClip1->begin_figure(true, ::draw2d::fill_mode_winding);
 
-      pathClip1->add_round_rect(rectangleClip1, iBorder1 * 2);
+      ppathClip1->add_round_rect(rectangleClip1, iBorder1 * 2);
 
-      pathClip1->end_figure(true);
+      ppathClip1->end_figure(true);
 
       //      pgraphics->replace_clip(pathClip1);
 
@@ -157,7 +157,7 @@ auto m_millisSync = ::millis::now();
 
       i32 iBorder = 16;
 
-      ::draw2d::path_pointer pathClip(e_create);
+      auto ppathClip = __create < ::draw2d::path >();
 
       RECTANGLE_I32 rectangleClip;
 
@@ -167,11 +167,11 @@ auto m_millisSync = ::millis::now();
       rectangleClip.bottom = rectangleClip.top + iBarHeight + iBorder * 2;
 
 
-      pathClip->begin_figure(true, ::draw2d::fill_mode_winding);
+      ppathClip->begin_figure(true, ::draw2d::fill_mode_winding);
 
-      pathClip->add_round_rect(rectangleClip, iBorder);
+      ppathClip->add_round_rect(rectangleClip, iBorder);
 
-      pathClip->end_figure(true);
+      ppathClip->end_figure(true);
 
       //pgraphics->exclude_clip(pathClip);
 

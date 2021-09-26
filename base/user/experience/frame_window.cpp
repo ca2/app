@@ -2078,7 +2078,7 @@ namespace experience
 //
 //         //::rectangle_i32 rectangleWindow;
 //
-//         //psubject->m_puserinteraction->get_window_rect(rectangleWindow);
+//         //psubject->user_interaction()->get_window_rect(rectangleWindow);
 //
 //         ///dock_manager()->m_pointCursorOrigin = rectangleWindow.center();
 //

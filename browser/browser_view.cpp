@@ -264,7 +264,7 @@ namespace browser
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         if (peditview != nullptr && psubject->user_interaction() == peditview)
          {
 
             string strText;

@@ -147,7 +147,7 @@ namespace simple_shader
       if(psubject->m_id == ::e_subject_click)
       {
 
-         if(psubject->m_puserinteraction->m_id == "simple_shader_toggle")
+         if(psubject->user_element_id() == "simple_shader_toggle")
          {
 
             m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);

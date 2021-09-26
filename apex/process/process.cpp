@@ -27,6 +27,8 @@ namespace operating_system
       if(bPiped)
       {
 
+         m_pipe.initialize(this);
+
          if(!m_pipe.create(false, true))
             return false;
 

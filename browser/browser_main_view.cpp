@@ -148,7 +148,7 @@ namespace browser
       if(psubject->m_id == ::e_subject_click)
       {
 
-         if(psubject->m_puserinteraction->m_id == "browser_toggle")
+         if(psubject->user_element_id() == "browser_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

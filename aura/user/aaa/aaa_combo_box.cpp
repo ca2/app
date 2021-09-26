@@ -1674,7 +1674,7 @@ namespace user
       if(psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         if(psubject->m_puserinteraction == m_plist)
+         if(psubject->user_interaction() == m_plist)
          {
 
             if (psubject->m_item == e_element_item)

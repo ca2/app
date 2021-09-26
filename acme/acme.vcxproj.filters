@@ -2666,6 +2666,9 @@
     <ClInclude Include="exception\not_implemented.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
+    <ClInclude Include="include\_forward_declaration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

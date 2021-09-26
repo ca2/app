@@ -95,7 +95,7 @@ namespace turboc
       if(psubject->m_id == ::e_subject_click)
       {
 
-         if(psubject->m_puserinteraction->m_id == "switcher_toggle")
+         if(psubject->user_element_id() == "switcher_toggle")
          {
 
             __pointer(impact) pview = m_pimpact;

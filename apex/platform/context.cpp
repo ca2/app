@@ -151,6 +151,12 @@ namespace apex
 
       }
 
+      m_papexsystem = m_psystem->m_papexsystem;
+      m_paurasystem = m_psystem->m_paurasystem;
+      m_pbasesystem = m_psystem->m_pbasesystem;
+      m_pbredsystem = m_psystem->m_pbredsystem;
+      m_pcoresystem = m_psystem->m_pcoresystem;
+
       if(is_system())
       {
 
@@ -658,7 +664,7 @@ namespace apex
 
             set["disable_common_name_cert_check"] = true;
 
-            memory_file_pointer pfile(e_create_new);
+            memory_file_pointer pfile(e_create_new, this);
 
             if (!retry([&]()
                {

@@ -119,7 +119,7 @@ namespace user
 
          }
 
-         pgraphics->set_font(pitem->m_puserinteraction, ::user::e_element_none);
+         pgraphics->set_font(pitem->m_puserinteraction, ::e_element_none);
 
          string strWindowText = pitem->m_puserinteraction->get_window_text();
 
@@ -179,7 +179,7 @@ namespace user
 
       get_parent()->get_client_rect(rectangleClient);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       const ::size_i32 & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
@@ -217,7 +217,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -241,12 +241,12 @@ namespace user
 
          prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
-         if(prectangle->bottom > rectBound.bottom)
+         if(prectangle->bottom > rectangleBound.bottom)
          {
 
             prectangle->left += iMaxWidth + 16;
 
-            prectangle->top = rectBound.top;
+            prectangle->top = rectangleBound.top;
 
             prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
@@ -263,7 +263,7 @@ namespace user
 
             pitem->m_puserinteraction->display();
 
-            layout_buttons(pitem, iMaxWidth, prectangle, rectBound);
+            layout_buttons(pitem, iMaxWidth, prectangle, rectangleBound);
 
          }
 

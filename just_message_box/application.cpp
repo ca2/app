@@ -19,8 +19,6 @@ namespace app_just_message_box
 
       m_bImaging = false;
 
-      //m_bWriteText = false;
-
    }
 
 

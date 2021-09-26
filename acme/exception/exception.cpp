@@ -48,27 +48,27 @@ const char * strcatdup(const char * psz1, const char * psz2)
 
 #if defined(APPLE_IOS)
 
-bool exception::exception::s_bDoStackTrace = false;
+bool ::exception::s_bDoStackTrace = false;
 
 #elif defined(ANDROID)
 
-bool exception::exception::s_bDoStackTrace = true;
+bool ::exception::s_bDoStackTrace = true;
 
 #elif defined(MACOS)
 
-bool exception::exception::s_bDoStackTrace = false;
+bool ::exception::s_bDoStackTrace = false;
 
 #else
 
-bool exception::exception::s_bDoStackTrace = true;
+bool ::exception::s_bDoStackTrace = true;
 
 #endif
 
-namespace exception
-{
+//namespace exception
+//{
+//
 
-
-//   exception::exception(const ::e_status & estatus, i32 iSkip, void * caller_address) :
+//   ::exception(const ::e_status & estatus, i32 iSkip, void * caller_address) :
 //      exception(nullptr, estatus, iSkip, caller_address)
 //   {
 //
@@ -169,7 +169,7 @@ namespace exception
    }
 
 
-} // namespace exception
+//} // namespace exception
 
 
 #ifdef APPLE_IOS
@@ -238,9 +238,9 @@ void __cdecl __clearerr_s(FILE *stream)
 #endif
 }
 
-
-namespace exception
-{
+//
+//namespace exception
+//{
 
 
    CLASS_DECL_ACME void throw_interface_only(const char * pszMessage)
@@ -390,9 +390,9 @@ namespace exception
       }
 
    }
-
-
-} // namespace exception
+//
+//
+//} // namespace exception
 
 //template < typename T >
 //void __rethrow(T * pexception)
@@ -407,7 +407,7 @@ namespace exception
 
 
 
-//CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception::exception * pexceptionNew)
+//CLASS_DECL_ACME __pointer(::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception * pexceptionNew)
 //{
 //
 //   __trace_logger_level(trace_context, e_trace_level_error);
@@ -499,7 +499,7 @@ string estatus_to_string(::e_status estatus)
 CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage, i32 iSkip, void * caller_address)
 {
 
-   throw ::exception::exception(estatus, pszMessage, iSkip, caller_address);
+   throw ::exception(estatus, pszMessage, iSkip, caller_address);
 
 }
 

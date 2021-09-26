@@ -52,8 +52,8 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      ::rectangle rectOffset(rectangle);
-//      const ::point & pointOffset(rectOffset.top_left());
+//      ::rectangle rectangleOffset(rectangle);
+//      const ::point & pointOffset(rectangleOffset.top_left());
 //
 //      glyph * pglyph;
 
@@ -108,7 +108,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      const ::rectangle rectOffset(rectangle);
+//      const ::rectangle rectangleOffset(rectangle);
 //      const ::point & pointOffset;
 //
 //
@@ -122,7 +122,7 @@ namespace draw2d
 //         if(pglyph != nullptr)
 
 //         {
-//            pointOffset = rectOffset.top_left();
+//            pointOffset = rectangleOffset.top_left();
 //            pointOffset.x += (long) ((piCharsPositions[iOffset + i] - lpiCharsPositions[iOffset]) * dRateX);
 
 //            pglyph->DrawGlyph(

@@ -2,7 +2,7 @@
 
 
 //class CLASS_DECL_CA2_TIME datetime_parser_exception:
-//   virtual public ::exception::exception
+//   virtual public ::exception
 //{
 //public:
 //

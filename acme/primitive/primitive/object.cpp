@@ -94,7 +94,7 @@ string object::to_string() const
 
    _synchronous_lock synchronouslock(mutex());
 
-   m_pcompositea.defer_create_new();
+   __defer_construct_new(m_pcompositea);
 
    if (!m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
@@ -119,7 +119,7 @@ string object::to_string() const
 
    _synchronous_lock synchronouslock(mutex());
 
-   m_preferencea.defer_create_new();
+   __defer_construct_new(m_preferencea);
 
    m_preferencea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
@@ -268,6 +268,18 @@ string object::to_string() const
 //   return __user_interaction(m_psession->m_puserinteractionHost);
 //
 //}
+
+
+::subject_pointer object::create_subject(const ::id & id)
+{
+
+   auto psubject = __new(subject(id));
+
+   psubject->initialize(this);
+
+   return ::move(psubject);
+
+}
 
 
 void object::dev_log(string strMessage) const
@@ -666,7 +678,7 @@ bool object::is_running() const
 ::e_status object::post(const ::routine& routine)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1079,12 +1091,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   if (!m_pobjectaChildrenTask)
-   {
-
-      m_pobjectaChildrenTask.create_new();
-
-   }
+   __defer_construct_new(m_pobjectaChildrenTask);
 
    string strType = type_c_str();
 
@@ -1206,12 +1213,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   if (!m_pobjectaChildrenTask)
-   {
-
-      m_pobjectaChildrenTask.create_new();
-
-   }
+   __defer_construct_new(m_pobjectaChildrenTask);
 
    __pointer_array(::object) objectaChildrenTask;
 
@@ -1848,7 +1850,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::handle_exception(const ::exception::exception& e)
+::e_status object::handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1863,7 +1865,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 }
 
 
-::e_status object::top_handle_exception(const ::exception::exception& e)
+::e_status object::top_handle_exception(const ::exception& e)
 {
 
    if (::is_exit_exception_status(e.estatus()))
@@ -1911,7 +1913,7 @@ __transport(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::
 //}
 
 
-::e_status object::process_exception(const ::exception::exception& e)
+::e_status object::process_exception(const ::exception& e)
 {
 
    if (e.m_bHandled)
@@ -2247,7 +2249,7 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message* pmessage)
 {
 
-   //::subject::subject subject(this, (::iptr)pmessage->m_wparam);
+   //::subject subject(this, (::iptr)pmessage->m_wparam);
 
    //subject.m_payload = (::matter*)(::iptr)pmessage->m_lparam;
 
@@ -2355,6 +2357,13 @@ void object::install_message_routing(::channel* pchannel)
 
 ::property_object* object::parent_property_set_holder() const
 {
+   
+   if(m_pcontext == this)
+   {
+      
+      return nullptr;
+      
+   }
 
    return m_pcontext;
 
@@ -2465,7 +2474,7 @@ bool __no_continue(::e_status estatus)
             }
 
          }
-         catch (const ::exception::exception& e)
+         catch (const ::exception& e)
          {
 
             if (__no_continue(e.m_estatus))
@@ -3180,14 +3189,14 @@ matter* object::get_taskpool_container()
 //
 //}
 
-//::e_status object::handle_exception(const ::exception::exception& e)
+//::e_status object::handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
 //
 //}
 //
-//::e_status object::top_handle_exception(const ::exception::exception& e)
+//::e_status object::top_handle_exception(const ::exception& e)
 //{
 //
 //   return ::success;
@@ -3195,7 +3204,7 @@ matter* object::get_taskpool_container()
 //}
 
 
-//::e_status object::process_exception(const ::exception::exception& e)
+//::e_status object::process_exception(const ::exception& e)
 //{
 //
 //   return ::success;

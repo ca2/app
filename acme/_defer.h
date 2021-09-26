@@ -33,21 +33,21 @@ namespace primitive
 } // namespace primitive
 
 
-template < class T >
-template < typename T2 >
-inline __pointer(T) & ___pointer < T >::defer_create_new()
-{
-
-   if (is_null())
-   {
-
-      create_new < T2 >();
-
-   }
-
-   return *this;
-
-}
+//template < class T >
+//template < typename T2 >
+//inline __pointer(T) & ___pointer < T >::defer_create_new()
+//{
+//
+//   if (is_null())
+//   {
+//
+//      create_new < T2 >();
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
 template < class T >
@@ -76,21 +76,21 @@ inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
 }
 
 
+//template < class T >
+//template < typename T2 >
+//inline __pointer(T) & ___pointer < T >::create_new()
+//{
+//
+//   auto p = __new(T2);
+//
+//   return operator=(p);
+//
+//}
+
+
 template < class T >
 template < typename T2 >
-inline __pointer(T) & ___pointer < T >::create_new()
-{
-
-   auto p = __new(T2);
-
-   return operator=(p);
-
-}
-
-
-template < class T >
-template < typename T2, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
+inline __pointer(T) & ___pointer < T >::defer_create_new(::object * pobject)
 {
 
    if (is_null())
@@ -106,8 +106,8 @@ inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
 
 
 template < class T >
-template < typename T2, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pobject)
+template < typename T2 >
+inline __pointer(T) & ___pointer < T >::create_new(::object * pobject)
 {
 
    auto p = __new(T2);

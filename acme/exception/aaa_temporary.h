@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME temporary_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

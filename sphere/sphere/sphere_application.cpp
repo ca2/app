@@ -972,10 +972,10 @@ namespace sphere
 
    }
 
-   void application::route_command_message(::message::command * pcommand)
+   void application::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::aura::application::route_command_message(pcommand);
+      ::aura::application::route_command(pcommand);
 
    }
 

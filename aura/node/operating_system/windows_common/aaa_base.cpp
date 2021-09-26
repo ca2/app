@@ -28,30 +28,6 @@ _In_opt_ const widechar * pOutputString
 
 }
 
-typedef WINBASEAPI
-VOID
-WINAPI
-FN_OutputDebugStringA(
-_In_opt_ const char * pOutputString
-
-);
-
-typedef WINBASEAPI
-VOID
-WINAPI
-FN_OutputDebugStringW(
-_In_opt_ const widechar * pOutputString
-
-);
-
-typedef FN_OutputDebugStringA * PFN_OutputDebugStringA;
-
-typedef FN_OutputDebugStringW * PFN_OutputDebugStringW;
-
-PFN_OutputDebugStringA g_pfnOutputDebugStringA = ::OutputDebugStringA;
-
-PFN_OutputDebugStringW g_pfnOutputDebugStringW = ::OutputDebugStringW;
-
 
 namespace aura
 {
@@ -79,31 +55,6 @@ namespace aura
 
 
 } // namespace aura
-
-
-
-void output_debug_string(const ::string & psz)
-{
-
-   g_pfnOutputDebugStringA(psz);
-
-}
-
-
-void output_debug_string(const unichar * pwsz)
-{
-
-   g_pfnOutputDebugStringW(pwsz);
-
-}
-
-
-void output_debug_string(const unichar * pwsz)
-{
-
-   g_pfnOutputDebugStringW(pwsz);
-
-}
 
 
 

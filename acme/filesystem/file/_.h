@@ -130,6 +130,11 @@ typedef CLASS_DECL_ACME numeric_array < u32 > u32_array;
 
 
 
+CLASS_DECL_ACME ::file::path dir_ca2_module();
+
+CLASS_DECL_ACME ::file::path dir_base_module();
+
+
 
 
 
@@ -226,7 +231,7 @@ namespace file
    bool output(::file::file* pfileOut, TRANSFER* ptransfer, bool (TRANSFER::* pfn)(::file::file* pfileOut, ::file::file* pfileIn), ::file::file* pfileIn)
    {
 
-      throw ::exception::exception(error_not_implemented);
+      throw ::exception(error_not_implemented);
 
    }
 

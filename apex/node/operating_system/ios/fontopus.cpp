@@ -40,7 +40,7 @@ namespace account
       bool                 m_bShiftKey;
 
       bool                 m_bDrag;
-      ::rectangle_i32               m_rectDesktop;
+      ::rectangle_i32               m_rectangleDesktop;
 
       manual_reset_event   m_eventReady;
 
@@ -314,13 +314,13 @@ namespace account
    void account::draw_pestana(simple_graphics & g)
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
       g.set_alpha_mode(draw2d::e_alpha_mode_blend);
 
-      int iCount = rectWindow.height();
+      int iCount = rectangleWindow.height();
       simple_pen p;
       for (int i = 0; i < iCount; i += 2)
       {
@@ -331,7 +331,7 @@ namespace account
          byte g1 = brate(dRate, 23, 127);
          byte b1 = brate(dRate, 23, 127);
          p.create_solid(g, argb(a1, r1, g1, b1));
-         g.draw_line(rectWindow.left, i, rectWindow.right, i, p);
+         g.draw_line(rectangleWindow.left, i, rectangleWindow.right, i, p);
 
       }
 
@@ -375,18 +375,18 @@ namespace account
 
       if (lprect == nullptr)
       {
-         m_rectDesktop.left = 0;
-         m_rectDesktop.top = 0;
-         m_rectDesktop.right = 800;
-         m_rectDesktop.bottom = 600;
+         m_rectangleDesktop.left = 0;
+         m_rectangleDesktop.top = 0;
+         m_rectangleDesktop.right = 800;
+         m_rectangleDesktop.bottom = 600;
 
-//         ::get_window_rect(::get_desktop_window(), &m_rectDesktop);
+//         ::get_window_rect(::get_desktop_window(), &m_rectangleDesktop);
 
       }
       else
       {
 
-         m_rectDesktop = *lprect;
+         m_rectangleDesktop = *lprect;
 
       }
 
@@ -448,17 +448,17 @@ namespace account
    bool account::prepare_window(bool bShow)
    {
 
-      rectangle_i32 & rectDesktop = m_rectDesktop;
+      rectangle_i32 & rectangleDesktop = m_rectangleDesktop;
 
-      CGRect rectFontopus;
+      CGRect rectangleFontopus;
 
       int w = m_w + 184;
       int h = m_h + 284;
 
-      rectFontopus.origin.x = rectDesktop.left + (width(rectDesktop) - w) / 2;
-      rectFontopus.origin.y = rectDesktop.top + (height(rectDesktop) - h) / 3;
-      rectFontopus.size.width = w;
-      rectFontopus.size.height = h;
+      rectangleFontopus.origin.x = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
+      rectangleFontopus.origin.y = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
+      rectangleFontopus.size.width = w;
+      rectangleFontopus.size.height = h;
 
 
       m_login.m_rectangle.left = (w - m_w) / 2;
@@ -468,7 +468,7 @@ namespace account
 
       m_login.defer_translate(this);
 
-      m_oswindow = oswindow_get(new_boot_window(this, rectFontopus));
+      m_oswindow = oswindow_get(new_boot_window(this, rectangleFontopus));
 
 
 
@@ -571,13 +571,13 @@ namespace account
          return true;
 
 
-      ::rectangle_i32 rectLogin;
+      ::rectangle_i32 rectangleLogin;
 
-      m_login.get_window_rect(rectLogin);
+      m_login.get_window_rect(rectangleLogin);
 
       ::point_i32 point(x, y);
 
-      if (rectLogin.is_empty().contains(point))
+      if (rectangleLogin.is_empty().contains(point))
       {
       release_capture();
       DestroyWindow(m_oswindow);
@@ -585,11 +585,11 @@ namespace account
 
 
             {
-      ::rectangle_i32 rectWindow;
-      m_login.get_window_rect(&rectWindow);
+      ::rectangle_i32 rectangleWindow;
+      m_login.get_window_rect(&rectangleWindow);
       POINT_I32 pointCursor;
       ::GetCursorPos(&pointCursor);
-      if (rectWindow.is_empty().contains(pointCursor))
+      if (rectangleWindow.is_empty().contains(pointCursor))
       DestroyWindow(hWnd);
       }
 
@@ -638,12 +638,12 @@ namespace account
    void account::draw_dark_glass(simple_graphics & g)
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
 
-      g.fill_rectangle(rectWindow, argb(84, 127, 127, 127));
+      g.fill_rectangle(rectangleWindow, argb(84, 127, 127, 127));
 
    }
 
@@ -663,14 +663,14 @@ namespace account
    void account::draw_fuzzy_color_spread(simple_graphics & g)
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
       int i = 0;
       int j = 0;
-      int iCount = rectWindow.width();
-      int jCount = rectWindow.height();
+      int iCount = rectangleWindow.width();
+      int jCount = rectangleWindow.height();
 
       byte * p = (byte *) m_bitmap.m_pdata;
 

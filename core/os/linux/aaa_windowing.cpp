@@ -942,14 +942,14 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
       }
 
-      ::rectangle rectTest;
+      ::rectangle rectangleTest;
 
       for(index i = 0; i < windowa.get_size(); i++)
       {
 
          string strItem = x11_get_name(display, windowa[i]);
 
-         ::rectangle rectHigher;
+         ::rectangle rectangleHigher;
 
          if(::is_set(oswindowExclude) && windowa[i] == oswindowExclude->window())
          {
@@ -958,16 +958,16 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
          }
 
-         if(x11_get_window_rect(display, windowa[i], rectHigher))
+         if(x11_get_window_rect(display, windowa[i], rectangleHigher))
          {
 
-            ::rectangle rectHitTest;
+            ::rectangle rectangleHitTest;
 
-            rectHitTest.set(rectHigher.origin(), ::size());
+            rectangleHitTest.set(rectangleHigher.origin(), ::size());
 
-            rectHitTest.inflate(iMargin+1);
+            rectangleHitTest.inflate(iMargin+1);
 
-            if(rectHitTest.contains(pointHitTest))
+            if(rectangleHitTest.contains(pointHitTest))
             {
 
                bIsOrigin = true;
@@ -1046,19 +1046,19 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
-//    ::rectangle rectTest;
+//    ::rectangle rectangleTest;
 
 //    for(iFind++; iFind < windowa.get_size(); iFind++)
 //    {
 
 //       string strItem = x11_get_name(display, windowa[iFind]);
 
-//       ::rectangle rectHigher;
+//       ::rectangle rectangleHigher;
 
-//       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+//       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
 //       {
 
-//          if(rectTest.intersect(rectHigher, rectangle))
+//          if(rectangleTest.intersect(rectangleHigher, rectangle))
 //          {
 
 //             return true;
@@ -1136,19 +1136,19 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectTest;
+   ::rectangle rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       //string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectHigher;
+      ::rectangle rectangleHigher;
 
-      if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+      if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
 
-         ra.add(rectHigher);
+         ra.add(rectangleHigher);
 
       }
 
@@ -1800,7 +1800,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    ::draw2d::brush_pointer pen(e_create_new);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for(index i = 0; i < stra.get_count(); i++)
    {
@@ -3013,7 +3013,7 @@ extern bool b_prevent_xdisplay_lock_log;
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&ev.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&
@@ -3101,7 +3101,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
             auto pupdate = new_update();
 
-            e_id eid;
+            ::enum_id eid;
 
             switch (cookie->evtype)
             {
@@ -5203,18 +5203,18 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   }
 //
-//   ::rectangle rectSource;
+//   ::rectangle rectangleSource;
 //
-//   x11_get_window_rect(display, oswindow->window(), rectSource);
+//   x11_get_window_rect(display, oswindow->window(), rectangleSource);
 //
-//   ::rectangle rectTarget;
+//   ::rectangle rectangleTarget;
 //
-//   pinteraction->get_window_rect(rectTarget);
+//   pinteraction->get_window_rect(rectangleTarget);
 //
-//   if(rectTarget != rectSource)
+//   if(rectangleTarget != rectangleSource)
 //   {
 //
-//      pinteraction->place(rectSource);
+//      pinteraction->place(rectangleSource);
 //
 //      pinteraction->set_reposition();
 //

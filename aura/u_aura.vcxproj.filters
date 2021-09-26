@@ -1285,6 +1285,9 @@
     <ClInclude Include="graphics\draw2d\device_lock.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1580,10 +1583,10 @@
     <ClCompile Include="graphics\draw2d\task_tool.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
     <ClCompile Include="windowing\buffer.cpp">
@@ -1643,16 +1646,10 @@
     <ClCompile Include="user\call_message_handler_task.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\callback.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\check_box.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\control_event.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
@@ -1686,9 +1683,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction_thread.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\item.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\key.cpp">

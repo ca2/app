@@ -4,33 +4,25 @@
 #include "framework.h"
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
-   translator::translator()
+   exception_translator::exception_translator()
    {
 
 
    }
 
 
-   translator::~translator()
+exception_translator::~exception_translator()
    {
 
 
    }
 
 
-   bool translator::attach()
-   {
-
-      return true;
-
-   }
-
-
-   bool translator::detach()
+   bool exception_translator::attach()
    {
 
       return true;
@@ -38,7 +30,15 @@ namespace exception
    }
 
 
-} // namespace exception
+   bool exception_translator::detach()
+   {
+
+      return true;
+
+   }
+
+
+//} // namespace exception
 
 
 

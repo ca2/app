@@ -63,7 +63,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -152,7 +152,7 @@ namespace user
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
       __UNREFERENCED_PARAMETER(bCompat);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
@@ -699,7 +699,7 @@ namespace user
    {
       // prompt the ::account::user (with all document templates)
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
@@ -845,7 +845,7 @@ namespace user
       if (pBestTemplate == nullptr)
       {
 
-         output_message_box_error("Failed to open document");
+         output_error_message("Failed to open document");
 
          return;
 
@@ -889,7 +889,7 @@ namespace user
    }
 
 
-   void document_manager::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void document_manager::handle(::subject * psubject, ::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -897,7 +897,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->on_subject(psubject, pcontext);
+         ptemplate->handle(psubject, pcontext);
 
       }
 

@@ -133,4 +133,20 @@ public:
 
 
 
+#define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
+inline ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
+inline ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
+template < primitive_integral INTEGRAL > \
+inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
+using ENUMERATION = enumeration < ENUM >
+
+
+
+
 

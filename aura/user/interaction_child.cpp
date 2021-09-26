@@ -15,7 +15,7 @@ namespace user
 
       m_pinteractionchild = this;
       m_bCreate = false;
-      m_puiOwner = nullptr;
+      m_puserprimitiveOwner = nullptr;
 
    }
 
@@ -25,7 +25,7 @@ namespace user
    //{
 
    //   m_bCreate = false;
-   //   m_puiOwner = nullptr;
+   //   m_puserprimitiveOwner = nullptr;
 
    //}
 
@@ -112,19 +112,19 @@ namespace user
          //m_puserinteraction->set_window_long_ptr(GWL_STYLE, pusersystem->m_createstruct.style);
          //m_puserinteraction->set_window_long_ptr(GWL_STYLE, m_puserinteraction-());
 
-         //auto rectChild = pusersystem->get_rect();
+         //auto rectangleChild = pusersystem->get_rect();
 
-         //if (rectChild.is_set())
+         //if (rectangleChild.is_set())
          //{
 
          //   INFO("-------------------------------------------------------------------");
          //   INFO("");
          //   INFO("");
-         //   INFO("interaction_child::create_window_ex (rectChild %d, %d, (%d, %d))", rectChild.origin().x, rectChild.origin().y, rectChild.width(), rectChild.height());
+         //   INFO("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
          //   INFO("");
          //   INFO("");
 
-         //   m_puserinteraction->layout().sketch() = rectChild;
+         //   m_puserinteraction->layout().sketch() = rectangleChild;
 
          //}
 
@@ -169,7 +169,10 @@ namespace user
          }
 
          //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
-         m_puserinteraction->send_message(e_message_create, 0, 0);
+         if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
+         {
+            m_puserinteraction->send_message(e_message_create, 0, 0);
+         }
 
       }
       catch (...)
@@ -410,6 +413,36 @@ namespace user
    }
 
 
+   void interaction_child::destroy_window()
+   {
+
+      try
+      {
+
+         m_puserinteraction->send_message(e_message_destroy);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      try
+      {
+
+         m_puserinteraction->send_message(e_message_non_client_destroy);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+   }
+
+
    void interaction_child::message_handler(::message::message * pmessage)
    {
 
@@ -420,27 +453,27 @@ namespace user
       if (m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->GuieProc(pmessage);
+         //m_puserinteraction->GuieProc(pmessage);
 
-         if (pmessage->m_bRet)
-         {
+         //if (pmessage->m_bRet)
+         //{
 
-            return;
+         //   return;
 
-         }
-
-      }
-
-      if (message == e_message_event)
-      {
-
-         ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
-
-         m_puserinteraction->on_control_event(pevent);
-
-         return;
+         //}
 
       }
+
+      //if (message == e_message_event)
+      //{
+
+      //   ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
+
+      //   m_puserinteraction->handle(psubject, pcontext);
+
+      //   return;
+
+      //}
 
       if (::is_set(m_puserinteraction))
       {
@@ -551,7 +584,7 @@ namespace user
    bool interaction_child::_is_window() const
    {
 
-      if (!m_bUserPrimitiveOk)
+      if (!m_bUserElementOk)
       {
 
          return false;
@@ -663,18 +696,18 @@ namespace user
 
          }
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
+         m_puserinteraction->get_window_rect(rectangleWindow, ::user::e_layout_design);
 
          auto puserinteraction = get_wnd();
 
          if (::is_set(puserinteraction))
          {
 
-            puserinteraction->viewport_screen_to_client(rectWindow);
+            puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetViewportOrg(rectWindow.top_left());
+            pgraphics->SetViewportOrg(rectangleWindow.top_left());
 
          }
 
@@ -687,7 +720,7 @@ namespace user
    }
 
 
-   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();
@@ -699,7 +732,7 @@ namespace user
 
       }
 
-      pinteraction->RedrawWindow(rectUpdate, prgnUpdate, flags);
+      pinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
       return true;
 
@@ -715,9 +748,9 @@ namespace user
    ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
-      m_puiOwner = pinteraction;
+      m_puserprimitiveOwner = pinteraction;
 
-      return m_puiOwner->m_puiThis;
+      return m_puserprimitiveOwner->m_puserinteraction;
 
    }
 
@@ -725,10 +758,10 @@ namespace user
    ::user::interaction * interaction_child::get_owner() const
    {
 
-      if (m_puiOwner != nullptr)
+      if (m_puserprimitiveOwner != nullptr)
       {
 
-         return m_puiOwner->m_puiThis;
+         return m_puserprimitiveOwner->m_puserinteraction;
 
       }
 

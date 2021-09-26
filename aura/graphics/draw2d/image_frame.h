@@ -7,12 +7,12 @@ class CLASS_DECL_AURA image_frame :
 public:
 
 
-   ::rectangle_i32                        m_rectangle;
+   ::rectangle_i32               m_rectangle;
    ::image_pointer               m_pimage;
-   millis                          m_tick;
+   millis                        m_tick;
    index                         m_iFrame;
    ::draw2d::e_disposal          m_edisposal;
-   ::color::color                      m_colorTransparent;
+   ::color::color                m_colorTransparent;
    bool                          m_bTransparent;
    bool                          m_bLocalPalette;
 

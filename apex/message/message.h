@@ -28,7 +28,7 @@ namespace message
       ::message::mouse *            m_pmouse;
 
 
-      handler_item_array *          m_phandlera;
+      dispatcher_array *            m_pdispatchera;
       channel *                     m_pchannel;
       oswindow                      m_oswindow;
       enumeration < enum_flag >     m_eflagMessage;
@@ -51,7 +51,7 @@ namespace message
          m_pkey = nullptr;
          m_pmouse = nullptr;
 
-         m_phandlera = nullptr;
+         m_pdispatchera = nullptr;
          m_pchannel = nullptr;
          m_wparam = 0;
          m_iRouteIndex = -1;
@@ -63,11 +63,13 @@ namespace message
 
       }
 
+
       inline bool is_message() const { return m_id.is_message(); }
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 
-      inline auto route_message() { m_phandlera->m_pData[m_iRouteIndex].m_handler(this); return m_bRet; }
+      inline auto route_message() { m_pdispatchera->m_pData[m_iRouteIndex]->handle(this); return m_bRet; }
+
 
       bool all_previous(); // returns bRet
 

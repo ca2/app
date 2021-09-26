@@ -1,6 +1,6 @@
 #pragma once
 
-CLASS_DECL_ACME void throw_resource_exception(const char * psz);
+//CLASS_DECL_ACME void throw_resource_exception(const char * psz);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -40,7 +40,7 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 
          ::release(p);
 
-         throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
+         throw ::resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
       }
 

@@ -154,7 +154,7 @@ namespace filemanager
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
          //   propertyset["dstfile"].get_value().set_string(pszDst);
-         //   output_message_box_error("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
+         //   output_error_message("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}
 
@@ -178,7 +178,7 @@ namespace filemanager
 
             //   });
 
-            //papplication->sync_output_message_box_error("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papplication->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{

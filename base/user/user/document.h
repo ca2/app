@@ -30,15 +30,15 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < ::routine_array > m_mapRoutine;
+      id_map < ::routine_array >          m_mapRoutine;
 
 
       document();
       ~document() override;
 
 
-      virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void dump(dump_context &) const override;
+      void assert_valid() const override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -47,8 +47,8 @@ namespace user
       inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
 
 
-      virtual ::user::interaction* impact_at(::index iImpact) const override;
-      virtual ::count impact_count() const override;
+      ::user::interaction* impact_at(::index iImpact) const override;
+      ::count impact_count() const override;
 
       ::user::interaction_array get_top_level_windows();
 
@@ -56,10 +56,6 @@ namespace user
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
-
-      //virtual ::user::document* open_new_document(::aura::application* pappOnBehalfOf);
-      //virtual ::user::document* open_document_file(::aura::application* pappOnBehalfOf, ::payload varFile = payload(), bool bMakeVisible = true, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-      //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
       void on_request(::create* pcreate) override;
 
 
@@ -212,7 +208,7 @@ namespace user
       __transport(DATA) __create_data()
       {
 
-         auto pdata = ::__create_new<DATA>();
+         auto pdata = __create_new<DATA>();
 
          if (!pdata)
          {
@@ -255,10 +251,10 @@ namespace user
       // Update Views (simple update - DAG only)
       void id_update_all_views(const ::id & id);
       void update_all_views(impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject::subject * psubject);
+      virtual void update_all_views(::subject * psubject);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);
@@ -314,7 +310,7 @@ namespace user
       virtual void on_idle();
       virtual void on_final_release();
 
-      //virtual void route_command_message(::message::command * pcommand) override;
+      //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       friend class impact_system;
 

@@ -246,7 +246,7 @@ namespace sockets
    {
    FATAL(log_this, "getprotobyname", Errno, bsd_socket_error(Errno));
    SetCloseAndDelete();
-   __throw(::exception::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
+   __throw(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
    }
    }
@@ -257,7 +257,7 @@ namespace sockets
    {
    FATAL(log_this, "base_socket", Errno, bsd_socket_error(Errno));
    SetCloseAndDelete();
-   __throw(::exception::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
+   __throw(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
    }
    attach(s);
@@ -2609,7 +2609,7 @@ namespace sockets
    port_t base_socket::GetLocalPort()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return 0;
 
@@ -2619,7 +2619,7 @@ namespace sockets
    ::net::address base_socket::GetLocalAddress()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return ::net::address();
 

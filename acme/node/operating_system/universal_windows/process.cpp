@@ -380,3 +380,14 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 //    return str;
 
 // }
+
+
+bool set_process_priority(::enum_priority epriority)
+{
+
+   //return (::SetPriorityClass(::GetCurrentProcess(), get_os_priority_class(epriority)) != 0);
+
+   return false;
+
+
+}

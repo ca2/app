@@ -44,17 +44,17 @@ namespace experience
       i32                                    m_iDefaultButtonMargin;
       i32                                    m_iDefaultButtonSize;
       ::size_i32                             m_sizeButtonDefault;
-      ::write_text::font_pointer             m_fontMarlett;
+      ::write_text::font_pointer             m_pfontMarlett;
 
-      ::draw2d::brush_pointer                m_brushButtonBack;
-      ::draw2d::brush_pointer                m_brushButtonBackSel;
-      ::draw2d::brush_pointer                m_brushButtonBackFocus;
-      ::draw2d::brush_pointer                m_brushButtonBackDisabled;
+      ::draw2d::brush_pointer                m_pbrushButtonBack;
+      ::draw2d::brush_pointer                m_pbrushButtonBackSel;
+      ::draw2d::brush_pointer                m_pbrushButtonBackFocus;
+      ::draw2d::brush_pointer                m_pbrushButtonBackDisabled;
 
-      ::draw2d::pen_pointer                  m_penButtonBack;
-      ::draw2d::pen_pointer                  m_penButtonBackSel;
-      ::draw2d::pen_pointer                  m_penButtonBackFocus;
-      ::draw2d::pen_pointer                  m_penButtonBackDisabled;
+      ::draw2d::pen_pointer                  m_ppenButtonBack;
+      ::draw2d::pen_pointer                  m_ppenButtonBackSel;
+      ::draw2d::pen_pointer                  m_ppenButtonBackFocus;
+      ::draw2d::pen_pointer                  m_ppenButtonBackDisabled;
 
       ::color::color                         m_colorButtonFore;
       ::color::color                         m_colorButtonForeSel;

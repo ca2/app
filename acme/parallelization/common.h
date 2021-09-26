@@ -106,15 +106,15 @@ namespace primitive
 } // namespace primitive
 
 
-namespace exception
-{
-
-
-   class exception;
-   class base;
-
-
-} // namespace exception
+//namespace exception
+//{
+//
+//
+//   class exception;
+//   class base;
+//
+//
+//} // namespace exception
 
 
 

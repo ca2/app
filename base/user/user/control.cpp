@@ -44,7 +44,7 @@
 //      //
 //      //#else
 //      //
-//      //      //::exception::throw_not_implemented();
+//      //      //throw interface_only_exception();
 //      //
 //      //#endif
 //      //
@@ -67,13 +67,13 @@
 //
 //      pcreate->previous();
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_eevent = ::user::e_event_create;
+//      subject.m_id = ::e_subject_create;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
 //   }
 //
@@ -477,15 +477,15 @@
 //
 //      //}
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_eevent = ::user::e_event_set_focus;
+//      subject.m_id = ::e_subject_set_focus;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
-//      pmessage->m_bRet =  ev.m_bRet;
+//      pmessage->m_bRet =  subject.m_bRet;
 //
 //   }
 //
@@ -495,17 +495,17 @@
 //
 //      __pointer(::message::kill_focus) pkillfocus(pmessage);
 //
-//      ::user::control_event ev;
+//      ::subject subject;
 //
-//      ev.m_puserinteraction = this;
+//      subject.m_puserinteraction = this;
 //
-//      ev.m_id = m_id;
+//      //subject.m_id = m_id;
 //
-//      ev.m_eevent = ::user::e_event_kill_focus;
+//      subject.m_id = ::e_subject_kill_focus;
 //
-//      on_control_event(&ev);
+//      route(&subject);
 //
-//      pkillfocus->m_bRet = ev.m_bRet;
+//      pkillfocus->m_bRet = subject.m_bRet;
 //
 //   }
 //
@@ -811,7 +811,7 @@
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
-//   //      ::user::enum_element eelementHover = hit_test(pmouse);
+//   //      ::enum_element eelementHover = hit_test(pmouse);
 //
 //   //      if (m_eelementHover != eelementHover)
 //   //      {
@@ -846,22 +846,22 @@
 //
 //   //   }
 //
-//   //   ::user::control_event ev;
+//   //   ::subject subject;
 //
-//   //   ev.m_id = m_id;
+//   //   //subject.m_id = m_id;
 //
-//   //   ev.m_puserinteraction = this;
+//   //   subject.m_puserinteraction = this;
 //
-//   //   ev.m_eevent = e_event_mouse_leave;
+//   //   subject.m_id = e_event_mouse_leave;
 //
-//   //   ev.m_pmessage = pmessage;
+//   //   subject.m_pmessage = pmessage;
 //
-//   //   on_control_event(&ev);
+//   //   route(&subject);
 //
 //   //}
 //
 //
-//   //void control::on_hit_test(::user::item & item)
+//   //void control::on_hit_test(::item & item)
 //   //{
 //
 //   //   auto rectangleClient = get_client_rect();
@@ -892,10 +892,10 @@
 //   //}
 //
 //
-//   void control::route_control_event(::user::control_event* pevent)
+//   void control::route(::subject * psubject, ::context * pcontext)
 //   {
 //
-//      ::user::box::route_control_event(pevent);
+//      ::user::box::route_handling(pevent);
 //
 //   }
 //
@@ -908,10 +908,10 @@
 //   }
 //
 //
-//   void control::on_control_event(::user::control_event * pevent)
+//   void control::handle(::subject * psubject, ::context * pcontext)
 //   {
 //
-//      ::user::box::on_control_event(pevent);
+//      ::user::box::handle(psubject, pcontext);
 //
 //   }
 //
@@ -923,10 +923,10 @@
 //   }
 //
 //
-//   void control::route_command_message(::message::command * pcommand)
+//   void control::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 //   {
 //
-//      ::user::box::route_command_message(pcommand);
+//      ::user::box::route_command(pcommand);
 //
 //      if (pcommand->m_bRet)
 //      {
@@ -947,7 +947,7 @@
 //      if (puiParent != nullptr)
 //      {
 //
-//         puiParent->route_command_message(pcommand);
+//         puiParent->route_command(pcommand);
 //
 //      }
 //
@@ -994,18 +994,18 @@
 //         //i32 iMargin = rectangleClient.height() / 8;
 //         i32 iMargin = 0;
 //
-//         ::rectangle_i32 rectDropDown;
+//         ::rectangle_i32 rectangleDropDown;
 //
-//         rectDropDown = rectangleClient;
+//         rectangleDropDown = rectangleClient;
 //
 //         i32 iW = rectangleClient.height() * 5 / 8;
 //
-//         rectDropDown.right -= iMargin;
-//         rectDropDown.bottom -= iMargin;
-//         rectDropDown.top += iMargin;
-//         rectDropDown.left = rectDropDown.right - iW;
+//         rectangleDropDown.right -= iMargin;
+//         rectangleDropDown.bottom -= iMargin;
+//         rectangleDropDown.top += iMargin;
+//         rectangleDropDown.left = rectangleDropDown.right - iW;
 //
-//         *prectangle = rectDropDown;
+//         *prectangle = rectangleDropDown;
 //
 //
 //         return true;
@@ -1018,19 +1018,19 @@
 //
 //         get_client_rect(rectangleClient);
 //
-//         ::rectangle_i32 rectDropDown;
+//         ::rectangle_i32 rectangleDropDown;
 //
-//         get_element_rect(rectDropDown, e_element_drop_down);
+//         get_element_rect(rectangleDropDown, e_element_drop_down);
 //
-//         ::rectangle_i32 rectEdit = rectangleClient;
+//         ::rectangle_i32 rectangleEdit = rectangleClient;
 //
-//         rectEdit.right = rectDropDown.left;
+//         rectangleEdit.right = rectangleDropDown.left;
 //
-//         //::rectangle_i32 rectPadding = _001GetRect(::user::rect_edit_padding);
+//         //::rectangle_i32 rectanglePadding = _001GetRect(::user::rect_edit_padding);
 //
-//         //rectEdit.deflate(rectPadding);
+//         //rectangleEdit.deflate(rectanglePadding);
 //
-//         *prectangle = rectEdit;
+//         *prectangle = rectangleEdit;
 //
 //
 //         return true;
@@ -1045,15 +1045,15 @@
 //   void control::get_simple_drop_down_open_arrow_polygon(point_f64_array & pointa)
 //   {
 //
-//      ::rectangle_i32 rectDropDown;
+//      ::rectangle_i32 rectangleDropDown;
 //
-//      get_element_rect(rectDropDown, e_element_drop_down);
+//      get_element_rect(rectangleDropDown, e_element_drop_down);
 //
-//      i32 cx = rectDropDown.width() / 3;
+//      i32 cx = rectangleDropDown.width() / 3;
 //
 //      i32 cy = cx * 2 / 3;
 //
-//      ::point_i32 pointCenter = rectDropDown.center();
+//      ::point_i32 pointCenter = rectangleDropDown.center();
 //
 //      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 //

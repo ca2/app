@@ -55,7 +55,7 @@ namespace sockets
                 sigemptyset(&m_saPipe.sa_mask);
                 sigaddset(&m_saPipe.sa_mask, SIGSEGV);
                 m_saPipe.sa_flags = SA_NODEFER | SA_SIGINFO;
-                m_saPipe.sa_sigaction = &::exception::translator::filter_sigpipe;
+                m_saPipe.sa_sigaction = &::exception_translator::filter_sigpipe;
                 sigaction(SIGPIPE, &m_saPipe, &m_saPipeOld);
 
                 //pthread_t thread;

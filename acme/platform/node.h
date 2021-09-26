@@ -69,12 +69,12 @@ namespace acme
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
 
-      ::logic::bit            m_bLastDarkModeApp;
+      //bool                    m_bUserDarkMode;
 
-      ::logic::bit            m_bLastDarkModeSystem;
-
-      ::color::color          m_colorSystemAppBackground;
-      double                  m_dSystemLuminance;
+      //bool                    m_bDarkModeSystem;
+      bool                    m_bDarkMode;
+      ::color::color          m_colorBackground;
+      double                  m_dLuminance;
       int                     m_iWeatherDarkness;
       ::file::path            m_pathModule;
 
@@ -163,9 +163,15 @@ namespace acme
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual ::e_status  set_last_run_application_path(const string& strAppId);
 
+      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
-      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
-      virtual ::e_status unregister_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      virtual ::e_status install_keyboard_hook(::matter * pmatterListener);
+      virtual ::e_status uninstall_keyboard_hook(::matter * pmatterListener);
+      
+      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+
+      virtual ::e_status install_mouse_hook(::matter * pmatterListener);
+      virtual ::e_status uninstall_mouse_hook(::matter * pmatterListener);
 
 
       virtual ::file::path _module_path();
@@ -187,39 +193,21 @@ namespace acme
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
-      virtual ::e_status set_system_dark_mode1(bool bSet = true);
+      inline bool dark_mode() const { return m_bDarkMode; }
 
-      virtual ::e_status set_app_dark_mode1(bool bSet = true);
+      inline ::color::color background_color() const { return m_colorBackground; }
 
-      virtual ::e_status set_internal_system_dark_mode(bool bSet = true);
+      inline double luminance() const { return m_dLuminance; }
 
-      virtual ::e_status set_internal_app_dark_mode(bool bSet = true);
-
-      virtual bool is_system_dark_mode();
-
-      virtual bool is_app_dark_mode();
-
-      virtual ::color::color get_system_app_background_color();
-
-      virtual void set_system_app_background_color(::color::color color);
-
-      virtual double get_system_app_luminance();
-
-      virtual void set_system_app_luminance(double dLuminance);
+      virtual void background_color(const ::color::color & color);
 
       virtual int get_simple_ui_darkness();
 
       virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      virtual bool _os_calc_app_dark_mode();
+      virtual void fetch_user_color();
 
-      virtual bool _os_calc_system_dark_mode();
-
-      virtual void os_calc_user_dark_mode();
-
-      virtual void on_os_dark_mode_change();
-
-      virtual void defer_initialize_dark_mode();
+      virtual void on_user_color();
 
       virtual string os_get_user_theme();
 
@@ -295,16 +283,16 @@ namespace acme
 
       virtual void node_quit();
 
-      virtual bool should_launch_on_node(::subject::subject * psubject);
+      virtual bool should_launch_on_node(::subject * psubject);
 
-      virtual bool defer_launch_on_node(::subject::subject * psubject);
+      virtual bool defer_launch_on_node(::subject * psubject);
 
-      virtual bool launch_on_node(::subject::subject * psubject);
+      virtual bool launch_on_node(::subject * psubject);
 
 
       virtual string get_user_name();
 
-      virtual ::color::color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
 
       virtual ::color::color get_default_color(::u64 u);
 

@@ -10,8 +10,9 @@ namespace file
    {
    public:
 
-            text_file();
-      virtual ~text_file();
+
+      text_file();
+      ~text_file() override;
 
 
       virtual void write_string(const char * psz);

@@ -215,16 +215,16 @@ namespace user
    void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::brush_pointer brBk(e_create);
+      auto pbrushBk = __create < ::draw2d::brush > ();
 
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);
 
-      brBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
+      pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectangleClient, brBk);
+      pgraphics->fill_rectangle(rectangleClient, pbrushBk);
 
    }
 
@@ -281,16 +281,16 @@ namespace user
 
 
 
-   void format_tool::on_control_event(::user::control_event * pevent)
+   void format_tool::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_actioncontext.is_user_source())
+      if (psubject->m_actioncontext.is_user_source())
       {
 
-         if (pevent->m_eevent == ::user::e_event_click)
+         if (psubject->m_id == ::e_subject_click)
          {
 
-            if (pevent->m_puserinteraction->m_id == "font_bold")
+            if (psubject->user_interaction()->m_id == "font_bold")
             {
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
@@ -299,10 +299,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_italic")
+            else if (psubject->user_interaction()->m_id == "font_italic")
             {
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
@@ -311,10 +311,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_underline")
+            else if (psubject->user_interaction()->m_id == "font_underline")
             {
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
@@ -323,10 +323,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_subscript")
+            else if (psubject->user_interaction()->m_id == "font_subscript")
             {
 
                m_pbuttonSubscript->_001ToggleCheck(::e_source_user);
@@ -342,10 +342,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_superscript")
+            else if (psubject->user_interaction()->m_id == "font_superscript")
             {
 
                m_pbuttonSuperscript->_001ToggleCheck(::e_source_user);
@@ -361,11 +361,11 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
-            else if (pevent->m_puserinteraction->m_id == "e_align_left")
+            else if (psubject->user_interaction()->m_id == "e_align_left")
             {
 
                m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::e_source_user);
@@ -388,10 +388,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "e_align_center")
+            else if (psubject->user_interaction()->m_id == "e_align_center")
             {
 
                m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::e_source_user);
@@ -414,10 +414,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "e_align_right")
+            else if (psubject->user_interaction()->m_id == "e_align_right")
             {
 
                m_pbuttonAlignRight->_001SetCheck(::check_checked, ::e_source_user);
@@ -440,10 +440,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_foreground")
+            else if (psubject->user_interaction()->m_id == "font_foreground")
             {
 
                fork([&]()
@@ -454,58 +454,58 @@ namespace user
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_after_change_text)
+         else if (psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_size")
+            if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_enter_key)
+         else if (psubject->m_id == ::e_subject_enter_key)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_size")
+            if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+         else if (psubject->m_id == ::e_subject_after_change_cur_sel)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_family")
+            if (psubject->user_interaction()->m_id == "combo_family")
             {
 
                m_eattribute |= ::user::rich_text::attribute_family;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
 
             }
-            else if (pevent->m_puserinteraction->m_id == "combo_size")
+            else if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
@@ -513,14 +513,14 @@ namespace user
 
       }
 
-      if (pevent->m_bRet)
+      if (psubject->m_bRet)
       {
 
          return;
 
       }
 
-      return ::user::tool_window::on_control_event(pevent);
+      return ::user::tool_window::handle(psubject, pcontext);
 
    }
 
@@ -656,15 +656,15 @@ namespace user
 
          m_formata[0]->m_bUpdated = false;
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         route_control_event(&ev);
+         route(&subject);
 
       }
       else
@@ -702,28 +702,28 @@ namespace user
    void format_tool::show_for_ui(::user::interaction* pinteraction)
    {
 
-      ::rectangle_i32 rectOther;
+      ::rectangle_i32 rectangleOther;
       
-      pinteraction->get_window_rect(rectOther);
+      pinteraction->get_window_rect(rectangleOther);
 
       set_owner(pinteraction);
 
-      ::rectangle_i32 rectangle(rectOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
+      ::rectangle_i32 rectangle(rectangleOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
-      ::rectangle_i32 rectRequest;
+      ::rectangle_i32 rectangleRequest;
 
-      rectRequest.left = rectangle.left - 32;
-      rectRequest.top = rectangle.top - 32;
-      rectRequest.right = rectRequest.left + 400;
-      rectRequest.bottom = rectRequest.top + 32;
+      rectangleRequest.left = rectangle.left - 32;
+      rectangleRequest.top = rectangle.top - 32;
+      rectangleRequest.right = rectangleRequest.left + 400;
+      rectangleRequest.bottom = rectangleRequest.top + 32;
 
       enable_window();
 
-      place(rectRequest);
+      place(rectangleRequest);
 
       order(e_zorder_top_most);
 

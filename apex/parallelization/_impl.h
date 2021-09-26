@@ -174,7 +174,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      }
 //
-//      __throw(::exception::exception(m_strErrorMessage));
+//      __throw(::exception(m_strErrorMessage));
 //
 //   }
 //
@@ -234,7 +234,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //            set_value(pred());
 //
 //         }
-//         catch(const ::exception::exception & e)
+//         catch(const ::exception & e)
 //         {
 //
 //            set_error_message(e->get_message());
@@ -442,7 +442,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), 
 //
 //      }
 //
-//      __throw(::exception::exception(m_strErrorMessage));
+//      __throw(::exception(m_strErrorMessage));
 //
 //   }
 //
@@ -503,7 +503,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), 
 //               set_value(pred());
 //
 //            }
-//            catch(const ::exception::exception & e)
+//            catch(const ::exception & e)
 //            {
 //
 //               set_error_message(e.get_message());

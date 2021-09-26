@@ -21,7 +21,7 @@ namespace user
       image_array             m_imageaThumb;
 
       index_array             m_iaSel;
-      //::user::item            m_itemLButtonDown;
+      //::item            m_itemLButtonDown;
       ::size_i32                  m_size;
       bool                    m_bMultiSel;
       ::size_i32                  m_sizeImage;
@@ -31,9 +31,9 @@ namespace user
       virtual ~image_list();
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
-      virtual bool get_rect(::user::item & item) override;
+      virtual bool get_rect(::item & item) override;
 
 
 
@@ -71,9 +71,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
 
-      virtual ::user::item current_item() override;
+      virtual ::item current_item() override;
 
       index_array _001GetSelection();
 
@@ -111,7 +111,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 

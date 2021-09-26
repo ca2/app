@@ -32,7 +32,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      connect_command("app_exit", &frame::on_message_app_exit);
+      add_command_handler("app_exit", this, &frame::on_message_app_exit);
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::on_message_app_exit);
@@ -376,7 +376,7 @@ namespace user
 
 
 
-   void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void frame::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)
@@ -385,7 +385,7 @@ namespace user
          on_user_style_change();
 
       }
-      else if (psubject->m_id == id_os_dark_mode)
+      else if (psubject->m_id == id_user_color)
       {
 
          set_need_redraw();

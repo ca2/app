@@ -134,7 +134,7 @@ int get_proc_cpuinfo_core_count()
 ::millis os_get_system_update_poll_time(const ::id & id)
 {
 
-   if(id == id_os_dark_mode)
+   if(id == id_user_color)
    {
 
       // On Gnome you can?

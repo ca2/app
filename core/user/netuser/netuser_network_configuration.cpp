@@ -109,15 +109,15 @@ namespace usernet
    }
 
 
-   void network_configuration::on_control_event(::user::control_event * pevent)
+   void network_configuration::handle(::subject * psubject, ::context * )
    {
 
       auto pcontext = get_context();
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "submit")
+         if(psubject->user_interaction()->m_id == "submit")
          {
 
             auto pinteraction = m_pimpact->get_child_by_name("server");

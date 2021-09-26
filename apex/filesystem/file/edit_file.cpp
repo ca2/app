@@ -18,7 +18,7 @@ namespace file
    bool edit_item_base::read_byte(u8 * pbyte, ::file::edit_file * pfile)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 

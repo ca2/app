@@ -2,7 +2,6 @@
 #include "framework.h"
 
 
-
 load_image::load_image(context_image * pcontextimage) :
    m_pcontextimage(pcontextimage)
 {
@@ -22,8 +21,6 @@ load_image::~load_image()
 {
 
    ::image * pimage = m_pimage;
-
-   pimage->m_estatus = error_failed;
 
    try
    {

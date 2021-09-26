@@ -21,12 +21,12 @@ namespace hotplugin
 
       }
 
-      RECTANGLE_I32 rectWindow;
+      RECTANGLE_I32 rectangleWindow;
 
-      get_window_rect(&rectWindow);
+      get_window_rect(&rectangleWindow);
 
-      i32 cx = rectWindow.right - rectWindow.left;
-      i32 cy = rectWindow.bottom - rectWindow.top;
+      i32 cx = rectangleWindow.right - rectangleWindow.left;
+      i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       RECTANGLE_I32 rectangle_i32;
 
@@ -43,7 +43,7 @@ namespace hotplugin
 
       strProgress.Format("%0.3f%%", dRate * 100.0);
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
       
 
@@ -52,13 +52,13 @@ namespace hotplugin
          byte uchR, uchG, uchB;
          ::rectangle_i32 rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
-         br->create_solid(argb(255, uchR, uchG, uchB));
+         pbrush->create_solid(argb(255, uchR, uchG, uchB));
          r = rectangle_i32_dimension(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
 
-      br->create_solid(argb(255, 255, 255, 255));
+      pbrush->create_solid(argb(255, 255, 255, 255));
 
       pgraphics->SelectObject(br);
 

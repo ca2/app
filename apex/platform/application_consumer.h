@@ -49,33 +49,32 @@ void dump(dump_context & dumpcontext) const override                            
                                                                                        \
 }                                                                                      \
                                                                                        \
-                                                                                       \
-void subject_handler(::subject::subject* psubject) override                            \
+void handle(::subject * psubject, ::context * pcontext) override \
 {                                                                                      \
                                                                                        \
-   BASE1::subject_handler(psubject);                                                   \
+   BASE1::handle(psubject, pcontext);                                              \
                                                                                        \
-   BASE2::subject_handler(psubject);                                                   \
+   BASE2::handle(psubject, pcontext);                                              \
                                                                                        \
-   BASE3::subject_handler(psubject);                                                   \
+   BASE3::handle(psubject, pcontext);                                              \
                                                                                        \
-   BASE4::subject_handler(psubject);                                                   \
+   BASE4::handle(psubject, pcontext);                                              \
                                                                                        \
-}                                                                                      \
+}            
+//void signal(::signal * psignal) override                            \
+//{                                                                                      \
+//                                                                                       \
+//   BASE1::signal(psignal);                                                   \
+//                                                                                       \
+//   BASE2::signal(psignal);                                                   \
+//                                                                                       \
+//   BASE3::signal(psignal);                                                   \
+//                                                                                       \
+//   BASE4::signal(psignal);                                                   \
+//                                                                                       \
+//}                                                                                      \
                                                                                        \
-                                                                                       \
-void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override \
-{                                                                                      \
-                                                                                       \
-   BASE1::on_subject(psubject, pcontext);                                              \
-                                                                                       \
-   BASE2::on_subject(psubject, pcontext);                                              \
-                                                                                       \
-   BASE3::on_subject(psubject, pcontext);                                              \
-                                                                                       \
-   BASE4::on_subject(psubject, pcontext);                                              \
-                                                                                       \
-}                                                                                      
+
 
 
 template <  typename APPLICATION, typename BASE1 = optional_base1, typename BASE2 = optional_base2, typename BASE3 = optional_base3, typename BASE4 = optional_base4 >

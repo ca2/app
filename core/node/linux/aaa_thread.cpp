@@ -42,7 +42,7 @@ bool __node_init_thread(::thread * pthread)
 //   try
 //   {
 //
-//      pthread->m_pimpl->::exception::translator::attach();
+//      pthread->m_pimpl->::exception_translator::attach();
 //
 //   }
 //   catch(...)

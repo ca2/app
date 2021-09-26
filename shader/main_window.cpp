@@ -68,19 +68,19 @@ namespace app_shader
 
       {
 
-         auto pitem = get_user_item(::user::e_element_close_button);
+         auto pitem = get_user_item(::e_element_close_button);
 
-         *pitem = ::user::e_element_close_icon;
+         *pitem = ::e_element_close_icon;
 
       }
 
       {
 
-         add_user_item({ ::user::e_element_switch_button, ::user::e_event_close_app });
+         add_user_item({ ::e_element_switch_button, ::e_subject_close_app });
 
-         auto pitem = get_user_item(::user::e_element_switch_button);
+         auto pitem = get_user_item(::e_element_switch_button);
 
-         *pitem = ::user::e_element_switch_button;
+         *pitem = ::e_element_switch_button;
 
       }
 
@@ -126,7 +126,7 @@ namespace app_shader
    }
 
 
-   void main_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_window::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_simple_checkbox || psubject->id() == id_no_client_frame)
@@ -136,7 +136,7 @@ namespace app_shader
 
       }
 
-      ::user::interaction::on_subject(psubject, pcontext);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -231,7 +231,7 @@ namespace app_shader
    }
 
 
-   bool main_window::on_click(const ::user::item& item)
+   bool main_window::on_click(const ::item& item)
    {
 
       if (::user::interaction::on_click(item))
@@ -287,7 +287,7 @@ namespace app_shader
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
    {
 
       ::user::interaction::_001DrawItem(pgraphics, pitem);

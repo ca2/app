@@ -55,7 +55,7 @@ namespace universal_windows
       if (!main_initialize())
       {
 
-         __throw(::exception::exception("Failed to run main_initialize at directx_framework_view constructor."));
+         __throw(::exception("Failed to run main_initialize at directx_framework_view constructor."));
 
       }
 
@@ -84,7 +84,7 @@ namespace universal_windows
       if (!m_psystem->begin_synch())
       {
 
-         __throw(::exception::exception("failed to begin_synch the system"));
+         __throw(::exception("failed to begin_synch the system"));
 
       }
 
@@ -209,7 +209,7 @@ namespace universal_windows
 
       initialize_directx_application();
 
-      m_rectLastWindowRect = m_window->Bounds;
+      m_rectangleLastWindowRect = m_window->Bounds;
 
    }
 
@@ -247,9 +247,9 @@ namespace universal_windows
 
       m_directx->m_size.set_size((i32) args->Size.Width, (i32)args->Size.Height);
 
-      m_rectLastWindowRect.Width = (float) m_directx->m_size.cx;
+      m_rectangleLastWindowRect.Width = (float) m_directx->m_size.cx;
 
-      m_rectLastWindowRect.Height = (float) m_directx->m_size.cy;
+      m_rectangleLastWindowRect.Height = (float) m_directx->m_size.cy;
 
       m_directx->OnWindowSizeChange();
 
@@ -259,7 +259,7 @@ namespace universal_windows
    void directx_framework_view::DpiChanged(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
-      m_rectLastWindowRect = m_window->Bounds;
+      m_rectangleLastWindowRect = m_window->Bounds;
 
       m_directx->OnChangeDpi(sender->LogicalDpi);
 
@@ -722,7 +722,7 @@ namespace universal_windows
    ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
-      ::winrt::Windows::Foundation::Rect rectangle = m_rectInputContentRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectangleInputContentRect;
 
       return rectangle;
 
@@ -732,7 +732,7 @@ namespace universal_windows
    ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
-      ::winrt::Windows::Foundation::Rect rectangle = m_rectInputSelectionRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectangleInputSelectionRect;
 
       return rectangle;
 
@@ -742,7 +742,7 @@ namespace universal_windows
    ::winrt::Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
-      ::winrt::Windows::Foundation::Rect rectangle = m_rectLastWindowRect;
+      ::winrt::Windows::Foundation::Rect rectangle = m_rectangleLastWindowRect;
 
       /*      rectangle.X = 0;
             rectangle.Y = 0;

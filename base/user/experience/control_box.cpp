@@ -7,15 +7,7 @@ namespace experience
 {
 
 
-   control_box::control_box() :
-      m_brushButtonBack(e_create),
-      m_brushButtonBackSel(e_create),
-      m_brushButtonBackFocus(e_create),
-      m_brushButtonBackDisabled(e_create),
-      m_penButtonBack(e_create),
-      m_penButtonBackSel(e_create),
-      m_penButtonBackFocus(e_create),
-      m_penButtonBackDisabled(e_create)
+   control_box::control_box()
    {
 
       m_strInteractionTag = "control_box";
@@ -139,33 +131,33 @@ namespace experience
 
       //}
 
-      //::rectangle_i32 rectParent;
+      //::rectangle_i32 rectangleParent;
 
-      //get_parent()->get_client_rect(rectParent);
+      //get_parent()->get_client_rect(rectangleParent);
 
       //::rectangle_i32 rectangleClient;
 
       //get_client_rect(rectangleClient);
 
-      //::rectangle_i32 rectWindow;
+      //::rectangle_i32 rectangleWindow;
 
-      //get_window_rect(rectWindow);
+      //get_window_rect(rectangleWindow);
 
-      //get_parent()->screen_to_client(rectWindow);
+      //get_parent()->screen_to_client(rectangleWindow);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - x - rectWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - x - rectangleWindow.width();
 
       //m_pframewindow->m_pframe->get_control_box_rect()->move_left_to(x);
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::point_i32 point(x, rectWindow.top);
+      //::point_i32 point(x, rectangleWindow.top);
 
       //::point_i32 pointScreen(point);
 
       //get_parent()->client_to_screen(pointScreen);
 
-      //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - point.x - rectWindow.width();
+      //m_pframewindow->m_pframe->m_iControlBoxRight = rectangleParent.right - point.x - rectangleWindow.width();
 
       //int iControlBoxRight = m_pframewindow->m_pframe->m_iControlBoxRight;
 
@@ -254,11 +246,11 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rectangle_i32 rectWindow;
+                     ::rectangle_i32 rectangleWindow;
 
-                     get_window_rect(rectWindow);
+                     get_window_rect(rectangleWindow);
 
-                     if (rectWindow.contains(pointCursor))
+                     if (rectangleWindow.contains(pointCursor))
                      {
 
                         m_millisShow.Now();
@@ -293,15 +285,15 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rectangle_i32 rectWindow;
+                     ::rectangle_i32 rectangleWindow;
 
-                     get_window_rect(rectWindow);
+                     get_window_rect(rectangleWindow);
 
-                     rectWindow.left = minimum(rectWindow.left, rectWindow.right);
-                     rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
+                     rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
+                     rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
 
 
-                     if (pointCursor.x >= rectWindow.left && pointCursor.y <= rectWindow.right && pointCursor.y == 0)
+                     if (pointCursor.x >= rectangleWindow.left && pointCursor.y <= rectangleWindow.right && pointCursor.y == 0)
                      {
 
                         order(e_zorder_top);
@@ -324,12 +316,12 @@ namespace experience
             if (m_pframewindow->layout().is_full_screen())
             {
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectWindow);
+               get_window_rect(rectangleWindow);
 
-               rectWindow.left = minimum(rectWindow.left, rectWindow.right);
-               rectWindow.bottom = minimum(rectWindow.top, rectWindow.bottom);
+               rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
+               rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
 
                ::point_i32 point;
 
@@ -344,7 +336,7 @@ namespace experience
 
                }
 
-               if (point.x >= rectWindow.left && point.x <= rectWindow.right && point.y == 0)
+               if (point.x >= rectangleWindow.left && point.x <= rectangleWindow.right && point.y == 0)
                {
 
                   m_bShowAttempt = true;
@@ -365,6 +357,16 @@ namespace experience
    void control_box::on_message_create(::message::message * pmessage)
    {
 
+      m_pbrushButtonBack.create(this);
+      m_pbrushButtonBackSel.create(this);
+      m_pbrushButtonBackFocus.create(this);
+      m_pbrushButtonBackDisabled.create(this);
+      m_ppenButtonBack.create(this);
+      m_ppenButtonBackSel.create(this);
+      m_ppenButtonBackFocus.create(this);
+      m_ppenButtonBackDisabled.create(this);
+
+
       pmessage->previous();
 
       if (pmessage->m_bRet)
@@ -374,12 +376,12 @@ namespace experience
 
       }
 
-      if (!m_fontMarlett)
+      if (!m_pfontMarlett)
       {
 
-         m_fontMarlett.create(this);
+         m_pfontMarlett.create(this);
 
-         m_fontMarlett->create_pixel_font("Marlett", 16.0);
+         m_pfontMarlett->create_pixel_font("Marlett", 16.0);
 
       }
 
@@ -533,15 +535,15 @@ namespace experience
 
          auto sizeButton = get_button_size(ebutton);
 
-         auto rectMargin = get_button_margin(ebutton);
+         auto rectangleMargin = get_button_margin(ebutton);
 
-         rectangle.right = rectangle.left - rectMargin.right;
+         rectangle.right = rectangle.left - rectangleMargin.right;
          rectangle.left = rectangle.right - sizeButton.cx;
 
          if (pbutton)
          {
 
-            rectangle.top = rectMargin.top;
+            rectangle.top = rectangleMargin.top;
             rectangle.bottom = sizeButton.cy + rectangle.top;
 
             pbutton->order(e_zorder_top);
@@ -551,7 +553,7 @@ namespace experience
 
          }
 
-         rectangle.left -= rectMargin.left;
+         rectangle.left -= rectangleMargin.left;
 
       }
       else
@@ -572,13 +574,13 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectWindow);
+      m_pframewindow->get_window_rect(rectangleWindow);
 
-      ::rectangle_i32 rectParent(rectWindow);
+      ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      m_pframewindow->screen_to_client(rectParent);
+      m_pframewindow->screen_to_client(rectangleParent);
 
       ::rectangle_i32 rectangle;
 
@@ -669,7 +671,7 @@ namespace experience
 
       pbutton->m_ebutton = ebutton;
 
-      pbutton->add_control_event_handler(m_pframewindow);
+      pbutton->add_handler(m_pframewindow);
 
       // if(ebutton == e_button_dock)
       // {
@@ -965,14 +967,14 @@ namespace experience
    rectangle_i32 control_box::get_button_margin(enum_button ebutton)
    {
 
-      ::rectangle_i32 rectMargin;
+      ::rectangle_i32 rectangleMargin;
 
-      rectMargin.left = 0;
-      rectMargin.top = m_iDefaultButtonMargin;
-      rectMargin.right = m_iDefaultButtonMargin;
-      rectMargin.bottom = m_iDefaultButtonMargin;
+      rectangleMargin.left = 0;
+      rectangleMargin.top = m_iDefaultButtonMargin;
+      rectangleMargin.right = m_iDefaultButtonMargin;
+      rectangleMargin.bottom = m_iDefaultButtonMargin;
 
-      return rectMargin;
+      return rectangleMargin;
 
    }
 
@@ -980,7 +982,7 @@ namespace experience
    i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto dFontHeight = m_fontMarlett->get_height(pgraphics);
+      auto dFontHeight = m_pfontMarlett->get_height(pgraphics);
 
       i32 iButtonSize = (::i32) (dFontHeight + m_iDefaultButtonMargin * 3);
 
@@ -1067,15 +1069,15 @@ namespace experience
    void control_box::set_button_color_system_default_001()
    {
 
-      m_brushButtonBack->create_solid(argb(0, 0, 0, 0));
-      m_brushButtonBackSel->create_solid(argb(255, 150, 220, 145));
-      m_brushButtonBackFocus->create_solid(argb(255, 150, 220, 145));
-      m_brushButtonBackDisabled->create_solid(argb(255, 180, 180, 175));
+      m_pbrushButtonBack->create_solid(argb(0, 0, 0, 0));
+      m_pbrushButtonBackSel->create_solid(argb(255, 150, 220, 145));
+      m_pbrushButtonBackFocus->create_solid(argb(255, 150, 220, 145));
+      m_pbrushButtonBackDisabled->create_solid(argb(255, 180, 180, 175));
 
-      m_penButtonBack->create_solid(2, argb(255, 255, 255, 255));
-      m_penButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
-      m_penButtonBackFocus->create_solid(2, argb(255, 255, 255, 255));
-      m_penButtonBackDisabled->create_solid(2, argb(255, 220, 220, 215));
+      m_ppenButtonBack->create_solid(2, argb(255, 255, 255, 255));
+      m_ppenButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
+      m_ppenButtonBackFocus->create_solid(2, argb(255, 255, 255, 255));
+      m_ppenButtonBackDisabled->create_solid(2, argb(255, 220, 220, 215));
 
       m_colorButtonFore = argb(255, 255, 255, 255);
       m_colorButtonForeSel = argb(255, 255, 255, 255);
@@ -1088,9 +1090,9 @@ namespace experience
    void control_box::on_message_move(::message::message * pmessage)
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectWindow);
+      m_pframewindow->get_window_rect(rectangleWindow);
 
       ::rectangle_i32 rectangle;
 
@@ -1098,7 +1100,7 @@ namespace experience
 
       m_pframewindow->screen_to_client(rectangle);
 
-      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectWindow.width() / 2);
+      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectangleWindow.width() / 2);
 
 //      if (rectangle != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {
@@ -1136,7 +1138,7 @@ namespace experience
    bool control_box::get_font(::write_text::font_pointer & font)
    {
 
-      font = m_fontMarlett;
+      font = m_pfontMarlett;
 
       return true;
 
@@ -1156,7 +1158,7 @@ namespace experience
       try
       {
 
-         ::rectangle_i32 rectClip;
+         ::rectangle_i32 rectangleClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -1172,7 +1174,7 @@ namespace experience
             rectangleClient.bottom++;
             rectangleClient.right++;
 
-            rectClip = rectangleClient;
+            rectangleClip = rectangleClient;
 
             bFirst = false;
 
@@ -1185,16 +1187,16 @@ namespace experience
 
             ::user::interaction * pinteraction = this;
 
-            ::rectangle_i32 rectFocus;
+            ::rectangle_i32 rectangleFocus;
 
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_window_rect(rectFocus);
+               pinteraction->get_window_rect(rectangleFocus);
 
-               screen_to_client(rectFocus);
+               screen_to_client(rectangleFocus);
 
-               m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
+               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
@@ -1212,7 +1214,7 @@ namespace experience
       catch (...)
       {
 
-         throw ::exception::exception(error_failed, "no more a u");
+         throw ::exception(error_failed, "no more a u");
 
       }
 

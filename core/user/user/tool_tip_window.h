@@ -59,7 +59,7 @@ namespace user
       string                     m_strTip;         // tip string
       i32                        m_iEventTool;     // item selected
       i32                        m_iTool;          // item where the tip will be showed
-      ::write_text::font_pointer          m_font;           // tip string font
+      ::write_text::font_pointer          m_pfont;           // tip string font
       point_i32                      m_pointOffset;       // tip point_i32 offset
       ::size_i32                     m_sizeArrow;      // arrow size_i32
       bool                       m_bTipEnable;     // set if the tip is enabled

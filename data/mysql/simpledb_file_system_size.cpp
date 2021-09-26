@@ -354,7 +354,7 @@ bool FileSystemSizeWnd::CreateClient()
 
 //#else
 
-   // ::exception::throw_not_implemented();
+   // throw interface_only_exception();
 
 //#endif
 
@@ -373,7 +373,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -422,7 +422,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const ::string & pszPath, boo
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -466,7 +466,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -506,7 +506,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -548,7 +548,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 

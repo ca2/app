@@ -150,7 +150,7 @@ namespace file
    string memory_map::calculate_path_from_name(const ::string & strName)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return "";
 

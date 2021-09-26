@@ -606,7 +606,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
             }
 
          }
-         catch(::exception::exception &)
+         catch(::exception &)
          {
 
             // Ignore exception here because this class/function is used for debugging

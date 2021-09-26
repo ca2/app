@@ -35,11 +35,14 @@ namespace draw2d
    public:
 
 
+      bool                                   m_bBeginDraw;
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;
 
       bool                                   m_bPat;
+
+      bool                                   m_bAlphaBlend;
 
       __reference(::text::context)       m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
@@ -67,7 +70,7 @@ namespace draw2d
       ::draw2d::matrix                       m_matrixViewport;
       ::draw2d::matrix                       m_matrixTransform;
 
-      ::rectangle_f64                                m_rectDraw;
+      ::rectangle_f64                                m_rectangleDraw;
 
       bool                                   m_bPrinting;
       void * m_osdata[8];
@@ -241,7 +244,7 @@ virtual bool fill_contains(const point_f64 & point);
 
       // Device-Context Functions
       virtual i32 GetDeviceCaps(i32 nIndex);
-      virtual ::u32 SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags);
+      virtual ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags);
       virtual ::u32 GetBoundsRect(::rectangle_f64 * rectdBounds, ::u32 flags);
       
 //#ifdef WINDOWS
@@ -602,7 +605,7 @@ virtual bool fill_contains(const point_f64 & point);
       virtual bool fill_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       virtual bool fill_solid_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
-      virtual bool color_blend_3dRect(const rectangle_i32& rectParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);
+      virtual bool color_blend_3dRect(const rectangle_i32& rectangleParam, const ::color::color& colorTopLeft, const ::opacity & opacityTopLeft, const ::color::color& color, const ::opacity& opacityBottomRight);
 
       //virtual bool color_blend(const ::rectangle_i32& rectangle, const ::color::color& color, const ::opacity & opacity);
 
@@ -1009,7 +1012,7 @@ virtual bool fill_contains(const point_f64 & point);
       virtual bool frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
       //virtual void draw_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& color, const ::e_border & eborder = e_border_all);
 
-      virtual bool set_font(::user::interaction* pinteraction, ::user::enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none);
+      virtual bool set_font(::user::interaction* pinteraction, ::enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none);
 
 
       virtual bool get(matrix & matrix);

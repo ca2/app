@@ -40,10 +40,10 @@ namespace userex
    }
 
 
-   void top_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void top_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
    }
 
@@ -73,7 +73,7 @@ namespace userex
       if (m_peditview == nullptr)
       {
 
-         output_message_box_error("Could not create folder edit impact");
+         output_error_message("Could not create folder edit impact");
 
       }
 
@@ -84,7 +84,7 @@ namespace userex
       if (m_ptoggleview == nullptr)
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 

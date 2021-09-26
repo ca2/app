@@ -24,7 +24,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const override;
 
    
-   virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+   virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 };

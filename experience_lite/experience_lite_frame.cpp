@@ -20,17 +20,17 @@
                object(pobject),
                ::experience::frame(pobject),
                //m_schema(pobject),
-               m_penText1(e_create),
-               m_penFace1(e_create),
-               m_penHilight1(e_create),
-               m_penShadow1(e_create),
-               m_penDkShadow1(e_create),
+               m_ppenText1(e_create),
+               m_ppenFace1(e_create),
+               m_ppenHilight1(e_create),
+               m_ppenShadow1(e_create),
+               m_ppenDkShadow1(e_create),
                m_blur1(this)
             {
                m_colorActiveCaptionTextBk = 0;
-               m_rectControlBoxMarginNormal = ::rectangle_i32();
+               m_rectangleControlBoxMarginNormal = ::rectangle_i32();
 
-               m_rectMarginNormal.set(5, 5, 5, 5);
+               m_rectangleMarginNormal.set(5, 5, 5, 5);
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
@@ -83,7 +83,7 @@
 
                ::rectangle_i32 rectangleClient(lprect);
 
-               ::rectangle_i32 rectInflate;
+               ::rectangle_i32 rectangleInflate;
 
                if (rectangleClient.area() <= 0)
                   return;
@@ -92,14 +92,14 @@
 
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-               rectInflate = rectangleClient;
-               rectInflate.inflate(iInflate, iInflate);
+               rectangleInflate = rectangleClient;
+               rectangleInflate.inflate(iInflate, iInflate);
 
                //__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
 
-               ::rectangle_i32 rectScreen;
+               ::rectangle_i32 rectangleScreen;
 
-               pframewindow->best_monitor(rectScreen);
+               pframewindow->best_monitor(rectangleScreen);
 
                ::image_pointer pimage1;
 
@@ -108,8 +108,8 @@
 /*               pimage1 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
 /*               pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
-               ::rectangle_i32 rectWindow = rectangleClient;
-               pframewindow->client_to_screen(rectWindow);
+               ::rectangle_i32 rectangleWindow = rectangleClient;
+               pframewindow->client_to_screen(rectangleWindow);
 /*               //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
                pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
@@ -121,8 +121,8 @@
                //rectangleClient.deflate(1, 1);
                //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
                /*b = imaging.bitmap_blend(pgraphics, lprect->left, lprect->top,
-               rectWindow.width(),
-               rectWindow.height(),
+               rectangleWindow.width(),
+               rectangleWindow.height(),
                &spgraphics,
                iInflate, iInflate, 128);*/
                /*BLENDFUNCTION bf;
@@ -132,12 +132,12 @@
                bf.SourceConstantAlpha = 255;
                ::alpha_blend(pgraphics->get_handle1(),
                lprect->left, lprect->top,
-               rectWindow.width(),
-               rectWindow.height(),
+               rectangleWindow.width(),
+               rectangleWindow.height(),
                spgraphics->get_handle1(),
                0, 0,
-               rectWindow.width(),
-               rectWindow.height(),
+               rectangleWindow.width(),
+               rectangleWindow.height(),
                bf);*/
 
                pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage1->g(), iInflate, iInflate);
@@ -355,11 +355,11 @@
             void frame::set_frame_color_system_default_001()
             {
 
-               m_penText1->create_solid(1, argb(255, 255, 255, 255));
-               m_penFace1->create_solid(1, crButtonFace | 0xff000000);
-               m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
-               m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
-               m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
+               m_ppenText1->create_solid(1, argb(255, 255, 255, 255));
+               m_ppenFace1->create_solid(1, crButtonFace | 0xff000000);
+               m_ppenHilight1->create_solid(1, crButtonHilite | 0xff000000);
+               m_ppenShadow1->create_solid(1, crButtonShadow | 0xff000000);
+               m_ppenDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
                m_colorDkShadow = crButtonDarkShadow;
                m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
 
@@ -441,10 +441,10 @@
             }
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
             {
 
-               ::rectangle_i32 rectangle(rectParam);
+               ::rectangle_i32 rectangle(rectangleParam);
                i32 x = rectangle.left;
                i32 y = rectangle.top;
                i32 cx = rectangle.width();
@@ -454,14 +454,14 @@
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               ::draw2d::pen_pointer pen;
+               ::draw2d::pen_pointer ppen;
 
                if (eborder & e_border_top || eborder & e_border_left)
                {
 
-                  pen.create(this);
+                  ppen.create(this);
 
-                  pen->create_solid(1.0, crTopLeft);
+                  ppen->create_solid(1.0, crTopLeft);
 
                   pgraphics->SelectObject(pen);
 
@@ -485,12 +485,12 @@
 
                }
 
-               if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_cr != crBottomRight))
+               if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || ppen->m_cr != crBottomRight))
                {
 
-                  pen.create(this);
+                  ppen.create(this);
 
-                  pen->create_solid(1.0, crBottomRight);
+                  ppen->create_solid(1.0, crBottomRight);
 
                   pgraphics->SelectObject(pen);
 
@@ -551,9 +551,9 @@
                if (pframewindow->layout().is_minimal())
                {
 
-                  ::rectangle_i32 rectIcon;
+                  ::rectangle_i32 rectangleIcon;
 
-                  if (get_element_rect(rectIcon, ElementTopLeftIcon))
+                  if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;
@@ -561,29 +561,29 @@
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->DrawIcon(rectangleIcon.left, rectangleIcon.top, picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
 
                      }
 
                   }
 
-                  ::rectangle_i32 rectGrip;
+                  ::rectangle_i32 rectangleGrip;
 
-                  if (get_element_rect(rectGrip, ElementMoveGripMinimal))
+                  if (get_element_rect(rectangleGrip, ElementMoveGripMinimal))
                   {
 
                      int i = 0;
 
-                     while (i < rectGrip.width() - 5 + 1)
+                     while (i < rectangleGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw3d_rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), argb(84 + 23, 230, 230, 230), argb(84 + 23, 108 + 23, 108 + 23, 108 + 23));
+                        pgraphics->draw3d_rect_dim(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height(), argb(84 + 23, 230, 230, 230), argb(84 + 23, 108 + 23, 108 + 23, 108 + 23));
 
                         i += 5;
 
                      }
 
-                     //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
+                     //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
                   }
 
@@ -594,17 +594,17 @@
                   if (m_pframewindow->GetWndDraw()->is_active() && m_colorActiveCaptionTextBk != 0)
                   {
 
-                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
 
                   }
 
-                  ::rectangle_i32 rectIcon;
+                  ::rectangle_i32 rectangleIcon;
 
                   auto pframewindow = m_pframewindow;
 
@@ -634,11 +634,11 @@
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
 }
 
@@ -650,7 +650,7 @@
 
                   rectangle_i32 -= rectangle.top_left();
 
-                  if (get_element_rect(rectIcon, ElementTopLeftIcon))
+                  if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
                   {
 
                      ::draw2d::icon * picon = m_pframewindow->m_picon;
@@ -658,7 +658,7 @@
                      if (picon != nullptr)
                      {
 
-                        pgraphics->DrawIcon(rectIcon.left, rectIcon.top, picon, rectIcon.width(), rectIcon.height(), 0, nullptr, DI_NORMAL);
+                        pgraphics->DrawIcon(rectangleIcon.left, rectangleIcon.top, picon, rectangleIcon.width(), rectangleIcon.height(), 0, nullptr, DI_NORMAL);
 
                      }
 
@@ -670,15 +670,15 @@
 
                   pframewindow->get_window_text(wstrWindowText);
 
-                  ::draw2d::brush_pointer brushText(e_create);
+                  auto pbrushText = __create < ::draw2d::brush > ();
 
-                  brushText->create_solid(m_colorCaptionText);
+                  pbrushText->create_solid(m_colorCaptionText);
 
-                  pgraphics->SelectObject(brushText);
+                  pgraphics->SelectObject(pbrushText);
 
                   pgraphics->SelectObject(pframewindow->_001GetFont(::user::font_default));
 
-                  pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
+                  pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
                }
 

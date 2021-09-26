@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME user_exception :
-   public ::exception::exception   // general ::account::user visible alert
+   public ::exception   // general ::account::user visible alert
 {
 public:
 

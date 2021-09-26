@@ -156,15 +156,15 @@ namespace html
 
          //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectWindow;
+         //::rectangle_i32 rectangleWindow;
 
-         //m_pedit->get_window_rect(rectWindow);
+         //m_pedit->get_window_rect(rectangleWindow);
 
-         //m_pedit->get_wnd()->screen_to_client(rectWindow);
+         //m_pedit->get_wnd()->screen_to_client(rectangleWindow);
 
          //::draw2d::savedc savedc(pgraphics);
 
-         //pgraphics->SetViewportOrg(rectWindow.top_left());
+         //pgraphics->SetViewportOrg(rectangleWindow.top_left());
 
          m_pedit->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 

@@ -699,7 +699,7 @@ CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 //   if (!estatus)
 //   {
 //
-//      __throw(exception::exception(estatus));
+//      __throw(::exception(estatus));
 //
 //   }
 //
@@ -745,7 +745,7 @@ string Format(const ::string & strFormat, const ::datetime::time & time)
 
    char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
 
-   struct tm * ptmTemp = localtime(&m_time);
+   struct tm * ptmTemp = localtime(&time.m_time);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {

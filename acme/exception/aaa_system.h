@@ -4,7 +4,7 @@
 
 #ifdef WINDOWS
 class CLASS_DECL_ACME system_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

@@ -259,7 +259,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));

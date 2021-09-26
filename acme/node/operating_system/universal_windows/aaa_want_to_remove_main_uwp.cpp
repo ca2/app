@@ -24,7 +24,7 @@ CLASS_DECL_ACME i32 main_uwp(Array < String^ >^ stra, const ::string & strComman
    if (!psystem->system_beg())
    {
 
-      throw ::exception::exception("The application didn't started.");
+      throw ::exception("The application didn't started.");
 
    }
 
@@ -33,7 +33,7 @@ CLASS_DECL_ACME i32 main_uwp(Array < String^ >^ stra, const ::string & strComman
       if (!bOk)
       {
 
-         throw ::exception::exception("The application didn't started. (2)");
+         throw ::exception("The application didn't started. (2)");
 
       }
 

@@ -27,7 +27,7 @@ namespace html
 
       initialize(pobject);
 
-      m_font.create(this);
+      m_pfont.create(this);
 
       i32 iWeight;
 
@@ -98,7 +98,7 @@ namespace html
 
       bool bUnderline = ::str::find_ci("underline", m_strTextDecoration) >= 0;
 
-      m_font->create_point_font(strName, dSize, iWeight, false, bUnderline);
+      m_pfont->create_point_font(strName, dSize, iWeight, false, bUnderline);
 
       return true;
    }

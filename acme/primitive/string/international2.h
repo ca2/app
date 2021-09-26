@@ -71,7 +71,7 @@ namespace str
 
 #else
 
-         throw exception::exception(todo, "multibyte");
+         throw ::exception(todo, "multibyte");
 
 #endif
 
@@ -87,7 +87,7 @@ namespace str
 
 #else
 
-         throw ::exception::exception(todo, "multibyte");
+         throw ::exception(todo, "multibyte");
 
 #endif
 

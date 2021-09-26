@@ -61,19 +61,19 @@ using polygon_shape = _shape < ::polygon, e_shape_polygon >;
 
 
 template < >
-inline ___shape* __new_shape(const ::lines & lines)
+inline __pointer(___shape) __create_shape(const ::lines & lines)
 {
 
-   return new lines_shape(lines);
+   return __new(lines_shape(lines));
 
 }
 
 
 template < >
-inline ___shape* __new_shape(const ::polygon & polygon)
+inline __pointer(___shape) __create_shape(const ::polygon & polygon)
 {
 
-   return new polygon_shape(polygon);
+   return __new(polygon_shape(polygon));
 
 }
 

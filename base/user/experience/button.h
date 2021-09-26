@@ -23,7 +23,7 @@ namespace experience
 
       virtual void install_message_routing(::channel* pchannel) override;
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual void UpdateWndRgn();
 

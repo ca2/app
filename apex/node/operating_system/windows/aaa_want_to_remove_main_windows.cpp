@@ -70,7 +70,7 @@
 //      //if (!papexmain)
 //      //{
 //
-//        // output_message_box_error("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + e_message_box_icon_error);
+//        // output_error_message("Please!!\n\nImplement entry function with the macro \n\n__main\n{\n\n\t<\"Main Body\">\n\n}\n\n." + e_message_box_icon_error);
 //
 //         //return -1;
 //
@@ -93,7 +93,7 @@
 //      if (!psystem->system_beg())
 //      {
 //
-//         throw ::exception::exception("The application didn't started.");
+//         throw ::exception("The application didn't started.");
 //
 //      }
 //
@@ -102,7 +102,7 @@
 //      if (!bOk)
 //      {
 //
-//         throw ::exception::exception("The application didn't started. (2)");
+//         throw ::exception("The application didn't started. (2)");
 //
 //      }
 //

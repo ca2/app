@@ -49,19 +49,19 @@
                color32_t                         m_colorCaptionTextBk;
                color32_t                         m_colorActiveCaptionTextBk;
                color32_t                         m_colorCaptionText;
-               ::draw2d::pen_pointer                 m_penText1;
-               ::draw2d::pen_pointer                 m_penFace1;
-               ::draw2d::pen_pointer                 m_penHilight1;
-               ::draw2d::pen_pointer                 m_penShadow1;
-               ::draw2d::pen_pointer                 m_penDkShadow1;
+               ::draw2d::pen_pointer                 m_ppenText1;
+               ::draw2d::pen_pointer                 m_ppenFace1;
+               ::draw2d::pen_pointer                 m_ppenHilight1;
+               ::draw2d::pen_pointer                 m_ppenShadow1;
+               ::draw2d::pen_pointer                 m_ppenDkShadow1;
                color32_t                         m_colorDkShadow;
                size_i32                             m_minSize;
 
-               ::draw2d::pen_pointer                 m_penHollow1;
-               ::draw2d::pen_pointer                 m_penHollow2;
-               ::draw2d::pen_pointer                 m_penHollow3;
-               ::draw2d::pen_pointer                 m_penHollow4;
-               ::draw2d::pen_pointer                 m_penHollow5;
+               ::draw2d::pen_pointer                 m_ppenHollow1;
+               ::draw2d::pen_pointer                 m_ppenHollow2;
+               ::draw2d::pen_pointer                 m_ppenHollow3;
+               ::draw2d::pen_pointer                 m_ppenHollow4;
+               ::draw2d::pen_pointer                 m_ppenHollow5;
 
 
 

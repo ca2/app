@@ -5,9 +5,7 @@ namespace file
 {
 
 
-   set::set() :
-      m_ppathaSearch(e_create_new),
-      m_pbaRecursive(e_create_new)
+   set::set()
    {
 
       defer_create_mutex();
@@ -17,6 +15,27 @@ namespace file
 
    set::~set()
    {
+
+   }
+
+
+   ::e_status set::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_ppathaSearch.create_new(this);
+      
+      m_pbaRecursive.create_new(this);
+
+      return estatus;
 
    }
 

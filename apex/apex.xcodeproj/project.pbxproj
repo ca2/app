@@ -225,8 +225,6 @@
 		9A23A0C026CDFC3500F98012 /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239EE026CDFC3400F98012 /* cross.h */; };
 		9A23A0E926CDFC3600F98012 /* windows_thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239F0B26CDFC3400F98012 /* windows_thread_impl.h */; };
 		9A23A0EA26CDFC3600F98012 /* windows_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239F0C26CDFC3400F98012 /* windows_thread.h */; };
-		9A23A0EB26CDFC3600F98012 /* metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239F0E26CDFC3400F98012 /* metrowin_user.cpp */; };
-		9A23A0EC26CDFC3600F98012 /* cross_metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239F0F26CDFC3400F98012 /* cross_metrowin_user.cpp */; };
 		9A23A0EE26CDFC3600F98012 /* _application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A239F1126CDFC3400F98012 /* _application.cpp */; };
 		9A23A0EF26CDFC3600F98012 /* _operating_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239F1226CDFC3400F98012 /* _operating_system.h */; };
 		9A23A0F026CDFC3600F98012 /* operating_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A239F1326CDFC3400F98012 /* operating_system.h */; };
@@ -1362,8 +1360,6 @@
 		9A239EE026CDFC3400F98012 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
 		9A239F0B26CDFC3400F98012 /* windows_thread_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_thread_impl.h; sourceTree = "<group>"; };
 		9A239F0C26CDFC3400F98012 /* windows_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_thread.h; sourceTree = "<group>"; };
-		9A239F0E26CDFC3400F98012 /* metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metrowin_user.cpp; sourceTree = "<group>"; };
-		9A239F0F26CDFC3400F98012 /* cross_metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_metrowin_user.cpp; sourceTree = "<group>"; };
 		9A239F1026CDFC3400F98012 /* aaa_argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_argcargv.cpp; sourceTree = "<group>"; };
 		9A239F1126CDFC3400F98012 /* _application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _application.cpp; sourceTree = "<group>"; };
 		9A239F1226CDFC3400F98012 /* _operating_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
@@ -1539,7 +1535,6 @@
 		9A239FD826CDFC3500F98012 /* aaa_want_to_remove_process_env_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_process_env_reader.cpp; sourceTree = "<group>"; };
 		9A239FD926CDFC3500F98012 /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = thread.cpp; sourceTree = "<group>"; };
 		9A239FDA26CDFC3500F98012 /* aaa_interprocess_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_interprocess_communication.cpp; sourceTree = "<group>"; };
-		9A239FDB26CDFC3500F98012 /* application_system_run.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_system_run.cpp; sourceTree = "<group>"; };
 		9A239FDC26CDFC3500F98012 /* menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu.cpp; sourceTree = "<group>"; };
 		9A239FDD26CDFC3500F98012 /* dpi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dpi.cpp; sourceTree = "<group>"; };
 		9A239FDE26CDFC3500F98012 /* _windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _windows.h; sourceTree = "<group>"; };
@@ -1548,7 +1543,6 @@
 		9A239FF426CDFC3500F98012 /* aaa_want_to_remove_main_windows.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_main_windows.cpp; sourceTree = "<group>"; };
 		9A239FF526CDFC3500F98012 /* windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
 		9A239FF626CDFC3500F98012 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
-		9A239FF726CDFC3500F98012 /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
 		9A239FF826CDFC3500F98012 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A239FF926CDFC3500F98012 /* windowing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A239FFA26CDFC3500F98012 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -2474,7 +2468,6 @@
 			children = (
 				9A239EE026CDFC3400F98012 /* cross.h */,
 				9A239F0A26CDFC3400F98012 /* windows */,
-				9A239F0D26CDFC3400F98012 /* universal_windows */,
 			);
 			path = cross;
 			sourceTree = "<group>";
@@ -2486,15 +2479,6 @@
 				9A239F0C26CDFC3400F98012 /* windows_thread.h */,
 			);
 			path = windows;
-			sourceTree = "<group>";
-		};
-		9A239F0D26CDFC3400F98012 /* universal_windows */ = {
-			isa = PBXGroup;
-			children = (
-				9A239F0E26CDFC3400F98012 /* metrowin_user.cpp */,
-				9A239F0F26CDFC3400F98012 /* cross_metrowin_user.cpp */,
-			);
-			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A239F1426CDFC3400F98012 /* ios */ = {
@@ -2689,8 +2673,6 @@
 				9A239FF426CDFC3500F98012 /* aaa_want_to_remove_main_windows.cpp */,
 				9A239FD826CDFC3500F98012 /* aaa_want_to_remove_process_env_reader.cpp */,
 				9A239FF226CDFC3500F98012 /* aaa_windows_window_opengl.cpp */,
-				9A239FDB26CDFC3500F98012 /* application_system_run.cpp */,
-				9A239FF726CDFC3500F98012 /* application.cpp */,
 				9A239FDD26CDFC3500F98012 /* dpi.cpp */,
 				9A239FD726CDFC3500F98012 /* gdi.cpp */,
 				9A239FF826CDFC3500F98012 /* main.cpp */,
@@ -4370,7 +4352,6 @@
 				9A68BD142511444E008DABD2 /* context_thread.cpp in Sources */,
 				9A239DED26CDF9AF00F98012 /* listener.cpp in Sources */,
 				9A68BDF72511444F008DABD2 /* native_fs.cpp in Sources */,
-				9A23A0EC26CDFC3600F98012 /* cross_metrowin_user.cpp in Sources */,
 				9A787DDE264CA98C003DF8A0 /* create.cpp in Sources */,
 				9A68BDE92511444F008DABD2 /* set.cpp in Sources */,
 				9A23A28726CDFF1A00F98012 /* real.cpp in Sources */,
@@ -4445,7 +4426,6 @@
 				9A68BD882511444F008DABD2 /* text.cpp in Sources */,
 				9A68BDCE2511444F008DABD2 /* dir_system.cpp in Sources */,
 				9A787DE4264CA98C003DF8A0 /* node.cpp in Sources */,
-				9A23A0EB26CDFC3600F98012 /* metrowin_user.cpp in Sources */,
 				9A23A07C26CDFC3500F98012 /* os.cpp in Sources */,
 				9A239E4C26CDF9AF00F98012 /* ip_enum.cpp in Sources */,
 				9A4F4E2B25311DAB00733584 /* _.cpp in Sources */,

@@ -25,9 +25,9 @@ namespace filehandler
          string         m_strApp;
          ::index        m_iIndex;
 
-         ::rectangle_i32         m_rectItem;
-         ::rectangle_i32         m_rectStatusImage;
-         ::rectangle_i32         m_rectName;
+         ::rectangle_i32         m_rectangleItem;
+         ::rectangle_i32         m_rectangleStatusImage;
+         ::rectangle_i32         m_rectangleName;
 
          item(::object * pobject);
 
@@ -79,7 +79,7 @@ namespace filehandler
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      void on_hit_test(::user::item & item);
+      void on_hit_test(::item & item);
 
 
       void layout_list(list * plist);

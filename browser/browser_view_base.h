@@ -21,7 +21,7 @@ namespace browser
 
 
       int                     m_yDrawStatus;
-      ::write_text::font_pointer       m_fontDrawStatus;
+      ::write_text::font_pointer       m_pfontDrawStatus;
       color32_t                m_colorDrawStatus;
 
       double                  m_dFps;
@@ -46,7 +46,7 @@ namespace browser
       __pointer(render)              m_prender;
 
 
-      tick_array                    m_tickaFrame;
+      musical_tick_array                    m_tickaFrame;
 
 
 

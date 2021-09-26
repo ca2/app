@@ -65,7 +65,7 @@ namespace user
 
       virtual ::user::interaction * _001GetTabWnd(::index iTab) override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 
@@ -79,7 +79,7 @@ namespace user
 
       virtual void rotate() override;
 
-      virtual ::user::tab_pane * create_tab_by_id(id id) override;
+      virtual ::user::tab_pane * create_tab_by_id(const ::id & idTab) override;
 
       virtual void _001OnShowTab(::user::tab * ptab) override;
 
@@ -87,7 +87,7 @@ namespace user
 
       virtual void _001OnTabClick(::index iTab) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
 

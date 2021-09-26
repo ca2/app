@@ -345,16 +345,16 @@ namespace console
       if(bCaretOn)
       {
 
-         ::rectangle_i32 rectCaret;
+         ::rectangle_i32 rectangleCaret;
 
-         rectCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
-         rectCaret.right = rectCaret.left + m_sizeChar.cx;
-         rectCaret.top = m_sizeChar.cy - 3;
-         rectCaret.bottom = m_sizeChar.cy;
+         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
+         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx;
+         rectangleCaret.top = m_sizeChar.cy - 3;
+         rectangleCaret.bottom = m_sizeChar.cy;
 
 
 
-         pgraphics->fill_rectangle(rectCaret,crTopic);
+         pgraphics->fill_rectangle(rectangleCaret,crTopic);
 
       }
 

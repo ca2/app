@@ -35,7 +35,7 @@ namespace user
          virtual ::e_status initialize(::object * pobject) override;
 
 
-         virtual void on_after_change(::user::enum_event eevent) override;
+         virtual void on_after_change(::enum_subject esubject) override;
          virtual double get_rotate() override;
 
 
@@ -45,7 +45,7 @@ namespace user
 
          __pointer(span) add_span(::e_align ealignNewLine = e_align_none);
 
-         virtual void on_hit_test(::user::item & item) override;
+         virtual void on_hit_test(::item & item) override;
 
          virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i) override;
 
@@ -132,7 +132,7 @@ namespace user
          virtual void on_kill_keyboard_focus() override;
 
 
-         virtual void on_control_event(::user::control_event * pevent) override;
+         virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
          virtual strsize _001GetTextLength() const override;

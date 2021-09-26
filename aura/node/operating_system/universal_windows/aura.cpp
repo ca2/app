@@ -282,7 +282,7 @@ bool os_finalize()
 //
 //string key_to_char(wparam wparam, lparam lparam)
 //{
-//   __throw(::exception::exception("todo"));
+//   __throw(::exception("todo"));
 //}
 //
 //
@@ -310,12 +310,7 @@ bool os_finalize()
 //
 //
 //
-////void output_debug_string(const ::string & psz)
-////{
-////
-////   ::output_debug_string(wstring(psz));
-////
-////}
+
 //
 //
 ////::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )

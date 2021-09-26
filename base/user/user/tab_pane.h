@@ -19,9 +19,9 @@ namespace user
 
       ::index                             m_iIndex;
       tab * m_ptab;
-      ::draw2d::brush_pointer             m_brushFill;
-      ::draw2d::brush_pointer             m_brushFillSel;
-      ::draw2d::brush_pointer             m_brushFillHover;
+      ::draw2d::brush_pointer             m_pbrushFill;
+      ::draw2d::brush_pointer             m_pbrushFillSel;
+      ::draw2d::brush_pointer             m_pbrushFillHover;
       id                                  m_id;
       ::image_pointer                     m_pimage;
       __pointer(place_holder)             m_pplaceholder;

@@ -45,9 +45,9 @@ namespace user
 
 
 
-   ::logic::bit      g_bLastDarkModeApp;
+   ::boolean      g_bLastDarkModeApp;
 
-   ::logic::bit      g_bLastDarkModeSystem;
+   ::boolean      g_bLastDarkModeSystem;
 
 
    void os_calc_dark_mode()
@@ -69,7 +69,7 @@ namespace user
 
          g_bLastDarkModeSystem = bDarkModeSystem;
 
-         ::acme::get_system()->set_modified(id_os_dark_mode);
+         ::acme::get_system()->signal(id_os_dark_mode);
 
       }
 

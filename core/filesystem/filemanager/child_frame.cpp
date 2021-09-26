@@ -53,10 +53,10 @@ namespace filemanager
    }
 
 
-   void child_frame::route_command_message(::message::command * pcommand)
+   void child_frame::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      simple_child_frame::route_command_message(pcommand);
+      simple_child_frame::route_command(pcommand);
 
    }
 

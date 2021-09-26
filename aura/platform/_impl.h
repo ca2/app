@@ -782,7 +782,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //} // namespace str
 
 
-//inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
+//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only_exception(); }
 
 
 //namespace papaya
@@ -797,7 +797,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //      inline TYPE default_value()
 //      {
 //
-//         __throw(::exception::exception("template only exception"));
+//         __throw(::exception("template only exception"));
 //
 //      }
 //
@@ -1043,7 +1043,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception::exception(::error_wrong_type));
+//      __throw(::exception(::error_wrong_type));
 //
 //   }
 //

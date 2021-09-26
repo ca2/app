@@ -6,7 +6,7 @@ namespace multimedia
 
 
    exception::exception(e_exception eexception, const ::e_status & estatus, const char * pszMessage) :
-      ::exception::exception(estatus, pszMessage)
+      ::exception(estatus, pszMessage)
    {
 
       m_eexception = eexception;
@@ -15,8 +15,8 @@ namespace multimedia
    }
 
 
-   //exception::exception(e_exception eexception, const ::e_status & estatus, ::e_status     estatusSecond, const char * pszMessage) :
-   //   ::exception::exception(pszMessage, estatus)
+   //::exception(e_exception eexception, const ::e_status & estatus, ::e_status     estatusSecond, const char * pszMessage) :
+   //   ::exception(pszMessage, estatus)
    //{
 
    //   m_eexception = eexception;
@@ -36,7 +36,7 @@ namespace multimedia
 
       string str;
 
-      string strMultimediaMessage = ::exception::exception::get_message();
+      string strMultimediaMessage = ::exception::get_message();
 
       if (m_eexception == exception_undefined)
       {

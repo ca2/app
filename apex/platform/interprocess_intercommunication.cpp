@@ -382,6 +382,8 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    }
 
+#if !defined(_UWP)
+
    auto iPid = atoll(strAppPid);
 
    if(iPid == 0)
@@ -390,6 +392,8 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
       return;
 
    }
+
+#endif
 
    strsize iFind = strMessage.find(":");
 

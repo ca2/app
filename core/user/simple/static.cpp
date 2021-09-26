@@ -2,15 +2,14 @@
 #include "core/user/simple/_simple.h"
 
 
-simple_static::simple_static() :
-   m_brushBkg(e_create)
+simple_static::simple_static()
 {
    
    m_pimagelist = nullptr;
    
    m_bTransparent = false;
    
-   m_brushBkg->m_etype = ::draw2d::brush::e_type_null;
+   //m_pbrushBkg->m_etype = ::draw2d::brush::e_type_null;
 
 }
 

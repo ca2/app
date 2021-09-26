@@ -20,7 +20,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(pobject);
       __UNREFERENCED_PARAMETER(uaMenuV003Map);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return true;
 

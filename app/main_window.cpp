@@ -13,7 +13,7 @@ namespace app_app
 
       m_bTransparent = true;
 
-      m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+      m_rectangleInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
       m_dBreathPeriod = 60.0;
 
@@ -96,12 +96,12 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      auto pitem = get_user_item(::user::e_element_close_button);
+      auto pitem = get_user_item(::e_element_close_button);
 
       if (::is_set(pitem))
       {
 
-         bool bHover = m_itemHover == ::user::e_element_close_button;
+         bool bHover = m_itemHover == ::e_element_close_button;
 
          double dSourcePeriod;
          
@@ -174,13 +174,9 @@ namespace app_app
 
          pitem->m_rectangle.bottom = pitem->m_rectangle.top + iSize;
 
-         auto psession = get_session();
+         auto pwindow = window();
 
-         auto puser = psession->user();
-
-         auto pmainwindow = puser->windowing();
-
-         auto pointCursor = pmainwindow->get_cursor_position();
+         auto pointCursor = pwindow->get_mouse_cursor_position();
 
          update_hover(pointCursor);
 
@@ -191,7 +187,7 @@ namespace app_app
    }
 
 
-   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void main_window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
    {
 
       if (::is_null(pitem))
@@ -201,7 +197,7 @@ namespace app_app
 
       }
 
-      if (pitem->m_eelement == ::user::e_element_close_button)
+      if (pitem->m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);

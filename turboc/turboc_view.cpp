@@ -21,7 +21,7 @@ namespace turboc
       m_pimageWork,
       m_pimageTemplate,
       m_pimageFast,
-      m_font(this_create),
+      m_pfont(this_create),
 
 
 
@@ -201,9 +201,9 @@ namespace turboc
 
 
 
-            m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-            pgraphics->set_font(m_font);
+            pgraphics->set_font(m_pfont);
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -211,25 +211,25 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
-            //m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
+            //m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
             //m_dMaxRadius = m_dMinRadius * 2.3;
 
             //m_pimageFast->Fill(0,0,0,0);
 
-            //pgraphics->set_font(m_font);
+            //pgraphics->set_font(m_pfont);
 
             //size = pgraphics->get_text_extent(strHelloMultiverse);
 
             //::draw2d::path_pointer path(this_create);
 
-            //path->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_font);
+            //ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
 
             //::draw2d::pen_pointer pen(this_create);
 
-            //pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
+            //ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
             //pgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
 
@@ -250,11 +250,11 @@ namespace turboc
 
          ::draw2d::brush_pointer brush(this_create);
 
-         brush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         pbrush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
          pgraphics->SelectObject(brush);
 
-         pgraphics->set_font(m_font);
+         pgraphics->set_font(m_pfont);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -425,9 +425,9 @@ namespace turboc
 
       float fHeight = 100.0;
 
-      m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
+      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -435,27 +435,27 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
-      m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
+      m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
 
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       size = pgraphics->get_text_extent(strHelloMultiverse);
 
       ::draw2d::path_pointer path(this_create);
 
-      path->m_bFill = false;
+      ppath->m_bFill = false;
 
-      path->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_font);
+      ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
 
       ::draw2d::pen_pointer pen(this_create);
 
-      pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
+      ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -642,7 +642,7 @@ namespace turboc
 
          ::draw2d::pen_pointer pen(this_create);
 
-         pen->create_solid(0.5,argb(84,0,0,0));
+         ppen->create_solid(0.5,argb(84,0,0,0));
 
 /*         pimage->g()->SelectObject(pen);
 
@@ -874,12 +874,12 @@ namespace turboc
 
          m_bFirstDone = true;
 
-         ::rectangle_i32 rectWork(0,0,m_pimageWork->width(),m_pimageWork->height());
-         ::rectangle_i32 rectImage(0,0,m_pimageImage->width(),m_pimageImage->height());
+         ::rectangle_i32 rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
+         ::rectangle_i32 rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
 
-         rectImage.FitOnCenterOf(rectWork);
+         rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pimage->g()->StretchBlt(rectImage.left,rectImage.top,rectImage.width(),rectImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pimage->g()->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

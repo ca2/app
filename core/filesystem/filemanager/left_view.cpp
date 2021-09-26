@@ -63,7 +63,7 @@ namespace filemanager
       if(pusertree.is_null())
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 
@@ -82,12 +82,12 @@ namespace filemanager
    }
 
 
-   void left_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void left_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
 //      //__update(::update)
 //      {

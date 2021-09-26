@@ -27,7 +27,7 @@ namespace turboc
 
       virtual void on_update(::aura::impact * pSender,e_update eupdate,object* pHint);
 
-      virtual void on_control_event(::user::control_event * pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext);
 
 
    };

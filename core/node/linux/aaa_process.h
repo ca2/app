@@ -6,7 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_CORE process :
-      virtual public ::process::process
+      virtual public ::operating_system::process
    {
    public:
 

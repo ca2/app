@@ -16,6 +16,8 @@ namespace core
 
       m_pcoreapplication = this;
 
+      m_strAppId = "app-complex/drawing";
+
    }
 
 
@@ -57,6 +59,81 @@ namespace core
       pprogresscontrol->defer_show(puiParent, pszTitle, iProgressCount);
 
       return ::move(pprogresscontrol);
+
+   }
+
+
+   string application::prepare_impact_options()
+   {
+
+      string strHeader = prepare_impact_options_header();
+
+      string strMainBody = prepare_impact_options_main_body();
+
+      string strFooter = prepare_impact_options_footer();
+
+      string strMenuImpact;
+
+      strMenuImpact = strHeader + strMainBody + strFooter;
+
+      return strMenuImpact;
+
+   }
+
+
+   string application::prepare_impact_options_header()
+   {
+
+      string strApplicationTitle;
+
+      strApplicationTitle = get_application()->title();
+
+      string strHeader__;
+
+      strHeader__ += "<html>\n";
+      strHeader__ += "<head>\n";
+      strHeader__ += "<style>\n";
+      strHeader__ += "  h1\n";
+      strHeader__ += "  {\n";
+      strHeader__ += "     font-family: Tahoma;\n";
+      strHeader__ += "  }\n";
+      strHeader__ += "\n";
+      strHeader__ += "  h2\n";
+      strHeader__ += "  {\n";
+      strHeader__ += "     font-family: Tahoma;\n";
+      strHeader__ += "  }\n";
+      strHeader__ += "</style>\n";
+      strHeader__ += "</head>\n";
+      strHeader__ += "<body style=\"background-color: #80ffffff;\">\n";
+      strHeader__ += "\n";
+      strHeader__ += "<h1>" + strApplicationTitle + "</h1>\n";
+
+      return strHeader__;
+
+   }
+
+
+   string application::prepare_impact_options_main_body()
+   {
+
+      auto strMenuImpactPartialHtml = file().as_string("matter://menu_impact.partial.html");
+
+      return strMenuImpactPartialHtml;
+
+   }
+
+
+   string application::prepare_impact_options_footer()
+   {
+
+      string strOptionsHtml;
+
+      strOptionsHtml += m_psystem->m_pnode->m_pauranode->system_options_html();
+
+      strOptionsHtml += "</body>";
+      strOptionsHtml += "</html>";
+
+      return strOptionsHtml;
 
    }
 

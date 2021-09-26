@@ -229,4 +229,4 @@ inline millis operator "" _tick(unsigned long long int u) { return u; }
 
 
 
-typedef CLASS_DECL_AURA numeric_array < millis > tick_array;
+typedef CLASS_DECL_AURA numeric_array < millis > musical_tick_array;

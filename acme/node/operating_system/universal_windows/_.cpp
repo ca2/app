@@ -24,7 +24,7 @@ bool __node_acme_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   output_message_box_error("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   output_error_message("Gdiplus Failed to Startup. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
    //   return 0;
 
@@ -153,7 +153,7 @@ bool __node_acme_pos_term()
 ::millis os_get_system_update_poll_time(const ::id & id)
 {
 
-   if (id == id_os_dark_mode)
+   if (id == id_user_color)
    {
 
       return 500;

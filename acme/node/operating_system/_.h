@@ -139,9 +139,6 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "file.h"
 
 
-CLASS_DECL_ACME void output_debug_string(const char * psz);
-CLASS_DECL_ACME void output_debug_string(const wchar_t * psz);
-
 CLASS_DECL_ACME enum_dialog_result message_box_for_console(const char* psz, const char* pszTitle, const ::enum_message_box& emessagebox);
 
 CLASS_DECL_ACME ::e_status is_directory(const char * path);
@@ -153,10 +150,5 @@ CLASS_DECL_ACME ::e_status create_directory_path(const char * path);
 CLASS_DECL_ACME ::e_status create_directory(const char * path);
 
 CLASS_DECL_ACME ::e_status file_delete(const char * path);
-
-CLASS_DECL_ACME ::file::path dir_ca2_module();
-
-CLASS_DECL_ACME ::file::path dir_base_module();
-
 
 

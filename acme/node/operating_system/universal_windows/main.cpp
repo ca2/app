@@ -13,7 +13,7 @@ CLASS_DECL_ACME int ca2_main();
 
 //void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{
-//   __throw(::exception::exception());
+//   __throw(::exception());
 //}
 
 

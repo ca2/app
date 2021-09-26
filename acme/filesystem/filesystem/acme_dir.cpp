@@ -106,15 +106,15 @@ acme_dir::~acme_dir()
 
 
 
-
-::file::path acme_dir::module_folder()
-{
-
-   __throw(error_interface_only);
-
-   return "";
-
-}
+//
+//::file::path acme_dir::module_folder()
+//{
+//
+//   throw ::interface_only_exception();
+//
+//   return "";
+//
+//}
 
 
 ::file::path acme_dir::appdata()
@@ -720,7 +720,7 @@ void acme_dir::set_path_install_folder(const string & strPath)
 bool acme_dir::_is(const char * path1)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -730,7 +730,7 @@ bool acme_dir::_is(const char * path1)
 //::file::path acme_dir::base_module()
 //{
 //
-//   __throw(error_interface_only);
+//   throw ::interface_only_exception();
 //
 //   return "";
 //
@@ -856,7 +856,7 @@ bool acme_dir::_is(const char * path1)
 ::e_status acme_dir::_create_directory(const char * pathParam)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return ::error_interface_only;
 
@@ -876,7 +876,7 @@ bool acme_dir::is(const char * path)
 void acme_dir::rls(::file::patha & stra, const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
@@ -884,7 +884,7 @@ void acme_dir::rls(::file::patha & stra, const char * psz)
 void acme_dir::rls_dir(::file::patha & stra, const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    //return "";
 
@@ -894,7 +894,7 @@ void acme_dir::rls_dir(::file::patha & stra, const char * psz)
 void acme_dir::ls(::file::patha & stra, const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
@@ -902,7 +902,7 @@ void acme_dir::ls(::file::patha & stra, const char * psz)
 void acme_dir::ls_dir(::file::patha & stra, const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
@@ -910,7 +910,7 @@ void acme_dir::ls_dir(::file::patha & stra, const char * psz)
 void acme_dir::ls_file(::file::patha & stra, const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
@@ -924,7 +924,7 @@ void acme_dir::ls_file(::file::patha & stra, const char * psz)
 int acme_dir::make_path(const char * psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return -1;
 
@@ -960,7 +960,7 @@ int acme_dir::make_path(const char * psz)
 //::file::path acme_dir::module_folder()
 //{
 //
-//   __throw(error_interface_only);
+//   throw ::interface_only_exception();
 //
 //   return "";
 //
@@ -971,7 +971,7 @@ string acme_dir::get_current_directory()
 
 
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return "";
 

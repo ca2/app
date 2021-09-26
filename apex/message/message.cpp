@@ -68,10 +68,10 @@ namespace message
 
       }
 
-      if (m_phandlera->m_pData)
+      if (m_pdispatchera->m_pData)
       {
 
-         m_phandlera->m_pData[m_iRouteIndex].m_handler(this);
+         m_pdispatchera->m_pData[m_iRouteIndex]->handle(this);
 
       }
 

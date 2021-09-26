@@ -150,9 +150,9 @@ namespace helloaxis
    {
       ::rectangle_i32 rcClient;
       ::get_client_rect(hwnd, rcClient);
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
-      br->create_solid(argb(255, 255, 0, 0));
+      pbrush->create_solid(argb(255, 255, 0, 0));
       pgraphics->SelectObject(br);
       pgraphics->FillEllipse(rcClient);
    }

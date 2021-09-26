@@ -24,7 +24,7 @@ namespace ios
       string                           m_strWindowText;
       ::user::primitive *              m_pbasewnd;
       bool                             m_bNeedsUpdate;
-      ::rectangle_i32                           m_rectLastPos;
+      ::rectangle_i32                           m_rectangleLastPos;
       millis                             m_millisLastPos;
       int                              m_iSoftwareKeyboardScroll;
 
@@ -51,9 +51,9 @@ namespace ios
 
       virtual ::user::interaction * get_wnd() const override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 
@@ -222,7 +222,7 @@ namespace ios
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags) override;
       virtual bool LockWindowUpdate() override;
       virtual void UnlockWindowUpdate() override;
-//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
       //virtual bool DrawAnimatedRects(i32 idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo) override;
@@ -296,7 +296,7 @@ namespace ios
 
       //virtual ::u32 GetChildByIdInt(i32 nID, bool * lpTrans = nullptr, bool bSigned = true) const;
       //virtual i32 GetChildByIdText(i32 nID, char * lpStr, i32 nMaxCount) const;
-      //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
+      //virtual i32 GetChildByIdText(i32 nID, string & rectangleString) const;
       virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const ;
       virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const ;
       virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const override;
@@ -319,7 +319,7 @@ namespace ios
       // return sibling scrollbar control (or nullptr if none)
 
 //      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
-//                                 const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip,
+//                                 const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip,
 //                                 ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags) override;
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO lpScrollInfo,
       //xxx         bool bRedraw = true);

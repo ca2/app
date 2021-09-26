@@ -587,13 +587,7 @@
     <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\callback.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\control_descriptor.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\control_event.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\copydesk.h">
@@ -612,9 +606,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\interaction_thread.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\item.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\key.h">
@@ -1255,9 +1246,6 @@
     <ClCompile Include="graphics\draw3d\ortho.cpp">
       <Filter>Source Files\graphics\draw3d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvg.cpp">
-      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
@@ -1315,13 +1303,7 @@
     <ClCompile Include="user\_.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\callback.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\control_descriptor.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\control_event.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
@@ -1340,9 +1322,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction_thread.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\item.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\key.cpp">
@@ -1648,9 +1627,6 @@
     <ClCompile Include="node\operating_system\windows\windowing.cpp">
       <Filter>Source Files\node\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\nanosvgrast.cpp">
-      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
-    </ClCompile>
     <ClCompile Include="user\interaction_scaler.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1662,6 +1638,12 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\device_lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp">
+      <Filter>Source Files\graphics\draw2d\no_precompiled_header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

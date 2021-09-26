@@ -41,7 +41,7 @@ namespace user
 
 
       virtual ::user::form_callback* get_form_callback();
-      virtual ::user::callback* get_user_callback() override;
+      //virtual ::handler* get_user_callback() override;
       virtual ::user::form * get_parent_form() override;
 
 

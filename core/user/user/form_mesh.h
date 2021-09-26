@@ -15,7 +15,7 @@ namespace user
       class CLASS_DECL_CORE control_keep
       {
       public:
-         inline control_keep(form_mesh * pformmesh, const ::user::item & item)
+         inline control_keep(form_mesh * pformmesh, const ::item & item)
          {
             m_pformmesh                      = pformmesh;
             m_item                           = pformmesh->m_itemControl;
@@ -77,7 +77,7 @@ namespace user
       void _001SetEditControl(::user::interaction * pinteraction);
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
       virtual ::user::interaction * _001GetControl(index iItem, index iSubItem);
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
       void _001OnTimer(::timer * ptimer) override;
 
       virtual void _001GetSelection(::database::key & key,::database::selection & selection) override;
@@ -94,7 +94,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool _001OnControlSetFocus(::user::interaction * pinteraction) override;
 

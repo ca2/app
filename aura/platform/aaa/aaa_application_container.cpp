@@ -409,7 +409,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          else
          {
 
-            output_message_box_error("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -486,7 +486,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          papp = create_application(pszAppId, bSynch, pcreate);
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception & e)
       {
 
          if (handle_exception(pe))

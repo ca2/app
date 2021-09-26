@@ -183,10 +183,10 @@ namespace helloworld
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact_base::on_subject(psubject, pcontext);
+      impact_base::handle(psubject, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 
@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && psubject->m_puserinteraction == peditview)
+            if (pupdate->m_ehint == id_after_change_text && psubject->user_interaction() == peditview)
             {
 
                string strText;
@@ -482,14 +482,14 @@ namespace helloworld
 
          //m_bFirstDone = true;
 
-         ::rectangle_i32 rectWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
-         ::rectangle_i32 rectImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::rectangle_i32 rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::rectangle_i32 rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
-         rectImage.FitOnCenterOf(rectWork);
+         rectangleImage.FitOnCenterOf(rectangleWork);
 
          m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimagePost->get_graphics()->StretchBlt(rectImage.left, rectImage->top, rectImage->width(), rectImage->height(),
+         m_pimagePost->get_graphics()->StretchBlt(rectangleImage.left, rectangleImage->top, rectangleImage->width(), rectangleImage->height(),
 /*                                                m_prender->m_pimagepimage->g(), 0, 0,
                                                 m_prender->m_pimageImage->get_size()->cx,
                                                 m_prender->m_pimageImage->get_size()->cy);

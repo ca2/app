@@ -1,4 +1,4 @@
-// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSï¿½rensen__!!
 #include "framework.h"
 
 
@@ -109,7 +109,7 @@ namespace write_text
    ::e_status drawer::get_text_metrics(::write_text::text_metric* pmetrics)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -119,7 +119,7 @@ namespace write_text
    ::e_status drawer::TextOutRaw(double x, double y, const block& block)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 

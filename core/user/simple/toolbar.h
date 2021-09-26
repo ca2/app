@@ -23,8 +23,8 @@ public:
    ::size_i32                  m_sizePress;
    ::size_i32                  m_sizeSpacing;
    ::size_i32                  m_sizeSeparator;
-   ::rectangle_i32                m_rectBorder;
-   ::rectangle_i32                m_rectItemPad;
+   ::rectangle_i32                m_rectangleBorder;
+   ::rectangle_i32                m_rectangleItemPad;
    //bool                       m_bTransparentBackground;
    bool                    m_bSimpleLayout;
    double                  m_dFontSize;
@@ -82,8 +82,8 @@ public:
    //enumeration < ::enum_toolbar_item_style > GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
-   virtual bool on_click(const ::user::item & item) override;
-   virtual void on_hit_test(::user::item & item) override;
+   virtual bool on_click(const ::item & item) override;
+   virtual void on_hit_test(::item & item) override;
    //void _001Hover(const ::point_i32 & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);
 
@@ -105,7 +105,7 @@ public:
 
 //  virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle)
 
-   virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle, ::user::enum_element eelement,
+   virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 

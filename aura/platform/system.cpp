@@ -162,11 +162,11 @@ namespace aura
 
       g_pmutexImage = new ::mutex();
 
-#ifndef WINDOWS
-
-      exception::translator::attach();
-
-#endif
+//#ifndef WINDOWS
+//
+//      exception_translator::attach();
+//
+//#endif
 
       m_bProdevianMouse = false;
 
@@ -183,7 +183,7 @@ namespace aura
 
          //xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
 
-         throw ::exception::exception(error_failed, "failed to initialize log");
+         throw ::exception(error_failed, "failed to initialize log");
 
       }
 
@@ -200,7 +200,7 @@ namespace aura
 
          }
 
-         ::exception::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
+         ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
 
       }
  
@@ -682,7 +682,7 @@ namespace aura
       //if (!create_session())
       //{
 
-      //   output_message_box_error("Failed to allocate Session!!");
+      //   output_error_message("Failed to allocate Session!!");
 
       //   return false;
 
@@ -693,7 +693,7 @@ namespace aura
       //if (!m_papplicationStartup)
       //{
 
-      //   output_message_box_error("Failed to allocate papplication!!");
+      //   output_error_message("Failed to allocate papplication!!");
 
       //   return false;
 
@@ -837,7 +837,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   throw exception::exception(estatus);
+      //   throw ::exception(estatus);
 
       //}
 
@@ -845,14 +845,14 @@ namespace aura
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception::exception("failed to construct system m_pxml->init1()"));
+      //   __throw(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception::exception("failed to construct system m_pxml->initialize()"));
+      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1118,7 +1118,7 @@ namespace aura
 
 #if !defined(MOBILE_PLATFORM)
 
-               output_message_box_error("Failed to initialize imaging library.");
+               output_error_message("Failed to initialize imaging library.");
 
 #endif
                // Non fatal? Missing images (if using images)?
@@ -2391,7 +2391,7 @@ namespace aura
 //}
 
 
-   //::process::department & system::process()
+   //::operating_system::department & system::process()
    //{
 
    //   return *m_pprocess;
@@ -2689,7 +2689,7 @@ namespace aura
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
 
    //   return "";
 
@@ -2946,7 +2946,7 @@ namespace aura
 ////         file = psession->file().get_file(pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
-////      catch(::exception::exception &)
+////      catch(::exception &)
 ////      {
 ////
 ////         return false;
@@ -3089,7 +3089,7 @@ namespace aura
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //__throw(error_interface_only);
+   //   //throw ::interface_only_exception();
 
    //   return url_encode(str);
 
@@ -3543,7 +3543,7 @@ namespace aura
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_rectaMonitor.get_count();
+      return m_rectangleaMonitor.get_count();
 
 #else
 
@@ -3594,7 +3594,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaMonitor[iMonitor];
+//      *prectangle = m_rectangleaMonitor[iMonitor];
 //
 //
 //#elif defined(__APPLE__)
@@ -3749,7 +3749,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaWork[iWorkspace];
+//      *prectangle = m_rectangleaWork[iWorkspace];
 //
 //
 //      return true;
@@ -5476,7 +5476,7 @@ namespace aura
   //      if (!estatus)
   //      {
   //
-  //         throw ::exception::exception(estatus);
+  //         throw ::exception(estatus);
   //
   //      }
   //
@@ -5699,7 +5699,7 @@ namespace aura
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -6548,7 +6548,7 @@ namespace aura
 
 
 
-//   void system::on_subject(::subject::subject * psubject)
+//   void system::on_subject(::subject * psubject)
 //   {
 //
 //
@@ -6557,7 +6557,7 @@ namespace aura
 //   }
 
 
-   void system::subject_handler(::subject::subject * psubject)
+   void system::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_font_enumeration)
@@ -6566,28 +6566,23 @@ namespace aura
          draw2d()->write_text()->handle_font_enumeration(psubject);
 
       }
-      else if (psubject->m_id == id_os_dark_mode)
+      else if (psubject->m_id == id_user_color)
       {
 
-//#ifdef _UWP
-//
-//         ::user::os_set_dark_mode_colors();
-//
-//#endif
 
       }
 
-      ::aqua::system::subject_handler(psubject);
+      /// ::aqua::system::handle(psubject);
 
    }
 
 
-   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
+   //void system::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::aqua::system::on_subject(psubject, pcontext);
+   //   ::aqua::system::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    ::e_status system::initialize_estamira()
@@ -7047,7 +7042,7 @@ namespace aura
    __pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    {
 
-      return m_pauracontext->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+      return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 
    }
 

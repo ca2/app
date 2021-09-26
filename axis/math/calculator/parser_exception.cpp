@@ -3,7 +3,7 @@
 
 
 numeric_parser_exception::numeric_parser_exception(const ::string & pszMessage):
-   ::exception::exception(error_parsing, pszMessage)
+   ::exception(error_parsing, pszMessage)
 {
 
    output_debug_string("numeric_parser_exception");

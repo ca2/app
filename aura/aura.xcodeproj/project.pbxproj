@@ -182,8 +182,6 @@
 		9A23A54F26CE988200F98012 /* aaa_os_windowing2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A32E26CE988000F98012 /* aaa_os_windowing2.h */; };
 		9A23A55026CE988200F98012 /* cross.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A33026CE988000F98012 /* cross.h */; };
 		9A23A57A26CE988300F98012 /* windowing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A35C26CE988100F98012 /* windowing.h */; };
-		9A23A57B26CE988300F98012 /* metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A35E26CE988100F98012 /* metrowin_user.cpp */; };
-		9A23A57C26CE988300F98012 /* cross_metrowin_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A35F26CE988100F98012 /* cross_metrowin_user.cpp */; };
 		9A23A57D26CE988300F98012 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A36026CE988100F98012 /* _.h */; };
 		9A23A57F26CE988300F98012 /* _application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A23A36226CE988100F98012 /* _application.cpp */; };
 		9A23A58026CE988300F98012 /* _user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A23A36326CE988100F98012 /* _user.h */; };
@@ -1048,8 +1046,6 @@
 		9A23A32E26CE988000F98012 /* aaa_os_windowing2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_os_windowing2.h; sourceTree = "<group>"; };
 		9A23A33026CE988000F98012 /* cross.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cross.h; sourceTree = "<group>"; };
 		9A23A35C26CE988100F98012 /* windowing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windowing.h; sourceTree = "<group>"; };
-		9A23A35E26CE988100F98012 /* metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = metrowin_user.cpp; sourceTree = "<group>"; };
-		9A23A35F26CE988100F98012 /* cross_metrowin_user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cross_metrowin_user.cpp; sourceTree = "<group>"; };
 		9A23A36026CE988100F98012 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A23A36126CE988100F98012 /* aaa_argcargv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_argcargv.cpp; sourceTree = "<group>"; };
 		9A23A36226CE988100F98012 /* _application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _application.cpp; sourceTree = "<group>"; };
@@ -2206,7 +2202,6 @@
 			children = (
 				9A23A33026CE988000F98012 /* cross.h */,
 				9A23A35B26CE988100F98012 /* windows */,
-				9A23A35D26CE988100F98012 /* universal_windows */,
 				9A23A36026CE988100F98012 /* _.h */,
 			);
 			path = cross;
@@ -2218,15 +2213,6 @@
 				9A23A35C26CE988100F98012 /* windowing.h */,
 			);
 			path = windows;
-			sourceTree = "<group>";
-		};
-		9A23A35D26CE988100F98012 /* universal_windows */ = {
-			isa = PBXGroup;
-			children = (
-				9A23A35E26CE988100F98012 /* metrowin_user.cpp */,
-				9A23A35F26CE988100F98012 /* cross_metrowin_user.cpp */,
-			);
-			path = universal_windows;
 			sourceTree = "<group>";
 		};
 		9A23A36726CE988100F98012 /* cairo */ = {
@@ -4227,7 +4213,6 @@
 				9AC2CE852653419500CC8096 /* still.cpp in Sources */,
 				9A3764AB2409BF0C002D15D3 /* cursor.cpp in Sources */,
 				9AC2CCC326533BB700CC8096 /* context.cpp in Sources */,
-				9A23A57B26CE988300F98012 /* metrowin_user.cpp in Sources */,
 				9AD116E524F5147800177261 /* windowing.cpp in Sources */,
 				9AD116E424F5147800177261 /* plain_text_data.cpp in Sources */,
 				9A3764DD2409BF0C002D15D3 /* alpha.cpp in Sources */,
@@ -4301,7 +4286,6 @@
 				9A1E1D8122F0AF69004243B8 /* buffer.cpp in Sources */,
 				9AD1173A24F5147900177261 /* window_map.cpp in Sources */,
 				9AD1170724F5147800177261 /* plain_edit.cpp in Sources */,
-				9A23A57C26CE988300F98012 /* cross_metrowin_user.cpp in Sources */,
 				9AC2CE592653416400CC8096 /* call_message_handler_task.cpp in Sources */,
 				9A440A7A2654F781000C490B /* menu_command.cpp in Sources */,
 				9A3764BC2409BF0C002D15D3 /* imaging.cpp in Sources */,

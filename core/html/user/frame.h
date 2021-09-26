@@ -19,7 +19,7 @@
 //   bool m_bTimerOn;
 //
 //   virtual bool pre_create_window(::user::system * pusersystem);
-//   virtual void route_command_message(::message::command * pcommand); 
+//   virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant); 
 //   void ShowControlBars(bool bShow);
 
 //   virtual ~html_frame();

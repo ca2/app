@@ -40,7 +40,7 @@ namespace userfs
       
       initialize_split_layout();
       
-      __pointer(::create) cc(e_create);
+      __pointer(::create) cc(e_create, this);
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewView = __type(tree);

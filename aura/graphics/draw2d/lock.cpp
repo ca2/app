@@ -8,6 +8,41 @@ namespace draw2d
 {
 
 
+   ::mutex * lock::s_pmutex = nullptr;
+
+   ::interlocked_count lock::s_countReference;
+
+   
+   void lock::__s_initialize()
+   {
+
+      auto count = s_countReference++;
+
+      if (count == 0)
+      {
+
+         s_pmutex = new ::mutex();
+
+      }
+
+   }
+
+
+   void lock::__s_finalize()
+   {
+
+      auto count = s_countReference--;
+
+      if (count == 1)
+      {
+
+         delete s_pmutex;
+
+      }
+
+   }
+
+
 //   device_lock::device_lock(::user::interaction * pinteraction)
 //   {
 //

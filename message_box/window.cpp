@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/graphics/user/close_button.h"
 
+
 #define STEPPY_DEBUG 0
 
 
@@ -13,7 +14,7 @@ namespace app_message_box
 
       m_bTransparent = true;
 
-      m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+      m_rectangleInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
       m_dBreathPeriod = 60.0;
 
@@ -42,7 +43,7 @@ namespace app_message_box
 
       m_pbuttonShowMessageBox->set_window_text("Show message box");
 
-      m_pbuttonShowMessageBox->add_control_event_handler(this);
+      m_pbuttonShowMessageBox->add_handler(this);
 
 #if !STEPPY_DEBUG
 
@@ -118,12 +119,12 @@ namespace app_message_box
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-      auto pitem = get_user_item(::user::e_element_close_button);
+      auto pitem = get_user_item(::e_element_close_button);
 
       if (::is_set(pitem))
       {
 
-         bool bHover = m_itemHover == ::user::e_element_close_button;
+         bool bHover = m_itemHover == ::e_element_close_button;
 
          double dSourcePeriod;
          
@@ -213,7 +214,7 @@ namespace app_message_box
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
    {
 
       if (::is_null(pitem))
@@ -223,7 +224,7 @@ namespace app_message_box
 
       }
 
-      if (pitem->m_eelement == ::user::e_element_close_button)
+      if (pitem->m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);
@@ -273,14 +274,13 @@ namespace app_message_box
    }
 
 
-   void window::on_control_event(::user::control_event * pevent)
+   void window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_click)
+      if (psubject->m_id == ::e_subject_click)
       {
 
-         if (pevent->m_puserinteraction == m_pbuttonShowMessageBox
-            && pevent->m_actioncontext.is_user_source())
+         if (psubject->user_interaction() == m_pbuttonShowMessageBox && psubject->m_actioncontext.is_user_source())
          {
 
             try
@@ -288,7 +288,7 @@ namespace app_message_box
 
                show_message_box();
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
                return;
 
@@ -308,27 +308,27 @@ namespace app_message_box
    void window::show_message_box()
    {
 
-      //auto pprocess = output_message_box_error("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto pprocess = message_box(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-      //pprocess->then([this](auto future)
-      //   {
+      pprocess->then([this](auto future)
+         {
 
-      //      if (future->m_edialogresult == e_dialog_result_yes)
-      //      {
+            if (future->m_edialogresult == e_dialog_result_yes)
+            {
 
-      //         auto papplication = get_application();
+               auto papplication = get_application();
 
-      //         papplication->_001TryCloseApplication();
+               papplication->_001TryCloseApplication();
 
-      //      }
-      //      else if (future->m_edialogresult == e_dialog_result_cancel)
-      //      {
+            }
+            else if (future->m_edialogresult == e_dialog_result_cancel)
+            {
 
-      //         show_message_box();
+               show_message_box();
 
-      //      }
+            }
 
-      //   });
+         });
 
    }
 

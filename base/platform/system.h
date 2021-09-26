@@ -98,7 +98,7 @@ namespace base
 //
 //      bool                                               m_bGudoNetCache;
 //
-//      __composite(::process::department)                 m_pprocess;
+//      __composite(::operating_system::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
 //      ::e_display                                         m_edisplay;
@@ -156,8 +156,8 @@ namespace base
 //
 //#else
 //
-//      rectangle_i32_array                                         m_rectaMonitor;
-//      rectangle_i32_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectangleaMonitor;
+//      rectangle_i32_array                                         m_rectangleaWork;
 //
 //#endif
 //
@@ -409,7 +409,7 @@ namespace base
 //
 //
 //      ::aura::str                                  &  str();
-//      ::process::department                        &  process();
+//      ::operating_system::department                        &  process();
 //
 //
 //      ::xml::department                            &  xml();
@@ -979,7 +979,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

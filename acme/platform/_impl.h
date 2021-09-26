@@ -412,7 +412,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         __throw(error_interface_only, "template only exception");
+         throw interface_only_exception("template only exception");
 
       }
 
@@ -720,7 +720,7 @@ template < typename RESULT, typename TRANSPORT >
 sequence < RESULT, TRANSPORT > ::sequence()
 {
 
-   m_ptask = ::get_task();
+   //m_ptask = ::get_task();
 
    m_pevent = nullptr;
 
@@ -773,16 +773,20 @@ void sequence < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
       m_pevent->SetEvent();
 
    }
+   
+   increment_reference_count();
 
-   m_ptask->post(__routine([this]()
+   m_psystem->fork(__routine([this]()
       {
+      
+         auto pHold = ::move_transfer(this);
 
          critical_section_lock lock(get_sequence_critical_section());
 
          while(m_functiona.has_element())
          {
 
-            auto pfunction = m_functiona.get_first_pointer();
+            auto pfunction = m_functiona.pop_first();
 
             lock.unlock();
 
@@ -953,16 +957,18 @@ template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
 SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
 {
 
-    if (!m_pfuture)
-    {
+   if (!m_pfuture)
+   {
 
-        ::__construct_new(m_pfuture);
+      m_psystem->__construct_new(m_pfuture);
+       
+      m_pfuture->m_psystem = m_psystem;
 
-        m_pfuture->m_transport = this;
+      m_pfuture->m_transport = this;
 
-    }
+   }
 
-    return m_pfuture;
+   return m_pfuture;
 
 }
 

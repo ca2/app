@@ -99,7 +99,7 @@ namespace windowing
 
       void call_expose(display *pdisplay);
 
-      virtual void on_subject(::subject::subject *psubject, ::subject::context *pcontext) override;
+      virtual void on_subject(::subject *psubject, ::context *pcontext) override;
 
       void on_layout(display *pdisplay);
 

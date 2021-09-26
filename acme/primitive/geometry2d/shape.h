@@ -39,7 +39,7 @@ protected:
    
 
    ___shape(enum_shape eshape) : m_eshape(eshape) { }
-
+   ~___shape() override {}
 
 public:
 
@@ -132,6 +132,7 @@ public:
 
    _shape():___shape(ESHAPE) {}
    _shape(const SHAPE & shape) : ___shape(ESHAPE), m_shape(shape) {}
+   ~_shape() override {}
 
 
    virtual void * raw_type() const { return (void*) &m_shape; }
@@ -174,50 +175,50 @@ using ellipse_shape = _shape < ::ellipse, e_shape_ellipse >;
 
 
 template < typename GEOMETRY >
-inline ___shape* __new_shape(const GEOMETRY& geometry);
+inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
 
 
 template < >
-inline ___shape* __new_shape(const enum_shape& eshape);
+inline __pointer(___shape) __create_shape(const enum_shape& eshape);
 
 
 //template < >
-//inline ___shape* __new_shape(const ::line & line)
+//inline __pointer(___shape) __create_shape(const ::line & line)
 //{
 //
-//   return new line_shape(line);
+//   return __new(line_shape(line));
 //
 //}
 
 
 template < >
-inline ___shape* __new_shape(const ::line & line)
+inline __pointer(___shape) __create_shape(const ::line & line)
 {
 
-   return new line_shape(line);
+   return __new(line_shape(line));
 
 }
 
 
 //template < >
-//inline ___shape* __new_shape(const ::lines& lines);
+//inline __pointer(___shape) __create_shape(const ::lines& lines);
 
 
 
 
 //template < >
-//inline ___shape* __new_shape(const ::rectangle_i32& rectangle)
+//inline __pointer(___shape) __create_shape(const ::rectangle_i32& rectangle)
 //{
 //
-//   return new rect_shape(rectangle);
+//   return __new(rect_shape(rectangle));
 //
 //}
 
 template < >
-inline ___shape* __new_shape(const ::rectangle & rectangle)
+inline __pointer(___shape) __create_shape(const ::rectangle & rectangle)
 {
 
-   return new rectangle_shape(rectangle);
+   return __new(rectangle_shape(rectangle));
 
 }
 

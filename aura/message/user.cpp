@@ -410,7 +410,7 @@ namespace message
    ::user::interaction * mouse_activate::get_desktop_window()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       //      return interaction_impl::from_handle_dup(reinterpret_cast<oswindow>(m_wparam));
 
@@ -507,13 +507,13 @@ namespace message
    void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
+      m_pscrollbar = lparam.move < ::user::primitive >();
+
       ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 
       m_ecommand = (enum_scroll_command) (i16)LOWORD(wparam);
 
       m_nPos = (i16)HIWORD(wparam);
-
-      m_pscrollbar = lparam.cast < ::user::primitive > ();
 
    }
 

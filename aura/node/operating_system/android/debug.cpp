@@ -3,53 +3,6 @@
 #include <android/log.h>
 
 
-//static string * m_pstrOutputDebugStringA = nullptr;
-::mutex * g_pmutexOutputDebugStringA = nullptr;
-
-VOID WINAPI output_debug_string(const ::string & lpOutputString)
-{
-
-   synchronous_lock synchronouslock(g_pmutexOutputDebugStringA);
-
-   //if (m_pstrOutputDebugStringA == nullptr)
-   //{
-
-   //   m_pstrOutputDebugStringA = new string();
-
-   //}
-
-   //m_pstrOutputDebugStringA->operator +=(lpOutputString);
-
-   //// very lazy implementation
-
-   //string_array stra;
-
-   //stra.add_lines(*m_pstrOutputDebugStringA);
-
-   //if (stra.get_count() > 0)
-   //{
-
-   //   *m_pstrOutputDebugStringA = stra.pop();
-
-   //   if (stra.get_count() > 0)
-   //   {
-
-   //      for (auto str : stra)
-   //      {
-
-   //__android_log_print(ANDROID_LOG_INFO, "output_debug_string", str);
-
-   __android_log_print(ANDROID_LOG_INFO,"output_debug_string", "%s", lpOutputString);
-
-   //      }
-
-   //   }
-
-   //}
-
-
-}
-
 
 CLASS_DECL_AURA void simple_debug_print(const ::string & psz)
 {
@@ -58,16 +11,6 @@ CLASS_DECL_AURA void simple_debug_print(const ::string & psz)
 
 }
 
-
-
-VOID WINAPI output_debug_string(const widechar * lpOutputString)
-{
-
-
-   output_debug_string(string(lpOutputString));
-
-
-}
 
 
 CLASS_DECL_AURA int os_trace_level(enum_trace_level elevel)

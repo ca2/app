@@ -871,7 +871,7 @@ inline bool succeeded(const ::payload & payload)
    else
    {
 
-      throw ::exception::exception(error_unexpected_situation);
+      throw ::exception(error_unexpected_situation);
 
    }
 
@@ -959,31 +959,24 @@ inline bool succeeded(const ::property & property)
 //}
 //
 //
+//template < class T >
+//template < typename TEMPLATER >
+//inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
+//{
+//
+//   __construct(*this);
+//
+//   return *this;
+//
+//}
+
+
 template < class T >
-template < typename TEMPLATER >
-inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
+template < typename TYPE >
+inline __pointer(T) & ___pointer < T >::create(::object * pobject)
 {
 
-   __construct(*this);
-
-   return *this;
-
-}
-
-
-template < class T >
-template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
-{
-
-  auto p = __create < TYPE >();
-
-  if (p)
-  {
-
-     p->initialize(pobject);
-
-  }
+  auto p = pobject->__create < TYPE >();
 
   return operator =(p);
 
@@ -991,8 +984,8 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
 
 
 template < class T >
-template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
+template < typename TYPE >
+inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 {
 
   if (bCreate)
@@ -1565,32 +1558,32 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 }
 
 
+//template < typename T >
+//template < typename TEMPLATER >
+//inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
+//{
+//
+//   if (is_null())
+//   {
+//
+//      operator=(__create < TYPE >());
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+
 template < typename T >
-template < typename TEMPLATER >
-inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
+template < typename TYPE >
+inline __pointer(T) & ___pointer<T> ::defer_create(::object * pobject)
 {
 
    if (is_null())
    {
 
-      operator=(__create < TYPE >());
-
-   }
-
-   return *this;
-
-}
-
-
-template < typename T >
-template < typename TYPE, typename OBJECT  >
-inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
-{
-
-   if (is_null())
-   {
-
-      operator=(__create < TYPE >(pobject));
+      operator=(pobject->__create < TYPE >());
 
    }
 
@@ -2415,49 +2408,116 @@ inline ::apex::session * object::get_session() const
 
 
 
-template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__create()
+template < typename TYPE >
+inline __transport(TYPE) object::__create()
 {
 
+   auto & pfactory = ::factory::get_factory < TYPE >();
 
-   auto p = ::move(::__create<BASE_TYPE>());
-
-   if (p)
+   if (!pfactory)
    {
 
-      auto estatus = p->initialize(this);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      return ::error_not_implemented;
 
    }
 
-   return ::move(p);
+   auto ptypeNew = pfactory->call_new();
+
+   if (!ptypeNew)
+   {
+
+      return ::error_no_memory;
+
+   }
+
+   __pointer(TYPE) p;
+
+   __dynamic_cast(p, ptypeNew);
+
+   if (!p)
+   {
+
+      return ::error_wrong_type;
+
+   }
+
+   auto estatus = p->initialize(this);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return p;
 
 }
 
 
-template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__id_create(const ::id& id)
+
+//   auto p = ::move(__create<BASE_TYPE>());
+//
+//   if (p)
+//   {
+//
+//      auto estatus = p->initialize(this);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//   }
+//
+//   return ::move(p);
+//
+//}
+//
+//
+template < typename TYPE >
+inline __transport(TYPE) object::__id_create(const ::id& id)
 {
 
-   auto p = ::move(::__id_create<BASE_TYPE>(id));
+   auto pfactory = ::factory::get_factory(id);
+   
+   if (!pfactory)
+   {
+   
+      return error_no_factory;
+   
+   }
+   
+   auto ptypeNew = pfactory->call_new();
+   
+   if (!ptypeNew)
+   {
+   
+      return error_no_memory;
+   
+   }
+   
+   __pointer(TYPE) p;
+   
+   __dynamic_cast(p, ptypeNew);
+   
+   if (!p)
+   {
+   
+      return error_wrong_type;
+   
+   }
+   
+   p->m_eobject |= e_object_factory;
+   
+   auto estatus = p->initialize(this);
 
-   if (p)
+   if (!estatus)
    {
 
-      auto estatus = p->initialize(this);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      return estatus;
 
    }
 
@@ -2472,7 +2532,7 @@ inline __transport(TYPE) object::__create_new()
 
    ASSERT(::is_set(this));
 
-   auto p = ::move(::__create_new<TYPE>());
+   auto p = __new(TYPE());
 
    if (p)
    {
@@ -2797,12 +2857,19 @@ template < typename TYPE >
 inline ::e_status object::__defer_construct(__pointer(TYPE)& p)
 {
 
-   ::e_status estatus = ::success_none;
-
-   if(::is_null(p))
+   if (::is_set(p))
    {
 
-      estatus = __construct(p);
+      return ::success_none;
+
+   }
+
+   auto estatus = __construct(p);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2830,16 +2897,43 @@ inline ::e_status object::__defer_construct_new(__pointer(TYPE)& p)
 
 
 template < typename TYPE >
-inline ::e_status object::__construct(__pointer(TYPE)& p)
+inline ::e_status object::__construct(__pointer(TYPE) & p)
 {
 
-   auto estatus = ::__construct(p);
-
-   if (estatus && p)
+   auto & pfactory = ::factory::get_factory < TYPE >();
+   
+   if (!pfactory)
    {
 
-      estatus = p->initialize(this);
+      return ::error_not_implemented;
 
+   }
+   
+   auto ptypeNew = pfactory->call_new();
+   
+   if (!ptypeNew)
+   {
+   
+      return ::error_no_memory;
+   
+   }
+   
+   __dynamic_cast(p, ptypeNew);
+   
+   if (!p)
+   {
+   
+      return ::error_wrong_type;
+   
+   }
+   
+   auto estatus = p->initialize(this);
+
+   if(!estatus)
+   {
+   
+      return estatus;
+   
    }
 
    return estatus;
@@ -2851,12 +2945,41 @@ template < typename TYPE >
 inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 {
 
-   auto estatus = ::__id_construct(p, id);
+   auto pfactory = ::factory::get_factory(id);
 
-   if (estatus && p)
+   if (!pfactory)
    {
 
-      estatus = p->initialize(this);
+      return error_no_factory;
+
+   }
+
+   auto ptypeNew = pfactory->call_new();
+
+   if (!ptypeNew)
+   {
+
+      return error_no_memory;
+
+   }
+
+   __dynamic_cast(p, ptypeNew);
+
+   if (!p)
+   {
+
+      return error_wrong_type;
+
+   }
+
+   p->m_eobject |= e_object_factory;
+
+   auto estatus = p->initialize(this);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2869,12 +2992,21 @@ template < typename TYPE >
 inline ::e_status object::__construct_new(__pointer(TYPE)& p)
 {
 
-   auto estatus = ::__construct_new(p);
+   p = __new(TYPE);
 
-   if(estatus.succeeded())
+   if (!p)
    {
 
-      estatus = p->initialize(this);
+      return error_no_memory;
+
+   }
+
+   auto estatus = p->initialize(this);
+
+   if(!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -3486,7 +3618,7 @@ inline routine_array& property_object::_routine_array(const ::id& id)
 inline routine_array& property_object::routine_array(const ::id& id)
 { 
    
-   ::__defer_construct_new(m_pmapPropertyRoutine);
+   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
    
    return m_pmapPropertyRoutine->operator[](id);
 
@@ -3816,23 +3948,54 @@ inline id::id(const ::lparam & lparam)
 }
 
 
-
 template < class T >
-inline ___pointer < T > ::___pointer(const lparam & lparam)
+inline ___pointer < T > & __move(___pointer < T > & p, lparam & lparam)
 {
 
-   auto * p = (::matter *)lparam.m_lparam;
+   auto pmatter = (::matter *)lparam.m_lparam;
 
-   m_p = dynamic_cast <T *> (p);
+   p.m_p = dynamic_cast <T *> (pmatter);
 
-   if (::is_null(m_p))
+   if (::is_null(p))
    {
 
-      ::release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+      ::release(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
 
    }
+
+   return p;
 
 }
 
 
+template < class T >
+inline ___pointer < T > ::___pointer(enum_create, ::object * p) :
+   m_p(nullptr)
+{
 
+   operator=(p->__create < T >());
+
+}
+
+
+template < class T >
+template < typename __TEMPLATE_TYPE__ >
+::count pointer_array < T > ::set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy, __TEMPLATE_TYPE__)
+{
+
+   ::index i = this->get_size();
+
+   comparable_array < ___pointer < T >, const T * > ::set_size(nNewSize);
+
+   ::count c = this->get_size();
+
+   for (; i < c; i++)
+   {
+
+      pobject->__construct(this->element_at(i));
+
+   }
+
+   return c;
+
+}

@@ -679,7 +679,7 @@ namespace serial
 
    };
 
-   class serial_exception : public ::exception::exception
+   class serial_exception : public ::exception
    {
       
       // Disable copy constructors
@@ -703,7 +703,7 @@ namespace serial
       }
    };
 
-   class io_exception : public ::exception::exception
+   class io_exception : public ::exception
    {
       // Disable copy constructors
       io_exception& operator=(const io_exception&);
@@ -750,7 +750,7 @@ namespace serial
       }
    };
 
-   class port_not_opened_exception : public ::exception::exception
+   class port_not_opened_exception : public ::exception
    {
       // Disable copy constructors
       const port_not_opened_exception& operator=(port_not_opened_exception);

@@ -71,6 +71,16 @@ class system;
 //#include "acme/node/operating_system/apple/_c_mm.h"
 
 
+class synchronization_object;
+class dump_context;
+class task;
+class property_object;
+class object;
+
+
+#include "acme/include/_forward_declaration.h"
+
+
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
 #include "acme/constant/_constant.h"
@@ -85,6 +95,7 @@ class system;
 #include "acme/primitive/datetime/_.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
+#include "acme/primitive/primitive/referenceable.h"
 #include "acme/primitive/primitive/matter.h"
 #ifdef __APPLE__
 #include "acme/node/operating_system/apple/_apple_no_templates.h"

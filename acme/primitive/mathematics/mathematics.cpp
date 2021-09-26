@@ -297,7 +297,7 @@ namespace mathematics
 
       }
 
-      m_posdata = __create_new < math_os_data>();
+      m_posdata = m_psystem->__create_new < math_os_data>();
 
       if (!estatus)
       {

@@ -58,10 +58,10 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       e_style                             m_estyle;
-      ::rectangle_i32                     m_rectText;
+      ::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-      ::rectangle_i32                     m_rectCheckBox;
+      ::rectangle_i32                     m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -111,7 +111,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -147,7 +147,7 @@ namespace user
       //virtual ::color::color get_button_text_color();
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

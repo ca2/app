@@ -94,8 +94,8 @@ namespace core
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //rectangle_i32_array                                            m_rectaMonitor;
-      //rectangle_i32_array                                            m_rectaWorkspace;
+      //rectangle_i32_array                                            m_rectangleaMonitor;
+      //rectangle_i32_array                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
@@ -178,7 +178,7 @@ namespace core
       virtual ::e_status initialize_html();
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
 
       virtual void _001OnFileNew();
@@ -485,7 +485,7 @@ namespace core
 
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       //virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
@@ -536,7 +536,7 @@ namespace core
 
       //void _001OnFileNew();
 
-      ////virtual void route_command_message(::message::command * pcommand) override;
+      ////void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -631,7 +631,7 @@ namespace core
       ////virtual void on_user_logon(::account::user* puser) override;
 
 
-      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText) override;
+      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 
 
       //virtual string_array get_user_wallpaper();
@@ -672,7 +672,7 @@ namespace core
       ////virtual oswindow get_capture() override;
 
 
-      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText) override;
+      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 
 
       //virtual bool prepare_menu_button(::user::menu_item* pitem) override;

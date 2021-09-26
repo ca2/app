@@ -559,7 +559,7 @@ namespace user
 
       {
 
-         if (eelement == ::user::e_element_icon)
+         if (eelement == ::e_element_icon)
          {
 
             if (!get_item_rect(prectangle, i))
@@ -573,7 +573,7 @@ namespace user
             return true;
 
          }
-         else if (eelement == ::user::e_element_text)
+         else if (eelement == ::e_element_text)
          {
 
             if (!get_item_rect(prectangle, i))
@@ -626,7 +626,7 @@ namespace user
 
 
 
-      void edit_impl::on_hit_test(::user::item & item)
+      void edit_impl::on_hit_test(::item & item)
       {
 
          //::point_f64 pointHit = item.m_pointHitTest;
@@ -870,19 +870,19 @@ namespace user
 
             get_window_rect(rWindow);
 
-            rectangle_f64 rectWindow;
+            rectangle_f64 rectangleWindow;
 
-            __copy(rectWindow, rWindow);
+            __copy(rectangleWindow, rWindow);
 
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
-            copy(rectWindow, rectWindow);
+            copy(rectangleWindow, rectangleWindow);
 
-            point += rectWindow.top_left();
+            point += rectangleWindow.top_left();
 
             _rtransform_point(point);
 
-            point -= rectWindow.top_left();
+            point -= rectangleWindow.top_left();
 
             auto rectangleClient = get_client_rect();
 
@@ -906,7 +906,7 @@ namespace user
       void edit_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         ::draw2d::graphics_pointer graphics(e_create);
+         ::draw2d::graphics_pointer graphics(e_create, this);
 
          pgraphics->CreateCompatibleDC(NULL);
 
@@ -915,15 +915,15 @@ namespace user
       }
 
 
-      void edit_impl::on_control_event(::user::control_event * pevent)
+      void edit_impl::handle(::subject * psubject, ::context * pcontext)
       {
 
-         if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+         if (psubject->m_id == ::e_subject_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
 
-            if (pevent->m_puserinteraction == pformattool)
+            if (psubject->user_interaction() == pformattool)
             {
 
                if (pformattool->m_eattribute & attribute_align)
@@ -945,7 +945,7 @@ namespace user
 
                set_keyboard_focus();
 
-               //pevent->Ret();
+               //psubject->Ret();
 
                //return;
 
@@ -953,7 +953,7 @@ namespace user
 
          }
 
-         return ::user::interaction::on_control_event(pevent);
+         return ::user::interaction::handle(psubject, pcontext);
 
       }
 
@@ -1007,19 +1007,19 @@ namespace user
 
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_key_down;
+            subject.m_id = ::e_subject_key_down;
 
-            ev.m_actioncontext.m_pmessage = pmessage;
+            subject.m_actioncontext.m_pmessage = pmessage;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if (ev.m_bRet)
+            if (subject.m_bRet)
             {
 
                return;
@@ -1069,17 +1069,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_escape;
+            subject.m_id = ::e_subject_escape;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if (!ev.m_bRet && ev.m_bOk)
+            if (!subject.m_bRet && subject.m_bOk)
             {
 
                on_action("escape");
@@ -1331,7 +1331,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::user::e_event_after_change_text);
+               on_after_change(::e_subject_after_change_text);
 
                set_need_redraw();
 
@@ -1351,7 +1351,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::user::e_event_after_change_text);
+               on_after_change(::e_subject_after_change_text);
 
                set_need_redraw();
 
@@ -1551,7 +1551,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
 
-                              on_after_change(::user::e_event_after_change_text);
+                              on_after_change(::e_subject_after_change_text);
 
                               set_need_redraw();
 
@@ -1569,7 +1569,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1 - iDecLen;
 
-                              on_after_change(::user::e_event_after_change_text);
+                              on_after_change(::e_subject_after_change_text);
 
                               set_need_redraw();
 
@@ -1926,7 +1926,7 @@ namespace user
 
                      //str = psession->keyboard().process_key(pkey);
                                           //str = psession->keyboard().process_key(pkey);
-                     throw exception::exception(todo, "keyboard");
+                     throw ::exception(todo, "keyboard");
 
 
                   }
@@ -1946,20 +1946,20 @@ namespace user
       }
 
 
-      void edit_impl::on_after_change(::user::enum_event eevent)
+      void edit_impl::on_after_change(::enum_subject esubject)
       {
 
          m_pdata->optimize_data();
 
-         ::user::control_event ev;
+         ::subject subject(esubject);
 
-         ev.m_eevent = eevent;
+         //subject.m_id = eevent;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         on_control_event(&ev);
+         route(&subject);
 
          set_need_layout();
 
@@ -2036,18 +2036,18 @@ namespace user
 
          m_pdata->write(stream);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         ((edit_impl *)this)->get_window_rect(rectWindow);
+         ((edit_impl *)this)->get_window_rect(rectangleWindow);
 
          if (get_parent() != nullptr)
          {
 
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
          }
 
-         stream << rectWindow;
+         stream << rectangleWindow;
 
          return stream;
 
@@ -2061,11 +2061,11 @@ namespace user
 
          m_pdata->read(stream);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         stream >> rectWindow;
+         stream >> rectangleWindow;
 
-         place(rectWindow);
+         place(rectangleWindow);
 
          display(e_display_normal);
 

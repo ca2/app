@@ -62,7 +62,7 @@ namespace app_net
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorText = get_color(pstyle, ::user::e_element_text);
+      auto colorText = get_color(pstyle, ::e_element_text);
 
       pgraphics->set_text_color(colorText);
 
@@ -107,7 +107,7 @@ namespace app_net
    }
 
 
-   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem)
+   void window::_001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem)
    {
 
       if (::is_null(pitem))
@@ -117,7 +117,7 @@ namespace app_net
 
       }
 
-      if (pitem->m_eelement == ::user::e_element_close_button)
+      if (pitem->m_eelement == ::e_element_close_button)
       {
 
          ::user::draw_close_button(pgraphics, this, pitem);
@@ -168,7 +168,7 @@ namespace app_net
    }
 
    
-   bool window::on_click(const ::user::item& item)
+   bool window::on_click(const ::item& item)
    {
 
       start_getting_url();

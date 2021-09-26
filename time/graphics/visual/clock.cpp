@@ -40,19 +40,19 @@ namespace datetime
 
       rectangle_i32 rectangle;
       GetRect(&rectangle,e_element_clock);
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
       
-      pen->create_solid(1, argb(255, 0, 0, 0));
-      pgraphics->set(pen);
+      ppen->create_solid(1, argb(255, 0, 0, 0));
+      pgraphics->set(ppen);
       pgraphics->draw_ellipse(rectangle);
 
       point_i32 pointCenter(rectangle.center());
 
-      ::draw2d::pen_pointer penHour(e_create);
-      ::draw2d::pen_pointer penMinute(e_create);
+      auto ppenHour = __create < ::draw2d::pen > ();
+      auto ppenMinute = __create < ::draw2d::pen > ();
 
-      penHour->create_solid(5, argb(255, 0, 0, 0));
-      penMinute->create_solid(1, argb(255, 0, 0, 0));
+      ppenHour->create_solid(5, argb(255, 0, 0, 0));
+      ppenMinute->create_solid(1, argb(255, 0, 0, 0));
 
       double dRIntH = rectangle.width() * 57 / 128;
       double dRIntM = rectangle.width() * 59 / 128;
@@ -68,13 +68,13 @@ namespace datetime
          {
             pointInt.x = (::i32)(cos(angle) * dRIntH);
             pointInt.y = (::i32)(-sin(angle) * dRIntH);
-            pgraphics->set(penHour);
+            pgraphics->set(ppenHour);
          }
          else
          {
             pointInt.x = (::i32)(cos(angle) * dRIntM);
             pointInt.y = (::i32)(-sin(angle) * dRIntM);
-            pgraphics->set(penMinute);
+            pgraphics->set(ppenMinute);
          }
          pointInt.offset(pointCenter);
          pgraphics->move_to(pointInt);
@@ -85,9 +85,9 @@ namespace datetime
       double dRMinute = rectangle.width() * 15 / 32;
       double dRSecond = rectangle.width() * 16 / 32;
 
-      ::draw2d::pen_pointer penHM(e_create);
-      penHM->create_solid(2, argb(255, 0, 0, 0));
-      pgraphics->set(penHM);
+      auto ppenHM = __create < ::draw2d::pen > ();
+      ppenHM->create_solid(2, argb(255, 0, 0, 0));
+      pgraphics->set(ppenHM);
 
       pgraphics->move_to(pointCenter);
       {
@@ -103,9 +103,9 @@ namespace datetime
          pointMinute.offset(pointCenter);
          pgraphics->line_to(pointMinute);
       }
-      ::draw2d::pen_pointer penRed(e_create);
-      penRed->create_solid(1, argb(255, 200, 0, 0));
-      pgraphics->set(penRed);
+      auto ppenRed = __create < ::draw2d::pen > ();
+      ppenRed->create_solid(1, argb(255, 200, 0, 0));
+      pgraphics->set(ppenRed);
       pgraphics->move_to(pointCenter);
       {
          double angle = pmathematics->get_pi() / 2.0 - timeNow.GetSecond() * pmathematics->get_pi() * 2.0 / (60.0);

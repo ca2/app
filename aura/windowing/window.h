@@ -42,8 +42,11 @@ namespace windowing
       void user_common_construct();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      ::e_status on_initialize_object() override;
+
+
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       inline ::aura::application* get_application() const;
@@ -51,7 +54,7 @@ namespace windowing
       inline ::aura::system* get_system() const;
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::e_status create_window(::user::interaction_impl * pimpl);
@@ -141,10 +144,11 @@ namespace windowing
 
 
 
-      virtual void message_handler(::message::message* pusermessage);
+      void message_handler(::message::message* pusermessage);
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
+
 
       virtual void present();
 
@@ -162,7 +166,7 @@ namespace windowing
 
       virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
 
-      virtual void get_window_text(string & rectString);
+      virtual void get_window_text(string & rectangleString);
       virtual strsize get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -194,7 +198,7 @@ namespace windowing
       virtual void UnlockWindowUpdate();
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
       // Window State Functions
       virtual bool is_this_enabled();
@@ -232,6 +236,9 @@ namespace windowing
 
 
       virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
+
+
+      virtual ::point_i32 get_mouse_cursor_position();
 
 
       virtual ::e_status set_tool_window(bool bSet);

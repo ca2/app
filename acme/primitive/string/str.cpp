@@ -2150,7 +2150,7 @@ namespace str
          *pslide += 6;
          return psz;
       }
-      throw ::exception::exception(error_invalid_character, "invalid utf8 character");
+      throw ::exception(error_invalid_character, "invalid utf8 character");
    }
 
 

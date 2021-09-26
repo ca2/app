@@ -283,7 +283,7 @@ namespace axis
 ////         }
 //
 //      }
-//      catch (const ::exception::exception & e)
+//      catch (const ::exception & e)
 //      {
 //
 //         if (!handle_exception(e))
@@ -1536,7 +1536,7 @@ namespace axis
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -1723,7 +1723,7 @@ namespace axis
             m_estatus = run();
 
          }
-         catch (const ::exception::exception & e)
+         catch (const ::exception & e)
          {
 
             if (handle_exception(e))
@@ -1738,7 +1738,7 @@ namespace axis
          }
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
       }

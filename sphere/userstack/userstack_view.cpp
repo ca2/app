@@ -8,10 +8,10 @@ namespace userstack
 
    impact::impact(::object * pobject) :
       ::object(pobject),
-      m_font(e_create)
+      m_pfont(e_create)
    {
 
-      m_font->create_point_font(pnode->font_name(e_font_sans_ex), 8.4);
+      m_pfont->create_point_font(pnode->font_name(e_font_sans_ex), 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;
@@ -91,7 +91,7 @@ namespace userstack
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(psubject);
@@ -304,45 +304,45 @@ namespace userstack
    }
 
 
-   void impact::on_hit_test(::user::item & item)
+   void impact::on_hit_test(::item & item)
    {
       
-      ::rectangle_i32 rectArea;
+      ::rectangle_i32 rectangleArea;
       
-      GetAreaThumbRect(rectArea, m_iV);
+      GetAreaThumbRect(rectangleArea, m_iV);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
       
-         item ={ ::user::e_element_area, m_iV };
+         item ={ ::e_element_area, m_iV };
 
          return;
          
       }
 
-      GetAreaThumbRect(rectArea, m_i_veriwell);
+      GetAreaThumbRect(rectangleArea, m_i_veriwell);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
 
-         item = { ::user::e_element_area, m_i_veriwell };
+         item = { ::e_element_area, m_i_veriwell };
 
          return;
 
       }
 
-      GetAreaThumbRect(rectArea, m_i_winactionarea);
+      GetAreaThumbRect(rectangleArea, m_i_winactionarea);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
          
-         item = { ::user::e_element_area, m_i_winactionarea };
+         item = { ::e_element_area, m_i_winactionarea };
 
          return;
 
       }
       
-      item = ::user::e_element_none;
+      item = ::e_element_none;
       
    }
 

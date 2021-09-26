@@ -20,7 +20,7 @@ namespace user
       string                              m_str;
       ::rectangle_i32                              m_rectangle;
       bool                                m_bEnableIfHasCommandHandler;
-      ::write_text::font_pointer              m_font;
+      ::write_text::font_pointer              m_pfont;
 
 
       toolbar_item();

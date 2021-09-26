@@ -221,7 +221,7 @@ namespace draw2d_cairo
 //      catch (...)
 //      {
 //
-//         output_message_box_error("except", "except", e_message_box_ok);
+//         output_error_message("except", "except", e_message_box_ok);
 //
 //      }
 //
@@ -276,7 +276,7 @@ namespace draw2d_cairo
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      ::draw2d::brush_pointer pbrushText(e_create);
+//      auto pbrushText = __create < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);
@@ -1164,7 +1164,7 @@ namespace draw2d_cairo
 //         if (!write_text_factory_exchange(::factory::get_factory_map()))
 //         {
 //
-//            output_message_box_error("Failed to initialize draw2d library.");
+//            output_error_message("Failed to initialize draw2d library.");
 //
 //            estatus = error_failed;
 //

@@ -16,7 +16,7 @@ namespace filemanager
 
 
       void on_update(::aura::impact * pSender,e_update eupdate,object* pupdate);
-      virtual void on_control_event(::user::control_event * pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext);
 
 
    };

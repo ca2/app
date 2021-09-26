@@ -281,7 +281,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -346,7 +346,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 

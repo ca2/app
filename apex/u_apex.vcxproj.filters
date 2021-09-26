@@ -8,9 +8,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{d701e5d0-2b88-40f9-b9ab-18eb7f9a601a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive">
-      <UniqueIdentifier>{41142859-2b36-4c31-90a3-30c80dbeb767}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{559858d8-9dfb-4787-acdc-a6a1f7130712}</UniqueIdentifier>
     </Filter>
@@ -70,9 +67,6 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{dfda75a2-a9d6-40f7-a8c1-ad05624b99e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{7d9aeb58-db9b-450b-be51-235b7adba139}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{488ec59b-5494-4d87-b081-11cc856be0fe}</UniqueIdentifier>
@@ -197,12 +191,6 @@
     <Filter Include="Source Files\node\operating_system\universal_windows">
       <UniqueIdentifier>{5a92173a-7d6e-4a29-9202-eb270a06f060}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\subject">
-      <UniqueIdentifier>{acbb88b3-d929-44db-918a-c0e4d6655156}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\primitive\subject">
-      <UniqueIdentifier>{aa452198-3ddd-441a-8490-b886a5c8510f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto\openssl">
       <UniqueIdentifier>{be020730-e7fe-4164-b444-6f04b4d73822}</UniqueIdentifier>
     </Filter>
@@ -248,6 +236,12 @@
     <Filter Include="Header Files\inline\main">
       <UniqueIdentifier>{8d7fb26f-a342-45c3-8603-0df267504075}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\subject">
+      <UniqueIdentifier>{7d9aeb58-db9b-450b-be51-235b7adba139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\subject">
+      <UniqueIdentifier>{41142859-2b36-4c31-90a3-30c80dbeb767}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -258,9 +252,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\command.cpp">
       <Filter>Source Files\user</Filter>
@@ -275,9 +266,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\menu_shared_commnand.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\text.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
@@ -679,24 +667,6 @@
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\subject\context.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\manager.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\process.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\promise.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\routine.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\subject.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\crypto_initializer.cpp">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
@@ -832,6 +802,33 @@
     <ClCompile Include="node\operating_system\universal_windows\thread.cpp">
       <Filter>Source Files\node\operating_system\universal_windows</Filter>
     </ClCompile>
+    <ClCompile Include="subject\handler.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\context.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\manager.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\process.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\promise.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\routine.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\source.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\signal.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="message\dispatcher.cpp">
+      <Filter>Source Files\message</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -900,9 +897,6 @@
     <ClInclude Include="user\aaa_item.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\check.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\command.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -919,9 +913,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\menu_shared_command.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\text.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\_.h">
@@ -1860,27 +1851,6 @@
     <ClInclude Include="parallelization\threading.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\subject\_.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\_impl.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\context.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\manager.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\promise.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\promise1.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\subject\subject.h">
-      <Filter>Header Files\primitive\subject</Filter>
-    </ClInclude>
     <ClInclude Include="progress\_.h">
       <Filter>Header Files\progress</Filter>
     </ClInclude>
@@ -1934,6 +1904,63 @@
     </ClInclude>
     <ClInclude Include="inline\console\universal_windows.h">
       <Filter>Header Files\inline\console</Filter>
+    </ClInclude>
+    <ClInclude Include="user\callback.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\control_event.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\item.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\event_handler.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\event.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\item.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\event_source.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\_.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\_impl.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\aaa_handler.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\context.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\source.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\manager.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\promise.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\promise1.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\predicate.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\extended_subject.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="message\dispatcher.h">
+      <Filter>Header Files\message</Filter>
+    </ClInclude>
+    <ClInclude Include="message\predicate_handler.h">
+      <Filter>Header Files\message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -95,7 +95,7 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   //inline void __throw(const ::exception::exception & e) const;
+   //inline void __throw(const ::exception & e) const;
 
 
    virtual void __tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);

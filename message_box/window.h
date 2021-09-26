@@ -26,11 +26,11 @@ namespace app_message_box
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem) override;
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void show_message_box();
 

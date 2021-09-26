@@ -389,8 +389,8 @@ namespace aura
 
       ::application::install_message_routing(pchannel);
 
-      //connect_command("app_exit", &application::on_message_app_exit);
-      connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+      //add_command_handler("app_exit", &application::on_message_app_exit);
+      add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
    }
 
@@ -508,6 +508,9 @@ namespace aura
 
       }
 
+      m_bAttendedFirstRequest = true;
+
+      defer_process_activation_message();
       //return ::success;
 
    }
@@ -541,7 +544,7 @@ namespace aura
          //    __throw(exit_exception(esp->get_application(), ::exit_application));
 
          // }
-         catch (const ::exception::exception & e)
+         catch (const ::exception & e)
          {
 
             handle_exception(e);
@@ -1118,7 +1121,7 @@ namespace aura
 //   void application::TermThread(HINSTANCE hInstTerm)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 //
@@ -1130,7 +1133,7 @@ namespace aura
 
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return false;
 
@@ -1141,7 +1144,7 @@ namespace aura
    /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -1151,7 +1154,7 @@ namespace aura
    //void application::_001OnFileNew(::message::message * pmessage)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1245,7 +1248,7 @@ namespace aura
    //}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return ::thread::process_exception(pe);
@@ -1278,7 +1281,7 @@ namespace aura
    //      }
 
    //   }
-   //   catch (const ::exception::exception & e)
+   //   catch (const ::exception & e)
    //   {
 
    //      handle_exception(pe);
@@ -1387,7 +1390,7 @@ namespace aura
 //         return true;
 //
 //      }
-//      catch (const ::exception::exception & e)
+//      catch (const ::exception & e)
 //      {
 //
 //         handle_exception(pe);
@@ -1488,7 +1491,7 @@ namespace aura
 //            estatus = run();
 //
 //         }
-//         catch (const ::exception::exception & e)
+//         catch (const ::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -1573,9 +1576,9 @@ namespace aura
 
       }
       
-      auto psubject = m_psystem->m_papexsystem->subject(id_app_activated);
+      auto psignal = m_psystem->m_papexsystem->get_signal(id_app_activated);
       
-      psubject->add_listener(this);
+      psignal->add_handler(this);
 
       return true;
 
@@ -2039,7 +2042,7 @@ retry_license:
 
             TRACE("ERROR: context_image required but missing.");
 
-            //output_message_box_error("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
             return estatus;
 
@@ -2056,7 +2059,7 @@ retry_license:
 
             TRACE("ERROR: context_image required but missing.");
 
-            //output_message_box_error("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
             return estatus;
 
@@ -2924,7 +2927,7 @@ retry_license:
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -3368,7 +3371,7 @@ retry_license:
 //   }
 //
 //
-//   void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+//   void application::handle(::subject * psubject, ::context * pcontext)
 //   {
 //
 //
@@ -4777,7 +4780,7 @@ retry_license:
    //}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return aura::application::process_exception(e);
@@ -4849,7 +4852,7 @@ retry_license:
    //         m_estatus = run();
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         if (handle_exception(pe))
@@ -4864,7 +4867,7 @@ retry_license:
    //      }
 
    //   }
-   //   catch (const ::exception::exception & e)
+   //   catch (const ::exception & e)
    //   {
 
    //   }
@@ -5393,7 +5396,7 @@ retry_license:
    //void application::TermThread(HINSTANCE hInstTerm)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -5403,7 +5406,7 @@ retry_license:
    //string application::get_version()
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -5415,7 +5418,7 @@ retry_license:
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -5424,7 +5427,7 @@ retry_license:
    ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -5564,7 +5567,7 @@ retry_license:
 //         if (::mutex.already_exists())
 //         {
 //
-//            //            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 //
 //            return -35;
 //
@@ -5608,7 +5611,7 @@ retry_license:
 //
 //
 
-   //void application::on_control_event(::user::control_event * pevent)
+   //void application::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //}
@@ -5640,41 +5643,41 @@ retry_license:
 
    //}
 
-   //void application::on_control_event(::user::control_event* pevent)
+   //void application::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //}
 
 
-   void application::on_notify_control_event(::user::control_event* pevent)
-   {
+   //void application::on_notify_control_event(::user::control_event* pevent)
+   //{
 
 
-   }
+   //}
 
 
-   void application::route_control_event(::user::control_event* pevent)
-   {
+   //void application::route(::subject * psubject, ::context * pcontext)
+   //{
 
-      on_control_event(pevent);
+   //   handle(psubject);
 
-      if (pevent->m_bRet)
-      {
+   //   if (psubject->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      on_notify_control_event(pevent);
+   //   on_notify_control_event(pevent);
 
-      if (pevent->m_bRet)
-      {
+   //   if (psubject->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-   }
+   //}
 
 
 
@@ -5891,7 +5894,7 @@ namespace aura
 
                ::message::command command(idCommand);
 
-               pinteraction->route_command_message(&command);
+               pinteraction->route_command(&command);
 
             }));
 
@@ -5907,7 +5910,7 @@ namespace aura
 
             auto puserinteractionMain = m_puserinteractionMain;
 
-            puserinteractionMain->route_command_message(&command);
+            puserinteractionMain->route_command(&command);
 
             if(command.m_bRet)
             {
@@ -6086,7 +6089,7 @@ namespace aura
    }
 
 
-   void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
+   void application::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage)
    {
 
       ENSURE_ARG(pmessage != nullptr);
@@ -6134,10 +6137,24 @@ namespace aura
    }
 
 
-   void application::route_command_message(::message::command* pcommand)
+   void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::thread::route_command_message(pcommand);
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsession)
+      {
+
+         m_papexsession->route_command(pcommand, false);
+
+      }
 
    }
 
@@ -6751,7 +6768,7 @@ namespace aura
 //   }
 //
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return ::aura::application::on_run_exception(pexception))
@@ -6766,7 +6783,7 @@ namespace aura
    //}
 
 
-   //bool application::final_handle_exception(const ::exception::exception & e)
+   //bool application::final_handle_exception(const ::exception & e)
    //{
 
    //   __UNREFERENCED_PARAMETER(pexception);
@@ -6988,7 +7005,7 @@ namespace aura
 //      __UNREFERENCED_PARAMETER(hDevNames);
 //      __UNREFERENCED_PARAMETER(hDevMode);
 //      __UNREFERENCED_PARAMETER(bFreeOld);
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //
 //   }
 //
@@ -6998,7 +7015,7 @@ namespace aura
 
    //::draw2d::graphics* application::CreatePrinterDC()
    //{
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return nullptr;
    //}
 
@@ -7189,7 +7206,7 @@ namespace aura
    {
       //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       ///*char szRegistryKey[256];
       //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
@@ -7601,7 +7618,7 @@ namespace aura
 
          auto puserinteractionMain = m_puserinteractionMain;
 
-         puserinteractionMain->m_puiThis->display(e_display_normal);
+         puserinteractionMain->display(e_display_normal);
 
       }
 
@@ -7714,7 +7731,7 @@ namespace aura
    //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -7808,7 +7825,7 @@ namespace aura
 
    //   aura::application::install_message_routing(pchannel);
 
-   //   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+   //   add_command_handler("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    //}
 
@@ -8318,7 +8335,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
    {
 
    }
@@ -8443,7 +8460,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
+   void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
    {
 
       string strMessage;
@@ -8458,7 +8475,7 @@ namespace aura
 
       //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
 
-      output_message_box_error(strMessage, pszTopic, iMessageFlags);
+      output_error_message(strMessage, pszTopic, iMessageFlags);
 
    }
 
@@ -8654,12 +8671,12 @@ namespace aura
    //   }
 
 
-      void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+      void application::handle(::subject * psubject, ::context * pcontext)
       {
 
-         ::aqua::application::on_subject(psubject, pcontext);
+         //::aqua::application::handle(psubject, pcontext);
 
-         //::user::form_callback::on_subject(psubject, pcontext);
+         //::user::form_callback::handle(psubject, pcontext);
 
          if(psubject->m_id == id_app_activated)
          {
@@ -8672,6 +8689,75 @@ namespace aura
             }
             
          }
+         if (psubject->m_id == ::e_subject_initialize_control)
+         {
+
+            auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
+
+            if (puserinteraction->m_id == __id(system_startup_checkbox))
+            {
+
+               try
+               {
+                  __pointer(::user::check) pcheck = puserinteraction;
+
+                  if (pcheck.is_set())
+                  {
+
+                     auto pcontext = get_context();
+
+                     pcheck->_001SetCheck(
+                        os().is_user_auto_start(get_executable_appid()),
+                        ::e_source_initialize);
+
+                  }
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+         else if (psubject->m_id == ::e_subject_set_check)
+         {
+
+            auto puserinteraction = psubject->user_interaction();
+
+            if (puserinteraction->m_id == __id(system_startup_checkbox)
+               && psubject->m_actioncontext.is_user_source())
+            {
+
+               try
+               {
+
+                  __pointer(::user::check) pcheck = puserinteraction;
+
+                  if (pcheck.is_set())
+                  {
+
+                     os().register_user_auto_start(
+                        get_executable_appid(),
+                        get_executable_path(),
+                        pcheck->echeck() == ::check_checked);
+
+                  }
+
+                  psubject->m_bRet = true;
+
+                  return;
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+
 
       }
 
@@ -9007,81 +9093,6 @@ namespace aura
       {
 
          return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
-
-      }
-
-   }
-
-
-   void application::on_control_event(::user::control_event* pevent)
-   {
-
-      if (pevent->m_eevent == ::user::e_event_initialize_control)
-      {
-
-         auto puserinteraction = pevent->m_puserinteraction;
-
-         if (puserinteraction->m_id == __id(system_startup_checkbox))
-         {
-
-            try
-            {
-               __pointer(::user::check) pcheck = puserinteraction;
-
-               if (pcheck.is_set())
-               {
-
-                  auto pcontext = get_context();
-
-                  pcheck->_001SetCheck(
-                     os().is_user_auto_start(get_executable_appid()),
-                     ::e_source_initialize);
-
-               }
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      else if (pevent->m_eevent == ::user::e_event_set_check)
-      {
-
-         auto puserinteraction = pevent->m_puserinteraction;
-
-         if (puserinteraction->m_id == __id(system_startup_checkbox)
-            && pevent->m_actioncontext.is_user_source())
-         {
-
-            try
-            {
-
-               __pointer(::user::check) pcheck = puserinteraction;
-
-               if (pcheck.is_set())
-               {
-
-                  os().register_user_auto_start(
-                     get_executable_appid(),
-                     get_executable_path(),
-                     pcheck->echeck() == ::check_checked);
-
-               }
-
-               pevent->m_bRet = true;
-
-               return;
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
 
       }
 

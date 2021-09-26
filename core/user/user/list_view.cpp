@@ -27,10 +27,10 @@ namespace user
    }
 
 
-   void list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      BASE_VIEW::on_subject(psubject, pcontext);
+      BASE_VIEW::handle(psubject, pcontext);
 
       if (psubject->id() == id_initial)
       {

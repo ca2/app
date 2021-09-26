@@ -56,7 +56,7 @@ string acme_path::from(string str)
 //bool acme_path::final_is_same(const char * pszPath1, const char * pszPath2)
 //{
 //
-//   __throw(error_interface_only);
+//   throw ::interface_only_exception();
 //
 //   return false;
 //
@@ -83,7 +83,7 @@ string acme_path::from(string str)
 ::file::path acme_path::_final(const char * path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return "";
 
@@ -182,7 +182,7 @@ bool acme_path::final_is_same(const char * path1, const char * path2)
 bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -192,7 +192,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 ::e_status acme_path::create_symbolic_link(const char * pszLink, const char * pszSource)
 {
    
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
    
    return error_interface_only;
    
@@ -202,7 +202,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 ::e_status acme_path::is_symbolic_link(const char * pszLink)
 {
    
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
    
    return error_interface_only;
    
@@ -212,7 +212,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 ::file::path acme_path::symbolic_link_destination(const char * pszLink)
 {
    
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
    
    return "";
    
@@ -222,7 +222,7 @@ bool acme_path::is_file_or_dir(const char * path, ::file::enum_type * petype)
 bool acme_path::has_custom_icon(const char * path)
 {
    
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
       
    return false;
    

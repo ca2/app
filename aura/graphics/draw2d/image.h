@@ -14,7 +14,7 @@ public:
 
 
    memory                              m_memoryMap;
-   ::rectangle_i32                     m_rectTag;
+   ::rectangle_i32                     m_rectangleTag;
 
 
    image();
@@ -120,7 +120,7 @@ public:
    virtual bool unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-   virtual bool map(bool bApplyAlphaTransform = true);
+   virtual bool _map(bool bApplyAlphaTransform = true);
    virtual bool _unmap();
 
    virtual bool set_mapped();
@@ -213,9 +213,11 @@ public:
 
    virtual bool create_thumbnail(const ::string & pszPath);
 
-
+   virtual ::e_status create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
    virtual ::e_status create(::draw2d::graphics* pgraphics);
    virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   using ::object::initialize;
+   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG);
    inline ::e_status preserve(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
    {
 
@@ -250,7 +252,7 @@ public:
 
    //virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
-   virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
+   //virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
    //virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size_i32 & size);
@@ -317,8 +319,9 @@ public:
 
    virtual bool lighten(double dRate);
 
-   virtual bool copy_from(::image * pimage, i32 x = 0, i32 y = 0);
-   virtual bool copy_to(::image * pimage, i32 x = 0, i32 y = 0);
+   virtual bool copy_from(::image * pimage, const ::point_i32 & point, eobject eobjectCreate = e_object_success);
+   virtual bool copy_from(::image * pimage, eobject eobjectCreate = e_object_success);
+   //virtual bool copy_to(::image * pimage, const ::point_i32 & point = nullptr);
 
    virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);
 

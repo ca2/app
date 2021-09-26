@@ -39,11 +39,7 @@
 //
 //CLASS_DECL_AURA int get_processor_count(void);
 //
-//CLASS_DECL_AURA void output_debug_string(const ::string & psz);
-//CLASS_DECL_AURA void w_output_debug_string(const widechar * psz);
-//#ifdef __cplusplus
-//CLASS_DECL_AURA void output_debug_string(const widechar * pwsz);
-//#endif
+
 //CLASS_DECL_AURA void writeln(const ::string & psz);
 //
 //

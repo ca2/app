@@ -159,7 +159,7 @@ bool xcb_on_event(xcb_generic_event_t * pevent)
 //   if(g_pobjectaExtendedEventListener)
 //   {
 //
-//      cookie = &pevent->xcookie;
+//      cookie = &psubject->xcookie;
 //
 //   }
 //   else
@@ -516,7 +516,7 @@ bool xcb_message_loop_step()
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&ev.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&
@@ -587,7 +587,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, xcb_generic_event_t * peve
 
    e.type = 0;
 
-   auto eevent = pevent->response_type & ~0x80;
+   auto eevent = psubject->response_type & ~0x80;
 
    switch(eevent)
    {

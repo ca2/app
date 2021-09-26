@@ -1102,6 +1102,9 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\aaa_not_installed.cpp" />
+    <ClCompile Include="exception\interface_only.cpp" />
+    <ClCompile Include="exception\io.cpp" />
+    <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
@@ -1113,6 +1116,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="exception\dump_output.cpp" />
     <ClCompile Include="exception\exception.cpp" />
     <ClCompile Include="exception\exit.cpp" />
+    <ClCompile Include="exception\resource.cpp" />
     <ClCompile Include="exception\throw.cpp" />
     <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_dir.cpp" />
@@ -1181,10 +1185,13 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
+    <ClInclude Include="exception\interface_only.h" />
+    <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>
@@ -1527,8 +1534,14 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\topic.cpp" />
+    <ClCompile Include="subject\handler.cpp" />
+    <ClCompile Include="subject\item.cpp" />
+    <ClCompile Include="subject\subject.cpp" />
+    <ClCompile Include="user\check.cpp" />
+    <ClCompile Include="user\element.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
+    <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
     <ClInclude Include="astr.h" />
@@ -2009,11 +2022,18 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\topic.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="subject\handler.h" />
+    <ClInclude Include="subject\item.h" />
+    <ClInclude Include="subject\subject.h" />
     <ClInclude Include="update.h" />
+    <ClInclude Include="user\check.h" />
     <ClInclude Include="user\conversation.h" />
+    <ClInclude Include="user\element.h" />
     <ClInclude Include="user\ewindowflag.h" />
     <ClInclude Include="user\os_colors.h" />
     <ClInclude Include="user\os_theme_colors.h" />
+    <ClInclude Include="user\text.h" />
+    <ClInclude Include="user\theme_colors.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_const.h" />
     <ClInclude Include="user\_const_key.h" />

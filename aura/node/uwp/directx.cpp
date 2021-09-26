@@ -63,6 +63,8 @@ namespace universal_windows
 
       ::draw2d::lock draw2dlock;
 
+      ::draw2d::device_lock devicelock(this);
+
       if (m_bInitialized)
       {
 
@@ -103,6 +105,8 @@ namespace universal_windows
    {
 
       ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       //// Reset these member variables to ensure that SetDpi recreates all resources.
       float dpi = m_dpi;
@@ -148,6 +152,8 @@ namespace universal_windows
    {
 
       ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       D2D1_FACTORY_OPTIONS options;
       ZeroMemory(&options,sizeof(D2D1_FACTORY_OPTIONS));
@@ -266,6 +272,8 @@ namespace universal_windows
 
       ::draw2d::lock draw2dlock;
 
+      ::draw2d::device_lock devicelock(this);
+
       //::aura::get_system()->draw2d()->direct2d() = __new(::draw2d_direct2d::plugin);
 
       //::aura::get_system()->draw2d()->direct2d()->initialize();
@@ -301,6 +309,8 @@ namespace universal_windows
    {
 
       ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       if (dpi != m_dpi)
       {
@@ -346,7 +356,9 @@ namespace universal_windows
       if (m_size.cx != m_windowBounds.Width || m_size.cy != m_windowBounds.Height)
       {
 
-         ::draw2d::lock lock;
+         ::draw2d::lock draw2dlock;
+
+         ::draw2d::device_lock devicelock(this);
 
          auto psubject = m_psystem->subject(id_os_dark_mode);
 
@@ -449,7 +461,9 @@ namespace universal_windows
 
       HRESULT hr;
 
-      ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
+      ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size_i32 is identical.
@@ -478,7 +492,7 @@ namespace universal_windows
          ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->ClearState();
          ::aura::get_system()->draw2d()->direct2d()->m_pd2device->ClearResources();
          {
-            Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
+            comptr < ID3D11CommandList > pcommandlist;
             hr = ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {
@@ -683,7 +697,9 @@ namespace universal_windows
 
       HRESULT hr;
 
-      ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
+      ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size_i32 is identical.
@@ -718,7 +734,9 @@ namespace universal_windows
 
       {
 
-         ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
+         ::draw2d::lock draw2dlock;
+
+         ::draw2d::device_lock devicelock(this);
 
          if (!defer_init())
          {
@@ -838,6 +856,8 @@ namespace universal_windows
    {
 
       ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
       // The D3D Device is no longer valid if the default adapter changes or if
       // the device has been erased.
 

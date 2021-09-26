@@ -26,7 +26,7 @@ namespace xml
    document & document::operator = (const document & document)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return *this;
 
@@ -186,7 +186,7 @@ namespace xml
 
          m_nodea.erase_all();
 
-         m_pnodeRoot.release();
+         //m_pnodeRoot.release();
 
          return false;
 
@@ -242,7 +242,7 @@ namespace xml
       if(*pszXml == '\0')
       {
 
-         throw ::exception::exception(error_parsing, "No Entity");
+         throw ::exception(error_parsing, "No Entity");
 
       }
 
@@ -264,7 +264,7 @@ namespace xml
                || *pszXml == '=')
          {
 
-            throw ::exception::exception(error_parsing, "Not expected character on Entity Reference");
+            throw ::exception(error_parsing, "Not expected character on Entity Reference");
 
          }
 
@@ -290,7 +290,7 @@ namespace xml
       if(ent.is_empty() && extEnt.is_empty() && (strName.is_empty() || strName[0] != '#'))
       {
 
-         throw ::exception::exception(error_parsing, "Undefined Entity Reference");
+         throw ::exception(error_parsing, "Undefined Entity Reference");
 
       }
 

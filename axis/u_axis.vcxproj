@@ -426,9 +426,9 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <GenerateManifest>false</GenerateManifest>
@@ -438,15 +438,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <GenerateManifest>false</GenerateManifest>
@@ -456,9 +457,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <GenerateManifest>false</GenerateManifest>
@@ -480,9 +482,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <GenerateManifest>false</GenerateManifest>
@@ -492,9 +494,10 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
@@ -503,22 +506,26 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
@@ -552,22 +559,24 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
@@ -577,22 +586,27 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
@@ -626,22 +640,24 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
@@ -659,6 +675,8 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -725,22 +743,26 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
@@ -774,22 +796,25 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_AXIS_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>pcre.lib;sqlite.lib;bzip2.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

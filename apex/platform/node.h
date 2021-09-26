@@ -13,24 +13,44 @@ namespace apex
 
 
    class CLASS_DECL_APEX node :
-      virtual public ::acme::node
+      virtual public ::acme::node,
+      virtual public ::channel,
+      virtual public ::handler
    {
    public:
 
 
+      ::set < ::channel * >         m_setChannelSystemOptionsHtml;
+
+
       node();
-      virtual ~node();
+      ~node() override;
+
+
+#ifdef _DEBUG
+
+      
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      
+      
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+
+
+#endif
 
 
       virtual ::e_status on_initialize_object() override;
       
       
       virtual ::e_status main();
+
+
+      virtual ::string system_options_html();
+
+      virtual ::string system_options_main_body();
       
       
-      virtual ::e_status defer_create_main_menu(
-                                                const string_array & straParent, const string_array & straMenu, const string_array & straId
-                                                );
+      virtual ::e_status defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
       
 
       virtual void set_application_menu(application_menu * pmenu, ::application * papplication);
@@ -45,7 +65,7 @@ namespace apex
       virtual ::e_status start_node() override;
 
 
-      virtual void on_os_dark_mode_change() override;
+      void on_user_color() override;
 
 
       virtual ::e_status shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);
@@ -67,6 +87,9 @@ namespace apex
 
       virtual void show_wait_cursor(bool bShow = true);
 
+
+      //void on_dark_mode_change() override;
+
       virtual ::e_status get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory);
 
 
@@ -79,6 +102,9 @@ namespace apex
 
       virtual void os_menu_item_enable(void * pitem, bool bEnable);
       virtual void os_menu_item_check(void * pitem, bool bCheck);
+
+
+      DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);
 
 
    };

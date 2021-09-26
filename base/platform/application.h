@@ -143,7 +143,7 @@ namespace base
 //      //virtual void SetCurrentHandles() override;
 //
 //
-//      virtual bool process_exception(const ::exception::exception & e) override;
+//      virtual bool process_exception(const ::exception & e) override;
 //
 //
 //      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
@@ -221,9 +221,9 @@ namespace base
 //
 //      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
-//      virtual void on_control_event(::user::control_event* pevent) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
-//      virtual void route_control_event(::user::control_event* pevent);
+//      virtual void route(::subject * psubject, ::context * pcontext);
 //
 //
 //
@@ -363,7 +363,7 @@ namespace base
 //      virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 //
 //
-//      //virtual bool process_exception(const ::exception::exception & e) override;
+//      //virtual bool process_exception(const ::exception & e) override;
 //
 //
 //      //virtual bool is_system() const override;
@@ -640,7 +640,7 @@ namespace base
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -706,7 +706,7 @@ namespace base
 //
 //      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 //
-//      //virtual void on_control_event(::user::control_event * pevent);
+//      //virtual void handle(::subject * psubject, ::context * pcontext);
 //
 //
 //
@@ -814,7 +814,7 @@ namespace base
 //
 //      // overrides for implementation
 //      virtual bool on_idle(::i32 lCount); // return true if more idle processing
-//      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
+//      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 //
 //      void EnableModelessEx(bool bEnable);
 //#ifdef WINDOWS
@@ -837,7 +837,7 @@ namespace base
 //      void OnUpdateRecentFileMenu(::message::command* pcommand);
 //
 //      //virtual void send_app_language_changed();
-//      virtual void route_command_message(::message::command* pcommand) override;
+//      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 //
 //
 //
@@ -851,7 +851,7 @@ namespace base
 //
 //      //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 //
-//      //virtual bool process_exception(const ::exception::exception & e) override;
+//      //virtual bool process_exception(const ::exception & e) override;
 //
 //      //virtual bool on_uninstall() override;
 //
@@ -1004,7 +1004,7 @@ namespace base
 //      //virtual ::e_status init_instance() override;
 //
 //
-////      virtual bool process_exception(const ::exception::exception & e) override;
+////      virtual bool process_exception(const ::exception & e) override;
 //
 //
 //
@@ -1216,7 +1216,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //virtual void prepare_form(id id, ::form_document* pdocument);
 //
 //
-//virtual void report_error(::exception::exception* pexception, int iMessageFlags, const ::string & pszTopic);
+//virtual void report_error(::exception* pexception, int iMessageFlags, const ::string & pszTopic);
 //
 //
 //
@@ -1234,7 +1234,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //
 ////virtual void install_message_routing(::channel * pchannel) override;
 //
-////virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+////virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 ////virtual ::e_status process_init() override;
 //
@@ -1266,8 +1266,8 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //
 //
-////using ::aura::application::on_control_event;
-//using ::user::form_callback::on_control_event;
+////using ::aura::application::handle_event;
+//using ::user::form_callback::handle_event;
 //
 //
 ////virtual void erase_document_template(::user::impact_system* pimpactsystem);
@@ -1280,7 +1280,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 ////virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
 //
-////virtual void on_control_event(::user::control_event* pevent) override;
+////virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //

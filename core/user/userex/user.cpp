@@ -528,7 +528,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = true;
 
@@ -566,29 +566,30 @@ namespace core
    __pointer(::extended::sequence < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
    {
 
-      auto pbox = pobject->__create_new < class ::userex::message_box >();
+      return nullptr;
+      //auto pbox = pobject->__create_new < class ::userex::message_box >();
 
-      //auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
+      ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
+      //auto psequence = pbox->sequence();
 
-      // todo add property set to list;
-      pbox->get_property_set().merge(propertyset);
+      //// todo add property set to list;
+      //pbox->get_property_set().merge(propertyset);
 
-      //r
+      ////r
 
-      if (!pbox->show(pszMatter))
-      {
+      //if (!pbox->show(pszMatter))
+      //{
 
-         pfuture->set_status(::error_failed);
+      //   //pfuture->set_status(::error_failed);
 
-         return pfuture;
+      //   return psequence;
 
-      }
+      //}
 
-      //process_subject(pbox->m_idResponse);
+      ////process_subject(pbox->m_idResponse);
 
-      return pfuture;
+      //return psequence;
 
    }
 
@@ -596,132 +597,134 @@ namespace core
    __pointer(::extended::sequence < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
-      auto pbox = pobject->__create_new < ::userex::message_box >();
+      return nullptr;
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
+      //auto pbox = pobject->__create_new < ::userex::message_box >();
 
-      property_set & propertyset = pbox->get_property_set();
+      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
-      propertyset["message"] = pszMessage;
+      //property_set & propertyset = pbox->get_property_set();
 
-      //pbox->add_process(DIALOG_RESULT_PROCESS, process);
+      //propertyset["message"] = pszMessage;
 
-      auto psession = get_session();
+      ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      auto papplication = pobject->get_application();
+      //auto psession = get_session();
 
-      if (::is_set(puiOwner))
-      {
+      //auto papplication = pobject->get_application();
 
-         propertyset["application_name"] = papplication->m_strAppName;
-
-      }
-      else if (::is_set(psession->m_papplicationCurrent))
-      {
-
-         string strAppName = psession->m_papplicationCurrent->m_strAppName;
-
-         propertyset["application_name"] = strAppName;
-
-      }
-
-      string strMatter;
-
-      auto emessageboxType = emessagebox & e_message_box_type_mask;
-
-      if(emessageboxType == e_message_box_yes_no_cancel)
-      {
-
-         strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
-
-      }
-      else if (emessageboxType == e_message_box_yes_no)
-      {
-
-         strMatter = "system\\user\\message_box\\yesno.xhtml";
-
-      }
-      else
-      {
-
-         strMatter = "system\\user\\message_box\\ok.xhtml";
-
-      }
-
-      try
-      {
-
-         if(!pbox->show(strMatter))
-         {
-            // commented 2020-06-28 03:32
-            //string strMessage = pszMessage;
-
-            //strMessage.replace("<br>","\r\n");
-
-            //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
-
-            pfuture->set_status(::error_failed);
-
-            return pfuture;
-
-         }
-
-      }
-      catch(...)
-      {
-
-         pfuture->set_status(::error_exception);
-
-         return pfuture;
-         //string strMessage = pszMessage;
-
-         //strMessage.replace("<br>","\r\n");
-
-         //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
-
-      }
-
-      //return 0;
-
-      return pfuture;
-
-      //if(pbox->m_idResponse == "ok")
+      //if (::is_set(puiOwner))
       //{
 
-      //   return e_dialog_result_ok;
+      //   propertyset["application_name"] = papplication->m_strAppName;
 
       //}
-      //else if(pbox->m_idResponse == "yes")
+      //else if (::is_set(psession->m_papplicationCurrent))
       //{
 
-      //   return e_dialog_result_yes;
+      //   string strAppName = psession->m_papplicationCurrent->m_strAppName;
 
-      //}
-      //else if(pbox->m_idResponse == "no")
-      //{
-
-      //   return e_dialog_result_no;
-
-      //}
-      //else if(pbox->m_idResponse == "cancel")
-      //{
-
-      //   return e_dialog_result_cancel;
+      //   propertyset["application_name"] = strAppName;
 
       //}
 
-      //if(fuStyle & MB_YESNOCANCEL)
+      //string strMatter;
+
+      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+
+      //if(emessageboxType == e_message_box_yes_no_cancel)
       //{
 
-      //   return e_dialog_result_cancel;
+      //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
+
+      //}
+      //else if (emessageboxType == e_message_box_yes_no)
+      //{
+
+      //   strMatter = "system\\user\\message_box\\yesno.xhtml";
 
       //}
       //else
       //{
 
-      //   return 0;
+      //   strMatter = "system\\user\\message_box\\ok.xhtml";
 
       //}
+
+      //try
+      //{
+
+      //   if(!pbox->show(strMatter))
+      //   {
+      //      // commented 2020-06-28 03:32
+      //      //string strMessage = pszMessage;
+
+      //      //strMessage.replace("<br>","\r\n");
+
+      //      //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
+
+      //      pfuture->set_status(::error_failed);
+
+      //      return pfuture;
+
+      //   }
+
+      //}
+      //catch(...)
+      //{
+
+      //   pfuture->set_status(::error_exception);
+
+      //   return pfuture;
+      //   //string strMessage = pszMessage;
+
+      //   //strMessage.replace("<br>","\r\n");
+
+      //   //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papplication->m_strAppName,fuStyle, functionargResult);
+
+      //}
+
+      ////return 0;
+
+      //return pfuture;
+
+      ////if(pbox->m_idResponse == "ok")
+      ////{
+
+      ////   return e_dialog_result_ok;
+
+      ////}
+      ////else if(pbox->m_idResponse == "yes")
+      ////{
+
+      ////   return e_dialog_result_yes;
+
+      ////}
+      ////else if(pbox->m_idResponse == "no")
+      ////{
+
+      ////   return e_dialog_result_no;
+
+      ////}
+      ////else if(pbox->m_idResponse == "cancel")
+      ////{
+
+      ////   return e_dialog_result_cancel;
+
+      ////}
+
+      ////if(fuStyle & MB_YESNOCANCEL)
+      ////{
+
+      ////   return e_dialog_result_cancel;
+
+      ////}
+      ////else
+      ////{
+
+      ////   return 0;
+
+      ////}
 
    }
 
@@ -729,51 +732,53 @@ namespace core
    __pointer(::extended::sequence < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
-      __UNREFERENCED_PARAMETER(puiOwner);
+      //__UNREFERENCED_PARAMETER(puiOwner);
 
-      auto pbox = pobject->__create_new < ::userex::message_box >();
+      //auto pbox = pobject->__create_new < ::userex::message_box >();
 
-      auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
+      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
-      pbox->payload("message") = pszMessage;
+      //pbox->payload("message") = pszMessage;
 
-      //pbox->add_process(DIALOG_RESULT_PROCESS, process);
+      ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      auto papplication = pobject->get_application();
+      //auto papplication = pobject->get_application();
 
-      string strTitle = papplication->get_title();
+      //string strTitle = papplication->title();
 
-      pbox->payload("application_name") = strTitle;
+      //pbox->payload("application_name") = strTitle;
 
-      pbox->m_millisDelay = durationTimeout;
+      //pbox->m_millisDelay = durationTimeout;
 
-      string strMatter;
+      //string strMatter;
 
-      auto emessageboxType = emessagebox & e_message_box_type_mask;
+      //auto emessageboxType = emessagebox & e_message_box_type_mask;
 
-      if (emessageboxType == e_message_box_yes_no_cancel)
-      {
+      //if (emessageboxType == e_message_box_yes_no_cancel)
+      //{
 
-         strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
+      //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         strMatter = "system\\user\\message_box_timeout\\ok.xhtml";
+      //   strMatter = "system\\user\\message_box_timeout\\ok.xhtml";
 
-      }
+      //}
 
-      if (!pbox->show(strMatter))
-      {
+      //if (!pbox->show(strMatter))
+      //{
 
-         pfuture->set_status(::error_failed);
+      //   pfuture->set_status(::error_failed);
 
-         return pfuture;
+      //   return pfuture;
 
-      }
+      //}
 
-      return pfuture;
+      //return pfuture;
+
+      return nullptr;
 
    }
 
@@ -997,7 +1002,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1425,7 +1430,7 @@ namespace core
    }
 
 
-   void user::route_command_message(::message::command * pcommand)
+   void user::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       __UNREFERENCED_PARAMETER(pcommand);
@@ -1947,7 +1952,7 @@ namespace core
       for (auto & path : patha)
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_pcommandline->m_varFile = path;
 

@@ -51,7 +51,7 @@ namespace userex
 
       __pointer(::user::progress)   m_pprogress;
 
-      ::rectangle_i32                        m_rectStatus;
+      ::rectangle_i32                        m_rectangleStatus;
 
 
       progress_view();
@@ -72,7 +72,7 @@ namespace userex
 #endif
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

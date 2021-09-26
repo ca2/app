@@ -316,7 +316,7 @@ void binary_stream::write(const ::payload & payload)
    break;
    default:
       write(payload.m_all, sizeof(payload.m_all));
-      //__throw(::exception::exception("payload::write ::payload type not recognized"));
+      //__throw(::exception("payload::write ::payload type not recognized"));
    }
 
    return;

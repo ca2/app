@@ -23,12 +23,12 @@ namespace simpledb
       strMetaPath = pcontext->m_papexcontext->dir().install() / "database" / m_pdatabase->getDatabase() / m_strName/ "meta.xml";
 
       if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))
-         __throw(::exception::exception("integer_exception 1"));
+         __throw(::exception("integer_exception 1"));
 
       reader is(m_spfileMeta);
 
       if(!m_xmldocumentMeta.load(is))
-         __throw(::exception::exception("integer_exception 1"));
+         __throw(::exception("integer_exception 1"));
 
       __pointer(::xml::node) pfields = m_xmldocumentMeta.get_root()->get_child("fields");
 
@@ -48,7 +48,7 @@ namespace simpledb
 
       if(!m_spfileFixed->open(strMetaPath, ::file::e_open_create | ::file::e_open_no_truncate | ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive |
                               ::file::e_open_defer_create_directory))
-         __throw(::exception::exception("integer_exception 1"));
+         __throw(::exception("integer_exception 1"));
 
    }
 

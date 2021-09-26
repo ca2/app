@@ -82,7 +82,7 @@ namespace sphere
 
       ::colorertake5::ParserFactory                &  parser_factory();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
       void construct();

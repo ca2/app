@@ -48,7 +48,7 @@ namespace user
 #endif
 
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
 
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
@@ -189,7 +189,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::subject::subject * psubject)
+   void frame_window::update_active_document(::subject * psubject)
    {
 
       auto pdocument = get_active_document();
@@ -792,7 +792,7 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
@@ -1049,20 +1049,20 @@ namespace user
 
       //dwDefaultStyle &= ~WS_VISIBLE;
 
-      ::rectangle_i32 rectFrame;
+      ::rectangle_i32 rectangleFrame;
 
       __pointer(::user::place_holder) pholder;
 
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->get_client_rect(rectFrame);
+         pholder->get_client_rect(rectangleFrame);
 
       }
       else
       {
 
-         rectFrame = nullptr;
+         rectangleFrame = nullptr;
 
       }
 
@@ -1072,7 +1072,7 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
       //{
@@ -1135,7 +1135,7 @@ namespace user
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
 
       string strTitle = m_strTitle;
-      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
+      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectangleDefault,
 
       puiParent, nIDResource, (LPVOID) pContext))
       {
@@ -1290,7 +1290,7 @@ namespace user
    void frame_window::OnClose()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*if (m_lpfnCloseProc != nullptr)
       (*m_lpfnCloseProc)(this);
 
@@ -1363,38 +1363,26 @@ namespace user
    }
 
 
-   void frame_window::on_command_message(::message::command* pcommand)
+   //void frame_window::on_command(::message::command* pcommand)
+   //{
+
+   //   ::user::frame::on_command(pcommand);
+
+   //}
+
+
+   void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::user::frame::on_command_message(pcommand);
-
-   }
-
-
-   void frame_window::route_command_message(::message::command* pcommand)
-   {
-
-      // pump through current ::user::impact FIRST
-      __pointer(::user::impact) pview = get_active_view();
-
-      if (pview != nullptr)
+      if (bRouteToKeyDescendant)
       {
 
-         pview->on_command_message(pcommand);
+         __pointer(::user::impact) pview = get_active_view();
 
-         if (pcommand->m_bRet)
+         if (pview != nullptr)
          {
 
-            return;
-
-         }
-
-         auto pdocument = pview->get_document();
-
-         if (pdocument)
-         {
-
-            pdocument->on_command_message(pcommand);
+            pview->route_command(pcommand, false);
 
             if (pcommand->m_bRet)
             {
@@ -1407,367 +1395,7 @@ namespace user
 
       }
 
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
-
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //pview = get_child_by_id("pane_first");
-
-      //if (pview != nullptr)
-      //{
-
-      //   pview->route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //if (pcommand->m_pcommandtargetSource != this)
-      //{
-
-      //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      on_command_message(pcommand);
-
-      if (pcommand->m_bRet)
-      {
-
-         return;
-
-      }
-
-      // then pump through parent
-      __pointer(::user::interaction) puiParent = get_parent();
-
-      while (puiParent)
-      {
-
-         puiParent->on_command_message(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-         puiParent = puiParent->get_parent();
-
-      }
-
-      // last but not least, pump through cast
-      ::application* papp = get_application();
-
-      if (papp != nullptr)
-      {
-
-         papp->on_command_message(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-      }
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      if(puser)
-      {
-
-         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
-
-         if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
-         {
-
-            ptarget->on_command_message(pcommand);
-
-            if (pcommand->m_bRet)
-            {
-
-               return;
-
-            }
-
-         }
-
-      }
-
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
-
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //pview = get_child_by_id("pane_first");
-
-      //if (pview != nullptr)
-      //{
-
-      //   pview->route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //if (pcommand->m_pcommandtargetSource != this)
-      //{
-
-      //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      // then pump through parent
-      //__pointer(::user::interaction) puiParent = get_parent();
-      //while (puiParent)
-      //{
-
-      //   puiParent->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //// last but not least, pump through cast
-      //::aura::application* papp = get_application();
-
-      //if (papp != nullptr)
-      //{
-
-      //   papp->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //__pointer(channel) ptarget = psession->get_keyboard_focus();
-
-      //if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
-      //   && !m_interactionaCommandHandlers.contains(ptarget))
-      //{
-
-      //   ptarget->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-
-      ////::user::box::route_command_message(pcommand);
-
-      ////if (pcommand->m_bRet)
-      ////{
-
-      ////   return;
-
-      ////}
-
-      ////if (pcommand->m_pcommandtargetSource == this)
-      ////{
-
-      ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// pump through current ::user::impact FIRST
-      ////__pointer(::user::impact) pview = get_active_view();
-
-      ////if (pview != nullptr)
-      ////{
-
-      ////   pview->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////for (auto& pview : m_interactionaCommandHandlers)
-      ////{
-
-      ////   if (pview != nullptr && pview != get_active_view())
-      ////   {
-
-      ////      pview->route_command_message(pcommand);
-
-      ////      if (pcommand->m_bRet)
-      ////      {
-
-      ////         return;
-
-      ////      }
-
-      ////   }
-
-      ////}
-
-      ////pview = get_child_by_id("pane_first");
-
-      ////if (pview != nullptr)
-      ////{
-
-      ////   pview->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////if (pcommand->m_pcommandtargetSource != this)
-      ////{
-
-      ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// then pump through parent
-      ////__pointer(::user::interaction) puiParent = get_parent();
-
-      ////if (puiParent != nullptr)
-      ////{
-
-      ////   puiParent->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// last but not least, pump through cast
-      ////::aura::application* papp = get_application();
-
-      ////if (papp != nullptr)
-      ////{
-
-      ////   papp->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////__pointer(channel) ptarget = psession->get_keyboard_focus();
-
-      ////if (ptarget != nullptr && ptarget != this)
-      ////{
-
-      ////   ptarget->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
+      ::user::box::route_command(pcommand, false);
 
    }
 
@@ -2131,7 +1759,7 @@ namespace user
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
@@ -2462,7 +2090,7 @@ namespace user
 
          RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, false);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, true);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder, &rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2474,7 +2102,7 @@ namespace user
       else
       {
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2504,10 +2132,10 @@ namespace user
          if (pRectBorder == nullptr)
 
          {
-            if (!m_rectBorder.is_null())
+            if (!m_rectangleBorder.is_null())
             {
                // releasing all border space -- recalc needed
-               m_rectBorder.Null();
+               m_rectangleBorder.Null();
                return true;
             }
             // original rectangle_i32 is is_empty & pRectBorder is nullptr, no recalc needed
@@ -2516,11 +2144,11 @@ namespace user
 
          }
 
-         if (m_rectBorder != *pRectBorder)
+         if (m_rectangleBorder != *pRectBorder)
          {
 
             // the rects are different -- recalc needed
-            m_rectBorder.copy(pRectBorder);
+            m_rectangleBorder.copy(pRectBorder);
 
             return true;
 
@@ -2595,7 +2223,7 @@ namespace user
 //
 //#else
 //
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //
 //#endif
 //
@@ -2698,7 +2326,7 @@ namespace user
    bool frame_window::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -2717,7 +2345,7 @@ namespace user
 
       m_cModalStack = 0;              // initialize modality support
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = nullptr;         // not in list yet
@@ -2799,10 +2427,10 @@ namespace user
    }
 
 
-   void frame_window::on_control_event(::user::control_event * pevent)
+   void frame_window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 

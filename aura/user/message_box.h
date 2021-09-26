@@ -134,7 +134,7 @@ namespace user
 
       //void call_expose(Display * pdisplay);
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -148,7 +148,7 @@ namespace user
 
       //virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
 
-      void on_control_event(::user::control_event * pevent) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
 
       
 

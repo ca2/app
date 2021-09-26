@@ -43,6 +43,9 @@ namespace aura
       virtual void message_box_factory();
 
 
+      string system_options_html() override;
+
+
 
 //#ifdef LINUX
 
@@ -70,6 +73,12 @@ namespace aura
 
 
       __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
+
+
+      void BeginWaitCursor();
+      void EndWaitCursor();
+      void RestoreWaitCursor();
+
 
 
    };

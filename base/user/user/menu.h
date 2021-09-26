@@ -100,7 +100,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 
@@ -133,8 +133,8 @@ namespace user
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
-      // <3ThomasBorregaardS�rensen__!!
-      ::e_status command_handler(const ::id& id) override;
+      //// <3ThomasBorregaardS�rensen__!!
+      ::e_status handle_command(const ::id& id) override;
 
 
    };

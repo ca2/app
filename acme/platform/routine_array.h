@@ -99,7 +99,7 @@
 //            }
 //
 //         }
-//         catch(const ::exception::exception & e)
+//         catch(const ::exception & e)
 //         {
 //
 //            result.add(e);
@@ -118,7 +118,7 @@
 //            (this->*proutine)();
 //
 //         }
-//         catch(const ::exception::exception & e)
+//         catch(const ::exception & e)
 //         {
 //
 //            result.add(e);

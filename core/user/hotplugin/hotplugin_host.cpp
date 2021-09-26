@@ -548,7 +548,7 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectOut)
+   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleOut)
    {
 
       auto rectangle = get_window_rect();
@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memcpy_dup(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const POINT_I32 *) &rectOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const POINT_I32 *) &rectangleOut, m_sizeBitmap, m_pimage->g());
 
 
    }

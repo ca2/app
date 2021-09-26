@@ -115,6 +115,7 @@ enum enum_status : ::i64
    error_wait_io_completion,
    error_wait_failed,
    error_wait_timeout,
+   error_need_restart_application_to_activate_feature,
 
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),

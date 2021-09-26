@@ -4,7 +4,7 @@
 // not_installed::not_installed(::matter * pobject = ::get_app_object(), const char * pszAppId, const char * pszConfiguration, const char * pszPlatform, const char * pszLocale, const char * pszSchema) :
 //    ::matter(pobject),
 //    ::callstack(pobject),
-//    ::exception::exception()
+//    ::exception()
 // {
 
 //    m_XstrAppId           = pszAppId;
@@ -27,7 +27,7 @@
 // not_installed::not_installed(const not_installed & e) :
 //    matter(e),
 //    ::callstack(e),
-//    ::exception::exception(e)
+//    ::exception(e)
 // {
 
 //    debug_print(":not_installed(copy)");

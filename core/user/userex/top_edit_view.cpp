@@ -39,7 +39,7 @@ namespace userex
    }
 
 
-   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)
@@ -78,13 +78,13 @@ namespace userex
 
       auto pkey = pmessage->m_pkey;
 
-      auto psubject = subject(id_key_down);
+      ::subject subject(id_key_down);
 
-      psubject->m_puserprimitive = this;
+      subject.m_puserelement = this;
 
-      psubject->m_ekey = pkey->m_ekey;
+      subject.m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(psubject);
+      get_document()->update_all_views(&subject);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -126,9 +126,9 @@ namespace userex
             if (::is_set(pdocument))
             {
 
-               auto psubject = subject(id_after_change_text_delayed);
+               auto psubject = create_subject(id_after_change_text_delayed);
 
-               psubject->m_puserprimitive = this;
+               psubject->m_puserelement = this;
 
                psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
@@ -143,7 +143,7 @@ namespace userex
    }
 
 
-   void top_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void top_edit_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }
@@ -157,11 +157,11 @@ namespace userex
 
          auto ptopeditview = this;
 
-         auto psubject = ptopeditview->subject(id_after_change_text);
+         auto psubject = create_subject(id_after_change_text);
 
          psubject->m_psender = this;
 
-         psubject->m_puserprimitive = this;
+         psubject->m_puserelement = this;
 
          get_document()->update_all_views(psubject);
 

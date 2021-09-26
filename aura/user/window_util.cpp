@@ -583,7 +583,7 @@ namespace user
 //
 //#else
 //
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //
 //#endif
 //

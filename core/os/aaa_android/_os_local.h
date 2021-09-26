@@ -31,7 +31,7 @@ public:
 
 
    bool           m_bEditFocusSet;
-   rectangle           m_rectEditFocus;
+   rectangle           m_rectangleEditFocus;
    string         m_strEditFocus;
    int            m_iEditFocusSelBeg;
    int            m_iEditFocusSelEnd;

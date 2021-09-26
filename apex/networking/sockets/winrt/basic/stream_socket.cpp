@@ -175,7 +175,7 @@ namespace sockets
    int stream_socket::Protocol()
    {
 
-      __throw(error_interface_only, "stream_socket::Protocol"));
+      throw interface_only_exception("stream_socket::Protocol"));
 
       return -1;
 

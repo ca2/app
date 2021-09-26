@@ -4,7 +4,7 @@
 
 
 //datetime_parser_exception::datetime_parser_exception(const ::string & strMessage):
-//::exception::exception(strMessage)
+//::exception(strMessage)
 //{
 //
 //}

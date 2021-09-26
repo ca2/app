@@ -2,12 +2,12 @@
 
 
 class CLASS_DECL_ACME what_exclamation_exclamation :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
    what_exclamation_exclamation(const char * payload) :
-      ::exception::exception(payload)
+      ::exception(payload)
    {
 
    }

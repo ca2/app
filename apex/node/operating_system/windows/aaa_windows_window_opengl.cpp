@@ -66,13 +66,13 @@ void window_opengl::destroy_window_graphics()
       if (!bOk)
       {
 
-         __throw(::exception::exception("failed to reference"););
+         __throw(::exception("failed to reference"););
 
       }
 
    }
 
-   m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_rectParentClient.size());
+   m_spgraphics->on_begin_draw(m_pimpl->m_oswindow, m_pimpl->m_rectangleParentClient.size());
 
    return m_spgraphics;
 

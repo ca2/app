@@ -49,12 +49,12 @@ namespace user
    public:
 
 
-      ::rectangle_i32                     m_rectGroup;
-      ::rectangle_i32                     m_rectItem;
-      ::rectangle_i32                     m_rectSubItem;
-      ::rectangle_i32                     m_rectListItem;
-      ::rectangle_i32                     m_rectImage;
-      ::rectangle_i32                     m_rectText;
+      ::rectangle_i32                     m_rectangleGroup;
+      ::rectangle_i32                     m_rectangleItem;
+      ::rectangle_i32                     m_rectangleSubItem;
+      ::rectangle_i32                     m_rectangleListItem;
+      ::rectangle_i32                     m_rectangleImage;
+      ::rectangle_i32                     m_rectangleText;
       rectangle_i32 *                     m_prectClient;
 
 

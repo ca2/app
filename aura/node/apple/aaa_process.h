@@ -6,7 +6,7 @@ namespace apple
 
 
    class CLASS_DECL_AURA process :
-      virtual public ::process::process
+      virtual public ::operating_system::process
    {
    public:
 

@@ -52,6 +52,7 @@ namespace apex
    session::session()
    {
 
+      //m_bOnInitializeWindowObject = false;
       m_papexsession = this;
       ::object::m_pcontext = this;
       m_pcontext = this;
@@ -153,6 +154,40 @@ namespace apex
    }
 
 
+   //::e_status session::on_initialize_window_object()
+   //{
+
+   //   if (m_bOnInitializeWindowObject)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bOnInitializeWindowObject = true;
+
+   //   auto estatus = _on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
+
+
+   //::e_status session::_on_initialize_window_object()
+   //{
+
+   //   return ::success;
+
+   //}
+
+
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
@@ -175,7 +210,15 @@ namespace apex
 
    }
 
+
+   //::e_status session::ui_init()
+   //{
+
+   //   return ::success;
+
+   //}
    
+
    //void session::enum_display_monitors()
    //{
 
@@ -376,7 +419,7 @@ namespace apex
       //if(!estatus)
       //{
 
-      //   __throw(::exception::exception(estatus));
+      //   __throw(::exception(estatus));
 
       //}
 
@@ -535,7 +578,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.cast <::application>();
+      auto papplication = pmessage->m_lparam.move <::application>();
 
       erase_application(papplication);
 
@@ -741,7 +784,7 @@ namespace apex
                else
                {
 
-                  //output_message_box_error("Could not create requested application: \"" + strApp + "\"");
+                  //output_error_message("Could not create requested application: \"" + strApp + "\"");
                   output_debug_string("Could not create requested application: \"" + strApp + "\"");
 
                   ::count c = psystem->payload("app").array_get_count();
@@ -808,7 +851,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return nullptr;
 
@@ -956,7 +999,7 @@ namespace apex
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
@@ -1323,7 +1366,7 @@ ret:
       if (!InitializeLocalDataCentral())
       {
 
-         //output_message_box_error("Could not initialize Local data central");
+         //output_error_message("Could not initialize Local data central");
 
          output_debug_string("Could not initialize Local data central");
 
@@ -1586,7 +1629,7 @@ namespace apex
    //   }
    //   else
    //   {
-   //      __throw(::exception::exception("not expected enum_mouse value"));
+   //      __throw(::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -1940,12 +1983,12 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array& straTitle = pane.m_straTitle;
 
-   //   pgraphics->set(brushText);
+   //   pgraphics->set(pbrushText);
 
    //   if (straTitle.get_count() <= 1)
    //   {
@@ -1956,43 +1999,43 @@ namespace apex
    //   else
    //   {
 
-   //      ::rectangle_i32 rectText(rectangle);
+   //      ::rectangle_i32 rectangleText(rectangle);
 
 
-   //      ::write_text::font_pointer font;
+   //      ::write_text::font_pointer pfont;
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
-   //      ::rectangle_i32 rectEmp;
+   //      ::rectangle_i32 rectangleEmp;
    //      for (index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
    //         size_i32 s = pane.m_sizeaText[i];
-   //         rectText.right = rectText.left + s.cx;
-   //         pgraphics->_DrawText(str, rectTexte_bottom_left, e_draw_text_no_prefix);
-   //         rectText.left += s.cx;
+   //         rectangleText.right = rectangleText.left + s.cx;
+   //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
+   //         rectangleText.left += s.cx;
    //         if (i < straTitle.get_upper_bound())
    //         {
-   //            rectText.right = rectText.left + sSep.cx;
-   //            rectEmp = rectText;
-   //            rectEmp.deflate(1, 1);
+   //            rectangleText.right = rectangleText.left + sSep.cx;
+   //            rectangleEmp = rectangleText;
+   //            rectangleEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
+   //            if (ptab->m_itemHover == (::enum_element)(::e_element_split + i))
    //            {
-   //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
-   //               pgraphics->set(ptab->get_data()->m_brushTextHover);
+   //               pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
+   //               pgraphics->set(ptab->get_data()->m_pbrushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rectangle(rectEmp,argb(128,208,223,233));
-   //               pgraphics->set(ptab->get_data()->m_brushText);
+   //               //pgraphics->fill_rectangle(rectangleEmp,argb(128,208,223,233));
+   //               pgraphics->set(ptab->get_data()->m_pbrushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);
    //            pgraphics->set_alpha_mode(emode);
-   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_center, e_draw_text_no_prefix);
-   //            rectText.left += sSep.cx;
-   //            pgraphics->set(font);
-   //            pgraphics->set(brushText);
+   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+   //            rectangleText.left += sSep.cx;
+   //            pgraphics->set(pfont);
+   //            pgraphics->set(pbrushText);
    //         }
    //      }
 
@@ -2043,6 +2086,28 @@ namespace apex
    }
 
 
+   void session::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   {
+
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsystem)
+      {
+
+         m_papexsystem->route_command(pcommand, false);
+
+      }
+
+   }
+
+
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
@@ -2089,7 +2154,7 @@ namespace apex
       //         }
 
       //      }
-      //      catch (const ::exception::exception & e)
+      //      catch (const ::exception & e)
       //      {
 
       //         if (e.is < ::exit_exception>())
@@ -2107,7 +2172,7 @@ namespace apex
       //   }
 
       //}
-      //catch (const ::exception::exception & e)
+      //catch (const ::exception & e)
       //{
 
       //   if (e.is < ::exit_exception>())

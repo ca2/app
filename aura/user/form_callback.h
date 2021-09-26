@@ -6,16 +6,9 @@ namespace user
 
 
    class CLASS_DECL_AURA form_callback :
-      virtual public callback
+      virtual public ::source
    {
    public:
-
-
-      //::form_property_set *         m_pformpropertyset;
-      
-
-      //form_callback();
-      //virtual ~form_callback();
 
 
       virtual void _001OnInitializeForm();

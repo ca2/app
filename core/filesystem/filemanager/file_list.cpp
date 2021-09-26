@@ -44,18 +44,18 @@ namespace filemanager
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
 
-      connect_command_probe("edit_copy", &file_list::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &file_list::_001OnEditCopy);
-      connect_command_probe("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);
-      connect_command("trash_that_is_not_trash", &file_list::_001OnTrashThatIsNotTrash);
-      connect_command_probe("open_with", &file_list::_001OnUpdateOpenWith);
-      //connect_command_probe("spafy", &file_list::_001OnUpdateSpafy);
-      //connect_command("spafy", &file_list::_001OnSpafy);
-      //connect_command_probe("spafy2", &file_list::_001OnUpdateSpafy2);
-      //connect_command("spafy2", &file_list::_001OnSpafy2);
-      connect_command_probe("file_rename", &file_list::_001OnUpdateFileRename);
-      connect_command("file_rename", &file_list::_001OnFileRename);
-      connect_command("file_open", &file_list::_001OnFileOpen);
+      add_command_prober("edit_copy", this, &file_list::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", this, &file_list::_001OnEditCopy);
+      add_command_prober("trash_that_is_not_trash", this, &file_list::_001OnUpdateTrashThatIsNotTrash);
+      add_command_handler("trash_that_is_not_trash", this, &file_list::_001OnTrashThatIsNotTrash);
+      add_command_prober("open_with", this, &file_list::_001OnUpdateOpenWith);
+      //add_command_prober("spafy", &file_list::_001OnUpdateSpafy);
+      //add_command_handler("spafy", &file_list::_001OnSpafy);
+      //add_command_prober("spafy2", &file_list::_001OnUpdateSpafy2);
+      //add_command_handler("spafy2", &file_list::_001OnSpafy2);
+      add_command_prober("file_rename", this, &file_list::_001OnUpdateFileRename);
+      add_command_handler("file_rename", this, &file_list::_001OnFileRename);
+      add_command_handler("file_open", this, &file_list::_001OnFileOpen);
 
    }
 
@@ -77,7 +77,7 @@ namespace filemanager
 
 
 
-   bool file_list::on_click(const ::user::item & item)
+   bool file_list::on_click(const ::item & item)
    {
 
       if (item.m_iSubItem == m_iNameSubItem ||
@@ -103,7 +103,7 @@ namespace filemanager
    }
 
 
-   bool file_list::on_right_click(const ::user::item & item)
+   bool file_list::on_right_click(const ::item & item)
    {
 
       if(item.is_set())
@@ -335,7 +335,7 @@ namespace filemanager
    }
 
 
-   void file_list::route_command_message(::message::command * pcommand)
+   void file_list::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       auto itema = get_selected_items();
@@ -349,7 +349,7 @@ namespace filemanager
 
       }
 
-      ::user::impact::route_command_message(pcommand);
+      ::user::impact::route_command(pcommand);
 
    }
 
@@ -1978,12 +1978,12 @@ namespace filemanager
    }
 
 
-   void file_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void file_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::userfs::list::on_subject(psubject, pcontext);
+      ::userfs::list::handle(psubject, pcontext);
 
       auto papplication = get_application();
 
@@ -2131,7 +2131,7 @@ namespace filemanager
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserprimitive;
+            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 

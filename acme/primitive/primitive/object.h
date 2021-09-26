@@ -74,6 +74,7 @@ public:
    //object() : m_pmeta(nullptr) { }
    object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    //object(::object * pobject);
+   object(const ::id & id):property_object(id){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    object(enum_default_initialization) : ::object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; };
    ~object() override;
 
@@ -266,7 +267,7 @@ public:
 
    }
 
-
+   virtual ::subject_pointer create_subject(const ::id & id);
    //virtual ::user::primitive* get_user_interaction_host();
    //virtual ::user::interaction * get_host_window();
 
@@ -364,11 +365,11 @@ public:
 
    //virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception::exception& e) override;
+   virtual ::e_status handle_exception(const ::exception& e) override;
 
-   virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   virtual ::e_status top_handle_exception(const ::exception& e);
 
-   virtual ::e_status process_exception(const ::exception::exception& e);
+   virtual ::e_status process_exception(const ::exception& e);
 
 
    ::property_object* parent_property_set_holder() const override;
@@ -941,11 +942,11 @@ public:
 
    //virtual ::e_status enable_application_events(bool bEnable = true);
 
-   //virtual ::e_status handle_exception(const ::exception::exception& e);
+   //virtual ::e_status handle_exception(const ::exception& e);
 
-   //virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   //virtual ::e_status top_handle_exception(const ::exception& e);
 
-   //virtual ::e_status process_exception(const ::exception::exception& e);
+   //virtual ::e_status process_exception(const ::exception& e);
 
 
    //::object* parent_property_set_holder() const override;
@@ -1256,6 +1257,38 @@ public:
                                                                      \
 
 CLASS_DECL_ACME ::e_status call_sync(const ::routine_array& routinea);
+
+
+
+
+
+
+
+
+
+
+
+#define __PROPERTIES(xxx)\
+class xxx ## _properties: \
+   public property_set \
+{ \
+public: \
+
+
+#define __PROPERTY(type, name, ID) type & name = payload_reference(topic(ID))
+
+
+
+#define __END_PROPERTIES(xxx) }; \
+xxx ## _properties & properties() {return *m_pobjectproperties;} \
+const xxx ## _properties & properties() const {return *m_pobjectproperties;} \
+inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = __new(xxx ## _properties());} \
+__pointer(xxx ## _properties) m_pobjectproperties
+
+
+
+
+
 
 
 

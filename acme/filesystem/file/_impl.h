@@ -1129,7 +1129,7 @@ void var_stream::default_exchange(TYPE & t)
       }
 
   }
-  catch(const ::exception::exception & e)
+  catch(const ::exception & e)
   {
 
      add_exception(e);

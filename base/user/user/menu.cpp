@@ -254,7 +254,7 @@ namespace user
          if (is_debugger_attached())
          {
 
-            output_message_box_error("menu::load_xml_string_menu\n\nBad XML document!!");
+            output_error_message("menu::load_xml_string_menu\n\nBad XML document!!");
 
          }
 
@@ -645,17 +645,17 @@ namespace user
 
       __pointer(::user::menu_item_ptra) pmenuitema = pitem->m_pmenuitema;
 
-      auto rectMargin = get_margin(pstyle);
+      auto rectangleMargin = get_margin(pstyle);
 
-      auto rectBorder = get_border(pstyle);
+      auto rectangleBorder = get_border(pstyle);
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      //int iElementPadding = rectPadding.left;
+      //int iElementPadding = rectanglePadding.left;
 
-      int x = (int) (rectMargin.left + rectBorder.left + rectPadding.left);
+      int x = (int) (rectangleMargin.left + rectangleBorder.left + rectanglePadding.left);
 
-      int y = (int) (rectMargin.top + rectBorder.top + rectPadding.top);
+      int y = (int) (rectangleMargin.top + rectangleBorder.top + rectanglePadding.top);
 
       class calc_size calcsize;
 
@@ -666,10 +666,10 @@ namespace user
 
          m_pitemClose->m_puserinteraction->on_calc_size(&calcsize);
 
-         m_pitemClose->m_rectUi.left = x;
-         m_pitemClose->m_rectUi.right = x + calcsize.m_size.cx;
-         m_pitemClose->m_rectUi.top = y;
-         m_pitemClose->m_rectUi.bottom = y + calcsize.m_size.cy;
+         m_pitemClose->m_rectangleUi.left = x;
+         m_pitemClose->m_rectangleUi.right = x + calcsize.m_size.cx;
+         m_pitemClose->m_rectangleUi.top = y;
+         m_pitemClose->m_rectangleUi.bottom = y + calcsize.m_size.cy;
 
          y += calcsize.m_size.cy;
 
@@ -696,10 +696,10 @@ namespace user
 
          pmenuitema->element_at(i)->m_puserinteraction->on_calc_size(&calcsize);
 
-         pmenuitema->element_at(i)->m_rectUi.left = x;
-         pmenuitema->element_at(i)->m_rectUi.right = x + calcsize.m_size.cx;
-         pmenuitema->element_at(i)->m_rectUi.top = y;
-         pmenuitema->element_at(i)->m_rectUi.bottom = y + calcsize.m_size.cy;
+         pmenuitema->element_at(i)->m_rectangleUi.left = x;
+         pmenuitema->element_at(i)->m_rectangleUi.right = x + calcsize.m_size.cx;
+         pmenuitema->element_at(i)->m_rectangleUi.top = y;
+         pmenuitema->element_at(i)->m_rectangleUi.bottom = y + calcsize.m_size.cy;
 
          y += calcsize.m_size.cy;
 
@@ -730,14 +730,14 @@ namespace user
       }
 
       m_size.cx = (int) (m_iaColumnWidth.get_total()
-                  + rectMargin.left + rectMargin.right
-                  + rectBorder.left + rectBorder.right
-                  + rectPadding.left + rectPadding.right);
+                  + rectangleMargin.left + rectangleMargin.right
+                  + rectangleBorder.left + rectangleBorder.right
+                  + rectanglePadding.left + rectanglePadding.right);
 
       m_size.cy = (int) (m_iaColumnHeight.get_maximum_value()
-                  + rectMargin.top + rectMargin.bottom
-                  + rectBorder.top + rectBorder.bottom
-                  + rectPadding.top + rectPadding.bottom);
+                  + rectangleMargin.top + rectangleMargin.bottom
+                  + rectangleBorder.top + rectangleBorder.bottom
+                  + rectanglePadding.top + rectanglePadding.bottom);
 
 
       m_size.cx = maximum(m_sizeMinimum.cx, m_size.cx);
@@ -753,13 +753,13 @@ namespace user
 
          ::user::menu_item * pitem = pmenuitema->element_at(i);
 
-         pmenuitema->element_at(i)->m_rectUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
+         pmenuitema->element_at(i)->m_rectangleUi.right = x + m_iaColumnWidth[pitem->m_iColumn];
 
          pbasestyle->prepare_menu(pgraphics, pitem);
 
-         pitem->m_rectUi.right = maximum(pitem->m_rectUi.right, pitem->m_rectUi.left + m_sizeMinimum.cx);
+         pitem->m_rectangleUi.right = maximum(pitem->m_rectangleUi.right, pitem->m_rectangleUi.left + m_sizeMinimum.cx);
 
-         pitem->m_puserinteraction->place(pitem->m_rectUi);
+         pitem->m_puserinteraction->place(pitem->m_rectangleUi);
 
          pitem->m_puserinteraction->display();
 
@@ -770,20 +770,20 @@ namespace user
 
          pbasestyle->prepare_menu(pgraphics, m_pitemClose);
 
-         m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectUi);
+         m_pitemClose->m_puserinteraction->place(m_pitemClose->m_rectangleUi);
 
          m_pitemClose->m_puserinteraction->display();
 
       }
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      rectWindow.left = point.x;
-      rectWindow.top = point.y;
-      rectWindow.right = rectWindow.left + m_size.cx;
-      rectWindow.bottom = rectWindow.top + m_size.cy;
+      rectangleWindow.left = point.x;
+      rectangleWindow.top = point.y;
+      rectangleWindow.right = rectangleWindow.left + m_size.cx;
+      rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
       auto psession = get_session();
 
@@ -793,34 +793,34 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      if (pdisplay->get_best_monitor(rectMonitor, rectWindow) >= 0)
+      if (pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow) >= 0)
       {
 
-         rectMonitor.deflate(16, 16);
+         rectangleMonitor.deflate(16, 16);
 
-         if (rectWindow.left < rectMonitor.left)
+         if (rectangleWindow.left < rectangleMonitor.left)
          {
 
-            rectWindow.offset(rectMonitor.left - rectWindow.left, 0);
+            rectangleWindow.offset(rectangleMonitor.left - rectangleWindow.left, 0);
 
          }
-         else if (rectWindow.right > rectMonitor.right)
+         else if (rectangleWindow.right > rectangleMonitor.right)
          {
 
-            rectWindow.offset(rectMonitor.right - rectWindow.right, 0);
+            rectangleWindow.offset(rectangleMonitor.right - rectangleWindow.right, 0);
 
          }
 
-         if (rectWindow.top < rectMonitor.top)
+         if (rectangleWindow.top < rectangleMonitor.top)
          {
 
-            rectWindow.offset(0, rectMonitor.top - rectWindow.top);
+            rectangleWindow.offset(0, rectangleMonitor.top - rectangleWindow.top);
 
          }
-         else if (rectWindow.bottom > rectMonitor.bottom)
+         else if (rectangleWindow.bottom > rectangleMonitor.bottom)
          {
 
-            rectWindow.offset(0, rectMonitor.bottom - rectWindow.bottom);
+            rectangleWindow.offset(0, rectangleMonitor.bottom - rectangleWindow.bottom);
 
          }
 
@@ -828,7 +828,7 @@ namespace user
 
       layout().sketch() = e_zorder_top_most;
 
-      place(rectWindow);
+      place(rectangleWindow);
 
       display(e_display_normal, e_activation_no_activate);
 
@@ -877,13 +877,13 @@ namespace user
    void menu::defer_close()
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_eevent = ::user::e_event_context_menu_close;
+      subject.m_id = ::e_subject_context_menu_close;
 
-      on_control_event(&ev);
+      route(&subject);
 
-      if (!m_bInline && !ev.m_bRet)
+      if (!m_bInline && !subject.m_bRet)
       {
 
          post_message(e_message_close);
@@ -893,13 +893,13 @@ namespace user
    }
 
 
-   void menu::on_control_event(::user::control_event * pevent)
+   void menu::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_click)
+      if (psubject->m_id == ::e_subject_click)
       {
 
-         if (m_pitemClose.is_set() && pevent->m_puserinteraction == m_pitemClose->m_puserinteraction)
+         if (m_pitemClose.is_set() && psubject->user_interaction() == m_pitemClose->m_puserinteraction)
          {
 
             defer_close();
@@ -908,12 +908,12 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
+            __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (pevent->m_puserinteraction->m_id.begins(astr.ingSysCommand))
+               if (psubject->user_interaction()->m_id.begins(astr.ingSysCommand))
                {
 
                   auto pchannelNotify = get_notify_channel();
@@ -921,11 +921,11 @@ namespace user
                   if (::is_set(pchannelNotify))
                   {
 
-                     //::message::command command(pevent->m_puserinteraction->m_id);
+                     //::message::command command(psubject->user_element_id());
 
                      //puiTarget->_001SendCommand(&command);
 
-                     pchannelNotify->command_handler(pevent->m_puserinteraction->m_id);
+                     pchannelNotify->handle_command(psubject->user_interaction()->m_id);
 
                   }
 
@@ -935,7 +935,7 @@ namespace user
 
                   auto pchannelNotify = m_pchannelNotify;
 
-                  id idCommand = pevent->m_puserinteraction->m_id;
+                  id idCommand = psubject->user_interaction()->m_id;
 
                   idCommand = translate_property_id(idCommand);
 
@@ -948,11 +948,11 @@ namespace user
 
                      ::message::command command(idCommand);
 
-                     command.m_actioncontext = pevent->m_actioncontext;
+                     command.m_actioncontext = psubject->m_actioncontext;
 
                      pchannelNotify->_001SendCommand(&command);
 
-                     pevent->m_bRet = command.m_bRet;
+                     psubject->m_bRet = command.m_bRet;
 
                   }
 
@@ -963,22 +963,22 @@ namespace user
          }
 
       }
-//      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
+//      else if (psubject->m_id == ::e_subject_mouse_enter)
 //      {
 //
 //         if (m_pitemClose.is_set()
-//               && pevent->m_puserinteraction != m_pitemClose->m_puserinteraction)
+//               && psubject->user_interaction() != m_pitemClose->m_puserinteraction)
 //         {
 //
 //            if (!m_bInline)
 //            {
 //
-//               if (pevent->m_puserinteraction->m_pmenuitem != m_pmenuitemSub)
+//               if (psubject->user_interaction()->m_pmenuitem != m_pmenuitemSub)
 //               {
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = pevent->m_puserinteraction->m_pmenuitem;
+//                     __pointer(::user::menu_item) pitem = psubject->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1007,7 +1007,7 @@ namespace user
 //
 //                           ::rectangle_i32 rectangle;
 //
-//                           pevent->m_puserinteraction->get_window_rect(rectangle);
+//                           psubject->user_interaction()->get_window_rect(rectangle);
 //
 //                           m_psubmenu->update_position(rectangle.top_right());
 //
@@ -1017,11 +1017,11 @@ namespace user
 //                        else
 //                        {
 //
-//                           ::user::control_event ev;
+//                           ::subject subject;
 //
-//                           ev.m_eevent = ::user::e_event_menu_hover;
+//                           subject.m_id = ::e_subject_menu_hover;
 //
-//                           ev.m_id = pitem->m_id;
+//                           subject.m_id = pitem->m_id;
 //
 //                           ::user::interaction * puiTarget = get_target_window();
 //
@@ -1032,7 +1032,7 @@ namespace user
 //
 //                           }
 //
-//                           return puiTarget->on_control_event(&ev);
+//                           return puiTarget->route(&subject);
 //
 //                        }
 //
@@ -1046,26 +1046,26 @@ namespace user
 //
 //         }
 //
-//         pevent->m_bRet = true;
+//         psubject->m_bRet = true;
 //
 //         return;
 //
 //      }
-//      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
+//      else if (psubject->m_id == ::e_subject_mouse_leave)
 //      {
-//         if (pevent->m_puserinteraction->m_id == m_idTimerMenu)
+//         if (psubject->user_element_id() == m_idTimerMenu)
 //         {
 //            KillTimer(e_timer_menu);
 //            m_idTimerMenu.is_empty();
 //         }
 //
-//         pevent->m_bRet = true;
+//         psubject->m_bRet = true;
 //
 //         return;
 //
 //      }
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -1553,15 +1553,15 @@ namespace user
 
       pinteraction->m_pmaterialCommandHandler = this;
       
-      pinteraction->add_control_event_handler(this);
+      pinteraction->add_handler(this);
 
       return pinteraction;
 
    }
 
 
-   // <3ThomasBorregaardS�rensen__!!
-   ::e_status menu::command_handler(const ::id& id)
+   // <3ThomasBorregaardS�rensen__!! (I need to suck you, back, middle, front)
+   ::e_status menu::handle_command(const ::id& id)
    {
 
       if (m_pmaterialCommandHandler)
@@ -1569,7 +1569,7 @@ namespace user
 
          defer_close();
 
-         auto estatus = m_pmaterialCommandHandler->command_handler(id);
+         auto estatus = m_pmaterialCommandHandler->handle_command(id);
 
          if (!estatus)
          {

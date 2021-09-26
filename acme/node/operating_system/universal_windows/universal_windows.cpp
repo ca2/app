@@ -38,12 +38,11 @@
 
    }
 
+   pszModuleFileName[0] = L'\0';
+
    wstrModuleFolder.release_string_buffer();
 
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
-   wstrModuleFolder.ends_eat_ci("\\");
-   wstrModuleFolder.ends_eat_ci("/");
+   wstrModuleFolder.trim_right(L"\\/");
 
    return string(wstrModuleFolder);
 

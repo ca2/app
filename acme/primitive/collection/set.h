@@ -347,6 +347,24 @@ public:
    const association * plookup(ARG_KEY key) const;
    association * plookup(ARG_KEY key);
 
+
+   bool should_set(ARG_KEY key)
+   { 
+      
+      if (has(key))
+      {
+
+         return false;
+
+      }
+
+      set_at(key);
+
+      return true;
+
+   }
+
+
    
    KEY * pget(ARG_KEY key);
 

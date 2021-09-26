@@ -20,7 +20,7 @@ public:
    millis                                          m_millisLastSaveWindowRect;
    millis                                          m_millisLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
-   ::rectangle_i32                                          m_FullScreenWindowRect;
+   ::rectangle_i32                                 m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
@@ -34,7 +34,7 @@ public:
 
 
    simple_frame_window();
-   virtual ~simple_frame_window();
+   ~simple_frame_window() override;
 
 
    virtual ::e_status initialize(::object * pobject) override;
@@ -155,7 +155,7 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   ::e_status command_handler(const ::id & id) override;
+   //::e_status command_handler(const ::id & id) override;
 
 
    virtual bool _001CanEnterScreenSaver() override;
@@ -228,9 +228,9 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   void on_control_event(::user::control_event * pevent) override;
+   void handle(::subject * psubject, ::context * pcontext) override;
 
-   virtual void route_command_message(::message::command * pcommand) override;
+   void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
    virtual void data_on_after_change(::message::message * pmessage);
 

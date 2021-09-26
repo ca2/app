@@ -28,9 +28,9 @@ namespace userex
 
       virtual void on_create_split_impact() override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

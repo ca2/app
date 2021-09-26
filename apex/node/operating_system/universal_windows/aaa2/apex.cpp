@@ -300,7 +300,7 @@ string normalize_path(const char * lpcszPath)
 
 string key_to_char(wparam wparam, lparam lparam)
 {
-   __throw(::exception::exception("todo"));
+   __throw(::exception("todo"));
 }
 
 
@@ -325,15 +325,6 @@ string key_to_char(wparam wparam, lparam lparam)
 //}
 
 
-
-
-
-//void output_debug_string(const char * psz)
-//{
-//
-//   ::output_debug_string(wstring(psz));
-//
-//}
 
 
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
@@ -475,7 +466,7 @@ bool __node_apex_pre_init()
          if(FAILED(hresult))
          {
 
-            os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+            os_output_error_message("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
             return false;
 
@@ -485,7 +476,7 @@ bool __node_apex_pre_init()
       else
       {
 
-         os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+         os_output_error_message("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 
          return false;
 

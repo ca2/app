@@ -55,7 +55,7 @@ namespace draw2d_opengl
       else
       {
 
-         __throw(::exception::exception("path does not have last point_i32"));
+         __throw(::exception("path does not have last point_i32"));
 
       }
 

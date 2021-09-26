@@ -474,8 +474,7 @@ namespace introjection
 
       }
 
-      ::process::process_pointer process(e_create);
-
+      ::operating_system::process_pointer process(e_create, this);
 
       ::file::path pathEnvTxt;
 
@@ -587,7 +586,7 @@ namespace introjection
       if (m_strApp.is_empty())
       {
 
-         throw ::exception::exception(error_failed, "call compiler::initialize");
+         throw ::exception(error_failed, "call compiler::initialize");
 
       }
 
@@ -1124,7 +1123,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
 
       str.replace("%TARGET_PATH%",strTargetPath);
 
-      ::process::process_pointer process(e_create);
+      ::operating_system::process_pointer process(e_create, this);
 
 #ifdef LINUX
 
@@ -1306,7 +1305,7 @@ auto tickStart = ::millis::now();
 
          bTimeout = false;
 
-         ::process::process_pointer process(e_create);
+         ::operating_system::process_pointer process(e_create, this);
 
          //         set_thread_priority(::e_priority_highest);
 
@@ -1478,14 +1477,14 @@ auto tickStart = ::millis::now();
       if(!plibrary->m_plibrary->open(strTargetPath))
       {
 
-         output_message_box_error("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_error_message("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 
       if(!plibrary->m_plibrary->open_library(strLibTitle))
       {
 
-         output_message_box_error("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_error_message("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 

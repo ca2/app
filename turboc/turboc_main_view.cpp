@@ -39,7 +39,7 @@ namespace turboc
 
    void main_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
@@ -108,13 +108,13 @@ namespace turboc
 
 
 
-   void main_impact::on_control_event(::user::control_event * pevent)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "turboc_toggle")
+         if(psubject->user_element_id() == "turboc_toggle")
          {
 
             if(m_pimpact->m_bLite && !papplication->m_bLoadAiFont)

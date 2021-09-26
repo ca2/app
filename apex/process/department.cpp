@@ -4,7 +4,7 @@
 void install_sigchld_handler();
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -409,7 +409,7 @@ namespace process
    }
 
 
-} // namespace process
+} // namespace operating_system
 
 
 

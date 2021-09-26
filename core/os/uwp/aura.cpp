@@ -248,7 +248,7 @@ string normalize_path(const ::string & lpcszPath)
 
 string key_to_char(wparam wparam, lparam lparam)
 {
-   __throw(::exception::exception("todo"));
+   __throw(::exception("todo"));
 }
 
 
@@ -274,14 +274,6 @@ string get_last_error_message(u32 dwError)
 
 
 
-
-
-//void output_debug_string(const ::string & psz)
-//{
-//
-//   ::output_debug_string(wstring(psz));
-//
-//}
 
 
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )

@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
       
    }
 
@@ -260,7 +260,7 @@ namespace userstack
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_view::on_message_right_button_up);
-      connect_command("properties", &pane_view::_001OnProperties);
+      add_command_handler("properties", &pane_view::_001OnProperties);
    }
 
    void pane_view::rotate()
@@ -581,7 +581,7 @@ namespace userstack
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

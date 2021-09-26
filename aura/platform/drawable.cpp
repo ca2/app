@@ -34,7 +34,7 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, const ::point_i32& point)
+   void drawable::hit_test(::item& item, const ::point_i32& point)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -43,7 +43,7 @@ namespace aura
    }
 
 
-   void drawable::on_hit_test(::user::item& item)
+   void drawable::on_hit_test(::item& item)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -133,7 +133,7 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, ::message::mouse* pmouse)
+   void drawable::hit_test(::item& item, ::message::mouse* pmouse)
    {
 
       hit_test(item, pmouse->m_point);
@@ -141,15 +141,15 @@ namespace aura
    }
 
 
-   ::user::item drawable::hit_test(const ::point_i32& point)
+   ::item drawable::hit_test(const ::point_i32& point)
    {
 
-      ::user::item item; hit_test(item, point); return item;
+      ::item item; hit_test(item, point); return item;
 
    }
 
 
-   ::user::item drawable::hit_test(::message::mouse* pmouse)
+   ::item drawable::hit_test(::message::mouse* pmouse)
    {
 
       return hit_test(pmouse->m_point);

@@ -106,7 +106,7 @@ namespace aura
 //
 //      bool                                               m_bGudoNetCache;
 //
-//      __composite(::process::department)                 m_pprocess;
+//      __composite(::operating_system::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
 //      ::e_display                                         m_edisplay;
@@ -170,8 +170,8 @@ namespace aura
 //
 //#else
 //
-//      rectangle_i32_array                                         m_rectaMonitor;
-//      rectangle_i32_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectangleaMonitor;
+//      rectangle_i32_array                                         m_rectangleaWork;
 //
 //#endif
 //
@@ -444,7 +444,7 @@ namespace aura
 
 
       //::aura::str                                  &  str();
-      //::process::department                        &  process();
+      //::operating_system::department                        &  process();
 
 
       //::xml::department                            &  xml();
@@ -949,6 +949,8 @@ namespace aura
       //virtual void on_graphics_ready() override;
 
 
+      //::e_status _on_initialize_window_object() override;
+
 
       //system();
       //virtual ~system();
@@ -983,15 +985,17 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      void subject_handler(::subject::subject * psubject) override;
+      //void signal(::signal * psignal) override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
 
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
       __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+
+
 
 
    };

@@ -42,17 +42,17 @@ namespace datetime
          ::datetime::time time(iYear,iMonth,1,0,0,0);
          ::datetime::time_span timespan(1,0,0,0);
          color32_t crBorder;
-         rectangle_i32 rectDay;
+         rectangle_i32 rectangleDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 7; iDay++)
          {
-            GetRectDay(iDay,0,rectDay);
+            GetRectDay(iDay,0,rectangleDay);
             //crBorder = rgb(184, 184, 177);
-            //pgraphics->Draw3dRect(rectDay, crBorder, crBorder);
-            rectDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
+            //pgraphics->Draw3dRect(rectangleDay, crBorder, crBorder);
+            rectangleDay.deflate(m_iColWidth / 10,m_iLineHeight / 10);
             string strDay;
             strDay.Format("%s",GetTinyWeekDay(pgraphics->textcontext(),iDay));
-            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
+            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          for(iDay = 1; iDay <= 33; iDay++)
          {
@@ -69,13 +69,13 @@ namespace datetime
                   break;
                continue;
             }
-            GetRectDay(time,rectDay);
+            GetRectDay(time,rectangleDay);
             crBorder = rgb(184,184,177);
-            pgraphics->draw_rectangle(rectDay,crBorder);
-            rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
+            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",iDay);
-            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
+            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
             time += timespan;
             if(time.GetMonth() != iMonth)
                break;
@@ -84,16 +84,16 @@ namespace datetime
                && timeNow.GetYear() == iYear)
          {
             crBorder = rgb(90, 90, 80);
-            GetRectDay(timeNow,rectDay);
-            rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->fill_rectangle(rectDay,rgb(220,220,210));
-            pgraphics->draw_rectangle(rectDay,crBorder);
-            rectDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectDay,crBorder);
-            rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
+            GetRectDay(timeNow,rectangleDay);
+            rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
+            pgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
+            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            rectangleDay.deflate(1,1);
+            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeNow.GetDay());
-            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
+            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
          ::datetime::time timeEmp = m_time;
          for(int32_t iDay = timeEmp.GetDay(); time.GetYear() == iYear
@@ -102,15 +102,15 @@ namespace datetime
                 m_bRange && time <= m_timeEnd)); time += timespan)
          {
             crBorder = rgb(240,120,52);
-            GetRectDay(m_time,rectDay);
-            rectDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->draw_rectangle(rectDay,crBorder);
-            rectDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectDay,crBorder);
-            rectDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
+            GetRectDay(m_time,rectangleDay);
+            rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
+            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            rectangleDay.deflate(1,1);
+            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeEmp.GetDay());
-            pgraphics->draw_text(strDay,rectDay,e_align_bottom_right);
+            pgraphics->draw_text(strDay,rectangleDay,e_align_bottom_right);
          }
 
          pgraphics->set(m_pfontYear);
@@ -226,12 +226,12 @@ namespace datetime
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear,iMonth,1,0,0,0);
          ::datetime::time_span timespan(1,0,0,0);
-         rectangle_i32 rectDay;
+         rectangle_i32 rectangleDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time,rectDay);
-            if(rectDay.contains(point))
+            GetRectDay(time,rectangleDay);
+            if(rectangleDay.contains(point))
             {
                timeRet = time;
                return true;

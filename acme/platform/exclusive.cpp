@@ -30,7 +30,7 @@ namespace acme
          m_dwLastError = ::GetLastError();
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
          try
@@ -41,7 +41,7 @@ namespace acme
             m_dwLastError = ::GetLastError();
 
          }
-         catch (const ::exception::exception &)
+         catch (const ::exception &)
          {
 
             m_bResourceException = true;

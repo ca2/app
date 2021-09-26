@@ -114,14 +114,14 @@ namespace user
 
       m_pbuttonClose->initialize(this);
 
-      m_pbuttonClose->add_control_event_handler(this);
+      m_pbuttonClose->add_handler(this);
 
       for (auto& pbutton : m_buttona)
       {
 
          pbutton->initialize(this);
 
-         pbutton->add_control_event_handler(this);
+         pbutton->add_handler(this);
 
       }
 
@@ -226,7 +226,7 @@ namespace user
    }
 
 
-   void default_message_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void default_message_box::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_os_user_theme)
@@ -237,6 +237,18 @@ namespace user
          invalidate();
 
       }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         m_edialogresult = (enum_dialog_result)psubject->m_puserelement->m_id.i64();
+
+         ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
+
+         set_finish();
+
+      }
+
+
 
    }
 
@@ -438,22 +450,22 @@ namespace user
    }
 
 
-   //bool default_message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
-   void default_message_box::on_control_event(::user::control_event * pevent)
-   {
+   ////bool default_message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+   //void default_message_box::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if (pevent->m_eevent == ::user::e_event_click)
-      {
+   //   if (psubject->m_id == ::e_subject_click)
+   //   {
 
-         m_edialogresult = (enum_dialog_result) pevent->m_id.i64();
+   //      m_edialogresult = (enum_dialog_result) psubject->m_puserelement->m_id.i64();
 
-         ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
+   //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 
-         set_finish();
+   //      set_finish();
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void default_message_box::close_window()

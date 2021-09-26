@@ -114,10 +114,12 @@ list(APPEND library_source
    graphics/draw2d/keep.cpp
    graphics/draw2d/keep.h
    graphics/draw2d/load_gif_frame.cpp
+   graphics/draw2d/lock.cpp
+   graphics/draw2d/lock.h
    graphics/draw2d/matrix.cpp
    graphics/draw2d/matrix.h
-   graphics/draw2d/nanosvg.cpp
-   graphics/draw2d/nanosvgrast.cpp
+   graphics/draw2d/nano_svg.cpp
+   graphics/draw2d/nano_svg_rasterization.cpp
    graphics/draw2d/object.cpp
    graphics/draw2d/object.h
    graphics/draw2d/palette.cpp
@@ -312,14 +314,10 @@ list(APPEND library_source
    user/button.h
    user/call_message_handler_task.cpp
    user/call_message_handler_task.h
-   user/callback.cpp
-   user/callback.h
    user/check_box.cpp
    user/check_box.h
    user/control_descriptor.cpp
    user/control_descriptor.h
-   user/control_event.cpp
-   user/control_event.h
    user/copydesk.cpp
    user/copydesk.h
    user/system.cpp
@@ -342,8 +340,8 @@ list(APPEND library_source
    user/interaction_prodevian.h
    user/interaction_thread.cpp
    user/interaction_thread.h
-   user/item.cpp
-   user/item.h
+   user/interaction_scaler.cpp
+   user/interaction_scaler.h
    user/key.cpp
    user/key.h
    user/keyboard.cpp
@@ -1146,7 +1144,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${library_source} user/interaction_scaler.cpp user/interaction_scaler.h)
+add_library(aura SHARED ${library_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

@@ -61,8 +61,8 @@ namespace user
       virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);
       ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
-      virtual bool on_click(const ::user::item & item) override;
-      virtual bool on_right_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
+      virtual bool on_right_click(const ::item & item) override;
       void _001OnTimer(::timer * ptimer) override;
 
       using list::_001GetSelection;
@@ -87,7 +87,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      void on_control_event(::user::control_event * pevent) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void _001OnColumnChange() override;
 

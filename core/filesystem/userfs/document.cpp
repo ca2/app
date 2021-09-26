@@ -263,13 +263,13 @@ namespace userfs
 
       }
 
-      auto psubject = subject(id_synchronize_path);
+      ::subject subject(id_synchronize_path);
 
-      psubject->m_pfileitem = pitem;
+      subject.m_pfileitem = pitem;
 
-      psubject->m_actioncontext = context + ::e_source_sync;
+      subject.m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
       return true;
 

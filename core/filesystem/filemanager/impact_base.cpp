@@ -23,9 +23,9 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 
    ::user::impact::install_message_routing(pchannel);
 
-   connect_command_probe("edit_paste",&filemanager_impact_base::_001OnUpdateEditPaste);
+   add_command_prober("edit_paste", this, &filemanager_impact_base::_001OnUpdateEditPaste);
 
-   connect_command("edit_paste",&filemanager_impact_base::_001OnEditPaste);
+   add_command_handler("edit_paste", this, &filemanager_impact_base::_001OnEditPaste);
 
    MESSAGE_LINK(WM_APP + 1024,pchannel,this,&filemanager_impact_base::_001OnOperationDocMessage);
 
@@ -209,12 +209,12 @@ void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pme
 
 
 
-void filemanager_impact_base::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void filemanager_impact_base::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::user::impact::on_subject(psubject, pcontext);
+   ::user::impact::handle(psubject, pcontext);
 
-   if (psubject->id() == INITIALIZE_ID)
+   if (psubject->id() == id_initialize)
    {
 
       if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
@@ -236,7 +236,7 @@ void filemanager_impact_base::on_subject(::subject::subject * psubject, ::subjec
       }
 
    }
-   else if (psubject->id() == SYNCHRONIZE_PATH_ID)
+   else if (psubject->id() == id_synchronize_path)
    {
 
       __pointer(::core::application) papplication = get_application();

@@ -113,12 +113,12 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void save_as_edit_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
-      if (psubject->id() == INITIALIZE_ID && psubject->m_puserprimitive == this)
+      if (psubject->id() == INITIALIZE_ID && psubject->m_puserelement == this)
       {
          //            filemanager_document() = pupdate->filemanager_document();
          /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -165,15 +165,15 @@ namespace filemanager
    }
 
 
-   void save_as_button::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void save_as_button::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 
 
-   bool save_as_button::on_click(const ::user::item & item)
+   bool save_as_button::on_click(const ::item & item)
    {
 
 
@@ -308,7 +308,7 @@ namespace filemanager
       else
       {
 
-         //output_message_box_error("Failed to save document");
+         //output_error_message("Failed to save document");
 
          //psubject->id() = id_topic_save_failed;
 
@@ -346,10 +346,10 @@ namespace filemanager
    }
 
 
-   void save_as_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void save_as_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
       ////__update(::update)
       {
@@ -376,7 +376,7 @@ namespace filemanager
             }
 
          }
-         else if (psubject->m_puserprimitive == this && psubject->id() == id_initialize)
+         else if (psubject->m_puserelement == this && psubject->id() == id_initialize)
          {
             //            filemanager_document() = pupdate->filemanager_document();
             /*            m_pserverNext = simpledb::AppGet()->GetDataServer();
@@ -434,7 +434,7 @@ namespace filemanager
       if (!m_pedit)
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 

@@ -23,11 +23,11 @@ void simple_tree_view::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_tree_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void simple_tree_view::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::user::impact::on_subject(psubject, pcontext);
-   ::user::tree::on_subject(psubject, pcontext);
+   ::user::impact::handle(psubject, pcontext);
+   ::user::tree::handle(psubject, pcontext);
 
 }
 

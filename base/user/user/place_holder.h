@@ -49,7 +49,7 @@ namespace user
 
       virtual bool _001IsBackgroundBypass();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual void get_child_rect(RECTANGLE_I32 * prectangle) override;
 

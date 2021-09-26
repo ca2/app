@@ -170,114 +170,114 @@
 //}
 //
 //// Subtract minor from major and return the greatest box around.
-//void rectangle_i64::SubtractRectMajor(const ::rectangle_i64 & rectMajor, const ::rectangle_i64 & rectMinor)
+//void rectangle_i64::SubtractRectMajor(const ::rectangle_i64 & rectangleMajor, const ::rectangle_i64 & rectangleMinor)
 //
 //{
-//   rectangle_i64 rectIntersect;
-//   rectangle_i64 rectRet(*this);
-//   if(rectIntersect.is_empty().intersect(rectMajor, rectMinor))
+//   rectangle_i64 rectangleIntersect;
+//   rectangle_i64 rectangleRet(*this);
+//   if(rectangleIntersect.is_empty().intersect(rectangleMajor, rectangleMinor))
 //
 //   {
-//      rectRet = rectMajor;
+//      rectangleRet = rectangleMajor;
 //
 //   }
 //   else
 //   {
-//      if(rectIntersect == rectMajor)
+//      if(rectangleIntersect == rectangleMajor)
 //
 //      {
-//         rectRet.set(0, 0, 0, 0);
+//         rectangleRet.set(0, 0, 0, 0);
 //      }
 //      else
 //      {
-//         if(rectIntersect.left == rectMajor.left
+//         if(rectangleIntersect.left == rectangleMajor.left
 //
-//               && rectIntersect.right == rectMajor.right)
+//               && rectangleIntersect.right == rectangleMajor.right)
 //
 //         {
-//            if(rectIntersect.top == rectMajor.top)
+//            if(rectangleIntersect.top == rectangleMajor.top)
 //
 //            {
-//               rectRet.set(
-//               rectMajor.left,
+//               rectangleRet.set(
+//               rectangleMajor.left,
 //
-//               rectIntersect.top,
-//               rectMajor.right,
+//               rectangleIntersect.top,
+//               rectangleMajor.right,
 //
-//               rectMajor.bottom);
+//               rectangleMajor.bottom);
 //
 //            }
-//            else if(rectIntersect.bottom == rectMajor.bottom)
+//            else if(rectangleIntersect.bottom == rectangleMajor.bottom)
 //
 //            {
-//               rectRet.set(
-//               rectMajor.left,
+//               rectangleRet.set(
+//               rectangleMajor.left,
 //
-//               rectMajor.top,
+//               rectangleMajor.top,
 //
-//               rectMajor.right,
+//               rectangleMajor.right,
 //
-//               rectIntersect.bottom);
+//               rectangleIntersect.bottom);
 //            }
 //            else
 //            {
-//               rectRet = rectMajor;
+//               rectangleRet = rectangleMajor;
 //
 //            }
 //         }
-//         else if(rectIntersect.top == rectMajor.top
+//         else if(rectangleIntersect.top == rectangleMajor.top
 //
-//                 && rectIntersect.bottom == rectMajor.bottom)
+//                 && rectangleIntersect.bottom == rectangleMajor.bottom)
 //
 //         {
-//            if(rectIntersect.left == rectMajor.left)
+//            if(rectangleIntersect.left == rectangleMajor.left)
 //
 //            {
-//               rectRet.set(
-//               rectIntersect.left,
-//               rectMajor.top,
+//               rectangleRet.set(
+//               rectangleIntersect.left,
+//               rectangleMajor.top,
 //
-//               rectMajor.right,
+//               rectangleMajor.right,
 //
-//               rectMajor.bottom);
+//               rectangleMajor.bottom);
 //
 //            }
-//            else if(rectIntersect.right == rectMajor.right)
+//            else if(rectangleIntersect.right == rectangleMajor.right)
 //
 //            {
-//               rectRet.set(
-//               rectMajor.left,
+//               rectangleRet.set(
+//               rectangleMajor.left,
 //
-//               rectMajor.top,
+//               rectangleMajor.top,
 //
-//               rectIntersect.right,
-//               rectMajor.bottom);
+//               rectangleIntersect.right,
+//               rectangleMajor.bottom);
 //
 //            }
 //            else
 //            {
-//               rectRet = rectMajor;
+//               rectangleRet = rectangleMajor;
 //
 //            }
 //         }
 //         else
 //         {
-//            rectRet = rectMajor;
+//            rectangleRet = rectangleMajor;
 //
 //         }
 //      }
 //   }
-//   *this = rectRet;
+//   *this = rectangleRet;
 //   return;
 //
 //}
 //
-//void rectangle_i64::SubtractRectMinor(const ::rectangle_i64 & rectMajor, const ::rectangle_i64 & rectMinor)
+//void rectangle_i64::SubtractRectMinor(const ::rectangle_i64 & rectangleMajor, const ::rectangle_i64 & rectangleMinor)
 //
 //{
-//   __UNREFERENCED_PARAMETER(rectMajor);
+//   __UNREFERENCED_PARAMETER(rectangleMajor);
 //
-//   __UNREFERENCED_PARAMETER(rectMinor);
+//   __UNREFERENCED_PARAMETER(rectangleMinor);
 //
 //}
 //

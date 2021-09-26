@@ -10,10 +10,9 @@ public:
 
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
-   lparam(i64 i) { m_lparam = (iptr)i; }
-   lparam(i32 i) { m_lparam = (iptr)i; }
-   lparam(u64 u) { m_lparam = (iptr)u; }
-   lparam(u32 u) { m_lparam = (iptr)u; }
+
+   template < primitive_integral INTEGRAL >
+   lparam(INTEGRAL i) { m_lparam = (iptr)i; }
    template < primitive_size SIZE >
    lparam(const SIZE & size):lparam((::i32)size.cx, (::i32) size.cy) {}
    template < primitive_point POINT >
@@ -74,12 +73,17 @@ public:
 
 
    template < typename T >
-   __pointer(T) cast() const
+   __pointer(T) move()
    {
 
-      return *this;
+      auto p = ___pointer < T > ( e_move_transfer, (::matter *)m_lparam );
+
+      m_lparam = 0;
+
+      return p;
 
    }
+
 
    template < typename T >
    T raw_cast() const

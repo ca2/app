@@ -8,11 +8,13 @@ class message_queue;
 /// a thread must be always allocated in the heap
 ///
 class CLASS_DECL_APEX thread :
-   virtual public task,
-   virtual public channel
-   , virtual public subject::context
+   virtual public ::task,
+   virtual public ::channel,
+   virtual public ::manager,
+   virtual public ::context,
+   virtual public ::source
 #ifdef WINDOWS
-   ,virtual public ::exception::translator
+   ,virtual public ::exception_translator
 #endif
 {
 public:
@@ -57,7 +59,7 @@ public:
    __pointer(manual_reset_event)                      m_peventReady;
    __pointer(manual_reset_event)                      m_peventFinished;
 
-   e_id                                               m_idContextReference;
+   enum_id                                            m_idContextReference;
 
    bool                                               m_bAuraMessageQueue;
    ::millis                                           m_millisHeartBeat;
@@ -289,7 +291,7 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 
 
-   //virtual bool final_handle_exceptionconst ::exception::exception & e;
+   //virtual bool final_handle_exceptionconst ::exception & e;
    //__pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
@@ -333,7 +335,7 @@ public:
    virtual void on_pos_run_thread();
    virtual void term_thread();
 
-   virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message * pmessage);
+   virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 

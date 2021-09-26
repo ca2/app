@@ -175,6 +175,8 @@ list(APPEND apex_source
    message/cross_windows.h
    message/debug.cpp
    message/definition.h
+   message/dispatcher.cpp
+   message/dispatcher.h
    message/global.h
    message/id.cpp
    message/id.h
@@ -484,16 +486,6 @@ list(APPEND apex_source
    platform/system.h
    platform/text.cpp
    platform/thread_set.h
-   primitive/subject/context.cpp
-   primitive/subject/context.h
-   primitive/subject/manager.cpp
-   primitive/subject/manager.h
-   primitive/subject/process.cpp
-   primitive/subject/promise.cpp
-   primitive/subject/promise.h
-   primitive/subject/routine.cpp
-   primitive/subject/subject.cpp
-   primitive/subject/subject.h
    process/_.h
    process/department.cpp
    process/department.h
@@ -508,13 +500,25 @@ list(APPEND apex_source
    progress/real.cpp
    progress/real.h
    progress/_.h
+   subject/context.cpp
+   subject/context.h
+   subject/manager.cpp
+   subject/manager.h
+   subject/process.cpp
+   subject/promise.cpp
+   subject/promise.h
+   subject/routine.cpp
+   subject/signal.cpp
+   subject/signal.h
+   subject/source.cpp
+   subject/source.h
    template/list.h
    user/_.h
    user/_const_key.h
-   user/check.cpp
-   user/check.h
    user/command.cpp
    user/command.h
+   #user/control_event.cpp
+   #user/control_event.h
    user/language.cpp
    user/language.h
    user/language_map.cpp
@@ -526,8 +530,6 @@ list(APPEND apex_source
    user/notify_icon_bridge.h
    user/primitive.cpp
    user/primitive.h
-   user/text.cpp
-   user/text.h
    version/version.config.h
    version/version.h
    _.cpp

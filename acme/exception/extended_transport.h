@@ -83,7 +83,7 @@ namespace extended
       }
 
 
-      transport(const ::exception::exception & e)
+      transport(const ::exception & e)
       {
 
          add(e);
@@ -91,7 +91,7 @@ namespace extended
       }
 
 
-      transport(const std::initializer_list < ::exception::exception > &list)
+      transport(const std::initializer_list < ::exception > &list)
       {
 
          for (auto& e : list)

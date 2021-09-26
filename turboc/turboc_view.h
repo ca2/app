@@ -47,7 +47,7 @@ namespace turboc
       ::image_pointer        m_pimageFast;
       ::image_pointer        m_pimageTemplate;
 
-      ::write_text::font_pointer       m_font;
+      ::write_text::font_pointer       m_pfont;
       string                  m_strNewHelloMultiverse;
       string                  m_strHelloMultiverse;
       bool                    m_bOkPending;

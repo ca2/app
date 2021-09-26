@@ -124,7 +124,8 @@ namespace graphics
    }
 
 
-   console::console(::size_i32 sizeTile) :
+   console::console(::user::interaction * puserinteraction, ::size_i32 sizeTile) :
+      m_puserinteraction(puserinteraction),
       m_sizeTile(sizeTile)
    {
 
@@ -181,7 +182,9 @@ namespace graphics
 
       m_pimage = m_pcontext->context_image()->create_image(sizeImage);
 
-      m_pimage->g()->m_pfont.create();
+      m_pimage->g()->m_puserinteraction = m_puserinteraction;
+
+      __construct(m_pimage->g()->m_pfont);
 
 #ifdef LINUX
 
@@ -320,18 +323,18 @@ namespace graphics
    ::draw2d::pen_pointer & console::get_pen2(enum_dos_color edoscolor)
    {
 
-      ::draw2d::pen_pointer & pen2 = m_mappen2[edoscolor];
+      ::draw2d::pen_pointer & ppen2 = m_mappen2[edoscolor];
 
-      if (pen2.is_null())
+      if (ppen2.is_null())
       {
 
-         pen2.create(this);
+         ppen2.create(this);
 
-         pen2->create_solid(2.0, console_dos_color(edoscolor));
+         ppen2->create_solid(2.0, console_dos_color(edoscolor));
 
       }
 
-      return pen2;
+      return ppen2;
 
    }
 
@@ -339,18 +342,18 @@ namespace graphics
    ::draw2d::pen_pointer & console::get_pen1(enum_dos_color edoscolor)
    {
 
-      ::draw2d::pen_pointer & pen1 = m_mappen1[edoscolor];
+      ::draw2d::pen_pointer & ppen1 = m_mappen1[edoscolor];
 
-      if (pen1.is_null())
+      if (ppen1.is_null())
       {
 
-         pen1.create(this);
+         ppen1.create(this);
 
-         pen1->create_solid(1.0, console_dos_color(edoscolor));
+         ppen1->create_solid(1.0, console_dos_color(edoscolor));
 
       }
 
-      return pen1;
+      return ppen1;
 
    }
 
@@ -377,11 +380,11 @@ namespace graphics
          if (ch == (char)209)// horizontal double / down simple
          {
 
-            ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+            ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-            ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+            ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-            m_pimage->g()->set(pen2);
+            m_pimage->g()->set(ppen2);
 
             m_pimage->g()->draw_line(
                ::point_i32(m_iBorder + x * m_sizeTile.cx,
@@ -390,7 +393,7 @@ namespace graphics
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
-            m_pimage->g()->set(pen1);
+            m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
                ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -409,9 +412,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -432,9 +435,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(pen1);
+               m_pimage->g()->set(ppen1);
 
             }
 
@@ -455,9 +458,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -474,9 +477,9 @@ namespace graphics
          }
          else if (ch == (char)199) // vertical double / right simple
          {
-            ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
-            ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
-            m_pimage->g()->set(pen2);
+            ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
+            ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
+            m_pimage->g()->set(ppen2);
 
            m_pimage->g()->draw_line(
               ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -484,7 +487,7 @@ namespace graphics
               ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
             );
-            m_pimage->g()->set(pen1);
+            m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
                ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -499,9 +502,9 @@ namespace graphics
          }
          else if (ch == (char)182) // vertical double / left simple
          {
-            ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
-            ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
-            m_pimage->g()->set(pen2);
+            ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
+            ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
+            m_pimage->g()->set(ppen2);
 
             m_pimage->g()->draw_line(
                ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -509,7 +512,7 @@ namespace graphics
                ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
-            m_pimage->g()->set(pen1);
+            m_pimage->g()->set(ppen1);
 
             m_pimage->g()->draw_line(
                ::point_f64(m_iBorder + x * m_sizeTile.cx,
@@ -528,9 +531,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(pen1);
+               m_pimage->g()->set(ppen1);
 
             }
 
@@ -551,9 +554,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(pen1);
+               m_pimage->g()->set(ppen1);
 
             }
 
@@ -579,9 +582,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -606,9 +609,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -633,9 +636,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(pen1);
+               m_pimage->g()->set(ppen1);
 
             }
 
@@ -660,9 +663,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -687,9 +690,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-               m_pimage->g()->set(pen1);
+               m_pimage->g()->set(ppen1);
 
             }
 
@@ -714,9 +717,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen2 = get_pen2(edoscolor);
+               ::draw2d::pen_pointer & ppen2 = get_pen2(edoscolor);
 
-               m_pimage->g()->set(pen2);
+               m_pimage->g()->set(ppen2);
 
             }
 
@@ -741,9 +744,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != edoscolor)
             {
 
-               ::draw2d::pen_pointer & pen1 = get_pen1(edoscolor);
+               ::draw2d::pen_pointer & ppen1 = get_pen1(edoscolor);
 
-              m_pimage->g()->set(pen1);
+              m_pimage->g()->set(ppen1);
 
             }
 

@@ -42,6 +42,12 @@ public:
    virtual filesize get_size(FILE * pfile);
    virtual filesize get_size_fd(int iFile);
 
+
+   virtual ::e_status clear_application_data();
+
+
+
+
    //virtual FILE * FILE_open(const char * path, const char * attrs, int iShare);
    //virtual i32 FILE_printf(FILE * fp, const char * s, ...);
    //virtual i32 FILE_close(FILE * fp);

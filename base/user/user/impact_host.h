@@ -19,7 +19,7 @@ namespace user
 
 
       class CLASS_DECL_BASE exception :
-         virtual public ::exception::exception
+         virtual public ::exception
       {
       public:
 
@@ -102,7 +102,7 @@ namespace user
       virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateView = true);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual ::count get_view_count();

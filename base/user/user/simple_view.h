@@ -18,7 +18,7 @@ namespace user
 
 
          string               m_strText;
-         ::write_text::font_pointer    m_font;
+         ::write_text::font_pointer    m_pfont;
          point_i32                m_point;
          ::color::color              m_color;
 
@@ -38,7 +38,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -6,8 +6,7 @@ namespace http
 {
 
 
-   response::response(const string & version) :
-      m_pmemfileBody(e_create_new)
+   response::response(const string & version) 
    {
 
       __UNREFERENCED_PARAMETER(version);
@@ -33,6 +32,8 @@ namespace http
    {
 
       transaction::operator=(src);
+
+      __defer_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->memory() = src.m_pmemfileBody->memory();
 
@@ -61,6 +62,8 @@ namespace http
    {
 
       transaction::clear();
+
+      __defer_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->set_size(0);
    

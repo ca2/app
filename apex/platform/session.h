@@ -55,6 +55,8 @@ namespace apex
 
       bool                                                  m_bProgrammerMode;
 
+      //bool                                                  m_bOnInitializeWindowObject;
+
       bool                                                  m_bSystemSynchronizedCursor;
       point_i32                                                 m_pointCursor;
 
@@ -133,9 +135,16 @@ namespace apex
 
       void install_message_routing(::channel* pchannel) override;
 
+
+      //virtual ::e_status on_initialize_window_object();
+      //virtual ::e_status _on_initialize_window_object();
+
+
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
       virtual bool is_session() const override;
+
+
 
       //virtual void enum_display_monitors();
 
@@ -271,6 +280,8 @@ namespace apex
 
       virtual ::color::color get_default_color(u64 u);
 
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
+
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
       virtual bool is_licensed(const ::string & pszId, bool bInteractive = true);
@@ -347,7 +358,7 @@ namespace apex
       //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       // apex commented
@@ -402,7 +413,7 @@ namespace apex
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::message::command * pcommand) override;
+      //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 

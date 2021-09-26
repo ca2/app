@@ -89,7 +89,7 @@ namespace user
 
          //message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
 
-         output_message_box_error(strMessage);
+         output_error_message(strMessage);
 
       }
 
@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   void split_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void split_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

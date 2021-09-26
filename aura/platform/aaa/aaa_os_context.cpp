@@ -20,7 +20,7 @@
    string os_context::get_command_line()
    {
 
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
 
       return "";
 
@@ -30,27 +30,27 @@
    bool os_context::shutdown(bool bIfPowerOff)
    {
       __UNREFERENCED_PARAMETER(bIfPowerOff);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    bool os_context::reboot()
    {
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
       __UNREFERENCED_PARAMETER(lpszName);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
    }
 
    bool os_context::get_pid_by_path(const ::string & lpszName, u32 & dwPid)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
@@ -58,27 +58,27 @@
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    int os_context::get_pid()
    {
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return -1;
    }
 
    ::file::path os_context::get_process_path(u32 dwPid)
    {
       __UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return "";
    }
 
    void os_context::get_all_processes(u32_array & dwa )
    {
       __UNREFERENCED_PARAMETER(dwa);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
    }
 
 #ifdef WINDOWS
@@ -86,7 +86,7 @@
    ::file::path os_context::get_module_path(HMODULE hmodule)
    {
       __UNREFERENCED_PARAMETER(hmodule);
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
    }
 
 #endif
@@ -257,7 +257,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -270,7 +270,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -283,7 +283,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -296,7 +296,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -309,7 +309,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -322,7 +322,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -335,7 +335,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -348,7 +348,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -380,7 +380,7 @@
 
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -631,7 +631,7 @@
    bool os_context::browse_file_open(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -641,7 +641,7 @@
    bool os_context::browse_file_save(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -651,7 +651,7 @@
    bool os_context::browse_folder(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -660,7 +660,7 @@
    bool os_context::browse_file_or_folder(::user::interaction* pinteraction, property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 

@@ -9,7 +9,7 @@
       virtual public ::apex_main_struct,
       virtual public ::apex::context,
       // apex commented
-      //virtual public ::user::callback,
+      //virtual public ::handler,
       virtual public int_scalar_source,
       //virtual public ::account::interactive
       virtual public ::database::client,
@@ -74,6 +74,7 @@
 #endif
       semaphore                                       m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
+      string_array                                    m_straActivationMessage;
 
       ::u32                                           m_dwInstallGoodToCheckAgain;
 
@@ -82,6 +83,8 @@
       __composite(::install::installer)               m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
+
+      bool                                            m_bAttendedFirstRequest;
 
       //bool                                            m_bAgreeExit;
       //bool                                            m_bAgreeExitOk;
@@ -291,13 +294,19 @@
       //virtual ::e_status france_exit();
 
 
-      virtual ::e_status process_exception(const ::exception::exception & e) override;
+      virtual ::e_status process_exception(const ::exception & e) override;
 
 
       //virtual __pointer(::application) assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running();
 
+
+      virtual void add_activation_message(const ::string & strMessage);
+
+      virtual bool has_activation_message() const;
+
+      virtual bool defer_process_activation_message();
 
 
       virtual void on_request(::create * pcreate) override;
@@ -457,7 +466,7 @@
       virtual void on_file_new();
 
 
-      virtual string get_title();
+      virtual string title();
       virtual string_array get_categories();
 
       virtual void defer_create_keyboard();
@@ -469,7 +478,7 @@
       virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 
 
-      //virtual bool process_exception(const ::exception::exception & e) override;
+      //virtual bool process_exception(const ::exception & e) override;
 
 
 
@@ -738,8 +747,8 @@
 
       virtual string get_app_user_friendly_task_bar_name();
 
-      void subject_handler(::subject::subject * psubject) override;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void signal(::signal * psignal) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -806,7 +815,7 @@
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void on_control_event(::user::control_event * pevent);
+      //virtual void handle(::subject * psubject, ::context * pcontext);
 
 
 
@@ -912,7 +921,7 @@
 
       // overrides for implementation
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
-      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
 ////#ifdef WINDOWS
@@ -935,7 +944,7 @@
       //void OnUpdateRecentFileMenu(::message::command* pcommand);
 
       //virtual void send_app_language_changed();
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
       //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
@@ -951,7 +960,7 @@
 
       //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
-      //virtual bool process_exception(const ::exception::exception & e) override;
+      //virtual bool process_exception(const ::exception & e) override;
 
       //virtual bool on_uninstall() override;
 
@@ -1103,7 +1112,7 @@
       //virtual ::e_status init_instance() override;
 
 
-//      virtual bool process_exception(const ::exception::exception & e) override;
+//      virtual bool process_exception(const ::exception & e) override;
 
 
 
@@ -1282,7 +1291,7 @@
       //virtual application_sleep(millis millis)
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const ::string & pszFileName);
@@ -1321,7 +1330,7 @@
       //virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      virtual void report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic);
+      virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);
 
 
       virtual ::e_status create_impact_system();

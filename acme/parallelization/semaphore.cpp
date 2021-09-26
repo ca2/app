@@ -244,7 +244,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-synchronization_result semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const duration & durationTimeout)
 {
 
 //   struct sigaction alarm;
@@ -268,10 +268,9 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
 
-      return i == 0 ? e_synchronization_result_signaled_base : e_synchronization_result_error;
+      return i == 0 ? signaled_base : error_failed;
 
    }
-
 
    millis tStart;
 
@@ -291,7 +290,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(i == 0)
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
 
@@ -307,7 +306,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
          if(tRemaining > durationTimeout)
          {
 
-            return e_synchronization_result_timed_out;
+            return error_wait_timeout;
 
          }
 
@@ -315,7 +314,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       else
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 

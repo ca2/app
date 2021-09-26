@@ -1,4 +1,4 @@
-//
+﻿//
 //  property_object.h
 //  apex
 //
@@ -17,10 +17,10 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::e_status                                         m_estatus;
+   ::e_status                                      m_estatus;
    __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
-   __pointer(property_set)                            m_ppropertyset;
+   __pointer(property_set)                         m_ppropertyset;
 
 
    property_object() { }
@@ -73,10 +73,10 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
-   virtual ::e_status handle_exception(const ::exception::exception& e);
+   virtual ::e_status handle_exception(const ::exception& e);
 
 
-   virtual void add_exception(const ::exception::exception & e);
+   virtual void add_exception(const ::exception & e);
    virtual void on_catch_all_exception();
 
 

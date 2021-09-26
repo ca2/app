@@ -18,7 +18,7 @@ protected:
    sync_future()
    {
 
-      __defer_construct(m_peventCompletion);
+      m_peventCompletion = __new(manual_reset_event);
 
    }
 public:

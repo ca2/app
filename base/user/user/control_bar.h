@@ -149,7 +149,7 @@ public:
    ::u32 m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // true if this bar has a DockContext
    ::u32 m_uMRUDockID;  // most recent docked dockbar
-   ::rectangle_i32 m_rectMRUDockPos; // most recent docked position
+   ::rectangle_i32 m_rectangleMRUDockPos; // most recent docked position
    u32 m_dwMRUFloatStyle; // most recent floating orientation
    point_i32 m_pointMRUFloatPos; // most recent floating position
 
@@ -187,9 +187,9 @@ namespace user
 
 
       // info about bar (for status bar and toolbar)
-//      i32 m_rectBorder.left, m_rectBorder.right;
-  //    i32 m_rectBorder.top, m_rectBorder.bottom;
-      ::rectangle_i32          m_rectBorder;
+//      i32 m_rectangleBorder.left, m_rectangleBorder.right;
+  //    i32 m_rectangleBorder.top, m_rectangleBorder.bottom;
+      ::rectangle_i32          m_rectangleBorder;
       i32               m_cxDefaultGap;         // default gap value
       ::u32 m_nMRUWidth;   // For dynamic resizing.
       bool  m_bDockTrack;
@@ -299,7 +299,7 @@ namespace user
       friend class BaseDockBar;
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 

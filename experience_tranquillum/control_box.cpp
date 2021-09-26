@@ -87,9 +87,9 @@ namespace experience
       void control_box::on_message_create(::message::message * pmessage)
       {
          
-         m_fontMarlett.create(this);
+         m_pfontMarlett.create(this);
 
-         m_fontMarlett->create_point_font("Marlett", 20);
+         m_pfontMarlett->create_point_font("Marlett", 20);
       
       }
 

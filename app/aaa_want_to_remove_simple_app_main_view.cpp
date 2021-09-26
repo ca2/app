@@ -44,10 +44,10 @@ namespace simple_drawing
    }
 
 
-   void main_impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
    }
 
@@ -144,10 +144,10 @@ namespace simple_drawing
    bool main_impact::BaseOnControlEvent(::user::control_event * pevent)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "simple_drawing_toggle")
+         if(psubject->user_element_id() == "simple_drawing_toggle")
          {
 
             m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);

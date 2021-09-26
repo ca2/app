@@ -50,7 +50,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pBits);
 
       __UNREFERENCED_PARAMETER(stride);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
    }
 
@@ -60,7 +60,7 @@ namespace draw2d
 //
 //      __UNREFERENCED_PARAMETER(pBitmap);
 //
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //      return false;
 //   }
 
@@ -76,7 +76,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(stride);
 //      __UNREFERENCED_PARAMETER(hSection);
 //      __UNREFERENCED_PARAMETER(offset);
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //      return false;
 //   }
 //
@@ -104,7 +104,7 @@ namespace draw2d
 //      __UNREFERENCED_PARAMETER(pjBits);
 //      __UNREFERENCED_PARAMETER(pbmi);
 //      __UNREFERENCED_PARAMETER(iUsage);
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //      return false;
 //   }
 
@@ -117,7 +117,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(ppvBits);
       __UNREFERENCED_PARAMETER(stride);
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       return false;
 
@@ -146,7 +146,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(flInit);
       __UNREFERENCED_PARAMETER(pjBits);
       __UNREFERENCED_PARAMETER(iUsage);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
    }
 
@@ -157,7 +157,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(dwCount);
       __UNREFERENCED_PARAMETER(pBits);
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return 0;
    }
 
@@ -168,7 +168,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(dwCount);
       __UNREFERENCED_PARAMETER(pBits);
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return 0;
    }
 
@@ -177,7 +177,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(nWidth);
       __UNREFERENCED_PARAMETER(nHeight);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
    }
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics,i32 nWidth,i32 nHeight)
@@ -185,7 +185,7 @@ namespace draw2d
       __UNREFERENCED_PARAMETER(pgraphics);
       __UNREFERENCED_PARAMETER(nWidth);
       __UNREFERENCED_PARAMETER(nHeight);
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
    }
 
@@ -195,7 +195,7 @@ namespace draw2d
 
       __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -204,7 +204,7 @@ namespace draw2d
    //{
    //   __UNREFERENCED_PARAMETER(nWidth);
    //   __UNREFERENCED_PARAMETER(nHeight);
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return ::size_i32(0,0);
    //}
 
@@ -212,13 +212,13 @@ namespace draw2d
    bool bitmap::attach(void * posdata)
    {
       __UNREFERENCED_PARAMETER(posdata);
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
       return false;
    }
 
    void * bitmap::detach()
    {
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
       return nullptr;
    }
 
@@ -235,7 +235,7 @@ namespace draw2d
    size_i32 bitmap::GetBitmapDimension() const
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       ::size_i32 sizeRet(0,0);
 

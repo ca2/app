@@ -52,16 +52,6 @@
 
 
 
-//void output_debug_string(const char * psz)
-//{
-//
-//   output_debug_string(psz);
-//
-//}
-
-
-
-
 
 
 CLASS_DECL_ACME bool __node_aura_pre_init()

@@ -1057,7 +1057,7 @@ namespace html
             psz++;
          if (*psz != '/' && *psz != '>')
          {
-            throw ::exception::exception(error_parsing, "run tag fixer tabjs");
+            throw ::exception(error_parsing, "run tag fixer tabjs");
          }
          if (*psz == '/')
          {
@@ -1066,7 +1066,7 @@ namespace html
                psz++;
             if (*psz != '>')
             {
-               throw ::exception::exception(error_parsing, "run tag fixer tabjs");
+               throw ::exception(error_parsing, "run tag fixer tabjs");
             }
             return true;
          }
@@ -1113,7 +1113,7 @@ namespace html
          psz++;
       if (*psz != '<')
       {
-         throw ::exception::exception(error_parsing, "run tag fixer tabjs");
+         throw ::exception(error_parsing, "run tag fixer tabjs");
       }
       psz++;
       // skip white space
@@ -1131,7 +1131,7 @@ namespace html
          return true;
       }
 
-      throw ::exception::exception(error_parsing, "invalid xml file");
+      throw ::exception(error_parsing, "invalid xml file");
 
    }
 
@@ -1746,7 +1746,7 @@ namespace html
 
          }
 
-         return m_pdata->m_pcoredata->m_pform->get_color(pstyle, ::user::e_element_text);
+         return m_pdata->m_pcoredata->m_pform->get_color(pstyle, ::e_element_text);
 
       }
       else if(ecolor == ::css::color_background)
@@ -1778,9 +1778,9 @@ namespace html
    ::write_text::font_pointer element::get_font()
    {
 
-      //font = m_pdata->get_font(this)->m_font;
+      //font = m_pdata->get_font(this)->m_pfont;
 
-      return m_pdata->get_font(this)->m_font;
+      return m_pdata->get_font(this)->m_pfont;
 
       //if (font.is_null())
       //{

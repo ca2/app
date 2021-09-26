@@ -60,15 +60,15 @@ namespace experience
 
       m_pointCursorOrigin = pointCursor;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectWindow);
+      m_pframewindow->get_window_rect(rectangleWindow);
 
-      m_rectWindowOrigin = rectWindow;
+      m_rectangleWindowOrigin = rectangleWindow;
 
-      ::rectangle_i32 rectEvent;
+      ::rectangle_i32 rectangleEvent;
 
-      m_pframewindow->get_window_rect(rectEvent);
+      m_pframewindow->get_window_rect(rectangleEvent);
 
       //e_hittest ehittest = _001HitTest(pointCursor);
 
@@ -445,95 +445,95 @@ namespace experience
 
       bool bSize = true;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
-      pframewindow->best_monitor(rectMonitor);
+      pframewindow->best_monitor(rectangleMonitor);
 
       ::size_i32 sizeMin = GetMinSize();
 
       if(ehittest == hittest_sizing_top_left)
       {
-         rectWindow.top = point.y +1;
-         rectWindow.left = point.x +1;
-         rectWindow.bottom = m_rectWindowOrigin.bottom;
-         rectWindow.right = m_rectWindowOrigin.right;
-         bSize = !rectWindow.is_empty();
-         if(rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = point.y +1;
+         rectangleWindow.left = point.x +1;
+         rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
+         rectangleWindow.right = m_rectangleWindowOrigin.right;
+         bSize = !rectangleWindow.is_empty();
+         if(rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.left = m_rectWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
          }
-         if(rectWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy)
          {
-            rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_top)
       {
-         rectWindow.top = point.y +1;
-         rectWindow.left = m_rectWindowOrigin.left;
-         rectWindow.bottom = m_rectWindowOrigin.bottom;
-         rectWindow.right = m_rectWindowOrigin.right;
-         if(rectWindow.height() < sizeMin.cy)
+         rectangleWindow.top = point.y +1;
+         rectangleWindow.left = m_rectangleWindowOrigin.left;
+         rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
+         rectangleWindow.right = m_rectangleWindowOrigin.right;
+         if(rectangleWindow.height() < sizeMin.cy)
          {
-            rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
          if (pframewindow->find_i32("ysnap") > 1)
          {
-            rectWindow.top -= rectWindow.top % pframewindow->find_i32("ysnap");
+            rectangleWindow.top -= rectangleWindow.top % pframewindow->find_i32("ysnap");
          }
       }
       else if(ehittest == hittest_sizing_top_right)
       {
-         rectWindow.top = point.y +1;
-         rectWindow.left = m_rectWindowOrigin.left;
-         rectWindow.bottom = m_rectWindowOrigin.bottom;
-         rectWindow.right = point.x;
-         if(rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = point.y +1;
+         rectangleWindow.left = m_rectangleWindowOrigin.left;
+         rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
+         rectangleWindow.right = point.x;
+         if(rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
 
          }
-         if(rectWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy)
          {
-            rectWindow.top = m_rectWindowOrigin.bottom - sizeMin.cy;
+            rectangleWindow.top = m_rectangleWindowOrigin.bottom - sizeMin.cy;
          }
-         rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-         rectWindow.top = minimum(rectWindow.top, rectMonitor.bottom - m_sizeMinimumBorder.cy);
+         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
+         rectangleWindow.top = minimum(rectangleWindow.top, rectangleMonitor.bottom - m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_right)
       {
-         rectWindow.top = m_rectWindowOrigin.top;
-         rectWindow.left = m_rectWindowOrigin.left;
-         rectWindow.bottom = m_rectWindowOrigin.bottom;
-         rectWindow.right = point.x;
-         if(rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = m_rectangleWindowOrigin.top;
+         rectangleWindow.left = m_rectangleWindowOrigin.left;
+         rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
+         rectangleWindow.right = point.x;
+         if(rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
 
          }
-         rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
+         rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
       }
       else if(ehittest == hittest_sizing_bottom_right)
       {
-         rectWindow.top = m_rectWindowOrigin.top;
-         rectWindow.left = m_rectWindowOrigin.left;
-         rectWindow.bottom = point.y;
-         rectWindow.right = point.x;
-         if (rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = m_rectangleWindowOrigin.top;
+         rectangleWindow.left = m_rectangleWindowOrigin.left;
+         rectangleWindow.bottom = point.y;
+         rectangleWindow.right = point.x;
+         if (rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.right = m_rectWindowOrigin.left + sizeMin.cx;
+            rectangleWindow.right = m_rectangleWindowOrigin.left + sizeMin.cx;
 
          }
          if (m_pframewindow->m_bDerivedHeight)
          {
             
-            int iWidth = rectWindow.width();
+            int iWidth = rectangleWindow.width();
             
             int iDerivedHeight = m_pframewindow->get_derived_height(iWidth);
             
@@ -542,86 +542,86 @@ namespace experience
             if (iHeight < sizeMin.cy)
             {
                
-               rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
 
-               rectWindow.right = m_rectWindowOrigin.left + m_pframewindow->m_pframe->adjust_client_width(m_pframewindow->get_derived_width(sizeMin.cy));
+               rectangleWindow.right = m_rectangleWindowOrigin.left + m_pframewindow->m_pframe->adjust_client_width(m_pframewindow->get_derived_width(sizeMin.cy));
                
             }
             else
             {
                
-               rectWindow.bottom = m_rectWindowOrigin.top + iHeight;
+               rectangleWindow.bottom = m_rectangleWindowOrigin.top + iHeight;
 
             }
             
          }
          else
          {
-            if (rectWindow.height() < sizeMin.cy)
+            if (rectangleWindow.height() < sizeMin.cy)
             {
-               rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+               rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
             }
-            rectWindow.right = maximum(rectWindow.right, rectMonitor.left + m_sizeMinimumBorder.cx);
-            rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+            rectangleWindow.right = maximum(rectangleWindow.right, rectangleMonitor.left + m_sizeMinimumBorder.cx);
+            rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
          }
       }
       else if(ehittest == hittest_sizing_bottom)
       {
-         rectWindow.top = m_rectWindowOrigin.top;
-         rectWindow.left = m_rectWindowOrigin.left;
-         rectWindow.bottom = point.y;
-         rectWindow.right = m_rectWindowOrigin.right;
-         if(rectWindow.height() < sizeMin.cy)
+         rectangleWindow.top = m_rectangleWindowOrigin.top;
+         rectangleWindow.left = m_rectangleWindowOrigin.left;
+         rectangleWindow.bottom = point.y;
+         rectangleWindow.right = m_rectangleWindowOrigin.right;
+         if(rectangleWindow.height() < sizeMin.cy)
          {
-            rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
          auto pframewindow = m_pframewindow;
 
          if (pframewindow->find_i32("ysnap") > 1)
          {
-            int h = rectWindow.height();
-            h -= rectWindow.height() % pframewindow->find_i32("ysnap");
-            rectWindow.bottom = rectWindow.top + h;
+            int h = rectangleWindow.height();
+            h -= rectangleWindow.height() % pframewindow->find_i32("ysnap");
+            rectangleWindow.bottom = rectangleWindow.top + h;
          }
       }
       else if(ehittest == hittest_sizing_bottom_left)
       {
-         rectWindow.top = m_rectWindowOrigin.top;
-         rectWindow.left = point.x +1;
-         rectWindow.bottom = point.y;
-         rectWindow.right = m_rectWindowOrigin.right;
-         if(rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = m_rectangleWindowOrigin.top;
+         rectangleWindow.left = point.x +1;
+         rectangleWindow.bottom = point.y;
+         rectangleWindow.right = m_rectangleWindowOrigin.right;
+         if(rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.left = m_rectWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
 
          }
-         if(rectWindow.height() < sizeMin.cy)
+         if(rectangleWindow.height() < sizeMin.cy)
          {
-            rectWindow.bottom = m_rectWindowOrigin.top + sizeMin.cy;
+            rectangleWindow.bottom = m_rectangleWindowOrigin.top + sizeMin.cy;
          }
-         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
-         rectWindow.bottom = maximum(rectWindow.bottom, rectMonitor.top + m_sizeMinimumBorder.cy);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
+         rectangleWindow.bottom = maximum(rectangleWindow.bottom, rectangleMonitor.top + m_sizeMinimumBorder.cy);
       }
       else if(ehittest == hittest_sizing_left)
       {
-         rectWindow.top = m_rectWindowOrigin.top;
-         rectWindow.left = point.x +1;
-         rectWindow.bottom = m_rectWindowOrigin.bottom;
-         rectWindow.right = m_rectWindowOrigin.right;
-         if(rectWindow.width() < sizeMin.cx)
+         rectangleWindow.top = m_rectangleWindowOrigin.top;
+         rectangleWindow.left = point.x +1;
+         rectangleWindow.bottom = m_rectangleWindowOrigin.bottom;
+         rectangleWindow.right = m_rectangleWindowOrigin.right;
+         if(rectangleWindow.width() < sizeMin.cx)
          {
-            rectWindow.left = m_rectWindowOrigin.right - sizeMin.cx;
+            rectangleWindow.left = m_rectangleWindowOrigin.right - sizeMin.cx;
 
          }
-         rectWindow.left = minimum(rectWindow.left, rectMonitor.right - m_sizeMinimumBorder.cx);
+         rectangleWindow.left = minimum(rectangleWindow.left, rectangleMonitor.right - m_sizeMinimumBorder.cx);
       }
       else
       {
          bSize = false;
       }
 
-      move_window(m_pframewindow, rectWindow);
+      move_window(m_pframewindow, rectangleWindow);
 
       NotifyFramework((e_hittest)ehittest);
 
@@ -631,22 +631,22 @@ namespace experience
    void size_manager::move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle)
    {
 
-      auto rectWindow = rectangle;
+      auto rectangleWindow = rectangle;
 
       auto sizeMin = GetMinSize();
 
-      if (rectWindow.width() < sizeMin.cx || rectWindow.height() < sizeMin.cy)
+      if (rectangleWindow.width() < sizeMin.cx || rectangleWindow.height() < sizeMin.cy)
       {
 
          return;
 
       }
 
-      ::rectangle_i32 rectWindowNow;
+      ::rectangle_i32 rectangleWindowNow;
 
-      m_pframewindow->get_window_rect(rectWindowNow);
+      m_pframewindow->get_window_rect(rectangleWindowNow);
 
-      if (rectWindowNow == rectWindow)
+      if (rectangleWindowNow == rectangleWindow)
       {
 
          return;
@@ -664,30 +664,30 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectBefore;
+         ::rectangle_i32 rectangleBefore;
 
-         pframewindow->get_window_rect(rectBefore);
+         pframewindow->get_window_rect(rectangleBefore);
 
-         ::rectangle_i32 rectAfter = rectWindow;
+         ::rectangle_i32 rectangleAfter = rectangleWindow;
 
-         ::rectangle_i32 rectParentClient = rectAfter;
+         ::rectangle_i32 rectangleParentClient = rectangleAfter;
 
          if (m_pframewindow->get_parent() != nullptr)
          {
 
-            m_pframewindow->get_parent()->screen_to_client(rectParentClient);
+            m_pframewindow->get_parent()->screen_to_client(rectangleParentClient);
 
          }
 
-         ::rectangle_i32 rectTotal;
+         ::rectangle_i32 rectangleTotal;
 
-         rectTotal.unite(rectBefore, rectAfter);
+         rectangleTotal.unite(rectangleBefore, rectangleAfter);
 
-         m_pframewindow->m_rectPending.unite(rectBefore, rectAfter);
+         m_pframewindow->m_rectanglePending.unite(rectangleBefore, rectangleAfter);
 
-         pframewindow->place(rectParentClient);
+         pframewindow->place(rectangleParentClient);
 
-         TRACE("Size Manager Changed (%d, %d)", rectParentClient.right, rectParentClient.bottom);
+         TRACE("Size Manager Changed (%d, %d)", rectangleParentClient.right, rectangleParentClient.bottom);
 
          pframewindow->display();
 

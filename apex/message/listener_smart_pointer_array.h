@@ -28,11 +28,16 @@ namespace message
 
          m_listenera.erase(preceiver);
 
-         erase_receiver(preceiver);
+         erase_handler(preceiver);
 
       }
 
       virtual void install_handlers(RECEIVER *)
+      {
+
+      }
+
+      virtual void erase_handler(RECEIVER *)
       {
 
       }

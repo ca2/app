@@ -8,8 +8,7 @@ namespace aura
    class CLASS_DECL_AURA session :
       virtual public ::aqua::session,
       virtual public ::aura::context,
-      virtual public ::filemanager::item_action,
-      virtual public ::user::style_base
+      virtual public ::filemanager::item_action
    {
    public:
 
@@ -34,8 +33,8 @@ namespace aura
 
       __composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
-      __composite(::user::style)                            m_puserstyleDefault;
-
+      //__composite(::user::style)                            m_puserstyle;
+      //bool                                                  m_bUiInit;
       //__pointer(::aura::node)                               m_pnode;
 
 
@@ -68,6 +67,9 @@ namespace aura
       ::e_status destroy() override;
 
       virtual ::e_status initialize(::object * pobject) override;
+
+
+      //::e_status _on_initialize_window_object() override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -134,10 +136,10 @@ namespace aura
 
       //virtual ::user::style * get_user_style() const;
 
-      virtual ::user::style* get_user_style();
+      //virtual ::user::style* get_user_style();
 
 
-      bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
+      //bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics) override;
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
@@ -255,7 +257,7 @@ namespace aura
       //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
@@ -304,7 +306,7 @@ namespace aura
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::message::command * pcommand) override;
+      //void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -394,9 +396,10 @@ namespace aura
       inline ::user::user* user() { return m_puser; }
 
 
-      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
-      virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
-      virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      //virtual ::user::style * user_style();
 
 
       virtual void on_instantiate_application(::application* papp) override;

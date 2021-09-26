@@ -73,12 +73,12 @@
 
 
 class CLASS_DECL_ACME standard_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
 
-   friend class ::exception::translator;
+   friend class ::exception_translator;
 
 
 #ifdef WINDOWS
@@ -116,7 +116,7 @@ public:
    static void siginfofree(void * psiginfo);
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP, void * caller_address = nullptr) :
-      ::exception::exception(error_exception, nullptr, iSkip, caller_address),
+      ::exception(error_exception, nullptr, iSkip, caller_address),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
 #ifndef ANDROID
@@ -151,8 +151,8 @@ typedef struct _sig_ucontext
 
 #endif
 
-namespace exception
-{
+//namespace exception
+//{
 //
 //   class standard_access_violation : public standard_exception
 //   {
@@ -195,7 +195,7 @@ namespace exception
 //#endif
 //#endif
 //#endif
-////         ::exception::exception(),
+////         ::exception(),
 //         //       ::standard_exception(pobject, signal, psiginfo, pc)
 //      {
 //
@@ -285,7 +285,7 @@ namespace exception
 #endif
 #endif
 #endif
-//         ::exception::exception(),
+//         ::exception(),
 //         standard_exception(iSignal, psiginfo, pc)
       {
 
@@ -300,7 +300,7 @@ namespace exception
 #endif
 
 
-} // namespace exception
+//} // namespace exception
 
 /*#else
 

@@ -30,7 +30,7 @@ public:
    ::e_status initialize(::object * pobject) override;
 
    
-   virtual ::file::path module_folder();
+   //virtual ::file::path module_folder();
 
 
    virtual ::file::path app(string strPlatform, string strConfiguration);

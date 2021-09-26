@@ -418,7 +418,7 @@ void thread::term_thread()
    try
    {
 
-      m_handlermap.erase_all();
+      m_dispatchermap.erase_all();
 
    }
    catch (...)
@@ -625,7 +625,7 @@ bool thread::thread_step()
          }
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception & e)
       {
 
          if (!handle_exception(e))
@@ -885,7 +885,7 @@ void thread::on_message_branch(::message::message* pmessage)
 int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
-   throw exception::exception();
+   throw ::exception();
 
    //__zero(pmessage);
 
@@ -985,7 +985,7 @@ bool thread::pump_message()
       return true;
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (m_strDebugType.contains("filemanager"))
@@ -1122,7 +1122,7 @@ bool thread::raw_pump_message()
       return true;
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))
@@ -1172,7 +1172,7 @@ bool thread::raw_pump_message()
       return ::success;
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (!handle_exception(e))
@@ -1220,12 +1220,12 @@ bool thread::raw_pump_message()
 //      pusermessage->m_puserinteraction->m_puiThis->message_handler(pusermessage);
 //
 //   }
-//   catch (const ::exception::exception & e)
+//   catch (const ::exception & e)
 //   {
 //
 //      process_window_procedure_exception(pe, pusermessage);
 //
-//      TRACE("application::process_window_message : ::extended::status processing window message (const ::exception::exception & )");
+//      TRACE("application::process_window_message : ::extended::status processing window message (const ::exception & )");
 //
 //      if (!handle_exception(pe))
 //      {
@@ -2251,7 +2251,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 }
 
 
-void thread::process_window_procedure_exception(const ::exception::exception & e,::message::message * pmessage)
+void thread::process_window_procedure_exception(const ::exception & e,::message::message * pmessage)
 {
 
    if(pmessage->m_id == e_message_create)
@@ -2353,7 +2353,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      ::exception::engine().reset();
+//      ::exception_engine().reset();
 //
 //      OS_DWORD                dwDisplacement;
 //
@@ -2376,7 +2376,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 //      u32 uiLine = 0;
 //
 //      {
-//         critical_section_lock csl(&::exception::engine().m_criticalsection);
+//         critical_section_lock csl(&::exception_engine().m_criticalsection);
 //
 //         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
 //
@@ -2781,7 +2781,7 @@ void thread::__os_finalize()
       __os_initialize();
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       m_estatus = e.m_estatus;
@@ -3285,7 +3285,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
       }
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       handle_exception(e);
@@ -3313,7 +3313,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
       }
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       handle_exception(e);
@@ -3385,7 +3385,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
 //      //::release(pe);
 //
 //   }
-//   catch (const ::exception::exception & e)
+//   catch (const ::exception & e)
 //   {
 //
 //      top_handle_exception(e);
@@ -4255,17 +4255,17 @@ void thread::message_handler(::message::message * pmessage)
 
 #endif
 
-      if (message.m_id == e_message_event2)
+      if (message.m_id == e_message_event2_trying_to_remove)
       {
 
          //if(msg.lParam)
          {
 
-            auto psystem = m_psystem->m_papexsystem;
+            //auto psystem = m_psystem->m_papexsystem;
 
-            auto psubject = psystem->new_subject(message);
+            //auto psubject = psystem->new_subject(message);
 
-            handle_subject(psubject);
+            //signal(psubject);
 
          }
          //else
@@ -4282,7 +4282,9 @@ void thread::message_handler(::message::message * pmessage)
          if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate((lparam)message.lParam);
+            __pointer(::create) pcreate;
+            
+            __move(pcreate, message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4295,7 +4297,7 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_method)
          {
 
-            const ::routine & routine(message.lParam);
+            ::routine routine(message.lParam);
 
             routine();
 
@@ -4311,7 +4313,9 @@ void thread::message_handler(::message::message * pmessage)
          else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage(message.lParam);
+            __pointer(::send_thread_message) pmessage;
+
+            __move(pmessage, message.lParam);
 
             m_message = pmessage->m_message;
 
@@ -4368,7 +4372,7 @@ void thread::message_handler(::message::message * pmessage)
       return true;
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))
@@ -4419,7 +4423,7 @@ void thread::message_handler(::message::message * pmessage)
       return true;
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))

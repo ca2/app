@@ -25,7 +25,7 @@ namespace draw2d_opengl
       virtual ~font();
 
 
-      virtual void construct(const ::write_text::font & fontParam);
+      virtual void construct(const ::write_text::font & pfontParam);
 
       
       virtual void dump(dump_context & dumpcontext) const;

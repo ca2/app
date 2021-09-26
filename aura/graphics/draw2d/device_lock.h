@@ -11,12 +11,12 @@ namespace draw2d
    public:
    
    
-      ::matter *              m_pmatter;
+      ::matter *                    m_pmatter;
    
       
       device_lock(::matter * pmatter);
       ~device_lock();
-   
+
    
    };
 

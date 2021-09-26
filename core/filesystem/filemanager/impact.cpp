@@ -74,7 +74,7 @@ namespace filemanager
          if (ppathview == nullptr)
          {
 
-            output_message_box_error("Could not create filemanager path impact");
+            output_error_message("Could not create filemanager path impact");
 
          }
 
@@ -92,7 +92,7 @@ namespace filemanager
       if (pmainview == nullptr)
       {
 
-         output_message_box_error("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 
@@ -103,12 +103,12 @@ namespace filemanager
    }
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact_base::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -187,7 +187,7 @@ namespace filemanager
                if (ptopview == nullptr)
                {
 
-                  output_message_box_error("Could not create folder tree ::user::impact");
+                  output_error_message("Could not create folder tree ::user::impact");
 
                }
 

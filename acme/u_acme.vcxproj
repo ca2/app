@@ -241,105 +241,107 @@
   <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|ARM64'">
     <GenerateManifest>false</GenerateManifest>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary>
-    </IgnoreImportLibrary>
-    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
     <GenerateManifest>false</GenerateManifest>
-    <IgnoreImportLibrary />
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <IntDir>$(TimeDir)intermediate\$(PlatformName)\$(Configuration)\$(RootNamespace)\$(ProjectName)\</IntDir>
     <OutDir>$(TimeDir)$(PlatformName)\$(Configuration)\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <ClCompile>
@@ -347,21 +349,26 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|Win32'">
@@ -370,7 +377,7 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -394,7 +401,33 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -405,32 +438,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-    </ClCompile>
-    <Link>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
@@ -441,21 +452,27 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|arm'">
@@ -464,7 +481,7 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -488,21 +505,24 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|arm'">
@@ -511,7 +531,7 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -519,12 +539,13 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
@@ -533,7 +554,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -544,6 +565,8 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -556,7 +579,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -579,7 +602,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -602,7 +625,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
@@ -612,6 +635,7 @@
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -619,7 +643,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
@@ -628,21 +652,26 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableModules>false</EnableModules>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='console_basis|x64'">
@@ -651,7 +680,7 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_UWP_CONSOLE;_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -675,7 +704,34 @@
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
+      <OpenMPSupport>false</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>_ACME_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -686,32 +742,10 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='cover|x64'">
-    <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
-      <CompileAsManaged>false</CompileAsManaged>
-      <PreprocessorDefinitions>_ACME_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
-      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
-      <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
-      <CompileAsWinRT>false</CompileAsWinRT>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-    </ClCompile>
-    <Link>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-universal_windows\third\library\$(PlatformName)\$(Configuration)\;$(__archive)storage-universal_windows\library\$(PlatformName)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>zlib.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>u_$(TargetName).def</ModuleDefinitionFile>
     </Link>
@@ -758,6 +792,7 @@
     <ClInclude Include="constant\status_range_authentication.h" />
     <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user.h" />
     <ClInclude Include="constant\user_text.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
@@ -766,15 +801,15 @@
     <ClInclude Include="exception\aaa_debug_stream.h" />
     <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
     <ClInclude Include="exception\aaa_installing.h" />
-    <ClInclude Include="exception\aaa_interface_only.h" />
+    <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\aaa_invalid_argument.h" />
     <ClInclude Include="exception\aaa_invalid_character.h" />
     <ClInclude Include="exception\aaa_invalid_handle.h" />
     <ClInclude Include="exception\aaa_invalid_index.h" />
     <ClInclude Include="exception\aaa_invalid_type.h" />
-    <ClInclude Include="exception\aaa_io.h" />
+    <ClInclude Include="exception\io.h" />
     <ClInclude Include="exception\aaa_memory.h" />
-    <ClInclude Include="exception\aaa_not_implemented.h" />
+    <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="exception\aaa_not_installed.h" />
     <ClInclude Include="exception\aaa_not_licensed.h" />
     <ClInclude Include="exception\aaa_not_supported.h" />
@@ -782,7 +817,7 @@
     <ClInclude Include="exception\aaa_os.h" />
     <ClInclude Include="exception\aaa_overflow.h" />
     <ClInclude Include="exception\aaa_range.h" />
-    <ClInclude Include="exception\aaa_resource.h" />
+    <ClInclude Include="exception\resource.h" />
     <ClInclude Include="exception\aaa_runtime.h" />
     <ClInclude Include="exception\aaa_simple.h" />
     <ClInclude Include="exception\aaa_system.h" />
@@ -825,6 +860,7 @@
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="include\_forward_declaration.h" />
     <ClInclude Include="include\_macro.h" />
+    <ClInclude Include="memory\chunk.h" />
     <ClInclude Include="node\operating_system\aaa_c2.h" />
     <ClInclude Include="node\operating_system\argcargv.h" />
     <ClInclude Include="node\operating_system\chronometer.h" />
@@ -869,6 +905,8 @@
     <ClInclude Include="parallelization\install_mutex.h" />
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\synchronously_set_bit.h" />
+    <ClInclude Include="platform\node.h" />
+    <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\payload_type.h" />
@@ -878,6 +916,12 @@
     <ClInclude Include="regular_expression\regular_expression.h" />
     <ClInclude Include="regular_expression\topic.h" />
     <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="subject\handler.h" />
+    <ClInclude Include="subject\item.h" />
+    <ClInclude Include="subject\subject.h" />
+    <ClInclude Include="user\check.h" />
+    <ClInclude Include="user\element.h" />
+    <ClInclude Include="user\text.h" />
     <ClInclude Include="_start.h" />
     <None Include="filesystem\_impl.h" />
     <ClInclude Include="filesystem\filesystem\listing.h" />
@@ -1441,6 +1485,10 @@
     <ClCompile Include="compress\zip\unzip.cpp" />
     <ClCompile Include="compress\zip\zip.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="exception\io.cpp" />
+    <ClCompile Include="exception\resource.cpp" />
+    <ClCompile Include="exception\interface_only.cpp" />
+    <ClCompile Include="exception\not_implemented.cpp" />
     <ClCompile Include="exception\callstack.cpp" />
     <ClCompile Include="exception\cancel.cpp" />
     <ClCompile Include="exception\const.cpp" />
@@ -2054,7 +2102,6 @@
     <ClCompile Include="platform\factory.cpp" />
     <ClCompile Include="platform\fixed_alloc.cpp" />
     <ClCompile Include="platform\flags.cpp" />
-    <ClCompile Include="platform\future.cpp" />
     <ClCompile Include="platform\hyperlink.cpp" />
     <ClCompile Include="platform\library.cpp" />
     <ClCompile Include="platform\log.cpp" />
@@ -2074,6 +2121,7 @@
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\routine.cpp" />
     <ClCompile Include="platform\routine_array.cpp" />
+    <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
@@ -2248,8 +2296,14 @@
     <ClCompile Include="regular_expression\context.cpp" />
     <ClCompile Include="regular_expression\regular_expression.cpp" />
     <ClCompile Include="regular_expression\topic.cpp" />
+    <ClCompile Include="subject\handler.cpp" />
+    <ClCompile Include="subject\item.cpp" />
+    <ClCompile Include="subject\subject.cpp" />
+    <ClCompile Include="user\check.cpp" />
     <ClCompile Include="user\os_colors.cpp" />
     <ClCompile Include="user\os_theme_colors.cpp" />
+    <ClCompile Include="user\element.cpp" />
+    <ClCompile Include="user\text.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>

@@ -227,6 +227,12 @@
     <Filter Include="Header Files\node\operating_system\windows_common">
       <UniqueIdentifier>{269bccda-a957-43bf-a416-57d10b4e2579}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\subject">
+      <UniqueIdentifier>{71f45b42-84b0-4df8-9784-3b9d1a0b0262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subject">
+      <UniqueIdentifier>{ca929163-f1bb-455e-951c-afc038c9aab3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -806,9 +812,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\hyperlink.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\future.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\flags.cpp">
@@ -1413,6 +1416,39 @@
     </ClCompile>
     <ClCompile Include="platform\routine.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\sequence.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\subject.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\item.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="user\element.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\text.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\check.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\interface_only.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\not_implemented.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\handler.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\io.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\resource.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3129,7 +3165,7 @@
     <ClInclude Include="exception\aaa_installing.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_interface_only.h">
+    <ClInclude Include="exception\interface_only.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_invalid_argument.h">
@@ -3147,13 +3183,13 @@
     <ClInclude Include="exception\aaa_invalid_type.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_io.h">
+    <ClInclude Include="exception\io.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_memory.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_not_implemented.h">
+    <ClInclude Include="exception\not_implemented.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_not_installed.h">
@@ -3177,7 +3213,7 @@
     <ClInclude Include="exception\aaa_range.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\aaa_resource.h">
+    <ClInclude Include="exception\resource.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_runtime.h">
@@ -3461,6 +3497,36 @@
     </ClInclude>
     <ClInclude Include="include\_macro.h">
       <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\sequence.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\handler.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\user.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\chunk.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\subject.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\item.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="user\element.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\check.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\text.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

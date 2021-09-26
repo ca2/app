@@ -416,7 +416,7 @@ namespace zip
       else
       {
 
-         throw ::exception::exception(error_invalid_argument, "zip::in_file::seek invalid seek option");
+         throw ::exception(error_invalid_argument, "zip::in_file::seek invalid seek option");
 
       }
 

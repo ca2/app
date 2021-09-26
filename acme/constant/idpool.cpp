@@ -23,10 +23,10 @@ namespace acme
    }
 
 
-   void idpool::init()
+   void idpool::init(class ::system * psystem)
    {
 
-      auto pidpool = __create < idpool >();
+      auto pidpool = psystem->__create < idpool >();
 
       pidpool->increment_reference_count();
 

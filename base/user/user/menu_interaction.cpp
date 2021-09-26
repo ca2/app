@@ -59,11 +59,11 @@ namespace user
       if (m_id == "separator")
       {
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
-         pen->create_solid(2.0, argb(127, 80, 80, 80));
+         ppen->create_solid(2.0, argb(127, 80, 80, 80));
 
-         pgraphics->set(pen);
+         pgraphics->set(ppen);
 
          pgraphics->move_to(rectangleClient.left, (rectangleClient.top + rectangleClient.bottom) / 2);
 
@@ -78,31 +78,31 @@ namespace user
       if (m_pmenuitem.is_set() && m_pmenuitem->m_bPopup)
       {
 
-         ::draw2d::brush_pointer br(e_create);
+         auto pbrush = __create < ::draw2d::brush > ();
 
-         br->create_solid(rgb(0, 0, 0));
+         pbrush->create_solid(rgb(0, 0, 0));
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
-         pen->create_solid(1, rgb(0, 0, 0));
-         pgraphics->set(pen);
-         pgraphics->set(br);
-         ::rectangle_i32 rectPopupArrow;
-         rectPopupArrow.left = rectangleClient.right - 9;
-         rectPopupArrow.right = rectangleClient.right - 4;
-         rectPopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
-         rectPopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
+         ppen->create_solid(1, rgb(0, 0, 0));
+         pgraphics->set(ppen);
+         pgraphics->set(pbrush);
+         ::rectangle_i32 rectanglePopupArrow;
+         rectanglePopupArrow.left = rectangleClient.right - 9;
+         rectanglePopupArrow.right = rectangleClient.right - 4;
+         rectanglePopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
+         rectanglePopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
          point_f64_array pointa;
 
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
 
-         pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+         pointa.add(point_i32(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
 
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.top));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.top));
 
 
 
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
          pgraphics->polygon(pointa);
 
       }
@@ -181,38 +181,38 @@ namespace user
 
       get_window_text(strText);
 
-      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
+      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
 
       auto size = pcalcsize->m_pgraphics->get_text_extent(strText);
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
-      auto rectMargin = get_margin(pstyle);
+      auto rectangleMargin = get_margin(pstyle);
 
-      auto rectBorder = get_border(pstyle);
+      auto rectangleBorder = get_border(pstyle);
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
+      size.cx += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
 
       size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx += rectPadding.left;
+      size.cx += rectanglePadding.left;
 
       if (m_pmenuitem->IsPopup())
       {
 
-         size.cx += rectPadding.left;
+         size.cx += rectanglePadding.left;
 
          size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx += rectMargin.right + rectBorder.right + rectPadding.right;
+      size.cx += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
 
-      size.cy += rectMargin.top + rectBorder.top + rectPadding.top;
+      size.cy += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
 
-      size.cy += rectMargin.bottom + rectBorder.bottom + rectPadding.bottom;
+      size.cy += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
 
       pcalcsize->m_size = size;
 

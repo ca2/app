@@ -40,18 +40,17 @@ namespace draw2d
    {
    public:
 
-      static ::mutex * g_pmutex;
+      static ::mutex *              s_pmutex;
+      static interlocked_count      s_countReference;
 
-      lock() :
-         synchronous_lock(g_pmutex)
-      {
 
-      }
+      lock() : synchronous_lock(s_pmutex) {}
+      ~lock() override{}
 
-      virtual ~lock()
-      {
 
-      }
+      static void __s_initialize();
+      static void __s_finalize();
+
 
    };
 

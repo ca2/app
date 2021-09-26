@@ -31,7 +31,8 @@ public:
    int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
    int_bool post_message(const MESSAGE & message);
 
-   void kick_idle();
+   void kick_idle() override;
+   
 
 };
 

@@ -1,0 +1,26 @@
+// Created by camilo on day after ThomasBirthday2021 04:44 BRT
+#pragma once
+
+
+class CLASS_DECL_APEX event_source :
+   virtual public ::object
+{
+public:
+
+
+   __pointer(__pointer_array(::event_handler))    m_peventhandlera;
+
+
+   inline bool has_event_handler() const
+   {
+
+      return m_peventhandlera && m_peventhandlera->has_element();
+
+   }
+
+   virtual ::e_status add_event_handler(::event_handler * phandler, bool bPriority = false);
+
+   virtual void route_event(::event * pevent);
+
+
+};

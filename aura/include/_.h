@@ -642,7 +642,7 @@ CLASS_DECL_AURA void aura_ref();
 //enum e_simple_command : ::i64;
 //enum e_message : ::i64;
 //enum e_impact : ::i64;
-//enum e_id : ::u64;
+//enum ::enum_id : ::u64;
 //enum enum_check: ::i32;
 //
 //template <typename TYPE>
@@ -1425,8 +1425,8 @@ namespace user
 
 
    //class create;
-   class control_event;
-   class item;
+   //class control_event;
+   //class item;
    class check;
 //   class system;
    class command;
@@ -2736,7 +2736,7 @@ namespace draw2d
 
 #include "aura/user/_.h"
 
-#include "aura/user/item.h"
+//#include "aura/user/item.h"
 
 #include "aura/platform/drawable.h"
 
@@ -2758,7 +2758,7 @@ namespace draw2d
 
 #include "aura/platform/theme.h"
 
-#include "aura/user/callback.h"
+//#include "aura/user/callback.h"
 
 #include "aura/filesystem/filemanager/callback.h"
 

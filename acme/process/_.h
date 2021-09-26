@@ -4,14 +4,7 @@
 #include "exit_status.h"
 
 
-namespace process
-{
-
-
-   CLASS_DECL_ACME string app_id_to_app_name(string strId);
-
-
-} // namespace process
+CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
 #if !defined(_UWP)
@@ -127,6 +120,9 @@ CLASS_DECL_ACME int process_get_status();
 CLASS_DECL_ACME void process_set_status(int iStatus);
 CLASS_DECL_ACME int * process_get_pargc();
 CLASS_DECL_ACME int process_get_argc();
+
+
+CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority);
 
 
 #include "pipe.h"

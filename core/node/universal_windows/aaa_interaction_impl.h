@@ -82,9 +82,9 @@ namespace universal_windows
 
       virtual oswindow _get_handle();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       void _002OnDraw(::image * pimage);
 
@@ -244,7 +244,7 @@ namespace universal_windows
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle& rectangleUpdate = nullptr,
                                 ::draw2d::region* prgnUpdate = nullptr,
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);

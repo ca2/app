@@ -933,16 +933,16 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 ::image_pointer context_image::create_image()
 {
 
-   auto ptype = __create < ::image >();
+   auto pimage = __create < ::image >();
 
-   if (!ptype)
+   if (!pimage)
    {
 
       return nullptr;
 
    }
 
-   return ptype;
+   return ::move(pimage);
 
 }
 
@@ -950,16 +950,16 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 ::image_pointer context_image::create_image(const ::size_i32 & size, ::eobject eobjectFlag)
 {
 
-   auto ptype = __create < ::image >();
+   auto pimage = __create < ::image >();
 
-   if (!ptype)
+   if (!pimage)
    {
 
       return nullptr;
 
    }
 
-   auto estatus = ptype->create(size, eobjectFlag);
+   auto estatus = pimage->create(size, eobjectFlag);
 
    if (!estatus)
    {
@@ -968,7 +968,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    }
 
-   return ptype;
+   return ::move(pimage);
 
 }
 

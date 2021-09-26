@@ -92,7 +92,7 @@ namespace user
       //for (i = 0; i < get_pane_count(); i++)
       //{
 
-      //   rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
+      //   rectangle_i32 & rectanglePane = m_splitpanecompositea[i]->m_rectangle;
 
       //   pcomponent = m_splitpanecompositea.element_at(i);
 
@@ -112,11 +112,11 @@ namespace user
 
       //   }
 
-      //   rectangleClient = rectPane;
+      //   rectangleClient = rectanglePane;
 
       //   rectangleClient.deflate(m_cxBorder, m_cyBorder);
 
-      //   if (rectPane.area() <= 0 || !bIsWindowVisible)
+      //   if (rectanglePane.area() <= 0 || !bIsWindowVisible)
       //   {
 
       //      puserinteraction->display(e_display_none);
@@ -488,7 +488,7 @@ namespace user
 
       }
 
-      ::rectangle_i32 rectBar;
+      ::rectangle_i32 rectangleBar;
 
       i32 i;
 
@@ -534,7 +534,7 @@ namespace user
 
          }
 
-         CalcSplitBarRect(i, &rectBar);
+         CalcSplitBarRect(i, &rectangleBar);
 
          uFlags = uBaseFlags;
 
@@ -543,7 +543,7 @@ namespace user
 
             puserinteraction->order(e_zorder_top);
 
-            puserinteraction->place(rectBar);
+            puserinteraction->place(rectangleBar);
 
             puserinteraction->display();
 
@@ -554,11 +554,11 @@ namespace user
       for(i = 0; i < get_pane_count(); i++)
       {
 
-         ::rectangle_i32 & rectPane = m_splitpanecompositea[i]->m_rectangle;
+         ::rectangle_i32 & rectanglePane = m_splitpanecompositea[i]->m_rectangle;
 
          ::rectangle_i32 & rectangleClient = m_splitpanecompositea[i]->m_rectangleClient;
 
-         CalcPaneRect(i,&rectPane);
+         CalcPaneRect(i,&rectanglePane);
 
          pcomponent = m_splitpanecompositea.element_at(i);
 
@@ -571,7 +571,7 @@ namespace user
 
          }
 
-         rectangleClient = rectPane;
+         rectangleClient = rectanglePane;
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
@@ -1043,11 +1043,11 @@ namespace user
       else
       {
 
-         ::rectangle_i32 rectPane;
+         ::rectangle_i32 rectanglePane;
 
-         pcomponent->m_pplaceholder->get_client_rect(rectPane);
+         pcomponent->m_pplaceholder->get_client_rect(rectanglePane);
 
-         pcomponent->m_pplaceholder = place_hold(puserinteraction, rectPane);
+         pcomponent->m_pplaceholder = place_hold(puserinteraction, rectanglePane);
 
          if (pcomponent->m_pplaceholder == nullptr)
          {

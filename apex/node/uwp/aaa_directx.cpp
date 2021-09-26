@@ -371,7 +371,9 @@ namespace universal_windows
    void directx_base::CreateWindowSizeDependentResources()
    {
 
-      ::draw2d::device_lock devicelock;
+      ::draw2d::lock draw2dlock;
+
+      ::draw2d::device_lock devicelock(this);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size is identical.
@@ -401,7 +403,7 @@ namespace universal_windows
          m_d3dContext->ClearState();
          m_d2dDevice->ClearResources();
          {
-            Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
+            comptr < ID3D11CommandList > pcommandlist;
             hr = m_d3dContext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {
@@ -624,7 +626,9 @@ namespace universal_windows
 
             {
 
-               ::draw2d::device_lock devicelock;
+               ::draw2d::lock draw2dlock;
+
+               ::draw2d::device_lock devicelock(this);
 
                // The first argument instructs DXGI to block until VSync, putting the application
                // to sleep until the next VSync. This ensures we don't waste any cycles rendering

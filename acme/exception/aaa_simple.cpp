@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-//::exception::exception::exception::exception(const char * pszMessage):
+//::::exception(const char * pszMessage):
 //   ::matter(pobject),
 //   ::callstack(pobject),
-//   ::exception::exception()
+//   ::exception()
 //{
 //
 //   if(pszMessage == nullptr)
@@ -27,10 +27,10 @@
 //}
 //
 //
-//::exception::exception::exception::exception(const char * pszMessage, ::acme::application * papp):
+//::::exception(const char * pszMessage, ::acme::application * papp):
 //   matter(papp),
 //   ::callstack(papp),
-//   ::exception::exception(papp)
+//   ::exception(papp)
 //{
 //
 //   if(pszMessage == nullptr)
@@ -59,7 +59,7 @@
 //}
 //
 //
-//bool ::exception::exception::get_error_message(string & str,P::u32 pnHelpContext)
+//bool ::exception::get_error_message(string & str,P::u32 pnHelpContext)
 //{
 //
 //   str = what();

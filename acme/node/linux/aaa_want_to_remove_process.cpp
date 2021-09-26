@@ -148,9 +148,9 @@ namespace ansios
 {
 
 
-   process::process(::matter * pobject):
+   operating_system::process(::matter * pobject):
       matter(pobject),
-      ::process::process(pobject)
+      ::operating_system::process(pobject)
    {
 
    }
@@ -165,7 +165,7 @@ namespace ansios
    bool process::create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir, ::enum_priority epriority)
    {
 
-      if(!::process::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
+      if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
       {
 
          return false;

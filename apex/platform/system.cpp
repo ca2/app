@@ -305,7 +305,7 @@ namespace apex
 
 #ifndef WINDOWS
 
-      exception::translator::attach();
+      exception_translator::attach();
 
 #endif
 
@@ -337,7 +337,7 @@ namespace apex
       if (!initialize_log(strId))
       {
 
-         throw ::exception::exception("failed to initialize log");
+         throw ::exception("failed to initialize log");
 
       }
 
@@ -354,7 +354,7 @@ namespace apex
 
          }
 
-         ::exception::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
+         ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
 
       }
 
@@ -485,7 +485,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   throw ::exception::exception(estatus);
+      //   throw ::exception(estatus);
 
       //}
 
@@ -631,7 +631,7 @@ namespace apex
 ////      if (!bOk)
 //  //    {
 //
-//         //output_message_box_error("Could not open platform audio library.");
+//         //output_error_message("Could not open platform audio library.");
 //
 //    //  }
 //
@@ -937,7 +937,7 @@ namespace apex
 
 #ifndef WINDOWS
 
-      exception::translator::detach();
+      exception_translator::detach();
 
 #endif
 
@@ -1322,7 +1322,7 @@ namespace apex
       //if (!estatus)
       //{
 
-      //   throw exception::exception(estatus);
+      //   throw ::exception(estatus);
 
       //}
 
@@ -1330,14 +1330,14 @@ namespace apex
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception::exception("failed to construct system m_pxml->init1()"));
+      //   __throw(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception::exception("failed to construct system m_pxml->initialize()"));
+      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -1797,7 +1797,7 @@ pacmedir->create("/ca2core");
       if (!estatus)
       {
 
-         //output_message_box_error("Failed to allocate get_session()!!");
+         //output_error_message("Failed to allocate get_session()!!");
 
          output_debug_string("Failed to allocate get_session()!!");
 
@@ -2249,12 +2249,12 @@ pacmedir->create("/ca2core");
 
       __refer(m_papplicationStartup, papplicationStartup);
 
+      m_papplicationStartup->initialize(this);
+
       m_papplicationStartup->get_property_set().merge(get_property_set());
 
       set_main_struct(*m_papplicationStartup);
       
-      m_papplicationStartup->m_psystem = this;
-
       return estatus;
 
    }
@@ -2263,7 +2263,7 @@ pacmedir->create("/ca2core");
    void system::term()
    {
 
-      post_destroy_all();
+      __s_post_destroy_signal_handling();
 
       __release(m_phistory);
 
@@ -2898,7 +2898,7 @@ pacmedir->create("/ca2core");
 //}
 
 
-   ::process::department & system::process()
+   ::operating_system::department & system::process()
    {
 
       return *m_pprocess;
@@ -3190,7 +3190,7 @@ pacmedir->create("/ca2core");
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
 
    //   return "";
 
@@ -3458,7 +3458,7 @@ pacmedir->create("/ca2core");
 //         file = psession->file().get_file(m_pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
-//      catch(::exception::exception &)
+//      catch(::exception &)
 //      {
 //
 //         return false;
@@ -3603,7 +3603,7 @@ pacmedir->create("/ca2core");
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //__throw(error_interface_only);
+   //   //throw ::interface_only_exception();
 
    //   return url_encode(str);
 
@@ -3728,7 +3728,7 @@ pacmedir->create("/ca2core");
       if(papp != nullptr)
       {
 
-         __pointer(::create) pcreate(e_create_new);
+         __pointer(::create) pcreate(e_create_new, this);
 
          merge_accumulated_on_open_file(pcreate);
 
@@ -3761,7 +3761,7 @@ pacmedir->create("/ca2core");
 
       m_straCommandLineExtra.erase_all();
 
-      command_line_pointer line(e_create_new);
+      command_line_pointer line(e_create_new, this);
 
       string strExtra = straExtra.implode(" ");
 
@@ -4866,18 +4866,18 @@ pacmedir->create("/ca2core");
    //}
 
 
-   __pointer(::subject::subject) system::new_subject(const MESSAGE& message)
-   {
+   //__pointer(::subject) system::new_subject(const MESSAGE& message)
+   //{
 
-      auto id = (::iptr)message.wParam;
+   //   auto id = (::iptr)message.wParam;
 
-      auto psubject = subject(id);
+   //   auto psubject = subject(id);
 
-      psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
+   //   psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
-      return psubject;
+   //   return psubject;
 
-   }
+   //}
 
 
    ::e_status system::open_profile_link(string strUrl, string strProfile, string strTarget)
@@ -4989,7 +4989,7 @@ namespace apex
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -5457,37 +5457,44 @@ namespace apex
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      auto psubject = subject((e_id) iUpdate);
+      auto psignal = get_signal((::enum_id) iUpdate);
 
-      psubject->m_payload = iPayload;
+      psignal->m_payload = iPayload;
 
-      handle_subject(psubject);
+      handle(psignal, nullptr);
 
    }
 
 
-   void system::subject_handler(::subject::subject * psubject)
+   void system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      if (psubject->id() == id_os_dark_mode)
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
       {
 
-         auto pnode = node();
-
-         if (pnode)
-         {
-
-            pnode->os_calc_user_dark_mode();
-
-         }
+         return;
 
       }
-      else if (psubject->id() == id_os_user_theme)
+
+      //if (m_papexnode)
+      //{
+
+      //   m_papexnode->route_command(pcommand, false);
+
+      //}
+
+   }
+
+   
+   void system::handle(::subject * psubject, ::context * pcontext)
+   {
+
+      if (psubject->id() == id_os_user_theme)
       {
 
          auto pnode = node();
-
-         //string strTheme = ::user::_os_get_user_theme();
 
          string strTheme = pnode->os_get_user_theme();
 
@@ -5495,8 +5502,6 @@ namespace apex
          {
 
             m_strOsUserTheme = strTheme;
-
-            //psubject->m_esubject = e_subject_process;
 
          }
          else
@@ -5506,15 +5511,10 @@ namespace apex
 
          }
 
+         //m_pnode->defer_update_dark_mode();
+
       }
-
-   }
-
-
-   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
-
-      if (psubject->id() == id_open_hyperlink)
+      else if (psubject->id() == id_open_hyperlink)
       {
 
          auto plink = psubject->m_payload.cast < ::hyperlink >();
@@ -5540,15 +5540,13 @@ namespace apex
       }
 
 
-      ::subject::manager::on_subject(psubject, pcontext);
-
    }
 
 
-//   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+//   void system::handle(::subject * psubject, ::context * pcontext)
 //   {
 //
-//      ::system::on_subject(psubject, pcontext);
+//      ::system::handle(psubject, pcontext);
 //
 //      //::update updateSetting(pupdate);
 //
@@ -5596,7 +5594,7 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-      ::exception::translator::destroy();
+      ::exception_translator::destroy();
 
 #endif
 
@@ -5939,11 +5937,11 @@ namespace apex
 //{
 //
 //
-//   void system::on_subject(::subject::subject* psubject)
+//   void system::on_subject(::subject* psubject)
 //   {
 //
 //
-//      ::subject::manager::on_subject(psubject);
+//      ::manager::on_subject(psubject);
 //
 //   }
 //

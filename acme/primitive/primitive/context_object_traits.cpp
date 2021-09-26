@@ -12,7 +12,7 @@
 //      estatus = run(trait);
 //
 //   }
-//   catch const ::exception::exception & e
+//   catch const ::exception & e
 //   {
 //
 //      estatus = e->m_estatus;

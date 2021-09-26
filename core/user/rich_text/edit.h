@@ -24,13 +24,13 @@ namespace user
          virtual ~edit();
 
 
-         virtual void on_after_change(::user::enum_event eevent);
+         virtual void on_after_change(::enum_subject esubject);
          virtual double get_rotate() override;
 
 
          //__pointer(span) add_span(::e_align ealignNewLine = e_align_none);
 
-         virtual void on_hit_test(::user::item & item) override;
+         virtual void on_hit_test(::item & item) override;
 
          virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i);
 
@@ -114,7 +114,7 @@ namespace user
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;
 
 
-         virtual void on_control_event(::user::control_event * pevent) override;
+         virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
          virtual strsize _001GetTextLength() const override;

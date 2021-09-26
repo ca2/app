@@ -48,14 +48,20 @@ namespace user
 
       ::list < __pointer(::matter) >            m_listRunnable;
 
-      __composite(::user::shell)                   m_pshell;
+      __composite(::user::shell)                m_pshell;
+
+      bool                                      m_bOnInitializeWindowObject;
 
 
       user();
-      virtual ~user();
+      ~user() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
+
+
+      virtual ::e_status on_initialize_window_object();
+      virtual ::e_status _on_initialize_window_object();
 
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
@@ -85,7 +91,7 @@ namespace user
       virtual ::e_status set_foreground_window(::user::interaction *);
 
 
-      virtual ::user::style* get_user_style();
+      virtual ::user::style* user_style();
 
       //::user::style * get_user_style();
 

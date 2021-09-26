@@ -57,7 +57,7 @@ namespace zip
 //         }
 //
 //      }
-//      catch(const ::exception::exception & e)
+//      catch(const ::exception & e)
 //      {
 //
 //         return false;
@@ -121,7 +121,7 @@ namespace zip
 
       m_bOwnFile = true;
 
-      auto pfile = __create < ::file::file > ();
+      auto pfile = m_psystem->__create < ::file::file > ();
 
       try
       {
@@ -134,7 +134,7 @@ namespace zip
          }
 
       }
-      catch(const ::exception::exception &)
+      catch(const ::exception &)
       {
 
          return false;

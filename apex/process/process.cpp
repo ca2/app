@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -26,6 +26,8 @@ namespace process
 
       if(bPiped)
       {
+
+         m_pipe.initialize(this);
 
          if(!m_pipe.create(false, true))
             return false;
@@ -113,10 +115,7 @@ auto tickStart = ::millis::now();
    }
 
 
-   
-
-} // namespace process
-
+} // namespace operating_system
 
 
 

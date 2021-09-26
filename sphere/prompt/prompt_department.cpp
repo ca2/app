@@ -76,10 +76,10 @@ namespace prompt
    }
 
 
-   //void department::route_command_message(::message::command * pcommand)
+   //void department::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    //{
 
-   //   ::acme::department::route_command_message(pcommand);
+   //   ::acme::department::route_command(pcommand);
 
    //}
 

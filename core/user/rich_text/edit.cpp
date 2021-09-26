@@ -282,7 +282,7 @@ namespace user
 
       {
 
-         if (eelement == ::user::e_element_icon)
+         if (eelement == ::e_element_icon)
          {
 
             if (!get_item_rect(prectangle, i))
@@ -296,7 +296,7 @@ namespace user
             return true;
 
          }
-         else if (eelement == ::user::e_element_text)
+         else if (eelement == ::e_element_text)
          {
 
             if (!get_item_rect(prectangle, i))
@@ -340,7 +340,7 @@ namespace user
       }
 
 
-      void edit::on_hit_test(::user::item & item)
+      void edit::on_hit_test(::item & item)
       {
 
          ::user::interaction::on_hit_test(item);
@@ -420,19 +420,19 @@ namespace user
             
             get_window_rect(rWindow);
 
-            rectangle_f64 rectWindow;
+            rectangle_f64 rectangleWindow;
 
-            __copy(rectWindow, rWindow);
+            __copy(rectangleWindow, rWindow);
             
-            get_parent()->screen_to_client(rectWindow);
+            get_parent()->screen_to_client(rectangleWindow);
 
-            copy(rectWindow, rectWindow);
+            copy(rectangleWindow, rectangleWindow);
 
-            point += rectWindow.top_left();
+            point += rectangleWindow.top_left();
 
             _rtransform_point(point);
 
-            point -= rectWindow.top_left();
+            point -= rectangleWindow.top_left();
 
             auto rectangleClient = get_client_rect();
 
@@ -468,10 +468,10 @@ namespace user
       }
 
 
-      void edit::on_control_event(::user::control_event * pevent)
+      void edit::handle(::subject * psubject, ::context * pcontext)
       {
 
-         return ::user::interaction::on_control_event(pevent);
+         return ::user::interaction::handle(psubject, pcontext);
 
       }
 
@@ -514,19 +514,19 @@ namespace user
 
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_key_down;
+            subject.m_id = ::e_subject_key_down;
 
-            ev.m_actioncontext.m_pmessage = pmessage;
+            subject.m_actioncontext.m_pmessage = pmessage;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if (ev.m_bRet)
+            if (subject.m_bRet)
             {
 
                return;
@@ -576,17 +576,17 @@ namespace user
          else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_escape;
+            subject.m_id = ::e_subject_escape;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if (!ev.m_bRet && ev.m_bOk)
+            if (!subject.m_bRet && subject.m_bOk)
             {
 
                on_action("escape");
@@ -813,7 +813,7 @@ namespace user
       }
 
 
-      void edit::on_after_change(::user::enum_event eevent)
+      void edit::on_after_change(::enum_subject esubject)
       {
 
       }

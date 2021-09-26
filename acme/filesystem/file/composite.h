@@ -43,6 +43,8 @@ namespace file
       void lock(filesize dwPos, filesize dwCount) override;
       void unlock(filesize dwPos, filesize dwCount) override;
 
+
+      void abort() override;
       void flush() override;
       void close() override;
 

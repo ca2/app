@@ -41,7 +41,6 @@ namespace user
       m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
-      m_pimagelist               = nullptr;
       m_uchHoverAlphaInit        = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
@@ -66,66 +65,6 @@ namespace user
 
       }
 
-
-      fork([this]()
-         {
-
-            task_set_name(string(type_name()) + "::Expand");
-
-            auto pthread = ::get_task();
-
-            while (pthread->task_get_run())
-            {
-
-               m_evExpand.wait(500_ms);
-
-               if (m_treeitemaExpand.has_element())
-               {
-
-                  auto pitem = m_treeitemaExpand.pop();
-
-                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
-
-                  m_treeitemaExpand.erase_all();
-
-               }
-
-               m_evExpand.ResetEvent();
-
-            }
-
-         });
-
-      fork([this]()
-         {
-
-            task_set_name(string(type_name()) + "::Open");
-
-            auto pthread = ::get_task();
-
-            while (pthread->task_get_run())
-            {
-
-               m_evOpen.wait(500_ms);
-
-               if (m_treeitemaOpen.has_element())
-               {
-
-                  auto pitem = m_treeitemaOpen.pop();
-
-                  _001OnOpenItem(pitem, ::e_source_user);
-
-               }
-               else
-               {
-
-                  m_evOpen.ResetEvent();
-
-               }
-
-            }
-
-         });
 
       auto estatus = __compose_new(m_ptree);
 
@@ -161,13 +100,70 @@ namespace user
       }
 
       fork([this]()
-      {
+         {
 
-         _001SetCollapseImage("matter://list/collapse.png");
+            _001SetExpandImage("matter://list/expand.png");
 
-         _001SetExpandImage("matter://list/expand.png");
+            task_set_name(string(type_name()) + "::Expand");
 
-      });
+            auto pthread = ::get_task();
+
+            while (pthread->task_get_run())
+            {
+
+               m_evExpand.wait(500_ms);
+
+               if (m_treeitemaExpand.has_element())
+               {
+
+                  auto pitem = m_treeitemaExpand.pop();
+
+                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+
+                  m_treeitemaExpand.erase_all();
+
+               }
+
+               m_evExpand.ResetEvent();
+
+            }
+
+         });
+
+
+      fork([this]()
+         {
+
+            _001SetCollapseImage("matter://list/collapse.png");
+
+            task_set_name(string(type_name()) + "::Open");
+
+            auto pthread = ::get_task();
+
+            while (pthread->task_get_run())
+            {
+
+               m_evOpen.wait(500_ms);
+
+               if (m_treeitemaOpen.has_element())
+               {
+
+                  auto pitem = m_treeitemaOpen.pop();
+
+                  _001OnOpenItem(pitem, ::e_source_user);
+
+               }
+               else
+               {
+
+                  m_evOpen.ResetEvent();
+
+               }
+
+            }
+
+         });
+
 
 
    }
@@ -434,9 +430,9 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
+         auto rectangleFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
+         data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
       }
 
@@ -452,19 +448,19 @@ namespace user
          //else
          //{
 
-         //   ::rectangle_i32 rectUnion;
+         //   ::rectangle_i32 rectangleUnion;
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
 
-         //      rectUnion = rectangle;
+         //      rectangleUnion = rectangle;
 
          //   }
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_text))
          //   {
 
-         //      rectUnion.unite(rectangle, rectUnion);
+         //      rectangleUnion.unite(rectangle, rectangleUnion);
 
          //   }
 
@@ -472,8 +468,8 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
-         //   rectUnion.width(), rectUnion.height(),
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
+         //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
          //}
@@ -506,7 +502,7 @@ namespace user
       if(strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
       {
 
-         ::draw2d::brush_pointer brushText;
+         ::draw2d::brush_pointer pbrushText;
 
          if(bSelected) // selected
          {
@@ -514,13 +510,13 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelectedHighlight;
+               pbrushText = m_pbrushTextSelectedHighlight;
 
             }
             else
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
 
@@ -531,21 +527,21 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
             else
             {
 
-               brushText = m_brushText;
+               pbrushText = m_pbrushText;
 
             }
 
          }
 
-         data.m_pdc->set(brushText);
+         data.m_pdc->set(pbrushText);
 
-         data.m_pdc->set(m_fontTreeItem);
+         data.m_pdc->set(m_pfontTreeItem);
 
          data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
 
@@ -768,7 +764,7 @@ namespace user
    }
 
 
-   bool tree::on_click(const ::user::item & item)
+   bool tree::on_click(const ::item & item)
    {
 
       return false;
@@ -776,7 +772,7 @@ namespace user
    }
 
 
-   bool tree::on_right_click(const ::user::item & item)
+   bool tree::on_right_click(const ::item & item)
    {
 
       return false;
@@ -1152,21 +1148,21 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_colorTreeBackground = get_color(pstyle, ::user::e_element_background);
+      m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      __defer_construct(m_brushTextSelectedHighlight);
-      __defer_construct(m_brushTextSelected);
-      __defer_construct(m_brushTextHighlight);
-      __defer_construct(m_brushText);
+      __defer_construct(m_pbrushTextSelectedHighlight);
+      __defer_construct(m_pbrushTextSelected);
+      __defer_construct(m_pbrushTextHighlight);
+      __defer_construct(m_pbrushText);
 
-      __defer_construct(m_fontTreeItem);
+      __defer_construct(m_pfontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
+      m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
+      m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
-      m_fontTreeItem = get_font(pstyle);
+      m_pfontTreeItem = get_font(pstyle);
 
    }
 
@@ -1519,12 +1515,12 @@ namespace user
 
       pgraphics->CreateCompatibleDC(nullptr);
 
-      //::write_text::font_pointer font(e_create);
-      //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
-      //font->set_bold();
+      //auto pfont = __create < ::write_text::font > ();
+      //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
+      //pfont->set_bold();
       //g->set_font(font);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::size_i32 size;
 
@@ -2219,13 +2215,13 @@ namespace user
    }
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->on_subject(psubject, pcontext);
+         m_ptree->handle(psubject, pcontext);
 
       }
 

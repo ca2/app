@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 template < primitive_natural NATURAL >
 class bits
 {
@@ -31,6 +33,5 @@ public:
 
 
 };
-
 
 

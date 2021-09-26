@@ -99,6 +99,14 @@ namespace file
    }
 
 
+   void reference::abort()
+   {
+
+      return m_pfile->abort();
+
+   }
+
+
    void reference::flush()
    {
 

@@ -97,7 +97,7 @@ namespace filemanager
             else
             {
 
-               output_message_box_error("error"); // simple parsing error check
+               output_error_message("error"); // simple parsing error check
 
                return;
 

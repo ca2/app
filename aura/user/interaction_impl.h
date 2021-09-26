@@ -74,8 +74,8 @@ namespace user
       //HIMC                                    m_himc;
 #endif
       ::PLATFORM_NAMESPACE::interaction_impl *  m_pImpl2;
-      ::rectangle_i32                           m_rectWindowScreen;
-      ::rectangle_i32                           m_rectClientScreen;
+      ::rectangle_i32                           m_rectangleWindowScreen;
+      ::rectangle_i32                           m_rectangleClientScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
@@ -99,7 +99,7 @@ namespace user
       ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;
 
-      ::rectangle_i32                           m_rectUpdateBuffer;
+      ::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
       ::list < __pointer(::message::message) >  m_messagelist;
@@ -275,7 +275,7 @@ namespace user
 
       virtual ::e_status destroy() override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
@@ -444,11 +444,11 @@ namespace user
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+//      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 //
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
 
 //#endif
 

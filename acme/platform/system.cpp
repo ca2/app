@@ -36,6 +36,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       
       m_bPostedInitialRequest = false;
 
+      //m_bOnInitializeWindowObject = false;
+
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
       //m_pcleanuptask->begin();
@@ -195,14 +197,14 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::process_init()
    {
 
-      ::acme::idpool::init();
+      ::acme::idpool::init(this);
 
-      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
+      auto estatus = __defer_construct_new(m_pfactorymapsquare);
 
-      if (!m_pfactorymapsquare)
+      if (!estatus)
       {
 
-         return ::error_no_memory;
+         return estatus;
 
       }
 
@@ -224,7 +226,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       //}
 
-      auto estatus = __raw_compose(m_pacmedir);
+      estatus = __raw_compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -495,6 +497,44 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       return psequence;
 
    }
+
+
+   //::e_status system::on_initialize_window_object()
+   //{
+
+   //   if (m_bOnInitializeWindowObject)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bOnInitializeWindowObject = true;
+
+   //   auto estatus = _on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
+
+
+   //::e_status system::_on_initialize_window_object()
+   //{
+
+   //   ::e_status estatus = ::success;
+   // 
+   //   m_pnode->_os_calc_user_dark_mode();
+
+   //   return estatus;
+
+   //}
 
 
    CLASS_DECL_ACME class system * get_system()
@@ -961,7 +1001,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      ::__construct_new(plibrary->m_pfactorymap);
+      __construct_new(plibrary->m_pfactorymap);
 
       plibrary->m_pfactorymap->initialize_matter(this);
 
@@ -1191,7 +1231,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //::application* system::get_main_application()
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return nullptr;
 
@@ -1201,7 +1241,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //void system::system_construct(int argc, char** argv, char** envp)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1209,7 +1249,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1284,7 +1324,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    {
 
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
 
       return nullptr;
@@ -1367,7 +1407,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
          
       }
       
-//      __throw(error_interface_only);
+//      throw ::interface_only_exception();
    
       return error_interface_only;
    
@@ -1377,7 +1417,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    ::e_status system::on_open_file(const ::string & pszFile)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return error_interface_only;
       

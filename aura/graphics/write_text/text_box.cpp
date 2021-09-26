@@ -98,7 +98,7 @@ namespace write_text
 
       m_pimage->g()->set_text_color(uForegroundColor);
 
-      m_pimage->g()->text_out(plist->m_rectMargin.left, plist->m_rectMargin.top, strText);
+      m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, strText);
 
       m_bOk = true;
 

@@ -18,16 +18,16 @@ namespace user
       };
 
       ::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::rectangle                              m_rectMargin;
-      //::rectangle                              m_rectBorder;
-      //::rectangle                              m_rectPadding;
+      //::rectangle                              m_rectangleMargin;
+      //::rectangle                              m_rectangleBorder;
+      //::rectangle                              m_rectanglePadding;
       ::e_align                             m_ealignText;
       e_style                             m_estyle;
-      ::rectangle                              m_rectText;
+      ::rectangle                              m_rectangleText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
-      ::rectangle                              m_rectCheckBox;
+      ::rectangle                              m_rectangleCheckBox;
       string                              m_strLink;
       ::write_text::font_pointer              m_pfont;
       
@@ -55,7 +55,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

@@ -12,7 +12,7 @@ namespace linux
 
 
       class CLASS_DECL_ACME engine :
-         public ::exception::engine
+         public ::exception_engine
       {
       public:
 

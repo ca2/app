@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      synchronization_array                                m_synchronizationa;
+      synchronization_array                     m_synchronizationa;
 
       manual_reset_event                        m_evUpdateScreen;
 

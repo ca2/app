@@ -87,11 +87,11 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleClient, _001GetButtonBackgroundColor());
 
-         //::draw2d::pen_pointer pen(e_create);
+         //auto ppen = __create < ::draw2d::pen > ();
 
-         //pen->create_solid(1.0, _001GetColor(color_button_text));
+         //ppen->create_solid(1.0, _001GetColor(color_button_text));
 
-         //pgraphics->set(pen);
+         //pgraphics->set(ppen);
 
          //pgraphics->move_to(rectangleClient.left + rectangleClient.width() / 8, (rectangleClient.top + rectangleClient.bottom) / 2);
 
@@ -106,25 +106,25 @@ namespace user
       if (m_pmenuitem != nullptr && m_pmenuitem->m_bPopup)
       {
 
-         ::draw2d::brush_pointer br(e_create);
+         auto pbrush = __create < ::draw2d::brush > ();
 
-         br->create_solid(argb(255, 0, 0, 0));
+         pbrush->create_solid(argb(255, 0, 0, 0));
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
-         pen->create_solid(1, rgb(0, 0, 0));
-         pgraphics->set(pen);
-         pgraphics->set(br);
-         ::rectangle_i32 rectPopupArrow;
-         rectPopupArrow.left = rectangleClient.right - 9;
-         rectPopupArrow.right = rectangleClient.right - 4;
-         rectPopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
-         rectPopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
+         ppen->create_solid(1, rgb(0, 0, 0));
+         pgraphics->set(ppen);
+         pgraphics->set(pbrush);
+         ::rectangle_i32 rectanglePopupArrow;
+         rectanglePopupArrow.left = rectangleClient.right - 9;
+         rectanglePopupArrow.right = rectangleClient.right - 4;
+         rectanglePopupArrow.top = ((rectangleClient.top + rectangleClient.bottom) / 2) - 4;
+         rectanglePopupArrow.bottom = ((rectangleClient.top + rectangleClient.bottom) / 2) + 4;
          point_f64_array pointa;
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
-         pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.top));
-         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
+         pointa.add(point_i32(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.top));
+         pointa.add(point_i32(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
          pgraphics->polygon(pointa);
       }
 
@@ -235,9 +235,9 @@ namespace user
       if(uImage != 0xffffffffu)
       {
 
-         ::rectangle_i32 rectImage = m_rectCheckBox;
-         ::rectangle_i32 rectImageBorder = rectImage;
-         rectImageBorder.inflate(2, 2);
+         ::rectangle_i32 rectangleImage = m_rectangleCheckBox;
+         ::rectangle_i32 rectangleImageBorder = rectangleImage;
+         rectangleImageBorder.inflate(2, 2);
          ::image_list::info ii;
          __pointer(image_list) pimagelist;
 
@@ -275,29 +275,29 @@ namespace user
 
             pimagelist->get_image_info(uImage, &ii);
 
-            ::rectangle_i32 & rectImageInfo(ii.m_rectangle);
-            rectImage.offset(1, 1);
-            rectImage.top = rectImage.bottom - rectImageInfo.height();
-            rectImage.right = rectImage.left + rectImageInfo.width();
+            ::rectangle_i32 & rectangleImageInfo(ii.m_rectangle);
+            rectangleImage.offset(1, 1);
+            rectangleImage.top = rectangleImage.bottom - rectangleImageInfo.height();
+            rectangleImage.right = rectangleImage.left + rectangleImageInfo.width();
 
             if (echeck() == ::check_checked)
             {
 
-               pgraphics->fill_rectangle(rectImageBorder, rgb(127, 127, 127));
+               pgraphics->fill_rectangle(rectangleImageBorder, rgb(127, 127, 127));
 
                //auto psession = get_session();
 
                auto pstyle = get_style(pgraphics);
 
-               auto colorDarkShadow = pstyle->get_color(this, ::user::e_element_dark_shadow);
+               auto colorDarkShadow = pstyle->get_color(this, ::e_element_dark_shadow);
 
-               auto colorHilite = pstyle->get_color(this, ::user::e_element_hilite);
+               auto colorHilite = pstyle->get_color(this, ::e_element_hilite);
 
-               pgraphics->draw_inset_3drect(rectImageBorder, colorDarkShadow, colorHilite);
+               pgraphics->draw_inset_3drect(rectangleImageBorder, colorDarkShadow, colorHilite);
 
             }
 
-            pimagelist->draw(pgraphics, uImage, rectImage.top_left(), 0);
+            pimagelist->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
 
          }
 
@@ -310,7 +310,7 @@ namespace user
          if (pstyle)
          {
 
-            pstyle->draw_check(this, get_echeck(), m_rectCheckBox, pgraphics);
+            pstyle->draw_check(this, get_echeck(), m_rectangleCheckBox, pgraphics);
 
          }
 
@@ -365,7 +365,7 @@ namespace user
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
-      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
+      pcalcsize->m_pgraphics->set_font(this, ::e_element_none);
 
       string strButtonText;
 
@@ -391,34 +391,34 @@ namespace user
 
       }
 
-      auto rectMargin = get_margin(pstyle);
+      auto rectangleMargin = get_margin(pstyle);
 
-      auto rectBorder = get_border(pstyle);
+      auto rectangleBorder = get_border(pstyle);
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
+      size.cx += rectangleMargin.left + rectangleBorder.left + rectanglePadding.left;
 
-      size.cx += rectMargin.right;
+      size.cx += rectangleMargin.right;
 
       size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
-      size.cx += rectPadding.left;
+      size.cx += rectanglePadding.left;
 
       if (m_pmenuitem->IsPopup())
       {
 
-         size.cx += rectPadding.left;
+         size.cx += rectanglePadding.left;
 
          size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 
-      size.cx += rectMargin.right + rectBorder.right + rectPadding.right;
+      size.cx += rectangleMargin.right + rectangleBorder.right + rectanglePadding.right;
 
-      size.cy += rectMargin.top + rectBorder.top + rectPadding.top;
+      size.cy += rectangleMargin.top + rectangleBorder.top + rectanglePadding.top;
 
-      size.cy += rectMargin.bottom + rectBorder.bottom + rectPadding.bottom;
+      size.cy += rectangleMargin.bottom + rectangleBorder.bottom + rectanglePadding.bottom;
 
       pcalcsize->m_size = size;
 

@@ -589,12 +589,12 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	int x, y, w, h;
 //	::u32 pen_color;
 //
-//	pen_color = freerdp_color_convert_var_bgr(line_to->penColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
+//	pen_color = freerdp_color_convert_var_bgr(line_to->ppenColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
-//	pen = CreatePen(line_to->penStyle, line_to->penWidth, pen_color);
+//	pen = CreatePen(line_to->ppenStyle, line_to->ppenWidth, pen_color);
 //
 //	wf_set_rop2(wfc->drawing->hdc, line_to->bRop2);
-//	org_pen = (HPEN) SelectObject(wfc->drawing->hdc, pen);
+//	org_pen = (HPEN) SelectObject(wfc->drawing->hdc, ppen);
 //
 //	MoveToEx(wfc->drawing->hdc, line_to->nXStart, line_to->nYStart, nullptr);
 //	LineTo(wfc->drawing->hdc, line_to->nXEnd, line_to->nYEnd);
@@ -618,7 +618,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	HPEN org_hpen;
 //	::u32 pen_color;
 //
-//	pen_color = freerdp_color_convert_var_bgr(polyline->penColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
+//	pen_color = freerdp_color_convert_var_bgr(polyline->ppenColor, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
 //	hpen = CreatePen(0, 1, pen_color);
 //	org_rop2 = wf_set_rop2(wfc->drawing->hdc, polyline->bRop2);

@@ -1278,7 +1278,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -1288,7 +1288,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    //string application::get_version()
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -1300,7 +1300,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -1309,7 +1309,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    ::aura::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -1475,7 +1475,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
          if (mutex.already_exists())
          {
 
-//            output_message_box_error("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 
             return -35;
 
@@ -1519,7 +1519,7 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
 
 
 
-   void application::on_control_event(::user::control_event * pevent)
+   void application::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

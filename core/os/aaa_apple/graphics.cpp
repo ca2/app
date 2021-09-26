@@ -55,12 +55,12 @@ int_bool cg_release_color(CGColorRef colorref)
 ///*  , m_logicalFunction(wxCOPY)
 // , m_backgroundMode(wxTRANSPARENT)
 // , m_mappingMode(wxMM_TEXT)
-// , m_pen() */
-///* , m_brush()
+// , m_ppen() */
+///* , m_pbrush()
 // , m_backgroundBrush(*wxTRANSPARENT_BRUSH)
 // , m_textForegroundColour(*wxBLACK)
 // , m_textBackgroundColour(*wxWHITE)
-// , m_font()
+// , m_pfont()
 // #if wxUSE_PALETTE
 // , m_palette()
 // , m_hasCustomPalette(false)

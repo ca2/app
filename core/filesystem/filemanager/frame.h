@@ -18,10 +18,10 @@ namespace filemanager
       ~frame() override;
 
 
-      virtual bool on_create_bars();
+      bool on_create_bars() override;
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnSetText);

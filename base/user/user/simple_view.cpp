@@ -42,10 +42,10 @@ namespace user
    }
 
 
-   void simple_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void simple_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
@@ -56,7 +56,7 @@ namespace user
       for (auto & text : m_texta)
       {
 
-         pgraphics->set(text.m_font);
+         pgraphics->set(text.m_pfont);
 
          pgraphics->set_text_color(text.m_color.get_rgba());
 

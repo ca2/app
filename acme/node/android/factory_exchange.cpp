@@ -20,8 +20,8 @@
 //         create_factory < file                  >(__type(::file::binary_file);
 //         create_factory < file, ::file::file >();
 //         create_factory < os                          >(__type(::acme::os),1);
-//         create_factory < ::ansios::process           >(__type(::process::process), 10);
-//         create_factory < ::ansios::pipe              >(__type(::process::pipe), 10);
+//         create_factory < ::ansios::process           >(__type(::operating_system::process), 10);
+//         create_factory < ::ansios::pipe              >(__type(::operating_system::pipe), 10);
 //
 //      }
 //
@@ -51,7 +51,7 @@ void __node_acme_factory_exchange(::factory_map * pfactorymap)
    //create_factory < ::android::dir_context         , ::dir_context               > ();
    create_factory < ::android::file                , ::file::file                > ();
    //create_factory < ::android::os_context          , ::os_context                > ();
-   create_factory < ::posix::pipe                  , ::process::pipe             > ();
+   create_factory < ::posix::pipe                  , ::operating_system::pipe             > ();
 
    //create_factory < ::android::shell               , ::user::shell               > ();
 

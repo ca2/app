@@ -52,9 +52,9 @@ namespace userex
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual string get_group_title(group * pgroup);
 
@@ -65,7 +65,7 @@ namespace userex
 
       virtual ::userex::image_list_view * add_group(::id idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
 
-      ::e_status set_current_item(const ::user::item & item, const ::action_context & action_context) override;
+      ::e_status set_current_item(const ::item & item, const ::action_context & action_context) override;
 
       virtual bool show_group(::id idGroup, ::file::path pathFolder = "");
 

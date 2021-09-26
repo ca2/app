@@ -8,7 +8,7 @@
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
    virtual public ::acme_main_data,
-   //virtual public ::subject::manager,
+   //virtual public ::manager,
    virtual public ::task
    //, public layered < system >
 {
@@ -23,6 +23,7 @@ public:
    //::bred::system *              m_pbredsystem;
    //::core::system *              m_pcoresystem;
    
+   //bool                             m_bOnInitializeWindowObject;
    
    bool                             m_bPostedInitialRequest;
 
@@ -39,7 +40,7 @@ public:
 
 
 
-   string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
+   __pointer(string_map < __pointer(::factory_map) > )                         m_pfactorymapsquare;
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 #ifdef MACOS
@@ -229,8 +230,8 @@ public:
 
    virtual ::e_status on_end();
 
-   //using ::subject::manager::on_subject;
-   //virtual void on_subject(::subject::subject * psubject) override;
+   //using ::manager::on_subject;
+   //virtual void on_subject(::subject * psubject) override;
 
    virtual ::millis get_update_poll_time(const ::id& id);
 
@@ -276,8 +277,11 @@ public:
 #endif
 
 
-   virtual __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+   __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
+
+   //virtual ::e_status on_initialize_window_object();
+   //virtual ::e_status _on_initialize_window_object();
 
 
    template < typename ENUM >

@@ -17,9 +17,9 @@ namespace user
 
          __pointer(span)   m_pspan;
 
-         rectangle_f64             m_rectBox;
-         rectangle_f64             m_rectDevice;
-         rectangle_f64             m_rectHitTest;
+         rectangle_f64             m_rectangleBox;
+         rectangle_f64             m_rectangleDevice;
+         rectangle_f64             m_rectangleHitTest;
 
          size_f64             m_sizeBox;
          strsize           m_iPosBeg;

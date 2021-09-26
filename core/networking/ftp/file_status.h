@@ -43,7 +43,7 @@ namespace ftp
          time_remote_day,    ///< time zone and time of day are unknown
       };
 
-      enum e_id
+      enum enum_id
       {
          id_unknown,
          id_full,          ///< unique identifier for files on this FTP server
@@ -62,7 +62,7 @@ namespace ftp
       string      m_strUID;                  ///< user identifier (owner of file)
       string      m_strGID;                  ///< group identifier
       string      m_strLink;                 ///< number of links to file
-      e_id        m_eid;                ///< identifier type
+      enum_id     m_eid;                ///< identifier type
       string      m_strID;                   ///< identifier
       string      m_strModificationTime;                ///< for debug only
 

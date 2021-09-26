@@ -241,7 +241,7 @@ namespace xml
       if (i < 0)
       {
 
-         throw ::exception::exception(error_parsing, "strange: this is not child of this->parent");
+         throw ::exception(error_parsing, "strange: this is not child of this->parent");
 
       }
       i++;

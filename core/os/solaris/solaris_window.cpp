@@ -363,7 +363,7 @@ void oswindow_data::set_user_interaction(::user::interaction * pinteraction)
    single_lock slOsWindow(s_pmutex, true);
 
    if(this == nullptr)
-      __throw(::exception::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 
    m_puserinteraction = pinteraction;
 
@@ -707,7 +707,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    draw2d::brush_pointer pen(pgraphics->create_new, this);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for(index i = 0; i < stra.get_count(); i++)
    {
@@ -728,7 +728,7 @@ public:
 
    __pointer_array(::simple_ui::label) m_labela;
 
-   ::rectangle_i32 m_rectDesktop;
+   ::rectangle_i32 m_rectangleDesktop;
 
    xlib_message_box(__pointer(base_application) papp) : ::object(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
    {
@@ -748,7 +748,7 @@ public:
    i32 show_window(const ::string & lpText, const ::string & lpCaption)
    {
 
-      ::get_window_rect(::get_desktop_window(), &m_rectDesktop);
+      ::get_window_rect(::get_desktop_window(), &m_rectangleDesktop);
 
 
       ::rectangle_i32 rectangle(100, 100, 200, 200);
@@ -761,9 +761,9 @@ public:
 
       g->CreateCompatibleDC(nullptr);
 
-      ::write_text::font_pointer font(e_create);
+      auto pfont = __create < ::write_text::font > ();
 
-      font->create_point_font(pnode->font_name(e_font_sans), 12.0);
+      pfont->create_point_font(pnode->font_name(e_font_sans), 12.0);
 
       g->selectFont(font);
 
@@ -845,8 +845,8 @@ public:
       sz.cx += 20;
       sz.cy += 20;
 
-      rectangle.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
-      rectangle.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+      rectangle.left = m_rectangleDesktop.left + ((m_rectangleDesktop.width() - sz.cx) / 2);
+      rectangle.top = m_rectangleDesktop.top + ((m_rectangleDesktop.height() - sz.cy) / 4);
       rectangle.right = rectangle.left + sz.cx;
       rectangle.bottom = rectangle.top + sz.cy;
 

@@ -268,10 +268,10 @@ namespace user
       ::write_text::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
       {
 
-         if (!m_bUpdated || m_font.is_null())
+         if (!m_bUpdated || m_pfont.is_null())
          {
 
-            ((format*)this)->m_font.create();
+            pgraphics->__defer_construct(((format*)this)->m_pfont);
 
             if (m_dFontSize < 6.0)
             {
@@ -289,7 +289,7 @@ namespace user
 
             }
 
-            m_font->create_point_font(m_strFontFamily, dFontSize,
+            m_pfont->create_point_font(m_strFontFamily, dFontSize,
                                       m_bBold ? e_font_weight_bold : e_font_weight_normal,
                                       m_bItalic,
                                       m_bUnderline);
@@ -298,7 +298,7 @@ namespace user
 
          }
 
-         return m_font;
+         return m_pfont;
 
       }
 

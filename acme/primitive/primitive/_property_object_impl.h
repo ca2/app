@@ -25,7 +25,7 @@ inline property_set & property_object::get_property_set() { defer_propset(); ret
 inline const property_set & property_object::get_property_set() const { ((property_object *)this)->defer_propset(); return *m_ppropertyset; }
 
 
-inline ::i64_array& property_object::idarray() const { if (!m_pia) ((property_object*)this)->m_pia.create_new(); return *m_pia; }
+inline ::i64_array& property_object::idarray() const { m_psystem->__defer_construct_new(((property_object*)this)->m_pia); return *m_pia; }
 
 inline bool property_object::contains(const property_set & set) const
 {
@@ -48,7 +48,7 @@ inline bool property_object::contains(const property_set & set) const
 
 }
 
-inline void property_object::defer_propset() { if (!m_ppropertyset) ::__construct_new(m_ppropertyset); }
+inline void property_object::defer_propset() { m_psystem->__defer_construct_new(m_ppropertyset); }
 
 
 

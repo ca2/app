@@ -243,10 +243,10 @@ namespace filemanager
          }
 
 
-         void list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+         void list_view::handle(::subject * psubject, ::context * pcontext)
          {
 
-            simple_list_view::on_subject(psubject, pcontext);
+            simple_list_view::handle(psubject, pcontext);
 
             //if(::is_null(pobject))
             {
@@ -290,7 +290,7 @@ namespace filemanager
          }
 
 
-         bool list_view::on_click(const ::user::item & item)
+         bool list_view::on_click(const ::item & item)
          {
 
             if(m_itema[item.item_index()]->IsFolder())
@@ -731,7 +731,7 @@ namespace filemanager
             else
             {
 
-               output_message_box_error("error"); // simple parsing error check
+               output_error_message("error"); // simple parsing error check
 
                return;
 

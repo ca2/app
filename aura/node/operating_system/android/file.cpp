@@ -15,7 +15,7 @@ void fd_set_size(i32 fd, i64 iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      __throw(::exception::exception("fd_set_size exception"));
+      __throw(::exception("fd_set_size exception"));
 
 }
 

@@ -85,7 +85,7 @@ namespace file
       }
 
       exception::exception(const ::e_status& estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
-         ::exception::exception(estatus)
+         ::exception(estatus)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 
@@ -379,7 +379,8 @@ namespace file
       void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path)
       {
 
-         throw exception(estatus, ::file::dos_to_os_error(lDOSError), path);
+         throw exception(estatus,
+                         0, ::file::dos_to_os_error(lDOSError), path);
 
       }
 

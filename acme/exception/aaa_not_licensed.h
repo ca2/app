@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME not_licensed :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

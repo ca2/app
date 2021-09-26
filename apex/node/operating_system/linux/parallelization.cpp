@@ -11,11 +11,8 @@
 #endif
 
 
-namespace process
-{
 
-
-   CLASS_DECL_APEX bool set_priority(::enum_priority epriority)
+   CLASS_DECL_APEX bool set_process_priority(::enum_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;
@@ -31,14 +28,6 @@ namespace process
       return true;
 
    }
-
-
-
-
-} // namespace apex
-
-
-
 
 
 
@@ -152,11 +141,11 @@ bool __os_term_thread()
 //
 //      }
 //
-//      pevent->SetEvent();
+//      psubject->SetEvent();
 //
 //   });
 //
-//   pevent->wait(durationTimeout);
+//   psubject->wait(durationTimeout);
 //
 //}
 

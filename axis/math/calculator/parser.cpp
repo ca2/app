@@ -269,7 +269,7 @@ namespace calculator
          else
          {
 
-            throw ::exception::exception(error_failed, "unknown function");
+            throw ::exception(error_failed, "unknown function");
 
          }
 

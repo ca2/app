@@ -207,7 +207,7 @@ namespace app_shader
       if (::succeeded(estatus))
       {
 
-         estatus = m_pprogram->create_program(strProjection, strFragment);
+         estatus = m_pprogram->create_program(this, strProjection, strFragment);
 
       }
 
@@ -381,21 +381,21 @@ namespace app_shader
 
             auto pstyle = m_pinteraction->get_style(pgraphics);
 
-//            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+//            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
 
-            auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
+            auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
 
             colorBackground.alpha = 128;
 
-            ::draw2d::brush_pointer brush;
+            ::draw2d::brush_pointer pbrush;
 
-            brush.create();
+            pbrush.create(this);
 
-            brush->create_solid(colorBackground);
+            pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create();
+            pfont.create(this);
 
             auto pnode = m_psystem->m_paurasystem->node();
 
@@ -403,7 +403,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-            m_pimageLabel.defer_create();
+            m_pimageLabel.defer_create(this);
 
             if(m_pimageLabel->g() == nullptr)
             {
@@ -432,7 +432,7 @@ namespace app_shader
 
 
             pgraphicsLabel->set_alpha_mode(::draw2d::e_alpha_mode_set);
-            pgraphicsLabel->set(brush);
+            pgraphicsLabel->set(pbrush);
             pgraphicsLabel->fill_rectangle(rect);
             pgraphicsLabel->set_text_color(0);
 
@@ -500,21 +500,21 @@ namespace app_shader
 
             auto pstyle = m_pinteraction->get_style(pgraphics);
 
-//            auto color = m_pinteraction->get_color(pstyle, ::user::e_element_text);
+//            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
 
-            auto colorBackground = m_pinteraction->get_color(pstyle, ::user::e_element_background);
+            auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
 
             colorBackground.alpha = 128;
 
-            ::draw2d::brush_pointer brush;
+            ::draw2d::brush_pointer pbrush;
 
-            brush.create();
+            pbrush.create(this);
 
-            brush->create_solid(colorBackground);
+            pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            pfont.create();
+            pfont.create(this);
 
             auto pnode = m_psystem->m_paurasystem->node();
 
@@ -522,8 +522,7 @@ namespace app_shader
 
             pfont->create_point_font(strFontName, 12.0);
 
-
-            m_pimageError.defer_create();
+            m_pimageError.defer_create(this);
 
             if(m_pimageError->g() == nullptr)
             {
@@ -552,7 +551,7 @@ namespace app_shader
             rect.move_to(0, 0);
 
             pgraphicsError->set_alpha_mode(::draw2d::e_alpha_mode_set);
-            pgraphicsError->set(brush);
+            pgraphicsError->set(pbrush);
             pgraphicsError->fill_rectangle(rect);
             pgraphicsError->set_text_color(0);
 
@@ -592,11 +591,11 @@ namespace app_shader
 
       //string strFontFamily = get_font();
 
-      //::draw2d::pen_pointer pen(e_create);
+      //auto ppen = __create < ::draw2d::pen > ();
 
-      //::draw2d::brush_pointer brush(e_create);
+      //auto pbrush = __create < ::draw2d::brush >();
 
-      //::write_text::font_pointer font(e_create);
+      //auto pfont = __create < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{
@@ -661,7 +660,7 @@ namespace app_shader
       //if(bDrawText)
       //{
 
-      //   font->create_pixel_font(strFontFamily, 100.0, 800);
+      //   pfont->create_pixel_font(strFontFamily, 100.0, 800);
 
       //   pgraphics->selectFont(font);
 
@@ -675,13 +674,13 @@ namespace app_shader
       //      if (m_iDrawing == 1)
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rectangle.height() * 80.0 / size.get_maximum_dimension(), 800);
+      //         pfont->create_pixel_font(strFontFamily, rectangle.height() * 80.0 / size.get_maximum_dimension(), 800);
 
       //      }
       //      else
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rectangle.height() * 160.0 / size.get_maximum_dimension(), 800);
+      //         pfont->create_pixel_font(strFontFamily, rectangle.height() * 160.0 / size.get_maximum_dimension(), 800);
 
       //      }
 
@@ -698,20 +697,20 @@ namespace app_shader
       //if (__bool(echeckSimple))
       //{
 
-      //   pen->create_null();
+      //   ppen->create_null();
 
       //}
       //else
       //{
 
-      //   pen->create_solid(4.0, argb(255, 50, 180, 255));
+      //   ppen->create_solid(4.0, argb(255, 50, 180, 255));
 
       //}
 
       //if (m_iDrawing == 3 && ::is_ok(m_pimage1))
       //{
 
-      //   brush->CreatePatternBrush(m_pimage1);
+      //   pbrush->CreatePatternBrush(m_pimage1);
 
       //}
       //else
@@ -720,13 +719,13 @@ namespace app_shader
       //   if (__bool(papplication->m_echeckSimple))
       //   {
 
-      //      brush->create_solid(argb(255, 255, 255, 200));
+      //      pbrush->create_solid(argb(255, 255, 255, 200));
 
       //   }
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), argb(255, 255, 255, 200), argb(255, 255, 125, 100));
+      //      pbrush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), argb(255, 255, 255, 200), argb(255, 255, 125, 100));
 
       //   }
 
@@ -738,20 +737,20 @@ namespace app_shader
 
       //pgraphics->ellipse(rectangle);
 
-      //::rectangle_i32 rectText;
+      //::rectangle_i32 rectangleText;
 
-      //rectText.set_size(size);
+      //rectangleText.set_size(size);
 
-      //rectText.inflate(10, 10);
+      //rectangleText.inflate(10, 10);
 
-      //rectText.Align(e_align_center, rectangle);
+      //rectangleText.Align(e_align_center, rectangle);
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if (m_iDrawing == 1)
       //{
 
-      //   brush->create_solid(m_hlsText);
+      //   pbrush->create_solid(m_hlsText);
 
       //}
       //else if (m_iDrawing == 3)
@@ -760,7 +759,7 @@ namespace app_shader
       //   if (__bool(papplication->m_echeckSimple))
       //   {
 
-      //      brush->create_solid(m_hlsText);
+      //      pbrush->create_solid(m_hlsText);
 
       //   }
       //   else
@@ -769,13 +768,13 @@ namespace app_shader
       //      if (::is_ok(m_pimage2))
       //      {
 
-      //         brush->CreatePatternBrush(m_pimage2);
+      //         pbrush->CreatePatternBrush(m_pimage2);
 
       //      }
       //      else
       //      {
 
-      //         brush->create_solid(m_hlsText);
+      //         pbrush->create_solid(m_hlsText);
 
       //      }
 
@@ -788,13 +787,13 @@ namespace app_shader
       //   if (__bool(papplication->m_echeckSimple))
       //   {
 
-      //      brush->create_solid(m_hlsText);
+      //      pbrush->create_solid(m_hlsText);
 
       //   }
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rectText.top_left(), rectText.bottom_right(), m_hlsText, argb(255, 255, 255, 200));
+      //      pbrush->CreateLinearGradientBrush(rectangleText.top_left(), rectangleText.bottom_right(), m_hlsText, argb(255, 255, 255, 200));
 
       //   }
 
@@ -805,7 +804,7 @@ namespace app_shader
       //if(bDrawText)
       //{
       //
-      //   pgraphics->draw_text(strTitle, rectText, e_align_center);
+      //   pgraphics->draw_text(strTitle, rectangleText, e_align_center);
       //   
       //}
 

@@ -683,7 +683,7 @@ void task::term_task()
 bool task::do_events()
 {
    
-   __throw(error_interface_only, "tasks don't have message queue, threads do");
+   throw interface_only_exception("tasks don't have message queue, threads do");
 
    return true;
 
@@ -693,7 +693,7 @@ bool task::do_events()
 bool task::defer_pump_message()
 {
 
-   __throw(error_interface_only, "tasks don't have message queue, threads do");
+   throw interface_only_exception("tasks don't have message queue, threads do");
 
    return false;
 
@@ -703,7 +703,7 @@ bool task::defer_pump_message()
 bool task::has_message() const
 {
 
-   __throw(error_interface_only, "tasks don't have message queue, threads do");
+   throw interface_only_exception("tasks don't have message queue, threads do");
 
    return false;
 
@@ -777,7 +777,7 @@ bool task::has_message() const
 
 #ifdef WINDOWS_DESKTOP
 
-      ::exception::engine().reset();
+      ::exception_engine().reset();
 
       OS_DWORD                dwDisplacement;
 
@@ -800,7 +800,7 @@ bool task::has_message() const
       u32 uiLine = 0;
 
       {
-         critical_section_lock csl(&::exception::engine().m_criticalsection);
+         critical_section_lock csl(&::exception_engine().m_criticalsection);
 
          engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
 
@@ -851,40 +851,44 @@ bool task::has_message() const
 
    set(e_matter_task_started);
 
-   auto pobjectParentTask = ::get_task();
-
-   if (::is_null(pobjectParentTask))
+   if (::is_null(m_pobjectParentTask))
    {
 
-      pobjectParentTask = m_pcontext;
+      auto pobjectParentTask = ::get_task();
 
-   }
-
-   if (::is_null(pobjectParentTask))
-   {
-
-      pobjectParentTask = m_psystem;
-
-   }
-
-   if (pobjectParentTask)
-   {
-
-      if (pobjectParentTask != this)
+      if (::is_null(pobjectParentTask))
       {
 
-         pobjectParentTask->add_task(this);
+         pobjectParentTask = m_pcontext;
+
+      }
+
+      if (::is_null(pobjectParentTask))
+      {
+
+         pobjectParentTask = m_psystem;
+
+      }
+
+      if (pobjectParentTask)
+      {
+
+         if (pobjectParentTask != this)
+         {
+
+            pobjectParentTask->add_task(this);
+
+         }
+
+      }
+      else
+      {
+
+         __throw(error_invalid_usage);
 
       }
 
    }
-   else
-   {
-
-      __throw(error_invalid_usage);
-
-   }
-
 
 #ifdef WINDOWS
 

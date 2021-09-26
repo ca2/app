@@ -37,16 +37,16 @@ namespace axis
 
       //::draw2d::graphics *                   m_pgraphics;
 
-      //::draw2d::pen_pointer                  m_penFocusRect0;
-      //::draw2d::pen_pointer                  m_penFocusRect1;
-      //::draw2d::pen_pointer                  m_penFocusRect2;
-      //::draw2d::pen_pointer                  m_penFocusRect3;
-      //::draw2d::pen_pointer                  m_penFocusRect4;
-      //::draw2d::pen_pointer                  m_penFocusRect5;
-      //::draw2d::pen_pointer                  m_penFocusRect6;
-      //::draw2d::pen_pointer                  m_penFocusRect7;
-      //::draw2d::pen_pointer                  m_penFocusRect8;
-      //::draw2d::pen_pointer                  m_penFocusRect9;
+      //::draw2d::pen_pointer                  m_ppenFocusRect0;
+      //::draw2d::pen_pointer                  m_ppenFocusRect1;
+      //::draw2d::pen_pointer                  m_ppenFocusRect2;
+      //::draw2d::pen_pointer                  m_ppenFocusRect3;
+      //::draw2d::pen_pointer                  m_ppenFocusRect4;
+      //::draw2d::pen_pointer                  m_ppenFocusRect5;
+      //::draw2d::pen_pointer                  m_ppenFocusRect6;
+      //::draw2d::pen_pointer                  m_ppenFocusRect7;
+      //::draw2d::pen_pointer                  m_ppenFocusRect8;
+      //::draw2d::pen_pointer                  m_ppenFocusRect9;
 
       style();
       style(::object * pobject);
@@ -78,7 +78,7 @@ namespace axis
 
       //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
 
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText) override;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText) override;
 
 
       //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
@@ -114,7 +114,7 @@ namespace axis
       //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
-      //virtual ::rectangle_i32             _001GetRect(::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
+      //virtual ::rectangle_i32             _001GetRect(::user::e_rect erect, ::rectangle_i32 rectangleDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
 
@@ -125,7 +125,7 @@ namespace axis
       //virtual bool _001HasTranslucency(enum_element eelement = e_element_none);
 
 
-      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
       //virtual bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;

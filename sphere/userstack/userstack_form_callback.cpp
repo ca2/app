@@ -26,7 +26,7 @@ namespace userstack
    }
 
 
-   void form_callback::on_control_event(::user::control_event * pevent)
+   void form_callback::handle(::subject * psubject, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(pevent);

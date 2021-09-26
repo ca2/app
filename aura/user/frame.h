@@ -140,7 +140,7 @@ namespace user
       virtual void on_user_style_change();
 
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
       ::e_status display_previous_restore() override;

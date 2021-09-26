@@ -394,6 +394,12 @@ namespace desktop_environment_xfce
 
 #include "acme/platform/object_reference_count_debug.h"
 
+template < class root_derived >
+inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
+template < class root_derived >
+inline i64 release(root_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+
 
 namespace opengl
 {
@@ -428,6 +434,9 @@ namespace message
 //   e_null
 //
 //};
+
+
+template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if (!p) p = new TYPE; return p; }
 
 
 struct INT_STRING
@@ -470,6 +479,8 @@ template<class T>
 
 class matter;
 
+
+
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
 
@@ -506,6 +517,8 @@ concept const_c_string =
 std::is_convertible < T, const ::ansichar * >::value ||
 std::is_convertible < T, const ::wd16char * >::value ||
 std::is_convertible < T, const ::wd32char * >::value;
+
+
 
 
 template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
@@ -606,6 +619,9 @@ inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : 
 template < typename TYPE, std::size_t SIZE >
 inline array_reference < TYPE, SIZE > & __zero(TYPE(&)[SIZE]);
 
+
+
+
 template < a_pointer POINTER>
 inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p);
 
@@ -614,16 +630,17 @@ inline NON_POINTER & __zero(NON_POINTER & t);
 
 
 
-
-
 template < typename TYPE, std::size_t Size >
 inline bool __is_zero(TYPE(&array)[Size]);
+
+
 
 template < a_pointer POINTER >
 inline bool __is_zero(const POINTER p);
 
 template < non_pointer NON_POINTER >
 inline bool __is_zero(const NON_POINTER & t);
+
 
 
 #define ___PREFIX_UNDERSCORE(prefix,name) prefix##_##name
@@ -848,10 +865,10 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
 
 
-namespace subject
-{
+//namespace subject
+//{
 
-
+   class signal;
    class backing;
    class manager;
    class subject;
@@ -862,7 +879,7 @@ namespace subject
 
 
 
-} // namespace subject
+//} // namespace subject
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);
@@ -1727,17 +1744,18 @@ class task;
 
 #include "_forward_declaration.h"
 
-
-namespace subject
-{
-
-
-   using manager_pointer = __pointer(manager);
-   using subject_pointer = __pointer(subject);
-   using context_pointer = __pointer(context);
+//
+//namespace subject
+//{
 
 
-} // namespace subject
+using handler_pointer = __pointer(handler);
+using manager_pointer = __pointer(manager);
+using subject_pointer = __pointer(subject);
+using context_pointer = __pointer(context);
+
+
+//} // namespace subject
 
 
 template<typename THREAD_POINTER>
@@ -1816,13 +1834,13 @@ inline auto &__typed_defer_new(__pointer(T) &p)
    return *p;
 }
 
-
-template<class T>
-inline auto &__typed_defer_create(__pointer(T) &p)
-{
-   if (!p) { __construct(p); }
-   return *p;
-}
+//
+//template<class T>
+//inline auto &__typed_defer_create(__pointer(T) &p)
+//{
+//   if (!p) { __construct(p); }
+//   return *p;
+//}
 
 
 
@@ -1895,6 +1913,7 @@ template<typename TYPE>
 inline TYPE __random();
 
 
+
 template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT = typename ::largest_type < FLOATING1, FLOATING2 >::type >
 inline FLOATING_RESULT __random(FLOATING1 i1, FLOATING2 i2);
 
@@ -1935,6 +1954,9 @@ inline bool is_null(const void * p, size_t s)
 }
 
 
+
+
+
 template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
@@ -1955,6 +1977,7 @@ inline bool is_set(POINTER p)
    return !is_null(p);
 
 }
+
 
 
 template<typename TYPE>
@@ -2315,7 +2338,7 @@ namespace audio
 
 
 
-#include "acme/primitive/logic/bit.h"
+#include "acme/primitive/logic/boolean.h"
 
 
 #include "acme/platform/auto.h"
@@ -2848,6 +2871,10 @@ inline bool is_set(const TYPE & t)
 //#include "acme/user/primitive.h"
 
 
+
+
+
+
 template < typename TYPE >
 inline ::i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
@@ -2875,7 +2902,6 @@ inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 
 #include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/primitive/pointer2.h"
 
 
 template < typename FROM, typename TO_POINTER >
@@ -3021,8 +3047,8 @@ class parents;
 class children;
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
    class exception;
@@ -3030,7 +3056,7 @@ namespace exception
    //using exception_pointer = __pointer(exception);
 
 
-} // namespace exception
+//} // namespace exception
 
 
 class event_map;
@@ -3063,6 +3089,9 @@ class memory_base;
 #include "acme/primitive/primitive/block.h"
 
 
+#include "acme/memory/chunk.h"
+
+
 #include "acme/memory/memory.h"
 
 
@@ -3072,6 +3101,11 @@ class memory_base;
 #include "acme/primitive/primitive/enumeration.h"
 
 
+//#include "acme/constant/user.h"
+
+
+
+
 #include "acme/exception/status.h"
 
 
@@ -3079,18 +3113,6 @@ CLASS_DECL_ACME ::e_status _003CountStatus(::count countSuccess, ::count countFa
 
 #include "acme/constant/filesystem.h"
 
-#define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
-inline ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
-inline ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
-template < primitive_integral INTEGRAL > \
-inline ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
-using ENUMERATION = enumeration < ENUM >
 
 
 namespace file
@@ -3128,7 +3150,11 @@ DECLARE_ENUMERATION(e_message_box, enum_message_box);
 namespace user
 {
 
+   
    class interaction;
+
+   class form;
+
 
 } // namespace user
 
@@ -3204,6 +3230,9 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/_global.h"
 
 
+
+
+
 class function;
 
 
@@ -3226,6 +3255,7 @@ namespace factory
 
 
 #include "acme/primitive/primitive/referenceable.h"
+#include "acme/subject/handler.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
 
@@ -3251,7 +3281,7 @@ class manual_reset_event;
 
 
 #include "acme/platform/status.h"
-#include "acme/primitive/primitive/enumeration.h"
+//#include "acme/primitive/primitive/enumeration.h"
 
 
 
@@ -3416,6 +3446,8 @@ using id_map = ::map < id, TYPE, typename argument_of < ::id >::type, ARG_TYPE, 
 
 using routine_array = ::array < routine >;
 using routine_list = ::list < routine >;
+using routine_map = ::id_map < ::routine_array >;
+
 
 //using process_array = ::array < process >;
 
@@ -3430,7 +3462,7 @@ void add_routine(routine_array& array, PRED pred);
 //} // namespace subject
 
 
-using exception_array = ::array < ::exception::exception >;
+using exception_array = ::array < ::exception >;
 
 
 #include "acme/primitive/primitive/linked_property.h"
@@ -3445,6 +3477,11 @@ using exception_array = ::array < ::exception::exception >;
 
 
 #include "acme/exception/_.h"
+
+
+
+#include "acme/primitive/primitive/pointer2.h"
+
 
 
 #include "acme/exception/extended_transport.h"
@@ -3490,6 +3527,11 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 #include "acme/primitive/primitive/object.h"
 
 
+
+
+
+
+
 namespace draw2d
 {
 
@@ -3507,8 +3549,8 @@ public:                                                                         
    ::e_status on_initialize_object() override { return ::success; }         \
    void assert_valid() const override {}                                    \
    void dump(dump_context&) const override {}                               \
-   void subject_handler(::subject::subject*) override {}    \
-   void on_subject(::subject::subject*, ::subject::context*) override {} \
+   void handle(::subject*,::context*) override {}    \
+   //void on_subject(::subject::subject*, ::context*) override {} \
 
 
 #define OPTIONAL_INTERACTION_BODY                                                   \
@@ -4547,6 +4589,35 @@ class wcsdup_array;
 #include "acme/platform/log.h"
 
 
+
+namespace user
+{
+
+
+   class primitive;
+   class element;
+
+
+   DECLARE_ENUMERATION(e_flag, enum_flag);
+
+
+} // namespace user
+
+
+DECLARE_ENUMERATION(e_element, enum_element);
+
+
+#include "acme/subject/item.h"
+#include "acme/subject/subject.h"
+
+
+#include "acme/user/check.h"
+#include "acme/user/text.h"
+
+
+#include "acme/user/element.h"
+
+
 #include "acme/platform/system.h"
 
 
@@ -4652,7 +4723,7 @@ class wcsdup_array;
 //#include "acme/graphics/draw2d/_impl.h"
 
 
-#include "acme/exception/_.inl"
+//#include "acme/exception/_.inl"
 
 
 //#include "acme/graphics/draw2d/_image_impl.h"

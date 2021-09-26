@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_ACME file_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 

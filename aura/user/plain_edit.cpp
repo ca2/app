@@ -112,11 +112,11 @@ namespace user
    //{
    //public:
 
-   //   ::draw2d::pen_pointer              m_penCaret;
-   //   ::draw2d::brush_pointer            m_brushText;
-   //   ::draw2d::brush_pointer            m_brushTextCr;
-   //   ::draw2d::brush_pointer            m_brushTextSel;
-   //   ::draw2d::brush_pointer            m_brushTextEmpty;
+   //   ::draw2d::pen_pointer              m_ppenCaret;
+   //   ::draw2d::brush_pointer            m_pbrushText;
+   //   ::draw2d::brush_pointer            m_pbrushTextCr;
+   //   ::draw2d::brush_pointer            m_pbrushTextSel;
+   //   ::draw2d::brush_pointer            m_pbrushTextEmpty;
 
    //   plain_edit_internal();
    //   ~plain_edit_internal();
@@ -262,14 +262,14 @@ namespace user
 
 
 
-      connect_command_probe("edit_cut", &plain_edit::_001OnUpdateEditCut);
-      connect_command("edit_cut", &plain_edit::_001OnEditCut);
-      connect_command_probe("edit_copy", &plain_edit::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &plain_edit::_001OnEditCopy);
-      connect_command_probe("edit_paste", &plain_edit::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &plain_edit::_001OnEditPaste);
-      connect_command_probe("edit_delete", &plain_edit::_001OnUpdateEditDelete);
-      connect_command("edit_delete", &plain_edit::_001OnEditDelete);
+      add_command_prober("edit_cut", this, &plain_edit::_001OnUpdateEditCut);
+      add_command_handler("edit_cut", this, &plain_edit::_001OnEditCut);
+      add_command_prober("edit_copy", this, &plain_edit::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", this, &plain_edit::_001OnEditCopy);
+      add_command_prober("edit_paste", this, &plain_edit::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", this, &plain_edit::_001OnEditPaste);
+      add_command_prober("edit_delete", (interaction *) this, &interaction::_001OnUpdateEditDelete);
+      add_command_handler("edit_delete", (interaction *) this, &interaction::_001OnEditDelete);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -293,7 +293,7 @@ namespace user
    }
 
 
-   void plain_edit::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void plain_edit::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(psubject->id() == id_current_text_changed)
@@ -314,7 +314,7 @@ namespace user
       else
       {
 
-         ::user::interaction::on_subject(psubject, pcontext);
+         ::user::interaction::handle(psubject, pcontext);
 
       }
 
@@ -353,8 +353,6 @@ namespace user
 
    }
 
-
-   
 
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
@@ -420,9 +418,9 @@ namespace user
 
       
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      rectangleClient.deflate(rectPadding);
+      rectangleClient.deflate(rectanglePadding);
 
       double left = rectangleClient.left;
 
@@ -432,13 +430,13 @@ namespace user
       strsize iSelEndOriginal;
       strsize lim = 0;
 
-      ::draw2d::pen_pointer & penCaret = m_pcontrolstyle->m_penCaret;
+      ::draw2d::pen_pointer & ppenCaret = m_pcontrolstyle->m_ppenCaret;
 
-      ::draw2d::brush_pointer & brushText = m_pcontrolstyle->m_brushText;
+      ::draw2d::brush_pointer & pbrushText = m_pcontrolstyle->m_pbrushText;
 
-      ::draw2d::brush_pointer & brushTextCr = m_pcontrolstyle->m_brushTextCr;
+      ::draw2d::brush_pointer & pbrushTextCr = m_pcontrolstyle->m_pbrushTextCr;
 
-      ::draw2d::brush_pointer & brushTextSel = m_pcontrolstyle->m_brushTextSel;
+      ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
       auto pointOffset = get_viewport_offset();
 
@@ -478,7 +476,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -507,7 +505,7 @@ namespace user
          if (m_strEmtpyText.has_char())
          {
 
-            pgraphics->set(m_pcontrolstyle->m_brushTextEmpty);
+            pgraphics->set(m_pcontrolstyle->m_pbrushTextEmpty);
 
             pgraphics->text_out(left, y, m_strEmtpyText);
 
@@ -695,7 +693,7 @@ namespace user
                (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                crBkSel);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -709,7 +707,7 @@ namespace user
                   (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                   colorComposeBk);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -717,15 +715,15 @@ namespace user
             if(bOverride)
             {
 
-               brushText->create_solid(crOverride);
+               pbrushText->create_solid(crOverride);
 
-               pgraphics->set(brushText);
+               pgraphics->set(pbrushText);
 
             }
             else
             {
 
-               pgraphics->set(brushTextCr);
+               pgraphics->set(pbrushTextCr);
 
             }
 
@@ -752,7 +750,7 @@ namespace user
             else
             {
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -771,11 +769,11 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               ::draw2d::pen_pointer pen(e_create);
+               auto ppen = __create < ::draw2d::pen > ();
 
-               pen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
 
-               pgraphics->set(pen);
+               pgraphics->set(ppen);
 
                pgraphics->draw_error_line((int)xA, (int) m_dLineHeight, (int)xB, 1);
 
@@ -796,7 +794,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x1, y);
 
@@ -818,7 +816,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x2, y);
 
@@ -933,7 +931,7 @@ namespace user
 
       //}
 
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -1061,30 +1059,30 @@ namespace user
 
             screen_to_client(pointCursor);
 
-            ::rectangle_i32 rectActiveClient;
+            ::rectangle_i32 rectangleActiveClient;
 
-            GetActiveClientRect(rectActiveClient);
+            GetActiveClientRect(rectangleActiveClient);
 
-            if (pointCursor.x < rectActiveClient.left)
+            if (pointCursor.x < rectangleActiveClient.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x > rectActiveClient.right)
+            else if (pointCursor.x > rectangleActiveClient.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y < rectActiveClient.top)
+            if (pointCursor.y < rectangleActiveClient.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y > rectActiveClient.bottom)
+            else if (pointCursor.y > rectangleActiveClient.bottom)
             {
 
                scroll_down_line();
@@ -1143,19 +1141,19 @@ namespace user
 
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_key_down;
+         subject.m_id = ::e_subject_key_down;
 
-         ev.m_actioncontext.m_pmessage = pmessage;
+         subject.m_actioncontext.m_pmessage = pmessage;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if (ev.m_bRet)
+         if (subject.m_bRet)
          {
 
             return;
@@ -1185,17 +1183,17 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_enter_key;
+            subject.m_id = ::e_subject_enter_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                on_action("submit");
@@ -1228,17 +1226,17 @@ namespace user
 
             pkey->previous();
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_tab_key;
+            subject.m_id = ::e_subject_tab_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                keyboard_set_focus_next();
@@ -1263,17 +1261,17 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_escape;
+         subject.m_id = ::e_subject_escape;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("escape");
@@ -1927,11 +1925,11 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectWindow);
+               get_window_rect(rectangleWindow);
 
-               if (pmouse->m_point.x < rectWindow.left - 30)
+               if (pmouse->m_point.x < rectangleWindow.left - 30)
                {
 
                   output_debug_string("test06");
@@ -2115,7 +2113,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -2558,7 +2556,7 @@ namespace user
 
       ::index iLine;
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -3080,7 +3078,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -3221,9 +3219,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics.defer_create();
+      __defer_construct(pgraphics);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::rectangle_i32 rectangleClient;
 
@@ -4975,7 +4973,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //output_message_box_error("VK_RETURN reached plain_edit");
+                     //output_error_message("VK_RETURN reached plain_edit");
                   }
 
                   string str;
@@ -6119,10 +6117,10 @@ finished_update:
    }
 
 
-   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & context)
+   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext)
    {
 
-      if(context.is_user_source())
+      if(actioncontext.is_user_source())
       {
 
          if(::is_set(m_propertyText))
@@ -6132,9 +6130,7 @@ finished_update:
 
             auto papplication = get_application();
 
-            auto psubject = papplication->subject(m_propertyText->m_id);
-
-            papplication->handle_subject(psubject);
+            papplication->on_property_changed(m_propertyText.m_pproperty, actioncontext);
 
          }
 
@@ -6152,20 +6148,16 @@ finished_update:
 
 #endif
       
-      if(has_control_event_handler())
+      if(has_handler())
       {
 
-         auto pevent = __new(::user::control_event);
+         auto psubject = __new(::subject(::e_subject_after_change_text));
 
-         pevent->m_puserinteraction = this;
+         psubject->m_puserelement = this;
 
-         pevent->m_id = m_id;
+         psubject->m_actioncontext = actioncontext;
 
-         pevent->m_eevent = ::user::e_event_after_change_text;
-
-         pevent->m_actioncontext = context;
-
-         post_object(e_message_control_event, 0, pevent);
+         post_object(e_message_subject, 0, psubject);
 
       }
 
@@ -6226,17 +6218,17 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_enter_key;
+         subject.m_id = ::e_subject_enter_key;
 
-         ev.m_actioncontext = ::e_source_paste;
+         subject.m_actioncontext = ::e_source_paste;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("submit");
@@ -6933,42 +6925,43 @@ finished_update:
    }
 
 
+
    void plain_edit_style::on_update(::draw2d::graphics_pointer& pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
    {
 
-      m_penCaret.release();
+      m_ppenCaret.release();
 
-      m_brushText.release();
+      m_pbrushText.release();
 
-      m_brushTextCr.release();
+      m_pbrushTextCr.release();
 
-      m_brushTextSel.release();
+      m_pbrushTextSel.release();
 
-      m_brushTextEmpty.release();
+      m_pbrushTextEmpty.release();
 
-      __construct(m_penCaret);
+      puserinteraction->__construct(m_ppenCaret);
 
-      __construct(m_brushText);
+      puserinteraction->__construct(m_pbrushText);
 
-      __construct(m_brushTextCr);
+      puserinteraction->__construct(m_pbrushTextCr);
 
-      __construct(m_brushTextSel);
+      puserinteraction->__construct(m_pbrushTextSel);
 
-      __construct(m_brushTextEmpty);
+      puserinteraction->__construct(m_pbrushTextEmpty);
 
       auto color = puserinteraction->get_color(pstyle, e_element_text);
 
-      m_penCaret->create_solid(1.0, color);
+      m_ppenCaret->create_solid(1.0, color);
 
-      m_brushTextCr->create_solid(color);
+      m_pbrushTextCr->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
 
-      m_brushTextSel->create_solid(color);
+      m_pbrushTextSel->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
 
-      m_brushTextEmpty->create_solid(color);
+      m_pbrushTextEmpty->create_solid(color);
 
    }
 

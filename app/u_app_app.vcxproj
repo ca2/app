@@ -315,7 +315,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <PreprocessorDefinitions>_APP_APP_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
@@ -325,6 +325,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -416,6 +417,8 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -439,6 +442,8 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -545,7 +550,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <AdditionalIncludeDirectories>include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-universal_windows/$(PlatformName)/$(Configuration)/include;$(__archive)third-universal_windows/include;$(__archive)third-universal_windows/third/include;$(__archive)third-universal_windows/third/include/include;$(SolutionDir)../../../archive/platform-universal_windows/_include;$(SolutionDir)../../../archive/platform-universal_windows;$(SolutionDir)../../../archive/platform-windows_common;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ExceptionHandling>Async</ExceptionHandling>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -555,6 +560,7 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <AdditionalOptions>/bigobj -Zm512 /await</AdditionalOptions>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>

@@ -132,7 +132,7 @@ namespace apex
    ::mutex * g_pmutexCred;
 
 
-   class ::exception::engine* g_pexceptionengine;
+   class ::exception_engine* g_pexceptionengine;
 
    ::mutex * g_pmutexMessageDispatch;
 
@@ -557,7 +557,7 @@ namespace apex
 
 #endif
 
-      __construct_new(::channel::s_pmutexChannel);
+      ::channel::s_pmutexChannel = __new(mutex);
 
       //g_papexstrpool = new apex_str_pool();
 

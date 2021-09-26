@@ -25,7 +25,7 @@ namespace user
       m_puserinteraction = nullptr;
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
-      m_bUserPrimitiveOk = true;
+      m_bUserElementOk = true;
 
    }
 
@@ -39,7 +39,7 @@ namespace user
    bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return true;
 
@@ -49,7 +49,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -60,7 +60,7 @@ namespace user
 
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return false;
 
@@ -70,7 +70,7 @@ namespace user
    //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -80,7 +80,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -467,7 +467,7 @@ namespace user
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -477,7 +477,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->RedrawWindow(rectUpdate, prgnUpdate, flags);
+      return m_puserinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
    }
 
@@ -1266,14 +1266,14 @@ namespace user
    bool primitive_impl::start_destroying_window()
    {
 
-      if (!m_bUserPrimitiveOk)
+      if (!m_bUserElementOk)
       {
 
          return true;
 
       }
 
-      m_bUserPrimitiveOk = false;
+      m_bUserElementOk = false;
 
       if (m_puserinteraction == nullptr && !m_bDestroyImplOnly)
       {
@@ -1289,7 +1289,7 @@ namespace user
       try
       {
 
-         send_message(e_message_destroy);
+         puiThis->send_message(e_message_destroy);
 
       }
       catch (...)
@@ -1300,7 +1300,7 @@ namespace user
       try
       {
 
-         send_message(e_message_non_client_destroy);
+         puiThis->send_message(e_message_non_client_destroy);
 
       }
       catch (...)

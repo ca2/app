@@ -20,10 +20,10 @@ namespace user
    status_bar::status_bar()
    {
       // setup default border/margin depending on type of system
-      m_rectBorder.top = 2;
-      m_rectBorder.left = 0;
-      m_rectBorder.right = 0;
-      m_rectBorder.bottom = 0;
+      m_rectangleBorder.top = 2;
+      m_rectangleBorder.left = 0;
+      m_rectangleBorder.right = 0;
+      m_rectangleBorder.bottom = 0;
 
       // minimum height set with SB_SETMINHEIGHT is cached
       m_nMinHeight = 0;
@@ -109,7 +109,7 @@ namespace user
 
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-      ::draw2d::graphics_pointer spgraphicsScreen(e_create);
+      ::draw2d::graphics_pointer spgraphicsScreen(e_create, this);
 
       //__throw(todo);
       /*         HGDIOBJ hOldFont = nullptr;
@@ -458,7 +458,7 @@ namespace user
          else
             pSBP->strText.Empty();
       }
-      catch(::exception::exception *)
+      catch(::exception *)
       {
          // Note: DELETE_EXCEPTION(e) not required
          return false;
@@ -494,7 +494,7 @@ namespace user
 //      TEXTMETRICW tm;
       {
          // os independence
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
          /*      CClientDC spgraphics(nullptr);
                HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
                HGDIOBJ hOldFont = nullptr;

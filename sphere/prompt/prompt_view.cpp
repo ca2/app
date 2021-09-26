@@ -96,7 +96,7 @@ namespace prompt
 
 
 
-   void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
       
       if(psubject->id() == id_update_current_area)
@@ -119,9 +119,9 @@ namespace prompt
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      ::rectangle_i32 rectDesktop;
+      ::rectangle_i32 rectangleDesktop;
 
-      best_monitor(rectDesktop);
+      best_monitor(rectangleDesktop);
 
       ::rectangle_i32 rectangleClient = get_client_rect();
       
@@ -136,7 +136,7 @@ namespace prompt
       iH = minimum(iH, 120);
       
       double r = (double) iW / (double) iH;
-      double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
+      double rScreen = (double) rectangleDesktop.width() / (double) rectangleDesktop.height();
       if(r < rScreen)
       {
          iH = (i32) (iW / rScreen);

@@ -22,22 +22,22 @@ struct CLASS_DECL_APEX apex_main_struct
 
    bool                          m_bDataCentralRequired : 1;
 
-   ::logic::bit                  m_bLocalization;
-   ::logic::bit                  m_bConsole;
-   ::logic::bit                  m_bDraw2d;
-   ::logic::bit                  m_bWriteText;
-   ::logic::bit                  m_bUser;
-   ::logic::bit                  m_bUserEx;
-   ::logic::bit                  m_bImaging;
-   ::logic::bit                  m_bAudio;
-   ::logic::bit                  m_bInitializeDataCentral;
+   ::boolean                  m_bLocalization;
+   ::boolean                  m_bConsole;
+   ::boolean                  m_bDraw2d;
+   ::boolean                  m_bWriteText;
+   ::boolean                  m_bUser;
+   ::boolean                  m_bUserEx;
+   ::boolean                  m_bImaging;
+   ::boolean                  m_bAudio;
+   ::boolean                  m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::logic::bit                  m_bGdiplus;
+   ::boolean                  m_bGdiplus;
 #elif defined(LINUX)
-   ::logic::bit                  m_bGtkApp;
+   ::boolean                  m_bGtkApp;
 #endif
-   ::logic::bit                  m_bShowApplicationInformation;
-   ::logic::bit                  m_bPreferNoFrameWindow;
+   ::boolean                  m_bShowApplicationInformation;
+   ::boolean                  m_bPreferNoFrameWindow;
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;
 

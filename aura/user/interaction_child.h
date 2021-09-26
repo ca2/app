@@ -14,11 +14,11 @@ namespace user
       // interaction_impl rectangle_i32 relative to the parent
       // this rectangle_i32 comes before in importance compared to m_rectangleWindow
       // m_rectangleWindow should be sychronized and recalculated based
-      // on m_rectParentClient values of the interaction_impl and its ascendants.
+      // on m_rectangleParentClient values of the interaction_impl and its ascendants.
       size_i32                                m_size;
       bool                                m_bCreate;
-      __pointer(::user::interaction)      m_puiMessage;
-      __pointer(primitive)                m_puiOwner;
+      __pointer(::user::interaction)      m_puserinteractionMessage;
+      __pointer(primitive)                m_puserprimitiveOwner;
       ::mutex                             m_mutexLongPtr;
       //iptr_to_iptr                  m_longptr;
       uptr                                m_uStyle;
@@ -40,11 +40,13 @@ namespace user
       //enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
-      virtual bool start_window_visual() override;
+      bool start_window_visual() override;
 
       //virtual bool is_active() const override;
 
-      virtual bool start_destroying_window() override;
+      bool start_destroying_window() override;
+
+      void destroy_window() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -105,7 +107,7 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       virtual ::user::interaction * set_owner(::user::primitive * pinteraction) override;
       virtual ::user::interaction * get_owner() const override;

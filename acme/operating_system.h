@@ -1,7 +1,13 @@
 #pragma once
 
 
+#define boolean windows_boolean
+
+
 #include "operating_system/operating_system.h"
+
+
+#undef boolean
 
 
 #include "acme/node/operating_system/_.h"

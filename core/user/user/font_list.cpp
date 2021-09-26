@@ -85,7 +85,7 @@ namespace user
          if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
          {
 
-            m_pfontlist = ::__create_new < ::write_text::font_list >();
+            __defer_construct_new(m_pfontlist);
 
             m_pfontlist->initialize_font_list(this);
 
@@ -169,22 +169,20 @@ namespace user
 
          }
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_sel;
+            subject.m_id = ::e_subject_after_change_cur_sel;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_item = item;
+            subject.m_item = item;
 
-            ev.m_id = m_idView;
-
-            route_control_event(&ev);
+            route(&subject);
             
          }
 
@@ -222,20 +220,18 @@ namespace user
 
          }
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_id = m_idView;
-
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -246,10 +242,10 @@ namespace user
    }
 
 
-   void font_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void font_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      list_box::on_subject(psubject, pcontext);
+      list_box::handle(psubject, pcontext);
 
    }
 
@@ -323,13 +319,13 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         ::color::color colorBackground = get_color(pstyle, ::user::e_element_background);
+         ::color::color colorBackground = get_color(pstyle, ::e_element_background);
 
-         auto rectBackground(rectangleClient);
+         auto rectangleBackground(rectangleClient);
 
-         rectBackground += m_pointScroll;
+         rectangleBackground += m_pointScroll;
 
-         pgraphics->fill_rectangle(rectBackground, colorBackground);
+         pgraphics->fill_rectangle(rectangleBackground, colorBackground);
 
       }
 
@@ -370,16 +366,16 @@ namespace user
       if (m_pfontlist->get_box_rect(rectangle, iSel) && rectangle.area() > 0)
       {
 
-         ::rectangle_i32 rectImpact;
+         ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(rectImpact);
+         get_client_rect(rectangleImpact);
 
-         rectImpact.offset(m_pointScroll);
+         rectangleImpact.offset(m_pointScroll);
 
-         if (!rectImpact.contains(rectangle))
+         if (!rectangleImpact.contains(rectangle))
          {
 
-            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectImpact.height()) / 2;
+            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectangleImpact.height()) / 2;
 
          }
 
@@ -393,9 +389,9 @@ namespace user
    void font_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectFontList = get_client_rect();
+      auto rectangleFontList = get_client_rect();
 
-      if(rectFontList.is_empty())
+      if(rectangleFontList.is_empty())
       {
 
          return;
@@ -418,13 +414,13 @@ namespace user
       if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
       {
 
-         rectFontList.right -= iScrollBarWidth;
+         rectangleFontList.right -= iScrollBarWidth;
 
       }
 
-      rectFontList.bottom -= iScrollBarWidth;
+      rectangleFontList.bottom -= iScrollBarWidth;
 
-      m_pfontlist->set_client_rectangle(rectFontList);
+      m_pfontlist->set_client_rectangle(rectangleFontList);
 
       m_sizeTotal = m_pfontlist->m_size;
 
@@ -519,7 +515,7 @@ namespace user
    }
 
 
-   void font_list::on_hit_test(::user::item & item)
+   void font_list::on_hit_test(::item & item)
    {
 
       item = m_pfontlist->hit_test(item.m_pointHitTest);
@@ -587,9 +583,9 @@ namespace user
 
             auto psystem = m_psystem->m_paurasystem;
 
-            auto psubject = psystem->subject(id_font_enumeration);
+            psystem->signal(id_font_enumeration);
 
-            psystem->handle_subject(psubject);
+            //psystem->handle_subject(psubject);
 
             //fork([this]()
   //             {

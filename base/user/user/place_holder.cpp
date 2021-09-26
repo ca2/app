@@ -390,11 +390,11 @@ namespace user
    }
 
 
-   void place_holder::route_command_message(::message::command * pcommand)
+   void place_holder::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       // then pump through frame
-      ::user::interaction::route_command_message(pcommand);
+      ::user::interaction::route_command(pcommand);
 
       if(pcommand->m_bRet)
          return;
@@ -405,7 +405,7 @@ namespace user
       if (puiParent != nullptr)
       {
 
-         puiParent->route_command_message(pcommand);
+         puiParent->route_command(pcommand);
 
          if (pcommand->m_bRet)
          {

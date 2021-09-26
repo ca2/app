@@ -40,11 +40,11 @@ namespace user
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
-      ::draw2d::brush_pointer                   m_brushTextSelected;
-      ::draw2d::brush_pointer                   m_brushTextSelectedHighlight;
-      ::draw2d::brush_pointer                   m_brushTextHighlight;
-      ::draw2d::brush_pointer                   m_brushText;
-      ::write_text::font_pointer                m_fontTreeItem;
+      ::draw2d::brush_pointer                   m_pbrushTextSelected;
+      ::draw2d::brush_pointer                   m_pbrushTextSelectedHighlight;
+      ::draw2d::brush_pointer                   m_pbrushTextHighlight;
+      ::draw2d::brush_pointer                   m_pbrushText;
+      ::write_text::font_pointer                m_pfontTreeItem;
       status < ::color::color >          m_colorTreeBackground;
 
 
@@ -111,9 +111,9 @@ namespace user
 
       __pointer(::data::tree_item) _001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
 
-      virtual bool on_right_click(const ::user::item & item) override;
+      virtual bool on_right_click(const ::item & item) override;
 
       virtual void perform_click();
 
@@ -179,7 +179,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 

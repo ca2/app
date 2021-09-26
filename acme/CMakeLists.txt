@@ -34,24 +34,26 @@ list(APPEND library_source
    exception/extended_status.cpp
    exception/extended_status.h
    exception/extended_transport.h
+   exception/file.cpp
+   exception/file.h
    #exception/hresult.cpp
    #exception/index_out_of_bounds.cpp
    #exception/installing.cpp
-   #exception/interface_only.cpp
+   exception/interface_only.cpp
    #exception/invalid_argument.cpp
    #exception/invalid_character.cpp
    #exception/invalid_handle.cpp
    #exception/invalid_index.cpp
-   #exception/io.cpp
+   exception/io.cpp
    #exception/memory.cpp
-   #exception/not_implemented.cpp
+   exception/not_implemented.cpp
    #exception/not_installed.cpp
    #exception/not_licensed.cpp
    #exception/not_supported.cpp
    #exception/operation_canceled.cpp
    #exception/os.cpp
    exception/parsing.cpp
-   #exception/resource.cpp
+   exception/resource.cpp
    #exception/result.cpp
    #exception/simple.cpp
    #exception/standard_translator.cpp
@@ -456,11 +458,23 @@ list(APPEND library_source
    regular_expression/regular_expression.h
    regular_expression/topic.cpp
    regular_expression/topic.h
+   subject/handler.cpp
+   subject/handler.h
+   subject/item.cpp
+   subject/item.h
+   subject/subject.cpp
+   subject/subject.h
+   user/check.cpp
+   user/check.h
+   user/element.cpp
+   user/element.h
    user/ewindowflag.h
    user/os_colors.cpp
-   user/os_theme_colors.h
-   user/theme_colors.h
    user/os_theme_colors.cpp
+   user/os_theme_colors.h
+   user/text.cpp
+   user/text.h
+   user/theme_colors.h
    _.cpp
    __matter_ca2.cpp
    context_glx.cpp

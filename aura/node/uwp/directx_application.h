@@ -36,9 +36,9 @@ namespace universal_windows
 
       bool                                            m_bRightButton;
 
-      ::winrt::Windows::Foundation::Rect                       m_rectLastWindowRect;
-      ::winrt::Windows::Foundation::Rect                       m_rectInputContentRect;
-      ::winrt::Windows::Foundation::Rect                       m_rectInputSelectionRect;
+      ::winrt::Windows::Foundation::Rect                       m_rectangleLastWindowRect;
+      ::winrt::Windows::Foundation::Rect                       m_rectangleInputContentRect;
+      ::winrt::Windows::Foundation::Rect                       m_rectangleInputSelectionRect;
 
 
       directx_framework_view(::aura::system * psystem,String ^ strId);
@@ -122,10 +122,10 @@ namespace universal_windows
       void OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^ args);
 
 
-      //Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>                    m_blackBrush;
-      //Microsoft::WRL::ComPtr<IDWriteTextFormat>                       m_textFormat;
-      //Microsoft::WRL::ComPtr<IDWriteTypography>                       m_textTypography;
-      //Microsoft::WRL::ComPtr<IDWriteTextLayout>                       m_textLayout;
+      //comptr<ID2D1SolidColorBrush>                    m_blackBrush;
+      //comptr<IDWriteTextFormat>                       m_textFormat;
+      //comptr<IDWriteTypography>                       m_textTypography;
+      //comptr<IDWriteTextLayout>                       m_textLayout;
       //SampleOverlay^                                                  m_sampleOverlay;
 
    };

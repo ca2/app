@@ -37,7 +37,7 @@ namespace browser
    }
 
 
-   bool frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
+   bool frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pinteraction)
    {
 
       etranslucency = ::user::e_translucency_present;

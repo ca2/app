@@ -729,26 +729,27 @@ namespace data
    }
 
 
-   void tree::subject_handler(::subject::subject * psubject)
-   {
+   //void tree::signal(::signal * psignal)
+   //{
 
-   }
+   //}
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
       for (auto& ptree : m_treea)
       {
 
-         ptree->on_subject(psubject, pcontext);
+         ptree->handle(psubject, pcontext);
 
       }
 
    }
 
 
-   //void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+
+   //void tree::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //}

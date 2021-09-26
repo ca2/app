@@ -10,7 +10,7 @@
 void throw_ns_exception()
 {
    
-   __throw(ns_exception());
+   throw ns_exception();
    
 }
 

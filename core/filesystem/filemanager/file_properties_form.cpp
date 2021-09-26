@@ -177,13 +177,13 @@ namespace filemanager
       }
    }
 
-   void file_properties_form::on_control_event(::user::control_event * pevent)
+   void file_properties_form::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "submit")
+         if(psubject->user_interaction()->m_id == "submit")
          {
 
          }

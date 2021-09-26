@@ -162,10 +162,10 @@ namespace userex
    }
 
 
-   void impact_host::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact_host::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
@@ -444,7 +444,7 @@ namespace userex
       if (m_ptemplateTab != nullptr)
       {
 
-         ::rectangle_i32 rectTab;
+         ::rectangle_i32 rectangleTab;
 
          __pointer(::user::document) pdocument = m_ptemplateTab->get_document();
 
@@ -486,14 +486,14 @@ namespace userex
                   INFO("pframewindowTab VISIBLE VISIBLE VISIBLE");
                   INFO("");
                   INFO("");
-                  auto rectRequest = rectangle_i32_dimension(20, 20, 800, 300);
+                  auto rectangleRequest = rectangle_i32_dimension(20, 20, 800, 300);
 
-                  //if (!pframewindowTab->is_this_visible() || rectRequest != pframewindowTab->window_request_rect())
+                  //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())
                   {
 
                      pframewindowTab->order_top();
 
-                     pframewindowTab->place(rectRequest);
+                     pframewindowTab->place(rectangleRequest);
 
                      pframewindowTab->display();
 

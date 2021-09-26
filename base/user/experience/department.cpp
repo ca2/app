@@ -320,7 +320,7 @@ namespace experience
       if(!pframe)
       {
 
-         output_message_box_error("no department plugin able to produce u frame");
+         output_error_message("no department plugin able to produce u frame");
 
          return nullptr;
 

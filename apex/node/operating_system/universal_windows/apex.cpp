@@ -301,7 +301,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //string key_to_char(wparam wparam, lparam lparam)
 //{
-//   __throw(::exception::exception("todo"));
+//   __throw(::exception("todo"));
 //}
 
 
@@ -326,15 +326,6 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //}
 
 
-
-
-
-//void output_debug_string(const char * psz)
-//{
-//
-//   ::output_debug_string(wstring(psz));
-//
-//}
 
 
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
@@ -476,7 +467,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //         if(FAILED(hresult))
 //         {
 //
-//            os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+//            os_output_error_message("Failed to ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 //
 //            return false;
 //
@@ -486,7 +477,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //      else
 //      {
 //
-//         os_output_message_box_error("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
+//         os_output_error_message("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init","__node_pre_init failure",e_message_box_icon_exclamation);
 //
 //         return false;
 //

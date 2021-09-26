@@ -66,14 +66,7 @@ public:
 
       __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
-      p.create();
-
-      if (::is_set(pobject))
-      {
-
-         p->initialize(pobject);
-
-      }
+      pobject->__construct(p);
 
       return p;
 
@@ -88,25 +81,7 @@ public:
    }
 
    template < TEMPLATE_TYPE >
-   ::count set_size_create(::count nNewSize, ::count nGrowBy = -1, TEMPLATE_ARG)
-   {
-
-      ::index i = this->get_size();
-
-      comparable_array < ___pointer < T >, const T* > :: set_size(nNewSize);
-
-      ::count c = this->get_size();
-
-      for(; i < c; i++)
-      {
-
-         this->element_at(i).create();
-
-      }
-
-      return c;
-
-   }
+   ::count set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy = -1, TEMPLATE_ARG);
 
 
    template < class DERIVED >
@@ -594,6 +569,18 @@ public:
    {
 
       return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T >, const T* >::first(n);
+
+   }
+
+   
+   __pointer(T) pop_first(::index n = 0)
+   {
+
+      auto p = ::move(this->comparable_array < ___pointer < T >, const T* >::first(n));
+      
+      this->comparable_array < ___pointer < T >, const T* >::erase_at(n);
+      
+      return p;
 
    }
 

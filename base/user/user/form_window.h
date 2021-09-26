@@ -57,7 +57,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext)  override;
+      virtual void handle(::subject * psubject, ::context * pcontext)  override;
       virtual void _001Update(interaction * pinteraction) override;
       virtual void _001UpdateCheckBox(interaction * pinteraction) override;
       virtual void _001UpdateComboBox(interaction * pinteraction) override;
@@ -81,7 +81,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject = nullptr) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject = nullptr) override;
 
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
@@ -89,7 +89,7 @@ namespace user
 
       bool operator == (const interaction & interaction) const;
 
-      void on_control_event(::user::control_event * pevent) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
       void _001SetControlFactory();
 
 

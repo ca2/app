@@ -236,7 +236,7 @@ const char* matter::debug_note() const
 ::matter * matter::clone() const
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -251,10 +251,22 @@ const char* matter::debug_note() const
 }
 
 
-::e_status matter::handle(enum_message emessage, i64 iData, ::matter * pmatter)
+//::e_status matter::handle(enum_message emessage, i64 iData, ::matter * pmatter)
+//{
+//
+//   return ::success;
+//
+//}
+//
+void matter::handle(::subject * psubject, ::context * pcontext)
 {
 
-   return ::success;
+
+}
+
+void matter::handle(::message::message * pmessage)
+{
+
 
 }
 
@@ -734,19 +746,19 @@ const char * matter::topic_text() const
 //   if (!psubject->is_up_to_date())
 //   {
 //
-//      on_subject(psubject, pcontext);
+//      handle(psubject, pcontext);
 //
 //      if(!psubject->m_bitProcessed)
 //      {
 //
-//         on_subject(psubject, pcontext);
+//         handle(psubject, pcontext);
 //
 //      }
 //
 //      if(psubject->m_bitProcessed)
 //      {
 //
-//         on_subject(psubject, pcontext);
+//         handle(psubject, pcontext);
 //
 //      }
 //
@@ -941,18 +953,43 @@ stream& matter::read(stream& s)
 //}
 //
 
-void matter::subject_handler(::subject::subject * psubject)
-{
+
+//void matter::route(::signal * psignal)
+//{
+//
+//
+//}
+
+//
+//void matter::signal(::signal * psignal)
+//{
+//
+//
+//}
+
+//
+//void matter::signal(::signal * psignal)
+//{
+//
+//
+//}
 
 
-}
+//void matter::route(::subject * psubject, ::context * pcontext)
+//{
+//
+//
+//}
 
 
-void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-{
+//void matter::post_process(::subject * psubject, ::context * pcontext)
+//{
+//
+//
+//}
 
 
-}
+
 
 
 CLASS_DECL_ACME ::e_status __call(const ::routine & routine)

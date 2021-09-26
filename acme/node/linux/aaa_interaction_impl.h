@@ -26,7 +26,7 @@ namespace linux
       bool                          m_bEnabled;
 
       //::task_pointer                  m_pthreadDraw;
-      ::rect64                      m_rectLastPos;
+      ::rect64                      m_rectangleLastPos;
       millis m_millisLastPos;
 
       ::point                       m_pointLastMove;
@@ -67,9 +67,9 @@ namespace linux
 
       virtual oswindow get_handle() const override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
       DECLARE_MESSAGE_HANDLER(on_message_move);
@@ -294,7 +294,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);

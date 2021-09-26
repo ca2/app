@@ -107,7 +107,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
@@ -126,7 +126,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -145,7 +145,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -164,7 +164,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -183,7 +183,7 @@ namespace user
    }
 
 
-   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)
@@ -211,7 +211,7 @@ namespace user
          //return;
          
          
-         ::rectangle_i32 rectClip;
+         ::rectangle_i32 rectangleClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -227,7 +227,7 @@ namespace user
             rectangleClient.bottom++;
             rectangleClient.right++;
 
-            rectClip = rectangleClient;
+            rectangleClip = rectangleClient;
 
             bFirst = false;
 
@@ -235,7 +235,7 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         ::rectangle_i32 rectFocus;
+         ::rectangle_i32 rectangleFocus;
 
          index i = 0;
 
@@ -247,16 +247,16 @@ namespace user
 
                pinteraction->get_window_rect(rectangleClient, e_layout_design);
 
-               pinteraction->get_client_rect(rectFocus);
+               pinteraction->get_client_rect(rectangleFocus);
 
-               rectFocus.offset(rectangleClient.top_left());
+               rectangleFocus.offset(rectangleClient.top_left());
 
-               screen_to_client(rectFocus, e_layout_design);
+               screen_to_client(rectangleFocus, e_layout_design);
 
-               rectFocus.bottom++;
-               rectFocus.right++;
+               rectangleFocus.bottom++;
+               rectangleFocus.right++;
 
-               pgraphics->intersect_clip(rectFocus);
+               pgraphics->intersect_clip(rectangleFocus);
 
             }
 
@@ -270,7 +270,7 @@ namespace user
       catch (...)
       {
 
-         throw ::exception::exception(error_exception, "no more a window");
+         throw ::exception(error_exception, "no more a window");
 
       }
 

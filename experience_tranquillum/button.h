@@ -16,15 +16,15 @@ namespace experience
 
 
       ::draw2d::region_pointer                 m_spregion;
-      ::draw2d::pen_pointer                    m_pen;
-      ::draw2d::brush_pointer                  m_brush;
+      ::draw2d::pen_pointer                    m_ppen;
+      ::draw2d::brush_pointer                  m_pbrush;
 
 
       button();
       virtual ~button();
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics)override;

@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\primitive">
-      <UniqueIdentifier>{73b6eb83-847b-4f04-a3de-daf20e5f9a48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\user">
       <UniqueIdentifier>{8832ff75-5113-4095-b832-a6e62e777cfd}</UniqueIdentifier>
     </Filter>
@@ -120,9 +117,6 @@
     <Filter Include="Source Files\crypto\macos">
       <UniqueIdentifier>{df2a4f13-4c81-43cc-8afc-41791d4c6d1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\primitive\subject">
-      <UniqueIdentifier>{1a2d4232-9fa8-4440-ab96-12e082c99368}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\subject">
       <UniqueIdentifier>{1afcffb1-fdf1-4bfd-944d-9e578472682c}</UniqueIdentifier>
     </Filter>
@@ -230,6 +224,12 @@
     </Filter>
     <Filter Include="Source Files\node\operating_system\windows_common">
       <UniqueIdentifier>{b94bd312-2829-4680-a780-b95f8c3c91dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subject">
+      <UniqueIdentifier>{8c14af4a-58b5-448e-98d3-17f2a2ec8244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\subject">
+      <UniqueIdentifier>{9de9273b-1c23-4a67-a244-075fc3af4d01}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -770,12 +770,6 @@
     <ClInclude Include="user\_const_key.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="user\check.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\text.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="platform\history.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1247,6 +1241,36 @@
     <ClInclude Include="node\operating_system\windows\_.h">
       <Filter>Header Files\node\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="subject\_.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\_impl.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\aaa_handler.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\context.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\manager.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\predicate.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\promise.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\promise1.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\signal.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\source.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1441,12 +1465,6 @@
     <ClCompile Include="user\command.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\check.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\text.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="message\debug.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
@@ -1545,24 +1563,6 @@
     </ClCompile>
     <ClCompile Include="message\handler.cpp">
       <Filter>Source Files\message</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\context.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\manager.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\process.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\promise.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\routine.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\subject\subject.cpp">
-      <Filter>Source Files\primitive\subject</Filter>
     </ClCompile>
     <ClCompile Include="user\primitive.cpp">
       <Filter>Source Files\user</Filter>
@@ -1848,6 +1848,33 @@
     </ClCompile>
     <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\context.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\handler.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\manager.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\process.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\promise.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\routine.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\signal.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\source.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="message\dispatcher.cpp">
+      <Filter>Source Files\message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

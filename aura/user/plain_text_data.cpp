@@ -30,7 +30,9 @@ namespace user
 
    void plain_text_tree::SetFile(file_pointer  pfile)
    {
+
       m_peditfile->SetFile(pfile);
+
    }
 
 

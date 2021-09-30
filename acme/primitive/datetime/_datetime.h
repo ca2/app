@@ -50,6 +50,12 @@ CLASS_DECL_ACME void preempt(const ::micros & micros);
 CLASS_DECL_ACME void preempt(const ::nanos & nanos);
 
 
+CLASS_DECL_ACME void precision_wait_seconds(double d);
+CLASS_DECL_ACME void precision_wait_milliseconds(double d);
+CLASS_DECL_ACME void precision_wait_microseconds(double d);
+CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u);
+
+
 #include "department.h"
 
 

@@ -178,7 +178,8 @@ namespace file
 
 
       edit_file();
-      virtual ~edit_file();
+      ~edit_file() override;
+
 
       void SetFile(file_pointer  pfile);
 

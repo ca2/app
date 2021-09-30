@@ -304,7 +304,7 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      ASSERT(is_user_thread());
 
       if(_001GetEditControl() != nullptr)
       {

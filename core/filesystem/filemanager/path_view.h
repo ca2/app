@@ -20,7 +20,7 @@ namespace filemanager
 
       virtual void install_message_routing(::channel * pchannel);
 
-      virtual void _001OnAfterChangeText(const ::action_context & action_context);
+      //virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
       void handle(::subject * psubject, ::context * pcontext);
 

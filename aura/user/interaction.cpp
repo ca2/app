@@ -4431,6 +4431,20 @@ return "";
 
    //}
 
+   
+   bool interaction::is_user_thread() const
+   {
+
+      auto pthreadCurrent = ::get_task();
+
+      auto pthreadUser = m_pthreadUserInteraction;
+
+      auto bUserThread = pthreadCurrent && pthreadCurrent == pthreadUser;
+
+      return bUserThread;
+
+   }
+
 
    ::e_status interaction::interaction_sync(const ::duration & duration, const ::routine & routine)
    {

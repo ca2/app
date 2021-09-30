@@ -26,46 +26,54 @@ nano_timer::nano_timer()
 void nano_timer::wait(const ::nanos & nanosWait)
 {
 
+   wait(nanosWait.m_i);
+
+}
+
+
+void nano_timer::wait_nano(::u64 u)
+{
+
 #ifdef WINDOWS
 
-      LARGE_INTEGER li = {};
+   LARGE_INTEGER li = {};
 
-      li.QuadPart = -((::i64)nanosWait.m_i / 100LL);
+   li.QuadPart = -(::i64)u / 100LL;
 
-      if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
-      {
+   if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
+   {
 
-         ::preempt(::millis(nanosWait.m_i / 1'000'000LL));
+      ::preempt(::millis(u / 1'000'000LL));
 
-      }
-      else
-      {
+   }
+   else
+   {
 
-         WaitForSingleObject(m_hTimer, U32_INFINITE_TIMEOUT);
+      WaitForSingleObject(m_hTimer, U32_INFINITE_TIMEOUT);
 
-      }
+   }
 
 #else
 
-      struct timespec req;
+   struct timespec req;
 
-      //struct timespec rem;
+   //struct timespec rem;
 
-      req.tv_sec = nanosWait.m_i / 1'000'000'000ULL;
+   req.tv_sec = nanosWait.m_i / 1'000'000'000ULL;
 
-      req.tv_nsec = nanosWait.m_i % 1'000'000'000ULL;
+   req.tv_nsec = nanosWait.m_i % 1'000'000'000ULL;
 
-      //rem.tv_sec = 0;
+   //rem.tv_sec = 0;
 
-      //rem.tv_nsec = 0;
+   //rem.tv_nsec = 0;
 
-      //::nanosleep(&req, &rem);
+   //::nanosleep(&req, &rem);
 
-      ::nanosleep(&req, nullptr);
+   ::nanosleep(&req, nullptr);
 
 #endif
 
-   }
+}
 
 
 void nano_timer::close_timer()

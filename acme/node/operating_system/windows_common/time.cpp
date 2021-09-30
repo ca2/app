@@ -12,7 +12,6 @@
 //
 //}
 
-
 CLASS_DECL_ACME void preempt(const ::secs & secs)
 {
 
@@ -41,6 +40,41 @@ CLASS_DECL_ACME void preempt(const nanos & nanos)
 {
 
    ::Sleep(1);
+
+}
+
+
+thread_local nano_timer t_nanotimer;
+
+
+CLASS_DECL_ACME void precision_wait_seconds(double d)
+{
+
+   t_nanotimer.wait_nano((::u64) (d * 1'000'000'000.0));
+
+}
+
+
+CLASS_DECL_ACME void precision_wait_milliseconds(double d)
+{
+
+   t_nanotimer.wait_nano((::u64)(d * 1'000'000.0));
+
+}
+
+
+CLASS_DECL_ACME void precision_wait_microseconds(double d)
+{
+
+   t_nanotimer.wait_nano((::u64)(d * 1'000.0));
+
+}
+
+
+CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
+{
+
+   t_nanotimer.wait_nano(u);
 
 }
 

@@ -18,6 +18,7 @@ public:
 
 
    void wait(const ::nanos & nanosWait);
+   void wait_nano(::u64 u);
 
 
    void close_timer();

@@ -476,7 +476,13 @@ namespace file
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
       {
 
-         pfile = __new(::file::buffered_file(pfile));
+         auto pbufferedfile = __new(::file::buffered_file(pfile));
+
+         pfile = pbufferedfile;
+
+         pbufferedfile->seek_to_begin();
+
+         pbufferedfile->buffer(minimum(pbufferedfile->get_size(), pbufferedfile->m_uiBufferSize));
 
       }
 
@@ -790,10 +796,9 @@ namespace file
       return true;
    }
 
+
    filesize edit_file::seek(filesize lOff,::enum_seek eseek)
    {
-
-
 
       if (m_ptreeitem == m_ptreeitemFlush)
       {
@@ -805,8 +810,6 @@ namespace file
       ASSERT(IsValid());
 
       ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
-
-//      ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
       filesize dwNew = (u32)-1;
 
@@ -847,8 +850,11 @@ namespace file
          }
 
          break;
+
       default:
+
          return (filesize)-1;
+
       }
 
       if (dwNew > m_size)
@@ -858,7 +864,20 @@ namespace file
 
       }
 
-      m_position = dwNew;
+      m_position = 0;
+
+      m_pfile->set_position(0);
+
+      for (::index i = 0; i < dwNew; i++)
+      {
+
+         byte b;
+
+         read(&b, 1);
+
+      }
+
+      ASSERT(m_position == dwNew);
 
       return dwNew;
 
@@ -881,13 +900,13 @@ namespace file
       auto pfile = create_memory_file();
 
       seek(0, ::e_seek_set);
-      
+
       to(pfile);
-      
+
       m_pfile->set_size(0);
-      
+
       pfile->seek_to_begin();
-      
+
       m_pfile->from(pfile);
 
       m_pfile->flush();

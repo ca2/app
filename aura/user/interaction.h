@@ -442,6 +442,8 @@ namespace user
 
       //virtual void enumerate_composite(matter_array& a) override;
 
+      virtual bool is_user_thread() const;
+
       virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
 
       virtual ::e_status interaction_branch(const ::routine & routine) override;
@@ -568,6 +570,7 @@ namespace user
       virtual bool wfi_is_down();
       virtual bool wfi_is_up_down();
       // end updown
+
 
 
       virtual bool child_set_unique_id(::user::interaction* pinteraction);

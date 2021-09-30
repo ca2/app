@@ -3574,14 +3574,10 @@ end:
    }
 
 
-
-
    void plain_edit::FileSave()
    {
 
       synchronous_lock synchronouslock(mutex());
-
-
 
       m_ptree->m_peditfile->flush();
 
@@ -6151,13 +6147,13 @@ finished_update:
       if(has_handler())
       {
 
-         auto psubject = __new(::subject(::e_subject_after_change_text));
+         auto psubject = create_subject(::e_subject_after_change_text);
 
          psubject->m_puserelement = this;
 
          psubject->m_actioncontext = actioncontext;
 
-         post_object(e_message_subject, 0, psubject);
+         route(psubject);
 
       }
 

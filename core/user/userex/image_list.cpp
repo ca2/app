@@ -143,7 +143,7 @@ namespace userex
 
             auto pcontextimage = pcontext->context_image();
 
-            pimage1 = pcontextimage->load_image(path, false);
+            pimage1 = pcontextimage->load_image(path, { .cache = false });
 
             if (pimage1)
             {

@@ -21,17 +21,12 @@ matter::~matter()
 
 #endif
 
-   if (m_eobject & e_object_any_hook)
+   ::release(m_pmutex);
+
+   if (m_eobject & e_object_any_hook && m_psystem)
    {
 
-      ::release(m_pmutex);
-
-      if (m_eobject & e_object_any_update)
-      {
-
-         erase_from_any_source();
-
-      }
+      m_psystem->erase_from_any_hook(this);
 
    }
 
@@ -282,6 +277,13 @@ bool matter::is_ready_to_quit() const
 void matter::set_mutex(synchronization_object* psync)
 {
 
+   if (::is_set(psync))
+   {
+
+      psync->increment_reference_count();
+
+   }
+
    ::release(m_pmutex);
 
    m_pmutex = psync;
@@ -289,10 +291,10 @@ void matter::set_mutex(synchronization_object* psync)
 }
 
 
-void matter::erase_from_any_source()
-{
-
-}
+//void matter::erase_from_any_source()
+//{
+//
+//}
 
 
 //::e_status matter::branch()
@@ -329,11 +331,9 @@ void matter::defer_create_mutex()
    if (!m_pmutex)
    {
 
-      m_pmutex = new ::mutex;
+      set_mutex(__new(::mutex));
 
    }
-
-   set(e_object_any_hook);
 
 }
 

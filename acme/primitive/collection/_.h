@@ -283,6 +283,7 @@ inline string ___type_str()
 
 
 #include "payload_array.h"
+#include "acme/platform/options.h"
 #include "acme/primitive/primitive/property.h"
 
 

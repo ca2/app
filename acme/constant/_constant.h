@@ -271,6 +271,7 @@ enum enum_type
    e_type_enum_command = 20000,
    e_type_enum_status,
    e_type_enum_check,
+   e_type_enum_flag
 
 };
 
@@ -353,7 +354,8 @@ enum enum_object : i64
    e_object_default_io_exchange = 1 << 15,
    e_object_alertable_wait = 1 << 16,
    e_object_any_hook = 1 << 17,
-   e_object_any_update = (1 << 18) | e_object_any_hook,
+   //e_object_any_hook = 1 << 17,
+   //e_object_any_update = (1 << 18) | e_object_any_hook,
    //e_object_composite = 1 << 19,
 #if OBJECT_TYPE_COUNTER
    e_object_object_type_counter = 1 << 20,

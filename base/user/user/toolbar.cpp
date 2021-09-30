@@ -1787,7 +1787,7 @@ return { 0,0 };
 
                auto pcontextimage = pcontext->context_image();
 
-               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), false);
+               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
 
             }
 

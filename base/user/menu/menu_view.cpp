@@ -180,7 +180,7 @@ namespace user
 
       auto pcontextimage = pcontext->context_image();
 
-      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", false);
+      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", { .cache = false });
 
       m_pfontTitle.create(this);
 
@@ -709,7 +709,7 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), { .cache = false });
 
             if (pimage1)
             {

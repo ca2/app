@@ -4004,6 +4004,8 @@ bool image::copy_from(::image* pimage, const ::point_i32  & point, ::eobject eob
 
       image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
+      g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
       if (!g()->draw(imagedrawing))
       {
 
@@ -9025,14 +9027,18 @@ void image::defer_update_image()
 
    auto pimage = pframes->calc_current_frame(m_dynamic);
 
-   if (pimage)
+   if (pimage 
+      && m_pgraphics != pimage->m_pgraphics
+      && m_pbitmap != pimage->m_pbitmap)
    {
 
-      ::pixmap* ppixmapDst = this;
-
-      ::pixmap* ppixmapSrc = pimage;
+      unmap();
 
       pimage->unmap();
+
+      ::pixmap * ppixmapDst = this;
+
+      ::pixmap * ppixmapSrc = pimage;
 
       m_pgraphics = pimage->m_pgraphics;
 

@@ -334,6 +334,13 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   void system::erase_from_any_hook(::matter * pmatter)
+   {
+
+
+   }
+
+
    string system::os_get_user_theme()
    {
 

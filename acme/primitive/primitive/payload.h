@@ -599,7 +599,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
       return operator =(estatus.m_estatus);
    }
 
-
    payload & operator = (para_return & eret);
    payload & operator = (bool b);
    payload & operator = (bool * pb);

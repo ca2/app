@@ -570,8 +570,8 @@ namespace aura
       ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
       ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 
-      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, bool bCache = true, bool bSync = false);
+      ::image_pointer get_image(::object * pobject, const ::payload & varFile, const ::image::load_options & loadoptions = ::image::load_options());
+      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 

@@ -309,7 +309,7 @@ namespace user
 
       auto pcontextimage = pcontext->context_image();
 
-      ppane->m_pimage = pcontextimage->load_image(pszImage, false);
+      ppane->m_pimage = pcontextimage->load_image(pszImage, { .cache = false });
 
       on_change_tab_count({ ppane });
 

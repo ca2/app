@@ -3865,7 +3865,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::get_image(::object * pobject, const ::payload & varFile, bool bCache, bool bSync)
+   ::image_pointer system::get_image(::object * pobject, const ::payload & varFile, const ::image::load_options & loadoptions)
    {
 
       auto pimage = get_cache_image(pobject, varFile);
@@ -3877,7 +3877,7 @@ namespace aura
 
          auto pcontextimage = pcontext->context_image();
 
-         pcontextimage->_load_image(pimage, varFile, bSync);
+         pcontextimage->_load_image(pimage, varFile, loadoptions);
 
       }
 
@@ -3886,7 +3886,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, bool bCache, bool bSync)
+   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
    {
 
       string str(strMatter);
@@ -3898,112 +3898,9 @@ namespace aura
 
       }
 
-      return get_image(pobject, str, bSync);
+      return get_image(pobject, str, loadoptions);
 
    }
-
-
-   //string system::standalone_setting(string str)
-   //{
-
-   //   auto pcontext = get_context();
-
-   //   return m_psystem->m_pacmefile->as_string(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
-
-   //}
-
-
-   //bool system::set_standalone_setting(string str, string strSetting)
-   //{
-
-   //   auto pcontext = get_context();
-
-   //   return m_psystem->m_pacmefile->put_contents(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
-
-   //}
-
-
-//   void system::on_extra(string str)
-//   {
-//
-//      string strProtocol = url().get_protocol(str);
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (strProtocol == "ca2project")
-//      {
-//
-//         string strBase = url().get_server(str);
-//
-//         string strAppId = url().get_script(str);
-//
-//         ::str::begins_eat(strAppId, "/");
-//
-//         string strQuery = url().get_query(str);
-//
-//         string strMessage;
-//
-//         strMessage.Format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
-//
-//         //message_box(strMessage, e_message_box_ok);
-//
-//         string strParams;
-//
-//         //strParams.Format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
-//
-//         string strProj;
-//
-//         strProj = strAppId;
-//
-//         string_array stra;
-//
-//         stra.explode("/", strAppId);
-//
-//         strProj.replace_ci("-", "_");
-//         strProj.replace_ci("/", "_");
-//
-//         //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
-//
-//         strParams.Format("\"openvsproject://%s\"", strProj);
-//
-//
-//         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
-//
-//      }
-//#elif defined MACOS
-//      if (strProtocol == "ca2project")
-//      {
-//
-//         string strBase = url().get_server(str);
-//
-//         string strScheme = url().get_script(str);
-//
-//         ::str::begins_eat(strScheme, "/");
-//
-//         if(strBase == "scheme")
-//         {
-//
-////         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
-//
-//            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
-//
-//            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
-//
-//         }
-//         else if(strBase == "archive")
-//         {
-//
-//            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
-//
-//         }
-//
-//      }
-//#endif
-//
-//   }
-//
-
-
 
 
    void system::on_initial_frame_position(::user::frame * pframe)

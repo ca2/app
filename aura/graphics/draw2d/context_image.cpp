@@ -46,8 +46,8 @@ context_image::~context_image()
 
    return load_image(
       varFile,
-      varOptions.is_true("cache", true),
-      varOptions.is_true("create_helper_maps", false));
+      { .cache = !varOptions.is_true("cache", true),
+      .helper_maps = varOptions.is_true("create_helper_maps", false) });
 
 }
 
@@ -66,7 +66,7 @@ context_image::~context_image()
 }
 
 
-::icon_transport context_image::get_icon(const ::payload & varFile, bool bCache, bool bSync)
+::icon_transport context_image::get_icon(const ::payload & varFile, const ::image::load_options & loadoptions)
 {
 
    icon_pointer picon;
@@ -94,7 +94,7 @@ context_image::~context_image()
 }
 
 
-::image_transport context_image::get_image(const ::payload & varFile, bool bCache, bool bSync)
+::image_transport context_image::get_image(const ::payload & varFile, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
@@ -108,7 +108,7 @@ context_image::~context_image()
 
    }
 
-   estatus = _get_image(pimage, varFile, bSync);
+   estatus = _get_image(pimage, varFile, loadoptions);
 
    if (!estatus)
    {
@@ -122,12 +122,12 @@ context_image::~context_image()
 }
 
 
-::image_transport context_image::matter_image(const ::string & strMatter, bool bCache, bool bSync)
+::image_transport context_image::matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
 
-   if (bCache)
+   if (loadoptions.cache)
    {
 
       __pointer(::aura::system) psystem = m_psystem;
@@ -152,7 +152,7 @@ context_image::~context_image()
 
    }
 
-   estatus = _matter_image(pimage, strMatter, bSync);
+   estatus = _matter_image(pimage, strMatter, loadoptions);
 
    if (!estatus)
    {
@@ -166,12 +166,12 @@ context_image::~context_image()
 }
 
 
-::image_transport context_image::load_image(const ::payload & varFile, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_transport context_image::load_image(const ::payload & varFile, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
 
-   if (bCache)
+   if (loadoptions.cache)
    {
 
       auto psystem = get_system()->m_paurasystem;
@@ -196,7 +196,14 @@ context_image::~context_image()
 
    }
 
-   estatus = _load_image(pimage, varFile, bSync, bCreateHelperMaps);
+   if (loadoptions.psync)
+   {
+
+      pimage->set_mutex(loadoptions.psync);
+
+   }
+
+   estatus = _load_image(pimage, varFile, loadoptions);
 
    if (!estatus && estatus != error_not_ready)
    {
@@ -210,12 +217,12 @@ context_image::~context_image()
 }
 
 
-::image_transport context_image::load_matter_image(const ::string & strMatter, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_transport context_image::load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    image_pointer pimage;
 
-   if (bCache)
+   if (loadoptions.cache)
    {
 
       auto psystem = get_system()->m_paurasystem;
@@ -240,7 +247,7 @@ context_image::~context_image()
 
    }
 
-   estatus = _load_matter_image(pimage, strMatter, bSync, bCreateHelperMaps);
+   estatus = _load_matter_image(pimage, strMatter, loadoptions);
 
    if (!estatus)
    {
@@ -396,18 +403,18 @@ context_image::~context_image()
 
 
 
-::e_status context_image::_get_image(image * pimage, const ::payload & varFile, bool bSync)
+::e_status context_image::_get_image(image * pimage, const ::payload & varFile, const ::image::load_options & loadoptions)
 {
 
-   return _load_image(pimage, varFile, bSync);
+   return _load_image(pimage, varFile, loadoptions);
 
 }
 
 
-::e_status context_image::_matter_image(image * pimage, const ::string & strMatter, bool bSync)
+::e_status context_image::_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
-   if (bSync)
+   if (loadoptions.sync)
    {
 
       return _load_matter_image(pimage, strMatter);
@@ -428,7 +435,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_image(image * pimage, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
+::e_status context_image::_load_image(image * pimage, const ::payload & varFile, const ::image::load_options & loadoptions)
 {
    
    return ::success;
@@ -436,14 +443,14 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_matter_image(image * pimage, const ::string & strMatter, bool bSync, bool bCreateHelperMaps)
+::e_status context_image::_load_matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
    auto pcontext = get_context();
 
    ::file::path path = pcontext->m_papexcontext->dir().matter(strMatter);
 
-   auto estatus = _load_image(pimage, path, bSync, bCreateHelperMaps);
+   auto estatus = _load_image(pimage, path, loadoptions);
 
    if (!estatus)
    {
@@ -471,7 +478,7 @@ context_image::~context_image()
 
       path = pcontext->m_papexcontext->dir().matter(path / strIcon);
 
-      auto estatus = _load_image(pimage, path, true);
+      auto estatus = _load_image(pimage, path);
 
       if(estatus.succeeded())
       {
@@ -755,7 +762,11 @@ bool context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    pframea->m_pimage = this;
 
-   auto estatus = _load_image(pimage, pframea, memory);
+   ::image_pointer pimageCompose;
+
+   pimageCompose.create(pimage);
+
+   auto estatus = _load_image(pimageCompose, pframea, memory);
 
    if (!estatus)
    {
@@ -907,6 +918,8 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
          return;
 
       }
+
+      pimage->defer_update_image();
 
       pimage->on_load_image();
 

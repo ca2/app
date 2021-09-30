@@ -298,7 +298,7 @@ namespace user
 
                   auto pcontextimage = pcontext->context_image();
 
-                  auto pimage = pcontextimage->load_image(varFile, false);
+                  auto pimage = pcontextimage->load_image(varFile, { .cache = false });
 
                   if (pimage)
                   {
@@ -436,7 +436,7 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            if (!pcontextimage->load_image(pimage, pmemory))
+            if (!pcontextimage->_load_image(pimage, pmemory))
             {
 
                // Couldn't load image from file/URL path...

@@ -146,6 +146,9 @@ public:
    virtual void TermSystem();
 
 
+   virtual void erase_from_any_hook(::matter * pmatter);
+
+
    virtual ::e_status create_os_node();
 
    virtual string os_get_user_theme();
@@ -461,6 +464,8 @@ public:
    virtual ::e_status on_open_untitled_file();
    
    virtual ::e_status on_open_file(const ::string &pszFile);
+
+
 
 
 };

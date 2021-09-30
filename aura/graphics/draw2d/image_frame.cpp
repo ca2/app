@@ -82,28 +82,36 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    else if (m_edisposal == ::draw2d::disposal_background)
    {
 
-      pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+      pimageCompose->copy_from(pimageFrame, ::e_object_none);
 
-      ::color::color crBack = pframea->m_colorBack;
+      //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      byte bAlpha = colorref_get_a_value(crBack);
+      //::color::color crBack = pframea->m_colorBack;
 
-      if (bAlpha == 0)
-      {
+      //byte bAlpha = colorref_get_a_value(crBack);
 
-         crBack = 0;
+      //if (bAlpha == 0)
+      //{
 
-      }
-      else
-      {
+      //   crBack = 0;
 
-         output_debug_string("non zero alpha");
+      //}
+      //else
+      //{
 
-      }
+      //   output_debug_string("non zero alpha");
 
-      ::rectangle_i32 rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
+      //}
 
-      pimageCompose->g()->fill_rectangle(rectangle, crBack);
+      //::rectangle_i32 rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
+
+      //pimageCompose->g()->fill_rectangle(rectangle, crBack);
+
+   }
+   else
+   {
+
+      output_debug_string("test");
 
    }
 
@@ -120,7 +128,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
    m_pimage->copy_from(pimageCompose, ::e_object_none);
 
-   m_pimage->create_helper_map();
+   //m_pimage->create_helper_map();
 
    pframea->m_millisTotal += m_tick;
 

@@ -131,12 +131,6 @@ public:
 
    virtual void kick_idle();
 
-   //::e_status add_update(const ::id & id);
-   //::e_status erase_update(const ::id& id);
-   void erase_from_any_source();
-
-   //inline bool is_shared() const { return m_countReference > 1; }
-
 
    inline const char* type_c_str() const { return typeid(*this).name(); }
 #ifdef WINDOWS

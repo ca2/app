@@ -13,6 +13,22 @@ class CLASS_DECL_AURA image :
 public:
 
 
+   struct CLASS_DECL_AURA load_options
+   {
+   public:
+
+
+      bool sync = true;
+      bool cache = true;
+      bool helper_maps = false;
+      synchronization_object * psync;
+
+
+   };
+
+
+
+
    memory                              m_memoryMap;
    ::rectangle_i32                     m_rectangleTag;
 

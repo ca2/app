@@ -1450,6 +1450,9 @@
     <ClCompile Include="exception\resource.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
+    <ClCompile Include="platform\options.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3526,6 +3529,12 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\flag.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\options.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

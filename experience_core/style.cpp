@@ -136,6 +136,8 @@ namespace experience
                if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
                {
 
+                  ppath->begin_figure();
+
                   ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
 
                   ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
@@ -178,6 +180,8 @@ namespace experience
                }
                else
                {
+
+                  ppath->begin_figure();
 
                   ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
                   ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));

@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 class CLASS_DECL_AURA context_image :
    virtual public ::object
 {
@@ -19,12 +20,12 @@ public:
    ::e_status destroy_composites() override;
 
 
-   virtual ::icon_transport get_icon(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   virtual ::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   virtual ::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   virtual ::icon_transport get_icon(const ::payload & varFile, const ::image::load_options & loadoptions = ::image::load_options());
+   virtual ::image_transport get_image(const ::payload & varFile, const ::image::load_options & loadoptions = ::image::load_options());
+   virtual ::image_transport matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
-   virtual ::image_transport load_image(const ::payload & varFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::image_transport load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image_transport load_image(const ::payload & varFile, const ::image::load_options & loadoptions = ::image::load_options());
+   virtual ::image_transport load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
    virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
    virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
    virtual ::image_transport load_thumbnail(const ::string & strPath);
@@ -38,12 +39,12 @@ public:
    virtual ::e_status _load_icon(::draw2d::icon * picon, const ::payload & varFile);
 
 
-   virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
-   virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
+   virtual ::e_status _get_image(image * pimage, const ::payload & varFile, const ::image::load_options & options = ::image::load_options());
+   virtual ::e_status _matter_image(image * pimage, const ::string & strMatter, const ::image::load_options & options = ::image::load_options());
 
 
-   virtual ::e_status _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::e_status _load_image(image * pimage, const ::payload & varFile, const ::image::load_options & options = ::image::load_options());
+   virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, const ::image::load_options & loadoptions = ::image::load_options());
    virtual ::e_status _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
    virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile, int w, int h);
    virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile);

@@ -777,6 +777,7 @@
     <ClInclude Include="constant\cursor.h" />
     <ClInclude Include="constant\exception.h" />
     <ClInclude Include="constant\filesystem.h" />
+    <ClInclude Include="constant\flag.h" />
     <ClInclude Include="constant\future.h" />
     <ClInclude Include="constant\GLOBAL_ID.h" />
     <ClInclude Include="constant\id.h" />
@@ -906,6 +907,7 @@
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\synchronously_set_bit.h" />
     <ClInclude Include="platform\node.h" />
+    <ClInclude Include="platform\options.h" />
     <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="primitive\geometry2d\_geometry2d.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
@@ -2115,6 +2117,7 @@
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\object_reference_count_debug.cpp" />
     <ClCompile Include="platform\object_type_counter.cpp" />
+    <ClCompile Include="platform\options.cpp" />
     <ClCompile Include="platform\predicate_function.cpp" />
     <ClCompile Include="platform\predicate_holder.cpp" />
     <ClCompile Include="platform\printf.cpp" />

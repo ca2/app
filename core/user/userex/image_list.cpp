@@ -319,9 +319,13 @@ namespace userex
       pcreate->previous();
 
       if (pcreate->m_bRet)
+      {
+
          return;
 
-      string strId = get_document()->m_pimpactsystem->m_strMatter;
+      }
+
+      ::id id = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 

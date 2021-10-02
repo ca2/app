@@ -38,6 +38,42 @@ namespace user
    }
 
 
+   bool place_holder::on_add_child(::user::interaction * puserinteractionChild)
+   {
+
+      if (m_puserinteractionpointeraChild)
+      {
+
+         if(m_puserinteractionpointeraChild->interaction_count() == 1
+         && m_puserinteractionpointeraChild->first_interaction() == puserinteractionChild)
+         {
+
+            return true;
+
+         }
+         else if(m_puserinteractionpointeraChild->interaction_count() >= 1)
+         {
+
+            throw exception(error_wrong_state);
+
+         }
+
+      }
+
+      auto bOk = ::user::interaction::on_add_child(puserinteractionChild);
+
+      if(!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    bool place_holder::can_merge(::user::interaction * pinteraction)
    {
 
@@ -94,6 +130,45 @@ namespace user
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
       return puserinteractionpointeraChild->contains_interaction(pinteraction);
+
+   }
+
+   bool place_holder::is_this_visible(enum_layout elayout)
+   {
+
+      return ::user::interaction::is_this_visible(elayout);
+
+//      if (!m_pimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if(!m_puserinteractionpointeraChild)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if(m_puserinteractionpointeraChild->interaction_count() != 1)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto puserinteraction = m_puserinteractionpointeraChild->first_interaction();
+//
+//      if(::is_null(puserinteraction))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return puserinteraction->is_this_visible();
 
    }
 

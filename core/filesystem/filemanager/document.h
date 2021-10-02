@@ -25,7 +25,7 @@ namespace filemanager
 
 
       document();
-      virtual ~document();
+      ~document() override;
 
 
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
@@ -143,7 +143,11 @@ namespace filemanager
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
-      virtual bool on_create_bars(::user::frame_window * pframe) override;
+
+      //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
+
+
+      ::id get_toolbar_id() override;
 
 
       virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);

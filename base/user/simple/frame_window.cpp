@@ -815,12 +815,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_strMatter + "/frame.json";
-
-         auto pcontext = get_context();
-
-         if (m_pdocumenttemplate->m_strMatter.has_char())
+         if (m_pdocumenttemplate->m_id.has_char())
          {
+
+            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.json";
+
+            auto pcontext = get_context();
 
             m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
 
@@ -2751,93 +2751,6 @@ bool simple_frame_window::is_application_main_window()
 }
 
 
-bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-{
-
-   __composite(::user::toolbar) & ptoolbar = m_toolbarmap[idToolBar];
-
-   if(!ptoolbar)
-   {
-
-      auto estatus = __id_compose(ptoolbar, type);
-
-      if(!estatus)
-      {
-
-         return false;
-
-      }
-
-      if (ptoolbar == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ptoolbar->display();
-
-      ptoolbar->m_dwStyle = uStyle;
-
-      ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
-
-      if (!ptoolbar->create_child(this))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if (ptoolbar.is_null())
-   {
-
-      return false;
-
-   }
-
-   auto pcontext = get_context();
-
-   string strMatter = pcontext->m_papexcontext->dir().matter(pszToolBar);
-
-   if (ptoolbar->payload("matter_annotation") == strMatter)
-   {
-
-      return true;
-
-   }
-
-   string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
-
-   if(!ptoolbar->LoadXmlToolBar(strXml))
-   {
-
-      return false;
-
-   }
-
-   m_toolbarmap.set_at(idToolBar,ptoolbar);
-
-   AddControlBar(ptoolbar);
-
-   ptoolbar->payload("matter_annotation") = strMatter;
-
-   ptoolbar->set_need_layout();
-
-   ptoolbar->set_need_redraw();
-
-   ptoolbar->post_redraw();
-
-   set_need_layout();
-
-   set_need_redraw();
-
-   post_redraw();
-
-   return true;
-
-}
 
 
 void simple_frame_window::defer_create_notification_icon()
@@ -3329,7 +3242,7 @@ string simple_frame_window::get_window_default_matter()
 
    }
 
-   return m_pdocumenttemplate->m_strMatter;
+   return m_pdocumenttemplate->m_id;
 
 }
 
@@ -3345,7 +3258,7 @@ string simple_frame_window::get_window_default_matter()
 //      __pointer(::user::impact) pview;
 //      if (pframe->get_active_view() == nullptr)
 //      {
-//         __pointer(::user::interaction) pwindow = pframe->get_child_by_id("pane_first");
+//         __pointer(::user::interaction) pwindow = pframe->get_child_by_id(FIRST_PANE);
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
 //            pview = (pwindow.m_p);
@@ -3902,63 +3815,26 @@ bool simple_frame_window::create_bars()
 }
 
 
-bool simple_frame_window::on_create_bars()
+::e_status simple_frame_window::on_create_bars()
 {
 
    if(!m_bDefaultCreateToolbar)
    {
 
-      return true;
+      return ::success;
 
    }
 
-   string strToolbar = m_pdocumenttemplate->m_strToolbar;
+   ::id id = m_pdocumenttemplate->m_id;
 
-   if (strToolbar.ends_ci(".xml"))
+   if (id.has_char())
    {
 
-      ::file::path pathToolbar = m_pdocumenttemplate->m_strMatter / strToolbar;
-
-      auto pcontext = get_context();
-
-      ::file::path path = pcontext->m_papexcontext->dir().matter(pathToolbar);
-
-      if (pcontext->m_papexcontext->file().exists(path))
-      {
-
-         LoadToolBar(pathToolbar, pathToolbar);
-
-      }
+      load_toolbar(id);
 
    }
 
-
-   __pointer(::user::document) pdocument = get_active_document();
-
-   if (pdocument.is_null())
-   {
-
-      __pointer(::user::interaction) pinteraction = get_child_by_id("pane_first");
-
-      __pointer(::user::impact) pview = pinteraction;
-
-      if (pview.is_set())
-      {
-
-         pdocument = pview->get_document();
-
-      }
-
-   }
-
-   if (pdocument.is_set())
-   {
-
-      pdocument->on_create_bars(this);
-
-   }
-
-   return true;
+   return ::success;
 
 }
 

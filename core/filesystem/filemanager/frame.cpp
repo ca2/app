@@ -30,7 +30,7 @@ namespace filemanager
    }
 
 
-   bool  frame::on_create_bars()
+   ::e_status frame::on_create_bars()
    {
 
       return simple_frame_window::on_create_bars();
@@ -38,7 +38,7 @@ namespace filemanager
    }
 
 
-   void  frame::install_message_routing(::channel * pchannel)
+   void frame::install_message_routing(::channel * pchannel)
    {
 
       simple_frame_window::install_message_routing(pchannel);

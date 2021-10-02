@@ -89,8 +89,10 @@ namespace user
 
    protected:
 
-      ::i32_map < __pointer(::image_list) >                                   m_pil; // int is the size_i32
-      ::i32_map < __pointer(::image_list) >                                   m_pilHover; // int is the size;
+      ::i32_map < __pointer(::image_list) >                                m_pil; // int is the size_i32
+      ::i32_map < __pointer(::image_list) >                                m_pilHover; // int is the size;
+      map < ::user::interaction *, ::string_array >                             m_mapInterest;
+
 
    public:
 
@@ -202,6 +204,10 @@ namespace user
       virtual i32 get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon);
       virtual i32 get_file_image(const image_key & imagekey);
       virtual i32 schedule_get_file_image(const image_key & imagekey);
+
+      virtual void warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested);
+
+      virtual void warn_ok(const ::file::path & path);
 
       virtual bool get_image_by_file_extension(_get_file_image_ & getfileimage);
 

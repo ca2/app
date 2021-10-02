@@ -183,6 +183,7 @@ void message_queue::kick_idle()
 
          m_eventNewMessage.ResetEvent();
 
+
       }
 
    }

@@ -1258,6 +1258,8 @@ namespace user
       else // puserinteractionParent != nullptr
       {
 
+         on_set_parent(puserinteractionParent);
+
          auto pimplNew = __create_new<::user::interaction_child>();
 
          pimplNew->m_puserinteraction = this;
@@ -1304,6 +1306,12 @@ namespace user
          {
 
             throw ::exception(error_failed, "could not impl interaction");
+
+         }
+         else
+         {
+
+            on_after_set_parent();
 
          }
 
@@ -5383,7 +5391,11 @@ return "";
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (puserinteractionChild->is_this_visible())
+            if (puserinteractionChild->is_this_visible()
+            && (!puserinteractionChild->is_place_holder()
+            || (puserinteractionChild->m_puserinteractionpointeraChild
+            && puserinteractionChild->m_puserinteractionpointeraChild->interaction_count() == 1
+            && puserinteractionChild->m_puserinteractionpointeraChild->first_interaction()->is_this_visible())))
             {
 
                if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
@@ -7413,6 +7425,26 @@ bool interaction::is_ready_to_quit() const
 //   return m_pimpl->CalcWindowRect(prectangle, nAdjustType);
 
 //}
+
+
+::e_status interaction::show_control_bar(::user::control_bar * pcontrolbar)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status interaction::hide_control_bar(::user::control_bar * pcontrolbar)
+{
+
+   throw interface_only_exception();
+
+   return error_interface_only;
+
+}
 
 
 void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectangleClient, bool bStretch)
@@ -10604,37 +10636,8 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
    try
    {
 
-      if (puserinteractionParent != nullptr)
+      if (::is_set(puserinteractionParent))
       {
-
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("interaction::on_set_parent (3)");
-         INFO("");
-         INFO("");
-         
-         m_pinteractionScaler = puserinteractionParent->m_pinteractionScaler;
-
-         __pointer(::user::interaction_array) puiptraChildNew;
-
-         if (puserinteractionParent)
-         {
-
-            if (puserinteractionParent->m_puserinteractionpointeraChild)
-            {
-
-               puiptraChildNew = __new(::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
-
-            }
-            else
-            {
-
-               __construct_new(puiptraChildNew);
-
-            }
-
-         }
 
          if (m_pthreadUserInteraction != puserinteractionParent->get_wnd()->m_pthreadUserInteraction)
          {
@@ -10657,20 +10660,14 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
 
          }
 
-         puiptraChildNew->add_unique_interaction(this);
-
-         if (puserinteractionParent)
-         {
-
-            puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
-
-         }
+         puserinteractionParent->on_add_child(this);
 
       }
 
    }
    catch (...)
    {
+
       INFO("-------------------------------------------------------------------");
       INFO("");
       INFO("");
@@ -10686,6 +10683,44 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
       m_oswindow = puserinteractionParent->m_oswindow;
 
    }
+
+   return true;
+
+}
+
+
+bool interaction::on_add_child(::user::interaction * puserinteractionChild)
+{
+
+   INFO("-------------------------------------------------------------------");
+   INFO("");
+   INFO("");
+   INFO("interaction::on_add_child (3)");
+   INFO("");
+   INFO("");
+
+   puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+
+   __pointer(::user::interaction_array) puserinteractionpointeraChildNew;
+
+   if (::is_set(m_puserinteractionpointeraChild))
+   {
+
+      puserinteractionpointeraChildNew = __new(::user::interaction_array(*m_puserinteractionpointeraChild));
+
+   }
+   else
+   {
+
+      __construct_new(puserinteractionpointeraChildNew);
+
+   }
+
+   puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
+
+   string strType = type_c_str();
+
+   m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
    return true;
 

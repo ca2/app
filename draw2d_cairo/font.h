@@ -22,6 +22,34 @@ namespace draw2d_cairo
       // this structure stores a description of the style of font you'd most like
       PangoFontDescription *        m_pdesc;
 
+      class pango_layout
+         {
+         public:
+
+            pango_layout()
+            {
+
+               m_playout = nullptr;
+
+            }
+            ~pango_layout()
+            {
+
+               g_object_unref(m_playout);
+
+               m_playout = nullptr;
+
+            }
+
+
+         PangoLayout * m_playout;
+            PangoRectangle m_rectangle;
+
+
+         };
+
+      string_map < pango_layout > m_mapPangoLayout;
+
 #else
 
       FT_Face                    m_ft;

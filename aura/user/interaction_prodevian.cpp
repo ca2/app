@@ -736,7 +736,18 @@ namespace user
 
                      //printf("msToWaitForNextFrame < 50\n");
 
-                     m_evUpdateScreen.wait(nanosToWaitForNextFrame);
+                     if(nanosToWaitForNextFrame > 300_ms)
+                     {
+
+                        m_evUpdateScreen._wait(nanosToWaitForNextFrame);
+
+                     }
+                     else
+                     {
+
+                        ::preempt(nanosToWaitForNextFrame);
+
+                     }
 
                   }
 

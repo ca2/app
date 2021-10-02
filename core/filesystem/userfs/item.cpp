@@ -1,11 +1,10 @@
 #include "framework.h"
-#include "aura/user/shell.h"
-#include "_data.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-
 #include "core/user/user/_tree.h"
+#include "aura/user/shell.h"
+#include "_data.h"
 
 
 namespace userfs
@@ -136,7 +135,16 @@ namespace userfs
 
       }
 
+      pshell->warn_when_ok(m_filepathUser, m_ptree->m_usertreea);
+
       iImage = pshell->get_file_image(m_filepathFinal, efileattribute, eicon);
+
+      if(iImage < 0)
+      {
+
+         pshell->warn_when_ok(m_filepathFinal, m_ptree->m_usertreea);
+
+      }
 
       return iImage;
 

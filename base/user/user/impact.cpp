@@ -408,6 +408,7 @@ namespace user
       return false;   // not implemented, so not selected
    }
 
+
    void impact::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact))
    {
       //    UNUSED(pActivateView);   // unused in release builds
@@ -421,6 +422,46 @@ namespace user
          {
 
             set_keyboard_focus();
+
+         }
+
+         __pointer(::user::document) pdocument = get_document();
+
+         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+
+         if (pdocument && pframewindow)
+         {
+
+            auto ptoolbar = pdocument->get_toolbar(pframewindow, true);
+
+            if(::is_set(ptoolbar))
+            {
+
+               pframewindow->show_control_bar(ptoolbar);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         __pointer(::user::document) pdocument = get_document();
+
+         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+
+         if (pdocument && pframewindow)
+         {
+
+            auto ptoolbar = pdocument->get_toolbar(pframewindow, false);
+
+            if(::is_set(ptoolbar))
+            {
+
+               pframewindow->hide_control_bar(ptoolbar);
+
+            }
 
          }
 

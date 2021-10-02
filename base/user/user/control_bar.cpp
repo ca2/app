@@ -30,13 +30,14 @@ namespace user
       //m_rectangleBorder.top = m_rectangleBorder.bottom = 1;
       m_bAutoDelete = false;
       m_nStateFlags = 0;
-      m_pDockSite = nullptr;
       m_pDockBar = nullptr;
       m_pDockContext = nullptr;
       m_dwStyle = 0;
       m_dwDockStyle = 0;
       m_nMRUWidth = 32767;
+
    }
+
 
    void control_bar::install_message_routing(::channel * pchannel)
    {
@@ -176,8 +177,14 @@ namespace user
 
       ASSERT_VALID(this);
 
-      if (m_pDockSite != nullptr)
-         m_pDockSite->RemoveControlBar(this);
+      if (m_pframewindowDockSite)
+      {
+
+         m_pframewindowDockSite->erase_control_bar(this);
+
+         m_pframewindowDockSite.release();
+
+      }
 
       // free docking context
       /*   BaseDockContext* pDockContext = m_pDockContext;
@@ -439,12 +446,12 @@ namespace user
 
       __pointer(::user::frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
+      if (pframe)
       {
 
-         m_pDockSite = pframe;
+         m_pframewindowDockSite = pframe;
 
-         m_pDockSite->AddControlBar(this);
+         m_pframewindowDockSite->add_control_bar(this);
 
       }
 
@@ -456,10 +463,13 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_pDockSite != nullptr)
+      if (m_pframewindowDockSite)
       {
-         m_pDockSite->RemoveControlBar(this);
-         m_pDockSite = nullptr;
+
+         m_pframewindowDockSite->erase_control_bar(this);
+
+         m_pframewindowDockSite.release();
+
       }
 
    }
@@ -1194,16 +1204,18 @@ namespace user
    __pointer(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      __pointer(::user::frame_window) pFrameWnd = (get_parent_frame());
+      __pointer(::user::frame_window) pframewindow = get_parent_frame();
 
-      if (pFrameWnd == nullptr)
-         pFrameWnd = m_pDockSite;
+      if (!pframewindow)
+      {
 
-      ASSERT(pFrameWnd != nullptr);
+         pframewindow = m_pframewindowDockSite;
 
-      ASSERT_KINDOF(::user::frame_window, pFrameWnd);
+      }
 
-      return (__pointer(::user::frame_window)) pFrameWnd;
+      ASSERT(pframewindow);
+
+      return pframewindow;
 
    }
 

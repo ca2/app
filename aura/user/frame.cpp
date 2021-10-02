@@ -127,6 +127,78 @@ namespace user
    }
 
 
+   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::toolbar * frame::get_user_toolbar(const ::id & idToolBar)
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::e_status frame::add_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::erase_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::show_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::hide_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   {
+
+      return false;
+
+   }
+
+
+   ::e_status frame::on_create_bars()
+   {
+
+      return ::success;
+
+   }
+
+
    ::user::interaction* frame::get_active_view() const
    {
 
@@ -412,23 +484,6 @@ namespace user
    }
 
 
-   
-   bool frame::on_create_bars()
-   {
-
-      return true;
-
-   }
-
-
-
-   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
-   {
-
-      return nullptr;
-
-   }
-
 
    bool frame::is_frame_window()
    {
@@ -438,12 +493,6 @@ namespace user
    }
 
 
-   bool frame::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-   {
-
-      return false;
-
-   }
 
 
    void frame::InitialFramePosition(bool bForceRestore)

@@ -84,12 +84,13 @@ namespace user
 
       interaction_array();
       interaction_array(const address_array < ::user::interaction * > & a);
-      interaction_array(const __pointer_array(::user::interaction) & a)
-      {
+      interaction_array(const __pointer_array(::user::interaction) & a) :
+      m_interactiona(a) {}
 
-         m_interactiona.copy(a);
+      template < typename OTHER >
+      interaction_array(const __pointer_array(OTHER) & a) :
+      m_interactiona(a) {}
 
-      }
       interaction_array(const ::user::interaction_array & a)
       {
 

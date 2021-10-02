@@ -928,7 +928,7 @@ namespace user
          if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
-            if (::user::create_view(pusersystem, this, "pane_first").is_null())
+            if (::user::create_view(pusersystem, this, FIRST_PANE).is_null())
             {
 
                return false;
@@ -1189,7 +1189,7 @@ namespace user
       if (get_active_view() == nullptr)
       {
 
-         __pointer(::user::interaction) pwindow = get_child_by_id("pane_first");
+         __pointer(::user::interaction) pwindow = get_child_by_id(FIRST_PANE);
 
          if (pwindow != nullptr && base_class < ::user::impact > ::bases(pwindow))
          {
@@ -1615,38 +1615,174 @@ namespace user
       __UNREFERENCED_PARAMETER(bEnding);
    }
 
-   ///////////////////////////////////////////////////////////////////////////////
-   //// Support for Shell DDE Execute messages
 
-   //LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
-   //{
+   ::e_status frame_window::show_control_bar(::user::control_bar * pcontrolbar)
+   {
 
+      if(!is_child(pcontrolbar))
+      {
 
-   //   return 0L;
-   //}
+         pcontrolbar->set_parent(this);
 
+      }
 
-   //// always ACK the execute command - even if we do nothing
-   //LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
-   //{
+      pcontrolbar->display();
 
+      RepositionBars();
 
+      return ::success;
 
-   //   return 0L;
-
-   //}
-
-   //LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
-   //{
+   }
 
 
-   //   return 0L;
+   ::e_status frame_window::hide_control_bar(::user::control_bar * pcontrolbar)
+   {
 
-   //}
+      if(!is_child(pcontrolbar))
+      {
+
+         pcontrolbar->set_parent(this);
+
+      }
+
+      pcontrolbar->hide();
+
+      RepositionBars();
+
+      return error_interface_only;
+
+   }
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window attributes
+   ::user::toolbar * frame_window::get_user_toolbar(const ::id & idToolbar)
+   {
+
+      auto & ptoolbar = m_toolbarmap[idToolbar];
+
+      if(!ptoolbar)
+      {
+
+         auto estatus = load_toolbar(idToolbar);
+
+         if(!estatus)
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      return ptoolbar;
+
+   }
+
+
+   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   {
+
+      __composite(::user::toolbar) & ptoolbar = m_toolbarmap[idToolbar];
+
+      if(!ptoolbar)
+      {
+
+         auto estatus = __id_compose(ptoolbar, type);
+
+         if(!estatus)
+         {
+
+            return false;
+
+         }
+
+         if (ptoolbar == nullptr)
+         {
+
+            return false;
+
+         }
+
+         ptoolbar->display();
+
+         ptoolbar->m_dwStyle = uStyle;
+
+         ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
+
+         if (!ptoolbar->create_child(this))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      if (ptoolbar.is_null())
+      {
+
+         return false;
+
+      }
+
+      auto pcontext = get_context();
+
+      string strToolbar(strToolbarParam);
+
+      if(strToolbar.is_empty())
+      {
+
+         strToolbar = idToolbar + ".toolbar";
+
+      }
+
+      string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
+
+      if (ptoolbar->payload("matter_annotation") == strMatter)
+      {
+
+         return true;
+
+      }
+
+      string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
+
+      if(!ptoolbar->LoadXmlToolBar(strXml))
+      {
+
+         return false;
+
+      }
+
+      m_toolbarmap.set_at(idToolbar, ptoolbar);
+
+      add_control_bar(ptoolbar);
+
+      ptoolbar->payload("matter_annotation") = strMatter;
+
+      ptoolbar->set_need_layout();
+
+      ptoolbar->set_need_redraw();
+
+      ptoolbar->post_redraw();
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return true;
+
+   }
+
+
+//   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar,u32 dwCtrlStyle,u32 uStyle)
+//   {
+//
+//      return load_toolbar < ::user::toolbar >(idToolbar, strToolbar, dwCtrlStyle, uStyle);
+//
+//   }
+
 
    ::user::impact * frame_window::get_active_view() const
    {
@@ -2019,14 +2155,14 @@ namespace user
             // Leaving Preview
             m_lpfnCloseProc = nullptr;
 
-            // shift original "pane_first" back to its rightful ID
+            // shift original FIRST_PANE back to its rightful ID
                   __pointer(::user::interaction) oswindow = get_child_by_id(__IDW_PANE_SAVE);
             if (oswindow != nullptr)
             {
-            __pointer(::user::interaction) oswindow_Temp = get_child_by_id("pane_first");
+            __pointer(::user::interaction) oswindow_Temp = get_child_by_id(FIRST_PANE);
             if (oswindow_Temp != nullptr)
             __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
-            __set_dialog_control_id_(oswindow, "pane_first");
+            __set_dialog_control_id_(oswindow, FIRST_PANE);
             }
 
             on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -2088,9 +2224,9 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, false);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, &rectangle, false);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder, &rectangle, true);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, &rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2102,7 +2238,7 @@ namespace user
       else
       {
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectangleBorder);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2120,7 +2256,7 @@ namespace user
       case borderGet:
          ASSERT(pRectBorder != nullptr);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery,
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery,
                         pRectBorder);
 
          break;
@@ -2323,14 +2459,14 @@ namespace user
    }
 
 
-   bool frame_window::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-   {
-
-      throw ::interface_only_exception();
-
-      return false;
-
-   }
+//   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+//   {
+//
+//      throw ::interface_only_exception();
+//
+//      return false;
+//
+//   }
 
 
    void frame_window::common_construct()
@@ -2354,13 +2490,6 @@ namespace user
       m_nShowDelay = -1;              // no delay pending
 
       AddFrameWnd();
-
-   }
-
-
-   void frame_window::RemoveControlBar(::user::control_bar *pBar)
-   {
-      m_barptra.erase(pBar);
 
    }
 
@@ -2564,10 +2693,22 @@ namespace user
    }
 
 
-   void frame_window::AddControlBar(::user::control_bar *pBar)
+   ::e_status frame_window::add_control_bar(::user::control_bar *pcontrolbar)
    {
 
-      m_barptra.add_unique(pBar);
+      m_controlbara.add_unique(pcontrolbar);
+
+      return ::success;
+
+   }
+
+
+   ::e_status frame_window::erase_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      m_controlbara.erase(pcontrolbar);
+
+      return ::success;
 
    }
 

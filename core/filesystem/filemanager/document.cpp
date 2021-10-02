@@ -1528,34 +1528,12 @@ namespace filemanager
    }
 
 
-   bool document::on_create_bars(::user::frame_window * pframe)
+   ::id document::get_toolbar_id()
    {
-
-      string strToolbar;
 
       auto pfilemanagerdata = filemanager_data();
 
-      strToolbar = pfilemanagerdata->m_setToolbar[m_emode];
-
-      if(pframe->get_parent() != nullptr)
-      {
-
-         ::file::path path = strToolbar;
-
-         strToolbar = path.folder() / ("child_" + string(path.name()));
-
-      }
-
-      if (!pframe->LoadToolBar(FILEMANAGER_IMPACT, strToolbar))
-      {
-
-         TRACE("Failed to create filemanager toolbar");
-
-         return false;      // fail to create
-
-      }
-
-      return true;
+      return pfilemanagerdata->m_setToolbar[m_emode];
 
    }
 

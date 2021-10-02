@@ -530,7 +530,7 @@ namespace user
    string box::calc_display()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       string strDisplay;
 
@@ -572,7 +572,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       m_strDisplay = calc_display();
 

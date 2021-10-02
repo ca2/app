@@ -80,7 +80,7 @@ namespace user
       if (pcreate->m_id.is_null())
       {
 
-         pcreate->m_id = m_typeView.m_strName;
+         pcreate->m_id = m_typeImpact.m_strName;
 
       }
 

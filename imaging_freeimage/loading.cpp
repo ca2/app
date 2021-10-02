@@ -235,7 +235,7 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, const ::image::load_options & loadoptions)
    {
 
       memory memory;

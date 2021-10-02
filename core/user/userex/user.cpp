@@ -499,7 +499,7 @@ namespace core
       {
 
          psystem = __new(::user::multiple_document_template(
-                        m_ptemplateForm->m_strMatter,
+                        m_ptemplateForm->m_id,
                         m_ptemplateForm->m_typeDocument,
                         m_ptemplateForm->m_typeFrame,
                         type));
@@ -1340,7 +1340,7 @@ namespace core
          }
 
          auto psystemNew = __new(::user::multiple_document_template(
-                                m_ptemplateChildForm->m_strMatter,
+                                m_ptemplateChildForm->m_id,
                                 typeDocument,
                                 m_ptemplateChildForm->m_typeFrame,
                                 type));

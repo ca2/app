@@ -147,21 +147,34 @@ namespace user
       void display_system_minimize() override;
 
 
-      virtual bool on_create_bars();
-
       virtual ::color::color get_border_main_body_color();
 
       ::e_status add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
 
 
+      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
+
+
+      virtual ::user::toolbar * get_user_toolbar(const ::id & idToolBar);
+
+      virtual ::e_status add_control_bar(::user::control_bar * pcontrolbar);
+      virtual ::e_status erase_control_bar(::user::control_bar * pcontrolbar);
+
+
+      ::e_status show_control_bar(::user::control_bar * pcontrolbar) override;
+      ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
+
+      virtual ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+
+      virtual ::e_status on_create_bars();
+
+
+
+
       virtual ::user::interaction * get_active_view() const;
       virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true);
 
-      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
-
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
-
-      virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
       virtual bool is_frame_window() override;
 

@@ -22,6 +22,7 @@ enum e_impact : ::i64
    impact_configuration = CONFIGURATION_IMPACT,
    impact_properties = PROPERTIES_IMPACT,
    impact_help = HELP_IMPACT,
+   impact_first_pane = FIRST_PANE,
    impact_tic_tac_toe,
    impact_playlist,
    impact_karaoke,

@@ -168,7 +168,7 @@ namespace user
 
       //set_topic_text("menu_view> ");
 
-      string strId = get_document()->m_pimpactsystem->m_strMatter;
+      auto id = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 

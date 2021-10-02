@@ -700,7 +700,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
       if ((u & 0xff000000) == 00)
       {
-         output_debug_string("");
+         //output_debug_string("");
 
       }
 

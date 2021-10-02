@@ -174,39 +174,23 @@ namespace user
    public:
 
 
-      // support for delayed hide/show
-      //enum StateFlags
-      //{
-
-        // delayHide = 1,
-         //delayShow = 2,
-         //tempHide = 4,
-         //statusSet = 8
-
-      //};
-
-
       // info about bar (for status bar and toolbar)
 //      i32 m_rectangleBorder.left, m_rectangleBorder.right;
   //    i32 m_rectangleBorder.top, m_rectangleBorder.bottom;
-      ::rectangle_i32          m_rectangleBorder;
-      i32               m_cxDefaultGap;         // default gap value
-      ::u32 m_nMRUWidth;   // For dynamic resizing.
-      bool  m_bDockTrack;
-      bool  m_bFullScreenBar;
-      // array of elements
-      //i32 m_nCount;
-      //void * m_pData;        // m_nCount elements - type depends on derived class
+      ::rectangle_i32                           m_rectangleBorder;
+      i32                                       m_cxDefaultGap;         // default gap value
+      ::u32                                     m_nMRUWidth;   // For dynamic resizing.
+      bool                                      m_bDockTrack;
+      bool                                      m_bFullScreenBar;
 
-      ::u32 m_nStateFlags;
+      ::u32                                     m_nStateFlags;
 
-      // support for docking
-      u32 m_dwStyle;    // creation style (used for on_layout)
-      u32 m_dwDockStyle;// indicates how bar can be docked
-      __pointer(::user::frame_window) m_pDockSite; // current dock site, if dockable
-      BaseDockBar* m_pDockBar;   // current dock bar, if dockable
-      BaseDockContext* m_pDockContext;   // used during dragging
-      u32 m_dwCtrlStyle;
+      u32                                       m_dwStyle;
+      u32                                       m_dwDockStyle;
+      __pointer(::user::frame_window)     m_pframewindowDockSite;
+      BaseDockBar*                              m_pDockBar;
+      BaseDockContext *                         m_pDockContext; // used during dragging
+      u32                                       m_dwCtrlStyle;
 
 
 

@@ -63,6 +63,26 @@ CLASS_DECL_ACME void preempt(const nanos & nanos)
 }
 
 
+CLASS_DECL_ACME void precision_wait_microseconds(double d)
+{
+
+   ::usleep((::u64)d);
+
+}
+
+
+CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
+{
+
+   struct timespec req;
+
+   req.tv_sec = u / 1'000'000'000ULL;
+
+   req.tv_nsec = u % 1'000'000'000ULL;
+
+   ::nanosleep(&req, nullptr);
+
+}
 
 
 //::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)

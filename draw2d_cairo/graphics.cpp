@@ -1852,21 +1852,32 @@ size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPos
 ::e_status graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
 {
 
-    _synchronous_lock synchronouslock(cairo_mutex());
+   _synchronous_lock ml(cairo_mutex());
 
-    if(m_pfont.is_null())
-    {
+   auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
 
-        return false;
+   if(::is_null(pfont))
+   {
 
-    }
+      return false;
 
-    if(m_pfont->m_dFontWidth <= 0.0)
-    {
+   }
 
-        return false;
+   if(pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
+   {
 
-    }
+      return false;
+
+   }
+
+   if(pfont->m_bTextMetric)
+   {
+
+      *lpMetrics = pfont->m_textmetric;
+
+      return true;
+
+   }
 
 #if defined(USE_PANGO)
 
@@ -1879,12 +1890,11 @@ size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPos
 
     }
 
-
     PangoFontMap * pfontmap = pango_cairo_font_map_get_default ();
 
     PangoContext * pcontext = pango_font_map_create_context(pfontmap);
 
-    PangoFont * pfont = pango_font_map_load_font(pfontmap, pcontext, pdesc);
+    PangoFont * ppangofont = pango_font_map_load_font(pfontmap, pcontext, pdesc);
 
     int iHeight = 0;
 
@@ -1919,7 +1929,7 @@ size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPos
 //
 //      }
 
-    PangoFontMetrics * pfontmetrics = pango_font_get_metrics(pfont, nullptr);
+   PangoFontMetrics * pfontmetrics = pango_font_get_metrics(ppangofont, nullptr);
 
     lpMetrics->m_dAscent = pango_font_metrics_get_ascent(pfontmetrics) / PANGO_SCALE;
 
@@ -1958,6 +1968,10 @@ size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPos
    //lpMetrics->m_dExternalLeading = lpMetrics->m_dAscent * 0.2;
 
 #endif
+
+   pfont->m_bTextMetric = true;
+
+   pfont->m_textmetric = *lpMetrics;
 
    return true;
 
@@ -3618,14 +3632,16 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
     _synchronous_lock ml(cairo_mutex());
 
-    if(m_pfont.is_null())
+    auto pfont = (::draw2d_cairo::font *) m_pfont->m_pthis;
+
+    if(::is_null(pfont))
     {
 
         return false;
 
     }
 
-    if(m_pfont->m_dFontSize <= 0.0 || m_pfont->m_dFontWidth <= 0.0)
+    if(pfont->m_dFontSize <= 0.0 || pfont->m_dFontWidth <= 0.0)
     {
 
         return false;
@@ -3643,24 +3659,35 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
     ::draw2d::savedc savedc(this);
 
-    PangoLayout * playout;                            // layout for a paragraph of text
+    string strText((const char *) block.m_pdata, block.m_iSize);
 
-    // drawing will start from).
-    playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
+    auto & pangolayout = pfont->m_mapPangoLayout[strText];
 
-    //pango_layout_set_width(playout, width(rectangleParam));
+    PangoLayout * & playout = pangolayout.m_playout;                            // layout for a paragraph of text
 
-    //pango_layout_set_height(playout, height(rectangleParam));
+    PangoRectangle & rectangle = pangolayout.m_rectangle;
 
-    pango_layout_set_text(playout, (const ::string &)block.m_pdata, block.m_iSize);          // sets the text to be associated with the layout (final arg is length, -1
+    if(!playout)
+    {
 
-    pango_layout_set_font_description(playout, pdesc);            // assign the previous font description to the layout
+       // drawing will start from).
+       playout = pango_cairo_create_layout(m_pdc);                 // init pango layout ready for use
 
-    //pango_cairo_update_layout(m_pdc, playout);                  // if the target surface or transformation properties of the cairo instance
+       //pango_layout_set_width(playout, width(rectangleParam));
 
-    PangoRectangle rectangle;
+       //pango_layout_set_height(playout, height(rectangleParam));
 
-    pango_layout_get_pixel_extents (playout, nullptr, &rectangle);
+       pango_layout_set_text(playout, strText.c_str(), strText.length());          // sets the text to be associated with the layout (final arg is length, -1
+
+       pango_layout_set_font_description(playout, pdesc);            // assign the previous font description to the layout
+
+       pango_layout_context_changed (playout);
+
+       //pango_cairo_update_layout(m_pdc, playout);                  // if the target surface or transformation properties of the cairo instance
+
+       pango_layout_get_pixel_extents (playout, nullptr, &rectangle);
+
+    }
 
     point_f64 ptRef;
 
@@ -3704,17 +3731,17 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
         ptRef.x = ((rectangleParam.left + rectangleParam.right) / 2) - (rectangle.width/2);
 
-    }
-    else
-    {
+   }
+   else
+   {
 
-        cairo_translate(m_pdc, rectangleParam.left, 0);
+      cairo_translate(m_pdc, rectangleParam.left, 0);
 
-        ptRef.x = rectangleParam.left;
+      ptRef.x = rectangleParam.left;
 
-    }
+   }
 
-    cairo_scale(m_pdc, m_pfont->m_dFontWidth, 1.0);
+   cairo_scale(m_pdc, m_pfont->m_dFontWidth, 1.0);
 
    if(m_pbrush.is_set())
    {
@@ -3723,17 +3750,14 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 
    }
 
-   pango_layout_context_changed (playout);
-
    pango_cairo_update_layout(m_pdc, playout);
 
+   // have changed, update the pango layout to reflect this
+   (*pfnPango)(m_pdc, playout);                    // draw the pango layout onto the cairo surface
 
-    // have changed, update the pango layout to reflect this
-    (*pfnPango)(m_pdc, playout);                    // draw the pango layout onto the cairo surface
+//   g_object_unref(playout);                         // free the layout
 
-    g_object_unref(playout);                         // free the layout
-
-    return true;
+   return true;
 
 }
 

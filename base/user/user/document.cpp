@@ -333,10 +333,20 @@ namespace user
    //}
 
 
-   bool document::on_create_bars(::user::frame_window * pframe)
+   ::id document::get_toolbar_id()
    {
 
-        return true;
+      return m_pimpactsystem->m_id.to_string() + "/document";
+
+   }
+
+
+   ::user::toolbar * document::get_toolbar(::user::frame * pframe, bool bCreate)
+   {
+
+      auto ptoolbar = pframe->get_user_toolbar(get_toolbar_id().to_string());
+
+      return ptoolbar;
 
    }
 

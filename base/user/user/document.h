@@ -23,14 +23,15 @@ namespace user
       bool                                m_bNew;
       bool                                m_bCustomOpen;
 
-      __pointer(::user::impact_system)    m_pimpactsystem;
-      __pointer_array(::user::impact)     m_viewa;
-      ::user::impact *                    m_pviewTopic;
+      __pointer(::user::impact_system)       m_pimpactsystem;
+      __pointer_array(::user::impact)        m_viewa;
+      ::user::impact *                          m_pviewTopic;
 
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
       id_map < ::routine_array >          m_mapRoutine;
+
 
 
       document();
@@ -382,8 +383,9 @@ namespace user
       virtual property_set * form_document_get_property_set();
       virtual property_set & form_document_property_set();
 
+      virtual ::id get_toolbar_id();
 
-      virtual bool on_create_bars(::user::frame_window * pframe);
+      virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
 
 
    };

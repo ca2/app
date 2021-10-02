@@ -26,7 +26,7 @@ nano_timer::nano_timer()
 void nano_timer::wait(const ::nanos & nanosWait)
 {
 
-   wait(nanosWait.m_i);
+   wait_nano(nanosWait.m_i);
 
 }
 
@@ -59,9 +59,9 @@ void nano_timer::wait_nano(::u64 u)
 
    //struct timespec rem;
 
-   req.tv_sec = nanosWait.m_i / 1'000'000'000ULL;
+   req.tv_sec = u / 1'000'000'000ULL;
 
-   req.tv_nsec = nanosWait.m_i % 1'000'000'000ULL;
+   req.tv_nsec = u % 1'000'000'000ULL;
 
    //rem.tv_sec = 0;
 

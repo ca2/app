@@ -18,7 +18,7 @@ namespace filemanager
       ~frame() override;
 
 
-      bool on_create_bars() override;
+      ::e_status on_create_bars() override;
 
 
       void install_message_routing(::channel * pchannel) override;

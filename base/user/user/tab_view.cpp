@@ -117,7 +117,7 @@ namespace user
 
       }
 
-      if (pview.is_set())
+      if (pview.is_set() && pview != this)
       {
 
          pview->OnActivateView(bActivate, pActivateView, pDeactiveView);

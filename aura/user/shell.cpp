@@ -78,7 +78,6 @@ namespace user
 
       }
 
-
    }
 
 
@@ -166,7 +165,6 @@ namespace user
       do_initialize();
 
       m_bPendingUpdate = true;
-      //on_update_sizes_interest();
 
       m_bInitialized = true;
 
@@ -174,56 +172,6 @@ namespace user
 
    }
 
-
-   //void shell::add_thread()
-   //{
-
-   //   synchronous_lock synchronouslock(mutex());
-
-   //   auto pthread = __new(thread(this));
-
-   //   add_composite(pthread);
-
-   //}
-
-
-   //shell::thread::thread(shell * pshell)
-   //{
-
-   //   initialize(pshell);
-
-   //   __refer(m_pshell, pshell);
-
-   //   branch();
-
-   //}
-
-
-   //shell::thread::~thread()
-   //{
-
-   //}
-
-
-   /*::e_status shell::thread::init_thread()
-   {
-
-      m_bSimpleMessageLoop = false;
-
-      if (!::thread::init_thread())
-      {
-
-         return false;
-
-      }
-
-#ifdef WINDOWS
-      defer_co_initialize_ex(false);
-#endif
-
-      return true;
-
-   }*/
 
 
    bool shell::reserve_image(_get_file_image_ & getfileimage)
@@ -470,7 +418,7 @@ namespace user
 
          {
 
-            m_pevNewImageKey->wait(500_ms);
+            m_pevNewImageKey->_wait(500_ms);
 
             synchronous_lock synchronouslock(mutex());
 
@@ -754,6 +702,51 @@ namespace user
       return 0x80000000;
 
    }
+
+
+   void shell::warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      for(auto & puserinteraction : userinteractionaInterested.m_interactiona)
+      {
+
+         m_mapInterest[puserinteraction].add_unique(path);
+
+      }
+
+   }
+
+
+   void shell::warn_ok(const ::file::path & path)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      for(auto & pair : m_mapInterest)
+      {
+
+         if(pair.m_element2.erase(path) > 0)
+         {
+
+            pair.m_element1->set_need_redraw();
+
+            pair.m_element1->post_redraw();
+
+            if(pair.m_element2.is_empty())
+            {
+
+               m_mapInterest.erase_key(pair.m_element1);
+
+            }
+
+         }
+
+      }
+
+   }
+
 
 
    bool shell::get_image_by_file_extension(_get_file_image_ & getfileimage)
@@ -1680,6 +1673,8 @@ namespace user
             {
 
                m_imagemap.set_at(pgetfileimage->m_imagekey, pgetfileimage->m_iImage);
+
+               warn_ok(pgetfileimage->m_imagekey.m_strPath);
 
             }
 

@@ -702,7 +702,7 @@ namespace user
 
 
       virtual bool is_frame_window();
-      virtual bool is_this_visible(enum_layout elayout = e_layout_design) override;
+      bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
       virtual bool sketch_on_display();
 
@@ -767,6 +767,7 @@ namespace user
 
       virtual bool on_before_set_parent(::user::primitive * pinterface);
       virtual bool on_set_parent(::user::primitive * pinterface);
+      virtual bool on_add_child(::user::interaction * puserinteractionChild);
       virtual void on_after_set_parent();
 
 
@@ -1375,7 +1376,10 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
+      virtual ::e_status show_control_bar(::user::control_bar * pcontrolbar);
+      virtual ::e_status hide_control_bar(::user::control_bar * pcontrolbar);
+
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::id idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;

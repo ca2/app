@@ -33,12 +33,8 @@ namespace filemanager
    }
 
 
-   bool child_frame::on_create_bars()
+   ::e_status child_frame::on_create_bars()
    {
-
-      //auto pdocument = get_active_document();
-
-      //return pdocument->on_create_bars(this);
 
       return ::simple_frame_window::on_create_bars();
 

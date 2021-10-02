@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "aura/user/shell.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
+#include "aura/user/shell.h"
 
 
 
@@ -955,17 +955,26 @@ namespace userfs
             ::file::path pathProcessed = pcontext->defer_process_path(pathUser);
 
             auto iImage = puser->shell()->get_file_image(
-                              pathProcessed,
-                              pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                            pathProcessed,
+                            pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                               ::user::shell::e_icon_normal);
 
             if (iImage < 0)
             {
 
+               puser->shell()->warn_when_ok(pathProcessed, { this });
+
                iImage = puser->shell()->get_file_image(
                   pfsitem->m_filepathFinal,
                   pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                   ::user::shell::e_icon_normal);
+
+               if(iImage < 0)
+               {
+
+                  puser->shell()->warn_when_ok(pfsitem->m_filepathFinal, {this});
+
+               }
 
             }
 

@@ -1286,25 +1286,30 @@ namespace user
 
       __pointer(::user::interaction) puiThis = m_puserinteraction;
 
-      try
+      if(puiThis)
       {
 
-         puiThis->send_message(e_message_destroy);
+         try
+         {
 
-      }
-      catch (...)
-      {
+            puiThis->send_message(e_message_destroy);
 
-      }
+         }
+         catch (...)
+         {
 
-      try
-      {
+         }
 
-         puiThis->send_message(e_message_non_client_destroy);
+         try
+         {
 
-      }
-      catch (...)
-      {
+            puiThis->send_message(e_message_non_client_destroy);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 

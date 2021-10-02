@@ -24,7 +24,6 @@ public:
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
-   id_map < __composite(::user::toolbar) >         m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
    __pointer(::windowing::icon)                    m_piconNotify;
@@ -57,18 +56,18 @@ public:
    virtual bool would_display_notify_icon();
 
 
-   virtual bool keyboard_focus_is_focusable() const override;
+   bool keyboard_focus_is_focusable() const override;
 
    virtual bool create_bars();
-   virtual bool on_create_bars() override;
+   ::e_status on_create_bars() override;
 
-   virtual void on_visual_applied() override;
+   void on_visual_applied() override;
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
    virtual bool on_before_set_parent(__pointer(::user::interaction) pframewindow);
-   virtual bool on_set_parent(::user::primitive * puiParent) override;
-   virtual void on_after_set_parent() override;
+   bool on_set_parent(::user::primitive * puiParent) override;
+   void on_after_set_parent() override;
 
    virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
@@ -114,23 +113,6 @@ public:
 
    //virtual bool LoadToolBar(::type sptype,id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
-   virtual bool LoadToolBar(::type sptype, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
-
-//   template < class TOOLBAR >
-  // bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
-   template < class TOOLBAR >
-   bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
-
-
-//   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
-//   {
-//      return LoadToolBar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
-//   }
-
-   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP) override
-   {
-      return LoadToolBar < ::user::toolbar >(idToolBar,pszToolBar,dwCtrlStyle,uStyle);
-   }
 
 
    virtual void InitialFramePosition(bool bForceRestore = false) override;

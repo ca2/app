@@ -14,9 +14,11 @@ namespace filemanager
       
 
       main_frame();
-      virtual ~main_frame();
+      ~main_frame() override;
 
-      virtual bool on_create_bars();
+
+      virtual ::e_status on_create_bars() override;
+
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

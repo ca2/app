@@ -165,6 +165,8 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
+      m_mapPangoLayout.erase_all();
+
       m_pdesc = pango_font_description_new();
 
       double dFontScaler = 1.0;

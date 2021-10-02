@@ -304,7 +304,11 @@ namespace user
    void form_mesh::_001HideEditingControls()
    {
 
+#ifdef _UWP
       ASSERT(is_user_thread());
+#else
+      synchronous_lock synchronouslock(mutex());
+#endif
 
       if(_001GetEditControl() != nullptr)
       {

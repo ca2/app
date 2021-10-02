@@ -13,17 +13,17 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass)
+   impact_system::impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
    {
 
       m_bHiddenOnNotifyIcon = false;
 
       m_puserinteractionOwner = nullptr;
 
-      m_strMatter = pszMatter;
-      m_typeDocument = pDocClass;
-      m_typeFrame = pFrameClass;
-      m_typeView = pViewClass;
+      m_id = id;
+      m_typeDocument = typeDocument;
+      m_typeFrame = typeFrame;
+      m_typeImpact = typeImpact;
       m_pAttachedFactory = nullptr;
 
       load_template();
@@ -167,7 +167,7 @@ namespace user
 
       bool bAddToTitle = is_true("add_to_title");
 
-      ASSERT(m_strMatter.has_char());
+      ASSERT(m_id.has_char());
 
       __pointer(::user::system) pusersystem = pcreate->m_pmatterUserPayload;
 
@@ -195,7 +195,7 @@ namespace user
       else
       {
 
-         pusersystem->m_typeNewView = m_typeView;
+         pusersystem->m_typeNewView = m_typeImpact;
 
       }
 
@@ -275,7 +275,7 @@ namespace user
       __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
 
       // create new from resource
-      if (!pframe->LoadFrame(m_strMatter,
+      if (!pframe->LoadFrame(m_id,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
          puserinteractionParent,
@@ -398,7 +398,7 @@ namespace user
    {
       channel::dump(dumpcontext);
 
-      dumpcontext << "m_strMatter = " << m_strMatter.c_str();
+      dumpcontext << "m_strMatter = " << m_id.to_string();
       dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
       if (m_typeDocument)

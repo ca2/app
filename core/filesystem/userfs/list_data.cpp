@@ -1,9 +1,8 @@
 #include "framework.h"
-#include "aura/user/shell.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-
+#include "aura/user/shell.h"
 
 
 string _001FileSizeText(i64 i)
@@ -293,6 +292,15 @@ namespace userfs
                               pathFinal,
                               pathFinal.m_iDir == 1 ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                               ::user::shell::e_icon_normal);
+
+            if(pitem->m_iImage < 0)
+            {
+
+
+               puser->shell()->warn_when_ok(pathFinal, {pitem->m_pmesh});
+
+
+            }
 
          }
          catch (...)

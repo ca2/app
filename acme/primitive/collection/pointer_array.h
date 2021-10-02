@@ -47,6 +47,27 @@ public:
    pointer_array(pointer_array && a) : BASE_ARRAY(::move(a)) { }
 
 
+   template < typename OTHER >
+   pointer_array(const pointer_array < OTHER > & a)
+   {
+
+      for(auto & p : a)
+      {
+
+         __pointer(T) pNew = p;
+
+         if(pNew)
+         {
+
+            add(pNew);
+
+         }
+
+      }
+
+   }
+
+
    pointer_array(const std::initializer_list < T * > & list)
    {
 

@@ -115,4 +115,22 @@ namespace user
 
 
 
+namespace user
+{
+
+
+   template < class TOOLBAR >
+      ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+      {
+
+         return load_toolbar(__type(TOOLBAR), idToolbar, strToolbar, dwCtrlStyle, uStyle);
+
+      }
+
+
+} // namespace user
+
+
+
+
 

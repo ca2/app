@@ -82,6 +82,7 @@ enum enum_factory : ::i64
 #define CONFIGURATION_IMPACT 15
 #define PROPERTIES_IMPACT 16
 #define HELP_IMPACT 17
+#define FIRST_PANE 18
 
 
 

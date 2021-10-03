@@ -27,6 +27,8 @@ namespace user
 
    class message;
 
+   class frame_window;
+
 
 } // namespace user
 

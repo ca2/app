@@ -22,6 +22,8 @@ namespace user
    frame_window::frame_window()
    {
 
+      m_puserframewindow = this;
+
       m_flagNonClient.erase(non_client_background);
       m_flagNonClient.erase(non_client_focus_rect);
 
@@ -1628,7 +1630,19 @@ namespace user
 
       pcontrolbar->display();
 
+      pcontrolbar->set_need_layout();
+
+      pcontrolbar->set_need_redraw();
+
+      pcontrolbar->post_redraw();
+
+      set_need_layout();
+
+      set_need_redraw();
+
       RepositionBars();
+
+      post_redraw();
 
       return ::success;
 
@@ -1654,73 +1668,52 @@ namespace user
    }
 
 
-   ::user::toolbar * frame_window::get_user_toolbar(const ::id & idToolbar)
+   __transport(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate)
    {
 
-      auto & ptoolbar = m_toolbarmap[idToolbar];
+      auto & toolbartransport = m_mapToolbar[idToolbar];
 
-      if(!ptoolbar)
+      if(bCreate && toolbartransport.not_initialized())
       {
 
-         auto estatus = load_toolbar(idToolbar);
+         toolbartransport = create_toolbar(idToolbar);
 
-         if(!estatus)
+         if(toolbartransport)
          {
 
-            return nullptr;
+            add_control_bar(toolbartransport);
 
          }
 
       }
 
-      return ptoolbar;
+      return toolbartransport;
 
    }
 
 
-   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   __transport(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
-      __composite(::user::toolbar) & ptoolbar = m_toolbarmap[idToolbar];
+      auto toolbartransport = __id_create < toolbar >(type);
 
-      if(!ptoolbar)
+      if(!toolbartransport)
       {
 
-         auto estatus = __id_compose(ptoolbar, type);
-
-         if(!estatus)
-         {
-
-            return false;
-
-         }
-
-         if (ptoolbar == nullptr)
-         {
-
-            return false;
-
-         }
-
-         ptoolbar->display();
-
-         ptoolbar->m_dwStyle = uStyle;
-
-         ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
-
-         if (!ptoolbar->create_child(this))
-         {
-
-            return false;
-
-         }
+         return toolbartransport;
 
       }
 
-      if (ptoolbar.is_null())
+      toolbartransport->m_dwStyle = uStyle;
+
+      toolbartransport->m_dwCtrlStyle = dwCtrlStyle;
+
+      auto estatus = toolbartransport->create_child(this);
+
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
@@ -1737,51 +1730,18 @@ namespace user
 
       string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
 
-      if (ptoolbar->payload("matter_annotation") == strMatter)
-      {
-
-         return true;
-
-      }
-
       string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
 
-      if(!ptoolbar->LoadXmlToolBar(strXml))
+      if(!toolbartransport->LoadXmlToolBar(strXml))
       {
 
-         return false;
+         return error_failed;
 
       }
 
-      m_toolbarmap.set_at(idToolbar, ptoolbar);
-
-      add_control_bar(ptoolbar);
-
-      ptoolbar->payload("matter_annotation") = strMatter;
-
-      ptoolbar->set_need_layout();
-
-      ptoolbar->set_need_redraw();
-
-      ptoolbar->post_redraw();
-
-      set_need_layout();
-
-      set_need_redraw();
-
-      post_redraw();
-
-      return true;
+      return toolbartransport;
 
    }
-
-
-//   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar,u32 dwCtrlStyle,u32 uStyle)
-//   {
-//
-//      return load_toolbar < ::user::toolbar >(idToolbar, strToolbar, dwCtrlStyle, uStyle);
-//
-//   }
 
 
    ::user::impact * frame_window::get_active_view() const

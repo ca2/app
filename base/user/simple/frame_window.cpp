@@ -1293,24 +1293,24 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool bLeaveFullScreenBarsOnHide)
 {
 
-   for(auto & pbar : m_toolbarmap.values())
+   for(auto & toolbartransport : m_mapToolbar.values())
    {
 
       try
       {
 
-         if(pbar != nullptr && (is_screen_visible(edisplay) || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+         if(!toolbartransport && (is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
          {
 
             enum_activation eactivation = e_activation_default;
 
-            pbar->display(edisplay, eactivation);
+            toolbartransport->display(edisplay, eactivation);
 
          }
          else
          {
 
-            pbar->hide();
+            toolbartransport->hide();
 
          }
 
@@ -3830,7 +3830,7 @@ bool simple_frame_window::create_bars()
    if (id.has_char())
    {
 
-      load_toolbar(id);
+      get_toolbar(id);
 
    }
 

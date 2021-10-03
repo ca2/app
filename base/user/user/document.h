@@ -385,7 +385,7 @@ namespace user
 
       virtual ::id get_toolbar_id();
 
-      virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
+      virtual __transport(toolbar) get_toolbar(::user::frame_window * pframe, bool bCreate = true);
 
 
    };

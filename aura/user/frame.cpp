@@ -9,6 +9,7 @@ namespace user
    frame::frame()
    {
 
+      m_puserframewindow = nullptr;
       m_bSnapToBars = false;
       m_bAddToTitle = false;
       m_bPrefixTitle = false;
@@ -135,12 +136,12 @@ namespace user
    }
 
 
-   ::user::toolbar * frame::get_user_toolbar(const ::id & idToolBar)
-   {
-
-      return nullptr;
-
-   }
+//   ::user::toolbar * frame::get_toolbar(const ::id & idToolBar)
+//   {
+//
+//      return nullptr;
+//
+//   }
 
 
    ::e_status frame::add_control_bar(::user::control_bar * pcontrolbar)
@@ -183,12 +184,12 @@ namespace user
    }
 
 
-   ::e_status frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
-   {
-
-      return false;
-
-   }
+//   __transport(::utoolbar) frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   {
+//
+//      return false;
+//
+//   }
 
 
    ::e_status frame::on_create_bars()

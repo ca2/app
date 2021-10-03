@@ -290,6 +290,14 @@ namespace extended
       }
 
 
+      bool not_initialized() const
+      {
+
+         return m_estatus == error_not_initialized;
+
+      }
+
+
       ::e_status estatus() const
       {
 
@@ -364,6 +372,16 @@ namespace extended
 
 
 } // namespace extended
+
+
+
+template < typename TYPE >
+inline bool is_set(const ::extended::transport < TYPE > & t)
+{
+
+   return is_set(t.m_p);
+
+}
 
 
 

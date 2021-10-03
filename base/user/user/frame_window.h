@@ -69,13 +69,13 @@ namespace user
 
    ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
-      ::user::impact *                              m_pviewMain;
-      id_map < __composite(::user::toolbar) >         m_toolbarmap;
+      ::user::impact *                                m_pviewMain;
+      id_map < __transport(::user::toolbar) >      m_mapToolbar;
 
 
 
       frame_window();
-      virtual ~frame_window();
+      ~frame_window() override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -163,10 +163,10 @@ namespace user
       ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      ::user::toolbar * get_user_toolbar(const ::id & idToolBar) override;
+      virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true);
 
 
-      ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") override;
+      virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
       // bool load_toolbar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

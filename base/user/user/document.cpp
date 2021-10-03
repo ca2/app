@@ -341,12 +341,19 @@ namespace user
    }
 
 
-   ::user::toolbar * document::get_toolbar(::user::frame * pframe, bool bCreate)
+   __transport(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
    {
 
-      auto ptoolbar = pframe->get_user_toolbar(get_toolbar_id().to_string());
+      auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
 
-      return ptoolbar;
+      if(!toolbartransport)
+      {
+
+         return toolbartransport;
+
+      }
+
+      return toolbartransport;
 
    }
 

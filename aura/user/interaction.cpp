@@ -16192,7 +16192,8 @@ order(zorderParam);
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_flagNonClient.has(non_client_background))
+      if (m_flagNonClient.has(non_client_background)
+         && !(get_top_level()->frame_is_transparent()))
       {
 
          draw_control_background(pgraphics);

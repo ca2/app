@@ -1668,7 +1668,7 @@ namespace user
    }
 
 
-   __transport(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate)
+   __transport(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto & toolbartransport = m_mapToolbar[idToolbar];
@@ -1676,7 +1676,7 @@ namespace user
       if(bCreate && toolbartransport.not_initialized())
       {
 
-         toolbartransport = create_toolbar(idToolbar);
+         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, type);
 
          if(toolbartransport)
          {

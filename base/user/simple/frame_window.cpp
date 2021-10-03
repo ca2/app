@@ -1299,18 +1299,22 @@ void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool b
       try
       {
 
-         if(!toolbartransport && (is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+         if(toolbartransport)
          {
 
-            enum_activation eactivation = e_activation_default;
+            if ((is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+            {
 
-            toolbartransport->display(edisplay, eactivation);
+               enum_activation eactivation = e_activation_default;
 
-         }
-         else
-         {
+               toolbartransport->display(edisplay, eactivation);
 
-            toolbartransport->hide();
+            } else
+            {
+
+               toolbartransport->hide();
+
+            }
 
          }
 
@@ -3807,6 +3811,8 @@ bool simple_frame_window::create_bars()
       return false;
 
    }
+
+   show_control_bars();
 
    //set_need_layout();
 

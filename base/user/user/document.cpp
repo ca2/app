@@ -336,7 +336,7 @@ namespace user
    ::id document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_id.to_string() + "/document";
+      return m_pimpactsystem->m_id.to_string() + "/top";
 
    }
 

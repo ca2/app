@@ -163,7 +163,7 @@ namespace user
       ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true);
+      virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
       virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;

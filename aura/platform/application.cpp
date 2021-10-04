@@ -4372,7 +4372,7 @@ retry_license:
 
    ::id application::translate_property_id(const ::id & id)
    {
-
+      return ::aqua::application::translate_property_id(id);
       //if(!is_system())
       //{
 

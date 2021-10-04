@@ -236,6 +236,11 @@ enum enum_id : u64
    id_term,
    id_term_instance,
 
+
+      id_hide_recycle_bin,
+      id_show_recycle_bin,
+      
+
    // procedures:
 
    // callbacks:

@@ -116,7 +116,7 @@ namespace core
    string application::prepare_impact_options_main_body()
    {
 
-      auto strMenuImpactPartialHtml = file().as_string("matter://menu_impact.partial.html");
+      auto strMenuImpactPartialHtml = file().as_string("matter://options.partial.html");
 
       return strMenuImpactPartialHtml;
 

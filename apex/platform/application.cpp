@@ -5322,6 +5322,20 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 ::id application::translate_property_id(const ::id & id)
 {
 
+   if (id == "hide_recycle_bin")
+   {
+
+      return id_hide_recycle_bin;
+
+   }
+   else if (id == "show_recycle_bin")
+   {
+
+      return id_show_recycle_bin;
+
+   }
+
+
 //if(!is_system())
 //{
 

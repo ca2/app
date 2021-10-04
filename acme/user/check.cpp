@@ -45,6 +45,8 @@ namespace user
 
          m_propertyCheck->as_echeck() = echeck;
 
+         m_propertyCheck.notify_property_changed(context);
+
       }
 
    }

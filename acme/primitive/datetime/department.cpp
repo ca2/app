@@ -456,7 +456,7 @@ namespace datetime
       
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -466,7 +466,7 @@ namespace datetime
 
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -476,7 +476,7 @@ namespace datetime
    
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -486,7 +486,7 @@ namespace datetime
 
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -746,17 +746,17 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __str((timeNow - time).GetSeconds()));
+            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __str((timeNow - time).GetSeconds()));
+            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
          }
          else
          {
             strTime = pcontext->get("about %MINUTES% minutes ago");
-            strTime.replace("%MINUTES%", __str(iMinDiff));
+            strTime.replace("%MINUTES%", __string(iMinDiff));
          }
       }
       else if (iHouDiff <= 24)
@@ -773,7 +773,7 @@ namespace datetime
          else
          {
             strTime = pcontext->get("about %HOURS% hours ago");
-            strTime.replace("%HOURS%", __str(iHouDiff));
+            strTime.replace("%HOURS%", __string(iHouDiff));
          }
       }
       else
@@ -1186,11 +1186,11 @@ namespace datetime
 
             if (bAdd)
             {
-               TRACE("strtotime: invalid char +");
+               info() << "strtotime: invalid char +";
             }
             else if (bMinus)
             {
-               TRACE("strtotime: invalid char + on Minus state");
+               info() << "strtotime: invalid char + on Minus state";
             }
 
 #endif
@@ -1206,11 +1206,15 @@ namespace datetime
 
             if (bAdd)
             {
-               TRACE("strtotime: invalid char - on add state");
+               
+               info() << "strtotime: invalid char - on add state";
+
             }
             else if (bMinus)
             {
-               TRACE("strtotime: invalid char - on Minus state");
+               
+               info() << "strtotime: invalid char - on Minus state";
+
             }
 
 #endif

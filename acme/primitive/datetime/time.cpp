@@ -793,12 +793,12 @@ string Format(const ::string & strFormat, const ::datetime::time & time)
 
    str = strFormat;
 
-   str.replace("%Y", __str(time.GetYear()));
-   str.replace("%m", ::str::zero_padded(__str(time.GetMonth()), 2));
-   str.replace("%d", ::str::zero_padded(__str(time.GetDay()), 2));
-   str.replace("%H", ::str::zero_padded(__str(time.GetHour()), 2));
-   str.replace("%M", ::str::zero_padded(__str(time.GetMinute()), 2));
-   str.replace("%S", ::str::zero_padded(__str(time.GetSecond()), 2));
+   str.replace("%Y", __string(time.GetYear()));
+   str.replace("%m", ::str::zero_padded(__string(time.GetMonth()), 2));
+   str.replace("%d", ::str::zero_padded(__string(time.GetDay()), 2));
+   str.replace("%H", ::str::zero_padded(__string(time.GetHour()), 2));
+   str.replace("%M", ::str::zero_padded(__string(time.GetMinute()), 2));
+   str.replace("%S", ::str::zero_padded(__string(time.GetSecond()), 2));
 
    return str;
 

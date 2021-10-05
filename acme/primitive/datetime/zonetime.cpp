@@ -232,12 +232,12 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
       str = strFormat;
 
-      str.replace("%Y", __str(GetZoneYear()));
-      str.replace("%m", ::str::zero_padded(__str(GetZoneMonth()), 2));
-      str.replace("%d", ::str::zero_padded(__str(GetZoneDay()), 2));
-      str.replace("%H", ::str::zero_padded(__str(GetZoneHour()), 2));
-      str.replace("%M", ::str::zero_padded(__str(GetZoneMinute()), 2));
-      str.replace("%S", ::str::zero_padded(__str(GetZoneSecond()), 2));
+      str.replace("%Y", __string(GetZoneYear()));
+      str.replace("%m", ::str::zero_padded(__string(GetZoneMonth()), 2));
+      str.replace("%d", ::str::zero_padded(__string(GetZoneDay()), 2));
+      str.replace("%H", ::str::zero_padded(__string(GetZoneHour()), 2));
+      str.replace("%M", ::str::zero_padded(__string(GetZoneMinute()), 2));
+      str.replace("%S", ::str::zero_padded(__string(GetZoneSecond()), 2));
 
       return str;
 

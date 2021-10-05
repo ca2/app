@@ -9,20 +9,20 @@
 void duration::normalize()
 {
 
-   m_secs.m_i += m_nanos.m_i / SECOND_NANOS;
+   m_iSecond += m_iSecond / SECOND_NANOS;
 
-   m_nanos.m_i %= SECOND_NANOS;
+   m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::papaya::sgn(m_secs.m_i);
+   int iSecondSign = ::papaya::sgn(m_iSecond);
 
-   int iNanosecondsSign = ::papaya::sgn(m_nanos.m_i);
+   int iNanosecondSign = ::papaya::sgn(m_iNanosecond);
 
-   if (iSecondSign == -iNanosecondsSign && iSecondSign != 0)
+   if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {
 
-      m_secs.m_i -= iSecondSign;
+      m_iSecond -= iSecondSign;
 
-      m_nanos.m_i += iSecondSign * SECOND_NANOS;
+      m_iNanosecond += iSecondSign * SECOND_NANOS;
 
    }
 
@@ -154,36 +154,36 @@ void duration::fset(long double d)
 
 
 
-void duration::sleep() const
-{
-
-   if (m_secs.m_i >= 20)
-   {
-
-      ::preempt(m_secs);
-
-   }
-   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
-   {
-
-      ::preempt(millis());
-
-   }
-   else if (m_nanos.m_i > 20'000)
-   {
-
-      ::preempt(micros());
-
-   }
-   else
-   {
-
-      ::preempt(nanos());
-
-   }
-
-}
-
+//void duration::sleep() const
+//{
+//
+//   if (m_secs.m_i >= 20)
+//   {
+//
+//      ::preempt(m_secs);
+//
+//   }
+//   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
+//   {
+//
+//      ::preempt(millisecond());
+//
+//   }
+//   else if (m_nanos.m_i > 20'000)
+//   {
+//
+//      ::preempt(microsecond());
+//
+//   }
+//   else
+//   {
+//
+//      ::preempt(nanosecond());
+//
+//   }
+//
+//}
+//
 
 
 
@@ -192,10 +192,10 @@ void duration::sleep() const
 CLASS_DECL_ACME duration __random(const duration & d1, const duration & d2)
 {
 
-   auto iSeconds = __random(d1.m_secs.m_i, d2.m_secs.m_i);
+   auto iSeconds = __random(d1.m_iSecond, d2.m_iSecond);
 
    return duration(iSeconds, __random(
-                                      (::i64)(((::i64)iSeconds > d1.m_secs.m_i) ? 0 : d1.m_nanos.m_i),
-                                      (::i64)(((::i64)iSeconds < d2.m_secs.m_i) ? 999'999'999 : d2.m_nanos.m_i)));
+                                      (::i64)(((::i64)iSeconds > d1.m_iSecond) ? 0 : d1.m_iNanosecond),
+                                      (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
 
 }

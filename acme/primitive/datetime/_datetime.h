@@ -11,16 +11,16 @@ CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetim
 #endif
 
 
-//#include "acme/primitive/datetime/secs.h"
+//#include "acme/primitive/datetime/second.h"
 //
 //
-//#include "acme/primitive/datetime/millis.h"
+//#include "acme/primitive/datetime/millisecond.h"
 //
 //
-//#include "acme/primitive/datetime/micros.h"
+//#include "acme/primitive/datetime/microsecond.h"
 //
 //
-//#include "acme/primitive/datetime/nanos.h"
+//#include "acme/primitive/datetime/nanosecond.h"
 //
 //
 //
@@ -44,10 +44,10 @@ class filetime;
 CLASS_DECL_ACME void preempt(const ::duration & duration);
 
 
-CLASS_DECL_ACME void preempt(const ::secs & secs);
-CLASS_DECL_ACME void preempt(const ::millis & millis);
-CLASS_DECL_ACME void preempt(const ::micros & micros);
-CLASS_DECL_ACME void preempt(const ::nanos & nanos);
+CLASS_DECL_ACME void preempt_second(::i64 iSecond);
+CLASS_DECL_ACME void preempt_millisecond(::i64 iMillisecond);
+CLASS_DECL_ACME void preempt_microsecond(::i64 iMicrosecond);
+CLASS_DECL_ACME void preempt_nanosecond(::i64 iNanosecond);
 
 
 CLASS_DECL_ACME void precision_wait_seconds(double d);

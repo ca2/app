@@ -276,49 +276,49 @@ enum enum_type
 
 };
 
-enum e_trace_category
+enum enum_trace_category
 {
-   trace_category_general,
-   trace_category_first = trace_category_general,
-   trace_category_com,
-   trace_category_qi,
-   trace_category_registrar,
-   trace_category_refcount,
-   trace_category_windowing,
-   trace_category_controls,
-   trace_category_hosting,
-   trace_category_dbclient,
-   trace_category_dbprovider,
-   trace_category_snapin,
-   trace_category_notimpl,
-   trace_category_allocation,
-   trace_category_exception,
-   trace_category_time,
-   trace_category_cache,
-   trace_category_stencil,
-   trace_category_string,
-   trace_category_map,
-   trace_category_util,
-   trace_category_security,
-   trace_category_sync,
-   trace_category_isapi,
-   trace_category_user,
-   trace_category_user2,
-   trace_category_user3,
-   trace_category_user4,
-   trace_category_appmsg,        // main message pump trace (includes dde)
-   trace_category_winmsg,        // windows message tracing
-   trace_category_cmdrouting,    // windows command routing trace
-   trace_category_ole,          // special ole future trace
-   trace_category_database,     // special database trace
-   trace_category_internet,     // special internet client trace
-   trace_category_dumpcontext,   // traces from dump_context
-   trace_category_memory,      // matter non-kernel memory traces
-   trace_category_html,         // html traces
-   trace_category_socket,      // socket traces
-   trace_category_colorertake5,
-   trace_category_prodevian, // screen update and window layout
-   trace_category_count
+   e_trace_category_general,
+   e_trace_category_first = e_trace_category_general,
+   e_trace_category_com,
+   e_trace_category_qi,
+   e_trace_category_registrar,
+   e_trace_category_refcount,
+   e_trace_category_windowing,
+   e_trace_category_controls,
+   e_trace_category_hosting,
+   e_trace_category_dbclient,
+   e_trace_category_dbprovider,
+   e_trace_category_snapin,
+   e_trace_category_notimpl,
+   e_trace_category_allocation,
+   e_trace_category_exception,
+   e_trace_category_time,
+   e_trace_category_cache,
+   e_trace_category_stencil,
+   e_trace_category_string,
+   e_trace_category_map,
+   e_trace_category_util,
+   e_trace_category_security,
+   e_trace_category_sync,
+   e_trace_category_isapi,
+   e_trace_category_user,
+   e_trace_category_user2,
+   e_trace_category_user3,
+   e_trace_category_user4,
+   e_trace_category_appmsg,        // main message pump trace (includes dde)
+   e_trace_category_winmsg,        // windows message tracing
+   e_trace_category_cmdrouting,    // windows command routing trace
+   e_trace_category_ole,          // special ole future trace
+   e_trace_category_database,     // special database trace
+   e_trace_category_internet,     // special internet client trace
+   e_trace_category_dumpcontext,   // traces from dump_context
+   e_trace_category_memory,      // matter non-kernel memory traces
+   e_trace_category_html,         // html traces
+   e_trace_category_socket,      // socket traces
+   e_trace_category_colorertake5,
+   e_trace_category_prodevian, // screen update and window layout
+   e_trace_category_count
 
 };
 
@@ -439,10 +439,12 @@ enum enum_boolean
 // };
 
 
+enum enum_flush
+{
 
+   e_flush,
 
-
-
+};
 
 
 enum enum_zorder

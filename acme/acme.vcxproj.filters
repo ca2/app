@@ -1427,9 +1427,6 @@
     <ClInclude Include="parallelization\socket_event.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\sync.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\task.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -1502,16 +1499,16 @@
     <ClInclude Include="graphics\draw2d\opacity.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\micros.h">
+    <ClInclude Include="primitive\datetime\microsecond.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\millis.h">
+    <ClInclude Include="primitive\datetime\millisecond.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\nanos.h">
+    <ClInclude Include="primitive\datetime\nanosecond.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\secs.h">
+    <ClInclude Include="primitive\datetime\second.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_payload_impl.h">
@@ -2669,6 +2666,24 @@
     <ClInclude Include="include\_forward_declaration.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\datetime\parallelization_millisecond.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\wait.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\minute.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\hour.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\day.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\tracer.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3325,7 +3340,7 @@
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\secs.cpp">
+    <ClCompile Include="primitive\datetime\second.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
@@ -3355,7 +3370,7 @@
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\micros.cpp">
+    <ClCompile Include="primitive\datetime\microsecond.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue.cpp">

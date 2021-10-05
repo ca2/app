@@ -67,7 +67,7 @@ void trace_category_static_init(class ::system * psystem)
    while (*p != nullptr)
    {
 
-      e_trace_category etracecategory = (e_trace_category)iCategory;
+      enum_trace_category etracecategory = (enum_trace_category)iCategory;
 
       const char * pszCategory = *p;
 
@@ -124,35 +124,35 @@ void trace_category_static_term()
 
 
 
-CLASS_DECL_ACME const char* trace_category_name(e_trace_category ecategory)
+CLASS_DECL_ACME const char* trace_category_name(enum_trace_category etracecategory)
 {
 
-   if (ecategory < trace_category_first && ecategory < trace_category_count)
+   if (etracecategory < e_trace_category_first && etracecategory < e_trace_category_count)
    {
 
       return nullptr;
 
    }
 
-   return trace_category::s_ptracecategorya->element_at((iptr)ecategory)->m_strTopicText;
+   return trace_category::s_ptracecategorya->element_at((iptr)etracecategory)->m_strTopicText;
 
 }
 
 
-CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable)
+CLASS_DECL_ACME bool enable_trace_category(enum_trace_category etracecategory, bool bEnable)
 {
 
-   trace_category::s_ptracecategorya->element_at((iptr)ecategory)->m_bEnable = bEnable;
+   trace_category::s_ptracecategorya->element_at((iptr)etracecategory)->m_bEnable = bEnable;
 
    return true;
 
 }
 
 
-CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
+CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category etracecategory, int_bool iEnable)
 {
 
-   if (!enable_trace_category(ecategory, iEnable != false))
+   if (!enable_trace_category(etracecategory, iEnable != false))
    {
 
       return false;
@@ -164,7 +164,7 @@ CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int
 }
 
 
-CLASS_DECL_ACME const ::matter* general_trace_object()
+CLASS_DECL_ACME const ::matter * general_trace_object()
 {
 
    return trace_category::s_ptracecategorya->element_at(0);
@@ -172,10 +172,10 @@ CLASS_DECL_ACME const ::matter* general_trace_object()
 }
 
 
-CLASS_DECL_ACME const ::matter* trace_object(e_trace_category ecategory)
+CLASS_DECL_ACME const ::matter* trace_object(enum_trace_category etracecategory)
 {
 
-   return trace_category::s_ptracecategorya->element_at((iptr)ecategory);
+   return trace_category::s_ptracecategorya->element_at((iptr)etracecategory);
 
 }
 
@@ -206,12 +206,7 @@ char g_chaTraceLevel[] =
 };
 
 
-
-
-
-
-
-e_trace_category object_trace_category(::matter * pobject)
+enum_trace_category object_trace_category(::matter * pobject)
 {
 
    return pobject->trace_category();

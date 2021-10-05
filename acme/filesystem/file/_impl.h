@@ -75,25 +75,25 @@ inline void __exchange(stream & s, memory_base & memory)
 //   s.default_exchange(block);
 //}
 
-inline stream & operator <<(stream & s, const ::millis & millis)
-{
+//inline stream & operator <<(stream & s, const ::millisecond & millisecond)
+//{
+//
+//   s << millisecond.integral_milliseconds();
+//
+//   return s;
+//
+//}
 
-   s << millis.m_i;
-
-   return s;
-
-}
 
 
-
-inline stream & operator >>(stream & s, ::millis & millis)
-{
-
-   s >> millis.m_i;
-
-   return s;
-
-}
+//inline stream & operator >>(stream & s, ::millisecond & millisecond)
+//{
+//
+//   s >> millisecond.m_i;
+//
+//   return s;
+//
+//}
 
 
 //inline stream & stream::operator << (e_set_storing) { set_storing(); return *this; }
@@ -865,6 +865,7 @@ inline void __exchange(::stream & s, u64 & u) { s.default_exchange(u); }
 inline void __exchange(::stream & s, float & f) { s.default_exchange(f); }
 inline void __exchange(::stream & s, double & d) { s.default_exchange(d); }
 inline void __exchange(::stream & s, ::datetime::time & time) { s.default_exchange(time.m_time); }
+inline void __exchange(::stream & s, ::duration & duration) { s.default_exchange(duration.m_iSecond); s.default_exchange(duration.m_iNanosecond); }
 inline void __exchange(::stream & s, const char * psz) { s.write_only(psz); }
 inline void __exchange(::stream & s, string & str) { s.default_exchange(str); }
 inline void __exchange(::stream & s, ::file::path & path) { s.default_exchange(path); }

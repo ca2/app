@@ -129,7 +129,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
       //      if (pcontextobjectContainer)
       //      {
 
-      //         strFormat.Format(", id = % s]", __str(pcontextobjectContainer->m_id).c_str());
+      //         strFormat.Format(", id = % s]", __string(pcontextobjectContainer->m_id).c_str());
       //         
       //         m_strDebugNote += strFormat;
 
@@ -216,16 +216,16 @@ bool timer_task::task_active() const
 ::e_status timer_task::run()
 {
 
-   ::i64 iSleepMs = m_duration.u32_millis();
+   auto iSleepMilliseconds = m_duration.integral_millisecond();
 
-   ::millis c100Ms = iSleepMs / 100;
+   auto c100Milliseconds = iSleepMilliseconds / 100;
 
-   ::millis r100Ms = iSleepMs % 100;
+   auto r100Milliseconds = iSleepMilliseconds % 100;
 
    while (true)
    {
 
-      for (::index i = 0; i < c100Ms; i++)
+      for (::index i = 0; i < c100Milliseconds; i++)
       {
 
          ::preempt(100_ms);
@@ -239,7 +239,7 @@ bool timer_task::task_active() const
 
       }
 
-      ::preempt(r100Ms);
+      ::preempt(::millisecond(r100Milliseconds));
 
       if (!task_get_run())
       {

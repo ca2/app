@@ -31,6 +31,13 @@ enum enum_normalize
 };
 
 
+enum enum_raw
+{
+
+   e_raw
+
+};
+
 enum enum_null
 {
 

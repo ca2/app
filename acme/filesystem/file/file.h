@@ -32,7 +32,7 @@ namespace file
       ::file::e_open             m_eopen;
       ::file::path               m_path;
       ::file::e_state            m_estate;
-      ::millis                   m_millisErrorBlockTimeout;
+      ::millisecond                   m_millisErrorBlockTimeout;
 
 
       file();

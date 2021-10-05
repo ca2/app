@@ -1,16 +1,19 @@
-// This is acme API library.
-//
-//
-//
-//
-//
-//
-//
-//
-
-// Inlines for AFXMT.H
-
 #pragma once
+
+
+#ifdef CPP20
+
+
+inline wait::wait(const ::duration & duration)
+{
+
+   m_iMillisecond = (::u32) ::minimum_maximum(duration.integral_millisecond(), 0, infinite());
+
+}
+
+
+#endif
+
 
 #ifdef _AFXMT_INLINE
 
@@ -205,4 +208,7 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //}
 //
 
+
+
+inline class ::wait wait::now() { return _get_millisecond(); }
 

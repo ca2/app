@@ -113,7 +113,7 @@ public:
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    
-   virtual bool task_sleep(const ::duration & duration);
+   virtual bool task_sleep(const class ::wait & wait);
 
    //template < typename METHOD >
    //inline static ::task_pointer __task(METHOD method)

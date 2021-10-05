@@ -207,17 +207,15 @@ bool condition::pulse()
 ///  \brief		waits for an condition for a specified time
 ///  \lparam		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-::e_status condition::wait(const duration& duration)
+::e_status condition::wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
 
-   u32 timeout = duration.u32_millis();
-
    if (SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      timeout))
+      wait))
    {
 
       return signaled_base;
@@ -247,7 +245,7 @@ bool condition::pulse()
 
    m_iHold++;
 
-   millis start;
+   millisecond start;
 
    start.Now();
 
@@ -275,7 +273,7 @@ bool condition::pulse()
 
 #else
 
-   auto start = ::millis::now();
+   auto start = ::millisecond::now();
 
    timespec delay;
 
@@ -357,82 +355,82 @@ bool condition::is_signaled() const
 }
 
 
-//end**************************************************************************
+////end**************************************************************************
+////
+////      Class:          manual_reset_event
+////      Author:         Kenny Kerr
+////      Date created:   10 April 2004
+////      Description:    Notifies one or more waiting threads that an condition has
+////                      occurred.
+////
+////end**************************************************************************
 //
-//      Class:          manual_reset_event
-//      Author:         Kenny Kerr
-//      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an condition has
-//                      occurred.
+//bool condition::lock(const duration& durationTimeout)
+//{
+//#ifdef WINDOWS
 //
-//end**************************************************************************
-
-bool condition::lock(const duration& durationTimeout)
-{
-#ifdef WINDOWS
-
-   if (SleepConditionVariableCS(
-      &(CONDITION_VARIABLE &)m_conditionvariable,
-      &(CRITICAL_SECTION &)m_criticalsection,
-      durationTimeout.u32_millis()) != false)
-   {
-
-      return true;
-
-   }
-   else
-   {
-
-      return false;
-
-   }
-
-#elif defined(ANDROID)
-
-   return wait(durationTimeout).succeeded();
-
-#else
-
-   u32 timeout = durationTimeout.u32_millis();
-
-   auto start = ::millis::now();
-
-   timespec delay;
-
-   delay.tv_sec = 0;
-   delay.tv_nsec = 1000000;
-
-   while (start.elapsed() < timeout)
-   {
-      sembuf sb;
-
-      sb.sem_op = -1;
-      sb.sem_num = 0;
-      sb.sem_flg = IPC_NOWAIT;
-
-      i32 ret = semop((i32)m_hsync, &sb, 1);
-
-      if (ret < 0)
-      {
-         if (ret == EPERM)
-         {
-            nanosleep(&delay, nullptr);
-         }
-         else
-         {
-            return false;
-         }
-      }
-      else
-      {
-         return true;
-      }
-   }
-
-   return false;
-
-#endif
-}
+//   if (SleepConditionVariableCS(
+//      &(CONDITION_VARIABLE &)m_conditionvariable,
+//      &(CRITICAL_SECTION &)m_criticalsection,
+//      durationTimeout.u32_millis()) != false)
+//   {
+//
+//      return true;
+//
+//   }
+//   else
+//   {
+//
+//      return false;
+//
+//   }
+//
+//#elif defined(ANDROID)
+//
+//   return wait(durationTimeout).succeeded();
+//
+//#else
+//
+//   u32 timeout = durationTimeout.u32_millis();
+//
+//   auto start = ::millisecond::now();
+//
+//   timespec delay;
+//
+//   delay.tv_sec = 0;
+//   delay.tv_nsec = 1000000;
+//
+//   while (start.elapsed() < timeout)
+//   {
+//      sembuf sb;
+//
+//      sb.sem_op = -1;
+//      sb.sem_num = 0;
+//      sb.sem_flg = IPC_NOWAIT;
+//
+//      i32 ret = semop((i32)m_hsync, &sb, 1);
+//
+//      if (ret < 0)
+//      {
+//         if (ret == EPERM)
+//         {
+//            nanosleep(&delay, nullptr);
+//         }
+//         else
+//         {
+//            return false;
+//         }
+//      }
+//      else
+//      {
+//         return true;
+//      }
+//   }
+//
+//   return false;
+//
+//#endif
+//}
 
 bool condition::ResetEvent()
 {

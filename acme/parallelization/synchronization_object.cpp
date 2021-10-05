@@ -91,10 +91,10 @@ bool synchronization_object::lock()
 }
 
 
-bool synchronization_object::lock(const duration & durationTimeout)
+bool synchronization_object::lock(const class ::wait & wait)
 {
 
-   return wait(durationTimeout).succeeded();
+   return this->wait(wait).succeeded();
 
 }
 
@@ -107,10 +107,10 @@ bool synchronization_object::_lock()
 }
 
 
-bool synchronization_object::_lock(const duration & durationTimeout)
+bool synchronization_object::_lock(const class ::wait & wait)
 {
 
-   return _wait(durationTimeout).succeeded();
+   return this->_wait(wait).succeeded();
 
 }
 
@@ -161,17 +161,17 @@ bool synchronization_object::_lock(const duration & durationTimeout)
 }
 
 
-::e_status synchronization_object::wait(const ::duration & durationTimeout)
+::e_status synchronization_object::wait(const class ::wait & wait)
 {
    
-   if (durationTimeout < 200_ms)
+   if (wait < 200)
    {
 
-      return _wait(durationTimeout);
+      return this->_wait(wait);
 
    }
 
-   ::millis millisEnd = ::millis::now() + durationTimeout;
+   auto iMillisecondEnd = ::wait::now().m_iMillisecond + wait;
 
    auto ptask = ::get_task();
 
@@ -185,32 +185,32 @@ bool synchronization_object::_lock(const duration & durationTimeout)
    if (::is_null(ptask))
    {
 
-      return _wait(durationTimeout);
+      return _wait((::u32) wait);
 
    }
    
-   ::millis millisStep(100_ms);
+   ::i64 iMillisecondStep = 100;
 
    while (ptask->task_get_run())
    {
 
-      auto millisWait = millisEnd - ::millis::now();
+      auto iMillisecondWait = iMillisecondEnd - ::wait::now().m_iMillisecond;
 
-      if (millisWait < 0)
+      if (iMillisecondWait < 0)
       {
 
          return error_wait_timeout;
 
       }
       
-      if(millisWait > millisStep)
+      if(iMillisecondWait > iMillisecondStep)
       {
        
-         millisWait = millisStep;
+         iMillisecondWait = iMillisecondStep;
          
       }
 
-      auto estatus = _wait(millisWait);
+      auto estatus = _wait(iMillisecondWait);
 
       if (!estatus.wait_timeout())
       {
@@ -258,7 +258,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-::e_status synchronization_object::_wait(const duration & durationTimeout)
+::e_status synchronization_object::_wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
@@ -266,7 +266,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
    if (m_hsync)
    {
 
-      auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false);
+      auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
 
       return windows_wait_result_to_status(windowsWaitResult);
 

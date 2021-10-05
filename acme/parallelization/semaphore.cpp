@@ -272,9 +272,9 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
    }
 
-   millis tStart;
+   millisecond tStart;
 
-   tStart = millis::now();
+   tStart = millisecond::now();
 
    struct sembuf sb;
 
@@ -301,7 +301,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
          preempt(100_ms);
 
-         millis tRemaining = durationTimeout - tStart.elapsed();
+         millisecond tRemaining = durationTimeout - tStart.elapsed();
 
          if(tRemaining > durationTimeout)
          {

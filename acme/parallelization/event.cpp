@@ -556,7 +556,7 @@ bool event::ResetEvent()
 }
 
 
-::e_status event::_wait (const duration & durationTimeout)
+::e_status event::_wait (const class ::wait & wait)
 {
 
    ::e_status estatus;
@@ -579,11 +579,9 @@ bool event::ResetEvent()
 
 #ifdef WINDOWS
 
-   auto osduration = durationTimeout.u32_millis();
-
    auto hsync = this->hsync();
 
-   DWORD dwResult = ::WaitForSingleObjectEx(hsync, osduration, false);
+   DWORD dwResult = ::WaitForSingleObjectEx(hsync, wait, false);
 
    estatus = windows_wait_result_to_status(dwResult);
 
@@ -763,7 +761,7 @@ bool event::ResetEvent()
 
       u32 timeout = durationTimeout.u32_millis();
 
-      auto start = ::millis::now();
+      auto start = ::millisecond::now();
 
       while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
       {
@@ -863,7 +861,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(millis(0)).signaled();
+      return ((event *) this)->wait(millisecond(0)).signaled();
 
    }
 
@@ -918,117 +916,117 @@ bool event::is_signaled() const
 //
 //end**************************************************************************
 
-bool event::lock(const duration & durationTimeout)
-{
-
-   return wait(durationTimeout).succeeded();
-
-//#ifdef WINDOWS
+//bool event::lock(const class ::wait & wait)
+//{
 //
-//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
+//   return wait(durationTimeout).succeeded();
 //
-//   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
-//      return true;
-//   else
-//      return false;
+////#ifdef WINDOWS
+////
+////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
+////
+////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
+////      return true;
+////   else
+////      return false;
+////
+////#elif defined(ANDROID)
+////
+////   pthread_mutex_lock((pthread_mutex_t *) m_mutex);
+////
+////   ((duration & ) durationTimeout).normalize();
+////
+////
+////   if(m_bManualEvent)
+////   {
+////
+////      i32 iSignal = m_iSignalId;
+////
+////      while(!m_bSignaled && iSignal == m_iSignalId)
+////      {
+////
+////         timespec delay;
+////         delay.tv_sec = durationTimeout.m_i;
+////         delay.tv_nsec = durationTimeout.m_i;
+////         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay))
+////            break;
+////
+////      }
+////
+////      return m_bSignaled;
+////
+////   }
+////   else
+////   {
+////
+////      timespec delay;
+////      delay.tv_sec = durationTimeout.m_i;
+////      delay.tv_nsec = durationTimeout.m_i;
+////      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay);
+////
+////      return is_locked();
+////
+////   }
+////
+////   pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
+////
+////#else
+////
+////
+////   timespec delay;
+////
+////
+////   if(m_bManualEvent)
+////   {
+////
+////      wait(durationTimeout);
+////
+////      return m_bSignaled;
+////
+////   }
+////   else
+////   {
+////
+////      u32 timeout = durationTimeout.u32_millis();
+////
+////      u32 start= ::millisecond::now();
+////
+////      while(start.elapsed() < timeout)
+////      {
+////
+////         sembuf sb;
+////
+////         sb.sem_op   = -1;
+////         sb.sem_num  = 0;
+////         sb.sem_flg  = IPC_NOWAIT;
+////
+////         i32 ret = semop((i32) m_hsync, &sb, 1);
+////
+////         if(ret < 0)
+////         {
+////            if(ret == EPERM)
+////            {
+////               nanosleep(&delay, nullptr);
+////            }
+////            else
+////            {
+////               return false;
+////            }
+////         }
+////         else
+////         {
+////            return true;
+////         }
+////
+////      }
+////
+////   }
+////
+////   return false;
+////
+////#endif
 //
-//#elif defined(ANDROID)
-//
-//   pthread_mutex_lock((pthread_mutex_t *) m_mutex);
-//
-//   ((duration & ) durationTimeout).normalize();
-//
-//
-//   if(m_bManualEvent)
-//   {
-//
-//      i32 iSignal = m_iSignalId;
-//
-//      while(!m_bSignaled && iSignal == m_iSignalId)
-//      {
-//
-//         timespec delay;
-//         delay.tv_sec = durationTimeout.m_i;
-//         delay.tv_nsec = durationTimeout.m_i;
-//         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay))
-//            break;
-//
-//      }
-//
-//      return m_bSignaled;
-//
-//   }
-//   else
-//   {
-//
-//      timespec delay;
-//      delay.tv_sec = durationTimeout.m_i;
-//      delay.tv_nsec = durationTimeout.m_i;
-//      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay);
-//
-//      return is_locked();
-//
-//   }
-//
-//   pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
-//
-//#else
-//
-//
-//   timespec delay;
-//
-//
-//   if(m_bManualEvent)
-//   {
-//
-//      wait(durationTimeout);
-//
-//      return m_bSignaled;
-//
-//   }
-//   else
-//   {
-//
-//      u32 timeout = durationTimeout.u32_millis();
-//
-//      u32 start= ::millis::now();
-//
-//      while(start.elapsed() < timeout)
-//      {
-//
-//         sembuf sb;
-//
-//         sb.sem_op   = -1;
-//         sb.sem_num  = 0;
-//         sb.sem_flg  = IPC_NOWAIT;
-//
-//         i32 ret = semop((i32) m_hsync, &sb, 1);
-//
-//         if(ret < 0)
-//         {
-//            if(ret == EPERM)
-//            {
-//               nanosleep(&delay, nullptr);
-//            }
-//            else
-//            {
-//               return false;
-//            }
-//         }
-//         else
-//         {
-//            return true;
-//         }
-//
-//      }
-//
-//   }
-//
-//   return false;
-//
-//#endif
-
-}
+//}
 
 
 bool event::unlock()

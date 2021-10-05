@@ -73,7 +73,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   ::task_pointer                          m_ptask;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
-//   ::millis                                       m_millisStart;
+//   ::millisecond                                       m_millisStart;
 //
 //   runner()
 //   {
@@ -94,7 +94,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   void operator()(::duration duration, PRED pred)
 //   {
 //
-//      m_millisStart = ::millis::now() + duration;
+//      m_millisStart = ::millisecond::now() + duration;
 //
 //      m_bPending = true;
 //

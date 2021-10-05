@@ -48,7 +48,7 @@ public:
 
    virtual ::e_status wait();
 
-   virtual ::e_status wait(const duration & duration, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::e_status wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
    virtual ::e_status contains(const ::e_status & result) const;
 

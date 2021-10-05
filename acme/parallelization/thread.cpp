@@ -16,12 +16,12 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
+CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait)
 {
 
-   auto i = millis.m_i;
+   auto iMillisecond = wait.m_iMillisecond;
 
-   while (i > 300)
+   while (iMillisecond > 300)
    {
 
       if (!task_get_run())
@@ -33,7 +33,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
       preempt(300_ms);
 
-      i -= 300;
+      iMillisecond -= 300;
 
    }
 
@@ -44,7 +44,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
    }
 
-   preempt((::millis) i);
+   preempt((::millisecond)iMillisecond);
 
    return ::task_get_run();
 
@@ -71,12 +71,12 @@ CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait, synchronization_object* psync)
 {
 
-   auto i = millis.m_i;
+   auto iMillisecond = wait.m_iMillisecond;
 
-   while (i > 300)
+   while (iMillisecond > 300)
    {
 
       if (!task_get_run())
@@ -93,7 +93,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 
       }
 
-      i -= 300;
+      iMillisecond -= 300;
 
    }
 
@@ -104,7 +104,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 
    }
 
-   if (psync->wait(::millis(i)).succeeded())
+   if (psync->wait(::millisecond(iMillisecond)).succeeded())
    {
 
       return true;
@@ -116,52 +116,52 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 }
 
 
-CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psync)
-{
-
-   if (::is_null(psync))
-   {
-
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
-
-         return __simple_task_sleep();
-
-      }
-      else
-      {
-
-         return __simple_task_sleep(millis);
-
-      }
-
-   }
-   else
-   {
-
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
-
-         return __simple_task_sleep(psync);
-
-      }
-      else
-      {
-
-         return __simple_task_sleep(millis, psync);
-
-      }
-
-   }
-}
+//CLASS_DECL_ACME bool acme_task_sleep(millisecond millisecond, synchronization_object* psync)
+//{
+//
+//   if (::is_null(psync))
+//   {
+//
+//      if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//      {
+//
+//         return __simple_task_sleep();
+//
+//      }
+//      else
+//      {
+//
+//         return __simple_task_sleep(millisecond);
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//      {
+//
+//         return __simple_task_sleep(psync);
+//
+//      }
+//      else
+//      {
+//
+//         return __simple_task_sleep(millisecond, psync);
+//
+//      }
+//
+//   }
+//}
 
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(millis millis, synchronization_object* psync)
+//CLASS_DECL_ACME bool tas_sleep(millisecond millisecond, synchronization_object* psync)
 //{
 //
-//   return g_pfnThreadSleep(millis, psync);
+//   return g_pfnThreadSleep(millisecond, psync);
 //
 //}
 

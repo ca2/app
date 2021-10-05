@@ -25,7 +25,7 @@ namespace acme
    }
 
 
-   bool timer_array::create_timer(::object * pobject, uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(::object * pobject, uptr uEvent, ::millisecond millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -52,7 +52,7 @@ namespace acme
       try
       {
 
-         if(!ptimer->start(millis(millisEllapse),bPeriodic))
+         if(!ptimer->start(millisecond(millisEllapse),bPeriodic))
          {
 
             bOk = false;
@@ -79,7 +79,7 @@ namespace acme
    }
 
 
-   bool timer_array::set_timer(::object * pobject, uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(::object * pobject, uptr uEvent, ::millisecond millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       if (!create_timer(pobject, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))

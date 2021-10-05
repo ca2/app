@@ -14,7 +14,7 @@ public:
    virtual ~timer_event();
 
 
-   virtual bool wait(int millis);
+   virtual bool wait(int millisecond);
 
 
    virtual bool on_timer() override;

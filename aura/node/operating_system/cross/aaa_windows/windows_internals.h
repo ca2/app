@@ -1484,7 +1484,7 @@ typedef struct _TIME_FIELDS
    CSHORT Hour;
    CSHORT Minute;
    CSHORT Second;
-   CSHORT Milliseconds;
+   CSHORT ::durations;
    CSHORT Weekday;
 } TIME_FIELDS, *PTIME_FIELDS;
 

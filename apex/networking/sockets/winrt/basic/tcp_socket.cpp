@@ -150,7 +150,7 @@ namespace sockets
 
       m_event.ResetEvent();
 
-      String ^ strService = __str(ad.get_service_number());
+      String ^ strService = __string(ad.get_service_number());
 
       try
       {
@@ -286,7 +286,7 @@ namespace sockets
                {
                   string sockshost;
                   psession->sockets().net().l2ip(GetSocks4Host(), sockshost);
-                  INFO(log_this, "open", 0, "is_connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
+                  INFO(log_this, "open", 0, "is_connecting to socks4 server @ " + sockshost + ":" + __string(GetSocks4Port()));
                }
                SetSocks4();
                n = connect(s, sa, sa);
@@ -861,7 +861,7 @@ namespace sockets
 
    void tcp_socket::OnSocks4ConnectFailed()
    {
-      WARN("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
+      WARNING("OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
       if (!socket_handler()->Socks4TryDirect())
       {
          set_connecting(false);
@@ -1291,7 +1291,7 @@ namespace sockets
    {
       /*      if (GetSocket() == INVALID_SOCKET) // this could happen
             {
-               WARN("socket::close", 0, "file descriptor invalid");
+               WARNING("socket::close", 0, "file descriptor invalid");
                return 0;
             }
             int n;
@@ -1310,7 +1310,7 @@ namespace sockets
             {
                if (n)
                {
-                  WARN("read() after shutdown", n, "bytes read");
+                  WARNING("read() after shutdown", n, "bytes read");
                }
             }
          #ifdef HAVE_OPENSSL
@@ -1332,14 +1332,14 @@ namespace sockets
    SSL_CTX *tcp_socket::GetSslContext()
    {
       if (!m_ssl_ctx)
-         WARN("GetSslContext", 0, "SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+         WARNING("GetSslContext", 0, "SSL Context is nullptr; check InitSSLServer/InitSSLClient");
       return m_ssl_ctx;
    }
 
    SSL *tcp_socket::GetSsl()
    {
       if (!m_ssl)
-         WARN("GetSsl", 0, "SSL is nullptr; check InitSSLServer/InitSSLClient");
+         WARNING("GetSsl", 0, "SSL is nullptr; check InitSSLServer/InitSSLClient");
       return m_ssl;
    }
 #endif

@@ -207,7 +207,7 @@ void memory_counter_increment(T * pthis)
 
       //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __str(i + 1));
+      //m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
    }
 
 }
@@ -226,7 +226,7 @@ void memory_counter_decrement(T * pthis)
 
       //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //m_psystem->m_pacmefile->put_contents(path, __str(i - 1));
+      //m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
 
    }
 
@@ -360,38 +360,31 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 #ifndef __cplusplus_winrt
 
 
-namespace str
+// namespace str
+// {
+
+
+
+inline void to_string(string & str, const bool & b)
 {
 
-
-   inline void from(string & str, const millis & millis)
+   if(b)
    {
 
-      str.Format(__prtick, millis.m_i);
+      str = "{[(true)]}";
+
+   }
+   else
+   {
+
+      str = "{[(false)]}";
 
    }
 
-
-   inline void from(string & str, const bool & b)
-   {
-
-      if(b)
-      {
-
-         str = "{[(true)]}";
-
-      }
-      else
-      {
-
-         str = "{[(false)]}";
-
-      }
-
-   }
+}
 
 
-} // namespace str
+// } // namespace str
 
 
 #endif // __cplusplus_winrt
@@ -472,7 +465,7 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 }
 
 
-inline string __str(const ::e_display & edisplay) { return __str((::enum_display) edisplay); }
+inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 template < typename TYPE >

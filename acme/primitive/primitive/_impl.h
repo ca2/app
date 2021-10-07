@@ -12,36 +12,6 @@ inline bool __enum_is_failed(const ::e_status & e)
 }
 
 
-inline duration & duration::operator = (const ::datetime::time_span & span)
-{
-
-   raw_set(span.GetTotalSeconds());
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator += (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i + span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator -= (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i - span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
 template < class T >
 inline const char * ___pointer < T >::type_c_str()
 {
@@ -334,7 +304,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       else if (id.is_text())
       {
 
-         return __str(m_i) + "." + string(id.m_psz);
+         return __string(m_i) + "." + string(id.m_psz);
 
       }
       else
@@ -351,7 +321,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       if (is_text())
       {
 
-         return string(m_psz) + "." + __str(id.m_i);
+         return string(m_psz) + "." + __string(id.m_i);
 
       }
       else
@@ -530,7 +500,7 @@ inline property_set ca_property_set()
 //
 //   string strRight(stringable);
 //
-//   return __str(psz) + strRight;
+//   return __string(psz) + strRight;
 //
 //}
 
@@ -549,7 +519,7 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
 //{
 //
-//   return __str(psz) + payload.get_string();
+//   return __string(psz) + payload.get_string();
 //
 //}
 //
@@ -2313,8 +2283,8 @@ void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 #endif
 
 
-inline bool millis::done(const ::millis & millis) const { return elapsed(millis).m_i >= 0; }
-inline bool millis::done() const { return elapsed().m_i >= 0; }
+//inline bool ::duration::done(const ::duration & duration) const { return elapsed(::duration).m_i >= 0; }
+//inline bool ::duration::done() const { return elapsed().m_i >= 0; }
 
 
 template < >

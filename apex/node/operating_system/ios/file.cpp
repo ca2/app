@@ -43,6 +43,6 @@ CLASS_DECL_APEX void dll_processes(u32_array & dwa, string_array & straProcesses
 string apple_app_module_path()
 {
    
-   return ::str::from_strdup(ns_get_executable_path());
+   return ::string_from_strdup(ns_get_executable_path());
    
 }

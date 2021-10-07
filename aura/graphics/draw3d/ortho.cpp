@@ -114,6 +114,7 @@ namespace draw3d
       index iMax;
 
       i = 0;
+
       int_array ia;
 
       while(point1.get_count() > 0)
@@ -126,7 +127,9 @@ namespace draw3d
 
             if((locationa[point1[j]].z + locationa[point2[j]].z) >(locationa[point1[iMax]].z + locationa[point2[iMax]].z))
             {
+               
                iMax = j;
+
             }
 
          }
@@ -135,22 +138,26 @@ namespace draw3d
          {
 
             ia.add_unique(point1[iMax]);
+
             ia.add_unique(point2[iMax]);
 
             double r = (locationa[point1[iMax]].z + locationa[point2[iMax]].z) * d;
 
             ::color::color ca;
 
-            double dPeriod = (5000) * 11;
+            auto period = 55000 / 2; // milliseconds
 
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls((double) (get_integral_millisecond().m_i % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+
+               ca.set_hls((double) (get_integral_millisecond().m_i % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+
             }
 
             ::color::color clr = ca.get_rgb();
@@ -302,16 +309,19 @@ namespace draw3d
 
             ::color::color ca;
 
-            double dPeriod = (5000) * 11;
+            auto period = 50_s;
 
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               
+               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+
             }
 
             ::color::color clr = ca.get_rgb();

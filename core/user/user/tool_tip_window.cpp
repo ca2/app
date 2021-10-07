@@ -48,14 +48,23 @@ namespace user
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || pointCursor != m_point)
             {
+               
                m_point = pointCursor;
+               
                m_iEventTool = ptool->BaseToolTipGetIndex();
+               
                //ptool->BaseToolTipGetWnd()->screen_to_client(&m_point);
+               
                KillTimer(e_timer_show_delayed);
+               
                HideTip();
-               SetTimer(e_timer_show_delayed, 500, nullptr);
+               
+               SetTimer(e_timer_show_delayed, 500_ms, nullptr);
+
             }
+
          }
+
       }
       break;
       default:
@@ -96,7 +105,7 @@ namespace user
       if(!GetToolText(iTool, m_strTip))
          return;
 
-      SetTimer(1, 5000, nullptr);
+      SetTimer(1, 5_s, nullptr);
 
       ::rectangle_i32 rectangle;
 

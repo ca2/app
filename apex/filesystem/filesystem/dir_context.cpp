@@ -51,7 +51,7 @@ dir_context::dir_context()
 
    //m_pziputil = nullptr;
 
-   //         m_isdirmap.m_millisTimeout = 180000;
+   //         m_isdirmap.m_durationTimeout = 180000;
 
 
 
@@ -1041,7 +1041,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
+//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
 //         {
 //
 //            return false;
@@ -1202,7 +1202,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //         }
 //
 //end:
-//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
+//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
 //         {
 //
 //            return false;
@@ -1281,7 +1281,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  pfind->m_dwError = dwLastError;
 //
-//                  pfind->m_millisLastCheck = ::get_fast_tick_count();
+//                  pfind->m_durationLastCheck = ::get_fast_tick_count();
 //
 //                  pdir->add(pfind);
 //
@@ -1315,7 +1315,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            pdir->m_millisLastCheck = ::get_fast_tick_count();
+//            pdir->m_durationLastCheck = ::get_fast_tick_count();
 //            iFind0 = iFind3 + 1;
 //         }
 //
@@ -1737,14 +1737,14 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
          pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
-         TRACE("cache map path: %s", pathCache.c_str());
+         INFORMATION("cache map path: " << pathCache);
 
          path = m_pcontext->m_papexcontext->file().as_string(pathCache);
 
          if (::str::begins_eat_ci(path, "itdoesntexist."))
          {
 
-            millis t = ansi_to_i64(path);
+            ::duration t = INTEGRAL_MILLISECOND(ansi_to_i64(path));
 
             auto elapsed = t.elapsed();
 
@@ -1779,13 +1779,13 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
             if (m_psystem->m_pacmepath->is_file_or_dir(strFinal, nullptr))
             {
 
-               TRACE("!!Cache Hit: %s", strFinal.c_str());
+               INFORMATION("!!Cache Hit: " << strFinal);
 
                return path;
 
             }
 
-            TRACE("...Cache Miss: %s", strFinal.c_str());
+            INFORMATION("...Cache Miss: " << strFinal);
 
          }
 
@@ -1855,9 +1855,9 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       }
 
-      TRACE("");
-      TRACE("Topic: %s", patha[0].c_str());
-      TRACE("");
+//      TRACE("");
+      INFORMATION("Topic: " << patha[0]);
+//      TRACE("");
 
       string strCandidate = stra.implode("|");
 
@@ -1889,11 +1889,11 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
       strMatter.replace("https://server.ca2.software/", "https://ca2.software/");
 
-      TRACE("");
-      TRACE("");
-      TRACE("matter = ::: %s", strMatter.c_str());
-      TRACE("");
-      TRACE("");
+      //TRACE("");
+      //TRACE("");
+      INFORMATION("matter = " << strMatter);
+      //TRACE("");
+      //TRACE("");
 
       strMatter.trim();
 
@@ -1948,7 +1948,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(millis::now().m_i);
+   path = "itdoesntexist." + __string(get_integral_millisecond().m_i);
 
 ret:
 

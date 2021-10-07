@@ -4,8 +4,6 @@
 image_frame::image_frame()
 {
 
-   m_tick = 0;
-
 }
 
 
@@ -128,9 +126,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
    m_pimage->copy_from(pimageCompose, ::e_object_none);
 
-   //m_pimage->create_helper_map();
-
-   pframea->m_millisTotal += m_tick;
+   pframea->m_durationTotal += m_duration;
 
 }
 

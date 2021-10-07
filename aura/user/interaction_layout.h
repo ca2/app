@@ -53,7 +53,7 @@ namespace user
       ::size_f64                                   m_sizeWeight;
 
 
-      millis                                      m_millisLastSketchToDesign;
+      ::duration                                      m_durationLastSketchToDesign;
       enum_layout_experience                       m_elayoutexperience;
 
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
 #if defined(LINUX) || defined(__APPLE__)
@@ -25,30 +25,47 @@ CLASS_DECL_ACME void __seed_srand()
 CLASS_DECL_ACME void preempt(const duration & duration)
 {
 
-   if(duration.secs() >= 20)
+   auto second = duration.integral_second();
+
+   if(second >= 20_s)
    {
 
-      preempt(duration.secs());
-
-   }
-   else if(duration.millis().m_i >= 20)
-   {
-
-      preempt(duration.millis());
-
-   }
-   else if(duration.micros().m_i >= 20)
-   {
-
-      preempt(duration.micros());
+      preempt(second);
 
    }
    else
    {
 
-      preempt(duration.nanos());
+      auto millisecond = duration.integral_millisecond();
+
+      if (millisecond >= 20_ms)
+      {
+
+         preempt(millisecond);
+
+      }
+      else
+      {
+
+         auto microsecond = duration.integral_microsecond();
+
+         if (microsecond >= 20_μs)
+         {
+
+            preempt(microsecond);
+
+         }
+         else
+         {
+
+            preempt(duration.integral_nanosecond());
+
+         }
+
+      }
 
    }
+
 
 }
 
@@ -56,7 +73,7 @@ CLASS_DECL_ACME void preempt(const duration & duration)
 
 // SYSTEMTIME
 // Specifies a date and time, using individual members for 
-// the month, day, year, weekday, hour, minute, second, and millisecond. 
+// the month, day, year, weekday, hour, minute, second, and ::duration. 
 // The time is either in coordinated universal time (UTC) or local time, 
 // depending on the function that is being called.
 // 

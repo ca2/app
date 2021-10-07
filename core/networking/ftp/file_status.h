@@ -39,7 +39,7 @@ namespace ftp
       {
          time_unknown,
          time_local,        ///< time is correct
-         time_remote_minute, ///< time zone and secs are unknown
+         time_remote_minute, ///< time zone and second are unknown
          time_remote_day,    ///< time zone and time of day are unknown
       };
 

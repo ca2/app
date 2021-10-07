@@ -221,7 +221,7 @@ namespace sockets
       m_iProxyPort = port;
 
 #ifdef BSD_STYLE_SOCKETS
-      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __str(port);
+      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
 #endif
 
       m_bSslTunnel = IsSSL();
@@ -234,7 +234,7 @@ namespace sockets
          if (!is_connecting())
          {
 
-            FATAL(log_this, "http_get_socket", -1, "connect() failed miserably");
+            fatal() << "http_get_socket: connect() failed miserably";
             
             SetCloseAndDelete();
 
@@ -277,7 +277,7 @@ namespace sockets
             if (!is_connecting())
             {
 
-               FATAL(log_this, "http_get_socket", -1, "connect() failed miserably");
+               fatal() << "http_get_socket: connect() failed miserably";
 
                SetCloseAndDelete();
 

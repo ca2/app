@@ -185,7 +185,7 @@ namespace papaya
             for (::index i = 0; i < ia.get_count(); i++)
             {
 
-               auto iItem = ::papaya::array::add(array, __str(ia[i]));
+               auto iItem = ::papaya::array::add(array, __string(ia[i]));
 
                if (i < 0)
                {

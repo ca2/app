@@ -78,7 +78,7 @@ class ::signal * manager::get_signal(const ::id & id, const ::action_context& ac
 
       auto psystem = m_psystem;
 
-      psignal->m_millisSleep = psystem->get_update_poll_time(id);
+      psignal->m_durationSleep = psystem->get_update_poll_time(id);
 
       auto pnode = psystem->node();
 

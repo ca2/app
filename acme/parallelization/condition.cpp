@@ -161,12 +161,14 @@ bool condition::pulse()
 
 ::e_status condition::wait()
 {
+
+
 #ifdef WINDOWS
 
    SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION&)m_criticalsection, 
-      U32_INFINITE_TIMEOUT);
+      INFINITE);
 
 #elif defined(ANDROID)
 
@@ -245,7 +247,7 @@ bool condition::pulse()
 
    m_iHold++;
 
-   millisecond start;
+   ::duration start;
 
    start.Now();
 
@@ -273,7 +275,7 @@ bool condition::pulse()
 
 #else
 
-   auto start = ::millisecond::now();
+   auto start = ::duration::now();
 
    timespec delay;
 
@@ -393,7 +395,7 @@ bool condition::is_signaled() const
 //
 //   u32 timeout = durationTimeout.u32_millis();
 //
-//   auto start = ::millisecond::now();
+//   auto start = ::duration::now();
 //
 //   timespec delay;
 //

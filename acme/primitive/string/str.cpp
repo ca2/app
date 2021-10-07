@@ -4596,13 +4596,13 @@ skip:
       if (d > 0.0)
       {
 
-         return "+" + __str(d);
+         return "+" + __string(d);
 
       }
       else if (d < 0.0)
       {
 
-         return __str(d);
+         return __string(d);
 
       }
       else
@@ -4620,13 +4620,13 @@ skip:
       if (i > 0)
       {
 
-         return "+" + __str(i);
+         return "+" + __string(i);
 
       }
       else if (i < 0)
       {
 
-         return __str(i);
+         return __string(i);
 
       }
       else
@@ -4819,29 +4819,31 @@ skip:
    }
 
 
-   CLASS_DECL_ACME void from(string & str, const float & f)
-   {
-
-      char sz[256];
-      sprintf(sz, "%f", f);
-      str = sz;
-      str.replace(",", ".");
-
-   }
-
-
-   CLASS_DECL_ACME void from(string & str, const double & d)
-   {
-
-      char sz[256];
-      sprintf(sz, "%f", d);
-      str = sz;
-      str.replace(",", ".");
-
-   }
-
-
 } // namespace str
+
+CLASS_DECL_ACME void to_string(string & str, const float & f)
+{
+
+   char sz[256];
+   sprintf(sz, "%f", f);
+   str = sz;
+   str.replace(",", ".");
+
+}
+
+
+CLASS_DECL_ACME void to_string(string & str, const double & d)
+{
+
+   char sz[256];
+   sprintf(sz, "%f", d);
+   str = sz;
+   str.replace(",", ".");
+
+}
+
+
+// } // namespace str
 
 
 
@@ -4913,28 +4915,24 @@ namespace str
    }
 
 
-
-   void from(string & str, const ::string_stream & strstream)
-   {
-
-      str = strstream.to_string();
-
-   }
-
-
-   void from(string & str, const ::text_stream & strstream)
-   {
-
-      str = strstream.to_string();
-
-   }
-
-
-
 } // namespace str
 
 
 
+void to_string(string & str, const ::string_stream & strstream)
+{
+
+   str = strstream.get_string();
+
+}
+
+
+void to_string(string & str, const ::text_stream & strstream)
+{
+
+   str = strstream.get_string();
+
+}
 
 
 

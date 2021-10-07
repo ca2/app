@@ -81,7 +81,7 @@ namespace apple
          
          ::memcpy_dup(&addr.s_addr, phostent->h_addr_list[nAdapter], phostent->h_length);
          
-         ::str::from(str, addr);
+         __string(str, addr);
          
          if(str.has_char())
          {

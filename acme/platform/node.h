@@ -399,10 +399,10 @@ namespace acme
 
 
       virtual ::e_status shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       
       //::file::path command_find_path(const ::string & pszCommand);

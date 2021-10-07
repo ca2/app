@@ -156,7 +156,7 @@ namespace sockets
 
          m_data = pa.getrest();
 
-         TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
+         INFORMATION(" *** resolv_socket server; query="<< m_query <<", data="<< m_data );
 
          // %! check cache
 
@@ -172,30 +172,30 @@ namespace sockets
                if (time(nullptr) - m_psystem->sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
 
-                  TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), result.c_str());
+                  INFORMATION(" *** Returning cache for ["<< m_query <<"]["<< m_data <<"] = '"<< result <<"'");
 
-                  print("Cached\n");
+                  INFORMATION("Cached");
                   if (result.is_empty()) /* failed */
                   {
-                     print("Failed\n\n");
+                     WARNING("Failed");
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname")
                   {
-                     print("A: " + result + "\n\n");
+                     INFORMATION("A: " << result);
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyname2")
                   {
-                     print("AAAA: " + result + "\n\n");
+                     INFORMATION("AAAA: " << result);
                      SetCloseAndDelete();
                      return;
                   }
                   else if (m_query == "gethostbyaddr")
                   {
-                     print("Name: " + result + "\n\n");
+                     INFORMATION("Name: " << result);
                      SetCloseAndDelete();
                      return;
                   }
@@ -210,7 +210,7 @@ namespace sockets
       }
       string key = pa.getword();
       string value = pa.getrest();
-      TRACE(" *** resolv_socket response;  %s: %s\n", key.c_str(), value.c_str());
+      INFORMATION(" *** resolv_socket response;  "<< key <<": "<< value);
 
       if (key == "Cached")
       {
@@ -218,7 +218,7 @@ namespace sockets
       }
       else if (key == "Failed" && m_parent)
       {
-         TRACE(" ************ Resolve failed\n");
+         INFORMATION(" ************ Resolve failed");
 //         if (socket_handler()->Resolving(m_parent) || socket_handler()->Valid(m_parent))
 //         {
 //            m_parent -> OnResolveFailed(m_resolv_id);
@@ -228,7 +228,7 @@ namespace sockets
          {
 
             single_lock lock(&m_psystem->sockets().m_mutexResolvCache, true);
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            INFORMATION(" *** Update cache for ["<< m_query <<"]["<< m_data <<"] = '"<< value <<"'");
             m_psystem->sockets().m_resolvcache[m_query][m_data] = value;
             m_psystem->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -244,7 +244,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&m_psystem->sockets().m_mutexResolvCache, true);
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
             m_psystem->sockets().m_resolvcache[m_query][m_data] = value;
             m_psystem->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -262,7 +262,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&m_psystem->sockets().m_mutexResolvCache, true);
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
             m_psystem->sockets().m_resolvcache[m_query][m_data] = value;
             m_psystem->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -280,7 +280,7 @@ namespace sockets
          if (!m_cached)
          {
             single_lock lock(&m_psystem->sockets().m_mutexResolvCache, true);
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            INFORMATION(" *** Update cache for [" << m_query << "][" << m_data << "] = '" << value << "'");
             m_psystem->sockets().m_resolvcache[m_query][m_data] = value;
             m_psystem->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
          }
@@ -291,36 +291,50 @@ namespace sockets
 
    void resolv_socket::OnDetached()
    {
-      TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query.c_str(), m_data.c_str());
+      INFORMATION(" *** resolv_socket::OnDetached(); query="<<m_query<<", data="<<m_data);
       if (m_query == "gethostbyname")
       {
          struct in_addr sa;
          if (m_paddressdepartment->convert(sa, m_data))
          {
+            
             string ip;
+            
             m_paddressdepartment->convert(ip, sa);
-            print("A: " + ip + "\n");
+            
+            INFORMATION("A: " << ip);
+
          }
          else
          {
-            print("Failed\n");
+
+            INFORMATION("Failed");
+
          }
-         print("\n");
+         
       }
       else if (m_query == "gethostbyname2")
       {
+         
          struct in6_addr sa;
+
          if (m_paddressdepartment->convert(sa, m_data))
          {
+            
             string ip;
+            
             m_paddressdepartment->convert(ip, sa);
-            print("AAAA: " + ip + "\n");
+            
+            INFORMATION("AAAA: " + ip);
+
          }
          else
          {
-            print("Failed\n");
+
+            INFORMATION("Failed");
+
          }
-         print("\n");
+         
       }
       else if (m_query == "gethostbyaddr")
       {
@@ -332,24 +346,23 @@ namespace sockets
          if (!m_paddressdepartment->reverse(name, address))
          {
 
-            print("Failed: convert to sockaddr_in failed\n");
+            INFORMATION("Failed: convert to sockaddr_in failed");
          
          }
          else
          {
 
-            print("Name: " + name + "\n");
+            INFORMATION("Name: " << name);
 
          }
-
-         print("\n");
 
       }
       else
       {
+
          string msg = "Unknown query type: " + m_query;
 
-         INFO(log_this, "OnDetached", 0, msg);
+         INFORMATION("OnDetached " << msg);
 
          print("Unknown\n\n");
 
@@ -394,12 +407,19 @@ namespace sockets
          print( msg );
 
       }
+      
       string tmp;
+
       m_paddressdepartment->convert(tmp, m_resolv_address);
+
       m_query = "gethostbyaddr";
+
       m_data = tmp;
+
       string msg = "gethostbyaddr " + tmp + "\n";
+
       print( msg );
+
    }
 
 
@@ -416,7 +436,7 @@ namespace sockets
          {
             single_lock lock(&m_psystem->sockets().m_mutexResolvCache, true);
             string value;
-            TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query.c_str(), m_data.c_str(), value.c_str());
+            INFORMATION(" *** Update cache for ["<< m_query <<"][" << m_data << "] = '"<<value<<"'");
             m_psystem->sockets().m_resolvcache[m_query][m_data] = value;
             m_psystem->sockets().m_resolvtimeout[m_query][m_data] = time(nullptr);
          }

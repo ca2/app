@@ -50,7 +50,7 @@ namespace http
       }
 
 
-      virtual string to_string() const override;
+      string get_string() const override;
 
 
       //inline string to_string() const
@@ -95,11 +95,11 @@ namespace http
       bool set_cookie(
          const char * pszKey,
          const ::payload & payload,
-         const ::duration & duration = 0,
+         const ::duration & duration = 0_s,
          const char * pszDomain = nullptr,
          const char * pszPath = nullptr,
          bool bSecure = false);
-      static string expire(const ::duration & duration = 5_min);
+      static string expire(const class ::duration & duration = 5_minute);
 
 
       using ARRAY_BASE::operator [];

@@ -286,7 +286,7 @@ namespace filemanager
 
             string strId;
 
-            strId = m_datakey.m_strDataKey +".last_browse_folder." + __str(idMachine);
+            strId = m_datakey.m_strDataKey +".last_browse_folder." + __string(idMachine);
 
             if (!papplication->data_get({ m_datakey.m_bLocalData, strId }, strPath))
             {
@@ -371,7 +371,7 @@ namespace filemanager
 
          string strId;
 
-         strId = m_datakey.m_strDataKey+".last_browse_folder." + __str(idMachine);
+         strId = m_datakey.m_strDataKey+".last_browse_folder." + __string(idMachine);
 
          papplication->data_set({ m_datakey.m_bLocalData, strId }, strPath);
 

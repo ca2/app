@@ -244,7 +244,7 @@ namespace account
       if(!is_authenticated())
       {
 
-         TRACE(trace_category_general, e_trace_level_error, "User not logged in!");
+         ERROR("User not logged in!");
 
          return;
 
@@ -254,7 +254,7 @@ namespace account
 
       psession->account()->on_user_logon(this);
 
-      m_timeAuthentication = ::datetime::time::get_current_time();
+      m_timeAuthentication = ::datetime::time::now();
 
    }
 
@@ -262,7 +262,7 @@ namespace account
    ::e_status  user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
-      m_timeAuthenticationRequest = ::datetime::time::get_current_time();
+      m_timeAuthenticationRequest = ::datetime::time::now();
 
       m_bDeferRegistration = bInteractive;
 
@@ -439,9 +439,9 @@ namespace account
          if(m_estatusAuthentication == ::success_authenticated)
          {
 
-            auto authenticationRequestElapsed = ::datetime::time::get_current_time() - m_timeAuthenticationRequest;
+            auto authenticationRequestElapsed = ::datetime::time::now() - m_timeAuthenticationRequest;
 
-            auto authenticationDoneElapsed = ::datetime::time::get_current_time() - m_timeAuthentication;
+            auto authenticationDoneElapsed = ::datetime::time::now() - m_timeAuthentication;
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 

@@ -90,7 +90,7 @@ namespace sockets
 
       http_socket::OnHeaderComplete();
 
-      TRACE("%s://%s%s", strProtocol.c_str(), strHost.c_str(), strRequestUri.c_str());
+      INFORMATION(strProtocol << "://" << strHost << strRequestUri);
 
       string strTest(strHost);
 
@@ -109,34 +109,34 @@ namespace sockets
       if(m_request.attr("request_uri").string().find("/passthrough/") >= 0)
       {
          
-         TRACE("Passthrough");
+         INFORMATION("Passthrough");
 
       }
 
       if(m_request.headers().has_property(__id(user_agent)))
       {
 
-         TRACE("user-agent: " + m_request.header(__id(user_agent)).to_string());
+         INFORMATION("user-agent: " << m_request.header(__id(user_agent)).get_string());
 
       }
       else
       {
 
-         TRACE("user-agent: ():[%s]", m_addressRemote.to_string().c_str());
+         INFORMATION("user-agent: ():[" << m_addressRemote.get_string() << "]");
 
       }
 
       if(m_request.headers().has_property(__id(from)))
       {
 
-         TRACE("from: " + m_request.header(__id(from)).to_string());
+         INFORMATION("from: " + m_request.header(__id(from)).get_string());
 
       }
 
       if(m_request.headers().has_property(__id(accept_language)))
       {
 
-         TRACE("accept-language: %s", m_request.header(__id(accept_language)).string().c_str());
+         INFORMATION("accept-language: %s", m_request.header(__id(accept_language)).string());
 
       }
 
@@ -598,7 +598,7 @@ namespace sockets
                
                response().println("--THIS_STRING_SEPARATES\r\n");
                
-               response().println("Content-range: bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen));
+               response().println("Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen));
                
                response().println("Content-Transfer-Encoding: base64");
 
@@ -721,13 +721,13 @@ namespace sockets
             if (iEnd == -1)
             {
                
-               outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/*";
 
             }
             else
             {
 
-               outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen);
+               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen);
 
             }
 

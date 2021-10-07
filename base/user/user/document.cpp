@@ -43,7 +43,7 @@ namespace user
       if (is_modified())
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying an unsaved document.\n");
+         CATEGORY_WARNING(appmsg, "Warning: destroying an unsaved document.\n");
 
       }
 #endif
@@ -1235,7 +1235,7 @@ namespace user
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
          //      // throw interface_only_exception();
-         //      TRACE(trace_category_appmsg, e_trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+         //      CATEGORY_WARNING(appmsg, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
          //      if (pfe->m_strFileName.is_empty())
@@ -1395,7 +1395,7 @@ namespace user
       {
 
 
-         INFO("Unsaved Document");
+         INFORMATION("Unsaved Document");
 
          return false;       // don't continue
 
@@ -1514,7 +1514,7 @@ namespace user
             }
          }
 
-         //if (!papplication->do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papplication->do_prompt_file_name(newName, __string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }
@@ -1540,7 +1540,7 @@ namespace user
             catch(const ::exception &)
             {
 
-               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
+               CATEGORY_WARNING(appmsg, "Warning: failed to delete file after failed SaveAs.\n");
 
             }
 
@@ -1569,7 +1569,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
+            CATEGORY_WARNING(appmsg, "Warning: File save with new name failed.\n");
 
             return false;
 
@@ -1582,7 +1582,7 @@ namespace user
          if (!do_save(m_path))
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save failed.\n");
+            CATEGORY_WARNING(appmsg, "Warning: File save failed.\n");
 
             return false;
 

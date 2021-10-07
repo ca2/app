@@ -44,7 +44,7 @@ namespace userstack
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
       rectangle_i32_array                 m_rectangleaUpdate;
-      millis                       m_millisLastUpdate;
+      ::duration                       m_durationLastUpdate;
       ::mutex                      m_mutexDraw;
 
 

@@ -53,7 +53,7 @@ public:
    void from_string(const char * psz);
    void from_string(const ::string & str);
    void from_string(const ::payload & str);
-   virtual string to_string() const override;
+   virtual string get_string() const override;
 
    void read(memory_base *pmemorystorage);
 
@@ -172,7 +172,7 @@ inline void memory_container ::from_string(const ::payload & payload)
 }
 
 
-inline string memory_container::to_string() const
+inline string memory_container::get_string() const
 {
 
    if (!m_pmemory)
@@ -182,7 +182,7 @@ inline string memory_container::to_string() const
 
    }
 
-   return m_pmemory->to_string();
+   return m_pmemory->get_string();
 
 }
 

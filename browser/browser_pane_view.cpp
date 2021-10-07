@@ -115,9 +115,9 @@ namespace browser
       if(get_view_id() == MENU_IMPACT
             || get_view_id() == MAIN_IMPACT
             || get_view_id() == MAIN_SWITCHER_IMPACT
-            || stra.contains(__str((int)MENU_IMPACT))
-            || stra.contains(__str((int)MAIN_IMPACT))
-            || stra.contains(__str((int)MAIN_SWITCHER_IMPACT)))
+            || stra.contains(__string((int)MENU_IMPACT))
+            || stra.contains(__string((int)MAIN_IMPACT))
+            || stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
       {
 
 
@@ -173,8 +173,8 @@ namespace browser
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
 
          }
-         else if (stra.contains(__str((int)MAIN_IMPACT))
-                  && stra.contains(__str((int)MAIN_SWITCHER_IMPACT)))
+         else if (stra.contains(__string((int)MAIN_IMPACT))
+                  && stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
          {
 
             {
@@ -235,7 +235,7 @@ namespace browser
             for (auto & pslide : m_pviewLastBilbo->m_prender->slideshow())
             {
 
-               __pointer(::user::check_box) pcheck = pview->get_child_by_id("slide" + __str(i));
+               __pointer(::user::check_box) pcheck = pview->get_child_by_id("slide" + __string(i));
 
                m_checkptraBilbo.add(pcheck);
 
@@ -380,7 +380,7 @@ namespace browser
 
                      }
                      m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_millisRoll.Now();
+                     m_pviewLast->m_durationRoll.Now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -388,7 +388,7 @@ namespace browser
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -415,8 +415,8 @@ namespace browser
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
+            //         m_pflagview->m_dwRoll= ::duration::now();
+            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)

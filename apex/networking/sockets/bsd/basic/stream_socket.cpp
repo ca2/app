@@ -86,7 +86,7 @@ namespace sockets
    //}
 
 
-   //::secs stream_socket::GetConnectTimeout()
+   //::second stream_socket::GetConnectTimeout()
    //{
 
    //   return m_secsConnectionTimeout;

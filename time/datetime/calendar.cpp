@@ -13,7 +13,7 @@ namespace datetime
       calendar::calendar()
       {
 
-         ::datetime::time time = ::datetime::time::get_current_time();
+         ::datetime::time time = ::datetime::time::now();
          m_iYear = time.GetYear();
          m_iMonth = time.GetMonth();
          m_bRange = false;
@@ -129,7 +129,7 @@ namespace datetime
       void calendar::GetDateTime(const ::text::context* pcontext, string& strDateTime)
       {
 
-         ::datetime::time time = ::datetime::time::get_current_time();
+         ::datetime::time time = ::datetime::time::now();
          string strDate;
          string strWeekDay;
          string strTime;

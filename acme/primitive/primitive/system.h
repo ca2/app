@@ -124,8 +124,8 @@ namespace apex
       string                                             m_strInstallVersion;
       string                                             m_strInstallPlatform;
 
-      millis                                               m_millisMainStart;
-      millis                                               m_millisAfterApplicationFirstRequest;
+      ::duration                                               m_durationMainStart;
+      ::duration                                               m_durationAfterApplicationFirstRequest;
 
       //::mutex                                 m_spmutexOpenweatherCity;
 
@@ -144,7 +144,7 @@ namespace apex
 
       string_array                                            m_straCommandLineAccumul;
       string_array                                            m_straCommandLineExtra;
-      millis                                               m_millisCommandLineLast;
+      ::duration                                               m_durationCommandLineLast;
       int                                                m_iCommandLineDelay;
       ::task_pointer                                m_pthreadCommandLine;
 
@@ -909,7 +909,7 @@ namespace apex
 
 
 
-//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 

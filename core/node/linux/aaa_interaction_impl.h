@@ -24,13 +24,13 @@ namespace linux
 
       //::task_pointer         m_pthreadDraw;
       ::rect64                      m_rectangleLastPos;
-      millis                        m_millisLastPos;
+      ::duration                        m_durationLastPos;
 
       ::point                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
-      ::millis                      m_millisLastPlacementEvent;
+      ::duration                      m_durationLastPlacementEvent;
 
 
       interaction_impl();
@@ -317,7 +317,7 @@ namespace linux
 //
 //#if(WINVER >= 0x0500)
 //
-//      virtual bool AnimateWindow(::u32 millis, ::u32 dwFlags);
+//      virtual bool AnimateWindow(::u32 ::duration, ::u32 dwFlags);
 //
 //#endif   // WINVER >= 0x0500
 //

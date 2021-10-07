@@ -719,7 +719,7 @@ namespace crypto
 
       i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
-      strDecrypt = storageDecrypt.to_string();
+      strDecrypt = storageDecrypt.get_string();
 
       return plainlen;
 
@@ -1440,7 +1440,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1471,7 +1471,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1498,7 +1498,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1528,7 +1528,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1557,7 +1557,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1671,7 +1671,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1700,17 +1700,18 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
-      }
+      } 
 
       string str;
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return str;
 
    }
+
 
    __pointer(::crypto::rsa) crypto::generate_rsa_key()
    {

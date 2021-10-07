@@ -15,7 +15,7 @@ thread_int_ptr < ::u32 > g_dwLastError;
 CLASS_DECL_AURA ::u32 get_last_error()
 {
 
-   millis g_tickLastError;
+   ::duration g_tickLastError;
 
 }
 

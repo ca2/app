@@ -25,12 +25,12 @@
 //}
 //
 
-//inline duration& duration::operator = (const class ::millisecond & millisecond)
+//inline duration& duration::operator = (const class ::duration & ::duration)
 //{
 //
-//   m_secs = millisecond.m_i / 1'000;
+//   m_secs = ::duration.m_i / 1'000;
 //
-//   m_nanos = (millisecond.m_i % 1'000) * 1'000'000;
+//   m_nanos = (::duration.m_i % 1'000) * 1'000'000;
 //
 //   return *this;
 //
@@ -65,62 +65,23 @@ inline duration& duration::operator = (const ::duration & duration)
 }
 
 //
-//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::millisecond & millisecond)
+//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration)
 //{
 //
-//   return nanosecond.m_i - millisecond.m_i * 1'000'000;
+//   return nanosecond.m_i - ::duration.m_i * 1'000'000;
 //
 //}
 //
 //
-//inline duration operator -(const ::duration & duration, const ::millisecond & millisecond)
+//inline duration operator -(const ::duration & duration, const ::duration & duration)
 //{
 //
-//   return duration - (const ::duration &) millisecond;
+//   return duration - (const ::duration &) ::duration;
 //
 //}
 //
 
 
-inline ::i64 _first_second() { return _get_millisecond() / 1'000; }
-inline ::i64 _get_second() { return _get_millisecond() / 1'000; }
-
-
-inline ::i64 _first_millisecond() { return _get_microsecond() / 1'000; }
-inline ::i64 _get_millisecond() { return _get_microsecond() / 1'000; }
-
-
-inline ::i64 _first_microsecond() { return _get_nanosecond() / 1'000; }
-inline ::i64 _get_microsecond() { return _get_nanosecond() / 1'000; }
-
-
-//inline millisecond::millisecond(enum enum_now) { m_i = _get_millisecond(); }
-//inline millisecond millisecond::now() { return get_millisecond(); }
-
-//
-//namespace papaya
-//{
-//
-//
-//   namespace chill
-//   {
-//
-//
-//      template <  >
-//      inline millisecond default_value < millisecond >()
-//      {
-//
-//         // estimate a delay of half of maximum millisecond positive value
-//         return ::get_millisecond() - (MAXI64 >> 1);
-//
-//      }
-//
-//
-//   } // namespace chill
-//
-//
-//} // namespace papaya
-//
 
 inline bool duration::timeout(const duration & duration)
 {
@@ -144,7 +105,7 @@ inline bool duration::timeout(const duration & duration)
 
 
 
-//inline ::millisecond duration::millisecond() const
+//inline ::duration duration::duration() const
 //{
 //
 //   

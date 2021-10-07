@@ -195,7 +195,7 @@ namespace filemanager
 
          }
 
-         initialize(__str(filemanager_data()->m_id), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
+         initialize(__string(filemanager_data()->m_id), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
 
       }
 

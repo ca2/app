@@ -247,7 +247,7 @@ namespace filemanager
 
    //         single_lock lock(get_application()->mutex());
 
-   //         if (!lock.lock(millis(2000)))
+   //         if (!lock.lock(::duration(2000)))
    //         {
 
    //            break;
@@ -389,7 +389,7 @@ namespace filemanager
 
       }
 
-      filemanager_document()->on_file_manager_item_command(__str(pcommand->m_id), itema);
+      filemanager_document()->on_file_manager_item_command(__string(pcommand->m_id), itema);
 
    }
 
@@ -826,7 +826,7 @@ namespace filemanager
    //      }
    //   }
 
-   //   ::datetime::time time = ::datetime::time::get_current_time();
+   //   ::datetime::time time = ::datetime::time::now();
 
    //   string strTime;
 
@@ -921,7 +921,7 @@ namespace filemanager
 
    //   }
 
-   //   ::datetime::time time = ::datetime::time::get_current_time();
+   //   ::datetime::time time = ::datetime::time::now();
 
    //   string strTime;
 
@@ -1051,7 +1051,7 @@ namespace filemanager
       if (filemanager_data()->m_bSetBergedgeTopicFile)
       {
 
-         SetTimer(888888, 230, nullptr);
+         SetTimer(888888, 230_ms, nullptr);
 
       }
 
@@ -1454,10 +1454,10 @@ namespace filemanager
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
-   //      millis tickNow= ::millis::now();
-   //      if (tickNow - m_millisLastRedraw > 784)
+   //      ::duration tickNow= ::duration::now();
+   //      if (tickNow - m_durationLastRedraw > 784)
    //      {
-   //         m_millisLastRedraw = tickNow;
+   //         m_durationLastRedraw = tickNow;
    //         set_need_redraw();
    //      }
    //   }

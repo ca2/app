@@ -57,7 +57,7 @@ namespace user
          ptext->_001SetText(strProxy, false);
          pinteraction = m_pimpact->get_child_by_name("port");
          ptext =  (pinteraction);
-         ptext->_001SetText(__str(iProxyPort), false);
+         ptext->_001SetText(__string(iProxyPort), false);
       }*/
    }
 

@@ -30,7 +30,7 @@ namespace http
          string         m_strUrl;
          string         m_strAutoConfigScript;
          tinyjs *       m_pjs;
-         millis m_millisLastChecked;
+         ::duration m_durationLastChecked;
 
 
          pac(::object * pobject);
@@ -50,7 +50,7 @@ namespace http
          bool           m_bDirect;
          string         m_strProxy;
          i32        m_iPort;
-         millis m_millisLastChecked;
+         ::duration m_durationLastChecked;
 
 
          proxy(::object * pobject);

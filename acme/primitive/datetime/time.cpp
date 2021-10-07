@@ -14,7 +14,7 @@ namespace datetime
    const char * const szInvalidDateTime = "Invalid DateTime";
 
 
-   ::datetime::time time::get_current_time() noexcept
+   ::datetime::time time::now() noexcept
    {
 
 #ifdef WINDOWS
@@ -30,15 +30,14 @@ namespace datetime
    }
 
 
-
-
    time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST)
    {
+
+
 #pragma warning (push)
 #pragma warning (disable: 4127)  // conditional expression constant
-
-
 #pragma warning (pop)
+
 
       struct tm atm;
 
@@ -50,15 +49,17 @@ namespace datetime
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = nDST;
 
+
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_i = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_i = mktime(&atm);
 
 #endif
+
 
       /*
       Remember that:
@@ -69,7 +70,7 @@ namespace datetime
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_time != -1);   */    // indicates an illegal input time
-      if(m_time == -1)
+      if(m_i == -1)
       {
 
          __throw(error_invalid_argument);
@@ -97,22 +98,24 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_i = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_i = mktime(&atm);
 
 #endif
 
-      ASSUME(m_time != -1);       // indicates an illegal input time
+      ASSUME(m_i != -1);       // indicates an illegal input time
 
-      if(m_time == -1)
+      if (m_i == -1)
+      {
+
          __throw(error_invalid_argument);
 
+      }
+
    }
-
-
 
 
 #endif
@@ -123,7 +126,7 @@ namespace datetime
 
       //auto pnode = get_system()->node();
 
-      file_time_to_time(&m_time, &filetime.m_filetime);
+      file_time_to_time(&m_i, &filetime.m_filetime);
 
    }
 
@@ -131,7 +134,7 @@ namespace datetime
    ::datetime::time & time::operator=(const time & time) noexcept
    {
 
-      m_time = time.m_time;
+      m_i = time.m_i;
 
       return *this;
 
@@ -141,7 +144,7 @@ namespace datetime
    ::datetime::time & time::operator+=( time_span span ) noexcept
    {
 
-      m_time += span.GetTimeSpan();
+      m_i += span.GetTimeSpan();
 
       return *this;
 
@@ -150,31 +153,23 @@ namespace datetime
 
    ::datetime::time & time::operator-=( time_span span ) noexcept
    {
-      m_time -= span.GetTimeSpan();
+
+      m_i -= span.GetTimeSpan();
 
       return *this;
+      
    }
 
-   ::datetime::time & time::operator+=(const  duration & duration ) noexcept
-   {
-      m_time += duration.GetTimeSpan();
-
-      return *this;
-   }
-
-   ::datetime::time & time::operator-=(const  duration & duration ) noexcept
-   {
-      m_time -= duration.GetTimeSpan();
-
-      return *this;
-   }
 
    ::datetime::time & time::operator+=( date_span span )
    {
+
       __UNREFERENCED_PARAMETER(span);
+
       __throw(error_not_implemented);
 
       return *this;
+
    }
 
 
@@ -224,7 +219,7 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _gmtime64_s(&tmTemp, &m_time);
+         errno_t err = _gmtime64_s(&tmTemp, &m_i);
 
          if (err != 0)
          {
@@ -264,7 +259,6 @@ namespace datetime
 
       }
 
-
    }
 
 
@@ -293,7 +287,7 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _localtime64_s(&tmTemp, &m_time);
+         errno_t err = _localtime64_s(&tmTemp, &m_i);
 
          if (err != 0)
          {
@@ -321,141 +315,207 @@ namespace datetime
    }
 
 
-
-
-
    time_t time::get_time() const noexcept
    {
 
-       return( m_time );
+       return m_i;
 
    }
 
 
    i32 time::GetYear() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
+
    }
+
 
    i32 time::GetMonth() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_mon + 1 : 0;
+
    }
+
 
    i32 time::GetDay() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_mday : 0 ;
+
    }
+
 
    i32 time::GetHour() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_hour : -1 ;
+
    }
+
 
    i32 time::GetMinute() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_min : -1 ;
+
    }
+
 
    i32 time::GetSecond() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_sec : -1 ;
+
    }
+
 
    i32 time::GetDayOfWeek() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_wday + 1 : 0 ;
+
    }
+
 
    i32 time::GetGmtYear() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
+
    }
+
 
    i32 time::GetGmtMonth() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_mon + 1 : 0;
+
    }
+
 
    i32 time::GetGmtDay() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_mday : 0 ;
+
+      return ptm ? ptm->tm_mday : 0;
+
    }
+
 
    i32 time::GetGmtHour() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_hour : -1 ;
+
    }
+
 
    i32 time::GetGmtMinute() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_min : -1 ;
+
    }
+
 
    i32 time::GetGmtSecond() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_sec : -1 ;
+
+      return ptm ? ptm->tm_sec : -1;
+
    }
+
 
    i32 time::GetGmtDayOfWeek() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_wday + 1 : 0 ;
+
+      return ptm ? ptm->tm_wday + 1 : 0;
+
    }
 
 
@@ -473,12 +533,10 @@ namespace datetime
    }
 
 
-
-
    time_span time::elapsed() const
    {
 
-      return ::datetime::time::get_current_time() - *this;
+      return ::datetime::time::now() - *this;
 
    }
 
@@ -486,7 +544,7 @@ namespace datetime
    time_span time::abs_diff(const time & time) const
    {
 
-      return abs(time.m_time - m_time);
+      return abs(time.m_i - m_i);
 
    }
 
@@ -518,6 +576,7 @@ namespace datetime
 
    }
 
+
    i64 time::GetDaySig() const noexcept
    {
 
@@ -544,6 +603,7 @@ namespace datetime
       return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
 
    }
+
 
 } // namespace datetime
 
@@ -579,7 +639,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time & time)
 stream & operator <<(stream & os, ::datetime::time & time)
 {
 
-   os.write((i64) time.m_time);
+   os.write((i64) time.m_i);
 
    return os;
 
@@ -842,7 +902,7 @@ string FormatGmt(const string & strFormat, const ::datetime::time & time)
 
 #else
 
-   struct tm * ptmTemp = _gmtime64(&time.m_time);
+   struct tm * ptmTemp = _gmtime64(&time.m_i);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {

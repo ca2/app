@@ -27,7 +27,7 @@ namespace universal_windows
       point_f64                                                            m_pointLastMouseMove;
       //point_f64                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
-      millis                                                              m_millisLastMouseMove;
+      ::duration                                                              m_durationLastMouseMove;
       Agile < ::winrt::Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
       Agile < ::winrt::Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
       Agile < ::winrt::Windows::UI::Core::CoreWindow >                           m_window;
@@ -270,7 +270,7 @@ namespace universal_windows
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(millis millis, u32 dwFlags);
+      virtual bool AnimateWindow(::duration ::duration, u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 
@@ -392,7 +392,7 @@ namespace universal_windows
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, millis tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, ::duration tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

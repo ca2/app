@@ -364,7 +364,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
@@ -553,7 +553,7 @@ namespace linux
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
             {
 
-               INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+               INFORMATION("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
 
             }
 
@@ -744,7 +744,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_millisLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
+      while(m_durationLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
       {
 
          if(!task_sleep(10_ms))
@@ -770,7 +770,7 @@ namespace linux
       if (bMove)
       {
 
-         INFO("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -785,7 +785,7 @@ namespace linux
       if (bSize)
       {
 
-         INFO("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -1325,10 +1325,10 @@ namespace linux
 //   }
 //
 
-   millis     tickDebugmessage_handlerTime;
+   ::duration     tickDebugmessage_handlerTime;
    int      iDebugmessage_handlerTime;
-   millis     tickLastMouseMove;
-   millis     tickLastPaint;
+   ::duration     tickLastMouseMove;
+   ::duration     tickLastPaint;
 
 
    void interaction_impl::message_handler(::user::message * pusermessage)
@@ -1527,7 +1527,7 @@ namespace linux
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
-               INFO("Screen Relative Mouse Message Position");
+               INFORMATION("Screen Relative Mouse Message Position");
                ::rectangle rectangleWindow32;
                ::get_window_rect((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
@@ -2291,7 +2291,7 @@ namespace linux
 ////            while (::task_get_run())
 ////            {
 ////
-//// auto tickStart = ::millis::now();
+//// auto tickStart = ::duration::now();
 ////
 ////               bool bUpdateScreen = false;
 ////
@@ -2436,7 +2436,7 @@ namespace linux
 //         fork();
 //#undef timeout
 //
-//         if(m_event.wait(millis(tickTimeout)).timeout())
+//         if(m_event.wait(::duration(tickTimeout)).timeout())
 //         {
 //            TRACE("print_window::time_out");
 //         }

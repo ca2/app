@@ -454,9 +454,9 @@ void tracer::flush()
 
    }
 
-   string str = m_str;
+   //string str = m_str;
 
-   m_str.Empty();
+   //m_str.Empty();
 
    m_plogger->print(m_etracelevel, m_etracecategory, m_pszFunction, m_pszFile, m_iLine, m_str);
 

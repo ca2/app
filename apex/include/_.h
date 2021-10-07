@@ -320,6 +320,10 @@ namespace core
 } // namespace core
 
 
+
+#include "acme/platform/library.h"
+
+
 #include "apex/platform/apex_main_struct.h"
 
 
@@ -499,12 +503,12 @@ namespace datetime
 } // namespace datetime
 
 
-namespace trace
-{
+//namespace trace
+//{
 
    class trace;
 
-}
+//}
 
 
 namespace apex
@@ -518,7 +522,8 @@ namespace apex
 
 } // namespace apex
 
-CLASS_DECL_APEX bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
+
+CLASS_DECL_APEX bool enable_trace_category(enum_trace_category ecategory, bool bEnable = true);
 
 
 class app_core;

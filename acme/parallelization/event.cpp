@@ -761,7 +761,7 @@ bool event::ResetEvent()
 
       u32 timeout = durationTimeout.u32_millis();
 
-      auto start = ::millisecond::now();
+      auto start = ::duration::now();
 
       while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
       {
@@ -861,7 +861,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(millisecond(0)).signaled();
+      return ((event *) this)->wait(::duration(0)).signaled();
 
    }
 
@@ -989,7 +989,7 @@ bool event::is_signaled() const
 ////
 ////      u32 timeout = durationTimeout.u32_millis();
 ////
-////      u32 start= ::millisecond::now();
+////      u32 start= ::duration::now();
 ////
 ////      while(start.elapsed() < timeout)
 ////      {

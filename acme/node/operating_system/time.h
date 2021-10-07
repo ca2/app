@@ -7,12 +7,13 @@ CLASS_DECL_ACME i64 __first_tick(void);
 CLASS_DECL_ACME i64 __get_tick(void);
 
 
-
 class duration;
+
 
 #define ISDST_DAYLIGHT_SAVINGS 1
 #define ISDST_NO_DAYLIGHT_SAVINGS 0
 #define ISDST_DONT_KNOW -1
+
 
 void copy(system_time_t* psystemtimeUTC, const struct tm* ptmUTC);
 void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC);

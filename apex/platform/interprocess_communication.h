@@ -164,20 +164,20 @@ namespace interprocess_communication
       __pointer(tx)           m_ptx;
       __pointer(rx)           m_prx;
       string                  m_strChannel;
-      unsigned int            m_millisTimeout;
+      unsigned int            m_durationTimeout;
 
 
       interprocess_communication();
       ~interprocess_communication() override;
 
-      virtual bool open_ab(const ::string & pszChannel, launcher * plauncher = nullptr);
-      virtual bool open_ba(const ::string & pszChannel, launcher * plauncher = nullptr);
+      virtual bool open_ab(const ::string & strChannel, launcher * plauncher = nullptr);
+      virtual bool open_ba(const ::string & strChannel, launcher * plauncher = nullptr);
       virtual bool close();
 
       virtual void restart_apex_ipc();
 
-      virtual bool ensure_tx(const ::string & pszMessage, duration durationTimeout = one_hour());
-      virtual bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = one_hour());
+      virtual bool ensure_tx(const ::string & strMessage, duration durationTimeout = hour());
+      virtual bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = hour());
 
 
       virtual bool is_rx_tx_ok();

@@ -246,14 +246,14 @@ namespace user
       enumeration < e_non_client >                       m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
-      ::millis                                     m_millisMouseMoveSkip;
+      ::duration                                     m_durationMouseMoveSkip;
       ::point_i32                                      m_pointMouseMoveSkip;
-      ::millis                                     m_millisMouseMovePeriod;
+      ::duration                                     m_durationMouseMovePeriod;
       bool                                         m_bMouseMovePending;
       ::point_i32                                      m_pointMouseMove;
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
-      millis                                         m_millisLastRedraw;
+      ::duration                                         m_durationLastRedraw;
       ::id                                         m_idView;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
@@ -271,15 +271,15 @@ namespace user
       //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::millis                                     m_millisMouseMove;
-      ::millis                                     m_millisMouseMoveIgnore;
+      ::duration                                     m_durationMouseMove;
+      ::duration                                     m_durationMouseMoveIgnore;
       double                                       m_dItemHeight;
       point_i32                                        m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
       bool                                         m_bBackgroundBypass;
-      millis                                       m_millisLastFullUpdate;
+      ::duration                                       m_durationLastFullUpdate;
       bool                                         m_bSizeMove;
-      millis                                       m_millisLastVisualChange;
+      ::duration                                       m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
@@ -1093,9 +1093,9 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 //      virtual bool enable_window(bool bEnable = true) override;

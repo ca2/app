@@ -153,8 +153,8 @@ namespace user
       bool                             m_bLButtonDown;
       point_i32                        m_pointLButtonDown1;
       point_i32                        m_pointLButtonDown2;
-      millis                           m_millisLButtonDownStart1;
-      millis                           m_millisLButtonDownStart2;
+      ::duration                           m_durationLButtonDownStart1;
+      ::duration                           m_durationLButtonDownStart2;
       index                            m_iDisplayItemLButtonDown1;
       index                            m_iDisplayItemLButtonDown2;
 

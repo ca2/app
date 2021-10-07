@@ -134,7 +134,7 @@ namespace user
          if (!estatus)
          {
 
-            TRACE("failed to create user shell");
+            INFORMATION("failed to create user shell");
 
          }
 
@@ -436,9 +436,7 @@ namespace user
 
       //}
 
-
-
-      TRACE("::user::application::initialize");
+      INFORMATION("::user::application::initialize");
 
       //xml::document docUser;
 

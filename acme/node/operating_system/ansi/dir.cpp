@@ -12,11 +12,11 @@ string get_current_directory_name()
 
 #ifdef __APPLE__
 
-   strCurrentDirName = ::str::from_strdup(getcwd(nullptr, 0));
+   strCurrentDirName = ::string_from_strdup(getcwd(nullptr, 0));
 
 #else
 
-    strCurrentDirName = ::str::from_strdup(get_current_dir_name());
+    strCurrentDirName = ::string_from_strdup(get_current_dir_name());
 
 #endif
 

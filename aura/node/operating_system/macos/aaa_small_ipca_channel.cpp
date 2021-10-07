@@ -198,7 +198,7 @@ namespace aura
 
             m.set_os_cf_data(data);
 
-            prx->on_ipc_receive(prx, __str(m));
+            prx->on_ipc_receive(prx, __string(m));
 
          }
          else
@@ -473,7 +473,7 @@ namespace aura
       ipc::ipc()
       {
 
-         m_millisTimeout = (5000) * 11;
+         m_durationTimeout = (5000) * 11;
 
       }
 

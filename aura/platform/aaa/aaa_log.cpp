@@ -252,7 +252,7 @@ pacmedir->system() / "log.txt"))
             str += "File : ";
             str += pszFileName;
             str += "\r\nLine : ";
-            str += __str(iLine);
+            str += __string(iLine);
             str += "\r\n";
 
             string strCaption;
@@ -262,7 +262,7 @@ pacmedir->system() / "log.txt"))
             output_debug_string(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__str(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__string(iLine)+"\"";
                ::system(strCmdLine);
                exit(0);
             }
@@ -391,7 +391,7 @@ pacmedir->system() / "log.txt"))
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      i64 uiTotalMillis= ::millis::now() - ::first_millis();
+      i64 uiTotalMillis= ::duration::now() - ::first_millis();
       i64 uiMillis = uiTotalMillis % 1000;
       i64 uiTotalSeconds = uiTotalMillis / 1000;
       i64 uiSeconds = uiTotalSeconds % 60;
@@ -447,7 +447,7 @@ pacmedir->system() / "log.txt"))
 
          strMiddle += "\""+ string(pszFile) + "\"";
 
-         strMiddle += "(" + __str(iLine) + "): ";
+         strMiddle += "(" + __string(iLine) + "): ";
 
       }
 

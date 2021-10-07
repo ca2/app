@@ -33,9 +33,9 @@ namespace user
 
 
       e_style              m_estyle;
-      millis                 m_millisAnimationStart;
+      ::duration                 m_durationAnimationStart;
       double               m_dPosition;
-      millis                 m_millisAnimationPeriod;
+      ::duration                 m_durationAnimationPeriod;
 
 
       check_box(e_style estyle = style_normal);

@@ -264,7 +264,7 @@ namespace axis
 //   ::e_status     application::main()
 //   {
 //
-//      INFO("aura::application::main");
+//      INFORMATION("aura::application::main");
 //
 //      try
 //      {
@@ -276,7 +276,7 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __string(m_iErrorCode));
 ////
 ////            ::output_debug_string("application::main on_run termination failure\n");
 ////
@@ -737,7 +737,7 @@ namespace axis
 
       ////}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       create_factory < ::database::field_array >();
       create_factory < ::database::row >();
@@ -750,7 +750,7 @@ namespace axis
 
       //}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       //m_bAxisProcessInitialize = true;
 
@@ -775,7 +775,7 @@ namespace axis
 
       //m_bAxisProcessInitializeResult = true;
 
-      //INFO("axis::application::process_init success");
+      //INFORMATION("axis::application::process_init success");
 
       //return true;
 
@@ -784,13 +784,13 @@ namespace axis
       if(!estatus && estatus != error_not_implemented)
       {
 
-         ERR(".2");
+         ERROR(".2");
 
          return false;
 
       }*/
 
-      INFO("success");
+      INFORMATION("success");
 
       return true;
 
@@ -955,18 +955,18 @@ namespace axis
 //
 //      //}
 //
-//      INFO("aura::application::init_application");
+//      INFORMATION("aura::application::init_application");
 //
 //      //m_bAuraInitializeInstance = true;
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -976,12 +976,12 @@ namespace axis
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -991,12 +991,12 @@ namespace axis
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1006,9 +1006,9 @@ namespace axis
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1016,7 +1016,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -1102,12 +1102,12 @@ namespace axis
 
       //}
 
-      //INFO("start");
+      //INFORMATION("start");
 
       ////if (!::aura::application::init1())
       ////{
 
-      ////   ERR(".1");
+      ////   ERROR(".1");
 
       ////   return false;
 
@@ -1116,13 +1116,13 @@ namespace axis
       ////if (!initialize1_experience())
       ////{
 
-      ////   ERR(".2");
+      ////   ERROR(".2");
 
       ////   return false;
 
       ////}
 
-      //m_millisHeartBeat.Now();
+      //m_durationHeartBeat.Now();
 
       ////estatus = __compose(m_puserfs);
 
@@ -1136,7 +1136,7 @@ namespace axis
       ////if (!userfs_init1())
       ////{
 
-      ////   ERR(".3");
+      ////   ERROR(".3");
 
       ////   return false;
 
@@ -1921,7 +1921,7 @@ namespace axis
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_millisHeartBeat.Now();
+   //   m_durationHeartBeat.Now();
 
    //   if (!::aura::application::init1())
    //   {

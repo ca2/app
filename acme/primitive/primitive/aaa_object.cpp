@@ -2260,7 +2260,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 
    auto strExtension = payload.get_file_path().extension();
 
-   if (strExtension == __str(id))
+   if (strExtension == __string(id))
    {
 
       return "";

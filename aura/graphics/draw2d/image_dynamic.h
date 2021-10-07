@@ -7,7 +7,7 @@ public:
 
 
    bool                 m_bStart;
-   millis                 m_millisStart;
+   ::duration           m_durationStart;
    index                m_iFrame;
 
 

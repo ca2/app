@@ -1,20 +1,6 @@
 #pragma once
 
 
-#ifdef CPP20
-
-
-inline wait::wait(const ::duration & duration)
-{
-
-   m_iMillisecond = (::u32) ::minimum_maximum(duration.integral_millisecond(), 0, infinite());
-
-}
-
-
-#endif
-
-
 #ifdef _AFXMT_INLINE
 
 _AFXMT_INLINE int_bool semaphore::Unlock()
@@ -209,6 +195,7 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //
 
 
+inline class ::wait wait::now() { return get_integral_millisecond(); }
 
-inline class ::wait wait::now() { return _get_millisecond(); }
+
 

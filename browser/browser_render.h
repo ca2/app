@@ -22,7 +22,7 @@ namespace browser
       double                           m_dRenderFps;
       bool                             m_bDib1;
 
-      millis m_millisSlidePeriod;
+      ::duration m_durationSlidePeriod;
 
       bool                             m_bAlternate;
 
@@ -81,16 +81,16 @@ namespace browser
       impact *                           m_pimpact;
 
 
-      millis                            m_millisAnime;
-      millis m_millisLastFast;
-      ::u32                            m_millisFastAnime;
+      ::duration                            m_durationAnime;
+      ::duration m_durationLastFast;
+      ::u32                            m_durationFastAnime;
       ::image_pointer                            m_pimageFast;
 
 
       image_array                      m_pimageaSlide;
       __pointer(::object)                     m_pslideshow;
 
-      millis m_millisLastOk;
+      ::duration m_durationLastOk;
 
 
       bool                             m_bFast;

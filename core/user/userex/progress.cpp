@@ -251,8 +251,7 @@ namespace userex
 
       }
 
-      SetTimer(e_timer_update_current_area, 300);
-
+      SetTimer(e_timer_update_current_area, 300_ms);
 
    }
 

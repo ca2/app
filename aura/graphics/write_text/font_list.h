@@ -52,7 +52,7 @@ namespace write_text
 
       ::rectangle_i32                           m_rectangleMargin;
       int                                       m_iBaseSizeLayout;
-      millis                                    m_millisLastLayout;
+      ::duration                                    m_durationLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       int_array                                 m_iaSize;

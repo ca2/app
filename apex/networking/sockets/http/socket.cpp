@@ -228,7 +228,7 @@ namespace sockets
 
 #endif
 
-         m_microsFirstTime = get_micros();
+         m_microsFirstTime = get_microsecond();
 
          ::str::parse pa(line);
 
@@ -438,7 +438,7 @@ namespace sockets
          
          msg += "Host: " + strHost + "\r\n";
          
-         TRACE("Host: %s", strHost.c_str());
+         INFORMATION("Host: "<<strHost);
 
       }
 
@@ -572,7 +572,7 @@ namespace sockets
       if (m_request.m_propertysetHeader[__id(host)].string().has_char())
       {
 
-         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)].to_string();
+         strLine = "Host: " + m_request.m_propertysetHeader[__id(host)].get_string();
 
          if(m_iProxyPort > 0 ||
                (m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
@@ -580,7 +580,7 @@ namespace sockets
 
             strLine += ":";
 
-            strLine += __str(m_iConnectPort);
+            strLine += __string(m_iConnectPort);
 
          }
 
@@ -682,7 +682,7 @@ namespace sockets
 #ifndef _UWP
 
 
-         WARN("url_this",-1,"SSL not available");
+         WARNING("url_this",-1,"SSL not available");
 
 #endif
 

@@ -91,7 +91,7 @@ string dumpBacktrace(void** buffer,size_t count)
       {
          str += "0";
       }
-      str += __str(idx);
+      str += __string(idx);
       //str += ": 0x";
       //str += ::hex::upper_from((uptr) addr);
       str += "  ";
@@ -816,7 +816,7 @@ namespace exception
       if (!::SymInitialize(hprocess, 0, true))
       {
          ::u32 dw = ::GetLastError();
-         output_debug_string("Last Error = " + __str(dw));
+         output_debug_string("Last Error = " + __string(dw));
          ASSERT(0);
 
          //load_modules();

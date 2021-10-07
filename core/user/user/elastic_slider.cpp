@@ -32,19 +32,25 @@ namespace user
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &elastic_slider::on_message_mouse_move);
    }
 
+
    void elastic_slider::on_message_create(::message::message * pmessage)
    {
+    
       __UNREFERENCED_PARAMETER(pmessage);
-      SetTimer(84 +77 +51 +33 + 23 + 49, 50, nullptr);
+      
+      SetTimer(333, 50_ms, nullptr);
+
    }
+
 
    void elastic_slider::_001OnTimer(::timer * ptimer)
    {
 
       ::user::interaction::_001OnTimer(ptimer);;
 
-      if(ptimer->m_uEvent == 84 + 77 + 51 + 33 + 23 + 49)
+      if(ptimer->m_uEvent == 333)
       {
+
          double dScalar = CalcScalar();
 
          if(m_bSlide || dScalar > 0.001)
@@ -55,8 +61,11 @@ namespace user
          }
          else
          {
+
             UpdatePosition();
+
          }
+
       }
 
    }
@@ -80,7 +89,7 @@ namespace user
 
          CalcTension(point);
          set_mouse_capture();
-         m_millisLastTime= ::millis::now();
+         m_durationLastTime= ::duration::now();
          m_daScalar.set(0.0);
          m_iScalar = 0;
          m_bSlide = true;
@@ -159,18 +168,18 @@ namespace user
 
    double elastic_slider::CalcScalar()
    {
-      auto tickNow = ::millis::now();
-      if(tickNow - m_millisLastTime < 30)
+      auto tickNow = ::duration::now();
+      if(tickNow - m_durationLastTime < 30_ms)
          return m_daScalar.simple_total_mean();
       CalcTension();
       double dScalar;
       if(m_bSlide)
       {
          double dForce = GetForce();
-         auto dDeltaTime = tickNow - m_millisLastTime;
+         auto dDeltaTime = (tickNow - m_durationLastTime).floating_millisecond();
          double dFilterLastScalar = m_daScalar.simple_total_mean();
          double dRate = 1.0 / 100.0;
-         dScalar = dForce * __double(dDeltaTime) * dRate + dFilterLastScalar;
+         dScalar = dForce * dDeltaTime.m_d * dRate + dFilterLastScalar;
       }
       else
       {
@@ -178,7 +187,7 @@ namespace user
       }
       m_daScalar[m_iScalar] =  dScalar;
       m_iScalar = (m_iScalar + 1) % m_daScalar.get_size();
-      m_millisLastTime = tickNow;
+      m_durationLastTime = tickNow;
       return m_daScalar.simple_total_mean(); // Low Pass Filter
    }
 

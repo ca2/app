@@ -597,7 +597,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (const ::exception & e)
    {
 
-      TRACE(e.get_message());
+      INFORMATION(e.get_message());
 
       v = ::e_type_new;
 
@@ -605,7 +605,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (...)
    {
 
-      TRACE("GENERAL Exception parsing json file_context::as_json : \"" + str + "\"");
+      INFORMATION("GENERAL Exception parsing json file_context::as_json : \"" << str << "\"");
 
       v = ::e_type_new;
 
@@ -1135,8 +1135,8 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
                bStatusFail = true;
 
-               TRACE("During copy, failed to get status from input file \"%s\" bFailIfExists=%d",
-                     varSource.get_file_path().c_str(), bFailIfExists);
+               INFORMATION("During copy, failed to get status from input file \"" << 
+                     varSource.get_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
 
             }
 
@@ -1153,8 +1153,8 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
                   bStatusFail = true;
 
-                  TRACE("During copy, failed to set status to output file \"%s\" bFailIfExists=%d",
-                        varTarget.get_file_path().c_str(), bFailIfExists);
+                  INFORMATION("During copy, failed to set status to output file \""
+                     << varTarget.get_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
                }
 
@@ -1873,7 +1873,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
 //      spfile->seek(iPos, ::e_seek_set);
-//      strMd5 = __str(ctx);
+//      strMd5 = __string(ctx);
 //      write_gen_string(spfile, nullptr, strMd5);
 //      spfile->seek_to_end();
 //
@@ -1936,7 +1936,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //            iLen -= uRead;
 //         }
 //         pfile2->close();
-//         strMd5New = __str(ctx);
+//         strMd5New = __string(ctx);
 //         if (strMd5 != strMd5New)
 //            __throw(::exception("failed"));
 //      }
@@ -2124,7 +2124,7 @@ string file_context::nessie(const ::payload &varFile)
 
    //}
 
-   //return __str(ns);
+   //return __string(ns);
 
 }
 
@@ -2180,7 +2180,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 //   while (true)
 //   {
 
-//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__str(iTry), 20);
+//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__string(iTry), 20);
 
 //      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2265,7 +2265,7 @@ bool file_context::post_output(::file::path pathOut, ::file::path pathDownloadin
       if (rename(pathOut, pathDownloading))
       {
 
-         TRACE("Failed to rename \"downloading\" file from %s to %s", pathDownloading.c_str(), pathOut.c_str());
+         INFORMATION("Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut);
 
          del(pathDownloading);
 
@@ -2365,7 +2365,7 @@ file_transport file_context::data_get_file(string strData, const ::file::e_open 
             if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
             {
 
-               TRACE("::file::file_context::data_get_file Succeeded");
+               INFORMATION("::file::file_context::data_get_file Succeeded");
 
                return pmemoryfile;
 
@@ -2377,7 +2377,7 @@ file_transport file_context::data_get_file(string strData, const ::file::e_open 
 
    }
 
-   TRACE("::file::file_context::data_get_file Failed");
+   INFORMATION("::file::file_context::data_get_file Failed");
 
    return ::error_failed;
 
@@ -2395,7 +2395,7 @@ file_transport file_context::zip_get_file(::file::file *pfile, const ::file::e_o
       if (pinfile->unzip_open(pfile))
       {
 
-         TRACE("::file::file_context::zip_get_file Succeeded");
+         INFORMATION("::file::file_context::zip_get_file Succeeded");
 
          return pinfile;
 
@@ -2403,7 +2403,7 @@ file_transport file_context::zip_get_file(::file::file *pfile, const ::file::e_o
 
    }
 
-   TRACE("::file::file_context::zip_get_file Failed");
+   INFORMATION("::file::file_context::zip_get_file Failed");
 
    return nullptr;
 
@@ -2441,17 +2441,23 @@ file_transport file_context::http_get_file(const ::payload &varFile, const ::fil
 
       if (::str::ends(pathCache, "en_us_international.xml"))
       {
-         TRACE("Debug Here");
+         
+         INFORMATION("Debug Here");
+
       }
 
       if (::str::ends(pathCache, "text_select.xml"))
       {
-         TRACE("Debug Here");
+
+         INFORMATION("Debug Here");
+
       }
 
       if (::str::ends(pathCache, "arialuni.ttf"))
       {
-         TRACE("Debug Here : arialuni.ttf");
+
+         INFORMATION("Debug Here : arialuni.ttf");
+
       }
 
 #ifdef WINDOWS
@@ -2698,7 +2704,7 @@ file_transport file_context::get_file(const ::payload &varFile, const ::file::e_
       if (path.is_empty())
       {
 
-         TRACE("::file::file_context::get_file file with empty name!!");
+         INFORMATION("::file::file_context::get_file file with empty name!!");
 
          return ::error_file_not_found;
 

@@ -275,16 +275,16 @@ public:
    inline const ::matter * context_trace_object() const { return this; }
 
 
-   virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
-   virtual void __tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const;
-   virtual void __tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args) const;
+   //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
+   //virtual void __tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const;
+   //virtual void __tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args) const;
 
-   virtual void __simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const;
-   virtual void __simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const;
+   //virtual void __simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const;
+   //virtual void __simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const;
 
 
-   virtual e_trace_category trace_category(const matter * pcontext) const;
-   virtual e_trace_category trace_category() const;
+   virtual enum_trace_category trace_category(const matter * pcontext) const;
+   virtual enum_trace_category trace_category() const;
 
 
    virtual const char * topic_text() const;
@@ -298,6 +298,23 @@ public:
    //void signal(::signal * psignal) override;
    //void route(::subject * psubject, ::context * pcontext) override;
    //void post_process(::subject * psubject, ::context * pcontext) override;
+
+
+   inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }
+   inline tracer information(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_information, etracecategory); }
+   inline tracer warning(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_warning, etracecategory); }
+   inline tracer error(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_error, etracecategory); }
+   inline tracer fatal(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_fatal, etracecategory); }
+
+
+   inline tracer trace(enum_trace_level etracelevel) { return tracer(m_psystem, etracelevel, trace_category()); }
+   inline tracer information() { return tracer(m_psystem, e_trace_level_information, trace_category()); }
+   inline tracer warning() { return tracer(m_psystem, e_trace_level_warning, trace_category()); }
+   inline tracer error() { return tracer(m_psystem, e_trace_level_error, trace_category()); }
+   inline tracer fatal() { return tracer(m_psystem, e_trace_level_fatal, trace_category()); }
+
+
+   virtual void trace_last_status();
 
 
    virtual ::e_status operator()();

@@ -50,3 +50,4 @@ typedef u64 filetime_t;
 
 
 #include "acme/constant/_constant.h"
+#include "acme/primitive/duration/_struct.h"

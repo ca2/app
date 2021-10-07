@@ -1422,15 +1422,15 @@ void memory_base::append_from_string(const ::payload & payload)
 }
 
 
-string memory_base::to_string() const
+string memory_base::get_string() const
 {
 
-   return to_string(0);
+   return get_string(0);
 
 }
 
 
-string memory_base::to_string(memsize iStart, memsize iCount) const
+string memory_base::get_string(memsize iStart, memsize iCount) const
 {
 
    string str;

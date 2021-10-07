@@ -139,7 +139,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, void * pixels, double  t)
    pdata,
    image_stride);
 
-   //output_debug_string("android_fill_plasma OK (area="+__str(pbuffer->m_spimageBuffer.area())+")");
+   //output_debug_string("android_fill_plasma OK (area="+__string(pbuffer->m_spimageBuffer.area())+")");
 
 }
 

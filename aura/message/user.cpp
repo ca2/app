@@ -68,30 +68,12 @@ namespace message
    }
 
 
-   void create::failed(const ::string & pcszErrorMessage)
-   {
-
-      error(pcszErrorMessage);
-
-   }
-
-
-   void create::error(const ::string & pcszErrorMessage)
+   void create::failed(const ::string & strErrorMessage)
    {
 
       m_lresult = -1;
 
-      ///::aura::application * papp = ::get_context_system();
-
-      TRACE("%s", pcszErrorMessage.c_str());
-
-#ifdef __DEBUG
-
-      auto psystem = get_system()->m_paurasystem;
-
-      psystem->log().print(pcszErrorMessage);
-
-#endif //__DEBUG
+      ERROR(strErrorMessage);
 
    }
 

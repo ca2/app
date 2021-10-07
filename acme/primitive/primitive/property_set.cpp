@@ -1316,10 +1316,10 @@ property_set & property_set::merge(const property_set & set)
                      while(true)
                      {
 
-                        if(!has_property(__str(i)))
+                        if(!has_property(__string(i)))
                         {
 
-                           operator[](__str(i)) = *pproperty;
+                           operator[](__string(i)) = *pproperty;
 
                            break;
 

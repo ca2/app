@@ -373,7 +373,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -390,11 +390,11 @@ namespace user
             if (m_strDebugType.contains("filemanager"))
             {
 
-               //INFO("filemanager");
+               //INFORMATION("filemanager");
 
             }
 
-            TRACE(trace_category_appmsg, e_trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            CATEGORY_INFORMATION(appmsg, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
             ::output_debug_string(string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
@@ -448,13 +448,13 @@ namespace user
                if (m_strDebugType.contains("notify_icon"))
                {
 
-                  INFO("notify_icon");
+                  INFORMATION("notify_icon");
 
                }
                else if (m_strDebugType.contains("main_frame"))
                {
 
-                  INFO("main_frame");
+                  INFORMATION("main_frame");
 
                }
 
@@ -478,7 +478,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -501,7 +501,7 @@ namespace user
       catch (...)
       {
 
-         INFO("... exception");
+         INFORMATION("... exception");
 
       }
 
@@ -564,7 +564,7 @@ namespace user
                         if (strType.contains_ci("filemanager"))
                         {
 
-                           //INFO("filemanager");
+                           //INFORMATION("filemanager");
 
                         }
 
@@ -835,7 +835,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      INFO("user::thread::run");
+      INFORMATION("user::thread::run");
 
       if (m_strDebugType.contains("main_frame"))
       {
@@ -922,7 +922,7 @@ namespace user
                if (m_strDebugType.contains("filemanager"))
                {
 
-                  //INFO("filemanager");
+                  //INFORMATION("filemanager");
 
                }
 
@@ -981,7 +981,7 @@ namespace user
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 
@@ -1130,7 +1130,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -1156,7 +1156,7 @@ namespace user
 
       if (m_pimpl && m_pimpl->m_puserinteraction && m_pimpl->m_puserinteraction->m_strName.contains("notify_icon"))
       {
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
       }
 
       synchronous_lock synchronouslock(mutex());

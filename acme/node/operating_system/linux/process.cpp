@@ -417,7 +417,7 @@
 //
 //   string str;
 //
-//   str = "/proc/" + __str(iPid) + "/exe";
+//   str = "/proc/" + __string(iPid) + "/exe";
 //
 //   memory mem;
 //
@@ -609,7 +609,7 @@
 //
 //         string str;
 //
-//         str = "/proc/" + __str(iPid) + "/cmdline";
+//         str = "/proc/" + __string(iPid) + "/cmdline";
 //
 //         memory mem = file_as_memory(str);
 //

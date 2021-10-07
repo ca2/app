@@ -189,10 +189,10 @@ public:
 
 
 template < typename POINTER_TYPE >
-inline auto __str(const cotaskptr < POINTER_TYPE > & ptr)
+inline auto __string(const cotaskptr < POINTER_TYPE > & ptr)
 {
 
-   return __str((const POINTER_TYPE)ptr);
+   return __string((const POINTER_TYPE)ptr);
 
 }
 

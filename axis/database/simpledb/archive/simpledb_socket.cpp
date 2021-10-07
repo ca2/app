@@ -67,13 +67,13 @@ namespace simpledb
          if(strHost == "aura.am")
          {
             TRACE("simpledb::socket::send_response aura.am");
-//            u32 dw= ::millis::now();
+//            u32 dw= ::duration::now();
             //  debug_break();
          }
          if(strScript == "songs")
          {
             TRACE("simpledb::socket::send_response songs");
-            //u32 dw= ::millis::now();
+            //u32 dw= ::duration::now();
          }
          manager().handle(this);
       }
@@ -285,7 +285,7 @@ namespace simpledb
                   continue;
                }
                response().ostream() << "--THIS_STRING_SEPARATES\r\n\r\n";
-               response().ostream() << "Content-range: bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen) + "\r\n";
+               response().ostream() << "Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen) + "\r\n";
                response().ostream() << "Content-Transfer-Encoding: base64";
                response().ostream() << "\r\n";
                while(true)
@@ -357,11 +357,11 @@ namespace simpledb
             outattr("http_status") = "Partial Content";
             if(iEnd == -1)
             {
-               outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/*";
+               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/*";
             }
             else
             {
-               outheader("Content-range") = "bytes " + __str(iStart) + "-" + __str(iEnd) + "/" + __str(iLen);
+               outheader("Content-range") = "bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen);
             }
 
          }

@@ -111,15 +111,15 @@ public:
 
 
 
-template < typename EXCEPTION >
-inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
-{
-
-   ERR(pexceptionNew->get_message());
-
-   return ::__move_transfer(pexceptionNew);
-
-}
+//template < typename EXCEPTION >
+//inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
+//{
+//
+//   ERR(pexceptionNew->get_message());
+//
+//   return ::__move_transfer(pexceptionNew);
+//
+//}
 
 
 //class CLASS_DECL_ACME status_exception :

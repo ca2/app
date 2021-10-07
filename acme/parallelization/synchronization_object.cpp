@@ -164,14 +164,12 @@ bool synchronization_object::_lock(const class ::wait & wait)
 ::e_status synchronization_object::wait(const class ::wait & wait)
 {
    
-   if (wait < 200)
+   if (wait < 200_ms)
    {
 
       return this->_wait(wait);
 
    }
-
-   auto iMillisecondEnd = ::wait::now().m_iMillisecond + wait;
 
    auto ptask = ::get_task();
 
@@ -185,43 +183,47 @@ bool synchronization_object::_lock(const class ::wait & wait)
    if (::is_null(ptask))
    {
 
-      return _wait((::u32) wait);
+      return _wait(wait);
 
    }
-   
-   ::i64 iMillisecondStep = 100;
 
-   while (ptask->task_get_run())
+   ::e_status estatus = error_wait_timeout;
+
+   if (wait.is_infinite())
    {
 
-      auto iMillisecondWait = iMillisecondEnd - ::wait::now().m_iMillisecond;
-
-      if (iMillisecondWait < 0)
+      do
       {
 
-         return error_wait_timeout;
+         estatus = _wait(100_ms);
 
-      }
-      
-      if(iMillisecondWait > iMillisecondStep)
-      {
-       
-         iMillisecondWait = iMillisecondStep;
-         
-      }
+      } while (estatus.wait_timeout() && ptask->task_get_run());
 
-      auto estatus = _wait(iMillisecondWait);
+   }
+   else
+   {
 
-      if (!estatus.wait_timeout())
+      auto waitStart = ::wait::now();
+
+      do
       {
 
-         return estatus;
+         auto waitNow = minimum(wait - waitStart.elapsed(), 100_ms);
 
-      }
+         if (waitNow <= 0_ms)
+         {
+
+            break;
+
+         }
+
+         estatus = _wait(waitNow);
+
+      } while (estatus.wait_timeout() && ptask->task_get_run());
 
    }
 
-   return abandoned_base;
+   return estatus;
 
 }
 

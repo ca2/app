@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 
 
@@ -69,8 +69,8 @@ namespace progress
 
       string strStatus(pszFormat);
 
-      strStatus.replace("%1", __str(m_iStep));
-      strStatus.replace("%2", __str(m_iStepCount));
+      strStatus.replace("%1", __string(m_iStep));
+      strStatus.replace("%2", __string(m_iStepCount));
 
       m_strStatus = strStatus;
 

@@ -120,7 +120,7 @@ typedef struct _TIME_FIELDS
    CSHORT Hour;
    CSHORT Minute;
    CSHORT Second;
-   CSHORT Milliseconds;
+   CSHORT ::durations;
    CSHORT Weekday;
 } TIME_FIELDS, *PTIME_FIELDS;
 //#ifdef _UWP
@@ -231,8 +231,8 @@ CLASS_DECL_ACME void RtlTimeToTimeFields(
    u64 Days;
    ::i64 Time;
 
-   /* Extract millisecond from time and convert time into seconds */
-   TimeFields->Milliseconds =
+   /* Extract ::duration from time and convert time into seconds */
+   TimeFields->::durations =
       (CSHORT) (( *liTime % TICKSPERSEC) / TICKSPERMSEC);
    Time = *liTime / TICKSPERSEC;
 
@@ -299,7 +299,7 @@ i32 month, year, cleaps, day;
 
 /* FIXME: normalize the TIME_FIELDS structure here */
 /* No, native just returns 0 (error) if the fields are not */
-if( tfTimeFields->Milliseconds< 0 || tfTimeFields->Milliseconds > 999 ||
+if( tfTimeFields->::durations< 0 || tfTimeFields->::durations > 999 ||
 tfTimeFields->Second < 0 || tfTimeFields->Second > 59 ||
 tfTimeFields->Minute < 0 || tfTimeFields->Minute > 59 ||
 tfTimeFields->Hour < 0 || tfTimeFields->Hour > 23 ||
@@ -338,7 +338,7 @@ day =  (36525 * year) / 100 - cleaps + /* year * dayperyr, corrected */
             tfTimeFields->Hour) * MINSPERHOUR +
            tfTimeFields->Minute) * SECSPERMIN +
           tfTimeFields->Second ) * 1000 +
-         tfTimeFields->Milliseconds ) * TICKSPERMSEC;
+         tfTimeFields->::durations ) * TICKSPERMSEC;
 
 return true;
 }
@@ -491,8 +491,8 @@ int_bool RtlTimeToSecondsSince1980( const u64 *Time, LPDWORD Seconds )
  */
 void RtlSecondsSince1970ToTime( ::u32 Seconds, u64 *Time )
 {
-ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-*Time = secs;
+ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+*Time = second;
 }
 
 /******************************************************************************
@@ -509,8 +509,8 @@ ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
  */
 void RtlSecondsSince1980ToTime( ::u32 Seconds, u64 *Time )
 {
-ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-*Time = secs;
+ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
+*Time = second;
 }
 
 /******************************************************************************
@@ -531,7 +531,7 @@ void RtlTimeToElapsedTimeFields( const u64 *Time, PTIME_FIELDS TimeFields )
    ::i32 rem;
 
    time = *Time / TICKSPERSEC;
-   TimeFields->Milliseconds = (CSHORT) ((*Time % TICKSPERSEC) / TICKSPERMSEC);
+   TimeFields->::durations = (CSHORT) ((*Time % TICKSPERSEC) / TICKSPERMSEC);
 
    /* time is now in seconds */
    TimeFields->Year  = 0;
@@ -982,7 +982,7 @@ int NtSetSystemTime(const u64 *NewTime, u64 *OldTime)
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return 0;
    //tm_t = sec;
-   // xxx ERR("Cannot set time to %s, time adjustment %ld: %s\n",
+   // xxx ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
    if (errno == EPERM)
       return STATUS_PRIVILEGE_NOT_HELD;
@@ -1049,7 +1049,7 @@ int_bool FileTimeToSystemTime( const filetime_t *ft, system_time_t * syst )
    syst->wHour = tf.Hour;
    syst->wMinute = tf.Minute;
    syst->wSecond = tf.Second;
-   syst->wMilliseconds = tf.Milliseconds;
+   syst->wMilliseconds = tf.::durations;
    syst->wDayOfWeek = tf.Weekday;
    return true;
 }
@@ -1069,7 +1069,7 @@ int_bool SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
    tf.Hour = syst->wHour;
    tf.Minute = syst->wMinute;
    tf.Second = syst->wSecond;
-   tf.Milliseconds = syst->wMilliseconds;
+   tf.::durations = syst->wMilliseconds;
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {

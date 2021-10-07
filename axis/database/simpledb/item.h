@@ -10,7 +10,7 @@ namespace simpledb
    public:
 
 
-      millis               m_tick;
+      ::duration               m_tick;
       memory               m_memory;
 
       item();

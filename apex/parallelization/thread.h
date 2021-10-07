@@ -62,7 +62,7 @@ public:
    enum_id                                            m_idContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   ::millis                                           m_millisHeartBeat;
+   ::duration                                           m_durationHeartBeat;
    bool                                               m_bReady;
    ::extended::status                                 m_result;
    __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
@@ -157,8 +157,8 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   ::u32 get_file_sharing_violation_timeout_total_milliseconds();
-   ::duration set_file_sharing_violation_timeout(::duration duration);
+   ::duration get_file_sharing_violation_timeout();
+   ::duration set_file_sharing_violation_timeout(const ::duration & duration);
 
    virtual bool is_running() const override;
 
@@ -384,7 +384,7 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const ::duration & dur);
 
-   virtual bool pump_sleep(const millis & millis, synchronization_object * psync);
+   virtual bool pump_sleep(const class ::wait & wait, synchronization_object * psync);
 
    bool do_events() override;
    // virtual bool do_events(const duration& duration);
@@ -576,9 +576,9 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(::application * papplication, millis millis);
+//CLASS_DECL_APEX bool apex_task_sleep(::duration ::duration, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool app_sleep(::application * papplication, const class ::wait & wait);
 
 
 
@@ -620,6 +620,6 @@ CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class ::wait & wait, enum_priority epriority);
 
 

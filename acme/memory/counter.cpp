@@ -65,7 +65,7 @@ bool initialize_memory_counter(::matter* pmatter)
 //
 //      ::file::path strModule = module_path_from_pid(get_current_process_id());
 //
-//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __str(get_current_process_id());
+//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __string(get_current_process_id());
 //
 //#endif
 //

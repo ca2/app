@@ -79,7 +79,7 @@ namespace user
       };
 
 
-      //millis                           m_millisFocusStart;
+      //::duration                           m_durationFocusStart;
       bool                             m_bUserElementOk;
       ::user::primitive *              m_puserprimitive;
       ::user::interaction *            m_puserinteraction;
@@ -331,7 +331,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
 

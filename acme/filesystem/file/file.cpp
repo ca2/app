@@ -49,8 +49,6 @@ namespace file
    file::file()
    {
 
-      m_millisErrorBlockTimeout = 0;
-
    }
 
 
@@ -64,10 +62,7 @@ namespace file
       m_path(path)
    {
 
-      m_millisErrorBlockTimeout = 0;
-
    }
-
 
 
    file::~file()
@@ -741,7 +736,7 @@ namespace file
 
       full_read(memory);
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return true;
 
@@ -1375,7 +1370,7 @@ namespace file
     }
 
 
-   string file::to_string() const
+   string file::get_string() const
    {
 
       string str;

@@ -22,10 +22,10 @@ namespace http
    }
 
 
-   string cookie::to_string() const
+   string cookie::get_string() const
    {
 
-      return m_varValue.to_string();
+      return m_varValue.get_string();
 
    }
 
@@ -300,7 +300,7 @@ namespace http
 
       auto time = ::time(nullptr);
 
-      time += duration.secs().m_i;
+      time += duration.integral_second().m_i;
 
       struct tm tmstruct;
 

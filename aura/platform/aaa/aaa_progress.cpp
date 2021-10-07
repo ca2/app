@@ -139,8 +139,8 @@ void progress_control::format_status(const ::string &pszFormat)
 
    string strStatus(pszFormat);
 
-   strStatus.replace("%1", __str(m_iStep));
-   strStatus.replace("%2", __str(m_iStepCount));
+   strStatus.replace("%1", __string(m_iStep));
+   strStatus.replace("%2", __string(m_iStepCount));
 
    m_strStatus = strStatus;
 

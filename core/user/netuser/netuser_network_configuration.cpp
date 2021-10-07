@@ -90,7 +90,7 @@ namespace usernet
       if(doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"proxy.xml")))
       {
          
-         string strProxy(doc.root()->attribute("server"));
+         string strProxy(doc.root()->attribute("server").get_string());
 
          i32 iProxyPort;
 
@@ -102,7 +102,7 @@ namespace usernet
 
          pinteraction = m_pimpact->get_child_by_name("port");
          
-         pinteraction->_001SetText(__str(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
+         pinteraction->_001SetText(__string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
       }
 

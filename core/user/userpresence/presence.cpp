@@ -25,7 +25,7 @@ namespace userpresence
    void presence::report_activity()
    {
 
-      m_millisLastActivity= ::millis::now();
+      m_durationLastActivity= ::duration::now();
 
    }
 
@@ -34,11 +34,11 @@ namespace userpresence
    {
 
       int iStatus = (int) m_iShortStatusWayTag;
-      if(m_millisLastActivity.elapsed() < ((5000) * 4))
+      if(m_durationLastActivity.elapsed() < ((5000) * 4))
       {
          iStatus = status_online;
       }
-      /*else if(m_millisLastActivity.elapsed() < ((5000) * 10))
+      /*else if(m_durationLastActivity.elapsed() < ((5000) * 10))
       {
          m_iShortStatusWayTag = status_away;
       }*/
@@ -47,7 +47,7 @@ namespace userpresence
          iStatus = status_offline;
       }
 
-      if(iStatus == m_iShortStatusWayTag && (m_millisLastPulse.elapsed()) <((5000) * 2))
+      if(iStatus == m_iShortStatusWayTag && (m_durationLastPulse.elapsed()) <((5000) * 2))
          return;
 
       m_iShortStatusWayTag = iStatus;
@@ -60,7 +60,7 @@ namespace userpresence
    void presence::pulse_user_presence()
    {
 
-      m_millisLastPulse= ::millis::now();
+      m_durationLastPulse= ::duration::now();
 
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
@@ -83,7 +83,7 @@ namespace userpresence
 
       auto purl = psystem->url();
 
-      purl->string_set(strUrl, "short_status", __str(m_iShortStatusWayTag));
+      purl->string_set(strUrl, "short_status", __string(m_iShortStatusWayTag));
       purl->string_set(strUrl, "long_status", m_strLongStatus);
 
       property_set set;

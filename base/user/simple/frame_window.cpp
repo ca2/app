@@ -246,7 +246,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
          }
 
-         if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
+         if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
             sleep(150_ms);
@@ -260,7 +260,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
                _thread_save_window_placement();
 
-               m_millisLastSaveWindowRect.Now();
+               m_durationLastSaveWindowRect.Now();
 
             }
             catch (...)
@@ -269,7 +269,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
             }
 
          }
-         else if (m_millisLastSaveWindowRect.elapsed() > 10_s)
+         else if (m_durationLastSaveWindowRect.elapsed() > 10_s)
          {
 
             break;
@@ -309,7 +309,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_bPendingSaveWindowRect = true;
 
-   m_millisLastSaveWindowRectRequest.Now();
+   m_durationLastSaveWindowRectRequest.Now();
 
    __defer_branch(SaveWindowRect);
 
@@ -358,12 +358,12 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
       }
       else if (wfi_is_down())
       {
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("interaction_child::WindowDataLoadWindowRect (3)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("interaction_child::WindowDataLoadWindowRect (3)");
+         INFORMATION("");
+         INFORMATION("");
 
          return false;
 
@@ -371,12 +371,12 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
    }
 
-   INFO("-------------------------------------------------------------------");
-   INFO("");
-   INFO("");
-   INFO("interaction_child::WindowDataLoadWindowRect (4)");
-   INFO("");
-   INFO("");
+   INFORMATION("-------------------------------------------------------------------");
+   INFORMATION("");
+   INFORMATION("");
+   INFORMATION("interaction_child::WindowDataLoadWindowRect (4)");
+   INFORMATION("");
+   INFORMATION("");
 
    return ::experience::frame_window::WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
@@ -446,7 +446,7 @@ void simple_frame_window::_thread_save_window_placement()
    while (::task_get_run())
    {
 
-      if (!task_sleep(300_ms))
+      if (!task_sleep(300'000_us))
       {
 
          break;
@@ -460,7 +460,7 @@ void simple_frame_window::_thread_save_window_placement()
 
       }
 
-      if (m_millisLastSaveWindowRect.elapsed() < 300_ms)
+      if (m_durationLastSaveWindowRect.elapsed() < 300_ms)
       {
 
          continue;
@@ -1112,7 +1112,7 @@ void simple_frame_window::on_message_size(::message::message * pmessage)
 
    __UNREFERENCED_PARAMETER(pmessage);
 
-   //m_millisLastVisualChange.Now();
+   //m_durationLastVisualChange.Now();
 
    //if (get_parent() == nullptr)
    //{
@@ -1129,7 +1129,7 @@ void simple_frame_window::on_message_move(::message::message * pmessage)
 
    __UNREFERENCED_PARAMETER(pmessage);
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -1229,7 +1229,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -1247,7 +1247,7 @@ void simple_frame_window::on_reposition()
 
    ::user::frame_window::on_reposition();
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -2005,8 +2005,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          rectangleFrame = screen_rect();
 
-         INFO("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+         INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+         INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2055,8 +2055,8 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
       //pusersystem->set_rect(rectangleFrame);
 
-      INFO("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
-      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+      INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {
@@ -2073,7 +2073,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          layout().sketch().display() = e_display_none;
 
-         INFO("simple_frame_window::LoadFrame DISPLAY_NONE");
+         INFORMATION("simple_frame_window::LoadFrame DISPLAY_NONE");
 
       }
 
@@ -2431,7 +2431,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
@@ -2470,14 +2470,14 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #endif
 
-         millis d1 = t1.elapsed();
+         ::duration d1 = t1.elapsed();
 
          string strType = type_name();
 
-         if(d1 > 50)
+         if(d1 > 50_ms)
          {
 
-            CINFO(prodevian)("(more than 50ms) "+strType+"::_001OnDraw took " + __str(d1) + "millis.\n");
+            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
 
          }
 
@@ -2492,16 +2492,16 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
-            millis t1 = millis::now();
+            ::duration t1 = ::duration::now();
 
             draw_frame_and_control_box_over(pgraphics);
 
-            millis d1 = t1.elapsed();
+            auto d1 = t1.elapsed();
 
-            if(d1 > 50)
+            if(d1 > 50_ms)
             {
 
-               CINFO(prodevian)("(more than 50ms) draw_frame_and_control_box_over took " + __str(d1) + "millis.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << INTEGRAL_SECOND(d1) << "::duration.\n");
 
             }
 
@@ -2935,7 +2935,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //      if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
 //      {
 //
-//         patha.add(__str(pwszFileName));
+//         patha.add(__string(pwszFileName));
 //
 //      }
 //
@@ -3364,13 +3364,13 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     millis t1 = millis::now();
+                     ::duration t1 = ::duration::now();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
-                     millis d1 = t1.elapsed();
+                     ::duration d1 = t1.elapsed();
 
-                     if(d1 > 50)
+                     if(d1 > 50_ms)
                      {
 
                         string strType = pinteraction->type_name();
@@ -3382,7 +3382,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         //}
 
-                        CINFO(prodevian)("(more than 50ms) " + strType + "::_001OnDraw took " + __str(d1) + "millis.\n");
+                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
 
                      }
 
@@ -3404,41 +3404,41 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       _001DrawThis(pgraphics);
 
       //return; // abcxxx
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + "millis.\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
 
       }
 
    }
 
-   millis tx = millis::now();
+   ::duration tx = ::duration::now();
 
    bool bTransparentFrame = frame_is_transparent();
 
    bool bActive = is_active_window();
 
-   millis taxw = millis::now();
+   ::duration taxw = ::duration::now();
 
-   millis daxw = taxw.elapsed();
+   ::duration daxw = taxw.elapsed();
 
-   if(daxw > 50)
+   if(daxw > 50_ms)
    {
 
       output_debug_string("what???axxw\n");
 
    }
 
-   millis txx = millis::now();
+   ::duration txx = ::duration::now();
 
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
@@ -3482,16 +3482,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      {
 
-                        millis t1 = millis::now();
+                        ::duration t1 = ::duration::now();
 
                         pinteraction->_000CallOnDraw(pgraphics);
 
-                        millis d1 = t1.elapsed();
+                        ::duration d1 = t1.elapsed();
 
-                        if (d1 > 50)
+                        if (d1 > 50_ms)
                         {
 
-                           CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + ".\n");
+                           CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
                         }
 
@@ -3514,7 +3514,8 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    }
 
    auto dxx = txx.elapsed();
-   if(dxx > 50)
+
+   if(dxx > 50_ms)
    {
 
       output_debug_string("what???xx");
@@ -3522,7 +3523,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    }
 
    auto dx = tx.elapsed();
-   if(dx > 50)
+   if(dx > 50_ms)
    {
 
       output_debug_string("what???");
@@ -3531,16 +3532,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       _008CallOnDraw(pgraphics);
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
       }
 
@@ -4081,7 +4082,7 @@ void simple_frame_window::on_select_user_style()
    if (m_puserstyle.is_null())
    {
 
-      string strSchema(m_varFrame["experience"]);
+      string strSchema(m_varFrame["experience"].get_string());
 
       if (strSchema.has_char() || is_top_level_window())
       {

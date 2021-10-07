@@ -54,7 +54,7 @@ namespace simple_ui
          TRACE("Print Job Is Printing page %d",pprinttask->m_iPrintingPage);
       }*/
 
-      bool bCaretOn = m_millisFocusStart.on_off(m_millisCaretPeriod);
+      bool bCaretOn = m_durationFocusStart.on_off(m_durationCaretPeriod);
 
 
       //rectangleClient.deflate(0, 0, 1, 1);

@@ -71,7 +71,7 @@ public:
 
    void flush() override;
 
-   string to_string() const override;
+   string get_string() const override;
 
    //virtual void full_load(::payload varFile);
 

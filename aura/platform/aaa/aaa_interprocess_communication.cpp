@@ -35,11 +35,11 @@ namespace aura
 
       string strSource;
 
-      string strPid = __str(m_pcall->m_pinterprocessintercommunication->m_idApp);
+      string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_idApp);
 
       strSource.Format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 
-      string str = "call " + __str(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
+      string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
       bool bSendOk = txc.send(str, m_pcall->m_duration);
 
@@ -394,7 +394,7 @@ started:
 
       }
 
-      string strKey = strApp + ":" + __str(idPid);
+      string strKey = strApp + ":" + __string(idPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -411,7 +411,7 @@ started:
    bool interprocess_communication::connect(const ::string & strApp, const ::id & idPid)
    {
 
-      string strKey = strApp + ":" + __str(idPid);
+      string strKey = strApp + ":" + __string(idPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -439,7 +439,7 @@ started:
    ::aura::ipc::tx & interprocess_communication::tx(const ::string & strApp, const ::id & iPid)
    {
 
-      string strKey = strApp + ":" + __str(iPid);
+      string strKey = strApp + ":" + __string(iPid);
 
       if(m_txmap[strKey].is_null())
       {
@@ -481,7 +481,7 @@ started:
 
 #else
 
-      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __str(idPid);
+      strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
 
 #endif
 
@@ -493,7 +493,7 @@ started:
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
+pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -509,7 +509,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
 #ifdef MACOS
 
-      strKey += "/" + __str(idPid.i32());
+      strKey += "/" + __string(idPid.i32());
 
 #endif
 
@@ -519,7 +519,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
+pacmedir->system() / "interprocess_communication" / strApp / __string(idPid);
 
 
 #endif
@@ -548,7 +548,7 @@ pacmedir->system() / "interprocess_communication" / strApp / __str(idPid);
 
       string str(pszMessage);
 
-      INFO("interprocess_intercommunication::on_receive %s", pszMessage);
+      INFORMATION("interprocess_intercommunication::on_receive %s", pszMessage);
 
       if(!::str::begins_eat(str, "call "))
       {
@@ -961,13 +961,13 @@ repeat:
       if (pathPid.has_char())
       {
 
-         strItem = pathPid + "|" + __str(idPid);
+         strItem = pathPid + "|" + __string(idPid);
 
       }
       else
       {
 
-         strItem = strModule + "|" + __str(idPid);
+         strItem = strModule + "|" + __string(idPid);
       }
 
 

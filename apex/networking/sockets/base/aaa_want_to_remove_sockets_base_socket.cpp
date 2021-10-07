@@ -84,7 +84,7 @@ namespace sockets
    {
       m_pmemfileInput = nullptr;
       m_iBindPort    = -1;
-      m_millisStart.Now();
+      m_durationStart.Now();
       m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
@@ -301,7 +301,7 @@ namespace sockets
    ipaddr_t l = 0;
    if(m_bIpv6)
    {
-   WARN("GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket");
+   WARNING("GetRemoteIP4", 0, "get ipv4 address for ipv6 base_socket");
    }
    if(m_addressRemote.m_p != nullptr)
    {
@@ -317,7 +317,7 @@ namespace sockets
    {
    if(!m_bIpv6)
    {
-   WARN("GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket");
+   WARNING("GetRemoteIP6", 0, "get ipv6 address for ipv4 base_socket");
    }
    struct sockaddr_in6 fail;
    if (m_addressRemote.m_p != nullptr)
@@ -351,7 +351,7 @@ namespace sockets
       int n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
-         INFO("ioctlsocket(FIONBIO) %d", Errno);
+         INFORMATION("ioctlsocket(FIONBIO) %d", Errno);
          return false;
       }
       return true;
@@ -360,7 +360,7 @@ namespace sockets
       {
          if (fcntl(m_socket, F_SETFL, O_NONBLOCK) == -1)
          {
-            ERR("fcntl(F_SETFL, O_NONBLOCK)", Errno, bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, O_NONBLOCK)", Errno, bsd_socket_error(Errno));
             return false;
          }
       }
@@ -368,7 +368,7 @@ namespace sockets
       {
          if (fcntl(m_socket, F_SETFL, 0) == -1)
          {
-            ERR("fcntl(F_SETFL, 0)", Errno, bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, 0)", Errno, bsd_socket_error(Errno));
             return false;
          }
       }
@@ -403,7 +403,7 @@ namespace sockets
          {
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
-         ERR("fcntl(F_SETFL, O_NONBLOCK)", Errno, bsd_socket_error(Errno));
+         ERROR("fcntl(F_SETFL, O_NONBLOCK)", Errno, bsd_socket_error(Errno));
          return false;
          }
          }
@@ -411,7 +411,7 @@ namespace sockets
          {
          if (fcntl(s, F_SETFL, 0) == -1)
          {
-         ERR("fcntl(F_SETFL, 0)", Errno, bsd_socket_error(Errno));
+         ERROR("fcntl(F_SETFL, 0)", Errno, bsd_socket_error(Errno));
          return false;
          }
          }
@@ -470,7 +470,7 @@ namespace sockets
    port_t base_socket::GetPort()
    {
 
-      WARN("GetPort only implemented for listen_socket");
+      WARNING("GetPort only implemented for listen_socket");
 
       return 0;
 
@@ -568,7 +568,7 @@ namespace sockets
 
       /*      if (!ad.IsValid())
       {
-      ERR("SetClientRemoteAddress", 0, "remote address not valid");
+      ERROR("SetClientRemoteAddress", 0, "remote address not valid");
       }*/
 
       m_addressRemoteClient = address;
@@ -581,7 +581,7 @@ namespace sockets
 
       /*      if (m_addressRemoteClient.m_p == nullptr)
       {
-      ERR("GetClientRemoteAddress", 0, "remote address not yet set");
+      ERROR("GetClientRemoteAddress", 0, "remote address not yet set");
       }*/
 
       return m_addressRemoteClient;
@@ -742,7 +742,7 @@ namespace sockets
    bool base_socket::Retain()
    {
 
-      return m_bEnablePool && m_bRetain && (m_millisStart.elapsed() < 30 * 1000);
+      return m_bEnablePool && m_bRetain && (m_durationStart.elapsed() < 30 * 1000);
 
    }
 
@@ -750,21 +750,21 @@ namespace sockets
    void base_socket::OnSocks4Connect()
    {
 
-      INFO("Use with tcp_socket only");
+      INFORMATION("Use with tcp_socket only");
 
    }
 
 
    void base_socket::OnSocks4ConnectFailed()
    {
-      INFO("Use with tcp_socket only");
+      INFORMATION("Use with tcp_socket only");
 
    }
 
 
    bool base_socket::OnSocks4Read()
    {
-      INFO("Use with tcp_socket only");
+      INFORMATION("Use with tcp_socket only");
       return true;
    }
 
@@ -2320,10 +2320,10 @@ namespace sockets
    }
 
 
-   void base_socket::SetTimeout(time_t secs)
+   void base_socket::SetTimeout(time_t second)
    {
       
-      if (!secs)
+      if (!second)
       {
          
          socket_handler()->AddList(m_socket, LIST_TIMEOUT, false);
@@ -2336,7 +2336,7 @@ namespace sockets
       
       m_timeTimeoutStart = time(nullptr);
 
-      m_timeTimeoutLimit = secs;
+      m_timeTimeoutLimit = second;
 
    }
 

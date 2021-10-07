@@ -163,7 +163,7 @@ int safe_get_any_char(const ::duration & duration)
 
    int iSafeChar = EOF;
 
-   ::millis millisStart;
+   ::duration millisStart;
 
    do
    {
@@ -192,7 +192,7 @@ int safe_get_char(FILE * pfile, const ::duration & duration)
 
    int iSafeChar = EOF;
 
-   ::millis millisStart;
+   ::duration millisStart;
 
    while (true)
    {

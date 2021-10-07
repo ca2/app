@@ -15,7 +15,7 @@ namespace apex
 
       m_strAppId = strAppId;
 
-      m_durationCheckPeriod = millis(5000);
+      m_durationCheckPeriod = 5_s;
 
    }
 

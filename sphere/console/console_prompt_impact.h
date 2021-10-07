@@ -13,9 +13,9 @@ namespace console
 
 
       
-      millis                 m_millisCaretStart;
+      ::duration                 m_durationCaretStart;
 
-      millis                 m_millisCaretPeriod;
+      ::duration                 m_durationCaretPeriod;
 
       strsize              m_iCursor;
 
@@ -27,7 +27,7 @@ namespace console
 
       strsize              m_iNewChar;
 
-      millis m_millisLastError;
+      ::duration m_durationLastError;
 
       bool                 m_bOk;
 

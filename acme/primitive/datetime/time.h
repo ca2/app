@@ -18,33 +18,21 @@ enum _CTIMESPANFORMATSTEP
 #define _CTIMESPANFORMATS 3
 
 
-
 namespace datetime
 {
 
 
-   enum e_now
-   {
-
-      now,
-
-   };
-
-
-   class CLASS_DECL_ACME time
+   class CLASS_DECL_ACME time :
+      public integral_second
    {
    public:
 
       
-      time_t m_time;
-
-
-      static time get_current_time() noexcept;
-      inline static time now() noexcept { return get_current_time(); }
+      static time now() noexcept;
 
 
       time() noexcept;
-      inline time(e_now) noexcept { m_time = now().m_time; }
+      inline time(enum_now) noexcept { m_i = now().m_i; }
       time(const time & time);
       time(time_t time) noexcept;
       time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST = -1);
@@ -63,8 +51,8 @@ namespace datetime
       time& operator+=( time_span span ) noexcept;
       time& operator-=( time_span span ) noexcept;
 
-      time& operator+=( const duration & span ) noexcept;
-      time& operator-=( const duration & span ) noexcept;
+      //time& operator+=( const duration & span ) noexcept;
+      //time& operator-=( const duration & span ) noexcept;
 
       time_span operator-( time time ) const noexcept;
       time operator-( time_span span ) const noexcept;
@@ -73,8 +61,8 @@ namespace datetime
       time operator-( date_span span ) const;
       time operator+( date_span span ) const;
 
-      time operator-(const duration & duration) const;
-      time operator+(const duration & duration) const;
+      //time operator-(const duration & duration) const;
+      //time operator+(const duration & duration) const;
 
       bool operator==( time time ) const noexcept;
       bool operator!=( time time ) const noexcept;
@@ -141,72 +129,74 @@ namespace datetime
 
    inline bool time::operator==(time time) const noexcept
    {
-      return(m_time == time.m_time);
+      return(m_i == time.m_i);
    }
 
    inline bool time::operator!=(time time) const noexcept
    {
-      return(m_time != time.m_time);
+      return(m_i != time.m_i);
    }
 
    inline bool time::operator<(time time) const noexcept
    {
-      return(m_time < time.m_time);
+      return(m_i < time.m_i);
    }
 
    inline bool time::operator>(time time) const noexcept
    {
-      return(m_time > time.m_time);
+      return(m_i > time.m_i);
    }
 
    inline bool time::operator<=(time time) const noexcept
    {
-      return(m_time <= time.m_time);
+      return(m_i <= time.m_i);
    }
 
    inline bool time::operator>=(time time) const noexcept
    {
-      return(m_time >= time.m_time);
+      return(m_i >= time.m_i);
    }
 
    inline time_span time::operator-(time time) const noexcept
    {
-      return(time_span(m_time - time.m_time));
+      return(time_span(m_i - time.m_i));
    }
 
    inline ::datetime::time time::operator-(time_span span) const noexcept
    {
-      return(time(m_time - span.GetTimeSpan()));
+      return(time(m_i - span.GetTimeSpan()));
    }
 
    inline ::datetime::time time::operator+(time_span span) const noexcept
    {
-      return m_time + span.m_timeSpan;
+      return m_i + span.m_i;
    }
 
-   inline ::datetime::time time::operator-(const duration & duration) const
+   //inline ::datetime::time time::operator-(const duration & duration) const
+   //{
+   //   return time(m_i - duration.GetTimeSpan());
+   //}
+
+   //inline ::datetime::time time::operator+(const duration & duration) const
+   //{
+   //   return time(m_i + duration.GetTimeSpan());
+   //}
+
+   inline time::time() noexcept :
+      integral_second(INTEGRAL_SECOND(0))
+      {
+      }
+   inline time::time(const time & time) :
+      integral_second(time)
    {
-      return time(m_time - duration.GetTimeSpan());
+
    }
 
-   inline ::datetime::time time::operator+(const duration & duration) const
-   {
-      return time(m_time + duration.GetTimeSpan());
-   }
 
-inline time::time() noexcept :
-   m_time(0)
+   inline time::time(time_t time)  noexcept :
+      integral_second(INTEGRAL_SECOND(time))
    {
-   }
-inline time::time(const time & time) :
-   m_time(time.m_time)
-{
 
-}
-
-inline time::time(time_t time)  noexcept :
-   m_time(time)
-   {
    }
 
 
@@ -218,7 +208,7 @@ inline time::time(time_t time)  noexcept :
 inline CLASS_DECL_ACME ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
 {
 
-   return ::datetime::time_span(::datetime::time::get_current_time().m_time - duration.GetTimeSpan() - time.m_time);
+   return ::datetime::time_span(::datetime::time::now().m_i - duration.GetTimeSpan() - time.m_i);
 
 }
 
@@ -226,7 +216,7 @@ inline CLASS_DECL_ACME ::datetime::time_span operator - (const duration & durati
 inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
 {
 
-   return ::datetime::time(duration.GetTimeSpan() + time.m_time);
+   return ::datetime::time(duration.GetTimeSpan() + time.m_i);
 
 }
 

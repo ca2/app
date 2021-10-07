@@ -559,7 +559,7 @@ namespace experience
             && m_pframewindow->m_bShowControlBox)
          {
 
-            millis tick1;
+            ::duration tick1;
 
             tick1.Now();
 
@@ -576,7 +576,7 @@ namespace experience
 
             ::rectangle_i32 rectangleIcon;
 
-            millis tick2;
+            ::duration tick2;
 
             tick2.Now();
 
@@ -606,7 +606,7 @@ namespace experience
 
             //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            millis tick3;
+            ::duration tick3;
 
             tick3.Now();
 
@@ -638,7 +638,7 @@ namespace experience
          else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
          {
 
-            millis tick2;
+            ::duration tick2;
 
             tick2.Now();
 
@@ -718,7 +718,7 @@ namespace experience
 
             //printf("D. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            millis tick3;
+            ::duration tick3;
 
             tick3.Now();
 
@@ -763,7 +763,7 @@ namespace experience
 
             //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
-            millis tick4;
+            ::duration tick4;
 
             tick4.Now();
 
@@ -801,7 +801,7 @@ namespace experience
 
             //class fonts & fonts = pdraw2d->fonts();
 
-            millis tick5;
+            ::duration tick5;
 
             tick5.Now();
 

@@ -94,14 +94,14 @@ namespace opengl
       for(int iFormat = 0; iFormat < NumFormats; iFormat++)
       {
          
-         output_debug_string("\nFormat " + __str(iFormat) + "\n");
+         output_debug_string("\nFormat " + __string(iFormat) + "\n");
          
 #define DUMP_FORMAT(x)                                                        \
          {                                                                    \
                                                                               \
             GLint value = 0;                                                  \
             CGLDescribePixelFormat(PixelFormat, iFormat, x, &value);          \
-            output_debug_string(string(#x) + ": " + __str(value) + "\n");     \
+            output_debug_string(string(#x) + ": " + __string(value) + "\n");     \
                                                                               \
          }
          

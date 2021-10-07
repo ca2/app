@@ -1288,7 +1288,7 @@
 
       }
 
-      //virtual application_sleep(millis millis)
+      //virtual application_sleep(::duration ::duration)
 
 
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;

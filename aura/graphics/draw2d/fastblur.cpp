@@ -366,7 +366,7 @@ namespace draw2d
       int s = m_p->m_iScan / 4;
 
       {
-auto tickA0 = ::millis::now();
+auto tickA0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -376,7 +376,7 @@ auto tickA0 = ::millis::now();
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
-auto tickA1 = ::millis::now();
+auto tickA1 = ::duration::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
@@ -387,7 +387,7 @@ auto tickA1 = ::millis::now();
 
 
       {
-auto tick1 = ::millis::now();
+auto tick1 = ::duration::now();
 
          try
          {
@@ -407,7 +407,7 @@ auto tick1 = ::millis::now();
          {
 
          }
-auto tick2 = ::millis::now();
+auto tick2 = ::duration::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
@@ -429,7 +429,7 @@ auto tick2 = ::millis::now();
       }
 
       {
-auto tickC0 = ::millis::now();
+auto tickC0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -443,7 +443,7 @@ auto tickC0 = ::millis::now();
                point_i32[3] = (byte)t->z;
             }
          }
-auto tickC1 = ::millis::now();
+auto tickC1 = ::duration::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
@@ -470,7 +470,7 @@ auto tickC1 = ::millis::now();
 
       {
          
-         auto tickA0 = ::millis::now();
+         auto tickA0 = ::duration::now();
 
          for(index y = 0; y < hj; y++)
          {
@@ -486,20 +486,20 @@ auto tickC1 = ::millis::now();
 
          }
          
-         auto tickA1 = ::millis::now();
+         auto tickA1 = ::duration::now();
 
          auto tickA2 = tickA1 - tickA0;
 
          string str;
 
-         str.Format(__prtick,tickA2.m_i);
+         str = __string(tickA2.integral_millisecond());
 
       }
 
 
       {
 
-         auto tick1 = ::millis::now();
+         auto tick1 = ::duration::now();
 
          try
          {
@@ -520,7 +520,7 @@ auto tickC1 = ::millis::now();
 
          }
          
-         auto tick2 = ::millis::now();
+         auto tick2 = ::duration::now();
 
          auto tick3 = tick2 - tick1;
 
@@ -530,7 +530,7 @@ auto tickC1 = ::millis::now();
             string str1;
             str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",wj,hj,m_iRadius);
             string str2;
-            str2.Format("| time for calculating stack blur : " __prtick "\b",tick3.m_i);
+            str2.Format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond().m_i);
 
             output_debug_string("/-----------------------------------------\n");
             output_debug_string("| \n");
@@ -539,38 +539,44 @@ auto tickC1 = ::millis::now();
             output_debug_string("| \n");
 
             //::aura::application * papp = pimage->get_application();
-            TRACE("/--------------------------------");
-            TRACE("| fastblur::blur");
-            TRACE("| ");
-            TRACE("| do_fastblur = " __prtick, tick3);
+            INFORMATION("/--------------------------------");
+            INFORMATION("| fastblur::blur");
+            INFORMATION("| ");
+            INFORMATION("| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond());
 
          }
 
       }
 
       {
-auto tickC0 = ::millis::now();
+
+         auto tickC0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
+
             for(index x = 0; x < w; x++)
             {
+
                p = (u8 *)&pdata[y * s + x];
                t = &timage[y * wj + x];
                p[0] = (byte)t->w;
                p[1] = (byte)t->x;
                p[2] = (byte)t->y;
                p[3] = (byte)t->z;
+
             }
+
          }
          
-         auto tickC1 = ::millis::now();
+         auto tickC1 = ::duration::now();
          
          auto tickC2 = tickC1 - tickC0;
 
          string str;
 
-         str.Format(__prtick,tickC2.m_i);
+         str = __string(tickC2.integral_millisecond());
+
       }
 
 #endif
@@ -578,7 +584,7 @@ auto tickC0 = ::millis::now();
 #else
 
 
-      //::u32 dw1= ::millis::now();
+      //::u32 dw1= ::duration::now();
 
 #ifdef __arm__
 
@@ -613,7 +619,7 @@ auto tickC0 = ::millis::now();
       }
 
       /*
-auto tick2 = ::millis::now();
+auto tick2 = ::duration::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);

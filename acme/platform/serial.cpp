@@ -45,10 +45,10 @@ namespace serial
    }
 
 
-   timeout timeout::simpleTimeout(u32 timeout)
+   timeout timeout::simpleTimeout(const ::duration & duration)
    {
 #ifdef WINDOWS
-      return struct timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
+      return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
 #else
       return ::serial::timeout(maximum(), timeout, 0, timeout, 0);
 #endif
@@ -95,7 +95,7 @@ namespace serial
 
       //timeout timeout(m_pimpl->getTimeout());
       // 
-      //return m_pimpl->waitReadable(timeout.m_millisReadTimeoutConstant);
+      //return m_pimpl->waitReadable(timeout.m_durationReadTimeoutConstant);
 
       return false;
 

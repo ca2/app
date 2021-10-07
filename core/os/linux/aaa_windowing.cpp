@@ -19,8 +19,8 @@
 #define new ACME_NEW
 
 ::point g_pointX11Cursor;
-//::millis g_tickLastMouseMove;
-//::millis g_tickLastX11WindowConfigurationCheck;
+//::duration g_tickLastMouseMove;
+//::duration g_tickLastX11WindowConfigurationCheck;
 
 
 //void _x11_defer_check_configuration(oswindow oswindow);
@@ -3193,7 +3193,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
          if(pinteraction.is_set())
          {
 
-            if(pinteraction->m_millisMouseMove.elapsed() < pinteraction->m_millisMouseMoveIgnore)
+            if(pinteraction->m_durationMouseMove.elapsed() < pinteraction->m_durationMouseMoveIgnore)
             {
 
                bOk = false;
@@ -3203,7 +3203,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
             if(bOk)
             {
 
-               pinteraction->m_millisMouseMove.Now();
+               pinteraction->m_durationMouseMove.Now();
 
                pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
 
@@ -3212,13 +3212,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                if(false)
                {
 
-                  if(pinteraction->m_millisMouseMovePeriod > 0)
+                  if(pinteraction->m_durationMouseMovePeriod > 0)
                   {
 
                      ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
                         (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 
-                     if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
+                     if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
@@ -3960,7 +3960,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("B " + __str(wFocus));
+//            output_debug_string("B " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -3975,7 +3975,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("D " + __str(wFocus));
+//            output_debug_string("D " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -5082,8 +5082,8 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   auto point = rectangle.top_left();
 //
-//   millis tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
-//   millis tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
+//   ::duration tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
+//   ::duration tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
 //   bool bMoveDiff = pinteraction->payload("bMoveDiff").get_bool();
 //   bool bSizeDiff = pinteraction->payload("bsizeDiff").get_bool();
 //

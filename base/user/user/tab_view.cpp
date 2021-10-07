@@ -947,18 +947,18 @@ namespace user
 
          {
 
-            millis t1 = millis::now();
+            ::duration t1 = ::duration::now();
 
             _001DrawThis(pgraphics);
 
-            millis d1 = t1.elapsed();
+            ::duration d1 = t1.elapsed();
 
-            if(d1 > 50)
+            if(d1 > 50_ms)
             {
 
                string strType = type_name();
 
-               CINFO(prodevian)("(more than 50ms) "+strType+"::_000DrawThis took " + __str(d1) + ".\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 
             }
 

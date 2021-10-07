@@ -208,7 +208,7 @@ void apple_on_open_file(const ::string &* psza, int iCount, const ::string & psz
 string ca2_command_line()
 {
 
-   return ::str::from_strdup(mm_ca2_command_line());
+   return ::string_from_strdup(mm_ca2_command_line());
 
 }
 
@@ -335,7 +335,7 @@ bool __node_further_file_is_equal(file::path const & path1, file::path const & p
 
    }
 
-   //return ::str::from_strdup(ns_realpath(path));
+   //return ::string_from_strdup(ns_realpath(path));
 
    char sz[4096];
 

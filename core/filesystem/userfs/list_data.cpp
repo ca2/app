@@ -13,7 +13,7 @@ string _001FileSizeText(i64 i)
    if(i < 1024)
    {
 
-      return __str(i)  + "B";
+      return __string(i)  + "B";
 
    }
 

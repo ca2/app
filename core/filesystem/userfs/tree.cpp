@@ -214,9 +214,13 @@ namespace userfs
 
    void tree::StartAnimation(::user::interaction * pinteraction)
    {
+      
       m_iAnimate = 1;
-      pinteraction->SetTimer(1234567, 50, nullptr);
+      
+      pinteraction->SetTimer(1234567, 50_ms, nullptr);
+
    }
+
 
    void tree::_001OnShellCommand(::message::message * pmessage)
    {

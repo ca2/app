@@ -267,7 +267,7 @@ namespace calculator
                            }
                            else
                            {
-                              strVal = __str(1.0 / m_result.mod());
+                              strVal = __string(1.0 / m_result.mod());
                            }
                         }
                      }

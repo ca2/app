@@ -548,6 +548,25 @@ public:
    }
 
 
+   inline void from_strdup(ansichar ** ppParam)
+   {
+
+      ansichar ** ppsz = ppParam;
+
+      string_array stra;
+
+      while(*ppsz != nullptr)
+      {
+         add(::string_from_strdup(*ppsz));
+         ppsz++;
+      }
+
+      free(ppParam);
+
+   }
+
+
+
 };
 
 
@@ -944,7 +963,7 @@ void string_array_base < Type, RawType, t_etypePayload >::copy(const i64_array &
 
    for(::index i = 0; i < this->m_nSize; i++)
    {
-      get_data()[i] = __str(src[i]);
+      get_data()[i] = __string(src[i]);
    }
 
 }
@@ -5120,31 +5139,6 @@ CLASS_DECL_ACME void add_csv(string_array & stra, const ::string & str);
 
 
 
-namespace stra
-{
-
-
-   inline CLASS_DECL_ACME string_array from_strdup(ansichar ** ppParam)
-   {
-
-      ansichar ** ppsz = ppParam;
-
-      string_array stra;
-
-      while(*ppsz != nullptr)
-      {
-         stra.add(::str::from_strdup(*ppsz));
-         ppsz++;
-      }
-
-      free(ppParam);
-
-      return stra;
-
-   }
-
-
-} // namespace stra
 
 
 

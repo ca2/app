@@ -48,7 +48,7 @@ timer::~timer()
 }
 
 
-bool timer::start(int millis, bool bPeriodic)
+bool timer::start(int ::duration, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -64,7 +64,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
-   m_dwMillis = millis;
+   m_dwMillis = ::duration;
 
    try
    {
@@ -563,7 +563,7 @@ bool timer::impl_restart()
 ::e_status timer::run()
 {
 
-   while (task_sleep(::millis((::i64) m_dwMillis)))
+   while (task_sleep(::duration((::i64) m_dwMillis)))
    {
 
       try

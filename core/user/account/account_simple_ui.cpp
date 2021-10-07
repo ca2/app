@@ -290,7 +290,7 @@ namespace account
 
       display(e_display_normal);
 
-      SetTimer(2000, 300,nullptr);
+      SetTimer(2000, 300_ms,nullptr);
 
       id idResult = RunModalLoop();
 

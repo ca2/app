@@ -681,7 +681,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
       u32 timeout = durationTimeout.u32_millis();
 
-      auto start = ::millis::now();
+      auto start = ::duration::now();
 
       while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
       {
@@ -773,7 +773,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(millis(0)).signaled();
+      return ((event *) this)->wait(::duration(0)).signaled();
 
    }
 
@@ -901,7 +901,7 @@ bool event::lock(const duration & durationTimeout)
 //
 //      u32 timeout = durationTimeout.u32_millis();
 //
-//      u32 start= ::millis::now();
+//      u32 start= ::duration::now();
 //
 //      while(start.elapsed() < timeout)
 //      {

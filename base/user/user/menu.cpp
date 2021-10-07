@@ -550,7 +550,7 @@ namespace user
 
       set_need_redraw();
 
-      SetTimer(::e_timer_command_probe, 300, nullptr);
+      SetTimer(::e_timer_command_probe, 300_ms, nullptr);
 
       return true;
 
@@ -836,7 +836,7 @@ namespace user
 
       post_redraw();
 
-      SetTimer(::e_timer_command_probe, 100, nullptr);
+      SetTimer(::e_timer_command_probe, 100_ms, nullptr);
 
    }
 

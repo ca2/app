@@ -19,7 +19,7 @@ public:
    bool                             m_bHandling;
    bool                             m_bRet;
    __pointer(::timer_callback)      m_ptimercallback;
-   ::duration                       m_duration;
+   class ::wait                     m_wait;
    string                           m_strDebugNote;
 
 

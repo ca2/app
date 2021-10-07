@@ -241,7 +241,7 @@ namespace http
 
                      string strFormat;
 
-                     ::datetime::time t = ::datetime::time::get_current_time();
+                     ::datetime::time t = ::datetime::time::now();
 
                      string strTime;
 

@@ -730,9 +730,9 @@ bool mutex::already_exists()
 
       }
 
-      auto tickTimeout = duration.millisecond();
+      auto tickTimeout = duration.::duration();
 
-      auto tickStart = ::millisecond::now();
+      auto tickStart = ::duration::now();
 
       while (true)
       {
@@ -811,7 +811,7 @@ bool mutex::already_exists()
 
             }
 
-            preempt((::millisecond)minimum_maximum((tickTimeout - tickElapsed) / 50, 1, 1000));
+            preempt((::duration)minimum_maximum((tickTimeout - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 

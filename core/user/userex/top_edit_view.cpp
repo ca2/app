@@ -13,7 +13,7 @@ namespace userex
    top_edit_view::top_edit_view()
    {
 
-      m_millisDelayedAfterChange = 1000;
+      m_durationDelayedAfterChange = 1_s;
 
       m_ptopview = nullptr;
 
@@ -91,7 +91,7 @@ namespace userex
 
          m_bEnterKeyPressed = true;
 
-         SetTimer(5544, m_millisDelayedAfterChange, nullptr);
+         SetTimer(5544, m_durationDelayedAfterChange, nullptr);
 
       }
       else
@@ -112,7 +112,7 @@ namespace userex
       if (ptimer->m_etimer == 5544)
       {
 
-         if (m_millisLastChange.elapsed() > m_millisDelayedAfterChange)
+         if (m_durationLastChange.elapsed() > m_durationDelayedAfterChange)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -165,12 +165,12 @@ namespace userex
 
          get_document()->update_all_views(psubject);
 
-         if (m_millisDelayedAfterChange > 0)
+         if (m_durationDelayedAfterChange > 0_s)
          {
 
-            m_millisLastChange.Now();
+            m_durationLastChange.Now();
 
-            SetTimer(5544, m_millisDelayedAfterChange / 5, nullptr);
+            SetTimer(5544, m_durationDelayedAfterChange / 5, nullptr);
 
          }
 

@@ -197,7 +197,7 @@ namespace net
 
 #endif
 
-      from_string(host);
+      parse_string(host);
 
 #if defined(WINRT_SOCKETS)
 
@@ -227,7 +227,7 @@ namespace net
 
 #endif
 
-      from_string(host);
+      parse_string(host);
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -313,13 +313,13 @@ namespace net
       if (is_ipv4())
       {
 
-         ::str::from(str, (in_addr &)u.m_addr.sin_addr);
+         ::to_string(str, (in_addr &)u.m_addr.sin_addr);
 
       }
       else if (is_ipv6())
       {
 
-         ::str::from(str, (in_addr6 &) u.m_addr6.sin6_addr);
+         ::to_string(str, (in_addr6 &) u.m_addr6.sin6_addr);
 
       }
 
@@ -483,7 +483,7 @@ namespace net
 #endif
 
 
-   void address::from_string(const ::string & strAddress)
+   void address::parse_string(const ::string & strAddress)
    {
 
 #if defined(BSD_STYLE_SOCKETS)
@@ -529,7 +529,7 @@ namespace net
    }
 
 
-   string address::to_string() const
+   string address::get_string() const
    {
 
       string str;
@@ -537,9 +537,9 @@ namespace net
 #if defined(BSD_STYLE_SOCKETS)
 
       if (u.s.m_family == AF_INET)
-         ::str::from(str, u.m_addr);
+         ::to_string(str, u.m_addr);
       else if (u.s.m_family == AF_INET6)
-         ::str::from(str, u.m_addr6);
+         ::to_string(str, u.m_addr6);
          
 #endif
 

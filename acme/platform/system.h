@@ -1,15 +1,11 @@
 #pragma once
 
 
-//namespace acme
-//{
-
-
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
    virtual public ::acme_main_data,
    //virtual public ::manager,
-   virtual public ::task
+   virtual public ::task //,  virtual public ::logger
    //, public layered < system >
 {
 public:
@@ -33,7 +29,7 @@ public:
 
    __composite(::apex::system)                  m_psystemParent;
 
-   __pointer(::trace::log)                      m_ptracelog;
+   //__pointer(::trace::log)                      m_ptracelog;
 
    string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
@@ -70,7 +66,7 @@ public:
    //__pointer(::acme::node)                         m_pnode;
 
 
-   ::millis                                           m_millisFileListingCache;
+   ::duration                                           m_durationFileListingCache;
    critical_section                                   m_csEnumText;
    string_map < i64_map < string > >                  m_mapEnumToText;
    string_map < string_map < i64 > >                  m_mapTextToEnum;
@@ -136,12 +132,13 @@ public:
 
    inline ::url::department* url() { return m_purldepartment; }
 
-   inline class ::trace::log& log() { return *m_ptracelog; }
+   //inline class ::trace::log& log() { return *m_ptracelog; }
 
    virtual ::e_status defer_audio();
 
    virtual ::e_status init1();
 
+   //virtual logger & log() { return *m_plogger; }
 
    virtual void TermSystem();
 
@@ -236,7 +233,7 @@ public:
    //using ::manager::on_subject;
    //virtual void on_subject(::subject * psubject) override;
 
-   virtual ::millis get_update_poll_time(const ::id& id);
+   virtual ::duration get_update_poll_time(const ::id& id);
 
    virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
@@ -255,7 +252,7 @@ public:
    virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
-   void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
+   //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
    //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);

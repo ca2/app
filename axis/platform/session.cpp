@@ -139,7 +139,7 @@ namespace axis
    ::e_status session::process_init()
    {
 
-      INFO("axis::session::process_init");
+      INFORMATION("axis::session::process_init");
 
       auto estatus = ::aura::session::process_init();
 
@@ -152,7 +152,7 @@ namespace axis
 
 
 
-      INFO("axis::session::process_init success");
+      INFORMATION("axis::session::process_init success");
 
       return ::success;
 
@@ -804,13 +804,13 @@ namespace axis
    //   if (!estatus || !m_puser)
    //   {
 
-   //      ERR(".4");
+   //      ERROR(".4");
 
    //      return false;
 
    //   }
 
-   //   INFO("end");
+   //   INFORMATION("end");
    //   return true;
 
    //}

@@ -233,7 +233,7 @@ namespace app_shader
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-      m_millisStart.Now();
+      m_durationStart.Now();
 
       return ::success;
 
@@ -292,11 +292,9 @@ namespace app_shader
 
             {
 
-               double dElapsed = __double(m_millisStart.elapsed());
+               auto dTime = m_durationStart.elapsed().floating_second();
 
-               double dTime = dElapsed / 1000.0;
-
-               float time = (float) dTime;
+               float time = (float) dTime.m_d;
 
                m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
                m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);

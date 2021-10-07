@@ -6,7 +6,7 @@ class CLASS_DECL_AURA db_long_set_item
 {
 public:
 
-   millis m_millisTimeout;
+   ::duration m_durationTimeout;
    i64        m_l;
 
 };
@@ -17,7 +17,7 @@ class CLASS_DECL_AURA db_long_set_queue_item:
 public:
 
    string         m_strKey;
-   millis m_millisTimeout;
+   ::duration m_durationTimeout;
    i64        m_l;
 
    db_long_set_queue_item() {}
@@ -30,7 +30,7 @@ public:
       if(this != &item)
       {
          m_strKey = item.m_strKey;
-         m_millisTimeout = item.m_millisTimeout;
+         m_durationTimeout = item.m_durationTimeout;
          m_l = item.m_l;
       }
       return *this;
@@ -150,7 +150,7 @@ repeat:;
           strUrl = "https://" + pcontext->m_papexcontext->dir().get_api_cc() + "/account/long_set_save?key=";
           strUrl += purl->url_encode(m_itema[0]->m_strKey);
           strUrl += "&value=";
-          strUrl += __str(m_itema[0]->m_l);
+          strUrl += __string(m_itema[0]->m_l);
 
           m_itema.erase_at(0);
 
@@ -213,7 +213,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
       db_long_set_item longitem;
 
-      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_millisTimeout > ::get_tick())
+      if(m_pcore->m_map.lookup(lpKey,longitem) && longitem.m_durationTimeout > ::get_tick())
       {
          *plValue = longitem.m_l;
          return true;
@@ -241,7 +241,7 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
 
       *plValue = ::str::to_i64(string((const ::string &)m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_data(),m_pcore->m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
-      longitem.m_millisTimeout= ::millis::now() + 23 * (5000);
+      longitem.m_durationTimeout= ::duration::now() + 23 * (5000);
       longitem.m_l = *plValue;
 
       m_pcore->m_map.set_at(lpKey,longitem);
@@ -325,7 +325,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
 
       db_long_set_item longitem;
 
-      longitem.m_millisTimeout= ::millis::now() + 23 * (5000);
+      longitem.m_durationTimeout= ::duration::now() + 23 * (5000);
       longitem.m_l = lValue;
 
       m_pcore->m_map.set_at(lpKey,longitem);
@@ -337,7 +337,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
    else if(m_pcore->m_pmysqldbUser != nullptr)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + __str(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_pcore->m_strUser + "', '" + m_pcore->m_pmysqldbUser->escape(lpKey) + "', " + __string(lValue) + ")";
 
       TRACE(strSql);
 

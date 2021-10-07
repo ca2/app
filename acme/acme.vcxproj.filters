@@ -258,6 +258,30 @@
     <Filter Include="Header Files\subject">
       <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\duration">
+      <UniqueIdentifier>{8177ae06-3813-4278-9ac7-bce64a71d8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\integral_duration">
+      <UniqueIdentifier>{0f869d69-05d3-464a-80d8-3d86518e9e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\floating_duration">
+      <UniqueIdentifier>{ec0c0b57-7dbe-412a-b7fd-ab46dba48376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\duration">
+      <UniqueIdentifier>{2cbe4311-e05f-4365-b2d7-b56e10861e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration">
+      <UniqueIdentifier>{c9b96c03-98bc-4996-81e2-5c78e5017706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\integral">
+      <UniqueIdentifier>{6d7ca4d1-5cb9-4ac5-87ce-5bc1c59723e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\duration">
+      <UniqueIdentifier>{77ba4a4d-9971-42bc-94b8-5d5170c9de31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\floating">
+      <UniqueIdentifier>{67103b60-a7e1-463b-9626-3d6f73c5b71b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -693,9 +717,6 @@
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\date_span.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\time.h">
@@ -1349,7 +1370,7 @@
     <ClInclude Include="platform\timer_item.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\nano_timer.h">
+    <ClInclude Include="platform\nanosecond_timer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer_task.h">
@@ -1498,18 +1519,6 @@
     </ClInclude>
     <ClInclude Include="graphics\draw2d\opacity.h">
       <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\microsecond.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\millisecond.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\nanosecond.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\second.h">
-      <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_payload_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -2666,23 +2675,104 @@
     <ClInclude Include="include\_forward_declaration.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\parallelization_millisecond.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\wait.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\minute.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\hour.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\day.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\tracer.h">
       <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\_.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\day.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\hour.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\duration.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\microsecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\millisecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\minute.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\nanosecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\second.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\_.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\_impl.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\day.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\duration.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\hour.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\microsecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\millisecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\minute.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\nanosecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\second.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\_.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\day.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\duration.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\hour.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\microsecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\millisecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\minute.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\nanosecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\second.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\_impl.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_struct.h">
+      <Filter>Header Files\primitive\duration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2894,9 +2984,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -3280,7 +3367,7 @@
     <ClCompile Include="primitive\datetime\filetime_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="platform\nano_timer.cpp">
+    <ClCompile Include="platform\nanosecond_timer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
@@ -3340,9 +3427,6 @@
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\second.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -3368,9 +3452,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\microsecond.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue.cpp">
@@ -3458,9 +3539,6 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="exception\exit.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\aaa_not_installed.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\parsing.cpp">
@@ -3801,6 +3879,15 @@
     </ClCompile>
     <ClCompile Include="exception\resource.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\duration.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\microsecond.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\second.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

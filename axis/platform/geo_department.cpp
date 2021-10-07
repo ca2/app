@@ -490,7 +490,7 @@ namespace geo
 
       property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __str(pcity->m_iId) + "&APPID=" + string(pszId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = get_system()->m_paxissystem;
 
@@ -565,7 +565,7 @@ namespace geo
 
       ::datetime::time_span spanTimeout(1, 0, 0, 0);
 
-      ::datetime::time now = ::datetime::time::get_current_time();
+      ::datetime::time now = ::datetime::time::now();
 
       ::mutex m(pcity, false, "Global\\ca2_datetime_departament");
 
@@ -614,9 +614,9 @@ namespace geo
 
       property_set set;
 
-      string strLat = __str(pcity->m_dLat);
+      string strLat = __string(pcity->m_dLat);
 
-      string strLng = __str(pcity->m_dLon);
+      string strLng = __string(pcity->m_dLon);
 
       string strKey;
 
@@ -746,9 +746,9 @@ namespace geo
       //
       //         property_set set;
       //
-      //         string strLat = __str(pcity->m_dLat);
+      //         string strLat = __string(pcity->m_dLat);
       //
-      //         string strLng = __str(pcity->m_dLon);
+      //         string strLng = __string(pcity->m_dLon);
       //
       //         string strKey;
       //

@@ -23,7 +23,7 @@ namespace dynamic_source
       ::file::patha                             m_straLibHppPath;
       ::file::path                              m_strLibraryPath;
 
-      millis                                    m_millisLastLibraryVersionCheck;
+      ::duration                                    m_durationLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
       __pointer(::acme::library)                m_plibraryLib;
 

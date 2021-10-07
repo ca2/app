@@ -6,37 +6,30 @@
 //CLASS_DECL_ACME void sleep(const ::duration& duration)
 //{
 //
-//   auto millis = duration.millis();
+//   auto ::duration = duration.::duration();
 //
-//   ::sleep(millis);
+//   ::sleep(::duration);
 //
 //}
 
-CLASS_DECL_ACME void preempt(const ::secs & secs)
+
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & integralsecond)
 {
 
-   ::Sleep((DWORD) (secs.m_i * 1'000));
+   ::Sleep((DWORD) (integralsecond.m_i * 1'000));
 
 }
 
 
-CLASS_DECL_ACME void preempt(const millis & millis)
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & integralmillisecond)
 {
 
-   ::Sleep((DWORD) millis.m_i);
+   ::Sleep((DWORD)integralmillisecond.m_i);
 
 }
 
 
-CLASS_DECL_ACME void preempt(const micros & micros)
-{
-
-   ::Sleep(1);
-
-}
-
-
-CLASS_DECL_ACME void preempt(const nanos & nanos)
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MICROSECOND & integralmicrosecond)
 {
 
    ::Sleep(1);
@@ -44,41 +37,23 @@ CLASS_DECL_ACME void preempt(const nanos & nanos)
 }
 
 
-thread_local nano_timer t_nanotimer;
-
-
-CLASS_DECL_ACME void precision_wait_seconds(double d)
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & integralnanosecond)
 {
 
-   t_nanotimer.wait_nano((::u64) (d * 1'000'000'000.0));
+   ::Sleep(1);
 
 }
 
 
-CLASS_DECL_ACME void precision_wait_milliseconds(double d)
+thread_local nanosecond_timer t_nanosecondtimer;
+
+
+CLASS_DECL_ACME void precision_wait(const integral_nanosecond & integralnanosecond)
 {
 
-   t_nanotimer.wait_nano((::u64)(d * 1'000'000.0));
+   t_nanosecondtimer.wait(integralnanosecond);
 
 }
-
-
-CLASS_DECL_ACME void precision_wait_microseconds(double d)
-{
-
-   t_nanotimer.wait_nano((::u64)(d * 1'000.0));
-
-}
-
-
-CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
-{
-
-   t_nanotimer.wait_nano(u);
-
-}
-
-
 
 
 

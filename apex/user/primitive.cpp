@@ -2450,7 +2450,7 @@ namespace user
    }
 
 
-   bool primitive::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
    {
 
       throw ::interface_only_exception();
@@ -4426,7 +4426,7 @@ namespace user
    void primitive::on_reset_focus_start_tick()
    {
 
-      m_millisFocusStart.Now();
+      m_durationFocusStart.Now();
 
    }
 

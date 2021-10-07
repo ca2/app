@@ -306,7 +306,7 @@ public:
 
    inline void to_string(string & str) const;
    inline string to_string() const;
-   inline string __string() const;
+   //inline string __string() const;
 
 
    inline bool is_null() const;
@@ -626,12 +626,12 @@ inline string id::to_string() const
 }
 
 
-inline string id::__string() const
-{
-
-   return str();
-
-}
+//inline string id::__string() const
+//{
+//
+//   return str();
+//
+//}
 
 
 inline bool id::is_empty() const
@@ -683,13 +683,13 @@ inline string id::str() const
    else if(is_integer())
    {
 
-      return __str(m_i);
+      return __string(m_i);
 
    }
    else
    {
 
-      return string("(type:") + __str(m_iType) + ",body:" + __str(m_iBody) + ")";
+      return string("(type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
 
    }
 

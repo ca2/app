@@ -30,7 +30,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFu
 //}
 
 
-void TRACELASTSTATUS()
+void matter::trace_last_status()
 {
 
    auto estatus = ::get_last_status();
@@ -44,10 +44,9 @@ void TRACELASTSTATUS()
 
    string strStatusMessage = ::get_status_message(estatus);
 
-   TRACE("Status Message :\n%s\n", strStatusMessage.c_str());
+   WARNING("Status Message :\n" << strStatusMessage << "\n");
 
 }
-
 
 
 extern "C"
@@ -179,7 +178,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 
 //         auto pacmedir = psystem->m_pacmedir;
 //
-//pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
+//pacmedir->system() / "memory_counters" / strModule.title() / __string(getpid());
 //
 //#endif
 //
@@ -200,7 +199,7 @@ simple_log::simple_log()
 
 #ifdef _DEBUG
 
-   //INFO("Starting Simple Alog");
+   //INFORMATION("Starting Simple Alog");
 
 #endif
 
@@ -210,12 +209,12 @@ simple_log::simple_log()
 simple_log::~simple_log()
 {
 
-   //INFO("Ending Simple Alog");
+   //INFORMATION("Ending Simple Alog");
 
 }
 
 
-void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
    string str;
@@ -231,7 +230,7 @@ void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, con
    else
    {
 
-      str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
+      str.Format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
 
    }
 
@@ -311,7 +310,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel
       if (iLine >= 1)
       {
 
-         strMessage += "(" + __str(iLine) + ")";
+         strMessage += "(" + __string(iLine) + ")";
 
       }
 
@@ -346,6 +345,33 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel
 
 }
 
+
+//thread_local __pointer(logger) logger::t_plogger;
+
+
+//logger * logger::create()
+//{
+//
+//   __construct(t_plogger);
+//
+//   return t_plogger.m_p;
+//
+//}
+//
+//
+//void logger::destroy()
+//{
+//
+//   ::release(t_plogger);
+//
+//}
+
+
+//void logger::print(enum_trace_level elevel, enum_trace_category, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+//{
+//
+//
+//}
 
 
 

@@ -4,10 +4,18 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME string __str(const ::e_status & estatus)
+CLASS_DECL_ACME void to_string(string & str, const e_status & estatus)
 {
 
-    return __str((::i64) estatus.m_estatus);
+   str.Format("%" PRId64, estatus);
+
+}
+
+
+CLASS_DECL_ACME string __string(const ::e_status & estatus)
+{
+
+    return __string((::i64) estatus.m_estatus);
 
 }
 

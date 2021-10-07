@@ -121,9 +121,9 @@ namespace user
 
 //#endif
 
-         SetTimer(100, 100, nullptr);
+         SetTimer(100, 100_ms, nullptr);
 
-         SetTimer(e_timer_redraw, 200, nullptr); // Caret
+         SetTimer(e_timer_redraw, 200_ms, nullptr); // Caret
 
       }
 
@@ -725,7 +725,7 @@ namespace user
 
                KillTimer(500);
 
-               SetTimer(501, 300, nullptr);
+               SetTimer(501, 300_ms, nullptr);
 
             }
 

@@ -1005,7 +1005,7 @@ namespace user
       if (!on_create_client(pusersystem))
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
+         CATEGORY_ERROR(appmsg, "Failed to create client pane/::user::impact for frame.");
 
          return -1;
 
@@ -2169,7 +2169,7 @@ namespace user
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
-         //         ::u32 dwTime2= ::millis::now();
+         //         ::u32 dwTime2= ::duration::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());

@@ -150,7 +150,7 @@ bool __node_acme_pos_term()
 
 
 
-::millis os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::id & id)
 {
 
    if (id == id_user_color)

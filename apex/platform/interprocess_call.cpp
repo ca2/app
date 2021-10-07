@@ -12,7 +12,7 @@ interprocess_call::interprocess_call(interprocess_intercommunication* pipi, cons
 
    initialize(pipi);
 
-   m_duration = one_minute();
+   m_duration = minute();
 
 }
 

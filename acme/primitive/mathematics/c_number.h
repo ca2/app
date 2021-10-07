@@ -185,7 +185,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
    };
 
 
-class millisecond;
+class ::duration;
 
 
 class microsecond;
@@ -199,7 +199,7 @@ class duration;
 
 
 
-//class CLASS_DECL_ACME millisecond
+//class CLASS_DECL_ACME ::duration
 //{
 //public:
 //
@@ -207,16 +207,16 @@ class duration;
 //   ::i64       m_i;
 //
 //
-//   millisecond() { m_i = 0; }
-//   millisecond(::i64 i) { m_i = i; }
+//   ::duration() { m_i = 0; }
+//   ::duration(::i64 i) { m_i = i; }
 //
 //
-//   millisecond & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
-//   millisecond & operator = (const millisecond & millisecond) { m_i = millisecond.m_i; return *this; }
-//   millisecond & operator = (const microsecond & microsecond);
-//   millisecond & operator = (const nanosecond & nanosecond);
-//   millisecond & operator = (const duration & duration);
-//   millisecond & operator = (::i64 i) { m_i = i; return *this; }
+//   ::duration & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
+//   ::duration & operator = (const ::duration & duration) { m_i = ::duration.m_i; return *this; }
+//   ::duration & operator = (const microsecond & microsecond);
+//   ::duration & operator = (const nanosecond & nanosecond);
+//   ::duration & operator = (const duration & duration);
+//   ::duration & operator = (::i64 i) { m_i = i; return *this; }
 //
 //
 //};

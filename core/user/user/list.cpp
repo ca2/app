@@ -580,7 +580,7 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickStart = millis::now();
+            auto tickStart = ::duration::now();
 
 #endif
 
@@ -588,16 +588,16 @@ namespace user
 
 #ifdef _DEBUG
 
-            auto tickEnd = millis::now();
+            auto tickEnd = ::duration::now();
 
-            millis tickElapsed = tickEnd - tickStart;
+            auto tickElapsed = tickEnd - tickStart;
 
-            if (tickElapsed > 100)
+            if (tickElapsed > 100_ms)
             {
 
-               output_debug_string("\ndrawing took " + __str(tickElapsed) + "!!");
-               output_debug_string("\ndrawing took more than 100ms to complete!!");
-               output_debug_string("\n");
+               INFORMATION("drawing took " << integral_millisecond(tickElapsed) << "!!");
+               INFORMATION("drawing took more than 100ms to complete!!");
+               INFORMATION("");
 
                // let's try to reproduce the offending scenario
                //_001DrawItem(m_pdrawlistitem);
@@ -3544,20 +3544,20 @@ namespace user
 
       m_bLButtonDown = true;
 
-      auto tickNow = ::millis::now();
+      auto tickNow = ::duration::now();
 
-      auto tick2 = tickNow - m_millisLButtonDownStart2;
+      auto tick2 = tickNow - m_durationLButtonDownStart2;
 
-      auto tick1 = tickNow - m_millisLButtonDownStart1;
+      auto tick1 = tickNow - m_durationLButtonDownStart1;
 
       auto tickDoubleClick = DBLCLKMS;
 
       if(tick2 < tickDoubleClick)
       {
 
-         m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
+         m_durationLButtonDownStart1 = m_durationLButtonDownStart2;
 
-         m_millisLButtonDownStart2 = tickNow;
+         m_durationLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3569,7 +3569,7 @@ namespace user
       else if(tick1 < tickDoubleClick)
       {
 
-         m_millisLButtonDownStart2 = tickNow;
+         m_durationLButtonDownStart2 = tickNow;
 
          m_pointLButtonDown2 = point;
 
@@ -3579,7 +3579,7 @@ namespace user
       else
       {
 
-         m_millisLButtonDownStart1 = tickNow;
+         m_durationLButtonDownStart1 = tickNow;
 
          m_pointLButtonDown1 = point;
 
@@ -3601,14 +3601,14 @@ namespace user
       if (dynamic_cast <list *>(this) == nullptr)
       {
 
-         auto tickNow = ::millis::now();
+         auto tickNow = ::duration::now();
 
-         if (tickNow - m_millisLButtonDownStart2 < DBLCLKMS)
+         if (tickNow - m_durationLButtonDownStart2 < DBLCLKMS)
          {
 
-            m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
+            m_durationLButtonDownStart1 = m_durationLButtonDownStart2;
 
-            m_millisLButtonDownStart2 = tickNow;
+            m_durationLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -3617,10 +3617,10 @@ namespace user
             m_iClick = 2;
 
          }
-         else if (tickNow - m_millisLButtonDownStart1 < DBLCLKMS)
+         else if (tickNow - m_durationLButtonDownStart1 < DBLCLKMS)
          {
 
-            m_millisLButtonDownStart2 = tickNow;
+            m_durationLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown2 = point;
 
@@ -3630,7 +3630,7 @@ namespace user
          else
          {
 
-            m_millisLButtonDownStart1 = tickNow;
+            m_durationLButtonDownStart1 = tickNow;
 
             m_pointLButtonDown1 = point;
 
@@ -3778,7 +3778,7 @@ namespace user
 
                   }
 
-                  SetTimer(e_timer_drag_start, 1200);
+                  SetTimer(e_timer_drag_start, 1.2_s);
 
                   item_range itemrange;
 
@@ -4129,11 +4129,17 @@ namespace user
                itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, -1, -1);
                m_rangeSelection.add_item(itemrange);
                set_need_redraw();
+
             }
+
          }
+         
          m_uiRButtonUpFlags = (::u32)pmouse->m_nFlags;
+         
          m_pointRButtonUp = pmouse->m_point;
-         SetTimer(8477, 500, nullptr);
+         
+         SetTimer(8477, 500_ms, nullptr);
+
       }
 
 
@@ -4258,7 +4264,7 @@ namespace user
             for (index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
-               selection.add_item(key.m_strDataKey + "/" + __str(iLine));
+               selection.add_item(key.m_strDataKey + "/" + __string(iLine));
 
             }
 
@@ -6127,7 +6133,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      SetTimer(0xfffffffe, 50, nullptr);
+      SetTimer(0xfffffffe, 50_ms, nullptr);
 
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
@@ -6228,11 +6234,11 @@ namespace user
    bool list::Filter1Step()
    {
 
-      auto tickIn = ::millis::now();
+      auto tickIn = ::duration::now();
 
       TRACE("list::Filter1Step");
 
-      TRACE("tickIn = " __prtick, __pr(tickIn));
+      INFORMATION("tickIn = " << integral_millisecond(tickIn));
 
       if (!m_bFilter1)
       {
@@ -6321,10 +6327,10 @@ namespace user
 
       set_need_redraw();
 
-      auto tickOut = ::millis::now();
+      auto tickOut = ::duration::now();
 
-      TRACE("tickOut = " __prtick, __pr(tickOut));
-      TRACE("(delta) = " __prtick, __pr(tickOut - tickIn));
+      INFORMATION("tickOut = " << integral_millisecond(tickOut));
+      INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
 
       return m_nItemCount != iItemCount;
 

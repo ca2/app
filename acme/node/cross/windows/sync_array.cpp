@@ -191,22 +191,22 @@ synchronization_result synchronization_array::wait(bool waitForAll, const durati
       if (bWaitMessageQueue)
       {
 
-         auto millis = duration.u32_millis();
+         auto ::duration = duration.u32_millis();
 
-         winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), millis, QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
+         winResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), ::duration, QS_ALLEVENTS, waitForAll ? MWMO_WAITALL : 0);
 
       }
       else
 #endif
       {
 
-         auto millis = duration.u32_millis();
+         auto ::duration = duration.u32_millis();
 
          ::u32 uCount = (u32)m_hsyncaCache.size();
 
          auto psynca = m_hsyncaCache.get_data();
 
-         winResult = ::WaitForMultipleObjectsEx(uCount, psynca, waitForAll, millis, bWaitMessageQueue);
+         winResult = ::WaitForMultipleObjectsEx(uCount, psynca, waitForAll, ::duration, bWaitMessageQueue);
 
       }
 
@@ -222,7 +222,7 @@ synchronization_result synchronization_array::wait(bool waitForAll, const durati
 
    }
 
-   auto start = ::millis::now();
+   auto start = ::duration::now();
 
    bool FoundExternal=false;
 

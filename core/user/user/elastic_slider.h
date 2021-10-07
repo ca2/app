@@ -18,7 +18,7 @@ namespace user
 
       e_scalar       m_escalar;
 
-      millis m_millisLastTime;
+      ::duration m_durationLastTime;
 
       double         m_dPosition;// 0.0 = minimum 1.0 = maximum
       double         m_dTensionPosition;// 0.0 = minimum 1.0 = maximum

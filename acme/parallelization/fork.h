@@ -73,7 +73,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   ::task_pointer                          m_ptask;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
-//   ::millisecond                                       m_millisStart;
+//   ::duration                                       m_durationStart;
 //
 //   runner()
 //   {
@@ -94,7 +94,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   void operator()(::duration duration, PRED pred)
 //   {
 //
-//      m_millisStart = ::millisecond::now() + duration;
+//      m_durationStart = ::duration::now() + duration;
 //
 //      m_bPending = true;
 //
@@ -113,7 +113,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //
 //                   }
 //
-//                   if(m_millisStart.elapsed() >= 0 && !m_bExecuting)
+//                   if(m_durationStart.elapsed() >= 0 && !m_bExecuting)
 //                   {
 //
 //                      m_bPending = false;

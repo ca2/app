@@ -198,7 +198,7 @@ started:
 
    }
 
-   string strKey = strApp + ":" + __str(idPid);
+   string strKey = strApp + ":" + __string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -215,7 +215,7 @@ started:
 bool interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
 {
 
-   string strKey = strApp + ":" + __str(idPid);
+   string strKey = strApp + ":" + __string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -243,7 +243,7 @@ bool interprocess_intercommunication::connect(const ::string & strApp, const ::i
 ::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::id & iPid)
 {
 
-   string strKey = strApp + ":" + __str(iPid);
+   string strKey = strApp + ":" + __string(iPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -285,7 +285,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #else
 
-   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __str(idPid);
+   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
 
 #endif
 
@@ -293,7 +293,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #ifdef LINUX
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -309,13 +309,13 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #ifdef MACOS
 
-   strKey += "/" + __str(idPid.i32());
+   strKey += "/" + __string(idPid.i32());
 
 #endif
 
 #else
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 
 #endif
@@ -342,7 +342,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage)
 {
 
-   INFO("::interprocess_intercommunication::on_receive %s", strMessage.c_str());
+   INFORMATION("::interprocess_intercommunication::on_receive " << strMessage);
 
    if(!::str::begins_eat(strMessage, "call "))
    {
@@ -474,7 +474,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       pcall->add_arg(varRet);
 
-      pcall->set_timeout(1_min);
+      pcall->set_timeout(1_minute);
 
       pcall->post(strAppPid);
 
@@ -796,13 +796,13 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    if (pathPid.has_char())
    {
 
-      strItem = pathPid + "|" + __str(idPid);
+      strItem = pathPid + "|" + __string(idPid);
 
    }
    else
    {
 
-      strItem = strModule + "|" + __str(idPid);
+      strItem = strModule + "|" + __string(idPid);
    }
 
 

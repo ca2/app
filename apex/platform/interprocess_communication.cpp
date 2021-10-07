@@ -474,7 +474,7 @@ namespace interprocess_communication
       interprocess_communication::interprocess_communication()
       {
 
-         m_millisTimeout = (5000) * 11;
+         m_durationTimeout = (5000) * 11;
 
       }
 

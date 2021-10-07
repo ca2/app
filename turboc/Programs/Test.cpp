@@ -46,7 +46,7 @@ void
 #endif
 main (void)
 {
-  g::u32 milliseconds;
+  g::u32 ::durations;
   int Handle;
   struct ftime ft;
   struct ffblk fblk;
@@ -58,11 +58,11 @@ main (void)
   for (;;)
     {
       printf ("-----\nEnter time: ");
-      scanf ("%u", &milliseconds);
-      if (milliseconds == 0)
+      scanf ("%u", &::durations);
+      if (::durations == 0)
         break;
       printf ("%u %u\n", clock (), CLK_TCK);
-      delay (milliseconds);
+      delay (::durations);
       printf ("%u %u\n", clock (), CLK_TCK);	
     }
   textmode (C80X50);

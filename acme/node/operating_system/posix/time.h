@@ -7,11 +7,11 @@
 #include <time.h>
 
 
-inline timespec __timespec(const ::millis & millis)
+inline timespec __timespec(const ::duration & duration)
 {
    timespec time;
-   time.tv_sec = millis.m_i / 1'000;
-   time.tv_nsec = (millis.m_i % 1'000) * 1'000'000;
+   time.tv_sec = ::duration.m_i / 1'000;
+   time.tv_nsec = (::duration.m_i % 1'000) * 1'000'000;
    return time;
 }
 

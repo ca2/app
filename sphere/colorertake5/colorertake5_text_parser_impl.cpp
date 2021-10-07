@@ -540,7 +540,7 @@ namespace colorertake5
             clearLine = gy;
             str = lineSource->getLine(gy);
             /*if (str == nullptr){
-               __throw(exception(string("nullptr string passed into the parser: ")+__str(gy)));
+               __throw(exception(string("nullptr string passed into the parser: ")+__string(gy)));
                gy = gy2;
                break;
             };*/

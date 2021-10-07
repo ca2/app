@@ -53,7 +53,7 @@ namespace sockets
 
       });
 
-      m_datagramsocket->BindServiceNameAsync(__str(port))->Completed =
+      m_datagramsocket->BindServiceNameAsync(__string(port))->Completed =
       ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this] (::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
@@ -95,7 +95,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->BindEndpointAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, __string(ad.get_service_number()))->Completed =
       ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
@@ -150,7 +150,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->ConnectAsync(ad.m_hostname, __str(ad.get_service_number()))->Completed =
+      m_datagramsocket->ConnectAsync(ad.m_hostname, __string(ad.get_service_number()))->Completed =
       ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
@@ -412,7 +412,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      WARN("recvfrom", 0, "unexpected address struct size_i32");
+      WARNING("recvfrom", 0, "unexpected address struct size_i32");
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)
@@ -464,7 +464,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      WARN("recvfrom", 0, "unexpected address struct size_i32");
+      WARNING("recvfrom", 0, "unexpected address struct size_i32");
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)
@@ -509,14 +509,14 @@ namespace sockets
       {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &one, sizeof(one)) == -1)
       {
-      WARN("SetBroadcast", Errno, bsd_socket_error(Errno));
+      WARNING("SetBroadcast", Errno, bsd_socket_error(Errno));
       }
       }
       else
       {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *) &zero, sizeof(zero)) == -1)
       {
-      WARN("SetBroadcast", Errno, bsd_socket_error(Errno));
+      WARNING("SetBroadcast", Errno, bsd_socket_error(Errno));
       }
       }*/
    }
@@ -534,7 +534,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&is_broadcast, &size) == -1)
       {
-      WARN("IsBroadcast", Errno, bsd_socket_error(Errno));
+      WARNING("IsBroadcast", Errno, bsd_socket_error(Errno));
       }
       return is_broadcast != 0;*/
    }
@@ -549,7 +549,7 @@ namespace sockets
       }
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
       {
-      WARN("SetMulticastTTL", Errno, bsd_socket_error(Errno));
+      WARNING("SetMulticastTTL", Errno, bsd_socket_error(Errno));
       }*/
    }
 
@@ -566,7 +566,7 @@ namespace sockets
       }
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
-      WARN("GetMulticastTTL", Errno, bsd_socket_error(Errno));
+      WARNING("GetMulticastTTL", Errno, bsd_socket_error(Errno));
       }
       return ttl;*/
    }
@@ -584,14 +584,14 @@ namespace sockets
       int val = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
-      WARN("SetMulticastLoop", Errno, bsd_socket_error(Errno));
+      WARNING("SetMulticastLoop", Errno, bsd_socket_error(Errno));
       }
       return;
       }
       int val = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
-      WARN("SetMulticastLoop", Errno, bsd_socket_error(Errno));
+      WARNING("SetMulticastLoop", Errno, bsd_socket_error(Errno));
       }*/
    }
 
@@ -609,7 +609,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-      WARN("IsMulticastLoop", Errno, bsd_socket_error(Errno));
+      WARNING("IsMulticastLoop", Errno, bsd_socket_error(Errno));
       }
       return is_loop ? true : false;
       }
@@ -617,7 +617,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
-      WARN("IsMulticastLoop", Errno, bsd_socket_error(Errno));
+      WARNING("IsMulticastLoop", Errno, bsd_socket_error(Errno));
       }
       return is_loop ? true : false;*/
    }
@@ -641,7 +641,7 @@ namespace sockets
       x.ipv6mr_interface = if_index;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       {
-      WARN("AddMulticastMembership", Errno, bsd_socket_error(Errno));
+      WARNING("AddMulticastMembership", Errno, bsd_socket_error(Errno));
       }
       }
       return;
@@ -656,7 +656,7 @@ namespace sockets
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       {
-      WARN("AddMulticastMembership", Errno, bsd_socket_error(Errno));
+      WARNING("AddMulticastMembership", Errno, bsd_socket_error(Errno));
       }
       }*/
    }
@@ -680,7 +680,7 @@ namespace sockets
       x.ipv6mr_interface = if_index;
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       {
-      WARN("DropMulticastMembership", Errno, bsd_socket_error(Errno));
+      WARNING("DropMulticastMembership", Errno, bsd_socket_error(Errno));
       }
       }
       return;
@@ -695,7 +695,7 @@ namespace sockets
       //      x.imr_ifindex = if_index;
       if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       {
-      WARN("DropMulticastMembership", Errno, bsd_socket_error(Errno));
+      WARNING("DropMulticastMembership", Errno, bsd_socket_error(Errno));
       }
       }*/
    }
@@ -715,7 +715,7 @@ namespace sockets
       }
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
       {
-      WARN("SetMulticastHops", Errno, bsd_socket_error(Errno));
+      WARNING("SetMulticastHops", Errno, bsd_socket_error(Errno));
       }*/
    }
 
@@ -737,7 +737,7 @@ namespace sockets
       socklen_t size = sizeof(int);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
-      WARN("GetMulticastHops", Errno, bsd_socket_error(Errno));
+      WARNING("GetMulticastHops", Errno, bsd_socket_error(Errno));
       }
       return hops;*/
    }

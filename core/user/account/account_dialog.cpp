@@ -337,7 +337,7 @@ namespace account
 
       bool bWasWaiting = false;
 
-      while (!synchronouslock.wait(one_second()).signaled())
+      while (!synchronouslock.wait(1_s).signaled())
       {
 
          if (!::task_get_run())
@@ -378,7 +378,7 @@ namespace account
 
       set_window_text("account Auth Windows");
 
-      set_timer(e_timer_check_cached_credentials, millis(300));
+      set_timer(e_timer_check_cached_credentials, 5_min);
 
       auto result = RunModalLoop();
 

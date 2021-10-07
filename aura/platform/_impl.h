@@ -229,7 +229,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      m_psystem->m_pacmefile->put_contents(path, __str(i + 1));
+//      m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
 //
 //   }
 //
@@ -249,7 +249,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      m_psystem->m_pacmefile->put_contents(path, __str(i - 1));
+//      m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
 //
 //   }
 //
@@ -752,10 +752,10 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //{
 //
 //
-//   inline void from(string & str, const millis & millis)
+//   inline void from(string & str, const ::duration & duration)
 //   {
 //
-//      str.Format(__prtick, millis.m_i);
+//      str.Format(__prtick, ::duration.m_i);
 //
 //   }
 //
@@ -853,7 +853,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//inline string __str(const ::e_display & edisplay) { return __str((::enum_display) edisplay); }
+//inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 //namespace aura

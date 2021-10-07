@@ -279,7 +279,7 @@ namespace acme
 
 
 
-   ::nanos g_nanosFirst;
+   ::nanosecond g_nanosecondFirst;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
@@ -453,8 +453,6 @@ namespace acme
 
 #endif
 
-      g_nanosFirst = 0;
-
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       g_iMemoryCountersStartable = 0;
@@ -521,6 +519,8 @@ namespace acme
 
    static_start::static_start()
    {
+
+      g_nanosecondFirst.Now();
 
       initialize_memory_management();
 
@@ -589,7 +589,7 @@ namespace acme
 
 #endif
 
-      g_nanosFirst = get_nanos();
+      
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
@@ -1526,7 +1526,12 @@ void add_release_on_end(::matter * pmatter)
 }
 
 
+::nanosecond first_nanosecond()
+{
 
+   return ::acme::g_nanosecondFirst;
+
+}
 
 
 

@@ -11,8 +11,8 @@ namespace userex
    public:
 
 
-      millis                  m_millisLastChange;
-      millis                  m_millisDelayedAfterChange;
+      ::duration                  m_durationLastChange;
+      ::duration                  m_durationDelayedAfterChange;
       top_view *              m_ptopview;
       bool                    m_bEnterKeyPressed;
       ::write_text::font_pointer  m_pfont;

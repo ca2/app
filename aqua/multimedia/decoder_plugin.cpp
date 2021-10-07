@@ -74,7 +74,7 @@ namespace multimedia
 
          ::e_status estatus = get_last_status();
 
-         TRACE("LoadLibrary failed to open library %s %d %s", pszTitle, estatus, __str(estatus).c_str());
+         INFORMATION("LoadLibrary failed to open library " << pszTitle << estatus << __string(estatus));
 
          return false;
 
@@ -91,7 +91,7 @@ namespace multimedia
       if (m_lpfnNewDecoder != nullptr)
       {
 
-         output_debug_string("Got decoder creator function \"" + strFunction + "\" (" + __str((iptr)m_lpfnNewDecoder) + ")");
+         output_debug_string("Got decoder creator function \"" + strFunction + "\" (" + __string((iptr)m_lpfnNewDecoder) + ")");
 
       }
       else
@@ -102,7 +102,7 @@ namespace multimedia
          if (m_lpfnNewDecoder != nullptr)
          {
 
-            output_debug_string("Got decoder creator function \"" + m_strNewDecoder + "\" (" + __str((iptr)m_lpfnNewDecoder) + ")");
+            output_debug_string("Got decoder creator function \"" + m_strNewDecoder + "\" (" + __string((iptr)m_lpfnNewDecoder) + ")");
 
          }
          else

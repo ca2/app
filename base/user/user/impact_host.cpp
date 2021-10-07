@@ -565,12 +565,12 @@ namespace user
    {
 
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("impact_host::host_impact (1)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("impact_host::host_impact (1)");
+      INFORMATION("");
+      INFORMATION("");
 
 
       auto pimpactdata = impact_host_get_impact_data(id, idTitle, pinteraction, pdocument);
@@ -579,12 +579,12 @@ namespace user
       {
 
 
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("impact_host::host_impact (1.1)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("impact_host::host_impact (1.1)");
+         INFORMATION("");
+         INFORMATION("");
 
 
          return nullptr;

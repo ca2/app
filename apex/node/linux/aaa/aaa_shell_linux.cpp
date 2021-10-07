@@ -11,7 +11,7 @@ const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
 string linux_get_file_icon_path(string strPath, int iSize)
 {
 
-   return ::str::from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
+   return ::string_from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
 
 }
 
@@ -20,7 +20,7 @@ const char * linux_g_direct_get_file_content_type(const char * pszFile);
 string core_linux_get_file_content_type(string strPath)
 {
 
-   return ::str::from_strdup(linux_g_direct_get_file_content_type(strPath));
+   return ::string_from_strdup(linux_g_direct_get_file_content_type(strPath));
 
 }
 

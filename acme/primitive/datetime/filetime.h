@@ -60,7 +60,9 @@ public:
    static const filetime_t Hour;
    static const filetime_t Day;
    static const filetime_t Week;
+
 };
+
 
 // Used only if these strings could not be found in resources.
 extern CLASS_DECL_ACME const char * const szInvalidDateTime;

@@ -95,7 +95,7 @@ namespace serial
 
    /*!
     * Structure for setting the timeout of the serial port, times are
-    * in milliseconds.
+    * in ::durations.
     *
     * In order to disable the interbyte timeout, set it to Timeout::maximum().
     */
@@ -112,22 +112,22 @@ namespace serial
        * Convenience function to generate Timeout structs using a
        * single absolute timeout.
        *
-       * \lparam timeout A long that defines the time in milliseconds until a
+       * \lparam timeout A long that defines the time in ::durations until a
        * timeout occurs after a call to read or write is made.
        *
        * \return Timeout struct that represents this simple timeout provided.
        */
       static Timeout simpleTimeout(u32 timeout);
 
-      /*! Number of milliseconds between bytes received to timeout on. */
+      /*! Number of ::durations between bytes received to timeout on. */
       u32 inter_byte_timeout;
-      /*! A constant number of milliseconds to wait after calling read. */
+      /*! A constant number of ::durations to wait after calling read. */
       u32 read_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
        *  calling read.
        */
       u32 read_timeout_multiplier;
-      /*! A constant number of milliseconds to wait after calling write. */
+      /*! A constant number of ::durations to wait after calling write. */
       u32 write_timeout_constant;
       /*! A multiplier against the number of requested bytes to wait after
        *  calling write.
@@ -230,7 +230,7 @@ namespace serial
       available ();
 
       /*! Block until there is serial data to read or read_timeout_constant
-       * number of milliseconds have elapsed. The return value is true when
+       * number of ::durations have elapsed. The return value is true when
        * the function exits with the port in a readable state, false otherwise
        * (due to timeout or select interruption). */
       bool
@@ -253,12 +253,12 @@ namespace serial
        *    match the amount requested, but no exception will be thrown.  One of
        *    two possible timeouts occurred:
        *    * The inter byte timeout expired, this means that number of
-       *      milliseconds elapsed between receiving bytes from the serial port
+       *      ::durations elapsed between receiving bytes from the serial port
        *      exceeded the inter byte timeout.
        *    * The total timeout expired, which is calculated by multiplying the
        *      read timeout multiplier by the number of requested bytes and then
        *      added to the read timeout constant.  If that total number of
-       *      milliseconds elapses after the initial call to read a timeout will
+       *      ::durations elapses after the initial call to read a timeout will
        *      occur.
        *  * An exception occurred, in this case an actual exception will be thrown.
        *
@@ -436,14 +436,14 @@ namespace serial
        * There are two timeout conditions described here:
        *  * The inter byte timeout:
        *    * The inter_byte_timeout component of serial::Timeout defines the
-       *      maximum amount of time, in milliseconds, between receiving bytes on
+       *      maximum amount of time, in ::durations, between receiving bytes on
        *      the serial port that can pass before a timeout occurs.  Setting this
        *      to zero will prevent inter byte timeouts from occurring.
        *  * Total time timeout:
        *    * The constant and multiplier component of this timeout condition,
        *      for both read and write, are defined in serial::Timeout.  This
        *      timeout occurs if the total time since the read or write call was
-       *      made exceeds the specified time in milliseconds.
+       *      made exceeds the specified time in ::durations.
        *    * The limit is defined by multiplying the multiplier component by the
        *      number of requested bytes and adding that product to the constant
        *      component.  In this way if you want a read call, for example, to

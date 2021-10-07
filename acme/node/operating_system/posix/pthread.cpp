@@ -32,12 +32,12 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   millis start;
+   ::duration start;
 
    if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
    {
 
-      start = ::millis::now();
+      start = ::duration::now();
 
    }
 
@@ -98,7 +98,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
             }
 
-            if (synca[i]->lock(millis(1)))
+            if (synca[i]->lock(::duration(1)))
             {
 
                i++;
@@ -133,7 +133,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          if (pmq.is_set())
          {
 
-            if (pmq->m_eventNewMessage.lock(millis(0)))
+            if (pmq->m_eventNewMessage.lock(::duration(0)))
             {
 
                return (enum_status)(((::i32) signaled_base) + dwSize);

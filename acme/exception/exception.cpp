@@ -288,7 +288,7 @@ void __cdecl __clearerr_s(FILE *stream)
          [&](auto & e)
          {
 
-            str += __str(++i);
+            str += __string(++i);
 
             str += ". ";
 

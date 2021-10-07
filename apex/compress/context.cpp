@@ -243,14 +243,14 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz, ::application * pobject)
 {
 
-   INFO("compress_context::zip");
+   INFORMATION("compress_context::zip");
 
    zip::in_file infile;
 
    if (!infile.zip_open(pszZip, 0))
    {
 
-      ERR("Could not open zip file");
+      ERROR("Could not open zip file");
 
       return false;
 

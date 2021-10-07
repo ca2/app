@@ -3,7 +3,7 @@
 
 class filetime;
 class second;
-class millisecond;
+class ::duration;
 class microsecond;
 class nanosecond;
 class duration;
@@ -17,23 +17,6 @@ namespace datetime
  
 } // namespace datetime
 
-
-CLASS_DECL_ACME ::i64 _first_nanosecond();
-CLASS_DECL_ACME ::i64 _get_nanosecond();
-
-
-#include "duration.h"
-
-
-#include "nanosecond.h"
-#include "millisecond.h"
-#include "microsecond.h"
-
-#include "second.h"
-
-#include "minute.h"
-#include "hour.h"
-#include "day.h"
 
 
 
@@ -88,7 +71,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
 
-//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::millisecond & millisecond);
+//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration);
 
 
 

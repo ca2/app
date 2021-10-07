@@ -371,7 +371,7 @@ namespace database
 
       defer_update_object_id();
 
-      key.m_strDataKey += "/" + __str(m_id);
+      key.m_strDataKey += "/" + __string(m_id);
 
       return key;
 

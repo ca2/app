@@ -143,7 +143,7 @@ namespace fs
       //      if(pchild->get_name() != "folder")
       //         continue;
 
-      //      m_mapdirTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
+      //      m_mapdirTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
 
       //      m_mapfileTimeout.erase_key(listing.m_pathUser);
 
@@ -167,7 +167,7 @@ namespace fs
       //      if(pchild->get_name() != "file")
       //         continue;
 
-      //      m_mapfileTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
+      //      m_mapfileTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
 
       //      m_mapdirTimeout.erase_key(listing.m_pathUser);
 
@@ -210,12 +210,12 @@ namespace fs
 
       defer_initialize();
 
-      millis millisLast;
+      ::duration millisLast;
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
             ::file::listing l;
@@ -235,7 +235,7 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
             ::file::listing l;
@@ -250,7 +250,7 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             return 0;
          }

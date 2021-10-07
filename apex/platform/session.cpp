@@ -424,7 +424,7 @@ namespace apex
       //}
 
 
-      INFO(".1");
+      INFORMATION(".1");
 
       return true;
 
@@ -466,7 +466,7 @@ namespace apex
    ::e_status session::process_init()
    {
 
-      INFO("apex::session::process_init");
+      INFORMATION("apex::session::process_init");
 
       //auto estatus = ::apex::context::initialize_context();
 
@@ -482,15 +482,15 @@ namespace apex
       if (!estatus)
       {
 
-         INFO("acme::str_context Failed to Allocate!!");
+         INFORMATION("acme::str_context Failed to Allocate!!");
 
          return estatus;
 
       }
 
-      INFO("acme::str_context Succeeded to Allocate!!");
+      INFORMATION("acme::str_context Succeeded to Allocate!!");
 
-      INFO("apex::session::process_init success");
+      INFORMATION("apex::session::process_init success");
 
       return ::success;
 
@@ -638,16 +638,16 @@ namespace apex
 
       }
 
-      TRACE("::apex::session::on_request(__pointer(::create)) " + string(type_name()));
+      INFORMATION("::apex::session::on_request(__pointer(::create)) " << type_name());
 
-      INFO("::apex::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
+      INFORMATION("::apex::session::on_request(__pointer(::create)) %s " << THIS_FRIENDLY_NAME());
 
       string strAppId = pcreate->m_strAppId;
 
       if (strAppId.has_char())
       {
 
-         INFO("m_strAppId = " + pcreate->m_strAppId);
+         INFORMATION("m_strAppId = " << pcreate->m_strAppId);
 
          auto papp = start_application(pcreate->m_strAppId, pcreate, m_strLocale, m_strSchema);
 
@@ -662,7 +662,7 @@ namespace apex
 
       }
 
-      INFO("m_strAppId Is Empty!!");
+      INFORMATION("m_strAppId Is Empty!!");
 
       string strApp = pcreate->m_pcommandline->m_strApp;
 
@@ -810,7 +810,7 @@ namespace apex
                if(!papp->on_start_application())
                {
 
-                  TRACE("One or more errors occurred during on_start_application execution.");
+                  INFORMATION("One or more errors occurred during on_start_application execution.");
 
                }
 
@@ -881,7 +881,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_varFile);
+      string strOriginalPathName(pcreate->m_pcommandline->m_varFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -1207,7 +1207,7 @@ ret:
       //   if (!bCreateSessionWindow)
       //   {
 
-      //      WARN("Could not create session window");
+      //      WARNING("Could not create session window");
 
       //   }
 
@@ -1236,7 +1236,7 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create ifs");
+            INFORMATION("Failed to create ifs");
 
          }
 
@@ -1252,7 +1252,7 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create remotefs");
+            INFORMATION("Failed to create remotefs");
 
          }
 
@@ -1298,14 +1298,14 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create fsdata");
+            INFORMATION("Failed to create fsdata");
 
          }
 
 
       }
 
-      INFO(".2");
+      INFORMATION(".2");
 
 
       return true;
@@ -1326,7 +1326,7 @@ ret:
 
       ::e_status estatus;
 
-      INFO("apex::session::init2 .1");
+      INFORMATION("apex::session::init2 .1");
 
       auto psystem = get_system()->m_papexsystem;
 

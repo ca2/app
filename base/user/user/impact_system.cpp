@@ -128,7 +128,7 @@ namespace user
       if (!m_typeDocument)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_document.\n");
+         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_document.");
 
          ASSERT(false);
 
@@ -145,7 +145,7 @@ namespace user
       if (!estatus || !pdocument)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of ::user::document type %hs failed.\n", m_typeDocument.name().c_str());
+         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.name());
 
          return nullptr;
 
@@ -204,7 +204,7 @@ namespace user
       if (!m_typeFrame)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
+         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_frame.\n");
 
          ASSERT(false);
 
@@ -221,7 +221,7 @@ namespace user
       if (!estatus || !pframe)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
+         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
 
          string strMessage;
 
@@ -242,7 +242,7 @@ namespace user
       if (!pusersystem->m_typeNewView)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: creating frame with no default ::user::impact.\n");
+         CATEGORY_WARNING(appmsg,"Warning: creating frame with no default ::user::impact.\n");
 
       }
 
@@ -282,7 +282,7 @@ namespace user
                               pusersystem))
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: impact_system couldn't create a frame.\n");
+         CATEGORY_WARNING(appmsg,"Warning: impact_system couldn't create a frame.\n");
 
          // frame will be deleted in post_non_client_destroy cleanup
 

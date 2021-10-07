@@ -265,9 +265,9 @@ CLASS_DECL_ACME bool shell_execute_sync(const char * pszPath, const char * pszPa
    if (!create_process(strCmdLine, &processId))
       return -1;
 
-   ::datetime::time timeEnd = ::datetime::time::get_current_time() + durationTimeout;
+   ::datetime::time timeEnd = ::datetime::time::now() + durationTimeout;
 
-   while (::datetime::time::get_current_time() < timeEnd)
+   while (::datetime::time::now() < timeEnd)
    {
 
       if (kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId

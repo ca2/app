@@ -81,7 +81,7 @@ i64 timer_task::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 }
 
 
-bool timer_task::start(const ::duration& duration, bool bPeriodic)
+bool timer_task::start(const class ::wait & wait, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -97,7 +97,7 @@ bool timer_task::start(const ::duration& duration, bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
-   m_duration = duration;
+   m_wait = wait;
 
    try
    {
@@ -216,16 +216,16 @@ bool timer_task::task_active() const
 ::e_status timer_task::run()
 {
 
-   auto iSleepMilliseconds = m_duration.integral_millisecond();
+   auto waitSleep = m_wait;
 
-   auto c100Milliseconds = iSleepMilliseconds / 100;
+   auto countDecisecondSleep = waitSleep.m_i / 100;
 
-   auto r100Milliseconds = iSleepMilliseconds % 100;
+   auto remainderDecisecondSleep = waitSleep.m_i % 100;
 
    while (true)
    {
 
-      for (::index i = 0; i < c100Milliseconds; i++)
+      for (::index i = 0; i < countDecisecondSleep; i++)
       {
 
          ::preempt(100_ms);
@@ -239,7 +239,7 @@ bool timer_task::task_active() const
 
       }
 
-      ::preempt(::millisecond(r100Milliseconds));
+      ::preempt(INTEGRAL_MILLISECOND(remainderDecisecondSleep));
 
       if (!task_get_run())
       {

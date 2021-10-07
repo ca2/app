@@ -15,11 +15,11 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      t.m_time = ::_time64(nullptr);
+      t.m_i = ::_time64(nullptr);
 
 #else
 
-      t.m_time = ::time(nullptr);
+      t.m_i = ::time(nullptr);
 
 #endif
 
@@ -29,16 +29,17 @@ namespace datetime
 
    }
 
-zonetime::zonetime() noexcept :
-   time(0),
-        m_iZoneOffset(0)
+   
+   zonetime::zonetime() noexcept :
+      time(0),
+      m_iZoneOffset(0)
    {
 
    }
 
 
 zonetime::zonetime(const zonetime & zonetime) noexcept :
-   time(zonetime.m_time),
+   time(zonetime.m_i),
    m_iZoneOffset(zonetime.m_iZoneOffset)
    {
 
@@ -72,11 +73,11 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
 #ifdef WINDOWS
 
-      m_time = _mkgmtime64(&atm);
+      m_i = _mkgmtime64(&atm);
 
 #else
 
-      m_time = timegm(&atm);
+      m_i = timegm(&atm);
 
 #endif
 
@@ -89,10 +90,13 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_time != -1);   */    // indicates an illegal input zonetime
-      if (m_time == -1)
+      if (m_i == -1)
       {
+         
          __throw(error_invalid_argument);
+
       }
+
    }
 
 
@@ -110,7 +114,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
          struct tm tmTemp;
 
-         time_t t = m_time;
+         time_t t = m_i;
 
          t += m_iZoneOffset;
 

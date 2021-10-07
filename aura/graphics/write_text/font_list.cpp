@@ -997,7 +997,7 @@ namespace write_text
             else if (plistitem->m_strFont != penumitem->m_mapFileName[0])
             {
 
-               TRACE("what?!?!");
+               INFORMATION("what?!?!");
 
                continue;
 
@@ -1171,7 +1171,7 @@ namespace write_text
 
       }
 
-      TRACE("font_list::layout_wide");
+      INFORMATION("font_list::layout_wide");
 
       synchronous_lock synchronouslock(mutex());
 

@@ -198,7 +198,7 @@ namespace browser
       string                  m_strPostProcessed;
       string                  m_strProcessedHellomultiverse;
 
-      millis m_millisLastImageChange;
+      ::duration m_durationLastImageChange;
       bool                    m_bPendingImageChange;
 //      CefRefPtr <ClientHandler>       m_pclienthandler;
       CefRefPtr<CefBrowser>   m_pbrowser;

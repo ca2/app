@@ -62,17 +62,21 @@ class CTimer
 {
 public:
 
-   millis     m_tick;
+   
+   ::duration     m_duration;
+
 
    CTimer() { Restart(); }
 
    /// Restarts the timer.
-   void Restart() { m_tick.Now(); }
+   void Restart() { m_duration.Now(); }
 
-   /// Get the elapsed time in seconds.
-   double GetElapsedTime() const
+   /// Get the elapsed time
+   ::duration GetElapsedTime() const
    {
-      return __double(m_tick.elapsed()) / 1000.0;
+
+      return m_duration.elapsed();
+
    }
 
 };

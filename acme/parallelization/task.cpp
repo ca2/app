@@ -350,6 +350,8 @@ void* task::s_os_task(void* p)
       catch (...)
       {
 
+         _ERROR(ptask, "Exception reached task procedure");
+
       }
 
       clear_message_queue(ptask->m_itask);
@@ -938,21 +940,14 @@ bool task::has_message() const
 bool task::task_sleep(const class ::wait & wait)
 {
    
-   auto iMillisecondEnd = ::wait::now().m_iMillisecond + wait.m_iMillisecond;
+   auto waitStart = ::wait::now();
    
-   while(task_get_run())
+   while(task_get_run() && waitStart.elapsed() < wait)
    {
       
-      auto iMillisecondWait = iMillisecondEnd - ::wait::now().m_iMillisecond;
+      auto waitStep = minimum(wait, 100_ms);
       
-      if(iMillisecondWait <= 0)
-      {
-       
-         return true;
-         
-      }
-      
-      ::preempt(::millisecond(iMillisecondWait));
+      ::preempt(waitStep);
       
    }
    
@@ -1029,7 +1024,7 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 {
 
-   if (wait.m_iMillisecond < 1000)
+   if (wait < 1000_ms)
    {
 
       if (!ptask->task_get_run())
@@ -1039,15 +1034,15 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
 
       }
 
-      preempt(millisecond(wait.m_iMillisecond));
+      preempt(wait);
 
       return ptask->task_get_run();
 
    }
 
-   auto iTenths = wait.m_iMillisecond / 10;
+   auto iTenths = wait.m_i / 10;
 
-   auto iMillis = wait.m_iMillisecond % 10;
+   auto iMillis = wait.m_i % 10;
 
    try
    {
@@ -1081,7 +1076,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
       //while(iTenths > 0)
       //{
 
-      ptask->m_pevSleep->wait(millisecond(wait.m_iMillisecond));
+      ptask->m_pevSleep->wait(wait);
 
       if (!ptask->task_get_run())
       {
@@ -1114,7 +1109,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
       while (ptask->task_get_run())
       {
 
-         if (psync->wait(100).succeeded())
+         if (psync->wait(100_ms).succeeded())
          {
 
             break;
@@ -1137,7 +1132,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync)
 CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchronization_object* psync)
 {
 
-   if (wait.m_iMillisecond < 1000)
+   if (wait < 1000_ms)
    {
 
       if (!ptask->task_get_run())
@@ -1147,22 +1142,22 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 
       }
 
-      psync->wait(millisecond(wait.m_iMillisecond));
+      psync->_wait(wait);
 
       return ptask->task_get_run();
 
    }
 
-   auto iTenths = wait.m_iMillisecond / 100;
+   auto iTenths = wait.m_i / 100;
 
-   auto iMillis = wait.m_iMillisecond % 100;
+   auto iMillis = wait.m_i % 100;
 
    try
    {
 
       {
 
-         ptask->m_pevSleep->wait(100);
+         ptask->m_pevSleep->_wait(100_ms);
 
          if (!ptask->task_get_run())
          {
@@ -1197,14 +1192,14 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //      if (::is_null(psync))
 //      {
 //
-//         if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//         if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //         {
 //
 //         }
 //         else
 //         {
 //
-//            ::preempt(millisecond);
+//            ::preempt(::duration);
 //
 //         }
 //
@@ -1212,7 +1207,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //      else
 //      {
 //
-//         if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//         if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //         {
 //
 //            return psync->lock();
@@ -1221,7 +1216,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //         else
 //         {
 //
-//            return psync->lock(millisecond);
+//            return psync->lock(::duration);
 //
 //         }
 //
@@ -1234,7 +1229,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //   if (::is_null(psync))
 //   {
 //
-//      if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __task_sleep(ptask);
@@ -1243,7 +1238,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //      else
 //      {
 //
-//         return __task_sleep(ptask, millisecond);
+//         return __task_sleep(ptask, ::duration);
 //
 //      }
 //
@@ -1251,7 +1246,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //   else
 //   {
 //
-//      if (__os(millisecond) == U32_INFINITE_TIMEOUT)
+//      if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //      {
 //
 //         return __task_sleep(ptask, psync);
@@ -1260,7 +1255,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait, synchr
 //      else
 //      {
 //
-//         return __task_sleep(ptask, millisecond, psync);
+//         return __task_sleep(ptask, ::duration, psync);
 //
 //      }
 //
@@ -1279,7 +1274,7 @@ CLASS_DECL_ACME bool task_sleep(const class ::wait & wait)
    if(::is_null(ptask))
    {
     
-      ::preempt(::millisecond(wait.m_iMillisecond));
+      ::preempt(wait);
       
       return true;
       

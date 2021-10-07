@@ -522,7 +522,7 @@ namespace user
       if (m_pcombo)
       {
 
-         m_millisKillFocus.Now();
+         m_durationKillFocus.Now();
 
          m_bPendingKillFocusHiding = true;
 
@@ -540,7 +540,7 @@ namespace user
          //   if (layout().sketch().is_screen_visible())
          //   {
 
-         //      m_millisLastVisibilityChange.Now();
+         //      m_durationLastVisibilityChange.Now();
 
          //      hide();
 

@@ -201,52 +201,52 @@
 //
 //};
 
-
-#undef __trace_logger
-
-
-#define __trace_logger(trace_context) trace_logger(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context))
-
-
-#undef TRACE
-#undef _S_TRACE
-
-
-#define TRACE __trace_logger(ALOG_CONTEXT)
-#define _S_TRACE __trace_logger(_S_ALOG_CONTEXT)
+//
+//#undef __trace_logger
+//
+//
+//#define __trace_logger(trace_context) trace_logger(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context))
+//
+//
+//#undef TRACE
+//#undef _S_TRACE
 
 
-#undef WARN
-#undef INFO
-#undef ERR
-#undef FATAL
+//#define TRACE __trace_logger(ALOG_CONTEXT)
+//#define _S_TRACE __trace_logger(_S_ALOG_CONTEXT)
+//
+//
+//#undef WARN
+//#undef INFO
+//#undef ERR
+//#undef FATAL
 
 
-#undef __trace_logger_level
+//#undef __trace_logger_level
 
 
-#define __trace_logger_level(trace_context, trace_level) trace_logger_level(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context), trace_level)
+///#define __trace_logger_level(trace_context, trace_level) trace_logger_level(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context), trace_level)
 
 
-#define CWARN(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_warning)
-#define CINFO(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_information)
-#define CERR(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_error)
-#define CFATAL(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_fatal)
+//#define CWARN(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_warning)
+//#define CINFO(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_information)
+//#define CERR(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_error)
+//#define CFATAL(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_fatal)
 
 
-#define WARN __trace_logger_level(ALOG_CONTEXT, e_trace_level_warning)
-#define INFO __trace_logger_level(ALOG_CONTEXT, e_trace_level_information)
-#define ERR __trace_logger_level(ALOG_CONTEXT, e_trace_level_error)
-#define FATAL __trace_logger_level(ALOG_CONTEXT, e_trace_level_fatal)
+//#define WARN __trace_logger_level(ALOG_CONTEXT, e_trace_level_warning)
+//#define INFO __trace_logger_level(ALOG_CONTEXT, e_trace_level_information)
+//#define ERR __trace_logger_level(ALOG_CONTEXT, e_trace_level_error)
+//#define FATAL __trace_logger_level(ALOG_CONTEXT, e_trace_level_fatal)
 
 
-#define _S_WARN __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_warning)
-#define _S_INFO __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_information)
-#define _S_ERR __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_error)
-#define _S_FATAL __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_fatal)
+//#define _S_WARN __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_warning)
+//#define _S_INFO __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_information)
+//#define _S_ERR __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_error)
+//#define _S_FATAL __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_fatal)
+//
 
-
-CLASS_DECL_ACME void raw_trace_v(const char *pszFileName,i32 nLine,u32 dwCategory,u32 nLevel,const char * pszFmt,va_list args);
+//CLASS_DECL_ACME void raw_trace_v(const char *pszFileName,i32 nLine,u32 dwCategory,u32 nLevel,const char * pszFmt,va_list args);
 
 //
 //namespace trace

@@ -304,7 +304,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
       path /= lpszName;
 
-      path /= __str(i);
+      path /= __string(i);
 
       path /= (string(lpszName) + "." + string(pszExtension));
 
@@ -453,7 +453,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 
    FILE * pfile = nullptr;
 
-   auto millisStart = ::millis::now();
+   auto millisStart = ::duration::now();
 
    while (true)
    {
@@ -498,7 +498,7 @@ string acme_file::get_temporary_file_name(const char * lpszName, const char * ps
 ::e_status acme_file::append(const char * strFile, const block & block)
 {
 
-   return acme_file::append_wait(strFile, block, 0);
+   return acme_file::append_wait(strFile, block, 0_s);
 
 }
 
@@ -1071,7 +1071,7 @@ string_array acme_file::lines(const char * path)
 //
 //      path /= lpszName;
 //
-//      path /= __str(i);
+//      path /= __string(i);
 //
 //      path /= (string(lpszName) + "." + string(pszExtension));
 //
@@ -1183,7 +1183,7 @@ string_array acme_file::lines(const char * path)
 ::e_status acme_file::append(const ::string & strFile, const block & block)
 {
 
-   return append_wait(strFile, block, 0);
+   return append_wait(strFile, block, 0_s);
 
 }
 
@@ -1204,7 +1204,7 @@ string_array acme_file::lines(const char * path)
 
    FILE * pfile = nullptr;
 
-   auto millisStart = ::millis::now();
+   auto millisStart = ::duration::now();
 
    while (true)
    {

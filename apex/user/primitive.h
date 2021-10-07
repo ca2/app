@@ -15,9 +15,7 @@ namespace user
    public:
 
 
-      millis                           m_millisFocusStart;
-      //bool                             m_bUserElementOk;
-      //::user::interaction *            m_puserinteraction;
+      duration    m_durationFocusStart;
 
 
       primitive();
@@ -28,14 +26,6 @@ namespace user
 
 
       virtual bool create_message_queue(const ::string & lpszName);
-
-
-      //virtual void set_config_fps(double dConfigFps);
-      //virtual double get_config_fps();
-      //virtual double get_output_fps();
-
-
-      //__pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       virtual ::user::interaction * get_host_window() const;
@@ -282,7 +272,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
 

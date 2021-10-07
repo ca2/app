@@ -131,7 +131,7 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-::millis os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::id & id)
 {
 
    if(id == id_user_color)

@@ -150,7 +150,7 @@ public:
    };
 
 
-   millis m_millisLastStartTime;
+   ::duration m_durationLastStartTime;
    bool                             m_bServer;
    file_size_table::get_fs_size     m_size;
    bool                             m_bRet;

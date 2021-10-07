@@ -8,7 +8,7 @@
 
 
 ::point g_pointX11Cursor;
-::millis g_tickLastMouseMove;
+::duration g_tickLastMouseMove;
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -93,7 +93,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
    }
 
-   INFO("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
+   INFORMATION("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
 
    return 0;
 
@@ -2483,13 +2483,13 @@ bool x11_process_message(Display * pdisplay)
 
             pinteraction->m_pointMouseMove.y = e.xmotion.y_root;
 
-            if(pinteraction->m_millisMouseMovePeriod > 0)
+            if(pinteraction->m_durationMouseMovePeriod > 0)
             {
 
                ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction.m_pointMouseMove.x),
                (pinteraction->m_pointMouseMoveSkip.y - pinteraction.m_pointMouseMove.y));
 
-               if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
+               if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                {
 
@@ -2911,7 +2911,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("B " + __str(wFocus));
+//            output_debug_string("B " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2926,7 +2926,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("D " + __str(wFocus));
+//            output_debug_string("D " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //

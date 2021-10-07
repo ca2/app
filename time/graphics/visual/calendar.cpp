@@ -36,7 +36,7 @@ namespace datetime
 
          pgraphics->set(m_pfont);
 
-         ::datetime::time timeNow = ::datetime::time::get_current_time();
+         ::datetime::time timeNow = ::datetime::time::now();
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear,iMonth,1,0,0,0);

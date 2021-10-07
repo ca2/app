@@ -130,7 +130,7 @@ public:
    __pointer(message_queue)                          m_pmq;
    htask_t                                m_htask;
    Colormap                               m_colormap;
-   millis                                   m_millisLastMouseMove;
+   ::duration                                   m_durationLastMouseMove;
    Window                                 m_parent;
    ::rectangle                                 m_rect;
    string                                 m_strWMClass;

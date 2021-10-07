@@ -130,7 +130,7 @@
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + ::acme::get_system()->url_encode(::acme::get_system()->base64().encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + ::acme::get_system()->url_encode(::acme::get_system()->base64().encode((byte *)pdata, len));
 
          Uri ^uri = ref new Uri(anotherappURI);
 

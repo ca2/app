@@ -194,7 +194,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else
       {
 
-         ::output_debug_string("\nWM_IME_COMPOSITION " + __str((::i64) pusermessage->m_lparam.m_lparam));
+         ::output_debug_string("\nWM_IME_COMPOSITION " + __string((::i64) pusermessage->m_lparam.m_lparam));
 
          if ((pmessage->m_lparam & GCS_RESULTSTR) != 0)
          {
@@ -214,7 +214,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
             }
 
-            ::output_debug_string("\nWM_IME_COMPOSITION Compositè String Length = " + __str(strComposition.get_length()));
+            ::output_debug_string("\nWM_IME_COMPOSITION Compositè String Length = " + __string(strComposition.get_length()));
 
             on_text_composition(strComposition);
 
@@ -260,19 +260,19 @@ void imm_client::_001OnIme(::message::message * pmessage)
    else if (pmessage->m_id == WM_IME_KEYDOWN)
    {
 
-      INFO("WM_IME_KEYDOWN");
+      INFORMATION("WM_IME_KEYDOWN");
 
    }
    else if (pmessage->m_id == WM_IME_ENDCOMPOSITION)
    {
 
-      INFO("WM_IME_ENDCOMPOSITION");
+      INFORMATION("WM_IME_ENDCOMPOSITION");
 
    }
    else if (pmessage->m_id == WM_IME_STARTCOMPOSITION)
    {
 
-      INFO("WM_IME_STARTCOMPOSITION");
+      INFORMATION("WM_IME_STARTCOMPOSITION");
 
       m_bImeCancelling = false;
 
@@ -434,7 +434,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       else
       {
 
-         output_debug_string("\n" "WM_IME_NOTIFY" " > " + __str((::i64)pusermessage->m_wparam) + "    ");
+         output_debug_string("\n" "WM_IME_NOTIFY" " > " + __string((::i64)pusermessage->m_wparam) + "    ");
 
       }
 

@@ -49,8 +49,8 @@ namespace user
 
 
       bool                                      m_bHoverStart;
-      millis                                    m_millisHoverStart;
-      millis                                    m_millisHoverEnd;
+      ::duration                                    m_durationHoverStart;
+      ::duration                                    m_durationHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;

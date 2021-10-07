@@ -81,7 +81,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //}
 
 
-string object::to_string() const
+string object::get_string() const
 {
 
    return string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
@@ -282,10 +282,10 @@ string object::to_string() const
 }
 
 
-void object::dev_log(string strMessage) const
+void object::dev_log(string strMessage)
 {
 
-   TRACE("%s", strMessage.c_str());
+   INFORMATION(strMessage.c_str());
 
 //#ifdef __DEBUG
 //
@@ -2100,12 +2100,19 @@ void object::task_erase(::task* ptask)
 
    }
 
-   auto iTenths = duration / ::duration(100_ms);
+   auto start = ::duration::now();
 
-   auto millisRemaining = duration % ::duration(100_ms);
-
-   while (iTenths > 0)
+   while (true)
    {
+
+      auto waitStep = minimum(duration - start.elapsed(), 100_ms);
+
+      if (waitStep.is_null())
+      {
+
+         break;
+
+      }
 
       if (m_psystem && m_psystem->is_finishing())
       {
@@ -2129,13 +2136,9 @@ void object::task_erase(::task* ptask)
       //}
 
 
-      iTenths--;
-
-      sleep(100_ms);
+      sleep(waitStep);
 
    }
-
-   sleep(millisRemaining);
 
    return ::success;
 
@@ -2533,7 +2536,7 @@ string object::get_text(const ::payload& payload, const ::id& id)
 
    //auto strExtension = payload.get_file_path().extension();
 
-   //if (strExtension == __str(id))
+   //if (strExtension == __string(id))
    //{
 
    //   return "";

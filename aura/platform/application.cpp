@@ -554,10 +554,10 @@ namespace aura
          auto psystem = get_system()->m_paurasystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
+         if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
          {
 
-            psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -1304,9 +1304,9 @@ namespace aura
    //void application::term_thread()
    //{
 
-   //   INFO("aura::application::term_thread");
+   //   INFORMATION("aura::application::term_thread");
 
-   //   m_millisHeartBeat.Now();
+   //   m_durationHeartBeat.Now();
 
    //   try
    //   {
@@ -1327,12 +1327,12 @@ namespace aura
 //   ::e_status application::pre_run()
 //   {
 //
-//      INFO("aura::application::pre_run");
+//      INFORMATION("aura::application::pre_run");
 //
 //      try
 //      {
 //
-//         m_millisHeartBeat.Now();
+//         m_durationHeartBeat.Now();
 //
 //         if(!application_pre_run())
 //         {
@@ -1374,7 +1374,7 @@ namespace aura
 //
 //         }
 //
-//         m_millisHeartBeat.Now();
+//         m_durationHeartBeat.Now();
 //
 //         if (!os_native_bergedge_start())
 //         {
@@ -1385,7 +1385,7 @@ namespace aura
 //
 //         }
 //
-//         INFO("aura::application::pre_run success");
+//         INFORMATION("aura::application::pre_run success");
 //
 //         return true;
 //
@@ -1399,7 +1399,7 @@ namespace aura
 //      catch (...)
 //      {
 //
-//         INFO("aura::application::pre_run exception.4");
+//         INFORMATION("aura::application::pre_run exception.4");
 //
 //      }
 //
@@ -1542,12 +1542,12 @@ namespace aura
    void application::pos_run()
    {
 
-      INFO("aura::application::pos_run");
+      INFORMATION("aura::application::pos_run");
 
       try
       {
 
-         m_millisHeartBeat.Now();
+         m_durationHeartBeat.Now();
 
          application_pos_run();
 
@@ -1557,7 +1557,7 @@ namespace aura
       catch (...)
       {
 
-         INFO("aura::application::pos_run exception.4");
+         INFORMATION("aura::application::pos_run exception.4");
 
       }
 
@@ -1664,7 +1664,7 @@ namespace aura
 
       }
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       try
       {
@@ -1772,7 +1772,7 @@ retry_license:
 
       }
 
-      INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
+      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
 
 
       return true;
@@ -1874,10 +1874,10 @@ retry_license:
       }
 
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
 
-      INFO("aura::application::process_init success");
+      INFORMATION("aura::application::process_init success");
 
 
       return true;
@@ -1908,18 +1908,18 @@ retry_license:
 //
 //      }
 //
-//      INFO("aura::application::init_application");
+//      INFORMATION("aura::application::init_application");
 //
 //      //m_bAuraInitializeInstance = true;
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1929,12 +1929,12 @@ retry_license:
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1944,12 +1944,12 @@ retry_license:
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1959,9 +1959,9 @@ retry_license:
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1969,7 +1969,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -2040,7 +2040,7 @@ retry_license:
          if (!estatus)
          {
 
-            TRACE("ERROR: context_image required but missing.");
+            INFORMATION("ERROR: context_image required but missing.");
 
             //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2057,7 +2057,7 @@ retry_license:
          if (!estatus)
          {
 
-            TRACE("ERROR: context_image required but missing.");
+            INFORMATION("ERROR: context_image required but missing.");
 
             //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
@@ -2068,9 +2068,9 @@ retry_license:
       }
 
 
-      INFO("start");
+      INFORMATION("start");
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       return ::success;
 
@@ -2996,9 +2996,6 @@ retry_license:
    //}
 
 
-
-
-
    //string application::get_locale_schema_dir()
    //{
 
@@ -3803,7 +3800,7 @@ retry_license:
 
          }
 
-         TRACE("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3861,7 +3858,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            TRACE("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          }
 
@@ -3875,7 +3872,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            TRACE("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
 
          }
 
@@ -4059,7 +4056,7 @@ retry_license:
         if (pmsg->m_id == 126)
         {
 
-           TRACE("e_message_display_change");
+           INFORMATION("e_message_display_change");
 
         }
 
@@ -5125,8 +5122,11 @@ retry_license:
    {
 
       string strLocale;
+      
       string strSchema;
-      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+
+      INFORMATION("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+      
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 
       auto pcontext = get_context();

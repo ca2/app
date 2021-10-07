@@ -59,7 +59,7 @@ namespace html
          if (pelement->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            string strSrc(pelement->m_propertyset["src"]);
+            string strSrc(pelement->m_propertyset["src"].get_string());
 
             m_pimage = pdata->get_image(strSrc);
 
@@ -98,7 +98,7 @@ namespace html
 
             single_lock lockImage(mutex());
 
-            if (lockImage.lock(0))
+            if (lockImage.lock(0_s))
             {
 
                int cx = m_pimage->width();

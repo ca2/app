@@ -90,7 +90,7 @@ namespace sockets
    void sync_socket_handler::read_full_string(string & str)
    {
 
-      str = ((::file::file &)m_file).to_string();
+      str = ((::file::file &)m_file).get_string();
 
    }
 
@@ -158,7 +158,7 @@ namespace sockets
 
       }
 
-      xml_payload = memory.to_string();
+      xml_payload = memory.get_string();
 
    }
 

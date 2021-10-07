@@ -89,8 +89,10 @@ namespace ftp
 
       e_connection_type                      m_econnectiontype;
       // data members
-      const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
-      const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
+      //const unsigned int                     mc_uiTimeout;               ///< timeout for socket-functions
+      //const unsigned int                     mc_uiResponseWait;          ///< sleep time between receive calls to socket when getting the response
+      ::duration                                m_durationTimeout;
+      ::duration                                m_durationResponseWait;
       const string                          mc_strEolCharacterSequence; ///< end-of-line sequence of current operating system
       const string                          mc_strRemoteDirectorySeparator; ///< directory separator character which is used on the FTP server
 
@@ -113,8 +115,8 @@ namespace ftp
 
 
       client_socket(
-                    unsigned int uiTimeout = 10, unsigned int uiBufferSize = 2048,
-                    unsigned int uiResponseWait = 0, const string& strRemoteDirectorySeparator = "/");
+                    const ::duration & durationTimeout = 10_s, unsigned int uiBufferSize = 2048,
+                    const ::duration & durationResponseWait = 0_s, const string& strRemoteDirectorySeparator = "/");
       virtual ~client_socket();
 
       virtual long cert_common_name_check(const ::string & common_name) override;

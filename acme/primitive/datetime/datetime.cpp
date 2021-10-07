@@ -367,7 +367,7 @@ namespace datetime
 //            ::str::begins_eat(str,"today") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:today"))))
 //      {
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //         bBaseTime = true;
 //      }
@@ -375,7 +375,7 @@ namespace datetime
 //            ::str::begins_eat(str,"tomorrow") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:tomorrow"))))
 //      {
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //         time += ::datetime::time_span(1,0,0,0);
 //         bBaseTime = true;
@@ -384,7 +384,7 @@ namespace datetime
 //            ::str::begins_eat(str,"yesterday") ||
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:yesterday"))))
 //      {
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         time = ::datetime::time(time.GetYear(),time.GetMonth(),time.GetDay(),0,0,0);
 //         time -= ::datetime::time_span(1,0,0,0);
 //         bBaseTime = true;
@@ -394,7 +394,7 @@ namespace datetime
 //            (pcontext != nullptr && pcontext->m_papexcontext->begins_eat(str,"calendar:now"))))
 //      {
 //         
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         
 //         bBaseTime = true;
 //
@@ -406,7 +406,7 @@ namespace datetime
 //
 //      if(!bBaseTime && pcre1->matches(stra, str) >= 5)
 //      {
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         i32 i1 = atoi(stra[2]);
 //         i32 i2 = atoi(stra[3]);
 //         i32 iCount = 0;

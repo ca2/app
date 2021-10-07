@@ -1858,7 +1858,7 @@ void on_property_construct(property * pproperty)
 
 #if DEBUG_PROPERTY_COUNT
 
-   output_debug_string("prop" + __str(g_interlockedcountProperty.operator i64()) + "\n");
+   output_debug_string("prop" + __string(g_interlockedcountProperty.operator i64()) + "\n");
 
    on_property_construct2();
 
@@ -1886,7 +1886,7 @@ void on_property_destruct(property* pproperty)
    if (g_propertya.get_size() % 100 == 0)
    {
 
-      output_debug_string("PROPS("+__str(g_propertya.get_size())+")\n");
+      output_debug_string("PROPS("+__string(g_propertya.get_size())+")\n");
 
       int iCount = 250;
 

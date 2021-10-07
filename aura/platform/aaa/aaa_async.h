@@ -243,7 +243,7 @@ namespace async
       virtual T * wait(u32 dwMillis = U32_INFINITE_TIMEOUT)
       {
 
-         ::get_task()->wait(millis(dwMillis));
+         ::get_task()->wait(::duration(dwMillis));
 
          return m_presult;
 

@@ -144,6 +144,6 @@
 //string apple_get_bundle_identifier()
 //{
 //
-//   return ::str::from_strdup(ns_get_bundle_identifier());
+//   return ::string_from_strdup(ns_get_bundle_identifier());
 //
 //}

@@ -24,7 +24,7 @@ namespace windowing
       __pointer(::user::interaction_impl)       m_pimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
-      millis                                    m_millisLastMouseMove;
+      ::duration                                    m_durationLastMouseMove;
       __pointer(::windowing::window)            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;

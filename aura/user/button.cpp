@@ -1083,7 +1083,7 @@ namespace user
       else if(estyle == style_push)
       {
 
-         SetTimer(16384,100,nullptr);
+         SetTimer(16384,100_ms,nullptr);
 
       }
 

@@ -53,7 +53,7 @@ namespace user
 
       __pointer(control_descriptor)             m_pdescriptor;
 
-      millis                                      m_millisLastDisplayChange;
+      ::duration                                      m_durationLastDisplayChange;
       enum_layout_experience                       m_elayoutexperience;
 
 

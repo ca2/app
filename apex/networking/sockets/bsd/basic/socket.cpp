@@ -28,7 +28,7 @@ namespace sockets
    {
 
       m_iBindPort    = -1;
-      m_millisStart.Now();
+      m_durationStart.Now();
       m_pcallback    = nullptr;
 
    }
@@ -76,7 +76,7 @@ namespace sockets
          if(!is_null(socket_handler()))
          {
 
-            WARN("socket::close", 0, "file descriptor invalid");
+            WARNING("socket::close: file descriptor invalid");
 
          }
 
@@ -93,7 +93,7 @@ namespace sockets
          {
 
             // failed...
-            ERR("close", Errno, bsd_socket_error(Errno));
+            ERROR("close" << Errno << ", " << bsd_socket_error(Errno));
 
          }
 
@@ -156,7 +156,7 @@ namespace sockets
             if (pprotoent == nullptr)
             {
 
-               FATAL(log_this, "getprotobyname", Errno, bsd_socket_error(Errno));
+               fatal() << "getprotobyname" << Errno << ", " << bsd_socket_error(Errno);
 
                SetCloseAndDelete();
 
@@ -184,7 +184,7 @@ namespace sockets
       if (s == INVALID_SOCKET)
       {
 
-         FATAL(log_this, "socket", Errno, bsd_socket_error(Errno));
+         fatal() << "socket" << Errno << ", " << bsd_socket_error(Errno);
 
          SetCloseAndDelete();
          __throw(error_socket, string("socket() failed: ") + bsd_socket_error(Errno));
@@ -229,7 +229,7 @@ namespace sockets
       if (n != 0)
       {
 
-         INFO(log_this, "ioctlsocket(FIONBIO)", Errno, "");
+         INFORMATION("ioctlsocket(FIONBIO) " << Errno);
 
          return false;
       }
@@ -240,7 +240,7 @@ namespace sockets
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
 
-            ERR("fcntl(F_SETFL, O_NONBLOCK)", Errno, bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno);
 
             return false;
          }
@@ -250,7 +250,7 @@ namespace sockets
          if (fcntl(s, F_SETFL, 0) == -1)
          {
 
-            ERR("fcntl(F_SETFL, 0)", Errno, bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno);
 
             return false;
          }

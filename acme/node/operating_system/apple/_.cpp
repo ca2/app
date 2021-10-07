@@ -209,7 +209,7 @@ i32 defer_run_system()
 //string ca2_command_line()
 //{
 //
-//   return ::str::from_strdup(mm_ca2_command_line());
+//   return ::string_from_strdup(mm_ca2_command_line());
 //
 //}
 //
@@ -336,7 +336,7 @@ i32 defer_run_system()
 
    }
 
-   //return ::str::from_strdup(ns_realpath(path));
+   //return ::string_from_strdup(ns_realpath(path));
 
    char sz[4096];
 

@@ -571,10 +571,13 @@ namespace filemanager
 
    void tree::StartAnimation()
    {
+      
       m_iAnimate = 1;
-      m_usertreea[0]->SetTimer(1234567, 50, nullptr);
+      
+      m_usertreea[0]->SetTimer(1234567, 50_ms, nullptr);
 
    }
+
 
    void tree::TakeAnimationSnapshot()
    {

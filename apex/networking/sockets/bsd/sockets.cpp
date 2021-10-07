@@ -240,7 +240,7 @@ namespace sockets
 
       }
 
-      strBoundary += "__" + __str(m_countHttpPostBoundary++);
+      strBoundary += "__" + __string(m_countHttpPostBoundary++);
 
       return strBoundary;
 

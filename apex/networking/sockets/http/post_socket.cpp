@@ -84,7 +84,7 @@ namespace sockets
 
 #ifdef BSD_STYLE_SOCKETS
 
-         FATAL(log_this, "AddFile", Errno, bsd_socket_error(Errno));
+         fatal() << "AddFile " << Errno << bsd_socket_error(Errno);
 
 #endif
 
@@ -114,7 +114,7 @@ namespace sockets
 
             m_fields["json"].propset().get_json(body);
 
-            TRACE("JSON BODY:\n%s\n\n", body.c_str());
+            INFORMATION("JSON BODY: "<< body);
 
             if (inheader(__id(content_type)).string().find_ci("application/json") < 0)
             {
@@ -302,7 +302,7 @@ namespace sockets
 
             string strContentLength;
 
-            strContentLength = "Content-Length: " + __str(content_length) + "\r\n";
+            strContentLength = "Content-Length: " + __string(content_length) + "\r\n";
 
             tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\""+ filename + "\r\n"
                   + content_type + strContentLength + "\r\n";
@@ -434,7 +434,7 @@ namespace sockets
 
             string strContentLength;
 
-            strContentLength = "Content-Length: " + __str(content_length) + "\r\n";
+            strContentLength = "Content-Length: " + __string(content_length) + "\r\n";
 
             tmp = "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + name + "\"" + filename + "\r\n"
                   + content_type + strContentLength + "\r\n";

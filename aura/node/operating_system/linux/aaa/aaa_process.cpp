@@ -403,7 +403,7 @@ string module_path_from_pid(unsigned int iPid)
 
    string str;
 
-   str = "/proc/" + __str(iPid) + "/exe";
+   str = "/proc/" + __string(iPid) + "/exe";
 
    memory mem;
 
@@ -585,7 +585,7 @@ int_array module_path_get_pid(const ::string & pszPath)
 //
 //   string str;
 //
-//   str = "/proc/" + __str(iPid) + "/cmdline";
+//   str = "/proc/" + __string(iPid) + "/cmdline";
 //
 //   memory mem = file_as_memory(str);
 //

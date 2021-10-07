@@ -130,7 +130,7 @@ namespace aura
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + psystem->url_encode(pbase64->encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + psystem->url_encode(pbase64->encode((byte *)pdata, len));
 
          Uri ^uri = ref new Uri(anotherappURI);
 

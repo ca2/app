@@ -45,7 +45,7 @@
 //
 ////      _term_args();
 //
-//      //::message_box(nullptr,"t3=" + __str(m_iErrorCode),"t3",e_message_box_ok);
+//      //::message_box(nullptr,"t3=" + __string(m_iErrorCode),"t3",e_message_box_ok);
 //
 //
 //      return m_iErrorCode;
@@ -92,11 +92,11 @@
 //
 //         }
 //
-//         dappy(string(typeid(*this).name()) + " : s_app pre_runned : " + __str(m_iErrorCode));
+//         dappy(string(typeid(*this).name()) + " : s_app pre_runned : " + __string(m_iErrorCode));
 //
 //         SetCurrentHandles();
 //
-//         dappy(string(typeid(*this).name()) + " : handles set s_app : " + __str(m_iErrorCode));
+//         dappy(string(typeid(*this).name()) + " : handles set s_app : " + __string(m_iErrorCode));
 //
 //      }
 //      catch(...)
@@ -113,7 +113,7 @@
 //      try
 //      {
 //
-//         dappy(string(typeid(*this).name()) + " : s_app going to intro : " + __str(m_iErrorCode));
+//         dappy(string(typeid(*this).name()) + " : s_app going to intro : " + __string(m_iErrorCode));
 //
 //         if(!intro())
 //         {
@@ -125,7 +125,7 @@
 //
 //         }
 //
-//         dappy(string(typeid(*this).name()) + " : s_app introduced : " + __str(m_iErrorCode));
+//         dappy(string(typeid(*this).name()) + " : s_app introduced : " + __string(m_iErrorCode));
 //
 //      }
 //      catch(...)

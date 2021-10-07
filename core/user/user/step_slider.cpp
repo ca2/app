@@ -87,11 +87,15 @@ namespace user
 
    void step_slider::on_message_mouse_move(::message::message * pmessage)
    {
+
       __UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_pmouse;
-      SetTimer(1, 200, nullptr);
+
+      SetTimer(1, 200_ms, nullptr);
+
       m_itemHover = true;
+
       update_hover();
+
    }
 
 

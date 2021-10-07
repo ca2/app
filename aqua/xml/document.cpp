@@ -65,7 +65,7 @@ namespace xml
 
       string str;
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return load(str);
 

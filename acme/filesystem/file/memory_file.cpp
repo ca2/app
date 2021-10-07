@@ -433,10 +433,10 @@ void memory_file::flush()
 }
 
 
-string memory_file::to_string() const
+string memory_file::get_string() const
 {
    
-   return memory_container::to_string();
+   return memory_container::get_string();
    
 }
 

@@ -1,40 +1,33 @@
-// Created by camilo on 2021-10-04 04:57 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-10-04 04:57 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
-class CLASS_DECL_ACME wait
+class CLASS_DECL_ACME wait :
+   public INTEGRAL_MILLISECOND
 {
 public:
 
 
-   ::i64       m_iMillisecond;
+   wait() : INTEGRAL_MILLISECOND{} {}
+   wait(const INTEGRAL_MILLISECOND & integralmillisecond):INTEGRAL_MILLISECOND(integralmillisecond){ }
 
+   static inline ::i64 __infinite() { return 0xffffffffu ; }
 
-#if CPP20
-
-   template < primitive_integral INTEGRAL >
-   wait(INTEGRAL integral) { m_iMillisecond = (::i64)integral; }
-
-#else
-
-   wait(::i64 i) { m_iMillisecond = i; }
-
-#endif
-
-
-   wait(const ::wait & wait) : m_iMillisecond(wait.m_iMillisecond) {}
-   inline wait(const ::duration & duration);
-
-   static inline ::i64 _infinite() { return 0xffffffffu; }
+   static inline INTEGRAL_MILLISECOND _infinite() { return { __infinite() }; }
 
    static inline class ::wait infinite() { return _infinite(); }
 
-   inline operator ::u32() const { return (::u32) ::minimum_maximum(m_iMillisecond, 0, _infinite()); }
+   inline operator ::u32() const { return (::u32) ::minimum_maximum(m_i, 0, __infinite()); }
 
-   inline bool is_infinite() const { return m_iMillisecond >= infinite(); }
+   inline bool is_infinite() const { return m_i >= __infinite(); }
+
+   inline bool is_null() const { return m_i <= 0; }
 
    static inline class ::wait now();
 
-   inline class ::wait elapsed(const class ::wait & waitSample = now()) { return waitSample.m_iMillisecond - m_iMillisecond; }
+   inline class ::wait elapsed(const class ::wait & waitSample = now()) { return INTEGRAL_MILLISECOND(waitSample.m_i - m_i); }
+
+   inline class ::wait operator +(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i + wait.m_i); }
+   inline class ::wait operator -(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i - wait.m_i); }
 
 };

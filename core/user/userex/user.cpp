@@ -135,7 +135,7 @@ namespace core
       //if (!create_user_shell())
       //{
 
-      //   WARN("Failed to create_user_shell");
+      //   WARNING("Failed to create_user_shell");
 
       //   return false;
 
@@ -286,7 +286,7 @@ namespace core
 
          //m_result.add(estatus);
 
-         ERR("Failed to initialize html");
+         ERROR("Failed to initialize html");
 
          return estatus;
 
@@ -748,7 +748,7 @@ namespace core
 
       //pbox->payload("application_name") = strTitle;
 
-      //pbox->m_millisDelay = durationTimeout;
+      //pbox->m_durationDelay = durationTimeout;
 
       //string strMatter;
 

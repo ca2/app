@@ -3,7 +3,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME ::i64 _get_nanos()
+CLASS_DECL_ACME ::i64 _get_nanosecond()
 {
 
 

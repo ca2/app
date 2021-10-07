@@ -142,7 +142,7 @@ namespace sockets
          if (t == -1)
          {
 
-            INFO(log_this, "datetime2httpdate", 0, "mktime() failed");
+            INFORMATION("datetime2httpdate: mktime() failed");
             
          }
 
@@ -299,7 +299,7 @@ namespace sockets
 
       //         }
 
-      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __str(keylength) + ".pem";
+      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __string(keylength) + ".pem";
 
       //         FILE * paramfile = fopen(strFile, "r");
 

@@ -220,7 +220,7 @@ namespace text
       inline bool begins(const ::id & id, const char * psz) const
       {
 
-         return m_ptable->begins(this, __str(id), psz);
+         return m_ptable->begins(this, __string(id), psz);
 
       }
 

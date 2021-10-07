@@ -163,9 +163,9 @@ namespace user
 //#endif
 
 
-         SetTimer(100, 100, nullptr);
+         SetTimer(100, 100_ms, nullptr);
 
-         SetTimer(e_timer_redraw, 200, nullptr); // Caret
+         SetTimer(e_timer_redraw, 200_ms, nullptr); // Caret
 
       }
 
@@ -187,7 +187,7 @@ namespace user
             if (is_text_editable() && m_bEditable2)
             {
 
-               SetTimer(250, 500, nullptr); // Caret
+               SetTimer(250, 500_ms, nullptr); // Caret
 
             }
 
@@ -809,7 +809,7 @@ namespace user
 
                }
 
-               SetTimer(250, 500, nullptr); // Caret
+               SetTimer(250, 500_ms, nullptr); // Caret
 
             }
 
@@ -1231,12 +1231,18 @@ namespace user
          }
          else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
          {
+            
             if (ptimer->m_uEvent == 500)
             {
+               
                KillTimer(500);
-               SetTimer(501, 300, nullptr);
+               
+               SetTimer(501, 300_ms, nullptr);
+
             }
+
             key_to_char(m_pkeymessageLast);
+
          }
          else if (ptimer->m_uEvent == e_timer_redraw)
          {

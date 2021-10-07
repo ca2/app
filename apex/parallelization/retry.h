@@ -1,18 +1,11 @@
 #pragma once
 
 
-
-template < typename PRED >
-bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pred)
+template < typename PREDICATE >
+bool predicate_retry(const ::duration & durationStep, const ::duration & durationTotal, PREDICATE predicate)
 {
 
-   auto tickStart = millis::now();
-
-   auto tickRetry = durationRetry.u32_millis();
-
-   auto tickTimeout = durationTimeout.u32_millis();
-   
-   //auto ptask = ::get_task();
+   auto start = duration::now();
 
    while (true)
    {
@@ -20,7 +13,7 @@ bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pr
       try
       {
 
-         if (pred())
+         if (predicate())
          {
 
             return true;
@@ -35,14 +28,9 @@ bool predicate_retry(duration durationRetry, ::duration durationTimeout, PRED pr
 
       }
       
-      if (!::task_sleep(tickRetry))
-      {
+      ::preempt(durationStep);
 
-         return false;
-
-      }
-
-      if (tickStart.elapsed() > tickTimeout)
+      if (start.elapsed() > durationTotal)
       {
 
          return false;

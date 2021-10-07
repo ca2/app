@@ -58,10 +58,10 @@ namespace helloaxis
       m_bFirst23 = false;
       m_bFastOnEmpty = true;
       m_bFast = true;
-      m_millisLastFast = 0;
-      m_millisAnime = 2000;
-      m_millisFastAnime = 500;
-      m_millisLastOk = 0;
+      m_durationLastFast = 0;
+      m_durationAnime = 2000;
+      m_durationFastAnime = 500;
+      m_durationLastOk = 0;
 
 
 
@@ -274,7 +274,7 @@ namespace helloaxis
 
             }
 
-            sleep(millis(dWait));
+            sleep(::duration(dWait));
 
             iLastFrameId = iFrameId;
 
@@ -452,7 +452,7 @@ namespace helloaxis
 
       }
 
-      double t= ::millis::now() / 1000.0;
+      double t= ::duration::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -700,7 +700,7 @@ namespace helloaxis
 
       }
 
-      double t= ::millis::now() / 1000.0;
+      double t= ::duration::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -1016,7 +1016,7 @@ namespace helloaxis
 
             if (!m_bFirst23)
             {
-auto m_tick23 = ::millis::now();
+auto m_tick23 = ::duration::now();
                m_uiCurrent23 = 0;
                m_strLast23.Empty();
                m_strCurrent23.Empty();
@@ -1195,9 +1195,9 @@ auto m_tick23 = ::millis::now();
 
       }
 
-      //::u32 dw= ::millis::now();
+      //::u32 dw= ::duration::now();
 
-      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if (m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
       {
 
 //         synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
@@ -1225,7 +1225,7 @@ auto m_tick23 = ::millis::now();
          if (m_bFast || !m_bFirstDone)
          {
 
-            m_millisLastFast= ::millis::now();
+            m_durationLastFast= ::duration::now();
 
          }
 
@@ -1246,7 +1246,7 @@ auto m_tick23 = ::millis::now();
 
       //   m_pimpact->m_bOkPending = false;
 
-      //   m_millisLastOk= ::millis::now();
+      //   m_durationLastOk= ::duration::now();
 
       //}
 
@@ -1265,12 +1265,12 @@ auto m_tick23 = ::millis::now();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if (m_millisLastOk.elapsed() < m_millisAnime)
+      if (m_durationLastOk.elapsed() < m_durationAnime)
       {
 
          byte uchAlpha;
 
-         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_durationLastOk.elapsed()) * 255 / m_durationAnime)));
 
 /*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1367,9 +1367,9 @@ auto m_tick23 = ::millis::now();
 
    bool render::in_anime()
    {
-      if (m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if (m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
          return true;
-      if (m_millisLastOk.elapsed() < m_millisAnime)
+      if (m_durationLastOk.elapsed() < m_durationAnime)
          return true;
       return false;
    }

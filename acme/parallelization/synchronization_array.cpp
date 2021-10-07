@@ -237,7 +237,7 @@ void synchronization_array::erase(index index)
 
    }
 
-//   auto start = ::millisecond::now();
+//   auto start = ::duration::now();
 
    bool FoundExternal=false;
 

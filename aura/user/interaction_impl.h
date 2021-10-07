@@ -81,7 +81,7 @@ namespace user
       int                                       m_iLangId;
       bool                                      m_bEatSizeEvent;
       bool                                      m_bEatMoveEvent;
-      millis                                    m_millisLastExposureAddUp;
+      ::duration                                    m_durationLastExposureAddUp;
       __reference(prodevian)                    m_pprodevian;
       __reference(::user::thread)               m_puserthread;
       __pointer_array(::matter)                 m_matteraProdevian;
@@ -138,12 +138,12 @@ namespace user
       __pointer(::user::interaction)            m_puserinteractionToKillFocus;
 
       bool                                      m_bPendingRedraw;
-      millis                                    m_millisLastRedraw;
+      ::duration                                    m_durationLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       
-      ::nanos                                   m_nanosDeviceDrawBeg;
-      ::nanos                                   m_nanosDeviceDrawEnd;
-      millis                                    m_millisLastDeviceDraw;
+      ::nanosecond                                   m_nanosDeviceDrawBeg;
+      ::nanosecond                                   m_nanosDeviceDrawEnd;
+      ::duration                                    m_durationLastDeviceDraw;
 
 
 
@@ -473,11 +473,11 @@ namespace user
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
 
-#if(WINVER >= 0x0500)
-
-      virtual bool AnimateWindow(millis millis,u32 dwFlags);
-
-#endif
+//#if(WINVER >= 0x0500)
+//
+//      virtual bool AnimateWindow(::duration ::duration,u32 dwFlags);
+//
+//#endif
 
 
 #if(_WIN32_WINNT >= 0x0501)
@@ -589,7 +589,7 @@ namespace user
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

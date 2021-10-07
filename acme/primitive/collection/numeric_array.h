@@ -404,11 +404,11 @@ void numeric_array < TYPE, t_etypePayload >::implode(string & str, const char * 
       string strSeparator(pcszSeparator);
 
       index i = start;
-      str = __str(this->element_at(i));
+      str = __string(this->element_at(i));
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + __str(this->element_at(i));
+         str += strSeparator + __string(this->element_at(i));
       }
    }
    else
@@ -445,11 +445,11 @@ string numeric_array < TYPE, t_etypePayload >::surround_and_implode(const char *
    if(iStart <= iEnd)
    {
       index i = iStart;
-      str = strPrefix + __str(this->element_at(i)) + strSuffix;
+      str = strPrefix + __string(this->element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
       {
-         str += strSeparator + strPrefix + __str(this->element_at(i)) + strSuffix;
+         str += strSeparator + strPrefix + __string(this->element_at(i)) + strSuffix;
       }
    }
    return str;

@@ -70,7 +70,7 @@ namespace datetime
       {
          return strCandidate;
       }
-      else if(strCandidate == "secs")
+      else if(strCandidate == "second")
       {
          return strCandidate;
       }

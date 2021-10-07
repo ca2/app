@@ -34,7 +34,7 @@ namespace netserver
       m_plistensocket->m_bDetach = true;
 
       if (m_plistensocket->m_strCat.has_char() &&
-            (m_iSsl > 0 || (m_iSsl < 0 && (m_iPort == 443 || ::str::ends(__str(m_iPort), "443")))))
+            (m_iSsl > 0 || (m_iSsl < 0 && (m_iPort == 443 || ::str::ends(__string(m_iPort), "443")))))
       {
 
          m_plistensocket->EnableSSL();

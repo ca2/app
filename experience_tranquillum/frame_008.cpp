@@ -352,7 +352,7 @@ SizingNone:
                //
                ////////////////////
 
-               millis tickBorder;
+               ::duration tickBorder;
 
                tickBorder.Now();
 

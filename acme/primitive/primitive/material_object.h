@@ -21,7 +21,7 @@ public:
    ~material_object() override;
 
 
-   virtual ::string to_string() const;
+   virtual ::string get_string() const;
 
    template < typename TYPE >
    inline __pointer(TYPE) cast() { return this; }

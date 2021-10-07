@@ -18,7 +18,7 @@ namespace filemanager
 
 
       __pointer(::user::list_cache)       m_puserlistcache;
-      millis                              m_millisLastUpdate;
+      ::duration                              m_durationLastUpdate;
 
 
       operation_list_view();

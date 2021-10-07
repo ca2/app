@@ -213,7 +213,7 @@ namespace user
 
       m_straList.add(pszString);
 
-      m_straValue.add(__str(dwItemData));
+      m_straValue.add(__string(dwItemData));
 
       return m_straList.get_upper_bound();
 
@@ -794,12 +794,12 @@ namespace user
       if (m_pcombo)
       {
 
-         bool bGoingToShow = m_pcombo->m_millisShowComboList.elapsed() < 300_ms;
+         bool bGoingToShow = m_pcombo->m_durationShowComboList.elapsed() < 300_ms;
 
          if (!bGoingToShow)
          {
 
-            m_millisKillFocus.Now();
+            m_durationKillFocus.Now();
 
             m_bPendingKillFocusHiding = true;
 
@@ -817,7 +817,7 @@ namespace user
             //   if (layout().sketch().is_screen_visible())
             //   {
 
-            //      m_millisLastVisibilityChange.Now();
+            //      m_durationLastVisibilityChange.Now();
 
             //      hide();
 
@@ -1334,7 +1334,7 @@ namespace user
    void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
    {
 
-      index iSel = m_straValue.find_first(__str(u));
+      index iSel = m_straValue.find_first(__string(u));
 
       if (iSel < 0)
       {

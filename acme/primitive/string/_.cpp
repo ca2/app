@@ -6,10 +6,10 @@
 
 
 
-//CLASS_DECL_ACME string __str(const estatus & estatus)
+//CLASS_DECL_ACME string __string(const estatus & estatus)
 //{
 //
-//   return __str((::i64) estatus.m_estatus);
+//   return __string((::i64) estatus.m_estatus);
 //
 //}
 

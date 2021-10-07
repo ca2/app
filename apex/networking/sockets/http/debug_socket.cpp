@@ -41,7 +41,7 @@ namespace sockets
 
 #ifndef _UWP
 
-         WARN("url_this", -1, "SSL not available");
+         WARNING("url_this", -1, "SSL not available");
 
 #endif
 
@@ -76,7 +76,7 @@ namespace sockets
       if(key == __id(content_length))
          m_content_length = atoi(value);
 
-      print(__str(key) + ": " + value + "\n");
+      print(__string(key) + ": " + value + "\n");
    }
 
 

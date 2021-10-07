@@ -66,7 +66,7 @@ namespace sockets
    socket_thread::socket_thread()
    {
 
-      ::output_debug_string(__str(g_iSocketThread++) + " - new socket_thread\n");
+      ::output_debug_string(__string(g_iSocketThread++) + " - new socket_thread\n");
 
    }
 

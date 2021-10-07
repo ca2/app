@@ -236,11 +236,11 @@ namespace user
 #define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
 #define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(::u32 nEvent, ::u32 nTime)
+   void control_bar::ResetTimer(::u32 nEvent, const ::duration & duration)
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
-      VERIFY(SetTimer(nEvent,nTime,nullptr));
+      VERIFY(SetTimer(nEvent,duration,nullptr));
    }
 
    void control_bar::_001OnTimer(::timer * ptimer)

@@ -3,12 +3,12 @@
 #include <unistd.h>
 
 
-//CLASS_DECL_ACME void sleep(const millis & millis)
+//CLASS_DECL_ACME void sleep(const ::duration & duration)
 //{
 //
 //   struct timespec ts;
-//   ts.tv_sec = millis.m_i / 1000;
-//   ts.tv_nsec = (millis.m_i % 1000) * 1000000;
+//   ts.tv_sec = ::duration.m_i / 1000;
+//   ts.tv_nsec = (::duration.m_i % 1000) * 1000000;
 //   nanosleep(&ts, NULL);
 //
 //}
@@ -17,10 +17,10 @@
 
 
 
-CLASS_DECL_ACME void preempt(const ::secs & secs)
+CLASS_DECL_ACME void preempt(const ::second & second)
 {
 
-   ::sleep((unsigned int) secs.m_i);
+   ::sleep((unsigned int) second.m_i);
 
 }
 
@@ -33,30 +33,30 @@ CLASS_DECL_ACME void millis_sleep(::u64 uMillis)
 }
 
 
-CLASS_DECL_ACME void preempt(const millis & millis)
+CLASS_DECL_ACME void preempt(const ::duration & duration)
 {
 
-   millis_sleep(millis.m_i);
+   millis_sleep(::duration.m_i);
 
 }
 
 
-CLASS_DECL_ACME void preempt(const micros & micros)
+CLASS_DECL_ACME void preempt(const microsecond & microsecond)
 {
 
-   ::usleep((unsigned int)micros.m_i);
+   ::usleep((unsigned int)microsecond.m_i);
 
 }
 
 
-CLASS_DECL_ACME void preempt(const nanos & nanos)
+CLASS_DECL_ACME void preempt(const nanosecond & nanosecond)
 {
 
    struct timespec timespec;
 
    timespec.tv_sec = 0;
 
-   timespec.tv_nsec = nanos.m_i;
+   timespec.tv_nsec = nanosecond.m_i;
 
    ::nanosleep(&timespec, nullptr);
 

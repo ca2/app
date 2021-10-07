@@ -25,7 +25,7 @@ namespace ios
       ::user::primitive *              m_pbasewnd;
       bool                             m_bNeedsUpdate;
       ::rectangle_i32                           m_rectangleLastPos;
-      millis                             m_millisLastPos;
+      ::duration                             m_durationLastPos;
       int                              m_iSoftwareKeyboardScroll;
 
 
@@ -230,7 +230,7 @@ namespace ios
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(::u32 millis, ::u32 dwFlags);
+      virtual bool AnimateWindow(::u32 ::duration, ::u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 

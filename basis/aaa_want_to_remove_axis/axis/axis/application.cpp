@@ -580,7 +580,7 @@ resume_on_exception:
 
       //}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       //m_bAxisProcessInitialize = true;
 
@@ -622,7 +622,7 @@ resume_on_exception:
 
       //}
 
-      INFO("axis::application::init_instance .1");
+      INFORMATION("axis::application::init_instance .1");
 
       //m_bAxisInitializeInstance = true;
 
@@ -682,7 +682,7 @@ resume_on_exception:
 
       //m_bAxisInitializeInstanceResult = true;
 
-      INFO("axis::application::init_instance success");
+      INFORMATION("axis::application::init_instance success");
 
       return true;
 
@@ -711,7 +711,7 @@ resume_on_exception:
 
       //m_bAxisInitialize1Result = false;
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       if (!::aura::application::init1())
       {
@@ -782,7 +782,7 @@ resume_on_exception:
 
       if(!signal.m_bOk)
          return false;
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
       if(is_system())
       {
@@ -846,7 +846,7 @@ m_millisHeartBeat.Now();
          }
 #endif
       }
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
       //if(is_system() 
       //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
@@ -856,11 +856,11 @@ m_millisHeartBeat.Now();
       //{
       //   pcontext->m_papexcontext->http().defer_auto_initialize_proxy_configuration();
       //}
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 //      m_bAxisInitializeResult = true;
 
-//      dappy(string(typeid(*this).name()) + " : initialize ok : " + __str(m_iErrorCode));
+//      dappy(string(typeid(*this).name()) + " : initialize ok : " + __string(m_iErrorCode));
 
       return true;
 

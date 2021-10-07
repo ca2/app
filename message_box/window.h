@@ -12,7 +12,7 @@ namespace app_message_box
 
 
       double                        m_dBreathPeriod;
-      millis                        m_millisStart;
+      ::duration                        m_durationStart;
       double                        m_dPhaseShift;
       int                           m_iCloseButtonDraw;
       __pointer(::user::button)     m_pbuttonShowMessageBox;

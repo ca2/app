@@ -222,7 +222,7 @@ synchronization_result condition::wait(const duration& duration)
 
    m_iHold++;
 
-   millis start;
+   ::duration start;
 
    start.Now();
 
@@ -250,7 +250,7 @@ synchronization_result condition::wait(const duration& duration)
 
 #else
 
-   auto start = ::millis::now();
+   auto start = ::duration::now();
 
    timespec delay;
 
@@ -355,7 +355,7 @@ bool condition::lock(const duration& durationTimeout)
 
    u32 timeout = durationTimeout.u32_millis();
 
-   auto start = ::millis::now();
+   auto start = ::duration::now();
 
    timespec delay;
 

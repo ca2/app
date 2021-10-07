@@ -1314,7 +1314,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
 
          return estatus;
 
@@ -1329,7 +1329,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("Couldn't construct new write_text.");
+         INFORMATION("Couldn't construct new write_text.");
 
          return estatus;
 
@@ -1340,7 +1340,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("Couldn't initialize write_text (init1).");
+         INFORMATION("Couldn't initialize write_text (init1).");
 
          return estatus;
 

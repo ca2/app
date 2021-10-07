@@ -99,7 +99,7 @@ namespace user
 
       m_bUserInteractionSetFinish = false;
 
-      m_millisMouseMoveIgnore = 20_ms;
+      m_durationMouseMoveIgnore = 20_ms;
 
       m_bOverdraw = false;
 
@@ -121,7 +121,7 @@ namespace user
 
       m_iMouseMoveSkipSquareDistance = iMouseMoveTriggerDistance * iMouseMoveTriggerDistance;
 
-      m_millisMouseMovePeriod = 5;
+      m_durationMouseMovePeriod = 5_ms;
 
       m_bOffScreenRender = false;
 
@@ -1620,7 +1620,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_normal");
+         INFORMATION("interaction_layout::display e_display_normal");
 
 #endif
 
@@ -1630,7 +1630,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_hide");
+         INFORMATION("interaction_layout::display e_display_hide");
 
 #endif
 
@@ -1640,7 +1640,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_default");
+         INFORMATION("interaction_layout::display e_display_default");
 
 #endif
 
@@ -1652,7 +1652,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_zoomed");
+         INFORMATION("interaction_layout::display e_display_zoomed");
 
 #endif
 
@@ -1662,7 +1662,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_iconic");
+         INFORMATION("interaction_layout::display e_display_iconic");
 
 #endif
 
@@ -1674,7 +1674,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display e_display_full_screen");
+         INFORMATION("interaction_layout::display e_display_full_screen");
 
 #endif
 
@@ -1684,7 +1684,7 @@ namespace user
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFO("interaction_layout::display (unknown)");
+         INFORMATION("interaction_layout::display (unknown)");
 
 #endif
 
@@ -1698,7 +1698,7 @@ namespace user
          if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
          {
 
-            INFO("Parent is Null. Display Request -> normal");
+            INFORMATION("Parent is Null. Display Request -> normal");
 
          }
 
@@ -1709,7 +1709,7 @@ namespace user
          if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
          {
 
-            INFO("Parent is Null. Display Request -> hide");
+            INFORMATION("Parent is Null. Display Request -> hide");
 
          }
 
@@ -2886,7 +2886,7 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickStart = millis::now();
+               auto tickStart = ::duration::now();
 
 #endif //__DEBUG
 
@@ -2897,14 +2897,14 @@ namespace user
 
 #ifdef __DEBUG
 
-               auto tickEnd = millis::now();
+               auto tickEnd = ::duration::now();
 
-               millis tickElapsed = tickEnd - tickStart;
+               ::duration durationElapsed = tickEnd - tickStart;
 
-               if (tickElapsed > 100)
+               if (durationElapsed > 100_ms)
                {
 
-                  output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
+                  output_debug_string("\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -2926,7 +2926,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::now();
+            auto tickStart = ::duration::now();
 
 #endif //__DEBUG
 
@@ -2943,9 +2943,9 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickElapsed = tickStart.elapsed();
+            auto durationElapsed = tickStart.elapsed();
 
-            if (tickElapsed > 50)
+            if (durationElapsed > 50_ms)
             {
 
                auto type = ::str::demangle(this->type_name());
@@ -2957,12 +2957,10 @@ namespace user
 
                }
 
-               CINFO(prodevian)(type + " drawing took more than 50ms to complete ("+ __str(tickElapsed) +")!!\n");
+               CATEGORY_INFORMATION(prodevian, type << " drawing took more than 50ms to complete (" << durationElapsed.integral_millisecond() << ")!!\n");
 
                // let's trye to see what happened?
                //_001CallOnDraw(pgraphics);
-
-
 
             }
 
@@ -2987,7 +2985,7 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::now();
+            auto tickStart = ::duration::now();
 
 #endif //__DEBUG
 
@@ -2996,15 +2994,15 @@ namespace user
 
 #ifdef __DEBUG
 
-            auto tickEnd = millis::now();
+            auto tickEnd = ::duration::now();
 
-            millis tickElapsed = tickEnd - tickStart;
+            auto durationElapsed = tickEnd - tickStart;
 
-            if (tickElapsed > 100)
+            if (durationElapsed > 100_ms)
             {
 
-               CINFO(prodevian)("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
-               CINFO(prodevian)("\ndrawing took more than 100ms more than 50ms to complete!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing took " + __string(durationElapsed.integral_millisecond()) + "!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
                //on_after_graphical_update();
@@ -3037,7 +3035,7 @@ namespace user
 
 #ifdef __DEBUG
 
-auto tickStartWithLock = millis::now();
+auto tickStartWithLock = ::duration::now();
 
 #endif
 
@@ -3049,7 +3047,7 @@ auto tickStartWithLock = millis::now();
 
 #ifdef __DEBUG
 
-            auto tickStart = millis::now();
+            auto tickStart = ::duration::now();
 
 #endif //__DEBUG
 
@@ -3069,17 +3067,17 @@ auto tickStartWithLock = millis::now();
 
             m_itemCurrent.set_drawn();
 
-            auto tickEnd = millis::now();
+            auto tickEnd = ::duration::now();
 
-            millis tickElapsed = tickEnd - tickStart;
+            ::duration durationElapsed = tickEnd - tickStart;
 
-            if (tickElapsed > 100)
+            if (durationElapsed > 100_ms)
             {
 
-               output_debug_string("\ndrawing at " + string(type_name()) + "!!");
-               output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
-               output_debug_string("\ndrawing took more more than 100ms more than 50ms to complete!!");
-               output_debug_string("\n");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing at " << type_name() << "!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing took " << durationElapsed.integral_millisecond() << + "!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing took more more than 100ms more than 50ms to complete!!");
+               CATEGORY_INFORMATION(prodevian, "\n");
 
                // let's trye to see what happened?
                //_001OnDraw(pgraphics);
@@ -3094,16 +3092,16 @@ auto tickStartWithLock = millis::now();
 
 #ifdef __DEBUG
 
-auto tickEndWithLock = millis::now();
+      auto tickEndWithLock = ::duration::now();
 
-      millis tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
+      auto tickElapsedWithLock = tickEndWithLock - tickStartWithLock;
 
-      if (tickElapsedWithLock > 3)
+      if (tickElapsedWithLock > 3_ms)
       {
 
          string strType = type_name();
 
-         //         output_debug_string("\n" + strType + "drawing took " + __str(tickElapsedWithLock.m_i) + "!!");
+         //         output_debug_string("\n" + strType + "drawing took " + __string(tickElapsedWithLock.m_i) + "!!");
          //       output_debug_string("\ndrawing took more than 3ms to complete!!");
          //     output_debug_string("\n");
 
@@ -3286,11 +3284,11 @@ auto tickEndWithLock = millis::now();
 
                      //{
 
-                     //   //millis t1 = millis::now();
+                     //   //::duration t1 = ::duration::now();
 
                      //   pinteraction->_000OnDraw(pgraphics);
 
-                     //   ///millis d1 = t1.elapsed();
+                     //   ///::duration d1 = t1.elapsed();
 
                      //   //if(d1.m_i > 50)
                      //   //{
@@ -3304,7 +3302,7 @@ auto tickEndWithLock = millis::now();
 
                      //   //   }
 
-                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __str(d1.m_i) + "millis.\n");
+                     //   //   CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __string(d1.m_i) + "::duration.\n");
 
                      //   //   //pinteraction->_000OnDraw(pgraphics);
 
@@ -3902,18 +3900,18 @@ return "";
 
             {
 
-               millis t1 = millis::now();
+               auto t1 = ::duration::now();
 
                _008CallOnDraw(pgraphics);
 
-               millis d1 = t1.elapsed();
+               auto d1 = t1.elapsed();
 
-               if (d1.m_i > 50)
+               if (d1 > 50_ms)
                {
 
                   string strType = type_name();
 
-                  CINFO(prodevian)("(more than 50ms) " + strType + "::_008CallOnDraw took " + __str(d1.m_i) + "millis.\n");
+                  CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
                }
 
@@ -7820,7 +7818,7 @@ bool interaction::defer_design_display()
    if (string(type_name()).contains_ci("page_home"))
    {
 
-      INFO("page_home");
+      INFORMATION("page_home");
 
    }
 
@@ -7855,7 +7853,7 @@ bool interaction::design_display()
    if (strType.contains_ci("page_home"))
    {
 
-      INFO("page_home");
+      INFORMATION("page_home");
 
    }
 
@@ -7867,7 +7865,7 @@ bool interaction::design_display()
       if (!is_top_level_window())
       {
 
-         WARN("full screen child window?");
+         WARNING("full screen child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -7886,7 +7884,7 @@ bool interaction::design_display()
       if (get_parent() != nullptr)
       {
 
-         WARN("iconify child window?");
+         WARNING("iconify child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -7905,7 +7903,7 @@ bool interaction::design_display()
       if (get_parent() != nullptr)
       {
 
-         WARN("zooming child window?");
+         WARNING("zooming child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -7926,7 +7924,7 @@ bool interaction::design_display()
       if (get_parent() != nullptr)
       {
 
-         WARN("restoring child window?");
+         WARNING("restoring child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -7957,7 +7955,7 @@ bool interaction::design_display()
       if (get_parent() != nullptr)
       {
 
-         WARN("snapping child window?");
+         WARNING("snapping child window?");
 
          layout().sketch() = e_display_normal;
 
@@ -7976,13 +7974,13 @@ bool interaction::design_display()
       if (get_parent() != nullptr)
       {
 
-         INFO("showing child window");
+         INFORMATION("showing child window");
 
       }
       else
       {
 
-         INFO("simply showing top level window");
+         INFORMATION("simply showing top level window");
 
       }
 
@@ -7995,14 +7993,14 @@ bool interaction::design_display()
       if (string(type_name()).contains_ci("page_home"))
       {
 
-         INFO("page_home");
+         INFORMATION("page_home");
 
       }
 
       if (get_parent() != nullptr)
       {
 
-         INFO("hiding child window");
+         INFORMATION("hiding child window");
 
          layout().sketch() = e_display_none;
 
@@ -8010,7 +8008,7 @@ bool interaction::design_display()
       else
       {
 
-         INFO("hiding top level window");
+         INFORMATION("hiding top level window");
 
       }
 
@@ -8164,7 +8162,7 @@ bool interaction::design_reposition()
    if(string(type_name()).contains_ci("tap"))
    {
 
-      INFO("tap prodevian_reposition (%d, %d)", this->screen_origin().x, this->screen_origin().y);
+      INFORMATION("tap prodevian_reposition (%d, %d)", this->screen_origin().x, this->screen_origin().y);
    }
 
    if(bRepositionThis)
@@ -9564,7 +9562,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 }
 
 
-bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
+bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
    if (is(e_matter_destroying))
@@ -9578,12 +9576,12 @@ bool interaction::call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIM
 
    _001OnTimer(&timer);
 
-   return SetTimer(uEvent, millisElapse, pfnTimer);
+   return SetTimer(uEvent, durationElapse, pfnTimer);
 
 }
 
 
-bool interaction::set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
+bool interaction::set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
    if (is_destroying())
@@ -9593,12 +9591,12 @@ bool interaction::set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTim
 
    }
 
-   return SetTimer(uEvent, millisElapse, pfnTimer);
+   return SetTimer(uEvent, durationElapse, pfnTimer);
 
 }
 
 
-bool interaction::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
+bool interaction::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
    if (m_pimpl == nullptr)
@@ -9615,7 +9613,7 @@ bool interaction::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTime
 
    }
 
-   return m_pimpl->SetTimer(uEvent, millisElapse, pfnTimer);
+   return m_pimpl->SetTimer(uEvent, durationElapse, pfnTimer);
 
 }
 
@@ -10176,7 +10174,7 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
    if (!is_equivalent(layout().sketch().display(), layout().design().display()))
    {
 
-      layout().m_millisLastSketchToDesign.Now();
+      layout().m_durationLastSketchToDesign.Now();
 
    }
 
@@ -10317,7 +10315,7 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
       if (m_ewindowflag & e_window_flag_loading_window_rect)
       {
 
-         INFO("window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
+         INFORMATION("window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
 
       }
       else
@@ -10383,7 +10381,7 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
       if (bDisplay)
       {
 
-         //output_debug_string(::str::from(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
+         //output_debug_string(__string(++g_i_prodevian_update_visual) + "updvis dpy machine\n");
 
       }
 
@@ -10579,24 +10577,24 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
    {
 
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("interaction::on_set_parent (xxxx1)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("interaction::on_set_parent (xxxx1)");
+      INFORMATION("");
+      INFORMATION("");
       return false;
 
    }
 
    if (::is_set(puserinteractionParent) && puserinteractionParent->is_descendant_of(this, true))
    {
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("interaction::on_set_parent (xxxx2)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("interaction::on_set_parent (xxxx2)");
+      INFORMATION("");
+      INFORMATION("");
 
       return false;
 
@@ -10613,12 +10611,12 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
       && m_puserinteractionParent != puserinteractionParent)
       {
 
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("interaction::on_set_parent (erase)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("interaction::on_set_parent (erase)");
+         INFORMATION("");
+         INFORMATION("");
 
          auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
          puiptraChildNew->erase_interaction(this);
@@ -10668,12 +10666,12 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
    catch (...)
    {
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("interaction::on_set_parent (xxxxxx3)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("interaction::on_set_parent (xxxxxx3)");
+      INFORMATION("");
+      INFORMATION("");
 
    }
 
@@ -10692,12 +10690,12 @@ bool interaction::on_set_parent(::user::primitive * puserprimitiveParent)
 bool interaction::on_add_child(::user::interaction * puserinteractionChild)
 {
 
-   INFO("-------------------------------------------------------------------");
-   INFO("");
-   INFO("");
-   INFO("interaction::on_add_child (3)");
-   INFO("");
-   INFO("");
+   INFORMATION("-------------------------------------------------------------------");
+   INFORMATION("");
+   INFORMATION("");
+   INFORMATION("interaction::on_add_child (3)");
+   INFORMATION("");
+   INFORMATION("");
 
    puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
@@ -12713,7 +12711,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    if (bSet && rectangleNew.is_set() && iMatchingMonitor >= 0)
    {
 
-      INFO("interaction::bestmonitor (%d, %d, %d, %d) activation %d", rectangleNew.left, rectangleNew.top, rectangleNew.right, rectangleNew.bottom, (i32) eactivation);
+      INFORMATION("interaction::bestmonitor (%d, %d, %d, %d) activation %d", rectangleNew.left, rectangleNew.top, rectangleNew.right, rectangleNew.bottom, (i32) eactivation);
 
       order(zorderParam);
 

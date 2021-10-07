@@ -435,7 +435,7 @@ string CScriptLex::getTokenStr(i32 token)
    }
 
    string msg;
-   msg = string("?[") + __str(token) + "]";
+   msg = string("?[") + __string(token) + "]";
    return msg;
 }
 
@@ -1653,7 +1653,7 @@ void tinyjs::execute(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += string("\n") + __str(i) + ": " + callstack[i];
+         msg += string("\n") + __string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
@@ -1695,7 +1695,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += "\n" + __str(i) + ": " + callstack[i];
+         msg += "\n" + __string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
@@ -2098,7 +2098,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (execute)
             {
                CScriptVarLink *a = axis(execute);
-               contents->addChild(__str(idx), a->payload);
+               contents->addChild(__string(idx), a->payload);
                CLEAN(a);
             }
             idx++;

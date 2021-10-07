@@ -14,7 +14,7 @@ namespace datetime
    visual::visual()
    {
 
-      ::datetime::time time = ::datetime::time::get_current_time();
+      ::datetime::time time = ::datetime::time::now();
       
       m_iYear = time.GetYear();
 
@@ -57,7 +57,7 @@ namespace datetime
       {
 
          // pszSchema can be ignored if the object has only one implemented schema
-         ::datetime::time timeNow = ::datetime::time::get_current_time();
+         ::datetime::time timeNow = ::datetime::time::now();
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
 
@@ -138,7 +138,7 @@ namespace datetime
                }
 
                pfile->raw_print("<td>");
-               pfile->raw_print(__str((int64_t)w));
+               pfile->raw_print(__string((int64_t)w));
                pfile->raw_print("</td>");
             }
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)

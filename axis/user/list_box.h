@@ -12,7 +12,7 @@ namespace user
 
 
       bool                                m_bCaseSensitiveMatch;
-      ::millis                            m_millisKillFocus;
+      ::duration                            m_durationKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
@@ -28,7 +28,7 @@ namespace user
       string_array                    m_straValue;
 
 
-      millis                                m_millisLastVisibilityChange;
+      ::duration                                m_durationLastVisibilityChange;
 
 
       list_box();

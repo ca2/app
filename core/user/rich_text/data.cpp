@@ -79,7 +79,7 @@ namespace user
 
          m_iSelEnd = 0;
 
-         m_millisCaretPeriod = 1000;
+         m_durationCaretPeriod = 1_s;
 
          defer_create_mutex();
 
@@ -1547,7 +1547,7 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = m_pedit->m_millisFocusStart.on_off(m_millisCaretPeriod);
+            bCaretOn = m_pedit->m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond());
 
          }
 

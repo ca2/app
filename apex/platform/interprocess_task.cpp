@@ -31,11 +31,11 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
    string strSource;
 
-   string strPid = __str(m_pcall->m_pinterprocessintercommunication->m_idApp);
+   string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_idApp);
 
    strSource.Format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
 
-   string str = "call " + __str(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
+   string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
    bool bSendOk = txc.send(str, m_pcall->m_duration);
 

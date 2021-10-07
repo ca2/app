@@ -88,7 +88,7 @@ bool thread::s_bAllocReady = false;
 thread::file_info::file_info()
 {
 
-   m_durationFileSharingViolationTimeout = seconds(2000);
+   m_durationFileSharingViolationTimeout = 5_minute;
 
 }
 
@@ -146,7 +146,7 @@ thread::thread()
 
    m_uThreadAffinityMask = 0;
 
-   m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
    defer_create_mutex();
 
@@ -442,7 +442,7 @@ void thread::term_thread()
 void thread::on_keep_alive()
 {
 
-   m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
 }
 
@@ -463,7 +463,7 @@ bool thread::is_alive()
    //if (!m_bRun)
    //   return false;
 
-   //if ((m_millisHeartBeat.elapsed()) > ((5000) * 91))
+   //if ((m_durationHeartBeat.elapsed()) > ((5000) * 91))
    // return false;
 
    return true;
@@ -665,7 +665,7 @@ bool thread::thread_step()
 
    ASSERT_VALID(this);
 
-   INFO("thread::run");
+   INFORMATION("thread::run");
 
    string strType = type_name();
 
@@ -708,7 +708,7 @@ bool thread::thread_step()
    if (m_bSimpleMessageLoop)
    {
 
-      TRACE("running thread with simple message loop");
+      INFORMATION("running thread with simple message loop");
 
       if(strType.contains("wave_player"))
       {
@@ -915,7 +915,7 @@ bool thread::pump_message()
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 
@@ -948,13 +948,13 @@ bool thread::pump_message()
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
-         TRACE(trace_category_appmsg, e_trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+         CATEGORY_INFORMATION(appmsg, type_name() << " thread::pump_message - Received e_message_quit.");
 
-         INFO("%s thread::pump_message - Received e_message_quit.\n", type_name());
+         INFORMATION(type_name() << " thread::pump_message - Received e_message_quit.");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -974,7 +974,7 @@ bool thread::pump_message()
          if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
          {
 
-            INFO("notify_icon");
+            INFORMATION("notify_icon");
 
          }
 
@@ -991,7 +991,7 @@ bool thread::pump_message()
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 
@@ -1014,7 +1014,7 @@ bool thread::pump_message()
    catch(...)
    {
 
-      INFO("... exception");
+      INFORMATION("... exception");
 
    }
 
@@ -1037,7 +1037,7 @@ bool thread::get_message()
 
       auto dwError = ::GetLastError();
 
-      INFO("ERROR thread::get_message GetMessage %d", dwError);
+      INFORMATION("ERROR thread::get_message GetMessage " << dwError);
 
 #endif
 
@@ -1106,9 +1106,9 @@ bool thread::raw_pump_message()
 
          }
 
-         TRACE(trace_category_appmsg, e_trace_level_information, "xx" + strType + " thread::raw_pump_message - Received e_message_quit");
+         CATEGORY_INFORMATION(appmsg, "xx" << strType << " thread::raw_pump_message - Received e_message_quit");
 
-         ::output_debug_string("xx" + strType + " thread::raw_pump_message - Received e_message_quit.\n");
+         INFORMATION("xx" << strType << " thread::raw_pump_message - Received e_message_quit.");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -1190,7 +1190,7 @@ bool thread::raw_pump_message()
    catch (...)
    {
 
-      TRACE("application::process_thread_message : ::extended::status processing application thread message (...)");
+      INFORMATION("application::process_thread_message : ::extended::status processing application thread message (...)");
 
    }
 
@@ -1256,7 +1256,7 @@ bool thread::defer_pump_message()
       if(m_message.m_id == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __str(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + string(type_name()) + " (" + __str((u64)::get_current_ithread()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + string(type_name()) + " (" + __string((u64)::get_current_ithread()) + ")\n\n\n");
 
          return false;
 
@@ -2121,7 +2121,7 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //      else
 //      {
 //
-//         auto millisDelay = duration.millis();
+//         auto millisDelay = duration.::duration();
 //
 //         auto dwStep = minimum(maximum(millisDelay / 10, 1), 100);
 //
@@ -2382,7 +2382,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
 //
 //      }
 //
-//      strId =  string(sz) + "(" + __str(uiLine) + ") :: forking_thread";
+//      strId =  string(sz) + "(" + __string(uiLine) + ") :: forking_thread";
 //
 //#endif
 //
@@ -2433,7 +2433,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
    if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
    {
 
-      INFO("create_thread success");
+      INFORMATION("create_thread success");
 
    }
 
@@ -2663,7 +2663,7 @@ void thread::__os_initialize()
 
 #ifndef WINDOWS
 
-   INFO("init_thread : %s", type_name());
+   INFORMATION("init_thread : %s", type_name());
 
 #endif
 
@@ -3826,21 +3826,16 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
    if (m_bAuraMessageQueue)
    {
 
-      if (!get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
+      auto estatus = get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+
+      if(estatus == status_quit)
       {
 
-         if (!is_finishing())
-         {
-
-            destroy();
-
-         }
-
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      return estatus;
 
    }
 
@@ -3905,7 +3900,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
       if (is_finishing())
       {
 
-         DWORD timeout = 100; // 100 milliseconds;
+         DWORD timeout = 100; // 100 ::durations;
 
          while (MsgWaitForMultipleObjects(0, NULL, FALSE, timeout, QS_ALLINPUT) != WAIT_OBJECT_0)
          {
@@ -3950,7 +3945,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 
             ::u32 dwLastError = ::GetLastError();
 
-            ::output_debug_string("Last Error : " + __str(dwLastError) + "\n");
+            ::output_debug_string("Last Error : " + __string(dwLastError) + "\n");
 
          }
          else
@@ -4336,7 +4331,7 @@ void thread::message_handler(::message::message * pmessage)
       if(m_nDisablePumpCount != 0)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error,"Error: thread::pump_message called when not permitted.\n");
+         CATEGORY_INFORMATION(appmsg, "Error: thread::pump_message called when not permitted.");
 
       }
 
@@ -4457,7 +4452,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 
       ::e_status estatus = ::get_last_status();
 
-      output_debug_string("thread::SetThreadPriority LastError = " + __str(estatus));
+      output_debug_string("thread::SetThreadPriority LastError = " + __string(estatus));
 
    }
 
@@ -4726,12 +4721,10 @@ thread_ptra::~thread_ptra()
 }
 
 
-bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
+bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psync)
 {
 
-   auto iTenths = millis / 100_ms;
-
-   auto millisRemaining = millis % 100_ms;
+   auto start = wait::now();
 
    while (true)
    {
@@ -4756,17 +4749,12 @@ bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
 
       }
 
-      if (iTenths <= 0)
+      auto waitNow = minimum(wait - start.elapsed(), 100_ms);
+
+      if (waitNow.is_null())
       {
 
          break;
-
-      }
-
-      if (cMessage <= 0)
-      {
-
-         sleep(100_ms);
 
       }
 
@@ -4775,7 +4763,7 @@ bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
 
          synchronous_lock synchronouslock(psync);
 
-         if (synchronouslock.wait(::millis()).succeeded())
+         if (synchronouslock.wait(waitNow).succeeded())
          {
 
             break;
@@ -4783,12 +4771,14 @@ bool thread::pump_sleep(const millis & millis, synchronization_object * psync)
          }
 
       }
+      else
+      {
 
-      iTenths--;
+         sleep(waitNow);
+
+      }
 
    }
-
-   sleep(millisRemaining);
 
    return ::task_get_run();
 
@@ -4880,12 +4870,21 @@ thread::file_info* thread::get_file_info()
 }
 
 
-::u32 thread::get_file_sharing_violation_timeout_total_milliseconds()
+::duration thread::get_file_sharing_violation_timeout()
 {
 
-   return get_file_info()->m_durationFileSharingViolationTimeout.u32_millis();
+   return get_file_info()->m_durationFileSharingViolationTimeout;
 
 }
+
+
+::duration thread::set_file_sharing_violation_timeout(const ::duration & duration)
+{
+
+   return get_file_info()->m_durationFileSharingViolationTimeout = duration;
+
+}
+
 
 
 bool thread::is_running() const
@@ -4908,12 +4907,6 @@ bool thread::is_running() const
 //}
 
 
-::duration thread::set_file_sharing_violation_timeout(::duration duration)
-{
-
-   return get_file_info()->m_durationFileSharingViolationTimeout = duration;
-
-}
 
 
 // please refer to object::finish verses/documentation

@@ -24,7 +24,7 @@ namespace user
 
       m_bClickDefaultMouseHandling = true;
 
-      m_millisAnimationPeriod = 300_ms;
+      m_durationAnimationPeriod = 300_ms;
 
       m_estyle = estyle;
 
@@ -373,7 +373,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double dRate = m_millisAnimationStart.period_rate(m_millisAnimationPeriod);
+      auto dRate = m_durationAnimationStart.integral_millisecond().period_rate(m_durationAnimationPeriod.integral_millisecond());
 
       if (dRate < 1.0)
       {
@@ -586,7 +586,7 @@ namespace user
 
          post_redraw();
 
-         if (m_millisAnimationStart.elapsed() > m_millisAnimationPeriod)
+         if (m_durationAnimationStart.elapsed() > m_durationAnimationPeriod)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -648,9 +648,9 @@ namespace user
 
       m_dPosition = 0.0;
 
-      m_millisAnimationStart.Now();
+      m_durationAnimationStart.Now();
 
-      SetTimer(e_timer_check_toggle_animation, 12);
+      SetTimer(e_timer_check_toggle_animation, 12_ms);
 
       _001ToggleCheck(::e_source_user);
 

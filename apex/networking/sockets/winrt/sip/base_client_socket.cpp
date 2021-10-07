@@ -172,7 +172,7 @@ namespace sockets
             }
             else
             {
-               m_iFirstTime= ::millis::now();
+               m_iFirstTime= ::duration::now();
             }
 #else
 
@@ -378,7 +378,7 @@ namespace sockets
 #ifndef _UWP
 
 
-         WARN("url_this", -1, "SSL not available");
+         WARNING("url_this", -1, "SSL not available");
 
 #endif
 

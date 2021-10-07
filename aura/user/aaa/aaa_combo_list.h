@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      ::millis                              m_millisKillFocus;
+      ::duration                              m_durationKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
@@ -23,7 +23,7 @@ namespace user
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
 
-      millis                                m_millisLastVisibilityChange;
+      ::duration                                m_durationLastVisibilityChange;
 
 
       list_box();

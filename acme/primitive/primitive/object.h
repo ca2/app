@@ -272,7 +272,7 @@ public:
    //virtual ::user::interaction * get_host_window();
 
 
-   virtual void dev_log(string str) const;
+   virtual void dev_log(string str);
 
 //   ::object& operator = (const ::payload& payload);
 
@@ -836,7 +836,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   string to_string() const override;
+   string get_string() const override;
 
 
    // for composition (ownership)

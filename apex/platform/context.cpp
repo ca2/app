@@ -84,7 +84,7 @@ namespace apex
       if (strBuild.length() != 19)
       {
 
-         sleep(100_ms * iRetry);
+         preempt(100_ms * iRetry);
 
          goto RetryBuildNumber;
 
@@ -585,7 +585,7 @@ namespace apex
 
          ::file::path pathMeta = pathCache + ".meta_information";
 
-         retry retry(millis(500), one_minute());
+         retry retry(500_ms, minute());
 
          if (!(path & ::file::e_flag_bypass_cache))
          {

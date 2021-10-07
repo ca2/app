@@ -127,7 +127,7 @@ namespace acme
 //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
-   extern ::nanos g_nanosFirst;
+   extern ::nanosecond g_nanosecondFirst;
 
 //plex_heap_alloc_array * g_pplexheapallocarray;
 

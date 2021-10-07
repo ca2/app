@@ -439,7 +439,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel
       if (iLine >= 1)
       {
 
-         strMessage += "(" + __str(iLine) + ")";
+         strMessage += "(" + __string(iLine) + ")";
 
       }
 

@@ -198,7 +198,7 @@ namespace apex
 
       __compose_new(m_pthreading);
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
+      ::datetime::time timeNow = ::datetime::time::now();
 
       auto pnode = node();
 
@@ -230,7 +230,7 @@ namespace apex
 
          auto cstr = str1.c_str();
 
-         INFO("%s", cstr);
+         INFORMATION(cstr);
 
       }
 
@@ -239,7 +239,8 @@ namespace apex
          map["abc"] = "2";
 
          string str2 = map["abc"];
-         INFO("%s", str2.c_str());
+         
+         INFORMATION(str2);
 
       }
 
@@ -404,7 +405,7 @@ namespace apex
 
       //m_purldepartment = nullptr;
 
-//      m_millisAfterApplicationFirstRequest = 0;
+//      m_durationAfterApplicationFirstRequest = 0;
 
       estatus = __compose_new(m_purldepartment);
 
@@ -1214,8 +1215,8 @@ namespace apex
 
          iPid = ::get_current_process_id();
 
-         printf("%s", ("Process PID: " + __str(iPid) + "\n").c_str());
-         output_debug_string("Process PID: " + __str(iPid) + "\n");
+         printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
+         output_debug_string("Process PID: " + __string(iPid) + "\n");
 
       }
 
@@ -1464,7 +1465,7 @@ pacmedir->create("/ca2core");
       if(!estatus)
       {
 
-         ERR("failed to initialize file-system");
+         ERROR("failed to initialize file-system");
 
          return estatus;
 
@@ -1475,13 +1476,13 @@ pacmedir->create("/ca2core");
       if (!estatus)
       {
 
-         ERR("failed to initialize dir-system");
+         ERROR("failed to initialize dir-system");
 
          return false;
 
       }
 
-      INFO("apex::session::process_init .3");
+      INFORMATION("apex::session::process_init .3");
 
       estatus = m_pfilesystem->init_system();
 
@@ -1615,14 +1616,14 @@ pacmedir->create("/ca2core");
 //
 //      }
 
-      estatus = m_ptracelog->process_init();
+      //estatus = m_ptracelog->process_init();
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         WARN("failed to process_init ::apex::log trace");
+         //WARNING("failed to process_init ::apex::log trace");
 
-      }
+      //}
 
       estatus = initialize_context();
 
@@ -1696,7 +1697,7 @@ pacmedir->create("/ca2core");
 
       //}
 
-      INFO("start");
+      INFORMATION("start");
 
 #ifdef WINDOWS_DESKTOP
 
@@ -1728,7 +1729,7 @@ pacmedir->create("/ca2core");
 //
 //#endif // LINUX
 
-      INFO("success");
+      INFORMATION("success");
 
 //      return true;
 
@@ -1953,43 +1954,43 @@ pacmedir->create("/ca2core");
 //      return estatus;
 //
 //   }
-
-
-   void system::get_time(micro_duration * pmicroduration)
-   {
-
-
-#ifdef _WIN32
-      
-      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-      
-      GetSystemTimeAsFileTime(&ft);
-      
-      u64 tt;
-      
-      ::memcpy_dup(&tt, &ft, sizeof(tt));
-
-      tt /= 10; // make it usecs
-      
-      pmicroduration->m_secs = (long)tt / 1'000'000;
-      
-      pmicroduration->m_micros = (long)tt % 1'000'000;
-
-#else
-
-      struct timeval timeval;
-
-      gettimeofday(&timeval, nullptr);
-
-      pmicroduration->m_secs = timeval.tv_sec;
-
-      pmicroduration->m_micros = timeval.tv_usec;
-
-#endif
-
-
-   }
-
+//
+//
+//   void system::get_time(micro_duration * pmicroduration)
+//   {
+//
+//
+//#ifdef _WIN32
+//      
+//      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+//      
+//      GetSystemTimeAsFileTime(&ft);
+//      
+//      u64 tt;
+//      
+//      ::memcpy_dup(&tt, &ft, sizeof(tt));
+//
+//      tt /= 10; // make it usecs
+//      
+//      pmicroduration->m_secs = (long)tt / 1'000'000;
+//      
+//      pmicroduration->m_micros = (long)tt % 1'000'000;
+//
+//#else
+//
+//      struct timeval timeval;
+//
+//      gettimeofday(&timeval, nullptr);
+//
+//      pmicroduration->m_secs = timeval.tv_sec;
+//
+//      pmicroduration->m_micros = timeval.tv_usec;
+//
+//#endif
+//
+//
+//   }
+//
 
    ::e_status system::init_thread()
    {
@@ -2662,12 +2663,12 @@ pacmedir->create("/ca2core");
    i32 system::_debug_logging_report(i32 iReportType, const ::string & pszFileName, i32 iLineNumber, const ::string & pszModuleName, const ::string & pszFormat,va_list list)
    {
 
-      if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
-      {
+      //if(!m_ptracelog || !m_ptracelog->m_bExtendedLog)
+      //{
 
-         return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
+      //   return ::apex::SimpleDebugReport(iReportType,pszFileName,iLineNumber,pszModuleName,pszFormat,list);
 
-      }
+      //}
 
       string str;
 
@@ -2722,12 +2723,14 @@ pacmedir->create("/ca2core");
 
       strPrint.replace("%","%%");
 
-      if(m_ptracelog)
-      {
+      //if(m_ptracelog)
+      //{
 
-         m_ptracelog->print(strPrint);
+      //   m_ptracelog->print(strPrint);
 
-      }
+      //}
+
+      INFORMATION(strPrint);
 
       if(iReportType == _CRT_ASSERT)
       {
@@ -2909,36 +2912,36 @@ pacmedir->create("/ca2core");
    ::e_status system::initialize_log(const ::string & pszId)
    {
 
-      if (m_ptracelog)
-      {
+      //if (m_ptracelog)
+      //{
 
-         return ::success_none;
+      //   return ::success_none;
 
-      }
+      //}
 
-      m_ptracelog = __create_new < ::apex::log >();
+      //m_ptracelog = __create_new < ::apex::log >();
 
-      if (!m_ptracelog)
-      {
+      //if (!m_ptracelog)
+      //{
 
-         return error_no_memory;
+      //   return error_no_memory;
 
-      }
+      //}
 
-      m_ptracelog->set_extended_log();
+      //m_ptracelog->set_extended_log();
 
-      auto estatus = m_ptracelog->initialize_log(e_trace_level_warning, pszId);
+      //auto estatus = m_ptracelog->initialize_log(e_trace_level_warning, pszId);
 
-      if(!estatus)
-      {
+      //if(!estatus)
+      //{
 
-         __release(m_ptracelog);
+      //   __release(m_ptracelog);
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      return estatus;
+      return ::success;
 
    }
 
@@ -2949,7 +2952,7 @@ pacmedir->create("/ca2core");
    void system::appa_load_string_table()
    {
 
-      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 
 //      for(i32 i = 0; i < appptra().get_size(); i++)
       //    {
@@ -2963,7 +2966,7 @@ pacmedir->create("/ca2core");
    void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
    {
 
-      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
       single_lock rsl(mutex());
 
       rsl.lock(10_s);
@@ -2980,7 +2983,7 @@ pacmedir->create("/ca2core");
    void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
    {
 
-      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
       single_lock rsl(mutex());
 
       rsl.lock(10_s);
@@ -3322,7 +3325,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      INFO("%s", ("::apex::system::on_request session = " + string(psession->type_name()) + "("+__str((iptr) psession)+")\n\n").c_str());
+      INFORMATION("::apex::system::on_request session = " << psession->type_name() << "(" << __string((iptr) psession) << ")");
 
       psession->do_request(pcreate);
 
@@ -3439,7 +3442,7 @@ pacmedir->create("/ca2core");
 //               continue;
 //            }
 //
-//            ::output_debug_string("library("+__str(i)+") : " + strLibraryId+"\n\n");
+//            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
 //
 //            map_application_library(strLibraryId);
 //
@@ -3485,27 +3488,27 @@ pacmedir->create("/ca2core");
 
       if(!strcmp(pszLibrary,"app_core_rdpclient"))
       {
-         TRACE("reach");
+         INFORMATION("reach");
       }
 
       if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
       {
-         TRACE("reach app_core_hellomultiverse");
+         INFORMATION("reach app_core_hellomultiverse");
       }
 
       if(!ansi_compare_ci(pszLibrary, "experience_lite"))
       {
-         TRACE("reach experience_lite");
+         INFORMATION("reach experience_lite");
       }
 
       if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
       {
-         TRACE("reach app_core_hellomultiverse");
+         INFORMATION("reach app_core_hellomultiverse");
       }
 
       if(!library.open(pszLibrary, true))
       {
-         ::output_debug_string("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
+         INFORMATION("::system::map_application_library Failed to open library :" << pszLibrary);
          return false;
       }
 
@@ -3668,7 +3671,7 @@ pacmedir->create("/ca2core");
 
       synchronous_lock synchronouslock(mutex());
 
-      m_millisCommandLineLast.Now();
+      m_durationCommandLineLast.Now();
 
       m_iCommandLineDelay = 1000;
 
@@ -4162,12 +4165,12 @@ pacmedir->create("/ca2core");
    }
 
 
-   void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
-   {
+   //void system::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+   //{
 
-      return m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+   //   return m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
-   }
+   //}
 
 
    ::e_status system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
@@ -4228,7 +4231,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
+      ::datetime::time timeNow = ::datetime::time::now();
 
       if (timeNow.GetMonth() == 12)
       {
@@ -4692,7 +4695,7 @@ pacmedir->create("/ca2core");
 
       auto pnode = psystem->node();
 
-      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
+      pnode->call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_minute, set);
 
 #endif
 
@@ -5785,7 +5788,7 @@ string get_bundle_app_library_name();
 
          //   int iDialogResult = pfuture->m_var;
 
-         //   ::output_debug_string("result " + __str(iDialogResult));
+         //   ::output_debug_string("result " + __string(iDialogResult));
 
          //}
 

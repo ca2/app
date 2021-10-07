@@ -256,7 +256,7 @@ namespace windows
       if (bTrace)
       {
 
-         INFO("\n" + str);
+         INFORMATION("\n" + str);
 
       }
 

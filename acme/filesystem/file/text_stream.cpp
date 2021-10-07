@@ -27,10 +27,10 @@ bool text_stream::is_stream_null()
 }
 
 
-string text_stream::to_string() const
+string text_stream::get_string() const
 {
    
-   return m_p->to_string();
+   return m_p->get_string();
    
 }
 
@@ -164,7 +164,7 @@ void text_stream::print_number(const ::string & str)
 void text_stream::write(i32 i)
 {
 
-   print_number(__str(i));
+   print_number(__string(i));
 
 }
 
@@ -172,7 +172,7 @@ void text_stream::write(i32 i)
 void text_stream::write(u32 u)
 {
 
-   print_number(__str(u));
+   print_number(__string(u));
 
 }
 
@@ -180,7 +180,7 @@ void text_stream::write(u32 u)
 void text_stream::write(i64 i)
 {
 
-   print_number(__str(i));
+   print_number(__string(i));
 
 }
 
@@ -188,7 +188,7 @@ void text_stream::write(i64 i)
 void text_stream::write(u64 u)
 {
 
-   print_number(__str(u));
+   print_number(__string(u));
 
 }
 
@@ -212,7 +212,7 @@ void text_stream::write(double d)
 
    str.Format("%f", d);
 
-   print_number(__str(d));
+   print_number(__string(d));
 
 }
 

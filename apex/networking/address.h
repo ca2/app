@@ -112,8 +112,8 @@ namespace net
 
 #endif
 
-      void from_string(const ::string & strAddress);
-      string to_string() const;
+      void parse_string(const ::string & strAddress);
+      string get_string() const;
 
 #ifdef BSD_STYLE_SOCKETS
       inline void SetFlowinfo(u32 x);

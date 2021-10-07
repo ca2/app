@@ -29,7 +29,7 @@ public:
    ::payload                              m_payload;
    ::i64                                  m_iUpdateSerial;
    bool                                   m_bModified;
-   ::millis                               m_millisSleep;
+   ::duration                               m_durationSleep;
 
    enum_subject                           m_esubject;
    __pointer(::matter)                    m_pmatter;

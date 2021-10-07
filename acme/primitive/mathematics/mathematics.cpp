@@ -171,7 +171,7 @@ namespace mathematics
 
          //   //int c = prime100k_count();
 
-         //   ::datetime::time time = ::datetime::time::get_current_time();
+         //   ::datetime::time time = ::datetime::time::now();
 
          //   int l = get_nanos() % c;
 
@@ -619,7 +619,7 @@ namespace apex
       i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::_get_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::get_integral_millisecond().m_i / 100) % 5000) % 1000;
 
       }
 

@@ -40,7 +40,7 @@ void set_osremote(os_remote * posremote)
 }
 
 
-::millis os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::id & id)
 {
 
    if (id == id_os_dark_mode)

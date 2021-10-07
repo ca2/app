@@ -1,9 +1,4 @@
 #include "framework.h"
-//#include <math.h>
-
-//#define SECOND_NANOS 1000
-
-
 
 
 void duration::normalize()
@@ -127,7 +122,7 @@ void duration::fset(long double d, double dNano)
 
    dNano += fmod(d, 1.0) * 1000.0 * 1000.0 * 1000.0;
 
-   raw_set((i64)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (i64)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
+   raw_set((time_t)(floor(d) + floor((dNano / (1000.0 * 1000.0 * 1000.0)))), (long)fmod(dNano, 1000.0 * 1000.0 * 1000.0));
 
 }
 
@@ -135,7 +130,7 @@ void duration::fset(long double d, double dNano)
 void duration::fset(long double d)
 {
 
-   raw_set((i64)floor(d), (i64)(fmod(d, 1.0) * 1'000'000'000.0));
+   raw_set((time_t)floor(d), (long)(fmod(d, 1.0) * 1'000'000'000.0));
 
 }
 
@@ -166,7 +161,7 @@ void duration::fset(long double d)
 //   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
 //   {
 //
-//      ::preempt(millisecond());
+//      ::preempt(::duration());
 //
 //   }
 //   else if (m_nanos.m_i > 20'000)
@@ -199,3 +194,45 @@ CLASS_DECL_ACME duration __random(const duration & d1, const duration & d2)
                                       (::i64)(((::i64)iSeconds < d2.m_iSecond) ? 999'999'999 : d2.m_iNanosecond)));
 
 }
+
+
+
+
+
+
+
+
+::duration duration::half() const
+{
+
+   auto nanosecond = (m_iSecond * 1'000'000'000 + m_iNanosecond);
+
+   auto iSecond = (::i64)(nanosecond / 1'000'000'000);
+
+   auto iNanosecond = (long)(nanosecond % 1'000'000'000);
+
+   return { e_raw, iSecond, iNanosecond };
+
+}
+
+
+
+class ::duration & duration::operator %= (const class ::duration & duration)
+{
+
+   auto nanosecondThis = m_iSecond * 1'000'000'000+ m_iNanosecond;
+
+   auto nanosecond = duration.m_iSecond * 1'000'000'000 + duration.m_iNanosecond;
+
+   nanosecondThis %= nanosecond;
+
+   m_iSecond = nanosecondThis / 1'000'000'000;
+
+   m_iNanosecond = nanosecondThis % 1'000'000'000;
+
+   return *this;
+
+}
+
+
+

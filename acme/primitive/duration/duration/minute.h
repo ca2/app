@@ -10,25 +10,23 @@ class CLASS_DECL_ACME minute :
 public:
 
 
-   minute() : minute(1) {}
+   using duration::duration;
 
 
+   minute() : duration(e_raw, 60) {}
    minute(const ::duration & duration) : ::duration(duration) {}
-
-
    template < primitive_integral INTEGRAL >
-   minute(INTEGRAL integral) : ::duration::duration(e_raw, integral * 60) {}
-
-
+   minute(INTEGRAL integral) : duration(::integral_minute(integral)) { }
    template < primitive_floating FLOATING >
-   minute(FLOATING floating) : ::duration(e_raw, (::i64)(floating * 60.0), (::i64)(fmod(floating * 60.0, 1.0) * 1'000'000'000.0)) {}
+   minute(FLOATING floating) : duration(::floating_minute(floating)) { }
 
+   bool done() const { return integral_minute() >= 1_min; }
 
 };
 
 
-inline minute operator "" _minute(unsigned long long int u) { return u; }
-inline minute operator "" _minute(long double d) { return d; }
+//inline ::minute first_minute() { return ::duration::first(); }
+inline ::minute get_minute() { return ::duration::now(); }
 
 
 

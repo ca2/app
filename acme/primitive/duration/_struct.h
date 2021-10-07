@@ -1,0 +1,50 @@
+// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSørensen!!
+#pragma once
+
+
+struct INTEGRAL_NANOSECOND { ::i64 m_i; };
+struct INTEGRAL_MICROSECOND { ::i64 m_i; };
+struct INTEGRAL_MILLISECOND { ::i64 m_i; };
+struct INTEGRAL_SECOND { ::i64 m_i; };
+struct INTEGRAL_MINUTE { ::i64 m_i; };
+struct INTEGRAL_HOUR { ::i64 m_i; };
+struct INTEGRAL_DAY { ::i64 m_i; };
+
+
+struct FLOATING_NANOSECOND { ::f64 m_d; };
+struct FLOATING_MICROSECOND { ::f64 m_d; };
+struct FLOATING_MILLISECOND { ::f64 m_d; };
+struct FLOATING_SECOND { ::f64 m_d; };
+struct FLOATING_MINUTE { ::f64 m_d; };
+struct FLOATING_HOUR { ::f64 m_d; };
+struct FLOATING_DAY { ::f64 m_d; };
+
+
+#define DEFAULT_MEMBER_COMPARISION(TYPE, MEMBER) \
+inline bool operator == (const TYPE & t1, const TYPE & t2) { return t1.MEMBER == t2.MEMBER; } \
+inline bool operator < (const TYPE & t1, const TYPE & t2) { return t1.MEMBER < t2.MEMBER; } \
+inline bool operator <= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER <= t2.MEMBER; } \
+inline bool operator > (const TYPE & t1, const TYPE & t2) { return t1.MEMBER > t2.MEMBER; } \
+inline bool operator >= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER >= t2.MEMBER; } \
+inline bool operator != (const TYPE & t1, const TYPE & t2) { return t1.MEMBER != t2.MEMBER; } 
+
+
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_NANOSECOND, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_MICROSECOND, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_MILLISECOND, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_SECOND, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_MINUTE, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_HOUR, m_i)
+DEFAULT_MEMBER_COMPARISION(INTEGRAL_DAY, m_i)
+
+
+DEFAULT_MEMBER_COMPARISION(FLOATING_NANOSECOND, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_MICROSECOND, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_MILLISECOND, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_SECOND, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_MINUTE, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_HOUR, m_d)
+DEFAULT_MEMBER_COMPARISION(FLOATING_DAY, m_d)
+
+
+

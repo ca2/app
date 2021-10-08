@@ -2,6 +2,9 @@
 #pragma once
 
 
+using duration_array = array < duration >;
+
+
 using integral_microsecond_array = array < integral_microsecond >;
 
 

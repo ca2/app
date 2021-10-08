@@ -103,31 +103,17 @@ public:
    integral_duration operator -(INTEGRAL integral) const { return BASE_TYPE(this->m_i - integral); }
 
 
-   template < primitive_integral INTEGRAL >
    integral_duration operator %(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i % duration.m_i); }
-
-   template < primitive_integral INTEGRAL >
    integral_duration operator /(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i / duration.m_i); }
-
-   template < primitive_integral INTEGRAL >
    integral_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
-
-   template < primitive_integral INTEGRAL >
    integral_duration operator +(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i + duration.m_i); }
-
-   template < primitive_integral INTEGRAL >
    integral_duration operator -(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i - duration.m_i); }
 
    bool operator ==(const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
-
    bool operator >(const BASE_TYPE & duration) const { return this->m_i > duration.m_i; }
-
    bool operator >=(const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
-
    bool operator <(const BASE_TYPE & duration) const { return this->m_i < duration.m_i; }
-
    bool operator <=(const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
-
    bool operator !=(const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
 
 

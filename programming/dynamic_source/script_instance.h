@@ -11,7 +11,7 @@ namespace dynamic_source
    public:
 
 
-      u32                                 m_dwCreate;
+      ::duration                m_durationCreate;
 
 
       script_instance();

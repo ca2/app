@@ -33,7 +33,7 @@ inline floating_second get_floating_second() { return FLOATING_SECOND(get_floati
 
 
 template <  >
-floating_second now<floating_second>()
+inline floating_second now<floating_second>()
 {
 
    return get_floating_second();

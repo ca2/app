@@ -614,7 +614,7 @@ namespace introjection
 
       single_lock synchronouslock(plibrary->mutex());
 
-      if (!synchronouslock.lock(::duration(0)))
+      if (!synchronouslock.lock(0_s))
       {
 
          synchronouslock.lock();

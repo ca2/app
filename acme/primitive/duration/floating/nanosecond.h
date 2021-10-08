@@ -32,7 +32,7 @@ inline floating_nanosecond get_floating_nanosecond() { return FLOATING_NANOSECON
 
 
 template <  >
-floating_nanosecond now<floating_nanosecond>()
+inline floating_nanosecond now<floating_nanosecond>()
 {
 
    return get_floating_nanosecond();

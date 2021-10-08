@@ -97,3 +97,15 @@ DURATION now()
 
 #include "duration/_.h"
 
+
+
+template < typename DURATION >
+inline integral_duration < DURATION > & integral_duration < DURATION >::Now()
+{ 
+   
+   return operator=(::now < integral_duration >()); 
+
+}
+
+
+

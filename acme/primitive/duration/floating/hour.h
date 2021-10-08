@@ -33,7 +33,7 @@ inline floating_hour get_floating_hour() { return FLOATING_HOUR(get_floating_nan
 
 
 template <  >
-floating_hour now<floating_hour>()
+inline floating_hour now<floating_hour>()
 {
 
    return get_floating_hour();

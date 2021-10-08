@@ -48,10 +48,10 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & integralnanosecond)
 thread_local nanosecond_timer t_nanosecondtimer;
 
 
-CLASS_DECL_ACME void precision_wait(const integral_nanosecond & integralnanosecond)
+CLASS_DECL_ACME void precision_wait(const duration & duration)
 {
 
-   t_nanosecondtimer.wait(integralnanosecond);
+   t_nanosecondtimer.wait(duration);
 
 }
 

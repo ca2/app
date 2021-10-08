@@ -9,6 +9,10 @@ class integral_duration :
 public:
 
 
+   using BASE_DURATION = DURATION;
+   using BASE_TYPE = BASE_DURATION::BASE_TYPE;
+
+
    using DURATION::DURATION;
 
 
@@ -19,8 +23,17 @@ public:
 
    }
 
+   integral_duration(enum_now)
+   {
 
-   //operator ::i64() const { return this->m_i; }
+      Now();
+
+   }
+
+
+   inline integral_duration & Now();
+
+   static inline integral_duration now() { return e_now; }
 
 
    inline integral_duration elapsed(const integral_duration & durationStop = ::now < integral_duration >()) const
@@ -75,31 +88,47 @@ public:
 
 
    template < primitive_integral INTEGRAL > 
-   integral_duration operator %(INTEGRAL integral) const { return DURATION::BASE_TYPE(this->m_i % integral); }
+   integral_duration operator %(INTEGRAL integral) const { return BASE_TYPE(this->m_i % integral); }
 
    template < primitive_integral INTEGRAL > 
-   integral_duration operator /(INTEGRAL integral) const { return DURATION::BASE_TYPE(this->m_i / integral); }
+   integral_duration operator /(INTEGRAL integral) const { return BASE_TYPE(this->m_i / integral); }
 
    template < primitive_integral INTEGRAL > 
-   integral_duration operator *(INTEGRAL integral) const { return DURATION::BASE_TYPE(this->m_i * integral); }
+   integral_duration operator *(INTEGRAL integral) const { return BASE_TYPE(this->m_i * integral); }
 
    template < primitive_integral INTEGRAL > 
-   integral_duration operator +(INTEGRAL integral) const { return DURATION::BASE_TYPE(this->m_i + integral); }
+   integral_duration operator +(INTEGRAL integral) const { return BASE_TYPE(this->m_i + integral); }
 
    template < primitive_integral INTEGRAL > 
-   integral_duration operator -(INTEGRAL integral) const { return DURATION::BASE_TYPE(this->m_i - integral); }
+   integral_duration operator -(INTEGRAL integral) const { return BASE_TYPE(this->m_i - integral); }
 
-   bool operator ==(const integral_duration & duration) const { return this->m_i == duration.m_i; }
 
-   bool operator >(const integral_duration & duration) const { return this->m_i > duration.m_i; }
+   template < primitive_integral INTEGRAL >
+   integral_duration operator %(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i % duration.m_i); }
 
-   bool operator >=(const integral_duration & duration) const { return this->m_i >= duration.m_i; }
+   template < primitive_integral INTEGRAL >
+   integral_duration operator /(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i / duration.m_i); }
 
-   bool operator <(const integral_duration & duration) const { return this->m_i < duration.m_i; }
+   template < primitive_integral INTEGRAL >
+   integral_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
 
-   bool operator <=(const integral_duration & duration) const { return this->m_i <= duration.m_i; }
+   template < primitive_integral INTEGRAL >
+   integral_duration operator +(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i + duration.m_i); }
 
-   bool operator !=(const integral_duration & duration) const { return this->m_i != duration.m_i; }
+   template < primitive_integral INTEGRAL >
+   integral_duration operator -(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i - duration.m_i); }
+
+   bool operator ==(const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
+
+   bool operator >(const BASE_TYPE & duration) const { return this->m_i > duration.m_i; }
+
+   bool operator >=(const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
+
+   bool operator <(const BASE_TYPE & duration) const { return this->m_i < duration.m_i; }
+
+   bool operator <=(const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
+
+   bool operator !=(const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
 
 
    string get_string() const
@@ -120,7 +149,7 @@ template < primitive_floating FLOATING, typename DURATION >
 integral_duration < DURATION > operator * (FLOATING floating, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE) (floating * integralduration.m_i);
+   return (DURATION::BASE_TYPE) (DURATION::BASE_TYPE::BASE_TYPE)(floating * integralduration.m_i);
 
 }
 
@@ -129,7 +158,7 @@ template < primitive_integral INTEGRAL, typename DURATION >
 integral_duration < DURATION > operator * (INTEGRAL integral, const integral_duration < DURATION > & integralduration)
 {
 
-   return (DURATION::BASE_TYPE)(integral * integralduration.m_i);
+   return (DURATION::BASE_TYPE)(DURATION::BASE_TYPE::BASE_TYPE)(integral * integralduration.m_i);
 
 }
 

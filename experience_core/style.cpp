@@ -1485,7 +1485,7 @@ namespace experience
                {
 
                   pbar->payload("tracking_on") = true;
-                  pbar->payload("tracking_start_time") = time() + dRate * periodFadeIn;
+                  pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
                   pbar->payload("tracking_fade_in") = true;
                   pbar->payload("tracking_fade_out") = false;
                   pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1501,7 +1501,7 @@ namespace experience
 
                   pbar->payload("tracking_fade_in") = false;
                   pbar->payload("tracking_fade_out") = true;
-                  pbar->payload("tracking_start_time") = time() + (1.0 - dRate) * periodFadeOut;
+                  pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
 
                }
 

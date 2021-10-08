@@ -31,7 +31,7 @@ inline floating_millisecond get_floating_millisecond() { return FLOATING_MILLISE
 
 
 template <  >
-floating_millisecond now<floating_millisecond>()
+inline floating_millisecond now<floating_millisecond>()
 {
 
    return get_floating_millisecond();

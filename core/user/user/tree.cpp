@@ -362,7 +362,7 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      auto start = time();
+      auto start = duration(e_now);
 
       ::rectangle_i32 rectangle;
 

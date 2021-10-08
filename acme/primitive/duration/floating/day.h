@@ -32,7 +32,7 @@ inline floating_day get_floating_day() { return FLOATING_DAY(get_floating_nanose
 
 
 template <  >
-floating_day now<floating_day>()
+inline floating_day now<floating_day>()
 {
 
    return get_floating_day();

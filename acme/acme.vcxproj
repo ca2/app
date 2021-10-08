@@ -1846,6 +1846,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\collection\base_enum.h" />
     <ClInclude Include="primitive\collection\bitset.h" />
     <ClInclude Include="primitive\collection\bit_array.h" />
+    <ClInclude Include="primitive\collection\duration.h" />
     <ClInclude Include="primitive\collection\insert_iterator.h" />
     <ClInclude Include="primitive\collection\pointer_array_process.h" />
     <ClInclude Include="primitive\collection\set1.h" />

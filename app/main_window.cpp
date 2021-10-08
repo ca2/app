@@ -118,7 +118,7 @@ namespace app_app
 
          }
 
-         double time = m_durationStart.elapsed().floating_second();
+         double time = m_durationStart.elapsed().floating_second().m_d;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
@@ -135,13 +135,13 @@ namespace app_app
          if (dSourcePeriod < dNewPeriod)
          {
 
-            dNewPeriod -= dNewPeriod * 0.1;
+            dNewPeriod -= dNewPeriod * 0.01;
 
          }
          else if (dSourcePeriod > dNewPeriod)
          {
 
-            dNewPeriod += dNewPeriod * 0.1;
+            dNewPeriod += dNewPeriod * 0.01;
 
          }
 

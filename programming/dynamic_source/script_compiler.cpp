@@ -405,7 +405,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = __string(::get_millis() % 1000);
+      strMillis = __string(::get_integral_millisecond().m_i % 1000);
 
       ::ansi_zero_pad(strMillis, 3);
 
@@ -920,7 +920,7 @@ pacmedir->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = ostreamError.to_string();
+            pscript->m_strError = ostreamError.get_string();
 
             return;
 
@@ -1065,7 +1065,7 @@ pacmedir->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = pscript->m_pfileError->to_string();
+            pscript->m_strError = pscript->m_pfileError->get_string();
 
             pscript->m_strError.trim();
 
@@ -3006,7 +3006,7 @@ ch_else:
 
                string strScriptError;
 
-               strScriptError = pdsscript->m_pfileError->to_string();
+               strScriptError = pdsscript->m_pfileError->get_string();
 
                m_pmanager->m_strPersistentError += strScriptError;
 

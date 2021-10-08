@@ -141,7 +141,7 @@ namespace app_message_box
 
          }
 
-         double time = m_durationStart.elapsed().floating_second();
+         double time = m_durationStart.elapsed().floating_second().m_d;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 

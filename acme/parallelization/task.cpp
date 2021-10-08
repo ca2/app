@@ -942,10 +942,17 @@ bool task::task_sleep(const class ::wait & wait)
    
    auto waitStart = ::wait::now();
    
-   while(task_get_run() && waitStart.elapsed() < wait)
+   while(task_get_run())
    {
-      
-      auto waitStep = minimum(wait, 100_ms);
+
+      auto waitStep = minimum(wait - waitStart.elapsed(), 100_ms);
+
+      if (waitStep.is_null())
+      {
+
+         return true;
+
+      }
       
       ::preempt(waitStep);
       

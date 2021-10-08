@@ -254,7 +254,7 @@ namespace universal_windows
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(::duration ::duration, u32 dwFlags);
+      virtual bool AnimateWindow(const ::duration & duration, u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 

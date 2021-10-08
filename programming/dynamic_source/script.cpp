@@ -476,7 +476,7 @@ namespace dynamic_source
 
       pinstance->m_pscript2 = this;
 
-      pinstance->m_dwCreate = ::duration::now().u32();
+      pinstance->m_durationCreate.Now();
 
       if (m_bNew)
       {
@@ -532,7 +532,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            sleep((::duration)__random(2000, 4000));
+            sleep((::duration)__random(2._s, 4._s));
 
          }
 

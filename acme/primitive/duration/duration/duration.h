@@ -112,16 +112,15 @@ public:
    void Zero() {*this=zero();}
    void Null() { Zero(); }
 
-   //duration & operator = (const ::second & second);
-   //duration & operator = (const ::duration & duration);
-   //duration & operator = (const ::microsecond & microsecond);
-   //duration & operator = (const ::nanosecond & nanosecond);
    class ::duration & operator = (const class ::duration & duration);
 
    inline bool durationout(const class ::duration & duration);
    void normalize();
 
    inline operator bool() const;
+
+
+   inline double operator() ()const { return floating_second().m_d; }
 
 
    operator const timespec * () const { return (const timespec *)this; }
@@ -224,6 +223,7 @@ public:
 
 
    class ::duration & operator %= (const class ::duration & duration);
+   class ::duration operator % (const class ::duration & duration) const;
 
 
    inline time_t GetTimeSpan() const;
@@ -251,6 +251,9 @@ public:
    ::floating_millisecond floating_millisecond() const { return FLOATING_MILLISECOND(((::f64)integral_nanosecond().m_i) / 1'000'000.0); }
    ::floating_microsecond floating_microsecond() const { return FLOATING_MICROSECOND(((::f64)integral_nanosecond().m_i) / 1'000.0); }
    ::floating_nanosecond floating_nanosecond() const { return FLOATING_NANOSECOND((::f64)integral_nanosecond().m_i); }
+
+
+   ::i32 millisecond() const { return integral_millisecond().m_i % 1'000; }
 
 
    inline bool operator == (const class ::duration & duration) const { return m_iSecond == duration.m_iSecond && m_iNanosecond == duration.m_iSecond; }
@@ -313,7 +316,7 @@ public:
 };
 
 
-inline ::duration time() { return e_now; }
+inline double time() { return duration(e_now).floating_second().m_d; }
 
 
 inline duration::duration(enum_raw, ::time_t iSeconds, long iNanoseconds)
@@ -569,4 +572,57 @@ inline duration::operator class ::wait() const
 
 
 
+class CLASS_DECL_ACME frequency
+{
+public:
 
+   
+   double m_d; // Hz
+
+
+};
+
+
+
+template < primitive_floating FLOATING >
+class ::frequency operator / (FLOATING d, const ::duration & duration)
+{
+
+   auto nanosecond = (duration.m_iSecond * 1'000'000'000.0 + duration.m_iNanosecond);
+
+   return d * 1'000'000'000.0 / nanosecond;
+
+}
+
+
+template < primitive_floating FLOATING >
+class ::duration operator * (FLOATING d, const ::duration & duration)
+{
+
+   auto nanosecond = d * (duration.m_iSecond * 1'000'000'000.0 + duration.m_iNanosecond);
+
+   return { e_raw, (::i64)(nanosecond / 1'000'000'000.0), (long)fmod(nanosecond, 1'000'000'000.0) };
+
+}
+
+
+template < primitive_integral INTEGRAL >
+class ::frequency operator / (INTEGRAL i, const ::duration & duration)
+{
+
+   auto nanosecond = (duration.m_iSecond * 1'000'000'000 + duration.m_iNanosecond);
+
+   return (double)(i * 1'000'000'000) / (double)nanosecond;
+
+}
+
+
+template < primitive_integral INTEGRAL >
+class ::duration operator * (INTEGRAL i, const ::duration & duration)
+{
+
+   auto nanosecond = i * (duration.m_iSecond * 1'000'000'000 + duration.m_iNanosecond);
+
+   return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
+
+}

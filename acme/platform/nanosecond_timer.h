@@ -17,7 +17,7 @@ public:
    ~nanosecond_timer();
 
 
-   void wait(const ::integral_nanosecond & integralnanosecond);
+   void wait(const ::duration & duration);
 
 
    void close_timer();

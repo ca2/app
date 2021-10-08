@@ -31,19 +31,19 @@ nanosecond_timer::~nanosecond_timer()
 }
 
 
-void nanosecond_timer::wait(const ::integral_nanosecond & integralnanosecond)
+void nanosecond_timer::wait(const ::duration & duration)
 {
 
 #ifdef WINDOWS
 
    LARGE_INTEGER li = {};
 
-   li.QuadPart = -integralnanosecond.m_i / 100LL;
+   li.QuadPart = -duration.integral_nanosecond().m_i / 100LL;
 
    if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
    {
 
-      ::preempt(integralnanosecond);
+      ::preempt(duration);
 
    }
    else

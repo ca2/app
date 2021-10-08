@@ -1425,7 +1425,7 @@ namespace dynamic_source
       if(ppair == nullptr)
          return false;
 
-      if (ppair->element2().m_tick.elapsed().seconds() > 60)
+      if (ppair->element2().m_tick.elapsed() > 60_s)
       {
 
          return false;

@@ -50,7 +50,7 @@ CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & nanosecond);
 //inline void preempt(const class ::wait & wait) { preempt(integral_millisecond(wait.m_)); }
 
 
-CLASS_DECL_ACME void precision_wait(const ::integral_nanosecond & second);
+CLASS_DECL_ACME void precision_wait(const ::duration & duration);
 
 
 #include "department.h"

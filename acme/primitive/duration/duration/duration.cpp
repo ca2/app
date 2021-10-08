@@ -235,4 +235,16 @@ class ::duration & duration::operator %= (const class ::duration & duration)
 }
 
 
+class ::duration duration::operator % (const class ::duration & duration) const
+{
+
+   ::duration durationResult(*this);
+
+   durationResult %= duration;
+
+   return durationResult;
+
+}
+
+
 

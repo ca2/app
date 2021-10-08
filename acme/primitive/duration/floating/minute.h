@@ -33,7 +33,7 @@ inline floating_minute get_floating_minute() { return FLOATING_MINUTE(get_floati
        
 
 template <  >
-floating_minute now<floating_minute>()
+inline floating_minute now<floating_minute>()
 {
 
    return get_floating_minute();

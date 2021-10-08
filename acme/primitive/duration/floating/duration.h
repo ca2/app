@@ -9,6 +9,10 @@ class floating_duration :
 public:
 
 
+   using BASE_DURATION = DURATION;
+   using BASE_TYPE = BASE_DURATION::BASE_TYPE;
+
+
    using DURATION::DURATION;
 
 
@@ -85,17 +89,34 @@ public:
    template < primitive_floating FLOATING >
    floating_duration operator -(FLOATING floating) const { return DURATION::BASE_TYPE(this->m_d - floating); }
 
-   bool operator ==(const floating_duration & duration) const { return this->m_d == duration.m_d; }
 
-   bool operator >(const floating_duration & duration) const { return this->m_d > duration.m_d; }
+   template < primitive_floating FLOATING >
+   floating_duration operator %(const BASE_TYPE & duration) const { return BASE_TYPE(fmod(this->m_d, duration.m_d)); }
 
-   bool operator >=(const floating_duration & duration) const { return this->m_d >= duration.m_d; }
+   template < primitive_floating FLOATING >
+   floating_duration operator /(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d / duration.m_d); }
 
-   bool operator <(const floating_duration & duration) const { return this->m_d < duration.m_d; }
+   template < primitive_floating FLOATING >
+   floating_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d * duration.m_d); }
 
-   bool operator <=(const floating_duration & duration) const { return this->m_d <= duration.m_d; }
+   template < primitive_floating FLOATING >
+   floating_duration operator +(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d + duration.m_d); }
 
-   bool operator !=(const floating_duration & duration) const { return this->m_d != duration.m_d; }
+   template < primitive_floating FLOATING >
+   floating_duration operator -(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d - duration.m_d); }
+
+
+   bool operator ==(const BASE_TYPE & duration) const { return this->m_d == duration.m_d; }
+
+   bool operator >(const BASE_TYPE & duration) const { return this->m_d > duration.m_d; }
+
+   bool operator >=(const BASE_TYPE & duration) const { return this->m_d >= duration.m_d; }
+
+   bool operator <(const BASE_TYPE & duration) const { return this->m_d < duration.m_d; }
+
+   bool operator <=(const BASE_TYPE & duration) const { return this->m_d <= duration.m_d; }
+
+   bool operator !=(const BASE_TYPE & duration) const { return this->m_d != duration.m_d; }
 
 
 };

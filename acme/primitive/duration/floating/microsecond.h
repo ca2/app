@@ -34,7 +34,7 @@ inline floating_microsecond get_floating_microsecond() { return FLOATING_MICROSE
 
 
 template <  >
-floating_microsecond now<floating_microsecond>()
+inline floating_microsecond now<floating_microsecond>()
 {
 
    return get_floating_microsecond();

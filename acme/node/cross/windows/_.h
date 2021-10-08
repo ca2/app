@@ -328,15 +328,15 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
-//typedef bool task_sleep(::duration ::duration, ::synchronization_object* psync);
+//typedef bool task_sleep(const ::duration & duration, ::synchronization_object* psync);
 //using PFN_task_sleep = task_sleep*;
 
 CLASS_DECL_ACME bool __simple_task_sleep();
 CLASS_DECL_ACME bool __simple_task_sleep(class ::wait wait);
 CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
-CLASS_DECL_ACME bool __simple_task_sleep(::duration ::duration, ::synchronization_object* psync);
-CLASS_DECL_ACME bool task_sleep(::duration ::duration = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
+CLASS_DECL_ACME bool __simple_task_sleep(const ::duration & duration, ::synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef __cplusplus_winrt
@@ -379,7 +379,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
 
 CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration, synchronization_object* psync);
 
-CLASS_DECL_ACME bool task_sleep(::duration ::duration, synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(const ::duration & duration, synchronization_object* psync);
 
 
 #include "sync_routine.h"

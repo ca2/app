@@ -99,7 +99,7 @@ namespace sockets
 
       }
 
-      fatal() << "Bind: name resolution of interface name failed";
+      FATAL("Bind: name resolution of interface name failed");
 
       return -1;
 
@@ -119,7 +119,7 @@ namespace sockets
          return Bind(ad, protocol, depth);
       }
 
-      fatal() << "Bind: name resolution of interface name failed";
+      FATAL("Bind: name resolution of interface name failed");
 
       return -1;
 
@@ -225,7 +225,7 @@ namespace sockets
       if (bind(s, ad.sa(), ad.sa_len()) == -1)
       {
 
-         fatal() << "bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
          
          close_socket(s);
 
@@ -236,7 +236,7 @@ namespace sockets
       if (listen(s, depth) == -1)
       {
 
-         fatal() << "listen" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("listen" << Errno << ", " << bsd_socket_error(Errno));
 
          close_socket(s);
 
@@ -299,7 +299,7 @@ namespace sockets
       if (socket_handler()->get_count() >= FD_SETSIZE)
       {
 
-         fatal() << "accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached";
+         FATAL("accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached");
 
          close_socket(a_s);
 

@@ -102,7 +102,7 @@ thread::file_info::~file_info()
 thread::thread()
 {
 
-   m_bBranchHandling = false;
+   //m_bBranchHandling = false;
 
    m_bMessageThread = true;
        
@@ -804,23 +804,31 @@ bool thread::pump_runnable()
 }
 
 
-::e_status thread::post(const ::routine& routine)
-{
+//::e_status thread::post(const ::routine& routine)
+//{
+//
+//   if (!m_bBranchHandling)
+//   {
+//
+//      m_bBranchHandling = true;
+//
+//      MESSAGE_LINK(e_message_branch, this, this, &::thread::on_message_branch);
+//
+//   }
+//
+//   post_message(e_message_branch, 0, routine.m_p);
+//
+//   return ::success;
+//
+//}
 
-   if (!m_bBranchHandling)
-   {
 
-      m_bBranchHandling = true;
-
-      MESSAGE_LINK(e_message_branch, this, this, &::thread::on_message_branch);
-
-   }
-
-   post_message(e_message_branch, 0, routine.m_p);
-
-   return ::success;
-
-}
+//::e_status thread::send(const ::routine & routine, const ::duration & durationTimeout)
+//{
+//
+//   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+//
+//}
 
  
 void thread::on_message_branch(::message::message* pmessage)
@@ -1616,7 +1624,7 @@ void thread::task_erase(::task * ptask)
 ::e_status thread::destroy()
 {
 
-   call_routine(DESTROY_ROUTINE);
+   call_routines_with_id(DESTROY_ROUTINE);
 
    string strType = type_name();
 
@@ -2959,33 +2967,35 @@ namespace apex
 } // namespace apex
 
 
-bool thread::post_task(const ::routine & routine)
-{
+//::e_status thread::post(const ::routine & routine)
+//{
+//
+//   if (!routine)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   m_routinea.add(routine);
+//
+//   kick_idle();
+//
+//   return true;
+//
+//}
 
-   if (!routine)
-   {
 
-      return false;
-
-   }
-
-   synchronous_lock synchronouslock(mutex());
-
-   m_routinea.add(routine);
-
-   kick_idle();
-
-   return true;
-
-}
-
-
-bool thread::send_task(const ::routine & routine, ::duration durationTimeout)
-{
-
-   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
-
-}
+//::e_status thread::send_routine(const ::routine & routine, const ::duration & durationTimeout)
+//{
+//
+//   return __sync_routine(durationTimeout, this, &thread::post, routine);
+//
+//   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+//
+//}
 
 
 bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)

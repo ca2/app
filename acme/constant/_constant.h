@@ -38,12 +38,8 @@ enum enum_factory : ::i64
 #define OK SUCCESS
 
 
-
-
-
 #define NONE_ID 0
 #define INVALID_ID ((::u64) -1)
-
 
 
 //#define e_object_success (1 << 0)
@@ -85,12 +81,9 @@ enum enum_factory : ::i64
 #define FIRST_PANE 18
 
 
-
-
-
-
 enum enum_library_main
 {
+
 
    e_library_main_none = 0,
    e_library_main_any = 1 << 0,
@@ -99,15 +92,6 @@ enum enum_library_main
    e_library_main_thread_attach = 1 << 3,
    e_library_main_thread_detach = 1 << 4,
 
-};
-
-
-
-
-enum enum_default_initialization
-{
-
-   e_default_initialization
 
 };
 
@@ -169,11 +153,13 @@ enum enum_subject
    e_subject_close_app,
    e_subject_switch,
 
+
 };
 
 
 enum enum_dialog_result
 {
+
 
    e_dialog_result_none = 0,
    e_dialog_result_ok = 1,
@@ -189,11 +175,14 @@ enum enum_dialog_result
    e_dialog_result_continue = 11,
    e_dialog_result_timeout = 32000,
 
+
 };
 
 
 enum enum_type
 {
+
+
    /// special meaning
    e_type_parareturn = 0,
    e_type_new,
@@ -274,10 +263,14 @@ enum enum_type
    e_type_enum_check,
    e_type_enum_flag
 
+
 };
+
 
 enum enum_trace_category
 {
+
+
    e_trace_category_general,
    e_trace_category_first = e_trace_category_general,
    e_trace_category_com,
@@ -320,10 +313,13 @@ enum enum_trace_category
    e_trace_category_prodevian, // screen update and window layout
    e_trace_category_count
 
+
 };
+
 
 enum enum_trace_level
 {
+
 
    e_trace_level_none,
    e_trace_level_information, // info
@@ -332,10 +328,13 @@ enum enum_trace_level
    e_trace_level_fatal,       // fatal
    e_trace_level_count
 
+
 };
+
 
 enum enum_object : i64
 {
+
 
    e_object_none,
    e_object_success = 1 << 0,
@@ -363,6 +362,7 @@ enum enum_object : i64
 #endif
    e_object_synchronous = 1 << 21,
 
+
 };
 
 
@@ -372,9 +372,9 @@ enum enum_object : i64
 #include "status.h"
 
 
-
 enum enum_priority
 {
+
 
    e_priority_none = -1,
    e_priority_idle = 1,
@@ -385,30 +385,37 @@ enum enum_priority
    e_priority_highest,
    e_priority_time_critical = 99
 
+
 };
+
 
 //bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_succeeded(i64 i);
 //bool CLASS_DECL_ACME failed(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_failed(i64 i);
 
-enum e_thread
+
+enum enum_thread
 {
 
-   thread_none,
-   thread_thread,
-   thread_service,
-   thread_application,
-   thread_session,
-   thread_system,
+   
+   e_thread_none,
+   e_thread_thread,
+   e_thread_service,
+   e_thread_application,
+   e_thread_session,
+   e_thread_system,
+
 
 };
 
 
 enum enum_timer : i64;
 
+
 enum enum_boolean
 {
+
 
    // negative state... bad/failure states
 
@@ -424,25 +431,6 @@ enum enum_boolean
 
    // positive state... good/success states
 
-};
-
-
-
-
-// enum enum_timer
-// {
-
-//    e_clock_none,
-//    e_timer_slow, // indicative usage: few minutes
-//    e_clock_fast, // indicative usage: few seconds or big second fraction
-
-// };
-
-
-enum enum_flush
-{
-
-   e_flush,
 
 };
 
@@ -469,30 +457,18 @@ enum e_callstack :
    i64
 {
 
+
    callstack_none,
    callstack_exception = 1 << 0,
    callstack_fork_global = 1 << 1,
 
-};
-
-
-//#define __epromisse(e, mod) ((e_promisse)((i64)(promisse_##e) + (i64) mod))
-
-
-
-
-
-
-enum e_unit_size
-{
-
-   unit_size,
 
 };
 
 
 enum enum_display
 {
+
 
    e_display_undefined = MINI32,
    e_display_notify_icon,
@@ -533,11 +509,13 @@ enum enum_display
 
    e_display_command_mask = 0xffff,
 
+
 };
 
 
 enum enum_activation
 {
+
 
    e_activation_default = 0,
    e_activation_no_activate = 1 << 0,
@@ -547,16 +525,19 @@ enum enum_activation
    e_activation_on_center_of_screen = 1 << 4,
    e_activation_display_change = 1 << 5,
 
+
 };
 
 
 enum enum_layout_experience
 {
 
+
    e_layout_experience_none,
    e_layout_experience_moving,
    e_layout_experience_sizing,
    e_layout_experience_docking,
+
 
 };
 
@@ -564,17 +545,18 @@ enum enum_layout_experience
 enum enum_appearance
 {
 
+   
    e_appearance_none = 0,
    e_appearance_transparent_frame = 1 << 0,
 
+
 };
-
-
 
 
 enum enum_dock
 {
    
+
    e_dock_none = 0,
    e_dock_left = 1,
    e_dock_top = 2,
@@ -586,11 +568,13 @@ enum enum_dock
    e_dock_bottom_right = e_dock_bottom | e_dock_right,
    e_dock_all = e_dock_left | e_dock_top | e_dock_right | e_dock_bottom,
 
+
 };
 
 
 enum enum_grip
 {
+
 
    e_grip_none = 0,
    e_grip_left = 1 << 0,
@@ -605,11 +589,13 @@ enum enum_grip
    e_grip_top_left | e_grip_top_right |
    e_grip_bottom_left | e_grip_bottom_right,
 
+
 };
 
 
 enum enum_border
 {
+
 
    e_border_none = 0,
    e_border_left = 1,
@@ -626,11 +612,13 @@ enum enum_border
    e_border_right_bottom_left = e_border_right | e_border_bottom | e_border_left,
    e_border_all = e_border_left | e_border_top | e_border_right | e_border_bottom,
 
+
 };
 
 
 enum enum_window_flag
 {
+
 
    e_window_flag_none,
    e_window_flag_is_window = 1 << 0,
@@ -664,6 +652,7 @@ enum enum_window_flag
    e_window_flag_embedded_prodevian_if_child = 1 << 29,
    e_window_flag_composite = 1 << 30,
 
+
 };
 
 
@@ -685,10 +674,12 @@ enum enum_window_flag
 enum enum_system_message
 {
 
+
    e_system_message_none,
    e_system_message_create,
    e_system_message_meta,
    e_system_message_method,
+
 
 };
 
@@ -696,38 +687,41 @@ enum enum_system_message
 enum enum_message_box
 {
 
-   e_message_box_ok = 0x00000000L,
-   e_message_box_ok_cancel = 0x00000001L,
-   e_message_box_abort_retry_ignore = 0x00000002L,
-   e_message_box_yes_no_cancel = 0x00000003L,
-   e_message_box_yes_no = 0x00000004L,
-   e_message_box_retry_cancel = 0x00000005L,
-   e_message_box_cancel_try_continue  = 0x00000006L,
-   e_message_box_default_button_1 = 0x00000000L,
-   e_message_box_default_button_2 = 0x00000100L,
-   e_message_box_default_button_3 = 0x00000200L,
-   e_message_box_default_button_4 = 0x00000300L,
-   e_message_box_icon_error = 0x00000010L,
-   e_message_box_icon_exclamation = 0x00000030L,
-   e_message_box_icon_question = 0x00000020L,
-   e_message_box_icon_asterisk = 0x00000040L,
-   e_message_box_icon_hand = e_message_box_icon_error,
-   e_message_box_icon_warning = e_message_box_icon_exclamation,
-   e_message_box_icon_information = e_message_box_icon_asterisk,
-   e_message_box_icon_stop = e_message_box_icon_asterisk,
-   e_message_box_system_modal = 0x00001000L,
 
-   e_message_box_type_mask            =        0x0000000FL,
-   e_message_box_icon_mask            =        0x000000F0L,
-   e_message_box_default_button_mask         =        0x00000F00L,
-   e_message_box_mode_mask            =        0x00003000L,
-   e_message_box_miscellaneous_mask   =        0x0000C000L,
+   e_message_box_ok                    = 0x00000000L,
+   e_message_box_ok_cancel             = 0x00000001L,
+   e_message_box_abort_retry_ignore    = 0x00000002L,
+   e_message_box_yes_no_cancel         = 0x00000003L,
+   e_message_box_yes_no                = 0x00000004L,
+   e_message_box_retry_cancel          = 0x00000005L,
+   e_message_box_cancel_try_continue   = 0x00000006L,
+   e_message_box_default_button_1      = 0x00000000L,
+   e_message_box_default_button_2      = 0x00000100L,
+   e_message_box_default_button_3      = 0x00000200L,
+   e_message_box_default_button_4      = 0x00000300L,
+   e_message_box_icon_error            = 0x00000010L,
+   e_message_box_icon_exclamation      = 0x00000030L,
+   e_message_box_icon_question         = 0x00000020L,
+   e_message_box_icon_asterisk         = 0x00000040L,
+   e_message_box_icon_hand             = e_message_box_icon_error,
+   e_message_box_icon_warning          = e_message_box_icon_exclamation,
+   e_message_box_icon_information      = e_message_box_icon_asterisk,
+   e_message_box_icon_stop             = e_message_box_icon_asterisk,
+   e_message_box_system_modal          = 0x00001000L,
+
+   e_message_box_type_mask             =        0x0000000FL,
+   e_message_box_icon_mask             =        0x000000F0L,
+   e_message_box_default_button_mask   =        0x00000F00L,
+   e_message_box_mode_mask             =        0x00003000L,
+   e_message_box_miscellaneous_mask    =        0x0000C000L,
+
 
 };
 
 
 enum enum_relative
 {
+
 
    e_relative_none,
    e_relative_first_child,
@@ -738,15 +732,16 @@ enum enum_relative
    e_relative_last_sibling,
    e_relative_owner,
 
+
 };
 
 
 #include "message.h"
 
 
-
 enum enum_operating_system
 {
+
 
    e_operating_system_unknown = -1,
    e_operating_system_none = 0,
@@ -758,10 +753,13 @@ enum enum_operating_system
    e_operating_system_android,
    e_operating_system_unix,
 
+
 };
+
 
 enum enum_linux_distribution
 {
+
 
    e_linux_distribution_not_initialized = -2,
    e_linux_distribution_unknown = -1,
@@ -771,17 +769,19 @@ enum enum_linux_distribution
    e_linux_distribution_fedora,
    e_linux_distribution_centos,
 
-};
 
+};
 
 
 enum enum_service_status
 {
 
+
    e_service_status_stopped,
    e_service_status_starting,
    e_service_status_running,
    e_service_status_stopping,
+
 
 };
 

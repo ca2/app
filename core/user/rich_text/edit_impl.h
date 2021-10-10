@@ -10,13 +10,13 @@ namespace user
 
 
       class CLASS_DECL_CORE edit_impl :
-         virtual public ::user::rich_text::edit
+         virtual public ::user::show < ::user::rich_text::edit >
       {
       public:
 
 
          bool                          m_bComposing;
-         __pointer(data)                      m_pdata;
+         __pointer(data)               m_pdata;
          bool                          m_bSelDrag;
          __pointer(::message::key)     m_pkeymessageLast;
          bool                          m_bKeyPressed;
@@ -29,10 +29,10 @@ namespace user
 
 
          edit_impl();
-         virtual ~edit_impl();
+         ~edit_impl() override;
 
 
-         virtual ::e_status initialize(::object * pobject) override;
+         virtual ::e_status initialize_edit_impl(document * pdocument);
 
 
          virtual void on_after_change(::enum_subject esubject) override;
@@ -61,7 +61,7 @@ namespace user
          virtual bool update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
-
+         document * get_document();
          /*virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
          {
             return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -90,6 +90,8 @@ namespace user
          virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
          __pointer(format_tool) get_format_tool(bool bCreate);
+
+         //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
          using ::user::interaction::_001GetText;
          virtual void _001GetText(string & str) const override;
@@ -152,7 +154,7 @@ virtual ::stream & read(::stream & stream) override;
 
       };
 
-      using edit_impact = ::user::show < ::user::rich_text::edit_impl >;
+      //using edit_impact = ::user::show < ::user::rich_text::edit_impl >;
 
    } // namespace rich_text
 

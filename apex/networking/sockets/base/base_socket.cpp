@@ -181,7 +181,7 @@ namespace sockets
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
       int err = SoError();
-      fatal() << "exception on select "<< err <<" "<<  bsd_socket_error(err);
+      FATAL("exception on select "<< err <<" "<<  bsd_socket_error(err));
 
 #endif
 
@@ -244,7 +244,7 @@ namespace sockets
    point = getprotobyname( strProtocol );
    if (!point_i32)
    {
-   fatal() << "getprotobyname" << Errno << ", " << bsd_socket_error(Errno);
+   FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
    SetCloseAndDelete();
    __throw(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
@@ -255,7 +255,7 @@ namespace sockets
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
    {
-   fatal() << "base_socket" << Errno << ", " << bsd_socket_error(Errno);
+   FATAL("base_socket" << Errno << ", " << bsd_socket_error(Errno));
    SetCloseAndDelete();
    __throw(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
    return INVALID_SOCKET;
@@ -1080,7 +1080,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_OPTIONS)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_OPTIONS)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1109,7 +1109,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         fatal() << "setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno));
       
          return false;
 
@@ -1133,7 +1133,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         fatal() << "setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno));
       
          return false;
 
@@ -1158,7 +1158,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
       {
          
-         fatal() << "setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -1183,7 +1183,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1207,7 +1207,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1229,7 +1229,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
       {
       
-         fatal() << "setsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1260,7 +1260,7 @@ namespace sockets
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
       {
       
-         fatal() << "getsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1283,7 +1283,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1314,7 +1314,7 @@ namespace sockets
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
       {
 
-         fatal() << "getsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1339,7 +1339,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_HDRINCL) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_HDRINCL) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1368,7 +1368,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_RECVERR)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVERR)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1391,7 +1391,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1416,7 +1416,7 @@ namespace sockets
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
       {
 
-         fatal() << "getsockopt(IPPROTO_IP, IP_MTU) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(IPPROTO_IP, IP_MTU) " << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1437,7 +1437,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
       {
    
-         fatal() << "setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << Errno << ", " << bsd_socket_error(Errno));
    
          return false;
 
@@ -1458,7 +1458,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1489,7 +1489,7 @@ namespace sockets
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
       {
 
-         fatal() << "getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1514,7 +1514,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1543,7 +1543,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1572,7 +1572,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1601,7 +1601,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
       
-         fatal() << "setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1630,7 +1630,7 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
 
-         fatal() << "setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1662,7 +1662,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_REUSEADDR)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_REUSEADDR)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1691,7 +1691,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1720,7 +1720,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1745,7 +1745,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
       {
 
-         fatal() << "getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1770,7 +1770,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1791,7 +1791,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1814,7 +1814,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_BROADCAST)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_BROADCAST)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1843,7 +1843,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_DEBUG)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_DEBUG)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1874,7 +1874,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
       {
 
-         fatal() << "getsockopt(SOL_SOCKET, SO_ERROR)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(SOL_SOCKET, SO_ERROR)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -1899,7 +1899,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_DONTROUTE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_DONTROUTE)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1932,7 +1932,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_LINGER, (char *)&stl, sizeof(stl)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_LINGER)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_LINGER)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1961,7 +1961,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_OOBINLINE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_OOBINLINE)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -1989,7 +1989,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         fatal() << "setsockopt(SOL_SOCKET, SO_PASSCRED)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_PASSCRED)" << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -2010,7 +2010,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
       {
       
-         fatal() << "setsockopt(SOL_SOCKET, SO_PEERCRED)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_PEERCRED)" << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -2031,7 +2031,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       {
       
-         fatal() << "setsockopt(SOL_SOCKET, SO_PRIORITY)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_PRIORITY)" << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -2052,7 +2052,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2079,7 +2079,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2106,7 +2106,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2133,7 +2133,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2160,7 +2160,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2190,7 +2190,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
       {
 
-         fatal() << "getsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -2213,7 +2213,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -2234,7 +2234,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2265,7 +2265,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
       {
 
-         fatal() << "getsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 
@@ -2288,7 +2288,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
          
          return false;
 
@@ -2311,7 +2311,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         fatal() << "setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno));
 
          return false;
 
@@ -2335,7 +2335,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
       {
 
-         fatal() << "getsockopt(SOL_SOCKET, SO_TYPE)" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("getsockopt(SOL_SOCKET, SO_TYPE)" << Errno << ", " << bsd_socket_error(Errno));
 
       }
 

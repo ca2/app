@@ -156,7 +156,7 @@ namespace sockets
             if (pprotoent == nullptr)
             {
 
-               fatal() << "getprotobyname" << Errno << ", " << bsd_socket_error(Errno);
+               FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
 
                SetCloseAndDelete();
 
@@ -184,7 +184,7 @@ namespace sockets
       if (s == INVALID_SOCKET)
       {
 
-         fatal() << "socket" << Errno << ", " << bsd_socket_error(Errno);
+         FATAL("socket" << Errno << ", " << bsd_socket_error(Errno));
 
          SetCloseAndDelete();
          __throw(error_socket, string("socket() failed: ") + bsd_socket_error(Errno));

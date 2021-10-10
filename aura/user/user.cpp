@@ -830,7 +830,7 @@ namespace aura
 
       }
 
-      m_ethreadClose = thread_application;
+      m_ethreadClose = e_thread_application;
 
       //if (get_session())
       //{

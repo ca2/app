@@ -287,8 +287,8 @@ namespace windowing
       
       virtual ::e_status frame_toggle_restore();
 
-      virtual ::e_status window_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status window_branch(const ::routine & routine);
+      virtual ::e_status window_send(const ::routine & routine);
+      virtual ::e_status window_post(const ::routine & routine);
 
       virtual bool is_branch_current() const;
 

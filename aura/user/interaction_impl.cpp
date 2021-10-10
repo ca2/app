@@ -4412,14 +4412,28 @@ namespace user
    }
 
 
-
-
-
-
-   ::e_status interaction_impl::interaction_branch(const ::routine & routine)
+   ::e_status interaction_impl::interaction_post(const ::routine & routine)
    {
 
-      return ::error_interface_only;
+      auto puserinteraction = m_puserinteraction;
+
+      if (::is_null(puserinteraction))
+      {
+
+         return error_failed;
+
+      }
+
+      auto puserthread = puserinteraction->m_pthreadUserInteraction;
+
+      if (::is_null(puserthread))
+      {
+
+         return error_failed;
+
+      }
+
+      return puserthread->post_routine(routine);
 
    }
 

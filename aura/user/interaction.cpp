@@ -4401,7 +4401,7 @@ return "";
    }
 
    
-   ::e_status interaction::interaction_branch(const ::routine & routine)
+   ::e_status interaction::interaction_post(const ::routine & routine)
    {
 
       auto puserinteractionHost = get_host_window();
@@ -4409,11 +4409,11 @@ return "";
       if (!puserinteractionHost || puserinteractionHost == this)
       {
 
-         return m_pimpl->interaction_branch(routine);
+         return m_pimpl->interaction_post(routine);
 
       }
 
-      return puserinteractionHost->interaction_branch(routine);
+      return puserinteractionHost->interaction_post(routine);
 
    }
 
@@ -4452,10 +4452,10 @@ return "";
    }
 
 
-   ::e_status interaction::interaction_sync(const ::duration & duration, const ::routine & routine)
+   ::e_status interaction::interaction_send(const ::routine & routine)
    {
 
-      auto estatus = __sync_routine(duration, this, &interaction::interaction_branch, routine);
+      auto estatus = __send_routine(this, &interaction::interaction_post, routine);
 
       if (!estatus)
       {
@@ -4502,7 +4502,7 @@ return "";
 
       run_property("on_create");
 
-      call_routine(CREATE_ROUTINE);
+      call_routines_with_id(CREATE_ROUTINE);
 
       sync_style();
 
@@ -15106,15 +15106,26 @@ order(zorderParam);
    }
 
 
-   void interaction::post_routine(const ::routine & routine)
+   ::e_status interaction::post_routine(const ::routine & routine)
    {
 
-      if (::is_set(m_pthreadUserInteraction))
+      if (!::is_set(m_pthreadUserInteraction))
       {
 
-         m_pthreadUserInteraction->post_task(routine);
+         return error_failed;
 
       }
+
+      auto estatus =  m_pthreadUserInteraction->post_routine(routine);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -15173,7 +15184,7 @@ order(zorderParam);
 #endif
 
 
-   void interaction::send_routine(const ::routine & routine, ::duration durationTimeout)
+   ::e_status interaction::send_routine(const ::routine & routine)
    {
 
       ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
@@ -15183,17 +15194,23 @@ order(zorderParam);
       if (pthread == nullptr || pthread == ptaskCurrent)
       {
 
-         routine();
+         return routine();
 
       }
-      else
+
+      auto estatus = pthread->send_routine(routine);
+
+      if (!estatus)
       {
 
-         pthread->send_routine(routine, durationTimeout);
+         return estatus;
 
       }
+      
+      return estatus;
 
    }
+
 
    ::mutex* g_pmutexChildren;
 

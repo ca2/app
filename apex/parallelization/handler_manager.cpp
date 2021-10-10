@@ -81,7 +81,7 @@ handler_manager::~handler_manager()
    if (m_bUseDedicatedThread)
    {
 
-      auto estatus = __sync_routine(1_minute, this, &handler_manager::handler_branch, routine);
+      auto estatus = __send_routine(this, &handler_manager::handler_branch, routine);
 
       if(!estatus)
       {

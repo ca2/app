@@ -198,7 +198,7 @@ namespace user
       bool create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
-      virtual ::e_status interaction_branch(const ::routine & routine) override;
+      virtual ::e_status interaction_post(const ::routine & routine) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();

@@ -84,7 +84,7 @@ namespace sockets
 
 #ifdef BSD_STYLE_SOCKETS
 
-         fatal() << "AddFile " << Errno << bsd_socket_error(Errno);
+         FATAL("AddFile " << Errno << bsd_socket_error(Errno));
 
 #endif
 

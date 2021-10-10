@@ -1343,15 +1343,26 @@ namespace user
    }
 
 
-   void interaction::prodevian_post_routine(const ::routine & routine)
+   ::e_status interaction::prodevian_post_routine(const ::routine & routine)
    {
 
-      if (is_graphical())
+      if (!is_graphical())
       {
 
-         m_pimpl2->m_pprodevian->post_task(routine);
+         return error_wrong_state;
 
       }
+
+      auto estatus = m_pimpl2->m_pprodevian->post_routine(routine);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 

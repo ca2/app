@@ -101,14 +101,14 @@ public:
 //
 //#else
 
-   inline ::routine_array & _routine_array(const ::id& id);
+   //inline ::routine_array * _routine_array(const ::id& id);
 
-   inline ::routine_array & routine_array(const ::id& id);
+   ::routine_array * routine_array(const ::id& id, bool bCreate = false);
 
 //#endif
 
 
-   inline void add_routine(const ::id& id, const ::routine& routine);
+   ::e_status add_routine(const ::id& id, const ::routine& routine);
 
 
 

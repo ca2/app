@@ -2777,6 +2777,12 @@
     <ClInclude Include="primitive\collection\duration.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="constant\_enumeration.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_mathematics.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

@@ -44,3 +44,32 @@ material_object::~material_object()
    
 }
 
+
+bool material_object::is_branch_current() const
+{
+
+   return true;
+
+}
+
+
+::e_status material_object::post_routine(const ::routine & routine)
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status material_object::send_routine(const ::routine & routine)
+{
+
+   return __send_routine(this, &material_object::post_routine, routine);
+
+   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+
+}
+
+

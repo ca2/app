@@ -1046,7 +1046,7 @@ namespace user
    }
 
 
-   ::e_status primitive::interaction_branch(const ::routine & routine)
+   ::e_status primitive::interaction_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();

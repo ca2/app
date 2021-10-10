@@ -32,8 +32,8 @@ public:
 using integral_microsecond = integral_duration < integral_microsecond_t >;
 
 
-inline integral_microsecond operator "" _us(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
-inline integral_microsecond operator "" _μs(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
+constexpr INTEGRAL_MICROSECOND operator "" _us(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
+constexpr INTEGRAL_MICROSECOND operator "" _μs(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
 
 
 template <  >

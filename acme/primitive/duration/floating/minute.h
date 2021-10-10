@@ -24,9 +24,9 @@ public:
 using floating_minute = floating_duration < floating_minute_t >;
 
 
-inline floating_minute operator "" _min(long double d) { return (FLOATING_MINUTE)d; }
-inline floating_minute operator "" _minute(long double d) { return (FLOATING_MINUTE)d; }
-inline floating_minute operator "" _minutes(long double d) { return (FLOATING_MINUTE)d; }
+constexpr FLOATING_MINUTE operator "" _min(long double d) { return (FLOATING_MINUTE)d; }
+constexpr FLOATING_MINUTE operator "" _minute(long double d) { return (FLOATING_MINUTE)d; }
+constexpr FLOATING_MINUTE operator "" _minutes(long double d) { return (FLOATING_MINUTE)d; }
 
 
 inline floating_minute get_floating_minute() { return FLOATING_MINUTE(get_floating_nanosecond().m_d / 60'000'000'000.0); }

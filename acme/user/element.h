@@ -302,7 +302,7 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-      virtual ::e_status interaction_branch(const ::routine & routine);
+      virtual ::e_status interaction_post(const ::routine & routine);
 
 
       //virtual lresult send(::message::message * pmessage);

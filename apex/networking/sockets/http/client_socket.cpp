@@ -255,7 +255,7 @@ namespace sockets
       if (!IsResponse())
       {
 
-         fatal() << "OnFirst: Response expected but not received - aborting";
+         FATAL("OnFirst: Response expected but not received - aborting");
 
          SetCloseAndDelete();
 

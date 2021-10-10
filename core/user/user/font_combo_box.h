@@ -12,18 +12,20 @@ namespace user
 
 
       font_combo_box();
-      virtual ~font_combo_box();
+      ~font_combo_box() override;
 
       
       void font_combo_box_common_construct();
       
 
-      virtual void install_message_routing(::channel * psender);
+      void install_message_routing(::channel * psender);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics);
+
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

@@ -9,7 +9,6 @@ typedef map < task *, itask_t > task_id_map;
 class CLASS_DECL_ACME task :
    virtual public object
 {
-
 public:
 
 
@@ -41,7 +40,7 @@ public:
    __pointer(counter<::i32>)                       m_pcounter;
    ::task_pointer                                  m_ptask;
    ::routine                                       m_routineNext;
-   ::routine_array                                 m_routineaPost;
+   ::routine_array                                 m_routinea;
 
 
    task();
@@ -86,7 +85,8 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   ::e_status post(const ::routine& routine) override;
+   ::e_status post_routine(const ::routine& routine) override;
+   
 
    virtual ::e_status run_posted_routines();
 
@@ -168,6 +168,8 @@ public:
    //virtual void finish() override;
 
    virtual void kick_idle() override;
+
+   bool is_branch_current() const;
 
 
 };

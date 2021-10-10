@@ -25,7 +25,7 @@ namespace serial
    }
    
    
-   ::e_status serial::initialize_serial(const string& port, u32 baudrate, timeout timeout,
+   ::e_status serial::initialize_serial(const string& port, u32 baudrate, struct timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
@@ -379,12 +379,12 @@ namespace serial
    }
 
 
-   timeout serial::getTimeout() const
+   struct timeout serial::getTimeout() const
    {
 
       //return m_pimpl->getTimeout();
 
-      return timeout();
+      return struct timeout();
 
    }
 

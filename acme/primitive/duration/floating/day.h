@@ -24,8 +24,8 @@ public:
 using floating_day = floating_duration < floating_day_t >; 
 
 
-inline floating_day operator "" _day(long double d) { return (FLOATING_DAY)d; }
-inline floating_day operator "" _days(long double d) { return (FLOATING_DAY)d; }
+constexpr FLOATING_DAY operator "" _day(long double d) { return (FLOATING_DAY)d; }
+constexpr FLOATING_DAY operator "" _days(long double d) { return (FLOATING_DAY)d; }
 
 
 inline floating_day get_floating_day() { return FLOATING_DAY(get_floating_nanosecond().m_d / 86'400'000'000'000.0); }

@@ -2,18 +2,14 @@
 #include "framework.h"
 
 
-routine::routine()
-{
 
 
-}
-
-
-routine::~routine()
-{
-
-
-}
+//
+//routine::~routine()
+//{
+//
+//
+//}
 
 
 

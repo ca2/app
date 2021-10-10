@@ -28,7 +28,8 @@ public:
 using integral_nanosecond = integral_duration < integral_nanosecond_t >;
 
 
-inline integral_nanosecond operator "" _ns(unsigned long long int u) { return (INTEGRAL_NANOSECOND)u; }
+constexpr INTEGRAL_NANOSECOND operator "" _ns(unsigned long long int u) { return (INTEGRAL_NANOSECOND)u; }
+
 
 CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond();
 

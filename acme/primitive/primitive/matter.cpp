@@ -338,6 +338,14 @@ void matter::defer_create_mutex()
 }
 
 
+DURATION matter::timeout() const
+{
+   
+   return { .m_iSecond = 64 }; // : // 64s ~ 1 minute
+
+}
+
+
 //::e_status matter::run()
 //{
 //

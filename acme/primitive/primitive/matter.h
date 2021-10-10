@@ -110,6 +110,8 @@ public:
 
    //::e_status branch();
 
+   virtual DURATION timeout() const;
+
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
    inline ::application* get_application() { return _get_application(); }
@@ -301,17 +303,17 @@ public:
 
 
    inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }
-   inline tracer information(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_information, etracecategory); }
-   inline tracer warning(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_warning, etracecategory); }
-   inline tracer error(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_error, etracecategory); }
-   inline tracer fatal(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_fatal, etracecategory); }
+   inline tracer trace_log_information(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_information, etracecategory); }
+   inline tracer trace_log_warning(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_warning, etracecategory); }
+   inline tracer trace_log_error(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_error, etracecategory); }
+   inline tracer trace_log_fatal(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_fatal, etracecategory); }
 
 
    inline tracer trace(enum_trace_level etracelevel) { return tracer(m_psystem, etracelevel, trace_category()); }
-   inline tracer information() { return tracer(m_psystem, e_trace_level_information, trace_category()); }
-   inline tracer warning() { return tracer(m_psystem, e_trace_level_warning, trace_category()); }
-   inline tracer error() { return tracer(m_psystem, e_trace_level_error, trace_category()); }
-   inline tracer fatal() { return tracer(m_psystem, e_trace_level_fatal, trace_category()); }
+   inline tracer trace_log_information() { return tracer(m_psystem, e_trace_level_information, trace_category()); }
+   inline tracer trace_log_warning() { return tracer(m_psystem, e_trace_level_warning, trace_category()); }
+   inline tracer trace_log_error() { return tracer(m_psystem, e_trace_level_error, trace_category()); }
+   inline tracer trace_log_fatal() { return tracer(m_psystem, e_trace_level_fatal, trace_category()); }
 
 
    virtual void trace_last_status();

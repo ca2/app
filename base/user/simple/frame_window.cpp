@@ -2767,7 +2767,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing()->windowing_branch(__routine([this]
+   windowing()->windowing_post(__routine([this]
    {
 
 //      if (m_pnotifyicon)

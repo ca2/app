@@ -103,7 +103,7 @@ namespace sockets
          if (n == -1)
          {
 
-            fatal() << "bind" << Errno << ", " << bsd_socket_error(Errno);
+            FATAL("bind" << Errno << ", " << bsd_socket_error(Errno));
 
             SetCloseAndDelete();
             __throw(error_socket, "bind() failed for udp_socket, port:range: " + __string(ad.get_service_number()) + ":" + __string(range));
@@ -153,7 +153,7 @@ namespace sockets
          if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
          {
 
-            fatal() << "connect" << Errno << ", " << bsd_socket_error(Errno);
+            FATAL("connect" << Errno << ", " << bsd_socket_error(Errno));
 
             SetCloseAndDelete();
             return false;

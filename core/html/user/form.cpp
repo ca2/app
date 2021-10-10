@@ -944,7 +944,7 @@ void html_form::on_form_implemented()
    if(::is_set(pdocument))
    {
       
-      pdocument->call_routine("load");
+      pdocument->call_routines_with_id("load");
       
    }
    

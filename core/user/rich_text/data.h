@@ -18,31 +18,37 @@ namespace user
       public:
 
 
-         ::draw2d::graphics_pointer               m_pgraphics;
+         ::draw2d::graphics_pointer                   m_pgraphics;
 
-         //::rectangle_f64                       m_rectangle;
+         //::rectangle_f64                            m_rectangle;
          
          // storage data
-         __pointer_array(span)                       m_spana;
-         __pointer(__pointer_array(format))          m_pformata;
+         __pointer_array(span)                        m_spana;
+         __pointer(__pointer_array(format))           m_pformata;
 
-         __pointer(format)                      m_pformatCurrent;
+         __pointer(format)                            m_pformatCurrent;
 
          /// runtime span, ephemeral, derived
          /// should be easily rebuildable from "storage" data and a client rectangle_i32
-         __pointer(__pointer_array(line))                 m_plinea;
+         __pointer(__pointer_array(line))             m_plinea;
 
-         strsize                       m_iSelBeg;
-         strsize                       m_iSelEnd;
-         index                         m_iSelLine;
-         rich_text::edit_impl *        m_pedit;
-         ::duration                          m_durationCaretPeriod;
-         //index                         m_iFormatDefault;
-         bool                          m_bCaretRight;
+         strsize                                      m_iSelBeg;
+         strsize                                      m_iSelEnd;
+         index                                        m_iSelLine;
+         rich_text::edit_impl *                       m_pedit;
+         ::duration                                   m_durationCaretPeriod;
+         //index                                      m_iFormatDefault;
+         bool                                         m_bCaretRight;
 
 
          data();
-         virtual ~data();
+         ~data() override;
+
+
+         ::e_status initialize_data(::data::data_container_base * pdocument) override;
+
+
+         virtual ::e_status __initialize(__pointer(::user::rich_text::format) & pformat);
 
 
          virtual ::rectangle_f64 get_drawing_rect();
@@ -94,7 +100,8 @@ namespace user
          virtual strsize _001GetLayoutTextLength() const;
 
          virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+         virtual ::stream & read(::stream & stream) override;
+
 
       };
 

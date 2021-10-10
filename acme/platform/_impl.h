@@ -984,4 +984,10 @@ SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
 #endif // __cplusplus_winrt
 
 
+inline tracer trace_log_information() { return ::get_task()->trace_log_information(); }
+inline tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
+inline tracer trace_log_error() { return ::get_task()->trace_log_error(); }
+inline tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
+
+
 

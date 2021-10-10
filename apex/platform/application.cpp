@@ -128,7 +128,7 @@ m_bSnLauncheeSetup = false;
 //m_pappParent = nullptr;
 m_bMessageThread = true;
 m_bSimpleMessageLoop = false;
-m_ethreadClose = thread_none;
+m_ethreadClose = e_thread_none;
 
 //m_puiMainContainer = nullptr;
 
@@ -2899,7 +2899,7 @@ if (::get_task() == nullptr)
 if (!notify_process_init())
 {
 
-fatal() << "apex::application::process_init .1";
+FATAL("apex::application::process_init .1");
 
 return false;
 
@@ -3281,7 +3281,7 @@ return nullptr;
    if (!initialize_contextualized_theme())
    {
 
-      fatal() << "Failed to initialize_contextualized_theme";
+      FATAL("Failed to initialize_contextualized_theme");
 
       return false;
 
@@ -9864,7 +9864,7 @@ void application::close(::apex::enum_end eend)
 
    }
 
-   m_ethreadClose = thread_application;
+   m_ethreadClose = e_thread_application;
 
    if (eend == ::apex::e_end_app)
    {

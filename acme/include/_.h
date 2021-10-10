@@ -1150,28 +1150,28 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 //#define __alog(...) __tracef(__VA_ARGS__)
 
 
-#define _CATEGORY_INFORMATION(p, etracecategory, ...) p->information(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_WARNING(p, etracecategory, ...) p->warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_ERROR(p, etracecategory, ...) p->error(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define _CATEGORY_FATAL(p, etracecategory, ...) p->fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_INFORMATION(p, etracecategory, ...) p->trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_WARNING(p, etracecategory, ...) p->trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_ERROR(p, etracecategory, ...) p->trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_FATAL(p, etracecategory, ...) p->trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
 
 
-#define CATEGORY_INFORMATION(etracecategory, ...) this->information(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_WARNING(etracecategory, ...) this->warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_ERROR(etracecategory, ...) this->error(e_trace_category_ ## etracecategory) << __VA_ARGS__
-#define CATEGORY_FATAL(etracecategory, ...) this->fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_INFORMATION(etracecategory, ...) trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_WARNING(etracecategory, ...) trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_ERROR(etracecategory, ...) trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_FATAL(etracecategory, ...) trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
 
 
-#define _INFORMATION(p, ...) p->information() << __VA_ARGS__
-#define _WARNING(p, ...) p->warning() << __VA_ARGS__
-#define _ERROR(p, ...) p->error() << __VA_ARGS__
-#define _FATAL(p, ...) p->fatal() << __VA_ARGS__
+#define _INFORMATION(p, ...) p->trace_log_information() << __VA_ARGS__
+#define _WARNING(p, ...) p->trace_log_warning() << __VA_ARGS__
+#define _ERROR(p, ...) p->trace_log_error() << __VA_ARGS__
+#define _FATAL(p, ...) p->trace_log_fatal() << __VA_ARGS__
 
 
-#define TRACE_LOG_INFORMATION(...) this->information() << __VA_ARGS__
-#define TRACE_LOG_WARNING(...) this->warning() << __VA_ARGS__
-#define TRACE_LOG_ERROR(...) this->error() << __VA_ARGS__
-#define TRACE_LOG_FATAL(...) this->fatal() << __VA_ARGS__
+#define TRACE_LOG_INFORMATION(...) trace_log_information() << __VA_ARGS__
+#define TRACE_LOG_WARNING(...) trace_log_warning() << __VA_ARGS__
+#define TRACE_LOG_ERROR(...) trace_log_error() << __VA_ARGS__
+#define TRACE_LOG_FATAL(...) trace_log_fatal() << __VA_ARGS__
 
 
 #define INFORMATION(...) TRACE_LOG_INFORMATION(__VA_ARGS__)

@@ -401,37 +401,26 @@ void object::dev_log(string strMessage)
 //
 
 
-void object::call_routine(const ::id& id)
+::e_status object::call_routine2(const ::routine & routine)
 {
 
-   if (::is_null(m_pmapPropertyRoutine))
+   ::e_status estatus = ::success;
+
+   try
    {
 
-      return;
+      estatus = routine();
 
    }
-   
-   auto & routinea = this->routine_array(id);
-
-   for(auto & routine : routinea)
+   catch (...)
    {
-      
-      try
-      {
-      
-         routine();
-      
-      }
-      catch(...)
-      {
-         
-      }
-      
-   }
-   
-   //auto payload = this->payload(id);
 
-   //payload.predicate_each([](auto payload) { payload(); });
+      estatus = error_exception;
+
+   }
+
+   return estatus;
+
 
 }
 
@@ -673,16 +662,6 @@ bool object::is_running() const
 //   }
 //
 //}
-
-
-::e_status object::post(const ::routine& routine)
-{
-
-   throw ::interface_only_exception();
-
-   return error_interface_only;
-
-}
 
 
 void object::defer_update_object_id()

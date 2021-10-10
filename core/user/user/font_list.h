@@ -31,7 +31,7 @@ namespace user
 
 
       font_list();
-      virtual ~font_list();
+      ~font_list() override;
 
 
       void user_font_list_common_construct();

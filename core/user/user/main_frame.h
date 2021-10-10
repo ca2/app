@@ -1,29 +1,39 @@
 #pragma once
 
 
+
+#include "core/user/rich_text/_rich_text.h"
+
+
 namespace user
 {
 
 
    class CLASS_DECL_CORE main_frame : 
-      public simple_frame_window
+      public simple_main_frame
    {
    public:
 
 
-      bool           m_bPlacing;
+      bool                                         m_bPlacing;
+      __pointer(::user::rich_text::format_tool)    m_prichtextformattool;
       
       
       main_frame();
-      virtual ~main_frame();
+      ~main_frame() override;
 
-      virtual void install_message_routing(::channel * pchannel);
+      
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
+
+
+      ::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
+
 
    };
 

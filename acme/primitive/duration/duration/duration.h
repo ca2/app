@@ -2,7 +2,8 @@
 #pragma once
 
 
-class CLASS_DECL_ACME duration
+class CLASS_DECL_ACME duration :
+   public DURATION
 {
 public:
 
@@ -21,15 +22,10 @@ public:
    };
 
 
-   time_t         m_iSecond;  // Seconds - >= 0
-   long           m_iNanosecond; // Nanoseconds - [0, 999999999]
-
-
    static duration s_durationFirst;
 
-   duration() :
-      m_iSecond(0),
-      m_iNanosecond(0)
+   duration(enum_zero ezero = e_zero) :
+      DURATION{}
    {
 
    }
@@ -39,6 +35,14 @@ public:
    {
 
       Now();
+
+   }
+
+
+   duration(enum_infinite)
+   {
+
+      Infinite();
 
    }
 
@@ -60,8 +64,8 @@ public:
 
 
    template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-   duration(INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds) :
-      m_iSecond((time_t) iSeconds), m_iNanosecond((long)iNanoseconds)
+   duration(INTEGRAL1 iSecond, INTEGRAL2 iNanosecond) :
+      DURATION{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)iNanosecond }
    {
 
 
@@ -79,7 +83,7 @@ public:
 
    duration(enum_raw, time_t iSeconds, long iNanoseconds = 0);
    duration(enum_normalize, time_t iSeconds, long iNanoseconds);
-   duration(const ::duration & duration);
+   duration(const ::DURATION & duration):DURATION(duration) {}
 
 
    inline void raw_set(time_t iSeconds, long iNanoseconds = 0);
@@ -133,8 +137,8 @@ public:
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }
 
-   inline class ::duration operator - (const class ::duration & duration) const { return { e_normalize, m_iSecond - duration.m_iSecond, m_iNanosecond - duration.m_iNanosecond }; }
-   inline class ::duration operator + (const class ::duration & duration) const { return { e_normalize, m_iSecond + duration.m_iSecond, m_iNanosecond + duration.m_iNanosecond }; }
+   //inline class ::duration operator - (const class ::duration & duration) const { return { e_normalize, m_iSecond - duration.m_iSecond, m_iNanosecond - duration.m_iNanosecond }; }
+   //inline class ::duration operator + (const class ::duration & duration) const { return { e_normalize, m_iSecond + duration.m_iSecond, m_iNanosecond + duration.m_iNanosecond }; }
    inline class ::duration & operator -= (const class ::duration & duration) { m_iSecond -= duration.m_iSecond; m_iNanosecond -= duration.m_iNanosecond; normalize();  return *this; }
    inline class ::duration & operator += (const class ::duration & duration) { m_iSecond += duration.m_iSecond; m_iNanosecond += duration.m_iNanosecond; normalize();  return *this; }
 
@@ -223,7 +227,7 @@ public:
 
 
    class ::duration & operator %= (const class ::duration & duration);
-   class ::duration operator % (const class ::duration & duration) const;
+   //class ::duration operator % (const class ::duration & duration) const;
 
 
    inline time_t GetTimeSpan() const;
@@ -313,6 +317,21 @@ public:
    inline bool operator >= (const ::INTEGRAL_DAY & day) const { return operator >= (::duration(day)); }
 
 
+   duration operator %(const ::duration & duration) const;
+   double operator /(const ::duration & duration) const;
+   //integral_duration operator *(const ::duration & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
+   duration operator +(const ::duration & duration) const { return { e_normalize, this->m_iSecond + duration.m_iSecond, this->m_iNanosecond + duration.m_iNanosecond }; }
+   duration operator -(const ::duration & duration) const { return { e_normalize, this->m_iSecond - duration.m_iSecond, this->m_iNanosecond - duration.m_iNanosecond }; }
+
+   duration operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond }; }
+
+   duration operator %(const ::INTEGRAL_NANOSECOND & integral) const { return operator %(::duration(integral)); }
+   double operator /(const ::INTEGRAL_NANOSECOND & integral) const { return operator /(::duration(integral)); }
+   //integral_duration operator *(const ::INTEGRAL_NANOSECOND & integral) const { return BASE_TYPE(this->m_i * duration.m_i); }
+   duration operator +(const ::INTEGRAL_NANOSECOND & integral) const { return operator +(::duration(integral)); }
+   duration operator -(const ::INTEGRAL_NANOSECOND & integral) const { return operator -(::duration(integral)); }
+
+
 };
 
 
@@ -341,12 +360,11 @@ inline duration::duration(enum_normalize, ::time_t iSeconds, long iNanoseconds)
 }
 
 
-inline duration::duration(const ::duration& duration) :
-   m_iNanosecond(duration.m_iNanosecond),
-   m_iSecond(duration.m_iSecond)
-{
-
-}
+//inline duration::duration(const ::duration& duration) :
+//   DURATION(duration)
+//{
+//
+//}
 
 
 inline void duration::raw_set(time_t iSeconds, long iNanoseconds)

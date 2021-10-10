@@ -444,9 +444,9 @@ namespace user
 
       virtual bool is_user_thread() const;
 
-      virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
+      virtual ::e_status interaction_send(const ::routine & routine);
 
-      virtual ::e_status interaction_branch(const ::routine & routine) override;
+      virtual ::e_status interaction_post(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -1519,6 +1519,12 @@ namespace user
 
 
       virtual void display_child(const ::rectangle_i32 & rectangle);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      {
+
+         display_child(rectangle_i32_dimension(x, y, cx, cy));
+
+      }
 
 
       virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32* prectangle);
@@ -1865,11 +1871,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::routine & routine);
-      virtual void prodevian_post_routine(const ::routine & routine);
+      virtual ::e_status post_routine(const ::routine & routine);
+      virtual ::e_status prodevian_post_routine(const ::routine & routine);
 
 
-      virtual void send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
+      virtual ::e_status send_routine(const ::routine & routine);
 
 
    /*   template < typename PRED >

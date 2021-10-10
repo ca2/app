@@ -196,7 +196,7 @@ namespace serial
       virtual ::e_status initialize_serial(
          const string &port = "",
          u32 baudrate = 9600,
-         timeout timeout = nullptr,
+         struct timeout timeout = nullptr,
          enum_byte_size ebytesize = e_byte_size_eight,
          enum_parity eparity = e_parity_none,
          enum_stop_bit estopbit = e_stop_bit_one,
@@ -478,13 +478,13 @@ namespace serial
        *
        * \see serial::timeout
        */
-      virtual void set_timeout (const timeout &timeout);
+      virtual void set_timeout (const struct timeout &timeout);
       /*! Sets the timeout for reads and writes. */
       virtual void set_timeout(const ::duration & inter_byte_timeout, const ::duration & read_timeout_constant,
                   u32 read_timeout_multiplier, const ::duration & write_timeout_constant,
                   u32 write_timeout_multiplier)
       {
-         timeout timeout(inter_byte_timeout, read_timeout_constant,
+         struct timeout timeout(inter_byte_timeout, read_timeout_constant,
                          read_timeout_multiplier, write_timeout_constant,
                          write_timeout_multiplier);
          return set_timeout(timeout);
@@ -497,7 +497,7 @@ namespace serial
        *
        * \see serial::setTimeout
        */
-      virtual timeout getTimeout () const;
+      virtual struct timeout getTimeout () const;
 
       /*! Sets the baudrate for the serial port.
        *

@@ -922,7 +922,7 @@ bool __rich_text_initialize()
    create_factory <::user::rich_text::span >();
    create_factory <::user::rich_text::document >();
 
-   create_factory < ::user::rich_text::edit_impact >("rich_text_impact");
+   create_factory < ::user::rich_text::edit_impl, ::user::rich_text::edit >("rich_text_impact");
 
    return true;
 

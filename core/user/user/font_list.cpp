@@ -87,13 +87,13 @@ namespace user
 
             __defer_construct_new(m_pfontlist);
 
-            m_pfontlist->initialize_font_list(this);
+            m_pfontlist->m_puserinteraction = this;
+
+            //m_pfontlist->initialize_font_list(this);
 
             m_pfontlist->set_font_list_type(::write_text::font_list::type_wide);
 
          }
-
-         m_pfontlist->m_puserinteraction = this;
 
       }
       else
@@ -246,6 +246,17 @@ namespace user
    {
 
       list_box::handle(psubject, pcontext);
+
+      if (psubject->m_id == id_font_list_total_size)
+      {
+
+         set_need_layout();
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
 
    }
 

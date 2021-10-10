@@ -21,11 +21,13 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 {
 
-   LARGE_INTEGER largeinteger = {};
+   return ::duration::now().integral_nanosecond();
 
-   QueryPerformanceCounter(&largeinteger);
+   //LARGE_INTEGER largeinteger = {};
 
-   return INTEGRAL_NANOSECOND(muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart));
+   //QueryPerformanceCounter(&largeinteger);
+
+   //return INTEGRAL_NANOSECOND(muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart));
 
 }
 

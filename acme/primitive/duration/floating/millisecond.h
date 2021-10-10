@@ -24,7 +24,7 @@ public:
 using floating_millisecond = floating_duration < floating_millisecond_t >; 
 
 
-inline floating_millisecond operator "" _ms(long double d) { return (FLOATING_MILLISECOND)d; }
+constexpr FLOATING_MILLISECOND operator "" _ms(long double d) { return (FLOATING_MILLISECOND)d; }
 
 
 inline floating_millisecond get_floating_millisecond() { return FLOATING_MILLISECOND(get_floating_nanosecond().m_d / 1'000'000.0); }

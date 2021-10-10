@@ -87,27 +87,15 @@ public:
    operator class ::wait const () { return this->total_milliseconds(); }
 
 
-   template < primitive_integral INTEGRAL > 
-   integral_duration operator %(INTEGRAL integral) const { return BASE_TYPE(this->m_i % integral); }
-
-   template < primitive_integral INTEGRAL > 
-   integral_duration operator /(INTEGRAL integral) const { return BASE_TYPE(this->m_i / integral); }
-
-   template < primitive_integral INTEGRAL > 
-   integral_duration operator *(INTEGRAL integral) const { return BASE_TYPE(this->m_i * integral); }
-
-   template < primitive_integral INTEGRAL > 
-   integral_duration operator +(INTEGRAL integral) const { return BASE_TYPE(this->m_i + integral); }
-
-   template < primitive_integral INTEGRAL > 
-   integral_duration operator -(INTEGRAL integral) const { return BASE_TYPE(this->m_i - integral); }
 
 
    integral_duration operator %(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i % duration.m_i); }
-   integral_duration operator /(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i / duration.m_i); }
-   integral_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
+   double operator /(const BASE_TYPE & duration) const { return (double)this->m_i / (double)duration.m_i; }
+   //integral_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
    integral_duration operator +(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i + duration.m_i); }
    integral_duration operator -(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_i - duration.m_i); }
+
+   integral_duration operator -() const { return BASE_TYPE(-this->m_i); }
 
    bool operator ==(const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
    bool operator >(const BASE_TYPE & duration) const { return this->m_i > duration.m_i; }

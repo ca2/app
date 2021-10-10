@@ -26,9 +26,6 @@ public:
 using integral_minute = integral_duration < integral_minute_t >;
 
 
-inline integral_minute operator "" _min(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
-inline integral_minute operator "" _minute(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
-inline integral_minute operator "" _minutes(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 
 
 template <  >

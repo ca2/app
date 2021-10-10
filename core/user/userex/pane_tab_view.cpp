@@ -293,28 +293,33 @@ namespace userex
       else if(m_pimpactdata->m_id == OPTIONS_IMPACT)
       {
 
-         auto strOptionsImpact = get_application()->prepare_impact_options();
-
-   #ifdef _DEBUG
-
-         auto pcontext = m_pcontext->m_papexcontext;
-
-         pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
-
-   #endif
-
-         if (!m_pdocumentMenu->open_document(strOptionsImpact))
+         if (::is_set(m_pdocumentMenu))
          {
 
-            output_error_message("Failed to open the menu.");
+            auto strOptionsImpact = get_application()->prepare_impact_options();
 
-            return;
+#ifdef _DEBUG
+
+            auto pcontext = m_pcontext->m_papexcontext;
+
+            pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
+
+#endif
+
+            if (!m_pdocumentMenu->open_document(strOptionsImpact))
+            {
+
+               output_error_message("Failed to open the menu.");
+
+               return;
+
+            }
+
+            ::user::impact * pview = m_pdocumentMenu->get_view(0);
+
+            pview->set_need_load_form_data();
 
          }
-
-         ::user::impact * pview = m_pdocumentMenu->get_view(0);
-
-         pview->set_need_load_form_data();
 
       }
 

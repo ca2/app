@@ -1184,6 +1184,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
+    <ClInclude Include="constant\_enumeration.h" />
+    <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\not_implemented.h" />
     <ClInclude Include="filesystem\filesystem\acme_file.h" />

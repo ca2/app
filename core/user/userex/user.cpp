@@ -129,6 +129,8 @@ namespace core
 
       create_factory < ::user::form_view > ();
 
+      create_factory < ::user::font_combo_box >();
+
       create_factory < simple_pane_document >();
 
 
@@ -2053,20 +2055,18 @@ namespace core
 
          m_mapimpactsystem[FONTSEL_IMPACT] = ptemplate;
 
-         //auto psystem = m_psystem->m_paurasystem;
+         fork([this]()
+         {
+            
+               auto psystem = m_psystem->m_paurasystem;
 
-         //auto pdraw2d = psystem->draw2d();
+               auto pdraw2d = psystem->draw2d();
 
-         //pdraw2d->write_text()->fonts();
+               auto pfonts = pdraw2d->write_text()->fonts();
 
+               pfonts->enumerate_fonts();
 
-
-         //fork([&]()
-         //{
-         //         pdraw2d->fonts().m_pfontenumeration->check_need_update();
-
-
-         //});
+         });
 
       }
 

@@ -311,7 +311,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_routine(CREATE_ROUTINE);
+      pmain->call_routines_with_id(CREATE_ROUTINE);
 
       pmain->m_pmain = pmain;
       
@@ -327,7 +327,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_routine(CREATE_ROUTINE);
+      pinstance->call_routines_with_id(CREATE_ROUTINE);
 
       auto pthread = pdssocket->get_thread();
 
@@ -606,7 +606,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_routine(CREATE_ROUTINE);
+            pinstance->call_routines_with_id(CREATE_ROUTINE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {

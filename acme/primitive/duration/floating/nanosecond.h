@@ -25,7 +25,7 @@ public:
 using floating_nanosecond = floating_duration < floating_nanosecond_t >;
 
 
-inline floating_nanosecond operator "" _ns(long double d) { return (FLOATING_NANOSECOND)d; }
+constexpr FLOATING_NANOSECOND operator "" _ns(long double d) { return (FLOATING_NANOSECOND)d; }
 
 
 inline floating_nanosecond get_floating_nanosecond() { return FLOATING_NANOSECOND((::f64)get_integral_nanosecond().m_i); }

@@ -2,6 +2,9 @@
 #pragma once
 
 
+struct DURATION { time_t m_iSecond; /* Seconds - >= 0 */ long m_iNanosecond; /* Nanoseconds - [0, 999999999] */ };
+
+
 struct INTEGRAL_NANOSECOND { using BASE_TYPE = ::i64; ::i64 m_i; };
 struct INTEGRAL_MICROSECOND { using BASE_TYPE = ::i64; ::i64 m_i; };
 struct INTEGRAL_MILLISECOND { using BASE_TYPE = ::i64; ::i64 m_i; };
@@ -47,4 +50,7 @@ DEFAULT_MEMBER_COMPARISON(FLOATING_HOUR, m_d)
 DEFAULT_MEMBER_COMPARISON(FLOATING_DAY, m_d)
 
 
+constexpr INTEGRAL_MINUTE operator "" _min(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
+constexpr INTEGRAL_MINUTE operator "" _minute(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
+constexpr INTEGRAL_MINUTE operator "" _minutes(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 

@@ -2,13 +2,13 @@
 #pragma once
 
 
-using duration_array = array < duration >;
+using duration_array = numeric_array < duration >;
 
 
-using integral_microsecond_array = array < integral_microsecond >;
+using integral_microsecond_array = numeric_array < integral_microsecond >;
 
 
-using integral_millisecond_array = array < integral_millisecond >;
+using integral_millisecond_array = numeric_array < integral_millisecond >;
 
 
 

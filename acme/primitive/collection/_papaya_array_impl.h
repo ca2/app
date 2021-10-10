@@ -80,7 +80,7 @@ namespace papaya
 
          }
 
-         for(index i = 0; i < c; i++)
+         for (index i = 0; i < c; i++)
          {
 
             auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
@@ -89,6 +89,51 @@ namespace papaya
             {
 
                pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
+
+            }
+
+            pitem->exchange(stream);
+
+            if (stream.fail())
+            {
+
+               break;
+
+            }
+
+         }
+
+         return stream;
+
+      }
+
+
+      template < typename TYPE, typename INITIALIZER >
+      ::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a)
+      {
+
+         ::count c = a.get_count();
+
+         stream.exchange(::id(), c);
+
+         if (stream.fail())
+         {
+
+            return stream;
+
+         }
+
+         for(index i = 0; i < c; i++)
+         {
+
+            auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
+
+            if (!pitem)
+            {
+
+               pinitializer->__initialize(pitem);
+
+               //pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
 
             }
 

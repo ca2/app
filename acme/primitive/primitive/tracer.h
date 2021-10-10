@@ -91,5 +91,10 @@ public:
 };
 
 
+inline tracer trace_log_information();
+inline tracer trace_log_warning();
+inline tracer trace_log_error();
+inline tracer trace_log_fatal();
+
 
 

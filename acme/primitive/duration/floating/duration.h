@@ -91,10 +91,13 @@ public:
 
 
    floating_duration operator %(const BASE_TYPE & duration) const { return BASE_TYPE(fmod(this->m_d, duration.m_d)); }
-   floating_duration operator /(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d / duration.m_d); }
-   floating_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d * duration.m_d); }
+   double operator /(const BASE_TYPE & duration) const { return this->m_d / duration.m_d; }
+   // floating_duration operator *(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d * duration.m_d); }
    floating_duration operator +(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d + duration.m_d); }
    floating_duration operator -(const BASE_TYPE & duration) const { return BASE_TYPE(this->m_d - duration.m_d); }
+
+   
+   floating_duration operator -() const { return BASE_TYPE(-this->m_d); }
 
 
    bool operator ==(const BASE_TYPE & duration) const { return this->m_d == duration.m_d; }

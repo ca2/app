@@ -99,7 +99,7 @@
       //::mutex                                         m_mutexFrame;
       //__composite(::user::interaction_pointer_array)  m_puiptraFrame;
 
-      e_thread                                        m_ethreadClose;
+      enum_thread                                     m_ethreadClose;
 
       EExclusiveInstance                              m_eexclusiveinstance;
 

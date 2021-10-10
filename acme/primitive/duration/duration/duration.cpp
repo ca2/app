@@ -247,4 +247,14 @@ class ::duration duration::operator % (const class ::duration & duration) const
 }
 
 
+double duration::operator / (const class ::duration & duration) const
+{
+
+   auto nanosecondThis = m_iSecond * 1'000'000'000 + m_iNanosecond;
+
+   auto nanosecond = duration.m_iSecond * 1'000'000'000 + duration.m_iNanosecond;
+
+   return (double)nanosecondThis / (double)nanosecond;
+
+}
 

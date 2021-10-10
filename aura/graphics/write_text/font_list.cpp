@@ -559,10 +559,10 @@ namespace write_text
    }
 
 
-   ::e_status font_list::initialize_font_list(::user::interaction * puserinteraction)
+   ::e_status font_list::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(puserinteraction);
+      auto estatus = ::object::initialize(pobject);
 
       if (!estatus)
       {
@@ -570,8 +570,6 @@ namespace write_text
          return estatus;
 
       }
-
-      m_puserinteraction = puserinteraction;
 
       auto psystem = m_psystem->m_papexsystem;
 
@@ -660,11 +658,16 @@ namespace write_text
 
       m_etype = etype;
 
-      m_puserinteraction->set_need_layout();
+      if (::is_set(m_puserinteraction))
+      {
 
-      m_puserinteraction->set_need_redraw();
+         m_puserinteraction->set_need_layout();
 
-      m_puserinteraction->post_redraw();
+         m_puserinteraction->set_need_redraw();
+
+         m_puserinteraction->post_redraw();
+
+      }
 
    }
 

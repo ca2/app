@@ -24,7 +24,7 @@ namespace sockets
 
    void base_socket_handler::pool_socket::OnRead()
    {
-      fatal() <<  "OnRead: data on hibernating socket";
+      FATAL("OnRead: data on hibernating socket");
       SetCloseAndDelete();
       SetLost();
    }

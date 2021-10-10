@@ -16,7 +16,7 @@ namespace user
 
 
          document();
-         virtual ~document();
+         ~document() override;
 
 
 

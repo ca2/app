@@ -301,7 +301,7 @@ namespace sockets
       {
 
 
-         fatal() << "open Invalid ::net::address";
+         FATAL("open Invalid ::net::address");
 
          SetCloseAndDelete();
 
@@ -429,7 +429,7 @@ namespace sockets
          {
             string strError = bsd_socket_error(iError);
 
-            fatal() << "connect: failed " << iError << bsd_socket_error(iError);
+            FATAL("connect: failed " << iError << bsd_socket_error(iError));
 
             SetCloseAndDelete();
             ::closesocket(s);
@@ -704,7 +704,7 @@ namespace sockets
          if(n == -1)
          {
 
-            fatal() << "recv " << Errno << bsd_socket_error(Errno);
+            FATAL("recv " << Errno << bsd_socket_error(Errno));
 
             OnDisconnect();
             SetCloseAndDelete(true);
@@ -901,7 +901,7 @@ namespace sockets
             return;
          }
 
-         fatal() << "tcp: connect failed " << err << bsd_socket_error(err);
+         FATAL("tcp: connect failed " << err << bsd_socket_error(err));
 
          set(false,false); // no more monitoring because connection failed
 
@@ -1035,7 +1035,7 @@ namespace sockets
                SetLost();
                const char *errbuf = ERR_error_string(errnr,nullptr);
 
-               fatal() << "OnWrite / SSL_write " << errnr << errbuf;
+               FATAL("OnWrite / SSL_write " << errnr << errbuf);
 
                //__throw(io_exception(errbuf));
             }
@@ -1078,7 +1078,7 @@ namespace sockets
 #endif
             {
 
-               fatal() << "send " << Errno << bsd_socket_error(Errno);
+               FATAL("send " << Errno << bsd_socket_error(Errno));
 
                OnDisconnect();
                SetCloseAndDelete(true);
@@ -1353,7 +1353,7 @@ namespace sockets
             case 93:
 
 
-               fatal() <<  "OnSocks4Read: socks4 server reports connect failed";
+               FATAL("OnSocks4Read: socks4 server reports connect failed");
 
                set_connecting(false);
                SetCloseAndDelete();
@@ -1362,7 +1362,7 @@ namespace sockets
             default:
 
 
-               fatal() << "OnSocks4Read: socks4 server unrecognized response";
+               FATAL("OnSocks4Read: socks4 server unrecognized response");
 
                SetCloseAndDelete();
                break;
@@ -1817,7 +1817,7 @@ namespace sockets
    {
 
 
-      fatal() << "InitSSLServer: You MUST implement your own InitSSLServer method";
+      FATAL("InitSSLServer: You MUST implement your own InitSSLServer method");
 
       SetCloseAndDelete();
    }
@@ -1967,14 +1967,14 @@ namespace sockets
                if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
                {
 
-                  fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
+                  FATAL("tcp_socket InitializeContext: Couldn't read certificate string " << keyfile);
 
                }
 
                if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
                {
 
-                  fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " << keyfile;
+                  FATAL("tcp_socket InitializeContext: Couldn't read certificate string " << keyfile);
 
                }
 
@@ -1984,7 +1984,7 @@ namespace sockets
                   if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
                   {
 
-                     fatal() << "tcp_socket InitializeContext: Couldn't read certificate string " + keyfile;
+                     FATAL("tcp_socket InitializeContext: Couldn't read certificate string " + keyfile);
 
                   }
 
@@ -2018,7 +2018,7 @@ namespace sockets
             /* Load our keys and certificates*/
             if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
             {
-               fatal() << "tcp_socket InitializeContext: Couldn't read certificate file " << keyfile;
+               FATAL("tcp_socket InitializeContext: Couldn't read certificate file " << keyfile);
             }
          }
          m_password = password;
@@ -2027,7 +2027,7 @@ namespace sockets
 
          if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
          {
-            fatal() << "tcp_socket InitializeContext: Couldn't read private key file %s " << keyfile;
+            FATAL("tcp_socket InitializeContext: Couldn't read private key file %s " << keyfile);
          }
       }
 
@@ -2072,7 +2072,7 @@ namespace sockets
       /* Load our keys and certificates*/
       if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, certfile, SSL_FILETYPE_PEM)))
       {
-         fatal() << "InitializeContext: Couldn't read certificate file " << keyfile;
+         FATAL("InitializeContext: Couldn't read certificate file " << keyfile);
       }
 
       m_password = password;
@@ -2080,7 +2080,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_psslcontext->m_pclientcontext->m_psslcontext, (socket *) this);
       if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
       {
-         fatal() << "InitializeContext: Couldn't read private key file " << keyfile;
+         FATAL("InitializeContext: Couldn't read private key file " << keyfile);
          //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
       }
 
@@ -2313,7 +2313,7 @@ namespace sockets
       {
 
 
-         fatal() << "setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno);
+         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
 
          return false;
       }
@@ -2330,7 +2330,7 @@ namespace sockets
    void tcp_socket::on_connection_timeout()
    {
 
-      fatal() << "connect: connect timeout";
+      FATAL("connect: connect timeout");
 
       m_estatus = error_connection_timed_out;
 
@@ -2441,7 +2441,7 @@ namespace sockets
       // errno valid here?
       i32 err = SoError();
 
-      fatal() << "exception on select " << err << bsd_socket_error(err);
+      FATAL("exception on select " << err << bsd_socket_error(err));
 
       SetCloseAndDelete();
    }

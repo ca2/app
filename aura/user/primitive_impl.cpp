@@ -1531,7 +1531,8 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call_routine(CREATE_ROUTINE);
+
+      m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
    }
 

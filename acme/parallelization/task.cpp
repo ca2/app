@@ -452,16 +452,26 @@ void task::unregister_task()
 }
 
 
-::e_status task::post(const ::routine& routine)
+::e_status task::post_routine(const ::routine& routine)
 {
+
+   if (!routine)
+   {
+
+      return false;
+
+   }
 
    synchronous_lock synchronouslock(mutex());
 
-   m_routineaPost.add(routine);
+   m_routinea.add(routine);
+
+   kick_idle();
 
    return ::success;
 
 }
+
 
 
 ::e_status task::run_posted_routines()
@@ -469,10 +479,10 @@ void task::unregister_task()
 
    synchronous_lock synchronouslock(mutex());
 
-   if (m_routineaPost.has_element())
+   if (m_routinea.has_element())
    {
 
-      while (auto routine = m_routineaPost.pick_first())
+      while (auto routine = m_routinea.pick_first())
       {
 
          synchronouslock.unlock();
@@ -1008,7 +1018,12 @@ void task::kick_idle()
 }
 
 
+bool task::is_branch_current() const
+{
 
+   return ::get_current_ithread() == m_itask;
+
+}
 
 
 

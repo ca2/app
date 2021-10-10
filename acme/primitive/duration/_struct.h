@@ -1,8 +1,11 @@
-// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSørensen!!
+// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
 struct DURATION { time_t m_iSecond; /* Seconds - >= 0 */ long m_iNanosecond; /* Nanoseconds - [0, 999999999] */ };
+
+
+struct FREQUENCY { double m_d; /* Hz */ };
 
 
 struct INTEGRAL_NANOSECOND { using BASE_TYPE = ::i64; ::i64 m_i; };
@@ -53,4 +56,32 @@ DEFAULT_MEMBER_COMPARISON(FLOATING_DAY, m_d)
 constexpr INTEGRAL_MINUTE operator "" _min(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 constexpr INTEGRAL_MINUTE operator "" _minute(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 constexpr INTEGRAL_MINUTE operator "" _minutes(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
+
+
+inline timespec & normalize(timespec & timespec)
+{
+
+   timespec.tv_sec += timespec.tv_nsec / 1'000'000'000;
+
+   timespec.tv_nsec %= 1'000'000'000;
+
+   return timespec;
+
+}
+
+
+inline timespec & operator +=(timespec & timespec, const class ::INTEGRAL_MILLISECOND & integralmillisecond)
+{
+
+   timespec.tv_sec += integralmillisecond.m_i /1'000;
+
+   timespec.tv_nsec += (integralmillisecond.m_i %1'000) *1'000'000;
+
+   normalize(timespec);
+
+   return timespec;
+
+}
+
+
 

@@ -283,7 +283,7 @@ bool condition::pulse()
 
    delay.tv_nsec = 1000000;
 
-   while (duration.is_pos_infinity() || start.elapsed() < duration)
+   while (wait.is_infinite() || start.elapsed() < wait)
    {
 
       sembuf sb;

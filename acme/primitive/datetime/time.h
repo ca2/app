@@ -187,7 +187,7 @@ namespace datetime
       {
       }
    inline time::time(const time & time) :
-      integral_second(time)
+      integral_second(INTEGRAL_SECOND(time))
    {
 
    }

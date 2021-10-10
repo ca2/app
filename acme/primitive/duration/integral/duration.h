@@ -110,7 +110,7 @@ public:
 
       string str;
 
-      to_string(str, (const DURATION::BASE_TYPE &) *this);
+      to_string(str, (const typename DURATION::BASE_TYPE &) *this);
 
       return str;
 

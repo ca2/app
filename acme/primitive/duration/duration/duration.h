@@ -589,17 +589,17 @@ inline duration::operator class ::wait() const
 }
 
 
-
-class CLASS_DECL_ACME frequency
+class CLASS_DECL_ACME frequency :
+   public FREQUENCY
 {
 public:
 
+
+   frequency(enum_zero ezero = e_zero):FREQUENCY{} {}
+   frequency(const ::FREQUENCY & frequency):FREQUENCY(frequency) {}
    
-   double m_d; // Hz
-
-
+   
 };
-
 
 
 template < primitive_floating FLOATING >
@@ -630,7 +630,7 @@ class ::frequency operator / (INTEGRAL i, const ::duration & duration)
 
    auto nanosecond = (duration.m_iSecond * 1'000'000'000 + duration.m_iNanosecond);
 
-   return (double)(i * 1'000'000'000) / (double)nanosecond;
+   return FREQUENCY((double)(i * 1'000'000'000) / (double)nanosecond);
 
 }
 

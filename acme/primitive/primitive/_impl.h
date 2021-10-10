@@ -3629,7 +3629,7 @@ template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POI
 
    (pposting->*posting_method)(proutine);
 
-   if (psynchronization->m_evGoingToWrite.wait(duration).failed())
+   if (psynchronization->m_evGoingToWrite.wait(proutine->timeout()).failed())
    {
 
       psynchronization->m_bTimeout = true;

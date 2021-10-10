@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 class CLASS_DECL_ACME semaphore :
    virtual public synchronization_object
 {
@@ -28,7 +26,7 @@ public:
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
 //   using matter::lock;
-   ::e_status wait(const duration & durationTimeout) override;
+   ::e_status wait(const class ::wait & wait) override;
 #endif
 
    bool unlock() override;
@@ -36,5 +34,6 @@ public:
 
 
 };
+
 
 

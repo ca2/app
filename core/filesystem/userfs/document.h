@@ -32,8 +32,8 @@ namespace userfs
 
       //virtual ::aura::application * get_application() const override;
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool browse(__pointer(::file::item) pitem, const ::action_context & action_context);

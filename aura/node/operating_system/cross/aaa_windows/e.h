@@ -32117,7 +32117,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the indefinite-sized data could not be determined.
+// The size of the indefinite-size_f64 data could not be determined.
 //
 #define PERSIST_E_SIZEINDEFINITE         _HRESULT_TYPEDEF_(0x800B000AL)
 

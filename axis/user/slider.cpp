@@ -225,11 +225,11 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw_inset_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->draw_inset_3drect(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
       rectangle.deflate(1,1);
-      pgraphics->draw_inset_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
       pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)

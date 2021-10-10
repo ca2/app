@@ -478,8 +478,8 @@ namespace draw2d_cairo
       //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       bool fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;
-      //bool draw_inset_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
-      //void draw3d_rect(double x, double y, double cx, double cy,
+      //bool draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //void draw_inset_3d_rectangle(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 
 
@@ -487,8 +487,8 @@ namespace draw2d_cairo
 
       // Implementation
    public:
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       //      HGDIOBJ SelectObject(HGDIOBJ) override;      // do not use for regions
 

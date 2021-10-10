@@ -17,11 +17,11 @@ public:
    virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
    
    virtual void handle(::subject * psubject, ::context * pcontext) override;

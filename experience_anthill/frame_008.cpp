@@ -510,7 +510,7 @@ SizingNone:
                //   for (index i = 0; i < 9; i++)
                //   {
 
-               //      pgraphics->draw3d_rect(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
+               //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
 
                //      rectangleA.deflate(1, 1, 1, 1);
 
@@ -548,19 +548,19 @@ SizingNone:
                //      if (m_estyle == StyleRedOrange)
                //      {
 
-               //         pgraphics->draw3d_rect(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
+               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 255, 170, 136), argb(255, 255, 170, 136));
 
                //      }
                //      else if (m_estyle == StyleLightGreen)
                //      {
 
-               //         pgraphics->draw3d_rect(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
+               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 230, 150), argb(255, 128, 230, 150));
 
                //      }
                //      else
                //      {
 
-               //         pgraphics->draw3d_rect(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
+               //         pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 0x07, 0x6D, 0x91), argb(255, 0x07, 0x6D, 0x91));
 
                //      }
 
@@ -569,7 +569,7 @@ SizingNone:
                //   {
 
                //      //rectangleA.deflate(9, 9, 9, 9);
-               //      pgraphics->draw3d_rect(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+               //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
                //   }
 
 

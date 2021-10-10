@@ -104,7 +104,7 @@ namespace user
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       __pointer(::user::menu_item) get_menu_item();
 

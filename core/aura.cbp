@@ -2150,7 +2150,7 @@
 		<Unit filename="primitive/collection/string_map.h" />
 		<Unit filename="primitive/collection/string_to_string_map.cpp" />
 		<Unit filename="primitive/collection/string_to_string_map.h" />
-		<Unit filename="primitive/collection/stringa.cpp" />
+		<Unit filename="primitive/collection/string_array.cpp" />
 		<Unit filename="primitive/collection/stringl.cpp" />
 		<Unit filename="primitive/collection/stringl.h" />
 		<Unit filename="primitive/collection/template.h" />

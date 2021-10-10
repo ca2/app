@@ -39,7 +39,7 @@ namespace user
       virtual ~impact_host();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

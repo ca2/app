@@ -18,7 +18,7 @@ public:
    //virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::id id);
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
 
    DECLARE_MESSAGE_HANDLER(_001OnEndTrack);

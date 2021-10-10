@@ -19,7 +19,7 @@ namespace databaseuser
       virtual ~mesh_data();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context& dumpcontext) const override;
 
 

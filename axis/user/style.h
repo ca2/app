@@ -50,7 +50,7 @@ namespace axis
 
       style();
       style(::object * pobject);
-      virtual ~style();
+      ~style() override;
 
       void default_style_construct();
 

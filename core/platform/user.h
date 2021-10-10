@@ -163,8 +163,8 @@
 //      virtual ::e_status initialize(::object * pobject) override;
 //
 //
-//      virtual void assert_valid() const override;
-//      virtual void dump(dump_context & dumpcontext) const override;
+//      void assert_valid() const override;
+//      void dump(dump_context & dumpcontext) const override;
 //
 //
 //      virtual string __get_text(string str) override;
@@ -384,8 +384,8 @@
 //      virtual ::file::path appconfig_folder();
 //
 //
-//      //virtual void assert_valid() const override;
-//      //virtual void dump(dump_context & dumpcontext) const override;
+//      //void assert_valid() const override;
+//      //void dump(dump_context & dumpcontext) const override;
 //
 //
 //      virtual ::file::path get_app_localconfig_folder();
@@ -398,7 +398,7 @@
 //      virtual bool app_data_set(const ::id & id, ::object & obj);
 //      virtual bool app_data_get(const ::id & id, ::object & obj);
 //
-//      virtual void install_message_routing(::channel * pchannel) override;
+//      void install_message_routing(::channel * pchannel) override;
 //
 //      virtual string dialog_box(const ::string & pszMatter, property_set & propertyset);
 //
@@ -1204,7 +1204,7 @@
 //      //virtual ::aura::printer* get_printer(const ::string & pszDeviceName) override;
 //
 //
-//      //virtual void assert_valid() const override;
+//      //void assert_valid() const override;
 //      //virtual void dump(dump_context& dumpcontext) const override;
 //
 //
@@ -1257,7 +1257,7 @@
 //
 //
 //
-//      //virtual void assert_valid() const;
+//      //void assert_valid() const override;
 //      //virtual void dump(dump_context & action_context) const;
 //
 //
@@ -1350,7 +1350,7 @@
 //      //virtual ::e_status     initialize(::object * pobject) override;
 //
 //
-//      //virtual void install_message_routing(::channel * pchannel) override;
+//      //void install_message_routing(::channel * pchannel) override;
 //
 //      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 //

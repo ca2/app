@@ -22,7 +22,7 @@ namespace universal_windows
       string                                    m_strWindowText;
       //::image_pointer              m_pimage;
       //::image_pointer              m_spimageMultAlphaWork;
-      pointd                                    m_pointLastMouseMove;
+      point_f64                                    m_pointLastMouseMove;
       double                                    m_dAccumulatedMouseMoveDistance;
       ::duration                                      m_durationLastMouseMove;
       Agile < ::winrt::Windows::UI::Core::CoreWindow >   m_window;
@@ -44,8 +44,8 @@ namespace universal_windows
       virtual void construct(oswindow hwnd);
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool has_pending_graphical_update();
@@ -67,7 +67,7 @@ namespace universal_windows
 
       static const MSG* GetCurrentMessage();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
@@ -491,18 +491,18 @@ namespace universal_windows
       //      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
 
-      LRESULT OnNcHitTest(::point point);
-      void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcLButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcLButtonUp(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonUp(::u32 nHitTest, const ::point & point);
-      void OnNcMouseMove(::u32 nHitTest, const ::point & point);
+      LRESULT OnNcHitTest(::point_i32 point);
+      void OnNcLButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcLButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcLButtonUp(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonUp(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMouseMove(::u32 nHitTest, const ::point_i32 & point);
       void OnNcPaint();
-      void OnNcRButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcRButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcRButtonUp(::u32 nHitTest, const ::point & point);
+      void OnNcRButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
       // System message handler member functions
       //      void OnDropFiles(HDROP hDropInfo);
@@ -529,19 +529,19 @@ namespace universal_windows
       //    void OnVScroll(::u32 nSBCode, ::u32 nPos, CScrollBar* pScrollBar);
       void OnKeyDown(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
       void OnKeyUp(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
-      void OnLButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnLButtonDown(::u32 nFlags, const ::point & point);
-      void OnLButtonUp(::u32 nFlags, const ::point & point);
-      void OnMButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnMButtonDown(::u32 nFlags, const ::point & point);
-      void OnMButtonUp(::u32 nFlags, const ::point & point);
+      void OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnLButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnLButtonUp(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonUp(::u32 nFlags, const ::point_i32 & point);
       int OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id);
-      void OnMouseMove(::u32 nFlags, const ::point & point);
-      bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point & point);
+      void OnMouseMove(::u32 nFlags, const ::point_i32 & point);
+      bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point_i32 & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
-      void OnRButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnRButtonDown(::u32 nFlags, const ::point & point);
-      void OnRButtonUp(::u32 nFlags, const ::point & point);
+      void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       void OnTimer(uptr uEvent);
 

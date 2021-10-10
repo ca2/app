@@ -19,9 +19,9 @@ namespace simple_shader
       virtual ~main_impact();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact() override;
 

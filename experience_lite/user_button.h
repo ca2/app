@@ -25,7 +25,7 @@ namespace user
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics)override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 

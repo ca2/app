@@ -19,7 +19,7 @@ namespace user
       virtual ::e_status initialize_menu_interaction(menu_item* pitem) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

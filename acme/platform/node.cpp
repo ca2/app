@@ -883,7 +883,7 @@ namespace acme
    }
 
 
-   ::e_status node::node_branch(const ::routine & routine)
+   ::e_status node::node_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();
@@ -893,52 +893,19 @@ namespace acme
    }
 
 
-   ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status node::node_sync(const ::routine & routine)
    {
 
-      if(is_main_thread())
+      auto estatus = __send_routine(this, &node::node_post, routine);
+      
+      if(!estatus)
       {
-
-         auto estatus = routine();
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
 
          return estatus;
 
       }
-      else
-      {
 
-         auto psignalization = __new(::promise::signalization);
-
-         auto proutine = __routine([this, routine, psignalization]()
-                                   {
-
-                                      routine();
-
-                                      psignalization->m_evReady.SetEvent();
-
-                                      //::release((::matter * &)psignalization.m_p);
-
-                                   });
-
-         node_branch(proutine);
-
-         if (psignalization->m_evReady.wait().failed())
-         {
-
-            return error_timeout;
-
-         }
-
-         return ::success;
-
-      }
+      return estatus;
 
    }
 

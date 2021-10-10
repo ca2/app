@@ -70,8 +70,8 @@ public:
    ~matter() override;
 
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context& dumpcontext) const;
+   virtual void  assert_valid() const;
+   virtual void  dump(dump_context& dumpcontext) const;
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG

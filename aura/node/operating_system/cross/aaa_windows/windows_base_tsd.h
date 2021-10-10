@@ -104,7 +104,7 @@ typedef signed ::i64   DECLSPEC_ALIGN(8) LONG64, *PLONG64;
 typedef ::u64 DECLSPEC_ALIGN(8) ULONG64, *PULONG64;
 typedef ::u64 DECLSPEC_ALIGN(8) DWORD64, *PDWORD64;
 #endif
-/* Basic pointer-sized integer types */
+/* Basic pointer-size_f64 integer types */
 
 #if defined(__midl) || defined(__WIDL__)
 

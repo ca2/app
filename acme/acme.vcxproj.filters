@@ -3559,9 +3559,6 @@
     <ClCompile Include="primitive\collection\rectangle_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\stringa.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\property_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -3897,6 +3894,9 @@
     </ClCompile>
     <ClCompile Include="primitive\duration\duration\second.cpp">
       <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\string_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

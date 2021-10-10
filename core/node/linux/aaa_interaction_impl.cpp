@@ -2591,7 +2591,7 @@ namespace linux
 //      if(!(nFlags & SWP_NOMOVE))
 //      {
 //
-//         m_puserinteraction->m_pointRequest = ::point(x, y);
+//         m_puserinteraction->m_pointRequest = ::point_i32(x, y);
 //
 //      }
 //
@@ -2625,7 +2625,7 @@ namespace linux
 //   }
 
 
-//   ::point interaction_impl::client_screen_top_left()
+//   ::point_i32 interaction_impl::client_screen_top_left()
 //   {
 //
 //      ::rect64 rectangleWindow;
@@ -2633,7 +2633,7 @@ namespace linux
 //      if(!get_window_rect(rectangleWindow))
 //      {
 //
-//         return pointd(0.0,0.0);
+//         return point_f64(0.0,0.0);
 //
 //      }
 //
@@ -3194,7 +3194,7 @@ namespace linux
    }
 
 
-//   bool interaction_impl::DragDetect(const ::point & point) const
+//   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4036,7 +4036,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //
@@ -4046,7 +4046,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4103,7 +4103,7 @@ namespace linux
 //   }
 //
 //
-//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point & point)
+//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4184,13 +4184,13 @@ namespace linux
 //   {
 //
 //      __s_throw(not_implemented());
-////      const ::point & point;
+////      const ::point_i32 & point;
 ////      ::GetcaretPos((POINT32 *)&point); return point;
 //
 //   }
 //
 //
-//   void PASCAL interaction_impl::SetCaretPos(const ::point & point)
+//   void PASCAL interaction_impl::SetCaretPos(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4747,7 +4747,7 @@ namespace linux
    void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SetViewportOrg(::point());
+      pgraphics->SetViewportOrg(::point_i32());
 
    }
 

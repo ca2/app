@@ -1562,7 +1562,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
+         //pgraphics->draw_inset_3d_rectangle(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 

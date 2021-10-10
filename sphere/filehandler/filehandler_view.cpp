@@ -151,7 +151,7 @@ namespace filehandler
          cr1 = argb(255, 100, 100, 100);
          cr2 = argb(255, 10, 10, 10);
       }
-      pgraphics->draw3d_rect(m_rectangleItem, cr1, cr2);
+      pgraphics->draw_inset_3d_rectangle(m_rectangleItem, cr1, cr2);
       color32 |= 0xff000000;
       auto pbrushText = __create < ::draw2d::brush > ();
       pbrushText->create_solid(color32);

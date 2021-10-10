@@ -38,7 +38,7 @@ namespace graphics
       ~console() override;
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context & dump) const override;
 
 

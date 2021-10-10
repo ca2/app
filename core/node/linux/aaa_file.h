@@ -57,8 +57,8 @@ namespace linux
       virtual ~file();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual filesize get_position() const override;
 

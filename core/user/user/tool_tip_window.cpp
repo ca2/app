@@ -289,7 +289,7 @@ namespace user
         rectangleClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);
@@ -303,7 +303,7 @@ namespace user
         rectangleClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);
@@ -316,7 +316,7 @@ namespace user
         rectangleClient.top = m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);

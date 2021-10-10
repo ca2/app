@@ -7,7 +7,7 @@
 //!!!#include <X11/XKBlib.h>
 
 
-::point g_pointX11Cursor;
+::point_i32 g_pointX11Cursor;
 ::duration g_tickLastMouseMove;
 
 
@@ -2767,7 +2767,7 @@ bool x11_process_message(Display * pdisplay)
 
             {
 
-               ::point point(e.xconfigure.x, e.xconfigure.y);
+               ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
                ::size size(e.xconfigure.width, e.xconfigure.height);
 

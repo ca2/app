@@ -17,11 +17,11 @@ namespace user
       main_frame();
       virtual ~main_frame();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

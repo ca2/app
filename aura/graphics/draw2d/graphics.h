@@ -1005,8 +1005,8 @@ virtual bool fill_contains(const point_f64 & point);
       //virtual void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color);
       //virtual void fill_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color & color);
 
-      virtual bool draw_inset_3drect(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
-      //virtual void draw_inset_3drect(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual bool draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      //virtual void draw_inset_3d_rectangle(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
       virtual bool draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
       virtual bool frame_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder = e_border_all);
@@ -1165,13 +1165,13 @@ virtual bool fill_contains(const point_f64 & point);
       //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
       //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
 
-      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3drect(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3drect(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_f64_dimension(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
       //inline void draw_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& color) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
       //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rectangle(rectangle_f64_dimension(x, y, cx, cy), color); }
 
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3drect(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3drect(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_inset_3d_rectangle(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(::rectangle_f64(x1, y1, x2, y2), color); }
       //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rectangle(rectangle_f64(x1, y1, x2, y2), color); }
 

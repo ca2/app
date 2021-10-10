@@ -68,7 +68,7 @@ namespace filehandler
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void refresh();
 

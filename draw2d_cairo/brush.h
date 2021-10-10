@@ -19,7 +19,7 @@ namespace draw2d_cairo
       ::e_status destroy() override;
 
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
 
    };

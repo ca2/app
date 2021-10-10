@@ -21,7 +21,7 @@ namespace userex
       top_edit_view();
       virtual ~top_edit_view();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);

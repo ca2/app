@@ -34,7 +34,7 @@ namespace draw2d_opengl
 
 
       virtual ~pen();
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
    };
 

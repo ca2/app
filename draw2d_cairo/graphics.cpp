@@ -734,7 +734,7 @@ bool graphics::paint_region(::draw2d::region* pRgn)
 //}
 
 
-//bool graphics::RectVisible(const ::rectangle_i32 & rectangle)
+//bool graphics::rectVisible(const ::rectangle_i32 & rectangle)
 //{
 //
 //    throw interface_only_exception();

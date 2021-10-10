@@ -33,7 +33,7 @@ namespace universal_windows
       bool destroy();
 
       virtual ~pen();
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
    };
 

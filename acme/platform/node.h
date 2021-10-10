@@ -235,26 +235,9 @@ namespace acme
 
       }
 
-      virtual ::e_status node_branch(const ::routine & routine);
+      virtual ::e_status node_post(const ::routine & routine);
 
-      template < typename PRED >
-      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
-      {
-
-         auto estatus = node_sync(durationTimeout, __routine(pred));
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
-
-      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_sync(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)

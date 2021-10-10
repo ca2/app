@@ -873,7 +873,7 @@ namespace user
 
          pgraphics->line_to(rectangleDivider.left, rectangleDivider.bottom);
 
-         //pgraphics->draw3d_rect(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
+         //pgraphics->draw_inset_3d_rectangle(rectangleDivider, crButtonShadow, psession->get_default_color(COLOR_BTNHIGHLIGHT));
 
       }
 

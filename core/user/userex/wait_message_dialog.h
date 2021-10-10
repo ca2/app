@@ -21,7 +21,7 @@ namespace userex
       ~wait_message_dialog() override;
 
 
-      //virtual void install_message_routing(::channel * pchannel) override;
+      //void install_message_routing(::channel * pchannel) override;
 
       virtual void on_show(const ::string & pszMatter) override;
 

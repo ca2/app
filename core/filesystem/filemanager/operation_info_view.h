@@ -29,7 +29,7 @@ namespace filemanager
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
    };
 

@@ -22,9 +22,9 @@ namespace turboc
 
       virtual void install_message_handling(::message::dispatch * pinterface);
 
-	   virtual void assert_valid() const;
+	   void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
 	   DECLARE_MESSAGE_HANDLER(on_message_create);
 

@@ -1753,8 +1753,8 @@ typedef struct tagMDINEXTMENU
 
 #define WM_MOUSEFIRST                   0x0200
 //#define e_message_mouse_move                    0x0200
-#define WM_LBUTTONDOWN                  0x0201
-#define WM_LBUTTONUP                    0x0202
+#define e_message_left_button_down                  0x0201
+#define e_message_left_button_up                    0x0202
 #define e_message_left_button_double_click                0x0203
 #define WM_RBUTTONDOWN                  0x0204
 #define WM_RBUTTONUP                    0x0205

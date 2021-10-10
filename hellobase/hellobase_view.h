@@ -30,8 +30,8 @@ namespace hellobase
       impact(::object * pobject);
       virtual ~impact();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
@@ -42,7 +42,7 @@ namespace hellobase
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
 

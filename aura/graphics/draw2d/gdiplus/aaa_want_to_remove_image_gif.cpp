@@ -427,7 +427,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
          ::draw2d::e_disposal edisposal = uFrameIndex <= 0  ? ::draw2d::disposal_none : pframea->element_at(uFrameIndex - 1)->m_edisposal;
 
-         ::point point = pframe->m_rect.top_left();
+         ::point_i32 point = pframe->m_rect.top_left();
 
          ::size size = pframe->m_rect.size();
 

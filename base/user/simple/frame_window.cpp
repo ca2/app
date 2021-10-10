@@ -543,7 +543,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
          auto pnode = psystem->node();
 
-         pnode->node_sync(15_s, __routine([this]()
+         pnode->node_sync(__routine(15_s, [this]()
          {
 
             if (m_pnotifyicon)

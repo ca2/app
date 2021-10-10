@@ -187,7 +187,7 @@ namespace draw2d_opengl
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::point & point, ::size size, point ptSrc)
+   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size size, point ptSrc)
    {
 
       return pgraphics->BitBlt(point, size, get_graphics(), ptSrc);
@@ -239,7 +239,7 @@ namespace draw2d_opengl
    }
 
 
-   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz)
+   bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size sz)
    {
 
       if (m_spgraphics.is_null())
@@ -2344,9 +2344,9 @@ namespace draw2d_opengl
       if (area() <= 0 || pimage->area() <= 0)
          return;
 
-      //plusplus::RectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
+      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
 
-      //plusplus::RectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
+      //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
 
       unmap();
       pimage->unmap();
@@ -2632,12 +2632,12 @@ namespace draw2d_opengl
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> SetViewportOrg(::point());
+//         m_spgraphics-> SetViewportOrg(::point_i32());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_spgraphics->SetViewportOrg(::point());
+//         m_spgraphics->SetViewportOrg(::point_i32());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->SetViewportOrg(::point());
+//         m_spgraphics->SetViewportOrg(::point_i32());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,

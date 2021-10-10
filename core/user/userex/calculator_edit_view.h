@@ -21,7 +21,7 @@ namespace calculator
       virtual ~plain_edit_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void set_format(const string& strFormat) override;
       virtual void set_callback(callback* pcallback) override;

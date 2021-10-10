@@ -862,7 +862,7 @@
     <ClCompile Include="primitive\collection\stringl.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\collection\stringa.cpp">
+    <ClCompile Include="primitive\collection\string_array.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\string_to_string_map.cpp">

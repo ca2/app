@@ -725,7 +725,7 @@ typedef struct tagREBARINFO
 
 
 #define RBBS_BREAK          0x00000001  // break to new line
-#define RBBS_FIXEDSIZE      0x00000002  // band can't be sized
+#define RBBS_FIXEDSIZE      0x00000002  // band can't be size_f64
 #define RBBS_CHILDEDGE      0x00000004  // edge around top & bottom of child window
 #define RBBS_HIDDEN         0x00000008  // don't show
 #define RBBS_NOVERT         0x00000010  // don't show when vertical
@@ -733,7 +733,7 @@ typedef struct tagREBARINFO
 #define RBBS_VARIABLEHEIGHT 0x00000040  // allow autosizing of this child vertically
 #define RBBS_GRIPPERALWAYS  0x00000080  // always show the gripper
 #define RBBS_NOGRIPPER      0x00000100  // never show the gripper
-#define RBBS_USECHEVRON     0x00000200  // display drop-down button for this band if it's sized smaller than ideal width
+#define RBBS_USECHEVRON     0x00000200  // display drop-down button for this band if it's size_f64 smaller than ideal width
 #define RBBS_HIDETITLE      0x00000400  // keep band title hidden
 #define RBBS_TOPALIGN       0x00000800  // keep band in top row
 #if (NTDDI_VERSION >= NTDDI_VISTA)

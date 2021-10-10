@@ -2333,9 +2333,9 @@ namespace draw2d_opengl
 
       }
 
-      //plusplus::RectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
+      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
 
-      //plusplus::RectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
+      //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
 
       unmap();
       

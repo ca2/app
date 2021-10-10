@@ -119,7 +119,7 @@ namespace draw2d_opengl
    bool path::internal_add_rect(i32 x,i32 y,i32 cx,i32 cy)
    {
 
-      //plusplus::Rect rectangle_i32(x,y,cx,cy);
+      //plusplus::rectangle_i32 rectangle_i32(x,y,cx,cy);
 
       //bool bOk2 = m_ppath->AddRectangle(rectangle) == plusplus::Status::Ok;
 

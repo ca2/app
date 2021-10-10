@@ -25,12 +25,12 @@ namespace user
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnTimer(::timer * ptime) override;

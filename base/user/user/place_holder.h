@@ -23,7 +23,7 @@ namespace user
 
       //virtual bool create_child(::user::place_holder_container * pcontainer);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       bool on_add_child(::user::interaction * puserinteractionChild) override;

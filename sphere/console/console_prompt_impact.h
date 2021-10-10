@@ -36,7 +36,7 @@ namespace console
       virtual ~prompt_impact();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual int getch();

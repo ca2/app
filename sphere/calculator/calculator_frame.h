@@ -26,8 +26,8 @@ namespace calculator
       
       
    
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
    
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

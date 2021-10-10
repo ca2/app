@@ -15,9 +15,9 @@ namespace turboc
       virtual ~full_view();
 
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

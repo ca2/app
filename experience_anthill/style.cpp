@@ -1359,7 +1359,7 @@ namespace experience
          rectangleSeparator.top = rectangleImage.top;
          rectangleSeparator.bottom = rectangleImage.bottom;
          
-         pgraphics->draw_inset_3drect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+         pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
          
       }
       else
@@ -1517,7 +1517,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_inset_3drect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1654,7 +1654,7 @@ namespace experience
 
                   pgraphics->fill_rectangle(rectangleItem, argb(208, 255, 255, 250));
 
-                  pgraphics->draw_inset_3drect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+                  pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
                }
 
@@ -1791,7 +1791,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_inset_3drect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 

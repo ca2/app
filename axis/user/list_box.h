@@ -38,7 +38,7 @@ namespace user
       void user_combo_list_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

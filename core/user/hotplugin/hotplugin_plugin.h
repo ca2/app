@@ -62,7 +62,7 @@ namespace hotplugin
       virtual ~plugin();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       // host should implement
       virtual bool         open_link(const ::string & strLink,const string & pszTarget);
@@ -187,7 +187,7 @@ namespace hotplugin
       //virtual ::form_property_set * get_form_property_set() override;
 
       virtual ::e_status destroy() override;
-      //virtual void install_message_routing(::channel * pchannel) override;
+      //void install_message_routing(::channel * pchannel) override;
       //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 

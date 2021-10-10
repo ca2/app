@@ -601,12 +601,12 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::RectVisible(const RECTANGLE_I32 &  rectangle_i32) const
+   bool graphics::rectVisible(const RECTANGLE_I32 &  rectangle_i32) const
    {
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::RectVisible(m_hdc, &rectangle) != false;
+      //return ::rectVisible(m_hdc, &rectangle) != false;
       return false;
 
    }
@@ -705,7 +705,7 @@ namespace draw2d_opengl
    bool graphics::Arc(i32 x1,i32 y1,i32 w,i32 h,double start, double extends)
    {
 
-      //::plusplus::Rect rectangle_i32(x1,y1,w,h);
+      //::plusplus::rectangle_i32 rectangle_i32(x1,y1,w,h);
 
       //return m_pgraphics->DrawArc(gl2d_pen(),rectangle,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
@@ -717,7 +717,7 @@ namespace draw2d_opengl
    bool graphics::Arc(double x1,double y1,double w,double h,double start,double extends)
    {
 
-      //::plusplus::RectF rectangle_f32((plusplus::REAL) x1,(plusplus::REAL) y1,(plusplus::REAL) w,(plusplus::REAL) h);
+      //::plusplus::rectF rectangle_f32((plusplus::REAL) x1,(plusplus::REAL) y1,(plusplus::REAL) w,(plusplus::REAL) h);
 
       //return m_pgraphics->DrawArc(gl2d_pen(),rectangle_f32,(plusplus::REAL) start,(plusplus::REAL) extends) == plusplus::Status::Ok;
 
@@ -1420,10 +1420,10 @@ namespace draw2d_opengl
    }
 
 
-   //bool graphics::Rectangle(i32 x1, i32 y1, i32 x2, i32 y2)
+   //bool graphics::rectangle(i32 x1, i32 y1, i32 x2, i32 y2)
    //{
 
-   //   //plusplus::RectF rectangle_f32((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
+   //   //plusplus::rectF rectangle_f32((plusplus::REAL) x1, (plusplus::REAL) y1, (plusplus::REAL) (x2 - x1), (plusplus::REAL) (y2 - y1));
 
    //   //bool bOk1 = m_pgraphics->FillRectangle(gl2d_brush(), rectangle_f32) == plusplus::Status::Ok;
 
@@ -1663,9 +1663,9 @@ namespace draw2d_opengl
       //if(pgraphicsSrc == nullptr)
       //   return false;
 
-      //plusplus::RectF dstRect((plusplus::REAL) xDst, (plusplus::REAL) yDst, (plusplus::REAL) nDstWidth, (plusplus::REAL) nDstHeight);
+      //plusplus::rectF dstRect((plusplus::REAL) xDst, (plusplus::REAL) yDst, (plusplus::REAL) nDstWidth, (plusplus::REAL) nDstHeight);
 
-      //plusplus::RectF srcRect((plusplus::REAL) xSrc, (plusplus::REAL) ySrc, (plusplus::REAL) nSrcWidth, (plusplus::REAL) nSrcHeight);
+      //plusplus::rectF srcRect((plusplus::REAL) xSrc, (plusplus::REAL) ySrc, (plusplus::REAL) nSrcWidth, (plusplus::REAL) nSrcHeight);
 
       //if(pgraphicsSrc == nullptr || pgraphicsSrc->get_current_bitmap() == nullptr)
       //   return false;
@@ -1891,8 +1891,8 @@ namespace draw2d_opengl
       //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
 
       //wstring wstr(L"123AWZwmc123AWZwmcpQg");
-      //plusplus::RectF rectangle_i32(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
-      //plusplus::RectF rect2;
+      //plusplus::rectF rectangle_i32(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
+      //plusplus::rectF rect2;
       //plusplus::PointF origin(0, 0);
 
       //m_pgraphics->MeasureString(wstr, (::i32) wstr.get_length(), ((graphics * )this)->gl2d_font(), origin, &rectangle);
@@ -2592,7 +2592,7 @@ namespace draw2d_opengl
    bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECTANGLE_I32 &  rectangleBounds)
    {
 
-      //plusplus::RectF rectangle_i32((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
+      //plusplus::rectF rectangle_i32((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
 
       //plusplus::Metafile* pMeta = new plusplus::Metafile(hEnhMF, false);
 
@@ -2713,7 +2713,7 @@ namespace draw2d_opengl
 //
 //      attributes.SetColorMatrix(&matrix, plusplus::ColorMatrixFlagsDefault, plusplus::ColorAdjustTypeBitmap);
 //
-//      plusplus::RectF dstRect((plusplus::REAL) xDest, (plusplus::REAL) yDest, (plusplus::REAL) nDestWidth, (plusplus::REAL) nDestHeight);
+//      plusplus::rectF dstRect((plusplus::REAL) xDest, (plusplus::REAL) yDest, (plusplus::REAL) nDestWidth, (plusplus::REAL) nDestHeight);
 //
 //      if(pgraphicsSrc == nullptr)
 //         return false;
@@ -3880,7 +3880,7 @@ namespace draw2d_opengl
    i32 graphics::get_clip_box(RECTANGLE_I32 * prectangle) const
    {
 
-      //plusplus::Rect rectangle_i32;
+      //plusplus::rectangle_i32 rectangle_i32;
 
       //m_pgraphics->GetClipBounds(rectangle);
 
@@ -4571,7 +4571,7 @@ namespace draw2d_opengl
       //   pmNew->Translate((plusplus::REAL) rectangleParam.left,(plusplus::REAL) rectangleParam.top);
       //   pmNew->Scale((plusplus::REAL) m_pfont->m_dFontWidth,(plusplus::REAL) 1.0,plusplus::MatrixOrderAppend);
 
-      //   plusplus::RectF rectangle_f32(0,0,(plusplus::REAL) ((rectangleParam.right - rectangleParam.left) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom - rectangleParam.top));
+      //   plusplus::rectF rectangle_f32(0,0,(plusplus::REAL) ((rectangleParam.right - rectangleParam.left) * m_pfont->m_dFontWidth),(plusplus::REAL) (rectangleParam.bottom - rectangleParam.top));
 
       //   m_pgraphics->SetTransform(pmNew);
 
@@ -5346,7 +5346,7 @@ namespace draw2d_opengl
 
       //   //m.TransformPoints(points, 2);
 
-      //   ////plusplus::RectF rectangle_f32(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
+      //   ////plusplus::rectF rectangle_f32(points[0].X, points[0].Y, points[1].X - points[0].X, points[1].Y - points[0].Y);
 
       //   //RECTANGLE_I32 rectangle_i32;
 

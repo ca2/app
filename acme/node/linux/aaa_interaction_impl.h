@@ -29,7 +29,7 @@ namespace linux
       ::rect64                      m_rectangleLastPos;
       ::duration m_durationLastPos;
 
-      ::point                       m_pointLastMove;
+      ::point_i32                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
@@ -44,15 +44,15 @@ namespace linux
       void linux_interaction_impl_common_construct();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       //virtual void on_delete(::matter * poc);
 
       static const MESSAGE* PASCAL GetCurrentMessage();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
@@ -176,7 +176,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::point & point) const;
+//      bool DragDetect(const ::point_i32 & point) const;
 
 
 
@@ -224,7 +224,7 @@ namespace linux
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::point client_screen_top_left() override;
+      //virtual ::point_i32 client_screen_top_left() override;
 
 //      virtual bool client_to_screen(RECT32 * prect);
 

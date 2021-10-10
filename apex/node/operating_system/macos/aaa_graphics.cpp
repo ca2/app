@@ -390,7 +390,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 //   // convert nPointSize to logical units based on pgraphics
 //   LOGFONT logFont = *pLogFont;
 //
-//   ::point point;
+//   ::point_i32 point;
 //   // 72 points/inch, 10 decipoints/point
 //   point.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x = 0;

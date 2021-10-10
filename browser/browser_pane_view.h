@@ -30,11 +30,11 @@ namespace browser
 
       void on_create_impact(::user::impact_data * pimpactdata);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void handle(::subject * psubject, ::context * pcontext);

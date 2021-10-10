@@ -18,7 +18,7 @@
 
 #define new ACME_NEW
 
-::point g_pointX11Cursor;
+::point_i32 g_pointX11Cursor;
 //::duration g_tickLastMouseMove;
 //::duration g_tickLastX11WindowConfigurationCheck;
 
@@ -3472,7 +3472,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
                //_x11_defer_check_configuration(msg.hwnd);
 
-               ::point point(e.xconfigure.x, e.xconfigure.y);
+               ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
                ::size size(e.xconfigure.width, e.xconfigure.height);
 

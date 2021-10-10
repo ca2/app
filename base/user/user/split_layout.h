@@ -43,7 +43,7 @@ namespace user
       virtual ~split_layout();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual i32 get_normal_dimension();
       virtual i32 get_ortogonal_dimension();

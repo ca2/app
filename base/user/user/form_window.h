@@ -55,7 +55,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
       virtual void handle(::subject * psubject, ::context * pcontext)  override;
       virtual void _001Update(interaction * pinteraction) override;

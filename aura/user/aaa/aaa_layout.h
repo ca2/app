@@ -49,7 +49,7 @@ namespace user
       ::rectangle                                    m_rectanglePadding;
       int                                       m_iCellPadding;
       ::size                                    m_sizeSpan;
-      ::sized                                   m_sizeWeight;
+      ::size_f64                                   m_sizeWeight;
 
       __pointer(control_descriptor)             m_pdescriptor;
 
@@ -84,8 +84,8 @@ namespace user
       //virtual bool _get_client_rect(RECT32 * prect) = 0;
       //virtual bool _get_window_rect(RECT32 * prect) = 0;
 
-      //virtual ::point _client_parent_top_left() = 0;
-      //virtual ::point _client_screen_top_left() = 0;
+      //virtual ::point_i32 _client_parent_top_left() = 0;
+      //virtual ::point_i32 _client_screen_top_left() = 0;
 
 
       //mutable size      m_sizeClient;
@@ -121,11 +121,11 @@ namespace user
 
 
 
-      //inline ::point window_parent_top_left() { return m_pointParentWindow; }
-      //inline ::point window_screen_top_left() { return m_pointScreenWindow; }
-      //inline ::point client_parent_top_left() { return m_pointParentClient; }
-      //inline ::point client_screen_top_left() { return m_pointScreenClient; }
-      //inline ::point client_top_left() { return m_pointClient; }
+      //inline ::point_i32 window_parent_top_left() { return m_pointParentWindow; }
+      //inline ::point_i32 window_screen_top_left() { return m_pointScreenWindow; }
+      //inline ::point_i32 client_parent_top_left() { return m_pointParentClient; }
+      //inline ::point_i32 client_screen_top_left() { return m_pointScreenClient; }
+      //inline ::point_i32 client_top_left() { return m_pointClient; }
 
       //inline ::size client_size() { return m_sizeClient; }
       //inline ::size window_size() { return m_sizeScreen; }
@@ -208,19 +208,19 @@ namespace user
       inline bool is_window_screen_visible() const noexcept;
 
 
-      virtual void set_initial_dim(const ::point & p, const ::size & s);
-      //inline void move_to(const ::point& point) { m_pointRequest = point; visual_setup(); }
+      virtual void set_initial_dim(const ::point_i32 & p, const ::size & s);
+      //inline void move_to(const ::point_i32& point) { m_pointRequest = point; visual_setup(); }
       //inline void set_size(const ::size & size) { m_sizeRequest = size; visual_setup(); }
       //inline void move_to(i32 x, i32 y) { m_pointRequest.set(x, y); visual_setup(); }
       //inline void set_size(i32 cx, i32 cy) { m_sizeRequest.set(cx, cy); visual_setup(); }
-      //inline void set_dim(const ::point& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
-      inline void move_to(const ::point & point) { request_state().m_point = point; m_bRequestReady = false; }
+      //inline void set_dim(const ::point_i32& point, const ::size& size) { m_pointRequest = point; m_sizeRequest = size; visual_setup(); }
+      inline void move_to(const ::point_i32 & point) { request_state().m_point = point; m_bRequestReady = false; }
       inline void set_size(const ::size & size) { request_state().m_size = size; m_bRequestReady = false; }
       inline void move_to(i32 x, i32 y) { request_state().m_point.set(x, y); m_bRequestReady = false; }
       inline void set_size(i32 cx, i32 cy) { request_state().m_size.set(cx, cy); m_bRequestReady = false; }
-      inline void set_dim(const ::point & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
+      inline void set_dim(const ::point_i32 & point, const ::size & size) { request_state().m_point = point; request_state().m_size = size; m_bRequestReady = false; }
       inline void place(const ::rectangle & rectangle) { set_dim(rectangle.origin(), rectangle.size()); }
-      inline void set_dim(i32 x, i32 y, i32 cx, i32 cy) { set_dim(::point(x, y), ::size(cx, cy)); }
+      inline void set_dim(i32 x, i32 y, i32 cx, i32 cy) { set_dim(::point_i32(x, y), ::size(cx, cy)); }
       inline layout & operator =(const ::rectangle& rectangle) { place(rectangle); return *this; }
 
 
@@ -279,11 +279,11 @@ namespace user
       {
          set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      inline bool set_window_position(::zorder zorder, const ::point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool set_window_position(::zorder zorder, const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return set_window_position(zorder, point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       }
-      inline bool window_move(const ::point & point)
+      inline bool window_move(const ::point_i32 & point)
       {
          return window_move(point.x, point.y);
       }
@@ -291,7 +291,7 @@ namespace user
       {
          return window_size(size.cx, size.cy, edisplay, eactivation);
       }
-      inline bool window_place(const ::point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
+      inline bool window_place(const ::point_i32 & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return window_place(point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       }
@@ -311,7 +311,7 @@ namespace user
 
       //virtual bool place(const ::rectangle & rectangle);
 
-      virtual ::point get_parent_accumulated_scroll() const;
+      virtual ::point_i32 get_parent_accumulated_scroll() const;
 
       virtual void on_add_layout(::user::layout * playout);
 
@@ -321,11 +321,11 @@ namespace user
       virtual string get_full_style();
       virtual void load_style(string strStyle);
 
-      inline ::point top_left() { return ui_state().m_point; }
+      inline ::point_i32 top_left() { return ui_state().m_point; }
       inline ::size size() { return ui_state().m_size; }
 
-      inline ::point origin() { return top_left(); }
-      inline ::point screen_top_left() { return ui_state().m_pointScreen; }
+      inline ::point_i32 origin() { return top_left(); }
+      inline ::point_i32 screen_top_left() { return ui_state().m_pointScreen; }
 
       inline ::i32 area() { return size().area(); }
 

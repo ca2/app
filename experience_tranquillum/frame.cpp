@@ -622,7 +622,7 @@ namespace experience
 
                   auto rect3d = ::rectangle_f64_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-                  pgraphics->draw_inset_3drect(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                  pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                   i += 5;
 

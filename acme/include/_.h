@@ -933,8 +933,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
 //#ifndef
-//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+//#define minimum(a, b) (((a) < (b)) ? (a) : (b))
+//#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus
@@ -945,7 +945,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #endif
 
 
-#define LIM(a, MIN, MAX) MIN(MAX, MAX(MIN, a))
+#define LIM(a, minimum, maximum) minimum(maximum, maximum(minimum, a))
 #define SORT_LIM(x, minmax, maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
@@ -1978,9 +1978,9 @@ namespace sort
 inline bool is_null(const void * p, size_t s)
 {
 
-   const auto MAX = (size_t) (-1);
+   const auto maximum = (size_t) (-1);
 
-   return ((size_t) p) <= s || ((size_t) p) >= (MAX - s);
+   return ((size_t) p) <= s || ((size_t) p) >= (maximum - s);
 
 }
 
@@ -1992,9 +1992,9 @@ template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
 
-   const auto MAX = (size_t) (-1) - 65536;
+   const auto maximum = (size_t) (-1) - 65536;
 
-   return ((size_t) p <= 65536) || ((size_t) p) >= (MAX);
+   return ((size_t) p <= 65536) || ((size_t) p) >= (maximum);
 
 }
 
@@ -4467,11 +4467,11 @@ namespace std
    using complex = ::math::complex < T >;
 
 
-   template <class T> const T& MIN(const T& a,const T& b)
+   template <class T> const T& minimum(const T& a,const T& b)
    {
       return !(a > b) ? a : b;
    }
-   template <class T> const T& MAX(const T& a,const T& b)
+   template <class T> const T& maximum(const T& a,const T& b)
    {
       return !(a < b) ? a : b;
    }

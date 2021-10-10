@@ -110,7 +110,7 @@ protected:
 
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

@@ -2362,7 +2362,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_inset_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
+   bool graphics::draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
 
       auto smooth_mode = get_smooth_mode();
@@ -2451,7 +2451,7 @@ namespace draw2d
    bool graphics::draw_inset_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
-      if (!draw_inset_3drect(rectangle, color, color, eborder))
+      if (!draw_inset_3d_rectangle(rectangle, color, color, eborder))
       {
 
          return false;

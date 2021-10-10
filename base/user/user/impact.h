@@ -27,7 +27,7 @@ namespace user
       virtual ~impact();
 
       virtual void dump(dump_context&) const override;
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
 
 
@@ -52,7 +52,7 @@ namespace user
       template < class DOCUMENT >
       ::data::data * get_typed_document_data();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
@@ -183,7 +183,7 @@ namespace user
       //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       //      virtual void dump(dump_context &) const;
-      //    virtual void assert_valid() const;
+      //    void assert_valid() const override;
 
 
 
@@ -192,7 +192,7 @@ namespace user
       //      virtual bool pre_create_window(::user::system * pusersystem);
 
 
-      //         virtual void install_message_routing(::channel * pchannel);
+      //         void install_message_routing(::channel * pchannel) override;
 
       virtual bool has_command_handler(::message::command * pcommand) override;
 

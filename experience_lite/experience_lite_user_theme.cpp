@@ -863,10 +863,10 @@ namespace lite
 
       __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
 
-/*      ::u32 uImage = pmenucentral->command_image(item.m_id);
+      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
       ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
-/*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
       if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
@@ -902,14 +902,14 @@ namespace lite
          {
             // item is disabled
             eelement = ::user::toolbar::e_element_item;
-/*            eelementImage = ::user::toolbar::element_image;
+            eelementImage = ::user::toolbar::element_image;
             eelementText = ::user::toolbar::e_element_text;
          }
       }
       else
       {
          eelement = ::user::toolbar::e_element_item;
-/*         eelementImage = ::user::toolbar::element_image;
+         eelementImage = ::user::toolbar::element_image;
          eelementText = ::user::toolbar::e_element_text;
       }
 
@@ -928,7 +928,7 @@ namespace lite
          rectangleSeparator.right = rectangleSeparator.left + 2;
          rectangleSeparator.top = rectangleImage.top;
          rectangleSeparator.bottom = rectangleImage.bottom;
-         pgraphics->draw3d_rect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+         pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
       {
@@ -939,7 +939,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::user::toolbar::element_image);
+               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::user::toolbar::element_image);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -951,7 +951,7 @@ namespace lite
                   rectangleItem.height(),
                   rgb(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+                  pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
                }
 
                if (uImage != 0xffffffffu)
@@ -999,14 +999,14 @@ namespace lite
 
                }
 
-/*               if (item.m_pimage->is_set())
+               if (item.m_pimage->is_set())
                {
 
                   ::rectangle_i32 rectangle;
 
                   ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
-/*                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
+                  pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
                }
                else if (uImage != 0xffffffffu)
@@ -1044,14 +1044,14 @@ namespace lite
 
             }
 
-/*            if (item.m_pimage->is_set())
+            if (item.m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
                ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
             }
             else if (uImage != 0xffffffff)
@@ -1077,18 +1077,18 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
-/*            if (item.m_pimage->is_set())
+            if (item.m_pimage->is_set())
             {
 
                ::rectangle_i32 rectangle;
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
-/*               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
+               pgraphics->color_blend(rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
             }
             else if (uImage != 0xffffffff)
@@ -1258,7 +1258,7 @@ namespace lite
                   rectangleItem.height(),
                   rgb(255, 255, 250), 208);
 
-                  pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+                  pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
                }
 
                if (uImage != 0xffffffffu)
@@ -1384,7 +1384,7 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 

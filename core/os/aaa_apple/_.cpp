@@ -255,7 +255,7 @@ void copy(POINT32 * ppointTarget, const CGPoint * ppointSource)
 
 }
 
-void copy(CGPoint * ppointTarget, const POINTD * ppointSource)
+void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -264,7 +264,7 @@ void copy(CGPoint * ppointTarget, const POINTD * ppointSource)
 }
 
 
-void copy(POINTD * ppointTarget, const CGPoint * ppointSource)
+void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -294,7 +294,7 @@ void copy(RECT32 * prectTarget, const CGRect * prectSource)
 }
 
 
-void copy(CGRect * prectTarget, const RECTD * prectSource)
+void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource)
 {
    
    prectTarget->origin.x      = prectSource->left;
@@ -305,7 +305,7 @@ void copy(CGRect * prectTarget, const RECTD * prectSource)
 }
 
 
-void copy(RECTD * prectTarget, const CGRect * prectSource)
+void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
 {
    
    prectTarget->left          = prectSource->origin.x;

@@ -38,7 +38,7 @@ namespace user
       virtual ~static_control();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       //virtual bool create_interaction(::user::interaction * puiParent,id id);

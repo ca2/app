@@ -41,8 +41,8 @@ namespace user
 
          virtual void do_layout();
 
-         virtual void assert_valid() const override;
-         virtual void dump(dump_context & dumpcontext) const override;
+         void assert_valid() const override;
+         void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, index iItem);
          virtual bool _001IsPointInside(const ::point_i32 & point) override;

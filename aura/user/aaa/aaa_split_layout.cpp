@@ -239,7 +239,7 @@ namespace user
 
       ::rectangle splitRect;
       CalcSplitBarRect(iIndex, &splitRect);
-      ::point pointCursor = pMsg->pt;
+      ::point_i32 pointCursor = pMsg->pt;
 
       if(pMsg->message == e_message_left_button_down)
 

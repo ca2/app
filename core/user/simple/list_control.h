@@ -22,7 +22,7 @@ public:
    void set_data(string_array & stra);
    virtual ~simple_list_control();
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

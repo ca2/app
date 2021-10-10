@@ -16,10 +16,10 @@ namespace user
       virtual ~split_view();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;

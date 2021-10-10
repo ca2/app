@@ -575,7 +575,7 @@ namespace account
 
       m_login.get_window_rect(rectangleLogin);
 
-      ::point point(x, y);
+      ::point_i32 point(x, y);
 
       if (rectangleLogin.is_empty().contains(point))
       {

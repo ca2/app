@@ -15,7 +15,7 @@ namespace base
 
 
       style();
-      virtual ~style();
+      ~style() override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }

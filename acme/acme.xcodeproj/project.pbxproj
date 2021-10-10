@@ -410,7 +410,7 @@
 		9A68ADD325114434008DABD2 /* attrib_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5CB2511442F008DABD2 /* attrib_map.h */; };
 		9A68ADD425114434008DABD2 /* key_sort_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CC2511442F008DABD2 /* key_sort_array.cpp */; };
 		9A68ADD525114434008DABD2 /* logic_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5CD2511442F008DABD2 /* logic_array.h */; };
-		9A68ADD625114434008DABD2 /* stringa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CE2511442F008DABD2 /* stringa.cpp */; };
+		9A68ADD625114434008DABD2 /* string_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CE2511442F008DABD2 /* string_array.cpp */; };
 		9A68ADD725114434008DABD2 /* comparable_eq_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5CF2511442F008DABD2 /* comparable_eq_array.h */; };
 		9A68ADD825114434008DABD2 /* sort_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68A5D02511442F008DABD2 /* sort_list.h */; };
 		9A68ADD925114434008DABD2 /* stringl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5D12511442F008DABD2 /* stringl.cpp */; };
@@ -2535,7 +2535,7 @@
 		9AD69246251A753A00C0EBD7 /* box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A76A2511442F008DABD2 /* box.cpp */; };
 		9AD6924D251A753A00C0EBD7 /* text_stream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A7962511442F008DABD2 /* text_stream.cpp */; };
 		9AD69250251A753A00C0EBD7 /* dump_floating_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68AC7525114432008DABD2 /* dump_floating_point.cpp */; };
-		9AD69252251A753A00C0EBD7 /* stringa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CE2511442F008DABD2 /* stringa.cpp */; };
+		9AD69252251A753A00C0EBD7 /* string_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5CE2511442F008DABD2 /* string_array.cpp */; };
 		9AD69253251A753A00C0EBD7 /* edit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A63D2511442F008DABD2 /* edit.cpp */; };
 		9AD69254251A753A00C0EBD7 /* build_debug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A5522511442E008DABD2 /* build_debug.cpp */; };
 		9AD69255251A753A00C0EBD7 /* stringtow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68A7042511442F008DABD2 /* stringtow.cpp */; };
@@ -3025,7 +3025,7 @@
 		9A68A5CB2511442F008DABD2 /* attrib_map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrib_map.h; sourceTree = "<group>"; };
 		9A68A5CC2511442F008DABD2 /* key_sort_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = key_sort_array.cpp; sourceTree = "<group>"; };
 		9A68A5CD2511442F008DABD2 /* logic_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logic_array.h; sourceTree = "<group>"; };
-		9A68A5CE2511442F008DABD2 /* stringa.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringa.cpp; sourceTree = "<group>"; };
+		9A68A5CE2511442F008DABD2 /* string_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = string_array.cpp; sourceTree = "<group>"; };
 		9A68A5CF2511442F008DABD2 /* comparable_eq_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comparable_eq_array.h; sourceTree = "<group>"; };
 		9A68A5D02511442F008DABD2 /* sort_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort_list.h; sourceTree = "<group>"; };
 		9A68A5D12511442F008DABD2 /* stringl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stringl.cpp; sourceTree = "<group>"; };
@@ -4904,7 +4904,7 @@
 				9A68A5D42511442F008DABD2 /* string_map.h */,
 				9A68A5B62511442F008DABD2 /* string_to_string_map.cpp */,
 				9A68A5B72511442F008DABD2 /* string_to_string_map.h */,
-				9A68A5CE2511442F008DABD2 /* stringa.cpp */,
+				9A68A5CE2511442F008DABD2 /* string_array.cpp */,
 				9A68A5D12511442F008DABD2 /* stringl.cpp */,
 				9A68A6022511442F008DABD2 /* stringl.h */,
 				9A68A5FB2511442F008DABD2 /* template.h */,
@@ -8694,7 +8694,7 @@
 				9ADD651D26B5CF1300D11298 /* payload_array.cpp in Sources */,
 				9A786216264B90B4003DF8A0 /* number_double.cpp in Sources */,
 				9A15A741264B6F2D0080670E /* tree.cpp in Sources */,
-				9A68ADD625114434008DABD2 /* stringa.cpp in Sources */,
+				9A68ADD625114434008DABD2 /* string_array.cpp in Sources */,
 				9A68AE4225114435008DABD2 /* edit.cpp in Sources */,
 				9A787CF8264C0740003DF8A0 /* context.cpp in Sources */,
 				9A15A6BE264B59EF0080670E /* condition_variable.cpp in Sources */,
@@ -9104,7 +9104,7 @@
 				9A892A3D26CD7571008D6412 /* graphics.cpp in Sources */,
 				9A15A572264B0ECB0080670E /* microsecond_sleep.cpp in Sources */,
 				9AD69250251A753A00C0EBD7 /* dump_floating_point.cpp in Sources */,
-				9AD69252251A753A00C0EBD7 /* stringa.cpp in Sources */,
+				9AD69252251A753A00C0EBD7 /* string_array.cpp in Sources */,
 				9AD69253251A753A00C0EBD7 /* edit.cpp in Sources */,
 				9AD69254251A753A00C0EBD7 /* build_debug.cpp in Sources */,
 				9A787DBC264CA807003DF8A0 /* bidirectional_pipe.cpp in Sources */,

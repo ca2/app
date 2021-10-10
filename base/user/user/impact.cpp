@@ -39,14 +39,14 @@ namespace user
       //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
-      //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
+      //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
       //    connect_command_probe(ID_WINDOW_SPLIT ,  &impact::_001OnUpdateSplitCmd);
 
       // Standard commands for next pane
       //  connect_command_probe(ID_NEXT_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //connect_command(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
+      //add_command_handler(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
       //      connect_command_probe(ID_PREV_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //    connect_command(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
+      //    add_command_handler(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
 
       //}}__MSG_MAP
       // special command for Initial Update

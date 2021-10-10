@@ -488,8 +488,8 @@ public:
    void move(association* passociation, map * pmap = nullptr);
    void move(map* pmap, ARG_KEY key);
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
 

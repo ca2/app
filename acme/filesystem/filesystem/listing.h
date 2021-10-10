@@ -50,7 +50,7 @@ namespace file
 
       listing();
       listing(const listing & listing);
-      virtual ~listing();
+      ~listing() override;
 
       
       bool succeeded() const

@@ -591,11 +591,11 @@ namespace user
 
          ::rectangle rectanglePush(rectangleClient);
 
-         pgraphics->draw_inset_3drect(rectanglePush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
          rectanglePush.deflate(1, 1);
 
-         pgraphics->draw_inset_3drect(rectanglePush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
       }
       else
@@ -1154,12 +1154,12 @@ namespace user
          bSubItemHover  = bItemHover;
       }
 
-      ::point point = rectangleClient.top_left();
+      ::point_i32 point = rectangleClient.top_left();
       point += ::size(1, 1);
 
       if(bSubItemHover)
       {
-         pgraphics->draw_inset_3drect(
+         pgraphics->draw_inset_3d_rectangle(
          rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));

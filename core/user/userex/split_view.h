@@ -16,7 +16,7 @@ namespace userex
       virtual ~split_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual bool on_new_view_creator_data(::user::impact_data * pimpactdata);

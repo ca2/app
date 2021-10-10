@@ -17,7 +17,7 @@ namespace filemanager
       save_as_edit_view();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
@@ -38,7 +38,7 @@ namespace filemanager
       save_as_button();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual bool on_click(const ::item & item) override;
@@ -66,7 +66,7 @@ namespace filemanager
       save_as_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

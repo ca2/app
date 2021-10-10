@@ -207,7 +207,7 @@ namespace browser
    }
 
 
-   void impact::on_layout()
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -886,7 +886,7 @@ namespace browser
 
    void impact::OnPaint(CefRefPtr<CefBrowser> browser,
                       CefRenderHandler::PaintElementType type,
-                      const CefRenderHandler::RectList& dirtyRects,
+                      const CefRenderHandler::rectList& dirtyRects,
                       const void* buffer,
                       int width,
                       int height)

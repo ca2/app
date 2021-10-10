@@ -27,7 +27,7 @@ namespace user
    //   virtual ~control();
 
 
-   //   virtual void install_message_routing(::channel * pchannel) override;
+   //   void install_message_routing(::channel * pchannel) override;
 
    //   /// if you (developer) don't know how to create a control,
    //   /// you should be able (control developer pay attention now),

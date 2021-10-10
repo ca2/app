@@ -47,13 +47,13 @@ namespace user
 
       //virtual void font_list_update();
 
-      //virtual void assert_valid() const;
-      //virtual void dump(dump_context & dumpcontext) const;
+      //void assert_valid() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
       //virtual bool get_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

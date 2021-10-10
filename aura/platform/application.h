@@ -154,8 +154,8 @@ namespace aura
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void enumerate_composite(matter_array& a);
@@ -388,8 +388,8 @@ namespace aura
       //virtual ::file::path appconfig_folder() override;
 
 
-      //virtual void assert_valid() const override;
-      //virtual void dump(dump_context & dumpcontext) const override;
+      //void assert_valid() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
 
       //virtual ::file::path get_app_localconfig_folder() override;
@@ -402,7 +402,7 @@ namespace aura
       //virtual bool app_data_set(const ::id & id, ::object & obj) override;
       //virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual string dialog_box(const ::string & pszMatter, property_set & propertyset) override;
 

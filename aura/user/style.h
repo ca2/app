@@ -57,7 +57,7 @@ namespace user
 
       style();
       //style(::object * pobject);
-      virtual ~style();
+      ~style() override;
 
 
       //inline auto node() const { return m_pnode; }
@@ -74,7 +74,7 @@ namespace user
 
       virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox);
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual ::e_status initialize_style();
 

@@ -170,7 +170,7 @@ namespace user
 
       i32 cy = cx * 2 / 3;
 
-      ::point pointCenter = rectangleDropDown.center();
+      ::point_i32 pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 

@@ -29,7 +29,7 @@ namespace user
       virtual void set_default_title(::user::document * pdocument) override;
 
       virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
       //virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       //{

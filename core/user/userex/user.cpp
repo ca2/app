@@ -915,7 +915,7 @@ namespace core
       //ZeroMemory(&cc, sizeof(cc));
       //cc.lStructSize = sizeof(CHOOSECOLOR);
       //cc.rgbResult = c.get_rgb();
-      //cc.lpCustColors = (COLORREF*) crCustColors;
+      //cc.lpCustColors = (::color::color*) crCustColors;
 
       //cc.Flags = CC_RGBINIT | CC_FULLOPEN;
       //cc.hwndOwner = puiOwner->get_safe_handle(); // this hangs parent, as well as me

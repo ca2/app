@@ -1093,7 +1093,7 @@ namespace user
          // draw the gripper in the border
          if (m_dwStyle & CBRS_ORIENT_HORZ)
          {
-            //pgraphics->draw3d_rect(rectangle.left+CX_BORDER_GRIPPER,
+            //pgraphics->draw_inset_3d_rectangle(rectangle.left+CX_BORDER_GRIPPER,
             //   rectangle.top+m_rectangleBorder.top,
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
             //   afxData.clrBtnHilite, afxData.clrBtnShadow);
@@ -1113,7 +1113,7 @@ namespace user
          }
          else
          {
-            //         pgraphics->draw3d_rect(rectangle.left+m_rectangleBorder.top,
+            //         pgraphics->draw_inset_3d_rectangle(rectangle.left+m_rectangleBorder.top,
             //            rectangle.top+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
             //            afxData.clrBtnHilite, afxData.clrBtnShadow);

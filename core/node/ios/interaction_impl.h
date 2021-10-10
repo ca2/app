@@ -36,8 +36,8 @@ namespace ios
 
       virtual void construct(oswindow hwnd);
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool round_window_become_first_responder() override;
 
@@ -45,7 +45,7 @@ namespace ios
 
       static const MESSAGE* PASCAL GetCurrentMessage();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual ::user::interaction *  SetOwner(::user::interaction *   pOwnerWnd) override;
 

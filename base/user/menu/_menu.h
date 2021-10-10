@@ -9,6 +9,9 @@
 #include "list_view.h"
 
 
+#include "menu_view.h"
+
+
 #include "central.h"
 
 

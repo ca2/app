@@ -277,7 +277,7 @@ list(APPEND library_source
    primitive/collection/string_array_base.cpp
    primitive/collection/string_list.cpp
    primitive/collection/string_to_string_map.cpp
-   primitive/collection/stringa.cpp
+   primitive/collection/string_array.cpp
    primitive/collection/stringl.cpp
    primitive/collection/payload_array.cpp
    primitive/comparison/var_strict.cpp

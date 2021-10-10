@@ -22,8 +22,8 @@ namespace prompt
       virtual bool on_new_document();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
 

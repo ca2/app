@@ -352,7 +352,7 @@ namespace html
          /*if(m_iBorder > 0)
          {
 
-         pdata->m_pcoredata->m_pdc->draw3d_rect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
+         pdata->m_pcoredata->m_pdc->draw_inset_3d_rectangle(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
          get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), argb(255, 190, 184, 184), argb(255, 90, 90, 90));
 
          }*/

@@ -132,8 +132,8 @@ namespace user
 
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool LoadXmlToolBar(const ::string & pszFileName);
@@ -175,7 +175,7 @@ namespace user
 
       //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       //virtual index _001GetHoverItem();

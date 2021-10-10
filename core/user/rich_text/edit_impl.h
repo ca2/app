@@ -53,8 +53,8 @@ namespace user
 
          virtual ::size_f64 get_size() override;
 
-         virtual void assert_valid() const override;
-         virtual void dump(dump_context & dumpcontext) const override;
+         void assert_valid() const override;
+         void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, index iItem) override;
          virtual bool _001IsPointInside(const ::point_i32 & point) override;

@@ -40,7 +40,7 @@ namespace draw2d
 
       virtual ::e_status destroy() override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
       virtual bool create_solid(::color::color color);

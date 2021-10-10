@@ -258,7 +258,7 @@
 //
 //   SetMainScreenRect(rectangle);
 //
-//   ::point p;
+//   ::point_i32 p;
 //
 //   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 //

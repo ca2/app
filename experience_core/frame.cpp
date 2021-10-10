@@ -681,7 +681,7 @@ namespace experience
 
                   ::rectangle_f64 rectangle(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-                  pgraphics->draw_inset_3drect(rectangle, argb(110,230,230,230),argb(110,130,130,130));
+                  pgraphics->draw_inset_3d_rectangle(rectangle, argb(110,230,230,230),argb(110,130,130,130));
 
                   i += 5;
 

@@ -27,7 +27,7 @@ namespace experience
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual bool pre_create_window(::user::system * pusersystem);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
       void UpdateWndRgn();
       //void SetEllipsePens(
       //     ::draw2d::pen * ppen,

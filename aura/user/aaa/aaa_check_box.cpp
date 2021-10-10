@@ -525,7 +525,7 @@ namespace user
       pgraphics->set(pbrush);
 
       pgraphics->ellipse(rectangleCheckBox);
-      //   pgraphics->draw3d_rect(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+      //   pgraphics->draw_inset_3d_rectangle(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   if (m_echeck == check_tristate
       //      || m_echeck == check_checked)
       //   {

@@ -47,9 +47,9 @@ namespace draw2d_opengl
 
 
       bool from(::draw2d::graphics * pgraphics);
-      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz);
+      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size sz);
 
-      bool to(::draw2d::graphics * pgraphics, const ::point & point, ::size size, point ptSrc);
+      bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size size, point ptSrc);
 
 
       void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);

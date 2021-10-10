@@ -33,8 +33,8 @@ namespace filemanager
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
       
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::fs::data *                         fs_data();
@@ -129,7 +129,7 @@ namespace filemanager
       virtual void on_command(::message::command * pcommand) override;
       virtual void on_command_probe(::message::command * pcommand) override;
 
-      virtual bool on_new_document() override;
+      bool on_new_document() override;
       virtual bool on_open_document(const ::payload & varFile) override;
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);

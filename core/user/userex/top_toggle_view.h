@@ -18,7 +18,7 @@ namespace userex
       virtual ~top_toggle_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;

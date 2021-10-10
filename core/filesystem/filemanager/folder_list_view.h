@@ -20,7 +20,7 @@ namespace filemanager
       virtual ~folder_list_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual void initialize(string strDataKeyModifier,bool bRecursive);

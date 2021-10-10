@@ -66,7 +66,7 @@ namespace user
 
 
       // as hosting interaction_impl
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       // as virtual interaction_impl
       virtual void _002InstallMessageHandling(::channel * pchannel);
 

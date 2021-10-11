@@ -227,11 +227,11 @@ namespace acme
 
       virtual void enable_wallpaper_change_notification();
 
-      template < typename PRED >
-      void node_fork(PRED pred)
+      template < typename PREDICATE >
+      void node_fork(PREDICATE predicate)
       {
 
-         node_branch(__routine(pred));
+         node_post(__routine(predicate));
 
       }
 

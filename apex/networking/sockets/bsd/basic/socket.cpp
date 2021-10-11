@@ -240,7 +240,7 @@ namespace sockets
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno);
+            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno));
 
             return false;
          }
@@ -250,7 +250,7 @@ namespace sockets
          if (fcntl(s, F_SETFL, 0) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno);
+            ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno));
 
             return false;
          }

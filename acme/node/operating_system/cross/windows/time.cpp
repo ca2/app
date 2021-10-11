@@ -120,7 +120,7 @@ typedef struct _TIME_FIELDS
    CSHORT Hour;
    CSHORT Minute;
    CSHORT Second;
-   CSHORT ::durations;
+   CSHORT Millis;
    CSHORT Weekday;
 } TIME_FIELDS, *PTIME_FIELDS;
 //#ifdef _UWP
@@ -232,7 +232,7 @@ CLASS_DECL_ACME void RtlTimeToTimeFields(
    ::i64 Time;
 
    /* Extract ::duration from time and convert time into seconds */
-   TimeFields->::durations =
+   TimeFields->Millis =
       (CSHORT) (( *liTime % TICKSPERSEC) / TICKSPERMSEC);
    Time = *liTime / TICKSPERSEC;
 
@@ -299,7 +299,7 @@ i32 month, year, cleaps, day;
 
 /* FIXME: normalize the TIME_FIELDS structure here */
 /* No, native just returns 0 (error) if the fields are not */
-if( tfTimeFields->::durations< 0 || tfTimeFields->::durations > 999 ||
+if( tfTimeFields->Millis< 0 || tfTimeFields->Millis > 999 ||
 tfTimeFields->Second < 0 || tfTimeFields->Second > 59 ||
 tfTimeFields->Minute < 0 || tfTimeFields->Minute > 59 ||
 tfTimeFields->Hour < 0 || tfTimeFields->Hour > 23 ||
@@ -338,7 +338,7 @@ day =  (36525 * year) / 100 - cleaps + /* year * dayperyr, corrected */
             tfTimeFields->Hour) * MINSPERHOUR +
            tfTimeFields->Minute) * SECSPERMIN +
           tfTimeFields->Second ) * 1000 +
-         tfTimeFields->::durations ) * TICKSPERMSEC;
+         tfTimeFields->Millis ) * TICKSPERMSEC;
 
 return true;
 }
@@ -531,7 +531,7 @@ void RtlTimeToElapsedTimeFields( const u64 *Time, PTIME_FIELDS TimeFields )
    ::i32 rem;
 
    time = *Time / TICKSPERSEC;
-   TimeFields->::durations = (CSHORT) ((*Time % TICKSPERSEC) / TICKSPERMSEC);
+   TimeFields->Millis = (CSHORT) ((*Time % TICKSPERSEC) / TICKSPERMSEC);
 
    /* time is now in seconds */
    TimeFields->Year  = 0;
@@ -1049,7 +1049,7 @@ int_bool FileTimeToSystemTime( const filetime_t *ft, system_time_t * syst )
    syst->wHour = tf.Hour;
    syst->wMinute = tf.Minute;
    syst->wSecond = tf.Second;
-   syst->wMilliseconds = tf.::durations;
+   syst->wMilliseconds = tf.Millis;
    syst->wDayOfWeek = tf.Weekday;
    return true;
 }
@@ -1069,7 +1069,7 @@ int_bool SystemTimeToFileTime( const system_time_t *syst, filetime_t * ft )
    tf.Hour = syst->wHour;
    tf.Minute = syst->wMinute;
    tf.Second = syst->wSecond;
-   tf.::durations = syst->wMilliseconds;
+   tf.Millis = syst->wMilliseconds;
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {

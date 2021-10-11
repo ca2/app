@@ -34,7 +34,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
    ::duration start;
 
-   if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
+   if (tickTimeout != (::u32)INFINITE_TIMEOUT)
    {
 
       start = ::duration::now();
@@ -84,7 +84,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
             }
 
-            if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+            if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
             {
 
                for (j = 0; j < i; j++)
@@ -98,7 +98,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
             }
 
-            if (synca[i]->lock(::duration(1)))
+            if (synca[i]->lock(1_ms))
             {
 
                i++;
@@ -133,7 +133,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
          if (pmq.is_set())
          {
 
-            if (pmq->m_eventNewMessage.lock(::duration(0)))
+            if (pmq->m_eventNewMessage.lock(0_s))
             {
 
                return (enum_status)(((::i32) signaled_base) + dwSize);
@@ -156,7 +156,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
          nanosleep(&delay, nullptr);
 
-         if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+         if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
          {
 
             return error_wait_timeout;

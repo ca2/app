@@ -1,4 +1,4 @@
-// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSørensen!!
+// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -62,7 +62,7 @@ public:
 
 
    template < typename STRINGABLE >
-   tracer & format_from_string(const STRINGABLE & stringable)
+   tracer & format(const STRINGABLE & stringable)
    {
 
       string str;
@@ -77,10 +77,23 @@ public:
    tracer & operator << (const string & str);
    tracer & operator << (enum_flush);
    tracer & operator << (const integral_byte & memsize);
-   template < typename STRINGABLE >
-   tracer & operator << (const STRINGABLE & stringable) { return format_from_string(stringable); }
 
+   tracer & operator << (const INTEGRAL_NANOSECOND & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_MICROSECOND & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_MILLISECOND & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_SECOND & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_MINUTE & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_HOUR & duration) { return format(duration); }
+   tracer & operator << (const INTEGRAL_DAY & duration) { return format(duration); }
 
+//   tracer & operator << (const FLOATING_NANOSECOND & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_MICROSECOND & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_MILLISECOND & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_SECOND & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_MINUTE & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_HOUR & duration) { return format(duration); }
+//   tracer & operator << (const FLOATING_DAY & duration) { return format(duration); }
+   
    template < primitive_integral INTEGRAL >
    tracer & operator << (const INTEGRAL integral) { return operator << (::__string(integral)); }
 

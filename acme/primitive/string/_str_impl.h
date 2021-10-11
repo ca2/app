@@ -564,14 +564,14 @@ template < size_t n >
 inline  void           from_string(wd16char sz[n], const ansichar * psz)
 {
 
-   if (utf_to_utf_length(sz, psz) >= n)
+   if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
       __throw(error_would_reach_buffer_limit);
 
    }
 
-   utf_to_utf(sz, psz);
+   ::str::utf_to_utf(sz, psz);
 
 }
 
@@ -579,14 +579,14 @@ template < size_t n >
 inline  void           from_string(wd32char sz[n], const ansichar * psz)
 {
 
-   if (utf_to_utf_length(sz, psz) >= n)
+   if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
       __throw(error_would_reach_buffer_limit);
 
    }
 
-   utf_to_utf(sz, psz);
+   ::str::utf_to_utf(sz, psz);
 
 }
 

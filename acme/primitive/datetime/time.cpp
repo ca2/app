@@ -234,7 +234,7 @@ namespace datetime
 
          struct tm * ptmTemp;
 
-         ptmTemp = gmtime(&m_time);
+         ptmTemp = gmtime(&m_i);
 
          // gmtime can return nullptr
          if(ptmTemp == nullptr)
@@ -300,7 +300,7 @@ namespace datetime
 
 #else
 
-         return localtime_r(&m_time, ptm);
+         return localtime_r(&m_i, ptm);
 
 #endif
 
@@ -787,7 +787,7 @@ string Format(const ::string & strFormat, const ::datetime::time & time)
 
 #if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
    char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-   struct tm * ptmTemp = localtime(&time.m_time);
+   struct tm * ptmTemp = localtime(&time.m_i);
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {
       szBuffer[0] = '\0';
@@ -878,7 +878,7 @@ string FormatGmt(const string & strFormat, const ::datetime::time & time)
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   struct tm * ptmTemp = gmtime(&time.m_time);
+   struct tm * ptmTemp = gmtime(&time.m_i);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {

@@ -50,7 +50,7 @@ namespace serial
 #ifdef WINDOWS
       return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
 #else
-      return class ::serial::timeout(maximum(), timeout, 0, timeout, 0);
+      return ::serial::timeout(::duration::infinite(), duration, 0, duration, 0);
 #endif
    }
 
@@ -382,9 +382,7 @@ namespace serial
    struct timeout serial::getTimeout() const
    {
 
-      //return m_pimpl->getTimeout();
-
-      return struct timeout();
+      return nullptr;
 
    }
 

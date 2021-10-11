@@ -9,8 +9,7 @@ class integral_duration :
 public:
 
 
-   using BASE_DURATION = DURATION;
-   using BASE_TYPE = BASE_DURATION::BASE_TYPE;
+   using BASE_TYPE = typename DURATION::BASE_TYPE;
 
 
    using DURATION::DURATION;
@@ -39,7 +38,7 @@ public:
    inline integral_duration elapsed(const integral_duration & durationStop = ::now < integral_duration >()) const
    {
 
-      return DURATION::BASE_TYPE(durationStop.m_i - this->m_i);
+      return typename DURATION::BASE_TYPE(durationStop.m_i - this->m_i);
 
    }
 
@@ -47,7 +46,7 @@ public:
    inline integral_duration half() const
    {
 
-      return DURATION::BASE_TYPE(this->m_i >> 1);
+      return typename DURATION::BASE_TYPE(this->m_i >> 1);
 
    }
 

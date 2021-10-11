@@ -211,7 +211,7 @@ namespace windowing
       ::e_status windowing_send(OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::material_object::__sync_status_payload(this, &windowing::windowing_post, pobject, object_method, ppayload);
+         return ::material_object::__send_payload(this, &windowing::windowing_post, pobject, object_method, ppayload);
 
       }
 

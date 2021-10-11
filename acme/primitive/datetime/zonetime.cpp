@@ -133,8 +133,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
 
          struct tm * ptmTemp;
 
-
-         time_t t = m_time;
+         time_t t = m_i;
 
          t += m_iZoneOffset;
 

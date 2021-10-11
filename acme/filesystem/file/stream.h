@@ -319,7 +319,7 @@ public:
 
 
    stream():m_pvarOptions(nullptr) {}
-   virtual ~stream();
+   ~stream() override;
 
    inline ::payload & options();
 

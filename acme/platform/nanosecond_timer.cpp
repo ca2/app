@@ -55,9 +55,7 @@ void nanosecond_timer::wait(const ::duration & duration)
 
 #else
 
-   ::duration duration = integralnanosecond;
-
-   ::nanosleep(duration, nullptr)
+   ::nanosleep((timespec *) &duration, nullptr);
 
 #endif
 

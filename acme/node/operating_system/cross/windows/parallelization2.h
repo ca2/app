@@ -36,9 +36,9 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
-::e_status WaitForSingleObject(HSYNC hsync, ::u32 dw::durations);
+::e_status WaitForSingleObject(HSYNC hsync, ::u32 uMillis);
 
-::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 dw::durations, int_bool bAlertable);
+::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 uMillis, int_bool bAlertable);
 
 
 //#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)

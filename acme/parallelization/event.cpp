@@ -2,6 +2,7 @@
 #include "acme/operating_system.h"
 
 
+
 #ifdef PARALLELIZATION_PTHREAD
 
 
@@ -633,7 +634,7 @@ bool event::ResetEvent()
    if(m_bManualEvent)
    {
 
-      if(durationTimeout.is_pos_infinity())
+      if(wait.is_infinite())
       {
 
          pthread_mutex_lock((pthread_mutex_t *) m_mutex);
@@ -674,11 +675,10 @@ bool event::ResetEvent()
       }
       else
       {
+
          timespec abstime;
          
          timespec timeNow;
-
-         ((duration & ) durationTimeout).normalize();
 
          pthread_mutex_lock((pthread_mutex_t *) m_mutex);
 
@@ -688,9 +688,7 @@ bool event::ResetEvent()
 
          clock_getrealtime(&abstime);
 
-         abstime.tv_sec += durationTimeout.m_secs.m_i;
-
-         abstime.tv_nsec += durationTimeout.m_nanos.m_i;
+         abstime += wait;
 
          while(abstime.tv_nsec > 1000 * 1000 * 1000)
          {
@@ -759,13 +757,10 @@ bool event::ResetEvent()
 
       delay.tv_nsec = 1000 * 1000;
 
-      u32 timeout = durationTimeout.u32_millis();
-
       auto start = ::duration::now();
 
-      while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
+      while(wait.is_infinite() || start.elapsed() < wait)
       {
-
 
          sembuf sb;
 

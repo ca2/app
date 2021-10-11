@@ -538,7 +538,7 @@ namespace user
 
       //      create_buttons(m_pmenuitem);
 
-      //on_layout(::draw2d::graphics_pointer & pgraphics);
+      //on_layout(pgraphics);
 
       //auto rectangleClient = puiParent->get_client_rect();
 

@@ -127,6 +127,49 @@ public:
    }
 
 
+   ::e_status initialize(::object* pobject) override
+   {
+
+      auto estatus = BASE1::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE2::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE3::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = BASE4::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
    APPLICATION_CONSUMER_BODY
 
 

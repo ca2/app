@@ -1768,7 +1768,7 @@ namespace apex
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 

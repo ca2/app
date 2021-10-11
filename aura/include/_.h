@@ -1429,7 +1429,7 @@ namespace user
    //class item;
    class check;
 //   class system;
-   class command;
+   //class command;
    class interaction_impl;
    class primitive;
    class frame;

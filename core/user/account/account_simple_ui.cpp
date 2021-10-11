@@ -280,7 +280,7 @@ namespace account
 
       m_plogin->m_peditUser->set_keyboard_focus();
 
-      //m_plogin->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //m_plogin->on_layout(pgraphics);
 
       m_plogin->display();
 
@@ -454,7 +454,7 @@ namespace account
 
       m_plogin->layout().sketch() = rectangleClient;
 
-      //m_plogin->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //m_plogin->on_layout(pgraphics);
 
    }
 

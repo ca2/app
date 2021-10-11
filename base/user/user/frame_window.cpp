@@ -1256,7 +1256,7 @@ namespace user
       //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
       //{
       //   get_parent()->place_hold(this);
-      //   //get_parent()->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   //get_parent()->on_layout(pgraphics);
       //}
 
    }
@@ -2125,7 +2125,7 @@ namespace user
             __set_dialog_control_id_(oswindow, FIRST_PANE);
             }
 
-            on_layout(::draw2d::graphics_pointer & pgraphics);
+            on_layout(pgraphics);
 
 
             // show any modeless dialogs, popup windows, float tools, etc

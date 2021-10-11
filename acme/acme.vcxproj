@@ -1180,6 +1180,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="constant\source.h" />
     <ClInclude Include="constant\status.h" />
     <ClInclude Include="constant\status_range_authentication.h" />
+    <ClInclude Include="constant\subject.h" />
     <ClInclude Include="constant\thread.h" />
     <ClInclude Include="constant\timer.h" />
     <ClInclude Include="constant\_.h" />

@@ -120,7 +120,7 @@ namespace filehandler
          pimpactdata->m_pdocument = get_document();
 
          pview->m_strName = strFile;
-         //pview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //pview->on_layout(pgraphics);
 
       }
 

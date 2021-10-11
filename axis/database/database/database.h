@@ -104,6 +104,8 @@ namespace database
       virtual string error1(const ::string & strPrefix = nullptr) = 0;
       virtual void trace_error1(const ::string & strPrefix = nullptr) = 0;
 
+      virtual string query_error(const ::string& strPrefix = nullptr) = 0;
+
       virtual ::payload get_insert_id() = 0;
 
       virtual ::e_status set_id_blob(string strKey, ::block block);

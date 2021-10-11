@@ -711,7 +711,7 @@ namespace hotplugin
    //   for(index i = 0; i < m_uiptraChild.get_count(); i++)
    //   {
 
-   //      m_uiptraChild[i]->on_layout(::draw2d::graphics_pointer & pgraphics);
+   //      m_uiptraChild[i]->on_layout(pgraphics);
 
    //   }
 

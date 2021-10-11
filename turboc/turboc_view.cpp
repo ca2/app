@@ -154,7 +154,7 @@ namespace turboc
       else
       {
 
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       }
 

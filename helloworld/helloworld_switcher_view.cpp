@@ -115,7 +115,7 @@ namespace helloworld
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
 
-            m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(pgraphics);
 
             return true;
 

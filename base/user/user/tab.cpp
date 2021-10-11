@@ -2509,7 +2509,7 @@ namespace user
          uId))
          return false;
       m_bCreated = true;
-      on_layout(::draw2d::graphics_pointer & pgraphics);
+      on_layout(pgraphics);
       return true;
    }
    */
@@ -3109,7 +3109,7 @@ namespace user
 //      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
 //      // }
 //
-//      //on_layout(::draw2d::graphics_pointer & pgraphics);
+//      //on_layout(pgraphics);
 //
 //   }
 

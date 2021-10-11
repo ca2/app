@@ -531,7 +531,7 @@ namespace helloworld
 
                   m_pviewLast->m_strNewFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 
@@ -546,7 +546,7 @@ namespace helloworld
 
                   m_pviewLast->m_strHoverFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 

@@ -1241,7 +1241,7 @@ void simple_frame_window::on_reposition()
    //if (m_bWindowFrame)
    //{
 
-   //   on_layout(::draw2d::graphics_pointer & pgraphics);
+   //   on_layout(pgraphics);
 
    //}
 

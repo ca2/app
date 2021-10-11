@@ -124,7 +124,7 @@ namespace user
    {
       __pointer(::message::size) psize(pmessage);
       psize->previous();
-      //on_layout(::draw2d::graphics_pointer & pgraphics);
+      //on_layout(pgraphics);
    }
 
 
@@ -217,7 +217,7 @@ namespace user
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
       pshowwindow->previous();
-      //on_layout(::draw2d::graphics_pointer & pgraphics);
+      //on_layout(pgraphics);
    }
 
 

@@ -186,7 +186,7 @@ namespace user
       index DeleteString(index nIndex);
       index InsertString(index nIndex, const ::string & pszString);
 
-      void ResetContent();
+      void reset_content();
       index Dir(index attr, const ::string & pszWildCard);
 
 

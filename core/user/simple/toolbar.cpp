@@ -240,7 +240,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //if (m_bDelayedButtonLayout)
    //{
 
-   //   on_layout(::draw2d::graphics_pointer & pgraphics);
+   //   on_layout(pgraphics);
 
    //}
 

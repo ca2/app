@@ -150,7 +150,7 @@ namespace simple_drawing
          if(psubject->user_element_id() == "simple_drawing_toggle")
          {
 
-            m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(pgraphics);
 
             return true;
 

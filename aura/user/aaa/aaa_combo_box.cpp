@@ -1149,7 +1149,7 @@ namespace user
    }
 
 
-   void combo_box::ResetContent()
+   void combo_box::reset_content()
    {
 
       synchronous_lock synchronouslock(mutex());

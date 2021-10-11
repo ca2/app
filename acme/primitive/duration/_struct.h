@@ -70,7 +70,7 @@ inline timespec & normalize(timespec & timespec)
 }
 
 
-inline timespec & operator +=(timespec & timespec, const class ::INTEGRAL_MILLISECOND & integralmillisecond)
+inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLISECOND & integralmillisecond)
 {
 
    timespec.tv_sec += integralmillisecond.m_i /1'000;

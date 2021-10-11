@@ -34,7 +34,7 @@ public:
 
    inline class ::wait elapsed(const class ::wait & waitSample = now()) { return INTEGRAL_MILLISECOND(waitSample.m_i - m_i); }
 
-   inline class ::wait operator +(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i + wait.m_i); }
-   inline class ::wait operator -(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i - wait.m_i); }
+   //inline class ::wait operator +(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i + wait.m_i); }
+   //inline class ::wait operator -(const class ::wait & wait) const { return INTEGRAL_MILLISECOND(m_i - wait.m_i); }
 
 };

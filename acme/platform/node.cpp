@@ -893,7 +893,7 @@ namespace acme
    }
 
 
-   ::e_status node::node_sync(const ::routine & routine)
+   ::e_status node::node_send(const ::routine & routine)
    {
 
       auto estatus = __send_routine(this, &node::node_post, routine);

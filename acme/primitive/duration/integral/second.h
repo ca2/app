@@ -28,9 +28,6 @@ public:
 using integral_second = integral_duration < integral_second_t >;
 
 
-constexpr INTEGRAL_SECOND operator "" _s(unsigned long long int u) { return (INTEGRAL_SECOND)u; }
-
-
 template <  >
 inline integral_second now<integral_second>()
 {

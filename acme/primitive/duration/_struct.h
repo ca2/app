@@ -32,30 +32,57 @@ inline bool operator < (const TYPE & t1, const TYPE & t2) { return t1.MEMBER < t
 inline bool operator <= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER <= t2.MEMBER; } \
 inline bool operator > (const TYPE & t1, const TYPE & t2) { return t1.MEMBER > t2.MEMBER; } \
 inline bool operator >= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER >= t2.MEMBER; } \
-inline bool operator != (const TYPE & t1, const TYPE & t2) { return t1.MEMBER != t2.MEMBER; } 
+inline bool operator != (const TYPE & t1, const TYPE & t2) { return t1.MEMBER != t2.MEMBER; }
 
 
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_NANOSECOND, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_MICROSECOND, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_MILLISECOND, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_SECOND, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_MINUTE, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_HOUR, m_i)
-DEFAULT_MEMBER_COMPARISON(INTEGRAL_DAY, m_i)
+#define __DURATION_SETUP__(TYPE, MEMBER) \
+DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER)  \
+inline bool operator ! (const TYPE & t1) { return t1.MEMBER <= 0; }
 
 
-DEFAULT_MEMBER_COMPARISON(FLOATING_NANOSECOND, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_MICROSECOND, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_MILLISECOND, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_SECOND, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_MINUTE, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_HOUR, m_d)
-DEFAULT_MEMBER_COMPARISON(FLOATING_DAY, m_d)
+__DURATION_SETUP__(INTEGRAL_NANOSECOND, m_i)
+__DURATION_SETUP__(INTEGRAL_MICROSECOND, m_i)
+__DURATION_SETUP__(INTEGRAL_MILLISECOND, m_i)
+__DURATION_SETUP__(INTEGRAL_SECOND, m_i)
+__DURATION_SETUP__(INTEGRAL_MINUTE, m_i)
+__DURATION_SETUP__(INTEGRAL_HOUR, m_i)
+__DURATION_SETUP__(INTEGRAL_DAY, m_i)
+
+
+__DURATION_SETUP__(FLOATING_NANOSECOND, m_d)
+__DURATION_SETUP__(FLOATING_MICROSECOND, m_d)
+__DURATION_SETUP__(FLOATING_MILLISECOND, m_d)
+__DURATION_SETUP__(FLOATING_SECOND, m_d)
+__DURATION_SETUP__(FLOATING_MINUTE, m_d)
+__DURATION_SETUP__(FLOATING_HOUR, m_d)
+__DURATION_SETUP__(FLOATING_DAY, m_d)
+
+
+constexpr INTEGRAL_NANOSECOND operator "" _ns(unsigned long long int u) { return (INTEGRAL_NANOSECOND)u; }
+
+
+constexpr INTEGRAL_MICROSECOND operator "" _us(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
+constexpr INTEGRAL_MICROSECOND operator "" _μs(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
+
+
+constexpr INTEGRAL_MILLISECOND operator "" _ms(unsigned long long int u) { return (INTEGRAL_MILLISECOND)u; }
+
+
+constexpr INTEGRAL_SECOND operator "" _s(unsigned long long int u) { return (INTEGRAL_SECOND)u; }
 
 
 constexpr INTEGRAL_MINUTE operator "" _min(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 constexpr INTEGRAL_MINUTE operator "" _minute(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
 constexpr INTEGRAL_MINUTE operator "" _minutes(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
+
+
+constexpr INTEGRAL_HOUR operator "" _h(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
+constexpr INTEGRAL_HOUR operator "" _hour(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
+constexpr INTEGRAL_HOUR operator "" _hours(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
+
+
+constexpr INTEGRAL_DAY operator "" _day(unsigned long long int u) { return (INTEGRAL_DAY)u; }
+constexpr INTEGRAL_DAY operator "" _days(unsigned long long int u) { return (INTEGRAL_DAY)u; }
 
 
 inline timespec & normalize(timespec & timespec)
@@ -82,6 +109,23 @@ inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLI
    return timespec;
 
 }
+
+
+
+
+CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond();
+
+inline INTEGRAL_MICROSECOND get_integral_microsecond() { return INTEGRAL_MICROSECOND(get_integral_nanosecond().m_i / 1'000); }
+
+inline INTEGRAL_MILLISECOND get_integral_millisecond() { return INTEGRAL_MILLISECOND(get_integral_nanosecond().m_i / 1'000'000); }
+
+inline INTEGRAL_SECOND get_integral_second() { return INTEGRAL_SECOND(get_integral_nanosecond().m_i / 1'000'000'000); }
+
+inline INTEGRAL_MINUTE get_integral_minute() { return INTEGRAL_MINUTE(get_integral_nanosecond().m_i / 60'000'000'000); }
+
+inline INTEGRAL_HOUR get_integral_hour() { return INTEGRAL_HOUR(get_integral_nanosecond().m_i / 3'600'000'000'000); }
+
+inline INTEGRAL_DAY get_integral_day() { return INTEGRAL_DAY(get_integral_nanosecond().m_i / 86'400'000'000'000); }
 
 
 

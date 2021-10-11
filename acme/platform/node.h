@@ -237,7 +237,7 @@ namespace acme
 
       virtual ::e_status node_post(const ::routine & routine);
 
-      virtual ::e_status node_sync(const ::routine & routine);
+      virtual ::e_status node_send(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)

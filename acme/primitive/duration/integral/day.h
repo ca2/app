@@ -26,10 +26,6 @@ public:
 using integral_day = integral_duration < integral_day_t >;
 
 
-constexpr INTEGRAL_DAY operator "" _day(unsigned long long int u) { return (INTEGRAL_DAY)u; }
-constexpr INTEGRAL_DAY operator "" _days(unsigned long long int u) { return (INTEGRAL_DAY)u; }
-
-
 template <  >
 inline integral_day now<integral_day>()
 {

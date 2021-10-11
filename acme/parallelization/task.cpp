@@ -957,7 +957,7 @@ bool task::task_sleep(const class ::wait & wait)
 
       auto waitStep = minimum(wait - waitStart.elapsed(), 100_ms);
 
-      if (waitStep.is_null())
+      if (!waitStep)
       {
 
          return true;

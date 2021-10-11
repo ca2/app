@@ -4761,7 +4761,7 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 
       auto waitNow = minimum(wait - start.elapsed(), 100_ms);
 
-      if (waitNow.is_null())
+      if (!waitNow)
       {
 
          break;

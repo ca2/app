@@ -26,11 +26,6 @@ public:
 using integral_hour = integral_duration < integral_hour_t >;
 
 
-constexpr INTEGRAL_HOUR operator "" _h(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-constexpr INTEGRAL_HOUR operator "" _hour(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-constexpr INTEGRAL_HOUR operator "" _hours(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-
-
 template <  >
 inline integral_hour now<integral_hour>()
 {

@@ -79,7 +79,7 @@ namespace operating_system
 
             auto waitNow = minimum(wait - start.elapsed(), 100_ms);
 
-            if (waitNow.is_null())
+            if (!waitNow)
             {
 
                break;

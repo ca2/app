@@ -1297,7 +1297,7 @@ breakFilter2:
          if (!estatus)
          {
 
-            output_error_message("Failed to initialize draw2d library.");
+            output_error_message("Failed to initialize write_text library.");
 
             estatus = error_failed;
 
@@ -1314,7 +1314,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("write_text factory exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.", e_message_box_ok);
 
          return estatus;
 

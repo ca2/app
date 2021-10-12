@@ -99,11 +99,11 @@ void payload::_set_matter(::matter * pmatter)
 void payload::_set_element(::matter* pmatter)
 {
 
+   ::increment_reference_count(pmatter);
+
    release();
 
    ::set_element(*this, pmatter);
-
-   ::increment_reference_count(pmatter);
 
 }
 

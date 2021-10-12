@@ -157,7 +157,9 @@ namespace file
 
          class ::payload payload;
 
-         payload["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(0)->m_flags));
+         auto pflags = __new(flags < enum_flag >(this->element_at(0)->m_flags));
+
+         payload["FileManagerItem_flags"] = pflags;
 
          return payload;
 

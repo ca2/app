@@ -185,7 +185,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
    };
 
 
-class ::duration;
+class duration;
 
 
 class microsecond;

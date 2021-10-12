@@ -3,7 +3,7 @@
 
 class filetime;
 class second;
-class ::duration;
+class duration;
 class microsecond;
 class nanosecond;
 class duration;

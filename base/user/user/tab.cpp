@@ -1670,7 +1670,7 @@ namespace user
          pholder->post_redraw();
 
       }
-      else if(::is_set(ppaneSel) && ppaneSel->m_eflag & e_flag_hide_all_others_on_show)
+      else if(::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
       {
 
          pholder->hide();

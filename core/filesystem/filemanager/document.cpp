@@ -253,72 +253,72 @@ namespace filemanager
       else if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         ::payload varFile;
+         //::payload varFile;
 
-         ::payload varQuery;
+         //::payload varQuery;
 
-         if (itema.get_count() == 2 && m_id == "filemanager::main::left")
-         {
+         //if (itema.get_count() == 2 && m_id == "filemanager::main::left")
+         //{
 
-            {
+         //   {
 
-               varFile = itema[0]->get_user_path();
+         //      //varFile = itema[0]->get_user_path();
 
-               varQuery["::filemanager::id"] = "filemanager::main::left";
+         //      //varQuery["::filemanager::id"] = "filemanager::main::left";
 
-               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
+         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
-            }
+         //   }
 
-            {
+         //   {
 
-               varFile = itema[1]->get_user_path();
+         //      //varFile = itema[1]->get_user_path();
 
-               varQuery["::filemanager::id"] = "filemanager::main::right";
+         //      //varQuery["::filemanager::id"] = "filemanager::main::right";
 
-               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
+         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
-            }
+         //   }
 
-         }
-         else if (itema.get_count() == 2 && m_id == "filemanager::main::right")
-         {
+         //}
+         //else if (itema.get_count() == 2 && m_id == "filemanager::main::right")
+         //{
 
-            {
+         //   {
 
-               varFile = itema[0]->get_user_path();
+         //      //varFile = itema[0]->get_user_path();
 
-               varQuery["::filemanager::id"] = "filemanager::main::right";
+         //      //varQuery["::filemanager::id"] = "filemanager::main::right";
 
-               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
+         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
-            }
+         //   }
 
-            {
+         //   {
 
-               varFile = itema[1]->get_user_path();
+         //      //varFile = itema[1]->get_user_path();
 
-               varQuery["::filemanager::id"] = "filemanager::main::left";
+         //      //varQuery["::filemanager::id"] = "filemanager::main::left";
 
-               pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
+         //      pfilemanagerdata->m_pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
-            }
+         //   }
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            varFile = itema.get_var_final_path();
+         //   //varFile = itema.get_var_final_path();
 
-            varQuery = itema.get_var_query();
+         //   //varQuery = itema.get_var_query();
 
-            varQuery["::filemanager::id"] = m_id;
+         //   //varQuery["::filemanager::id"] = m_id;
 
             auto pcallback = pfilemanagerdata->m_pcallback;
 
             pcallback->on_file_manager_open(pfilemanagerdata, itema, context);
 
-         }
+//         }
 
       }
 

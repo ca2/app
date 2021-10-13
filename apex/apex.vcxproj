@@ -1521,6 +1521,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\thread_set.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="platform\_impl.h" />

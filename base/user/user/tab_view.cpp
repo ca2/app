@@ -593,8 +593,8 @@ namespace user
       if (m_pimpactdata != nullptr)
       {
 
-         if (m_pimpactdata->m_eflag & ::user::e_flag_hide_all_others_on_show
-            || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
+         if (m_pimpactdata->m_eflag.has(::user::e_flag_hide_all_others_on_show)
+            || m_pimpactdata->m_eflag.has(::user::e_flag_hide_topic_on_show))
          {
 
             ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;

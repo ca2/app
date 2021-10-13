@@ -20,7 +20,7 @@ namespace data
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::object
+      virtual public ::matter
    {
    protected:
 
@@ -43,7 +43,7 @@ namespace data
       
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
       string name() const { return m_strName; }

@@ -128,7 +128,7 @@ m_bSnLauncheeSetup = false;
 //m_pappParent = nullptr;
 m_bMessageThread = true;
 m_bSimpleMessageLoop = false;
-m_ethreadClose = e_thread_none;
+m_ethreadcontextClose = e_thread_context_none;
 
 //m_puiMainContainer = nullptr;
 
@@ -9864,7 +9864,7 @@ void application::close(::apex::enum_end eend)
 
    }
 
-   m_ethreadClose = e_thread_application;
+   m_ethreadcontextClose = e_thread_context_application;
 
    if (eend == ::apex::e_end_app)
    {

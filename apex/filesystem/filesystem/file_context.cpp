@@ -139,7 +139,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir))
    {
 
       strsize iFind = ::str::find_file_extension("zip:", path);
@@ -989,7 +989,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
       ::file::path strDirSrc(varSource.get_file_path());
       ::file::path strDirDst(varTarget.get_file_path());
 
-      if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -2709,7 +2709,7 @@ file_transport file_context::get_file(const ::payload &varFile, const ::file::e_
          return ::error_file_not_found;
 
       }
-      else if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
       {
 
          auto pfile = get_reader(path);

@@ -603,7 +603,7 @@ namespace user
    eflag interaction::get_draw_flags(style *pstyle) const
    {
 
-      return e_flag_none;
+      return e_null;
 
    }
 

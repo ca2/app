@@ -407,7 +407,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception("should implement recursive zip"));
@@ -440,7 +440,7 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
+      else if (task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
          zip_context zip(this);
@@ -467,7 +467,7 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && ::thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && ::task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
       {
 
          //__throw(::exception("should implement recursive zip"));
@@ -498,7 +498,7 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
+      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
       {
 
          zip_context zip(this);
@@ -738,7 +738,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
    //}
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       bIs = true;
@@ -746,7 +746,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
       return true;
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -879,7 +879,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       //m_isdirmap.set(path, true, 0);
@@ -888,7 +888,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -912,12 +912,12 @@ bool dir_context::name_is(const ::file::path & strPath)
 {
 
    //output_debug_string(strPath);
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
    }
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
    {
       bool bHasSubFolder;
 

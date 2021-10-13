@@ -1076,3 +1076,7 @@ void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronousl
 
 }
 
+
+
+
+

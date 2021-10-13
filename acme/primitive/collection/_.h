@@ -282,6 +282,9 @@ inline string ___type_str()
 #include "acme/primitive/primitive/payload.h"
 
 
+#include "acme/parallelization/keep_task_payload.h"
+
+
 #include "payload_array.h"
 #include "acme/platform/options.h"
 #include "acme/primitive/primitive/property.h"

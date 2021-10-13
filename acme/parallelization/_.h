@@ -7,6 +7,13 @@
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
+//inline void task_set(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] |= (1 << (etaskflag & 7)); }
+//inline void task_clear(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] &= ~(1 << (etaskflag & 7)); }
+//inline bool task_flag().is_set(enum_task_flag etaskflag) { return t_byteaFlag[etaskflag >> 3] & (1 << (etaskflag & 7)); }
+//inline void task_set(enum_task_flag etaskflag, bool bSet) { if (bSet) task_set(etaskflag); else task_clear(etaskflag); }
+
+
+
 // LPVOID thread_data_get(thread_data_index dataindex);
 // int_bool thread_data_set(thread_data_index dataindex, void* pvalue);
 

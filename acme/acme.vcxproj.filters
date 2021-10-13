@@ -2786,6 +2786,15 @@
     <ClInclude Include="constant\subject.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\keep_task_flag.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\keep_task_payload.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enum_bitset.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

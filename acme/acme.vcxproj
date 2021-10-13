@@ -1707,6 +1707,8 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="parallelization\data.h" />
     <ClInclude Include="parallelization\event.h" />
     <ClInclude Include="parallelization\initial_single_lock.h" />
+    <ClInclude Include="parallelization\keep_task_flag.h" />
+    <ClInclude Include="parallelization\keep_task_payload.h" />
     <ClInclude Include="parallelization\manual_reset_event.h" />
     <ClInclude Include="parallelization\message_queue.h" />
     <ClInclude Include="parallelization\wait.h" />
@@ -1994,6 +1996,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\bits.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
+    <ClInclude Include="primitive\primitive\enum_bitset.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
     <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\osdata_array.h" />

@@ -17,17 +17,18 @@ numeric_parser_exception::~numeric_parser_exception()
 }
 
 
-CLASS_DECL_AXIS bool get_avoid_numeric_parser_exception()
+bool should_avoid_numeric_parser_exception()
 {
 
-   return thread_is_set(id_thread_avoid_numeric_parser_exception);
+   return task_flag().is_set(e_task_flag_avoid_numeric_parser_exception);
 
 }
+
 
 CLASS_DECL_AXIS bool throw_numeric_parser_exception(const ::string & strMessage)
 {
 
-   if (get_avoid_numeric_parser_exception())
+   if (should_avoid_numeric_parser_exception())
    {
 
       return false;
@@ -41,21 +42,20 @@ CLASS_DECL_AXIS bool throw_numeric_parser_exception(const ::string & strMessage)
 }
 
 
+//avoid_numeric_parser_exception::avoid_numeric_parser_exception()
+//{
+//
+//   task_flag().set(e_task_flag_avoid_numeric_parser_exception).as(m_iBefore);
+//
+//   thread_set(id_thread_avoid_numeric_parser_exception);
+//
+//}
 
-avoid_numeric_parser_exception::avoid_numeric_parser_exception()
-{
-
-   thread_property(id_thread_avoid_numeric_parser_exception).as(m_iBefore);
-
-   thread_set(id_thread_avoid_numeric_parser_exception);
-
-}
-
-avoid_numeric_parser_exception::~avoid_numeric_parser_exception()
-{
-
-   thread_property(id_thread_avoid_numeric_parser_exception) = m_iBefore;
-
-}
+//avoid_numeric_parser_exception::~avoid_numeric_parser_exception()
+//{
+//
+//   thread_property(id_thread_avoid_numeric_parser_exception) = m_iBefore;
+//
+//}
 
 

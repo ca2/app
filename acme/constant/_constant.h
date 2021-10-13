@@ -337,16 +337,43 @@ enum enum_priority
 //bool CLASS_DECL_ACME status_failed(i64 i);
 
 
-enum enum_thread
+enum enum_task_flag
+{
+
+   e_task_flag_fast_path, // 0 --> 1 << 0
+   e_task_flag_zip_is_dir, // 1 --> 1 << 1
+   e_task_flag_is_timer, // 2 --> 1 << 2
+   e_task_flag_resolve_alias, // 3 -->
+   e_task_flag_prevent_bad_status_exception,
+   e_task_flag_using_sockets,
+   e_task_flag_avoid_parsing_exception,
+   e_task_flag_avoid_numeric_parser_exception,
+   e_task_flag_avoid_datetime_parser_exception,
+   e_task_flag_dynamic_source_script_instance,
+   e_task_flag_count,
+
+};
+
+
+enum enum_task_payload
+{
+
+   e_task_payload,
+   e_task_payload_count,
+
+};
+
+
+enum enum_thread_context
 {
 
    
-   e_thread_none,
-   e_thread_thread,
-   e_thread_service,
-   e_thread_application,
-   e_thread_session,
-   e_thread_system,
+   e_thread_context_none,
+   e_thread_context_thread,
+   e_thread_context_service,
+   e_thread_context_application,
+   e_thread_context_session,
+   e_thread_context_system,
 
 
 };

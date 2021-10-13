@@ -368,7 +368,7 @@ namespace apex
             try
             {
 
-               __keep_thread_flag(id_thread_resolve_alias);
+               __keep_task_flag(e_task_flag_resolve_alias);
 
                //if (!os_resolve_alias(path, path,::is_set(get_application())? get_application()->m_puiCurrent.get(): nullptr))
                if (!os_resolve_alias(path, path))

@@ -35,10 +35,8 @@ namespace xml
 
    public:
 
-
       
-      virtual ~node();
-
+      ~node() override;
 
 
       inline __pointer(::xml::document) get_document() { return m_pdocument; }

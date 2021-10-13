@@ -4,7 +4,7 @@
 //inline ::payload & thread_property(const ::id & id);
 //inline void thread_set(const ::id & id) { thread_property(id) = true; }
 //inline void thread_unset(const ::id & id) { thread_property(id) = false; }
-//inline bool thread_is_set(const ::id & id);
+//inline bool task_flag().is_set(const ::id & id);
 
 
 template  < typename TYPE >
@@ -311,7 +311,8 @@ ___keep < TYPE > keep(TYPE & kept, const TYPE_KEEP & keepValue, const TYPE_KEEP_
 #define __keep(...) auto TOKEN_AT_LINE(__keep) = keep(__VA_ARGS__)
 #define __keep_true(...) auto TOKEN_AT_LINE(__keep_true) = keep(__VA_ARGS__, true)
 #define __keep_false(...) auto TOKEN_AT_LINE(__keep_false) = keep(__VA_ARGS__, false)
-#define __keep_thread_flag(...) auto TOKEN_AT_LINE(__keep_thread_flag) = keep_thread_flag(__VA_ARGS__)
+#define __keep_task_flag(...) auto TOKEN_AT_LINE(__keep_task_flag) = keep_task_flag(__VA_ARGS__)
+#define __keep_task_payload(...) auto TOKEN_AT_LINE(__keep_task_payload) = keep_task_payload(__VA_ARGS__)
 #define __keep_current_thread(...) auto TOKEN_AT_LINE(__keep_current_thread) = keep(__VA_ARGS__, ::get_task())
 
 

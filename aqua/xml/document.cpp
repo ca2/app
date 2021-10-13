@@ -9,7 +9,7 @@ namespace xml
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
    {
 
-      m_pdocument            = this;
+      //m_pdocument            = this;
 //      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : get_system()->m_pxml->m_pparseinfoDefault.m_p;
 //      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : get_system()->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
@@ -82,10 +82,19 @@ namespace xml
    }
 
 
-   ::e_status document::initialize_matter(::matter* pmatter)
+   ::e_status document::initialize(::object * pobject)
    {
 
-      auto estatus = node::initialize_matter(pmatter);
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = node::initialize_matter(pobject);
 
       if (!estatus)
       {
@@ -122,7 +131,6 @@ namespace xml
       m_nodea.add(m_pnodeRoot.m_p);
 
    }
-
 
 
    void document::set_name(const ::string & strName)
@@ -391,14 +399,20 @@ namespace xml
    }
 
 
-   //void document::io(::stream & stream)
-   //{
+   ::stream& document::write(::stream& stream) const
+   {
 
-   //   ::xml::node::io(stream);
+      return node::write(stream);
 
-   //}
+   }
 
 
+   ::stream& document::read(::stream& stream)
+   {
+
+      return node::read(stream);
+
+   }
 
 
 } // namespace xml

@@ -215,7 +215,7 @@ namespace filemanager
 
             bool bPathIsDir = false;
 
-            thread_set(id_thread_resolve_alias);
+            task_flag().set(e_task_flag_resolve_alias);
 
             try
             {
@@ -228,7 +228,7 @@ namespace filemanager
 
             }
 
-            thread_unset(id_thread_resolve_alias);
+            task_flag().clear(e_task_flag_resolve_alias);
 
             if(bPathIsDir)
             {

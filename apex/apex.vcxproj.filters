@@ -1271,6 +1271,9 @@
     <ClInclude Include="subject\source.h">
       <Filter>Header Files\subject</Filter>
     </ClInclude>
+    <ClInclude Include="platform\thread_set.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">

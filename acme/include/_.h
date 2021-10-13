@@ -3519,8 +3519,19 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/property_object.h"
 
 
-#include "acme/exception/_.h"
+#include "acme/primitive/primitive/enum_bitset.h"
 
+
+using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
+
+
+CLASS_DECL_ACME task_bitset& task_flag();
+
+
+#include "acme/parallelization/keep_task_flag.h"
+
+
+#include "acme/exception/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"

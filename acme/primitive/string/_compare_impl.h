@@ -72,7 +72,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
+   inline bool begins(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
    {
       
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -109,7 +109,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins_ci(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
+   inline bool begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -272,7 +272,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
+   inline bool ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -313,7 +313,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends_ci(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
+   inline bool ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;

@@ -92,7 +92,7 @@ namespace aura
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;
-      m_ethreadClose = e_thread_none;
+      m_ethreadcontextClose = e_thread_context_none;
 
       m_puiMainContainer = nullptr;
 

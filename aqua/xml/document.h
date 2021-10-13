@@ -9,7 +9,8 @@ namespace xml
 
 
    class CLASS_DECL_AQUA document :
-      virtual public node
+      virtual public node,
+      virtual public ::object
    {
    public:
 
@@ -25,10 +26,10 @@ namespace xml
 
 
       document(parse_info * pparseinfo = nullptr, string_to_string * pentitiesHash = nullptr);
-      virtual ~document();
+      ~document() override;
 
 
-      ::e_status initialize_matter(::matter* matter) override;
+      ::e_status initialize(::object * pobject) override;
       
 
       inline void ensure_root()
@@ -59,15 +60,12 @@ namespace xml
       inline operator bool() const { return ::is_set(this) && m_pnodeRoot.is_set(); }
       inline bool operator !() const { return !operator bool(); }
 
-      virtual void set_name(const ::string & strName) override;
-
+      void set_name(const ::string & strName) override;
 
       document & operator = (const document & document);
 
-
-
-     /* virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;*/
+      ::stream & write(::stream & stream) const override;
+      ::stream & read(::stream & stream) override;
 
 
    };

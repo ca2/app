@@ -1453,7 +1453,7 @@ namespace user
 
    using style_pointer = __pointer(style);
 
-   using eflag = flags < enum_flag >;
+   using eflag = enumeration < enum_flag >;
 
 
 #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)

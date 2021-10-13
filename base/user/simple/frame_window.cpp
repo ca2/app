@@ -2437,7 +2437,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
       if(dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+         bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
@@ -2552,7 +2552,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+   bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
    if(bBlurBackground)
    {

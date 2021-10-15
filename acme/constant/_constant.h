@@ -127,7 +127,7 @@ enum enum_subject
 
 
    // user subject
-   e_subject_initialize_control = 1'073'741'824, // 0x40000000
+   e_subject_initialize_control = 0x40000000, // 1'073'741'824 
    e_subject_action,
    e_subject_left_button_down,
    e_subject_left_button_double_click,

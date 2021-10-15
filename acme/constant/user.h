@@ -6,7 +6,7 @@ enum enum_element : ::i64
 
 
    // user element
-   e_element_frame_window = 1'073'741'824, // 0x40000000
+   e_element_frame_window = 0x40000000, // 1'073'741'824
    e_element_tab,
    e_element_tab_layout_background,
    e_element_tab_client_background,
@@ -62,7 +62,7 @@ enum enum_element : ::i64
    e_element_switch_icon,
 
 
-   e_element_split = 10'000,
+   e_element_split = 10000,
 
    e_element_desk_launcher_1,
    e_element_desk_launcher_2,

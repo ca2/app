@@ -38,7 +38,7 @@ namespace experience
       void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         millis t1 = millis::now();
+         ::duration t1 = ::duration::now();
 
          if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
@@ -47,12 +47,12 @@ namespace experience
 
          }
 
-         millis d1 = t1.elapsed();
+         ::duration d1 = t1.elapsed();
 
-         if (d1 > 50)
+         if (d1 > 50_ms)
          {
 
-            CINFO(prodevian) ("is_activeis_activeis_active more than 50ms user::button wndframe_core");
+            CATEGORY_INFORMATION(prodevian, "is_activeis_activeis_active more than 50ms user::button wndframe_core");
 
          }
 
@@ -167,12 +167,12 @@ namespace experience
 
          }
 
-         millis d2 = t1.elapsed();
+         ::duration d2 = t1.elapsed();
 
-         if (d2 > 50)
+         if (d2 > 50_ms)
          {
 
-            CINFO(prodevian)( "(d2) more than 50ms user::button wndframe_core");
+            CATEGORY_INFORMATION(prodevian, "(d2) more than 50ms user::button wndframe_core");
 
          }
 

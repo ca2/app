@@ -311,7 +311,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_routine(CREATE_ROUTINE);
+      pmain->call_routines_with_id(CREATE_ROUTINE);
 
       pmain->m_pmain = pmain;
       
@@ -327,7 +327,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_routine(CREATE_ROUTINE);
+      pinstance->call_routines_with_id(CREATE_ROUTINE);
 
       auto pthread = pdssocket->get_thread();
 
@@ -606,7 +606,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_routine(CREATE_ROUTINE);
+            pinstance->call_routines_with_id(CREATE_ROUTINE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
@@ -1148,10 +1148,10 @@ namespace dynamic_source
       if (ppair != nullptr)
       {
 
-         if (::datetime::time::get_current_time() < ppair->element2()->m_timeExpiry)
+         if (::datetime::time::now() < ppair->element2()->m_timeExpiry)
          {
 
-            ppair->element2()->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
+            ppair->element2()->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
 
             return ppair->element2();
 
@@ -1173,7 +1173,7 @@ namespace dynamic_source
 
       psession->initialize_dynamic_source_session(pszId, this);
 
-      psession->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
+      psession->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
 
       m_mapSession.set_at(pszId, psession);
 
@@ -1189,7 +1189,7 @@ namespace dynamic_source
       
       ::datetime::time timeNow;
       
-      timeNow = ::datetime::time::get_current_time();
+      timeNow = ::datetime::time::now();
       
       auto passoc = m_mapSession.get_start();
       
@@ -1235,12 +1235,12 @@ namespace dynamic_source
    __pointer(::crypto::rsa) script_manager::get_rsa_key()
    {
 
-      /*if(m_millisLastRsa.elapsed() > (5000))
+      /*if(m_durationLastRsa.elapsed() > (5000))
       {
 
          calc_rsa_key();
 
-         m_millisLastRsa= ::millis::now();
+         m_durationLastRsa= ::duration::now();
 
       }*/
 
@@ -1425,7 +1425,7 @@ namespace dynamic_source
       if(ppair == nullptr)
          return false;
 
-      if (ppair->element2().m_tick.elapsed().seconds() > 60)
+      if (ppair->element2().m_tick.elapsed() > 60_s)
       {
 
          return false;

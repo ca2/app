@@ -466,7 +466,7 @@
 //         m_rx(pobject)
 //      {
 //
-//         m_millisTimeout = (5000) * 11;
+//         m_durationTimeout = (5000) * 11;
 //
 //      }
 //

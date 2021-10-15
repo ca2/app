@@ -92,7 +92,7 @@ namespace user
       virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult);
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

@@ -26,10 +26,10 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins(TOPIC_STRING topic, PREFIX_STRING prefix);
+   inline bool begins(const TOPIC_STRING & topic, const PREFIX_STRING & prefix);
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins_ci(TOPIC_STRING topic, PREFIX_STRING prefix);
+   inline bool begins_ci(const TOPIC_STRING & topic, const PREFIX_STRING & prefix);
 
 //#endif
 
@@ -67,10 +67,10 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends(TOPIC_STRING topic, SUFFIX_STRING suffix);
+   inline bool ends(const TOPIC_STRING & topic, const SUFFIX_STRING & suffix);
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends_ci(TOPIC_STRING topic, SUFFIX_STRING suffix);
+   inline bool ends_ci(const TOPIC_STRING & topic, const SUFFIX_STRING & suffix);
 
 //#endif
 

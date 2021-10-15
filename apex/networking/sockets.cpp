@@ -2,20 +2,25 @@
 #include "acme/id.h"
 
 
-CLASS_DECL_APEX void thread_touch_sockets()
+void thread_touch_sockets()
 {
 
-   thread_property(id_thread_using_sockets) = true;
+   task_flag().set(e_task_flag_using_sockets, true);
 
 }
 
 
-CLASS_DECL_APEX int thread_has_sockets()
-{
-
-   return thread_property(id_thread_using_sockets).i32();
-
-}
-
-
-
+//CLASS_DECL_APEX void thread_touch_sockets()
+//{
+//
+//   task_flag().set(e_task_flag_using_sockets, true);
+//
+//}
+//
+//
+//CLASS_DECL_APEX bool thread_has_sockets()
+//{
+//
+//   return task_flag().is_set(e_task_flag_using_sockets);
+//
+//}

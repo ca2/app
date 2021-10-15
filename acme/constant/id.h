@@ -182,15 +182,6 @@ enum enum_id : u64
    id_update_render,
 
 
-   id_thread_fast_path,
-   id_thread_zip_is_dir,
-   id_thread_is_timer,
-   id_thread_resolve_alias,
-   id_thread_prevent_bad_status_exception,
-   id_thread_using_sockets,
-   id_thread_avoid_numeric_parser_exception,
-   id_thread_avoid_datetime_parser_exception,
-   id_thread_dynamic_source_script_instance,
 
    id_app_tortoise_svn,
    id_app_smart_svn,

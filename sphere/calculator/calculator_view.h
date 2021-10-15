@@ -15,8 +15,8 @@ namespace calculator
       virtual ~impact();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual __pointer(::user::interaction) BackViewGetWnd();
@@ -24,7 +24,7 @@ namespace calculator
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

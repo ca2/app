@@ -34,7 +34,7 @@ namespace user
          {
 
             //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_routine("load");
+            get_document()->call_routines_with_id("load");
 
          }
 

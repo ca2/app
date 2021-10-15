@@ -31,9 +31,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
-    <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -130,7 +128,6 @@
       <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_ACME_LIBRARY</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
-      <CppLanguageStandard>-std=c++20</CppLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>

@@ -18,41 +18,18 @@ extern LARGE_INTEGER g_largeintegerFrequency;
 #endif
 
 
-CLASS_DECL_ACME::i64 _get_nanos()
+CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 {
 
-   LARGE_INTEGER largeinteger = {};
+   return ::duration::now().integral_nanosecond();
 
-   QueryPerformanceCounter(&largeinteger);
+   //LARGE_INTEGER largeinteger = {};
 
-   return muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart);
+   //QueryPerformanceCounter(&largeinteger);
+
+   //return INTEGRAL_NANOSECOND(muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart));
 
 }
-
-
-//CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle, int iMessageBox)
-//{
-//
-//   string strMessage(pszMessage);
-//
-//   string strTitle(pszTitle);
-//
-//   if (strTitle.is_empty())
-//   {
-//
-//      output_debug_string("ERRORMSG: " + strMessage + "\n");
-//
-//   }
-//   else
-//   {
-//
-//      strTitle.make_upper();
-//
-//      output_debug_string("\nERROR: \"" + strTitle + "\"\nMSG: " + strMessage + "\n\n");
-//
-//   }
-//
-//}
 
 
 void output_debug_string(const ansichar * psz)
@@ -115,8 +92,6 @@ CLASS_DECL_ACME itask_t get_current_ithread()
 }
 
 
-
-
 CLASS_DECL_ACME string last_error_message(DWORD dwError)
 {
 
@@ -153,35 +128,6 @@ CLASS_DECL_ACME string last_error_message(DWORD dwError)
 }
 
 
-//
-//
-//string get_last_error_message(u32 dwError)
-//{
-//   wstring wstr;
-//   WCHAR * p = wstr.get_string_buffer(16 * 1024 / sizeof(unichar));
-//   ::u32 dw = FormatMessageW(
-//      FORMAT_MESSAGE_FROM_SYSTEM,
-//      nullptr,
-//      dwError,
-//      0,
-//      p,
-//      (::u32)(wstr.get_length() / sizeof(unichar)),
-//      nullptr);
-//   p[dw] = L'\0';
-//   wstr.release_string_buffer();
-//   string str(wstr);
-//   return str;
-//}
-
-
-//int __node_is_debugger_attached()
-//{
-//
-//   return ::IsDebuggerPresent();
-//
-//}
-
-
 CLASS_DECL_ACME::u32 get_last_error()
 {
 
@@ -196,7 +142,6 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
    SetLastError(dw);
 
 }
-
 
 
 ::e_status last_error_to_status(DWORD dwError)

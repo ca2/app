@@ -22,9 +22,9 @@ void set_defer_process_x_message(bool (* pfn)(htask_t htask, MESSAGE * pmessage,
 
 #pragma warning (disable:4273)
 
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask);
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE * pHandles, BOOL fWaitAll, DWORD dw::durations, DWORD dwWakeMask);
 
-CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags);
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dw::durations, DWORD dwWakeMask, DWORD dwFlags);
 
 #else
 
@@ -36,9 +36,9 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
 ::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 
-::e_status WaitForSingleObject(HSYNC hsync, ::u32 dwMilliseconds);
+::e_status WaitForSingleObject(HSYNC hsync, ::u32 uMillis);
 
-::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 dwMilliseconds, int_bool bAlertable);
+::e_status WaitForSingleObjectEx(HSYNC hsync, ::u32 uMillis, int_bool bAlertable);
 
 
 //#define STATUS_WAIT_0            ((::u32   ) 0x00000000L)

@@ -84,7 +84,7 @@ namespace apex
       if (strBuild.length() != 19)
       {
 
-         sleep(100_ms * iRetry);
+         preempt(100_ms * iRetry);
 
          goto RetryBuildNumber;
 
@@ -368,7 +368,7 @@ namespace apex
             try
             {
 
-               __keep_thread_flag(id_thread_resolve_alias);
+               __keep_task_flag(e_task_flag_resolve_alias);
 
                //if (!os_resolve_alias(path, path,::is_set(get_application())? get_application()->m_puiCurrent.get(): nullptr))
                if (!os_resolve_alias(path, path))
@@ -585,7 +585,7 @@ namespace apex
 
          ::file::path pathMeta = pathCache + ".meta_information";
 
-         retry retry(millis(500), one_minute());
+         retry retry(500_ms, minute());
 
          if (!(path & ::file::e_flag_bypass_cache))
          {

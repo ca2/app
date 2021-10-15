@@ -703,6 +703,13 @@ CLASS_DECL_ACME ::task * get_task()
 }
 
 
+//thread_local task_bitset t_bitset;
+
+
+//thread_local payload t_payloada[e_task_payload_count];
+
+
+
 
 //CLASS_DECL_ACME ::thread * get_thread()
 //{
@@ -764,6 +771,27 @@ CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * 
 
 
 #endif
+
+
+thread_local task_bitset t_taskbitset;
+
+task_bitset& task_flag()
+{ 
+
+   return t_taskbitset;
+
+}
+
+
+thread_local payload t_payloada[e_task_payload_count];
+
+
+::payload & task_payload(enum_task_payload etaskpayload)
+{ 
+   
+   return t_payloada[etaskpayload]; 
+
+}
 
 
 

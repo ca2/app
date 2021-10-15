@@ -134,7 +134,7 @@ namespace user
          if (!estatus)
          {
 
-            TRACE("failed to create user shell");
+            INFORMATION("failed to create user shell");
 
          }
 
@@ -436,9 +436,7 @@ namespace user
 
       //}
 
-
-
-      TRACE("::user::application::initialize");
+      INFORMATION("::user::application::initialize");
 
       //xml::document docUser;
 
@@ -832,7 +830,7 @@ namespace aura
 
       }
 
-      m_ethreadClose = thread_application;
+      m_ethreadcontextClose = e_thread_context_application;
 
       //if (get_session())
       //{
@@ -1020,7 +1018,7 @@ namespace aura
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(::draw2d::graphics_pointer & pgraphics);
+//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {

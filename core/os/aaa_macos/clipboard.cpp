@@ -55,7 +55,7 @@ void macos_clipboard_set_filea(const ::file::patha & patha)
 string macos_clipboard_get_plain_text()
 {
 
-   return ::str::from_strdup(mm_clipboard_get_plain_text());
+   return ::string_from_strdup(mm_clipboard_get_plain_text());
    
 }
 

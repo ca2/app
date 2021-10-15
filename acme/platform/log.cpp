@@ -1,9 +1,9 @@
 // Created by camilo on 2021-07-17 23:30 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
-
-namespace trace
-{
+//
+//namespace trace
+//{
 
 
    log::log()
@@ -28,7 +28,7 @@ namespace trace
    ::e_status log::initialize(::object* pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      auto estatus = ::logger::initialize(pobject);
 
       if (!estatus)
       {
@@ -50,26 +50,26 @@ namespace trace
    }
 
 
-   void log::print(const char* pszFormat, ...)
-   {
+   //void log::print(const char* pszFormat, ...)
+   //{
 
-      va_list valist;
+   //   va_list valist;
 
-      va_start(valist, pszFormat);
+   //   va_start(valist, pszFormat);
 
-      print_v(pszFormat, valist);
+   //   print_v(pszFormat, valist);
 
-      va_end(valist);
+   //   va_end(valist);
 
-   }
+   //}
 
 
-   void log::print_v(const char* pszFormat, va_list valist)
-   {
+   //void log::print_v(const char* pszFormat, va_list valist)
+   //{
 
-      __tracef(e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
+   //   __tracef(e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
 
-   }
+   //}
 
 
    ::e_status log::process_init()
@@ -95,7 +95,7 @@ namespace trace
 
    }
 
-} // namespace trace
-
-
-
+//} // namespace trace
+//
+//
+//

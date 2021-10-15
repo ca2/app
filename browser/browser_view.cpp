@@ -173,7 +173,7 @@ namespace browser
             if (m_bPendingImageChange)
             {
 
-               if (millis::now() - m_millisLastImageChange > 750)
+               if (::duration::now() - m_durationLastImageChange > 750)
                {
 
                   m_bPendingImageChange = false;
@@ -207,7 +207,7 @@ namespace browser
    }
 
 
-   void impact::on_layout()
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -247,7 +247,7 @@ namespace browser
       else
       {
 
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       }
 
@@ -528,7 +528,7 @@ namespace browser
 
             m_strImage = strImage.c_str();
 
-            m_millisLastImageChange = ::millis::now();
+            m_durationLastImageChange = ::duration::now();
 
             m_bPendingImageChange = true;
 
@@ -886,7 +886,7 @@ namespace browser
 
    void impact::OnPaint(CefRefPtr<CefBrowser> browser,
                       CefRenderHandler::PaintElementType type,
-                      const CefRenderHandler::RectList& dirtyRects,
+                      const CefRenderHandler::rectList& dirtyRects,
                       const void* buffer,
                       int width,
                       int height)

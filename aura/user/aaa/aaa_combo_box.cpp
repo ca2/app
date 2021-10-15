@@ -170,7 +170,7 @@ namespace user
 
       i32 cy = cx * 2 / 3;
 
-      ::point pointCenter = rectangleDropDown.center();
+      ::point_i32 pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -612,12 +612,12 @@ namespace user
          if (eelementHit && (!m_bEdit || eelementHit == e_element_drop_down))
          {
 
-            millis tickLastVisibilityChangeElapsed;
+            ::duration tickLastVisibilityChangeElapsed;
 
             if (m_plist.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plist->m_millisLastVisibilityChange.elapsed();
+               tickLastVisibilityChangeElapsed = m_plist->m_durationLastVisibilityChange.elapsed();
 
             }
 
@@ -722,10 +722,10 @@ namespace user
          //if (m_plist.is_set())
          //{
 
-         //   if (m_plist->m_millisLastHide.elapsed() < 300)
+         //   if (m_plist->m_durationLastHide.elapsed() < 300)
          //   {
 
-         //      m_plist->m_millisLastHide -= 300;
+         //      m_plist->m_durationLastHide -= 300;
 
          //      output_debug_string("asking to show too soon!! not going to show!!");
 
@@ -1149,7 +1149,7 @@ namespace user
    }
 
 
-   void combo_box::ResetContent()
+   void combo_box::reset_content()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1523,7 +1523,7 @@ namespace user
       m_straList.add(pszString);
 
 
-      m_straValue.add(__str(dwItemData));
+      m_straValue.add(__string(dwItemData));
 
       return m_straList.get_upper_bound();
 
@@ -1584,7 +1584,7 @@ namespace user
    void combo_box::set_current_item_by_data(uptr u, const ::action_context & context)
    {
 
-      index iSel = m_straValue.find_first(__str(u));
+      index iSel = m_straValue.find_first(__string(u));
 
       if (iSel < 0)
       {

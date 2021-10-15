@@ -21,7 +21,7 @@
 //
 //   if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT)
 //   {
-//      start= ::millis::now();
+//      start= ::duration::now();
 //   }
 //
 //
@@ -83,7 +83,7 @@
 //            {
 //               return WAIT_TIMEOUT;
 //            }
-//            if(pwaitableptra[i]->lock(millis(0)))
+//            if(pwaitableptra[i]->lock(::duration(0)))
 //            {
 //               return WAIT_OBJECT_0 + i;
 //            }
@@ -1254,7 +1254,7 @@
 ////   try
 ////   {
 ////
-////      m_htask->m_pevent->wait(millis(dwMillis));
+////      m_htask->m_pevent->wait(::duration(dwMillis));
 ////
 ////   }
 ////   catch(...)

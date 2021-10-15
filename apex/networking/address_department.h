@@ -28,7 +28,7 @@ namespace net
 
 
          in_addr           m_ipaddr;
-         millis m_millisLastChecked;
+         ::duration m_durationLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
 
@@ -51,7 +51,7 @@ namespace net
 
          ::net::address    m_address;
          string            m_strReverse;
-         millis              m_millisLastChecked;
+         ::duration              m_durationLastChecked;
          bool              m_bOk;
          bool              m_bTimeout;
          bool              m_bProcessing;

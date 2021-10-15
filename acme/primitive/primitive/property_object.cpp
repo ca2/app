@@ -364,6 +364,58 @@ stream & property_object::read(::stream & stream)
 
 
 
+inline routine_array * property_object::routine_array(const ::id & id, bool bCreate)
+{
+
+   if (!bCreate)
+   {
+
+      auto passociation = m_pmapPropertyRoutine->plookup(id);
+
+      if (::is_null(passociation))
+      {
+
+         return nullptr;
+
+      }
+
+      return &passociation->m_element2;
+
+   }
+
+   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
+
+   return &m_pmapPropertyRoutine->operator[](id);
+
+}
+
+
+::e_status property_object::add_routine(const ::id & id, const ::routine & routine)
+{
+
+   if (!routine)
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto proutinea = routine_array(id, true);
+   
+   if (!proutinea)
+   {
+
+      return error_resource;
+
+   }
+   
+   proutinea->add(routine);
+
+   return ::success;
+
+}
+
+
 //void debug_trait()
 //{
 //

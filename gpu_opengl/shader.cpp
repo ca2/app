@@ -333,7 +333,7 @@ namespace opengl
 
       }
 
-      _S_TRACE("%s", strSummary.c_str());
+      INFORMATION(strSummary);
 
       return estatus;
 
@@ -368,7 +368,7 @@ namespace opengl
 
       }
 
-      _S_TRACE("%s", strSummary.c_str());
+      INFORMATION(strSummary);
 
       return estatus;
 

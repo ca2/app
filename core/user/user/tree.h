@@ -49,8 +49,8 @@ namespace user
 
 
       bool                                      m_bHoverStart;
-      millis                                    m_millisHoverStart;
-      millis                                    m_millisHoverEnd;
+      ::duration                                    m_durationHoverStart;
+      ::duration                                    m_durationHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
@@ -104,7 +104,7 @@ namespace user
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
       virtual bool _001GetItemElementRect(RECTANGLE_I32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
       virtual index _001GetIndentation();
 
@@ -205,7 +205,7 @@ namespace user
       tree_window();
       virtual ~tree_window();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
    };
 
    typedef show < tree > tree_view;

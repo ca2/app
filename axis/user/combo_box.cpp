@@ -647,16 +647,16 @@ namespace user
          if (eelementHit.is_set() && (!m_bEdit || eelementHit == e_element_drop_down))
          {
 
-            millis tickLastVisibilityChangeElapsed;
+            ::duration tickLastVisibilityChangeElapsed;
 
             if (m_plistbox.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plistbox->m_millisLastVisibilityChange.elapsed();
+               tickLastVisibilityChangeElapsed = m_plistbox->m_durationLastVisibilityChange.elapsed();
 
             }
 
-            if (m_plistbox.is_null() || tickLastVisibilityChangeElapsed > 300_tick)
+            if (m_plistbox.is_null() || tickLastVisibilityChangeElapsed > 300_ms)
             {
 
                _001ToggleDropDown();
@@ -749,7 +749,7 @@ namespace user
       if(bShow)
       {
 
-         m_millisShowComboList.Now();
+         m_durationShowComboList.Now();
 
          defer_create_list_box();
 

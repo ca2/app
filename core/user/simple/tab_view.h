@@ -12,8 +12,8 @@ public:
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    DECLARE_MESSAGE_HANDLER(on_message_size);
@@ -26,7 +26,7 @@ public:
    virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

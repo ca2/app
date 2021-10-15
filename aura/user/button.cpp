@@ -611,15 +611,15 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->draw_inset_3drect(rectanglePush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
          rectanglePush.deflate(1, 1);
 
-         pgraphics->draw_inset_3drect(rectanglePush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
          rectanglePush.deflate(1, 1);
 
-         pgraphics->draw_inset_3drect(rectanglePush, colorTopLeft, colorBottomRight);
+         pgraphics->draw_inset_3d_rectangle(rectanglePush, colorTopLeft, colorBottomRight);
 
          rectanglePush.deflate(1, 1, 0, 1);
 
@@ -1083,7 +1083,7 @@ namespace user
       else if(estyle == style_push)
       {
 
-         SetTimer(16384,100,nullptr);
+         SetTimer(16384,100_ms,nullptr);
 
       }
 
@@ -1244,7 +1244,7 @@ namespace user
 
       if(bSubItemHover)
       {
-         pgraphics->draw_inset_3drect(
+         pgraphics->draw_inset_3d_rectangle(
          rectangleClient,
          rgb(255,255,255),
          rgb(155,155,105));

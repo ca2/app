@@ -27,8 +27,8 @@ inline bool window_is_minimal(enum_display edisplay) { return edisplay == ::e_di
 
 
 
-CLASS_DECL_ACME string __str(enum_display edisplay);
-inline string __str(const ::e_display & edisplay);
+CLASS_DECL_ACME string __string(enum_display edisplay);
+inline string __string(const ::e_display & edisplay);
 
 
 

@@ -356,7 +356,7 @@ namespace mysql
          //   * SHOW, DESCRIBE, etc.); just report rows-affected value.
          //   */
 
-         //   m_iLastUsedTime = ::aura::profiler::micros();
+         //   m_iLastUsedTime = ::aura::profiler::microsecond();
 
          //   auto presult  = __new(result(this, nullptr));
 

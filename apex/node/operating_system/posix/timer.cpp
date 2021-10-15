@@ -169,7 +169,7 @@
 //::e_status timer::run()
 //{
 //
-//   while(task_sleep(::millis(m_dwMillis)))
+//   while(task_sleep(::duration(m_dwMillis)))
 //   {
 //
 //      try

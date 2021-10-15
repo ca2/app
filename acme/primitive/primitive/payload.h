@@ -69,14 +69,14 @@ public:
       filetime_t                 m_filetime;
       id * m_pid;
       ::property * m_pproperty;
-      class secs                 m_secs;
-      class secs * m_psecs;
-      class millis               m_millis;
-      class millis * m_pmillis;
-      class micros               m_micros;
-      class micros * m_pmicros;
-      class nanos                m_nanos;
-      class nanos * m_pnanos;
+      //class second                 m_secs;
+      //class second * m_psecs;
+      //class ::duration               m_millis;
+      //class ::duration * m_pmillis;
+      //class microsecond               m_micros;
+      //class microsecond * m_pmicros;
+      //class nanosecond                m_nanos;
+      //class nanosecond * m_pnanos;
       class duration             m_duration;
       class duration * m_pduration;
       ::enum_status              m_estatus;
@@ -295,10 +295,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 #undef DECL_VAR_ENUM
 
 
-   inline ::secs & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
-   inline ::millis & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
-   inline ::micros & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
-   inline ::nanos & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
+   //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
+   //inline ::duration & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
+   //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
+   //inline ::nanosecond & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
 
 
    ::string & as_string(::string & str);
@@ -313,12 +313,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::duration & as_duration();
    ::property_set & as_propset();
    ::property & as_property();
-
-
-   inline ::secs secs()  const { return duration().secs(); }
-   inline ::millis millis()  const { return duration().millis(); }
-   inline ::micros micros()  const { return duration().micros(); }
-   inline ::nanos nanos()  const { return duration().nanos(); }
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
@@ -346,8 +340,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    ::string string(const char * pszOnNull = nullptr) const;
-   ::string to_string() const;
-   ::string to_recursive_string() const;
+   ::string get_string() const;
+   ::string get_recursive_string() const;
    ::id id(const ::id & idDefault = nullptr)   const;
 
    ::memory memory() const;
@@ -362,7 +356,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    bool is_scalar() const;
    inline bool is_array() const;
-   bool is_real() const;
+   bool is_floating() const;
    bool is_integer() const;
    bool is_natural() const;
    bool is_boolean() const;
@@ -410,10 +404,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_property_false(const ::id & id) const;
 
 
-   bool begins(const ::string & strPrefix) const { return to_string().begins(strPrefix); }
-   bool ends(const ::string & strSuffix) const { return to_string().ends(strSuffix); }
-   bool begins_ci(const ::string & strPrefix) const { return to_string().begins_ci(strPrefix); }
-   bool ends_ci(const ::string & strSuffix) const { return to_string().ends_ci(strSuffix); }
+   bool begins(const ::string & strPrefix) const { return get_string().begins(strPrefix); }
+   bool ends(const ::string & strSuffix) const { return get_string().ends(strSuffix); }
+   bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
+   bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
 
    payload get_topic(const ::id & id) const;
    //payload defer_get(const ::id & id) const;
@@ -640,14 +634,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::property_set & propset);
    payload & operator = (const ::id & id);
    payload & operator = (::id * pid);
-   payload & operator = (const ::secs & secs);
-   payload & operator = (class ::secs * pduration);
-   payload & operator = (const ::millis & millis);
-   payload & operator = (class ::millis * pmillis);
-   payload & operator = (const ::micros & micros);
-   payload & operator = (class ::micros * pmicros);
-   payload & operator = (const ::nanos & nanos);
-   payload & operator = (class ::nanos * pnanos);
+   //payload & operator = (const ::second & second);
+   //payload & operator = (class ::second * pduration);
+   //payload & operator = (const ::duration & duration);
+   //payload & operator = (class ::duration * pmillis);
+   //payload & operator = (const ::microsecond & microsecond);
+   //payload & operator = (class ::microsecond * pmicros);
+   //payload & operator = (const ::nanosecond & nanosecond);
+   //payload & operator = (class ::nanosecond * pnanos);
    payload & operator = (const ::duration & duration);
    payload & operator = (class ::duration * pduration);
    payload & operator = (const ::block & block);
@@ -1021,10 +1015,10 @@ public:
    operator f64 & () { return m_payload.as_f64(); }
 
 
-   operator secs & () { return m_payload.as_secs(); }
-   operator millis & () { return m_payload.as_millis(); }
-   operator micros & () { return m_payload.as_micros(); }
-   operator nanos & () { return m_payload.as_nanos(); }
+   //operator second & () { return m_payload.as_secs(); }
+   //operator ::duration & () { return m_payload.as_millis(); }
+   //operator microsecond & () { return m_payload.as_micros(); }
+   //operator nanosecond & () { return m_payload.as_nanos(); }
 
    operator duration & () { return m_payload.as_duration(); }
    operator datetime::time & () { return m_payload.as_datetime_time(); }
@@ -1075,11 +1069,6 @@ public:
 
    operator f32 () const { return m_payload.f32(); }
    operator f64 ()const { return m_payload.f64(); }
-
-   operator secs ()const { return m_payload.secs(); }
-   operator millis ()const { return m_payload.millis(); }
-   operator micros () const { return m_payload.micros(); }
-   operator nanos ()const { return m_payload.nanos(); }
 
    operator duration ()const { return m_payload.duration(); }
    operator datetime::time ()const { return m_payload.datetime_time(); }
@@ -1244,34 +1233,34 @@ CLASS_DECL_ACME void var_skip_json(const char *& pszJson, const char * pszEnd);
 //}
 //
 //
-//inline payload::operator class secs() const
+//inline payload::operator class second() const
 //{
 //
-//   return secs();
+//   return second();
 //
 //}
 
 
-//inline payload::operator class millis() const
+//inline payload::operator class ::duration() const
 //{
 //
-//   return millis();
+//   return ::duration();
 //
 //}
 //
 //
-//inline payload::operator class micros() const
+//inline payload::operator class microsecond() const
 //{
 //
-//   return micros();
+//   return microsecond();
 //
 //}
 //
 //
-//inline payload::operator class nanos() const
+//inline payload::operator class nanosecond() const
 //{
 //
-//   return nanos();
+//   return nanosecond();
 //
 //}
 
@@ -1351,7 +1340,7 @@ inline ::string & payload::as_string(::string & str)
 
 }
 
-inline ::string payload::to_string() const
+inline ::string payload::get_string() const
 {
 
    return this->string();

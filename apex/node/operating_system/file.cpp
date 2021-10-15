@@ -57,7 +57,7 @@ bool context::_os_resolve_alias(::file::path & path, const char * psz, ::user::p
 
    }
 
-   path = ::str::from_strdup(pszTarget);
+   path = ::string_from_strdup(pszTarget);
 
    return true;
 
@@ -94,7 +94,7 @@ CLASS_DECL_APEX bool _os_may_have_alias(const char * psz)
 //
 //   }
 //
-//   ::file::path path = ::str::from_strdup(pszTarget);
+//   ::file::path path = ::string_from_strdup(pszTarget);
 //
 //   return is_dir(path);
 //

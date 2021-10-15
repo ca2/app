@@ -141,7 +141,7 @@
 ////////////////////////////////////////////////////////////////////////
 
 //
-//  Define the access mask as a longword sized structure divided up as
+//  Define the access mask as a longword size_f64 structure divided up as
 //  follows:
 //
 //       3 3 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1

@@ -7,7 +7,7 @@ namespace user
 
 
    class CLASS_DECL_BASE tab_pane :
-      virtual public ::matter
+      virtual public ::property_object
    {
    public:
 
@@ -16,9 +16,9 @@ namespace user
 
    public:
 
+      tab *                               m_ptab;
 
       ::index                             m_iIndex;
-      tab * m_ptab;
       ::draw2d::brush_pointer             m_pbrushFill;
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;
@@ -28,16 +28,16 @@ namespace user
       __pointer(impact_data)              m_pimpactdata;
       bool                                m_bTabPaneVisible;
       bool                                m_bPermanent;
-      size_i32                                m_size;
+      size_i32                            m_size;
       string_array                        m_straTitle;
       ::size_array                        m_sizeaText;
-      point_i32                               m_point;
+      point_i32                           m_point;
       eflag                               m_eflag;
 
 
       tab_pane();
       tab_pane(const tab_pane & tab_pane);
-      virtual ~tab_pane();
+      ~tab_pane() override;
 
 
       virtual ::e_status initialize_tab_pane(tab* ptab);

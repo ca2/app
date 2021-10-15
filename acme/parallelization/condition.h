@@ -29,11 +29,11 @@ public:
 
 
    condition();
-   virtual ~condition();
+   ~condition() override;
 
 
-   using synchronization_object::lock;
-   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   //using synchronization_object::lock;
+   //virtual bool lock(const class ::wait & wait);
 
    using synchronization_object::unlock;
    virtual bool unlock();
@@ -52,12 +52,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual ::e_status wait ();
+   ::e_status wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual ::e_status wait (const duration & duration);
+   ::e_status wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

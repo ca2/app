@@ -85,7 +85,7 @@ namespace aura
 
             string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
 
-            string strPack = "%pack" + __str(iPack + 1) + "%";
+            string strPack = "%pack" + __string(iPack + 1) + "%";
 
             str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
 
@@ -217,7 +217,7 @@ namespace user
       m_iViewSize = 0;
       m_bLMouseDown = false;
       m_bRMouseDown = false;
-      m_millisCaretPeriod = 1000;
+      m_durationCaretPeriod = 1_s;
 
 
 
@@ -357,9 +357,9 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_millisLastDraw = ::millis::now();
+      m_durationLastDraw = ::duration::now();
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       auto pstyle = get_style(pgraphics);
 
@@ -555,9 +555,9 @@ namespace user
             if (m_errora.get_size() > 0)
             {
 
-               millis tickTimeout = 1000;
+               ::duration tickTimeout = 1_s;
 
-               millis tickPeriod = 100;
+               ::duration tickPeriod = 100_ms;
 
                if (m_errora[0].m_tick.elapsed() > tickTimeout)
                {
@@ -832,12 +832,12 @@ namespace user
 
       }
 
-      millis d1 = t1.elapsed();
+      auto d1 = t1.elapsed();
 
-      if (d1 > 50)
+      if (d1 > 50_ms)
       {
 
-         CINFO(prodevian)("plain_edit took more than 50ms to draw " + __str(d1));
+         CATEGORY_INFORMATION(prodevian, "plain_edit took more than 50ms to draw " << d1.integral_millisecond());
 
       }
 
@@ -1113,7 +1113,7 @@ namespace user
 
             KillTimer(500);
 
-            SetTimer(501, 300, nullptr);
+            SetTimer(501, 300_ms, nullptr);
 
          }
 
@@ -1137,7 +1137,7 @@ namespace user
 
       auto psession = get_session();
 
-      INFO("on_message_key_down (1)");
+      INFORMATION("on_message_key_down (1)");
 
       {
 
@@ -1162,7 +1162,7 @@ namespace user
 
       }
 
-      INFO("on_message_key_down (2)");
+      INFORMATION("on_message_key_down (2)");
 
       auto pkey = pmessage->m_pkey;
 
@@ -1361,7 +1361,7 @@ namespace user
 
       }
 
-      INFO("on_message_key_down (3)");
+      INFORMATION("on_message_key_down (3)");
 
       m_pmessagekeyLast = pkey;
 
@@ -1460,7 +1460,7 @@ namespace user
 
       }
 
-      INFO("key_to_char (1)");
+      INFORMATION("key_to_char (1)");
 
       on_message_character(&key);
 
@@ -1988,7 +1988,7 @@ namespace user
 
             m_bLMouseDown = true;
 
-            SetTimer(e_timer_overflow_scrolling, 50, nullptr);
+            SetTimer(e_timer_overflow_scrolling, 50_ms, nullptr);
 
             set_mouse_capture();
 
@@ -4371,7 +4371,7 @@ finished_update:
          if (pmessage->m_bRet)
             return;
 
-         INFO("plain_edit::on_message_character (1)");
+         INFORMATION("plain_edit::on_message_character (1)");
 
          auto pkey = pmessage->m_pkey;
 
@@ -4533,7 +4533,7 @@ finished_update:
             else if (pkey->m_ekey == ::user::e_key_back)
             {
 
-               INFO("plain_edit::on_message_character (key_back)");
+               INFORMATION("plain_edit::on_message_character (key_back)");
 
                if (is_text_composition_active())
                {
@@ -5584,7 +5584,7 @@ finished_update:
       if (iTimer == 0)
       {
 
-         if (has_keyboard_focus() && is_window_visible())// && m_millisLastDraw.elapsed() > m_millisCaretPeriod / 8)
+         if (has_keyboard_focus() && is_window_visible())// && m_durationLastDraw.elapsed() > m_durationCaretPeriod / 8)
          {
 
             if (is_different(m_bLastCaret, is_caret_on()))
@@ -5602,7 +5602,7 @@ finished_update:
 
          //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
          //{
-         // auto m_millisFocusStart = ::millis::now();
+         // auto m_durationFocusStart = ::duration::now();
          //   m_bCaretOn = !m_bCaretOn;
          //   //set_need_redraw();
          //   set_need_redraw();
@@ -6326,7 +6326,7 @@ finished_update:
 
       m_ewindowflag |= e_window_flag_focus;
 
-      SetTimer(100, 50, nullptr);
+      SetTimer(100, 50_ms, nullptr);
 
       if (!m_bCaretVisible)
       {

@@ -65,7 +65,7 @@ namespace user
       public:
          strsize                          m_iStart;
          strsize                          m_iEnd;
-         millis                             m_tick;
+         ::duration                             m_tick;
          string                           m_strMessage;
       };
 
@@ -159,7 +159,7 @@ namespace user
       //};
 
       int                                 m_iDrawTextFlags;
-      millis                              m_millisLastDraw;
+      ::duration                              m_durationLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
@@ -190,8 +190,8 @@ namespace user
       bool                                m_bEnterKeyOnPaste;
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
-      point_i32                               m_pointSelStart;
-      millis                              m_millisCaretPeriod;
+      point_i32                           m_pointSelStart;
+      ::duration                          m_durationCaretPeriod;
       ::index                             m_iLineOffset;
       string_array                        m_straLines;
       double                              m_dy;
@@ -231,7 +231,7 @@ namespace user
 
 
       plain_edit();
-      virtual ~plain_edit();
+      ~plain_edit() override;
 
 
       void plain_edit_common_construct();
@@ -242,7 +242,7 @@ namespace user
       virtual void set_callback(callback* pcallback);
 
 
-      inline bool is_caret_on() const { return m_millisFocusStart.on_off(m_millisCaretPeriod); }
+      inline bool is_caret_on() const { return m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond()); }
 
 
       void get_text_composition_area(::rectangle_i32 & r) override;
@@ -344,7 +344,7 @@ namespace user
 
       void key_to_char(::message::key * pkey);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

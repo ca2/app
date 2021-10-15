@@ -536,7 +536,7 @@ namespace apple
       string_array straParam;
 
       straParam = get_c_args_for_c(pszCmdLineParam);
-      //straParam.add("uid=" + __str(uid));
+      //straParam.add("uid=" + __string(uid));
       for(index i = 0; i < straParam.get_count(); i++)
       {
          char * psz = (char *)(const ::string &)straParam[i];
@@ -605,7 +605,7 @@ namespace apple
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {
@@ -694,7 +694,7 @@ auto tickStart = ::millis::now();
 //         fread(&pptp_pid,sizeof(pptp_pid),1,pipe); // get pid
 //
 //          m_iPid = pptp_pid;
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       ::u32 tickTimeout = (::u32) durationTimeOut.get_total_milliseconds();
 
@@ -841,7 +841,7 @@ auto tickStart = ::millis::now();
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {

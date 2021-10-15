@@ -17,7 +17,7 @@ namespace app_app
 
       m_dBreathPeriod = 60.0;
 
-      m_millisStart.Now();
+      m_durationStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -118,7 +118,7 @@ namespace app_app
 
          }
 
-         double time = m_millisStart.elapsed().m_i / 1'000.0;
+         double time = m_durationStart.elapsed().floating_second().m_d;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
@@ -135,13 +135,13 @@ namespace app_app
          if (dSourcePeriod < dNewPeriod)
          {
 
-            dNewPeriod -= dNewPeriod * 0.1;
+            dNewPeriod -= dNewPeriod * 0.01;
 
          }
          else if (dSourcePeriod > dNewPeriod)
          {
 
-            dNewPeriod += dNewPeriod * 0.1;
+            dNewPeriod += dNewPeriod * 0.01;
 
          }
 

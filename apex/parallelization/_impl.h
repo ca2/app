@@ -257,7 +257,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   void wait(__pointer(THREAD) & pthread, const duration & duration = ::duration::infinite())
 //   {
 //
-//      millis tickStart = millis::now();
+//      ::duration tickStart = ::duration::now();
 //
 //      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
 //      {
@@ -279,7 +279,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //         if(!duration.is_infinite())
 //         {
 //
-//            if((millis::now() - tickStart) > duration.get_total_milliseconds())
+//            if((::duration::now() - tickStart) > duration.get_total_milliseconds())
 //            {
 //
 //               return;

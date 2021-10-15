@@ -255,7 +255,7 @@ namespace sockets
       if (!IsResponse())
       {
 
-         FATAL(log_this, "OnFirst", 0, "Response expected but not received - aborting");
+         FATAL("OnFirst: Response expected but not received - aborting");
 
          SetCloseAndDelete();
 
@@ -274,7 +274,7 @@ namespace sockets
       TRACE("OnHeader %s: %s", (const char*)key, (const char*)value);
 #endif
 
-      m_content += __str(key) + ": " + value + "\r\n";
+      m_content += __string(key) + ": " + value + "\r\n";
       m_response.m_propertysetHeader[key] = value;
       if (key == __id(content_length))
       {
@@ -339,7 +339,7 @@ namespace sockets
    void http_client_socket::OnDataComplete()
    {
 
-      INFO("OnDataComplete");
+      INFORMATION("OnDataComplete");
 
       m_b_complete = true;
 
@@ -469,7 +469,7 @@ namespace sockets
       if (!m_b_complete)
       {
 
-         INFO("OnDelete");
+         INFORMATION("OnDelete");
 
          m_b_complete = true;
 

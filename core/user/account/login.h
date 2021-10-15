@@ -47,7 +47,7 @@ namespace account
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

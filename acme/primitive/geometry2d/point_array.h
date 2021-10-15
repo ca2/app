@@ -72,7 +72,7 @@ public:
    //virtual void xml_export(::xml::output_tree & xmlof);
 
 
-   ::count add_unique_range(const POINT_TYPE & pBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & s = unit_size);
+   ::count add_unique_range(const POINT_TYPE & pBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & s = e_unit_size);
    //https://www.geeksforgeeks.org/area-of-a-polygon_i32-with-given-n-ordered-vertices/
       // (X[i], Y[i]) are coordinates of i'th point.
 

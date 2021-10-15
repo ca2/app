@@ -13,9 +13,9 @@ namespace console
 
 
       
-      millis                 m_millisCaretStart;
+      ::duration                 m_durationCaretStart;
 
-      millis                 m_millisCaretPeriod;
+      ::duration                 m_durationCaretPeriod;
 
       strsize              m_iCursor;
 
@@ -27,7 +27,7 @@ namespace console
 
       strsize              m_iNewChar;
 
-      millis m_millisLastError;
+      ::duration m_durationLastError;
 
       bool                 m_bOk;
 
@@ -36,7 +36,7 @@ namespace console
       virtual ~prompt_impact();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual int getch();

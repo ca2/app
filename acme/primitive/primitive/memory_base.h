@@ -209,8 +209,8 @@ public:
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
-   string to_string() const override;
-   string to_string(memsize iStart, memsize uiSize = -1) const;
+   string get_string() const override;
+   string get_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);
    void eat_begin(void * pdata, memsize iSize);

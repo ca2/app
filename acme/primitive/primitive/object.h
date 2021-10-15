@@ -137,8 +137,65 @@ public:
 
    //virtual array < ::routine >* routinea(const ::id& idRoutine);
 
+   template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
+   ::e_status for_routines_with_id(const ::id & id, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
+   {
 
-   virtual void call_routine(const ::id& idRoutine);
+      if (::is_null(m_pmapPropertyRoutine))
+      {
+
+         return error_not_found;
+
+      }
+
+      auto proutinea = this->routine_array(id);
+
+      if (::is_null(proutinea))
+      {
+
+         return error_not_found;
+
+      }
+
+      for (auto routine : *proutinea)
+      {
+
+         (proutinerunner->*routine_runner_method)(routine);
+
+      }
+
+      return ::success;
+
+
+   }
+
+   
+   virtual ::e_status call_routine2(const ::routine & routine);
+
+
+   inline ::e_status call_routines_with_id(const ::id & id)
+   {
+
+      return for_routines_with_id(id, this, &object::call_routine2);
+
+   }
+
+
+   inline ::e_status post_routines_with_id(const ::id & id)
+   {
+
+      return for_routines_with_id(id, this, &object::post_routine);
+
+   }
+
+
+   inline ::e_status send_routines_with_id(const ::id & id)
+   {
+
+      return for_routines_with_id(id, this, &object::send_routine);
+
+   }
+
 
 
    //inline ::payload context_value(const ::payload& payload);
@@ -178,7 +235,7 @@ public:
    //virtual void child_post_quit_and_wait(const char* pszTag, const duration& duration);
 
 
-   virtual ::e_status post(const ::routine& routine);
+   ///virtual ::e_status post_routine(const ::routine& routine);
 
 
    //::e_status destroy() override;
@@ -272,7 +329,7 @@ public:
    //virtual ::user::interaction * get_host_window();
 
 
-   virtual void dev_log(string str) const;
+   virtual void dev_log(string str);
 
 //   ::object& operator = (const ::payload& payload);
 
@@ -836,7 +893,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   string to_string() const override;
+   string get_string() const override;
 
 
    // for composition (ownership)

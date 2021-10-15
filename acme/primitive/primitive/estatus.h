@@ -78,6 +78,7 @@ public:
    bool operator >(const enum_status& estatus) const { return m_estatus > estatus; }
 
    
+   
 };
 
 

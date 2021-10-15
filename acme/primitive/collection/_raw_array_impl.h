@@ -135,7 +135,7 @@ inline TYPE* raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::get_data()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add(ARG_TYPE newElement)
+inline ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::add_item(ARG_TYPE newElement)
 {
 
    ::index nIndex = this->m_nSize;

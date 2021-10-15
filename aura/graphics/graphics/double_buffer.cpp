@@ -232,7 +232,7 @@ namespace graphics
 
          byte a = p[3];
 
-         //::output_debug_string("argb " +__str(r) + "," + __str(g) + "," +__str(b) + "," + __str(a));
+         //::output_debug_string("argb " +__string(r) + "," + __string(g) + "," +__string(b) + "," + __string(a));
 
       }
 

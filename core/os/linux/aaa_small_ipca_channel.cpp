@@ -426,7 +426,7 @@ namespace aura
                if(lRequest == 1024)
                {
 
-                  on_ipc_receive(this, __str(m2));
+                  on_ipc_receive(this, __string(m2));
 
                }
                else
@@ -450,7 +450,7 @@ namespace aura
       ipc::ipc()
       {
 
-         m_millisTimeout = (5000) * 11;
+         m_durationTimeout = (5000) * 11;
 
       }
 

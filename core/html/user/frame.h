@@ -24,14 +24,14 @@
 
 //   virtual ~html_frame();
 //#ifdef _DEBUG
-//   virtual void assert_valid() const;
-//   virtual void dump(dump_context & dumpcontext) const;
+//   void assert_valid() const override;
+//   void dump(dump_context & dumpcontext) const override;
 //#endif
 //
 //
 //
 //   bool m_bHoverMouse;
-//   millis m_millisLastHover;
+//   ::duration m_durationLastHover;
 //
 //   void OnHoverAction();
 //

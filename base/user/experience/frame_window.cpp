@@ -647,7 +647,7 @@ namespace experience
 
          ::id id = psubject->user_interaction()->GetDlgCtrlId();
 
-         string str(__str(id));
+         string str(__string(id));
 
          TRACE("frame_window::handle_event btn_clkd=%s", str.c_str());
 
@@ -1306,19 +1306,19 @@ namespace experience
          if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
          {
 
-            INFO("e_message_mouse_move during window move ignored!!");
+            INFORMATION("e_message_mouse_move during window move ignored!!");
 
          }
          else if (pmouse->m_eflagMessage & ::message::flag_synthesized)
          {
 
-            INFO("synthesized e_message_mouse_move ignored!!");
+            INFORMATION("synthesized e_message_mouse_move ignored!!");
 
          }
          else
          {
 
-            //INFO("e_message_mouse_move for experience::frame");
+            //INFORMATION("e_message_mouse_move for experience::frame");
 
             if (m_pframe->on_message_mouse_move(pmouse))
             {
@@ -1387,19 +1387,19 @@ namespace experience
    //      if (layout().m_eflag & ::user::interaction_layout::flag_apply_visual)
    //      {
 
-   //         INFO("e_message_mouse_move during window move ignored!!");
+   //         INFORMATION("e_message_mouse_move during window move ignored!!");
 
    //      }
    //      else if (psetcursor->m_eflagMessage & ::message::flag_synthesized)
    //      {
 
-   //         INFO("synthesized e_message_mouse_move ignored!!");
+   //         INFORMATION("synthesized e_message_mouse_move ignored!!");
 
    //      }
    //      else
    //      {
 
-   //         //INFO("e_message_mouse_move for experience::frame");
+   //         //INFORMATION("e_message_mouse_move for experience::frame");
 
    //         //if (m_pframe->on_message_set_cursor(psetcursor))
    //         //{

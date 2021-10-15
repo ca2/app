@@ -185,7 +185,7 @@ namespace account
 
       string strRsa;
 
-      auto tickGetLoginBeg = ::millis::now();
+      auto tickGetLoginBeg = ::duration::now();
 
       strSessId = puser->m_strSessId;
 
@@ -205,15 +205,15 @@ namespace account
 
       }
 
-      auto tickGetLoginEnd = ::millis::now();
+      auto tickGetLoginEnd = ::duration::now();
 
-      TRACE("NetLogin: Get Login Millis = " __prtick,__pr(tickGetLoginEnd - tickGetLoginBeg));
+      INFORMATION("NetLogin: Get Login Millis = " << (tickGetLoginEnd - tickGetLoginBeg).integral_second());
 
       string strPass;
 
       string strAuth;
 
-      auto tickAuthBeg = ::millis::now();
+      auto tickAuthBeg = ::duration::now();
 
       string strAuthUrl("https://ca2.software/api/account/auth3");
 
@@ -264,7 +264,7 @@ namespace account
 
       set["cookies"] = puser->m_phttpcookies;
 
-      auto tickTimeProfile1 = ::millis::now();
+      auto tickTimeProfile1 = ::duration::now();
 
       auto pcontext = get_context();
 
@@ -274,9 +274,9 @@ namespace account
 
       pcredentials->m_estatusHttp = (::e_status    ) set["get_status"].i64();
 
-      TRACE("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
+      INFORMATION("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << integral_millisecond(tickTimeProfile1.elapsed()));
 
-      TRACE("NetLogin: Authentication Millis = " __prtick, __pr(tickAuthBeg.elapsed()));
+      INFORMATION("NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond());
 
       return ::success;
 
@@ -337,7 +337,7 @@ namespace account
       try
       {
 
-         millis tickStart = ::millis::now();
+         ::duration tickStart = ::duration::now();
 
          ::property_set set;
 
@@ -356,9 +356,9 @@ namespace account
 
          }
 
-         millis tickEnd = ::millis::now();
+         ::duration tickEnd = ::duration::now();
 
-         TRACE( "get_account_login HTTP GET time = %dms", set["http_get_serial"].i64(),  (tickEnd - tickStart).m_i);
+         INFORMATION(set["http_get_serial"].get_string() << "> get_account_login HTTP GET time = " << (tickEnd - tickStart).integral_millisecond());
 
       }
       catch(...)
@@ -500,7 +500,7 @@ namespace account
 //   try
 //   {
 //
-//      ::u32 dwBeg= ::millis::now();
+//      ::u32 dwBeg= ::duration::now();
 //
 //      ::property_set set;
 //
@@ -512,7 +512,7 @@ namespace account
 //
 //      strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
 //
-//      ::u32 tickEnd= ::millis::now();
+//      ::u32 tickEnd= ::duration::now();
 //
 //      TRACE("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //

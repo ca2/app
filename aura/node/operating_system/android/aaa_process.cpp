@@ -249,9 +249,9 @@ CLASS_DECL_AURA bool shell_execute_sync(const ::string & pszPath, const ::string
    if (!create_process(strCmdLine, &processId))
       return -1;
 
-   ::datetime::time timeEnd = ::datetime::time::get_current_time() + durationTimeout;
+   ::datetime::time timeEnd = ::datetime::time::now() + durationTimeout;
 
-   while (::datetime::time::get_current_time() < timeEnd)
+   while (::datetime::time::now() < timeEnd)
    {
 
       if (kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId

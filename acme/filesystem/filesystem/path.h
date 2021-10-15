@@ -72,7 +72,7 @@ namespace file
 
       template < typename TYPE >
       inline path(const TYPE & t, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path(__str(t), epath, iDir, bNormalize, iSize)
+         path(__string(t), epath, iDir, bNormalize, iSize)
       {
 
       }

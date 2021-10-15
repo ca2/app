@@ -689,7 +689,7 @@ namespace base
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(::draw2d::graphics_pointer & pgraphics);
+//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -1214,7 +1214,7 @@ namespace base
    ::user::style_pointer user::instantiate_user_style(const ::string & pszExperienceLibrary, ::application* papp)
    {
 
-      INFO("aura::session::instantiate_user_theme");
+      INFORMATION("aura::session::instantiate_user_theme");
 
       if (papp == nullptr)
       {
@@ -1366,7 +1366,7 @@ namespace base
          if (!plibrary)
          {
 
-            ERR("Failed to Load %s", strLibrary.c_str());
+            ERROR("Failed to Load %s", strLibrary.c_str());
 
             continue;
 
@@ -1377,7 +1377,7 @@ namespace base
          if (!pstyle)
          {
 
-            INFO("could not create user_style from ", strLibrary.c_str());
+            INFORMATION("could not create user_style from ", strLibrary.c_str());
 
             continue;
 
@@ -1436,7 +1436,7 @@ namespace base
          if (!m_puserstyle)
          {
 
-            ERR("aura::session::defer_instantiate_user_theme");
+            ERROR("aura::session::defer_instantiate_user_theme");
 
             __throw(error_resource);
 

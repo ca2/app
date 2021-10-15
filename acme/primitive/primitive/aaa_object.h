@@ -342,7 +342,7 @@ public:
    virtual ::id calc_default_object_id() const;
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    void message_receiver_destruct();
 

@@ -87,12 +87,12 @@ namespace user
       void common_construct();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context & dc) const override;
 
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual ::id get_topic_view_id();
       virtual bool set_topic_view_by_id(const ::id & id);
@@ -187,7 +187,7 @@ namespace user
 //      }
 
 
-      ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
+      ::user::interaction * get_active_view() const override;           // active ::user::impact or nullptr
       void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 

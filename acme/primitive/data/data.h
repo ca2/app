@@ -35,7 +35,7 @@ namespace data
 
 
       virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
 
       virtual ::data::data_container_base* get_data_container();

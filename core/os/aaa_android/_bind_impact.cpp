@@ -258,7 +258,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv *
 
    SetMainScreenRect(rectangle);
 
-   ::point p;
+   ::point_i32 p;
 
    ::size s(g_posremote->getWidth(), g_posremote->getHeight());
 

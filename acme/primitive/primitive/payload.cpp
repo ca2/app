@@ -372,8 +372,11 @@ payload::payload(::duration * pduration)
 
 payload::payload(const ::datetime::time & time)
 {
+   
    m_etype = e_type_time;
-   m_time = time.m_time;
+   
+   m_time = time.m_i;
+
 }
 
 
@@ -1341,100 +1344,100 @@ class ::payload & payload::operator = (const ::id & id)
 }
 
 
-class ::payload & payload::operator = (const ::secs & secs)
-{
-
-   set_type(e_type_secs);
-
-   m_secs = secs;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::secs * psecs)
-{
-
-   set_type(e_type_psecs);
-
-   m_psecs = psecs;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::millis & millis)
-{
-
-   set_type(e_type_millis);
-
-   m_millis = millis;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::millis * pmillis)
-{
-
-   set_type(e_type_pmillis);
-
-   m_pmillis = pmillis;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::micros & micros)
-{
-
-   set_type(e_type_micros);
-
-   m_micros = micros;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::micros * pmicros)
-{
-
-   set_type(e_type_pmicros);
-
-   m_pmicros = pmicros;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::nanos & nanos)
-{
-
-   set_type(e_type_nanos);
-
-   m_nanos = nanos;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::nanos * pnanos)
-{
-
-   set_type(e_type_pnanos);
-
-   m_pnanos = pnanos;
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (const ::second & second)
+//{
+//
+//   set_type(e_type_secs);
+//
+//   m_secs = second;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::second * psecs)
+//{
+//
+//   set_type(e_type_psecs);
+//
+//   m_psecs = psecs;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::duration & duration)
+//{
+//
+//   set_type(e_type_millis);
+//
+//   m_millis = ::duration;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::duration * pmillis)
+//{
+//
+//   set_type(e_type_pmillis);
+//
+//   m_pmillis = pmillis;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::microsecond & microsecond)
+//{
+//
+//   set_type(e_type_micros);
+//
+//   m_micros = microsecond;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::microsecond * pmicros)
+//{
+//
+//   set_type(e_type_pmicros);
+//
+//   m_pmicros = pmicros;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::nanosecond & nanosecond)
+//{
+//
+//   set_type(e_type_nanos);
+//
+//   m_nanos = nanosecond;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::nanosecond * pnanos)
+//{
+//
+//   set_type(e_type_pnanos);
+//
+//   m_pnanos = pnanos;
+//
+//   return *this;
+//
+//}
 
 
 class ::payload & payload::operator = (const ::duration & duration)
@@ -2127,19 +2130,23 @@ bool payload::strictly_different(bool b) const
 }
 
 
-string payload::to_recursive_string() const
+string payload::get_recursive_string() const
 {
+
    if(is_array())
    {
+
       ::string str;
+
       str += "array (";
+
       for(::i32 i = 0; i < array_get_count(); i++)
       {
          if(i > 0)
             str += " ";
-         str += __str(i);
+         str += __string(i);
          str += " => ";
-         str += at(i).to_recursive_string();
+         str += at(i).get_recursive_string();
          str += ";";
       }
       str += ")";
@@ -2175,11 +2182,11 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_i32)
       {
-         str = __str(m_i32);
+         str = __string(m_i32);
       }
       else if(m_etype == ::e_type_u32)
       {
-         str = __str( m_u32);
+         str = __string( m_u32);
       }
       else if(m_etype == ::e_type_i64)
       {
@@ -2187,11 +2194,11 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_u64)
       {
-         str = __str(m_u64);
+         str = __string(m_u64);
       }
       else if(m_etype == ::e_type_f64)
       {
-         str = __str(m_f64);
+         str = __string(m_f64);
       }
       else if(m_etype == ::e_type_id)
       {
@@ -2207,12 +2214,12 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_bool)
       {
-         str = __str((int)m_b);
+         str = __string((int)m_b);
       }
       else if (is_element_set())
       {
          
-         str = __str(*matter());
+         str = __string(*matter());
 
       }
 
@@ -3495,7 +3502,7 @@ string_array payload::stra() const
          for (::index i = 0; i < c; i++)
          {
 
-            stra.add(at(i).to_string());
+            stra.add(at(i).get_string());
 
          }
 
@@ -3548,7 +3555,7 @@ string_array & payload::as_stra()
          for (::index i = 0; i < c; i++)
          {
 
-            pstra->add(at(i).to_string());
+            pstra->add(at(i).get_string());
 
          }
 
@@ -3823,16 +3830,22 @@ duration payload::duration() const
       return *m_pduration;
 
    }
+   else if(is_integer())
+   {
+
+      return INTEGRAL_SECOND(i64());
+
+   }
+   else if (is_floating())
+   {
+
+      return FLOATING_SECOND(f64());
+
+   }
    else
    {
 
-      return i64();
-
-  //    set_type(e_type_duration);
-//
-    //  m_duration.set_null();
-
-      return m_duration;
+      return FLOATING_SECOND(f64());
 
    }
 
@@ -4451,7 +4464,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
    ::payload varRet(*this);
 
-   if (varRet.is_real())
+   if (varRet.is_floating())
    {
 
       if (::str::is_integer(str))
@@ -5043,11 +5056,15 @@ bool payload::is_scalar() const
    }
 }
 
-bool payload::is_real() const
+
+bool payload::is_floating() const
 {
+
    if(m_etype == e_type_f64 || m_etype == e_type_f32)
    {
+
       return true;
+
    }
    // simple, lazy, slow, and a bit incorrect
    // incorrect because atof and atoi returns partials results even if it
@@ -6826,7 +6843,7 @@ bool payload::is_false() const
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
-      return !m_time.m_time;
+      return !m_time.m_i;
    case e_type_filetime:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -6859,22 +6876,22 @@ bool payload::is_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   case e_type_secs:
-      return !m_secs.m_i;
-   case e_type_psecs:
-      return !m_psecs || !m_psecs->m_i;
-   case e_type_millis:
-      return !m_millis.m_i;
-   case e_type_pmillis:
-      return !m_pmillis || !m_pmillis->m_i;
-   case e_type_micros:
-      return !m_micros.m_i;
-   case e_type_pmicros:
-      return !m_pmicros || !m_pmicros->m_i;
-   case e_type_nanos:
-      return !m_nanos.m_i;
-   case e_type_pnanos:
-      return !m_pnanos || !m_pnanos->m_i;
+   //case e_type_secs:
+   //   return !m_secs.m_i;
+   //case e_type_psecs:
+   //   return !m_psecs || !m_psecs->m_i;
+   //case e_type_millis:
+   //   return !m_millis.m_i;
+   //case e_type_pmillis:
+   //   return !m_pmillis || !m_pmillis->m_i;
+   //case e_type_micros:
+   //   return !m_micros.m_i;
+   //case e_type_pmicros:
+   //   return !m_pmicros || !m_pmicros->m_i;
+   //case e_type_nanos:
+   //   return !m_nanos.m_i;
+   //case e_type_pnanos:
+   //   return !m_pnanos || !m_pnanos->m_i;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
@@ -6971,7 +6988,7 @@ bool payload::is_set_false() const
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
-      return !m_time.m_time;
+      return !m_time.m_i;
    case e_type_filetime:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -7004,22 +7021,22 @@ bool payload::is_set_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   case e_type_secs:
-      return !m_secs.m_i;
-   case e_type_psecs:
-      return !m_psecs || !m_psecs->m_i;
-   case e_type_millis:
-      return !m_millis.m_i;
-   case e_type_pmillis:
-      return !m_pmillis || !m_pmillis->m_i;
-   case e_type_micros:
-      return !m_micros.m_i;
-   case e_type_pmicros:
-      return !m_pmicros || !m_pmicros->m_i;
-   case e_type_nanos:
-      return !m_nanos.m_i;
-   case e_type_pnanos:
-      return !m_pnanos || !m_pnanos->m_i;
+   //case e_type_secs:
+   //   return !m_secs.m_i;
+   //case e_type_psecs:
+   //   return !m_psecs || !m_psecs->m_i;
+   //case e_type_millis:
+   //   return !m_millis.m_i;
+   //case e_type_pmillis:
+   //   return !m_pmillis || !m_pmillis->m_i;
+   //case e_type_micros:
+   //   return !m_micros.m_i;
+   //case e_type_pmicros:
+   //   return !m_pmicros || !m_pmicros->m_i;
+   //case e_type_nanos:
+   //   return !m_nanos.m_i;
+   //case e_type_pnanos:
+   //   return !m_pnanos || !m_pnanos->m_i;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:

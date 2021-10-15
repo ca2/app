@@ -440,7 +440,7 @@ namespace user
 
       // handle any delayed on_layout
       //if (m_bDelayedButtonLayout)
-      //   ((toolbar*)this)->set_need_layout(::draw2d::graphics_pointer & pgraphics);
+      //   ((toolbar*)this)->set_need_layout(pgraphics);
 
 //      // now it is safe to get the item rectangle_i32
 //#ifdef WINDOWS_DESKTOP
@@ -1360,7 +1360,7 @@ return { 0,0 };
    void toolbar::OnPaint()
    {
       if (m_bDelayedButtonLayout)
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       default_window_procedure();
    }
@@ -1375,7 +1375,7 @@ return { 0,0 };
       //if (m_bDelayedButtonLayout)
       //{
 
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   on_layout(pgraphics);
 
       //}
 
@@ -1679,7 +1679,7 @@ return { 0,0 };
 
       //// handle any delayed on_layout
       //if(m_bDelayedButtonLayout)
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   on_layout(pgraphics);
 
       if(iItem >= 0 && iItem < m_itema.get_size())
       {

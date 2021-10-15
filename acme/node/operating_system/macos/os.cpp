@@ -55,7 +55,7 @@ CLASS_DECL_ACME bool _istlead(i32 ch)
 //string apple_browse_folder(const char * pszStartDir, bool bCanCreateDirectories)
 //{
 //
-//   return ::str::from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
+//   return ::string_from_strdup(mm_browse_folder(pszStartDir, bCanCreateDirectories));
 //
 //}
 //

@@ -92,15 +92,15 @@ namespace netserver
 
       string strUrl = m_request.attr("http_protocol").string() + "://" + m_request.header("host").string() + m_request.attr("request_uri").string();
 
-      auto tickExecuteBeg = ::millis::now();
+      auto tickExecuteBeg = ::duration::now();
 
       m_bEnd = false;
 
       send_response();
 
-      auto tickExecuteEnd = ::millis::now();
+      auto tickExecuteEnd = ::duration::now();
 
-      TRACE("=> " __prtick, __pr(tickExecuteEnd - tickExecuteBeg));
+      ERROR("=> " << (tickExecuteEnd - tickExecuteBeg).integral_second());
 
    }
 

@@ -229,7 +229,7 @@ namespace user
    void default_message_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->id() == id_os_user_theme)
+      if (psubject->id() == id_user_style_change)
       {
 
          m_bOsUserThemeColorModified = true;
@@ -248,7 +248,7 @@ namespace user
 
       }
 
-
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 

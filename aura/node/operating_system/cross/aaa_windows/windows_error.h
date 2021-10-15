@@ -16558,13 +16558,13 @@
 #define ERROR_DS_CANT_CACHE_CLASS        8402L
 
 //
-// MessageId: ERROR_DS_CANT_REMOVE_ATT_CACHE
+// MessageId: ERROR_DS_CANT_erase_atT_CACHE
 //
 // MessageText:
 //
 // The attribute could not be erased from the CAche.
 //
-#define ERROR_DS_CANT_REMOVE_ATT_CACHE   8403L
+#define ERROR_DS_CANT_erase_atT_CACHE   8403L
 
 //
 // MessageId: ERROR_DS_CANT_REMOVE_CLASS_CACHE
@@ -32130,7 +32130,7 @@
 //
 // MessageText:
 //
-// The size of the indefinite-sized data could not be determined.
+// The size of the indefinite-size_f64 data could not be determined.
 //
 #define PERSIST_E_SIZEINDEFINITE         _HRESULT_TYPEDEF_(0x800B000AL)
 

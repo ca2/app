@@ -12,36 +12,6 @@ inline bool __enum_is_failed(const ::e_status & e)
 }
 
 
-inline duration & duration::operator = (const ::datetime::time_span & span)
-{
-
-   raw_set(span.GetTotalSeconds());
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator += (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i + span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator -= (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i - span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
 template < class T >
 inline const char * ___pointer < T >::type_c_str()
 {
@@ -334,7 +304,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       else if (id.is_text())
       {
 
-         return __str(m_i) + "." + string(id.m_psz);
+         return __string(m_i) + "." + string(id.m_psz);
 
       }
       else
@@ -351,7 +321,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       if (is_text())
       {
 
-         return string(m_psz) + "." + __str(id.m_i);
+         return string(m_psz) + "." + __string(id.m_i);
 
       }
       else
@@ -530,7 +500,7 @@ inline property_set ca_property_set()
 //
 //   string strRight(stringable);
 //
-//   return __str(psz) + strRight;
+//   return __string(psz) + strRight;
 //
 //}
 
@@ -549,7 +519,7 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
 //{
 //
-//   return __str(psz) + payload.get_string();
+//   return __string(psz) + payload.get_string();
 //
 //}
 //
@@ -2313,8 +2283,8 @@ void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 #endif
 
 
-inline bool millis::done(const ::millis & millis) const { return elapsed(millis).m_i >= 0; }
-inline bool millis::done() const { return elapsed().m_i >= 0; }
+//inline bool ::duration::done(const ::duration & duration) const { return elapsed(::duration).m_i >= 0; }
+//inline bool ::duration::done() const { return elapsed().m_i >= 0; }
 
 
 template < >
@@ -3607,34 +3577,26 @@ inline __transport(task) object::fork(PREDICATE predicate, ::enum_priority eprio
 }
 
 
-inline routine_array& property_object::_routine_array(const ::id& id)
-{
-   
-   return m_pmapPropertyRoutine->operator[](id);
-
-}
-
-
-inline routine_array& property_object::routine_array(const ::id& id)
-{ 
-   
-   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
-   
-   return m_pmapPropertyRoutine->operator[](id);
-
-}
-
-
-inline void property_object::add_routine(const ::id& id, const ::routine& routine)
-{
-
-   routine_array(id).add(routine);
-
-}
+//inline routine_array * property_object::_routine_array(const ::id& id)
+//{
+//
+//   auto passociation = m_pmapPropertyRoutine->plookup(id);
+//
+//   if (::is_null(passociation))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//   
+//   return &passociation->m_element2;
+//
+//}
+//
 
 
-template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-auto material_object::__sync_status_payload(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
+::e_status material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
 {
 
    auto psynchronization = __new(::promise::synchronization);
@@ -3665,9 +3627,9 @@ auto material_object::__sync_status_payload(const ::duration & duration, BRANCHI
 
                              });
 
-   (pbranching->*branching_method)(proutine);
+   (pposting->*posting_method)(proutine);
 
-   if (psynchronization->m_evGoingToWrite.wait(duration).failed())
+   if (psynchronization->m_evGoingToWrite.wait(proutine->timeout()).failed())
    {
 
       psynchronization->m_bTimeout = true;
@@ -3752,11 +3714,11 @@ auto material_object::__sync_status_payload(const ::duration & duration, BRANCHI
 
 
 
-template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
-::e_status material_object::__sync_routine(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, ::routine routine)
+template < typename POSTING_OBJECT, typename POSTING_METHOD >
+::e_status material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine)
 {
 
-   if(pbranching->is_branch_current())
+   if(pposting->is_branch_current())
    {
 
       return routine();
@@ -3791,9 +3753,9 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 
    psignalization->m_pmatterHold = proutine;
 
-   (pbranching->*branching_method)(proutine);
+   (pposting->*posting_method)(proutine);
 
-   if (psignalization->m_evReady.wait(duration).failed())
+   if (psignalization->m_evReady.wait(proutine->timeout()).failed())
    {
 
       return error_timeout;

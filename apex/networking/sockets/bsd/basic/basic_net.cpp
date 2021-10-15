@@ -241,13 +241,13 @@ namespace sockets
 //
 //      single_lock synchronouslock(&m_mutexCache, true);
 //      dns_cache_item item;
-//      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_millisLastChecked.elapsed()) < (5 * 60 * 1000)))))
+//      if(m_mapCache.lookup(str, item) && (item.m_bOk && (!item.m_bTimeout || ((item.m_durationLastChecked.elapsed()) < (5 * 60 * 1000)))))
 //      {
 //         if (item.m_bOk)
 //         {
 //            l = item.m_ipaddr;
 //         }
-//         //         millis tick2= ::millis::now();
+//         //         ::duration tick2= ::duration::now();
 //         /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //         (u32)((byte*)&pitem->m_ipaddr)[0],
 //         (u32)((byte*)&pitem->m_ipaddr)[1],
@@ -332,7 +332,7 @@ namespace sockets
 //         ERR(error + " for " + str);
 //         item.m_bOk = false;
 //         item.m_bTimeout = true;
-//         item.m_millisLastChecked.Now();
+//         item.m_durationLastChecked.Now();
 //         m_mapCache.set_at(str, item);
 //
 //         return false;
@@ -355,7 +355,7 @@ namespace sockets
 //   }
 //   freeaddrinfo(res);
 //   item.m_ipaddr = sa.sin_addr;
-//   item.m_millisLastChecked.Now();
+//   item.m_durationLastChecked.Now();
 //   m_mapCache.set_at(str, item);
 //
 //   //if(psystem->m_bGudoNetCache)
@@ -365,7 +365,7 @@ namespace sockets
 //
 //   }
 //
-////      millis tick2= ::millis::now();
+////      ::duration tick2= ::duration::now();
 ////      TRACE("DNS lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
 //   //       (u32)((byte*)&pitem->m_ipaddr)[0],
 //   //     (u32)((byte*)&pitem->m_ipaddr)[1],
@@ -403,7 +403,7 @@ namespace sockets
 //   try
 //   {
 //
-//      ::str::from(str, sa);
+//      __string(str, sa);
 //
 //      return true;
 //
@@ -468,7 +468,7 @@ namespace sockets
 //      try
 //      {
 //
-//         ::str::from(str, sa);
+//         __string(str, sa);
 //
 //         return true;
 //
@@ -505,14 +505,14 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //      struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
 //      string tmp;
 //      convert(tmp, sa6 -> sin6_addr);
-//      return tmp + ":" + __str(ntohs(sa6 -> sin6_port));
+//      return tmp + ":" + __string(ntohs(sa6 -> sin6_port));
 //   }
 //   if (sa -> sa_family == AF_INET)
 //   {
 //      struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
 //      string tmp;
 //      convert(tmp, sa4 -> sin_addr);
-//      return tmp + ":" + __str(ntohs(sa4 -> sin_port));
+//      return tmp + ":" + __string(ntohs(sa4 -> sin_port));
 //   }
 //   return "";
 //}
@@ -647,7 +647,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //   try
 //   {
 //
-//      ::str::to(sa, host);
+//      ::from_string(sa, host);
 //
 //   }
 //   catch (const ::exception & e)
@@ -871,7 +871,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   auto & pitem = m_mapReverseCache[address.get_display_number()];
 //
-//   if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_millisLastChecked.elapsed() < 3600_min)
+//   if (pitem && !pitem->m_bProcessing && !pitem->m_bTimeout && pitem->m_durationLastChecked.elapsed() < 3600_min)
 //   {
 //
 //      hostname = pitem->m_strReverse;
@@ -1022,7 +1022,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   pitem->m_strReverse = host;
 //   //item.m_strService = serv;
-//   pitem->m_millisLastChecked.Now();
+//   pitem->m_durationLastChecked.Now();
 //
 //   //single_lock synchronouslock(&m_mutexCache, true);
 //
@@ -1189,10 +1189,10 @@ i32 net::service_port(const ::string & str, i32 flags)
 //
 //   string strAddress;
 //
-//   ::str::from(strAddress, m_ipaddr);
+//   __string(strAddress, m_ipaddr);
 //
 //   stream << strAddress;
-//   stream << m_millisLastChecked;
+//   stream << m_durationLastChecked;
 //   stream << m_bOk;
 //   stream << m_bTimeout;
 //
@@ -1208,9 +1208,9 @@ i32 net::service_port(const ::string & str, i32 flags)
 //
 //   stream >> strAddress;
 //
-//   ::str::to(m_ipaddr, strAddress);
+//   ::from_string(m_ipaddr, strAddress);
 //
-//   stream >> m_millisLastChecked;
+//   stream >> m_durationLastChecked;
 //   stream >> m_bOk;
 //   stream >> m_bTimeout;
 //
@@ -1226,7 +1226,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //      return *this;
 //
 //   ::memcpy_dup(&m_ipaddr,&item.m_ipaddr,sizeof(m_ipaddr));
-//   m_millisLastChecked = item.m_millisLastChecked;
+//   m_durationLastChecked = item.m_durationLastChecked;
 //   m_bOk = item.m_bOk;
 //   m_bTimeout = item.m_bTimeout;
 //
@@ -1239,7 +1239,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //{
 //
 //   //__zero(m_ipaddr);
-//   //m_millisLastChecked = 0;
+//   //m_durationLastChecked = 0;
 //   m_bOk = false;
 //   m_bTimeout = true;
 //
@@ -1259,7 +1259,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //
 //   stream << m_address;
 //   stream << m_strReverse;
-//   stream << m_millisLastChecked;
+//   stream << m_durationLastChecked;
 //   stream << m_bOk;
 //   stream << m_bTimeout;
 //   stream << m_bProcessing;
@@ -1274,7 +1274,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //
 //   stream >> m_address;
 //   stream >> m_strReverse;
-//   stream >> m_millisLastChecked;
+//   stream >> m_durationLastChecked;
 //   stream >> m_bOk;
 //   stream >> m_bTimeout;
 //   stream >> m_bProcessing;
@@ -1291,7 +1291,7 @@ i32 net::service_port(const ::string & str, i32 flags)
 //      return *this;
 //
 //   m_address = item.m_address;
-//   m_millisLastChecked = item.m_millisLastChecked;
+//   m_durationLastChecked = item.m_durationLastChecked;
 //   m_strReverse = item.m_strReverse;
 //   m_bOk = item.m_bOk;
 //   m_bTimeout = item.m_bTimeout;

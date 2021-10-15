@@ -222,7 +222,7 @@ namespace dynamic_source
       catch (const ::e_status & estatus)
       {
 
-         output_debug_string("failed to setup visual studio environment " + __str((::i64)estatus.m_estatus));
+         output_debug_string("failed to setup visual studio environment " + __string((::i64)estatus.m_estatus));
 
       }
 
@@ -405,7 +405,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = __str(::get_millis() % 1000);
+      strMillis = __string(::get_integral_millisecond().m_i % 1000);
 
       ::ansi_zero_pad(strMillis, 3);
 
@@ -421,7 +421,7 @@ namespace dynamic_source
 
       //string strCompileLogUnique;
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
+      ::datetime::time timeNow = ::datetime::time::now();
 
       string strCompileLogUnique = Format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
@@ -820,7 +820,7 @@ pacmedir->create(pathDVP_Folder);
 
       //::system(str + " > " + "\"" + strClog + "\"");
 
-      auto tickStart = ::millis::now();
+      auto tickStart = ::duration::now();
 
       string strLog;
 
@@ -920,7 +920,7 @@ pacmedir->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = ostreamError.to_string();
+            pscript->m_strError = ostreamError.get_string();
 
             return;
 
@@ -1007,7 +1007,7 @@ pacmedir->create(pathDVP_Folder);
 
          process->create_child_process(strLinker,true,nullptr,::e_priority_highest);
 
-         auto tickStart = ::millis::now();
+         auto tickStart = ::duration::now();
 
          string strLog;
 
@@ -1054,10 +1054,10 @@ pacmedir->create(pathDVP_Folder);
                ostreamError << "Linking...\n";
                //ostreamError << "Linker Command File" << "\n";
                //ostreamError << pathLinker << "\n";
-               INFO("Linker Command File %s", pathLinker.c_str());
+               INFORMATION("Linker Command File %s", pathLinker.c_str());
                //ostreamError << "Linker Command" << "\n";
                //ostreamError << strLinker << "\n";
-               INFO("Linker Command %s", strLinker.c_str());
+               INFORMATION("Linker Command %s", strLinker.c_str());
                str.replace("\r\n","\n");
                ostreamError << str;
                ostreamError << "</pre>";
@@ -1065,7 +1065,7 @@ pacmedir->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = pscript->m_pfileError->to_string();
+            pscript->m_strError = pscript->m_pfileError->get_string();
 
             pscript->m_strError.trim();
 
@@ -1290,7 +1290,7 @@ pacmedir->create(pathDVP_Folder);
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::id lscript_id" + __str(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::id lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -1498,7 +1498,7 @@ pacmedir->create(pathDVP_Folder);
 //
 //   //   EnvVarValArray arrEnvVarVal;
 //
-//   //   millis tickStart= ::millis::now();
+//   //   ::duration tickStart= ::duration::now();
 //
 //   //   u32 dwExitCode;
 //
@@ -1530,7 +1530,7 @@ pacmedir->create(pathDVP_Folder);
 //   //   }
 //   //process->write("\n");
 //   u32 dwExitCode;
-//   ::u32 tickStart= ::millis::now();
+//   ::u32 tickStart= ::duration::now();
 //   while(::task_get_run() && task_get_run())
 //   {
 //
@@ -1950,7 +1950,7 @@ pacmedir->create(pathDVP_Folder);
 
          process->create_child_process(str,true,nullptr,::e_priority_highest);
 
-         auto tickStart = ::millis::now();
+         auto tickStart = ::duration::now();
 
          //u32 dwExitCode;
 
@@ -2099,7 +2099,7 @@ pacmedir->create(pathDVP_Folder);
       ::parallelization::set_priority(::e_priority_highest);
 
       process->create_child_process(str,true,nullptr,::e_priority_highest);
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       string strLog;
 
@@ -2243,7 +2243,7 @@ auto tickStart = ::millis::now();
       string strId;
       for(i32 i = 0; i < straId.get_size(); i++)
       {
-         strId += "static ::id lscript_id" + __str(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static ::id lscript_id" + __string(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -2268,7 +2268,7 @@ auto tickStart = ::millis::now();
          straId.add(strKey);
          iFind = straId.get_upper_bound();
       }
-      strResult = strResult.Left(iArroba) + " lscript_id" + __str(iFind);
+      strResult = strResult.Left(iArroba) + " lscript_id" + __string(iFind);
       iArroba = -1;
    }
 
@@ -3006,7 +3006,7 @@ ch_else:
 
                string strScriptError;
 
-               strScriptError = pdsscript->m_pfileError->to_string();
+               strScriptError = pdsscript->m_pfileError->get_string();
 
                m_pmanager->m_strPersistentError += strScriptError;
 
@@ -3093,7 +3093,7 @@ ch_else:
 //bool script_compiler::library_DoesMatchVersion()
 //{
 
-//   if(m_millisLastLibraryVersionCheck.elapsed() < (5000))
+//   if(m_durationLastLibraryVersionCheck.elapsed() < (5000))
 //   {
 //      return m_bLastLibraryVersionCheck;
 //   }
@@ -3121,7 +3121,7 @@ ch_else:
 //         || __memcmp(&m_ftaLibModified[i], &st.st_mtime, sizeof(__time_t)) != 0)
 //      {
 //         m_bLastLibraryVersionCheck = false;
-//         m_millisLastLibraryVersionCheck= ::millis::now();
+//         m_durationLastLibraryVersionCheck= ::duration::now();
 //         return false;
 
 //      }
@@ -3129,7 +3129,7 @@ ch_else:
 //   }
 
 //   m_bLastLibraryVersionCheck    = true;
-//   m_millisLastLibraryVersionCheck  = ::millis::now();
+//   m_durationLastLibraryVersionCheck  = ::duration::now();
 
 //   return true;
 

@@ -9,11 +9,11 @@ CLASS_DECL_APEX bool _istlead(i32 ch)
 }
 
 
-void sleep(const ::millis & millis)
+void sleep(const ::duration & duration)
 {
    timespec t;
-   t.tv_sec = millis.m_iMilliseconds / 1000;
-   t.tv_nsec = (millis.m_iMilliseconds % 1000) * 1000 * 1000;
+   t.tv_sec = ::duration.m_i::durations / 1000;
+   t.tv_nsec = (::duration.m_i::durations % 1000) * 1000 * 1000;
    nanosleep(&t, nullptr);
 }
 

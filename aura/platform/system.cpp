@@ -153,10 +153,9 @@ namespace aura
 
       }
 
-      enable_trace_category(trace_category_windowing, true);
+      enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(trace_category_prodevian, false);
-
+      enable_trace_category(e_trace_category_prodevian, false);
     
       m_pDraw2dFactoryExchange = nullptr;
 
@@ -210,7 +209,7 @@ namespace aura
 
       //m_purldepartment = nullptr;
 
-      m_millisAfterApplicationFirstRequest = 0;
+      m_durationAfterApplicationFirstRequest = 0_s;
 
 
 
@@ -733,8 +732,8 @@ namespace aura
 
       //   iPid = ::get_current_process_id();
 
-      //   printf("%s", ("Process PID: " + __str(iPid) + "\n").c_str());
-      //   output_debug_string("Process PID: " + __str(iPid) + "\n");
+      //   printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
+      //   output_debug_string("Process PID: " + __string(iPid) + "\n");
 
       //}
 
@@ -979,7 +978,7 @@ namespace aura
       //if(!__compose(m_pfilesystem))
       //{
 
-      //   ERR("failed to initialize file-system");
+      //   ERROR("failed to initialize file-system");
 
       //   return false;
 
@@ -988,13 +987,13 @@ namespace aura
       //if(!__compose(m_pdirsystem))
       //{
 
-      //   ERR("failed to initialize dir-system");
+      //   ERROR("failed to initialize dir-system");
 
       //   return false;
 
       //}
 
-      //INFO("aura::session::process_init .3");
+      //INFORMATION("aura::session::process_init .3");
 
       //estatus = m_pfilesystem->init_system();
 
@@ -1030,7 +1029,7 @@ namespace aura
       //if (!m_ptrace->process_init())
       //{
 
-      //   WARN("failed to process_init ::aura::log trace");
+      //   WARNING("failed to process_init ::aura::log trace");
 
       //}
 
@@ -1097,7 +1096,7 @@ namespace aura
       if (!estatus)
       {
 
-         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
 
          return estatus;
 
@@ -1114,7 +1113,7 @@ namespace aura
             if(!estatus)
             {
 
-               WARN("Failed to initialize imaging library.");
+               WARNING("Failed to initialize imaging library.");
 
 #if !defined(MOBILE_PLATFORM)
 
@@ -1143,7 +1142,7 @@ namespace aura
       if (!estatus)
       {
 
-         TRACE("Couldn't construct new draw2d.");
+         INFORMATION("Couldn't construct new draw2d.");
 
          return false;
 
@@ -1154,7 +1153,7 @@ namespace aura
       if(!estatus)
       {
 
-         TRACE("Couldn't initialize draw2d (init1).");
+         INFORMATION("Couldn't initialize draw2d (init1).");
 
          return estatus;
 
@@ -1562,7 +1561,7 @@ namespace aura
    ::e_status system::init()
    {
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       __pointer(::aura::session) psession = get_session();
 
@@ -1732,7 +1731,7 @@ namespace aura
       //
       //      //}
       //
-      //      INFO("start");
+      //      INFORMATION("start");
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -1753,7 +1752,7 @@ namespace aura
       //
       //#endif // LINUX
 
-      INFO("success");
+      INFORMATION("success");
 
 //      enum_display_monitors();
 
@@ -2442,7 +2441,7 @@ namespace aura
 //   void system::appa_load_string_table()
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 ////      for(i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
@@ -2456,7 +2455,7 @@ namespace aura
 //   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 //      single_lock sl(mutex());
 //
@@ -2474,7 +2473,7 @@ namespace aura
 //   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 //      single_lock sl(mutex());
 //
@@ -2810,7 +2809,7 @@ namespace aura
 
    //   }
 
-   //   INFO("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__str((iptr) psession)+")\n\n").c_str());
+   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -2927,7 +2926,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::output_debug_string("library("+__str(i)+") : " + strLibraryId+"\n\n");
+////            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -3154,7 +3153,7 @@ namespace aura
 
    //   synchronous_lock synchronouslock(mutex());
 
-   //   m_millisCommandLineLast.Now();
+   //   m_durationCommandLineLast.Now();
 
    //   m_iCommandLineDelay = 1000;
 
@@ -4016,7 +4015,7 @@ namespace aura
 //
 //      }
 //
-//      ::datetime::time timeNow = ::datetime::time::get_current_time();
+//      ::datetime::time timeNow = ::datetime::time::now();
 //
 //      if (timeNow.GetMonth() == 12)
 //      {
@@ -4906,7 +4905,7 @@ namespace aura
    //void system::term()
    //{
 
-   //   //__wait_threading_count_except(this,::millis((5000) * 77));
+   //   //__wait_threading_count_except(this,::duration((5000) * 77));
 
    //   if (::ftp::command::info2::g_pTheOneAndOnly != nullptr)
    //   {
@@ -5628,7 +5627,7 @@ namespace aura
 //
 //      //}
 //
-//      INFO("start");
+//      INFORMATION("start");
 //
 //      //m_bProcessInitializeResult    = false;
 //
@@ -5648,7 +5647,7 @@ namespace aura
 //      //if (!::aura::application::process_init())
 //      //{
 //
-//      //   ERR(".1");
+//      //   ERROR(".1");
 //
 //      //   return false;
 //
@@ -5657,7 +5656,7 @@ namespace aura
 //      if (!::aura::system::process_init())
 //      {
 //
-//         ERR(".2");
+//         ERROR(".2");
 //
 //         return false;
 //
@@ -5684,7 +5683,7 @@ namespace aura
 //
 //      //m_bProcessInitializeResult = true;
 //
-//      INFO("success");
+//      INFORMATION("success");
 //
 //      return true;
 //
@@ -5892,7 +5891,7 @@ namespace aura
 //
 //
 //
-//      //__wait_threading_count(::millis((5000) * 8));
+//      //__wait_threading_count(::duration((5000) * 8));
 //
 //      //::parallelization::wait_threads(40_s);
 //

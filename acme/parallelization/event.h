@@ -40,7 +40,7 @@ public:
    ~event() override;
 
    // using event_base::lock;
-   bool lock(const duration & durationTimeout = duration::infinite()) override;
+   //bool lock(const ::wait & wait = wait::infinite()) override;
 
    using synchronization_object::unlock;
    bool unlock() override;
@@ -62,7 +62,7 @@ public:
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual ::e_status _wait (const duration & duration) override;
+   ::e_status _wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

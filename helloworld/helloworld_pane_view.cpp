@@ -112,8 +112,8 @@ namespace helloworld
 
       if(get_view_id() == ::helloworld::PaneViewHelloWorld
             || get_view_id() == ::helloworld::PaneViewHelloWorldSwitcher
-            || stra.contains(__str((int)::helloworld::PaneViewHelloWorld))
-            || stra.contains(__str((int)::helloworld::PaneViewHelloWorldSwitcher)))
+            || stra.contains(__string((int)::helloworld::PaneViewHelloWorld))
+            || stra.contains(__string((int)::helloworld::PaneViewHelloWorldSwitcher)))
       {
 
 
@@ -199,7 +199,7 @@ namespace helloworld
             for (auto & bilbo : m_pviewLastBilbo->m_prender->m_bilboa)
             {
 
-               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __str(i))));
+               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __string(i))));
 
                m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
@@ -340,7 +340,7 @@ namespace helloworld
 
                      }
                      m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_dwRoll= ::millis::now();
+                     m_pviewLast->m_dwRoll= ::duration::now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -348,7 +348,7 @@ namespace helloworld
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -371,8 +371,8 @@ namespace helloworld
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
+            //         m_pflagview->m_dwRoll= ::duration::now();
+            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -531,7 +531,7 @@ namespace helloworld
 
                   m_pviewLast->m_strNewFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 
@@ -546,7 +546,7 @@ namespace helloworld
 
                   m_pviewLast->m_strHoverFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 

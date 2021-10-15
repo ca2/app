@@ -95,7 +95,7 @@ namespace sockets
       short             server_port = get_integer(buf, ptr);
       bool               is_ssl = get_boolean(buf, ptr);
 
-      string method_str = __str( method );
+      string method_str = __string( method );
       psession->sockets().m_pajpbasesocketinit->Method.lookup(method, method_str);
       m_request.attr("http_method") = method_str;
       m_request.attr("http_protocol") = protocol;

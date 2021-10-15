@@ -775,7 +775,7 @@ namespace html
          }
 
 
-         bool bCaretOn = ((m_millisFocusStart.elapsed()) % (m_dwCaretTime * 2)) < m_dwCaretTime;
+         bool bCaretOn = ((m_durationFocusStart.elapsed()) % (m_dwCaretTime * 2)) < m_dwCaretTime;
 
          strsize iSelStart;
          strsize iSelEnd;

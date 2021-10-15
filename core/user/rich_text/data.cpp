@@ -69,17 +69,11 @@ namespace user
 
          m_bCaretRight = false;
 
-         m_pformata = __new(__pointer_array(format));
-
-         m_pformatCurrent = add_format();
-
-         m_plinea = __new(__pointer_array(line));
-
          m_iSelBeg = 0;
 
          m_iSelEnd = 0;
 
-         m_millisCaretPeriod = 1000;
+         m_durationCaretPeriod = 1_s;
 
          defer_create_mutex();
 
@@ -99,10 +93,47 @@ namespace user
       }
 
 
+      ::e_status data::initialize_data(::data::data_container_base * pdocument)
+      {
+
+         auto estatus = ::data::data::initialize_data(pdocument);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = __construct_new(m_pformata);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         m_pformatCurrent = add_format();
+
+         estatus = __construct_new(m_plinea);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       __pointer(format) data::add_format()
       {
 
-         auto pformat = __new(format);
+         auto pformat = __create_new < format >();
 
          pformat->initialize_user_rich_text_format(m_pformata);
 
@@ -1531,7 +1562,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
+         //pgraphics->draw_inset_3d_rectangle(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
@@ -1547,7 +1578,7 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = m_pedit->m_millisFocusStart.on_off(m_millisCaretPeriod);
+            bCaretOn = m_pedit->m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond());
 
          }
 
@@ -2066,6 +2097,25 @@ namespace user
       }
 
 
+      ::e_status data::__initialize(__pointer(::user::rich_text::format) & pformat)
+      {
+
+         __defer_construct(pformat);
+
+         auto estatus = pformat->initialize_user_rich_text_format(m_pformata);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       stream & data::write(::stream & stream) const
       {
 
@@ -2073,7 +2123,7 @@ namespace user
 
          {
 
-            ::papaya::array::exchange_container_as_parent(stream, *m_pformata);
+            ::papaya::array::exchange_container(stream, (data *) this, *m_pformata);
 
          }
 
@@ -2101,7 +2151,7 @@ namespace user
 
          {
 
-            ::papaya::array::exchange_container_as_parent(stream, *m_pformata);
+            ::papaya::array::exchange_container(stream, this, *m_pformata);
 
          }
 

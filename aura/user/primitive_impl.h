@@ -219,7 +219,7 @@ namespace user
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 
@@ -243,7 +243,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;

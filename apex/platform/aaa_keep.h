@@ -4,7 +4,7 @@
 inline ::payload & thread_property(const ::id & id);
 inline void thread_set(const ::id & id) { thread_property(id) = true; }
 inline void thread_unset(const ::id & id) { thread_property(id) = false; }
-inline bool thread_is_set(const ::id & id);
+inline bool task_flag().is_set(const ::id & id);
 
 //
 //template  < typename TYPE >
@@ -427,7 +427,7 @@ synchronouslock.unlock()
 //inline ::payload & thread_property(const ::id & id);
 //inline void thread_set(const ::id & id) { thread_property(id) = true; }
 //inline void thread_unset(const ::id & id) { thread_property(id) = false; }
-//inline bool thread_is_set(const ::id & id);
+//inline bool task_flag().is_set(const ::id & id);
 
 
 //template  < typename TYPE >

@@ -22,7 +22,7 @@ namespace prompt
       primary_view(::object * pobject);
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);

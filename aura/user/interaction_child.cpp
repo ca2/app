@@ -50,12 +50,12 @@ namespace user
       if (_is_window())
       {
 
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("interaction_child::create_window_ex (DestroyWindow)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("interaction_child::create_window_ex (DestroyWindow)");
+         INFORMATION("");
+         INFORMATION("");
 
          start_destroying_window();
 
@@ -78,12 +78,12 @@ namespace user
 
          //if (!m_puserinteraction->pre_create_window(pusersystem))
          //{
-         //   INFO("-------------------------------------------------------------------");
-         //   INFO("");
-         //   INFO("");
-         //   INFO("interaction_child::create_window_ex (2)");
-         //   INFO("");
-         //   INFO("");
+         //   INFORMATION("-------------------------------------------------------------------");
+         //   INFORMATION("");
+         //   INFORMATION("");
+         //   INFORMATION("interaction_child::create_window_ex (2)");
+         //   INFORMATION("");
+         //   INFORMATION("");
 
          //   return false;
 
@@ -96,12 +96,12 @@ namespace user
          if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)
          {
 
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("interaction_child::create_window_ex (rectangle)");
-            INFO("");
-            INFO("");
+            INFORMATION("-------------------------------------------------------------------");
+            INFORMATION("");
+            INFORMATION("");
+            INFORMATION("interaction_child::create_window_ex (rectangle)");
+            INFORMATION("");
+            INFORMATION("");
 
             m_puserinteraction->WindowDataLoadWindowRect();
 
@@ -117,12 +117,12 @@ namespace user
          //if (rectangleChild.is_set())
          //{
 
-         //   INFO("-------------------------------------------------------------------");
-         //   INFO("");
-         //   INFO("");
-         //   INFO("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
-         //   INFO("");
-         //   INFO("");
+         //   INFORMATION("-------------------------------------------------------------------");
+         //   INFORMATION("");
+         //   INFORMATION("");
+         //   INFORMATION("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x, rectangleChild.origin().y, rectangleChild.width(), rectangleChild.height());
+         //   INFORMATION("");
+         //   INFORMATION("");
 
          //   m_puserinteraction->layout().sketch() = rectangleChild;
 
@@ -133,7 +133,7 @@ namespace user
          if(m_puserinteraction->is_host_top_level())
          {
 
-            INFO("host_top_level");
+            INFORMATION("host_top_level");
 
          }
          else
@@ -142,12 +142,12 @@ namespace user
             //if (pusersystem->m_createstruct.style & WS_VISIBLE)
             //{
 
-            //   INFO("-------------------------------------------------------------------");
-            //   INFO("");
-            //   INFO("");
-            //   INFO("interaction_child::create_window_ex VISIBLE");
-            //   INFO("");
-            //   INFO("");
+            //   INFORMATION("-------------------------------------------------------------------");
+            //   INFORMATION("");
+            //   INFORMATION("");
+            //   INFORMATION("interaction_child::create_window_ex VISIBLE");
+            //   INFORMATION("");
+            //   INFORMATION("");
 
             //   m_puserinteraction->display();
 
@@ -155,12 +155,12 @@ namespace user
             //else
             //{
 
-            //   INFO("-------------------------------------------------------------------");
-            //   INFO("");
-            //   INFO("");
-            //   INFO("interaction_child::create_window_ex NOT VISIBLE");
-            //   INFO("");
-            //   INFO("");
+            //   INFORMATION("-------------------------------------------------------------------");
+            //   INFORMATION("");
+            //   INFORMATION("");
+            //   INFORMATION("interaction_child::create_window_ex NOT VISIBLE");
+            //   INFORMATION("");
+            //   INFORMATION("");
 
             //   m_puserinteraction->hide();
 
@@ -745,7 +745,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
+   ::user::primitive * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
       m_puserprimitiveOwner = pinteraction;

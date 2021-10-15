@@ -199,7 +199,7 @@
 
             m.set_os_cf_data(data);
 
-            p->on_ipc_receive(p, __str(m));
+            p->on_ipc_receive(p, __string(m));
 
          }
          else
@@ -389,7 +389,7 @@
       interprocess_communication::interprocess_communication()
       {
 
-         m_millisTimeout = (5000) * 11;
+         m_durationTimeout = (5000) * 11;
 
       }
 

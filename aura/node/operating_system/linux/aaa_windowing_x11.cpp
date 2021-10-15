@@ -3525,7 +3525,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
          if(pinteraction.is_set())
          {
 
-            if(pinteraction->m_millisMouseMove.elapsed() < pinteraction->m_millisMouseMoveIgnore)
+            if(pinteraction->m_durationMouseMove.elapsed() < pinteraction->m_durationMouseMoveIgnore)
             {
 
                bOk = false;
@@ -3535,7 +3535,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
             if(bOk)
             {
 
-               pinteraction->m_millisMouseMove.Now();
+               pinteraction->m_durationMouseMove.Now();
 
                pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
 
@@ -3544,13 +3544,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(false)
                {
 
-                  if(pinteraction->m_millisMouseMovePeriod > 0)
+                  if(pinteraction->m_durationMouseMovePeriod > 0)
                   {
 
                      ::size_i32 sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
                         (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 
-                     if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
+                     if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
@@ -4408,7 +4408,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         else
 //         {
 //
-//            output_debug_string("B " + __str(wFocus));
+//            output_debug_string("B " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4423,7 +4423,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //         else
 //         {
 //
-//            output_debug_string("D " + __str(wFocus));
+//            output_debug_string("D " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //

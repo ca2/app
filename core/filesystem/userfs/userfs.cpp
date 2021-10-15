@@ -81,7 +81,7 @@ namespace core
    ::e_status user::userfs_process_init()
    {
 
-      INFO("start");
+      INFORMATION("start");
 
       //m_puserfs = create_userfs();
 
@@ -90,7 +90,7 @@ namespace core
       if (!estatus)
       {
 
-         ERR(".1");
+         ERROR(".1");
 
          m_result.add(estatus);
 
@@ -102,7 +102,7 @@ namespace core
 
       //m_puserfs->construct(this);
 
-      INFO("ok");
+      INFORMATION("ok");
 
       return ::success;
 
@@ -112,7 +112,7 @@ namespace core
    ::e_status user::userfs_init1()
    {
 
-      INFO("start");
+      INFORMATION("start");
 
       auto estatus = m_puserfs->init1();
 
@@ -121,13 +121,13 @@ namespace core
 
          m_result.add(estatus);
 
-         ERR(".1");
+         ERROR(".1");
 
          return estatus;
 
       }
 
-      INFO("ok");
+      INFORMATION("ok");
 
       return ::success;
 

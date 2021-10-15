@@ -17,8 +17,8 @@ public:
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
-   millis                                          m_millisLastSaveWindowRect;
-   millis                                          m_millisLastSaveWindowRectRequest;
+   ::duration                                          m_durationLastSaveWindowRect;
+   ::duration                                          m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
@@ -189,8 +189,8 @@ public:
    virtual string get_window_default_matter() override;
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    void OnHScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);

@@ -11,8 +11,8 @@ namespace userex
    public:
 
 
-      millis                  m_millisLastChange;
-      millis                  m_millisDelayedAfterChange;
+      ::duration                  m_durationLastChange;
+      ::duration                  m_durationDelayedAfterChange;
       top_view *              m_ptopview;
       bool                    m_bEnterKeyPressed;
       ::write_text::font_pointer  m_pfont;
@@ -21,7 +21,7 @@ namespace userex
       top_edit_view();
       virtual ~top_edit_view();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_key_down);

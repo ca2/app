@@ -33,8 +33,8 @@ namespace user
       virtual ~simple_view();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
 

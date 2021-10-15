@@ -477,7 +477,7 @@ namespace account
          return false;
       }
 
-      m_login.on_layout(::draw2d::graphics_pointer & pgraphics);
+      m_login.on_layout(pgraphics);
 
 //      SetTimer(m_oswindow, 123, 23, nullptr);
 

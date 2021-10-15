@@ -512,7 +512,7 @@ namespace universal_windows
    void directx_framework_view::OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if (m_dwMouseMoveThrottle && m_millisLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
+      if (m_dwMouseMoveThrottle && m_durationLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
       {
 
          return;
@@ -547,7 +547,7 @@ namespace universal_windows
 
       m_psystem->get_session()->m_puserinteractionHost->m_pimpl->queue_message_handler(spbase);
 
-      m_millisLastMouseMove= ::millis::now();
+      m_durationLastMouseMove= ::duration::now();
 
    }
 
@@ -809,7 +809,7 @@ namespace universal_windows
                catch(...)
                {
                }
-            })), 5); // wait for up to 5 milliseconds
+            })), 5); // wait for up to 5 ::durations
 
             m_pointLastCursor = p;*/
 

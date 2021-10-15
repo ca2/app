@@ -85,10 +85,10 @@ namespace apex
       m_straSeparator.add("\r");
       m_straSeparator.add("\n");
 
-      for (index i = trace_category_first; i < trace_category_count; i++)
+      for (index i = e_trace_category_first; i < e_trace_category_count; i++)
       {
 
-         set_trace_category((e_trace_category)i, etracelevelMin);
+         set_trace_category((enum_trace_category)i, etracelevelMin);
 
       }
 
@@ -212,12 +212,12 @@ namespace apex
 
       synchronouslock.unlock();
 
-      print("<log>Log Initialized!!</log>");
+      INFORMATION("<log>Log Initialized!!</log>");
 
 //      return true;
 
 
-      return estatus;
+      return ::success;
 
    }
 
@@ -248,7 +248,7 @@ namespace apex
             str += "File : ";
             str += pszFileName;
             str += "\r\nLine : ";
-            str += __str(iLine);
+            str += __string(iLine);
             str += "\r\n";
 
             string strCaption;
@@ -258,7 +258,7 @@ namespace apex
             output_debug_string(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__str(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__string(iLine)+"\"";
                class ::system(strCmdLine);
                exit(0);
             }
@@ -288,7 +288,7 @@ namespace apex
    void log::success(const char * psz)
    {
 
-      print(psz);
+      INFORMATION(psz);
 
    }
 
@@ -305,312 +305,312 @@ namespace apex
    //}
 
 
-   void log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
-   {
-
-      //const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
-
-      //synchronous_lock sl2(&m_mutexTrace);
-
-//      synchronous_lock sl2(mutex());
-//
-//      ::trace::category * pcategory = nullptr;
-//
-//      if (elevel != e_trace_level_none)
-//      {
-//
-//         pcategory = m_ptrace->enabled_get(this);
-//
-//         if (pcategory == nullptr)
-//         {
-//
-//            return;
-//
-//         }
-//
-//      }
-//
-//      if (!m_bLog)
-//      {
-//
-//#ifndef DEBUG
-//
-//         if (elevel >= e_trace_level_error)
-//         {
-//
-//#endif // !DEBUG
-//
-//            string str;
-//
-//            if (::is_set(pszTopicText))
-//            {
-//
-//               string strTopicText(pszTopicText);
-//
-//               if (strTopicText.has_char())
-//               {
-//
-//                  ::str::begins_eat_ci(strTopicText, "class ");
-//
-//                  ::str::begins_eat_ci(strTopicText, "struct ");
-//
-//                  str += strTopicText;
-//
-//                  str += "> ";
-//
-//               }
-//
-//            }
-//
-//            str += psz;
-//
-//            str += "\n";
-//
-//            output_debug_string(str);
-//
-//#ifndef DEBUG
-//
-//         }
-//
-//#endif // !DEBUG
-//
-//         return;
-//
-//      }
-//
-//      string_array stra;
-//
-//      stra.add_lines(psz, false);
-//
-//      string strPre;
-//
-//      ::datetime::time time;
-//      time = time.get_current_time();
-//      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
-//      string strTick;
-//      auto millisTotal = ::get_millis() - ::first_milli();
-//      i64 uiMillis = millisTotal % 1000;
-//      i64 uiTotalSeconds = millisTotal / 1000;
-//      i64 uiSeconds = uiTotalSeconds % 60;
-//      i64 uiTotalMinutes = uiTotalSeconds / 60;
-//      i64 uiMinutes = uiTotalMinutes % 60;
-//      i64 uiTotalHours = uiTotalMinutes / 60;
-//      i64 uiHours = uiTotalHours % 24;
-//      i64 uiTotalDays = uiTotalHours / 24;
-//      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
-//      if (uiTotalDays > 0)
-//      {
-//         strTick.Format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
-//      }
-//      else if(uiTotalHours > 0)
-//      {
-//         strTick.Format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
-//      }
-//      else if (uiTotalMinutes > 0)
-//      {
-//         strTick.Format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
-//      }
-//      else if (uiTotalSeconds > 0)
-//      {
-//         strTick.Format(" %d.%03ds ", uiSeconds, uiMillis);
-//      }
-//      else
-//      {
-//         strTick.Format(" %3dms ", uiMillis);
-//      }
-//
-//      //string strCat(pcategory->m_pszName);
-//
-//      string strCat(pszTopicText);
-//
-//      string strMiddle;
-//
-//      if (m_bLogThreadName)
-//      {
-//
-//         strMiddle += "{" + ::task_get_name() + "} ";
-//
-//      }
-//
-//      if (m_bLogFunctionName)
-//      {
-//
-//         strMiddle += "[" + string(pszFunction) + "] ";
-//
-//      }
-//
-//      if (m_bLogFileName)
-//      {
-//
-//         strMiddle += "\""+ string(pszFile) + "\"";
-//
-//         strMiddle += "(" + __str(iLine) + "): ";
-//
-//      }
-//
-//      //synchronouslock.lock();
-//      if (m_bTrace &&
-//         (m_pfile == nullptr
-//            || m_iYear != time.GetYear()
-//            || m_iMonth != time.GetMonth()
-//            || m_iDay != time.GetDay()))
-//      {
-//         if (m_pfile != nullptr)
-//         {
-//            fflush(m_pfile);
-//            fclose(m_pfile);
-//            m_pfile = nullptr;
-//         }
-//         i32 iRetry = 0;
-//      retry:
-//
-//         string strDatetime;
-//
-//         time.Format(strDatetime, "%Y/%m/%d/%H-%M-%S");
-//
-//         string strIndex;
-//
-//         strIndex.Format("%d-%05d", get_current_process_id(), iRetry);
-//
-//         m_strLogPath = m_psystem->m_pacmedir->appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
-//
-//         try
-//         {
-//
-//                     auto psystem = m_psystem;
-
-//         auto pacmedir = psystem->m_pacmedir;
-//
-//pacmedir->create(::file_path_folder(m_strLogPath));
-//
-//            if (!(m_pfile = fopen(m_strLogPath, "at")))
-//            {
-//               i32 iError = errno;
-//               if (iError == ENOENT)
-//               {
-//                  goto skip_further_possible_recursive_impossible_logging_in_file;
-//               }
-//               else
-//               {
-//                  if (iError == EAGAIN)
-//                  {
-//                  }
-//                  else
-//                  {
-//                     iRetry++;
-//                     if (iRetry >= 100000)
-//                        return;
-//                     goto retry;
-//
-//                  }
-//               }
-//            }
-//         }
-//         catch (...)
-//         {
-//            try
-//            {
-//               if (m_pfile)
-//               {
-//                  fclose(m_pfile);
-//                  m_pfile = nullptr;
-//               }
-//
-//               iRetry++;
-//               if (iRetry >= 100000)
-//               {
-//
-//                  return;
-//
-//               }
-//
-//               goto retry;
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//
-//         m_iYear = time.GetYear();
-//
-//         m_iMonth = time.GetMonth();
-//
-//         m_iDay = time.GetDay();
-//
-//         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
-//
-//         output_debug_string("\n" + m_strLogPath + "\n");
-//
-//#if !defined(_UWP)
-//
-//         auto psystem = get_system()->m_papexsystem;
-//
-//         if (is_debugger_attached() && !psystem->has_apex_application_factory())
-//         {
-//
-//            fork([this]()
-//               {
-//
-//                  sleep(1_s);
-//
-//                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
-//                  {
-//
-//                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
-//
-//                  }
-//
-//               });
-//
-//         }
-//
-//#endif
-//
-//         }
-//
-//skip_further_possible_recursive_impossible_logging_in_file:
-//
-//      if(m_bTrace && m_pfile != nullptr)
-//      {
-//
-//         fseek(m_pfile,0,SEEK_END);
-//
-//      }
-//
-//      for(i32 i = 0; i < stra.get_size(); i++)
-//      {
-//
-//         string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";
-//
-//         try
-//         {
-//#ifdef ANDROID
-//            ::output_debug_string(stra[i]);
-//#else
-//            ::output_debug_string(strLine);
-//#endif
-//
-//            if(m_bTrace && m_pfile)
-//            {
-//
-//               fputs(strLine,m_pfile);
-//
-//            }
-//
-//         }
-//         catch(::exception &)
-//         {
-//
-//            // Ignore exception here because this class/function is used for debugging
-//
-//         }
-//
-//      }
-
-   }
+//   void log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz) const
+//   {
+//
+//      //const char * pszTopicText = ::is_set(pobject) ? pobject->topic_text() : nullptr;
+//
+//      //synchronous_lock sl2(&m_mutexTrace);
+//
+////      synchronous_lock sl2(mutex());
+////
+////      ::trace::category * pcategory = nullptr;
+////
+////      if (elevel != e_trace_level_none)
+////      {
+////
+////         pcategory = m_ptrace->enabled_get(this);
+////
+////         if (pcategory == nullptr)
+////         {
+////
+////            return;
+////
+////         }
+////
+////      }
+////
+////      if (!m_bLog)
+////      {
+////
+////#ifndef DEBUG
+////
+////         if (elevel >= e_trace_level_error)
+////         {
+////
+////#endif // !DEBUG
+////
+////            string str;
+////
+////            if (::is_set(pszTopicText))
+////            {
+////
+////               string strTopicText(pszTopicText);
+////
+////               if (strTopicText.has_char())
+////               {
+////
+////                  ::str::begins_eat_ci(strTopicText, "class ");
+////
+////                  ::str::begins_eat_ci(strTopicText, "struct ");
+////
+////                  str += strTopicText;
+////
+////                  str += "> ";
+////
+////               }
+////
+////            }
+////
+////            str += psz;
+////
+////            str += "\n";
+////
+////            output_debug_string(str);
+////
+////#ifndef DEBUG
+////
+////         }
+////
+////#endif // !DEBUG
+////
+////         return;
+////
+////      }
+////
+////      string_array stra;
+////
+////      stra.add_lines(psz, false);
+////
+////      string strPre;
+////
+////      ::datetime::time time;
+////      time = time.get_current_time();
+////      time.Format(strPre, "%Y-%m-%d %H:%M:%S");
+////      string strTick;
+////      auto millisTotal = ::get_millis() - ::first_milli();
+////      i64 uiMillis = millisTotal % 1000;
+////      i64 uiTotalSeconds = millisTotal / 1000;
+////      i64 uiSeconds = uiTotalSeconds % 60;
+////      i64 uiTotalMinutes = uiTotalSeconds / 60;
+////      i64 uiMinutes = uiTotalMinutes % 60;
+////      i64 uiTotalHours = uiTotalMinutes / 60;
+////      i64 uiHours = uiTotalHours % 24;
+////      i64 uiTotalDays = uiTotalHours / 24;
+////      // sipman LCTV learning to format hours, minutes and seconds.... (me (re) learning too)...
+////      if (uiTotalDays > 0)
+////      {
+////         strTick.Format(" %d:%d:%d:%d.%03d ", uiTotalDays, uiHours, uiMinutes, uiSeconds, uiMillis);
+////      }
+////      else if(uiTotalHours > 0)
+////      {
+////         strTick.Format(" %d:%d:%d.%03d ", uiHours, uiMinutes, uiSeconds, uiMillis);
+////      }
+////      else if (uiTotalMinutes > 0)
+////      {
+////         strTick.Format(" %d:%d.%03d ", uiMinutes, uiSeconds, uiMillis);
+////      }
+////      else if (uiTotalSeconds > 0)
+////      {
+////         strTick.Format(" %d.%03ds ", uiSeconds, uiMillis);
+////      }
+////      else
+////      {
+////         strTick.Format(" %3dms ", uiMillis);
+////      }
+////
+////      //string strCat(pcategory->m_pszName);
+////
+////      string strCat(pszTopicText);
+////
+////      string strMiddle;
+////
+////      if (m_bLogThreadName)
+////      {
+////
+////         strMiddle += "{" + ::task_get_name() + "} ";
+////
+////      }
+////
+////      if (m_bLogFunctionName)
+////      {
+////
+////         strMiddle += "[" + string(pszFunction) + "] ";
+////
+////      }
+////
+////      if (m_bLogFileName)
+////      {
+////
+////         strMiddle += "\""+ string(pszFile) + "\"";
+////
+////         strMiddle += "(" + __string(iLine) + "): ";
+////
+////      }
+////
+////      //synchronouslock.lock();
+////      if (m_bTrace &&
+////         (m_pfile == nullptr
+////            || m_iYear != time.GetYear()
+////            || m_iMonth != time.GetMonth()
+////            || m_iDay != time.GetDay()))
+////      {
+////         if (m_pfile != nullptr)
+////         {
+////            fflush(m_pfile);
+////            fclose(m_pfile);
+////            m_pfile = nullptr;
+////         }
+////         i32 iRetry = 0;
+////      retry:
+////
+////         string strDatetime;
+////
+////         time.Format(strDatetime, "%Y/%m/%d/%H-%M-%S");
+////
+////         string strIndex;
+////
+////         strIndex.Format("%d-%05d", get_current_process_id(), iRetry);
+////
+////         m_strLogPath = m_psystem->m_pacmedir->appdata() / string(m_id) / strDatetime + "-" + strIndex + ".ca2log";
+////
+////         try
+////         {
+////
+////                     auto psystem = m_psystem;
+//
+////         auto pacmedir = psystem->m_pacmedir;
+////
+////pacmedir->create(::file_path_folder(m_strLogPath));
+////
+////            if (!(m_pfile = fopen(m_strLogPath, "at")))
+////            {
+////               i32 iError = errno;
+////               if (iError == ENOENT)
+////               {
+////                  goto skip_further_possible_recursive_impossible_logging_in_file;
+////               }
+////               else
+////               {
+////                  if (iError == EAGAIN)
+////                  {
+////                  }
+////                  else
+////                  {
+////                     iRetry++;
+////                     if (iRetry >= 100000)
+////                        return;
+////                     goto retry;
+////
+////                  }
+////               }
+////            }
+////         }
+////         catch (...)
+////         {
+////            try
+////            {
+////               if (m_pfile)
+////               {
+////                  fclose(m_pfile);
+////                  m_pfile = nullptr;
+////               }
+////
+////               iRetry++;
+////               if (iRetry >= 100000)
+////               {
+////
+////                  return;
+////
+////               }
+////
+////               goto retry;
+////
+////            }
+////            catch (...)
+////            {
+////
+////            }
+////
+////         }
+////
+////         m_iYear = time.GetYear();
+////
+////         m_iMonth = time.GetMonth();
+////
+////         m_iDay = time.GetDay();
+////
+////         print("<log>Starting Log</log>"); // <<  this is one of the "...possible_recursive_impossible_logging_in_file"...
+////
+////         output_debug_string("\n" + m_strLogPath + "\n");
+////
+////#if !defined(_UWP)
+////
+////         auto psystem = get_system()->m_papexsystem;
+////
+////         if (is_debugger_attached() && !psystem->has_apex_application_factory())
+////         {
+////
+////            fork([this]()
+////               {
+////
+////                  sleep(1_s);
+////
+////                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "logviewer.txt"))
+////                  {
+////
+////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
+////
+////                  }
+////
+////               });
+////
+////         }
+////
+////#endif
+////
+////         }
+////
+////skip_further_possible_recursive_impossible_logging_in_file:
+////
+////      if(m_bTrace && m_pfile != nullptr)
+////      {
+////
+////         fseek(m_pfile,0,SEEK_END);
+////
+////      }
+////
+////      for(i32 i = 0; i < stra.get_size(); i++)
+////      {
+////
+////         string strLine = strPre + strTick + strCat + strMiddle + stra[i]+"\n";
+////
+////         try
+////         {
+////#ifdef ANDROID
+////            ::output_debug_string(stra[i]);
+////#else
+////            ::output_debug_string(strLine);
+////#endif
+////
+////            if(m_bTrace && m_pfile)
+////            {
+////
+////               fputs(strLine,m_pfile);
+////
+////            }
+////
+////         }
+////         catch(::exception &)
+////         {
+////
+////            // Ignore exception here because this class/function is used for debugging
+////
+////         }
+////
+////      }
+//
+//   }
 
    //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
    //{
@@ -728,7 +728,7 @@ namespace apex
       if (m_bInitialized)
       {
 
-         ::object::destroy();
+         ::log::destroy();
 
          if (m_pfile)
          {
@@ -748,18 +748,18 @@ namespace apex
    }
 
 
-   void log::set_trace_category(e_trace_category ecategory,  enum_trace_level elevelMin)
+   void log::set_trace_category(enum_trace_category etracecategory,  enum_trace_level etracelevelMinimum)
    {
 
-      auto pcategory = m_ptrace->operator[](ecategory);
+      auto pcategory = m_ptrace->operator[](etracecategory);
 
-      pcategory->m_pszName = trace_category_name(ecategory);
+      pcategory->m_pszName = trace_category_name(etracecategory);
 
-      pcategory->m_ecategory = ecategory;
+      pcategory->m_etracecategory = etracecategory;
 
-      pcategory->m_elevelMin = elevelMin;
+      pcategory->m_etracelevelMinimum = etracelevelMinimum;
 
-      pcategory->m_bEnabled = elevelMin > e_trace_level_none;
+      pcategory->m_bEnabled = etracelevelMinimum > e_trace_level_none;
 
    }
 

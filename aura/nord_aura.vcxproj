@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AAB9136F-66DB-4CD3-9D6B-2085E951739A}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
+    <ProjectName>aura</ProjectName>
+    <RootNamespace>app</RootNamespace>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>c++_shared</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+    <UseOfStl>c++_shared</UseOfStl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_5_0</PlatformToolset>
+    <UseOfStl>c++_shared</UseOfStl>
+    <ThumbMode>Disabled</ThumbMode>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <UseMultiToolTask>true</UseMultiToolTask>
+    <TargetName>lib$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <LibraryDependencies>ssl;crypto;auraidn;aurazlib;jnigraphics;android;log;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <UnresolvedSymbolReferences>true</UnresolvedSymbolReferences>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG;__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link />
+    <Link>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <DebugInformationFormat>FullDebug</DebugInformationFormat>
+      <ExceptionHandling>Enabled</ExceptionHandling>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <CLanguageStandard>c11</CLanguageStandard>
+      <CppLanguageStandard>c++1z</CppLanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__ANDROID_API__=19;_APEX_LIBRARY</PreprocessorDefinitions>
+      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acme\nord_acme.vcxproj">
+      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aaa_callback.h" />
+    <ClInclude Include="astr.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="console_slim.h" />
+    <ClInclude Include="const\aaa_callback.h" />
+    <ClInclude Include="const\aaa_check.h" />
+    <ClInclude Include="const\aaa_context.h" />
+    <ClInclude Include="const\aaa_GLOBAL_ID.h" />
+    <ClInclude Include="const\aaa_id.h" />
+    <ClInclude Include="const\aaa_impact.h" />
+    <ClInclude Include="const\aaa_procedure.h" />
+    <ClInclude Include="const\aaa_source.h" />
+    <ClInclude Include="const\aaa_status.h" />
+    <ClInclude Include="const\aaa_status_range_authentication.h" />
+    <ClInclude Include="const\aaa_thread.h" />
+    <ClInclude Include="const\aaa_timer.h" />
+    <ClInclude Include="const\charset.h" />
+    <ClInclude Include="const\idpool.h" />
+    <ClInclude Include="const\_const.h" />
+    <ClInclude Include="filesystem\filemanager\callback.h" />
+    <ClInclude Include="filesystem\filemanager\item_action.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="framework_c.h" />
+    <ClInclude Include="game\estamira.h" />
+    <ClInclude Include="game\game.h" />
+    <ClInclude Include="game\_.h" />
+    <ClInclude Include="game\_game.h" />
+    <ClInclude Include="gpu\gpu\approach.h" />
+    <ClInclude Include="gpu\gpu\buffer.h" />
+    <ClInclude Include="gpu\gpu\context.h" />
+    <ClInclude Include="gpu\gpu\program.h" />
+    <ClInclude Include="gpu\gpu\shader.h" />
+    <ClInclude Include="gpu\gpu\_.h" />
+    <ClInclude Include="graphics\draw2d\api.h" />
+    <ClInclude Include="graphics\draw2d\bitmap.h" />
+    <ClInclude Include="graphics\draw2d\brush.h" />
+    <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
+    <ClInclude Include="graphics\draw2d\color_filter.h" />
+    <ClInclude Include="graphics\draw2d\color_matrix.h" />
+    <ClInclude Include="graphics\draw2d\common.h" />
+    <ClInclude Include="graphics\draw2d\context_image.h" />
+    <ClInclude Include="graphics\draw2d\cursor.h" />
+    <ClInclude Include="graphics\draw2d\cursor_set.h" />
+    <ClInclude Include="graphics\draw2d\device_lock.h" />
+    <ClInclude Include="graphics\draw2d\draw2d.h" />
+    <ClInclude Include="graphics\draw2d\fastblur.h" />
+    <ClInclude Include="graphics\draw2d\fwd.h" />
+    <ClInclude Include="graphics\draw2d\glyph.h" />
+    <ClInclude Include="graphics\draw2d\glyph_set.h" />
+    <ClInclude Include="graphics\draw2d\graphics.h" />
+    <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\icon.h" />
+    <ClInclude Include="graphics\draw2d\igui.h" />
+    <ClInclude Include="graphics\draw2d\image.h" />
+    <ClInclude Include="graphics\draw2d\image_array.h" />
+    <ClInclude Include="graphics\draw2d\image_drawer.h" />
+    <ClInclude Include="graphics\draw2d\image_drawing.h" />
+    <ClInclude Include="graphics\draw2d\image_dynamic.h" />
+    <ClInclude Include="graphics\draw2d\image_extension.h" />
+    <ClInclude Include="graphics\draw2d\image_frame.h" />
+    <ClInclude Include="graphics\draw2d\image_frame_array.h" />
+    <ClInclude Include="graphics\draw2d\image_header.h" />
+    <ClInclude Include="graphics\draw2d\image_list.h" />
+    <ClInclude Include="graphics\draw2d\image_map.h" />
+    <ClInclude Include="graphics\draw2d\image_map_ex1.h" />
+    <ClInclude Include="graphics\draw2d\image_palette.h" />
+    <ClInclude Include="graphics\draw2d\image_source.h" />
+    <ClInclude Include="graphics\draw2d\imaging.h" />
+    <ClInclude Include="graphics\draw2d\keep.h" />
+    <ClInclude Include="graphics\draw2d\load_image.h" />
+    <ClInclude Include="graphics\draw2d\lock.h" />
+    <ClInclude Include="graphics\draw2d\matrix.h" />
+    <ClInclude Include="graphics\draw2d\object.h" />
+    <ClInclude Include="graphics\draw2d\palette.h" />
+    <ClInclude Include="graphics\draw2d\path.h" />
+    <ClInclude Include="graphics\draw2d\pen.h" />
+    <ClInclude Include="graphics\draw2d\pixmap.h" />
+    <ClInclude Include="graphics\draw2d\printer.h" />
+    <ClInclude Include="graphics\draw2d\region.h" />
+    <ClInclude Include="graphics\draw2d\task_tool.h" />
+    <ClInclude Include="graphics\draw2d\_.h" />
+    <ClInclude Include="graphics\draw2d\_draw2d.h" />
+    <ClInclude Include="graphics\draw2d\_image.h" />
+    <ClInclude Include="graphics\draw2d\_image_impl.h" />
+    <ClInclude Include="graphics\draw3d\ortho.h" />
+    <ClInclude Include="graphics\draw3d\_.h" />
+    <ClInclude Include="graphics\graphics\bitmap_source_buffer.h" />
+    <ClInclude Include="graphics\graphics\buffer.h" />
+    <ClInclude Include="graphics\graphics\console.h" />
+    <ClInclude Include="graphics\graphics\device_context.h" />
+    <ClInclude Include="graphics\graphics\double_buffer.h" />
+    <ClInclude Include="graphics\graphics\double_pass_scale.h" />
+    <ClInclude Include="graphics\graphics\filters.h" />
+    <ClInclude Include="graphics\graphics\graphics.h" />
+    <ClInclude Include="graphics\graphics\multiple_buffer.h" />
+    <ClInclude Include="graphics\graphics\window.h" />
+    <ClInclude Include="graphics\graphics\_.h" />
+    <ClInclude Include="graphics\user\close_button.h" />
+    <ClInclude Include="graphics\user\close_icon.h" />
+    <ClInclude Include="graphics\write_text\bounding_rect.h" />
+    <ClInclude Include="graphics\write_text\contains.h" />
+    <ClInclude Include="graphics\write_text\draw_text.h" />
+    <ClInclude Include="graphics\write_text\font.h" />
+    <ClInclude Include="graphics\write_text\fonts.h" />
+    <ClInclude Include="graphics\write_text\font_enumeration.h" />
+    <ClInclude Include="graphics\write_text\font_list.h" />
+    <ClInclude Include="graphics\write_text\font_list_data.h" />
+    <ClInclude Include="graphics\write_text\font_list_item.h" />
+    <ClInclude Include="graphics\write_text\text.h" />
+    <ClInclude Include="graphics\write_text\text_box.h" />
+    <ClInclude Include="graphics\write_text\text_out.h" />
+    <ClInclude Include="graphics\write_text\text_out_array.h" />
+    <ClInclude Include="graphics\write_text\write_text.h" />
+    <ClInclude Include="graphics\write_text\_.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="include\_no_templates.h" />
+    <ClInclude Include="include\_setup.h" />
+    <ClInclude Include="inline\aaa_console.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\application\linux.h" />
+    <ClInclude Include="inline\application\macos.h" />
+    <ClInclude Include="inline\application\universal_windows.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\console\aaa_linux.h" />
+    <ClInclude Include="inline\console\aaa_windows.h" />
+    <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\library.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console_old.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="memory\allocate.h" />
+    <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
+    <ClInclude Include="memory\allocation.h" />
+    <ClInclude Include="memory\heap_.h" />
+    <ClInclude Include="memory\heap_c.h" />
+    <ClInclude Include="memory\heap_item.h" />
+    <ClInclude Include="memory\heap_item_array.h" />
+    <ClInclude Include="memory\heap_memory.h" />
+    <ClInclude Include="memory\malloc.h" />
+    <ClInclude Include="memory\memory.h" />
+    <ClInclude Include="memory\memory_allocator.h" />
+    <ClInclude Include="memory\new.h" />
+    <ClInclude Include="memory\os_alloc.h" />
+    <ClInclude Include="memory\plex.h" />
+    <ClInclude Include="memory\plex_heap1.h" />
+    <ClInclude Include="memory\plex_heap_impl1.h" />
+    <ClInclude Include="message\command.h" />
+    <ClInclude Include="message\timer.h" />
+    <ClInclude Include="message\user.h" />
+    <ClInclude Include="message\_.h" />
+    <ClInclude Include="message\_impl.h" />
+    <ClInclude Include="message\_message.h" />
+    <ClInclude Include="node\operating_system\aaa_binreloc.h" />
+    <ClInclude Include="node\operating_system\aaa_console.h" />
+    <ClInclude Include="node\operating_system\aaa_process.h" />
+    <ClInclude Include="node\operating_system\aaa_threading.h" />
+    <ClInclude Include="node\operating_system\aaa_winpr_input.h" />
+    <ClInclude Include="node\operating_system\ansi\_.h" />
+    <ClInclude Include="node\operating_system\chronometer.h" />
+    <ClInclude Include="node\operating_system\cross.h" />
+    <ClInclude Include="node\operating_system\file.h" />
+    <ClInclude Include="node\operating_system\graphics.h" />
+    <ClInclude Include="node\operating_system\operating_system.h" />
+    <ClInclude Include="node\operating_system\text.h" />
+    <ClInclude Include="node\operating_system\time.h" />
+    <ClInclude Include="node\operating_system\windowing.h" />
+    <ClInclude Include="node\operating_system\_.h" />
+    <ClInclude Include="node\operating_system\_application.h" />
+    <ClInclude Include="node\operating_system\_impl.h" />
+    <ClInclude Include="node\operating_system\_operating_system.h" />
+    <ClInclude Include="node\operating_system\_user.h" />
+    <ClInclude Include="os\windows\aaa_imm_client.h" />
+    <ClInclude Include="os\windows\aaa_imm_context.h" />
+    <ClInclude Include="os\windows\windowing.h" />
+    <ClInclude Include="os\windows\_.h" />
+    <ClInclude Include="os\windows\_windows.h" />
+    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h" />
+    <ClInclude Include="os\windows_common\graphics.h" />
+    <ClInclude Include="os\windows_common\_.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\context.h" />
+    <ClInclude Include="platform\drawable.h" />
+    <ClInclude Include="platform\draw_context2.h" />
+    <ClInclude Include="platform\message_queue.h" />
+    <ClInclude Include="platform\node.h" />
+    <ClInclude Include="platform\progress.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\shell_open.h" />
+    <ClInclude Include="platform\static_start.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\theme.h" />
+    <ClInclude Include="platform\_features.h" />
+    <ClInclude Include="platform\_impl.h" />
+    <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="version\version.h" />
+    <ClInclude Include="windowing\buffer.h" />
+    <ClInclude Include="windowing\button.h" />
+    <ClInclude Include="windowing\cursor.h" />
+    <ClInclude Include="windowing\cursor_manager.h" />
+    <ClInclude Include="windowing\display.h" />
+    <ClInclude Include="windowing\event.h" />
+    <ClInclude Include="windowing\exception.h" />
+    <ClInclude Include="windowing\hook.h" />
+    <ClInclude Include="windowing\icon.h" />
+    <ClInclude Include="windowing\keyboard.h" />
+    <ClInclude Include="windowing\menu.h" />
+    <ClInclude Include="windowing\menu_command.h" />
+    <ClInclude Include="windowing\menu_item.h" />
+    <ClInclude Include="windowing\message_box.h" />
+    <ClInclude Include="windowing\monitor.h" />
+    <ClInclude Include="windowing\simple_ui_display.h" />
+    <ClInclude Include="windowing\window.h" />
+    <ClInclude Include="windowing\windowing.h" />
+    <ClInclude Include="windowing\_.h" />
+    <ClInclude Include="windowing\_impl.h" />
+    <ClInclude Include="windowing\_windowing.h" />
+    <None Include="aura.def" />
+    <None Include="graphics\draw2d\_impl.h" />
+    <ClInclude Include="graphics\write_text\drawer.h" />
+    <ClInclude Include="graphics\_.h" />
+    <None Include="graphics\_impl.h" />
+    <ClInclude Include="id.h" />
+    <ClInclude Include="message.h" />
+    <ClInclude Include="net\_net_impl.h" />
+    <ClInclude Include="node\opengl\buffer.h" />
+    <ClInclude Include="node\opengl\context.h" />
+    <ClInclude Include="node\opengl\opengl.h" />
+    <ClInclude Include="node\opengl\program.h" />
+    <ClInclude Include="node\opengl\shader.h" />
+    <ClInclude Include="operating_system.h" />
+    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
+    <ClInclude Include="update.h" />
+    <ClInclude Include="user\aaa_create.h" />
+    <ClInclude Include="user\box.h" />
+    <ClInclude Include="user\button.h" />
+    <ClInclude Include="user\check_box.h" />
+    <ClInclude Include="user\controller.h" />
+    <ClInclude Include="user\control_descriptor.h" />
+    <ClInclude Include="user\copydesk.h" />
+    <ClInclude Include="user\form.h" />
+    <ClInclude Include="user\form_callback.h" />
+    <ClInclude Include="user\frame.h" />
+    <ClInclude Include="user\interaction.h" />
+    <ClInclude Include="user\interaction_child.h" />
+    <ClInclude Include="user\interaction_impl.h" />
+    <ClInclude Include="user\interaction_layout.h" />
+    <ClInclude Include="user\interaction_prodevian.h" />
+    <ClInclude Include="user\interaction_scaler.h" />
+    <ClInclude Include="user\interaction_thread.h" />
+    <ClInclude Include="user\key.h" />
+    <ClInclude Include="user\keyboard.h" />
+    <ClInclude Include="user\language.h" />
+    <ClInclude Include="user\language_map.h" />
+    <ClInclude Include="user\main_window.h" />
+    <ClInclude Include="user\menu_command.h" />
+    <ClInclude Include="user\message.h" />
+    <ClInclude Include="user\message_box.h" />
+    <ClInclude Include="user\message_window.h" />
+    <ClInclude Include="user\message_window_listener.h" />
+    <ClInclude Include="user\mouse.h" />
+    <ClInclude Include="user\notify_icon.h" />
+    <ClInclude Include="user\notify_icon_listener.h" />
+    <ClInclude Include="user\notify_icon_mm.h" />
+    <ClInclude Include="user\notify_icon_mm_bridge.h" />
+    <ClInclude Include="user\plain_edit.h" />
+    <ClInclude Include="user\plain_text_data.h" />
+    <ClInclude Include="user\primitive.h" />
+    <ClInclude Include="user\primitive_impl.h" />
+    <ClInclude Include="user\prodevian.h" />
+    <ClInclude Include="user\progress.h" />
+    <ClInclude Include="user\range.h" />
+    <ClInclude Include="user\scroll.h" />
+    <ClInclude Include="user\scroll_bar.h" />
+    <ClInclude Include="user\scroll_info.h" />
+    <ClInclude Include="user\shell.h" />
+    <ClInclude Include="user\still.h" />
+    <ClInclude Include="user\style.h" />
+    <ClInclude Include="user\style_base.h" />
+    <ClInclude Include="user\style_control.h" />
+    <ClInclude Include="user\system.h" />
+    <ClInclude Include="user\text_composition.h" />
+    <ClInclude Include="user\tool_window.h" />
+    <ClInclude Include="user\user.h" />
+    <ClInclude Include="user\wait_cursor.h" />
+    <ClInclude Include="user\windowing.h" />
+    <ClInclude Include="user\window_map.h" />
+    <ClInclude Include="user\window_state.h" />
+    <ClInclude Include="user\window_util.h" />
+    <ClInclude Include="user\_.h" />
+    <ClInclude Include="user\_const.h" />
+    <ClInclude Include="user\_const_key.h" />
+    <ClInclude Include="user\_data.h" />
+    <ClInclude Include="user\_experience_const.h" />
+    <ClInclude Include="user\_impl.h" />
+    <ClInclude Include="user\_interaction_impl.h" />
+    <ClInclude Include="user\_prelude.h" />
+    <ClInclude Include="user\_user.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_defer.h" />
+    <None Include="user\notify_icon.mm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="user\notify_icon_mm_bridge.mm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="filesystem\filemanager\callback.cpp" />
+    <ClCompile Include="filesystem\filemanager\item_action.cpp" />
+    <ClCompile Include="framework.cpp" />
+    <ClCompile Include="game\estamira.cpp" />
+    <ClCompile Include="game\game.cpp" />
+    <ClCompile Include="gpu\gpu\approach.cpp" />
+    <ClCompile Include="gpu\gpu\buffer.cpp" />
+    <ClCompile Include="gpu\gpu\context.cpp" />
+    <ClCompile Include="gpu\gpu\program.cpp" />
+    <ClCompile Include="gpu\gpu\shader.cpp" />
+    <ClCompile Include="graphics\draw2d\alpha.cpp" />
+    <ClCompile Include="graphics\draw2d\api.cpp" />
+    <ClCompile Include="graphics\draw2d\apple\image.cpp" />
+    <ClCompile Include="graphics\draw2d\apple\image_gif.cpp" />
+    <ClCompile Include="graphics\draw2d\bitmap.cpp" />
+    <ClCompile Include="graphics\draw2d\brush.cpp" />
+    <ClCompile Include="graphics\draw2d\buffered_graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\color_filter.cpp" />
+    <ClCompile Include="graphics\draw2d\color_matrix.cpp" />
+    <ClCompile Include="graphics\draw2d\context_image.cpp" />
+    <ClCompile Include="graphics\draw2d\cursor.cpp" />
+    <ClCompile Include="graphics\draw2d\cursor_set.cpp" />
+    <ClCompile Include="graphics\draw2d\debug.cpp" />
+    <ClCompile Include="graphics\draw2d\device_lock.cpp" />
+    <ClCompile Include="graphics\draw2d\draw2d.cpp" />
+    <ClCompile Include="graphics\draw2d\fastblur.cpp" />
+    <ClCompile Include="graphics\draw2d\glyph.cpp" />
+    <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics.cpp" />
+    <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\icon.cpp" />
+    <ClCompile Include="graphics\draw2d\image.cpp" />
+    <ClCompile Include="graphics\draw2d\image_array.cpp" />
+    <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
+    <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
+    <ClCompile Include="graphics\draw2d\image_dynamic.cpp" />
+    <ClCompile Include="graphics\draw2d\image_extension.cpp" />
+    <ClCompile Include="graphics\draw2d\image_frame.cpp" />
+    <ClCompile Include="graphics\draw2d\image_gif_antialias_8bit.cpp" />
+    <ClCompile Include="graphics\draw2d\image_gif_detect_8bit_borders.cpp" />
+    <ClCompile Include="graphics\draw2d\image_list.cpp" />
+    <ClCompile Include="graphics\draw2d\image_map.cpp" />
+    <ClCompile Include="graphics\draw2d\image_nanosvg.cpp" />
+    <ClCompile Include="graphics\draw2d\image_object.cpp" />
+    <ClCompile Include="graphics\draw2d\image_pointer_array.cpp" />
+    <ClCompile Include="graphics\draw2d\imaging.cpp" />
+    <ClCompile Include="graphics\draw2d\keep.cpp" />
+    <ClCompile Include="graphics\draw2d\load_gif_frame.cpp" />
+    <ClCompile Include="graphics\draw2d\load_image.cpp" />
+    <ClCompile Include="graphics\draw2d\lock.cpp" />
+    <ClCompile Include="graphics\draw2d\matrix.cpp" />
+    <ClCompile Include="graphics\draw2d\nano_svg.cpp" />
+    <ClCompile Include="graphics\draw2d\nano_svg_rasterization.cpp" />
+    <ClCompile Include="graphics\draw2d\object.cpp" />
+    <ClCompile Include="graphics\draw2d\palette.cpp" />
+    <ClCompile Include="graphics\draw2d\path.cpp" />
+    <ClCompile Include="graphics\draw2d\pen.cpp" />
+    <ClCompile Include="graphics\draw2d\printer.cpp" />
+    <ClCompile Include="graphics\draw2d\region.cpp" />
+    <ClCompile Include="graphics\draw2d\task_tool.cpp" />
+    <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp" />
+    <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\draw3d\ortho.cpp" />
+    <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\buffer.cpp" />
+    <ClCompile Include="graphics\graphics\console.cpp" />
+    <ClCompile Include="graphics\graphics\device_context.cpp" />
+    <ClCompile Include="graphics\graphics\double_buffer.cpp" />
+    <ClCompile Include="graphics\graphics\graphics.cpp" />
+    <ClCompile Include="graphics\graphics\monitor.cpp" />
+    <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
+    <ClCompile Include="graphics\user\close_button.cpp" />
+    <ClCompile Include="graphics\user\close_icon.cpp" />
+    <ClCompile Include="graphics\write_text\drawer.cpp" />
+    <ClCompile Include="graphics\write_text\font.cpp" />
+    <ClCompile Include="graphics\write_text\fonts.cpp" />
+    <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
+    <ClCompile Include="graphics\write_text\font_list.cpp" />
+    <ClCompile Include="graphics\write_text\text_box.cpp" />
+    <ClCompile Include="graphics\write_text\text_out.cpp" />
+    <ClCompile Include="graphics\write_text\text_out_array.cpp" />
+    <ClCompile Include="graphics\write_text\write_text.cpp" />
+    <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="message\command.cpp" />
+    <ClCompile Include="message\timer.cpp" />
+    <ClCompile Include="message\user.cpp" />
+    <ClCompile Include="node\operating_system\windowing.cpp" />
+    <ClCompile Include="node\operating_system\windows\aura.cpp" />
+    <ClCompile Include="node\operating_system\windows\dpi.cpp" />
+    <ClCompile Include="node\operating_system\windows\gdi.cpp" />
+    <ClCompile Include="node\operating_system\windows\graphics.cpp" />
+    <ClCompile Include="node\operating_system\windows\main.cpp" />
+    <ClCompile Include="node\operating_system\windows\monitor.cpp" />
+    <ClCompile Include="node\operating_system\windows\windowing.cpp" />
+    <ClCompile Include="os\android\graphics.cpp" />
+    <ClCompile Include="os\windows_common\aaa_draw2d_direct2d_global.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\aura_mq.cpp" />
+    <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\drawable.cpp" />
+    <ClCompile Include="platform\draw_context.cpp" />
+    <ClCompile Include="platform\node.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell_open.cpp" />
+    <ClCompile Include="platform\static_start.cpp" />
+    <ClCompile Include="platform\static_start_aura.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\theme.cpp" />
+    <ClCompile Include="user\box.cpp" />
+    <ClCompile Include="user\button.cpp" />
+    <ClCompile Include="user\call_message_handler_task.cpp" />
+    <ClCompile Include="user\check_box.cpp" />
+    <ClCompile Include="user\control_descriptor.cpp" />
+    <ClCompile Include="user\copydesk.cpp" />
+    <ClCompile Include="user\form.cpp" />
+    <ClCompile Include="user\form_callback.cpp" />
+    <ClCompile Include="user\frame.cpp" />
+    <ClCompile Include="user\interaction.cpp" />
+    <ClCompile Include="user\interaction_child.cpp" />
+    <ClCompile Include="user\interaction_impl.cpp" />
+    <ClCompile Include="user\interaction_layout.cpp" />
+    <ClCompile Include="user\interaction_prodevian.cpp" />
+    <ClCompile Include="user\interaction_scaler.cpp" />
+    <ClCompile Include="user\interaction_thread.cpp" />
+    <ClCompile Include="user\key.cpp" />
+    <ClCompile Include="user\keyboard.cpp" />
+    <ClCompile Include="user\main_window.cpp" />
+    <ClCompile Include="user\menu_command.cpp" />
+    <ClCompile Include="user\message.cpp" />
+    <ClCompile Include="user\message_box.cpp" />
+    <ClCompile Include="user\message_window.cpp" />
+    <ClCompile Include="user\mouse.cpp" />
+    <ClCompile Include="user\notify_icon.cpp" />
+    <ClCompile Include="user\notify_icon_listener.cpp" />
+    <ClCompile Include="user\plain_edit.cpp" />
+    <ClCompile Include="user\plain_text_data.cpp" />
+    <ClCompile Include="user\primitive_impl.cpp" />
+    <ClCompile Include="user\progress.cpp" />
+    <ClCompile Include="user\range.cpp" />
+    <ClCompile Include="user\scroll.cpp" />
+    <ClCompile Include="user\scroll_bar.cpp" />
+    <ClCompile Include="user\shell.cpp" />
+    <ClCompile Include="user\still.cpp" />
+    <ClCompile Include="user\style.cpp" />
+    <ClCompile Include="user\style_base.cpp" />
+    <ClCompile Include="user\style_control.cpp" />
+    <ClCompile Include="user\system.cpp" />
+    <ClCompile Include="user\text_composition.cpp" />
+    <ClCompile Include="user\tool_window.cpp" />
+    <ClCompile Include="user\user.cpp" />
+    <ClCompile Include="user\wait_cursor.cpp" />
+    <ClCompile Include="user\windowing.cpp" />
+    <ClCompile Include="user\windows_tsf\context_owner_composition_sink.cpp" />
+    <ClCompile Include="user\windows_tsf\dataobj.cpp" />
+    <ClCompile Include="user\windows_tsf\edit_window.cpp" />
+    <ClCompile Include="user\windows_tsf\function_provider.cpp" />
+    <ClCompile Include="user\windows_tsf\persist.cpp" />
+    <ClCompile Include="user\windows_tsf\propldr.cpp" />
+    <ClCompile Include="user\windows_tsf\test.cpp" />
+    <ClCompile Include="user\windows_tsf\text_store_acp.cpp" />
+    <ClCompile Include="user\windows_tsf\ui_element_sink.cpp" />
+    <ClCompile Include="user\window_map.cpp" />
+    <ClCompile Include="user\window_state.cpp" />
+    <ClCompile Include="user\window_util.cpp" />
+    <ClCompile Include="user\_.cpp" />
+    <ClCompile Include="windowing\buffer.cpp" />
+    <ClCompile Include="windowing\cursor.cpp" />
+    <ClCompile Include="windowing\cursor_manager.cpp" />
+    <ClCompile Include="windowing\debug.cpp" />
+    <ClCompile Include="windowing\display.cpp" />
+    <ClCompile Include="windowing\icon.cpp" />
+    <ClCompile Include="windowing\keyboard.cpp" />
+    <ClCompile Include="windowing\menu.cpp" />
+    <ClCompile Include="windowing\menu_command.cpp" />
+    <ClCompile Include="windowing\menu_item.cpp" />
+    <ClCompile Include="windowing\monitor.cpp" />
+    <ClCompile Include="windowing\window.cpp" />
+    <ClCompile Include="windowing\windowing.cpp" />
+    <ClCompile Include="windowing\windowing___.cpp" />
+    <ClCompile Include="windowing\xrender.cpp" />
+    <ClCompile Include="_.cpp" />
+    <ClCompile Include="__matter_ca2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

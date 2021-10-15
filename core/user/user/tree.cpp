@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/user/_user.h"
 #include "_data.h"
 #include "_tree.h"
@@ -71,7 +71,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating tree data at ::user::tree::on_message_create");
+         _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
 
          return;
 
@@ -82,7 +82,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating image list at ::user::tree::on_message_create");
+         _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
 
          return;
 
@@ -93,7 +93,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->error("Error creating image list (2) at ::user::tree::on_message_create");
+         _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
 
          return;
 
@@ -178,7 +178,7 @@ namespace user
 
       {
 
-         millis tickStart;
+         ::duration tickStart;
 
          tickStart.Now();
 
@@ -186,10 +186,10 @@ namespace user
 
          auto tickElapsed = tickStart.elapsed();
 
-         if (tickElapsed > 50)
+         if (tickElapsed > 50_ms)
          {
 
-            //WARN("tree drawing took more than 50ms");
+            //WARNING("tree drawing took more than 50ms");
 
          }
 
@@ -197,7 +197,7 @@ namespace user
 
       {
 
-         millis tickStart;
+         ::duration tickStart;
 
          tickStart.Now();
 
@@ -218,9 +218,9 @@ namespace user
 
          auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
 
-         ::u32 dwHoverIn = 384;
+         auto dwHoverIn = 300_ms;
 
-         ::u32 dwHoverOut = 1284;
+         auto dwHoverOut = 1200_ms;
 
          bool bTreeHover = rectangleClient.contains(pointCursor);
 
@@ -231,16 +231,19 @@ namespace user
                m_bHoverStart = true;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_millisHoverStart.Now();
+               m_durationHoverStart.Now();
 
             }
-            if(m_millisHoverStart.elapsed() > dwHoverIn)
+            if(m_durationHoverStart.elapsed() > dwHoverIn)
             {
                m_uchHoverAlpha = 255;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverStart.elapsed()) / dwHoverIn)));
+               auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
+               auto ω = -π * f; // omega pi
+               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(ω * t)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -254,17 +257,20 @@ namespace user
                m_bHoverStart = false;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_millisHoverEnd.Now();
+               m_durationHoverEnd.Now();
 
             }
 
-            if(m_millisHoverEnd.elapsed()  > dwHoverOut)
+            if(m_durationHoverEnd.elapsed()  > dwHoverOut)
             {
                m_uchHoverAlpha = 0;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverEnd.elapsed()) / dwHoverOut)));
+               auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
+               auto ω = -π * f; // omega pi
+               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(ω * t)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
@@ -310,15 +316,15 @@ namespace user
             drawitemdata.m_rectangle.right = m_iCurrentViewWidth;
 
             {
-               millis tickItem;
+               ::duration tickItem;
                tickItem.Now();
                _001DrawItem(drawitemdata);
                auto tickElapsed = tickStart.elapsed();
 
-               if (tickElapsed > 20)
+               if (tickElapsed > 20_ms)
                {
 
-                  //WARN("tree item drawing took more than 20ms");
+                  //WARNING("tree item drawing took more than 20ms");
 
                }
 
@@ -341,10 +347,10 @@ namespace user
 
          auto tickElapsed = tickStart.elapsed();
 
-         if (tickElapsed > 50)
+         if (tickElapsed > 50_ms)
          {
 
-            //WARN("tree drawing took more than 50ms");
+            //WARNING("tree drawing took more than 50ms");
 
          }
 
@@ -356,9 +362,7 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      millis millis;
-
-      millis.Now();
+      auto start = duration(e_now);
 
       ::rectangle_i32 rectangle;
 
@@ -414,16 +418,16 @@ namespace user
 
       }
 
-      auto tickElapsed = millis.elapsed();
-      millis.Now();
-      if (tickElapsed > 2)
+      auto elapsed = start.elapsed();
+      start.Now();
+      if (elapsed > 2_ms)
       {
 
-         //WARN("tree item drawing section took more than 2ms");
+         //WARNING("tree item drawing section took more than 2ms");
 
       }
 
-      //TRACE("(1)TreeItemElapsed %d", millis.elapsed());
+      //TRACE("(1)TreeItemElapsed %d", ::duration.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 

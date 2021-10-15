@@ -55,7 +55,7 @@ namespace simpledb
       if(!ptransport)
       {
          
-         WARN("Failed to load database_sqlite3");
+         WARNING("Failed to load database_sqlite3");
 
          return false;
 
@@ -272,7 +272,7 @@ namespace simpledb
       if(strType.contains("filemanager::frame"))
       {
 
-         INFO("filemanager");
+         INFORMATION("filemanager");
 
       }
 
@@ -300,7 +300,7 @@ namespace simpledb
       if(strType.contains("filemanager::frame"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 

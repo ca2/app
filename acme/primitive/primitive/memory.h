@@ -31,32 +31,33 @@ inline strsize safe_strlen(void * p, strsize n)
 
 }
 
-inline memsize operator ""_kb(long double d)
+
+inline integral_byte operator ""_kb(long double d)
 {
    return (memsize)(1024.0 * d);
 }
 
-inline memsize operator ""_kb(unsigned long long i)
+inline integral_byte operator ""_kb(unsigned long long i)
 {
    return (memsize)(1024 * i);
 }
 
-inline memsize operator ""_mb(long double d)
+inline integral_byte operator ""_mb(long double d)
 {
    return (memsize)(1024.0 * 1024.0 * d);
 }
 
-inline memsize operator ""_mb(unsigned long long i)
+inline integral_byte operator ""_mb(unsigned long long i)
 {
    return (memsize) (1024 * 1024 * i);
 }
 
-inline memsize operator ""_gb(long double d)
+inline integral_byte operator ""_gb(long double d)
 {
    return (memsize) (1024.0 * 1024.0 * 1024.0 * d);
 }
 
-inline memsize operator ""_gb(unsigned long long i)
+inline integral_byte operator ""_gb(unsigned long long i)
 {
    return (memsize) (1024 * 1024 * 1024 * i);
 }

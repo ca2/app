@@ -124,7 +124,7 @@
 //   __pointer(message_queue)                          m_pmq;
 //   htask_t                                m_htask;
 //   Colormap                               m_colormap;
-//   millis                                   m_millisLastMouseMove;
+//   ::duration                                   m_durationLastMouseMove;
 //   Window                                 m_parent;
 //   ::rectangle_i32                                 m_rectangle;
 //   string                                 m_strWMClass;

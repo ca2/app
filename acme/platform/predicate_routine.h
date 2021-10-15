@@ -56,23 +56,29 @@
 
 
 
-template < typename PRED >
+template < typename PREDICATE >
 class predicate_routine :
    virtual public ::matter
 {
 public:
 
 
-   PRED m_predicate;
+   PREDICATE      m_predicate;
+   ::duration     m_durationTimeout = DURATION(64,0);
 
 
-   predicate_routine(PRED pred) : m_predicate(pred) { }
+
+   predicate_routine(PREDICATE predicate) : m_predicate(predicate) { }
+   predicate_routine(const ::duration & duration, PREDICATE predicate) : m_durationTimeout(duration), m_predicate(predicate) { }
    ~predicate_routine() override {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
 
    //inline ::e_status operator()() const;
+
+   DURATION timeout() const { return m_durationTimeout; }
+
 
    virtual ::e_status run() override
    {
@@ -104,7 +110,13 @@ template < typename PRED >
 }
 
 
+template < typename PRED >
+::routine __routine(const ::duration & duration, PRED pred)
+{
 
+   return __new(predicate_routine<PRED>(duration, pred));
+
+}
 
 
 ::e_status run_task(::matter * pobjectTask);

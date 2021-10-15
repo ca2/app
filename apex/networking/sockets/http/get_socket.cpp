@@ -103,7 +103,7 @@ namespace sockets
       //inheader("Cache-Controlngth") = 0;
 
       /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-               inheader(__id(host)) = GetUrlHost() + ":" + __str(GetUrlPort());
+               inheader(__id(host)) = GetUrlHost() + ":" + __string(GetUrlPort());
             else
                inheader(__id(host)) = GetUrlHost();*/
 

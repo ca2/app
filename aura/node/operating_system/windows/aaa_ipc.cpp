@@ -504,7 +504,7 @@ namespace aura
       ipc::ipc()
       {
 
-         m_millisTimeout = (5000) * 11;
+         m_durationTimeout = (5000) * 11;
 
       }
 

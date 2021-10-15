@@ -212,10 +212,17 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
          //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
 
       }
-      else if (intDelayMs.m_millisProcessAttach.m_i)
+      else
       {
 
-         ::preempt(intDelayMs.m_millisProcessAttach);
+         auto millisecond = intDelayMs.m_durationProcessAttach.integral_millisecond();
+
+         if (millisecond > 0_ms)
+         {
+
+            ::preempt(millisecond);
+
+         }
 
       }
 
@@ -230,10 +237,17 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
          //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
 
       }
-      else if (intDelayMs.m_millisProcessDetach.m_i)
+      else
       {
 
-         ::preempt(intDelayMs.m_millisProcessDetach);
+         auto millisecond = intDelayMs.m_durationProcessDetach.integral_millisecond();
+
+         if (millisecond > 0_ms)
+         {
+
+            ::preempt(millisecond);
+
+         }
 
       }
 
@@ -248,10 +262,17 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
          //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
 
       }
-      else if (intDelayMs.m_millisThreadAttach.m_i)
+      else
       {
 
-         ::preempt(intDelayMs.m_millisThreadAttach);
+         auto millisecond = intDelayMs.m_durationThreadAttach.integral_millisecond();
+
+         if (millisecond > 0_ms)
+         {
+
+            ::preempt(millisecond);
+
+         }
 
       }
 
@@ -266,10 +287,17 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason,
          //module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
 
       }
-      else if (intDelayMs.m_millisThreadDetach.m_i)
+      else
       {
 
-         ::preempt(intDelayMs.m_millisThreadDetach);
+         auto millisecond = intDelayMs.m_durationThreadDetach.integral_millisecond();
+
+         if (millisecond > 0_ms)
+         {
+
+            ::preempt(millisecond);
+
+         }
 
       }
 

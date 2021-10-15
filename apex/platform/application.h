@@ -99,7 +99,7 @@
       //::mutex                                         m_mutexFrame;
       //__composite(::user::interaction_pointer_array)  m_puiptraFrame;
 
-      e_thread                                        m_ethreadClose;
+      enum_thread_context                             m_ethreadcontextClose;
 
       EExclusiveInstance                              m_eexclusiveinstance;
 
@@ -381,8 +381,8 @@
       virtual ::file::path appconfig_folder();
 
 
-      //virtual void assert_valid() const override;
-      //virtual void dump(dump_context & dumpcontext) const override;
+      //void assert_valid() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::file::path get_app_localconfig_folder();
@@ -395,7 +395,7 @@
       virtual bool app_data_set(const ::id & id, ::object & obj);
       virtual bool app_data_get(const ::id & id, ::object & obj);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual string dialog_box(const ::string & pszMatter, property_set & propertyset);
 
@@ -418,7 +418,7 @@
 
 
       //virtual void release_parents() override;
-      virtual ::object * parent_property_set_holder() const override;
+      ::property_object * parent_property_set_holder() const override;
 
 
       //virtual bool is_set_finish() const override;
@@ -1194,7 +1194,7 @@
       //virtual ::apex::printer* get_printer(const ::string & pszDeviceName) override;
 
 
-      //virtual void assert_valid() const override;
+      //void assert_valid() const override;
       //virtual void dump(dump_context& dumpcontext) const override;
 
 
@@ -1250,7 +1250,7 @@
 
 
 
-      //virtual void assert_valid() const;
+      //void assert_valid() const override;
       //virtual void dump(dump_context & action_context) const;
 
 
@@ -1288,7 +1288,7 @@
 
       }
 
-      //virtual application_sleep(millis millis)
+      //virtual application_sleep(const ::duration & duration)
 
 
       virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;

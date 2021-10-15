@@ -34,15 +34,15 @@ class string;
 typedef iptr strsize;
 class payload;
 
-//namespace subject
-//{
+namespace subject
+{
 
    
    class subject;
    class context;
 
 
-//} // namespace subject
+} // namespace subject
 
 
 namespace message
@@ -84,7 +84,6 @@ class object;
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
 #include "acme/constant/_constant.h"
-#include "acme/constant/id.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
@@ -97,7 +96,7 @@ class object;
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 #include "acme/primitive/primitive/referenceable.h"
-#include "acme/subject/handler.h"
+//#include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #ifdef __APPLE__
 #include "acme/node/operating_system/apple/_apple_no_templates.h"

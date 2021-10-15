@@ -44,7 +44,7 @@ namespace userstack
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
       rectangle_i32_array                 m_rectangleaUpdate;
-      millis                       m_millisLastUpdate;
+      ::duration                       m_durationLastUpdate;
       ::mutex                      m_mutexDraw;
 
 
@@ -52,8 +52,8 @@ namespace userstack
       virtual ~impact();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -61,7 +61,7 @@ namespace userstack
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void handle(::subject * psubject, ::context * pcontext) override;

@@ -40,7 +40,7 @@ namespace database
       key(const id & idDataKey, bool bLocalData = false)
       {
 
-         m_strDataKey = __str(idDataKey);
+         m_strDataKey = __string(idDataKey);
 
          m_bLocalData = bLocalData;
 

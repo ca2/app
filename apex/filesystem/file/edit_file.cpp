@@ -482,7 +482,7 @@ namespace file
 
          pbufferedfile->seek_to_begin();
 
-         pbufferedfile->buffer(minimum(pbufferedfile->get_size(), pbufferedfile->m_uiBufferSize));
+         pbufferedfile->buffer((memsize) minimum(pbufferedfile->get_size(), pbufferedfile->m_uiBufferSize));
 
       }
 

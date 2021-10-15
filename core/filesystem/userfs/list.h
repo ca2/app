@@ -37,7 +37,7 @@ namespace userfs
 
       void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       __pointer(::image_list) GetActionButtonImageList(index i);
 
@@ -99,8 +99,8 @@ namespace userfs
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       __pointer(::user::mesh_data) create_mesh_data() override;
 

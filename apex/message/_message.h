@@ -16,14 +16,14 @@ namespace message
 #define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
 
 
-namespace user
-{
-
-
-   class command;
-
-
-} // namespace user
+//namespace user
+//{
+//
+//
+//   class command;
+//
+//
+//} // namespace user
 
 
 namespace message

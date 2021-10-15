@@ -123,7 +123,7 @@ namespace user
 
       //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
 
-      //m_puserinteraction->m_millisLastVisualChange.Now();
+      //m_puserinteraction->m_durationLastVisualChange.Now();
 
       //m_puserinteraction->m_bSizeMove = true;
 
@@ -1145,7 +1145,7 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer)
    {
 
       if (millisEllapse < 500_ms)
@@ -1366,7 +1366,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_impl::get_keyboard_focus()
+   ::user::element * primitive_impl::get_keyboard_focus()
    {
 
       return nullptr;
@@ -1531,7 +1531,8 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call_routine(CREATE_ROUTINE);
+
+      m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
    }
 
@@ -1568,7 +1569,7 @@ namespace user
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 
@@ -1596,7 +1597,7 @@ namespace user
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 

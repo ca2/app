@@ -392,7 +392,7 @@ namespace http
       else
       {
 
-         strCache = __str(len.i64());
+         strCache = __string(len.i64());
 
       }
 

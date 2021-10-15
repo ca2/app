@@ -220,8 +220,8 @@ list(APPEND library_source
    platform/message_box.cpp
    platform/message.h
    platform/muldiv64.cpp
-   platform/nano_timer.cpp
-   platform/nano_timer.h
+   platform/nanosecond_timer.cpp
+   platform/nanosecond_timer.h
    platform/net.cpp
    platform/node.cpp
    platform/node.h
@@ -277,7 +277,7 @@ list(APPEND library_source
    primitive/collection/string_array_base.cpp
    primitive/collection/string_list.cpp
    primitive/collection/string_to_string_map.cpp
-   primitive/collection/stringa.cpp
+   primitive/collection/string_array.cpp
    primitive/collection/stringl.cpp
    primitive/collection/payload_array.cpp
    primitive/comparison/var_strict.cpp
@@ -307,21 +307,21 @@ list(APPEND library_source
    primitive/datetime/datetime.cpp
    primitive/datetime/department.cpp
    primitive/datetime/department.h
-   primitive/datetime/duration.cpp
    primitive/datetime/filetime.cpp
    primitive/datetime/filetime_span.cpp
-   primitive/datetime/micros.cpp
-   primitive/datetime/micros.h
    primitive/datetime/microsecond_sleep.cpp
    primitive/datetime/microsecond_sleep.h
    primitive/datetime/mktime.cpp
-   primitive/datetime/nanos.h
-   primitive/datetime/secs.h
    primitive/datetime/time.cpp
    primitive/datetime/time_span.cpp
    primitive/datetime/result.cpp
    primitive/datetime/result.h
    primitive/datetime/zonetime.cpp
+   primitive/duration/duration/duration.cpp
+   primitive/duration/duration/duration.h
+   primitive/duration/duration/_.h
+   primitive/duration/integral/_.h
+   primitive/duration/floating/_.h
    primitive/geometry2d/_.cpp
    primitive/geometry2d/geometry.cpp
    primitive/geometry2d/point.cpp
@@ -927,7 +927,7 @@ list(APPEND library_source
    #platform/message_box.h
    platform/muldiv32.h
    platform/muldiv64.h
-   platform/nano_timer.h
+   platform/nanosecond_timer.h
    platform/net.h
    platform/number.h
    platform/object_reference_count_debug.cpp
@@ -1065,10 +1065,8 @@ list(APPEND library_source
    primitive/datetime/_c.h
    primitive/datetime/_impl.h
    primitive/datetime/date_span.h
-   primitive/datetime/duration.h
    primitive/datetime/filetime.h
    primitive/datetime/filetime_span.h
-   primitive/datetime/millis.h
    primitive/datetime/system_time.cpp
    primitive/datetime/time.h
    primitive/datetime/time_span.h

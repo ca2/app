@@ -388,7 +388,7 @@ namespace experience_lite
 
       {
 
-         //         ::u32 dwTime2= ::millis::now();
+         //         ::u32 dwTime2= ::duration::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -731,7 +731,7 @@ namespace experience_lite
 
          if ((bool)pbar->prop("tracking_fade_in"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeIn)
             {
                uchAlpha = (byte)minimum(255, maximum(0, (dwFade * 255 / tickFadeIn)));
@@ -745,7 +745,7 @@ namespace experience_lite
          }
          else if ((bool)pbar->prop("tracking_fade_out"))
          {
-            ::u32 dwFade = pbar->prop("tracking_start").millis().elapsed();
+            ::u32 dwFade = pbar->prop("tracking_start").::duration().elapsed();
             if (dwFade < tickFadeOut)
             {
                uchAlpha = (byte)(255 - minimum(255, maximum(0, (dwFade * 255 / tickFadeOut))));
@@ -1164,7 +1164,7 @@ namespace experience_lite
       if (!bOk)
       {
 
-         output_debug_string("\nUnknown color: code=" + __str((int) ecolor));
+         output_debug_string("\nUnknown color: code=" + __string((int) ecolor));
 
       }
 

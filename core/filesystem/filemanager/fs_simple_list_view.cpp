@@ -672,9 +672,10 @@ namespace filemanager
             m_bKickActive = true;
 
 
-            SetTimer(123654, 700, nullptr);
+            SetTimer(123654, 700_ms, nullptr);
 
          }
+
 
          void list_view::on_message_context_menu(::message::message * pmessage)
          {

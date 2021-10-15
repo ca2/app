@@ -202,7 +202,7 @@ public:
    virtual ::count get_count_except_current_thread();
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual ::e_status destroy() override;
-   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
+   virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }

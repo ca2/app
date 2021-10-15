@@ -32,7 +32,7 @@ namespace user
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 

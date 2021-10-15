@@ -23,10 +23,10 @@ namespace acme
 
 
 
-      virtual bool create_timer(::object * pobject, uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool create_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
       virtual bool delete_timer(uptr uEvent);
 
-      virtual bool set_timer(::object * pobject, uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool set_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
       bool erase_timer(::timer * ptimer) override;
 

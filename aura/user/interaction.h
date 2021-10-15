@@ -246,14 +246,14 @@ namespace user
       enumeration < e_non_client >                       m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
-      ::millis                                     m_millisMouseMoveSkip;
+      ::duration                                     m_durationMouseMoveSkip;
       ::point_i32                                      m_pointMouseMoveSkip;
-      ::millis                                     m_millisMouseMovePeriod;
+      ::duration                                     m_durationMouseMovePeriod;
       bool                                         m_bMouseMovePending;
       ::point_i32                                      m_pointMouseMove;
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
-      millis                                         m_millisLastRedraw;
+      ::duration                                         m_durationLastRedraw;
       ::id                                         m_idView;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
@@ -271,15 +271,15 @@ namespace user
       //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::millis                                     m_millisMouseMove;
-      ::millis                                     m_millisMouseMoveIgnore;
+      ::duration                                     m_durationMouseMove;
+      ::duration                                     m_durationMouseMoveIgnore;
       double                                       m_dItemHeight;
       point_i32                                        m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
       bool                                         m_bBackgroundBypass;
-      millis                                       m_millisLastFullUpdate;
+      ::duration                                       m_durationLastFullUpdate;
       bool                                         m_bSizeMove;
-      millis                                       m_millisLastVisualChange;
+      ::duration                                       m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
@@ -444,9 +444,9 @@ namespace user
 
       virtual bool is_user_thread() const;
 
-      virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
+      virtual ::e_status interaction_send(const ::routine & routine);
 
-      virtual ::e_status interaction_branch(const ::routine & routine) override;
+      virtual ::e_status interaction_post(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -774,16 +774,12 @@ namespace user
       virtual bool on_set_owner(::user::primitive * pinterface);
 
 
-
-
-
-      virtual ::user::primitive * first_child_user_primitive() override;
-      virtual ::user::primitive * top_user_primitive() override;
-      virtual ::user::primitive * under_user_primitive() override;
-      virtual ::user::primitive * above_user_primitive() override;
-      virtual ::user::primitive * next_user_primitive() override;
-      virtual ::user::primitive * previous_user_primitive() override;
-
+      ::user::element * first_child_user_primitive() override;
+      ::user::element * top_user_primitive() override;
+      ::user::element * under_user_primitive() override;
+      ::user::element * above_user_primitive() override;
+      ::user::element * next_user_primitive() override;
+      ::user::element * previous_user_primitive() override;
 
 
       virtual ::user::interaction* first_child() override;
@@ -945,10 +941,10 @@ namespace user
       virtual void on_kill_keyboard_focus() override;
 
 
-      virtual ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
 
 
-      virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
@@ -1090,12 +1086,14 @@ namespace user
       virtual bool post_object(const ::id & id, wparam wParam, lparam lParam);
 
 
+      //virtual bool user_post(const ::id& id, wparam wParam = 0, lparam lParam = 0) override;
+
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 //      virtual bool enable_window(bool bEnable = true) override;
@@ -1309,7 +1307,7 @@ namespace user
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::interaction * get_child_by_id(const id & id, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::primitive * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
+      ::user::element * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
 
       ::user::interaction * child_from_point(const ::point_i32 & point);
 
@@ -1341,7 +1339,7 @@ namespace user
       virtual bool is_host_top_level() const;
       virtual bool is_os_host() const;
 
-      ::user::primitive* get_parent_primitive() const override;
+      ::user::element * get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
       virtual ::user::interaction* get_top_level() const override;
@@ -1519,6 +1517,12 @@ namespace user
 
 
       virtual void display_child(const ::rectangle_i32 & rectangle);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      {
+
+         display_child(rectangle_i32_dimension(x, y, cx, cy));
+
+      }
 
 
       virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32* prectangle);
@@ -1865,11 +1869,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::routine & routine);
-      virtual void prodevian_post_routine(const ::routine & routine);
+      virtual ::e_status post_routine(const ::routine & routine);
+      virtual ::e_status prodevian_post_routine(const ::routine & routine);
 
 
-      virtual void send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
+      virtual ::e_status send_routine(const ::routine & routine);
 
 
    /*   template < typename PRED >

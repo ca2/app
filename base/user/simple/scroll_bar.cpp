@@ -197,7 +197,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 
       m_bTracking = true;
 
-      SetTimer(43212345, 10, nullptr);
+      SetTimer(43212345, 10_ms, nullptr);
 
       m_pointTrack = m_itemCurrent.m_pointClient;
 
@@ -212,7 +212,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
       if(scrollbar_action(m_itemCurrent, pgraphics))
       {
 
-         SetTimer((uptr) this,300,nullptr);
+         SetTimer((uptr) this,300_ms,nullptr);
 
       }
 
@@ -779,7 +779,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
       KillTimer(ptimer->m_uEvent);
 
-      SetTimer(((uptr) this) + 1,10,nullptr);
+      SetTimer(((uptr) this) + 1,10_ms,nullptr);
 
    }
    else if(ptimer->m_uEvent == ((uptr) this) + 1)

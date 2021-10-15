@@ -65,7 +65,7 @@ string module_path_from_pid(unsigned int iPid)
    char * candidateDir = nullptr;
 
    string str;
-   str = "/proc/" + __str(iPid) + "/exe";
+   str = "/proc/" + __string(iPid) + "/exe";
 
    /* the easiest case: we are in linux */
    ssize_t s = readlink(pszBuffer,path,iSize);
@@ -191,7 +191,7 @@ string_array cmdline_from_pid(unsigned int iPid)
 
    string str;
 
-   str = "/proc/" + __str(iPid) + "/cmdline";
+   str = "/proc/" + __string(iPid) + "/cmdline";
 
    memory mem = file_as_memory(str);
 

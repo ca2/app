@@ -75,7 +75,7 @@ namespace hi5
          if(m_pviewAuth == nullptr)
             return "";
 
-         m_pviewAuth->SetTimer(8888, 484, nullptr);
+         m_pviewAuth->SetTimer(8888, 500_ms, nullptr);
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
          m_ptabview->get_wnd()->RunModalLoop();

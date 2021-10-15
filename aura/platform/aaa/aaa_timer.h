@@ -174,7 +174,7 @@ public:
    //#endif
 
 
-   bool start(int millis, bool bPeriodic);
+   bool start(int ::duration, bool bPeriodic);
 
    //void stop();
 

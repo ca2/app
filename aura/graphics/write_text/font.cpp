@@ -450,7 +450,7 @@ namespace write_text
 //      //      SelectFont();
 //      //
 //      //      ::rectangle rectangleOffset(rectangle);
-//      //      const ::point & pointOffset(rectangleOffset.top_left());
+//      //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
 
@@ -506,7 +506,7 @@ namespace write_text
 //      //      SelectFont();
 //      //
 //      //      const ::rectangle rectangleOffset(rectangle);
-//      //      ::point pointOffset;
+//      //      ::point_i32 pointOffset;
 //      //
 //      //
 //      //      glyph * pglyph;

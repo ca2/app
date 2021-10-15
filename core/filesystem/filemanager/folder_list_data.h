@@ -16,8 +16,8 @@ namespace filemanager
       virtual ~folder_list_data();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       ::e_status on_initialize_object() override;

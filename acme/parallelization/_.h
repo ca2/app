@@ -1,7 +1,17 @@
 #pragma once
 
 
+#include "wait.h"
+
+
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
+
+
+//inline void task_set(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] |= (1 << (etaskflag & 7)); }
+//inline void task_clear(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] &= ~(1 << (etaskflag & 7)); }
+//inline bool task_flag().is_set(enum_task_flag etaskflag) { return t_byteaFlag[etaskflag >> 3] & (1 << (etaskflag & 7)); }
+//inline void task_set(enum_task_flag etaskflag, bool bSet) { if (bSet) task_set(etaskflag); else task_clear(etaskflag); }
+
 
 
 // LPVOID thread_data_get(thread_data_index dataindex);
@@ -326,15 +336,15 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
-//typedef bool task_sleep(millis millis, ::synchronization_object* psync);
+//typedef bool task_sleep(const ::duration & duration, ::synchronization_object* psync);
 //using PFN_task_sleep = task_sleep*;
 
 //CLASS_DECL_ACME bool __simple_task_sleep();
-//CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
+//CLASS_DECL_ACME bool __simple_task_sleep(const ::duration & duration);
 //CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
-//CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::synchronization_object* psync);
-//CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
+//CLASS_DECL_ACME bool __simple_task_sleep(const ::duration & duration, ::synchronization_object* psync);
+//CLASS_DECL_ACME bool task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
 #ifdef __cplusplus_winrt
@@ -371,14 +381,14 @@ CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 //CLASS_DECL_ACME bool __task_sleep(task* task);
 //
-//CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration);
 //
 //CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
 //
-//CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync);
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration, synchronization_object* psync);
 //
-//CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
-CLASS_DECL_ACME bool task_sleep(const ::duration & duration);
+//CLASS_DECL_ACME bool task_sleep(const ::duration & duration, synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
 
 
 #include "synchronized_routine.h"

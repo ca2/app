@@ -68,8 +68,8 @@ namespace filemanager
       virtual ::e_status initialize_filemanager_tree(document * pdocument);
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void _001InsertColumns() override;
 

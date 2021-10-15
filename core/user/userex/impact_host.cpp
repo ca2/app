@@ -217,12 +217,12 @@ namespace userex
    {
 
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("impact_host::tabfy (1)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("impact_host::tabfy (1)");
+      INFORMATION("");
+      INFORMATION("");
 
 
 
@@ -257,34 +257,34 @@ namespace userex
             strTitle.is_empty(id);
 
 
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("impact_host::tabfy (2)");
-            INFO("");
-            INFO("");
+            INFORMATION("-------------------------------------------------------------------");
+            INFORMATION("");
+            INFORMATION("");
+            INFORMATION("impact_host::tabfy (2)");
+            INFORMATION("");
+            INFORMATION("");
 
             //::user::impact_data* pimpactdata = ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
             ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
 
 
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("impact_host::tabfy (3)");
-            INFO("");
-            INFO("");
+            INFORMATION("-------------------------------------------------------------------");
+            INFORMATION("");
+            INFORMATION("");
+            INFORMATION("impact_host::tabfy (3)");
+            INFORMATION("");
+            INFORMATION("");
 
             if (pframewindow->m_ewindowflag & e_window_flag_window_created)
             {
 
 
-               INFO("-------------------------------------------------------------------");
-               INFO("");
-               INFO("");
-               INFO("impact_host::tabfy (3.1)");
-               INFO("");
-               INFO("");
+               INFORMATION("-------------------------------------------------------------------");
+               INFORMATION("");
+               INFORMATION("");
+               INFORMATION("impact_host::tabfy (3.1)");
+               INFORMATION("");
+               INFORMATION("");
 
 
                ptabview->set_current_tab_by_id(id);
@@ -298,24 +298,24 @@ namespace userex
          }
 
 
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("impact_host::tabfy (4)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("impact_host::tabfy (4)");
+         INFORMATION("");
+         INFORMATION("");
 
 
          if (pframewindow->m_ewindowflag & e_window_flag_window_created)
          {
 
 
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("impact_host::tabfy (4.1)");
-            INFO("");
-            INFO("");
+            INFORMATION("-------------------------------------------------------------------");
+            INFORMATION("");
+            INFORMATION("");
+            INFORMATION("impact_host::tabfy (4.1)");
+            INFORMATION("");
+            INFORMATION("");
 
             ptabview->get_parent_frame()->display();
 
@@ -339,10 +339,10 @@ namespace userex
    bool impact_host::OnUpDownTargetDetach(::user::interaction * pupdown)
    {
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("impact_host::OnUpDownTargetDetach (1)");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("impact_host::OnUpDownTargetDetach (1)");
 
       __pointer(::simple_frame_window) pframewindow = pupdown;
 
@@ -465,12 +465,12 @@ namespace userex
 
                   if (pframewindowTab->is_this_visible())
                   {
-                     INFO("-------------------------------------------------------------------");
-                     INFO("");
-                     INFO("");
-                     INFO("pframewindowTab HIDE HIDE HIDE");
-                     INFO("");
-                     INFO("");
+                     INFORMATION("-------------------------------------------------------------------");
+                     INFORMATION("");
+                     INFORMATION("");
+                     INFORMATION("pframewindowTab HIDE HIDE HIDE");
+                     INFORMATION("");
+                     INFORMATION("");
                      pframewindowTab->hide();
 
                   }
@@ -480,12 +480,12 @@ namespace userex
                {
                   
 
-                  INFO("-------------------------------------------------------------------");
-                  INFO("");
-                  INFO("");
-                  INFO("pframewindowTab VISIBLE VISIBLE VISIBLE");
-                  INFO("");
-                  INFO("");
+                  INFORMATION("-------------------------------------------------------------------");
+                  INFORMATION("");
+                  INFORMATION("");
+                  INFORMATION("pframewindowTab VISIBLE VISIBLE VISIBLE");
+                  INFORMATION("");
+                  INFORMATION("");
                   auto rectangleRequest = rectangle_i32_dimension(20, 20, 800, 300);
 
                   //if (!pframewindowTab->is_this_visible() || rectangleRequest != pframewindowTab->window_request_rect())

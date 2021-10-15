@@ -436,7 +436,7 @@ namespace android
 
    //   output_debug_string("android_interaction_impl on _create_window");
 
-   //   output_debug_string("android_interaction_impl initialize (width=" + __str(width(pinitialize->m_rectangle)) + ",height=" + __str(height(pinitialize->m_rectangle)) + ")");
+   //   output_debug_string("android_interaction_impl initialize (width=" + __string(width(pinitialize->m_rectangle)) + ",height=" + __string(height(pinitialize->m_rectangle)) + ")");
 
    //   return true;
 
@@ -836,13 +836,13 @@ namespace android
    //   return ::GetTitleBarInfo(((interaction_impl *) this)->get_handle(),pti) != false;
    //}
 
-   //bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
+   //bool interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::AnimateWindow(get_handle(),millis,dwFlags) != false;
+   //   return ::AnimateWindow(get_handle(),::duration,dwFlags) != false;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -1831,7 +1831,7 @@ namespace android
          //   while (::task_get_run())
          //   {
 
-         // auto tickStart = ::millis::now();
+         // auto tickStart = ::duration::now();
 
          //      if (!m_puserinteraction->m_bLockWindowUpdate)
          //      {
@@ -1913,7 +1913,7 @@ namespace android
    //      m_hwnd = hwnd;
    //      m_hdc = hdc;
    //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::e_priority_normal);
-   //      if (m_event.wait(millis(tickTimeout)).timeout())
+   //      if (m_event.wait(::duration(tickTimeout)).timeout())
    //      {
    //         TRACE("print_window::time_out");
    //      }

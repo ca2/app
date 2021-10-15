@@ -14,7 +14,7 @@
 #define MAGIC_PALACE_TAB_TEXT "/"
 
 
-millis g_tickDragStart;
+::duration g_tickDragStart;
 
 
 namespace user
@@ -1566,7 +1566,7 @@ namespace user
 
       {
 
-//               ::u32 dwTime2= ::millis::now();
+//               ::u32 dwTime2= ::duration::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("usertab::on_layout call time2= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -1670,7 +1670,7 @@ namespace user
          pholder->post_redraw();
 
       }
-      else if(::is_set(ppaneSel) && ppaneSel->m_eflag & e_flag_hide_all_others_on_show)
+      else if(::is_set(ppaneSel) && ppaneSel->m_eflag.has(e_flag_hide_all_others_on_show))
       {
 
          pholder->hide();
@@ -2509,7 +2509,7 @@ namespace user
          uId))
          return false;
       m_bCreated = true;
-      on_layout(::draw2d::graphics_pointer & pgraphics);
+      on_layout(pgraphics);
       return true;
    }
    */
@@ -2549,7 +2549,7 @@ namespace user
 
       pusermessage->m_lresult = 0;
 
-      SetTimer(e_timer_defer_handle_auto_hide_tabs, 300);
+      SetTimer(e_timer_defer_handle_auto_hide_tabs, 300_ms);
 
       //post_message(WM_USER + 1342);
 
@@ -3109,7 +3109,7 @@ namespace user
 //      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
 //      // }
 //
-//      //on_layout(::draw2d::graphics_pointer & pgraphics);
+//      //on_layout(pgraphics);
 //
 //   }
 
@@ -3473,7 +3473,7 @@ namespace user
                if (pchild)
                {
 
-                  string strTitle(pchild->payload("place_child_title"));
+                  string strTitle(pchild->payload("place_child_title").get_string());
 
                   ppane->set_title(strTitle);
 

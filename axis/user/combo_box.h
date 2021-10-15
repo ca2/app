@@ -33,7 +33,7 @@ namespace user
 
       ::size_i32                    m_sizeFull;
       //string                        m_strText;
-      ::millis                      m_millisShowComboList;
+      ::duration                      m_durationShowComboList;
       __pointer(list_box)           m_plistbox;
 
       ::type                        m_typeListBox;
@@ -51,7 +51,7 @@ namespace user
       void user_combo_box_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;

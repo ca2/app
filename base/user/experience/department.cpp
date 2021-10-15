@@ -349,7 +349,7 @@ namespace base
    ::e_status user::initialize1_experience()
    {
 
-      INFO("start");
+      INFORMATION("start");
 
       auto estatus = __compose_new(m_pexperience);
 
@@ -358,7 +358,7 @@ namespace base
 
          //m_result.add(estatus);
 
-         ERR(".1");
+         ERROR(".1");
 
          return estatus;
 
@@ -373,13 +373,13 @@ namespace base
 
          //m_result.add(estatus);
 
-         ERR(".2");
+         ERROR(".2");
 
          return estatus;
 
       }
 
-      INFO("ok");
+      INFORMATION("ok");
 
       return ::success;
 

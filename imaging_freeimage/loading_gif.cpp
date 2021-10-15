@@ -188,7 +188,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                         {
 
-                           pframe->m_tick = (u32) * ((long *)FreeImage_GetTagValue(ptag));
+                           pframe->m_duration = INTEGRAL_MILLISECOND(*(long *)FreeImage_GetTagValue(ptag));
 
                         }
 

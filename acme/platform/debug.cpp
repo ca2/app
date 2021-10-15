@@ -2,8 +2,8 @@
 #include "acme/id.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "acme/user/_user.h"
-CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
-CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
+//CLASS_DECL_ACME void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args);
+//CLASS_DECL_ACME void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz);
 
 //CLASS_DECL_ACME void __tracev(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
@@ -160,26 +160,26 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 
 //CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
 
-
-
-
-CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
-{
-
-   //if (::is_null(::get_context_system()))
-   if (::is_null(pmatter->m_psystem))
-   {
-
-      pmatter->__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
-
-      return;
-
-   }
-
-   pmatter->m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
-
-}
-
+//
+//
+//
+//CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//{
+//
+//   //if (::is_null(::get_context_system()))
+//   if (::is_null(pmatter->m_psystem))
+//   {
+//
+//      pmatter->__simple_tracea(elevel, pszFunction, pszFile, iLine, psz);
+//
+//      return;
+//
+//   }
+//
+//   pmatter->m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+//
+//}
+//
 
 //CLASS_DECL_ACME void __tracef(const ::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 //{

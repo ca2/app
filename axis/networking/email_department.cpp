@@ -32,7 +32,7 @@ namespace net
 
       psocket->m_pemail = pemail;
 
-      auto tickStart = ::millis::now();
+      auto tickStart = ::duration::now();
 
       phandler->add2(psocket);
 

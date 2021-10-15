@@ -35,7 +35,7 @@ public:
 
 
 
-   bool                                               m_bBranchHandling : 1;
+   //bool                                               m_bBranchHandling : 1;
    __composite(message_queue)                         m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
 
@@ -62,7 +62,7 @@ public:
    enum_id                                            m_idContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   ::millis                                           m_millisHeartBeat;
+   ::duration                                           m_durationHeartBeat;
    bool                                               m_bReady;
    ::extended::status                                 m_result;
    __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
@@ -84,7 +84,7 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   ::routine_array                                    m_routinea;
+   //::routine_array                                    m_routinea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
@@ -157,8 +157,8 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   ::u32 get_file_sharing_violation_timeout_total_milliseconds();
-   ::duration set_file_sharing_violation_timeout(::duration duration);
+   ::duration get_file_sharing_violation_timeout();
+   ::duration set_file_sharing_violation_timeout(const ::duration & duration);
 
    virtual bool is_running() const override;
 
@@ -237,56 +237,49 @@ public:
 
    virtual bool send_object(const ::id & id, wparam wParam, ::matter * pmatter, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_task(const ::routine & routine);
-   virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
-
-   template < typename PRED >
-   bool pred(PRED pred)
-   {
-      return post_runnable(__runnable(pred));
-   }
-
-   template < typename PRED >
-   bool post_predicate(PRED pred)
-   {
-      return post_object(e_message_system, e_system_message_method, __routine(pred));
-   }
+   //virtual bool post_task(const ::routine & routine);
+   //virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
 
 
-   bool send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   template < typename PREDICATE >
+   bool post_predicate(PREDICATE predicate)
    {
 
-      return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+
+      return post_routine(__routine(predicate));
+
 
    }
 
+   //template < typename PRED >
+   //bool schedule_predicate(PRED pred)
+   //{
 
-   template < typename PRED >
-   bool schedule_predicate(PRED pred)
-   {
+   //   return post_predicate(pred);
 
-      return post_predicate(pred);
-
-   }
+   //}
 
 
-   bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
-   {
+   //bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   //{
 
-      if (this == ::get_task())
-      {
+   //   if (this == ::get_task())
+   //   {
 
-         routine();
+   //      routine();
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return send_routine(routine, durationTimeout);
+   //   return send_routine(routine, durationTimeout);
 
-   }
+   //}
 
-   ::e_status post(const ::routine& routine) override;
+
+   //virtual ::e_status post_routine(const ::routine& routine) override;
+   //virtual ::e_status send_routine(const ::routine & routine, const ::duration & durationTimeout = ::duration::infinite());
+
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 
@@ -384,7 +377,7 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const ::duration & dur);
 
-   virtual bool pump_sleep(const millis & millis, synchronization_object * psync);
+   virtual bool pump_sleep(const class ::wait & wait, synchronization_object * psync);
 
    bool do_events() override;
    // virtual bool do_events(const duration& duration);
@@ -576,9 +569,9 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(::application * papplication, millis millis);
+//CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool app_sleep(::application * papplication, const class ::wait & wait);
 
 
 
@@ -620,6 +613,6 @@ CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class ::wait & wait, enum_priority epriority);
 
 

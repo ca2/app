@@ -55,13 +55,13 @@ namespace hotplugin
 
       i32 iDelta = m_iDelta;
       i32 iRadius = 8;
-      i32 iPhase = ((((m_millisSync.elapsed()) % iDelta)) * iRadius * 2) / iDelta;
+      i32 iPhase = ((((m_durationSync.elapsed()) % iDelta)) * iRadius * 2) / iDelta;
 
-      if (iPhase == 0 && (m_millisSync.elapsed()) > 2000)
+      if (iPhase == 0 && (m_durationSync.elapsed()) > 2000)
       {
 
          m_iDelta = 2000 + (::get_tick() % ((5000) * 2));
-auto m_millisSync = ::millis::now();
+auto m_durationSync = ::duration::now();
 
       }
 
@@ -86,7 +86,7 @@ auto m_millisSync = ::millis::now();
          double frequency = 1.0 / period;
          //i32 iA = (iARange * ::get_tick() / 8000) % iARange;
          double w = 2.0 * 3.1415 * frequency;
-         double t= ::millis::now() / 1000.0;
+         double t= ::duration::now() / 1000.0;
 
 
          /*if(iA < iAClip)

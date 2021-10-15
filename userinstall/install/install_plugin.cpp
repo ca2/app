@@ -33,7 +33,7 @@
 
 void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   //__throw(::exception("integer_exception" + __str($1)));
+   //__throw(::exception("integer_exception" + __string($1)));
 }
 
 #endif // defined WINDOWS
@@ -107,7 +107,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
 #else
 
-      m_millisTimeout             = (5000) * 11;
+      m_durationTimeout             = (5000) * 11;
 
 #endif
 
@@ -116,7 +116,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
-      m_millisLastRestart         = 0;
+      m_durationLastRestart         = 0;
 
       m_bPluginDownloaded     = false;
       m_bPluginTypeTested     = false;
@@ -166,10 +166,10 @@ pacmedir->system() / "config\\plugin\\version.txt");
       if(!is_installing())
       {
 
-         if((m_millisLastRestart.elapsed()) > (5000) * 5)
+         if((m_durationLastRestart.elapsed()) > (5000) * 5)
          {
 
-            m_millisLastRestart= ::millis::now();
+            m_durationLastRestart= ::duration::now();
 
             start_ca2();
 
@@ -186,10 +186,10 @@ pacmedir->system() / "config\\plugin\\version.txt");
       if(m_phost->m_bInstalling)
       {
 
-         if((m_millisLastInstallingCheck.elapsed()) > 2000)
+         if((m_durationLastInstallingCheck.elapsed()) > 2000)
          {
 
-            m_millisLastInstallingCheck= ::millis::now();
+            m_durationLastInstallingCheck= ::duration::now();
 
             try
             {
@@ -205,10 +205,10 @@ pacmedir->system() / "config\\plugin\\version.txt");
          }
 
       }
-      else if((m_millisLastInstallingCheck.elapsed()) > ((5000) * 2))
+      else if((m_durationLastInstallingCheck.elapsed()) > ((5000) * 2))
       {
 
-         m_millisLastInstallingCheck= ::millis::now();
+         m_durationLastInstallingCheck= ::duration::now();
 
          try
          {
@@ -279,7 +279,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
          else if(is_rx_tx_ok())
          {
 
-            m_millisLastOk= ::millis::now();
+            m_durationLastOk= ::duration::now();
 
             m_bRestartCa2        = false;
 
@@ -288,7 +288,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
             bJob                 = true;
 
          }
-         else if(m_millisLastOk.elapsed() > ((5000) * 2))
+         else if(m_durationLastOk.elapsed() > ((5000) * 2))
          {
 
 
@@ -298,7 +298,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
                if (psystem->install().is_installing_ca2())
                {
 
-                  m_millisLastOk= ::millis::now();
+                  m_durationLastOk= ::duration::now();
 
                   return false; // "no job done"
 
@@ -342,7 +342,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
 
             bJob                 = true;
 
-            m_millisLastOk          = ::millis::now();
+            m_durationLastOk          = ::duration::now();
 
          }
 
@@ -388,7 +388,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
       thread(pobject)
    {
 
-//      m_durationRunLock = millis(84 + 77);
+//      m_durationRunLock = ::duration(84 + 77);
 
    }
 
@@ -490,7 +490,7 @@ pacmedir->system() / "config\\plugin\\version.txt");
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __string(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
@@ -841,14 +841,14 @@ run_install:
 
 #else
 
-      //::u32 dwTime1= ::millis::now();
+      //::u32 dwTime1= ::duration::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //::u32 dwTime3= ::millis::now();
+         //::u32 dwTime3= ::duration::now();
 
          //TRACE("eval1 %d",dwTime3 - dwTime1);
 
@@ -856,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //::u32 dwTime5= ::millis::now();
+            //::u32 dwTime5= ::duration::now();
 
             //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -946,14 +946,14 @@ run_install:
 
             }
 
-            //::u32 dwTime7= ::millis::now();
+            //::u32 dwTime7= ::duration::now();
 
             //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //::u32 dwTime9= ::millis::now();
+            //::u32 dwTime9= ::duration::now();
 
             //TRACE("blend %d",dwTime9 - dwTime7);
 
@@ -1608,10 +1608,10 @@ restart:
       if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch || m_bPendingRestartCa2)
       {
 
-         if((m_millisLastRestart.elapsed()) > (840 + 770))
+         if((m_durationLastRestart.elapsed()) > (840 + 770))
          {
 
-            m_millisLastRestart= ::millis::now();
+            m_durationLastRestart= ::duration::now();
 
             start_ca2();
 

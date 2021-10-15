@@ -124,7 +124,7 @@
 //      return 0;
 //
 //   INPUT input;
-//   ::u32 millis = 0;
+//   ::u32 ::duration = 0;
 //
 //   character_count = 3;
 //   for (u = 0; u < character_count; u++)
@@ -137,7 +137,7 @@
 //         input.ki.wVk = vka[character_count - u - 1];
 //         input.ki.wScan = text[character_count - u - 1];
 //         input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
-//         input.ki.time = millis;
+//         input.ki.time = ::duration;
 //         input.ki.dwExtraInfo = GetMessageExtraInfo();
 //         if (!is_good_active_w(w))
 //            return 0;
@@ -155,7 +155,7 @@
 //      //keystroke[i].ki.wVk = vka[i];
 //      //keystroke[i].ki.wScan = text[i];
 //      //keystroke[i].ki.dwFlags = flag[i];
-//      //keystroke[i].ki.time = millis;
+//      //keystroke[i].ki.time = ::duration;
 //      //keystroke[i].ki.dwExtraInfo = GetMessageExtraInfo();
 //      if (!is_good_active_w(w))
 //         return 0;
@@ -163,7 +163,7 @@
 //      input.ki.wVk = vka[u];
 //      input.ki.wScan = text[u];
 //      input.ki.dwFlags = flag[u];
-//      input.ki.time = millis;
+//      input.ki.time = ::duration;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      if (!is_good_active_w(w))
 //         return 0;
@@ -187,7 +187,7 @@
 //      input.ki.wVk = vka[character_count - u - 1];
 //      input.ki.wScan = text[character_count - u - 1];
 //      input.ki.dwFlags = flag[character_count - u - 1] | KEYEVENTF_KEYUP;
-//      input.ki.time = millis;
+//      input.ki.time = ::duration;
 //      input.ki.dwExtraInfo = GetMessageExtraInfo();
 //      //if (GetForegroundWindow() != chrome)
 //      //{
@@ -213,7 +213,7 @@
 //      //keystroke[i + character_count].ki.wVk = vka[character_count-i-1];
 //      //keystroke[i + character_count].ki.wScan = text[character_count-i-1];
 //      //keystroke[i + character_count].ki.dwFlags = flag[character_count - i - 1] | KEYEVENTF_KEYUP;
-//      //keystroke[i + character_count].ki.time = millis;
+//      //keystroke[i + character_count].ki.time = ::duration;
 //      //keystroke[i + character_count].ki.dwExtraInfo = GetMessageExtraInfo();
 //      //      SendInput((::u32)keystrokes_to_send, keystroke, sizeof(*keystroke));
 //   }

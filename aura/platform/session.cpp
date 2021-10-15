@@ -245,7 +245,7 @@ namespace aura
    ::e_status session::process_init()
    {
 
-      INFO("aura::session::process_init");
+      INFORMATION("aura::session::process_init");
 
       auto estatus = ::apex::session::process_init();
 
@@ -262,7 +262,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFO("acme::str_context Failed to Allocate!!");
+      //   INFORMATION("acme::str_context Failed to Allocate!!");
 
       //   return estatus;
 
@@ -277,9 +277,9 @@ namespace aura
 
       }
 
-      INFO("acme::str_context Succeeded to Allocate!!");
+      INFORMATION("acme::str_context Succeeded to Allocate!!");
 
-      INFO("aura::session::process_init success");
+      INFORMATION("aura::session::process_init success");
 
       return ::success;
 
@@ -361,7 +361,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_varFile);
+      string strOriginalPathName(pcreate->m_pcommandline->m_varFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -1810,14 +1810,14 @@ namespace aura
 
       //}
 
-      INFO(".2");
+      INFORMATION(".2");
 
       auto psystem = get_system()->m_paurasystem;
 
       if (psystem->m_bUser)
       {
 
-         INFO("success");
+         INFORMATION("success");
 
          auto psetup = static_setup::get_first(::static_setup::flag_object_user);
 
@@ -1847,13 +1847,13 @@ namespace aura
 
             output_debug_string("\nFailed to __compose_new(m_puser)");
 
-            ERR(".4");
+            ERROR(".4");
 
             return false;
 
          }
 
-         INFO("end");
+         INFORMATION("end");
 
          if (!m_puser->init1())
          {
@@ -1979,7 +1979,7 @@ namespace aura
 
       }
 
-      INFO("aura::session::init2 .1");
+      INFORMATION("aura::session::init2 .1");
 
       //if (psystem->m_bUser)
       //{
@@ -2412,7 +2412,7 @@ namespace aura
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 

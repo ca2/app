@@ -41,7 +41,7 @@ namespace user
          double get_pos_left(index iPos) const;
          double get_pos_right(index iPos) const;
          double get_pos(index iPos) const;
-         double get_pos_count() const { return __double(m_iPosEnd - m_iPosBeg + 1); }
+         double get_pos_count() const { return (double) (m_iPosEnd - m_iPosBeg + 1); }
          double get_last_pos() const { return get_pos(m_iPosEnd); }
 
          // box relative to span

@@ -154,8 +154,8 @@ PTIME_FIELDS TimeFields)
    u64 Days;
    ::i64 Time;
 
-   /* Extract millisecond from time and convert time into seconds */
-   TimeFields->Milliseconds =
+   /* Extract ::duration from time and convert time into seconds */
+   TimeFields->::durations =
    (CSHORT) (( liTime->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
    Time = liTime->QuadPart / TICKSPERSEC;
 
@@ -222,7 +222,7 @@ PLARGE_INTEGER Time)
 
    /* FIXME: normalize the TIME_FIELDS structure here */
    /* No, native just returns 0 (error) if the fields are not */
-   if( tfTimeFields->Milliseconds< 0 || tfTimeFields->Milliseconds > 999 ||
+   if( tfTimeFields->::durations< 0 || tfTimeFields->::durations > 999 ||
          tfTimeFields->Second < 0 || tfTimeFields->Second > 59 ||
          tfTimeFields->Minute < 0 || tfTimeFields->Minute > 59 ||
          tfTimeFields->Hour < 0 || tfTimeFields->Hour > 23 ||
@@ -261,7 +261,7 @@ PLARGE_INTEGER Time)
                         tfTimeFields->Hour) * MINSPERHOUR +
                        tfTimeFields->Minute) * SECSPERMIN +
                       tfTimeFields->Second ) * 1000 +
-                     tfTimeFields->Milliseconds ) * TICKSPERMSEC;
+                     tfTimeFields->::durations ) * TICKSPERMSEC;
 
    return true;
 }
@@ -414,9 +414,9 @@ int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Se
  */
 void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
-   ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->u.LowPart  = (::u32)secs;
-   Time->u.HighPart = (::u32)(secs >> 32);
+   ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+   Time->u.LowPart  = (::u32)second;
+   Time->u.HighPart = (::u32)(second >> 32);
 }
 
 /******************************************************************************
@@ -433,9 +433,9 @@ void WINAPI RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
  */
 void WINAPI RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
-   ULONGLONG secs = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-   Time->u.LowPart  = (::u32)secs;
-   Time->u.HighPart = (::u32)(secs >> 32);
+   ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
+   Time->u.LowPart  = (::u32)second;
+   Time->u.HighPart = (::u32)(second >> 32);
 }
 
 /******************************************************************************
@@ -456,7 +456,7 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
    ::i32 rem;
 
    time = Time->QuadPart / TICKSPERSEC;
-   TimeFields->Milliseconds = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
+   TimeFields->::durations = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
 
    /* time is now in seconds */
    TimeFields->Year  = 0;
@@ -899,7 +899,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
    if (!settimeofday(&tv, nullptr)) /* 0 is OK, -1 is error */
       return STATUS_SUCCESS;
    //tm_t = sec;
-   // xxx ERR("Cannot set time to %s, time adjustment %ld: %s\n",
+   // xxx ERROR("Cannot set time to %s, time adjustment %ld: %s\n",
    // xxx ctime(&tm_t), (long)(sec-oldsec), strerror(errno));
    if (errno == EPERM)
       return STATUS_PRIVILEGE_NOT_HELD;
@@ -984,7 +984,7 @@ int_bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
    syst->wHour = tf.Hour;
    syst->wMinute = tf.Minute;
    syst->wSecond = tf.Second;
-   syst->wMilliseconds = tf.Milliseconds;
+   syst->wMilliseconds = tf.::durations;
    syst->wDayOfWeek = tf.Weekday;
    return true;
 }
@@ -1004,7 +1004,7 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
    tf.Hour = syst->wHour;
    tf.Minute = syst->wMinute;
    tf.Second = syst->wSecond;
-   tf.Milliseconds = syst->wMilliseconds;
+   tf.::durations = syst->wMilliseconds;
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {

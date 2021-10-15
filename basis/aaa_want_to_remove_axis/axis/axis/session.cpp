@@ -88,7 +88,7 @@ namespace axis
    ::e_status session::process_init()
    {
 
-      INFO("axis::session::process_init");
+      INFORMATION("axis::session::process_init");
 
       if (!::aura::session::process_init())
       {
@@ -99,7 +99,7 @@ namespace axis
 
       }
 
-      INFO(".1");
+      INFORMATION(".1");
 
       if (!m_pifs)
       {
@@ -150,12 +150,12 @@ namespace axis
 
       }
 
-      INFO(".2");
+      INFORMATION(".2");
 
       //if (!::axis::application::process_init())
       //{
 
-      //   ERR(".2");
+      //   ERROR(".2");
 
       //   return false;
 
@@ -163,7 +163,7 @@ namespace axis
 
       //fill_locale_schema(*textcontext()->m_plocaleschema);
 
-      INFO("success");
+      INFORMATION("success");
 
       return true;
 

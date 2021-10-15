@@ -491,7 +491,7 @@ template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value;
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
 
 template < typename T >
 concept primitive_integer = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
@@ -933,8 +933,8 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-d))
 
 //#ifndef
-//#define MIN(a, b) (((a) < (b)) ? (a) : (b))
-//#define MAX(a, b) (((b) < (a)) ? (a) : (b))
+//#define minimum(a, b) (((a) < (b)) ? (a) : (b))
+//#define maximum(a, b) (((b) < (a)) ? (a) : (b))
 
 
 #ifdef __cplusplus
@@ -945,7 +945,7 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #endif
 
 
-#define LIM(a, MIN, MAX) MIN(MAX, MAX(MIN, a))
+#define LIM(a, minimum, maximum) minimum(maximum, maximum(minimum, a))
 #define SORT_LIM(x, minmax, maxmin) ((minmax) < (maxmin) ? LIM(x,minmax,maxmin) : LIM(x,maxmin,minmax))
 #define CLIP_USHRT(x) LIM(x,0,USHRT_MAX)
 
@@ -1133,7 +1133,7 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 CLASS_DECL_ACME const ::matter * general_trace_object();
 
-CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category ecategory, int_bool iEnable);
 
 inline const ::matter * context_trace_object() { return general_trace_object(); }
 
@@ -1147,35 +1147,66 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 //CLASS_DECL_ACME void __tracev(const ::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
-#define __alog(...) __tracef(__VA_ARGS__)
-
-#define INFO(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-
-#define TRACE(...) INFO(__VA_ARGS__)
+//#define __alog(...) __tracef(__VA_ARGS__)
 
 
+#define _CATEGORY_INFORMATION(p, etracecategory, ...) p->trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_WARNING(p, etracecategory, ...) p->trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_ERROR(p, etracecategory, ...) p->trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define _CATEGORY_FATAL(p, etracecategory, ...) p->trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
 
-CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
 
-CLASS_DECL_ACME const ::matter *trace_object(e_trace_category ecategory);
+#define CATEGORY_INFORMATION(etracecategory, ...) trace_log_information(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_WARNING(etracecategory, ...) trace_log_warning(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_ERROR(etracecategory, ...) trace_log_error(e_trace_category_ ## etracecategory) << __VA_ARGS__
+#define CATEGORY_FATAL(etracecategory, ...) trace_log_fatal(e_trace_category_ ## etracecategory) << __VA_ARGS__
+
+
+#define _INFORMATION(p, ...) p->trace_log_information() << __VA_ARGS__
+#define _WARNING(p, ...) p->trace_log_warning() << __VA_ARGS__
+#define _ERROR(p, ...) p->trace_log_error() << __VA_ARGS__
+#define _FATAL(p, ...) p->trace_log_fatal() << __VA_ARGS__
+
+
+#define TRACE_LOG_INFORMATION(...) trace_log_information() << __VA_ARGS__
+#define TRACE_LOG_WARNING(...) trace_log_warning() << __VA_ARGS__
+#define TRACE_LOG_ERROR(...) trace_log_error() << __VA_ARGS__
+#define TRACE_LOG_FATAL(...) trace_log_fatal() << __VA_ARGS__
+
+
+#define INFORMATION(...) TRACE_LOG_INFORMATION(__VA_ARGS__)
+#define WARNING(...) TRACE_LOG_WARNING(__VA_ARGS__)
+#define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
+#define FATAL(...) TRACE_LOG_FATAL(__VA_ARGS__)
+
+
+//#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define WARN(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define ERR(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define FATAL(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+
+#define TRACE(...) INFORMATION(__VA_ARGS__)
+
+
+
+CLASS_DECL_ACME const char *trace_category_name(enum_trace_category ecategory);
+
+CLASS_DECL_ACME const ::matter *trace_object(enum_trace_category ecategory);
 
 CLASS_DECL_ACME const char *topic_text(::matter *pobject);
 
-CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pobject);
+CLASS_DECL_ACME enum_trace_category object_trace_category(::matter *pobject);
 
 
 //
 //#define __alog(...) __tracef(__VA_ARGS__)
 //
-//#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define INFORMATION(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //
-//#define TRACE(...) INFO(__VA_ARGS__)
+//#define TRACE(...) INFORMATION(__VA_ARGS__)
 //
 
 
@@ -1947,9 +1978,9 @@ namespace sort
 inline bool is_null(const void * p, size_t s)
 {
 
-   const auto MAX = (size_t) (-1);
+   const auto maximum = (size_t) (-1);
 
-   return ((size_t) p) <= s || ((size_t) p) >= (MAX - s);
+   return ((size_t) p) <= s || ((size_t) p) >= (maximum - s);
 
 }
 
@@ -1961,9 +1992,9 @@ template < a_pointer POINTER >
 inline bool is_null(POINTER p)
 {
 
-   const auto MAX = (size_t) (-1) - 65536;
+   const auto maximum = (size_t) (-1) - 65536;
 
-   return ((size_t) p <= 65536) || ((size_t) p) >= (MAX);
+   return ((size_t) p <= 65536) || ((size_t) p) >= (maximum);
 
 }
 
@@ -2945,6 +2976,11 @@ template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
 
+class duration;
+
+
+#include "acme/parallelization/wait.h"
+
 #include "acme/parallelization/thread_parameter.h"
 
 #include "acme/platform/keep_true.h"
@@ -2986,6 +3022,9 @@ using wparam = c_number<iptr>;
 
 
 #include "acme/primitive/mathematics/math_clip.h"
+
+
+#include "acme/primitive/duration/_.h"
 
 
 #include "acme/primitive/datetime/_.h"
@@ -3246,6 +3285,9 @@ namespace factory
 } // namespace factory
 
 
+class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
+
+
 #include "acme/constant/parallelization.h"
 
 
@@ -3256,6 +3298,7 @@ namespace factory
 
 #include "acme/primitive/primitive/referenceable.h"
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"
 
@@ -3476,8 +3519,19 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/property_object.h"
 
 
-#include "acme/exception/_.h"
+#include "acme/primitive/primitive/enum_bitset.h"
 
+
+using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;
+
+
+CLASS_DECL_ACME task_bitset& task_flag();
+
+
+#include "acme/parallelization/keep_task_flag.h"
+
+
+#include "acme/exception/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"
@@ -3952,7 +4006,7 @@ class mq_base;
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/timer_item.h"
 #include "acme/platform/timer_array.h"
-#include "acme/platform/nano_timer.h"
+#include "acme/platform/nanosecond_timer.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_task.h"
 #include "acme/platform/timer_event.h"
@@ -4084,11 +4138,11 @@ namespace file
 struct lib_main_int
 {
 
-   int         m_iAny = 0;
-   ::millis    m_millisProcessAttach = 0;
-   ::millis    m_millisProcessDetach = 0;
-   ::millis    m_millisThreadAttach = 0;
-   ::millis    m_millisThreadDetach = 0;
+   int               m_iAny = 0;
+   ::duration        m_durationProcessAttach;
+   ::duration        m_durationProcessDetach;
+   ::duration        m_durationThreadAttach;
+   ::duration        m_durationThreadDetach;
 
 };
 
@@ -4424,11 +4478,11 @@ namespace std
    using complex = ::math::complex < T >;
 
 
-   template <class T> const T& MIN(const T& a,const T& b)
+   template <class T> const T& minimum(const T& a,const T& b)
    {
       return !(a > b) ? a : b;
    }
-   template <class T> const T& MAX(const T& a,const T& b)
+   template <class T> const T& maximum(const T& a,const T& b)
    {
       return !(a < b) ? a : b;
    }
@@ -4500,7 +4554,7 @@ template<typename T>
 inline string &to_json(string &str, const T &value, bool bNewLine)
 {
 
-   return str = __str(value);
+   return str = __string(value);
 
 }
 
@@ -4694,7 +4748,11 @@ DECLARE_ENUMERATION(e_element, enum_element);
 
 #include "acme/primitive/primitive/_impl.h"
 
+
 #include "acme/primitive/primitive/_papaya_impl.h"
+
+
+#include "acme/primitive/duration/integral/_impl.h"
 
 
 #include "acme/primitive/datetime/_impl.h"
@@ -4754,7 +4812,6 @@ DECLARE_ENUMERATION(e_element, enum_element);
 
 
 #include "acme/filesystem/filesystem/_impl.h"
-
 
 
 //#include "acme/database/_impl.h"

@@ -1,8 +1,63 @@
 #pragma once
 
 
-CLASS_DECL_ACME bool demangle(string & str, const char * psz);
-CLASS_DECL_ACME bool demangle(string & str);
+//CLASS_DECL_ACME bool demangle(string & str, const char * psz);
+inline void demangle(string & str);
+#ifdef WINDOWS
+inline const char * demangle_cstr(const char* psz)
+{
+
+   if (psz[0] == 'c' &&
+      psz[1] == 'l' &&
+      psz[2] == 'a' &&
+      psz[3] == 's' &&
+      psz[4] == 's' &&
+      psz[5] == ' ')
+   {
+
+      return psz + 6;
+
+   }
+   else if (psz[0] == 's' &&
+      psz[1] == 't' &&
+      psz[2] == 'r' &&
+      psz[3] == 'u' &&
+      psz[4] == 'c' &&
+      psz[5] == 't' &&
+      psz[6] == ' ')
+   {
+
+      return psz + 7;
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
+
+#else
+
+inline const char * demangle_cstr(const char* psz)
+{
+
+    return psz;
+
+}
+
+#endif
+
+
+inline void demangle(string& str)
+{
+
+   str = demangle_cstr(str);
+
+}
+
 
 namespace str
 {
@@ -68,7 +123,8 @@ public:
    type & operator = (const ::std::type_info & typeinfo)
    {
 
-      demangle(m_strName, typeinfo.name());
+      //demangle(m_strName, typeinfo.name());
+      m_strName = demangle_cstr(typeinfo.name());
 
       return *this;
 
@@ -96,11 +152,12 @@ public:
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-      string strName;
+//      string strName;
 
-      demangle(strName, ::type(typeinfo).name());
+  //    demangle(strName, ::type(typeinfo).name());
 
-      return m_strName == strName;
+      //return m_strName == strName;
+      return m_strName == demangle_cstr(typeinfo.name());
 
    }
 

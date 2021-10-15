@@ -51,11 +51,11 @@ namespace turboc
       string                  m_strNewHelloMultiverse;
       string                  m_strHelloMultiverse;
       bool                    m_bOkPending;
-      millis m_millisLastOk;
-      millis                   m_millisAnime;
+      ::duration m_durationLastOk;
+      ::duration                   m_durationAnime;
       bool                    m_bNewLayout;
-      millis m_millisLastFast;
-      ::u32                   m_millisFastAnime;
+      ::duration m_durationLastFast;
+      ::u32                   m_durationFastAnime;
       bool                    m_bFast;
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;
@@ -79,8 +79,8 @@ namespace turboc
       impact(::object * pobject);
       virtual ~impact();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void install_message_handling(::message::dispatch * pdispatch);

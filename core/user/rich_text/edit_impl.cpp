@@ -26,10 +26,10 @@ namespace user
       }
 
 
-      ::e_status edit_impl::initialize(::object * pobject)
+      ::e_status edit_impl::initialize_edit_impl(document * pdocument)
       {
 
-         auto estatus = ::user::rich_text::edit::initialize(pobject);
+         auto estatus = ::user::rich_text::edit::initialize(pdocument);
 
          if (!estatus)
          {
@@ -40,7 +40,16 @@ namespace user
 
          m_bComposing = false;
 
-         estatus = __construct_new(m_pdata);
+         m_pdata = __new(data);
+
+         estatus = m_pdata->initialize_data(pdocument);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
          m_bPendingSelectionChange = false;
 
@@ -105,7 +114,7 @@ namespace user
       void edit_impl::install_message_routing(::channel * pchannel)
       {
 
-         ::user::interaction::install_message_routing(pchannel);
+         ::user::show < edit >::install_message_routing(pchannel);
 
          MESSAGE_LINK(e_message_create, pchannel, this, &edit_impl::on_message_create);
          MESSAGE_LINK(e_message_destroy, pchannel, this, &edit_impl::on_message_destroy);
@@ -145,9 +154,18 @@ namespace user
 
          }
 
+         auto estatus = initialize_edit_impl(get_document());
+
+         if (!estatus)
+         {
+
+            pcreate->set_fail();
+
+            return;
+
+         }
+
          auto psession = get_session();
-
-
 
          m_pdata->set_mutex(mutex());
 
@@ -163,9 +181,9 @@ namespace user
 //#endif
 
 
-         SetTimer(100, 100, nullptr);
+         SetTimer(100, 100_ms, nullptr);
 
-         SetTimer(e_timer_redraw, 200, nullptr); // Caret
+         SetTimer(e_timer_redraw, 200_ms, nullptr); // Caret
 
       }
 
@@ -187,7 +205,7 @@ namespace user
             if (is_text_editable() && m_bEditable2)
             {
 
-               SetTimer(250, 500, nullptr); // Caret
+               SetTimer(250, 500_ms, nullptr); // Caret
 
             }
 
@@ -290,7 +308,7 @@ namespace user
          if (pformattool.is_set())
          {
 
-            m_pdata->on_selection_change(pformattool->m_formata[0]);
+            m_pdata->on_selection_change(pformattool->m_pformata->element_at(0));
 
             pformattool->update_data(false);
 
@@ -809,7 +827,7 @@ namespace user
 
                }
 
-               SetTimer(250, 500, nullptr); // Caret
+               SetTimer(250, 500_ms, nullptr); // Caret
 
             }
 
@@ -929,11 +947,11 @@ namespace user
                if (pformattool->m_eattribute & attribute_align)
                {
 
-                  box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_formata[0]->m_ealign);
+                  box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformata->element_at(0)->m_ealign);
 
                }
 
-               m_pdata->_001SetSelFontFormat(pformattool->m_formata[0], pformattool->m_eattribute);
+               m_pdata->_001SetSelFontFormat(pformattool->m_pformata->element_at(0), pformattool->m_eattribute);
 
                pformattool->m_eattribute.clear();
 
@@ -1231,12 +1249,18 @@ namespace user
          }
          else if (ptimer->m_uEvent == 500 || ptimer->m_uEvent == 501)
          {
+            
             if (ptimer->m_uEvent == 500)
             {
+               
                KillTimer(500);
-               SetTimer(501, 300, nullptr);
+               
+               SetTimer(501, 300_ms, nullptr);
+
             }
+
             key_to_char(m_pkeymessageLast);
+
          }
          else if (ptimer->m_uEvent == e_timer_redraw)
          {
@@ -2025,6 +2049,14 @@ namespace user
          }
 
          place(m_ppictureimpl->m_rectangle);
+
+      }
+
+
+      document * edit_impl::get_document()
+      {
+
+         return m_pdocument.cast < document >();
 
       }
 

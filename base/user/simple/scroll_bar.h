@@ -29,7 +29,7 @@ public:
    virtual void pre_translate_message(::message::message * pmessage) override;
    //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr) override;
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics);

@@ -45,7 +45,7 @@ dump_context & operator <<(dump_context & dumpcontext,::datetime::time_span time
 stream & operator << (stream & os, ::datetime::time_span span)
 {
 
-   os.write((i64)span.m_timeSpan);
+   os.write((i64)span.m_i);
 
    return os;
 
@@ -55,7 +55,7 @@ stream & operator << (stream & os, ::datetime::time_span span)
 stream & operator >> (stream & is, ::datetime::time_span & span)
 {
 
-   is.read((i64 &)span.m_timeSpan);
+   is.read((i64 &)span.m_i);
 
    return is;
 

@@ -678,6 +678,29 @@ namespace sqlite
 
    //}
 
+   string database::error1(const ::string& pszPrefix)
+   {
+
+      return "";
+
+   }
+
+
+   void database::trace_error1(const ::string& pszPrefix)
+   {
+
+
+   }
+
+
+   string database::query_error(const ::string& pszPrefix)
+   {
+
+      return "";
+
+   }
+
+
    ::e_status database::set_id_blob(string strKey, ::block block)
    {
 

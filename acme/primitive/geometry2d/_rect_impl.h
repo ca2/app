@@ -113,7 +113,7 @@
 //}
 //rectangle_i64::operator RECT_TEMPLATE() const
 //{
-//   return ::RECT_TEMPLATE((const RECTANGLE_I64&)* this);
+//   return ::rect_TEMPLATE((const RECTANGLE_I64&)* this);
 //}
 //TEMPLATE bool rectangle_i64::contains(POINT_I64 point_i32) const noexcept
 //{

@@ -26,8 +26,6 @@ namespace acme
    {
 
       m_bStopped = false;
-      m_nanosBeg = 0;
-      m_nanosEnd = 0;
 
    }
 
@@ -51,7 +49,7 @@ namespace acme
       
       m_bStopped = false; // reset stop flag
 
-      m_nanosBeg = get_nanos();
+      m_durationStart.Now();
 
    }
 
@@ -66,7 +64,7 @@ namespace acme
       
       m_bStopped = true; // set chronometer stopped flag
 
-      m_nanosEnd = get_nanos();
+      m_durationEnd.Now();
 
    }
 
@@ -76,105 +74,30 @@ namespace acme
    // compute elapsed time in micro-second resolution.
    // other getElapsedTime will call this first, then convert to correspond resolution.
    ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getElapsedTimeInMicroSec()
+   duration chronometer::elapsed()
    {
 
       if (!m_bStopped)
       {
 
-         m_nanosEnd = get_nanos();
+         stop();
 
       }
 
-      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1000.0;
+      return m_durationEnd - m_durationStart;
 
    }
 
 
 
-   ///////////////////////////////////////////////////////////////////////////////
-   // divide elapsedTimeInMicroSec by 1000
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getElapsedTimeInMilliSec()
+
+   duration chronometer::now()
    {
 
-      if (!m_bStopped)
-      {
-
-         m_nanosEnd = get_nanos();
-
-      }
-
-      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1'000'000.0;
+      return ::duration::now();
 
    }
 
-
-
-   ///////////////////////////////////////////////////////////////////////////////
-   // divide elapsedTimeInMicroSec by 1000000
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getElapsedTimeInSec()
-   {
-
-      if (!m_bStopped)
-      {
-
-         m_nanosEnd = get_nanos();
-
-      }
-
-      return (m_nanosEnd.m_i - m_nanosBeg.m_i) / 1'000'000'000.0;
-
-   }
-
-
-   ///////////////////////////////////////////////////////////////////////////////
-   // compute time in micro-second resolution.
-   // other getElapsedTime will call this first, then convert to correspond resolution.
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getTimeInMicroSec()
-   {
-
-      return _get_nanos() / 1'000.0;
-
-   }
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////
-   // divide TimeInMicroSec by 1000
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getTimeInMilliSec()
-   {
-
-      return _get_nanos() / 1'000'000.0;
-
-   }
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////
-   // divide TimeInMicroSec by 1000000
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getTimeInSec()
-   {
-
-      return _get_nanos() / 1'000'000'000.0;
-
-   }
-
-
-
-   ///////////////////////////////////////////////////////////////////////////////
-   // same as getElapsedTimeInSec()
-   ///////////////////////////////////////////////////////////////////////////////
-   double chronometer::getElapsedTime()
-   {
-
-      return this->getElapsedTimeInSec();
-
-   }
 
 
 } // namespace acme

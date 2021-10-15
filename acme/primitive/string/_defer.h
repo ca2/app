@@ -22,24 +22,24 @@
 
 //template < typename TYPE_CHAR >
 //template < typename TYPE >
-//inline string & string_base < TYPE_CHAR >::operator +=(const tostring < TYPE > & tostring) { return operator +=(::__str(tostring)); }
+//inline string & string_base < TYPE_CHAR >::operator +=(const tostring < TYPE > & tostring) { return operator +=(::__string(tostring)); }
 
 
 //template < typename TYPE_CHAR >
 //template < typename TYPE >
-//inline wstring & wstring::operator +=(const tostring < TYPE > & tostring) { return operator +=(::__str(tostring)); }
+//inline wstring & wstring::operator +=(const tostring < TYPE > & tostring) { return operator +=(::__string(tostring)); }
 
 
 //template < typename TYPE1, typename TYPE2 >
-//inline CLASS_DECL_ACME string operator + (const tostring < TYPE1 > & tostring1, const tostring < TYPE2 > & tostring2) { return __str(tostring1) + __str(tostring2); }
+//inline CLASS_DECL_ACME string operator + (const tostring < TYPE1 > & tostring1, const tostring < TYPE2 > & tostring2) { return __string(tostring1) + __string(tostring2); }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const ::string & str, const tostring < TYPE > & tostring) { return str + __str(tostring); }
+//inline CLASS_DECL_ACME string operator + (const ::string & str, const tostring < TYPE > & tostring) { return str + __string(tostring); }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const ::string & str) { return __str(tostring) + str; }
+//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const ::string & str) { return __string(tostring) + str; }
 
 
 //template < typename TYPE >
@@ -51,19 +51,19 @@
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const char * p) { return __str(tostring) + p; }
+//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const char * p) { return __string(tostring) + p; }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const char * p, const tostring < TYPE > & tostring) { return p + __str(tostring); }
+//inline CLASS_DECL_ACME string operator + (const char * p, const tostring < TYPE > & tostring) { return p + __string(tostring); }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const wchar_t * p) { return __str(tostring) + string(p); }
+//inline CLASS_DECL_ACME string operator + (const tostring < TYPE > & tostring, const wchar_t * p) { return __string(tostring) + string(p); }
 
 
 //template < typename TYPE >
-//inline CLASS_DECL_ACME wstring operator + (const wchar_t * p, const tostring < TYPE > & tostring) { return wstring(p) + wstring(__str(tostring)); }
+//inline CLASS_DECL_ACME wstring operator + (const wchar_t * p, const tostring < TYPE > & tostring) { return wstring(p) + wstring(__string(tostring)); }
 
 
 
@@ -121,7 +121,7 @@ namespace hex
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const TYPE & t)
 //{
 //
-//   return operator = (__str(t));
+//   return operator = (__string(t));
 //
 //}
 
@@ -131,7 +131,7 @@ namespace hex
 //inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const TYPE & t)
 //{
 //
-//   return operator += (__str(t));
+//   return operator += (__string(t));
 //
 //}
 
@@ -144,7 +144,7 @@ template < typename TYPE >
 inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYPE & t) const
 {
 
-   return this->operator + (__str(t));
+   return this->operator + (__string(t));
 
 }
 
@@ -168,7 +168,7 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
 
       s.exchange(id::e_type_empty, str);
 
-      ::str::to(stringable, (const string &) str);
+      ::from_string(stringable, (const string &) str);
 
    }
 

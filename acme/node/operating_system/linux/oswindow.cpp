@@ -631,7 +631,7 @@ bool oswindow_data::set_icon(::image * pimage)
    if(status != 0)
    {
 
-      //m_psystem->m_pacmefile->put_contents("/home/camilo/window.txt", __str((int)w->window()));
+      //m_psystem->m_pacmefile->put_contents("/home/camilo/window.txt", __string((int)w->window()));
       return false;
 
    }
@@ -1375,7 +1375,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
          #ifdef SET_WINDOW_POS_LOG
 
-         INFO("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
+         INFORMATION("XMoveResizeWindow (%d, %d) - (%d, %d)", x, y, cx, cy);
 
          #endif
 
@@ -1388,7 +1388,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
             #ifdef SET_WINDOW_POS_LOG
 
-            INFO("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
+            INFORMATION("Changing parameters... (%d, %d) - (%d, %d)", x, y, cx, cy);
 
             #endif
 
@@ -1432,7 +1432,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 //            if(!XChangeWindowAttributes(display(), window(), CWOverrideRedirect, &set))
 //            {
 //
-//               INFO("linux::interaction_impl::_native_create_window_ex failed to clear override_redirect");
+//               INFORMATION("linux::interaction_impl::_native_create_window_ex failed to clear override_redirect");
 //
 //            }
 //

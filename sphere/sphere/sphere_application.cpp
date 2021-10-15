@@ -845,7 +845,7 @@ namespace sphere
 
          //      ppane->set_title(pszTitle);
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 

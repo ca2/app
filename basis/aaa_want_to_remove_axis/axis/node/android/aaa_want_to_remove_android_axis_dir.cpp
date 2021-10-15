@@ -449,7 +449,7 @@ pacmedir->is(const ::string & strPath, ::aura::application * papp)
 
          strsize iFind = ::str::find_ci(".zip:", str);
 
-         if (thread_set(id_thread_zip_is_dir) && iFind >= 0 && iFind < iLast)
+         if (thread_set(e_task_flag_zip_is_dir) && iFind >= 0 && iFind < iLast)
          {
 
             bool bHasSubFolder = m_pziputil->has_sub_folder(papp, str);

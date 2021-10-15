@@ -11,9 +11,9 @@
    public:
 
 
-      routine();
+      routine() {}
+      ~routine() {}
 
-      ~routine();
 
       using ::function_pointer::function_pointer;
 

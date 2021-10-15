@@ -656,7 +656,7 @@ namespace filemanager
 
    string set_number_value(string strName, i64 iValue)
    {
-      string strValue = __str(iValue);
+      string strValue = __string(iValue);
       string strResult = strName;
       string strMask = get_number_mask(strName);
       strsize j = strValue.get_length() - 1;

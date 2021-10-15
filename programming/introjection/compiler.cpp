@@ -614,7 +614,7 @@ namespace introjection
 
       single_lock synchronouslock(plibrary->mutex());
 
-      if (!synchronouslock.lock(millis(0)))
+      if (!synchronouslock.lock(0_s))
       {
 
          synchronouslock.lock();
@@ -1178,7 +1178,7 @@ pacmedir->create("/::payload/tmp/ca2/intermediate");
       strLog= m_psystem->m_pacmefile->as_string(strClog);
 
 #else
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       while(::task_get_run())
       {

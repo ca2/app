@@ -32,9 +32,9 @@ class sync_object;
 
 #endif
 
-::u32 WaitForSingleObject(sync_object * pwaitable, ::u32 dwMilliseconds);
+::u32 WaitForSingleObject(sync_object * pwaitable, ::u32 dw::durations);
 
-::u32 WaitForSingleObjectEx(sync_object * pwaitable, ::u32 dwMilliseconds, int_bool bAlertable);
+::u32 WaitForSingleObjectEx(sync_object * pwaitable, ::u32 dw::durations, int_bool bAlertable);
 
 
 #endif

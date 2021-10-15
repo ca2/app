@@ -61,24 +61,6 @@ namespace user
 
       pfontlist->set_font_list_type(::write_text::font_list::type_single_column);
 
-      set_need_layout();
-
-      synchronous_lock synchronouslock(pfontlist->mutex());
-
-      auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
-
-      for (auto& item : pfontenumerationitema->ptra())
-      {
-
-         if (item.is_set())
-         {
-
-            add_string(item->m_strName, item->m_strName);
-
-         }
-
-      }
-
    }
 
 
@@ -86,6 +68,42 @@ namespace user
    {
 
    }
+
+
+   void font_combo_box::handle(::subject * psubject, ::context * pcontext)
+   {
+
+      if (psubject->m_id == id_font_enumeration)
+      {
+
+         __pointer(::user::font_list) pfontlist = m_plistbox;
+
+         synchronous_lock synchronouslock(pfontlist->mutex());
+
+         auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
+
+         for (auto & item : pfontenumerationitema->ptra())
+         {
+
+            if (item.is_set())
+            {
+
+               add_string(item->m_strName, item->m_strName);
+
+            }
+
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
+
+      ::user::combo_box::handle(psubject, pcontext);
+
+   }
+
 
 
 } //  namespace user

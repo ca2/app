@@ -276,365 +276,368 @@ namespace str
    }
 
 
-   inline void to(i8 & i, const ansichar * psz)
-   {
-
-      i = (i8) atoi(psz);
-
-   }
+} // namespace str
 
 
-   inline void to(i16 & i, const ansichar * psz)
-   {
-
-      i = (i16) atoi(psz);
-
-   }
-
-
-   inline void to(i32 & i, const ansichar * psz)
-   {
-
-      i = atoi(psz);
-
-   }
-
-
-   inline void to(i64 & i, const ansichar * psz)
-   {
-
-      i = atoll(psz);
-
-   }
-
-
-   inline void to(i32 & i, i32 iBase, const ansichar * psz)
-   {
-
-      i = ansi_to_i32(psz, nullptr, iBase);
-
-   }
-
-
-   inline void to(i64 & i, i32 iBase, const ansichar * psz)
-   {
-
-      i = ansi_to_i64(psz, nullptr, iBase);
-
-   }
-
-
-   inline void to(u8 & u, const ansichar * psz)
-   {
-
-      u = (u8) ansi_to_u32(psz, nullptr, 10);
-
-   }
-
-
-   inline void to(u16 & u, const ansichar * psz)
-   {
-
-      u = (u16) ansi_to_u32(psz, nullptr, 10);
-
-   }
-
-
-   inline void to(u32 & u, const ansichar * psz)
-   {
-
-      u = ansi_to_u32(psz, nullptr, 10);
-
-   }
-
-
-   inline void to(u64 & u, const ansichar * psz)
-   {
-
-      u = ansi_to_u64(psz, nullptr, 10);
-
-   }
-
-
-   inline void to(u32 & u, i32 iBase, const ansichar * psz)
-   {
-
-      u = ansi_to_u32(psz, nullptr, iBase);
-
-   }
-
-
-   inline void to(u64 & u, i32 iBase, const ansichar * psz)
-   {
-
-      u = ansi_to_u64(psz, nullptr, iBase);
-
-   }
-
-#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
-inline void to(long & l, const ansichar * psz)
+inline void from_string(i8 & i, const ansichar * psz)
 {
 
-   l = ansi_to_i64(psz, nullptr, 10);
+   i = (i8) atoi(psz);
+
+}
+
+
+inline void from_string(i16 & i, const ansichar * psz)
+{
+
+   i = (i16) atoi(psz);
+
+}
+
+
+inline void from_string(i32 & i, const ansichar * psz)
+{
+
+   i = atoi(psz);
+
+}
+
+
+inline void from_string(i64 & i, const ansichar * psz)
+{
+
+   i = atoll(psz);
+
+}
+
+
+inline void from_string(i32 & i, i32 iBase, const ansichar * psz)
+{
+
+   i = ansi_to_i32(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(i64 & i, i32 iBase, const ansichar * psz)
+{
+
+   i = ansi_to_i64(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(u8 & u, const ansichar * psz)
+{
+
+   u = (u8) ansi_to_u32(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u16 & u, const ansichar * psz)
+{
+
+   u = (u16) ansi_to_u32(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u32 & u, const ansichar * psz)
+{
+
+   u = ansi_to_u32(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u64 & u, const ansichar * psz)
+{
+
+   u = ansi_to_u64(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u32 & u, i32 iBase, const ansichar * psz)
+{
+
+   u = ansi_to_u32(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(u64 & u, i32 iBase, const ansichar * psz)
+{
+
+   u = ansi_to_u64(psz, nullptr, iBase);
+
+}
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
+inline void from_string(long & l, const ansichar * psz)
+{
+
+l = ansi_to_i64(psz, nullptr, 10);
 
 }
 #elif defined(WINDOWS)
-   inline void to(long & l, const ansichar * psz)
-   {
+inline void from_string(long & l, const ansichar * psz)
+{
 
-      l = ansi_to_i32(psz, nullptr, 10);
+   l = ansi_to_i32(psz, nullptr, 10);
 
-   }
+}
 #endif
 
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
 
-inline void to(long  & l, i32 iBase, const ansichar * psz)
+inline void from_string(long  & l, i32 iBase, const ansichar * psz)
 {
 
-   l = ansi_to_i64(psz, nullptr, iBase);
+l = ansi_to_i64(psz, nullptr, iBase);
 
 }
 #elif defined(WINDOWS)
-   inline void to(long & l, i32 iBase, const ansichar * psz)
-   {
+inline void from_string(long & l, i32 iBase, const ansichar * psz)
+{
 
-      l = ansi_to_i32(psz, nullptr, 10);
+   l = ansi_to_i32(psz, nullptr, 10);
 
-   }
+}
 #endif
 
-   inline void to(i32 & i, const wd16char * psz)
+inline void from_string(i32 & i, const wd16char * psz)
+{
+
+   i = wd16_to_i32(psz);
+
+}
+
+
+inline void from_string(i64 & i, const wd16char * psz)
+{
+
+   i = wd16_to_i64(psz);
+
+}
+
+
+inline void from_string(i32 & i, const wd32char * psz)
+{
+
+   i = wd32_to_i32(psz);
+
+}
+
+
+inline void from_string(i64 & i, const wd32char * psz)
+{
+
+   i = wd32_to_i64(psz);
+
+}
+
+
+inline void from_string(i32 & i, i32 iBase, const widechar * psz)
+{
+
+   i = wide_to_i32(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(i64 & i, i32 iBase, const widechar * psz)
+{
+
+   i = wide_to_i64(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(u32 & u, const widechar * psz)
+{
+
+   u = wide_to_u32(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u64 & u, const widechar * psz)
+{
+
+   u = wide_to_u64(psz, nullptr, 10);
+
+}
+
+
+inline void from_string(u32 & u, i32 iBase, const widechar * psz)
+{
+
+   u = wide_to_u32(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(u64 & u, i32 iBase, const widechar * psz)
+{
+
+   u = wide_to_u64(psz, nullptr, iBase);
+
+}
+
+
+inline void from_string(float & f, const ansichar * psz)
+{
+
+   f = strtof(psz, nullptr);
+
+}
+
+
+inline void from_string(double & d, const ansichar * psz)
+{
+
+   d = strtod(psz, nullptr);
+
+}
+
+
+inline void from_string(ansichar * sz, const ansichar * psz)
+{
+
+   strcpy(sz, psz);
+
+}
+
+
+inline void from_string(ansichar & ch, const ansichar* psz)
+{
+
+   ch = *psz;
+
+}
+
+
+inline void from_string(widechar & wch, const ansichar* psz)
+{
+
+   ::str::utf_to_utf(&wch, psz, utf8_inc(psz) - psz);
+
+}
+
+
+inline void from_string(wd16char * sz, const ansichar * psz)
+{
+
+   ::str::utf_to_utf(sz, psz);
+
+}
+
+
+inline void from_string(wd32char * sz, const ansichar * psz)
+{
+
+   ::str::utf_to_utf(sz, psz);
+
+}
+
+
+template < size_t n >
+inline  void           from_string(ansichar sz[n], const ansichar * psz)
+{
+
+   if (strlen(psz) >= n)
    {
 
-      i = wd16_to_i32(psz);
+      __throw(error_would_reach_buffer_limit);
 
    }
 
+   strcpy(sz, psz);
 
-   inline void to(i64 & i, const wd16char * psz)
+}
+
+template < size_t n >
+inline  void           from_string(wd16char sz[n], const ansichar * psz)
+{
+
+   if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
-      i = wd16_to_i64(psz);
+      __throw(error_would_reach_buffer_limit);
 
    }
 
+   ::str::utf_to_utf(sz, psz);
 
-   inline void to(i32 & i, const wd32char * psz)
+}
+
+template < size_t n >
+inline  void           from_string(wd32char sz[n], const ansichar * psz)
+{
+
+   if (::str::utf_to_utf_length(sz, psz) >= n)
    {
 
-      i = wd32_to_i32(psz);
+      __throw(error_would_reach_buffer_limit);
 
    }
 
+   ::str::utf_to_utf(sz, psz);
 
-   inline void to(i64 & i, const wd32char * psz)
-   {
+}
 
-      i = wd32_to_i64(psz);
 
-   }
+inline void from_string(::id & id, const ansichar * psz)
+{
 
+   id = psz;
 
-   inline void to(i32 & i, i32 iBase, const widechar * psz)
-   {
+}
 
-      i = wide_to_i32(psz, nullptr, iBase);
 
-   }
+inline void from_string(::matter & matter, const ansichar * psz)
+{
 
+   var_stream stream;
 
-   inline void to(i64 & i, i32 iBase, const widechar * psz)
-   {
+   stream.m_ppayload->parse_json(psz);
 
-      i = wide_to_i64(psz, nullptr, iBase);
+   matter.exchange(stream);
 
-   }
+}
 
 
-   inline void to(u32 & u, const widechar * psz)
-   {
+template < typename TYPE >
+inline void to_string(string & str, const TYPE & t)
+{
 
-      u = wide_to_u32(psz, nullptr, 10);
+   str = t.get_string();
 
-   }
+}
 
 
-   inline void to(u64 & u, const widechar * psz)
-   {
+//inline void to_string(string & str, const matter & t)
+//{
 
-      u = wide_to_u64(psz, nullptr, 10);
+//   auto len = t.sz_len();
 
-   }
+//   auto psz = str.get_string_buffer(len);
 
+//   t.to_sz(psz, len);
 
-   inline void to(u32 & u, i32 iBase, const widechar * psz)
-   {
+//   str.release_string_buffer(len);
 
-      u = wide_to_u32(psz, nullptr, iBase);
-
-   }
-
-
-   inline void to(u64 & u, i32 iBase, const widechar * psz)
-   {
-
-      u = wide_to_u64(psz, nullptr, iBase);
-
-   }
-
-
-   inline void to(float & f, const ansichar * psz)
-   {
-
-      f = strtof(psz, nullptr);
-
-   }
-
-
-   inline void to(double & d, const ansichar * psz)
-   {
-
-      d = strtod(psz, nullptr);
-
-   }
-
-
-   inline void to(ansichar * sz, const ansichar * psz)
-   {
-
-      strcpy(sz, psz);
-
-   }
-
-
-   inline void to(ansichar & ch, const ansichar* psz)
-   {
-
-      ch = *psz;
-
-   }
-
-
-   inline void to(widechar & wch, const ansichar* psz)
-   {
-
-      utf_to_utf(&wch, psz, utf8_inc(psz) - psz);
-
-   }
-
-
-   inline void to(wd16char * sz, const ansichar * psz)
-   {
-
-      utf_to_utf(sz, psz);
-
-   }
-
-
-   inline void to(wd32char * sz, const ansichar * psz)
-   {
-
-      utf_to_utf(sz, psz);
-
-   }
-
-
-   template < size_t n >
-   inline  void           to(ansichar sz[n], const ansichar * psz)
-   {
-
-      if (strlen(psz) >= n)
-      {
-
-         __throw(error_would_reach_buffer_limit);
-
-      }
-
-      strcpy(sz, psz);
-
-   }
-
-   template < size_t n >
-   inline  void           to(wd16char sz[n], const ansichar * psz)
-   {
-
-      if (utf_to_utf_length(sz, psz) >= n)
-      {
-
-         __throw(error_would_reach_buffer_limit);
-
-      }
-
-      utf_to_utf(sz, psz);
-
-   }
-
-   template < size_t n >
-   inline  void           to(wd32char sz[n], const ansichar * psz)
-   {
-
-      if (utf_to_utf_length(sz, psz) >= n)
-      {
-
-         __throw(error_would_reach_buffer_limit);
-
-      }
-
-      utf_to_utf(sz, psz);
-
-   }
-
-
-   inline void to(::id & id, const ansichar * psz)
-   {
-
-      id = psz;
-
-   }
-
-
-   inline void to(::matter & matter, const ansichar * psz)
-   {
-
-      var_stream stream;
-
-      stream.m_ppayload->parse_json(psz);
-
-      matter.exchange(stream);
-
-   }
-
-
-   template < typename TYPE >
-   inline void from(string & str, const TYPE & t)
-   {
-
-      str = t.to_string();
-
-   }
-
-
-   //inline void from(string & str, const matter & t)
-   //{
-
-   //   auto len = t.sz_len();
-
-   //   auto psz = str.get_string_buffer(len);
-
-   //   t.to_sz(psz, len);
-
-   //   str.release_string_buffer(len);
-
-   //}
+//}
 
 
 //#ifdef _UWP
 //
 //
-//   inline void from(string& str, Platform::String ^ strSource)
+//   inline void to_string(string& str, Platform::String ^ strSource)
 //   {
 //
 //      str = strSource->Begin();
@@ -643,135 +646,121 @@ inline void to(long  & l, i32 iBase, const ansichar * psz)
 //
 //#endif
 
-   inline void from(string & str, const matter & o)
+inline void to_string(string & str, const matter & o)
+{
+
+   auto len = o.sz_len();
+
+   auto psz = str.get_string_buffer(len);
+
+   o.to_sz(psz, len);
+
+   str.release_string_buffer();
+
+}
+
+
+//inline void to_string(string & str, const matter & o)
+//{
+
+//   o.to_string(str);
+
+//}
+
+
+inline void to_string(string & str, const ::id & id)
+{
+
+   id.to_string(str);
+
+}
+
+
+inline void to_string(string & str, const ::wd16string & wd16str)
+{
+
+   str = wd16str;
+
+}
+
+
+inline void to_string(string & str, const ::wd32string & wd32str)
+{
+
+   str = wd32str;
+
+}
+
+
+CLASS_DECL_ACME void to_string(string & str, const ::string_stream & strstream);
+
+
+CLASS_DECL_ACME void to_string(string & str, const ::text_stream & strstream);
+
+
+inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2)
+{
+
+   if (str1.is_empty())
    {
 
-      auto len = o.sz_len();
-
-      auto psz = str.get_string_buffer(len);
-
-      o.to_sz(psz, len);
-
-      str.release_string_buffer();
-
-   }
-
-
-   //inline void from(string & str, const matter & o)
-   //{
-
-   //   o.to_string(str);
-
-   //}
-
-
-   inline void from(string & str, const ::id & id)
-   {
-
-      id.to_string(str);
-
-   }
-
-
-   inline void from(string & str, const ::wd16string & wd16str)
-   {
-
-      str = wd16str;
-
-   }
-
-
-   inline void from(string & str, const ::wd32string & wd32str)
-   {
-
-      str = wd32str;
-
-   }
-
-
-   CLASS_DECL_ACME void from(string & str, const ::string_stream & strstream);
-
-
-   CLASS_DECL_ACME void from(string & str, const ::text_stream & strstream);
-
-   inline string _001Concat(const ::string & str1, const ::string & strMid, const ::string & str2)
-   {
-
-      if (str1.is_empty())
+      if (str2.is_empty())
       {
 
-         if (str2.is_empty())
-         {
-
-            return "";
-
-         }
-         else
-         {
-
-            return str2;
-
-         }
-
-      }
-      else if (str2.is_empty())
-      {
-
-         return str1;
+         return "";
 
       }
       else
       {
 
-         return str1 + strMid + str2;
+         return str2;
 
       }
 
    }
+   else if (str2.is_empty())
+   {
 
-} // namespace str
+      return str1;
+
+   }
+   else
+   {
+
+      return str1 + strMid + str2;
+
+   }
+
+}
 
 
 
 
 
-
-#pragma once
-
-
-
-
-namespace str
+template < typename T >
+inline string string_from_int(const T& t)
 {
 
+   string str;
 
-   template < typename T >
-   inline string from_int(const T& t)
-   {
+   to_string(str, (i64)t);
 
-      string str;
+   return str;
 
-      from(str, (i64)t);
-
-      return str;
-
-   }
+}
 
 
-   template < typename T >
-   inline string from_u(const T& t)
-   {
+template < typename T >
+inline string string_from_u(const T& t)
+{
 
-      string str;
+   string str;
 
-      from(str, (u64)t);
+   to_string(str, (u64)t);
 
-      return str;
+   return str;
 
-   }
-
-
-} // namespace str
+}
 
 
 //
@@ -1171,8 +1160,8 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 
 
 
-namespace str
-{
+// namespace str
+// {
 
 
    //inline void from(string & str, const wstring & wstr)
@@ -1190,80 +1179,80 @@ namespace str
 //}
 
 
-   inline void from(string& str, const i16& i)
-   {
+inline void to_string(string& str, const i16& i)
+{
 
-      str = i64toa_dup(i);
+   str = i64toa_dup(i);
 
-   }
-
-
-   inline void from(string& str, const u16& u)
-   {
-
-      str = ui64toa_dup(u);
-
-   }
+}
 
 
-   inline void from(string& str, const i32& i)
-   {
+inline void to_string(string& str, const u16& u)
+{
 
-      str = i64toa_dup(i);
+   str = ui64toa_dup(u);
 
-   }
-
-
-   inline void from(string& str, const u32& u)
-   {
-
-      str = ui64toa_dup(u);
-
-   }
+}
 
 
-   inline void from(string& str, const i64& i)
-   {
+inline void to_string(string& str, const i32& i)
+{
 
-      str = i64toa_dup(i);
+   str = i64toa_dup(i);
 
-   }
+}
 
 
-   inline void from(string& str, const u64& u)
-   {
+inline void to_string(string& str, const u32& u)
+{
 
-      str = ui64toa_dup(u, 10);
+   str = ui64toa_dup(u);
 
-   }
+}
+
+
+inline void to_string(string& str, const i64& i)
+{
+
+   str = i64toa_dup(i);
+
+}
+
+
+inline void to_string(string& str, const u64& u)
+{
+
+   str = ui64toa_dup(u, 10);
+
+}
 
 
 #if !defined(WINDOWS) && !defined(LINUX)
 
 
-   inline void from(string& str, const unsigned long & ul)
-   {
+inline void to_string(string& str, const unsigned long & ul)
+{
 
-      str = ui64toa_dup(ul, 10);
+   str = ui64toa_dup(ul, 10);
 
-   }
+}
 
 #endif
 
-   CLASS_DECL_ACME void from(string& str, const float& f);
+CLASS_DECL_ACME void to_string(string& str, const float& f);
 
 
-   CLASS_DECL_ACME void from(string& str, const double& d);
+CLASS_DECL_ACME void to_string(string& str, const double& d);
 
 
 #if defined(ANDROID) || defined(RASPBIAN)
 
-   inline void from(string& str, const long int& i)
-   {
+inline void to_string(string& str, const long int& i)
+{
 
-      str = i64toa_dup(i);
+   str = i64toa_dup(i);
 
-   }
+}
 
 #endif
 
@@ -1272,38 +1261,38 @@ namespace str
 #ifdef WINDOWS
 
 
-   inline void from(string & str, const long & l)
-   {
+inline void to_string(string & str, const long & l)
+{
 
-      str = i64toa_dup(l);
+   str = i64toa_dup(l);
 
-   }
+}
 
 
 
-   inline void from(string & str, const unsigned long &ul)
-   {
+inline void to_string(string & str, const unsigned long &ul)
+{
 
-      str = ui64toa_dup(ul);
+   str = ui64toa_dup(ul);
 
-   }
+}
 
 
 #elif defined(__APPLE__)
 
 
-   inline void from(string& str, const long& l)
-   {
+inline void to_string(string& str, const long& l)
+{
 
-      str = i64toa_dup(l);
+   str = i64toa_dup(l);
 
-   }
+}
 
 
 #endif
 
 
-} // namespace str
+//} // namespace str
 
 
 //#if defined(_UWP) && defined(__cplusplus_winrt)
@@ -1371,46 +1360,50 @@ namespace str
 //}
 //
 
-namespace str
+// namespace str
+// {
+
+inline CLASS_DECL_ACME string string_from_strdup(const ansichar* psz)
 {
 
-   inline CLASS_DECL_ACME string from_strdup(const ansichar* psz)
+   if (psz == nullptr)
    {
 
-      if (psz == nullptr)
-      {
-
-         return "";
-
-      }
-
-      string str;
-
-      try
-      {
-
-         str = psz;
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         ::free((void*)psz);
-
-      }
-      catch (...)
-      {
-
-      }
-
-      return str;
+      return "";
 
    }
+
+   string str;
+
+   try
+   {
+
+      str = psz;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   try
+   {
+
+      ::free((void*)psz);
+
+   }
+   catch (...)
+   {
+
+   }
+
+   return str;
+
+}
+
+
+namespace str
+{
 
 
    inline strsize utf8_dec_len(const ansichar* pszBeg, const ansichar* psz)

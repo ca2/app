@@ -11,7 +11,7 @@ namespace filemanager
    operation_list_view::operation_list_view()
    {
 
-      m_millisLastUpdate.Now();
+      m_durationLastUpdate.Now();
 
    }
 
@@ -97,18 +97,19 @@ namespace filemanager
 
       m_pmeshcache = m_puserlistcache;
 
-      SetTimer(123,500,nullptr);
+      SetTimer(123,500_ms,nullptr);
 
    }
+
 
    void operation_list_view::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
-         /*if(m_millisLastUpdate.elapsed() > 500)
+         /*if(m_durationLastUpdate.elapsed() > 500)
          {
-         m_millisLastUpdate= ::millis::now();
+         m_durationLastUpdate= ::duration::now();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
          }*/
@@ -122,10 +123,10 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(iOperation);
 
-      if(bFinal || m_millisLastUpdate.elapsed() > 200)
+      if(bFinal || m_durationLastUpdate.elapsed() > 200_ms)
       {
 
-         m_millisLastUpdate= ::millis::now();
+         m_durationLastUpdate= ::duration::now();
 
          _001OnUpdateItemCount();
 

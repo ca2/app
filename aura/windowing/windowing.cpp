@@ -657,10 +657,10 @@ namespace windowing
    }
 
 
-   ::e_status windowing::windowing_sync(const ::duration & duration, const ::routine & routine)
+   ::e_status windowing::windowing_send(const ::routine & routine)
    {
 
-      auto estatus = __sync_routine(duration, this, &windowing::windowing_branch, routine);
+      auto estatus = __send_routine(this, &windowing::windowing_post, routine);
 
       if(!estatus)
       {
@@ -674,7 +674,7 @@ namespace windowing
    }
 
 
-   ::e_status windowing::windowing_branch(const ::routine & routine)
+   ::e_status windowing::windowing_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();

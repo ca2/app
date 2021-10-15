@@ -771,7 +771,7 @@ break_click:;
          if (echeck == ::check_checked)
          {
 
-            string str(pinteraction->m_setValue[::check_checked]);
+            string str(pinteraction->m_setValue[::check_checked].get_string());
 
             if(str.has_char())
             {
@@ -790,7 +790,7 @@ break_click:;
          else if (echeck == ::check_unchecked)
          {
 
-            string str (pinteraction->m_setValue[::check_unchecked]);
+            string str (pinteraction->m_setValue[::check_unchecked].get_string());
 
             if (str.has_char())
             {
@@ -809,7 +809,7 @@ break_click:;
          else
          {
 
-            string str(pinteraction->m_setValue[::check_tristate]);
+            string str(pinteraction->m_setValue[::check_tristate].get_string());
 
             if (str.has_char())
             {

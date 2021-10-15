@@ -31,7 +31,7 @@ public:
    void erase_all()
    {
 
-      for(auto & p : this->ptra())
+      for(auto & p : *this)
       {
 
          delete p;

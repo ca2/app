@@ -70,12 +70,12 @@ void task_pool::on_timer(enum_timer etimer)
 void task_pool::_timer_task(enum_timer etimer, const duration & duration)
 {
 
-   ::millis millis = duration.millis();
+   class ::wait wait = duration;
 
    while (true)
    {
 
-      if (!task_sleep(millis))
+      if (!task_sleep(wait))
       {
 
          break;

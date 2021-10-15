@@ -18,7 +18,7 @@ namespace app_message_box
 
       m_dBreathPeriod = 60.0;
 
-      m_millisStart.Now();
+      m_durationStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -141,7 +141,7 @@ namespace app_message_box
 
          }
 
-         double time = m_millisStart.elapsed().m_i / 1'000.0;
+         double time = m_durationStart.elapsed().floating_second().m_d;
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 

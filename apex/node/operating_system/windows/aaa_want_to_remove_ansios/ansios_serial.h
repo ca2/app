@@ -47,9 +47,9 @@ namespace serial {
 using serial::serial_exception;
 using serial::io_exception;
 
-class MillisecondTimer {
+class ::durationTimer {
 public:
-  MillisecondTimer(const ::u32 millis);
+  ::durationTimer(const ::u32 ::duration);
   int64_t remaining();
 
 private:

@@ -52,7 +52,7 @@ namespace write_text
 
       ::rectangle_i32                           m_rectangleMargin;
       int                                       m_iBaseSizeLayout;
-      millis                                    m_millisLastLayout;
+      ::duration                                    m_durationLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       int_array                                 m_iaSize;
@@ -67,7 +67,7 @@ namespace write_text
       ~font_list() override;
 
 
-      virtual ::e_status initialize_font_list(::user::interaction * puserinteraction);
+      ::e_status initialize(::object * pobject) override;
 
       //virtual void on_subject(::subject * psubject) override;
 

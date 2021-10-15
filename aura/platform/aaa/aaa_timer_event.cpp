@@ -15,10 +15,10 @@ timer_event::~timer_event()
 
 }
 
-bool timer_event::wait(int millis)
+bool timer_event::wait(int ::duration)
 {
 
-   start(millis,false);
+   start(::duration,false);
 
    m_ev.wait();
 

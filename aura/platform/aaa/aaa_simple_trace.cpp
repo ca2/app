@@ -170,7 +170,7 @@ pacmedir->system() / "memory_counters";
 
          auto pacmedir = psystem->m_pacmedir;
 
-pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
+pacmedir->system() / "memory_counters" / strModule.title() / __string(getpid());
 
 #endif
 
@@ -189,7 +189,7 @@ simple_trace::simple_trace()
 
 #ifdef _DEBUG
 
-   //INFO("Starting Simple Alog");
+   //INFORMATION("Starting Simple Alog");
 
 #endif
 
@@ -199,7 +199,7 @@ simple_trace::simple_trace()
 simple_trace::~simple_trace()
 {
 
-   //INFO("Ending Simple Alog");
+   //INFORMATION("Ending Simple Alog");
 
 }
 

@@ -550,10 +550,10 @@ void task::kick_idle()
 // }
 
 
-// CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
+// CLASS_DECL_ACME bool __task_sleep(task* pthread, ::duration ::duration)
 // {
 
-//    if (millis.m_i < 1000)
+//    if (::duration.m_i < 1000)
 //    {
 
 //       if (!pthread->task_get_run())
@@ -563,15 +563,15 @@ void task::kick_idle()
 
 //       }
 
-//       sleep(millis);
+//       sleep(::duration);
 
 //       return pthread->task_get_run();
 
 //    }
 
-//    auto iTenths = millis.m_i / 10;
+//    auto iTenths = ::duration.m_i / 10;
 
-//    auto iMillis = millis.m_i % 10;
+//    auto iMillis = ::duration.m_i % 10;
 
 //    try
 //    {
@@ -605,7 +605,7 @@ void task::kick_idle()
 //       //while(iTenths > 0)
 //       //{
 
-//       pthread->m_pevSleep->wait(millis);
+//       pthread->m_pevSleep->wait(::duration);
 
 //       if (!pthread->task_get_run())
 //       {
@@ -658,10 +658,10 @@ void task::kick_idle()
 // }
 
 
-// CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_object* psync)
+// CLASS_DECL_ACME bool __task_sleep(task* pthread, ::duration ::duration, synchronization_object* psync)
 // {
 
-//    if (millis.m_i < 1000)
+//    if (::duration.m_i < 1000)
 //    {
 
 //       if (!pthread->task_get_run())
@@ -671,15 +671,15 @@ void task::kick_idle()
 
 //       }
 
-//       psync->wait(millis);
+//       psync->wait(::duration);
 
 //       return pthread->task_get_run();
 
 //    }
 
-//    auto iTenths = millis.m_i / 100;
+//    auto iTenths = ::duration.m_i / 100;
 
-//    auto iMillis = millis.m_i % 100;
+//    auto iMillis = ::duration.m_i % 100;
 
 //    try
 //    {
@@ -710,7 +710,7 @@ void task::kick_idle()
 // }
 
 
-// CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
+// CLASS_DECL_ACME bool task_sleep(::duration ::duration, synchronization_object* psync)
 // {
 
 //    auto pthread = ::get_task();
@@ -721,14 +721,14 @@ void task::kick_idle()
 //       if (::is_null(psync))
 //       {
 
-//          if (__os(millis) == U32_INFINITE_TIMEOUT)
+//          if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //          {
 
 //          }
 //          else
 //          {
 
-//             ::sleep(millis);
+//             ::sleep(::duration);
 
 //          }
 
@@ -736,7 +736,7 @@ void task::kick_idle()
 //       else
 //       {
 
-//          if (__os(millis) == U32_INFINITE_TIMEOUT)
+//          if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //          {
 
 //             return psync->lock();
@@ -745,7 +745,7 @@ void task::kick_idle()
 //          else
 //          {
 
-//             return psync->lock(millis);
+//             return psync->lock(::duration);
 
 //          }
 
@@ -758,7 +758,7 @@ void task::kick_idle()
 //    if (::is_null(psync))
 //    {
 
-//       if (__os(millis) == U32_INFINITE_TIMEOUT)
+//       if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //       {
 
 //          return __task_sleep(pthread);
@@ -767,7 +767,7 @@ void task::kick_idle()
 //       else
 //       {
 
-//          return __task_sleep(pthread, millis);
+//          return __task_sleep(pthread, ::duration);
 
 //       }
 
@@ -775,7 +775,7 @@ void task::kick_idle()
 //    else
 //    {
 
-//       if (__os(millis) == U32_INFINITE_TIMEOUT)
+//       if (__os(::duration) == U32_INFINITE_TIMEOUT)
 //       {
 
 //          return __task_sleep(pthread, psync);
@@ -784,7 +784,7 @@ void task::kick_idle()
 //       else
 //       {
 
-//          return __task_sleep(pthread, millis, psync);
+//          return __task_sleep(pthread, ::duration, psync);
 
 //       }
 

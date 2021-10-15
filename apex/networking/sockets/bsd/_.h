@@ -11,14 +11,14 @@
 #endif
 
 
-namespace str
-{
+// namespace str
+// {
 
 
-   CLASS_DECL_APEX void from(string & str, const struct sockaddr & sockaddr);
+CLASS_DECL_APEX void to_string(string & str, const struct sockaddr & sockaddr);
 
 
-} // namespace str
+// } // namespace str
 
 
 #ifndef _RUN_DP

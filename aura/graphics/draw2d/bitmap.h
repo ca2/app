@@ -26,7 +26,7 @@ namespace draw2d
       bitmap();
       virtual ~bitmap();
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       template < typename POINTER >
       inline POINTER get_os_data(i8 i = 0) const

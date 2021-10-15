@@ -192,15 +192,15 @@ inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringabl
 
 
 template < >
-inline string __str(const ::payload & payload) { return payload; }
+inline string __string(const ::payload & payload) { return payload; }
 
 
 template < >
-inline string __str(const ::file::path & path) { return path.c_str(); }
+inline string __string(const ::file::path & path) { return path.c_str(); }
 
 
 template < >
-inline string __str(const ::property & property) { return property; }
+inline string __string(const ::property & property) { return property; }
 
 
 #include "___ch_impl.h"

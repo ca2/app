@@ -593,8 +593,8 @@ namespace user
       if (m_pimpactdata != nullptr)
       {
 
-         if (m_pimpactdata->m_eflag & ::user::e_flag_hide_all_others_on_show
-            || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
+         if (m_pimpactdata->m_eflag.has(::user::e_flag_hide_all_others_on_show)
+            || m_pimpactdata->m_eflag.has(::user::e_flag_hide_topic_on_show))
          {
 
             ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
@@ -947,18 +947,18 @@ namespace user
 
          {
 
-            millis t1 = millis::now();
+            ::duration t1 = ::duration::now();
 
             _001DrawThis(pgraphics);
 
-            millis d1 = t1.elapsed();
+            ::duration d1 = t1.elapsed();
 
-            if(d1 > 50)
+            if(d1 > 50_ms)
             {
 
                string strType = type_name();
 
-               CINFO(prodevian)("(more than 50ms) "+strType+"::_000DrawThis took " + __str(d1) + ".\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 
             }
 

@@ -30,7 +30,7 @@ application_exit::~application_exit()
 
    m_bProcessingApplicationExitRequest = true;
 
-   post(__routine([this]()
+   post_routine(__routine([this]()
       {
 
          try

@@ -2170,6 +2170,9 @@
     <ClCompile Include="networking\ftp\output_stream.cpp">
       <Filter>Source Files\networking\ftp</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\main_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">

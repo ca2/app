@@ -11,17 +11,17 @@ namespace userex
    public:
 
 
-      millis            m_millisStart;
-      millis            m_millisDelay;
-      id                m_idResponse;
-      int               m_iSecond;
+      ::duration              m_durationStart;
+      ::duration              m_durationDelay;
+      id                      m_idResponse;
+      ::integral_second       m_second;
 
 
       wait_message_dialog();
-      virtual ~wait_message_dialog();
+      ~wait_message_dialog() override;
 
 
-      //virtual void install_message_routing(::channel * pchannel) override;
+      //void install_message_routing(::channel * pchannel) override;
 
       virtual void on_show(const ::string & pszMatter) override;
 
@@ -33,7 +33,7 @@ namespace userex
 
       virtual bool on_timeout_check();
       virtual bool on_timeout();
-      virtual void on_timer_soft_reload(millis tickTimeout);
+      virtual void on_timer_soft_reload(::duration tickTimeout);
 
       
       //virtual void handle(::subject * psubject, ::context * pcontext) override;

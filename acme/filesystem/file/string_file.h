@@ -102,7 +102,7 @@
       }
 
 
-      string to_string() const override;
+      string get_string() const override;
 
 
       string_file & operator += (const ::string & str)

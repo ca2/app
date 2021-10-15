@@ -13,7 +13,7 @@ public:
    simple_list_view();
    virtual ~simple_list_view();
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    oswindow GetHandle();
    __pointer(::user::interaction) OnDrawInterfaceGetWnd();
@@ -21,8 +21,8 @@ public:
    virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
    virtual bool pre_create_window(::user::system * pusersystem);
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
 };

@@ -198,8 +198,8 @@ namespace user
       virtual ~control_bar();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       // for styles specific to ::user::control_bar
@@ -252,7 +252,7 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(i32 nElements, i32 cbElement);
       virtual bool SetStatusText(i32 nHit);
-      void ResetTimer(::u32 nEvent, ::u32 nTime);
+      void ResetTimer(::u32 nEvent, const ::duration & duration);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 
@@ -277,7 +277,7 @@ namespace user
       //   DECLARE_MESSAGE_HANDLER(_001OnPaint);
       //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       friend class ::user::frame_window;
       friend class BaseDockBar;

@@ -8,7 +8,7 @@
 namespace ansios
 {
 
-   unsigned long MillisecondCounter()
+   unsigned long ::durationCounter()
    {
       timeval tv;
       gettimeofday(&tv, 0);

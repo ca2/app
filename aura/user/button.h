@@ -86,7 +86,7 @@ namespace user
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics);

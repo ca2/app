@@ -128,7 +128,7 @@ m_bSnLauncheeSetup = false;
 //m_pappParent = nullptr;
 m_bMessageThread = true;
 m_bSimpleMessageLoop = false;
-m_ethreadClose = thread_none;
+m_ethreadcontextClose = e_thread_context_none;
 
 //m_puiMainContainer = nullptr;
 
@@ -200,7 +200,7 @@ m_bInterprocessIntercommunication = false;
 // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
 //::increment_reference_count(this);
 
-srand((u32) ::_get_nanos());
+srand((u32) get_integral_nanosecond().m_i);
 
 m_bService = false;
 
@@ -345,7 +345,7 @@ pnode->set_application_menu(m_papplicationmenu, this);
 }
 
 
-::object * application::parent_property_set_holder() const
+::property_object * application::parent_property_set_holder() const
 {
 
    return nullptr;
@@ -829,10 +829,10 @@ handle_exception(e);
 }
 
 // Verry Sory for the per request overhead here for the needed information of only first request
-if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
+if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
 {
 
-psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
 }
 
@@ -1297,7 +1297,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //      return ::thread::main();
 //
 ////
-////      INFO("apex::application::main");
+////      INFORMATION("apex::application::main");
 ////
 ////      try
 ////      {
@@ -1309,7 +1309,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         if(m_iErrorCode != 0)
 //////         {
 //////
-//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __string(m_iErrorCode));
 //////
 //////            ::output_debug_string("application::main on_run termination failure\n");
 //////
@@ -1341,33 +1341,33 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ::e_status application::init_thread()
 {
 
-try
-{
+   try
+   {
 
-if (!pre_run())
-{
+      if (!pre_run())
+      {
 
-return false;
+         return false;
 
-}
+      }
 
-}
-catch (const ::exception & e)
-{
+   }
+   catch (const ::exception & e)
+   {
 
-handle_exception(e);
+      handle_exception(e);
 
-return false;
+      return false;
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-return false;
+      return false;
 
-}
+   }
 
-return true;
+   return true;
 
 }
 
@@ -1375,22 +1375,22 @@ return true;
 void application::term_thread()
 {
 
-INFO("apex::application::term_thread");
+   INFORMATION("apex::application::term_thread");
 
-m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
-try
-{
+   try
+   {
 
-pos_run();
+      pos_run();
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-}
+   }
 
-::thread::term_thread();
+   ::thread::term_thread();
 
 }
 
@@ -1398,85 +1398,85 @@ catch (...)
 ::e_status application::pre_run()
 {
 
-INFO("apex::application::pre_run");
+   INFORMATION("apex::application::pre_run");
 
-try
-{
+   try
+   {
 
-m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
-if(!application_pre_run())
-{
+      if(!application_pre_run())
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return false;
+         return false;
 
-}
+      }
 
-//    if(!check_install())
-//    {
+      //    if(!check_install())
+      //    {
 
-//       m_bReady = true;
+      //       m_bReady = true;
 
-//       return false;
+      //       return false;
 
-//    }
+      //    }
 
-//         if(!is_system() && !is_session())
-//         {
-//
-//            if(!is_installed())
-//            {
-//
-//
-//            }
-//
-//         }
+      //         if(!is_system() && !is_session())
+      //         {
+      //
+      //            if(!is_installed())
+      //            {
+      //
+      //
+      //            }
+      //
+      //         }
 
-//xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-auto estatus = on_before_launching();
+      auto estatus = on_before_launching();
 
-if(!estatus)
-{
+      if(!estatus)
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return estatus;
+         return estatus;
 
-}
+      }
 
-m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
-if (!os_native_bergedge_start())
-{
+      if (!os_native_bergedge_start())
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return false;
+         return false;
 
-}
+      }
 
-INFO("apex::application::pre_run success");
+      INFORMATION("apex::application::pre_run success");
 
-return true;
+      return true;
 
-}
-catch (const ::exception & e)
-{
+   }
+   catch (const ::exception & e)
+   {
 
-handle_exception(e);
+      handle_exception(e);
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-INFO("apex::application::pre_run exception.4");
+      INFORMATION("apex::application::pre_run exception.4");
 
-}
+   }
 
-return false;
+   return false;
 
 }
 
@@ -1674,12 +1674,12 @@ synchronous_lock synchronouslock(mutex());
 void application::pos_run()
 {
 
-INFO("apex::application::pos_run");
+INFORMATION("apex::application::pos_run");
 
 try
 {
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 application_pos_run();
 
@@ -1689,7 +1689,7 @@ application_pos_run();
 catch (...)
 {
 
-INFO("apex::application::pos_run exception.4");
+INFORMATION("apex::application::pos_run exception.4");
 
 }
 
@@ -1733,7 +1733,7 @@ return estatus;
 
 }
 
-INFO("apex::application::init_application .1");
+INFORMATION("apex::application::init_application .1");
 
 bool bHandled = false;
 
@@ -1769,7 +1769,7 @@ strMessage = "Another instance of \"" + m_strAppName + "\" is already running (a
 
 output_debug_string(strMessage + m_strAppName);
 
-INFO("apex::application::init_application exit");
+INFORMATION("apex::application::init_application exit");
 
 throw exit_exception(this);
 
@@ -1777,7 +1777,7 @@ throw exit_exception(this);
 
 }
 
-INFO("apex::application::init_application .2");
+INFORMATION("apex::application::init_application .2");
 
 if (m_pinterprocessintercommunication)
 {
@@ -1834,7 +1834,7 @@ m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->f
 
 //m_bAxisInitializeInstanceResult = true;
 
-INFO("axis::application::init_instance success");
+INFORMATION("axis::application::init_instance success");
 
 auto estatus = create_impact_system();
 
@@ -2152,7 +2152,7 @@ void application::term_instance()
 ::e_status application::application_pre_run()
 {
 //
-//INFO("apex::application::application_pre_run");
+//INFORMATION("apex::application::application_pre_run");
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -2176,7 +2176,7 @@ void application::term_instance()
 //
 //#endif
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 //try
 //{
@@ -2214,7 +2214,7 @@ m_millisHeartBeat.Now();
 //
 //}
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 ::e_status estatus = ::success;
 
@@ -2258,7 +2258,7 @@ return false;
 //
 //      psystem->install_progress_add_up();
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2286,7 +2286,7 @@ return false;
 
 }
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2381,7 +2381,7 @@ catch (...)
 
 }
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2499,7 +2499,7 @@ return false;
 
 }
 
-INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
+INFORMATION("initial_check_directrix : ok ("<< typeid(*this).name() <<")"<< m_strAppId);
 
 return true;
 
@@ -2885,7 +2885,7 @@ set_has_installer(!psystem->has_apex_application_factory());
 
 //}
 
-INFO("apex::application::process_init");
+INFORMATION("apex::application::process_init");
 
 m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
 
@@ -2916,7 +2916,7 @@ return false;
 
 //      m_bAuraProcessInitializeResult = true;
 
-INFO("apex::application::process_init success");
+INFORMATION("apex::application::process_init success");
 
 //create_factory < ::database::field_array >();
 //create_factory < ::database::row >();
@@ -2929,7 +2929,7 @@ INFO("apex::application::process_init success");
 
 //}
 
-INFO("axis::application::process_init");
+INFORMATION("axis::application::process_init");
 
 //m_bAxisProcessInitialize = true;
 
@@ -2954,7 +2954,7 @@ INFO("axis::application::process_init");
 
 //m_bAxisProcessInitializeResult = true;
 
-INFO("axis::application::process_init success");
+INFORMATION("axis::application::process_init success");
 
 //return true;
 
@@ -2963,13 +2963,13 @@ auto estatus = userfs_process_init();
 if(!estatus && estatus != error_not_implemented)
 {
 
-ERR(".2");
+ERROR(".2");
 
 return false;
 
 }
 
-INFO("success");
+INFORMATION("success");
 
 return true;
 
@@ -3050,14 +3050,14 @@ catch(...)
 
 auto psystem = get_system()->m_papexsystem;
 
-INFO("apex::application::init_application");
+INFORMATION("apex::application::init_application");
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init1())
 {
 
-//dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3067,12 +3067,12 @@ psystem->install_progress_add_up(); // 2
 
 //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init2())
 {
 
-//dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3082,12 +3082,12 @@ psystem->install_progress_add_up(); // 3
 
 //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init3())
 {
 
-//dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3097,9 +3097,9 @@ psystem->install_progress_add_up(); // 4
 
 //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
-//dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
 
 try
 {
@@ -3107,7 +3107,7 @@ try
 if (!init())
 {
 
-//dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3205,7 +3205,7 @@ return nullptr;
 
    }
 
-   m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
    if (!notify_init1())
    {
@@ -3287,9 +3287,9 @@ return nullptr;
 
    }
 
-   INFO("start");
+   INFORMATION("start");
 
-   m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
    return ::success;
 
@@ -3584,7 +3584,7 @@ bool application::check_exclusive(bool & bHandled)
       if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
       {
 
-      TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+      INFORMATION("A instance of the application:<br><br> - " << m_strAppName << + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
 
       try
       {
@@ -3614,7 +3614,7 @@ bool application::check_exclusive(bool & bHandled)
       if (bGlobalIdExclusiveFail)
       {
 
-         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
 
          try
          {
@@ -3646,7 +3646,7 @@ bool application::check_exclusive(bool & bHandled)
       try
       {
 
-         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
 
          if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
          {
@@ -3677,7 +3677,7 @@ bool application::check_exclusive(bool & bHandled)
       {
 
          // Should in some way activate the other instance
-         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
          if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
          {
@@ -4272,7 +4272,7 @@ __UNREFERENCED_PARAMETER(pcsz);
 string application::get_locale_schema_dir()
 {
 
-return ::str::_001Concat(get_locale(), "/", get_schema());
+   return _001Concatenate(get_locale(), "/", get_schema());
 
 }
 
@@ -4280,7 +4280,7 @@ return ::str::_001Concat(get_locale(), "/", get_schema());
 string application::get_locale_schema_dir(const ::string & strLocale)
 {
 
-return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   return _001Concatenate(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
 
 }
 
@@ -4288,21 +4288,21 @@ return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", g
 void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
-if (strLocale.is_empty() || strSchema.is_empty())
-{
+   if (strLocale.is_empty() || strSchema.is_empty())
+   {
 
-return;
+      return;
 
-}
+   }
 
-for (auto & strMatterLocator : straMatterLocator)
-{
+   for (auto & strMatterLocator : straMatterLocator)
+   {
 
-string strLs = get_locale_schema_dir(strLocale, strSchema);
+      string strLs = get_locale_schema_dir(strLocale, strSchema);
 
-stra.add_unique(::file::path(strMatterLocator) / strLs);
+      stra.add_unique(::file::path(strMatterLocator) / strLs);
 
-}
+   }
 
 }
 
@@ -4351,7 +4351,7 @@ void application::locale_schema_matter(string_array & stra, const string_array &
 string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
 {
 
-return ::str::_001Concat(strLocale, "/", strSchema);
+   return _001Concatenate(strLocale, "/", strSchema);
 
 }
 
@@ -4359,25 +4359,24 @@ return ::str::_001Concat(strLocale, "/", strSchema);
 void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
 {
 
-
-localeschema.m_idaLocale.erase_all();
-localeschema.m_idaSchema.erase_all();
-
-
-string strLocale(pszLocale);
-string strSchema(pszSchema);
+   localeschema.m_idaLocale.erase_all();
+   localeschema.m_idaSchema.erase_all();
 
 
-localeschema.m_idLocale = pszLocale;
-localeschema.m_idSchema = pszSchema;
+   string strLocale(pszLocale);
+   string strSchema(pszSchema);
 
 
-localeschema.add_locale_variant(strLocale, strSchema);
-localeschema.add_locale_variant(get_locale(), strSchema);
-localeschema.add_locale_variant(__id(std), strSchema);
-localeschema.add_locale_variant(__id(en), strSchema);
+   localeschema.m_idLocale = pszLocale;
+   localeschema.m_idSchema = pszSchema;
 
-localeschema.destroy();
+
+   localeschema.add_locale_variant(strLocale, strSchema);
+   localeschema.add_locale_variant(get_locale(), strSchema);
+   localeschema.add_locale_variant(__id(std), strSchema);
+   localeschema.add_locale_variant(__id(en), strSchema);
+
+   localeschema.destroy();
 
 }
 
@@ -4386,74 +4385,74 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
 {
 
 
-localeschema.m_idaLocale.erase_all();
-localeschema.m_idaSchema.erase_all();
+   localeschema.m_idaLocale.erase_all();
+   localeschema.m_idaSchema.erase_all();
 
 
-//localeschema.m_bAddAlternateStyle = true;
+   //localeschema.m_bAddAlternateStyle = true;
 
 
-string_array straLocale;
-string_array straSchema;
+   string_array straLocale;
+   string_array straSchema;
 
-straLocale.add(get_locale());
-straSchema.add(get_schema());
-
-
-string_array stra;
-
-stra = payload("locale").stra();
-
-stra.erase_ci("_std");
-
-straLocale.add_unique(payload("locale").stra());
-
-stra.empty();
-
-stra = payload("schema").stra();
-
-stra.erase_ci("_std");
-
-straSchema.add_unique(payload("schema").stra());
-
-localeschema.m_idLocale = straLocale[0];
-localeschema.m_idSchema = straSchema[0];
-
-for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-{
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
-
-}
-
-}
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
-
-}
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
-
-}
+   straLocale.add(get_locale());
+   straSchema.add(get_schema());
 
 
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
+   string_array stra;
 
-localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+   stra = payload("locale").stra();
 
-}
+   stra.erase_ci("_std");
 
-localeschema.destroy();
+   straLocale.add_unique(payload("locale").stra());
+
+   stra.empty();
+
+   stra = payload("schema").stra();
+
+   stra.erase_ci("_std");
+
+   straSchema.add_unique(payload("schema").stra());
+
+   localeschema.m_idLocale = straLocale[0];
+   localeschema.m_idSchema = straSchema[0];
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   {
+
+      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
+
+      }
+
+   }
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
+
+   }
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+
+   }
+
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+
+   }
+
+   localeschema.destroy();
 
 }
 
@@ -6042,7 +6041,7 @@ string strType = type_name();
 
 //   //}
 
-//   INFO("axis::application::process_init");
+//   INFORMATION("axis::application::process_init");
 
 //   //m_bAxisProcessInitialize = true;
 
@@ -6084,7 +6083,7 @@ string strType = type_name();
 
 //   //}
 
-//   INFO("axis::application::init_instance .1");
+//   INFORMATION("axis::application::init_instance .1");
 
 //   //m_bAxisInitializeInstance = true;
 
@@ -6144,7 +6143,7 @@ string strType = type_name();
 
 //   //m_bAxisInitializeInstanceResult = true;
 
-//   INFO("axis::application::init_instance success");
+//   INFORMATION("axis::application::init_instance success");
 
 //   return true;
 
@@ -6175,7 +6174,7 @@ string strType = type_name();
 
 //   //m_bAxisInitialize1Result = false;
 
-//   m_millisHeartBeat.Now();
+//   m_durationHeartBeat.Now();
 
 //   if (!::application::init1())
 //   {
@@ -6231,7 +6230,7 @@ string strType = type_name();
 ::e_status application::init()
 {
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (has_property("install"))
 {
@@ -6282,11 +6281,11 @@ else
 //#endif
 }
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 ensure_app_interest();
 
-INFO(".2");
+INFORMATION(".2");
 
 if (is_true("install"))
 {
@@ -6299,7 +6298,7 @@ if (is_user_service())
 
 }
 
-ERR("1.1");
+ERROR("1.1");
 
 index i = applicationmenu().get_count();
 
@@ -6307,7 +6306,7 @@ applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
 
 application_menu_update();
 
-INFO("success");
+INFORMATION("success");
 
 return true;
 
@@ -6470,7 +6469,7 @@ bool application::update_appmatter(__pointer(::sockets::http_session) & psession
 
 string strLocale;
 string strSchema;
-TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+INFORMATION("update_appmatter(root="<< pszRoot <<", relative="<< pszRelative <<", locale="<< pszLocale <<", style="<< pszStyle <<")");
 ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
 ::file::path strUrl(::e_path_url);
@@ -6934,7 +6933,7 @@ auto psystem = m_psystem;
 
 auto pnode = psystem->node();
 
-return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_minute, set);
 
 #endif
 
@@ -9865,7 +9864,7 @@ void application::close(::apex::enum_end eend)
 
    }
 
-   m_ethreadClose = thread_application;
+   m_ethreadcontextClose = e_thread_context_application;
 
    if (eend == ::apex::e_end_app)
    {

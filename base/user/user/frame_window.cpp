@@ -1005,7 +1005,7 @@ namespace user
       if (!on_create_client(pusersystem))
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
+         CATEGORY_ERROR(appmsg, "Failed to create client pane/::user::impact for frame.");
 
          return -1;
 
@@ -1256,7 +1256,7 @@ namespace user
       //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
       //{
       //   get_parent()->place_hold(this);
-      //   //get_parent()->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   //get_parent()->on_layout(pgraphics);
       //}
 
    }
@@ -1744,7 +1744,7 @@ namespace user
    }
 
 
-   ::user::impact * frame_window::get_active_view() const
+   ::user::interaction * frame_window::get_active_view() const
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));
@@ -2125,7 +2125,7 @@ namespace user
             __set_dialog_control_id_(oswindow, FIRST_PANE);
             }
 
-            on_layout(::draw2d::graphics_pointer & pgraphics);
+            on_layout(pgraphics);
 
 
             // show any modeless dialogs, popup windows, float tools, etc
@@ -2169,7 +2169,7 @@ namespace user
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
-         //         ::u32 dwTime2= ::millis::now();
+         //         ::u32 dwTime2= ::duration::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -2579,7 +2579,7 @@ namespace user
 
       }
 
-      bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
       auto psession = get_session();
 

@@ -18,7 +18,7 @@ namespace user
 
       e_scalar       m_escalar;
 
-      millis m_millisLastTime;
+      ::duration m_durationLastTime;
 
       double         m_dPosition;// 0.0 = minimum 1.0 = maximum
       double         m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
@@ -31,7 +31,7 @@ namespace user
       virtual ~elastic_slider();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer);

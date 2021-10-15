@@ -106,7 +106,7 @@
 
 //inline ::payload & thread_property(const ::id & id) { return ::get_task()->payload(id); }
 //
-//inline bool thread_is_set(const ::id & id)
+//inline bool task_flag().is_set(const ::id & id)
 //{
 //   if (!::get_task())
 //   {

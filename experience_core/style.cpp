@@ -848,7 +848,7 @@ namespace experience
          if (::is_set(pinteraction))
          {
 
-            string strType = pinteraction->type_c_str();
+            //string strType = pinteraction->type_c_str();
 
 //            if (strType.contains("form"))
 //            {
@@ -1472,11 +1472,11 @@ namespace experience
          if (pbar->m_bTracking || pbar->is_true("tracking_on"))
          {
 
-            ::u32 tickFadeIn = 490;
+            auto periodFadeIn = 490_ms;
 
-            ::u32 tickFadeOut = 490;
+            auto periodFadeOut = 490_ms;
 
-            byte uchAlpha = maximum(0u, minimum(255u, (byte) pbar->find_u32("tracking_alpha")));
+            double dRate = maximum(0u, minimum(1.0, pbar->find_u32("tracking_alpha")/255.0));
 
             if (pbar->m_bTracking)
             {
@@ -1485,7 +1485,7 @@ namespace experience
                {
 
                   pbar->payload("tracking_on") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_millis().m_i + uchAlpha * tickFadeIn / 255);
+                  pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
                   pbar->payload("tracking_fade_in") = true;
                   pbar->payload("tracking_fade_out") = false;
                   pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1501,7 +1501,7 @@ namespace experience
 
                   pbar->payload("tracking_fade_in") = false;
                   pbar->payload("tracking_fade_out") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_millis().m_i + (255 - uchAlpha) * tickFadeOut / 255);
+                  pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
 
                }
 
@@ -1525,15 +1525,17 @@ namespace experience
 
             //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
+            byte uchAlpha;
+
             if (pbar->is_true("tracking_fade_in"))
             {
 
-               auto tickFade = pbar->payload("tracking_start").millis().elapsed();
+               auto elapsed = pbar->payload("tracking_start_time").duration().elapsed();
 
-               if (tickFade < tickFadeIn)
+               if (elapsed < periodFadeIn)
                {
 
-                  uchAlpha = __byte(tickFade * 255 / tickFadeIn);
+                  uchAlpha = __byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
 
                }
                else
@@ -1549,12 +1551,12 @@ namespace experience
             else if (pbar->is_true("tracking_fade_out"))
             {
 
-               auto dwFade = pbar->payload("tracking_start").millis().elapsed();
+               auto elapsed = pbar->payload("tracking_start_time").duration().elapsed().integral_millisecond();
 
-               if (dwFade < tickFadeOut)
+               if (elapsed < periodFadeOut)
                {
 
-                  uchAlpha = __byte(dwFade * 255 / tickFadeOut);
+                  uchAlpha = __byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
 
                }
                else

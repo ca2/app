@@ -28,7 +28,7 @@ public:
 
    virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
    virtual string get_path() override;
 

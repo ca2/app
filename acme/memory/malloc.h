@@ -274,15 +274,15 @@ namespace acme
 } // namespace acme
 
 
-namespace str
-{
+// namespace str
+// {
 
    
-   template < typename POINTER >
-   inline void from(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer);
+template < typename POINTER >
+inline void to_string(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer);
 
 
-} // namespace str
+// } // namespace str
 
 
 //template < typename POINTER >

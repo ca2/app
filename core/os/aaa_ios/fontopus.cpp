@@ -477,7 +477,7 @@ namespace account
          return false;
       }
 
-      m_login.on_layout(::draw2d::graphics_pointer & pgraphics);
+      m_login.on_layout(pgraphics);
 
 //      SetTimer(m_oswindow, 123, 23, nullptr);
 
@@ -575,7 +575,7 @@ namespace account
 
       m_login.get_window_rect(rectangleLogin);
 
-      ::point point(x, y);
+      ::point_i32 point(x, y);
 
       if (rectangleLogin.is_empty().contains(point))
       {

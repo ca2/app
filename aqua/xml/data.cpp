@@ -49,7 +49,7 @@ namespace xml
 
             case ::xml::action_set_name:
             {
-               pnode = get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_name(pitem->m_strValue);
@@ -58,7 +58,7 @@ namespace xml
 
             case ::xml::action_set_value:
             {
-               pnode = get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_value(pitem->m_strValue);
@@ -67,7 +67,7 @@ namespace xml
 
             case ::xml::action_set_attribute:
             {
-               pnode = get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_attribute(pitem->m_strName, pitem->m_strValue);

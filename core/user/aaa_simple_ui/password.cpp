@@ -54,7 +54,7 @@ namespace simple_ui
          TRACE("Print Job Is Printing page %d",pprinttask->m_iPrintingPage);
       }*/
 
-      bool bCaretOn = m_millisFocusStart.on_off(m_millisCaretPeriod);
+      bool bCaretOn = m_durationFocusStart.on_off(m_durationCaretPeriod);
 
 
       //rectangleClient.deflate(0, 0, 1, 1);
@@ -118,7 +118,7 @@ namespace simple_ui
       color.set_rgb(rgb(227,227,210));
       color.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
-      //pgraphics->draw3d_rect(rectangleClient,crBorder,crBorder);
+      //pgraphics->draw_inset_3d_rectangle(rectangleClient,crBorder,crBorder);
 
       if(m_ptree == nullptr)
          return;

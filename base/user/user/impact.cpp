@@ -39,14 +39,14 @@ namespace user
       //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
-      //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
+      //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
       //    connect_command_probe(ID_WINDOW_SPLIT ,  &impact::_001OnUpdateSplitCmd);
 
       // Standard commands for next pane
       //  connect_command_probe(ID_NEXT_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //connect_command(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
+      //add_command_handler(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
       //      connect_command_probe(ID_PREV_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //    connect_command(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
+      //    add_command_handler(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
 
       //}}__MSG_MAP
       // special command for Initial Update
@@ -124,7 +124,7 @@ namespace user
          if(::user::impact::get_document() == nullptr)
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Creating a pane with no ::user::document.\n");
+            CATEGORY_WARNING(appmsg, "Warning: Creating a pane with no ::user::document.");
 
          }
 
@@ -841,7 +841,7 @@ namespace user
          if (pobject.is_null() || ::is_null(pobject->get_application()))
          {
             
-            ERR("Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
+            _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
 
             return nullptr;
 
@@ -1003,7 +1003,7 @@ namespace user
 
    //   }
 
-   //   retry_multi_lock synchronouslock(synchronization_object, millis(1), millis(1));
+   //   retry_multi_lock synchronouslock(synchronization_object, ::duration(1), ::duration(1));
 
    //   try
    //   {

@@ -131,7 +131,7 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-::millis os_get_system_update_poll_time(const ::id & id)
+::duration os_get_system_update_poll_time(const ::id & id)
 {
 
    if(id == id_user_color)
@@ -140,7 +140,7 @@ int get_proc_cpuinfo_core_count()
       // On Gnome you can?
       // ... hook to the gtk-theme-name property change event of GTK Settings default object
       //return 300_ms;
-      return 0;
+      return e_zero;
 
    }
    else if(id == id_os_user_theme)
@@ -150,11 +150,11 @@ int get_proc_cpuinfo_core_count()
       //return 300_ms;
 
       //return 300_ms;
-      return 0;
+      return e_zero;
 
    }
 
-   return 0;
+   return e_zero;
 
 }
 

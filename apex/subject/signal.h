@@ -47,13 +47,13 @@ public:
    void post_destroy_all();
 
 
-   inline ::millis poll_time() { return m_psystem->get_update_poll_time(m_id); };
+   inline ::duration poll_time() { return m_psystem->get_update_poll_time(m_id); };
 
 
-   static inline bool should_poll(::millis millis)
+   static inline bool should_poll(const ::duration & duration)
    {
 
-      return millis >= 100_ms;
+      return duration >= 100_ms;
 
    }
 

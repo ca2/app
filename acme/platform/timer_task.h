@@ -47,9 +47,9 @@ public:
 
 #ifdef _DEBUG
 
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+   i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 #endif
 
@@ -59,26 +59,27 @@ public:
 
    virtual ::e_status initialize_timer(::object * pobject, ::acme::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class synchronization_object* pmutex = nullptr);
 
-   virtual ::e_status run() override;
+   ::e_status run() override;
 
 
-   bool start(const ::duration& duration, bool bPeriodic);
+   bool start(const class ::wait & wait, bool bPeriodic);
+
 
    virtual bool on_timer();
 
    //virtual ::e_status destroy() override;
 
-   virtual ::e_status destroy() override;
+   ::e_status destroy() override;
 
    //bool impl_start();
    //bool impl_restart();
    //void impl_stop();
-   virtual void term_task() override;
+   void term_task() override;
 
    inline bool is_timer_ok() const { return is_ok(); }
 
 
-   virtual bool task_active() const override;
+   bool task_active() const override;
 
 
 };

@@ -225,7 +225,7 @@ namespace user
 //
 //      }
 //
-//      string str = __str(w);
+//      string str = __string(w);
 //
 //      //strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/" + str + ".xml");
 //
@@ -301,7 +301,9 @@ namespace user
 
       if(str.is_empty())
       {
-         TRACE("unable to load os keyboard on_layout");
+
+         INFORMATION("unable to load os keyboard on_layout");
+         
          //if(is_debugger_attached())
          //{
 

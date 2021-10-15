@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //::u32 dwTime1= ::millis::now();
+            //::u32 dwTime1= ::duration::now();
 
             m_pplugin->on_paint(pgraphics, rectangle);
 
-            //::u32 dwTime9= ::millis::now();
+            //::u32 dwTime9= ::duration::now();
 
             //TRACE("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //::u32 dwTime1= ::millis::now();
+         //::u32 dwTime1= ::duration::now();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //::u32 dwTime9= ::millis::now();
+         //::u32 dwTime9= ::duration::now();
 
          //TRACE("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //::u32 dwTime1= ::millis::now();
+      //::u32 dwTime1= ::duration::now();
 
       deferred_prodevian_redraw();
-      //::u32 dwTime9= ::millis::now();
+      //::u32 dwTime9= ::duration::now();
 
       //TRACE("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
@@ -711,7 +711,7 @@ namespace hotplugin
    //   for(index i = 0; i < m_uiptraChild.get_count(); i++)
    //   {
 
-   //      m_uiptraChild[i]->on_layout(::draw2d::graphics_pointer & pgraphics);
+   //      m_uiptraChild[i]->on_layout(pgraphics);
 
    //   }
 

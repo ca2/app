@@ -27,17 +27,17 @@ public:
 
 
    virtual bool lock();
-   virtual bool lock(const duration & durationTimeout);
+   virtual bool lock(const ::wait & wait);
 
    virtual bool _lock();
-   virtual bool _lock(const duration & durationTimeout);
+   virtual bool _lock(const ::wait & wait);
 
    virtual ::e_status _wait();
-   virtual ::e_status _wait(const duration & durationTimeout);
+   virtual ::e_status _wait(const ::wait & wait);
 
    
    virtual ::e_status wait();
-   virtual ::e_status wait(const duration & durationTimeout);
+   virtual ::e_status wait(const ::wait & wait);
 
 
    virtual bool is_locked() const;

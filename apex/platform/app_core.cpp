@@ -216,9 +216,9 @@ bool app_core::on_result(const ::e_status & estatus)
 //
 //#endif
 
-   m_millisStart.Now();
+   m_durationStart.Now();
 
-   m_millisAfterApplicationFirstRequest = m_millisStart;
+   m_durationAfterApplicationFirstRequest = m_durationStart;
 
    if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
@@ -364,12 +364,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      output_error_message("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
+      output_error_message("going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         output_error_message("uid=" + __str(uid), "seteuid success", e_message_box_ok);
+         output_error_message("uid=" + __string(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -531,7 +531,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   psystem->m_millisMainStart = m_millisStart;
+   psystem->m_durationMainStart = m_durationStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
@@ -745,7 +745,7 @@ void app_core::system_end()
 //
 //      ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 //
-//      auto tickEnd = ::millis::now();
+//      auto tickEnd = ::duration::now();
 //
 //      char szTimeMessage[2108];
 //
@@ -770,18 +770,18 @@ void app_core::system_end()
 //
 //         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 //
-//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+//         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 //         ::output_debug_string(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
-//         millis iMillisecondsTotal = tickEnd - m_millisStart;
+//         ::duration i::durationsTotal = tickEnd - m_durationStart;
 //
-//         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", iMillisecondsTotal.m_i);
+//         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
 //         ::output_debug_string(szTimeMessage);
 //         printf("%s", szTimeMessage);
 //
-//         int iMilliseconds = iMillisecondsTotal.m_i % 1000;
-//         int iSecondsTotal = (int)(iMillisecondsTotal.m_i / 1000);
+//         int i::durations = i::durationsTotal.m_i % 1000;
+//         int iSecondsTotal = (int)(i::durationsTotal.m_i / 1000);
 //         int iSeconds = iSecondsTotal % 60;
 //         int iMinutesTotal = iSecondsTotal / 60;
 //         int iMinutes = iMinutesTotal % 60;
@@ -792,25 +792,25 @@ void app_core::system_end()
 //         if (iDays > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, iMilliseconds);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, i::durations);
 //
 //         }
 //         else if (iHours > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, iMilliseconds);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, i::durations);
 //
 //         }
 //         else if (iMinutes > 0)
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, iMilliseconds);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, i::durations);
 //
 //         }
 //         else
 //         {
 //
-//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, iMilliseconds);
+//            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, i::durations);
 //
 //         }
 //
@@ -870,7 +870,7 @@ void app_core::system_end()
 //
 //            char szTimeMessage1[2048];
 //
-//            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+//            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 //
 //            if (file_length_raw(szEllapsed) > 0)
 //            {
@@ -887,7 +887,7 @@ void app_core::system_end()
 //
 //            char szTimeMessage2[2048];
 //
-//            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_millisStart).m_i);
+//            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_durationStart).m_i);
 //
 //            file_add_contents_raw(szEllapsed, szUTCTime);
 //

@@ -19,7 +19,7 @@ public:
    {
    public:
 
-      ::millis       m_millisLast;
+      ::duration       m_durationLast;
 
    };
 

@@ -16,7 +16,7 @@
 //CLASS_DECL_CORE ::u32 get_last_error()
 //{
 //
-//   millis t_tickLastError;
+//   ::duration t_tickLastError;
 //
 //}
 //

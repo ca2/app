@@ -61,10 +61,10 @@ namespace userex
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

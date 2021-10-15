@@ -20,8 +20,8 @@ namespace operating_system
          __pointer(::operating_system::process)    m_pprocess;
          string *                                  m_pstrRead;
          manual_reset_event *                      m_pevReady;
-         millis                                    m_millisTimeout;
-         millis                                    m_millisStart;
+         ::duration                                m_durationTimeout;
+         ::duration                                m_durationStart;
          bool *                                    m_pbInitFailure;
          bool *                                    m_pbPotentialTimeout;
          ::operating_system::exit_status *         m_pexitstatus;

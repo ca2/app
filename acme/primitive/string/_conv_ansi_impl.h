@@ -5,12 +5,12 @@
 
 
 template < typename T >
-inline string __str(const T& t)
+inline string __string(const T& t)
 {
 
    string str;
 
-   ::str::from(str, t);
+   ::to_string(str, t);
 
    return str;
 
@@ -18,19 +18,19 @@ inline string __str(const T& t)
 
 
 template < typename T >
-inline string __str(const T * & p)
+inline string __string(const T * & p)
 {
 
    string str;
 
-   ::str::from(str, *p);
+   ::to_string(str, *p);
 
    return str;
 
 }
 
 
-inline string __str(const ansichar* psz)
+inline string __string(const ansichar* psz)
 {
 
    return string(psz);
@@ -38,7 +38,7 @@ inline string __str(const ansichar* psz)
 }
 
 
-inline string __str(ansichar* psz)
+inline string __string(ansichar* psz)
 {
 
    return string((const ansichar *) psz);
@@ -46,7 +46,7 @@ inline string __str(ansichar* psz)
 }
 
 
-inline string __str(const widechar * pwsz)
+inline string __string(const widechar * pwsz)
 {
 
    return string(pwsz);
@@ -54,7 +54,7 @@ inline string __str(const widechar * pwsz)
 }
 
 
-inline string __str(widechar * pwsz)
+inline string __string(widechar * pwsz)
 {
 
    return string(pwsz);
@@ -63,7 +63,7 @@ inline string __str(widechar * pwsz)
 
 
 template < >
-inline string __str(const ansistring * & p)
+inline string __string(const ansistring * & p)
 {
 
    return *p;
@@ -72,7 +72,7 @@ inline string __str(const ansistring * & p)
 
 
 template < >
-inline string __str(const widestring *& p)
+inline string __string(const widestring *& p)
 {
 
    return string(*p);
@@ -81,7 +81,7 @@ inline string __str(const widestring *& p)
 
 
 template < >
-inline string __str(const natural_ansistring & naturalansistr)
+inline string __string(const natural_ansistring & naturalansistr)
 {
 
    return naturalansistr.m_pdata;
@@ -90,7 +90,7 @@ inline string __str(const natural_ansistring & naturalansistr)
 
 
 template < >
-inline string __str(const natural_widestring & naturalwidestr)
+inline string __string(const natural_widestring & naturalwidestr)
 {
 
    return string(naturalwidestr);
@@ -98,33 +98,15 @@ inline string __str(const natural_widestring & naturalwidestr)
 }
 
 
-namespace str
-{
 
-
-   inline void from(string & str, const char * psz)
+   inline void to_string(string & str, const char * psz)
    {
 
       str = psz;
 
    }
 
-   inline void from(string & str, char * const psz)
-   {
-
-      str = psz;
-
-   }
-
-
-   inline void from(string & str, const wd16char * psz)
-   {
-
-      str = psz;
-
-   }
-
-   inline void from(string & str, wd16char * const psz)
+   inline void to_string(string & str, char * const psz)
    {
 
       str = psz;
@@ -132,14 +114,14 @@ namespace str
    }
 
 
-   inline void from(string & str, const wd32char * psz)
+   inline void to_string(string & str, const wd16char * psz)
    {
 
       str = psz;
 
    }
 
-   inline void from(string & str, wd32char * const psz)
+   inline void to_string(string & str, wd16char * const psz)
    {
 
       str = psz;
@@ -147,7 +129,22 @@ namespace str
    }
 
 
-      inline void from(string & str, const signed char & ch)
+   inline void to_string(string & str, const wd32char * psz)
+   {
+
+      str = psz;
+
+   }
+
+   inline void to_string(string & str, wd32char * const psz)
+   {
+
+      str = psz;
+
+   }
+
+
+      inline void to_string(string & str, const signed char & ch)
    {
 
       str = (ansichar) ch;
@@ -155,7 +152,7 @@ namespace str
    }
 
 
-   inline void from(string& str, const ansichar& ch)
+   inline void to_string(string& str, const ansichar& ch)
    {
 
       str = ch;
@@ -163,7 +160,7 @@ namespace str
    }
 
 
-   inline void from(string& str, const widechar& wch)
+   inline void to_string(string& str, const widechar& wch)
    {
 
       str = wch;
@@ -171,7 +168,7 @@ namespace str
    }
 
 
-   inline void from(string& str, const uchar& uch)
+   inline void to_string(string& str, const uchar& uch)
    {
 
       str = (const ansichar&)uch;
@@ -179,7 +176,7 @@ namespace str
    }
 
 
-   inline void from(string& str, const string& strSrc)
+   inline void to_string(string& str, const string& strSrc)
    {
 
       str.assign(strSrc);
@@ -187,7 +184,7 @@ namespace str
    }
 
 
-} // namespace str
+// } // namespace str
 
 
 #endif // __cplusplus_winrt

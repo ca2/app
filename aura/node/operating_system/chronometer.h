@@ -25,8 +25,8 @@ namespace aura
 
 
       bool        m_bStopped; /// stop flag
-      u64         m_beg; // nanos
-      u64         m_end; // nanos
+      u64         m_beg; // nanosecond
+      u64         m_end; // nanosecond
 
 
       chronometer();                                    // default constructor

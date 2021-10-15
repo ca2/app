@@ -28,7 +28,7 @@ string_file::string_file(const string_file & text)
 
    m_iPos = 0;
 
-   append(__str(text));
+   append(__string(text));
 
 }
 
@@ -104,7 +104,7 @@ filesize string_file::get_position() const
 }
 
 
-string string_file::to_string() const
+string string_file::get_string() const
 {
 
    return m_str;

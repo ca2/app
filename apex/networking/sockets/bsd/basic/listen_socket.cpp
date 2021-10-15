@@ -99,7 +99,7 @@ namespace sockets
 
       }
 
-      FATAL(log_this, "Bind", 0, "name resolution of interface name failed");
+      FATAL("Bind: name resolution of interface name failed");
 
       return -1;
 
@@ -119,7 +119,7 @@ namespace sockets
          return Bind(ad, protocol, depth);
       }
 
-      FATAL(log_this, "Bind", 0, "name resolution of interface name failed");
+      FATAL("Bind: name resolution of interface name failed");
 
       return -1;
 
@@ -225,7 +225,7 @@ namespace sockets
       if (bind(s, ad.sa(), ad.sa_len()) == -1)
       {
 
-         FATAL(log_this, "bind() failed for port " + __str(ad.get_service_number()), Errno, bsd_socket_error(Errno));
+         FATAL("bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
          
          close_socket(s);
 
@@ -236,11 +236,11 @@ namespace sockets
       if (listen(s, depth) == -1)
       {
 
-         FATAL(log_this, "listen", Errno, bsd_socket_error(Errno));
+         FATAL("listen" << Errno << ", " << bsd_socket_error(Errno));
 
          close_socket(s);
 
-         __throw(error_socket, "listen() failed for port " + __str(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
+         __throw(error_socket, "listen() failed for port " + __string(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
 
          return -1;
 
@@ -279,7 +279,7 @@ namespace sockets
       if (a_s == INVALID_SOCKET)
       {
 
-         ERR(log_this, "accept", Errno, bsd_socket_error(Errno));
+         ERROR("accept" << Errno << bsd_socket_error(Errno));
 
          return;
 
@@ -288,7 +288,7 @@ namespace sockets
       if (!socket_handler()->OkToAccept(this))
       {
 
-         WARN(log_this, "accept", -1, "Not OK to accept");
+         WARNING("accept: -1 Not OK to accept");
 
          close_socket(a_s);
 
@@ -299,7 +299,7 @@ namespace sockets
       if (socket_handler()->get_count() >= FD_SETSIZE)
       {
 
-         FATAL(log_this, "accept", (i32)socket_handler()->get_count(), "base_socket_handler fd_set limit reached");
+         FATAL("accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached");
 
          close_socket(a_s);
 

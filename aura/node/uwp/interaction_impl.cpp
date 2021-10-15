@@ -318,7 +318,7 @@ namespace universal_windows
 
    //   //               synchronouslock.unlock();
 
-   //   //               m_evQueue.wait(millis(300));
+   //   //               m_evQueue.wait(::duration(300));
 
    //   //               synchronouslock.lock();
 
@@ -762,17 +762,17 @@ namespace universal_windows
    }
 #endif
 
-   bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
+   bool interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
    {
 #ifdef WINDOWS_DESKTOP
       ASSERT(::is_window((oswindow)get_os_data()));
-      return ::AnimateWindow((oswindow)get_os_data(), millis, dwFlags) != false;
+      return ::AnimateWindow((oswindow)get_os_data(), ::duration, dwFlags) != false;
 #else
       __throw(todo);
 #endif
    }
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout)
    {
       __throw(todo);
 
@@ -2362,13 +2362,13 @@ return true;
    //   oswindow m_hwnd;
    //   HDC m_hdc;
 
-   //   print_window(oswindow hwnd,HDC hdc,millis tickTimeout)
+   //   print_window(oswindow hwnd,HDC hdc,::duration tickTimeout)
    //   {
    //      m_event.ResetEvent();
    //      m_hwnd = hwnd;
    //      m_hdc = hdc;
    //      begin_thread(&print_window::s_print_window,(LPVOID) this,::e_priority_above_normal);
-   //      if(m_event.wait(millis(tickTimeout)).timeout())
+   //      if(m_event.wait(::duration(tickTimeout)).timeout())
    //      {
    //         TRACE("print_window::time_out");
    //      }
@@ -2402,7 +2402,7 @@ return true;
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //      ::aura::get_system()->get_event(m_pthread)->SetEvent();
-      //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(millis(8400));
+      //    ::aura::get_system()->get_event(::aura::get_system()->get_twf())->wait(::duration(8400));
    }
 
    void interaction_impl::_001OnPaint(::message::message * pmessage)
@@ -2776,7 +2776,7 @@ return true;
 //      oswindow hWndParent = oswindow_get(get_parent()->m_pimpl.cast < ::user::interaction_impl >());
 ////      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
 //      //    int iLevel = m_puserinteraction->m_iModal;
-//      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_task();
+//      //prop(string("RunModalLoop.thread(") + __string(iLevel) + ")") = ::get_task();
 //      //  m_puserinteraction->m_iModalCount++;
 //
 //      //m_puserinteraction->m_threadptraModal.add(::get_task());
@@ -2826,7 +2826,7 @@ return true;
 //            //   bIdle = false;
 //            //}
 //
-//            //get_task()->m_dwAlive = get_task()->m_dwAlive= ::millis::now();
+//            //get_task()->m_dwAlive = get_task()->m_dwAlive= ::duration::now();
 //
 //            //if(pappThis1 != nullptr)
 //            //{
@@ -2884,7 +2884,7 @@ return true;
 //            //   lIdleCount = 0;
 //            //}
 //
-//            //get_task()->m_dwAlive= ::millis::now();
+//            //get_task()->m_dwAlive= ::duration::now();
 //            //if(pappThis1 != nullptr)
 //            //{
 //            //   pappThis1->m_dwAlive = get_task()->m_dwAlive;
@@ -2947,7 +2947,7 @@ return true;
    //      ::get_task()->kick_thread();
    //      for(int i = iLevel; i >= 0; i--)
    //      {
-   //         ::thread * pthread = prop(string("RunModalLoop.thread(") + __str(i) + ")").cast < ::thread >();
+   //         ::thread * pthread = prop(string("RunModalLoop.thread(") + __string(i) + ")").cast < ::thread >();
    //         try
    //         {
    //            pthread->kick_thread();
@@ -6143,7 +6143,7 @@ namespace universal_windows
 
          //      m_dAccumulatedMouseMoveDistance += dDistanceFromLast;
 
-         //      double dTimeFromLast = (double) m_millisLastMouseMove.elapsed().m_i / 1000.0;
+         //      double dTimeFromLast = (double) m_durationLastMouseMove.elapsed().m_i / 1000.0;
 
          //      if (dTimeFromLast == 0.) dTimeFromLast = 0.001;
 
@@ -6160,7 +6160,7 @@ namespace universal_windows
 
          //      m_dAccumulatedMouseMoveDistance = 0.0;
 
-         //      m_millisLastMouseMove.Now();
+         //      m_durationLastMouseMove.Now();
 
          //   }
 
@@ -6209,7 +6209,7 @@ namespace universal_windows
       ::user::interaction_impl::_001UpdateScreen();
 
       //alskdjfh++;
-      //::output_debug_string("::universal_windows::interaction_impl::_001UpdateScreen " + __str(alskdjfh) + "\n");
+      //::output_debug_string("::universal_windows::interaction_impl::_001UpdateScreen " + __string(alskdjfh) + "\n");
 
       //if (m_frameworkview)
       //{

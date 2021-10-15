@@ -83,15 +83,15 @@ namespace ftp
    ///                           the response. Sometimes the socket hangs if no wait time
    ///                           is set. Normally not wait time is necessary.
    client_socket::client_socket(
-                                unsigned int uiTimeout/*=10*/,
-                                unsigned int uiBufferSize/*=2048*/, unsigned int uiResponseWait/*=0*/,
+                                const ::duration & durationTimeout/*=10*/,
+                                unsigned int uiBufferSize/*=2048*/, const ::duration & durationResponseWait/*=0*/,
                                 const string& strRemoteDirectorySeparator/*="/"*/) :
       //::sockets::base_socket(handler),
       //::sockets::socket(handler),
       //::sockets::stream_socket(handler),
       //::sockets::tcp_socket(handler),
-      mc_uiTimeout(uiTimeout),
-      mc_uiResponseWait(uiResponseWait),
+      m_durationTimeout(durationTimeout),
+      m_durationResponseWait(durationResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
       m_apFileListParser(__new(file_list_parser())),
@@ -334,7 +334,7 @@ namespace ftp
 
       string strHostnamePort(plogon->Hostname());
       if (plogon->Hostport() != DEFAULT_FTP_PORT)
-         strHostnamePort = plogon->Hostname() + ":" + __str(plogon->Hostport()); // add port to hostname (only if port is not 21)
+         strHostnamePort = plogon->Hostname() + ":" + __string(plogon->Hostport()); // add port to hostname (only if port is not 21)
 
 
       if (!OpenControlChannel(strTemp, ushPort))
@@ -872,7 +872,7 @@ namespace ftp
 
       }
 
-      //::u32 tickStart= ::millis::now();
+      //::u32 tickStart= ::duration::now();
 
       //::u32 nSeconds = 10;
 
@@ -1145,7 +1145,7 @@ namespace ftp
          memsize bytesRead = 0;
 
          Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize) m_vBuffer.size(), bytesRead);
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
          while (true)
          {
@@ -1157,7 +1157,7 @@ auto tickStart = ::millis::now();
 
             }
 
-            if (tickStart.elapsed() > mc_uiTimeout * 1000)
+            if (tickStart.elapsed() > m_durationTimeout)
             {
 
                break;
@@ -1181,7 +1181,7 @@ auto tickStart = ::millis::now();
             }
 
             Observer.OnPreBytesSend(m_vBuffer.get_data(), (memsize)m_vBuffer.size(), bytesRead);
-//auto tickStart = ::millis::now();
+//auto tickStart = ::duration::now();
 
          }
 
@@ -1236,7 +1236,7 @@ auto tickStart = ::millis::now();
          memsize iNumRead;
 
          memsize lTotalBytes = 0;
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
          while (true)
          {
@@ -1248,7 +1248,7 @@ auto tickStart = ::millis::now();
 
             }
 
-            if (tickStart.elapsed() > mc_uiTimeout * 1000)
+            if (tickStart.elapsed() > m_durationTimeout)
             {
 
                break;
@@ -1291,7 +1291,7 @@ auto tickStart = ::millis::now();
                sleep(100_ms);
 
             }
-//auto tickStart = ::millis::now();
+//auto tickStart = ::duration::now();
 
          }
 
@@ -1430,11 +1430,11 @@ auto tickStart = ::millis::now();
       try
       {
 
-         auto tickStart = ::millis::now();
+         auto tickStart = ::duration::now();
 
          // xxx yyy zzz
          //while (tickStart.elapsed() < 10 * 1000)
-         while (tickStart.elapsed() < 100 * 1000)
+         while (tickStart.elapsed() < 10_s)
          {
 
             {
@@ -1768,7 +1768,7 @@ auto tickStart = ::millis::now();
    {
       string strPortArguments;
       // convert the port number to 2 bytes + add to the local IP
-      strPortArguments = strHostIP + "," + __str (ushPort >> 8) + "," + __str (ushPort & 0xFF);
+      strPortArguments = strHostIP + "," + __string (ushPort >> 8) + "," + __string (ushPort & 0xFF);
 
       strPortArguments.replace(".", ",");
 
@@ -1817,7 +1817,7 @@ auto tickStart = ::millis::now();
       switch (representation.Type().AsEnum())
       {
       case type::tyLocalByte:
-         Arguments.add(__str((u32) dwSize));
+         Arguments.add(__string((u32) dwSize));
          break;
       case type::tyASCII:
       case type::tyEBCDIC:
@@ -1998,11 +1998,11 @@ auto tickStart = ::millis::now();
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
    {
-      string_array Arguments({ __str(iReserveBytes) });
+      string_array Arguments({ __string(iReserveBytes) });
       if (piMaxPageOrRecordSize != nullptr)
       {
          Arguments.push_back("R");
-         Arguments.push_back(__str(*piMaxPageOrRecordSize));
+         Arguments.push_back(__string(*piMaxPageOrRecordSize));
       }
 
       reply Reply;
@@ -2058,7 +2058,7 @@ auto tickStart = ::millis::now();
    int client_socket::Restart(::u32 dwPosition)
    {
       reply Reply;
-      if (!SendCommand(command::REST(), { __str((u32)dwPosition) }, Reply))
+      if (!SendCommand(command::REST(), { __string((u32)dwPosition) }, Reply))
          return FTP_ERROR;
 
       if (Reply.Code().IsPositiveIntermediateReply())

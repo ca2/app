@@ -70,9 +70,9 @@ namespace helloaxis
 
                ::mutex *                          m_pmutexText;
 
-               millis                            m_millisAnime;
-               millis m_millisLastFast;
-               ::u32                            m_millisFastAnime;
+               ::duration                            m_durationAnime;
+               ::duration m_durationLastFast;
+               ::u32                            m_durationFastAnime;
                ::image_pointer                 m_pimageFast;
 
 
@@ -86,7 +86,7 @@ namespace helloaxis
                ::u32                            m_dw23;
 
                array < bilbo >                  m_bilboa;
-               millis m_millisLastOk;
+               ::duration m_durationLastOk;
 
 
                bool                             m_bFast;

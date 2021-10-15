@@ -11,6 +11,8 @@
 #include "simple_log.h"
 
 
+
+
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
@@ -32,7 +34,7 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       trace_category_static_init(this);
 
-      m_ptracelog = __new(simple_log);
+      create_factory < simple_log, logger >();
       
       m_bPostedInitialRequest = false;
 
@@ -375,21 +377,21 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
-   {
+   //void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   //{
 
-      if (!m_ptracelog)
-      {
+   //   if (!m_ptracelog)
+   //   {
 
-         ::output_debug_string(psz);
+   //      ::output_debug_string(psz);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+   //   m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
-   }
+   //}
 
 
    //   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
@@ -928,12 +930,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-      ::millis system::get_update_poll_time(const ::id & id)
-      {
+   ::duration system::get_update_poll_time(const ::id & id)
+   {
       
-         return 0;
+      return 0_s;
       
-      }
+   }
 
    
    ::acme::library * system::on_get_library(const ::string & pszLibrary)
@@ -1156,12 +1158,12 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       stra.erase_empty();
 
-      TRACE("acme::system::get_public_internet_domain_extension_list");
+      INFORMATION("acme::system::get_public_internet_domain_extension_list");
 
       for (auto& str : stra)
       {
 
-         TRACE("%s", str.c_str());
+         INFORMATION("%s" << str);
 
       }
 

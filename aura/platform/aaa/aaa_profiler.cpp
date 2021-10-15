@@ -18,7 +18,7 @@ namespace aura
       }
 
 
-      CLASS_DECL_AURA i64 micros()
+      CLASS_DECL_AURA i64 microsecond()
       {
 
          return ::get_nanos() / 1000;

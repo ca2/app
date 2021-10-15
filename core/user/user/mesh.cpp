@@ -2670,14 +2670,14 @@ namespace user
       if(dynamic_cast < list * >(this) == nullptr)
       {
 
-         auto tickNow = ::millis::now();
+         auto tickNow = ::duration::now();
 
-         if(tickNow - m_millisLButtonDownStart2 < DBLCLKMS)
+         if(tickNow - m_durationLButtonDownStart2 < INTEGRAL_MILLISECOND(DBLCLKMS))
          {
 
-            m_millisLButtonDownStart1 = m_millisLButtonDownStart2;
+            m_durationLButtonDownStart1 = m_durationLButtonDownStart2;
 
-            m_millisLButtonDownStart2 = tickNow;
+            m_durationLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
@@ -2686,10 +2686,10 @@ namespace user
             m_iClick = 2;
 
          }
-         else if(tickNow - m_millisLButtonDownStart1 < DBLCLKMS)
+         else if(tickNow - m_durationLButtonDownStart1 < INTEGRAL_MILLISECOND(DBLCLKMS))
          {
 
-            m_millisLButtonDownStart2 = tickNow;
+            m_durationLButtonDownStart2 = tickNow;
 
             m_pointLButtonDown2 = point;
 
@@ -2699,7 +2699,7 @@ namespace user
          else
          {
 
-            m_millisLButtonDownStart1 = tickNow;
+            m_durationLButtonDownStart1 = tickNow;
 
             m_pointLButtonDown1 = point;
 
@@ -2846,7 +2846,7 @@ namespace user
 
                   m_pointLButtonDown1 = point;
 
-                  SetTimer(e_timer_drag_start, 1200, nullptr);
+                  SetTimer(e_timer_drag_start, 1.2_s, nullptr);
 
                   item_range itemrange;
 
@@ -3122,7 +3122,7 @@ namespace user
          {
             for(index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
-               selection.add_item(key.m_strDataKey + "/" + __str(iLine));
+               selection.add_item(key.m_strDataKey + "/" + __string(iLine));
             }
          }
       }
@@ -3714,7 +3714,7 @@ namespace user
       if (m_bHoverSelect2)
       {
 
-         SetTimer(e_timer_hover_select, 200);
+         SetTimer(e_timer_hover_select, 200_ms);
 
       }
       else
@@ -4293,7 +4293,7 @@ namespace user
 
       m_iFilter1Step = 0;
 
-      SetTimer(0xfffffffe,50,nullptr);
+      SetTimer(0xfffffffe,50_ms,nullptr);
 
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
@@ -4430,11 +4430,11 @@ namespace user
    bool mesh::Filter1Step()
    {
 
-      auto tickIn = ::millis::now();
+      auto tickIn = ::duration::now();
 
       TRACE("mesh::Filter1Step");
 
-      TRACE("tickIn = " __prtick, __pr(tickIn));
+      INFORMATION("tickIn = " << integral_millisecond(tickIn));
 
       if(!m_bFilter1)
       {
@@ -4517,10 +4517,10 @@ namespace user
 
       set_need_redraw();
 
-      auto tickOut = ::millis::now();
+      auto tickOut = ::duration::now();
 
-      TRACE("tickOut = " __prtick, __pr(tickOut));
-      TRACE("(delta) = " __prtick, __pr(tickOut - tickIn));
+      INFORMATION("tickOut = " << integral_millisecond(tickOut));
+      INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
 
       return m_nItemCount != iItemCount;
    }
@@ -5977,7 +5977,7 @@ namespace user
    string mesh::_001GetItemId(index iStrictItem)
    {
 
-      return __str(iStrictItem);
+      return __string(iStrictItem);
 
    }
 

@@ -128,7 +128,7 @@ bool axis_term()
 
    //}
 //#endif
-   /*__wait_threading_count(::millis((5000) * 8));
+   /*__wait_threading_count(::duration((5000) * 8));
 
    __node_axis_pre_term();
    */

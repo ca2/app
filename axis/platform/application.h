@@ -34,8 +34,8 @@ namespace axis
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
       virtual bool assert_user_logged_in() override;
 
       virtual string __get_text(string str) override;

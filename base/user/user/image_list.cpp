@@ -99,7 +99,7 @@ namespace user
 
       }
 
-      return string(get_current_image()->extension()->payload("read_only_link"));
+      return get_current_image()->extension()->payload("read_only_link").get_string();
 
    }
 

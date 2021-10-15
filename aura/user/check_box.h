@@ -33,9 +33,9 @@ namespace user
 
 
       e_style              m_estyle;
-      millis                 m_millisAnimationStart;
+      ::duration                 m_durationAnimationStart;
       double               m_dPosition;
-      millis                 m_millisAnimationPeriod;
+      ::duration                 m_durationAnimationPeriod;
 
 
       check_box(e_style estyle = style_normal);
@@ -52,6 +52,7 @@ namespace user
       virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
 //      virtual ::enum_check _001GetCheck() override;
       //using ::user::interaction::_001SetCheck;
+      using check::_001SetCheck;
       virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
 
       void install_message_routing(::channel * pchannel) override;

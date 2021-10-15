@@ -66,7 +66,7 @@ namespace user
 
 
       // as hosting interaction_impl
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       // as virtual interaction_impl
       virtual void _002InstallMessageHandling(::channel * pchannel);
 
@@ -109,7 +109,7 @@ namespace user
 
       virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
-      virtual ::user::interaction * set_owner(::user::primitive * pinteraction) override;
+      ::user::primitive * set_owner(::user::primitive * pinteraction) override;
       virtual ::user::interaction * get_owner() const override;
 
       //bool _get_client_rect(RECTANGLE_I64 * prectangle) override;

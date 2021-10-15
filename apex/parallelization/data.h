@@ -105,40 +105,36 @@
 //
 
 
-inline ::payload & thread_property(const ::id & id)
-{
+//extern thread_local boolean t_booleana[e_thread_boolean_count];
+//
+//
+//inline ::boolean& task_boolean(enum_thread_boolean ethreadboolean)
+//{
+//
+//   //return ::get_task()->payload(id);
+//   return t_booleana[ethreadboolean];
+//
+//}
+//
+//
+//extern thread_local payload t_payloada[e_thread_payload_count];
+//
+//
+//inline ::payload & thread_payload(enum_thread_payload ethreadpayload)
+//{
+//
+//   //return ::get_task()->payload(id);
+//   return t_payloada[ethreadpayload];
+//
+//}
 
-   return ::get_task()->payload(id);
 
-}
-
-
-inline bool thread_is_set(const ::id & id)
-{
-   if (!::get_task())
-   {
-
-      return false;
-
-   }
-
-   if (is_null(::get_task()->m_ppropertyset))
-   {
-
-      return false;
-
-   }
-
-   if (!::get_task()->has_property(id))
-   {
-
-      return false;
-
-   }
-
-   return (payload_cast) ::get_task()->payload(id);
-
-}
+//inline bool task_flag().is_set(enum_task_flag ethreadboolean)
+//{
+//
+//   return task_flag(ethreadboolean);
+//
+//}
 
 
 

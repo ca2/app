@@ -153,8 +153,8 @@ namespace user
       bool                             m_bLButtonDown;
       point_i32                        m_pointLButtonDown1;
       point_i32                        m_pointLButtonDown2;
-      millis                           m_millisLButtonDownStart1;
-      millis                           m_millisLButtonDownStart2;
+      ::duration                           m_durationLButtonDownStart1;
+      ::duration                           m_durationLButtonDownStart2;
       index                            m_iDisplayItemLButtonDown1;
       index                            m_iDisplayItemLButtonDown2;
 
@@ -254,7 +254,7 @@ namespace user
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual mesh_data * GetDataInterface();
       using interaction::update_hover;
@@ -350,101 +350,97 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
+      virtual void  _001DrawGroups(draw_mesh_item * pdrawitem,index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast);
 
-      virtual void _001DrawGroup(draw_mesh_item * pdrawitem);
+      virtual void  _001DrawGroup(draw_mesh_item * pdrawitem);
 
-      virtual void _001DrawItems(draw_mesh_item * pdrawitem,index iItemFirst,index iItemLast);
+      virtual void  _001DrawItems(draw_mesh_item * pdrawitem,index iItemFirst,index iItemLast);
 
-      virtual void _001DrawItem(draw_mesh_item * pdrawitem);
+      virtual void  _001DrawItem(draw_mesh_item * pdrawitem);
 
-      virtual void _001DrawSubItem(draw_mesh_item * pdrawitem);
+      virtual void  _001DrawSubItem(draw_mesh_item * pdrawitem);
 
-      virtual void _001GetItemImage(mesh_item * pitem);
+      virtual void  _001GetItemImage(mesh_item * pitem);
 
-      virtual void _001GetItemText(mesh_item * pitem);
+      virtual void  _001GetItemText(mesh_item * pitem);
 
-      virtual void _001SetItemText(mesh_item * pitem);
+      virtual void  _001SetItemText(mesh_item * pitem);
 
-      virtual void _001GetItemColor(mesh_item * pitem);
+      virtual void  _001GetItemColor(mesh_item * pitem);
 
-      virtual void _001SearchGetItemText(mesh_item * pitem);
+      virtual void  _001SearchGetItemText(mesh_item * pitem);
 
-      virtual ::count _001GetGroupItemCount(index iGroup);
+      virtual ::count  _001GetGroupItemCount(index iGroup);
 
-      virtual ::count _001GetGroupMetaItemCount(index iGroup);
+      virtual ::count  _001GetGroupMetaItemCount(index iGroup);
 
-      virtual void _001GetGroupText(mesh_item * pitem);
+      virtual void  _001GetGroupText(mesh_item * pitem);
 
-      virtual void _001GetGroupImage(mesh_item * pitem);
+      virtual void  _001GetGroupImage(mesh_item * pitem);
 
-      //virtual void _001InsertColumns();
+      virtual ::count  _001GetColumnCount();
 
-      virtual ::count _001GetColumnCount();
+      virtual void  draw_framing(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void draw_framing(::draw2d::graphics_pointer & pgraphics);
-//      virtual ::user::mesh_header * create_mesh_header();
-      virtual __pointer(::user::mesh_data) create_mesh_data();
+      virtual __pointer(::user::mesh_data)  create_mesh_data();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool _001OnUpdateColumnCount(u32 dwFlags = 0);
-      virtual bool _001OnUpdateItemCount(u32 dwFlags = 0);
+      virtual bool  _001OnUpdateColumnCount(u32 dwFlags = 0);
+      virtual bool  _001OnUpdateItemCount(u32 dwFlags = 0);
 
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void _001OnInitialize();
+      virtual void  _001OnInitialize();
 
 
-      virtual void _001GetGroupRect(draw_mesh_item * pitem);
-      virtual void _001GetItemRect(draw_mesh_item * pitem);
-      virtual void _001GetSubItemRect(draw_mesh_item * pitem);
-      virtual void _001GetElementRect(draw_mesh_item * pitem,::user::mesh::enum_element eelement);
+      virtual void  _001GetGroupRect(draw_mesh_item * pitem);
+      virtual void  _001GetItemRect(draw_mesh_item * pitem);
+      virtual void  _001GetSubItemRect(draw_mesh_item * pitem);
+      virtual void  _001GetElementRect(draw_mesh_item * pitem,::user::mesh::enum_element eelement);
 
-      //virtual void _001OnColumnChange();
+      virtual bool  _001SetColumnWidth(index iColumn,i32 iWidth);
 
-      virtual bool _001SetColumnWidth(index iColumn,i32 iWidth);
+      virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
-      virtual void _001GetColumnWidth(draw_mesh_item * pdrawitem);
+      virtual index  _001MapSubItemToOrder(index iSubItem);
 
-      virtual index _001MapSubItemToOrder(index iSubItem);
+      virtual index  _001MapOrderToSubItem(index iOrder);
 
-      virtual index _001MapOrderToSubItem(index iOrder);
+      virtual index  _001MapOrderToColumn(index iOrder);
 
-      virtual index _001MapOrderToColumn(index iOrder);
+      virtual index  _001MapColumnToOrder(index iColumn);
 
-      virtual index _001MapColumnToOrder(index iColumn);
+      virtual index  _001MapSubItemToColumn(index iSubItem);
 
-      virtual index _001MapSubItemToColumn(index iSubItem);
-
-      virtual index _001MapColumnToSubItem(index iColumn);
+      virtual index  _001MapColumnToSubItem(index iColumn);
 
 
-      virtual ::count _001GetItemCount();
-      virtual ::count _001GetGroupCount();
+      virtual ::count  _001GetItemCount();
+      virtual ::count  _001GetGroupCount();
 
 
-      virtual bool _001HitTest_(const ::point_i32 & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem);
-      virtual bool _001HitTest_(const ::point_i32 & point, index&iItemParam);
+      virtual bool  _001HitTest_(const ::point_i32 & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem);
+      virtual bool  _001HitTest_(const ::point_i32 & point, index&iItemParam);
 
 
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem);
-      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItemParam);
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem);
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, index&iItemParam);
 
 
-      virtual void _001OnAfterSort();
+      virtual void  _001OnAfterSort();
 
 
-      virtual void auto_arrange(bool bAutoArrange = true);
+      virtual void  auto_arrange(bool bAutoArrange = true);
 
 
-      virtual bool get_auto_arrange();
+      virtual bool  get_auto_arrange();
 
 
-      virtual void on_create_draw_item();
+      virtual void  on_create_draw_item();
 
 
       DECLARE_MESSAGE_HANDLER(on_message_size);
@@ -466,58 +462,58 @@ namespace user
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual void enable_hover_select(bool bEnable = true);
-      virtual void on_enable_hover_select();
+      virtual void  enable_hover_select(bool bEnable = true);
+      virtual void  on_enable_hover_select();
 
 
       virtual bool on_click(const ::item & item) override;
-      virtual bool _001OnRightClick(uptr uFlags,const ::point_i32 & point);
+      virtual bool  _001OnRightClick(uptr uFlags,const ::point_i32 & point);
 
-      virtual void _001GetSelection(range& selection);
-
-
-      virtual bool _001IsEditing();
+      virtual void  _001GetSelection(range& selection);
 
 
-      virtual ::count _001GetSelectedItemCount();
-
-      virtual string _001GetColumnText(index iColumn);
-
-      virtual bool _001OnHeaderCtrlEndTrack(wparam wparam,lparam lparam);
+      virtual bool  _001IsEditing();
 
 
-      virtual bool _001OnHeaderCtrlTrack(wparam wparam,lparam lparam);
+      virtual ::count  _001GetSelectedItemCount();
+
+      virtual string  _001GetColumnText(index iColumn);
+
+      virtual bool  _001OnHeaderCtrlEndTrack(wparam wparam,lparam lparam);
 
 
-      virtual void _001ShowSubItem(index iSubItem,bool bShow = true);
+      virtual bool  _001OnHeaderCtrlTrack(wparam wparam,lparam lparam);
 
-      virtual void DISaveOrder();
 
-      virtual void DILoadOrder();
+      virtual void  _001ShowSubItem(index iSubItem,bool bShow = true);
 
-      virtual void _001OnSelectionChange();
+      virtual void  DISaveOrder();
 
-      virtual bool _001IsItemVisible(index iItem);
+      virtual void  DILoadOrder();
 
-      void _001ClearSelection();
+      virtual void  _001OnSelectionChange();
 
-      virtual void _001SetSelection(const range&range);
+      virtual bool  _001IsItemVisible(index iItem);
 
-      virtual void _001AddSelection(const item_range & itemrange);
+      virtual void  _001ClearSelection();
+
+      virtual void  _001SetSelection(const range&range);
+
+      virtual void  _001AddSelection(const item_range & itemrange);
 
       ::e_status set_current_item(const item & item, const ::action_context & action_context) override;
 
       item current_item() override;
 
-      virtual void set_current_item(const index_array & iaSel, const ::action_context & action_context);
+      virtual void  set_current_item(const index_array & iaSel, const ::action_context & action_context);
 
-      virtual void get_cur_sel(index_array & iaSel);
+      virtual void  get_cur_sel(index_array & iaSel);
 
-      virtual void _001SetHighlightRange(range & range);
+      virtual void  _001SetHighlightRange(range & range);
 
       virtual void _001SetView(EView eview, bool bLayout = true);
 
-      virtual  EView _001GetView();
+      virtual EView  _001GetView();
 
 
       virtual i32 get_wheel_scroll_delta() override;
@@ -527,21 +523,17 @@ namespace user
       virtual bool keyboard_focus_is_focusable() const override;
 
 
-      virtual void _thread_data_update_visible_subitem();
+      virtual void  _thread_data_update_visible_subitem();
 
-      virtual void defer_create_mesh_data();
+      virtual void  defer_create_mesh_data();
 
       virtual ::point_i32 get_viewport_offset() override;
 
-      //virtual rectangle_i32 get_scroll_margin();
-
-      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
-
       virtual ::size_f64 get_page_size() override;
-      //virtual ::size_f64 get_total_size() override;
 
-      virtual string _001GetItemId(index iStrictItem);
-      virtual index _001GetItemById(const ::string & pszChar);
+      virtual string  _001GetItemId(index iStrictItem);
+      virtual index  _001GetItemById(const ::string & pszChar);
+
 
    };
 

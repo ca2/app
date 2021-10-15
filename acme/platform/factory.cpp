@@ -24,23 +24,23 @@ bool demangle(string& str, const char* pszType)
 }
 
 
-bool demangle(string& str)
-{
-
-   if (!str::begins_eat_ci(str, "class "))
-   {
-
-      if (!str::begins_eat_ci(str, "struct "))
-      {
-
-
-      }
-
-   }
-
-   return true;
-
-}
+//bool demangle(string& str)
+//{
+//
+//   if (!str::begins_eat_ci(str, "class "))
+//   {
+//
+//      if (!str::begins_eat_ci(str, "struct "))
+//      {
+//
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
 
 #else
 
@@ -76,12 +76,12 @@ bool demangle (string & str, const char * pszType)
 }
 
 
-bool demangle (string & str)
-{
-
-   return demangle(str, str.c_str());
-
-}
+//bool demangle (string & str)
+//{
+//
+//   return demangle(str, str.c_str());
+//
+//}
 
 
 #endif

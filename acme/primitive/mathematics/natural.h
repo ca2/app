@@ -208,7 +208,7 @@ constexpr auto minimum_maximum(T t, L l, H h)
       return (T) l;
 
    }
-   else if (t < (T)h)
+   else if ((T)h < t)
    {
 
       return (T) h;

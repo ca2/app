@@ -227,7 +227,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_normal");
+//         INFORMATION("interaction_layout::display e_display_normal");
 //
 //         #endif
 //
@@ -237,7 +237,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_hide");
+//         INFORMATION("interaction_layout::display e_display_hide");
 //
 //         #endif
 //
@@ -247,7 +247,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_default");
+//         INFORMATION("interaction_layout::display e_display_default");
 //
 //         #endif
 //
@@ -259,7 +259,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_zoomed");
+//         INFORMATION("interaction_layout::display e_display_zoomed");
 //
 //         #endif
 //
@@ -269,7 +269,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_iconic");
+//         INFORMATION("interaction_layout::display e_display_iconic");
 //
 //         #endif
 //
@@ -281,7 +281,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display e_display_full_screen");
+//         INFORMATION("interaction_layout::display e_display_full_screen");
 //
 //         #endif
 //
@@ -291,7 +291,7 @@ namespace user
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFO("interaction_layout::display (unknown)");
+//         INFORMATION("interaction_layout::display (unknown)");
 //
 //         #endif
 //
@@ -305,7 +305,7 @@ namespace user
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
-//            INFO("Parent is Null. Display Request -> normal");
+//            INFORMATION("Parent is Null. Display Request -> normal");
 //
 //         }
 //
@@ -316,7 +316,7 @@ namespace user
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
-//            INFO("Parent is Null. Display Request -> hide");
+//            INFORMATION("Parent is Null. Display Request -> hide");
 //
 //         }
 //

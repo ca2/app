@@ -80,7 +80,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
       virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool update_data(bool bSaveAndValidate) override;
@@ -124,7 +124,7 @@ namespace user
       //        ::user::form_window(::object * pobject);
       //    virtual ~::user::form_window();
 
-      //virtual void install_message_routing(::channel * pchannel);
+      //void install_message_routing(::channel * pchannel) override;
 
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
 
@@ -136,7 +136,7 @@ namespace user
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);
-      //      virtual void install_message_routing(::channel * pchannel);
+      //      void install_message_routing(::channel * pchannel) override;
 
 
 //      virtual void soft_reload();

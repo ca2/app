@@ -7,7 +7,7 @@ namespace xml
 
 
    class CLASS_DECL_AQUA data :
-      public ::xml::document,
+      virtual public ::xml::document,
       virtual public ::data::data
    {
    public:

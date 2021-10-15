@@ -201,7 +201,7 @@ namespace datetime
       ::datetime::time time;
       ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, false);
       if (val.m_bSpan)
-         time = time.get_current_time() + val.GetSpan();
+         time = ::datetime::time::now() + val.GetSpan();
       else
          time = val.get_time();
       return time.get_time();
@@ -238,7 +238,7 @@ namespace datetime
       ::datetime::time time;
       ::datetime::result val = strtotime(pcontext, psz, iPath, iPathCount, true);
       if (val.m_bSpan)
-         time = time.get_current_time() + val.GetSpan();
+         time = ::datetime::time::now() + val.GetSpan();
       else
          time = val.get_time();
       return time.get_time();
@@ -330,7 +330,7 @@ namespace datetime
    string department::international::get_gmt_date_time(string strFormat)
    {
       ::datetime::time time;
-      time = time.get_current_time();
+      time = ::datetime::time::now();
       return get_gmt_date_time(time, strFormat);
    }
 
@@ -353,7 +353,7 @@ namespace datetime
    string department::international::get_local_date_time(string strFormat)
    {
       ::datetime::time time;
-      time = time.get_current_time();
+      time = ::datetime::time::now();
       return get_local_date_time(time, strFormat);
    }
 
@@ -400,7 +400,7 @@ namespace datetime
 
    string department::str::get_gmt_date_time()
    {
-      return m_pdatetime->international().get_gmt_date_time(::datetime::time::get_current_time());
+      return m_pdatetime->international().get_gmt_date_time(::datetime::time::now());
    }
 
 
@@ -456,7 +456,7 @@ namespace datetime
       
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __str(iWeekDay - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_weekday_long[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -466,7 +466,7 @@ namespace datetime
 
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __str(iWeekDay - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_weekday_tiny[" + __string(iWeekDay - 1) + "]");
 
    }
 
@@ -476,7 +476,7 @@ namespace datetime
    
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __str(iMonth - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_month[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -486,7 +486,7 @@ namespace datetime
 
       auto psystem = m_psystem;
 
-      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __str(iMonth - 1) + "]");
+      return psystem->texttable()->get(pcontext, "datetimestr_month_short[" + __string(iMonth - 1) + "]");
 
    }
 
@@ -494,7 +494,7 @@ namespace datetime
    ::datetime::time department::from_gmt_date_time(i32 iYear, i32 iMonth, i32 iDay, i32 iHour, i32 iMinute, i32 iSecond)
    {
 
-      ::datetime::time timeLocalNow = ::datetime::time::get_current_time();
+      ::datetime::time timeLocalNow = ::datetime::time::now();
 
       struct ::tm tmLocalNow;
 
@@ -721,7 +721,7 @@ namespace datetime
    {
       string str;
       ::datetime::time time;
-      time = ::datetime::time::get_current_time();
+      time = ::datetime::time::now();
       str = FormatGmt(psz, time);
       return str;
    }
@@ -746,17 +746,17 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __str((timeNow - time).GetSeconds()));
+            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace("%SECONDS%", __str((timeNow - time).GetSeconds()));
+            strTime.replace("%SECONDS%", __string((timeNow - time).GetSeconds()));
          }
          else
          {
             strTime = pcontext->get("about %MINUTES% minutes ago");
-            strTime.replace("%MINUTES%", __str(iMinDiff));
+            strTime.replace("%MINUTES%", __string(iMinDiff));
          }
       }
       else if (iHouDiff <= 24)
@@ -773,7 +773,7 @@ namespace datetime
          else
          {
             strTime = pcontext->get("about %HOURS% hours ago");
-            strTime.replace("%HOURS%", __str(iHouDiff));
+            strTime.replace("%HOURS%", __string(iHouDiff));
          }
       }
       else
@@ -1186,11 +1186,11 @@ namespace datetime
 
             if (bAdd)
             {
-               TRACE("strtotime: invalid char +");
+               INFORMATION("strtotime: invalid char +");
             }
             else if (bMinus)
             {
-               TRACE("strtotime: invalid char + on Minus state");
+               INFORMATION("strtotime: invalid char + on Minus state");
             }
 
 #endif
@@ -1206,11 +1206,15 @@ namespace datetime
 
             if (bAdd)
             {
-               TRACE("strtotime: invalid char - on add state");
+               
+               INFORMATION("strtotime: invalid char - on add state");
+
             }
             else if (bMinus)
             {
-               TRACE("strtotime: invalid char - on Minus state");
+               
+               INFORMATION("strtotime: invalid char - on Minus state");
+
             }
 
 #endif
@@ -1410,7 +1414,7 @@ namespace datetime
          ::str::begins_eat(str, "today") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:today"))))
       {
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          bBaseTime = true;
       }
@@ -1418,7 +1422,7 @@ namespace datetime
          ::str::begins_eat(str, "tomorrow") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:tomorrow"))))
       {
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          time += ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
@@ -1427,7 +1431,7 @@ namespace datetime
          ::str::begins_eat(str, "yesterday") ||
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:yesterday"))))
       {
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
          time -= ::datetime::time_span(1, 0, 0, 0);
          bBaseTime = true;
@@ -1437,7 +1441,7 @@ namespace datetime
          (pcontext != nullptr && pcontext->begins_eat(str, "calendar:now"))))
       {
 
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
 
          bBaseTime = true;
 
@@ -1455,7 +1459,7 @@ namespace datetime
 
       if (!bBaseTime && ptopic && ptopic->get_count() >= 5)
       {
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          i32 i1 = atoi(ptopic->get_match(2));
          i32 i2 = atoi(ptopic->get_match(3));
          i32 iCount = 0;

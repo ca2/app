@@ -62,7 +62,7 @@ namespace sockets
       {
 
 #ifdef BSD_STYLE_SOCKETS
-         FATAL(log_this, "SetFile", Errno, bsd_socket_error(Errno));
+         FATAL("SetFile " << Errno << bsd_socket_error(Errno));
 #endif
 
          SetCloseAndDelete();

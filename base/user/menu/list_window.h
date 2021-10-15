@@ -21,7 +21,7 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

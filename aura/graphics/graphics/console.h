@@ -38,7 +38,7 @@ namespace graphics
       ~console() override;
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context & dump) const override;
 
 
@@ -67,7 +67,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, enum_dos_color edoscolor);
 
-      virtual string to_string() const override;
+      string get_string() const override;
 
 
    };

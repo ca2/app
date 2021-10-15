@@ -9,7 +9,7 @@ namespace console
       ::object(pobject)
    {
 
-      m_millisCaretPeriod   = 500;
+      m_durationCaretPeriod   = 500;
 
       m_iNewChar        = 0;
 
@@ -57,7 +57,7 @@ namespace console
       __pointer(::message::show_window) pshowwindow(pmessage);
       if(pshowwindow->m_bShow)
       {
-         m_millisLastError= ::millis::now();
+         m_durationLastError= ::duration::now();
          m_bOk = false;
       }
    }
@@ -75,7 +75,7 @@ namespace console
 
       }
 
-      m_millisCaretStart= ::millis::now();
+      m_durationCaretStart= ::duration::now();
 
    }
 
@@ -94,7 +94,7 @@ namespace console
       else
       {
 
-         m_millisLastError= ::millis::now();
+         m_durationLastError= ::duration::now();
 
          m_bOk = false;
 
@@ -115,7 +115,7 @@ namespace console
 
       auto pkey = pmessage->m_pkey;
 
-      m_millisCaretStart.Now();
+      m_durationCaretStart.Now();
 
       ::message::key & key = *pkey;
 
@@ -270,7 +270,7 @@ namespace console
    int prompt_impact::getch()
    {
 
-      m_millisCaretPeriod.Now();
+      m_durationCaretPeriod.Now();
 
       m_iNewChar = 0x80000000;
 
@@ -304,7 +304,7 @@ namespace console
 
       color32_t crTopic;
 
-      if(m_millisLastError.elapsed() < 84 && !m_bOk)
+      if(m_durationLastError.elapsed() < 84 && !m_bOk)
       {
 
          crTopic = argb(255,255,0,210);
@@ -319,7 +319,7 @@ namespace console
 
       }
 
-      bool bCaretOn = m_millisCaretStart.on_off(m_millisCaretPeriod);
+      bool bCaretOn = m_durationCaretStart.on_off(m_durationCaretPeriod);
 
       auto rectangleClient = get_client_rect();
 

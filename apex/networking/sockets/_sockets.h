@@ -15,6 +15,9 @@ namespace net
 } // namespace net
 
 
+inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_sockets); }
+
+
 #include "logger.h"
 //#include "trace_interface.h"
 

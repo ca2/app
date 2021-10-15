@@ -14,21 +14,21 @@ namespace user
       int                     m_iTextHeight;
       bool                    m_bNoName;
       int                     m_iPad;
-      ::e_align                 m_ealign;
+      ::e_align               m_ealign;
       string_to_string        m_mapName;
 
       image_array             m_imagea;
       image_array             m_imageaThumb;
 
       index_array             m_iaSel;
-      //::item            m_itemLButtonDown;
-      ::size_i32                  m_size;
+      //::item                m_itemLButtonDown;
+      ::size_i32              m_size;
       bool                    m_bMultiSel;
-      ::size_i32                  m_sizeImage;
+      ::size_i32              m_sizeImage;
 
 
       image_list();
-      virtual ~image_list();
+      ~image_list() override;
 
 
       virtual void on_hit_test(::item & item) override;
@@ -37,8 +37,8 @@ namespace user
 
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool _001GetItemText(string & str, index iItem);
 
@@ -47,18 +47,18 @@ namespace user
 
 #ifdef _DEBUG
 
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
 #endif
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -92,26 +92,26 @@ namespace user
 
 
       image_list_view();
-      virtual ~image_list_view();
+      ~image_list_view() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 #endif
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
 

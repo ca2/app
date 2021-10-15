@@ -79,7 +79,7 @@ namespace user
       };
 
 
-      //millis                           m_millisFocusStart;
+      //::duration                           m_durationFocusStart;
       bool                             m_bUserElementOk;
       ::user::primitive *              m_puserprimitive;
       ::user::interaction *            m_puserinteraction;
@@ -138,7 +138,7 @@ namespace user
       virtual string get_title();
 
 
-      //virtual void install_message_routing(::channel * pchannel) override;
+      //void install_message_routing(::channel * pchannel) override;
 
       virtual ::e_status show_software_keyboard(::user::element * pprimitive, string str, strsize iBeg, strsize iEnd);
 
@@ -302,7 +302,7 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-      virtual ::e_status interaction_branch(const ::routine & routine);
+      virtual ::e_status interaction_post(const ::routine & routine);
 
 
       //virtual lresult send(::message::message * pmessage);
@@ -331,7 +331,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
 

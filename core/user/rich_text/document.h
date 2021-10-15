@@ -16,14 +16,14 @@ namespace user
 
 
          document();
-         virtual ~document();
+         ~document() override;
 
 
 
-         virtual void assert_valid() const override;
-         virtual void dump(dump_context & dumpcontext) const override;
+         void assert_valid() const override;
+         void dump(dump_context & dumpcontext) const override;
 
-         virtual bool on_new_document() override;
+         bool on_new_document() override;
          virtual bool on_open_document(::file::file * pfile) override;
          virtual bool on_save_document(::file::file * pfile) override;
 

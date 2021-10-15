@@ -13,7 +13,7 @@ namespace datetime
       visual::visual()
    {
 
-      //   ::datetime::time time = ::datetime::time::get_current_time();
+      //   ::datetime::time time = ::datetime::time::now();
 
    }
 

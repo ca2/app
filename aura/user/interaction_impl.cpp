@@ -396,15 +396,15 @@ namespace user
    }
 
 
-   bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
-   {
-      __UNREFERENCED_PARAMETER(millis);
-      __UNREFERENCED_PARAMETER(dwFlags);
-      throw ::interface_only_exception();
-      return false;
-   }
+   //bool interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
+   //{
+   //   __UNREFERENCED_PARAMETER(::duration);
+   //   __UNREFERENCED_PARAMETER(dwFlags);
+   //   throw ::interface_only_exception();
+   //   return false;
+   //}
 
-   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,millis tickTimeout)
+   bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32 uCount,::duration tickTimeout)
    {
       __UNREFERENCED_PARAMETER(dwFlags);
       __UNREFERENCED_PARAMETER(uCount);
@@ -1583,7 +1583,7 @@ namespace user
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 
@@ -1680,7 +1680,7 @@ namespace user
          if (::is_set(m_puserinteraction))
          {
 
-            INFO(::str::demangle(m_puserinteraction->type_name()) + "::destroy_impl_only");
+            INFORMATION(::str::demangle(m_puserinteraction->type_name()) << "::destroy_impl_only");
 
             m_puserinteraction->transfer_handler(m_dispatchermap, this);
 
@@ -1705,7 +1705,7 @@ namespace user
          if (m_puserinteraction)
          {
 
-            INFO(::str::demangle(m_puserinteraction->type_name()) + "::destroy_impl_only ( 2)");
+            INFORMATION(::str::demangle(m_puserinteraction->type_name()) << "::destroy_impl_only ( 2)");
 
          }
 
@@ -1980,7 +1980,7 @@ namespace user
 
          pmouse->m_pcursor = pcursor;
 
-         //INFO("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
+         //INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
 
          string strType;
 
@@ -3805,7 +3805,7 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
-         INFO("user::interaction_impl::on_message_show_window bShow = true");
+         INFORMATION("user::interaction_impl::on_message_show_window bShow = true");
 
          if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
          {
@@ -3830,7 +3830,7 @@ namespace user
       else
       {
          
-         INFO("user::interaction_impl::on_message_show_window bShow = false");
+         INFORMATION("user::interaction_impl::on_message_show_window bShow = false");
 
          {
 
@@ -4412,14 +4412,28 @@ namespace user
    }
 
 
-
-
-
-
-   ::e_status interaction_impl::interaction_branch(const ::routine & routine)
+   ::e_status interaction_impl::interaction_post(const ::routine & routine)
    {
 
-      return ::error_interface_only;
+      auto puserinteraction = m_puserinteraction;
+
+      if (::is_null(puserinteraction))
+      {
+
+         return error_failed;
+
+      }
+
+      auto puserthread = puserinteraction->m_pthreadUserInteraction;
+
+      if (::is_null(puserthread))
+      {
+
+         return error_failed;
+
+      }
+
+      return puserthread->post_routine(routine);
 
    }
 
@@ -4764,7 +4778,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction_impl::get_keyboard_focus()
+   ::user::element * interaction_impl::get_keyboard_focus()
    {
 
       return m_puserinteractionFocus1;
@@ -5289,7 +5303,7 @@ namespace user
       if(sizeOutput.is_empty())
       {
 
-         INFO("window_show rectangleUi isEmpty");
+         INFORMATION("window_show rectangleUi isEmpty");
 
          return;
 
@@ -5409,7 +5423,7 @@ namespace user
       if (strType.contains("font_format"))
       {
 
-         INFO("font_format going to gather Z-Ordering information");
+         INFORMATION("font_format going to gather Z-Ordering information");
 
       }
 
@@ -5460,13 +5474,13 @@ namespace user
          if (strType.contains("font_format"))
          {
 
-            INFO("font_format going to SetWindowPos");
+            INFORMATION("font_format going to SetWindowPos");
 
          }
          else if (strType.contains("textformat"))
          {
 
-            INFO("text_format going to SetWindowPos");
+            INFORMATION("text_format going to SetWindowPos");
 
          }
 
@@ -5490,7 +5504,7 @@ namespace user
 
          ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
-         //output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
+         //output_debug_string("SetWindowPos bottom_right " + __string(pointBottomRight.x) + ", " + __string(pointBottomRight.y) + "\n");
 
 //#if !defined(_UWP) && !defined(ANDROID)
 
@@ -5759,7 +5773,7 @@ namespace user
       if (strType.contains_ci("filemanager"))
       {
 
-         INFO("filemanager apply visual");
+         INFORMATION("filemanager apply visual");
 
       }
 
@@ -5860,7 +5874,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-           // INFO("\nWindow is Moving :: on_message_move");
+           // INFORMATION("\nWindow is Moving :: on_message_move");
 
          //}
 
@@ -5961,7 +5975,7 @@ namespace user
          //if (m_puserinteraction->layout().is_moving())
          //{
 
-         // INFO("\nWindow is Moving :: on_message_move");
+         // INFORMATION("\nWindow is Moving :: on_message_move");
 
          //}
 
@@ -5991,7 +6005,7 @@ namespace user
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 

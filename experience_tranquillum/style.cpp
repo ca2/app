@@ -1190,7 +1190,7 @@ namespace tranquillum
    //      rectangleSeparator.right = rectangleSeparator.left + 2;
    //      rectangleSeparator.top = rectangleImage.top;
    //      rectangleSeparator.bottom = rectangleImage.bottom;
-   //      pgraphics->draw3d_rect(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
+   //      pgraphics->draw_inset_3d_rectangle(rectangleSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
    //   }
    //   else
    //   {
@@ -1213,7 +1213,7 @@ namespace tranquillum
    //               rectangleItem.height(),
    //               rgb(255, 255, 250), 208);
 
-   //               pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+   //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //            }
 
@@ -1342,7 +1342,7 @@ namespace tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+   //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //         }
 
@@ -1519,7 +1519,7 @@ namespace tranquillum
    //               rectangleItem.height(),
    //               rgb(255, 255, 250), 208);
 
-   //               pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+   //               pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //            }
 
@@ -1646,7 +1646,7 @@ namespace tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            pgraphics->draw3d_rect(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
+   //            pgraphics->draw_inset_3d_rectangle(rectangleItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //         }
 

@@ -127,7 +127,7 @@ namespace turboc
             m_pimpact->m_bLite = !m_pimpact->m_bLite;
 
 
-            m_pimpact->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(pgraphics);
 
          }
 

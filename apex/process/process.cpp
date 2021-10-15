@@ -59,11 +59,10 @@ namespace operating_system
    }
 
 
-   void process::wait_until_exit(i32 iWaitMax)
+   void process::wait_until_exit(const class ::wait & wait)
    {
-auto tickStart = ::millis::now();
-
-      i32 i = 1;
+      
+      auto start = ::wait::now();
 
       while(true)
       {
@@ -75,16 +74,27 @@ auto tickStart = ::millis::now();
 
          }
 
-         if(iWaitMax >= 0 && tickStart.elapsed() > iWaitMax)
+         if(!wait.is_null())
          {
 
-            break;
+            auto waitNow = minimum(wait - start.elapsed(), 100_ms);
+
+            if (!waitNow)
+            {
+
+               break;
+
+            }
+
+            preempt(waitNow);
 
          }
+         else
+         {
 
-         sleep(100_ms);
+            preempt(100_ms);
 
-         i++;
+         }
 
       }
 

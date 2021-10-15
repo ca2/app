@@ -284,7 +284,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, u32
   ud = *pUdateIn;
 
 //  if (dwFlags & VAR_VALIDDATE)
-//    WARN("Ignoring VAR_VALIDDATE\n");
+//    WARNING("Ignoring VAR_VALIDDATE\n");
 
   if (FAILED(FLOATTIME_RollUdate(&ud)))
     return E_INVALIDARG;
@@ -1047,7 +1047,7 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, u32 dwFlags, UDATE *lpUdate)
   lpUdate->st.wMilliseconds = 0;
   if (timePart > 0.5)
   {
-    /* Round the milliseconds, adjusting the time/date forward if needed */
+    /* Round the ::durations, adjusting the time/date forward if needed */
     if (lpUdate->st.wSecond < 59)
       lpUdate->st.wSecond++;
     else

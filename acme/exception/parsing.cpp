@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-//thread_int_ptr < iptr > t_iAvoidParsingException;
-
-
 parsing_exception::parsing_exception(const char * pszMessage) :
    ::exception(pszMessage)
 {
@@ -21,10 +18,11 @@ parsing_exception::~parsing_exception()
 
 thread_local bool t_bAvoidParsingException = false;
 
-CLASS_DECL_ACME bool get_avoid_parsing_exception()
+
+CLASS_DECL_ACME bool should_avoid_parsing_exception()
 {
 
-   return t_bAvoidParsingException;
+   return task_flag().is_set(e_task_flag_avoid_parsing_exception);
 
 }
 
@@ -32,7 +30,7 @@ CLASS_DECL_ACME bool get_avoid_parsing_exception()
 CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 {
 
-   t_bAvoidParsingException = bSet;
+   task_flag().set(e_task_flag_avoid_parsing_exception, bSet);
 
 }
 
@@ -40,7 +38,7 @@ CLASS_DECL_ACME void set_avoid_parsing_exception(bool bSet)
 CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 {
 
-   if (get_avoid_parsing_exception())
+   if (should_avoid_parsing_exception())
    {
 
       return false;
@@ -55,20 +53,20 @@ CLASS_DECL_ACME bool throw_parsing_exception(const ::string & strMessage)
 
 
 
-avoid_parsing_exception::avoid_parsing_exception() :
-   m_bAvoidParsingExceptionPrevious(get_avoid_parsing_exception())
-{
-
-   set_avoid_parsing_exception(true);
-
-}
-
-avoid_parsing_exception::~avoid_parsing_exception()
-{
-
-   set_avoid_parsing_exception(m_bAvoidParsingExceptionPrevious);
-
-}
+//avoid_parsing_exception::avoid_parsing_exception() :
+//   m_bAvoidParsingExceptionPrevious(get_avoid_parsing_exception())
+//{
+//
+//   set_avoid_parsing_exception(true);
+//
+//}
+//
+//avoid_parsing_exception::~avoid_parsing_exception()
+//{
+//
+//   set_avoid_parsing_exception(m_bAvoidParsingExceptionPrevious);
+//
+//}
 
 
 
@@ -93,7 +91,7 @@ json_parsing_exception::~json_parsing_exception()
 CLASS_DECL_ACME bool throw_json_parsing_exception(const ::string & strMessage)
 {
 
-   if (get_avoid_parsing_exception())
+   if (should_avoid_parsing_exception())
    {
 
       return false;

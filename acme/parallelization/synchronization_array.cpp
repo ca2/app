@@ -190,7 +190,7 @@ void synchronization_array::erase(index index)
 }
 
 
-::e_status synchronization_array::wait(const duration & duration, bool bWaitForAll, ::u32 uWakeMask)
+::e_status synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
@@ -209,9 +209,7 @@ void synchronization_array::erase(index index)
    if (uWakeMask)
    {
 
-      auto millis = duration.u32_millis();
-
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), millis, uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), wait, uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -220,13 +218,11 @@ void synchronization_array::erase(index index)
 
    {
 
-      auto millis = duration.u32_millis();
-
       ::u32 uCount = (u32)m_hsyncaCache.size();
 
       auto psynca = m_hsyncaCache.get_data();
 
-      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, millis);
+      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, wait);
 
    }
 
@@ -241,7 +237,7 @@ void synchronization_array::erase(index index)
 
    }
 
-//   auto start = ::millis::now();
+//   auto start = ::duration::now();
 
    bool FoundExternal=false;
 
@@ -277,20 +273,19 @@ void synchronization_array::erase(index index)
 //      do
       {
 
-         auto osduration = __os(duration);
 
 #if !defined(_UWP)
          if (uWakeMask)
          {
 
-            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), osduration, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, wait, true);
 
          }
 

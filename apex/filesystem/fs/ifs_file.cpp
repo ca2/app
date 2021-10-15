@@ -117,7 +117,7 @@ void ifs_file::set_file_data()
 
       m_pcontext->m_papexcontext->http().put(strUrl, m_varFile["xmledit"].cast < ::memory_file >(), setRequest);
 
-      string strResponse(setRequest["get_response"]);
+      string strResponse(setRequest["get_response"].get_string());
 
       property_set set;
 

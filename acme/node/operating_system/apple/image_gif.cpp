@@ -220,7 +220,7 @@
 //
 //            p->m_pimage->create_helper_map();
 //
-//            pframea->m_millisTotal += p->m_tick;
+//            pframea->m_durationTotal += p->m_tick;
 //
 //         }
 //

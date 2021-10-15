@@ -101,7 +101,7 @@ namespace ftp
 
    void output_stream::OnBytesReceived(const memory& vBuffer, long lReceivedBytes)
    {
-      m_pimpl->m_vBuffer +=  vBuffer.to_string(0, lReceivedBytes);
+      m_pimpl->m_vBuffer +=  vBuffer.get_string(0, lReceivedBytes);
    }
 
    void output_stream::OnPreBytesSend(u8 * pszBuffer, memsize bufferSize, memsize& bytesToSend)

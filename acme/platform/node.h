@@ -227,34 +227,17 @@ namespace acme
 
       virtual void enable_wallpaper_change_notification();
 
-      template < typename PRED >
-      void node_fork(PRED pred)
+      template < typename PREDICATE >
+      void node_fork(PREDICATE predicate)
       {
 
-         node_branch(__routine(pred));
+         node_post(__routine(predicate));
 
       }
 
-      virtual ::e_status node_branch(const ::routine & routine);
+      virtual ::e_status node_post(const ::routine & routine);
 
-      template < typename PRED >
-      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
-      {
-
-         auto estatus = node_sync(durationTimeout, __routine(pred));
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
-
-      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_send(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -399,10 +382,10 @@ namespace acme
 
 
       virtual ::e_status shell_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
-      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
+      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
 
       
       //::file::path command_find_path(const ::string & pszCommand);

@@ -103,10 +103,10 @@ namespace sockets
          if (n == -1)
          {
 
-            FATAL(log_this, "bind", Errno, bsd_socket_error(Errno));
+            FATAL("bind" << Errno << ", " << bsd_socket_error(Errno));
 
             SetCloseAndDelete();
-            __throw(error_socket, "bind() failed for udp_socket, port:range: " + __str(ad.get_service_number()) + ":" + __str(range));
+            __throw(error_socket, "bind() failed for udp_socket, port:range: " + __string(ad.get_service_number()) + ":" + __string(range));
             return -1;
          }
          m_bind_ok = true;
@@ -153,7 +153,7 @@ namespace sockets
          if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
          {
 
-            FATAL(log_this, "connect", Errno, bsd_socket_error(Errno));
+            FATAL("connect" << Errno << ", " << bsd_socket_error(Errno));
 
             SetCloseAndDelete();
             return false;
@@ -228,7 +228,7 @@ namespace sockets
 
 
 
-            ERR("sendto", Errno, bsd_socket_error(Errno));
+            ERROR("sendto" << Errno << ", " << bsd_socket_error(Errno));
 
 
 
@@ -280,7 +280,7 @@ namespace sockets
 
 
 
-         ERR("write", 0, "not connected");
+         ERROR("write 0 not connected");
 
 
 
@@ -293,7 +293,7 @@ namespace sockets
 
 
 
-         ERR("write", Errno, bsd_socket_error(Errno));
+         ERROR("write" << Errno << ", " << bsd_socket_error(Errno));
 
 
 
@@ -383,15 +383,15 @@ namespace sockets
          if (m_b_read_ts)
          {
             
-            micro_duration microduration;
+            ::duration duration;
 
-            auto psystem = get_system()->m_papexsystem;
-            
-            psystem->get_time(&microduration);
+            duration.Now();
 
             struct timeval timeval;
 
-            __copy(timeval, microduration);
+            timeval.tv_sec = (long) duration.m_iSecond;
+
+            timeval.tv_usec = duration.m_iNanosecond / 1'000;
 
 #if !defined(LINUX) && !defined(MACOSX)
             memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
@@ -417,7 +417,7 @@ namespace sockets
 
 
 
-                  ERR("recvfrom", Errno, bsd_socket_error(Errno));
+                  ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
 
 
                }
@@ -435,7 +435,7 @@ namespace sockets
             if (sa_len != sizeof(sa))
             {
 
-               WARN("recvfrom", 0, "unexpected address struct size_i32");
+               WARNING("recvfrom 0 unexpected address struct size_i32");
 
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -454,7 +454,7 @@ namespace sockets
             {
 #endif
 
-               ERR("recvfrom", Errno, bsd_socket_error(Errno));
+               ERROR("recvfrom " << Errno << ", " << bsd_socket_error(Errno));
 
             }
          }
@@ -465,21 +465,26 @@ namespace sockets
       if (m_b_read_ts)
       {
          
-         micro_duration microduration;
+         ::duration duration;
 
-         auto psystem = get_system()->m_papexsystem;
-         
-         psystem->get_time(&microduration);
+         duration.Now();
 
          timeval timeval;
 
-         __copy(timeval, microduration);
+         timeval.tv_sec = (long) duration.m_iSecond;
+
+         timeval.tv_usec = duration.m_iNanosecond / 1'000;
 
 #if !defined(LINUX) && !defined(MACOSX)
+
          memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+
 #else
+
          i32 n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
+
 #endif
+
          if (n > 0)
          {
             
@@ -497,7 +502,7 @@ namespace sockets
 #endif
 
 
-               ERR("recvfrom", Errno, bsd_socket_error(Errno));
+               ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
 
             }
          }
@@ -510,7 +515,7 @@ namespace sockets
          if (sa_len != sizeof(sa))
          {
 
-            WARN("recvfrom", 0, "unexpected address struct size_i32");
+            WARNING("recvfrom 0 unexpected address struct size_i32");
 
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -529,7 +534,7 @@ namespace sockets
          {
 #endif
 
-            ERR("recvfrom", Errno, bsd_socket_error(Errno));
+            ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
 
          }
       }
@@ -545,7 +550,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
       {
 
-         WARN("SetMulticastTTL", Errno, bsd_socket_error(Errno));
+         WARNING("SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
 
       }
    }
@@ -563,7 +568,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
 
-         WARN("GetMulticastTTL", Errno, bsd_socket_error(Errno));
+         WARNING("GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
 
       }
       return ttl;
@@ -582,7 +587,7 @@ namespace sockets
          if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
          {
 
-            WARN("SetMulticastLoop", Errno, bsd_socket_error(Errno));
+            WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
          }
          return;
@@ -591,7 +596,7 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       {
 
-         WARN("SetMulticastLoop", Errno, bsd_socket_error(Errno));
+         WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       }
    }
@@ -610,7 +615,7 @@ namespace sockets
          if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
 
-            WARN("IsMulticastLoop", Errno, bsd_socket_error(Errno));
+            WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
          }
          return is_loop ? true : false;
@@ -620,7 +625,7 @@ namespace sockets
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
 
-         WARN("IsMulticastLoop", Errno, bsd_socket_error(Errno));
+         WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
 
       }
       return is_loop ? true : false;
@@ -647,7 +652,7 @@ namespace sockets
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
 
-               WARN("AddMulticastMembership", Errno, bsd_socket_error(Errno));
+               WARNING("AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno));
 
             }
          }
@@ -671,7 +676,7 @@ namespace sockets
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
 
-            WARN("AddMulticastMembership", Errno, bsd_socket_error(Errno));
+            WARNING("AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
 
          }
       }
@@ -698,7 +703,7 @@ namespace sockets
             if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
             {
 
-               WARN("DropMulticastMembership", Errno, bsd_socket_error(Errno));
+               WARNING("DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
 
             }
          }
@@ -719,7 +724,7 @@ namespace sockets
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
          {
 
-            WARN("DropMulticastMembership", Errno, bsd_socket_error(Errno));
+            WARNING("DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno));
 
          }
       }
@@ -735,14 +740,14 @@ namespace sockets
       if (!IsIpv6())
       {
 
-         ERR("SetMulticastHops", 0, "Ipv6 only");
+         ERROR("SetMulticastHops 0 Ipv6 only");
 
          return;
       }
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
       {
 
-         WARN("SetMulticastHops", Errno, bsd_socket_error(Errno));
+         WARNING("SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
 
       }
    }
@@ -757,7 +762,7 @@ namespace sockets
       if (!IsIpv6())
       {
 
-         ERR("SetMulticastHops", 0, "Ipv6 only");
+         ERROR("SetMulticastHops 0 Ipv6 only");
 
          return -1;
       }
@@ -766,7 +771,7 @@ namespace sockets
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
 
-         WARN("GetMulticastHops", Errno, bsd_socket_error(Errno));
+         WARNING("GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
 
       }
       return hops;

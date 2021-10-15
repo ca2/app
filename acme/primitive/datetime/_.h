@@ -2,10 +2,10 @@
 
 
 class filetime;
-class secs;
-class millis;
-class micros;
-class nanos;
+class second;
+class duration;
+class microsecond;
+class nanosecond;
 class duration;
 
 
@@ -18,17 +18,8 @@ namespace datetime
 } // namespace datetime
 
 
-CLASS_DECL_ACME ::i64 _first_nano();
-CLASS_DECL_ACME ::i64 _get_nanos();
 
 
-#include "secs.h"
-#include "millis.h"
-#include "micros.h"
-#include "nanos.h"
-
-
-#include "duration.h"
 
 
 #include "micro_duration.h"
@@ -80,7 +71,7 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
 
-inline nanos operator -(const ::nanos& nanos, const ::millis & millis);
+//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration);
 
 
 

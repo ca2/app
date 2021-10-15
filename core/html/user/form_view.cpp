@@ -23,9 +23,9 @@ void html_form_view::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(e_message_size, pchannel, this, &html_form_view::on_message_size);
 
    //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_view::_001OnTabClick);
-   //connect_command(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_DIRECT, ::user::form_view::OnFilePrint)
-   //connect_command(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
+   //add_command_handler(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
+   //add_command_handler(ID_FILE_PRINT_DIRECT, ::user::form_view::OnFilePrint)
+   //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
    //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);

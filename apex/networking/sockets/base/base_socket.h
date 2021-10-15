@@ -116,7 +116,7 @@ namespace sockets
       string                  m_line; ///< Current line in line protocol mode
 
       ::e_status                    m_estatus;
-      millis m_millisStart;
+      ::duration m_durationStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
@@ -269,11 +269,11 @@ namespace sockets
       /** enable timeout control. 0=disable timeout check. */
       virtual void set_connection_start_time();
 
-      virtual void set_maximum_connection_time(time_t secs);
+      virtual void set_maximum_connection_time(time_t second);
 
       virtual void set_start_time();
 
-      virtual void set_maximum_time(time_t secs);
+      virtual void set_maximum_time(time_t second);
 
       /** Check timeout. \return true if time limit reached */
       bool has_timed_out();
@@ -524,7 +524,7 @@ namespace sockets
       // TCP options in tcp_socket.h/tcp_socket.cpp
 
 
-      string to_string() const override;
+      string get_string() const override;
 
 
       virtual void attach(SOCKET s);
@@ -728,7 +728,7 @@ namespace sockets
       virtual string get_short_description();
 
 
-      virtual e_trace_category trace_category() const override;
+      virtual enum_trace_category trace_category() const override;
 
       //virtual void on_finalize() override;
 

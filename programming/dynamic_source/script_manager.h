@@ -52,7 +52,7 @@ namespace dynamic_source
 
 
          string         m_strServer;
-         millis           m_tick;
+         ::duration           m_tick;
 
 
       };
@@ -102,7 +102,7 @@ namespace dynamic_source
 
       ::crypto::rsaptra                                     m_rsaptra;
 
-      millis                                                  m_millisLastRsa;
+      ::duration                                                  m_durationLastRsa;
 
 
 
@@ -134,7 +134,7 @@ namespace dynamic_source
 
 
       bool                                                  m_bCompiler;
-      ::secs                                                m_secsSessionExpiration;
+      ::integral_second                                     m_secsSessionExpiration;
 
 
       script_manager();

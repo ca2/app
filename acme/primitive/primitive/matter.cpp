@@ -338,6 +338,14 @@ void matter::defer_create_mutex()
 }
 
 
+DURATION matter::timeout() const
+{
+   
+   return { .m_iSecond = 64 }; // : // 64s ~ 1 minute
+
+}
+
+
 //::e_status matter::run()
 //{
 //
@@ -637,71 +645,71 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+//void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+//{
+//
+//   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+//
+//}
+//
+//
+//void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
+//{
+//
+//   va_list valist;
+//
+//   va_start(valist, pszFormat);
+//
+//   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
+//
+//   va_end(valist);
+//
+//}
+
+
+//void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
+//{
+//
+//   string str;
+//
+//   va_list ptr1;
+//
+//   va_copy(ptr1, valist);
+//
+//   str.FormatV(pszFormat, valist);
+//
+//   va_end(ptr1);
+//
+//   __tracea(elevel, pszFunction, pszFile, iLine, str);
+//
+//}
+
+
+//void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
+//{
+//
+//   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//}
+//
+//
+//void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
+//{
+//
+//   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
+//
+//}
+
+
+enum_trace_category matter::trace_category() const
 {
 
-   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+   return e_trace_category_general;
 
 }
 
 
-void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
-{
-
-   va_list valist;
-
-   va_start(valist, pszFormat);
-
-   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
-
-   va_end(valist);
-
-}
-
-
-void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
-{
-
-   string str;
-
-   va_list ptr1;
-
-   va_copy(ptr1, valist);
-
-   str.FormatV(pszFormat, valist);
-
-   va_end(ptr1);
-
-   __tracea(elevel, pszFunction, pszFile, iLine, str);
-
-}
-
-
-void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
-{
-
-   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-}
-
-
-void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
-{
-
-   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
-
-}
-
-
-e_trace_category matter::trace_category() const
-{
-
-   return trace_category_general;
-
-}
-
-
-e_trace_category matter::trace_category(const ::matter * pobject) const
+enum_trace_category matter::trace_category(const ::matter * pobject) const
 {
 
    return pobject->trace_category();

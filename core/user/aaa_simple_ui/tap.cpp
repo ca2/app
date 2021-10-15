@@ -52,8 +52,8 @@ namespace simple_ui
    void tap::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      INFO("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x, layout().sketch().origin().y);
-      INFO("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x, screen_origin().y);
+      INFORMATION("simple_ui::_001OnDraw pos(%d,%d)", layout().sketch().origin().x, layout().sketch().origin().y);
+      INFORMATION("simple_ui::_001OnDraw scr_pos(%d,%d)", screen_origin().x, screen_origin().y);
 
       simple_ui_draw_volume(pgraphics);
 
@@ -117,7 +117,7 @@ namespace simple_ui
 
       auto pmouse = pmessage->m_pmouse;
 
-      INFO("simple_ui::tap::on_message_mouse_move");
+      INFORMATION("simple_ui::tap::on_message_mouse_move");
 
       pmouse->m_bRet = true;
 
@@ -253,7 +253,7 @@ namespace simple_ui
 
          get_client_rect(rectangleClient);
 
-         ::datetime::time timeNow = ::datetime::time::get_current_time();
+         ::datetime::time timeNow = ::datetime::time::now();
 
          if (is_hover() || m_bDown || m_bMouseMove)
          {
@@ -425,7 +425,7 @@ namespace simple_ui
 
       get_client_rect(rectangleClient);
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
+      ::datetime::time timeNow = ::datetime::time::now();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

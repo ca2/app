@@ -1046,7 +1046,7 @@ namespace user
    }
 
 
-   ::e_status element::interaction_branch(const ::routine & routine)
+   ::e_status element::interaction_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();
@@ -2423,7 +2423,7 @@ namespace user
    }
 
 
-   bool element::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
+   bool element::SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer)
    {
 
       throw ::interface_only_exception();
@@ -4401,7 +4401,7 @@ namespace user
    void element::on_reset_focus_start_tick()
    {
 //
-  //    m_millisFocusStart.Now();
+  //    m_durationFocusStart.Now();
 
    }
 

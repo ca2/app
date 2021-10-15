@@ -119,7 +119,7 @@ namespace user
             else
             {
 
-               //pgraphics->draw3d_rect(rectangleClient,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
+               //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
 
                //rectangleClient.deflate(1,1);
 
@@ -221,7 +221,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::point point = pmouse->m_point;
+   //   ::point_i32 point = pmouse->m_point;
 
    //   screen_to_client(point);
 
@@ -251,7 +251,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::point point = pmouse->m_point;
+   //   ::point_i32 point = pmouse->m_point;
 
    //   screen_to_client(point);
 
@@ -285,7 +285,7 @@ namespace user
 
    //   //enum_element eelement;
 
-   //   //::point point = pmouse->m_point;
+   //   //::point_i32 point = pmouse->m_point;
 
    //   //screen_to_client(point);
 
@@ -844,7 +844,7 @@ namespace user
          else if (m_itemHover.is_set() || is_left_button_pressed())
          {
 
-            //pgraphics->draw3d_rect(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
+            //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
 
             //rectangleClient.deflate(1,1);
 

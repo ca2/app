@@ -14,8 +14,8 @@ using string_list = list < string >;
 //   virtual ~string_list();
 //
 //
-//   virtual void assert_valid() const override;
-//   virtual void dump(dump_context & dumpcontext) const override;
+//   void assert_valid() const override;
+//   void dump(dump_context & dumpcontext) const override;
 //
 //
 //   node * find(const string & searchValue, node * startAfter = nullptr) const;

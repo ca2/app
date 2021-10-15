@@ -56,7 +56,7 @@ namespace user
       void user_combo_box_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
@@ -186,7 +186,7 @@ namespace user
       index DeleteString(index nIndex);
       index InsertString(index nIndex, const ::string & pszString);
 
-      void ResetContent();
+      void reset_content();
       index Dir(index attr, const ::string & pszWildCard);
 
 

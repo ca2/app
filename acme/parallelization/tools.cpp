@@ -318,7 +318,7 @@ bool tool_task::set_predicate(::predicate_holder_base * ppred)
       while (task_get_run())
       {
 
-         if (!m_pevStart->wait(millis(300)).succeeded())
+         if (!m_pevStart->wait(300_ms).succeeded())
          {
 
             continue;

@@ -159,7 +159,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-::e_status semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -169,7 +169,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    sb.sem_op = -1;
    sb.sem_flg = 0;
 
-   if(durationTimeout.is_infinite())
+   if(wait.is_infinite())
    {
 
       iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
@@ -177,14 +177,11 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    else
    {
 
-      timespec ts;
+      timespec timespec;
 
-      ((duration &)durationTimeout).normalize();
+      timespec += wait;
 
-      ts.tv_nsec = durationTimeout.m_nanos.m_i;
-      ts.tv_sec = durationTimeout.m_secs.m_i;
-
-      iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &ts);
+      iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
 
       if(iRet == EINTR || iRet == EAGAIN)
       {
@@ -272,9 +269,9 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
    }
 
-   millis tStart;
+   ::duration tStart;
 
-   tStart = millis::now();
+   tStart = ::duration::now();
 
    struct sembuf sb;
 
@@ -301,7 +298,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
          preempt(100_ms);
 
-         millis tRemaining = durationTimeout - tStart.elapsed();
+         ::duration tRemaining = durationTimeout - tStart.elapsed();
 
          if(tRemaining > durationTimeout)
          {

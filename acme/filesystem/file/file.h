@@ -32,7 +32,7 @@ namespace file
       ::file::e_open             m_eopen;
       ::file::path               m_path;
       ::file::e_state            m_estate;
-      ::millis                   m_millisErrorBlockTimeout;
+      ::duration                 m_durationErrorBlockTimeout;
 
 
       file();
@@ -72,7 +72,7 @@ namespace file
 
       virtual ::filesize get_left() const;
 
-      string to_string() const override;
+      string get_string() const override;
 
       virtual void as_memory(memory_base & memory) const;
 

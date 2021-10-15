@@ -25,7 +25,7 @@ namespace draw2d
       virtual ~pen();
 
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
       virtual bool create_solid(double dWidth, const ::color::color &color);

@@ -121,9 +121,9 @@ namespace user
 
 //#endif
 
-         SetTimer(100, 100, nullptr);
+         SetTimer(100, 100_ms, nullptr);
 
-         SetTimer(e_timer_redraw, 200, nullptr); // Caret
+         SetTimer(e_timer_redraw, 200_ms, nullptr); // Caret
 
       }
 
@@ -725,7 +725,7 @@ namespace user
 
                KillTimer(500);
 
-               SetTimer(501, 300, nullptr);
+               SetTimer(501, 300_ms, nullptr);
 
             }
 
@@ -922,7 +922,7 @@ bool __rich_text_initialize()
    create_factory <::user::rich_text::span >();
    create_factory <::user::rich_text::document >();
 
-   create_factory < ::user::rich_text::edit_impact >("rich_text_impact");
+   create_factory < ::user::rich_text::edit_impl, ::user::rich_text::edit >("rich_text_impact");
 
    return true;
 

@@ -8,22 +8,22 @@ public:
 
 
    ::image_pointer      m_pimage;
-   millis                 m_millisTotal;
+   ::duration           m_durationTotal;
    ::count              m_countLoop; // 0 - infinite loop
    ::index              m_iLoop;
    int                  m_iTransparentIndex;
    bool                 m_bTransparent;
-   ::color::color             m_colorTransparent;
-   ::color::color             m_colorBack;
+   ::color::color       m_colorTransparent;
+   ::color::color       m_colorBack;
    byte                 m_backgroundIndex;
-   ::size_i32               m_sizeLogical;
-   ::size_i32               m_size;
+   ::size_i32           m_sizeLogical;
+   ::size_i32           m_size;
    ::image_pointer      m_pimageCompose;
    colorref_array       m_colorrefa;
 
 
    image_frame_array();
-   virtual ~image_frame_array();
+   ~image_frame_array() override;
 
 
    const ::size_i32 size() { return m_size; }

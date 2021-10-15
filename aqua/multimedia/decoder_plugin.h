@@ -25,7 +25,7 @@ namespace multimedia
 
 
       decoder_plugin();
-      virtual ~decoder_plugin();
+      ~decoder_plugin() override;
 
 
       virtual bool Load(const char * pszTitle);

@@ -268,7 +268,7 @@ namespace filemanager
             {
                //RemovePaneAt(0);
                //set_position(0, 49);
-               //on_layout(::draw2d::graphics_pointer & pgraphics);
+               //on_layout(pgraphics);
             }
 
          }

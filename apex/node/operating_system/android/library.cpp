@@ -67,7 +67,7 @@ CLASS_DECL_APEX void * __node_library_open(const char * pszPath, string & strMes
       if (psz != nullptr)
       {
 
-         strMessage += "strerror("+__str(iError) +") = " + string(psz);
+         strMessage += "strerror("+__string(iError) +") = " + string(psz);
 
       }
 

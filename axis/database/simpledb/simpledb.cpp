@@ -238,7 +238,7 @@ namespace simpledb
 
             ::datetime::time timeListing(pdatetime->from_gmt(ptextcontext, strListingTime));
 
-            if (timeListing.abs_diff(::datetime::now) > 5_s)
+            if (timeListing.abs_diff(e_now) > 5_s)
             {
 
                return false;

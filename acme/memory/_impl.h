@@ -2,20 +2,20 @@
 #pragma once
 
 
-namespace str
+// namespace str
+// {
+
+
+template < typename POINTER >
+inline void to_string(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer)
 {
 
+   to_string(str, memoryallocpointer.m_p);
 
-   template < typename POINTER >
-   inline void from(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer)
-   {
-
-      from(str, memoryallocpointer.m_p);
-
-   }
+}
 
 
-} // namespace str
+// } // namespace str
 
 
 template < typename TYPE, std::size_t SIZE >

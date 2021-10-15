@@ -519,7 +519,7 @@ inline ::payload payload:: operator * (const PAYLOAD & payload2) const
    else
    {
 
-      payload = to_string().intersection(payload2.to_string());
+      payload = get_string().intersection(payload2.to_string());
 
    }
 

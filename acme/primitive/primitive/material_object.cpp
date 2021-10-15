@@ -28,7 +28,7 @@ material_object::~material_object()
 //}
 
 
-::string material_object::to_string() const
+::string material_object::get_string() const
 {
 
    return type_c_str();
@@ -43,4 +43,33 @@ material_object::~material_object()
    return ::success_none;
    
 }
+
+
+bool material_object::is_branch_current() const
+{
+
+   return true;
+
+}
+
+
+::e_status material_object::post_routine(const ::routine & routine)
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status material_object::send_routine(const ::routine & routine)
+{
+
+   return __send_routine(this, &material_object::post_routine, routine);
+
+   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+
+}
+
 

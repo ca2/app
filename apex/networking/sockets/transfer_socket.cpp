@@ -309,7 +309,7 @@ namespace sockets
 
    //   int nBytesReceived = 0;
 
-   //   ::u32 tickStart= ::millis::now();
+   //   ::u32 tickStart= ::duration::now();
 
    //   int iRead = 0;
 

@@ -669,13 +669,13 @@ bool mutex::already_exists()
 #if !defined(WINDOWS)
 
 
-::e_status mutex::_wait(const duration & duration)
+::e_status mutex::_wait(const class ::wait & wait)
 {
 
-   if(duration.is_pos_infinity())
+   if(wait.is_infinite())
    {
 
-      return wait();
+      return _wait();
 
    }
 
@@ -730,9 +730,7 @@ bool mutex::already_exists()
 
       }
 
-      auto tickTimeout = duration.millis();
-
-      auto tickStart = ::millis::now();
+      auto tickStart = ::duration::now();
 
       while (true)
       {
@@ -804,14 +802,14 @@ bool mutex::already_exists()
 
             auto tickElapsed = tickStart.elapsed();
 
-            if (tickElapsed >= tickTimeout)
+            if (tickElapsed >= wait)
             {
 
                return error_wait_timeout;
 
             }
 
-            preempt((::millis)minimum_maximum((tickTimeout - tickElapsed) / 50, 1, 1000));
+            preempt((::duration)minimum_maximum((wait - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 
@@ -946,15 +944,15 @@ bool mutex::already_exists()
 
             ::duration d;
 
-            d.m_secs = abs_time.tv_sec + duration.m_secs.m_i;
+            d.m_iSecond = abs_time.tv_sec + wait.m_i / 1'000;
 
-            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_i;
+            d.m_iNanosecond = abs_time.tv_nsec + (wait.m_i%1000) * 1'000'000;
 
             d.normalize();
 
-            abs_time.tv_sec = d.m_secs.m_i;
+            abs_time.tv_sec = d.m_iSecond;
 
-            abs_time.tv_nsec = d.m_nanos.m_i;
+            abs_time.tv_nsec = d.m_iNanosecond;
 
             bFirst = false;
 
@@ -1309,10 +1307,10 @@ bool mutex::lock()
 }
 
 
-bool mutex::lock(const duration & duration)
+bool mutex::lock(const class ::wait & wait)
 {
 
-   auto estatus = wait(duration);
+   auto estatus = this->wait(wait);
 
    if (!estatus.signaled())
    {

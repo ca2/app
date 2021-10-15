@@ -364,7 +364,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
@@ -553,7 +553,7 @@ namespace linux
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
             {
 
-               INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+               INFORMATION("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
 
             }
 
@@ -744,7 +744,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_millisLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
+      while(m_durationLastPlacementEvent.elapsed() < 40 || m_puserinteraction->is_layout_experience_active())
       {
 
          if(!task_sleep(10_ms))
@@ -770,7 +770,7 @@ namespace linux
       if (bMove)
       {
 
-         INFO("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -785,7 +785,7 @@ namespace linux
       if (bSize)
       {
 
-         INFO("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -898,7 +898,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
+         INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->ui_state().m_edisplay3.m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -1325,10 +1325,10 @@ namespace linux
 //   }
 //
 
-   millis     tickDebugmessage_handlerTime;
+   ::duration     tickDebugmessage_handlerTime;
    int      iDebugmessage_handlerTime;
-   millis     tickLastMouseMove;
-   millis     tickLastPaint;
+   ::duration     tickLastMouseMove;
+   ::duration     tickLastPaint;
 
 
    void interaction_impl::message_handler(::user::message * pusermessage)
@@ -1527,7 +1527,7 @@ namespace linux
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
-               INFO("Screen Relative Mouse Message Position");
+               INFORMATION("Screen Relative Mouse Message Position");
                ::rectangle rectangleWindow32;
                ::get_window_rect((oswindow) get_handle(), &rectangleWindow32);
                ::copy(rectangleWindow, rectangleWindow32);
@@ -2291,7 +2291,7 @@ namespace linux
 ////            while (::task_get_run())
 ////            {
 ////
-//// auto tickStart = ::millis::now();
+//// auto tickStart = ::duration::now();
 ////
 ////               bool bUpdateScreen = false;
 ////
@@ -2436,7 +2436,7 @@ namespace linux
 //         fork();
 //#undef timeout
 //
-//         if(m_event.wait(millis(tickTimeout)).timeout())
+//         if(m_event.wait(::duration(tickTimeout)).timeout())
 //         {
 //            TRACE("print_window::time_out");
 //         }
@@ -2591,7 +2591,7 @@ namespace linux
 //      if(!(nFlags & SWP_NOMOVE))
 //      {
 //
-//         m_puserinteraction->m_pointRequest = ::point(x, y);
+//         m_puserinteraction->m_pointRequest = ::point_i32(x, y);
 //
 //      }
 //
@@ -2625,7 +2625,7 @@ namespace linux
 //   }
 
 
-//   ::point interaction_impl::client_screen_top_left()
+//   ::point_i32 interaction_impl::client_screen_top_left()
 //   {
 //
 //      ::rect64 rectangleWindow;
@@ -2633,7 +2633,7 @@ namespace linux
 //      if(!get_window_rect(rectangleWindow))
 //      {
 //
-//         return pointd(0.0,0.0);
+//         return point_f64(0.0,0.0);
 //
 //      }
 //
@@ -3194,7 +3194,7 @@ namespace linux
    }
 
 
-//   bool interaction_impl::DragDetect(const ::point & point) const
+//   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4036,7 +4036,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //
@@ -4046,7 +4046,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4103,7 +4103,7 @@ namespace linux
 //   }
 //
 //
-//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point & point)
+//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4184,13 +4184,13 @@ namespace linux
 //   {
 //
 //      __s_throw(not_implemented());
-////      const ::point & point;
+////      const ::point_i32 & point;
 ////      ::GetcaretPos((POINT32 *)&point); return point;
 //
 //   }
 //
 //
-//   void PASCAL interaction_impl::SetCaretPos(const ::point & point)
+//   void PASCAL interaction_impl::SetCaretPos(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4747,7 +4747,7 @@ namespace linux
    void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SetViewportOrg(::point());
+      pgraphics->SetViewportOrg(::point_i32());
 
    }
 

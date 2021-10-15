@@ -124,7 +124,7 @@ namespace html
 
       }
 
-      f = parse_dimension(m_propertyset[idName].to_string());
+      f = parse_dimension(m_propertyset[idName].get_string());
 
       return true;
 
@@ -199,7 +199,7 @@ namespace html
       if(pstyle != nullptr)
       {
 
-         f = parse_dimension(pstyle->m_propertyset[idName].to_string());
+         f = parse_dimension(pstyle->m_propertyset[idName].get_string());
 
       }
 
@@ -821,16 +821,16 @@ namespace html
                string strParent;
                if(pelement->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelement->m_pparent, strParent))
                {
-                  str = __str((i32)((double) atof(str) * atoi(strParent)));
+                  str = __string((i32)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = __str((i32)((double) atof(str) * 12));
+                  str = __string((i32)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = __str((i32)((double) atof(str) * 12));
+               str = __string((i32)((double) atof(str) * 12));
             }
          }
       }

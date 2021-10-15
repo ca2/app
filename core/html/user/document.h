@@ -14,8 +14,8 @@ public:
    virtual ~html_document();
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    //virtual ::e_status create_html_data();
@@ -31,7 +31,7 @@ public:
 
    virtual bool load_html(const ::string & str);
 
-   virtual bool on_new_document() override;
+   bool on_new_document() override;
 
    virtual void form_document_set_property_set(const property_set & set) override;
    virtual property_set * form_document_get_property_set() override;

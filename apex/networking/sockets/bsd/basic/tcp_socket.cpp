@@ -295,13 +295,13 @@ namespace sockets
 
       int iPort = ad.get_service_number();
 
-      INFO(log_this, "open", 0, "address = " + strIp + ":" + __str(iPort));
+      INFORMATION("open address = " << strIp << ":" << iPort);
 
       if(!ad.is_valid())
       {
 
 
-         FATAL(log_this, "open", 0, "Invalid ::net::address");
+         FATAL("open Invalid ::net::address");
 
          SetCloseAndDelete();
 
@@ -381,7 +381,7 @@ namespace sockets
 
             paddressdepartment->convert(sockshost,GetSocks4Host());
 
-            INFO(log_this, "open",0,"is_connecting to socks4 server @ " + sockshost + ":" + __str(GetSocks4Port()));
+            INFORMATION("open: is_connecting to socks4 server @ " << sockshost << ":" << GetSocks4Port());
 
          }
 
@@ -420,7 +420,7 @@ namespace sockets
          {
             string strError = bsd_socket_error(iError);
 
-            INFO(log_this, "connect: failed, reconnect pending",iError,bsd_socket_error(iError));
+            INFORMATION("connect: failed, reconnect pending " << iError << bsd_socket_error(iError));
 
             attach(s);
             set_connecting(true); // this flag will control fd_set's
@@ -429,7 +429,7 @@ namespace sockets
          {
             string strError = bsd_socket_error(iError);
 
-            FATAL(log_this, "connect: failed",iError,bsd_socket_error(iError));
+            FATAL("connect: failed " << iError << bsd_socket_error(iError));
 
             SetCloseAndDelete();
             ::closesocket(s);
@@ -505,7 +505,7 @@ namespace sockets
          if (!paddressdepartment->convert(l, host))
          {
             
-            WARN("paddressdepartment->convert failed");
+            WARNING("paddressdepartment->convert failed");
             
             SetCloseAndDelete();
             
@@ -542,7 +542,7 @@ namespace sockets
 //
 //      auto paddressdepartment = ::net::address_department();
 //
-//      INFO("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
+//      INFORMATION("OnResolved id %d addr %s port %d\n",id,paddressdepartment->canonical_name(a).c_str(),a.u.s.m_port);
 //
 //      if(id == m_resolver_id)
 //      {
@@ -593,7 +593,8 @@ namespace sockets
             if (!Ready())
             {
 
-               TRACE("tcp_socket::recv not ready");
+               INFORMATION("tcp_socket::recv not ready");
+
                return 0;
 
             }
@@ -601,13 +602,9 @@ namespace sockets
             if (m_psslcontext->m_ssl == nullptr)
             {
 
+               ERROR("tcp_socket::recv(ssl)" << (int)n << "SSL context is nullptr");
 
-
-               ERR("tcp_socket::recv(ssl)", (int)n, "SSL context is nullptr");
-
-
-
-               TRACE("tcp_socket::recv ssl SSL context is nullptr(0)");
+               INFORMATION("tcp_socket::recv ssl SSL context is nullptr(0)");
 
                OnDisconnect();
                SetCloseAndDelete(true);
@@ -631,27 +628,27 @@ namespace sockets
                      break;
                   case SSL_ERROR_ZERO_RETURN:
                      //if(SSL_m_psslcontext->m_pclientcontext->m_psslsession)
-                     TRACE("SSL_read() returns zero - closing socket\n");
+                     INFORMATION("SSL_read() returns zero - closing socket");
                      OnDisconnect();
                      SetCloseAndDelete(true);
                      SetFlushBeforeClose(false);
                      SetLost();
                      break;
                   case SSL_ERROR_SYSCALL:
-                     TRACE("SSL read problem, errcode = %d (SSL_ERROR_SYSCALL) errno = %d \n", n, errno);
+                     INFORMATION("SSL read problem, errcode = %d (SSL_ERROR_SYSCALL) errno = %d " << n << errno);
                      OnDisconnect();
                      SetCloseAndDelete(true);
                      SetFlushBeforeClose(false);
                      SetLost();
                      break;
                   default:
-                     TRACE("SSL read problem, errcode = %d\n", n);
+                     INFORMATION("SSL read problem, errcode = %d" << n);
                      OnDisconnect();
                      SetCloseAndDelete(true);
                      SetFlushBeforeClose(false);
                      SetLost();
                   }
-                  TRACE("tcp_socket::recv ssl error(1)");
+                  INFORMATION("tcp_socket::recv ssl error(1)");
                }
                //else if (!n)
                //{
@@ -672,11 +669,11 @@ namespace sockets
 
 
 
-                  ERR("tcp_socket::recv(ssl)", (int)n, "abnormal value from SSL_read");
+                  ERROR("tcp_socket::recv(ssl) " <<  (int)n <<  " abnormal value from SSL_read");
 
 
 
-                  TRACE("tcp_socket::recv ssl abnormal value from SSL_read(3)");
+                  INFORMATION("tcp_socket::recv ssl abnormal value from SSL_read(3)");
 
                }
 
@@ -707,13 +704,13 @@ namespace sockets
          if(n == -1)
          {
 
-            FATAL(log_this, "recv",Errno,bsd_socket_error(Errno));
+            FATAL("recv " << Errno << bsd_socket_error(Errno));
 
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            TRACE("tcp_socket::recv (B1) recv error(" + string(bsd_socket_error(Errno)) + ")");
+            INFORMATION("tcp_socket::recv (B1) recv error(" << bsd_socket_error(Errno) << ")");
          }
          else if(!n)
          {
@@ -727,7 +724,7 @@ namespace sockets
 //            }
 //            else
             {
-               TRACE("tcp_socket::recv (B2) recv disconnect");
+               INFORMATION("tcp_socket::recv (B2) recv disconnect");
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
@@ -745,11 +742,11 @@ namespace sockets
 
 
 
-            ERR("tcp_socket::recv",(i32)n,"abnormal value from recv");
+            ERROR("tcp_socket::recv " << (i32)n << " abnormal value from recv");
 
 
 
-            TRACE("tcp_socket::recv (B3) recv abnormal value from recv");
+            INFORMATION("tcp_socket::recv (B3) recv abnormal value from recv");
 
          }
 
@@ -793,7 +790,7 @@ namespace sockets
             {
 
 
-               WARN("tcp_socket::read",0,"ibuf overflow");
+               WARNING( "tcp_socket::read",0,"ibuf overflow");
 
 
             }
@@ -803,11 +800,7 @@ namespace sockets
       else if(n < 0)
       {
 
-
-
-         ERR("tcp_socket::read",(i32)n,"abnormal value from rcv");
-
-
+         ERROR("tcp_socket::read " << (i32)n << " abnormal value from rcv");
 
       }
 
@@ -815,11 +808,11 @@ namespace sockets
 
    }
 
+
    void tcp_socket::OnRead()
    {
 
-      char *buf = (char *) m_memRead.get_data();
-
+      char * buf = (char *) m_memRead.get_data();
 
       int n = 0;
 
@@ -908,7 +901,7 @@ namespace sockets
             return;
          }
 
-         FATAL(log_this, "tcp: connect failed",err,bsd_socket_error(err));
+         FATAL("tcp: connect failed " << err << bsd_socket_error(err));
 
          set(false,false); // no more monitoring because connection failed
 
@@ -1034,7 +1027,7 @@ namespace sockets
                   int iError = errno;
 
                   const char * pszError = strerror(iError);
-                  TRACE(pszError);
+                  INFORMATION(pszError);
                }
                OnDisconnect();
                SetCloseAndDelete(true);
@@ -1042,7 +1035,7 @@ namespace sockets
                SetLost();
                const char *errbuf = ERR_error_string(errnr,nullptr);
 
-               FATAL(log_this, "OnWrite/SSL_write",errnr,errbuf);
+               FATAL("OnWrite / SSL_write " << errnr << errbuf);
 
                //__throw(io_exception(errbuf));
             }
@@ -1056,7 +1049,7 @@ namespace sockets
             SetLost();
             i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
             const char *errbuf = ERR_error_string(errnr,nullptr);
-            TRACE("SSL_write() returns 0: %d : %s\n",errnr,errbuf);
+            INFORMATION("SSL_write() returns 0: " << errnr << ", " << errbuf);
             //__throw(io_exception(errbuf));
          }
       }
@@ -1085,7 +1078,7 @@ namespace sockets
 #endif
             {
 
-               FATAL(log_this, "send",Errno,bsd_socket_error(Errno));
+               FATAL("send " << Errno << bsd_socket_error(Errno));
 
                OnDisconnect();
                SetCloseAndDelete(true);
@@ -1186,12 +1179,12 @@ namespace sockets
       if(!Ready() && !is_connecting())
       {
 
-         WARN(log_this, "write",-1,"Attempt to write to a non-ready socket"); // warning
+         WARNING("write: Attempt to write to a non-ready socket"); // warning
 
          if (GetSocket() == INVALID_SOCKET)
          {
 
-            INFO(log_this, "write", 0, " * GetSocket() == INVALID_SOCKET");
+            INFORMATION("write: * GetSocket() == INVALID_SOCKET");
 
 
          }
@@ -1199,14 +1192,14 @@ namespace sockets
          {
 
 
-            INFO(log_this, "write", 0, " * is_connecting()");
+            INFORMATION("write: * is_connecting()");
 
          }
          if (IsCloseAndDelete())
          {
 
 
-            INFO(log_this, "write", 0, " * IsCloseAndDelete()");
+            INFORMATION("write: * IsCloseAndDelete()");
 
 
 
@@ -1217,7 +1210,7 @@ namespace sockets
       {
 
 
-         WARN(log_this, "write",-1,"Attempt to write to a non-connected socket, will be sent on connect"); // warning
+         WARNING("write: Attempt to write to a non-connected socket, will be sent on connect"); // warning
 
          buffer(buf,(int) len);
          return;
@@ -1301,7 +1294,7 @@ namespace sockets
    {
 
 
-      WARN(this,"OnSocks4ConnectFailed",0,"connection to socks4 server failed, trying direct connection");
+      WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
 
 
       if(!socket_handler()->Socks4TryDirect())
@@ -1352,7 +1345,7 @@ namespace sockets
                OnConnect();
 
 
-               INFO(log_this, "OnSocks4Read",0,"Connection established");
+               INFORMATION("OnSocks4Read: Connection established");
 
                break;
             case 91:
@@ -1360,7 +1353,7 @@ namespace sockets
             case 93:
 
 
-               FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server reports connect failed");
+               FATAL("OnSocks4Read: socks4 server reports connect failed");
 
                set_connecting(false);
                SetCloseAndDelete();
@@ -1369,7 +1362,7 @@ namespace sockets
             default:
 
 
-               FATAL(log_this, "OnSocks4Read",m_socks4_cd,"socks4 server unrecognized response");
+               FATAL("OnSocks4Read: socks4 server unrecognized response");
 
                SetCloseAndDelete();
                break;
@@ -1438,7 +1431,7 @@ namespace sockets
          if(!m_psslcontext->m_ssl)
          {
 
-            TRACE(" m_ssl is nullptr\n");
+            INFORMATION("m_ssl is nullptr");
 
             SetCloseAndDelete(true);
 
@@ -1465,7 +1458,7 @@ namespace sockets
          if(!m_psslcontext->m_sbio)
          {
 
-            TRACE(" m_sbio is nullptr\n");
+            INFORMATION("m_sbio is nullptr");
 
             SetCloseAndDelete(true);
 
@@ -1506,7 +1499,7 @@ namespace sockets
                && m_psslcontext->m_pclientcontext.is_set()
                && m_psslcontext->m_pclientcontext->m_psslcontext != nullptr)
          {
-            TRACE("SSL Context already initialized - closing socket\n");
+            INFORMATION("SSL Context already initialized - closing socket");
             SetCloseAndDelete(true);
             return;
          }
@@ -1525,7 +1518,7 @@ namespace sockets
          m_psslcontext->m_ssl = SSL_new(m_psslcontext->m_pclientcontext->m_psslcontext);
          if(!m_psslcontext->m_ssl)
          {
-            TRACE(" m_ssl is nullptr\n");
+            INFORMATION("m_ssl is nullptr");
             SetCloseAndDelete(true);
             return;
          }
@@ -1534,7 +1527,7 @@ namespace sockets
          m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
          if(!m_psslcontext->m_sbio)
          {
-            TRACE(" m_sbio is nullptr\n");
+            INFORMATION("m_sbio is nullptr");
             SetCloseAndDelete(true);
             return;
          }
@@ -1553,7 +1546,7 @@ namespace sockets
       if(!IsSSLServer()) // client
       {
 
-         INFO(log_this, "SSLNegotiate", 0, "SSL_connect");
+         INFORMATION("SSLNegotiate: SSL_connect");
 
          if (m_bReuseSession && !m_bClientSessionSet && m_psslcontext->m_pclientcontext->m_psslsession != nullptr)
          {
@@ -1574,13 +1567,13 @@ namespace sockets
             if (SSL_session_reused(m_psslcontext->m_ssl))
             {
 
-               INFO("REUSED SESSION");
+               INFORMATION("REUSED SESSION");
 
             }
             else
             {
 
-               INFO("NEW SESSION");
+               INFORMATION("NEW SESSION");
 
             }
 
@@ -1592,7 +1585,7 @@ namespace sockets
             {
 
 
-               INFO(log_this, "SSLNegotiate/cert_common_name_check",0,"cert_common_name_check failed (error="+__str((int)x509_err)+",url=" + m_strUrl + ")");
+               INFORMATION("SSLNegotiate/cert_common_name_check: cert_common_name_check failed (error=" << x509_err << ",url=" << m_strUrl << ")");
 
                SetSSLNegotiate(false);
                SetCloseAndDelete();
@@ -1639,7 +1632,7 @@ namespace sockets
             }
 
 
-            INFO(log_this, "SSLNegotiate/SSL_connect",0,"Connection established");
+            INFORMATION("SSLNegotiate/SSL_connect: Connection established");
 
             return true;
 
@@ -1649,7 +1642,7 @@ namespace sockets
 
             long error = ERR_get_error();
             const char* error_str = ERR_error_string(error, nullptr);
-            printf("could not SSL_connect: %s\n", error_str);
+            WARNING("could not SSL_connect: " << error_str);
 
             int iErrorSsl = SSL_get_error(m_psslcontext->m_ssl,r);
 
@@ -1659,7 +1652,7 @@ namespace sockets
                   && (m_psslcontext->m_pclientcontext->m_psslmethod == TLS_client_method()))
             {
 
-               TRACE("ssl_error_zero_return");
+               WARNING("ssl_error_zero_return");
 
             }
 
@@ -1696,9 +1689,7 @@ namespace sockets
                if (m_psslcontext->m_iSslCtxRetry == 0)
                {
 
-
-                  INFO(log_this, "SSLNegotiate/SSL_connect", 0, "Connection failed");
-
+                  INFORMATION("SSLNegotiate/SSL_connect: Connection failed");
 
                   SetSSLNegotiate(false);
                   SetCloseAndDelete();
@@ -1730,12 +1721,12 @@ namespace sockets
 
                   auto last_error = networking_last_error();
 
-                  output_debug_string("");
+                  // output_debug_string("");
                 
                }
 
 
-               INFO(log_this, "SSLNegotiate", -1, "SSL_connect() failed");
+               INFORMATION("SSLNegotiate: SSL_connect() failed");
 
                SetSSLNegotiate(false);
                SetCloseAndDelete(true);
@@ -1764,7 +1755,7 @@ namespace sockets
             OnAccept();
 
 
-            INFO(log_this, "SSLNegotiate/SSL_accept",0,"Connection established");
+            INFORMATION("SSLNegotiate/SSL_accept: Connection established");
 
             return true;
 
@@ -1773,7 +1764,7 @@ namespace sockets
          {
 
 
-            INFO(log_this, "SSLNegotiate/SSL_accept",0,"Connection failed");
+            INFORMATION("SSLNegotiate/SSL_accept: Connection failed");
 
             SetSSLNegotiate(false);
             SetCloseAndDelete();
@@ -1795,11 +1786,11 @@ namespace sockets
                if (r == SSL_ERROR_SYSCALL)
                {
                   
-                  output_debug_string("SSL_ERROR_SYSCALL: Errno = " + __str(iError));
+                  ERROR("SSL_ERROR_SYSCALL: Errno = " << iError);
 
                }
 
-               INFO(log_this, "SSLNegotiate", r, "SSL_accept() failed");
+               INFORMATION("SSLNegotiate " << r << " SSL_accept() failed");
 
 
                SetSSLNegotiate(false);
@@ -1826,7 +1817,7 @@ namespace sockets
    {
 
 
-      FATAL(log_this, "InitSSLServer",0,"You MUST implement your own InitSSLServer method");
+      FATAL("InitSSLServer: You MUST implement your own InitSSLServer method");
 
       SetCloseAndDelete();
    }
@@ -1907,7 +1898,7 @@ namespace sockets
             //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
             //{
 
-            //   ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+            //   ERROR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
 
             //}
 
@@ -1967,7 +1958,7 @@ namespace sockets
                if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
+                  ERROR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal" << keyfile);
 
                }
 
@@ -1976,14 +1967,14 @@ namespace sockets
                if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
+                  FATAL("tcp_socket InitializeContext: Couldn't read certificate string " << keyfile);
 
                }
 
                if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
+                  FATAL("tcp_socket InitializeContext: Couldn't read certificate string " << keyfile);
 
                }
 
@@ -1993,7 +1984,7 @@ namespace sockets
                   if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
                   {
 
-                     ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
+                     FATAL("tcp_socket InitializeContext: Couldn't read certificate string " + keyfile);
 
                   }
 
@@ -2027,7 +2018,7 @@ namespace sockets
             /* Load our keys and certificates*/
             if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
             {
-               ERR("tcp_socket InitializeContext,0,Couldn't read certificate file %s e_trace_level_fatal", keyfile.c_str());
+               FATAL("tcp_socket InitializeContext: Couldn't read certificate file " << keyfile);
             }
          }
          m_password = password;
@@ -2036,7 +2027,7 @@ namespace sockets
 
          if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
          {
-            ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
+            FATAL("tcp_socket InitializeContext: Couldn't read private key file %s " << keyfile);
          }
       }
 
@@ -2081,7 +2072,7 @@ namespace sockets
       /* Load our keys and certificates*/
       if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, certfile, SSL_FILETYPE_PEM)))
       {
-         FATAL(log_this, "InitializeContext", 0, "Couldn't read certificate file " + keyfile);
+         FATAL("InitializeContext: Couldn't read certificate file " << keyfile);
       }
 
       m_password = password;
@@ -2089,7 +2080,7 @@ namespace sockets
       SSL_CTX_set_default_passwd_cb_userdata(m_psslcontext->m_pclientcontext->m_psslcontext, (socket *) this);
       if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
       {
-         FATAL(log_this, "InitializeContext", 0, "Couldn't read private key file " + keyfile);
+         FATAL("InitializeContext: Couldn't read private key file " << keyfile);
          //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
       }
 
@@ -2128,7 +2119,7 @@ namespace sockets
       {
 
 
-         WARN("socket::close", 0, "file descriptor invalid");
+         WARNING("socket::close: file descriptor invalid");
 
          return;
 
@@ -2147,7 +2138,7 @@ namespace sockets
             // failed...
 
 
-            ERR("shutdown", Errno, bsd_socket_error(Errno));
+            ERROR("shutdown " << Errno << bsd_socket_error(Errno));
 
 
 
@@ -2164,7 +2155,7 @@ namespace sockets
          {
 
 
-            WARN("read() after shutdown", n, "bytes read");
+            WARNING("read() after shutdown: bytes read");
 
          }
 
@@ -2189,7 +2180,7 @@ namespace sockets
       {
 
 
-         WARN("GetSslContext", 0, "SSL Context is nullptr; check InitSSLServer/InitSSLClient");
+         WARNING("GetSslContext: SSL Context is nullptr; check InitSSLServer/InitSSLClient");
 
       }
       return m_psslcontext->m_pclientcontext->m_psslcontext;
@@ -2201,7 +2192,7 @@ namespace sockets
       {
 
 
-         WARN("GetSsl", 0, "SSL is nullptr; check InitSSLServer/InitSSLClient");
+         WARNING("GetSsl: SSL is nullptr; check InitSSLServer/InitSSLClient");
 
       }
       return m_psslcontext->m_ssl;
@@ -2322,14 +2313,14 @@ namespace sockets
       {
 
 
-         FATAL(log_this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)",Errno,bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
 
          return false;
       }
       return true;
 #else
 
-      INFO(log_this, "socket option not available",0,"TCP_NODELAY");
+      INFORMATION("socket option not available: TCP_NODELAY");
 
       return false;
 #endif
@@ -2339,7 +2330,7 @@ namespace sockets
    void tcp_socket::on_connection_timeout()
    {
 
-      FATAL(log_this, "connect",-1,"connect timeout");
+      FATAL("connect: connect timeout");
 
       m_estatus = error_connection_timed_out;
 
@@ -2431,7 +2422,7 @@ namespace sockets
 
             int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 
-            output_debug_string("got " + __str(n) + " bytes of Out of Band Data");
+            INFORMATION("got " << n << " bytes of Out of Band Data");
 
             // even though the connection failed at once, only retry after
             // the connection timeout
@@ -2450,7 +2441,7 @@ namespace sockets
       // errno valid here?
       i32 err = SoError();
 
-      FATAL(log_this, "exception on select",err,bsd_socket_error(err));
+      FATAL("exception on select " << err << bsd_socket_error(err));
 
       SetCloseAndDelete();
    }

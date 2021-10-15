@@ -10,6 +10,9 @@
 #define HTTP_DEBUG_LEVEL DEBUG_LEVEL_NORMAL
 
 
+#define LOG_HTTP_PREFIX "http_get_" << iHttpGetSerial << "> "
+
+
 namespace http
 {
 
@@ -366,7 +369,7 @@ namespace http
       else
       {
 
-         strCache = __str(len.i64());
+         strCache = __string(len.i64());
 
       }
 
@@ -515,7 +518,7 @@ namespace http
 
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
-      payload("dw") = ::millis::now();
+      payload("dw") = ::duration::now();
 
       return estatus;
 
@@ -660,7 +663,7 @@ namespace http
 
       auto ppair = m_mapPac.plookup(pszUrl);
 
-      if (ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
+      if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
@@ -670,7 +673,7 @@ namespace http
 
          auto ppac = __create_new < class pac >();
 
-         ppac->m_millisLastChecked= ::millis::now();
+         ppac->m_durationLastChecked= ::duration::now();
 
          ppac->m_strUrl = pszUrl;
 
@@ -737,7 +740,7 @@ namespace http
 
       auto ppair = m_mapProxy.plookup(pszUrl);
 
-      if (ppair == nullptr || (ppair->element2()->m_millisLastChecked.elapsed()) > (84 * 1000))
+      if (ppair == nullptr || ppair->element2()->m_durationLastChecked.elapsed() > 120_s)
       {
          if (ppair != nullptr)
          {
@@ -747,7 +750,7 @@ namespace http
 
          auto pproxy = __create_new < class ::http::context::proxy >();
 
-         pproxy->m_millisLastChecked= ::millis::now();
+         pproxy->m_durationLastChecked= ::duration::now();
 
          pproxy->m_strUrl = pszUrl;
 
@@ -1104,7 +1107,7 @@ namespace http
    bool context::open(__pointer(::sockets::http_session) & psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
    {
 
-      auto tickTimeProfile1 = ::millis::now();
+      auto tickTimeProfile1 = ::duration::now();
 
       string strVersion(strVersionParam);
 
@@ -1180,7 +1183,7 @@ namespace http
 
       }
 
-      auto tick1 = ::millis::now();
+      auto tick1 = ::duration::now();
 
       bool bConfigProxy = set.is_set_false("no_proxy_config");
 
@@ -1191,18 +1194,18 @@ namespace http
 
       }
 
-      TRACE("just before open open http_session ::http::apex::context::open " __prtick, __pr(tick1.elapsed()));
+      ERROR("just before open open http_session ::http::apex::context::open " << tick1.elapsed().integral_second());
 
       if (!psession->open(bConfigProxy))
       {
 
-         TRACE("Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         INFORMATION("Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length()))  << "\") " << tick1.elapsed().integral_second());
 
          return false;
 
       }
 
-      TRACE("context::get open time " __prtick, __pr(tick1.elapsed()));
+      INFORMATION("context::get open time " << tick1.elapsed().integral_second());
 
       return true;
 
@@ -1212,11 +1215,11 @@ namespace http
    bool context::request(__pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
    {
 
-      TRACE("http context request : %s", pszRequest);
+      INFORMATION("http context request : " << pszRequest);
 
-      millis tick1;
+      ::duration tick1;
 
-      millis tick2;
+      ::duration tick2;
 
       bool bSeemsOk;
 
@@ -1288,7 +1291,7 @@ namespace http
          try
          {
 
-            auto tickBeg = ::millis::now();
+            auto tickBeg = ::duration::now();
 
             if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
             {
@@ -1297,7 +1300,7 @@ namespace http
 
             }
 
-            TRACE("opening context::request time(%d) = " __prtick, __pr(tickBeg.elapsed()));
+            INFORMATION("opening context::request time(%d) = " << tickBeg.elapsed().integral_second());
 
          }
          catch (...)
@@ -1309,12 +1312,12 @@ namespace http
 
       }
 
-      auto tickBegA = ::millis::now();
+      auto tickBegA = ::duration::now();
 
       try
       {
 
-         auto tickTimeProfile1 = ::millis::now();
+         auto tickTimeProfile1 = ::duration::now();
 
          ::application * papp = psession->m_psockethandler->get_application();
 
@@ -1484,19 +1487,19 @@ namespace http
 
          //}
 
-         TRACE("opening preparation context::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
+         INFORMATION("opening preparation context::request time(%d) = " << tickBegA.elapsed().integral_second());
 
-         tick1 = payload("dw").millis();
+         tick1 = payload("dw").duration();
 
          tick2.Now();
 
-         TRACE("Higher Level Diagnosis : iNTERTIMe context::request time(%d) = " __prtick __prtick __prtick, iIteration, __pr(tick1), __pr(tick2), __pr(tick2 - tick1));
+         INFORMATION("Higher Level Diagnosis : iNTERTIMe context::request " << iIteration << tick1.integral_second() << tick2.integral_second() << (tick2 - tick1).integral_second());
 
          while ((psession->m_psockethandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
             //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
          {
 
-            tick1 = ::millis::now();
+            tick1 = ::duration::now();
 
             psession->m_psockethandler->select(240, 0);
 
@@ -1548,7 +1551,7 @@ namespace http
 
             }
 
-            TRACE("context::request " __prtick, __pr(tick1.elapsed()));
+            INFORMATION("context::request " << tick1.elapsed().integral_second());
 
             iIteration++;
 
@@ -1556,7 +1559,7 @@ namespace http
 
 ///         keeplive.keep_alive();
 
-         (*this)["dw"].millis().Now();
+         (*this)["dw"].duration().Now();
 
          set["get_headers"] = psession->outheaders();
 
@@ -1636,7 +1639,7 @@ namespace http
                if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
-                  TRACE("Not Licensed Result Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
                   string strLocation;
                   
@@ -1662,7 +1665,7 @@ namespace http
 
          set["get_status"] = (i64)estatus;
 
-         TRACE("Total time ::http::apex::context::get(\"%s\") " __prtick, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         INFORMATION("Total time ::http::apex::context::get(\"%s\") " << strUrl.Left(minimum(255, strUrl.get_length()))<< tick1.elapsed().integral_second());
 
       }
       catch (...)
@@ -1768,14 +1771,14 @@ namespace http
 
       i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
 
-      TRACE("");
-      TRACE("");
-      TRACE("------------------------------------------------------");
-      TRACE(__prhttpget "Start: %s", iHttpGetSerial, pszUrl);
+      //TRACE("");
+      //TRACE("");
+      INFORMATION("------------------------------------------------------");
+      INFORMATION("Start: " << iHttpGetSerial << pszUrl);
 
       set["http_get_serial"] = iHttpGetSerial;
 
-      auto tickStart = millis::now();
+      auto tickStart = ::duration::now();
 
       int iTry = 0;
 
@@ -1807,7 +1810,7 @@ namespace http
 
       iTry++;
 
-      auto tickTimeProfile1 = ::millis::now();
+      auto tickTimeProfile1 = ::duration::now();
 
       string strServer = purl->get_root(pszUrl);
 
@@ -2084,11 +2087,11 @@ namespace http
 
       }
 
-      auto tick1 = ::millis::now();
+      auto tick1 = ::duration::now();
 
       bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
 
-      millis tickTotalTimeout = set["timeout"].i64();
+      ::duration tickTotalTimeout = set["timeout"].duration();
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 
@@ -2100,7 +2103,7 @@ namespace http
 
       psocket->m_scalarsourceDownloaded.m_id = set["http_downloaded_id"].id();
 
-      if (tickTotalTimeout <= 0)
+      if (tickTotalTimeout.is_null())
       {
 
          tickTotalTimeout = 30_s;
@@ -2126,9 +2129,9 @@ namespace http
 
             set["get_status"] = (i64)error_http;
 
-            auto tick2 = ::millis::now();
+            auto tick2 = ::duration::now();
 
-            TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
             return false;
 
@@ -2140,7 +2143,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         TRACE(__prhttpget "Not Opened/Connected Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
          return false;
 
@@ -2196,7 +2199,7 @@ namespace http
 
       int iEnteredLoop = 0;
 
-      tick1 = ::millis::now();
+      tick1 = ::duration::now();
 
       while (psocket->m_psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
       {
@@ -2204,7 +2207,7 @@ namespace http
          if (tickStart.elapsed() > tickTotalTimeout)
          {
 
-            TRACE(__prhttpget "FAILING BY time_out after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
 
             break;
 
@@ -2214,7 +2217,7 @@ namespace http
 
          auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
 
-         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.seconds();
+         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second().m_i;
 
          iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
 
@@ -2236,7 +2239,7 @@ namespace http
             if (iBodySizeDownloaded > 0)
             {
 
-               tickStart = millis::now();
+               tickStart = ::duration::now();
 
             }
 
@@ -2245,7 +2248,7 @@ namespace http
          if (set.has_property("cancel") && set["cancel"].get_bool())
          {
 
-            TRACE(__prhttpget "FAILING BY Cancellation at step %d " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY Cancellation at step " << iIteration << " " << tick1.elapsed().integral_second());
 
             break;
 
@@ -2275,7 +2278,7 @@ namespace http
             || psocket->m_estatus == error_on_connection_timeout)
          {
 
-            TRACE(__prhttpget "FAILING BY Connection time_out after %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "FAILING BY Connection time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
 
             break;
 
@@ -2284,7 +2287,7 @@ namespace http
          if (psocket->m_b_complete)
          {
 
-            TRACE(__prhttpget "Complete! in %d steps " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second());
 
             break;
 
@@ -2293,13 +2296,13 @@ namespace http
          if (iContentLength >= 0)
          {
 
-            TRACE(__prhttpget "%d. step " __prtick " Content-Length:%" PRIi64, iHttpGetSerial, iIteration, __pr(tick1.elapsed()), iContentLength);
+            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second() << " Content-Length: " << (integral_byte)(memsize) iContentLength);
 
          }
          else
          {
 
-            TRACE(__prhttpget "%d. step " __prtick, iHttpGetSerial, iIteration, __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second());
 
          }
 
@@ -2307,7 +2310,7 @@ namespace http
          if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
          {
 
-            TRACE(__prhttpget "iSelectTimeoutSeconds=%d\n", iHttpGetSerial, iSelectTimeoutSeconds);
+            INFORMATION(LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds);
 
          }
 
@@ -2343,16 +2346,29 @@ namespace http
 
       iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
 
-      INFO(__prhttpget "%s Status: %d - %s, Content Length: %" PRId64 ", Body Download: %" PRId64 ", Loop: %d, %s",
-         iHttpGetSerial,
-         strUrl.c_str(),
-         iStatusCode,
-         strStatus.c_str(),
-         iContentLength,
-         iBodySizeDownloaded,
-         iEnteredLoop,
-         psocket->m_b_complete ? "Finished!" : "Incomplete!"
-      );
+      INFORMATION(LOG_HTTP_PREFIX
+         << strUrl
+         << " Status: "
+         << iStatusCode
+         << " - "
+         << strStatus
+         << " Content Length : "
+         << (integral_byte)(memsize)iContentLength
+         << ", Body Download : "
+         << iBodySizeDownloaded
+         << ", Loop : "
+         << iEnteredLoop
+         << ", "
+         << (psocket->m_b_complete ? "Finished!" : "Incomplete!"));
+         //iHttpGetSerial,
+         //.c_str(),
+         //,
+         //strStatus.c_str(),
+         //iContentLength,
+         //iBodySizeDownloaded,
+         //iEnteredLoop,
+         
+      //);
 
       if (set.has_property("cancel") && set["cancel"].get_bool())
       {
@@ -2363,7 +2379,7 @@ namespace http
       else if (iStatusCode == 0)
       {
 
-         millis tickElapse = tickStart.elapsed();
+         ::duration tickElapse = tickStart.elapsed();
 
          if (iTry < iTryCount && tickElapse < tickTotalTimeout)
          {
@@ -2379,7 +2395,7 @@ namespace http
 
          }
 
-         TRACE(__prhttpget "URL: %s Too much tries (%d)", iHttpGetSerial, strUrl.c_str(), iTry);
+         INFORMATION(LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")");
 
          estatus = error_http;
 
@@ -2406,9 +2422,9 @@ namespace http
          if (::str::begins_ci(strCa2Realm, "not licensed: "))
          {
 
-            auto tick2 = ::millis::now();
+            auto tick2 = ::duration::now();
 
-            TRACE(__prhttpget "Not Licensed Result Total time ::http::apex::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(minimum(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
+            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"%s" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
 
             string strLocation;
             
@@ -2519,7 +2535,7 @@ namespace http
 
       }
 
-      TRACE(__prhttpget "Total time " __prtick, iHttpGetSerial, __pr(tick1.elapsed()));
+      INFORMATION(LOG_HTTP_PREFIX << "Total time " << tick1.elapsed().integral_second());
 
       return true;
 

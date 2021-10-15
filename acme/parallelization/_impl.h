@@ -1,16 +1,5 @@
-// This is acme API library.
-//
-//
-//
-//
-//
-//
-//
-//
-
-// Inlines for AFXMT.H
-
 #pragma once
+
 
 #ifdef _AFXMT_INLINE
 
@@ -204,5 +193,9 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //
 //}
 //
+
+
+inline class ::wait wait::now() { return get_integral_millisecond(); }
+
 
 

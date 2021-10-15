@@ -57,7 +57,7 @@
 //
 //   }
 //
-//   path = ::str::from_strdup(pszTarget);
+//   path = ::string_from_strdup(pszTarget);
 //
 //   return true;
 //
@@ -94,7 +94,7 @@
 //
 //   }
 //
-//   ::file::path path = ::str::from_strdup(pszTarget);
+//   ::file::path path = ::string_from_strdup(pszTarget);
 //
 //   return is_dir(path);
 //

@@ -22,12 +22,12 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
 ::u32 MsgWaitForMultipleObjectsEx(::u32 dwSize, HSYNC * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
-   millis start;
+   ::duration start;
 
    if (tickTimeout != (::u32)U32_INFINITE_TIMEOUT)
    {
 
-      start = ::millis::now();
+      start = ::duration::now();
 
    }
 
@@ -88,7 +88,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
 
             }
 
-            if (synca[i]->lock(millis(1)))
+            if (synca[i]->lock(::duration(1)))
             {
 
                i++;
@@ -123,7 +123,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
          if (pmq.is_set())
          {
 
-            if (pmq->m_eventNewMessage.lock(millis(0)))
+            if (pmq->m_eventNewMessage.lock(::duration(0)))
             {
 
                return WAIT_OBJECT_0 + dwSize;
@@ -142,7 +142,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
 
             }
 
-            if (synca[i]->lock(millis(0)))
+            if (synca[i]->lock(::duration(0)))
             {
 
                return WAIT_OBJECT_0 + i;

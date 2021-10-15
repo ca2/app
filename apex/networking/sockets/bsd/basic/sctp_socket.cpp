@@ -45,7 +45,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         ERR("SctpSocket", -1, "invalid address");
+         ERROR("SctpSocket", -1, "invalid address");
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -57,7 +57,7 @@ namespace sockets
          i32 n = bind(GetSocket(), ad, ad);
          if (n == -1)
          {
-            ERR("SctpSocket", -1, "bind() failed");
+            ERROR("SctpSocket", -1, "bind() failed");
 #ifdef ENABLE_EXCEPTIONS
             __throw(Exception("bind() failed for SctpSocket, port: " + Utility::l2string(ad.GetPort())));
 #endif
@@ -88,18 +88,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         ERR("SctpSocket", -1, "invalid address");
+         ERROR("SctpSocket", -1, "invalid address");
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         ERR("SctpSocket", -1, "AddAddress called with invalid file descriptor");
+         ERROR("SctpSocket", -1, "AddAddress called with invalid file descriptor");
          return -1;
       }
       i32 n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
-         ERR("SctpSocket", -1, "sctp_bindx() failed");
+         ERROR("SctpSocket", -1, "sctp_bindx() failed");
       }
       return n;
    }
@@ -125,18 +125,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         ERR("SctpSocket", -1, "invalid address");
+         ERROR("SctpSocket", -1, "invalid address");
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         ERR("SctpSocket", -1, "RemoveAddress called with invalid file descriptor");
+         ERROR("SctpSocket", -1, "RemoveAddress called with invalid file descriptor");
          return -1;
       }
       i32 n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
-         ERR("SctpSocket", -1, "sctp_bindx() failed");
+         ERROR("SctpSocket", -1, "sctp_bindx() failed");
       }
       return n;
    }
@@ -162,7 +162,7 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         ERR("SctpSocket", -1, "invalid address");
+         ERROR("SctpSocket", -1, "invalid address");
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
@@ -190,7 +190,7 @@ namespace sockets
             }
             else
             {
-               ERR("SctpSocket", -1, "connect() failed");
+               ERROR("SctpSocket", -1, "connect() failed");
             }
          }
          return n;
@@ -220,18 +220,18 @@ namespace sockets
    {
       if (!ad.IsValid())
       {
-         ERR("SctpSocket", -1, "invalid address");
+         ERROR("SctpSocket", -1, "invalid address");
          return -1;
       }
       if (GetSocket() == INVALID_SOCKET)
       {
-         ERR("SctpSocket", -1, "AddConnection called with invalid file descriptor");
+         ERROR("SctpSocket", -1, "AddConnection called with invalid file descriptor");
          return -1;
       }
       i32 n = sctp_connectx(GetSocket(), ad, ad);
       if (n == -1)
       {
-         ERR("SctpSocket", -1, "sctp_connectx() failed");
+         ERROR("SctpSocket", -1, "sctp_connectx() failed");
       }
       else
       {
@@ -248,7 +248,7 @@ namespace sockets
       i32 n = sctp_getpaddrs(GetSocket(), id, &point);
       if (!n || n == -1)
       {
-         WARN("SctpSocket", -1, "sctp_getpaddrs failed");
+         WARNING("SctpSocket", -1, "sctp_getpaddrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -266,7 +266,7 @@ namespace sockets
       i32 n = sctp_getladdrs(GetSocket(), id, &point);
       if (!n || n == -1)
       {
-         WARN("SctpSocket", -1, "sctp_getladdrs failed");
+         WARNING("SctpSocket", -1, "sctp_getladdrs failed");
          return n;
       }
       for (i32 i = 0; i < n; i++)
@@ -283,7 +283,7 @@ namespace sockets
       i32 n = sctp_peeloff(GetSocket(), id);
       if (n == -1)
       {
-         WARN("SctpSocket", -1, "PeelOff failed");
+         WARNING("SctpSocket", -1, "PeelOff failed");
          return -1;
       }
       socket *point = create();

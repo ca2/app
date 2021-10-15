@@ -1119,7 +1119,7 @@ namespace user
       0, 0,
       ::payload);
       __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
-      pcombo->ResetContent();
+      pcombo->reset_content();
       string str;
       for(i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
       {

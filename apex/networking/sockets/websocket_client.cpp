@@ -347,11 +347,10 @@ namespace sockets
       //http_client_socket(h)
    {
 
-//      m_millisLastSpontaneousPong = 0;
+//      m_durationLastSpontaneousPong = 0;
       m_memPong.set_size(2);
       m_memPong.get_data()[0] = 0x8a;
       m_memPong.get_data()[1] = 0;
-      m_iClientPingTimeout = -1;
 
       m_bUseMask = false;
 
@@ -369,7 +368,7 @@ namespace sockets
 
       m_eping = ping_none;
 
-      m_millisLastPing.Now();
+      m_durationLastPing.Now();
 
    }
 
@@ -390,9 +389,7 @@ namespace sockets
       m_memPong.get_data()[0] = 0x8a;
       m_memPong.get_data()[1] = 0;
 
-      m_iClientPingTimeout = -1;
-
-      m_millisLastPing.Now();
+      m_durationLastPing.Now();
 
       m_bUseMask = false;
 
@@ -412,7 +409,7 @@ namespace sockets
 
       m_emethod = http_method_get;
 
-      m_millisLastPing.Now();
+      m_durationLastPing.Now();
 
    }
 
@@ -457,7 +454,7 @@ namespace sockets
       if (!m_bWebSocket)
       {
 
-         if (m_millisLastPing.elapsed() > 60 * 1000)
+         if (m_durationLastPing.elapsed() > 60_s)
          {
 
             SetCloseAndDelete();
@@ -466,23 +463,23 @@ namespace sockets
 
          }
 
-         m_millisLastPong.Now();
+         m_durationLastPong.Now();
 
          return true;
 
       }
 
-      if (m_iClientPingTimeout < 0)
+      if (m_durationClientPingTimeout.is_null())
       {
 
          return true;
 
       }
 
-      if (m_eping == ping_sent_ping && m_millisLastPing.elapsed() >  m_iClientPingTimeout)
+      if (m_eping == ping_sent_ping && m_durationLastPing.elapsed() > m_durationClientPingTimeout)
       {
 
-         INFO("PING TIMEOUT!!");
+         INFORMATION("PING TIMEOUT!!");
 
          SetCloseAndDelete();
 
@@ -490,10 +487,10 @@ namespace sockets
 
       }
 
-      if ((m_eping == ping_none  || m_eping == ping_pong_received) && m_millisLastPong.elapsed() > m_iClientPingTimeout * 2000)
+      if ((m_eping == ping_none  || m_eping == ping_pong_received) && m_durationLastPong.elapsed() > m_durationClientPingTimeout)
       {
 
-         m_millisLastPing.Now();
+         m_durationLastPing.Now();
 
          m_eping = ping_sent_ping;
 
@@ -590,7 +587,7 @@ namespace sockets
 
 
          /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
-         inheader(__id(host)) = GetUrlHost() + ":" + __str(GetUrlPort());
+         inheader(__id(host)) = GetUrlHost() + ":" + __string(GetUrlPort());
          else
          inheader(__id(host)) = GetUrlHost();*/
 
@@ -607,7 +604,7 @@ namespace sockets
       }
       else
       {
-         //if (m_memPong.get_size() > 0 && (m_millisLastSpontaneousPong.elapsed()) > 10000)
+         //if (m_memPong.get_size() > 0 && (m_durationLastSpontaneousPong.elapsed()) > 10000)
          //{
          //
          //   write(m_memPong.get_data(), m_memPong.get_size());
@@ -616,7 +613,7 @@ namespace sockets
 
          //   m_memPong.get_data()[1] = 0;
 
-         //   m_millisLastSpontaneousPong= ::millis::now();
+         //   m_durationLastSpontaneousPong= ::duration::now();
 
          //}
 
@@ -663,7 +660,7 @@ namespace sockets
             if (strConnection.compare_ci("Upgrade") == 0)
             {
 
-               m_millisLastPing.Now();
+               m_durationLastPing.Now();
 
                string strAccept;
                
@@ -851,12 +848,12 @@ namespace sockets
                else if (data[i] < 10)
                {
                   strChar += "0";
-                  strChar += __str((int)data[i]);
+                  strChar += __string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] < 32)
                {
-                  strChar += __str((int)data[i]);
+                  strChar += __string((int)data[i]);
                   strChar += " ";
                }
                else if (data[i] >= 128)
@@ -1019,7 +1016,7 @@ namespace sockets
             else if (m_opcode == e_opcode::PING)
             {
 
-               m_millisLastPing.Now();
+               m_durationLastPing.Now();
 
                m_eping = ping_sent_ping;
 
@@ -1048,7 +1045,7 @@ namespace sockets
             else if (m_opcode == e_opcode::PONG)
             {
 
-               m_millisLastPong.Now();
+               m_durationLastPong.Now();
 
                m_eping = ping_pong_received;
 
@@ -1088,7 +1085,7 @@ namespace sockets
    void websocket_client::on_websocket_data(u8 * pdata, int len)
    {
 
-      m_millisLastPong.Now();
+      m_durationLastPong.Now();
 
       string str((const char *) pdata, len);
 

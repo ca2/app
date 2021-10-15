@@ -133,7 +133,7 @@ public:
    //DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

@@ -3,12 +3,12 @@
 #include <unistd.h>
 
 
-//CLASS_DECL_ACME void sleep(const millis & millis)
+//CLASS_DECL_ACME void sleep(const ::duration & duration)
 //{
 //
 //   struct timespec ts;
-//   ts.tv_sec = millis.m_i / 1000;
-//   ts.tv_nsec = (millis.m_i % 1000) * 1000000;
+//   ts.tv_sec = ::duration.m_i / 1000;
+//   ts.tv_nsec = (::duration.m_i % 1000) * 1000000;
 //   nanosleep(&ts, NULL);
 //
 //}
@@ -17,83 +17,85 @@
 
 
 
-CLASS_DECL_ACME void preempt(const ::secs & secs)
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & integralsecond)
 {
 
-   ::sleep((unsigned int) secs.m_i);
+   ::sleep((unsigned int) integralsecond.m_i);
 
 }
 
 
-CLASS_DECL_ACME void millis_sleep(::u64 uMillis)
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & integralmillisecond)
 {
    
-   ::usleep((useconds_t) uMillis * 1'000);
+   ::usleep((useconds_t) integralmillisecond.m_i * 1'000);
 
 }
 
 
-CLASS_DECL_ACME void preempt(const millis & millis)
+//CLASS_DECL_ACME void preempt(const ::duration & duration)
+//{
+//
+//   millis_sleep(::duration.m_i);
+//
+//}
+
+
+CLASS_DECL_ACME void preempt(const INTEGRAL_MICROSECOND & integralmicrosecond)
 {
 
-   millis_sleep(millis.m_i);
+   ::usleep((unsigned int)integralmicrosecond.m_i);
 
 }
 
 
-CLASS_DECL_ACME void preempt(const micros & micros)
-{
-
-   ::usleep((unsigned int)micros.m_i);
-
-}
-
-
-CLASS_DECL_ACME void preempt(const nanos & nanos)
+CLASS_DECL_ACME void preempt(const INTEGRAL_NANOSECOND & integralnanosecond)
 {
 
    struct timespec timespec;
 
-   timespec.tv_sec = 0;
+   timespec.tv_sec = integralnanosecond.m_i / 1'000'000'000;
 
-   timespec.tv_nsec = nanos.m_i;
+   timespec.tv_nsec = integralnanosecond.m_i % 1'000'000'000;
 
    ::nanosleep(&timespec, nullptr);
 
 }
 
 
-CLASS_DECL_ACME void precision_wait_microseconds(double d)
+CLASS_DECL_ACME void precision_wait(const ::duration & duration)
 {
 
-   ::usleep((::u64)d);
+   struct timespec & timespec =  (struct timespec &) duration;
+
+   ::nanosleep(&timespec, nullptr);
 
 }
 
 
-CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
-{
-
-   struct timespec req;
-
-   req.tv_sec = u / 1'000'000'000ULL;
-
-   req.tv_nsec = u % 1'000'000'000ULL;
-
-   ::nanosleep(&req, nullptr);
-
-}
-
-
-//::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+//CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
 //{
 //
-//   struct tm tm;
+//   struct timespec req;
 //
-//   __copy(tm, psystemtime);
+//   req.tv_sec = u / 1'000'000'000ULL;
 //
-//   *ptime = timegm(&tm);
+//   req.tv_nsec = u % 1'000'000'000ULL;
 //
-//   return ::success;
+//   ::nanosleep(&req, nullptr);
 //
 //}
+//
+//
+////::e_status system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
+////{
+////
+////   struct tm tm;
+////
+////   __copy(tm, psystemtime);
+////
+////   *ptime = timegm(&tm);
+////
+////   return ::success;
+////
+////}

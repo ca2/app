@@ -171,7 +171,7 @@ namespace filemanager
 
       i32 iStepSetCount = 100;
 
-      ::millis millisStepSetSleep = 20;
+      ::duration millisStepSetSleep = 20_ms;
 
       while(task_get_run())
       {

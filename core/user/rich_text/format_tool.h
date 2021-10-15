@@ -15,53 +15,52 @@ namespace user
       public:
 
 
-         ::user::rich_text::eattribute          m_eattribute;
+         ::user::rich_text::eattribute                            m_eattribute;
          // an array just to hold one format
          // the one the tool is editing
-         __pointer_array(::user::rich_text::format)  m_formata;
-         __composite(::user::button)                         m_pbuttonBold;
-         __composite(::user::button)                         m_pbuttonItalic;
-         __composite(::user::button)                         m_pbuttonUnderline;
-         __composite(::user::font_combo_box)                 m_pcomboFamily;
-         __composite(::user::combo_box)                      m_pcomboSize;
-         __composite(::user::button)                         m_pbuttonForeground;
-         __composite(::user::button)                         m_pbuttonBackground;
-         __composite(::user::button)                         m_pbuttonSubscript;
-         __composite(::user::button)                         m_pbuttonSuperscript;
-         __composite(::user::button)                         m_pbuttonLineHeight;
-         __composite(::user::button)                         m_pbuttonAlignLeft;
-         __composite(::user::button)                         m_pbuttonAlignCenter;
-         __composite(::user::button)                         m_pbuttonAlignRight;
+         __pointer(__pointer_array(::user::rich_text::format))    m_pformata;
+         __composite(::user::button)                              m_pbuttonBold;
+         __composite(::user::button)                              m_pbuttonItalic;
+         __composite(::user::button)                              m_pbuttonUnderline;
+         __composite(::user::font_combo_box)                      m_pcomboFamily;
+         __composite(::user::combo_box)                           m_pcomboSize;
+         __composite(::user::button)                              m_pbuttonForeground;
+         __composite(::user::button)                              m_pbuttonBackground;
+         __composite(::user::button)                              m_pbuttonSubscript;
+         __composite(::user::button)                              m_pbuttonSuperscript;
+         __composite(::user::button)                              m_pbuttonLineHeight;
+         __composite(::user::button)                              m_pbuttonAlignLeft;
+         __composite(::user::button)                              m_pbuttonAlignCenter;
+         __composite(::user::button)                              m_pbuttonAlignRight;
 
 
 
          format_tool();
-         virtual ~format_tool();
+         ~format_tool() override;
 
-         virtual e_status initialize(::object * pobject)override;
+         
+         e_status initialize(::object * pobject)override;
       
-         virtual void install_message_routing(::channel * psender) override;
+         void install_message_routing(::channel * psender) override;
 
-         virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
+         ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
          DECLARE_MESSAGE_HANDLER(on_message_create);
 
          virtual void set_font_size(double d);
 
-         virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+         void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
          virtual bool is_showing_for_ui(::user::interaction * pinteraction);
 
-         virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+         void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
          virtual void show_for_ui(::user::interaction * pinteraction);
 
-         virtual void handle(::subject * psubject, ::context * pcontext) override;
+         void handle(::subject * psubject, ::context * pcontext) override;
 
 
-         virtual bool update_data(bool bSaveAndValidate) override;
-
-
+         bool update_data(bool bSaveAndValidate) override;
 
 
       };
@@ -71,7 +70,6 @@ namespace user
 
 
 } // namespace user
-
 
 
 

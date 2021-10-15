@@ -1164,7 +1164,7 @@ namespace windowing
    void window::window_show()
    {
    
-      m_pwindowing->windowing_branch(__routine([this]()
+      m_pwindowing->windowing_post(__routine([this]()
                                              {
 
                                                  auto pimpl = m_pimpl;
@@ -1211,10 +1211,10 @@ namespace windowing
    }
 
 
-   ::e_status window::window_sync(const ::duration & duration, const ::routine & routine)
+   ::e_status window::window_send(const ::routine & routine)
    {
 
-      auto estatus = __sync_routine(duration, this, &window::window_branch, routine);
+      auto estatus = __send_routine(this, &window::window_post, routine);
 
       if (!estatus)
       {
@@ -1228,7 +1228,7 @@ namespace windowing
    }
 
 
-   ::e_status window::window_branch(const ::routine & routine)
+   ::e_status window::window_post(const ::routine & routine)
    {
 
       throw ::interface_only_exception();

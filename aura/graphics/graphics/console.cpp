@@ -786,7 +786,7 @@ namespace graphics
    }
 
 
-   string console::to_string() const
+   string console::get_string() const
    {
 
       __throw(error_not_implemented);
@@ -797,7 +797,6 @@ namespace graphics
 
 
 } // namespace graphics
-
 
 
 

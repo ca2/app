@@ -41,12 +41,12 @@ namespace datetime
 
       void clock::set_time(const ::datetime::time & time)
       {
-         m_timespan = time - ::datetime::time::get_current_time();
+         m_timespan = time - ::datetime::time::now();
       }
 
       void clock::get_time(::datetime::time & time)
       {
-         time = ::datetime::time::get_current_time() + m_timespan;
+         time = ::datetime::time::now() + m_timespan;
       }
 
 

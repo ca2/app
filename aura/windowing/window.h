@@ -24,7 +24,7 @@ namespace windowing
       __pointer(::user::interaction_impl)       m_pimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
-      millis                                    m_millisLastMouseMove;
+      ::duration                                    m_durationLastMouseMove;
       __pointer(::windowing::window)            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
@@ -287,8 +287,8 @@ namespace windowing
       
       virtual ::e_status frame_toggle_restore();
 
-      virtual ::e_status window_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status window_branch(const ::routine & routine);
+      virtual ::e_status window_send(const ::routine & routine);
+      virtual ::e_status window_post(const ::routine & routine);
 
       virtual bool is_branch_current() const;
 

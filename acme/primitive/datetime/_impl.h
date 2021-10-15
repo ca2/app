@@ -1,52 +1,52 @@
 #pragma once
 
 
-inline duration& duration::operator = (const class ::nanos & nanos)
-{
-
-   m_secs = nanos.m_i / 1'000'000'000;
-
-   m_nanos = nanos.m_i % 1'000'000'000;
-
-   return *this;
-
-}
-
-
-inline duration& duration::operator = (const class ::micros & micros)
-{
-
-   m_secs = micros.m_i / 1'000'000;
-
-   m_nanos = (micros.m_i % 1'000'000) * 1'000;
-
-   return *this;
-
-}
+//inline duration& duration::operator = (const class ::nanosecond & nanosecond)
+//{
+//
+//   m_iSecond = nanosecond.m_i / 1'000'000'000;
+//
+//   m_iNanosecond = nanosecond.m_i % 1'000'000'000;
+//
+//   return *this;
+//
+//}
 
 
-inline duration& duration::operator = (const class ::millis & millis)
-{
+//inline duration& duration::operator = (const class ::microsecond & microsecond)
+//{
+//
+//   m_secs = microsecond.m_i / 1'000'000;
+//
+//   m_nanos = (microsecond.m_i % 1'000'000) * 1'000;
+//
+//   return *this;
+//
+//}
+//
 
-   m_secs = millis.m_i / 1'000;
+//inline duration& duration::operator = (const class ::duration & ::duration)
+//{
+//
+//   m_secs = ::duration.m_i / 1'000;
+//
+//   m_nanos = (::duration.m_i % 1'000) * 1'000'000;
+//
+//   return *this;
+//
+//}
 
-   m_nanos = (millis.m_i % 1'000) * 1'000'000;
 
-   return *this;
-
-}
-
-
-inline duration& duration::operator = (const class ::secs & secs)
-{
-
-   m_secs = secs;
-
-   m_nanos = 0;
-
-   return *this;
-
-}
+//inline duration& duration::operator = (const class ::second & second)
+//{
+//
+//   m_secs = second;
+//
+//   m_nanos = 0;
+//
+//   return *this;
+//
+//}
 
 
 inline duration& duration::operator = (const ::duration & duration)
@@ -55,8 +55,8 @@ inline duration& duration::operator = (const ::duration & duration)
    if(this != &duration)
    {
 
-      m_secs = duration.m_secs;
-      m_nanos = duration.m_nanos;
+      m_iSecond = duration.m_iSecond;
+      m_iNanosecond = duration.m_iNanosecond;
 
    }
 
@@ -64,76 +64,38 @@ inline duration& duration::operator = (const ::duration & duration)
 
 }
 
+//
+//inline nanosecond operator -(const ::nanosecond& nanosecond, const ::duration & duration)
+//{
+//
+//   return nanosecond.m_i - ::duration.m_i * 1'000'000;
+//
+//}
+//
+//
+//inline duration operator -(const ::duration & duration, const ::duration & duration)
+//{
+//
+//   return duration - (const ::duration &) ::duration;
+//
+//}
+//
 
-inline nanos operator -(const ::nanos& nanos, const ::millis & millis)
+
+
+inline bool duration::timeout(const duration & duration)
 {
 
-   return nanos.m_i - millis.m_i * 1'000'000;
+   auto now = this->now();
 
-}
-
-
-inline duration operator -(const ::duration & duration, const ::millis & millis)
-{
-
-   return duration - (const ::duration &) millis;
-
-}
-
-
-inline ::i64 _first_sec() { return _get_millis() / 1'000; }
-inline ::i64 _get_secs() { return _get_millis() / 1'000; }
-
-
-inline ::i64 _first_milli() { return _get_micros() / 1'000; }
-inline ::i64 _get_millis() { return _get_micros() / 1'000; }
-
-
-inline ::i64 _first_micro() { return _get_nanos() / 1'000; }
-inline ::i64 _get_micros() { return _get_nanos() / 1'000; }
-
-
-inline millis::millis(enum enum_now) { m_i = _get_millis(); }
-inline millis millis::now() { return get_millis(); }
-
-
-namespace papaya
-{
-
-
-   namespace chill
-   {
-
-
-      template <  >
-      inline millis default_value < millis >()
-      {
-
-         // estimate a delay of half of maximum millis positive value
-         return ::get_millis() - (MAXI64 >> 1);
-
-      }
-
-
-   } // namespace chill
-
-
-} // namespace papaya
-
-
-inline bool millis::timeout(const millis& tickTimeout)
-{
-
-   auto millisNow = get_millis();
-
-   if (millisNow - m_i < tickTimeout.m_i)
+   if (elapsed(now) < duration)
    {
 
       return false;
 
    }
 
-   m_i = millisNow.m_i;
+   operator =(now);
 
    return true;
 
@@ -141,3 +103,11 @@ inline bool millis::timeout(const millis& tickTimeout)
 
 
 
+
+
+//inline ::duration duration::duration() const
+//{
+//
+//   
+//
+//}

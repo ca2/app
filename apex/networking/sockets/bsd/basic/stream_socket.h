@@ -14,7 +14,7 @@ namespace sockets
 
 
       bool m_bConnecting; ///< Flag indicating connection in progress
-      //::secs m_secsConnectionTimeout; ///< Connection timeout (seconds)
+      //::second m_secsConnectionTimeout; ///< Connection timeout (seconds)
       bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
       i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
       i32 m_iConnectionRetryCount; ///< Actual number of connection retries (tcp)
@@ -45,7 +45,7 @@ namespace sockets
 
       /** Return number of seconds to wait for a connection.
       \return Connection timeout (seconds) */
-      //::secs GetConnectTimeout();
+      //::second GetConnectTimeout();
 
       /** set flush before close to make a tcp socket completely is_empty its
       output buffer before closing the connection. */

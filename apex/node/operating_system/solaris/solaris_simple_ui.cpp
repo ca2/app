@@ -729,7 +729,7 @@ namespace os
 
       m_xlib.create(m_window, cx, cy);
 
-      on_layout(::draw2d::graphics_pointer & pgraphics);
+      on_layout(pgraphics);
 
       return true;
 

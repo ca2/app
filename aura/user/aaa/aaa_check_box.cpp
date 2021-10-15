@@ -22,7 +22,7 @@ namespace user
    check_box::check_box(e_style estyle)
    {
 
-      m_millisAnimationPeriod = 300_ms;
+      m_durationAnimationPeriod = 300_ms;
 
       m_estyle = estyle;
 
@@ -342,7 +342,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      double dRate = m_millisAnimationStart.period_rate(m_millisAnimationPeriod);
+      double dRate = m_durationAnimationStart.period_rate(m_durationAnimationPeriod);
 
       if (dRate < 1.0)
       {
@@ -525,7 +525,7 @@ namespace user
       pgraphics->set(pbrush);
 
       pgraphics->ellipse(rectangleCheckBox);
-      //   pgraphics->draw3d_rect(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
+      //   pgraphics->draw_inset_3d_rectangle(rectangleCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   if (m_echeck == check_tristate
       //      || m_echeck == check_checked)
       //   {
@@ -555,7 +555,7 @@ namespace user
 
          post_redraw();
 
-         if (m_millisAnimationStart.elapsed() > m_millisAnimationPeriod)
+         if (m_durationAnimationStart.elapsed() > m_durationAnimationPeriod)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -617,7 +617,7 @@ namespace user
 
       m_dPosition = 0.0;
 
-      m_millisAnimationStart.Now();
+      m_durationAnimationStart.Now();
 
       SetTimer(e_timer_check_toggle_animation, 12);
 

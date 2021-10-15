@@ -746,6 +746,23 @@ public:
 
    }
 
+   inline bool begins(const CHAR_TYPE* psz) const;
+   inline bool ends(const CHAR_TYPE* psz) const;
+
+   inline bool begins_ci(const CHAR_TYPE* psz) const;
+   inline bool ends_ci(const CHAR_TYPE* psz) const;
+
+   inline bool begins_eat(const CHAR_TYPE* psz);
+   inline bool ends_eat(const CHAR_TYPE* psz);
+
+   inline bool begins_eat_ci(const CHAR_TYPE* psz);
+   inline bool ends_eat_ci(const CHAR_TYPE* psz);
+
+   inline string_base& ensure_begins(const CHAR_TYPE* psz);
+   inline string_base& ensure_begins_ci(const CHAR_TYPE* psz);
+
+   inline string_base& ensure_ends(const CHAR_TYPE* psz);
+   inline string_base& ensure_ends_ci(const CHAR_TYPE* psz);
 
    inline bool begins(const string_base& ansistr) const;
    inline bool ends(const string_base& ansistr) const;

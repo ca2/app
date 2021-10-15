@@ -1086,7 +1086,7 @@ namespace experience
       if (strType.contains("playlist"))
       {
 
-         INFO("frame playlist");
+         INFORMATION("frame playlist");
 
       }
 
@@ -1144,7 +1144,7 @@ namespace experience
          (::is_docking_appearance(edisplay) && iWorkspace != m_pframewindow->m_windowrectangle.m_iWorkspace))
       {
 
-         if (m_pframewindow->layout().m_millisLastSketchToDesign.elapsed() < 800_tick)
+         if (m_pframewindow->layout().m_durationLastSketchToDesign.elapsed() < 800_ms)
          {
 
             if (edisplay != m_pframewindow->layout().design().display())
@@ -1373,7 +1373,7 @@ namespace experience
       if (strType.contains("filemanager"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 

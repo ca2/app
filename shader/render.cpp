@@ -233,7 +233,7 @@ namespace app_shader
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-      m_millisStart.Now();
+      m_durationStart.Now();
 
       return ::success;
 
@@ -292,11 +292,9 @@ namespace app_shader
 
             {
 
-               double dElapsed = __double(m_millisStart.elapsed());
+               auto dTime = m_durationStart.elapsed().floating_second();
 
-               double dTime = dElapsed / 1000.0;
-
-               float time = (float) dTime;
+               float time = (float) dTime.m_d;
 
                m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
                m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
@@ -371,7 +369,12 @@ namespace app_shader
 
       auto strLabel = ::file::path(pathShader).name();
 
-      if(m_strLastLabel != strLabel)
+      auto pstyle = m_pinteraction->get_style(pgraphics);
+
+      auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
+
+      if(m_strLastLabel != strLabel
+         || m_colorLastLabelBackground != colorBackground)
       {
 
          m_strLastLabel = strLabel;
@@ -379,11 +382,7 @@ namespace app_shader
          if(strLabel.has_char())
          {
 
-            auto pstyle = m_pinteraction->get_style(pgraphics);
-
 //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
-
-            auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
 
             colorBackground.alpha = 128;
 

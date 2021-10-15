@@ -15,9 +15,7 @@ namespace user
    public:
 
 
-      millis                           m_millisFocusStart;
-      //bool                             m_bUserElementOk;
-      //::user::interaction *            m_puserinteraction;
+      duration    m_durationFocusStart;
 
 
       primitive();
@@ -28,14 +26,6 @@ namespace user
 
 
       virtual bool create_message_queue(const ::string & lpszName);
-
-
-      //virtual void set_config_fps(double dConfigFps);
-      //virtual double get_config_fps();
-      //virtual double get_output_fps();
-
-
-      //__pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam) override;
 
 
       virtual ::user::interaction * get_host_window() const;
@@ -75,7 +65,7 @@ namespace user
       virtual string get_title();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
 
@@ -253,7 +243,7 @@ namespace user
       virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
 
-      virtual ::e_status interaction_branch(const ::routine & routine);
+      virtual ::e_status interaction_post(const ::routine & routine);
 
 
       virtual lresult send(::message::message * pmessage);
@@ -275,6 +265,8 @@ namespace user
 
       virtual bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
 
+      //virtual bool user_post(const ::id& id, wparam wparam = 0, lparam lparam = 0);
+
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool _display(edisplay edisplay);
@@ -282,7 +274,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
 
@@ -343,7 +335,7 @@ namespace user
 
       virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::primitive * get_primitive_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
+      ::user::element * get_primitive_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1) override;
 
 
       virtual ::user::interaction * get_wnd() const;
@@ -594,7 +586,7 @@ namespace user
       
       virtual ::user::interaction * get_parent_window() const;
 
-      virtual ::user::primitive * get_parent_primitive() const;
+      ::user::element * get_parent_primitive() const override;
 
 
       virtual ::user::interaction * get_first_child_window() const;
@@ -603,13 +595,13 @@ namespace user
       virtual bool keyboard_focus_is_focusable() const;
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
-      virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
+      ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * get_keyboard_focus() const;
       virtual ::e_status set_keyboard_focus();
       virtual ::e_status erase_keyboard_focus();
       virtual ::e_status clear_keyboard_focus();
-      virtual ::user::primitive * get_keyboard_focus();
-      virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
+      ::user::element * get_keyboard_focus() override;
+      ::user::element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual bool has_keyboard_focus();
 
       // mouse focus
@@ -696,12 +688,13 @@ namespace user
       //virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context);
       //virtual void _001SetText(const ::string & strText, const ::action_context & action_context);
 
-      virtual ::user::primitive * first_child_user_primitive();
-      virtual ::user::primitive * top_user_primitive();
-      virtual ::user::primitive * under_user_primitive();
-      virtual ::user::primitive * above_user_primitive();
-      virtual ::user::primitive * next_user_primitive();
-      virtual ::user::primitive * previous_user_primitive();
+
+      ::user::element * first_child_user_primitive() override;
+      ::user::element * top_user_primitive() override;
+      ::user::element * under_user_primitive() override;
+      ::user::element * above_user_primitive() override;
+      ::user::element * next_user_primitive() override;
+      ::user::element * previous_user_primitive() override;
 
    };
 

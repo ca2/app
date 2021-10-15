@@ -41,16 +41,16 @@ namespace userex
       virtual ~group_image_list_view();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::userex::image_list_view * get_group_list(::id idGroup);
 
       virtual ::file::path get_link_path(string strLink);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void handle(::subject * psubject, ::context * pcontext) override;
 

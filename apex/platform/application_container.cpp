@@ -269,7 +269,7 @@ application_array application_container::get_applicationa()
 __pointer(::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
 {
 
-   INFO("apex::application::instantiate_application");
+   INFORMATION("apex::application::instantiate_application");
 
    ::e_status estatus = ::success;
 
@@ -303,7 +303,7 @@ __pointer(::application) application_container::instantiate_application(const ch
          if (psystem->m_papplicationStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong papplication Data Type");
+            INFORMATION("Wrong papplication Data Type");
 
             return nullptr;
 
@@ -517,7 +517,7 @@ __pointer(::application) application_container::start_application(const char * p
    if (!papp->on_start_application())
    {
 
-      TRACE("One or more errors occurred during on_start_application execution.");
+      INFORMATION("One or more errors occurred during on_start_application execution.");
 
    }
 
@@ -533,7 +533,7 @@ __pointer(::application) application_container::start_application(const char * p
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())
+   //            if (pcreate->m_pcommandline->m_eventReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }

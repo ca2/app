@@ -13,7 +13,7 @@ namespace file
    
       g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::output_debug_string("----::file::path_object (count=" + __string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
 
    }
 
@@ -23,7 +23,7 @@ namespace file
 
       g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::output_debug_string("----::file::path_object (count=" + __string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
    
    }
 
@@ -34,7 +34,7 @@ namespace file
 
       g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::output_debug_string("----::file::path_object (count=" + __string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
    
    }
 
@@ -45,7 +45,7 @@ namespace file
 
       g_interlockedcountFilePathObject++;
 
-      //::output_debug_string("----::file::path_object (count=" + __str(g_interlockedcountFilePathObject.operator long long()) + ")\n");
+      //::output_debug_string("----::file::path_object (count=" + __string(g_interlockedcountFilePathObject.operator long long()) + ")\n");
    
    }
 

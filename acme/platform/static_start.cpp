@@ -154,7 +154,7 @@ namespace acme
 {
 
 
-   static element_address_array* g_pelementaddraReleaseOnEnd;
+   static __pointer_array(::matter) g_elementaddraReleaseOnEnd;
 
 
 #if OBJECT_TYPE_COUNTER
@@ -279,7 +279,7 @@ namespace acme
 
 
 
-   ::nanos g_nanosFirst;
+   ::nanosecond g_nanosecondFirst;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
@@ -453,8 +453,6 @@ namespace acme
 
 #endif
 
-      g_nanosFirst = 0;
-
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       g_iMemoryCountersStartable = 0;
@@ -521,6 +519,8 @@ namespace acme
 
    static_start::static_start()
    {
+
+      g_nanosecondFirst.Now();
 
       initialize_memory_management();
 
@@ -589,7 +589,7 @@ namespace acme
 
 #endif
 
-      g_nanosFirst = get_nanos();
+      
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
@@ -1480,9 +1480,9 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 
    critical_section_lock l(::acme::g_pcsGlobal);
 
-   __defer_new(::acme::g_pelementaddraReleaseOnEnd);
+   //__defer_new(::acme::g_pelementaddraReleaseOnEnd);
 
-   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
+   ::acme::g_elementaddraReleaseOnEnd.add(pmatter);
 
 }
 
@@ -1492,19 +1492,21 @@ void delete_all_release_on_end()
 
    critical_section_lock l(::acme::g_pcsGlobal);
 
-   if (is_set(::acme::g_pelementaddraReleaseOnEnd))
-   {
+   ::acme::g_elementaddraReleaseOnEnd.erase_all();
 
-      for (auto pmatter : *::acme::g_pelementaddraReleaseOnEnd)
-      {
-
-         ::acme::del(pmatter);
-
-      }
-
-      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
-
-   }
+   //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
+//   {
+//
+//      for (auto pmatter : ::acme::g_elementaddraReleaseOnEnd)
+//      {
+//
+//         ::acme::del(pmatter);
+//
+//      }
+//
+//      ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
+//
+//   }
 
 }
 
@@ -1514,19 +1516,24 @@ void add_release_on_end(::matter * pmatter)
 
    critical_section_lock l(::acme::g_pcsGlobal);
 
-   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
-   {
+//   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
+//   {
+//
+//      ::acme::g_pelementaddraReleaseOnEnd = new element_address_array();
+//
+//   }
 
-      ::acme::g_pelementaddraReleaseOnEnd = new element_address_array();
-
-   }
-
-   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
+   ::acme::g_elementaddraReleaseOnEnd.add(pmatter);
 
 }
 
 
+::nanosecond first_nanosecond()
+{
 
+   return ::acme::g_nanosecondFirst;
+
+}
 
 
 

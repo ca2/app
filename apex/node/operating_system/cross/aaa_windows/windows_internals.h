@@ -144,7 +144,7 @@ typedef struct RTL_DRIVE_LETTER_CURDIR
 typedef struct tagRTL_BITMAP
 {
    WINULONG SizeOfBitMap; /* Number of bits in the bitmap */
-   PWINULONG Buffer; /* Bitmap data, assumed sized to a ::u32 boundary */
+   PWINULONG Buffer; /* Bitmap data, assumed size_f64 to a ::u32 boundary */
 } RTL_BITMAP, *PRTL_BITMAP;
 
 typedef const RTL_BITMAP *PCRTL_BITMAP;
@@ -1484,7 +1484,7 @@ typedef struct _TIME_FIELDS
    CSHORT Hour;
    CSHORT Minute;
    CSHORT Second;
-   CSHORT Milliseconds;
+   CSHORT ::durations;
    CSHORT Weekday;
 } TIME_FIELDS, *PTIME_FIELDS;
 

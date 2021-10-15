@@ -14,7 +14,7 @@ public:
    virtual ~filemanager_impact_base();
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
 
    ::file::item * filemanager_item();

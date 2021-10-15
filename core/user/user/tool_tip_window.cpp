@@ -48,14 +48,23 @@ namespace user
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || pointCursor != m_point)
             {
+               
                m_point = pointCursor;
+               
                m_iEventTool = ptool->BaseToolTipGetIndex();
+               
                //ptool->BaseToolTipGetWnd()->screen_to_client(&m_point);
+               
                KillTimer(e_timer_show_delayed);
+               
                HideTip();
-               SetTimer(e_timer_show_delayed, 500, nullptr);
+               
+               SetTimer(e_timer_show_delayed, 500_ms, nullptr);
+
             }
+
          }
+
       }
       break;
       default:
@@ -96,7 +105,7 @@ namespace user
       if(!GetToolText(iTool, m_strTip))
          return;
 
-      SetTimer(1, 5000, nullptr);
+      SetTimer(1, 5_s, nullptr);
 
       ::rectangle_i32 rectangle;
 
@@ -280,7 +289,7 @@ namespace user
         rectangleClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);
@@ -294,7 +303,7 @@ namespace user
         rectangleClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);
@@ -307,7 +316,7 @@ namespace user
         rectangleClient.top = m_sizeArrow.cy;
         pgraphics->fill_rectangle(rectangleArrow, rgb(0, 120, 180));
         pgraphics->fill_rectangle(rectangleClient, rgb(220, 240, 250));
-        pgraphics->draw3d_rect(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
+        pgraphics->draw_inset_3d_rectangle(rectangleClient, rgb(0, 120, 180), rgb(0, 120, 180));
         pgraphics->set_text_color(rgb(0, 60, 90));
         rectangleText = rectangleClient;
         rectangleText.deflate(2, 2, 2, 2);

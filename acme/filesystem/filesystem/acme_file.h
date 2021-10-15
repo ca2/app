@@ -126,7 +126,7 @@ public:
    //virtual string defer_solve_relative(const char * pszRelative, const char * pszCurrent);
    virtual ::e_status append(const ::string & strFile, const block & block);
    virtual ::e_status append_wait(const ::string & strFile, const block & block, const ::duration & duration = ::duration::infinite());
-   //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::millis & millisTimeout = ::millis::infinite());
+   //virtual bool file_append_wait(const ::string & strFile, const char * psz, strsize s, const ::duration & millisTimeout = ::duration::infinite());
 
    virtual ::e_status write(FILE * file, const void * pdata, memsize nCount, memsize * puiWritten);
 

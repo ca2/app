@@ -114,16 +114,16 @@ namespace userex
 
       string strType = "top_view";
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       ::user::split_view::_001OnDraw(pgraphics);
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __str(d1) + ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) "<< strType << "::_000OnDraw took " << integral_millisecond(d1) << ".\n");
 
       }
 

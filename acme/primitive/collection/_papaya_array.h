@@ -476,8 +476,8 @@ namespace papaya
       template < typename TYPE >
       ::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a);
 
-      template < typename TYPE >
-      ::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a);
+      template < typename TYPE, typename INITIALIZER >
+      ::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a);
 
       template < typename Type, typename RawType, enum_type t_etypePayload >
       ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const Type & psz)

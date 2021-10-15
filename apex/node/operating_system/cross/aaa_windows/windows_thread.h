@@ -46,7 +46,7 @@ CLASS_DECL_APEX ::u32 WINAPI ResumeThread(htask_t htask);
 CLASS_DECL_APEX int_bool WINAPI SetThreadPriority(htask_t htask, i32 nPriority);
 CLASS_DECL_APEX i32 WINAPI GetThreadPriority(htask_t htask);
 
-//CLASS_DECL_APEX VOID WINAPI sleep(::u32 dwMilliseconds);
+//CLASS_DECL_APEX VOID WINAPI sleep(::u32 dw::durations);
 
 
 #endif

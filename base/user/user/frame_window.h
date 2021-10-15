@@ -187,7 +187,7 @@ namespace user
 //      }
 
 
-      ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
+      ::user::interaction * get_active_view() const override;           // active ::user::impact or nullptr
       void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 

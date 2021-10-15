@@ -718,7 +718,7 @@ namespace user
 
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
-      virtual ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
       //virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status clear_keyboard_focus() override;

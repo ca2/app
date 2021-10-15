@@ -1093,7 +1093,7 @@ namespace user
    }
 
 
-   ::user::primitive* interaction::get_parent_primitive() const
+   ::user::element * interaction::get_parent_primitive() const
    {
 
       return get_parent();
@@ -1435,7 +1435,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction::get_keyboard_focus()
+   ::user::element * interaction::get_keyboard_focus()
    {
 
       auto psession = get_session();
@@ -4277,16 +4277,14 @@ return "";
    }
 
 
-
-
-   primitive * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
+   element * interaction::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
+      element * pelement = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
 
       auto psession = get_session();
 
-      if (pprimitive == nullptr || pprimitive == this)
+      if (pelement == nullptr || pelement == this)
       {
 
          clear_keyboard_focus();
@@ -4295,7 +4293,7 @@ return "";
       else
       {
 
-         pprimitive->set_keyboard_focus();
+         pelement->set_keyboard_focus();
 
       }
 
@@ -4483,7 +4481,7 @@ return "";
 
       auto psystem = m_psystem->m_paurasystem;
 
-      auto psignal = psystem->get_signal(id_user_color);
+      auto psignal = psystem->get_signal(id_user_style_change);
 
       psignal->add_handler(this);
 
@@ -5332,7 +5330,7 @@ return "";
    }
 
 
-   ::user::primitive * interaction::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element * interaction::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
    {
 
       auto pchild = get_child_by_id(id, iItem, iLevel);
@@ -9562,6 +9560,15 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 }
 
 
+//bool interaction::user_post(const ::id& id, wparam wparam, lparam lparam)
+//{
+//
+//   return m_pthreadUserInteraction->post_message(id, wparam, lparam);
+//
+//}
+
+
+
 bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
@@ -11070,7 +11077,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::first_child_user_primitive()
+::user::element * interaction::first_child_user_primitive()
 {
 
    return first_child();
@@ -11078,7 +11085,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::top_user_primitive()
+::user::element* interaction::top_user_primitive()
 {
 
    return primitive::top_user_primitive();
@@ -11086,7 +11093,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::under_user_primitive()
+::user::element* interaction::under_user_primitive()
 {
 
    return under_sibling();
@@ -11094,7 +11101,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::above_user_primitive()
+::user::element* interaction::above_user_primitive()
 {
 
    return above_sibling();
@@ -11102,7 +11109,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::next_user_primitive()
+::user::element* interaction::next_user_primitive()
 {
 
    return next_sibling();
@@ -11110,7 +11117,7 @@ bool interaction::merge(::user::interaction * pinteraction)
 }
 
 
-::user::primitive * interaction::previous_user_primitive()
+::user::element* interaction::previous_user_primitive()
 {
 
    return previous_sibling();
@@ -14289,7 +14296,7 @@ order(zorderParam);
          post_redraw();
 
       }
-      else if (psubject->id() == id_user_color)
+      else if (psubject->id() == id_user_style_change)
       {
 
          set_need_redraw();

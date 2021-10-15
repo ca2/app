@@ -4778,7 +4778,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction_impl::get_keyboard_focus()
+   ::user::element * interaction_impl::get_keyboard_focus()
    {
 
       return m_puserinteractionFocus1;

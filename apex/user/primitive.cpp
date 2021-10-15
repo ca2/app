@@ -1036,7 +1036,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
+   ::user::element* primitive::get_primitive_by_id(const id & id, ::index iItem, i32 iLevel)
    {
 
       throw ::interface_only_exception();
@@ -2450,6 +2450,16 @@ namespace user
    }
 
 
+   //bool primitive::user_post(const ::id& id, wparam wparam, lparam lparam)
+   //{
+
+   //   throw ::interface_only_exception();
+
+   //   return false;
+
+   //}
+
+
    bool primitive::SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
    {
 
@@ -3639,7 +3649,7 @@ namespace user
 
       }
 
-      auto estatus = pchild->add_handler(pmatter, bPriority);
+      auto estatus = pchild->m_puserprimitive->add_handler(pmatter, bPriority);
 
       if (!estatus)
       {
@@ -4128,7 +4138,7 @@ namespace user
    }
 
 
-   primitive * primitive::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
+   element* primitive::keyboard_set_focus_next(bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
 //      primitive * pprimitive = keyboard_get_next_focusable(nullptr, bSkipChild, bSkipSiblings, bSkipParent);
@@ -4155,14 +4165,14 @@ namespace user
    }
 
 
-   primitive * primitive::keyboard_get_next_focusable(primitive * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
+   element * primitive::keyboard_get_next_focusable(element * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
      __pointer(primitive) puiThis = this;
 
      __pointer(primitive) puiFocus = pfocus != nullptr ? pfocus : this;
 
-     primitive * pfocusTry;
+     element * pfocusTry;
 
      if (puiFocus == nullptr)
      {
@@ -4294,7 +4304,7 @@ namespace user
    }
 
 
-   primitive * primitive::get_keyboard_focus()
+   element * primitive::get_keyboard_focus()
    {
 
       return nullptr;
@@ -4341,9 +4351,7 @@ namespace user
    }
 
 
-   
-
-   ::user::primitive * primitive::first_child_user_primitive()
+   ::user::element * primitive::first_child_user_primitive()
    {
 
       return nullptr;
@@ -4351,7 +4359,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::top_user_primitive()
+   ::user::element * primitive::top_user_primitive()
    {
 
       return nullptr;
@@ -4359,7 +4367,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::under_user_primitive()
+   ::user::element * primitive::under_user_primitive()
    {
 
       return nullptr;
@@ -4367,7 +4375,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::above_user_primitive()
+   ::user::element * primitive::above_user_primitive()
    {
 
       return nullptr;
@@ -4375,7 +4383,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::next_user_primitive()
+   ::user::element * primitive::next_user_primitive()
    {
 
       return nullptr;
@@ -4383,7 +4391,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::previous_user_primitive()
+   ::user::element * primitive::previous_user_primitive()
    {
 
       return nullptr;
@@ -4399,7 +4407,7 @@ namespace user
    }
 
 
-   ::user::primitive* primitive::get_parent_primitive() const
+   ::user::element * primitive::get_parent_primitive() const
    {
 
       return nullptr;

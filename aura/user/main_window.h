@@ -18,10 +18,10 @@ namespace user
       ~main_window() override;
 
 
-      virtual void install_message_routing(::channel* pchannel) override;
+      void install_message_routing(::channel* pchannel) override;
 
 
-      virtual void on_create_user_interaction() override;
+      void on_create_user_interaction() override;
 
 
       virtual ::e_status create_main_window();

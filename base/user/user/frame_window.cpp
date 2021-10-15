@@ -1744,7 +1744,7 @@ namespace user
    }
 
 
-   ::user::impact * frame_window::get_active_view() const
+   ::user::interaction * frame_window::get_active_view() const
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));

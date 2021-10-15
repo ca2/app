@@ -243,7 +243,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;

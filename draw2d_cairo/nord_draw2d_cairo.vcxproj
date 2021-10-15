@@ -229,9 +229,6 @@
     <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
       <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\aura\nord_aura.vcxproj">
-      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

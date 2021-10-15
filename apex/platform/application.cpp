@@ -345,7 +345,7 @@ pnode->set_application_menu(m_papplicationmenu, this);
 }
 
 
-::object * application::parent_property_set_holder() const
+::property_object * application::parent_property_set_holder() const
 {
 
    return nullptr;

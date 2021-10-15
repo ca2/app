@@ -53,8 +53,17 @@ namespace user
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
-         
-      m_bDarkMode = pnode->dark_mode();
+
+      auto bDarkMode = pnode->dark_mode();
+
+      if (is_different(m_bDarkMode, bDarkMode))
+      {
+
+         m_bDarkMode = bDarkMode;
+
+         psystem->m_papexsystem->signal(id_user_style_change);
+
+      }
 
    }
 

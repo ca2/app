@@ -28,6 +28,7 @@ namespace app_shader
       ::gpu::enum_shader_source           m_eshadersource;
       ::image_pointer                     m_pimageLabel;
       string                              m_strLastLabel;
+      ::color::color                      m_colorLastLabelBackground;
       ::image_pointer                     m_pimageError;
       string                              m_strLastError;
 

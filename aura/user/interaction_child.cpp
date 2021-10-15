@@ -745,7 +745,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
+   ::user::primitive * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
       m_puserprimitiveOwner = pinteraction;

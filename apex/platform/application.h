@@ -418,7 +418,7 @@
 
 
       //virtual void release_parents() override;
-      virtual ::object * parent_property_set_holder() const override;
+      ::property_object * parent_property_set_holder() const override;
 
 
       //virtual bool is_set_finish() const override;

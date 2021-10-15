@@ -369,7 +369,12 @@ namespace app_shader
 
       auto strLabel = ::file::path(pathShader).name();
 
-      if(m_strLastLabel != strLabel)
+      auto pstyle = m_pinteraction->get_style(pgraphics);
+
+      auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
+
+      if(m_strLastLabel != strLabel
+         || m_colorLastLabelBackground != colorBackground)
       {
 
          m_strLastLabel = strLabel;
@@ -377,11 +382,7 @@ namespace app_shader
          if(strLabel.has_char())
          {
 
-            auto pstyle = m_pinteraction->get_style(pgraphics);
-
 //            auto color = m_pinteraction->get_color(pstyle, ::e_element_text);
-
-            auto colorBackground = m_pinteraction->get_color(pstyle, ::e_element_background);
 
             colorBackground.alpha = 128;
 

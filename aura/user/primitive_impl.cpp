@@ -1366,7 +1366,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_impl::get_keyboard_focus()
+   ::user::element * primitive_impl::get_keyboard_focus()
    {
 
       return nullptr;

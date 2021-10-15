@@ -774,16 +774,12 @@ namespace user
       virtual bool on_set_owner(::user::primitive * pinterface);
 
 
-
-
-
-      virtual ::user::primitive * first_child_user_primitive() override;
-      virtual ::user::primitive * top_user_primitive() override;
-      virtual ::user::primitive * under_user_primitive() override;
-      virtual ::user::primitive * above_user_primitive() override;
-      virtual ::user::primitive * next_user_primitive() override;
-      virtual ::user::primitive * previous_user_primitive() override;
-
+      ::user::element * first_child_user_primitive() override;
+      ::user::element * top_user_primitive() override;
+      ::user::element * under_user_primitive() override;
+      ::user::element * above_user_primitive() override;
+      ::user::element * next_user_primitive() override;
+      ::user::element * previous_user_primitive() override;
 
 
       virtual ::user::interaction* first_child() override;
@@ -945,10 +941,10 @@ namespace user
       virtual void on_kill_keyboard_focus() override;
 
 
-      virtual ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
 
 
-      virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
@@ -1089,6 +1085,8 @@ namespace user
 
       virtual bool post_object(const ::id & id, wparam wParam, lparam lParam);
 
+
+      //virtual bool user_post(const ::id& id, wparam wParam = 0, lparam lParam = 0) override;
 
       //virtual void SetWindowDisplayChanged() override;
 
@@ -1309,7 +1307,7 @@ namespace user
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::interaction * get_child_by_id(const id & id, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::primitive * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
+      ::user::element * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
 
       ::user::interaction * child_from_point(const ::point_i32 & point);
 
@@ -1341,7 +1339,7 @@ namespace user
       virtual bool is_host_top_level() const;
       virtual bool is_os_host() const;
 
-      ::user::primitive* get_parent_primitive() const override;
+      ::user::element * get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
       virtual ::user::interaction* get_top_level() const override;

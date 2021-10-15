@@ -330,7 +330,7 @@ namespace aura
    }
 
 
-   ::object * application::parent_property_set_holder() const
+   ::property_object * application::parent_property_set_holder() const
    {
 
       return nullptr;

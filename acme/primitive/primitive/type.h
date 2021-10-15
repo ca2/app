@@ -39,11 +39,26 @@ inline const char * demangle_cstr(const char* psz)
 
 }
 
+#else
+
+inline const char * demangle_cstr(const char* psz)
+{
+
+    return psz;
+
+}
+
 #endif
+
+
 inline void demangle(string& str)
 {
+
    str = demangle_cstr(str);
+
 }
+
+
 namespace str
 {
 

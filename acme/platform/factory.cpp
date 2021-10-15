@@ -76,12 +76,12 @@ bool demangle (string & str, const char * pszType)
 }
 
 
-bool demangle (string & str)
-{
-
-   return demangle(str, str.c_str());
-
-}
+//bool demangle (string & str)
+//{
+//
+//   return demangle(str, str.c_str());
+//
+//}
 
 
 #endif

@@ -2,7 +2,7 @@
 #pragma once
 
 
-class CLASS_DECL_ACME referenceable
+class CLASS_DECL_ACME elemental
 {
 public:
 
@@ -10,14 +10,14 @@ public:
    ::interlocked_count                 m_countReference;
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
-   inline referenceable() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-   inline referenceable(const referenceable &) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
+   inline elemental() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
+   inline elemental(const elemental &) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
 #else
-   inline referenceable() : m_countReference(1) { }
-   inline referenceable(const referenceable &) : m_countReference(1) { }
+   inline elemental() : m_countReference(1) { }
+   inline elemental(const elemental &) : m_countReference(1) { }
 #endif
-   inline referenceable(referenceable && referenceable) : m_countReference(referenceable.m_countReference) {  }
-   virtual ~referenceable() {}
+   inline elemental(elemental && elemental) : m_countReference(elemental.m_countReference) {  }
+   virtual ~elemental() {}
 
 
 #ifdef _DEBUG

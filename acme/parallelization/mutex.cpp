@@ -2,6 +2,12 @@
 #include "acme/operating_system.h"
 
 
+#ifdef MACOS
+void utc_timespec(timespec * ptimespec);
+#endif
+
+
+
 #ifdef PARALLELIZATION_PTHREAD
 
 

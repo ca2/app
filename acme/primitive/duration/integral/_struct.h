@@ -1,4 +1,4 @@
-﻿// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardS�rensen!!
+// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -56,45 +56,6 @@ __DURATION_SETUP__(FLOATING_SECOND, m_d)
 __DURATION_SETUP__(FLOATING_MINUTE, m_d)
 __DURATION_SETUP__(FLOATING_HOUR, m_d)
 __DURATION_SETUP__(FLOATING_DAY, m_d)
-
-
-constexpr INTEGRAL_NANOSECOND operator "" _ns(unsigned long long int u) { return (INTEGRAL_NANOSECOND)u; }
-
-
-constexpr INTEGRAL_MICROSECOND operator "" _us(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
-constexpr INTEGRAL_MICROSECOND operator "" _μs(unsigned long long int u) { return (INTEGRAL_MICROSECOND)u; }
-
-
-constexpr INTEGRAL_MILLISECOND operator "" _ms(unsigned long long int u) { return (INTEGRAL_MILLISECOND)u; }
-
-
-constexpr INTEGRAL_SECOND operator "" _s(unsigned long long int u) { return (INTEGRAL_SECOND)u; }
-
-
-constexpr INTEGRAL_MINUTE operator "" _min(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
-constexpr INTEGRAL_MINUTE operator "" _minute(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
-constexpr INTEGRAL_MINUTE operator "" _minutes(unsigned long long int u) { return (INTEGRAL_MINUTE)u; }
-
-
-constexpr INTEGRAL_HOUR operator "" _h(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-constexpr INTEGRAL_HOUR operator "" _hour(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-constexpr INTEGRAL_HOUR operator "" _hours(unsigned long long int u) { return (INTEGRAL_HOUR)u; }
-
-
-constexpr INTEGRAL_DAY operator "" _day(unsigned long long int u) { return (INTEGRAL_DAY)u; }
-constexpr INTEGRAL_DAY operator "" _days(unsigned long long int u) { return (INTEGRAL_DAY)u; }
-
-
-inline timespec & normalize(timespec & timespec)
-{
-
-   timespec.tv_sec += timespec.tv_nsec / 1'000'000'000;
-
-   timespec.tv_nsec %= 1'000'000'000;
-
-   return timespec;
-
-}
 
 
 inline timespec & operator +=(timespec & timespec, const struct ::INTEGRAL_MILLISECOND & integralmillisecond)

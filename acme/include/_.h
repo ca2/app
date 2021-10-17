@@ -2374,7 +2374,12 @@ namespace audio
 
 #include "acme/platform/auto.h"
 #include "acme/primitive/comparison/compare.h"
+
+
 #include "acme/primitive/primitive/papaya.h"
+
+
+#include "acme/primitive/duration/_unit.h"
 
 
 template<class t>
@@ -3022,9 +3027,6 @@ using wparam = c_number<iptr>;
 
 
 #include "acme/primitive/mathematics/math_clip.h"
-
-
-#include "acme/primitive/duration/_unit.h"
 
 
 #include "acme/primitive/duration/_unit_operator.h"

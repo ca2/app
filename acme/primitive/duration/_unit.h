@@ -1,4 +1,4 @@
-//
+﻿//
 //  _unit.h
 //  acme
 //
@@ -12,7 +12,7 @@ constexpr INTEGRAL_NANOSECOND operator "" _ns(unsigned long long int u) { return
 
 
 constexpr INTEGRAL_MICROSECOND operator "" _us(unsigned long long int u) { return INTEGRAL_MICROSECOND(u); }
-constexpr INTEGRAL_MICROSECOND operator "" _μs(unsigned long long int u) { return INTEGRAL_MICROSECOND(u); }
+constexpr INTEGRAL_MICROSECOND operator "" _µs(unsigned long long int u) { return INTEGRAL_MICROSECOND(u); }
 
 
 constexpr INTEGRAL_MILLISECOND operator "" _ms(unsigned long long int u) { return INTEGRAL_MILLISECOND(u); }

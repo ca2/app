@@ -53,7 +53,7 @@ namespace xml
       inline string get_value() const { return m_strValue; }
 
    
-      virtual ::xml::document* get_xml_document() const;
+      ::xml::document* get_xml_document() const override;
 
 
       index get_index() const;
@@ -174,9 +174,10 @@ namespace xml
       void close();
 
 
-      virtual ::stream & write(::stream & stream) const;
-      virtual ::stream & read(::stream & stream);
+      ::stream & write(::stream & stream) const override;
+      ::stream & read(::stream & stream) override;
 
+      
    private:
 
       node & operator = (const node & node);

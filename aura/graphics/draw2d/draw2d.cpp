@@ -1314,7 +1314,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         INFORMATION("write_text factory exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.", e_message_box_ok);
+         INFORMATION("write_text factory exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
 
          return estatus;
 

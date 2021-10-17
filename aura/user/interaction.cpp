@@ -8160,7 +8160,7 @@ bool interaction::design_reposition()
    if(string(type_name()).contains_ci("tap"))
    {
 
-      INFORMATION("tap prodevian_reposition (%d, %d)", this->screen_origin().x, this->screen_origin().y);
+      INFORMATION("tap prodevian_reposition (" << this->screen_origin().x << ", "  << this->screen_origin().y << ")");
    }
 
    if(bRepositionThis)
@@ -12718,7 +12718,7 @@ interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    if (bSet && rectangleNew.is_set() && iMatchingMonitor >= 0)
    {
 
-      INFORMATION("interaction::bestmonitor (%d, %d, %d, %d) activation %d", rectangleNew.left, rectangleNew.top, rectangleNew.right, rectangleNew.bottom, (i32) eactivation);
+      INFORMATION("interaction::bestmonitor (" << rectangleNew.left << ", " << rectangleNew.top << ", " <<  rectangleNew.right << ", " <<  rectangleNew.bottom << ") activation " <<  (i32) eactivation);
 
       order(zorderParam);
 
@@ -15678,7 +15678,7 @@ order(zorderParam);
 
             bool bSameItemAsMouseDown = m_itemLButtonDown == item;
 
-            TRACE("interaction::on_message_left_button_up item=%d, SameUserInteractionAsMsDwn=%d, SameItemAsMsDwn=%d", (int) item.m_iItem, (int) bSameUserInteractionAsMouseDown, (int) bSameItemAsMouseDown);
+            TRACE("interaction::on_message_left_button_up item="<< (int) item.m_iItem<<", SameUserInteractionAsMsDwn="<< (int) bSameUserInteractionAsMouseDown<<", SameItemAsMsDwn=%d" << (int) bSameItemAsMouseDown);
 
             if (m_itemLButtonDown.is_set() && bSameUserInteractionAsMouseDown && bSameItemAsMouseDown)
             {
@@ -15687,7 +15687,7 @@ order(zorderParam);
 
                pmessage->m_bRet = on_click(item);
 
-               TRACE("interaction::on_message_left_button_up on_click_ret=%d", (int) pmessage->m_bRet);
+               INFORMATION("interaction::on_message_left_button_up on_click_ret=" << (int) pmessage->m_bRet);
                
                if (pmessage->m_bRet)
                {
@@ -15719,7 +15719,7 @@ order(zorderParam);
 
                      route(&subject);
 
-                     TRACE("interaction::on_message_left_button_up route_btn_clked=%d", (int) subject.m_bRet);
+                     INFORMATION("interaction::on_message_left_button_up route_btn_clked=" << (int) subject.m_bRet);
 
                      pmessage->m_bRet = subject.m_bRet;
                   
@@ -15745,7 +15745,7 @@ order(zorderParam);
 
                      route_command(&command);
 
-                     TRACE("interaction::on_message_left_button_up route_cmd_msg=%d", (int) command.m_bRet);
+                     TRACE("interaction::on_message_left_button_up route_cmd_msg=" <<  (int) command.m_bRet);
 
                      pmessage->m_bRet = command.m_bRet;
 

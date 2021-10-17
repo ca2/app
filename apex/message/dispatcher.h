@@ -33,7 +33,7 @@ namespace message
       dispatcher(T1 * p, void (T2:: * pfn)(::message::message * pmessage))
       {
 
-         auto s = sizeof(pfn);
+         //auto s = sizeof(pfn);
 
          auto ptrptr = (byte*)&pfn;
 

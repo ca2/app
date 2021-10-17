@@ -135,19 +135,19 @@ public:
    ~_shape() override {}
 
 
-   virtual void * raw_type() const { return (void*) &m_shape; }
+   virtual void * raw_type() const override { return (void*) &m_shape; }
 
 
-   virtual bool expand_bounding_rect(RECTANGLE_F64* prectangle) const;
+   virtual bool expand_bounding_rect(RECTANGLE_F64* prectangle) const override;
 
 
-   virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const;
+   virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const override;
 
 
-   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_F64* prectangle) const override;
 
 
-   virtual bool get_bounding_rectangle(RECTANGLE_I32* prectangle) const;
+   virtual bool get_bounding_rectangle(RECTANGLE_I32* prectangle) const override;
 
 
    virtual bool contains(const ::POINT_I32 & point) const;

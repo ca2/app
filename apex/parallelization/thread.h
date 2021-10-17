@@ -468,7 +468,7 @@ public:
 
    virtual bool initialize_message_queue();
 
-   virtual void message_handler(::message::message * pmessage);
+   virtual void message_handler(::message::message * pmessage) override;
 
    virtual void do_request(::create * pcreate) override;
 

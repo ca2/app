@@ -349,7 +349,7 @@ namespace user
       virtual void on_create_user_interaction();
 
 
-      virtual bool is_branch_current() const;
+      virtual bool is_branch_current() const override;
 
 
       bool is_ready_to_quit() const override;
@@ -582,8 +582,8 @@ namespace user
       virtual ::e_status set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
-      virtual ::user::form * get_form();
-      virtual ::user::form * get_parent_form();
+      virtual ::user::form * get_form() override;
+      virtual ::user::form * get_parent_form() override;
 
       ::user::interaction * get_user_interaction() override;
 
@@ -1230,7 +1230,7 @@ namespace user
 
       /*virtual bool pre_create_window(::user::system* pusersystem);*/
       using ::user::primitive::handle;
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 
@@ -1869,11 +1869,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual ::e_status post_routine(const ::routine & routine);
+      virtual ::e_status post_routine(const ::routine & routine) override;
       virtual ::e_status prodevian_post_routine(const ::routine & routine);
 
 
-      virtual ::e_status send_routine(const ::routine & routine);
+      virtual ::e_status send_routine(const ::routine & routine) override;
 
 
    /*   template < typename PRED >

@@ -5,8 +5,6 @@
 
 CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 {
-
-
 #ifdef RASPBIAN
 
    struct timeval tv;

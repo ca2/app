@@ -128,7 +128,6 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
    semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
 
-
 #endif
 
 }
@@ -241,7 +240,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-::e_status semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;
@@ -254,7 +253,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //
 //   struct itimerval timer;
 //
-   if(durationTimeout.is_infinite())
+   if(wait.is_infinite())
    {
 
       struct sembuf sb;
@@ -298,9 +297,9 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
          preempt(100_ms);
 
-         ::duration tRemaining = durationTimeout - tStart.elapsed();
+         ::duration tRemaining = wait - tStart.elapsed();
 
-         if(tRemaining > durationTimeout)
+         if(tRemaining > wait)
          {
 
             return error_wait_timeout;

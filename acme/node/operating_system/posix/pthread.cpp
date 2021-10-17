@@ -84,7 +84,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
             }
 
-            if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+            if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed().integral_millisecond().m_i >= tickTimeout)
             {
 
                for (j = 0; j < i; j++)
@@ -156,7 +156,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
          nanosleep(&delay, nullptr);
 
-         if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed() >= tickTimeout)
+         if (tickTimeout != (::u32)INFINITE_TIMEOUT && start.elapsed().integral_millisecond().m_i >= tickTimeout)
          {
 
             return error_wait_timeout;

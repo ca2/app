@@ -363,8 +363,7 @@ stream & property_object::read(::stream & stream)
 }
 
 
-
-inline routine_array * property_object::routine_array(const ::id & id, bool bCreate)
+routine_array * property_object::routine_array(const ::id & id, bool bCreate)
 {
 
    if (!bCreate)

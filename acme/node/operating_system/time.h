@@ -1,7 +1,12 @@
 #pragma once
 
 
+//#include "acme/primitive/datetime/system_time.h"
+//#include "acme/primitive/datetime/filetime_span.h"
+//#include "acme/primitive/datetime/filetime.h"
 
+struct system_time_t;
+class filetime;
 
 CLASS_DECL_ACME i64 __first_tick(void);
 CLASS_DECL_ACME i64 __get_tick(void);

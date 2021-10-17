@@ -430,6 +430,7 @@ namespace datetime
       struct ::tm tm;
 
       __zero(tm);
+      
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;
@@ -437,18 +438,9 @@ namespace datetime
       tm.tm_mday = iDay;
       tm.tm_year = iYear - 1900;
 
-#ifdef WINDOWS
-
-      return _mkgmtime64(&tm);
-
-#else
-
-      return ::timegm(&tm);
-
-#endif
+      return make_utc_time(&tm);
 
    }
-
 
 
    string department::get_week_day_str(const ::text::context * pcontext, i32 iWeekDay) // 1 - domingo
@@ -1348,11 +1340,8 @@ namespace datetime
                /*time_t now = _time64(nullptr);
                time_t nowUtc = mktime(gmtime(&now));
                time_t tDiff = difftime(nowUtc, now);*/
-#ifdef WINDOWS
-               time = ::datetime::time(_mkgmtime64(&atm));
-#else
-               time = ::datetime::time(timegm(&atm));
-#endif
+               time = ::datetime::time(make_utc_time(&atm));
+
             }
             else
             {

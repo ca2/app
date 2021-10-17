@@ -5,7 +5,7 @@
 #ifdef _DEBUG
 
 
-i64 referenceable::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 element::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = ++m_countReference;
@@ -21,7 +21,7 @@ i64 referenceable::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAME
 }
 
 
-i64 referenceable::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 element::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = --m_countReference;
@@ -42,7 +42,7 @@ i64 referenceable::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAME
 }
 
 
-i64 referenceable::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -60,3 +60,37 @@ i64 referenceable::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 
 
 #endif
+
+
+::e_status element::call_member(::i64 iId)
+{
+
+   return ::success_none;
+
+}
+
+
+//::e_status matter::handle(enum_message emessage, i64 iData, ::matter * pmatter)
+//{
+//
+//   return ::success;
+//
+//}
+//
+
+
+void element::handle(::subject * psubject, ::context * pcontext)
+{
+
+
+}
+
+
+void element::handle(::message::message * pmessage)
+{
+
+
+}
+
+
+

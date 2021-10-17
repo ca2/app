@@ -108,7 +108,7 @@ struct CLASS_DECL_ACME filetime_set
    bool modified_timeout(const filetime & current, int iSeconds) const
    {
 
-      if (current - m_filetimeModified > (natural(iSeconds) * 1000 * 1000 * 10))
+      if (current - m_filetimeModified > (iSeconds * 10'000'000))
       {
 
          return true;
@@ -123,6 +123,14 @@ struct CLASS_DECL_ACME filetime_set
    bool modified_timeout(int iSeconds) const;
 
 };
+
+
+namespace datetime
+{
+
+   class time;
+
+} // namespace datetime
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds);

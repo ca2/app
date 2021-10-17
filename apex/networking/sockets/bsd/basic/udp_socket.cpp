@@ -391,7 +391,7 @@ namespace sockets
 
             timeval.tv_sec = (long) duration.m_iSecond;
 
-            timeval.tv_usec = duration.m_iNanosecond / 1'000;
+            timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
 
 #if !defined(LINUX) && !defined(MACOSX)
             memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
@@ -473,7 +473,7 @@ namespace sockets
 
          timeval.tv_sec = (long) duration.m_iSecond;
 
-         timeval.tv_usec = duration.m_iNanosecond / 1'000;
+         timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
 
 #if !defined(LINUX) && !defined(MACOSX)
 

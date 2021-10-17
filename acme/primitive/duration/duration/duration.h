@@ -110,6 +110,7 @@ public:
    inline static duration infinite();
    inline static duration pos_infinity();
    inline static duration zero();
+   inline bool operator !() const {return is_null();}
 
    void Infinite() {*this=infinite();}
    void PosInfinity() {*this=pos_infinity();}
@@ -234,9 +235,28 @@ public:
 
    
    inline bool timeout(const duration & duration);
+   
+   inline ::duration remaining(const duration & duration, const ::duration & durationNow = e_now);
 
 
-   operator ::wait() const;
+   operator class ::wait() const;
+   
+   
+   operator INTEGRAL_DAY () const { return integral_day(); }
+   operator INTEGRAL_HOUR () const { return integral_hour(); }
+   operator INTEGRAL_MINUTE () const { return integral_minute(); }
+   operator INTEGRAL_SECOND () const { return integral_second(); }
+   operator INTEGRAL_MILLISECOND () const { return integral_millisecond(); }
+   operator INTEGRAL_MICROSECOND () const { return integral_microsecond(); }
+   operator INTEGRAL_NANOSECOND () const { return integral_nanosecond(); }
+
+   operator FLOATING_DAY () const { return floating_day(); }
+   operator FLOATING_HOUR () const { return floating_hour(); }
+   operator FLOATING_MINUTE () const { return floating_minute(); }
+   operator FLOATING_SECOND () const { return floating_second(); }
+   operator FLOATING_MILLISECOND () const { return floating_millisecond(); }
+   operator FLOATING_MICROSECOND () const { return floating_microsecond(); }
+   operator FLOATING_NANOSECOND () const { return floating_nanosecond(); }
 
 
    ::integral_day integral_day() const { return INTEGRAL_DAY(m_iSecond / 86'400); }

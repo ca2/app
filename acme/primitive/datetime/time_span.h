@@ -179,6 +179,7 @@ namespace datetime
 } // namespace datetime
 
 
+COMPARISON_WITH_DURATION(::datetime::time_span)
 
 
 

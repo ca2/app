@@ -3024,6 +3024,15 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/mathematics/math_clip.h"
 
 
+#include "acme/primitive/duration/_unit.h"
+
+
+#include "acme/primitive/duration/_unit_operator.h"
+
+
+#include "acme/primitive/duration/_string_format.h"
+
+
 #include "acme/primitive/duration/_.h"
 
 
@@ -3296,8 +3305,8 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/primitive/primitive/interlocked_count.h"
 
 
-#include "acme/primitive/primitive/referenceable.h"
 #include "acme/subject/handler.h"
+#include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/material_object.h"

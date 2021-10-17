@@ -193,7 +193,7 @@ i32 process_get_scheduling_priority(i32 iOsPriority)
 }
 
 
-namespace process
+namespace operating_system
 {
 
 

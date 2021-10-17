@@ -94,7 +94,7 @@ int gettimeofday(struct timeval * tp, void * tz)
 
    __copy(tm, psystemtime);
 
-   *ptime = _mkgmtime(&tm);
+   *ptime = mkgmtime(&tm);
 
    return ::success;
 

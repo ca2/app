@@ -238,32 +238,6 @@ const char* matter::debug_note() const
 }
 
 
-::e_status matter::call_member(::i64 iId)
-{
-
-   return ::success_none;
-
-}
-
-
-//::e_status matter::handle(enum_message emessage, i64 iData, ::matter * pmatter)
-//{
-//
-//   return ::success;
-//
-//}
-//
-void matter::handle(::subject * psubject, ::context * pcontext)
-{
-
-
-}
-
-void matter::handle(::message::message * pmessage)
-{
-
-
-}
 
 
 bool matter::is_ready_to_quit() const

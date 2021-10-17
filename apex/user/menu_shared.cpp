@@ -51,7 +51,7 @@ __pointer(menu_shared) create_menu_shared(const string_array & straParent, const
 
    }
 
-   __pointer(menu_shared) pmenushared = __new(menu_shared);
+   __pointer(menu_shared) pmenushared = ::move_transfer(new menu_shared);
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);

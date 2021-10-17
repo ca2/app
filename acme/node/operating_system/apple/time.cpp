@@ -35,3 +35,19 @@ CLASS_DECL_ACME ::i64 _get_nanosecond()
    //   return ((u64) mts.tv_sec * (u64)1000 * (u64)1000 * (u64)1000 )+ ((u64) mts.tv_nsec);
    
 }
+
+void utc_timespec(timespec * ptimespec);
+
+CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
+{
+   
+   struct timespec timespec;
+
+   utc_timespec(&timespec);
+
+   return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
+
+}
+
+
+

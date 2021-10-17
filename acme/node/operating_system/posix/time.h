@@ -9,10 +9,15 @@
 
 inline timespec __timespec(const ::duration & duration)
 {
+   
    timespec time;
-   time.tv_sec = ::duration.m_i / 1'000;
-   time.tv_nsec = (::duration.m_i % 1'000) * 1'000'000;
+   
+   time.tv_sec = duration.m_iSecond;
+   
+   time.tv_nsec = duration.m_iNanosecond;
+   
    return time;
+   
 }
 
 

@@ -757,7 +757,7 @@ template < primitive_integral INTEGRAL >
 inline int id::compare(INTEGRAL i) const
 {
 
-   return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
+   return __COMPARE_SQUARE((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
 
 }
 

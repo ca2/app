@@ -1,81 +1,5 @@
-// Created by camilo on 2021-10-05 12:52 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+// Created by camilo on 2021-10-05 12:52 BRT <3ThomasBorregaardSï¿½rensen!![ THE ONE GOD ]
 #pragma once
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_NANOSECOND & integral)
-{
-
-   str.Format("%" PRId64 "ns", integral.m_i);
-
-}
-
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_MICROSECOND & integral)
-{
-
-   str.Format("%" PRId64 "µs", integral.m_i);
-
-}
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_MILLISECOND & integral)
-{
-
-   str.Format("%" PRId64 "ms", integral.m_i);
-
-}
-
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_SECOND & integral)
-{
-
-   str.Format("%" PRId64 "s", integral.m_i);
-
-}
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_MINUTE & integral)
-{
-
-   str.Format("%" PRId64 "minute(s)", integral.m_i);
-
-}
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_HOUR & integral)
-{
-
-   str.Format("%" PRId64 "hour(s)", integral.m_i);
-
-}
-
-
-template < >
-inline void to_string(string & str, const INTEGRAL_DAY & integral)
-{
-
-   str.Format("%" PRId64 "day(s)", integral.m_i);
-
-}
-
-
-template < typename DURATION >
-inline DURATION now()
-{
-
-   throw "interface_only";
-
-   return 0;
-
-}
 
 
 #include "integral/_.h"
@@ -87,7 +11,6 @@ inline DURATION now()
 #include "duration/_.h"
 
 
-
 template < typename DURATION >
 inline integral_duration < DURATION > & integral_duration < DURATION >::Now()
 { 
@@ -97,374 +20,38 @@ inline integral_duration < DURATION > & integral_duration < DURATION >::Now()
 }
 
 
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_NANOSECOND operator %(const INTEGRAL_NANOSECOND & duration, INTEGRAL integral) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_NANOSECOND operator /(const INTEGRAL_NANOSECOND & duration, INTEGRAL integral) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_NANOSECOND operator *(const INTEGRAL_NANOSECOND & duration, INTEGRAL integral) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_NANOSECOND operator +(const INTEGRAL_NANOSECOND & duration, INTEGRAL integral) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_NANOSECOND operator -(const INTEGRAL_NANOSECOND & duration, INTEGRAL integral) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MICROSECOND operator %(const INTEGRAL_MICROSECOND & duration, INTEGRAL integral) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MICROSECOND operator /(const INTEGRAL_MICROSECOND & duration, INTEGRAL integral) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MICROSECOND operator *(const INTEGRAL_MICROSECOND & duration, INTEGRAL integral) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MICROSECOND operator +(const INTEGRAL_MICROSECOND & duration, INTEGRAL integral) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MICROSECOND operator -(const INTEGRAL_MICROSECOND & duration, INTEGRAL integral) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MILLISECOND operator %(const INTEGRAL_MILLISECOND & duration, INTEGRAL integral) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MILLISECOND operator /(const INTEGRAL_MILLISECOND & duration, INTEGRAL integral) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MILLISECOND operator *(const INTEGRAL_MILLISECOND & duration, INTEGRAL integral) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MILLISECOND operator +(const INTEGRAL_MILLISECOND & duration, INTEGRAL integral) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MILLISECOND operator -(const INTEGRAL_MILLISECOND & duration, INTEGRAL integral) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_SECOND operator %(const INTEGRAL_SECOND & duration, INTEGRAL integral) { return INTEGRAL_SECOND((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_SECOND operator /(const INTEGRAL_SECOND & duration, INTEGRAL integral) { return INTEGRAL_SECOND((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_SECOND operator *(const INTEGRAL_SECOND & duration, INTEGRAL integral) { return INTEGRAL_SECOND((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_SECOND operator +(const INTEGRAL_SECOND & duration, INTEGRAL integral) { return INTEGRAL_SECOND((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_SECOND operator -(const INTEGRAL_SECOND & duration, INTEGRAL integral) { return INTEGRAL_SECOND((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MINUTE operator %(const INTEGRAL_MINUTE & duration, INTEGRAL integral) { return INTEGRAL_MINUTE((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MINUTE operator /(const INTEGRAL_MINUTE & duration, INTEGRAL integral) { return INTEGRAL_MINUTE((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MINUTE operator *(const INTEGRAL_MINUTE & duration, INTEGRAL integral) { return INTEGRAL_MINUTE((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MINUTE operator +(const INTEGRAL_MINUTE & duration, INTEGRAL integral) { return INTEGRAL_MINUTE((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_MINUTE operator -(const INTEGRAL_MINUTE & duration, INTEGRAL integral) { return INTEGRAL_MINUTE((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_HOUR operator %(const INTEGRAL_HOUR & duration, INTEGRAL integral) { return INTEGRAL_HOUR((::i64)(duration.m_i % integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_HOUR operator /(const INTEGRAL_HOUR & duration, INTEGRAL integral) { return INTEGRAL_HOUR((::i64)(duration.m_i / integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_HOUR operator *(const INTEGRAL_HOUR & duration, INTEGRAL integral) { return INTEGRAL_HOUR((::i64)(duration.m_i * integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_HOUR operator +(const INTEGRAL_HOUR & duration, INTEGRAL integral) { return INTEGRAL_HOUR((::i64)(duration.m_i + integral)); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_HOUR operator -(const INTEGRAL_HOUR & duration, INTEGRAL integral) { return INTEGRAL_HOUR((::i64)(duration.m_i - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_DAY operator %(const INTEGRAL_DAY & duration, INTEGRAL integral) { return INTEGRAL_DAY(duration.m_i % integral); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_DAY operator /(const INTEGRAL_DAY & duration, INTEGRAL integral) { return INTEGRAL_DAY(duration.m_i / integral); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_DAY operator *(const INTEGRAL_DAY & duration, INTEGRAL integral) { return INTEGRAL_DAY(duration.m_i * integral); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_DAY operator +(const INTEGRAL_DAY & duration, INTEGRAL integral) { return INTEGRAL_DAY(duration.m_i + integral); }
-template < primitive_integral INTEGRAL >
-inline INTEGRAL_DAY operator -(const INTEGRAL_DAY & duration, INTEGRAL integral) { return INTEGRAL_DAY(duration.m_i - integral); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_NANOSECOND operator %(const INTEGRAL_NANOSECOND & duration, FLOATING floating) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_NANOSECOND operator /(const INTEGRAL_NANOSECOND & duration, FLOATING floating) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_NANOSECOND operator *(const INTEGRAL_NANOSECOND & duration, FLOATING floating) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_NANOSECOND operator +(const INTEGRAL_NANOSECOND & duration, FLOATING floating) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_NANOSECOND operator -(const INTEGRAL_NANOSECOND & duration, FLOATING floating) { return INTEGRAL_NANOSECOND((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_MICROSECOND operator %(const INTEGRAL_MICROSECOND & duration, FLOATING floating) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MICROSECOND operator /(const INTEGRAL_MICROSECOND & duration, FLOATING floating) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MICROSECOND operator *(const INTEGRAL_MICROSECOND & duration, FLOATING floating) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MICROSECOND operator +(const INTEGRAL_MICROSECOND & duration, FLOATING floating) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MICROSECOND operator -(const INTEGRAL_MICROSECOND & duration, FLOATING floating) { return INTEGRAL_MICROSECOND((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_MILLISECOND operator %(const INTEGRAL_MILLISECOND & duration, FLOATING floating) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MILLISECOND operator /(const INTEGRAL_MILLISECOND & duration, FLOATING floating) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MILLISECOND operator *(const INTEGRAL_MILLISECOND & duration, FLOATING floating) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MILLISECOND operator +(const INTEGRAL_MILLISECOND & duration, FLOATING floating) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MILLISECOND operator -(const INTEGRAL_MILLISECOND & duration, FLOATING floating) { return INTEGRAL_MILLISECOND((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_SECOND operator %(const INTEGRAL_SECOND & duration, FLOATING floating) { return INTEGRAL_SECOND((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_SECOND operator /(const INTEGRAL_SECOND & duration, FLOATING floating) { return INTEGRAL_SECOND((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_SECOND operator *(const INTEGRAL_SECOND & duration, FLOATING floating) { return INTEGRAL_SECOND((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_SECOND operator +(const INTEGRAL_SECOND & duration, FLOATING floating) { return INTEGRAL_SECOND((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_SECOND operator -(const INTEGRAL_SECOND & duration, FLOATING floating) { return INTEGRAL_SECOND((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_MINUTE operator %(const INTEGRAL_MINUTE & duration, FLOATING floating) { return INTEGRAL_MINUTE((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MINUTE operator /(const INTEGRAL_MINUTE & duration, FLOATING floating) { return INTEGRAL_MINUTE((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MINUTE operator *(const INTEGRAL_MINUTE & duration, FLOATING floating) { return INTEGRAL_MINUTE((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MINUTE operator +(const INTEGRAL_MINUTE & duration, FLOATING floating) { return INTEGRAL_MINUTE((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_MINUTE operator -(const INTEGRAL_MINUTE & duration, FLOATING floating) { return INTEGRAL_MINUTE((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_HOUR operator %(const INTEGRAL_HOUR & duration, FLOATING floating) { return INTEGRAL_HOUR((::i64)(duration.m_i % floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_HOUR operator /(const INTEGRAL_HOUR & duration, FLOATING floating) { return INTEGRAL_HOUR((::i64)(duration.m_i / floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_HOUR operator *(const INTEGRAL_HOUR & duration, FLOATING floating) { return INTEGRAL_HOUR((::i64)(duration.m_i * floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_HOUR operator +(const INTEGRAL_HOUR & duration, FLOATING floating) { return INTEGRAL_HOUR((::i64)(duration.m_i + floating)); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_HOUR operator -(const INTEGRAL_HOUR & duration, FLOATING floating) { return INTEGRAL_HOUR((::i64)(duration.m_i - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline INTEGRAL_DAY operator %(const INTEGRAL_DAY & duration, FLOATING floating) { return INTEGRAL_DAY(duration.m_i % floating); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_DAY operator /(const INTEGRAL_DAY & duration, FLOATING floating) { return INTEGRAL_DAY(duration.m_i / floating); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_DAY operator *(const INTEGRAL_DAY & duration, FLOATING floating) { return INTEGRAL_DAY(duration.m_i * floating); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_DAY operator +(const INTEGRAL_DAY & duration, FLOATING floating) { return INTEGRAL_DAY(duration.m_i + floating); }
-template < primitive_floating FLOATING >
-inline INTEGRAL_DAY operator -(const INTEGRAL_DAY & duration, FLOATING floating) { return INTEGRAL_DAY(duration.m_i - floating); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_NANOSECOND operator %(const FLOATING_NANOSECOND & duration, INTEGRAL integral) { return FLOATING_NANOSECOND((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_NANOSECOND operator /(const FLOATING_NANOSECOND & duration, INTEGRAL integral) { return FLOATING_NANOSECOND((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_NANOSECOND operator *(const FLOATING_NANOSECOND & duration, INTEGRAL integral) { return FLOATING_NANOSECOND((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_NANOSECOND operator +(const FLOATING_NANOSECOND & duration, INTEGRAL integral) { return FLOATING_NANOSECOND((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_NANOSECOND operator -(const FLOATING_NANOSECOND & duration, INTEGRAL integral) { return FLOATING_NANOSECOND((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_MICROSECOND operator %(const FLOATING_MICROSECOND & duration, INTEGRAL integral) { return FLOATING_MICROSECOND((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MICROSECOND operator /(const FLOATING_MICROSECOND & duration, INTEGRAL integral) { return FLOATING_MICROSECOND((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MICROSECOND operator *(const FLOATING_MICROSECOND & duration, INTEGRAL integral) { return FLOATING_MICROSECOND((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MICROSECOND operator +(const FLOATING_MICROSECOND & duration, INTEGRAL integral) { return FLOATING_MICROSECOND((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MICROSECOND operator -(const FLOATING_MICROSECOND & duration, INTEGRAL integral) { return FLOATING_MICROSECOND((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_MILLISECOND operator %(const FLOATING_MILLISECOND & duration, INTEGRAL integral) { return FLOATING_MILLISECOND((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MILLISECOND operator /(const FLOATING_MILLISECOND & duration, INTEGRAL integral) { return FLOATING_MILLISECOND((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MILLISECOND operator *(const FLOATING_MILLISECOND & duration, INTEGRAL integral) { return FLOATING_MILLISECOND((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MILLISECOND operator +(const FLOATING_MILLISECOND & duration, INTEGRAL integral) { return FLOATING_MILLISECOND((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MILLISECOND operator -(const FLOATING_MILLISECOND & duration, INTEGRAL integral) { return FLOATING_MILLISECOND((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_SECOND operator %(const FLOATING_SECOND & duration, INTEGRAL integral) { return FLOATING_SECOND((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_SECOND operator /(const FLOATING_SECOND & duration, INTEGRAL integral) { return FLOATING_SECOND((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_SECOND operator *(const FLOATING_SECOND & duration, INTEGRAL integral) { return FLOATING_SECOND((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_SECOND operator +(const FLOATING_SECOND & duration, INTEGRAL integral) { return FLOATING_SECOND((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_SECOND operator -(const FLOATING_SECOND & duration, INTEGRAL integral) { return FLOATING_SECOND((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_MINUTE operator %(const FLOATING_MINUTE & duration, INTEGRAL integral) { return FLOATING_MINUTE((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MINUTE operator /(const FLOATING_MINUTE & duration, INTEGRAL integral) { return FLOATING_MINUTE((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MINUTE operator *(const FLOATING_MINUTE & duration, INTEGRAL integral) { return FLOATING_MINUTE((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MINUTE operator +(const FLOATING_MINUTE & duration, INTEGRAL integral) { return FLOATING_MINUTE((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_MINUTE operator -(const FLOATING_MINUTE & duration, INTEGRAL integral) { return FLOATING_MINUTE((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_HOUR operator %(const FLOATING_HOUR & duration, INTEGRAL integral) { return FLOATING_HOUR((::f64)(duration.m_d % integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_HOUR operator /(const FLOATING_HOUR & duration, INTEGRAL integral) { return FLOATING_HOUR((::f64)(duration.m_d / integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_HOUR operator *(const FLOATING_HOUR & duration, INTEGRAL integral) { return FLOATING_HOUR((::f64)(duration.m_d * integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_HOUR operator +(const FLOATING_HOUR & duration, INTEGRAL integral) { return FLOATING_HOUR((::f64)(duration.m_d + integral)); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_HOUR operator -(const FLOATING_HOUR & duration, INTEGRAL integral) { return FLOATING_HOUR((::f64)(duration.m_d - integral)); }
-
-
-template < primitive_integral INTEGRAL >
-inline FLOATING_DAY operator %(const FLOATING_DAY & duration, INTEGRAL integral) { return FLOATING_DAY(duration.m_d % integral); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_DAY operator /(const FLOATING_DAY & duration, INTEGRAL integral) { return FLOATING_DAY(duration.m_d / integral); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_DAY operator *(const FLOATING_DAY & duration, INTEGRAL integral) { return FLOATING_DAY(duration.m_d * integral); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_DAY operator +(const FLOATING_DAY & duration, INTEGRAL integral) { return FLOATING_DAY(duration.m_d + integral); }
-template < primitive_integral INTEGRAL >
-inline FLOATING_DAY operator -(const FLOATING_DAY & duration, INTEGRAL integral) { return FLOATING_DAY(duration.m_d - integral); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_NANOSECOND operator %(const FLOATING_NANOSECOND & duration, FLOATING floating) { return FLOATING_NANOSECOND((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_NANOSECOND operator /(const FLOATING_NANOSECOND & duration, FLOATING floating) { return FLOATING_NANOSECOND((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_NANOSECOND operator *(const FLOATING_NANOSECOND & duration, FLOATING floating) { return FLOATING_NANOSECOND((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_NANOSECOND operator +(const FLOATING_NANOSECOND & duration, FLOATING floating) { return FLOATING_NANOSECOND((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_NANOSECOND operator -(const FLOATING_NANOSECOND & duration, FLOATING floating) { return FLOATING_NANOSECOND((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_MICROSECOND operator %(const FLOATING_MICROSECOND & duration, FLOATING floating) { return FLOATING_MICROSECOND((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MICROSECOND operator /(const FLOATING_MICROSECOND & duration, FLOATING floating) { return FLOATING_MICROSECOND((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MICROSECOND operator *(const FLOATING_MICROSECOND & duration, FLOATING floating) { return FLOATING_MICROSECOND((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MICROSECOND operator +(const FLOATING_MICROSECOND & duration, FLOATING floating) { return FLOATING_MICROSECOND((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MICROSECOND operator -(const FLOATING_MICROSECOND & duration, FLOATING floating) { return FLOATING_MICROSECOND((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_MILLISECOND operator %(const FLOATING_MILLISECOND & duration, FLOATING floating) { return FLOATING_MILLISECOND((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MILLISECOND operator /(const FLOATING_MILLISECOND & duration, FLOATING floating) { return FLOATING_MILLISECOND((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MILLISECOND operator *(const FLOATING_MILLISECOND & duration, FLOATING floating) { return FLOATING_MILLISECOND((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MILLISECOND operator +(const FLOATING_MILLISECOND & duration, FLOATING floating) { return FLOATING_MILLISECOND((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MILLISECOND operator -(const FLOATING_MILLISECOND & duration, FLOATING floating) { return FLOATING_MILLISECOND((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_SECOND operator %(const FLOATING_SECOND & duration, FLOATING floating) { return FLOATING_SECOND((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_SECOND operator /(const FLOATING_SECOND & duration, FLOATING floating) { return FLOATING_SECOND((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_SECOND operator *(const FLOATING_SECOND & duration, FLOATING floating) { return FLOATING_SECOND((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_SECOND operator +(const FLOATING_SECOND & duration, FLOATING floating) { return FLOATING_SECOND((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_SECOND operator -(const FLOATING_SECOND & duration, FLOATING floating) { return FLOATING_SECOND((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_MINUTE operator %(const FLOATING_MINUTE & duration, FLOATING floating) { return FLOATING_MINUTE((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MINUTE operator /(const FLOATING_MINUTE & duration, FLOATING floating) { return FLOATING_MINUTE((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MINUTE operator *(const FLOATING_MINUTE & duration, FLOATING floating) { return FLOATING_MINUTE((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MINUTE operator +(const FLOATING_MINUTE & duration, FLOATING floating) { return FLOATING_MINUTE((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_MINUTE operator -(const FLOATING_MINUTE & duration, FLOATING floating) { return FLOATING_MINUTE((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_HOUR operator %(const FLOATING_HOUR & duration, FLOATING floating) { return FLOATING_HOUR((::f64)(duration.m_d % floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_HOUR operator /(const FLOATING_HOUR & duration, FLOATING floating) { return FLOATING_HOUR((::f64)(duration.m_d / floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_HOUR operator *(const FLOATING_HOUR & duration, FLOATING floating) { return FLOATING_HOUR((::f64)(duration.m_d * floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_HOUR operator +(const FLOATING_HOUR & duration, FLOATING floating) { return FLOATING_HOUR((::f64)(duration.m_d + floating)); }
-template < primitive_floating FLOATING >
-inline FLOATING_HOUR operator -(const FLOATING_HOUR & duration, FLOATING floating) { return FLOATING_HOUR((::f64)(duration.m_d - floating)); }
-
-
-template < primitive_floating FLOATING >
-inline FLOATING_DAY operator %(const FLOATING_DAY & duration, FLOATING floating) { return FLOATING_DAY(duration.m_d % floating); }
-template < primitive_floating FLOATING >
-inline FLOATING_DAY operator /(const FLOATING_DAY & duration, FLOATING floating) { return FLOATING_DAY(duration.m_d / floating); }
-template < primitive_floating FLOATING >
-inline FLOATING_DAY operator *(const FLOATING_DAY & duration, FLOATING floating) { return FLOATING_DAY(duration.m_d * floating); }
-template < primitive_floating FLOATING >
-inline FLOATING_DAY operator +(const FLOATING_DAY & duration, FLOATING floating) { return FLOATING_DAY(duration.m_d + floating); }
-template < primitive_floating FLOATING >
-inline FLOATING_DAY operator -(const FLOATING_DAY & duration, FLOATING floating) { return FLOATING_DAY(duration.m_d - floating); }
-
-
-#define DEFAULT_MEMBER_NUMBER(TYPE, MEMBER) \
+#define DURATION_OPERATOR_SETUP1(TYPE, type, MEMBER) \
 inline TYPE operator-(const TYPE & t) { return (TYPE)(-t.MEMBER); } \
-inline double operator /(const TYPE & t, const ::duration & duration) { return (double)t.MEMBER / (double)TYPE(duration).MEMBER; } \
+inline double operator /(const TYPE & t, const ::duration & duration) { return (double)t.MEMBER / (double)type(duration).MEMBER; } \
 /*integral_duration operator *(const BASE_TYPE & duration, const ::duration & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }*/ \
-inline TYPE operator +(const TYPE & t, const ::duration & duration) { return TYPE(t.MEMBER + TYPE(duration).MEMBER); } \
-inline TYPE operator -(const TYPE & t, const ::duration & duration) { return TYPE(t.MEMBER - TYPE(duration).MEMBER); } \
+inline TYPE operator +(const TYPE & t, const ::duration & duration) { return TYPE(t.MEMBER + type(duration).MEMBER); } \
+inline TYPE operator -(const TYPE & t, const ::duration & duration) { return TYPE(t.MEMBER - type(duration).MEMBER); } \
 
-#define DEFAULT_MEMBER_INTEGRAL(TYPE, MEMBER) \
-DEFAULT_MEMBER_NUMBER(TYPE, MEMBER) \
-inline TYPE operator %(const TYPE & t, const ::duration & duration) { return TYPE(t.MEMBER % TYPE(duration).MEMBER); }
+#define INTEGRAL_DURATION_SETUP1(TYPE, type) \
+DURATION_OPERATOR_SETUP1(TYPE, type, m_i) \
+inline TYPE operator %(const TYPE & t, const ::duration & duration) { return TYPE(t.m_i % type(duration).m_i); }
 
-#define DEFAULT_MEMBER_FLOATINGL(TYPE, MEMBER) \
-DEFAULT_MEMBER_NUMBER(TYPE, MEMBER) \
-inline TYPE operator %(const TYPE & t, const ::duration & duration) { return TYPE(fmod(t.MEMBER, TYPE(duration).MEMBER)); }
-
-
-DEFAULT_MEMBER_NUMBER(INTEGRAL_NANOSECOND, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_MICROSECOND, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_MILLISECOND, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_SECOND, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_MINUTE, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_HOUR, m_i)
-DEFAULT_MEMBER_NUMBER(INTEGRAL_DAY, m_i)
+#define FLOATING_DURATION_SETUP1(TYPE, type) \
+DURATION_OPERATOR_SETUP1(TYPE, type, m_d) \
+inline TYPE operator %(const TYPE & t, const ::duration & duration) { return TYPE(fmod(t.m_d, type(duration).m_d)); }
 
 
-DEFAULT_MEMBER_NUMBER(FLOATING_NANOSECOND, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_MICROSECOND, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_MILLISECOND, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_SECOND, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_MINUTE, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_HOUR, m_d)
-DEFAULT_MEMBER_NUMBER(FLOATING_DAY, m_d)
+INTEGRAL_DURATION_SETUP1(INTEGRAL_NANOSECOND    , integral_nanosecond   )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_MICROSECOND   , integral_microsecond  )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_MILLISECOND   , integral_millisecond  )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_SECOND        , integral_second       )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_MINUTE        , integral_minute       )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_HOUR          , integral_hour         )
+INTEGRAL_DURATION_SETUP1(INTEGRAL_DAY           , integral_day          )
+
+
+FLOATING_DURATION_SETUP1(FLOATING_NANOSECOND    , floating_nanosecond   )
+FLOATING_DURATION_SETUP1(FLOATING_MICROSECOND   , floating_microsecond  )
+FLOATING_DURATION_SETUP1(FLOATING_MILLISECOND   , floating_millisecond  )
+FLOATING_DURATION_SETUP1(FLOATING_SECOND        , floating_second       )
+FLOATING_DURATION_SETUP1(FLOATING_MINUTE        , floating_minute       )
+FLOATING_DURATION_SETUP1(FLOATING_HOUR          , floating_hour         )
+FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
 
 
 

@@ -1,14 +1,8 @@
 #pragma once
 
 
-// ATTENTION
-// Shared with:
-// Objective-C++
-
-
 class CLASS_DECL_ACME matter :
-   virtual public handler,
-   virtual public referenceable
+   virtual public element
 {
 private:
 
@@ -63,7 +57,7 @@ public:
    inline matter() : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
    inline matter(const eobject& eobject) : m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
    inline matter(const matter& matter) : m_pmutex(nullptr), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : referenceable(matter), m_pmutex(matter.m_pmutex), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
+   inline matter(matter&& matter) : element(matter), m_pmutex(matter.m_pmutex), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
    inline matter(class ::system * psystem) : m_psystem(psystem), m_pmutex(nullptr), m_ematter(e_matter_none), m_uError(0), m_eobject(e_object_none) { }
 #endif
 
@@ -193,12 +187,6 @@ public:
    virtual const char* debug_note() const;
    virtual ::matter * clone() const;
 
-   // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual ::e_status call_member(::i64 i64);
-   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //::e_status handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
-   void handle(::subject * psubject, ::context * pcontext) override;
-   void handle(::message::message * pmessage) override;
 
 
 
@@ -295,11 +283,6 @@ public:
    virtual ::e_status sync_wait(const ::duration & duration);
 
 
-   // <3ThomasBorregaardSørensen__!! likes handler concept...
-   //void route(::signal * psignal) override;
-   //void signal(::signal * psignal) override;
-   //void route(::subject * psubject, ::context * pcontext) override;
-   //void post_process(::subject * psubject, ::context * pcontext) override;
 
 
    inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }

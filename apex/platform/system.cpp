@@ -5459,12 +5459,8 @@ namespace apex
 
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
-
-      auto psignal = get_signal((::enum_id) iUpdate);
-
-      psignal->m_payload = iPayload;
-
-      handle(psignal, nullptr);
+      
+      call((::enum_id) iUpdate, iPayload);
 
    }
 
@@ -5494,7 +5490,30 @@ namespace apex
    void system::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->id() == id_os_user_theme)
+//      auto psignal = get_signal((::enum_id) iUpdate);
+//
+//      psignal->m_payload = iPayload;
+//
+//      psignal->notify();
+      
+      if(psubject->id() == id_set_dark_mode)
+      {
+         
+         if(psubject->m_payload.is_true())
+         {
+
+            m_pnode->background_color(::color::black);
+            
+         }
+         else
+         {
+            
+            m_pnode->background_color(::color::white);
+
+         }
+         
+      }
+      else if (psubject->id() == id_os_user_theme)
       {
 
          auto pnode = node();

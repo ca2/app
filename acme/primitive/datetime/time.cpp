@@ -126,7 +126,7 @@ namespace datetime
 
       //auto pnode = get_system()->node();
 
-      file_time_to_time(&m_i, &filetime.m_filetime);
+      file_time_to_time((time_t *)&m_i, &filetime.m_filetime);
 
    }
 
@@ -234,7 +234,7 @@ namespace datetime
 
          struct tm * ptmTemp;
 
-         ptmTemp = gmtime(&m_i);
+         ptmTemp = gmtime((time_t *)&m_i);
 
          // gmtime can return nullptr
          if(ptmTemp == nullptr)
@@ -300,7 +300,7 @@ namespace datetime
 
 #else
 
-         return localtime_r(&m_i, ptm);
+         return localtime_r((time_t *)&m_i, ptm);
 
 #endif
 
@@ -805,7 +805,7 @@ string Format(const ::string & strFormat, const ::datetime::time & time)
 
    char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
 
-   struct tm * ptmTemp = localtime(&time.m_time);
+   struct tm * ptmTemp = localtime((time_t *)&time.m_i);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {
@@ -878,7 +878,7 @@ string FormatGmt(const string & strFormat, const ::datetime::time & time)
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-   struct tm * ptmTemp = gmtime(&time.m_i);
+   struct tm * ptmTemp = gmtime((time_t *)&time.m_i);
 
    if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
    {

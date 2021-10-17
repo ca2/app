@@ -12,6 +12,9 @@
 
 #include <sys/types.h>          /* For portability */
 #include <sys/sem.h>
+#if defined(__APPLE__)
+#include <sys/ipc.h>
+#endif
 
 #if ! defined(__FreeBSD__) && ! defined(__OpenBSD__) && \
                 ! defined(__sgi) && ! defined(__APPLE__)

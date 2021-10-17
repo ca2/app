@@ -412,17 +412,6 @@ namespace str
 CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-
-
-// namespace stra
-// {
-
-//    CLASS_DECL_ACME string_array from_strdup(ansichar ** ppParam);
-
-// } // namespace stra
-
-
-
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 

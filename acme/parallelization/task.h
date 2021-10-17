@@ -169,7 +169,7 @@ public:
 
    virtual void kick_idle() override;
 
-   bool is_branch_current() const;
+   bool is_branch_current() const override;
 
 
 };

@@ -42,3 +42,19 @@ void ns_Sleep(unsigned int uiMillis);
 //   usleep((unsigned int) ::duration.m_i * 1000);
 //
 //}
+
+
+void utc_timespec(timespec * ptimespec);
+
+
+int mach_timespec_get(timespec * ptimespec, int i)
+{
+   
+   utc_timespec(ptimespec);
+   
+   return i;
+   
+}
+
+
+

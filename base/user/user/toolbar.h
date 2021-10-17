@@ -119,7 +119,7 @@ namespace user
       inline toolbar_control& GetToolBarCtrl() const;
 
       virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
+      ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
@@ -130,7 +130,7 @@ namespace user
 //#endif
 
 
-      virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
+      void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
       void assert_valid() const override;
       void dump(dump_context & dumpcontext) const override;
@@ -161,9 +161,9 @@ namespace user
 //      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = false);
 //#endif
-      void on_layout(::draw2d::graphics_pointer & pgraphics); // called for for delayed button on_layout
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override; // called for for delayed button on_layout
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);

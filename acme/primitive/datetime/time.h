@@ -228,4 +228,6 @@ inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, c
 //#endif
 
 
+COMPARISON_WITH_DURATION(::datetime::time)
+
 

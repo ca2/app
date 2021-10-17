@@ -1,7 +1,15 @@
 #include "framework.h"
 #if defined(LINUX)
 #include <time.h>
+#elif defined(__APPLE__)
+#include <time.h>
 #endif
+
+
+//#if defined(__APPLE__)
+//int makgmtime(struct tm * atm);
+//
+//#endif
 
 
 namespace datetime
@@ -71,15 +79,7 @@ zonetime::zonetime(time_t zonetime, int iZoneOffset) noexcept :
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = 0;
 
-#ifdef WINDOWS
-
-      m_i = _mkgmtime64(&atm);
-
-#else
-
-      m_i = timegm(&atm);
-
-#endif
+      m_i = make_utc_time(&atm);
 
       /*
       Remember that:

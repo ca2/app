@@ -17,9 +17,10 @@ public:
 
 
    ___keep_task_payload(enum_task_payload etaskpayload) :
-      m_payload(task_payload(etaskpayload)),
-      m_payloadOld(m_payload)
+      m_payload(task_payload(etaskpayload))
    {
+      
+      m_payloadOld = m_payload;
 
    }
 

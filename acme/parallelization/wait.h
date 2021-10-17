@@ -2,6 +2,11 @@
 #pragma once
 
 
+#ifdef wait
+#undef wait
+#endif // wait
+
+
 class CLASS_DECL_ACME wait :
    public INTEGRAL_MILLISECOND
 {

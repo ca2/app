@@ -3800,7 +3800,7 @@ retry_license:
 
          }
 
-         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << typeid(*this).name());
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3858,7 +3858,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<typeid(*this).name());
 
          }
 
@@ -3872,7 +3872,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<typeid(*this).name());
 
          }
 

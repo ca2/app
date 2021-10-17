@@ -1096,7 +1096,7 @@ namespace aura
       if (!estatus)
       {
 
-         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
 
          return estatus;
 
@@ -6468,7 +6468,7 @@ namespace aura
 
       }
 
-      /// ::aqua::system::handle(psubject);
+      ::aqua::system::handle(psubject, pcontext);
 
    }
 

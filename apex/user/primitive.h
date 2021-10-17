@@ -22,21 +22,21 @@ namespace user
       ~primitive() override;
 
 
-      virtual void _001OnTimer(::timer * ptimer);
+      void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual bool create_message_queue(const ::string & lpszName);
+      bool create_message_queue(const ::string & lpszName) override;
 
 
-      virtual ::user::interaction * get_host_window() const;
+      ::user::interaction * get_host_window() const override;
 
-      virtual ::user::form * get_form();
+      ::user::form * get_form() override;
 
-      virtual ::user::form * get_parent_form();
+      ::user::form * get_parent_form() override;
 
-      virtual bool enable_window(bool bEnable = true);
+      bool enable_window(bool bEnable = true) override;
 
-      virtual void PreSubClassWindow();
+      void PreSubClassWindow() override;
 
 
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
@@ -44,25 +44,25 @@ namespace user
 #ifdef WINDOWS
       virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
 #else
-      virtual strsize _009GetWindowText(char * psz, int n);
+      strsize _009GetWindowText(char * psz, int n) override;
 #endif
-      virtual strsize _009GetWindowTextLength();
+      strsize _009GetWindowTextLength() override;
 
-      virtual bool GetFocusRect(RECTANGLE_I32 * prectangle);
+      bool GetFocusRect(RECTANGLE_I32 * prectangle) override;
 
-      virtual void defer_update_display();
+      void defer_update_display() override;
 
       
-      virtual enum_control_type get_control_type() const;
+      enum_control_type get_control_type() const override;
 
 
-      virtual bool add_prodevian(::matter * pmatter);
-      virtual bool erase_prodevian(::matter * pmatter);
+      bool add_prodevian(::matter * pmatter) override;
+      bool erase_prodevian(::matter * pmatter) override;
 
-      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
+      bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
 
 
-      virtual string get_title();
+      string get_title() override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -71,23 +71,23 @@ namespace user
 
       virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive);
 
-      virtual void UpdateWindow();
+      void UpdateWindow() override;
       
-      virtual void Invalidate(bool bErase = true);
+      void Invalidate(bool bErase = true) override;
 
-      virtual bool has_pending_redraw_flags();
+      bool has_pending_redraw_flags() override;
 
-      virtual void default_message_handler(::message::message * pmessage);
+      void default_message_handler(::message::message * pmessage) override;
 
-      virtual void message_handler(::message::message * pmessage);
+      void message_handler(::message::message * pmessage) override;
 
       //virtual lresult message_handler(MESSAGE * pmessage);
 
-      virtual void on_select();
+      void on_select() override;
 
-      virtual bool is_place_holder();
+      bool is_place_holder() override;
 
-      virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
+      double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
       virtual ::windowing::cursor * get_mouse_cursor();
 
@@ -97,7 +97,7 @@ namespace user
 
       //virtual ::point_i32 get_cursor_position() const;
 
-      virtual bool _is_window() const;
+      bool _is_window() const override;
 
       //virtual ::i32 get_window_long(i32 nIndex) const;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue);
@@ -105,23 +105,23 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) const;
       //virtual ::e_status set_window_long_ptr(i32 nIndex, iptr lValue);
 
-      virtual ::user::interaction * first_child();
-      virtual ::user::interaction * last_child();
-      virtual ::user::interaction * last_sibling();
-      virtual ::user::interaction * next_sibling();
-      virtual ::user::interaction * previous_sibling();
-      virtual ::user::interaction * first_sibling();
-      virtual ::user::interaction * next_sibling(::user::interaction * pinteraction);
-      virtual ::user::interaction * previous_sibling(::user::interaction * pinteraction);
+      ::user::interaction * first_child() override;
+      ::user::interaction * last_child() override;
+      ::user::interaction * last_sibling() override;
+      ::user::interaction * next_sibling() override;
+      ::user::interaction * previous_sibling() override;
+      ::user::interaction * first_sibling() override;
+      ::user::interaction * next_sibling(::user::interaction * pinteraction) override;
+      ::user::interaction * previous_sibling(::user::interaction * pinteraction) override;
 
-      virtual ::user::interaction * bottom_child();
-      virtual ::user::interaction * top_child();
-      virtual ::user::interaction * bottom_sibling();
-      virtual ::user::interaction * under_sibling();
-      virtual ::user::interaction * above_sibling();
-      virtual ::user::interaction * top_sibling();
-      virtual ::user::interaction * above_sibling(::user::interaction * pinteraction);
-      virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
+      ::user::interaction * bottom_child() override;
+      ::user::interaction * top_child() override;
+      ::user::interaction * bottom_sibling() override;
+      ::user::interaction * under_sibling() override;
+      ::user::interaction * above_sibling() override;
+      ::user::interaction * top_sibling() override;
+      ::user::interaction * above_sibling(::user::interaction * pinteraction) override;
+      ::user::interaction * under_sibling(::user::interaction * pinteraction) override;
 
 
       //virtual void mouse_hover_add(::user::interaction * pinterface);
@@ -129,44 +129,44 @@ namespace user
 
       //virtual void _task_transparent_mouse_event();
 
-      virtual bool CheckAutoCenter();
+      bool CheckAutoCenter() override;
 
-      virtual void track_mouse_hover();
-      virtual void track_mouse_leave();
+      void track_mouse_hover() override;
+      void track_mouse_leave() override;
 
-      virtual void update_dialog_controls(channel * ptarget);
-      virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      virtual id run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
-      virtual id RunModalLoop(u32 dwFlags = 0);
-      virtual id _001RunModalLoop(u32 dwFlags = 0);
-      virtual bool ContinueModal();
-      virtual void EndModalLoop(id nResult);
+      void update_dialog_controls(channel * ptarget) override;
+      void CenterWindow(::user::interaction * pAlternateOwner = nullptr)  override;
+      id run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0) override;
+      id RunModalLoop(u32 dwFlags = 0)  override;
+      id _001RunModalLoop(u32 dwFlags = 0)  override;
+      bool ContinueModal()  override;
+      void EndModalLoop(id nResult)  override;
 
 
 
       // Dialog data support
-      virtual bool update_data(bool bSaveAndValidate = true);
+      bool update_data(bool bSaveAndValidate = true) override;
 
 
       //virtual ::user::primitive * get_keyboard_focus();
 
 
-      virtual void on_set_keyboard_focus();
-      virtual void on_kill_keyboard_focus();
+      void on_set_keyboard_focus() override;
+      void on_kill_keyboard_focus() override;
 
 
 
-      virtual void _001UpdateWindow();
+      void _001UpdateWindow()override;
 
       //virtual void window_apply_visual(const window_state & windowstate);
 
 
-      virtual void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow);
+      void sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow)override;
 
-      virtual void design_down();
-      virtual void design_up();
+      void design_down() override;
+      void design_up() override;
 
-      virtual void prodevian_stop();
+      void prodevian_stop() override;
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation);
       virtual void sketch_prepare_window_maximize();
@@ -175,7 +175,7 @@ namespace user
       virtual void sketch_prepare_window_dock(edisplay edisplayDock);
 
 
-      virtual void prodevian_redraw(bool bUpdateBuffer);
+      void prodevian_redraw(bool bUpdateBuffer) override;
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
@@ -184,9 +184,9 @@ namespace user
       virtual void on_configuration_change(::user::primitive * pprimitiveSource);
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_reposition();
-      virtual void on_show_window();
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_reposition() override;
+      void on_show_window() override;
 
       //virtual void BringToTop(edisplay edisplay);
       //virtual bool BringWindowToTop();
@@ -203,29 +203,29 @@ namespace user
 
 
 
-      virtual bool subclass_window(oswindow posdata);
-      virtual oswindow unsubclass_window();
+      bool subclass_window(oswindow posdata) override;
+      oswindow unsubclass_window() override;
 
-      virtual string get_class_name();
+      string get_class_name() override;
 
       
-      virtual ::e_status create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr);
+      ::e_status create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr) override;
 
 
-      virtual ::e_status create_host();
-      virtual ::e_status create_child(::user::interaction * puserinteractionParent);
-      virtual ::e_status create_control(::user::interaction * puserinteractionParent, const ::id & id);
+      ::e_status create_host() override;
+      ::e_status create_child(::user::interaction * puserinteractionParent) override;
+      ::e_status create_control(::user::interaction * puserinteractionParent, const ::id & id) override;
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
-      virtual void ActivateTopParent();
+      void ActivateTopParent() override;
 
-      virtual bool start_destroying_window();
+      bool start_destroying_window() override;
 
-      virtual void destroy_window();
+      void destroy_window() override;
 
 
 //#ifdef WINDOWS
@@ -239,20 +239,20 @@ namespace user
 
 
 //      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
+      void SetRedraw(bool bRedraw = true) override;
+      bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false) override;
 
 
-      virtual ::e_status interaction_post(const ::routine & routine);
+      ::e_status interaction_post(const ::routine & routine) override;
 
 
       virtual lresult send(::message::message * pmessage);
       virtual bool post(::message::message * pmessage);
 
-      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
+      lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
 
-      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr);
-      virtual lresult message_call(::message::message * pmessage);
+      lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32& point = nullptr) override;
+      lresult message_call(::message::message * pmessage) override;
 
 
 #ifdef LINUX
@@ -261,9 +261,9 @@ namespace user
 
 #endif
 
-      virtual bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
+      bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0)override;
 
-      virtual bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
+      bool post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0) override;
 
       //virtual bool user_post(const ::id& id, wparam wparam = 0, lparam lparam = 0);
 
@@ -275,7 +275,7 @@ namespace user
 
       // timer Functions
       virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer);
-      virtual bool KillTimer(uptr uEvent);
+      bool KillTimer(uptr uEvent)override;
 
 
 
@@ -292,8 +292,8 @@ namespace user
       virtual bool is_child_of(const primitive * puiIsParent) const; 
       virtual bool is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const; 
 
-      virtual id GetDlgCtrlId() const;
-      virtual id SetDlgCtrlId(::id id);
+      id GetDlgCtrlId() const override;
+      id SetDlgCtrlId(::id id) override;
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -309,39 +309,39 @@ namespace user
 
       
 
-      virtual void edit_on_set_focus(::user::interaction* pinteraction);
-      virtual void edit_on_kill_focus(::user::interaction* pinteraction);
+      void edit_on_set_focus(::user::interaction* pinteraction) override;
+      void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
-      virtual void set_window_text(const ::string & pszString);
+      void set_window_text(const ::string & pszString) override;
 
-      virtual strsize get_window_text(char * pszStringBuf,strsize nMaxCount);
+      strsize get_window_text(char * pszStringBuf,strsize nMaxCount) override;
 
-      virtual string get_window_text();
-      virtual void get_window_text(string & rString);
-      virtual strsize get_window_text_length();
+      string get_window_text() override;
+      void get_window_text(string & rString) override;
+      strsize get_window_text_length() override;
 
 
       //virtual bool _is_window_visible();
-      virtual bool is_this_visible(enum_layout elayout);
+      bool is_this_visible(enum_layout elayout) override;
       //virtual bool is_window_enabled() const;
 
 
 
 
-      virtual bool _001IsPointInside(const ::point_i32 & point);
-      virtual ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false);
+      bool _001IsPointInside(const ::point_i32 & point) override;
+      ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false) override;
 
-      virtual void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr);
+      void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr) override;
 
-      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1);
+      ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::element * get_primitive_by_id(const ::id & id, ::index iItem = -1, i32 iLevel = -1) override;
 
 
-      virtual ::user::interaction * get_wnd() const;
-      virtual ::user::interaction * get_wnd(::u32 nCmd) const;
+      ::user::interaction * get_wnd() const override;
+      ::user::interaction * get_wnd(::u32 nCmd) const override;
       //virtual ::user::interaction_impl * get_impl() const;
-      virtual ::thread * get_task() const;
+      ::thread * get_task() const override;
 
       virtual ::user::primitive * set_parent(::user::primitive * pinteraction);
       virtual ::user::primitive * set_owner(::user::primitive * pinteraction);
@@ -349,29 +349,29 @@ namespace user
 
 
 
-      virtual ::user::interaction * get_parent() const;
-      virtual ::user::interaction * get_top_level() const;
-      virtual ::user::interaction * get_owner() const;
-      virtual ::user::interaction * get_parent_owner() const;
-      virtual ::user::interaction * get_parent_or_owner() const;
-      virtual ::user::interaction * get_top_level_owner() const;
+      ::user::interaction * get_parent() const override;
+      ::user::interaction * get_top_level() const override;
+      ::user::interaction * get_owner() const override;
+      ::user::interaction * get_parent_owner() const override;
+      ::user::interaction * get_parent_or_owner() const override;
+      ::user::interaction * get_top_level_owner() const override;
 
-      virtual bool is_top_level_window() const;
+      bool is_top_level_window() const override;
 
-      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
+      void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
 
-      virtual void route_message_to_descendants(::message::message * pmessage);
-      virtual void pre_translate_message(::message::message * pmessage);
+      void route_message_to_descendants(::message::message * pmessage) override;
+      void pre_translate_message(::message::message * pmessage) override;
 
 
       virtual i32 get_descendant_level(const ::user::primitive * pinteraction) const;
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
-      virtual ::user::interaction * get_focusable_descendant() const;
+       ::user::interaction * get_focusable_descendant() const override;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true);
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectangleClient = nullptr, bool bStretch = true) override;
 
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
+      ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags) override;
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -379,32 +379,32 @@ namespace user
 //#else
       //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 
-      virtual ::user::interaction * get_next_sibling_window();
+      ::user::interaction * get_next_sibling_window() override;
 
 //#endif
 
-      virtual ::e_status set_tool_window(bool bSet = true);
+      ::e_status set_tool_window(bool bSet = true) override;
 
       
-      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const;
-      virtual ::user::interaction * get_window(enum_next enext) const;
+      ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const override;
+      ::user::interaction * get_window(enum_next enext) const override;
 
 
-      virtual ::user::interaction * GetLastActivePopup();
+      ::user::interaction * GetLastActivePopup() override;
 
 
-      virtual bool is_message_only_window() const;
+      bool is_message_only_window() const override;
 
-      virtual void pre_subclass_window();
+      void pre_subclass_window() override;
 
-      virtual void post_non_client_destroy();
+      void post_non_client_destroy() override;
 
 
       //virtual lresult default_window_procedure();
       //virtual void default_window_procedure(::message::message * pmessage);
 
 
-      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr);
+      bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, const ::point_i32 & point = nullptr,lresult * presult = nullptr) override;
 
 
       //virtual void GuieProc(::message::message * pmessage);
@@ -412,10 +412,10 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      virtual oswindow detach();
+      oswindow detach() override;
 
 
-      virtual windowing::window * get_window() const;
+      windowing::window * get_window() const override;
       
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -425,30 +425,30 @@ namespace user
       //virtual bool merge(::user::interaction * pinteraction);
 
 
-      virtual void _001OnTriggerMouseInside();
+      void _001OnTriggerMouseInside() override;
 
-      virtual void _000OnMouseLeave(::message::message* pmessage);
+      void _000OnMouseLeave(::message::message* pmessage) override;
 
       //#ifdef _UWP
       //      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window();
       //#endif
 
 
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
+      void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void viewport_screen_to_client(POINT_I32 * ppt);
-      virtual void viewport_client_to_screen(POINT_I32 * ppt);
-      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt);
-      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt);
-
-
-      virtual string get_window_default_matter();
-      virtual string get_window_icon_matter();
-      virtual u32 get_window_default_style();
-      virtual enum_type get_window_type();
+      void viewport_screen_to_client(POINT_I32 * ppt) override;
+      void viewport_client_to_screen(POINT_I32 * ppt) override;
+      void viewport_client_to_screen(RECTANGLE_I32 * ppt) override;
+      void viewport_screen_to_client(RECTANGLE_I32 * ppt) override;
 
 
-      virtual ::e_status add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false);
+      string get_window_default_matter() override;
+      string get_window_icon_matter() override;
+      u32 get_window_default_style() override;
+      virtual enum_type get_window_type() override;
+
+
+      virtual ::e_status add_child_handler(::matter * pmatter, const ::id & idChild, bool bPriority = false) override;
 
 
       virtual void on_simple_command(::message::simple_command * psimplecommand);
@@ -463,15 +463,15 @@ namespace user
 
 
 
-      virtual bool is_selected(::data::item * pitem);
+      bool is_selected(::data::item * pitem) override;
 
       //virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
 
-      virtual bool has_command_handler(::message::command * pcommand) override;
+      bool has_command_handler(::message::command * pcommand) override;
 
       //virtual void route(::subject * psubject, ::context * pcontext);
 
-      virtual void handle(::subject * psubject, ::context * pcontext);
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual void on_notify_control_event(control_event* pevent);
 
@@ -516,16 +516,16 @@ namespace user
       //virtual bool set_previous_display(edisplay edisplay);
 
 
-      virtual void show_keyboard(bool bShow = true);
+      void show_keyboard(bool bShow = true) override;
 
-      virtual void keep_alive(::object * pliveobject = nullptr);
+      void keep_alive(::object * pliveobject = nullptr) override;
 
 
-      virtual bool has_pending_graphical_update();
-      virtual void on_after_graphical_update();
+       bool has_pending_graphical_update() override;
+       void on_after_graphical_update() override;
 
-      virtual void set_bitmap_source(string strBitmapSource);
-      virtual void clear_bitmap_source();
+      void set_bitmap_source(string strBitmapSource) override;
+      void clear_bitmap_source() override;
 
 
       virtual bool WfiOnStartDock();
@@ -537,9 +537,9 @@ namespace user
       virtual void WfiOnClose();
       virtual void WfiOnNotifyIcon();
 
-      virtual void _001OnExitIconic();
-      virtual void _001OnExitFullScreen();
-      virtual void _001OnExitZoomed();
+      void _001OnExitIconic() override;
+      void _001OnExitFullScreen() override;
+      void _001OnExitZoomed() override;
 
       //virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
       //virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
@@ -565,56 +565,56 @@ namespace user
 
 
 
-      virtual void set_need_redraw(bool bAscendants = true);
-      virtual void set_need_load_form_data();
-      virtual void set_need_save_form_data();
-      virtual void post_redraw(bool bAscendants = true);
-      virtual bool hide();
+      void set_need_redraw(bool bAscendants = true) override;
+      void set_need_load_form_data() override;
+      void set_need_save_form_data() override;
+      void post_redraw(bool bAscendants = true) override;
+      bool hide() override;
 
       // keyboard focus
       //virtual bool on_keyboard_focus(::user::primitive * pfocus);
-      virtual void keyboard_focus_OnTimer(i32 iTimer);
-      virtual void keyboard_focus_OnChar(::message::message * pmessage);
-      virtual void keyboard_focus_OnSysChar(::message::message * pmessage);
-      virtual void keyboard_focus_OnKeyDown(::message::message * pmessage);
-      virtual void keyboard_focus_OnKeyUp(::message::message * pmessage);
+      void keyboard_focus_OnTimer(i32 iTimer) override;
+      void keyboard_focus_OnChar(::message::message * pmessage) override;
+      void keyboard_focus_OnSysChar(::message::message * pmessage) override;
+      void keyboard_focus_OnKeyDown(::message::message * pmessage) override;
+      void keyboard_focus_OnKeyUp(::message::message * pmessage) override;
 
 
       template < class T >
       __pointer(T) GetTypedParent() const;
 
       
-      virtual ::user::interaction * get_parent_window() const;
+      ::user::interaction * get_parent_window() const override;
 
       ::user::element * get_parent_primitive() const override;
 
 
-      virtual ::user::interaction * get_first_child_window() const;
+      ::user::interaction * get_first_child_window() const override;
 
 
-      virtual bool keyboard_focus_is_focusable() const;
-      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
-      virtual bool keyboard_focus_OnChildKillFocus();
+      bool keyboard_focus_is_focusable() const override;
+      bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * get_keyboard_focus() const;
-      virtual ::e_status set_keyboard_focus();
-      virtual ::e_status erase_keyboard_focus();
-      virtual ::e_status clear_keyboard_focus();
+      ::e_status set_keyboard_focus() override;
+      ::e_status erase_keyboard_focus() override;
+      ::e_status clear_keyboard_focus() override;
       ::user::element * get_keyboard_focus() override;
       ::user::element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual bool has_keyboard_focus();
 
       // mouse focus
 
-      virtual void mouse_focus_OnLButtonUp(::message::message * pmessage);
+      void mouse_focus_OnLButtonUp(::message::message * pmessage) override;
 
 
-      virtual bool _001CanEnterScreenSaver();
+      bool _001CanEnterScreenSaver() override;
 
 
       //virtual void _001OnTimer(::timer * ptimer);
 
-      virtual void on_reset_focus_start_tick();
+      void on_reset_focus_start_tick() override;
 
 
       //virtual bool _is_window() const;
@@ -639,46 +639,46 @@ namespace user
       //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
-      virtual i32 get_total_page_count(::context * pcontext);
+      i32 get_total_page_count(::context * pcontext) override;
 
 
-      virtual void edit_on_text(string str);
-      virtual void edit_on_sel(strsize iBeg, strsize iEnd);
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      void edit_on_text(string str) override;
+      void edit_on_sel(strsize iBeg, strsize iEnd) override;
+      void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
 
-      virtual void on_text_composition(string str);
-      virtual void on_text_commit(string str);
-      virtual void on_text_composition_done();
+      void on_text_composition(string str) override;
+      void on_text_commit(string str) override;
+      void on_text_composition_done() override;
       //virtual bool is_text_composition_active();
 
-      virtual void set_input_content_rect(const rectangle_i32& rectangle);
-      virtual void set_input_selection_rect(const rectangle_i32& rectangle);
+      void set_input_content_rect(const rectangle_i32& rectangle) override;
+      void set_input_selection_rect(const rectangle_i32& rectangle) override;
 
-      virtual rectangle_i32 get_input_content_rect();
-      virtual rectangle_i32 get_input_selection_rect();
+      rectangle_i32 get_input_content_rect() override;
+      rectangle_i32 get_input_selection_rect() override;
 
-      virtual void InputConnectionBeginBatchEdit();
-      virtual void InputConnectionEndBatchEdit();
-      virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
-      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd);
-      virtual void InputConnectionFinishComposingText();
+      void InputConnectionBeginBatchEdit() override;
+      void InputConnectionEndBatchEdit() override;
+      void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
+      void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
+      void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
+      void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
+      void InputConnectionFinishComposingText() override;
 
       //virtual void _001OnTimer(::timer * ptimer);
 
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
-      virtual index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn);
-      virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x);
-      virtual index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
+      void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
+      index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
+      index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
+      index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn) override;
+      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x) override;
+      index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
 
 
       void on_check_change() override;

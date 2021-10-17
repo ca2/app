@@ -344,8 +344,8 @@ public:
 
    inline void exchange(const ::id & id, void * pdata, memsize s);
 
-   virtual void add_exception(const ::exception & e);
-   virtual void on_catch_all_exception();
+   void add_exception(const ::exception & e) override;
+   void on_catch_all_exception() override;
 
    virtual void write_object(const ::id & id, ::matter * pobject);
 

@@ -102,12 +102,14 @@ inline bool duration::timeout(const duration & duration)
 }
 
 
+::duration duration::remaining(const duration & duration, const ::duration & durationNow)
+{
+
+   auto durationRemaining = duration - elapsed(durationNow);
+   
+   return durationRemaining;
+
+}
 
 
 
-//inline ::duration duration::duration() const
-//{
-//
-//   
-//
-//}

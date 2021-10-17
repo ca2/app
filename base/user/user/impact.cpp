@@ -924,13 +924,13 @@ namespace user
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
    }
 
    void impact::on_message_mouse_move(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //   auto pmouse = pmessage->m_pmouse;
+      //   auto pmouse = pmessage->m_union.m_pmouse;
    }
 
 
@@ -1372,7 +1372,7 @@ namespace user
    void impact::on_message_right_button_down(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       get_parent_frame()->set_active_view((this));
    }
@@ -1380,7 +1380,7 @@ namespace user
    void impact::on_message_middle_button_down(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //      auto pmouse = pmessage->m_pmouse;
+      //      auto pmouse = pmessage->m_union.m_pmouse;
 
       get_parent_frame()->set_active_view((this));
    }

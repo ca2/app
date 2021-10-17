@@ -120,7 +120,7 @@ namespace account
    void dialog::on_message_character(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_return)
       {
@@ -509,7 +509,7 @@ namespace account
    void dialog::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (pmessage->previous())
       {
@@ -542,7 +542,7 @@ namespace account
 
       m_bLButtonDown = false;
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 
@@ -569,7 +569,7 @@ namespace account
    void dialog::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_bLButtonDown)
       {

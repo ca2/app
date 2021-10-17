@@ -494,10 +494,17 @@ template < typename T >
 concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
 
 template < typename T >
-concept primitive_integer = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+concept primitive_integer = std::is_integral < T >::value;
 
 template < typename T >
-concept primitive_natural = (std::is_integral < T >::value || std::is_enum < T >::value ) && !std::is_signed < T >::value;
+concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
+
 
 template < typename T >
 concept primitive_floating = std::is_floating_point < T >::value;

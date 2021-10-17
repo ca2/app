@@ -129,6 +129,15 @@ void channel::route_message(::message::message * pmessage)
 
    if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_id); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
+   if (pmessage->m_id.is_command_probe())
+   {
+
+      pmessage->m_bRet = true;
+
+      return;
+
+   }
+
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
 

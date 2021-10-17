@@ -281,9 +281,22 @@ namespace userex
       else if (m_pimpactdata->m_id == MENU_IMPACT)
       {
 
-         __pointer(::user::menu) pmenu = get_view_uie();
+         //{
 
-         pmenu->destroy_menu();
+         //   __pointer(::user::menu) pmenu = get_view_uie();
+
+         //   if (pmenu)
+         //   {
+
+         //      pmenu->destroy_menu();
+
+         //   }
+
+         //}
+
+         create_menu_impact(m_pimpactdata);
+
+         __pointer(::user::menu) pmenu = get_view_uie();
 
          prepare_impact_menu(pmenu);
 
@@ -517,7 +530,7 @@ namespace userex
       else if (pimpactdata->m_id == MENU_IMPACT)
       {
 
-         create_menu_impact(pimpactdata);
+//         create_menu_impact(pimpactdata);
 
       }
       else if (pimpactdata->m_id == OPTIONS_IMPACT)

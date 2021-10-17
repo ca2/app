@@ -141,7 +141,7 @@ namespace user
    void font_list::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto item = hit_test(pmouse);
 
@@ -198,7 +198,7 @@ namespace user
    void font_list::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto item = hit_test(pmouse);
 

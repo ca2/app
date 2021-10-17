@@ -140,7 +140,7 @@ namespace filemanager
       if(m_fileSrc.is_null())
       {
 
-         TRACE("\n Could not open source file(%d)=%s",m_iFile,pszSrc.c_str());
+         INFORMATION("\n Could not open source file(" << m_iFile <<")="<< pszSrc);
 
          return false;
 
@@ -212,7 +212,7 @@ namespace filemanager
       if(m_fileDst.is_null())
       {
 
-         TRACE("\n Could not open dest file(%d)=%s", m_iFile, strDst.c_str());
+         INFORMATION("\n Could not open dest file("<<m_iFile<<")=" << strDst);
 
          property_set propertyset;
 
@@ -224,7 +224,7 @@ namespace filemanager
 
       }
 
-      TRACE("\n%d Opened %s %s",m_iFile, pszSrc.c_str(), strDst.c_str());
+      INFORMATION( m_iFile << " Opened "<<pszSrc<<" "<< strDst);
 
       return true;
 

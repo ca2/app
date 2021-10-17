@@ -1257,7 +1257,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_mouse_move(::message::message * pmessage)
 //{
 //
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   ::point_i32 point = pmouse->m_point;
 //
@@ -1293,7 +1293,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_left_button_down(::message::message * pmessage)
 //{
 //
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   auto point = screen_to_client(pmouse->m_point);
 //
@@ -1318,7 +1318,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::on_message_left_button_up(::message::message * pmessage)
 //{
 //
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   auto point = pmouse->m_point;
 //

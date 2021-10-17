@@ -565,7 +565,7 @@ namespace user
    void tree::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //if (!m_bTrackMouseLeave)
       {
@@ -591,7 +591,7 @@ namespace user
    void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //on_click(item);
 
@@ -619,7 +619,7 @@ namespace user
    void tree::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //pmouse->previous();
 
@@ -645,7 +645,7 @@ namespace user
    void tree::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
 
@@ -735,7 +735,7 @@ namespace user
    void tree::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -749,7 +749,7 @@ namespace user
    void tree::on_message_right_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       perform_right_click(pmouse->m_nFlags, pmouse->m_point);
 

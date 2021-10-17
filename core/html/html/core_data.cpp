@@ -278,7 +278,7 @@ namespace html
 
       }
 
-      m_pelement = ::move_transfer(new element);
+      m_pelement = ::move_transfer(new ::html::element);
 
       //m_pelement->m_pbase = new ::html::tag(nullptr);
 
@@ -338,7 +338,7 @@ namespace html
    void core_data::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {

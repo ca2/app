@@ -80,7 +80,7 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::point_i32 point;
 
@@ -167,7 +167,7 @@ bool simple_scroll_bar::scrollbar_action(const ::item & item, ::draw2d::graphics
 void simple_scroll_bar::on_message_left_button_down(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    m_itemCurrent = hit_test(pmouse);
 
@@ -223,7 +223,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    if (!m_itemCurrent)
    {

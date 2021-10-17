@@ -37,26 +37,26 @@ namespace account
 
 
       impact();
-      virtual ~impact();
+      ~impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool on_action(const ::string & pszId);
+      bool on_action(const ::string & pszId) override;
 
       void initialize();
 
       void defer_translate(const ::string & strUser, const ::string & strPass, const ::string & strOpen);
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics);
+      void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 
       void interactive_credentials(::account::credentials * pcredentials);
 

@@ -1175,7 +1175,7 @@ break_click:;
 
    void form_list::on_message_key_down(::message::message * pmessage)
    {
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_return)
       {

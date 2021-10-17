@@ -1082,7 +1082,7 @@ namespace android
             pmessage->m_id == e_message_sys_char)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 

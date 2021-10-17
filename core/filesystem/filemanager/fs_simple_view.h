@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace filemanager
@@ -31,10 +31,10 @@ namespace filemanager
 
 
             impact();
-            virtual ~impact();
+            ~impact() override;
 
 
-            void install_message_routing(::channel * pchannel);
+            void install_message_routing(::channel * pchannel) override;
 
             void open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExt);
 

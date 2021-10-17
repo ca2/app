@@ -35,20 +35,20 @@ namespace datetime
       time_span& operator-=(time_span span) noexcept;
 
 
-      using integral_second::operator==;
-      using integral_second::operator!=;
-      using integral_second::operator<;
-      using integral_second::operator<=;
-      using integral_second::operator>;
-      using integral_second::operator>=;
+//      using integral_second::operator==;
+//      using integral_second::operator!=;
+//      using integral_second::operator<;
+//      using integral_second::operator<=;
+//      using integral_second::operator>;
+//      using integral_second::operator>=;
 
 
-      bool operator==(time_span span) const noexcept;
-      bool operator!=(time_span span) const noexcept;
-      bool operator<(time_span span) const noexcept;
-      bool operator>(time_span span) const noexcept;
-      bool operator<=(time_span span) const noexcept;
-      bool operator>=(time_span span) const noexcept;
+//      bool operator==(time_span span) const noexcept;
+//      bool operator!=(time_span span) const noexcept;
+//      bool operator<(time_span span) const noexcept;
+//      bool operator>(time_span span) const noexcept;
+//      bool operator<=(time_span span) const noexcept;
+//      bool operator>=(time_span span) const noexcept;
 
       //string Format(const char * pszFormat) const;
       
@@ -144,42 +144,42 @@ namespace datetime
       return *this;
    }
 
-   inline bool time_span::operator==(time_span span) const noexcept
-   {
-      return(m_i == span.m_i);
-   }
-
-   inline bool time_span::operator!=(time_span span) const noexcept
-   {
-      return(m_i != span.m_i);
-   }
-
-   inline bool time_span::operator<(time_span span) const noexcept
-   {
-      return(m_i < span.m_i);
-   }
-
-   inline bool time_span::operator>(time_span span) const noexcept
-   {
-      return(m_i > span.m_i);
-   }
-
-   inline bool time_span::operator<=(time_span span) const noexcept
-   {
-      return(m_i <= span.m_i);
-   }
-
-   inline bool time_span::operator>=(time_span span) const noexcept
-   {
-      return(m_i >= span.m_i);
-   }
+//   inline bool time_span::operator==(time_span span) const noexcept
+//   {
+//      return(m_i == span.m_i);
+//   }
+//
+//   inline bool time_span::operator!=(time_span span) const noexcept
+//   {
+//      return(m_i != span.m_i);
+//   }
+//
+//   inline bool time_span::operator<(time_span span) const noexcept
+//   {
+//      return(m_i < span.m_i);
+//   }
+//
+//   inline bool time_span::operator>(time_span span) const noexcept
+//   {
+//      return(m_i > span.m_i);
+//   }
+//
+//   inline bool time_span::operator<=(time_span span) const noexcept
+//   {
+//      return(m_i <= span.m_i);
+//   }
+//
+//   inline bool time_span::operator>=(time_span span) const noexcept
+//   {
+//      return(m_i >= span.m_i);
+//   }
 
 
 
 } // namespace datetime
 
 
-COMPARISON_WITH_DURATION(::datetime::time_span)
+//COMPARISON_WITH_DURATION(::datetime::time_span)
 
 
 

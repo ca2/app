@@ -211,8 +211,7 @@ namespace message
    key::key()
    {
 
-      m_pkey = this;
-
+      m_union.m_pkey = this;
       m_ekey = ::user::e_key_none;
       m_nScanCode = 0;
       m_nChar = 0;
@@ -220,6 +219,12 @@ namespace message
       m_iCode = 0;
       m_bExt = false;
       m_nFlags = 0;
+
+   }
+
+   
+   key::~key()
+   {
 
    }
 
@@ -288,9 +293,8 @@ namespace message
       //m_ecursor = e_cursor_unmodified;
 
       //m_pcursor = nullptr;
-
-      m_pmouse = this;
-
+      
+      m_union.m_pmouse = this;
       m_bTranslated = false;
 
    }
@@ -615,6 +619,7 @@ namespace message
    object::object()
    {
 
+      m_union.m_pobject = this;
 
    }
 

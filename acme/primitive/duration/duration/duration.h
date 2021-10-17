@@ -53,7 +53,7 @@ public:
    duration(const ::FLOATING_MICROSECOND & floating) : duration(e_raw, (::i64)(floating.m_d / 1'000'000.0), (long)(fmod(floating.m_d, 1'000'000.0) * 1'000.0)) {}
    duration(const ::INTEGRAL_MILLISECOND & integral) : duration(e_raw, integral.m_i / 1'000, (long) ((integral.m_i % 1'000) * 1'000'000)) {}
    duration(const ::FLOATING_MILLISECOND & floating) : duration(e_raw, (::i64)(floating.m_d / 1'000.0), (long)(fmod(floating.m_d, 1'000.0) * 1'000'000.0)) {}
-   duration(const ::INTEGRAL_SECOND & integral) : duration(e_raw, (::i64)integral.m_i) {}
+   duration(const ::INTEGRAL_SECOND & integral) : duration(e_raw, integral.m_i) {}
    duration(const ::FLOATING_SECOND & floating) : duration(e_raw, (::i64)(floating.m_d), (long)(fmod(floating.m_d, 1.0) * 1'000'000'000.0)) {}
    duration(const ::INTEGRAL_MINUTE & integral) : duration(e_raw, integral.m_i * 60) {}
    duration(const ::FLOATING_MINUTE & floating) : duration(e_raw, (::i64)(floating.m_d * 60.0), (long)(fmod(floating.m_d * 60.0, 1.0) * 1'000'000'000.0)) {}
@@ -63,26 +63,29 @@ public:
    duration(const ::FLOATING_DAY & floating) : duration(e_raw, (::i64)(floating.m_d * 86'400.0), (long)(fmod(floating.m_d * 86'400.0, 1.0) * 1'000'000'000.0)) {}
 
 
-   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
-   duration(INTEGRAL1 iSecond, INTEGRAL2 iNanosecond) :
+   template < primitive_integer INTEGER1, primitive_integral INTEGRAL2 >
+   duration(INTEGER1 iSecond, INTEGRAL2 iNanosecond) :
       DURATION{ .m_iSecond = (time_t)iSecond, .m_iNanosecond = (long)iNanosecond }
-   {
+   { }
 
 
-   }
-
-
-   template < primitive_floating FLOATING1, primitive_floating FLOATING2 >
-    duration(FLOATING1 fSeconds, FLOATING2 fNanoseconds)
+   template < primitive_floating FLOATING, primitive_number NUMBER >
+   duration(FLOATING fSeconds, NUMBER nanoseconds)
    {
         
-       fset(fSeconds, fNanoseconds);
+       fset(fSeconds, nanoseconds);
         
    }
 
+   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   duration(enum_raw, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond);
 
-   duration(enum_raw, time_t iSeconds, long iNanoseconds = 0);
-   duration(enum_normalize, time_t iSeconds, long iNanoseconds);
+   template < primitive_integral INTEGRAL1 >
+   duration(enum_raw, INTEGRAL1 iSecond) : duration(e_raw, iSecond, 0) {}
+   
+   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   duration(enum_normalize, INTEGRAL1 iSecond, INTEGRAL2 iNanosecond);
+
    duration(const ::DURATION & duration):DURATION(duration) {}
 
 
@@ -138,6 +141,9 @@ public:
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }
 
+   inline double period_rate(const class ::duration & durationPeriod, const class ::duration & duration = now()) const { return ((duration - *this) % durationPeriod) / durationPeriod; }
+
+   
    //inline class ::duration operator - (const class ::duration & duration) const { return { e_normalize, m_iSecond - duration.m_iSecond, m_iNanosecond - duration.m_iNanosecond }; }
    //inline class ::duration operator + (const class ::duration & duration) const { return { e_normalize, m_iSecond + duration.m_iSecond, m_iNanosecond + duration.m_iNanosecond }; }
    inline class ::duration & operator -= (const class ::duration & duration) { m_iSecond -= duration.m_iSecond; m_iNanosecond -= duration.m_iNanosecond; normalize();  return *this; }
@@ -357,8 +363,8 @@ public:
 
 inline FLOATING_SECOND time() { return duration(e_now).floating_second(); }
 
-
-inline duration::duration(enum_raw, ::time_t iSeconds, long iNanoseconds)
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+inline duration::duration(enum_raw, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 {
 
    m_iSecond = iSeconds;
@@ -367,15 +373,13 @@ inline duration::duration(enum_raw, ::time_t iSeconds, long iNanoseconds)
 
 }
 
-
-inline duration::duration(enum_normalize, ::time_t iSeconds, long iNanoseconds)
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+inline duration::duration(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds)
 {
 
-   m_iSecond = iSeconds;
+   m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
 
-   m_iNanosecond = iNanoseconds;
-
-   normalize();
+   m_iNanosecond = iNanoseconds % 1'000'000'000;
 
 }
 

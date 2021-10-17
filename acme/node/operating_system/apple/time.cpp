@@ -45,7 +45,7 @@ CLASS_DECL_ACME INTEGRAL_NANOSECOND get_integral_nanosecond()
 
    utc_timespec(&timespec);
 
-   return timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec;
+    return INTEGRAL_NANOSECOND(timespec.tv_sec * 1'000'000'000 + timespec.tv_nsec);
 
 }
 

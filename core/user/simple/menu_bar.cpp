@@ -151,7 +151,7 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 
 //void simple_menu_bar::on_message_mouse_move(::message::message * pmessage)
 //{
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //   _001Hover(pmouse->m_point);
 //   pmessage->previous();
 //}
@@ -160,7 +160,8 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 bool simple_menu_bar::_track_popup_menu(index iItem)
 {
 
-   TRACE("simple_menu_bar::_track_popup_menu % d\n", iItem);
+   INFORMATION("simple_menu_bar::_track_popup_menu" << iItem);
+   
    m_iTracking = iItem;
    m_itemPressed = iItem;
    set_need_redraw();
@@ -185,7 +186,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 //void simple_menu_bar::_001OnNcMouseMove(::message::message * pmessage)
 //{
 //
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   _001Hover(pmouse->m_point);
 //
@@ -211,7 +212,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pusermessage->m_id.i64(), pusermessage->m_wparam, pusermessage->m_lparam.m_lparam);
+   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_id.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -687,7 +688,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 
 //void simple_menu_bar::on_message_left_button_down(::message::message * pmessage)
 //{
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   auto item = hit_test(pmouse->m_point);
 //

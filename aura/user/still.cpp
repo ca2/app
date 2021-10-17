@@ -119,7 +119,7 @@ namespace user
    //void still::on_message_left_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -145,7 +145,7 @@ namespace user
    //void still::on_message_middle_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -175,7 +175,7 @@ namespace user
    //void still::on_message_middle_button_up(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -211,7 +211,7 @@ namespace user
    //void still::on_message_left_button_up(::message::message * pmessage)
    //{
 
-   //   //auto pmouse = pmessage->m_pmouse;
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
    //   //enum_element eelement;
 
@@ -277,7 +277,7 @@ namespace user
    //void still::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   //auto pmouse = pmessage->m_pmouse;
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
    //   //enum_element eelement;
 
@@ -731,7 +731,7 @@ namespace user
    void still::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 

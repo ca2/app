@@ -18,12 +18,12 @@ namespace user
       void font_combo_box_common_construct();
       
 
-      void install_message_routing(::channel * psender);
+      void install_message_routing(::channel * psender) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       void handle(::subject * psubject, ::context * pcontext) override;
 

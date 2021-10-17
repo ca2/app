@@ -6,7 +6,7 @@ namespace progress
 {
 
 
-   progress::progress(::user::primitive * pprimitiveParent, const ::string & strTitle, int iStepCount)
+   progress::progress(::user::primitive * pprimitiveParent, const ::string & strTitle, ::count iStepCount)
    {
 
       auto puserinteractionTopLevel = pprimitiveParent->get_top_level();

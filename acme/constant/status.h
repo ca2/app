@@ -280,17 +280,18 @@ enum enum_status : ::i64
 
 
 #if __cplusplus > 202001L
+#define INLINE_CONSTEXPR inline constexpr
+#else
+#define INLINE_CONSTEXPR inline
+#endif
 
 
-inline constexpr bool is_exit_exception_status(::enum_status estatus)
+INLINE_CONSTEXPR bool is_exit_exception_status(::enum_status estatus)
 {
 
    return estatus > error_exit_start && estatus < error_exit_end;
 
 }
-
-
-#endif
 
 
 

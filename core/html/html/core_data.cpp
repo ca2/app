@@ -278,7 +278,7 @@ namespace html
 
       }
 
-      m_pelement = ::move_transfer(new element);
+      m_pelement = ::move_transfer(new ::html::element);
 
       //m_pelement->m_pbase = new ::html::tag(nullptr);
 

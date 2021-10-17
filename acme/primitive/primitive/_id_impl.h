@@ -189,6 +189,18 @@ inline id& id::operator = (NATURAL n)
 }
 
 
+inline id& id::operator = (const ::enum_id& eid)
+{
+
+   m_etype = e_type_id;
+
+   m_eid = eid;
+
+   return *this;
+
+}
+
+
 inline id& id::operator = (const ::enum_property& eproperty)
 {
 

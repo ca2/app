@@ -343,7 +343,7 @@ namespace user
 
       bool _001IsItemVisible(index iItem) override;
 
-      virtual void _001ClearSelection();
+      virtual void _001ClearSelection() override;
 
       void _001SetSelection(const range & range) override;
 

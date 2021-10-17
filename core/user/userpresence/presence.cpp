@@ -34,7 +34,7 @@ namespace userpresence
    {
 
       int iStatus = (int) m_iShortStatusWayTag;
-      if(m_durationLastActivity.elapsed() < ((5000) * 4))
+      if(m_durationLastActivity.elapsed() < 20_s)
       {
          iStatus = status_online;
       }
@@ -47,7 +47,7 @@ namespace userpresence
          iStatus = status_offline;
       }
 
-      if(iStatus == m_iShortStatusWayTag && (m_durationLastPulse.elapsed()) <((5000) * 2))
+      if(iStatus == m_iShortStatusWayTag && (m_durationLastPulse.elapsed()) < 10_s)
          return;
 
       m_iShortStatusWayTag = iStatus;

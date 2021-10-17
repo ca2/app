@@ -139,7 +139,7 @@ namespace user
 
          m_pformata->add(pformat);
 
-         return pformat;
+         return ::move(pformat);
 
       }
 

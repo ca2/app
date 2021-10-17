@@ -160,7 +160,8 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 bool simple_menu_bar::_track_popup_menu(index iItem)
 {
 
-   TRACE("simple_menu_bar::_track_popup_menu % d\n", iItem);
+   INFORMATION("simple_menu_bar::_track_popup_menu" << iItem);
+   
    m_iTracking = iItem;
    m_itemPressed = iItem;
    set_need_redraw();
@@ -211,7 +212,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pusermessage->m_id.i64(), pusermessage->m_wparam, pusermessage->m_lparam.m_lparam);
+   INFORMATION("simple_menu_bar::pre_translate_message messageID="<<pusermessage->m_id.i64()<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 

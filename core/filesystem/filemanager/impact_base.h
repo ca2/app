@@ -26,7 +26,7 @@ public:
    virtual __pointer(::fs::data)                   fs_data();
 
 
-   void handle(::subject * psubject, ::context * pcontext);
+   void handle(::subject * psubject, ::context * pcontext) override;
 
 
    virtual void browse_sync(const ::action_context & action_context);

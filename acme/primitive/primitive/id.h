@@ -297,7 +297,7 @@ public:
    id & operator = (INTEGER i);
    template < primitive_natural NATURAL >
    id & operator = (NATURAL u);
-//#endif
+   id & operator = (const enum_id & eid);
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_task_tool & etasktool);

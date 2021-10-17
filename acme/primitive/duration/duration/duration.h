@@ -355,7 +355,7 @@ public:
 };
 
 
-inline double time() { return duration(e_now).floating_second().m_d; }
+inline FLOATING_SECOND time() { return duration(e_now).floating_second(); }
 
 
 inline duration::duration(enum_raw, ::time_t iSeconds, long iNanoseconds)

@@ -4,9 +4,6 @@
 #pragma once
 
 
-#include "_enumeration.h"
-
-
 #include "_mathematics.h"
 
 

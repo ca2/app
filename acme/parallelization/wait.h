@@ -25,7 +25,7 @@ public:
 
    static inline ::i64 __infinite() { return 0xffffffffu ; }
 
-   static inline INTEGRAL_MILLISECOND _infinite() { return { __infinite() }; }
+   static inline INTEGRAL_MILLISECOND _infinite() { return e_zero; }
 
    static inline class ::wait infinite() { return _infinite(); }
 

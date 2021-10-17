@@ -789,6 +789,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 
 
 #include "acme/parallelization/_types.h"
+#include "acme/constant/_enumeration.h"
 
 
 #define low_byte(w)              ((byte)((w) & 0xff))

@@ -7,16 +7,17 @@ struct DURATION { time_t m_iSecond; /* Seconds - >= 0 */ long m_iNanosecond; /* 
 
 struct FREQUENCY { double m_d; /* Hz */ };
 
-#define DURATION_UNIT(unit, type, member)    \
-struct unit                                  \
-{                                            \
-                                             \
-   using BASE_TYPE = type;                   \
-   type member;                              \
-                                             \
-   constexpr unit():member{} {}              \
-   constexpr unit(type t):member(t){}        \
-                                             \
+#define DURATION_UNIT(unit, type, member)             \
+struct unit                                           \
+{                                                     \
+                                                      \
+   using BASE_TYPE = type;                            \
+   type member;                                       \
+                                                      \
+   constexpr unit():member{} {}                       \
+   constexpr unit(enum_zero):member{} {}              \
+   explicit constexpr unit(type t):member(t){}        \
+                                                      \
 };
 
 

@@ -895,7 +895,7 @@ inline bool id::operator >= (::enum_id eid) const
 inline int id::compare(::enum_message emessage) const
 {
 
-   return __COMPARE_SQUARE(m_etype - e_type_message, m_i - emessage);
+   return __COMPARE_SQUARE(m_etype - e_type_message, m_emessage - emessage);
 
 }
 
@@ -951,7 +951,7 @@ inline bool id::operator >= (::enum_message emessage) const
 inline int id::compare(::enum_subject esubject) const
 {
 
-   return __COMPARE_SQUARE(m_esubject - e_type_subject, m_i - esubject);
+   return __COMPARE_SQUARE(m_etype - e_type_subject, m_esubject - esubject);
 
 }
 

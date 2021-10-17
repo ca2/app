@@ -807,7 +807,7 @@
 //   //   if (is_window_enabled())
 //   //   {
 //
-//   //      auto pmouse = pmessage->m_pmouse;
+//   //      auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
@@ -959,7 +959,7 @@
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pmessage);
-//      //      auto pkey = pmessage->m_pkey;
+//      //      auto pkey = pmessage->m_union.m_pkey;
 //
 //
 //   }

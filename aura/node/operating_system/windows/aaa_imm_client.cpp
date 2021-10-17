@@ -450,7 +450,7 @@ void imm_client::on_message_key_down(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   auto pkey = pmessage->m_pkey;
+   auto pkey = pmessage->m_union.m_pkey;
 
    if (pkey->m_ekey == ::user::e_key_escape)
    {

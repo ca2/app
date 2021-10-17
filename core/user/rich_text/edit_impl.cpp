@@ -320,7 +320,7 @@ namespace user
       void edit_impl::on_message_left_button_down(::message::message * pmessage)
       {
 
-         auto pmouse = pmessage->m_pmouse;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          if (!is_text_editable())
          {
@@ -411,7 +411,7 @@ namespace user
       void edit_impl::on_message_left_button_up(::message::message* pmessage)
       {
 
-         auto pmouse = pmessage->m_pmouse;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          auto psession = get_session();
 
@@ -463,7 +463,7 @@ namespace user
       void edit_impl::on_message_mouse_move(::message::message* pmessage)
       {
 
-         auto pmouse = pmessage->m_pmouse;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          if (!is_text_editable())
          {
@@ -1046,7 +1046,7 @@ namespace user
 
          }
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 
@@ -1212,7 +1212,7 @@ namespace user
       void edit_impl::on_message_key_up(::message::message * pmessage)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 
@@ -1390,7 +1390,7 @@ namespace user
       void edit_impl::on_message_character(::message::message * pmessage)
       {
 
-            auto pkey = pmessage->m_pkey;
+            auto pkey = pmessage->m_union.m_pkey;
 
             string strChar;
 

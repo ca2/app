@@ -250,5 +250,17 @@ inline id& id::operator = (const ::enum_message & emessage)
 }
 
 
+inline id& id::operator = (const ::enum_subject & esubject)
+{
+
+   m_etype = e_type_subject;
+
+   m_esubject = esubject;
+
+   return *this;
+
+}
+
+
 
 

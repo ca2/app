@@ -302,7 +302,7 @@ namespace browser
    void impact::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 
@@ -313,7 +313,7 @@ namespace browser
    void impact::_001OnMouse(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 

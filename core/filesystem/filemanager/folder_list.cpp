@@ -55,7 +55,7 @@ namespace filemanager
    void folder_list::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       index iItem;
 

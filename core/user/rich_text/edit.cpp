@@ -217,7 +217,7 @@ namespace user
 
          __UNREFERENCED_PARAMETER(pmessage);
          
-         //auto pmouse = pmessage->m_pmouse;
+         //auto pmouse = pmessage->m_union.m_pmouse;
 
       }
 
@@ -227,7 +227,7 @@ namespace user
 
          __UNREFERENCED_PARAMETER(pmessage);
          
-         //auto pmouse = pmessage->m_pmouse;
+         //auto pmouse = pmessage->m_union.m_pmouse;
 
       }
 
@@ -237,7 +237,7 @@ namespace user
 
          __UNREFERENCED_PARAMETER(pmessage);
          
-         //auto pmouse = pmessage->m_pmouse;
+         //auto pmouse = pmessage->m_union.m_pmouse;
 
       }
 
@@ -535,7 +535,7 @@ namespace user
 
          }
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 
@@ -685,7 +685,7 @@ namespace user
       void edit::on_message_key_up(::message::message * pmessage)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 

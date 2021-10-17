@@ -37,7 +37,7 @@ namespace simple_ui
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
 
       //    keyboard_set_focus();
 
@@ -53,7 +53,7 @@ namespace simple_ui
       __UNREFERENCED_PARAMETER(pmessage);
       //pmessage->previous();
 
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
 
       //pmessage->m_bRet = true;
 

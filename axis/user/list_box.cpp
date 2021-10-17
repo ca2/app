@@ -914,7 +914,7 @@ namespace user
    void list_box::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_escape)
       {
@@ -982,7 +982,7 @@ namespace user
    void list_box::on_message_middle_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -1009,7 +1009,7 @@ namespace user
    void list_box::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -1037,7 +1037,7 @@ namespace user
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       //pmessage->m_bRet = true;
 

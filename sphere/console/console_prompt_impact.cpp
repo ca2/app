@@ -113,7 +113,7 @@ namespace console
    void prompt_impact::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       m_durationCaretStart.Now();
 

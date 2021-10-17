@@ -1475,7 +1475,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
-      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
+//      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::on_message_user_post);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1852,35 +1852,35 @@ namespace user
 
    }
 
-
-   void interaction::on_message_user_post(::message::message * pmessage)
-   {
-
-      if (pmessage->m_wparam == 1)
-      {
-
-         __pointer(::message::object) pobjectmessage(pmessage);
-
-         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
-
-         if (pmessage)
-         {
-
-            message_handler(pmessage);
-
-         }
-
-         pmessage->m_bRet = true;
-
-      }
-      else
-      {
-
-         __throw(error_invalid_argument);
-
-      }
-
-   }
+//e_message_post_user
+//   void interaction::on_message_user_post(::message::message * pmessage)
+//   {
+//
+//      if (pmessage->m_wparam == 1)
+//      {
+//
+//         __pointer(::message::object) pobjectmessage(pmessage);
+//
+//         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
+//
+//         if (pmessage)
+//         {
+//
+//            message_handler(pmessage);
+//
+//         }
+//
+//         pmessage->m_bRet = true;
+//
+//      }
+//      else
+//      {
+//
+//         __throw(error_invalid_argument);
+//
+//      }
+//
+//   }
 
 
    void interaction::user_interaction_on_hide()
@@ -5090,7 +5090,7 @@ return "";
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          if (pkey)
          {
@@ -5141,7 +5141,7 @@ return "";
       if (m_bEditDefaultHandling || m_bKeyboardMultipleSelectionDefaultHandling)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          if (pkey)
          {
@@ -5722,7 +5722,7 @@ void interaction::route_message_to_descendants(::message::message * pmessage)
 //   //if(pmessage->m_id == e_message_key_down)
 //   //{
 
-//   //   auto pkey = pmessage->m_pkey;
+//   //   auto pkey = pmessage->m_union.m_pkey;
 
 //   //   if(pkey->m_ekey == ::user::e_key_tab)
 //   //   {
@@ -12055,7 +12055,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   ::point_i32 point = pmouse->m_point;
 
@@ -12069,7 +12069,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //__pointer(::user::menu) interaction::track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   auto point = pmouse->m_point;
 
@@ -12084,7 +12084,7 @@ bool interaction::has_command_handler(::message::command * pcommand)
 //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags, ::message::message * pmessage)
 //{
 
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 
 //   ::point_i32 point = pmouse->m_point;
 
@@ -13917,7 +13917,7 @@ order(zorderParam);
    void interaction::keyboard_focus_OnKeyDown(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -15451,7 +15451,7 @@ order(zorderParam);
       
       string strType = this->type_c_str();
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15611,7 +15611,7 @@ order(zorderParam);
    void interaction::on_message_left_button_up(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {
@@ -15807,7 +15807,7 @@ order(zorderParam);
    void interaction::on_message_middle_button_down(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 
@@ -15831,7 +15831,7 @@ order(zorderParam);
    void interaction::on_message_middle_button_up(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->previous();
 
@@ -15857,7 +15857,7 @@ order(zorderParam);
    void interaction::on_message_mouse_move(::message::message* pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (!is_window_enabled())
       {

@@ -189,7 +189,7 @@ namespace prompt
    // void impact::on_message_set_cursor(::message::message * pmessage)
    // {
 
-   //    auto pmouse = pmessage->m_pmouse;
+   //    auto pmouse = pmessage->m_union.m_pmouse;
 
    //    pmouse->m_ecursor = cursor_arrow;
 
@@ -208,14 +208,14 @@ namespace prompt
 
    void impact::on_message_left_button_down(::message::message * pmessage)
    {
-      //   auto pmouse = pmessage->m_pmouse;
+      //   auto pmouse = pmessage->m_union.m_pmouse;
       __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
       __UNREFERENCED_PARAMETER(pmessage);
       KillTimer(5432180);
 
@@ -224,7 +224,7 @@ namespace prompt
 
    void impact::on_message_right_button_up(::message::message * pmessage)
    {
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
       __UNREFERENCED_PARAMETER(pmessage);
 
    }

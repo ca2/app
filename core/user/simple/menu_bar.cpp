@@ -151,7 +151,7 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 
 //void simple_menu_bar::on_message_mouse_move(::message::message * pmessage)
 //{
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //   _001Hover(pmouse->m_point);
 //   pmessage->previous();
 //}
@@ -185,7 +185,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 //void simple_menu_bar::_001OnNcMouseMove(::message::message * pmessage)
 //{
 //
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   _001Hover(pmouse->m_point);
 //
@@ -687,7 +687,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 
 //void simple_menu_bar::on_message_left_button_down(::message::message * pmessage)
 //{
-//   auto pmouse = pmessage->m_pmouse;
+//   auto pmouse = pmessage->m_union.m_pmouse;
 //
 //   auto item = hit_test(pmouse->m_point);
 //

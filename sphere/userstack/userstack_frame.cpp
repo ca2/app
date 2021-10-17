@@ -196,7 +196,7 @@ namespace userstack
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
 //      m_bMouseOver = false;
 //      bergedgesp(::aura::application) papp = dynamic_cast < bergedgesp(::aura::application) > (this);
    }

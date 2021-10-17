@@ -334,6 +334,7 @@ namespace message
 
 
       key();
+      ~key() override;
 
       using ::user::message::set;
 

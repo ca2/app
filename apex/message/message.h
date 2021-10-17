@@ -16,7 +16,17 @@ namespace message
 
    class key;
    class mouse;
+   class object;
 
+   union message_union
+   {
+     
+      void *                  m_p;
+      ::message::object *     m_pobject;
+      ::message::key *        m_pkey;
+      ::message::mouse *      m_pmouse;
+      
+   };
 
    class CLASS_DECL_APEX message :
       virtual public ::acme::message
@@ -24,9 +34,10 @@ namespace message
    public:
 
 
-      ::message::key *              m_pkey;
-      ::message::mouse *            m_pmouse;
+      //::message::key *              m_pkey;
+      //::message::mouse *            m_pmouse;
 
+      message_union                 m_union;
 
       dispatcher_array *            m_pdispatchera;
       channel *                     m_pchannel;
@@ -48,9 +59,7 @@ namespace message
       inline void common_construct()
       {
 
-         m_pkey = nullptr;
-         m_pmouse = nullptr;
-
+         m_union.m_p = nullptr;
          m_pdispatchera = nullptr;
          m_pchannel = nullptr;
          m_wparam = 0;

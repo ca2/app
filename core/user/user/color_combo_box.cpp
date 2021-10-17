@@ -60,7 +60,7 @@ namespace user
    void color_combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_bMouseDown = true;
 
@@ -74,7 +74,7 @@ namespace user
    void color_combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 
@@ -194,7 +194,7 @@ namespace user
    void color_combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       __UNREFERENCED_PARAMETER(pmessage);
 
@@ -215,7 +215,7 @@ namespace user
    void color_combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       __UNREFERENCED_PARAMETER(pmessage);
 

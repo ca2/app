@@ -485,7 +485,7 @@ namespace userstack
    void pane_view::on_message_right_button_up(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
       /*if(get_view_id() == ::bergedge::impact_winactionarea)
       {
          ::user::menu menu(this);

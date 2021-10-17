@@ -203,7 +203,7 @@ public:
 
    }
 
-   bool _is_compounded(enum_type etype) const { return (m_etype & etype) != 0;}
+   bool _is_compounded(enum_type etype) const { return (m_etype & 0xffffffff) == etype;}
 
 
 

@@ -28,6 +28,8 @@ application_exit::~application_exit()
 
    }
 
+   INFORMATION("application_exit request_exit_application");
+
    m_bProcessingApplicationExitRequest = true;
 
    post_routine(__routine([this]()

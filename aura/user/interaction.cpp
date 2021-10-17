@@ -11378,7 +11378,7 @@ bool interaction::mouse_hover_erase(::user::interaction * pinterface)
 
    auto puserinteraction = get_wnd();
 
-   if (!puserinteraction)
+   if (!puserinteraction || puserinteraction == this)
    {
 
       return false;

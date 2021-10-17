@@ -2085,9 +2085,9 @@ namespace user
    bool interaction_impl::IsTopParentActive()
    {
 
-      throw ::interface_only_exception();
+      return m_puserinteraction->window()->is_active_window();
 
-      return false;
+      //return false;
 
    }
 

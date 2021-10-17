@@ -133,8 +133,17 @@ namespace user
    }
 
 
-   void menu::destroy_menu()
+   ::e_status menu::destroy()
    {
+
+      set_finish();
+
+      //if (m_puserinteractionParent)
+      //{
+
+      //   m_puserinteractionParent->erase_child(this);
+
+      //}
 
 //      try
 //      {
@@ -185,6 +194,8 @@ namespace user
       }
 
       m_pmenuitem.release();
+
+      return ::success;
 
    }
 

@@ -380,6 +380,12 @@ inline duration::duration(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanosec
    m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
 
    m_iNanosecond = iNanoseconds % 1'000'000'000;
+   
+   if(m_iNanosecond < 0)
+   {
+      m_iSecond--;
+      m_iNanosecond += 1'000'000'000;
+   }
 
 }
 

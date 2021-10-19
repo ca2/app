@@ -1228,10 +1228,8 @@ namespace user
             output_debug_string("We're on the list_box update_screen");
 
          }
-
-         m_durationBeforeUpdateScreen.Now();
-
-         m_durationOufOfUpdateScreen = m_durationBeforeUpdateScreen - m_durationAfterUpdateScreen;
+         
+         profiling_on_before_update_screen();
 
          if (!m_pimpl)
          {
@@ -1262,34 +1260,8 @@ namespace user
             m_puserinteraction->_on_show_window();
 
          }
-
-         m_durationLastFrame.Now();
-
-         m_durationaFrame.add(m_durationLastFrame);
-
-         m_durationAfterUpdateScreen.Now();
-
-         m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
-
-         if (m_durationDuringUpdateScreen > 60_ms)
-         {
-
-            //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
-
-            //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
-
-         }
-
-         m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
-
-         if (m_durationOufOfUpdateScreen > 60_ms)
-         {
-
-            //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
-
-            //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
-
-         }
+         
+         profiling_on_after_update_screen();
 
       }
       catch(...)
@@ -1304,6 +1276,50 @@ namespace user
    }
 
 
+   void prodevian::profiling_on_before_update_screen()
+   {
+    
+      m_durationBeforeUpdateScreen.Now();
+
+      m_durationOufOfUpdateScreen = m_durationBeforeUpdateScreen - m_durationAfterUpdateScreen;
+
+   }
+
+
+   void prodevian::profiling_on_after_update_screen()
+   {
+      
+      m_durationLastFrame.Now();
+
+      m_durationaFrame.add(m_durationLastFrame);
+
+      m_durationAfterUpdateScreen.Now();
+
+      m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
+
+      if (m_durationDuringUpdateScreen > 60_ms)
+      {
+
+         //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
+
+         //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+
+      }
+
+      m_durationDuringUpdateScreen = m_durationAfterUpdateScreen - m_durationBeforeUpdateScreen;
+
+      if (m_durationOufOfUpdateScreen > 60_ms)
+      {
+
+         //output_debug_string("It took about " + __string(m_durationDuringUpdateScreen) + " to update screen\n");
+
+         //output_debug_string("It took about " + __string(m_durationOufOfUpdateScreen) + " out of screen update\n");
+
+      }
+      
+   }
+
+   
    void prodevian::defer_prodevian_step()
    {
 

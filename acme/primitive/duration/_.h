@@ -15,7 +15,7 @@ template < typename DURATION >
 inline integral_duration < DURATION > & integral_duration < DURATION >::Now()
 { 
    
-   return operator=(::now < integral_duration >()); 
+   return this->operator=(::now < integral_duration < DURATION > >()); 
 
 }
 

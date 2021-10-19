@@ -834,7 +834,7 @@ pacmedir->create(pathDVP_Folder);
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 890_s) // 14 minutes
          {
 
             bTimeout = true;
@@ -898,7 +898,7 @@ pacmedir->create(pathDVP_Folder);
          if (process->m_exitstatus.m_iExitCode != 0 || m_pcontext->m_papexcontext->file().length(pathObjFile) < iObjFileMinimumByteCount)
          {
 
-            TRACE("Compilation FAILED: or object file is shorter than %d bytes...", iObjFileMinimumByteCount);
+            TRACE("Compilation FAILED: or object file is shorter than "<<iObjFileMinimumByteCount<<" bytes...");
 
             string_array straLog;
             straLog.add_lines(strLog);
@@ -1021,7 +1021,7 @@ pacmedir->create(pathDVP_Folder);
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 890_s) // 14 minutes
             {
 
                bTimeout = true;
@@ -1966,7 +1966,7 @@ pacmedir->create(pathDVP_Folder);
 
             sleep(100_ms);
 
-            if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+            if(tickStart.elapsed() > 890_s) // 14 minutes
             {
 
                bTimeout = true;
@@ -2113,7 +2113,7 @@ auto tickStart = ::duration::now();
 
          sleep(100_ms);
 
-         if(tickStart.elapsed() > 840 * 1000) // 14 minutes
+         if(tickStart.elapsed() > 890_s) // 14 minutes
          {
 
             bTimeout = true;

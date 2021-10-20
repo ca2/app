@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+string cxxabi_demangle (const char* name);
+
+
 namespace str
 {
    
@@ -8,9 +11,7 @@ namespace str
    string demangle(const char * name)
    {
       
-      string str(name);
-      
-      ::demangle(str);
+      auto str = ::cxxabi_demangle(name);
       
       return str;
       
@@ -28,27 +29,27 @@ critical_section * g_pcsDemangle = nullptr;
 
 #include <cxxabi.h>
 
-//string demangle (const char* name)
-//{
-//
-//   int status = -4;
-//   char* res = abi::__cxa_demangle(name, 0, 0, &status);
-//   string str;
-//   if (status == 0)
-//   {
-//      str = res;
-//
-//   }
-//   else
-//   {
-//      str = name;
-//   }
-//   if (res != nullptr)
-//   {
-//      free(res);
-//   }
-//   return str;
-//}
+string cxxabi_demangle (const char* name)
+{
+
+   int status = -4;
+   char* res = abi::__cxa_demangle(name, 0, 0, &status);
+   string str;
+   if (status == 0)
+   {
+      str = res;
+
+   }
+   else
+   {
+      str = name;
+   }
+   if (res != nullptr)
+   {
+      free(res);
+   }
+   return str;
+}
 
 #endif
 

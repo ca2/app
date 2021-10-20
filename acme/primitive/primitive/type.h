@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 //CLASS_DECL_ACME bool demangle(string & str, const char * psz);
 inline void demangle(string & str);
 #ifdef WINDOWS
@@ -39,24 +40,15 @@ inline const char * demangle_cstr(const char* psz)
 
 }
 
-#else
-
-inline const char * demangle_cstr(const char* psz)
-{
-
-    return psz;
-
-}
-
-#endif
-
-
 inline void demangle(string& str)
 {
 
    str = demangle_cstr(str);
 
 }
+
+
+#elif defined(__APPLE__)
 
 
 namespace str
@@ -67,6 +59,32 @@ namespace str
 
 
 } // namespace str
+
+
+inline void demangle(string& str)
+{
+
+   str = str::demangle(str);
+
+}
+
+
+#else
+
+
+inline const char * demangle_cstr(const char* psz)
+{
+
+    return psz;
+
+}
+
+
+#endif
+
+
+
+
 
 
 class CLASS_DECL_ACME type
@@ -124,7 +142,12 @@ public:
    {
 
       //demangle(m_strName, typeinfo.name());
-      m_strName = demangle_cstr(typeinfo.name());
+      
+      string strName = typeinfo.name();
+      
+      demangle(strName);
+      
+      m_strName = strName;
 
       return *this;
 
@@ -152,12 +175,11 @@ public:
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-//      string strName;
+      string strName = ::type(typeinfo).name();
 
-  //    demangle(strName, ::type(typeinfo).name());
+      demangle(strName);
 
-      //return m_strName == strName;
-      return m_strName == demangle_cstr(typeinfo.name());
+      return m_strName == strName;
 
    }
 

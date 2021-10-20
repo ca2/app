@@ -178,15 +178,15 @@ namespace factory
    inline __pointer(factory_interface) & get_factory()
    {
 
-      auto pszTypename = typeid(BASE_TYPE).name();
+      string strTypename = typeid(BASE_TYPE).name();
 
       //string strTypename(typeid(BASE_TYPE).name());
 
-      pszTypename = demangle_cstr(pszTypename);
+      demangle(strTypename);
 
       //return get_factory(strTypename);
 
-      return get_factory(pszTypename);
+      return get_factory(strTypename);
 
    }
 

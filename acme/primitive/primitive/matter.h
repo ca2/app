@@ -128,15 +128,9 @@ public:
    virtual void kick_idle();
 
 
-   inline const char* type_c_str() const { return typeid(*this).name(); }
-#ifdef WINDOWS
-   inline const char* type_name() const { return type_c_str() + (sizeof("class ") - 1); }
-#else
-   inline const char* type_name() const { return type_c_str(); }
-#endif
+   inline string type_name() const { return ::demangle(typeid(*this).name()); }
 
 
-   
    virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
    //::e_status destroy() override;

@@ -15,7 +15,6 @@ namespace datetime
 
 
       time_span() noexcept;
-      time_span(time_t time) noexcept;
       time_span(i64 lDays,i32 nHours,i32 nMins,i32 nSecs) noexcept;
 
 
@@ -67,11 +66,6 @@ namespace datetime
    {
    }
 
-   inline time_span::time_span(time_t time) noexcept :
-      integral_second(INTEGRAL_SECOND(time))
-   {
-
-   }
 
 
    inline time_span::time_span(i64 lDays, i32 nHours, i32 nMins, i32 nSecs) noexcept
@@ -124,12 +118,12 @@ namespace datetime
 
    inline time_span time_span::operator+(time_span span) const noexcept
    {
-      return(time_span(m_i + span.m_i));
+      return INTEGRAL_SECOND(m_i + span.m_i);
    }
 
    inline time_span time_span::operator-(time_span span) const noexcept
    {
-      return(time_span(m_i - span.m_i));
+      return INTEGRAL_SECOND(m_i - span.m_i);
    }
 
    inline time_span& time_span::operator+=(time_span span) noexcept

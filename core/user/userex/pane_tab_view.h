@@ -63,10 +63,6 @@ namespace userex
 
       ::user::tab_pane * create_tab_by_id(const ::id & id) override;
 
-      virtual void create_menu_impact(::user::impact_data * pimpactdata);
-      
-      ::e_status prepare_impact_menu(::user::menu * pmenu);
-
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
       virtual ::filemanager::document * filemanager_document();

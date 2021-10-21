@@ -4726,6 +4726,8 @@ namespace aura
       if (!estatus)
       {
 
+         ERROR("gpu_opengl do_factory_exchange has failed");
+
          return estatus;
 
       }

@@ -179,7 +179,7 @@ void matter::check_pending_releases()
       try
       {
 
-         ::output_debug_string("For " + __string(typeid(*this).name()) + "(" + string(debug_note()) + ")\n");
+         ::output_debug_string("For " + __type_name() + "(" + string(debug_note()) + ")\n");
 
       }
       catch (...)

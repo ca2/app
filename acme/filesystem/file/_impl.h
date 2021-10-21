@@ -573,13 +573,13 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
    if (p->has(e_object_factory))
    {
 
-      strText = stream.factory_id_to_text(::str::demangle(type));
+      strText = stream.factory_id_to_text(type);
 
    }
    else
    {
 
-      strText = "factoryless://" + ::str::demangle(type);
+      strText = "factoryless://" + type;
 
    }
 

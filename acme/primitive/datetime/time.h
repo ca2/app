@@ -27,8 +27,8 @@ namespace datetime
    {
    public:
 
-      
-      static time now() noexcept;
+
+      using integral_second::integral_second;
 
 
       time() noexcept;
@@ -40,6 +40,11 @@ namespace datetime
 #ifdef WINDOWS
       time(::u16 wDosDate, ::u16 wDosTime, i32 nDST = -1);
 #endif
+
+
+      static time now() noexcept;
+
+
 
 
       time& operator=(const time & time) noexcept;
@@ -159,12 +164,12 @@ namespace datetime
 
    inline time_span time::operator-(time time) const noexcept
    {
-      return(time_span(m_i - time.m_i));
+      return INTEGRAL_SECOND(m_i - time.m_i);
    }
 
    inline ::datetime::time time::operator-(time_span span) const noexcept
    {
-      return(time(m_i - span.GetTimeSpan()));
+      return INTEGRAL_SECOND(m_i - span.m_i);
    }
 
    inline ::datetime::time time::operator+(time_span span) const noexcept
@@ -205,20 +210,20 @@ namespace datetime
 
 
 
-inline CLASS_DECL_ACME ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
-{
-
-   return ::datetime::time_span(::datetime::time::now().m_i - duration.GetTimeSpan() - time.m_i);
-
-}
-
-
-inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
-{
-
-   return ::datetime::time(duration.GetTimeSpan() + time.m_i);
-
-}
+//inline CLASS_DECL_ACME ::datetime::time_span operator - (const duration & duration, const ::datetime::time & time)
+//{
+//
+//   return ::datetime::time::now() - duration.GetTimeSpan() - time;
+//
+//}
+//
+//
+//inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, const ::datetime::time & time)
+//{
+//
+//   return ::datetime::time(duration.GetTimeSpan() + time.m_i);
+//
+//}
 
 //
 //#ifdef WINDOWS

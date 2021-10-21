@@ -642,7 +642,7 @@ namespace user
    string interaction::default_id_prefix() const
    {
 
-      return string(typeid(*this).name()) + "_";
+      return type_name() + "_";
 
    }
 
@@ -2456,7 +2456,7 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            string strType = pinteraction->type_c_str();
+            string strType = pinteraction->type_name();
 
             if (strType == "auraclick::impact")
             {
@@ -2948,7 +2948,7 @@ namespace user
             if (durationElapsed > 50_ms)
             {
 
-               auto type = ::str::demangle(this->type_name());
+               auto type = type_name();
 
                if (type.contains("font_list"))
                {
@@ -2974,7 +2974,7 @@ namespace user
       catch (...)
       {
 
-         TRACE("Exception: interaction::_001DrawThis %s", typeid(*this).name());
+         TRACE("Exception: interaction::_001DrawThis %s", type_name());
 
       }
 
@@ -3293,7 +3293,7 @@ auto tickStartWithLock = ::duration::now();
                      //   //if(d1.m_i > 50)
                      //   //{
 
-                     //   //   string strType = ::str::demangle(pinteraction->type_name());
+                     //   //   string strType = pinteraction->type_name();
 
                      //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
                      //   //   {
@@ -3629,7 +3629,7 @@ return "";
 
       bool bUpdateWindow = false;
 
-      string strType(type_c_str());
+      string strType(type_name());
 
       if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
@@ -3855,7 +3855,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", typeid(*this).name());
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", type_name());
 
          }
 
@@ -3880,7 +3880,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", type_name());
 
             }
 
@@ -8120,7 +8120,7 @@ bool interaction::design_reposition()
 
    ::point_i32 pointHost;
 
-   const char* pszType = this->type_c_str();
+   const char* pszType = this->type_name();
 
    if(string(pszType).contains("list_box"))
    {
@@ -10723,7 +10723,7 @@ bool interaction::on_add_child(::user::interaction * puserinteractionChild)
 
    puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
 
-   string strType = type_c_str();
+   string strType = type_name();
 
    m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -13701,7 +13701,7 @@ order(zorderParam);
 
       __pointer(::message::show_window) pshowwindow(pmessage);
       
-//      string strType = type_c_str();
+//      string strType = type_name();
 //      
 //      if(strType.contains("main_frame"))
 //      {
@@ -15449,7 +15449,7 @@ order(zorderParam);
    void interaction::on_message_left_button_down(::message::message* pmessage)
    {
       
-      string strType = this->type_c_str();
+      string strType = this->type_name();
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -15913,7 +15913,7 @@ order(zorderParam);
       if (m_bHoverDefaultMouseHandling)
       {
 
-         if(string(type_c_str()).contains_ci("button"))
+         if(string(type_name()).contains_ci("button"))
          {
 
             //output_debug_string("button");

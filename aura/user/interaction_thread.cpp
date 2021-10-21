@@ -78,7 +78,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      string strType = ::str::demangle(m_pimpl->m_puserinteraction->type_name());
+      string strType = m_pimpl->m_puserinteraction->type_name();
 
       m_strDebugType = strType;
 
@@ -218,9 +218,9 @@ namespace user
 
 #endif
 
-      //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
+      //set_topic_text("window_thread_" + m_pimpl->m_puserinteraction->type_name()) + "> ";
 
-      ::task_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::task_set_name(m_pimpl->m_puserinteraction->type_name());
 
 #ifdef WINDOWS_DESKTOP
 
@@ -559,7 +559,7 @@ namespace user
                      if (msg.m_id == ::e_message_redraw)
                      {
 
-                        string strType = ::str::demangle(puserinteraction->type_name());
+                        string strType = puserinteraction->type_name();
 
                         if (strType.contains_ci("filemanager"))
                         {

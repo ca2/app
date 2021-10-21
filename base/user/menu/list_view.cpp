@@ -88,6 +88,14 @@ namespace user
    }
 
 
+   void tab_view::create_impact_menu(::user::impact_data * pimpactdata)
+   {
+
+      ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);
+
+   }
+
+
 } // namespace user
 
 

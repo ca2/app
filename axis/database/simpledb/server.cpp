@@ -267,7 +267,7 @@ namespace simpledb
 
       key = pclient->calc_data_key(id);
 
-      string strType = ::str::demangle(pclient->type_name());
+      string strType = pclient->type_name();
 
       if(strType.contains("filemanager::frame"))
       {
@@ -295,7 +295,7 @@ namespace simpledb
 
       key = pclient->calc_data_key(id);
 
-      string strType = ::str::demangle(pclient->type_name());
+      string strType = pclient->type_name();
 
       if(strType.contains("filemanager::frame"))
       {

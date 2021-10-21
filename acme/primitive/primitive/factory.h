@@ -12,8 +12,12 @@ namespace factory
 
 
       factory_interface();
-      virtual ~factory_interface();
+      ~factory_interface() override;
 
+
+      virtual string base_type_name() const = 0;
+
+      virtual string type_name() const = 0;
 
       virtual __pointer(::matter) call_new() = 0;
 
@@ -29,6 +33,8 @@ namespace factory
    {
    public:
 
+
+      virtual string base_type_name() const { return ::demangle(typeid(BASE_TYPE).name()); }
 
       virtual __pointer(BASE_TYPE) _call_new() = 0;
 
@@ -56,6 +62,8 @@ namespace factory
    {
    public:
 
+
+      virtual string type_name() const { return ::demangle(typeid(TYPE).name()); }
 
       virtual __pointer(BASE_TYPE) _call_new()
       {
@@ -180,11 +188,7 @@ namespace factory
 
       string strTypename = typeid(BASE_TYPE).name();
 
-      //string strTypename(typeid(BASE_TYPE).name());
-
-      demangle(strTypename);
-
-      //return get_factory(strTypename);
+      strTypename = demangle(strTypename);
 
       return get_factory(strTypename);
 
@@ -196,7 +200,7 @@ namespace factory
 
 
 template < typename TYPE, typename BASE_TYPE = TYPE >
-//inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id = ::str::demangle(typeid(BASE_TYPE).name()));
+//inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id = typeid(BASE_TYPE).name());
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id);
 
 

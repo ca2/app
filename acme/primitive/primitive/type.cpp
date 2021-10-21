@@ -4,21 +4,14 @@
 string cxxabi_demangle (const char* name);
 
 
-namespace str
+string demangle(const char * name)
 {
-   
-   
-   string demangle(const char * name)
-   {
-      
-      auto str = ::cxxabi_demangle(name);
-      
-      return str;
-      
-   }
-   
-   
-} // namespace str
+
+   auto str = ::cxxabi_demangle(name);
+
+   return str;
+
+}
 
 
 #if !defined(WINDOWS)
@@ -95,13 +88,13 @@ string cxxabi_demangle (const char* name)
 //   m_idFriendly      = info.name();
 //   m_id              = info.raw_name();
 //#elif defined(ANDROID)
-//   m_idFriendly	   = demangle(info.name());
+//   m_idFriendly	   = info.name();
 //   m_id			      = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#else
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#endif
 //
@@ -140,10 +133,10 @@ string cxxabi_demangle (const char* name)
 //   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#else
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#endif
 ////   m_pfactoryitem.release();

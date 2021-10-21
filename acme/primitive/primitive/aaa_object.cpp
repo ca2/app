@@ -1140,7 +1140,7 @@ void object::copy_from(const object & o)
 //
 //#ifdef ANDROID
 //
-//      demangle(strTypeName);
+//      strTypeName;
 //
 //#endif
 //
@@ -2161,7 +2161,7 @@ void debug_context_object(::object * pobject)
 CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 {
 
-   string strType = ::str::demangle(pusermessage->type_name());
+   string strType = pusermessage->type_name();
 
    if (strType.contains_ci("user::thread"))
    {

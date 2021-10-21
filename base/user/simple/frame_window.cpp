@@ -1029,7 +1029,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true " + type_name());
 
       //defer_set_icon();
 
@@ -1037,7 +1037,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false " + type_name());
 
    }
 

@@ -159,6 +159,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
       if(!estatus)
       {
 
+         FATAL("Failed to construct node " << estatus);
+
          return estatus;
 
       }
@@ -706,6 +708,25 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
+   ::e_status system::call_init_system()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         FATAL("system init_system has failed " << estatus);
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::init_system()
    {
 
@@ -713,6 +734,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!estatus)
       {
+
+         FATAL("node_factory_exchange has failed (status=" << estatus << ")");
 
          return estatus;
 
@@ -722,6 +745,8 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       if (!estatus)
       {
+
+         FATAL("create_os_node has failed " << estatus);
 
          return estatus;
 

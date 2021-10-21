@@ -1072,7 +1072,7 @@ void object::add_task(::object* pobjectTask)
 
    __defer_construct_new(m_pobjectaChildrenTask);
 
-   string strType = type_c_str();
+   string strType = type_name();
 
    if (strType.contains("prodevian"))
    {
@@ -1129,7 +1129,7 @@ void object::erase_task(::object* pobjectTask)
 
    }
 
-   string strType = type_c_str();
+   string strType = type_name();
 
    if (strType.contains("user::thread"))
    {
@@ -1302,7 +1302,7 @@ bool object::check_tasks_finished()
          if (ptaskChild)
          {
 
-            string strType = ptaskChild->type_c_str();
+            string strType = ptaskChild->type_name();
 
             ptaskChild->set_finish();
 
@@ -1332,7 +1332,7 @@ bool object::check_tasks_finished()
 
       //       _synchronous_lock synchronouslockChild(ptaskChild->mutex());
 
-      //       string strType = ptaskChild->type_c_str();
+      //       string strType = ptaskChild->type_name();
 
       //       if (ptaskChild->m_bTaskTerminated || !ptaskChild->m_bTaskStarted)
       //       {
@@ -2414,7 +2414,7 @@ struct context_object_test_struct :
 //CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage)
 //{
 //
-//   string strType = ::str::demangle(pusermessage->type_name());
+//   string strType = pusermessage->type_name();
 //
 //   if (strType.contains_ci("user::thread"))
 //   {

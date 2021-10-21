@@ -640,8 +640,6 @@ namespace apex
 
       INFORMATION("::apex::session::on_request(__pointer(::create)) " << type_name());
 
-      INFORMATION("::apex::session::on_request(__pointer(::create)) %s " << THIS_FRIENDLY_NAME());
-
       string strAppId = pcreate->m_strAppId;
 
       if (strAppId.has_char())

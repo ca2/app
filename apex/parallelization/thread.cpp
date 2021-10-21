@@ -3590,7 +3590,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////
 ////#ifdef ANDROID
 ////
-////      demangle(strTypeName);
+////      strTypeName;
 ////
 ////#endif
 ////

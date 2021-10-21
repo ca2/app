@@ -45,7 +45,7 @@ namespace factory
    //   if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
    //   {
 
-   //      if (p && ::str::demangle(p->type_name()) == strText)
+   //      if (p && p->type_name()) == strText
    //      {
 
    //         ::output_debug_string("loading into existing matter of same class type (1)");
@@ -64,7 +64,7 @@ namespace factory
    //            stream.set_fail_bit();
 
    //         }
-   //         else if (::str::demangle(p->type_name()) != strText)
+   //         else if (p->type_name()) != strText
    //         {
 
    //            ::output_debug_string("allocated matter type is different from streamed matter type (1.2)");
@@ -81,7 +81,7 @@ namespace factory
 
    //      auto id = stream.text_to_factory_id(strText);
 
-   //      if (p && id == ::str::demangle(p->type_name()))
+   //      if (p && id == p->type_name())
    //      {
 
    //         ::output_debug_string("loading into existing matter of same class type (2)");
@@ -98,7 +98,7 @@ namespace factory
    //            ::output_debug_string("stream::alloc_object_from_text failed (2.1)");
 
    //         }
-   //         else if (::str::demangle(p->type_name()) != id.to_string())
+   //         else if (p->type_name()) != id.to_string()
    //         {
 
    //            ::output_debug_string("allocated matter type is different from streamed matter type (2.2)");
@@ -135,6 +135,7 @@ namespace factory
 
 
 } // namespace factory
+
 
 //
 //template < typename BASE_TYPE >
@@ -685,9 +686,6 @@ namespace factory
 //
 
 
-
-
-
 inline __pointer(::factory::factory_interface) & factory_map::get_factory(const ::id & id)
 {
 
@@ -704,7 +702,7 @@ inline __pointer(::factory::factory_interface) & factory_map::get_factory()
 
    string strTypename(typeid(BASE_TYPE).name());
 
-   demangle(strTypename);
+   strTypename = ::demangle(strTypename);
 
    return get_factory(strTypename);
 
@@ -735,5 +733,6 @@ inline __pointer(::factory::factory_base < BASE_TYPE >) factory_map::create_fact
    return pfactory;
 
 }
+
 
 

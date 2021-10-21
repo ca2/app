@@ -13,10 +13,10 @@ inline bool __enum_is_failed(const ::e_status & e)
 
 
 template < class T >
-inline const char * ___pointer < T >::type_c_str()
+inline const char * ___pointer < T >::type_name()
 {
 
-   return __type_c_str(T);
+   return __type_name(T);
 
 }
 
@@ -46,7 +46,7 @@ inline type::type(const ::matter * pobject)
 
    m_strName = typeid(*(matter *)pobject).name();
 
-   demangle(m_strName);
+   m_strName;
 
 }
 
@@ -57,7 +57,7 @@ inline type::type(const __pointer(BASE) & point)
 
    m_strName = typeid(*((BASE *)point.m_p)).name();
 
-   demangle(m_strName);
+   m_strName;
 
 }
 
@@ -782,7 +782,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
 
                }
-               else if(::str::demangle(p->type_name()) != id.to_string())
+               else if(p->type_name() != id.to_string())
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
@@ -2875,6 +2875,8 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
    if (!pfactory)
    {
 
+      ERROR("object::__construct has failed to find factory for type \"" + __type_name(TYPE) + "\"");
+
       return ::error_not_implemented;
 
    }
@@ -2883,7 +2885,9 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
    
    if (!ptypeNew)
    {
-   
+
+      ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name(TYPE) + "\"");
+
       return ::error_no_memory;
    
    }
@@ -2892,7 +2896,9 @@ inline ::e_status object::__construct(__pointer(TYPE) & p)
    
    if (!p)
    {
-   
+
+      ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name(TYPE) + "\"");
+
       return ::error_wrong_type;
    
    }

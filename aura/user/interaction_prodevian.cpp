@@ -174,7 +174,7 @@ namespace user
 
       string strType;
 
-      strType = ::str::demangle(m_puserinteraction->type_name());
+      strType = m_puserinteraction->type_name();
 
       if (strType.contains("playlist"))
       {
@@ -216,7 +216,7 @@ namespace user
 
       }
 
-      string strType = ::str::demangle(m_puserinteraction->type_name());
+      string strType = m_puserinteraction->type_name();
 
       ::task_set_name("prodevian," + strType);
 
@@ -389,7 +389,7 @@ namespace user
 
       string strType;
 
-      strType = ::str::demangle(m_puserinteraction->type_name());
+      strType = m_puserinteraction->type_name();
 
       {
 
@@ -1220,7 +1220,7 @@ namespace user
       try
       {
 
-         string strType = m_puserinteraction->type_c_str();
+         string strType = m_puserinteraction->type_name();
 
          if(strType.contains_ci("list_box"))
          {

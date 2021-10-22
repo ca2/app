@@ -207,12 +207,12 @@ CLASS_DECL_ACME bool main_finalize()
 
 
 
+//
+//namespace process
+//{
 
-namespace process
-{
 
-
-   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
+   CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;
@@ -232,7 +232,7 @@ namespace process
 
 
 
-} // namespace process
+//} // namespace process
 
 //wideh * g_pwszCommandLine = nullptr;
 //

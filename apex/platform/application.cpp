@@ -1309,7 +1309,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         if(m_iErrorCode != 0)
 //////         {
 //////
-//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __string(m_iErrorCode));
+//////            dappy(type_name() + " : on_run failure : " + __string(m_iErrorCode));
 //////
 //////            ::output_debug_string("application::main on_run termination failure\n");
 //////
@@ -1329,7 +1329,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ////      catch (...)
 ////      {
 ////
-////         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+////         //dappy(type_name() + " : on_run general exception");
 ////
 ////      }
 ////
@@ -2499,7 +2499,7 @@ return false;
 
 }
 
-INFORMATION("initial_check_directrix : ok ("<< typeid(*this).name() <<")"<< m_strAppId);
+INFORMATION("initial_check_directrix : ok ("<< type_name() <<")"<< m_strAppId);
 
 return true;
 
@@ -3057,7 +3057,7 @@ m_durationHeartBeat.Now();
 if (!init1())
 {
 
-//dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
+//dappy(type_name() + " : init1 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3072,7 +3072,7 @@ m_durationHeartBeat.Now();
 if (!init2())
 {
 
-//dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
+//dappy(type_name() + " : init2 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3087,7 +3087,7 @@ m_durationHeartBeat.Now();
 if (!init3())
 {
 
-//dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
+//dappy(type_name() + " : init3 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3099,7 +3099,7 @@ psystem->install_progress_add_up(); // 4
 
 m_durationHeartBeat.Now();
 
-//dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
+//dappy(type_name() + " : init3 ok : " + __string(m_iErrorCode));
 
 try
 {
@@ -3107,7 +3107,7 @@ try
 if (!init())
 {
 
-//dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
+//dappy(type_name() + " : initialize failure : " + __string(m_iErrorCode));
 
 return false;
 

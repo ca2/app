@@ -81,7 +81,13 @@ namespace user
 
       ::user::tab_pane * create_tab_by_id(const ::id & idTab) override;
 
+      virtual void create_impact_menu(::user::impact_data * pimpactdata);
+
+      ::e_status prepare_impact_menu(::user::menu * pmenu);
+
       void _001OnShowTab(::user::tab * ptab) override;
+
+      void _on_change_cur_sel();
 
       void on_change_cur_sel() override;
 

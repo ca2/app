@@ -207,6 +207,9 @@ public:
    virtual ::e_status process_init();
 
 
+   virtual ::e_status call_init_system();
+
+
    virtual ::e_status init_system();
 
 

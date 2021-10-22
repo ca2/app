@@ -1482,7 +1482,7 @@ namespace exception
             *offset_begin++ = '\0';
             *offset_end++ = '\0';
 
-            string real_name = demangle(mangled_name);
+            string real_name = mangled_name;
 
             ansi_concatenate(_strS, "[bt]: (");
             ansi_from_u64(szN, i, 10);

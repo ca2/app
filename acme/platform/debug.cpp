@@ -309,4 +309,48 @@ string get_status_message(::e_status estatus)
 }
 
 
+template < >
+string __string(const ::enum_status & estatus)
+{
+
+   string str = "estatus=";
+
+   if(estatus == error_not_implemented)
+   {
+
+      str += "error_not_implemented";
+
+   }
+   else if(estatus == error_no_factory)
+   {
+
+      str += "error_no_factory";
+
+   }
+   else if(failed(estatus))
+   {
+
+      str += "\"failed...\"";
+
+   }
+   else if(estatus == success)
+   {
+
+      str += "success";
+
+   }
+   else if(estatus == success)
+   {
+
+      str += "\"succeeded\"";
+
+   }
+
+   str += "(" + __string((iptr)estatus) + ")";
+
+   return str;
+
+}
+
+
 

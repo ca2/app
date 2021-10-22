@@ -134,6 +134,14 @@ namespace windowing
                return;
 
             }
+            
+            
+            if(pmessage->m_id==e_message_vscroll)
+            {
+               
+               ::output_debug_string("vscroll");
+            
+            }
 
          }
          

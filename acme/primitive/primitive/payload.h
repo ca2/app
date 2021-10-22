@@ -238,7 +238,7 @@ public:
    void set_pointer(const __pointer(T) & p)
    {
 
-      operator[](__type_str(T)) = p;
+      operator[](__type_name(T)) = p;
 
    }
 
@@ -246,7 +246,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(__type_str(T));
+      return has_property(__type_name(T));
 
    }
 
@@ -254,7 +254,7 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(__type_str(T));
+      return find_property(__type_name(T));
 
    }
 

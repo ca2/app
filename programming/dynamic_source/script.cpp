@@ -549,7 +549,7 @@ namespace dynamic_source
          else
          {
 
-            TRACE("Retry(%d): %s\nError: %s\n", iRetry, m_strName.c_str(), str.c_str());
+            TRACE("Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str());
 
          }
 

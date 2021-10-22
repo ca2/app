@@ -694,7 +694,7 @@ enum_trace_category matter::trace_category(const ::matter * pobject) const
 const char * matter::topic_text() const
 {
 
-   return typeid(*this).name();
+   return type_name();
 
 }
 
@@ -773,7 +773,7 @@ const char * matter::topic_text() const
 strsize matter::sz_len() const
 {
 
-   return strlen(typeid(*this).name());
+   return strlen(type_name());
 
 }
 
@@ -781,7 +781,7 @@ strsize matter::sz_len() const
 void matter::to_sz(char * sz, strsize len) const
 {
 
-   strncpy(sz, typeid(*this).name(), len);
+   strncpy(sz, type_name(), len);
 
 }
 
@@ -930,7 +930,7 @@ stream& matter::read(stream& s)
 //void matter::to_string(const class string_exchange & str) const
 //{
 //
-//   str = type_c_str();
+//   str = type_name();
 //
 //}
 //

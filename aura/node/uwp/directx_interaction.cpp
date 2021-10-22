@@ -62,7 +62,7 @@ namespace universal_windows
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", type_name());
 
             }
 

@@ -3828,6 +3828,22 @@ namespace user
 
    bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, const ::point_i32 & point, lresult * plresult)
    {
+      
+      if(id == e_message_post_user)
+      {
+         if(wparam==1)
+         {
+            auto pmatter = (::matter *) lparam.m_lparam;
+            __pointer(::message::message) pmessage(e_move_transfer, pmatter);
+            if(pmessage)
+            {
+               message_handler(pmessage);
+               return true;
+            }
+         }
+         
+         
+      }
 
       auto pmessage = get_message(id, wparam, lparam);
 

@@ -133,6 +133,10 @@ namespace core
 
       create_factory < simple_pane_document >();
 
+      create_factory < ::simple_toolbar, ::user::toolbar >();
+      
+      
+      create_factory < ::simple_toolbar >();
 
       //if (!create_user_shell())
       //{

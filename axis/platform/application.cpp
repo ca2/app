@@ -276,7 +276,7 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __string(m_iErrorCode));
+////            dappy(type_name() + " : on_run failure : " + __string(m_iErrorCode));
 ////
 ////            ::output_debug_string("application::main on_run termination failure\n");
 ////
@@ -296,7 +296,7 @@ namespace axis
 //      catch (...)
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+//         //dappy(type_name() + " : on_run general exception");
 //
 //      }
 //
@@ -966,7 +966,7 @@ namespace axis
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(type_name() + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -981,7 +981,7 @@ namespace axis
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(type_name() + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -996,7 +996,7 @@ namespace axis
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(type_name() + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1008,7 +1008,7 @@ namespace axis
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(type_name() + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1016,7 +1016,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(type_name() + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //

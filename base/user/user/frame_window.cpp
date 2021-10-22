@@ -1676,7 +1676,7 @@ namespace user
       if(bCreate && toolbartransport.not_initialized())
       {
 
-         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, type);
+         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
 
          if(toolbartransport)
          {

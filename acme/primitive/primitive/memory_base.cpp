@@ -2312,7 +2312,7 @@ CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcon
 //const char * matter::type_name() const
 //{
 //
-//   return typeid(*this).name();
+//   return type_name();
 //
 //}
 

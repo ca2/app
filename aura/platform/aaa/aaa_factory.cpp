@@ -3,7 +3,7 @@
 #ifdef WINDOWS
 
 
-bool demangle(string& str, const ::string & pszType)
+bool string& str, const ::string & pszType
 {
 
    str = pszType;
@@ -24,7 +24,7 @@ bool demangle(string& str, const ::string & pszType)
 }
 
 
-bool demangle(string& str)
+bool string& str
 {
 
    if (!str::begins_eat_ci(str, "class "))
@@ -79,7 +79,7 @@ bool demangle (string & str, const ::string & pszType)
 bool demangle (string & str)
 {
 
-   return demangle(str, str.c_str());
+   return str, str.c_str();
 
 }
 

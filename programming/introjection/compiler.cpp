@@ -440,7 +440,7 @@ namespace introjection
       bResult = setenv("PATH",str,true);
 #endif
 
-      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d",bResult);
+      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
 
 
    }

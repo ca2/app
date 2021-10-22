@@ -141,6 +141,9 @@ public:
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }
 
+   inline double period_rate(const class ::duration & durationPeriod, const class ::duration & duration = now()) const { return ((duration - *this) % durationPeriod) / durationPeriod; }
+
+   
    //inline class ::duration operator - (const class ::duration & duration) const { return { e_normalize, m_iSecond - duration.m_iSecond, m_iNanosecond - duration.m_iNanosecond }; }
    //inline class ::duration operator + (const class ::duration & duration) const { return { e_normalize, m_iSecond + duration.m_iSecond, m_iNanosecond + duration.m_iNanosecond }; }
    inline class ::duration & operator -= (const class ::duration & duration) { m_iSecond -= duration.m_iSecond; m_iNanosecond -= duration.m_iNanosecond; normalize();  return *this; }
@@ -242,7 +245,13 @@ public:
    inline ::duration remaining(const duration & duration, const ::duration & durationNow = e_now);
 
 
+
+
    operator class ::wait() const;
+
+
+
+
    
    
    operator INTEGRAL_DAY () const { return integral_day(); }
@@ -260,6 +269,12 @@ public:
    operator FLOATING_MILLISECOND () const { return floating_millisecond(); }
    operator FLOATING_MICROSECOND () const { return floating_microsecond(); }
    operator FLOATING_NANOSECOND () const { return floating_nanosecond(); }
+
+
+
+
+
+
 
 
    ::integral_day integral_day() const { return INTEGRAL_DAY(m_iSecond / 86'400); }
@@ -283,12 +298,39 @@ public:
    ::i32 millisecond() const { return integral_millisecond().m_i % 1'000; }
 
 
+
+
+
+
+
+
+
+
    inline bool operator == (const class ::duration & duration) const { return m_iSecond == duration.m_iSecond && m_iNanosecond == duration.m_iSecond; }
    inline bool operator != (const class ::duration & duration) const { return !operator ==(duration); }
    inline bool operator < (const class ::duration & duration) const { return m_iSecond < duration.m_iSecond || (m_iSecond == duration.m_iSecond && m_iNanosecond < duration.m_iNanosecond); }
    inline bool operator <= (const class ::duration & duration) const { return m_iSecond < duration.m_iSecond || (m_iSecond == duration.m_iSecond && m_iNanosecond <= duration.m_iNanosecond); }
    inline bool operator > (const class ::duration & duration) const { return !operator <=(duration); }
    inline bool operator >= (const class ::duration & duration) const { return !operator <=(duration); }
+
+
+   duration operator %(const ::duration & duration) const;
+   double operator /(const ::duration & duration) const;
+   duration operator +(const ::duration & duration) const { return { e_normalize, this->m_iSecond + duration.m_iSecond, this->m_iNanosecond + duration.m_iNanosecond }; }
+   duration operator -(const ::duration & duration) const { return { e_normalize, this->m_iSecond - duration.m_iSecond, this->m_iNanosecond - duration.m_iNanosecond }; }
+
+
+   duration operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond }; }
+
+
+
+
+
+
+
+
+
+
 
    inline bool operator == (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator == (::duration(integralnanosecond)); }
    inline bool operator != (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator != (::duration(integralnanosecond)); }
@@ -340,19 +382,157 @@ public:
    inline bool operator >= (const ::INTEGRAL_DAY & day) const { return operator >= (::duration(day)); }
 
 
-   duration operator %(const ::duration & duration) const;
-   double operator /(const ::duration & duration) const;
-   //integral_duration operator *(const ::duration & duration) const { return BASE_TYPE(this->m_i * duration.m_i); }
-   duration operator +(const ::duration & duration) const { return { e_normalize, this->m_iSecond + duration.m_iSecond, this->m_iNanosecond + duration.m_iNanosecond }; }
-   duration operator -(const ::duration & duration) const { return { e_normalize, this->m_iSecond - duration.m_iSecond, this->m_iNanosecond - duration.m_iNanosecond }; }
 
-   duration operator -() const { return { e_raw, -m_iSecond, -m_iNanosecond }; }
 
-   duration operator %(const ::INTEGRAL_NANOSECOND & integral) const { return operator %(::duration(integral)); }
-   double operator /(const ::INTEGRAL_NANOSECOND & integral) const { return operator /(::duration(integral)); }
-   //integral_duration operator *(const ::INTEGRAL_NANOSECOND & integral) const { return BASE_TYPE(this->m_i * duration.m_i); }
-   duration operator +(const ::INTEGRAL_NANOSECOND & integral) const { return operator +(::duration(integral)); }
-   duration operator -(const ::INTEGRAL_NANOSECOND & integral) const { return operator -(::duration(integral)); }
+
+
+
+
+   inline bool operator == (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator == (::duration(floatingnanosecond)); }
+   inline bool operator != (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator != (::duration(floatingnanosecond)); }
+   inline bool operator < (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator < (::duration(floatingnanosecond)); }
+   inline bool operator <= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator <= (::duration(floatingnanosecond)); }
+   inline bool operator > (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator > (::duration(floatingnanosecond)); }
+   inline bool operator >= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator >= (::duration(floatingnanosecond)); }
+
+   inline bool operator == (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator == (::duration(floatingmicrosecond)); }
+   inline bool operator != (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator != (::duration(floatingmicrosecond)); }
+   inline bool operator < (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator < (::duration(floatingmicrosecond)); }
+   inline bool operator <= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator <= (::duration(floatingmicrosecond)); }
+   inline bool operator > (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator > (::duration(floatingmicrosecond)); }
+   inline bool operator >= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator >= (::duration(floatingmicrosecond)); }
+
+   inline bool operator == (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator == (::duration(floatingmillisecond)); }
+   inline bool operator != (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator != (::duration(floatingmillisecond)); }
+   inline bool operator < (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator < (::duration(floatingmillisecond)); }
+   inline bool operator <= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator <= (::duration(floatingmillisecond)); }
+   inline bool operator > (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator > (::duration(floatingmillisecond)); }
+   inline bool operator >= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator >= (::duration(floatingmillisecond)); }
+
+   inline bool operator == (const ::FLOATING_SECOND & floatingsecond) const { return operator == (::duration(floatingsecond)); }
+   inline bool operator != (const ::FLOATING_SECOND & floatingsecond) const { return operator != (::duration(floatingsecond)); }
+   inline bool operator < (const ::FLOATING_SECOND & floatingsecond) const { return operator < (::duration(floatingsecond)); }
+   inline bool operator <= (const ::FLOATING_SECOND & floatingsecond) const { return operator <= (::duration(floatingsecond)); }
+   inline bool operator > (const ::FLOATING_SECOND & floatingsecond) const { return operator > (::duration(floatingsecond)); }
+   inline bool operator >= (const ::FLOATING_SECOND & floatingsecond) const { return operator >= (::duration(floatingsecond)); }
+
+   inline bool operator == (const ::FLOATING_MINUTE & minute) const { return operator == (::duration(minute)); }
+   inline bool operator != (const ::FLOATING_MINUTE & minute) const { return operator != (::duration(minute)); }
+   inline bool operator < (const ::FLOATING_MINUTE & minute) const { return operator < (::duration(minute)); }
+   inline bool operator <= (const ::FLOATING_MINUTE & minute) const { return operator <= (::duration(minute)); }
+   inline bool operator > (const ::FLOATING_MINUTE & minute) const { return operator > (::duration(minute)); }
+   inline bool operator >= (const ::FLOATING_MINUTE & minute) const { return operator >= (::duration(minute)); }
+
+   inline bool operator == (const ::FLOATING_HOUR & day) const { return operator == (::duration(day)); }
+   inline bool operator != (const ::FLOATING_HOUR & day) const { return operator != (::duration(day)); }
+   inline bool operator < (const ::FLOATING_HOUR & day) const { return operator < (::duration(day)); }
+   inline bool operator <= (const ::FLOATING_HOUR & day) const { return operator <= (::duration(day)); }
+   inline bool operator > (const ::FLOATING_HOUR & day) const { return operator > (::duration(day)); }
+   inline bool operator >= (const ::FLOATING_HOUR & day) const { return operator >= (::duration(day)); }
+
+   inline bool operator == (const ::FLOATING_DAY & day) const { return operator == (::duration(day)); }
+   inline bool operator != (const ::FLOATING_DAY & day) const { return operator != (::duration(day)); }
+   inline bool operator < (const ::FLOATING_DAY & day) const { return operator < (::duration(day)); }
+   inline bool operator <= (const ::FLOATING_DAY & day) const { return operator <= (::duration(day)); }
+   inline bool operator > (const ::FLOATING_DAY & day) const { return operator > (::duration(day)); }
+   inline bool operator >= (const ::FLOATING_DAY & day) const { return operator >= (::duration(day)); }
+
+
+
+
+
+
+
+
+   duration operator %(const ::INTEGRAL_NANOSECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_NANOSECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_NANOSECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_NANOSECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_MICROSECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_MICROSECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_MICROSECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_MICROSECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_MILLISECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_MILLISECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_MILLISECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_MILLISECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_SECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_SECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_SECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_SECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_MINUTE & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_MINUTE & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_MINUTE & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_MINUTE & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_HOUR & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_HOUR & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_HOUR & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_HOUR & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::INTEGRAL_DAY & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::INTEGRAL_DAY & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::INTEGRAL_DAY & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::INTEGRAL_DAY & duration) const { return *this - ::duration(duration); }
+
+
+
+
+
+
+
+
+
+   duration operator %(const ::FLOATING_NANOSECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_NANOSECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_NANOSECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_NANOSECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_MICROSECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_MICROSECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_MICROSECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_MICROSECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_MILLISECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_MILLISECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_MILLISECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_MILLISECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_SECOND & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_SECOND & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_SECOND & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_SECOND & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_MINUTE & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_MINUTE & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_MINUTE & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_MINUTE & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_HOUR & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_HOUR & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_HOUR & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_HOUR & duration) const { return *this - ::duration(duration); }
+
+
+   duration operator %(const ::FLOATING_DAY & duration) const { return *this % ::duration(duration);}
+   double operator /(const ::FLOATING_DAY & duration) const { return *this / ::duration(duration);}
+   duration operator +(const ::FLOATING_DAY & duration) const { return *this + ::duration(duration); }
+   duration operator -(const ::FLOATING_DAY & duration) const { return *this - ::duration(duration); }
 
 
 };
@@ -377,6 +557,12 @@ inline duration::duration(enum_normalize, INTEGRAL1 iSeconds, INTEGRAL2 iNanosec
    m_iSecond = iSeconds + iNanoseconds / 1'000'000'000;
 
    m_iNanosecond = iNanoseconds % 1'000'000'000;
+   
+   if(m_iNanosecond < 0)
+   {
+      m_iSecond--;
+      m_iNanosecond += 1'000'000'000;
+   }
 
 }
 

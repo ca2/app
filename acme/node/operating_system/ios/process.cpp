@@ -238,16 +238,16 @@ CLASS_DECL_ACME ::file::path core_app_path(string strApp)
 }
 
 
-namespace process
-{
+//namespace process
+//{
 
 
-   CLASS_DECL_ACME bool set_priority(::enum_priority epriority)
+   CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority)
    {
 
       return true;
 
    }
 
-
-} // namespace process
+//
+//} // namespace process

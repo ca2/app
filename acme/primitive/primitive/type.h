@@ -1,72 +1,7 @@
 #pragma once
 
 
-//CLASS_DECL_ACME bool demangle(string & str, const char * psz);
-inline void demangle(string & str);
-#ifdef WINDOWS
-inline const char * demangle_cstr(const char* psz)
-{
-
-   if (psz[0] == 'c' &&
-      psz[1] == 'l' &&
-      psz[2] == 'a' &&
-      psz[3] == 's' &&
-      psz[4] == 's' &&
-      psz[5] == ' ')
-   {
-
-      return psz + 6;
-
-   }
-   else if (psz[0] == 's' &&
-      psz[1] == 't' &&
-      psz[2] == 'r' &&
-      psz[3] == 'u' &&
-      psz[4] == 'c' &&
-      psz[5] == 't' &&
-      psz[6] == ' ')
-   {
-
-      return psz + 7;
-
-   }
-   else
-   {
-
-      return psz;
-
-   }
-
-}
-
-#else
-
-inline const char * demangle_cstr(const char* psz)
-{
-
-    return psz;
-
-}
-
-#endif
-
-
-inline void demangle(string& str)
-{
-
-   str = demangle_cstr(str);
-
-}
-
-
-namespace str
-{
-
-
-   CLASS_DECL_ACME string demangle(const char * psz);
-
-
-} // namespace str
+CLASS_DECL_ACME string demangle(const char * psz);
 
 
 class CLASS_DECL_ACME type
@@ -87,8 +22,6 @@ public:
       m_strName(pszTypeName)
    {
       
-      demangle(m_strName);
-
    }
 
 
@@ -123,8 +56,11 @@ public:
    type & operator = (const ::std::type_info & typeinfo)
    {
 
-      //demangle(m_strName, typeinfo.name());
-      m_strName = demangle_cstr(typeinfo.name());
+      string strName = typeinfo.name();
+      
+      strName = demangle(strName);
+      
+      m_strName = strName;
 
       return *this;
 
@@ -152,12 +88,11 @@ public:
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-//      string strName;
+      string strName = ::type(typeinfo).name();
 
-  //    demangle(strName, ::type(typeinfo).name());
+      strName = demangle(strName);
 
-      //return m_strName == strName;
-      return m_strName == demangle_cstr(typeinfo.name());
+      return m_strName == strName;
 
    }
 
@@ -211,10 +146,7 @@ public:
 
    }
 
-   //inline __pointer(matter) alloc(::matter * pobject) const;
-
    inline operator bool() const { return m_strName.has_char(); }
-
 
    inline operator const char * () const { return m_strName; }
 
@@ -226,34 +158,6 @@ public:
 };
 
 
-inline CLASS_DECL_ACME string get_demangle(const char * lpszName)
-{
-
-   string str(lpszName);
-
-   demangle(str);
-
-   return str;
-
-}
-
-
-template < typename T >
-inline string friendly_this_name(T const * pthis)
-{
-
-   string str = typeid(*pthis).name();
-
-   demangle(str);
-
-   return str;
-
-}
-
-
-#define THIS_FRIENDLY_NAME() friendly_this_name(this)
-
-
 template < typename TYPE >
 ::type ___type()
 {
@@ -263,5 +167,7 @@ template < typename TYPE >
 }
 
 
-
 #define __type(TYPE)  ___type<TYPE>()
+
+
+

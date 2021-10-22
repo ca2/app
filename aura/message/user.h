@@ -41,7 +41,7 @@ namespace message
 
       ::user::system * get_user_create();
 
-      ::matter * get_impact_data();
+      ::element * get_impact_data();
 
 
    };
@@ -365,39 +365,24 @@ namespace message
 
 
       notify() { }
-      //
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      LPNMHDR get_lpnmhdr();
-      //
-      //#endif
+
 
       i32 get_ctrl_id();
 
+
    };
-
-   // use ::user::message
-   //class CLASS_DECL_AURA command : public ::user::message
-   //{
-   //public:
-
-
-   //   command() { }
-
-
-
-
-   //};
 
 
    class CLASS_DECL_AURA object : public ::user::message
    {
    public:
 
-      __pointer(::matter)     m_pmatter;
+
+      __pointer(::element)       m_pelement;
+
 
       object();
-       virtual ~object();
+      ~object() override;
 
 
       virtual void set(oswindow oswindow, ::windowing::window * pwindow, const ::id & id, wparam wparam, ::lparam lparam) override;
@@ -405,7 +390,8 @@ namespace message
 
    };
 
-      class CLASS_DECL_AURA ctl_color : public ::user::message
+
+   class CLASS_DECL_AURA ctl_color : public ::user::message
    {
    public:
 

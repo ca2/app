@@ -227,7 +227,7 @@ var_stream::~var_stream()
 //
 //   var_stream stream(new ::payload(&payload()[id].propset()));
 //
-//   ::id idType = pobject->type_name();
+//   ::id idType = __type_name(pobject);
 //
 //   string strId = stream.factory_id_to_text(idType);
 //

@@ -23,22 +23,22 @@ payload::payload(const char * psz)
 }
 
 
-payload::payload(::matter * pmatter)
+payload::payload(::element * pelement)
 {
 
    m_etype = e_type_new;
 
-   operator = (pmatter);
+   operator = (pelement);
 
 }
 
 
-payload::payload(const ::matter & matter)
+payload::payload(const ::element & element)
 {
 
    m_etype = e_type_new;
 
-   operator = (matter);
+   operator = (element);
 
 }
 
@@ -304,9 +304,9 @@ payload::payload(const ::routine & routine)
 
     set_type(e_type_routine, false);
 
-    m_pmatterRoutine = routine.m_p;
+    m_pelementRoutine = routine.m_p;
     
-    ::increment_reference_count(m_pmatterRoutine);
+    ::increment_reference_count(m_pelementRoutine);
 
 }
 
@@ -1632,7 +1632,7 @@ bool payload::is_empty() const
       return m_pid->is_empty();
 
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -2219,7 +2219,7 @@ string payload::string(const char * pszOnNull) const
       else if (is_element_set())
       {
          
-         str = __string(*matter());
+         str = __string(*element());
 
       }
 
@@ -2822,7 +2822,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return m_pmatterRoutine;
+   return m_pelementRoutine;
 
 }
 
@@ -6851,11 +6851,11 @@ bool payload::is_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-         return ::is_null(m_pmatterRoutine);
+         return ::is_null(m_pelementRoutine);
    //case e_type_process:
      //    return !m_process;
 
-   // matter classes
+   // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7037,11 +7037,11 @@ bool payload::is_set_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-      return ::is_null(m_pmatterRoutine);
+      return ::is_null(m_pelementRoutine);
    //case type_process:
    //   return !m_process;
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7200,10 +7200,10 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::matter & o)
+::payload & payload::operator = (const ::element & o)
 {
 
-   _set_element((::matter *) &o);
+   _set_element((::element *) &o);
 
    return *this;
 
@@ -7514,9 +7514,9 @@ void payload::receive_response(const ::payload & payload)
 
    set_type(e_type_routine, false);
 
-   m_pmatterRoutine = routine.m_p;
+   m_pelementRoutine = routine.m_p;
 
-   ::increment_reference_count(m_pmatterRoutine);
+   ::increment_reference_count(m_pelementRoutine);
 
    return *this;
 

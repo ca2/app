@@ -143,7 +143,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!is(e_flag_destroying) && !is_finishing())
+            if (!has(e_flag_destroying) && !is_finishing())
             {
 
                update_screen();
@@ -174,7 +174,7 @@ namespace user
 
       string strType;
 
-      strType = m_puserinteraction->type_name();
+      strType = __type_name(m_puserinteraction);
 
       if (strType.contains("playlist"))
       {
@@ -216,7 +216,7 @@ namespace user
 
       }
 
-      string strType = m_puserinteraction->type_name();
+      string strType = __type_name(m_puserinteraction);
 
       ::task_set_name("prodevian," + strType);
 
@@ -389,7 +389,7 @@ namespace user
 
       string strType;
 
-      strType = m_puserinteraction->type_name();
+      strType = __type_name(m_puserinteraction);
 
       {
 
@@ -1145,9 +1145,9 @@ namespace user
 
          }
 
-         if (m_puserinteraction->is(e_flag_destroying)
+         if (m_puserinteraction->has(e_flag_destroying)
             || m_puserinteraction->is_finishing()
-            || m_pimpl->is(e_flag_destroying)
+            || m_pimpl->has(e_flag_destroying)
             || m_pimpl->is_finishing())
          {
 
@@ -1220,7 +1220,7 @@ namespace user
       try
       {
 
-         string strType = m_puserinteraction->type_name();
+         string strType = __type_name(m_puserinteraction);
 
          if(strType.contains_ci("list_box"))
          {

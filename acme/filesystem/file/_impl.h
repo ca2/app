@@ -568,7 +568,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
    string strText;
 
-   auto type = p->type_name();
+   auto type = __type_name(p);
 
    if (p->has(e_object_factory))
    {

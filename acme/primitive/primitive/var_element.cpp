@@ -34,10 +34,10 @@ payload.P = dynamic_cast < TYPE * >(pobject); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(::payload & payload, ::matter * pmatter)
+enum_type set_element(::payload & payload, ::element * pelement)
 {
 
-   if (::is_null(pmatter))
+   if (::is_null(pelement))
    {
 
       payload.m_p = nullptr;
@@ -48,33 +48,33 @@ enum_type set_element(::payload & payload, ::matter * pmatter)
    else
    {
 
-      payload.m_etype = pmatter->get_payload_type();
+      payload.m_etype = pelement->get_payload_type();
 
       switch (payload.m_etype)
       {
       case ::e_type_string_array:
-         payload.m_pstra = dynamic_cast <::string_array*>(pmatter);
+         payload.m_pstra = dynamic_cast <::string_array*>(pelement);
          break;
       case ::e_type_i32_array:
-         payload.m_pia = dynamic_cast <::int_array*>(pmatter);
+         payload.m_pia = dynamic_cast <::int_array*>(pelement);
          break;
       case ::e_type_payload_array:
-         payload.m_ppayloada = dynamic_cast <payload_array*>(pmatter);
+         payload.m_ppayloada = dynamic_cast <payload_array*>(pelement);
          break;
       case ::e_type_property_set:
-         payload.m_ppropertyset = dynamic_cast <::property_set*>(pmatter);
+         payload.m_ppropertyset = dynamic_cast <::property_set*>(pelement);
          break;
       case ::e_type_i64_array:
-         payload.m_pi64a = dynamic_cast <::i64_array*>(pmatter);
+         payload.m_pi64a = dynamic_cast <::i64_array*>(pelement);
          break;
       case ::e_type_memory:
-         payload.m_pmemory = dynamic_cast <::memory*>(pmatter);
+         payload.m_pmemory = dynamic_cast <::memory*>(pelement);
          break;
       case ::e_type_path:
-         payload.m_ppath = dynamic_cast <::file::path_object*>(pmatter);
+         payload.m_ppath = dynamic_cast <::file::path_object*>(pelement);
          break;
       default:
-         payload.m_p = pmatter;
+         payload.m_p = pelement;
       }
 
    }
@@ -84,26 +84,26 @@ enum_type set_element(::payload & payload, ::matter * pmatter)
 }
 
 
-void payload::_set_matter(::matter * pmatter)
+//void payload::_set_matter(::matter * pmatter)
+//{
+//
+//   set_type(e_type_element, false);
+//
+//   m_p = pmatter;
+//
+//   ::increment_reference_count(pmatter);
+//
+//}
+
+
+void payload::_set_element(::element * pelement)
 {
 
-   set_type(e_type_element, false);
-
-   m_p = pmatter;
-
-   ::increment_reference_count(pmatter);
-
-}
-
-
-void payload::_set_element(::matter* pmatter)
-{
-
-   ::increment_reference_count(pmatter);
+   ::increment_reference_count(pelement);
 
    release();
 
-   ::set_element(*this, pmatter);
+   ::set_element(*this, pelement);
 
 }
 
@@ -151,7 +151,7 @@ void payload::_set_element(::matter* pmatter)
          case e_type_path:
             return ::release(m_ppath);
          case e_type_routine:
-            return ::release(m_pmatterRoutine);
+            return ::release(m_pelementRoutine);
          default:
             return -1;
          };

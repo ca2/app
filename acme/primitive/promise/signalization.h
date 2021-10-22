@@ -14,18 +14,18 @@ namespace promise
       public:
 
 
-      manual_reset_event         m_evReady;
-      __pointer(::matter)        m_pmatterHold;
+      manual_reset_event               m_evReady;
+      __pointer(::element)        m_pelementHold;
 
 
    //synchronization(PRED pred) : m_predicate(pred) {}
 
 #ifdef _DEBUG
       signalization();
-      virtual ~signalization();
+      ~signalization() override;
 #else
       signalization() {}
-      virtual ~signalization() {}
+      ~signalization() override {}
 #endif
 
    //

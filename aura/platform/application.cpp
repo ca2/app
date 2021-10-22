@@ -1772,8 +1772,7 @@ retry_license:
 
       }
 
-      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", type_name(), m_strAppId.c_str());
-
+      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", __type_name(this), m_strAppId.c_str());
 
       return true;
 
@@ -1919,7 +1918,7 @@ retry_license:
 //      if (!init1())
 //      {
 //
-//         //dappy(type_name() + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1934,7 +1933,7 @@ retry_license:
 //      if (!init2())
 //      {
 //
-//         //dappy(type_name() + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1949,7 +1948,7 @@ retry_license:
 //      if (!init3())
 //      {
 //
-//         //dappy(type_name() + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1961,7 +1960,7 @@ retry_license:
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(type_name() + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1969,7 +1968,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(type_name() + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -3800,7 +3799,7 @@ retry_license:
 
          }
 
-         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << type_name());
+         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this));
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3858,7 +3857,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<type_name());
+            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this));
 
          }
 
@@ -3872,7 +3871,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<type_name());
+            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this));
 
          }
 
@@ -4818,7 +4817,7 @@ retry_license:
    //   try
    //   {
 
-   //      string strType = type_name();
+   //      string strType = __type_name(this);
 
    //      //if(::is_set(m_psystem))
    //      //{

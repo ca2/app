@@ -665,7 +665,7 @@ namespace user
 
       //   bool bFirst = true;
 
-      //   string strType = type_name();
+      //   string strType = __type_name(this);
 
       //   if (strType.contains_ci("control_box"))
       //   {

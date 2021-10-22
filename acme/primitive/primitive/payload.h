@@ -106,7 +106,7 @@ public:
       ::color::hls               m_hls;
 
 
-      ::matter * m_p;
+      ::element * m_p;
       ::string_array * m_pstra;
       ::int_array * m_pia;
       ::payload_array * m_ppayloada;
@@ -114,7 +114,7 @@ public:
       ::i64_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
-      ::matter * m_pmatterRoutine;
+      ::element * m_pelementRoutine;
       ::i64                      m_all[2];
       ::string                     m_str;
 
@@ -144,7 +144,7 @@ public:
    payload(::string * pstr);
    payload(::payload * ppayload);
    payload(::property * pproperty);
-   payload(::matter * pobject);
+   payload(::element * pobject);
    payload(::duration * pduration);
    payload(const char * psz);
    payload(const ::string & str);
@@ -153,7 +153,7 @@ public:
    payload(const ::datetime::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
-   payload(const ::matter & matter);
+   payload(const ::element & element);
    payload(const ::file::path & path);
    payload(const ::string_array & payload);
    payload(const ::int_array & payload);
@@ -238,7 +238,7 @@ public:
    void set_pointer(const __pointer(T) & p)
    {
 
-      operator[](__type_name(T)) = p;
+      operator[](__type_name < T >()) = p;
 
    }
 
@@ -246,7 +246,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(__type_name(T));
+      return has_property(__type_name < T >());
 
    }
 
@@ -254,7 +254,7 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(__type_name(T));
+      return find_property(__type_name < T >());
 
    }
 
@@ -265,8 +265,7 @@ public:
 
    ::i64 release();
 
-   void _set_matter(::matter * pmatter);
-   void _set_element(::matter * pmatter);
+   void _set_element(::element * pelement);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
@@ -541,10 +540,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::matter * pmatter)
+   inline payload & operator = (::element * pelement)
    {
 
-      _set_element(pmatter);
+      _set_element(pelement);
 
       return *this;
 
@@ -585,7 +584,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   payload & operator = (const ::matter & o);
+   payload & operator = (const ::element & o);
 
    inline payload & operator = (const ::file::path & path)
    {
@@ -770,13 +769,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < class T >
    __pointer(T) cast();
 
-   ::matter * matter()
+   ::element * element()
    {
       if (m_etype == e_type_element) { return m_p; }
-      return cast < ::matter >();
+      return cast < ::element >();
    }
 
-   ::matter * matter() const { return ((payload *)this)->matter(); }
+   ::element * element() const { return ((payload *)this)->element(); }
 
    template < class T >
    T * cast() const
@@ -1465,15 +1464,15 @@ inline void payload::set_string(const ::string & str)
 
 
 
-
 class CLASS_DECL_ACME payload_object :
-   virtual public matter
+   virtual public element
 {
 public:
 
    payload m_payload;
 
 };
+
 
 
 class CLASS_DECL_ACME pack :

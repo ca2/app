@@ -638,7 +638,7 @@ namespace apex
 
       }
 
-      INFORMATION("::apex::session::on_request(__pointer(::create)) " << type_name());
+      INFORMATION("::apex::session::on_request(__pointer(::create)) " << __type_name(this));
 
       string strAppId = pcreate->m_strAppId;
 

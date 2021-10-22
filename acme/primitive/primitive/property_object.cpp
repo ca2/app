@@ -720,7 +720,7 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 //void property_object::to_string(const class string_exchange & str) const
 //{
 //
-//   str = type_name();
+//   str = __type_name(this);
 //
 //}
 

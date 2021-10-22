@@ -2309,10 +2309,10 @@ CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcon
 
 
 
-//const char * matter::type_name() const
+//const char * matter::__type_name(this) const
 //{
 //
-//   return type_name();
+//   return __type_name(this);
 //
 //}
 

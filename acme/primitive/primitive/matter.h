@@ -76,9 +76,6 @@ public:
 #endif
 
 
-   virtual ::enum_type get_payload_type() const;
-
-
    virtual ::e_status initialize_matter(::matter* pmatter);
 
 
@@ -101,7 +98,6 @@ public:
 
    //::e_status branch();
 
-   virtual DURATION timeout() const;
 
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
@@ -123,9 +119,6 @@ public:
 
 
    virtual void kick_idle();
-
-
-   inline string type_name() const { return ::demangle(typeid(*this).name()); }
 
 
    virtual ::e_status initialize(::object * pobject);
@@ -151,22 +144,17 @@ public:
    virtual ::e_status osthread_term();
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-
-   virtual ::e_status release_composite2(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//
+//
+//   virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
    virtual ::e_status set_generic_object_name(const char* pszName);
 
-
-   virtual ::matter * get_taskpool_container();
-
-
-   virtual ::task_pool * taskpool();
 
 
    //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
@@ -176,17 +164,20 @@ public:
 
 
    virtual const char* debug_note() const;
-   virtual ::matter * clone() const;
+   virtual ::element * clone() const;
 
 
-
-
-   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
-   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
-   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+   using element::has;
+   using element::set;
+   using element::clear;
 
 
    inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
+   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
+   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
+
+
    inline ::u64 get_object_flag() { return m_eobject; }
 
 
@@ -218,7 +209,6 @@ public:
    // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual     ::e_status     destroy()     ;
    virtual ::e_status destroy_composites();
 
 
@@ -241,19 +231,9 @@ public:
    inline bool is_persistent() { return has(e_object_persist); }
 
 
-   inline bool is_storing() const { return has(e_object_storing); }
-   inline bool is_loading() const { return !is_storing(); }
 
 
-   inline void set_storing() { set(e_object_storing); }
-   inline void set_loading() { clear(e_object_storing); }
-
-
-   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
-   inline void defer_set_loading() { if (!is_loading()) set_loading(); }
-
-
-   inline const ::matter * context_trace_object() const { return this; }
+   inline const ::element * context_trace_object() const { return this; }
 
 
    //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
@@ -268,12 +248,7 @@ public:
    virtual enum_trace_category trace_category() const;
 
 
-   virtual const char * topic_text() const;
-
-   virtual ::e_status sync_wait();
-   virtual ::e_status sync_wait(const ::duration & duration);
-
-
+   virtual string topic_text() const;
 
 
    inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }
@@ -293,27 +268,12 @@ public:
    virtual void trace_last_status();
 
 
-   virtual ::e_status operator()();
-   virtual void operator()(::message::message * pmessage);
-   virtual void operator()(const ::payload & payload);
-   virtual ::e_status run();
-   virtual ::e_status step();
-   virtual ::payload realize();
    virtual void on_future(const ::payload & payload);
 
    virtual void clear_member() { }
 
-   virtual void exchange(::stream& s);
-
-   virtual stream& write(::stream& stream) const;
-   virtual stream& read(::stream& stream);
 
 
-   //virtual void to_string(string_exchange & str) const;
-   virtual strsize sz_len() const;
-   virtual void to_sz(char* sz, strsize len) const;
-
-   virtual bool should_run_async() const;
 
 
 };

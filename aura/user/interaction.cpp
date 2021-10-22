@@ -642,7 +642,7 @@ namespace user
    string interaction::default_id_prefix() const
    {
 
-      return type_name() + "_";
+      return __type_name(this) + "_";
 
    }
 
@@ -1835,7 +1835,7 @@ namespace user
 
       string strType;
 
-      strType = type_name();
+      strType = __type_name(this);
 
       if (strType.contains("main_frame"))
       {
@@ -2417,7 +2417,7 @@ namespace user
 
       m_ewindowflag -= e_window_flag_is_window;
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if (strType.contains_ci("simple_scroll_bar"))
       {
@@ -2456,7 +2456,7 @@ namespace user
 
             auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
 
-            string strType = pinteraction->type_name();
+            string strType = __type_name(pinteraction);
 
             if (strType == "auraclick::impact")
             {
@@ -2775,7 +2775,7 @@ namespace user
 
          bool bFirst = true;
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if(strType.contains_ci("control_box"))
          {
@@ -2948,7 +2948,7 @@ namespace user
             if (durationElapsed > 50_ms)
             {
 
-               auto type = type_name();
+               auto type = __type_name(this);
 
                if (type.contains("font_list"))
                {
@@ -2974,7 +2974,7 @@ namespace user
       catch (...)
       {
 
-         TRACE("Exception: interaction::_001DrawThis %s", type_name());
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __type_name(this));
 
       }
 
@@ -3074,7 +3074,7 @@ auto tickStartWithLock = ::duration::now();
             if (durationElapsed > 100_ms)
             {
 
-               CATEGORY_INFORMATION(prodevian, "\ndrawing at " << type_name() << "!!");
+               CATEGORY_INFORMATION(prodevian, "\ndrawing at " << __type_name(this) << "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took " << durationElapsed.integral_millisecond() << + "!!");
                CATEGORY_INFORMATION(prodevian, "\ndrawing took more more than 100ms more than 50ms to complete!!");
                CATEGORY_INFORMATION(prodevian, "\n");
@@ -3099,7 +3099,7 @@ auto tickStartWithLock = ::duration::now();
       if (tickElapsedWithLock > 3_ms)
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          //         output_debug_string("\n" + strType + "drawing took " + __string(tickElapsedWithLock.m_i) + "!!");
          //       output_debug_string("\ndrawing took more than 3ms to complete!!");
@@ -3293,7 +3293,7 @@ auto tickStartWithLock = ::duration::now();
                      //   //if(d1.m_i > 50)
                      //   //{
 
-                     //   //   string strType = pinteraction->type_name();
+                     //   //   string strType = __type_name(pinteraction);
 
                      //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
                      //   //   {
@@ -3629,7 +3629,7 @@ return "";
 
       bool bUpdateWindow = false;
 
-      string strType(type_name());
+      string strType(__type_name(this));
 
       if (strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
@@ -3821,7 +3821,7 @@ return "";
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType == "waven::impact")
          {
@@ -3855,7 +3855,7 @@ return "";
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", type_name());
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s", __type_name(this));
 
          }
 
@@ -3880,7 +3880,7 @@ return "";
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", type_name());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __type_name(this));
 
             }
 
@@ -3909,7 +3909,7 @@ return "";
                if (d1 > 50_ms)
                {
 
-                  string strType = type_name();
+                  string strType = __type_name(this);
 
                   CATEGORY_INFORMATION(prodevian, "(more than 50ms) " + strType + "::_008CallOnDraw took " + d1.integral_millisecond() + "::duration.\n");
 
@@ -7199,7 +7199,7 @@ bool interaction::start_destroying_window()
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains("main_frame"))
    {
@@ -7378,7 +7378,7 @@ void interaction::post_non_client_destroy()
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains("main_frame"))
    {
@@ -7403,7 +7403,7 @@ bool interaction::is_ready_to_quit() const
 
    bool bShouldContinue = task_get_run();
 
-   return !bShouldContinue && is(e_flag_task_ready);
+   return !bShouldContinue && has(e_flag_task_ready);
 
 }
 
@@ -7813,7 +7813,7 @@ void interaction::on_defer_display()
 bool interaction::defer_design_display()
 {
 
-   if (string(type_name()).contains_ci("page_home"))
+   if (__type_name(this).contains_ci("page_home"))
    {
 
       INFORMATION("page_home");
@@ -7846,7 +7846,7 @@ bool interaction::defer_design_display()
 bool interaction::design_display()
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains_ci("page_home"))
    {
@@ -7988,7 +7988,7 @@ bool interaction::design_display()
    else
    {
 
-      if (string(type_name()).contains_ci("page_home"))
+      if (__type_name(this).contains_ci("page_home"))
       {
 
          INFORMATION("page_home");
@@ -8056,7 +8056,7 @@ bool interaction::design_zorder()
 
       //synchronous_lock slChildren(::user::mutex_children());
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       auto puiptraChildNew = __new(::user::interaction_array(*m_puserinteractionpointeraChild));
 
@@ -8105,7 +8105,7 @@ bool interaction::design_reposition()
 
       #ifdef EXTRA_DESIGN_REPOSITION_LOG
 
-   if(type_name().contains_ci("control_box"))
+   if(__type_name(this).contains_ci("control_box"))
    {
 
       output_debug_string("control_box design_reposition");
@@ -8120,7 +8120,7 @@ bool interaction::design_reposition()
 
    ::point_i32 pointHost;
 
-   const char* pszType = this->type_name();
+   const char* pszType = __type_name(this);
 
    if(string(pszType).contains("list_box"))
    {
@@ -8157,7 +8157,7 @@ bool interaction::design_reposition()
    //
    //      }
 
-   if(string(type_name()).contains_ci("tap"))
+   if(__type_name(this).contains_ci("tap"))
    {
 
       INFORMATION("tap prodevian_reposition (" << this->screen_origin().x << ", "  << this->screen_origin().y << ")");
@@ -8396,7 +8396,7 @@ void interaction::message_handler(::message::message * pmessage)
 
    string strType;
 
-   strType = type_name();
+   strType = __type_name(this);
 
    if (strType.contains_ci("list_box"))
    {
@@ -9513,7 +9513,7 @@ bool interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    }
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains("list_box"))
    {
@@ -9572,7 +9572,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
-   if (is(e_flag_destroying))
+   if (has(e_flag_destroying))
    {
 
       return false;
@@ -10141,7 +10141,7 @@ void interaction::sketch_to_design(::draw2d::graphics_pointer& pgraphics, bool &
 
    bUpdateWindow = false;
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains("veriwell_keyboard") && strType.contains("main_frame"))
    {
@@ -10723,7 +10723,7 @@ bool interaction::on_add_child(::user::interaction * puserinteractionChild)
 
    puserinteractionpointeraChildNew->add_unique_interaction(puserinteractionChild);
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
 
@@ -13701,7 +13701,7 @@ order(zorderParam);
 
       __pointer(::message::show_window) pshowwindow(pmessage);
       
-//      string strType = type_name();
+//      string strType = __type_name(this);
 //      
 //      if(strType.contains("main_frame"))
 //      {
@@ -15277,7 +15277,7 @@ order(zorderParam);
    void interaction::prodevian_redraw(bool bUpdateBuffer)
    {
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if (strType.contains_ci("list_box"))
       {
@@ -15449,7 +15449,7 @@ order(zorderParam);
    void interaction::on_message_left_button_down(::message::message* pmessage)
    {
       
-      string strType = this->type_name();
+      string strType = __type_name(this);
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -15913,7 +15913,7 @@ order(zorderParam);
       if (m_bHoverDefaultMouseHandling)
       {
 
-         if(string(type_name()).contains_ci("button"))
+         if(__type_name(this).contains_ci("button"))
          {
 
             //output_debug_string("button");

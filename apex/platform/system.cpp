@@ -2823,7 +2823,7 @@ pacmedir->create("/ca2core");
 
    //   //   try
    //   //   {
-   //   //      strMessage += pobject->type_name();
+   //   //      strMessage += __type_name(pobject);
 
    //   //   }
    //   //   catch (...)
@@ -3325,7 +3325,7 @@ pacmedir->create("/ca2core");
 
       }
 
-      INFORMATION("::apex::system::on_request session = " << psession->type_name() << "(" << __string((iptr) psession) << ")");
+      INFORMATION("::apex::system::on_request session = " << __type_name(psession) << "(" << __string((iptr) psession) << ")");
 
       psession->do_request(pcreate);
 

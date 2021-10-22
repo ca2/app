@@ -2930,6 +2930,9 @@ template < typename FROM >
 concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 
+using element_pointer = __pointer(::element);
+
+
 using matter_pointer = __pointer(::matter);
 
 

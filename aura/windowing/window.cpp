@@ -124,7 +124,7 @@ namespace windowing
             
             auto pobject = pmessage->m_union.m_pobject;
             
-            auto pmatter = pobject->m_pmatter.m_p;
+            auto pmatter = pobject->m_pelement.m_p;
             
             pmessage = dynamic_cast < ::message::message * >(pmatter);
 
@@ -134,8 +134,7 @@ namespace windowing
                return;
 
             }
-            
-            
+
             if(pmessage->m_id==e_message_vscroll)
             {
                

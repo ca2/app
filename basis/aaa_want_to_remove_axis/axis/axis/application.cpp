@@ -356,7 +356,7 @@ namespace axis
       try
       {
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       //if(::is_set(m_psystem))
       //{
@@ -860,7 +860,7 @@ m_durationHeartBeat.Now();
 
 //      m_bAxisInitializeResult = true;
 
-//      dappy(type_name() + " : initialize ok : " + __string(m_iErrorCode));
+//      dappy(__type_name(this) + " : initialize ok : " + __string(m_iErrorCode));
 
       return true;
 

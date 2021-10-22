@@ -3831,18 +3831,25 @@ namespace user
       
       if(id == e_message_post_user)
       {
+
          if(wparam==1)
          {
-            auto pmatter = (::matter *) lparam.m_lparam;
-            __pointer(::message::message) pmessage(e_move_transfer, pmatter);
+
+            auto pelement = (::element *) lparam.m_lparam;
+
+            __pointer(::message::message) pmessage(e_move_transfer, pelement);
+
             if(pmessage)
             {
+
                message_handler(pmessage);
+
                return true;
+
             }
+
          }
-         
-         
+
       }
 
       auto pmessage = get_message(id, wparam, lparam);

@@ -29,6 +29,7 @@ enum enum_flag
    e_flag_task_ready = 1 << 8,
    e_flag_data_struct = 1 << 9,
    e_flag_exited = 1 << 10,
+   e_flag_storing = 1 << 11,
 
 
 };

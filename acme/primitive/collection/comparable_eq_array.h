@@ -22,7 +22,7 @@ public:
    ::index find_last_not(ARG_TYPE t) const;
    ::count get_count() const;
    ::count get_count(ARG_TYPE t, ::index start = 0, ::index last = -1, ::count countMax = -1) const;
-   bool has(ARG_TYPE t) const { return contains(t); }
+   //bool has(ARG_TYPE t) const { return contains(t); }
    bool contains(ARG_TYPE t) const;
    bool contains(ARG_TYPE t, ::index start, ::index last = -1, ::count countMin = 1, ::count countMax = -1) const;
    bool contains(comparable_eq_array & a, ::count cMinCount = -1) const

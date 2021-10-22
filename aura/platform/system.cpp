@@ -2293,7 +2293,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += pobject->type_name();
+   //   //      strMessage += __type_name(pobject);
 
    //   //   }
    //   //   catch (...)
@@ -2809,7 +2809,7 @@ namespace aura
 
    //   }
 
-   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__string((iptr) psession)+")\n\n").c_str());
+   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 

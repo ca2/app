@@ -555,7 +555,7 @@ bool thread::thread_step()
       if (!task_get_run())
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType.contains_ci("session"))
          {
@@ -581,7 +581,7 @@ bool thread::thread_step()
          if(!thread_step())
          {
 
-            string strType = type_name();
+            string strType = __type_name(this);
 
             if (strType.contains_ci("session"))
             {
@@ -667,7 +667,7 @@ bool thread::thread_step()
 
    INFORMATION("thread::run");
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (strType.contains("session"))
    {
@@ -694,14 +694,14 @@ bool thread::thread_step()
 
    }
 
-   if (m_pmatter && m_pmatter != this)
+   if (m_pelement && m_pelement != this)
    {
 
-      m_id = m_pmatter->type_name();
+      m_id = __type_name(m_pelement);
 
       task_set_name(m_id);
 
-      return m_pmatter->run();
+      return m_pelement->run();
 
    }
 
@@ -729,9 +729,7 @@ bool thread::thread_step()
 
       }
 
-
    }
-
 
    auto estatus = thread_loop();
 
@@ -937,7 +935,7 @@ bool thread::pump_message()
       if(estatus == status_quit)
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType.contains_ci("session"))
          {
@@ -960,9 +958,9 @@ bool thread::pump_message()
 
          }
 
-         CATEGORY_INFORMATION(appmsg, type_name() << " thread::pump_message - Received e_message_quit.");
+         CATEGORY_INFORMATION(appmsg, __type_name(this) << " thread::pump_message - Received e_message_quit.");
 
-         INFORMATION(type_name() << " thread::pump_message - Received e_message_quit.");
+         INFORMATION(__type_name(this) << " thread::pump_message - Received e_message_quit.");
 
          m_nDisablePumpCount++; // application must die
          // Note: prevents calling message loop things in 'exit_thread'
@@ -1069,7 +1067,7 @@ bool thread::get_message()
 bool thread::raw_pump_message()
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    try
    {
@@ -1264,7 +1262,7 @@ bool thread::defer_pump_message()
       if(m_message.m_id == e_message_quit)
       {
 
-         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + string(type_name()) + " (" + __string((u64)::get_current_ithread()) + ")\n\n\n");
+         ::output_debug_string("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + __string(m_message.m_id == e_message_quit ? 1 : 0) + "!}) : " + __type_name(this) + " (" + __string((u64)::get_current_ithread()) + ")\n\n\n");
 
          return false;
 
@@ -1361,19 +1359,19 @@ void thread::kick_idle()
 void thread::post_quit()
 {
 
-   if (string(type_name()).contains("output_thread"))
+   if (string(__type_name(this)).contains("output_thread"))
    {
 
       output_debug_string("output_thread ::thread::post_quit");
 
    }
-   else if (string(type_name()).contains("synth_thread"))
+   else if (string(__type_name(this)).contains("synth_thread"))
    {
 
       output_debug_string("synth_thread ::thread::post_quit");
 
    }
-   else if (string(type_name()).contains("audio::out"))
+   else if (string(__type_name(this)).contains("audio::out"))
    {
 
       output_debug_string("out ::thread::post_quit");
@@ -1507,7 +1505,7 @@ bool thread::post_quit_message(int nExitCode)
 //   try
 //   {
 //
-//      string strType = ptask->type_name();
+//      string strType = __type_name(ptask);
 //
 //      if(strType == "user::shell::thread")
 //      {
@@ -1571,9 +1569,9 @@ void thread::task_erase(::task * ptask)
    try
    {
 
-      string strThreadThis = type_name();
+      string strThreadThis = __type_name(this);
 
-      string strThreadChild = ptask->type_name();
+      string strThreadChild = __type_name(ptask);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -1626,7 +1624,7 @@ void thread::task_erase(::task * ptask)
 
    call_routines_with_id(DESTROY_ROUTINE);
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    if (m_strTaskName.contains("main_frame"))
    {
@@ -1762,7 +1760,7 @@ bool thread::task_get_run() const
 
       auto bFinishing = is_finishing();
 
-      auto bDestroying = is(e_flag_destroying);
+      auto bDestroying = has(e_flag_destroying);
 
       return !bFinishing;
 
@@ -2346,7 +2344,7 @@ e_status thread::begin_thread(bool bSynchInitialization, ::enum_priority epriori
    //if(m_id.is_empty())
    //{
 
-   //   m_id = type_name();
+   //   m_id = __type_name(this);
 
    //}
 
@@ -2671,12 +2669,11 @@ void thread::__os_initialize()
 
 #ifndef WINDOWS
 
-   INFORMATION("init_thread : %s", type_name());
+   INFORMATION("init_thread : %s", __type_name(this));
 
 #endif
 
    //m_psystem->m_papexsystem->m_papexnode->node_thread_initialize(this);
-
 
 }
 
@@ -2716,7 +2713,7 @@ void thread::__os_finalize()
    if (m_bMessageThread)
    {
 
-      if (string(type_name()).contains_ci("out"))
+      if (__type_name(this).contains_ci("out"))
       {
 
          output_debug_string("out");
@@ -3030,7 +3027,7 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
       if (id.umessage() == e_message_quit)
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType.contains_ci("::application"))
          {
@@ -3348,7 +3345,7 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const :
 //::e_status thread::main()
 //{
 //
-//   string strType = type_name();
+//   string strType = __type_name(this);
 //
 //   if(strType.contains("wave_player"))
 //   {
@@ -3588,7 +3585,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////   if (m_bitFinishing)
 ////   {
 ////
-////      string strTypeName = type_name();
+////      string strTypeName = __type_name(this);
 ////
 ////#ifdef ANDROID
 ////
@@ -3674,7 +3671,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////
 ////                  string strThreadType;
 ////
-////                  strThreadType = pcomposite->type_name();
+////                  strThreadType = __type_name(pcomposite);
 ////
 ////                  strWaiting += strThreadType;
 ////
@@ -3693,7 +3690,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////            if (strWaiting.has_char())
 ////            {
 ////
-////               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+////               TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 ////
 ////            }
 ////
@@ -3706,7 +3703,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 ////      {
 ////
 ////
-////         string strType = type_name();
+////         string strType = __type_name(this);
 ////
 ////         if (strType.contains_ci("session"))
 ////         {
@@ -3755,7 +3752,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
 //
 //   synchronous_lock synchronouslock(mutex());
 //
-//   string strTypeName = type_name();
+//   string strTypeName = __type_name(this);
 //
 //   bool bReadyToQuit = true;
 //

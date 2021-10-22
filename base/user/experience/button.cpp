@@ -58,7 +58,7 @@ namespace experience
       try
       {
 
-         if (string(type_name()).contains_ci("control_box"))
+         if (__type_name(this).contains_ci("control_box"))
          {
 
             output_debug_string("control_box");

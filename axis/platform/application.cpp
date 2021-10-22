@@ -276,7 +276,7 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(type_name() + " : on_run failure : " + __string(m_iErrorCode));
+////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
 ////
 ////            ::output_debug_string("application::main on_run termination failure\n");
 ////
@@ -296,7 +296,7 @@ namespace axis
 //      catch (...)
 //      {
 //
-//         //dappy(type_name() + " : on_run general exception");
+//         //dappy(__type_name(this) + " : on_run general exception");
 //
 //      }
 //
@@ -966,7 +966,7 @@ namespace axis
 //      if (!init1())
 //      {
 //
-//         //dappy(type_name() + " : init1 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -981,7 +981,7 @@ namespace axis
 //      if (!init2())
 //      {
 //
-//         //dappy(type_name() + " : init2 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -996,7 +996,7 @@ namespace axis
 //      if (!init3())
 //      {
 //
-//         //dappy(type_name() + " : init3 failure : " + __string(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1008,7 +1008,7 @@ namespace axis
 //
 //      m_durationHeartBeat.Now();
 //
-//      //dappy(type_name() + " : init3 ok : " + __string(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1016,7 +1016,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(type_name() + " : initialize failure : " + __string(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -1692,7 +1692,7 @@ namespace axis
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          //if(::is_set(m_psystem))
          //{

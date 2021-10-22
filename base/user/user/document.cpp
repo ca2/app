@@ -557,7 +557,7 @@ namespace user
 
          pview = get_view(index);
 
-         if (info == pview->type_name())
+         if (info == __type_name(pview))
          {
 
             if (indexFind == countFind)
@@ -591,7 +591,7 @@ namespace user
       for (index index = 0; index < countView; index++)
       {
          pview = get_view(index);
-         if (info == pview->type_name())
+         if (info == __type_name(pview))
          {
             if (id == pview->m_id)
                return pview;

@@ -826,7 +826,7 @@ public:
 
 #ifdef _DEBUG
 
-               string strType = p->type_name();
+               string strType = __type_name(p);
 
 #endif
 

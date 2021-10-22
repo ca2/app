@@ -166,7 +166,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
       //#if OBJECT_REFERENCE_COUNT_DEBUG
       //
-      //   string strType = type_name();
+      //   string strType = __type_name(this);
       //
       //   if (strType.contains_ci("session"))
       //   {
@@ -253,7 +253,7 @@ void object::process_exit_status(const ::e_status& estatus)
 
        pthread->m_pmatter = routine;
 
-       pthread->m_id = pthread->m_pmatter->type_name();
+       pthread->m_id = __type_name(pthread->m_pmatter);
 
        pthread->begin_thread();
 

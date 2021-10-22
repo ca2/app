@@ -1309,7 +1309,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         if(m_iErrorCode != 0)
 //////         {
 //////
-//////            dappy(type_name() + " : on_run failure : " + __string(m_iErrorCode));
+//////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
 //////
 //////            ::output_debug_string("application::main on_run termination failure\n");
 //////
@@ -1329,7 +1329,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ////      catch (...)
 ////      {
 ////
-////         //dappy(type_name() + " : on_run general exception");
+////         //dappy(__type_name(this) + " : on_run general exception");
 ////
 ////      }
 ////
@@ -2453,55 +2453,61 @@ bool application::do_install()
 ::e_status application::on_before_launching()
 {
 
-string strLicense = get_license_id();
+   string strLicense = get_license_id();
 
-//::payload & varTopicQuey = psystem->m_varTopicQuery;
+   //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-bool bHasInstall = psystem->is_true("install");
+   bool bHasInstall = psystem->is_true("install");
 
-bool bHasUninstall = psystem->is_true("uninstall");
+   bool bHasUninstall = psystem->is_true("uninstall");
 
-if (!(bHasInstall || bHasUninstall)
-&& m_bLicense
-&& strLicense.has_char())
-{
+   if (!(bHasInstall || bHasUninstall)
+   && m_bLicense
+   && strLicense.has_char())
+   {
 
-if (!assert_user_logged_in())
-{
-return false;
-}
+      if (!assert_user_logged_in())
+      {
 
-// call application's is_licensed function
-// because if delay is needed for authentication -
-// or either asking for authentication -
-// current application startup won't be
-// exited by timeout.
+         return false;
 
-i32 iRetry = 1;
+      }
 
-auto psession = get_session();
+      // call application's is_licensed function
+      // because if delay is needed for authentication -
+      // or either asking for authentication -
+      // current application startup won't be
+      // exited by timeout.
 
-retry_license:
+      i32 iRetry = 1;
 
-iRetry--;
+      auto psession = get_session();
 
-if (!psession->is_licensed(strLicense))
-{
+      retry_license:
 
-if (iRetry > 0)
-   goto retry_license;
+      iRetry--;
 
-return false;
+      if (!psession->is_licensed(strLicense))
+      {
 
-}
+         if (iRetry > 0)
+         {
 
-}
+            goto retry_license;
 
-INFORMATION("initial_check_directrix : ok ("<< type_name() <<")"<< m_strAppId);
+         }
 
-return true;
+         return false;
+
+      }
+
+   }
+
+   INFORMATION("initial_check_directrix : ok ("<< __type_name(this) <<")"<< m_strAppId);
+
+   return true;
 
 }
 
@@ -3057,7 +3063,7 @@ m_durationHeartBeat.Now();
 if (!init1())
 {
 
-//dappy(type_name() + " : init1 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3072,7 +3078,7 @@ m_durationHeartBeat.Now();
 if (!init2())
 {
 
-//dappy(type_name() + " : init2 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3087,7 +3093,7 @@ m_durationHeartBeat.Now();
 if (!init3())
 {
 
-//dappy(type_name() + " : init3 failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3099,7 +3105,7 @@ psystem->install_progress_add_up(); // 4
 
 m_durationHeartBeat.Now();
 
-//dappy(type_name() + " : init3 ok : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 
 try
 {
@@ -3107,7 +3113,7 @@ try
 if (!init())
 {
 
-//dappy(type_name() + " : initialize failure : " + __string(m_iErrorCode));
+//dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -5801,7 +5807,7 @@ m_bReady = true;
 try
 {
 
-string strType = type_name();
+   string strType = __type_name(this);
 
 //if(::is_set(m_psystem))
 //{

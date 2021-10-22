@@ -138,7 +138,7 @@ namespace message
    //}
 
 
-   ::matter * create::get_impact_data()
+   ::element * create::get_impact_data()
    {
 
       auto pusersystem = get_user_create();
@@ -636,9 +636,9 @@ namespace message
 
       ::user::message::set(oswindow, pwindow, id, wparam, lparam);
 
-      __pointer(::matter) pmatter(lparam);
+      __pointer(::element) pelement(lparam);
 
-      m_pmatter = pmatter;
+      m_pelement = pelement;
 
    }
 

@@ -122,10 +122,10 @@ public:
    ::count get_span() const { return m_cSpan; }
    bool nok() const { return is_empty(); };
 
-   bool prepare(::enum_task_op eop, ::count cIteration = 0);
+   ::e_status prepare(::enum_task_op eop, ::count cIteration = 0);
    virtual ::e_status set_ready_to_start();
-   bool wait();
-   bool process();
+   ::e_status wait() override;
+   virtual ::e_status process();
 
    bool add_predicate(::predicate_holder_base * ppred);
 

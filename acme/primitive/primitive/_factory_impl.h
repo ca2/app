@@ -45,7 +45,7 @@ namespace factory
    //   if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
    //   {
 
-   //      if (p && p->type_name()) == strText
+   //      if (p && __type_name(p)) == strText
    //      {
 
    //         ::output_debug_string("loading into existing matter of same class type (1)");
@@ -64,7 +64,7 @@ namespace factory
    //            stream.set_fail_bit();
 
    //         }
-   //         else if (p->type_name()) != strText
+   //         else if (__type_name(p)) != strText
    //         {
 
    //            ::output_debug_string("allocated matter type is different from streamed matter type (1.2)");
@@ -81,7 +81,7 @@ namespace factory
 
    //      auto id = stream.text_to_factory_id(strText);
 
-   //      if (p && id == p->type_name())
+   //      if (p && id == __type_name(p))
    //      {
 
    //         ::output_debug_string("loading into existing matter of same class type (2)");
@@ -98,7 +98,7 @@ namespace factory
    //            ::output_debug_string("stream::alloc_object_from_text failed (2.1)");
 
    //         }
-   //         else if (p->type_name()) != id.to_string()
+   //         else if (__type_name(p)) != id.to_string()
    //         {
 
    //            ::output_debug_string("allocated matter type is different from streamed matter type (2.2)");

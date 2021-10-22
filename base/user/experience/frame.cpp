@@ -916,7 +916,7 @@ namespace experience
    bool frame::get_window_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      if (string(type_name()).contains_ci("file"))
+      if (__type_name(this).contains_ci("file"))
       {
 
 
@@ -1081,7 +1081,7 @@ namespace experience
 
       string strType;
 
-      strType = m_pframewindow->type_name();
+      strType = __type_name(m_pframewindow);
 
       if (strType.contains("playlist"))
       {
@@ -1368,7 +1368,7 @@ namespace experience
 
       }
 
-      string strType = m_pframewindow->type_name();
+      string strType = __type_name(m_pframewindow);
 
       if (strType.contains("filemanager"))
       {

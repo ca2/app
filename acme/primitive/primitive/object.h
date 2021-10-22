@@ -62,8 +62,8 @@ public:
 
 
    //__pointer(__pointer_array(::object))                m_pobjecta;
-   __pointer(__pointer_array(::matter))                  m_pcompositea;
-   __pointer(__pointer_array(::matter))                  m_preferencea;
+   __pointer(__pointer_array(::element))                  m_pcompositea;
+   __pointer(__pointer_array(::element))                  m_preferencea;
 
 
 
@@ -100,18 +100,18 @@ public:
 
    //inline class ::system* get_system() const;
 
-   //inline matter_array * _composite_array() { return m_pcompositea; }
-   //inline matter_array * _reference_array() { return m_preferencea; }
+   //inline element_array * _composite_array() { return m_pcompositea; }
+   //inline element_array * _reference_array() { return m_preferencea; }
 
 
-   //inline matter_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   //inline matter_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   //inline element_array & composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   //inline element_array & reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
    //virtual void add_object(::object * pobject);
    //virtual void on_delete_object(::object * pobject);
 
-   //virtual void enumerate_composite(matter_array& a);
-   //virtual void enumerate_reference(matter_array& a);
+   //virtual void enumerate_composite(element_array& a);
+   //virtual void enumerate_reference(element_array& a);
 
    //virtual void process_exit_status(const ::e_status& estatus);
 
@@ -384,13 +384,13 @@ public:
    //inline ::e_status release_reference(__pointer(SOURCE) & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   //virtual ::e_status add_composite(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status add_reference(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status add_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status add_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual ::e_status release_composite2(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status finalize_composite(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status release_reference(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -477,11 +477,11 @@ public:
 
    //virtual void release_references();
 
-   //virtual __pointer(::matter) running(const char* pszTag) const;
+   //virtual __pointer(::element) running(const char* pszTag) const;
 
-   virtual bool ___is_reference(::matter* pobject) const;
+   virtual bool ___is_reference(::element* pobject) const;
 
-   virtual bool __is_composite(::matter* pobject) const;
+   virtual bool __is_composite(::element* pobject) const;
 
    virtual bool __is_child_task(::object * pobject) const;
 
@@ -548,7 +548,7 @@ public:
 
       }
 
-      ptask->m_pmatter = routine;
+      ptask->m_pelement = routine;
 
       ptask->branch();
 
@@ -633,7 +633,7 @@ public:
    }
 
 
-   __transport(::task) branch_task(matter* pmatter,
+   __transport(::task) branch_task(element* pelement,
       ::enum_priority epriority = e_priority_normal,
       ::u32 nStackSize = 0,
       ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
@@ -670,7 +670,7 @@ public:
 
    //::e_status add_update_notification(property * pproperty);
    //::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   //::e_status property_notify(const ::id & id, ::matter * pmatter);
+   //::e_status property_notify(const ::id & id, ::element * pelement);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -731,7 +731,7 @@ public:
 
    ::task_pointer defer_branch(const ::id& id, const ::routine & routine, enum_priority epriority = e_priority_normal);
 
-   virtual matter* get_taskpool_container() override;
+   virtual element* get_taskpool_container() override;
 
    //object() : m_pmeta(nullptr) { }
    //object(::object * pobject);
@@ -760,12 +760,12 @@ public:
 
 
 
-   //inline matter_array* _composite_array() { return m_pcompositea; }
-   //inline matter_array* _reference_array() { return m_preferencea; }
+   //inline element_array* _composite_array() { return m_pcompositea; }
+   //inline element_array* _reference_array() { return m_preferencea; }
 
 
-   //inline matter_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
-   //inline matter_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
+   //inline element_array& composite_array() { ::__defer_construct_new(m_pcompositea); return *m_pcompositea; }
+   //inline element_array& reference_array() { ::__defer_construct_new(m_preferencea); return *m_preferencea; }
 
 
 
@@ -961,13 +961,13 @@ public:
    inline ::e_status __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   //virtual ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   //virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_composite2(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   //virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    //template < typename BASE_TYPE >
@@ -1061,11 +1061,11 @@ public:
 
    //virtual void release_references();
 
-   //virtual __pointer(::matter) running(const ::string & pszTag) const;
+   //virtual __pointer(::element) running(const ::string & pszTag) const;
 
-   //virtual bool ___is_reference(::matter* pobject) const;
+   //virtual bool ___is_reference(::element* pobject) const;
 
-   //virtual bool __is_composite(::matter* pobject) const;
+   //virtual bool __is_composite(::element* pobject) const;
 
    //virtual bool __is_child_task(::task* ptask) const;
 
@@ -1241,7 +1241,7 @@ public:
 
    //::e_status add_update_notification(property * pproperty);
    //::e_status add_update_notification(const ::id & id, bool bCreate = true);
-   //::e_status property_notify(const ::id & id, ::matter * pmatter);
+   //::e_status property_notify(const ::id & id, ::element * pelement);
 
 
 //   inline void format_topic_text(const char * psz, ...)
@@ -1301,7 +1301,7 @@ public:
    //::task_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
-   //virtual matter* get_taskpool_container() override;
+   //virtual element* get_taskpool_container() override;
 
 
 };

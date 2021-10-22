@@ -45,14 +45,6 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::enum_type matter::get_payload_type() const
-{ 
-   
-   return e_type_element; 
-
-}
-
-
 ::e_status matter::initialize_matter(::matter* pmatter)
 {
 
@@ -122,38 +114,6 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-//::e_status matter::finish(::property_object * pcontextobjectFinish)
-::e_status matter::destroy()
-{
-
-   //auto estatus = set_finish();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   //m_psystem->add_pending_finish(this);
-
-   //   return estatus;
-
-   //}
-
-   ////estatus = on_finish();
-
-   ////if (estatus == error_pending)
-   ////{
-
-   ////   //m_psystem->add_pending_finish(this);
-
-   ////   return estatus;
-
-   ////}
-
-   //return estatus;
-
-   return ::success;
-
-
-}
 
 
 void matter::post_quit()
@@ -226,9 +186,7 @@ const char* matter::debug_note() const
 }
 
 
-
-
-::matter * matter::clone() const
+::element * matter::clone() const
 {
 
    throw ::interface_only_exception();
@@ -236,8 +194,6 @@ const char* matter::debug_note() const
    return nullptr;
 
 }
-
-
 
 
 bool matter::is_ready_to_quit() const
@@ -308,14 +264,6 @@ void matter::defer_create_mutex()
       set_mutex(__new(::mutex));
 
    }
-
-}
-
-
-DURATION matter::timeout() const
-{
-   
-   return { .m_iSecond = 64 }; // : // 64s ~ 1 minute
 
 }
 
@@ -419,40 +367,6 @@ void matter::kick_idle()
 }
 
 
-::e_status matter::operator()()
-{
-
-   ::e_status estatus;
-
-   try
-   {
-
-      estatus = run();
-
-   }
-   catch (...)
-   {
-
-      estatus = ::error_exception;
-
-   }
-
-   return estatus;
-
-}
-
-
-void matter::operator()(::message::message * pmessage)
-{
-
-
-}
-
-
-void matter::operator()(const ::payload & payload)
-{
-
-}
 
 
 void matter::on_future(const ::payload & payload)
@@ -461,120 +375,8 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::run()
-{
-
-   while(true)
-   {
-
-      auto estatus = step();
-
-      if(!estatus)
-      {
-
-         break;
-
-      }
-
-   }
-
-   return ::success;
-
-}
 
 
-::e_status matter::step()
-{
-
-   return ::error_failed;
-
-}
-
-
-::payload matter::realize()
-{
-
-   return ::success;
-
-}
-
-
-::e_status matter::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //__throw(error_not_implemented);
-
-   pmatter->increment_reference_count();
-
-   return ::success;
-
-   //return ::error_not_implemented;
-
-}
-
-
-::e_status matter::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::release_composite2(::matter * pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::release_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::matter* matter::get_taskpool_container()
-{
-
-   return nullptr;
-
-}
-
-
-::task_pool* matter::taskpool()
-{
-
-   auto pcontainer = get_taskpool_container();
-
-   if (pcontainer)
-   {
-
-      auto ptaskpool = pcontainer->taskpool();
-
-      if (ptaskpool)
-      {
-
-         return ptaskpool;
-
-      }
-
-   }
-
-   return nullptr;
-
-}
 
 
 //::task* matter::defer_branch(const ::id& id, const ::routine & routine)
@@ -691,26 +493,10 @@ enum_trace_category matter::trace_category(const ::matter * pobject) const
 }
 
 
-const char * matter::topic_text() const
+string matter::topic_text() const
 {
 
-   return type_name();
-
-}
-
-
-::e_status matter::sync_wait()
-{
-
-   return error_failed;
-
-}
-
-
-::e_status matter::sync_wait(const ::duration & duration)
-{
-
-   return error_failed;
+   return __type_name(this);
 
 }
 
@@ -770,28 +556,6 @@ const char * matter::topic_text() const
 //}
 
 
-strsize matter::sz_len() const
-{
-
-   return strlen(type_name());
-
-}
-
-
-void matter::to_sz(char * sz, strsize len) const
-{
-
-   strncpy(sz, type_name(), len);
-
-}
-
-
-bool matter::should_run_async() const
-{
-
-   return false;
-
-}
 
 
 ::e_status matter::__thread_main()
@@ -905,32 +669,10 @@ bool matter::should_run_async() const
 }
 
 
-void matter::exchange(stream& s)
-{
-
-}
-
-
-stream & matter::write(stream& s) const
-{
-
-   return s;
-
-}
-
-
-stream& matter::read(stream& s)
-{
-
-   return s;
-
-}
-
-
 //void matter::to_string(const class string_exchange & str) const
 //{
 //
-//   str = type_name();
+//   str = __type_name(this);
 //
 //}
 //

@@ -85,10 +85,6 @@ extern thread_data_index g_tlsindexLastError;
 
 
 
-
-
-
-
 string apex_get_task_name(::task* ptask)
 {
 
@@ -106,6 +102,6 @@ string apex_get_task_name(::task* ptask)
 
    }
 
-   return ptask->type_name();
+   return __type_name(ptask);
 
 }

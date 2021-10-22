@@ -39,7 +39,7 @@ __composite(::task) task_pool::defer_branch(const ::id& id, const ::routine & ro
 
    }
 
-   ptask->m_pmatter = routine;
+   ptask->m_pelement = routine;
 
    ptask->branch();
 

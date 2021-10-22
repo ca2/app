@@ -2531,7 +2531,7 @@ namespace user
 
       bool bUpdateWindow;
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if(strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {

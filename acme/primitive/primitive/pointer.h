@@ -184,7 +184,7 @@ public:
    //template < typename OTHER >
    //inline ___pointer & operator -=(__composite(OTHER) & p) { m_p->release(p); return *this; }
 
-   inline static const char * type_name();
+   //inline static const char * __type_name(this);
 
    inline T * operator ->();
    inline T * operator ->() const;

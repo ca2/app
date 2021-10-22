@@ -125,7 +125,7 @@ void object::create_object_meta()
 void object::to_string(const class string_exchange & str) const
 {
 
-   str = string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
+   str = __type_name(this) + " (0x" + ::hex::lower_from((uptr)this) + ")";
 
 }
 
@@ -165,10 +165,10 @@ void object::to_string(const class string_exchange & str) const
    if (m_preferencea->get_upper_bound() == 8)
    {
 
-      if (string(type_name()).contains("application"))
+      if (__type_name(this).contains("application"))
       {
 
-         string strMessage = "what is this? : " +string( m_preferencea->last()->type_name());
+         string strMessage = "what is this? : " +string( m_preferencea->last()__type_name());
          output_debug_string(strMessage);
       }
 
@@ -635,7 +635,7 @@ void object::defer_update_object_id()
 ::id object::calc_default_object_id() const
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    ::str::begins_eat_ci(strType, "class ");
 
@@ -991,7 +991,7 @@ void object::copy_from(const object & o)
 
    synchronous_lock synchronouslock(mutex());
 
-   string strTypeName = type_name();
+   string strTypeName = __type_name(this);
 
    if (m_pcompositea)
    {
@@ -1012,7 +1012,7 @@ void object::copy_from(const object & o)
 
          }
 
-         string strCompositeType = pcomposite->type_name();
+         string strCompositeType = __type_name(pcomposite);
 
          if (strTypeName.contains("session"))
          {
@@ -1136,7 +1136,7 @@ void object::copy_from(const object & o)
 //   if (m_bitFinishing)
 //   {
 //
-//      string strTypeName = type_name();
+//      string strTypeName = __type_name(this);
 //
 //#ifdef ANDROID
 //
@@ -1220,7 +1220,7 @@ void object::copy_from(const object & o)
 
    //               string strThreadType;
 
-   //               strThreadType = pcomposite->type_name();
+   //               strThreadType = __type_name(pcomposite);
 
    //               strWaiting += strThreadType;
 
@@ -1239,7 +1239,7 @@ void object::copy_from(const object & o)
    //         if (strWaiting.has_char())
    //         {
 
-   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 
    //         }
 
@@ -1252,7 +1252,7 @@ void object::copy_from(const object & o)
    //   {
 
 
-   //      string strType = type_name();
+   //      string strType = __type_name(this);
 
    //      if (strType.contains_ci("session"))
    //      {
@@ -1701,9 +1701,9 @@ void object::task_erase(::task* ptask)
       try
       {
 
-         string strThreadThis = type_name();
+         string strThreadThis = __type_name(this);
 
-         string strThreadChild = ptask->type_name();
+         string strThreadChild = __type_name(ptask);
 
          synchronous_lock synchronouslock(mutex());
 
@@ -2161,7 +2161,7 @@ void debug_context_object(::object * pobject)
 CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 {
 
-   string strType = pusermessage->type_name();
+   string strType = __type_name(pusermessage);
 
    if (strType.contains_ci("user::thread"))
    {

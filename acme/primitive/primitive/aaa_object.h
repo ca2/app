@@ -868,13 +868,13 @@ public:
    inline ::e_status __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
-   virtual ::e_status release_composite2(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
-   virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status finalize_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
+   virtual ::e_status release_reference(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >

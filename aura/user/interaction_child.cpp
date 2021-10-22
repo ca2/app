@@ -128,7 +128,7 @@ namespace user
 
          //}
 
-         string strType = m_puserinteraction->type_name();
+         string strType = __type_name(m_puserinteraction);
 
          if(m_puserinteraction->is_host_top_level())
          {

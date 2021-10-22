@@ -242,7 +242,7 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 
 
 template < typename TYPE >
-inline string ___type_name()
+inline string __type_name()
 {
 
    auto pszType = typeid(TYPE).name();
@@ -254,7 +254,34 @@ inline string ___type_name()
 }
 
 
-#define __type_name(TYPE) ::___type_name < TYPE >()
+template < typename TYPE >
+inline string __type_name(const TYPE & t)
+{
+
+   TYPE & tNonConst = (TYPE &) t;
+
+   auto pszType = typeid(tNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < typename TYPE >
+inline string __type_name(const TYPE * p)
+{
+
+   TYPE * pNonConst = (TYPE *) p;
+
+   auto pszType = typeid(*pNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
 
 
 #include "acme/graphics/draw2d/_const.h"

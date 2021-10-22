@@ -47,7 +47,7 @@ public:
 
    }
 
-   type(const ::matter * pobject);
+   type(const ::element * pelement);
 
    template < typename BASE >
    type(const __pointer(BASE) & point);
@@ -131,18 +131,18 @@ public:
    }
 
 
-   bool operator == (const ::matter * pobject) const
+   bool operator == (const ::element * pelement) const
    {
 
-      return operator ==(::type(pobject));
+      return operator ==(::type(pelement));
 
    }
 
 
-   bool operator != (const ::matter* pobject) const
+   bool operator != (const ::element * pelement) const
    {
 
-      return !operator==(pobject);
+      return !operator==(pelement);
 
    }
 

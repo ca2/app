@@ -104,7 +104,7 @@ namespace user
 
             _001SetExpandImage("matter://list/expand.png");
 
-            task_set_name(string(type_name()) + "::Expand");
+            task_set_name(__type_name(this) + "::Expand");
 
             auto pthread = ::get_task();
 
@@ -136,7 +136,7 @@ namespace user
 
             _001SetCollapseImage("matter://list/collapse.png");
 
-            task_set_name(string(type_name()) + "::Open");
+            task_set_name(__type_name(this) + "::Open");
 
             auto pthread = ::get_task();
 

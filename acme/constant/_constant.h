@@ -304,7 +304,6 @@ enum enum_object : i64
    e_object_failure = 1 << 2,
    e_object_persist = 1 << 3,
    e_object_factory = 1 << 4,
-   e_object_storing = 1 << 5,
    e_object_acquire = 1 << 6,
    e_object_default = 1 << 7,
    e_object_changed = 1 << 9,

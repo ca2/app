@@ -994,7 +994,7 @@ namespace user
             if(d1 > 50_ms)
             {
 
-               string strType = type_name();
+               string strType = __type_name(this);
 
                CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 

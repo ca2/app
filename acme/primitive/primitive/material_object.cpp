@@ -31,7 +31,7 @@ material_object::~material_object()
 ::string material_object::get_string() const
 {
 
-   return type_name();
+   return __type_name(this);
 
 }
 

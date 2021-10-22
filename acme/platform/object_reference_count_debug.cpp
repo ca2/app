@@ -76,7 +76,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType == "pacman::game")
          {

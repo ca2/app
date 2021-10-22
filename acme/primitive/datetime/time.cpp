@@ -544,7 +544,7 @@ namespace datetime
    time_span time::abs_diff(const time & time) const
    {
 
-      return abs(time.m_i - m_i);
+      return INTEGRAL_SECOND(abs(time.m_i - m_i));
 
    }
 

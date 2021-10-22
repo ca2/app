@@ -18,7 +18,7 @@ inline string __string(const T& t)
 
 
 template < >
-string __string(const ::enum_status & estatus);
+CLASS_DECL_ACME string __string(const ::enum_status & estatus);
 
 
 template < >

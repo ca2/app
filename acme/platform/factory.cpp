@@ -1,48 +1,6 @@
 #include "framework.h"
 
-#ifdef WINDOWS
-
-
-bool string& str, const char* pszType
-{
-
-   str = pszType;
-
-   if (!str::begins_eat_ci(str, "class "))
-   {
-
-      if (!str::begins_eat_ci(str, "struct "))
-      {
-
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-//bool string& str
-//{
-//
-//   if (!str::begins_eat_ci(str, "class "))
-//   {
-//
-//      if (!str::begins_eat_ci(str, "struct "))
-//      {
-//
-//
-//      }
-//
-//   }
-//
-//   return true;
-//
-//}
-
-#else
+#ifndef WINDOWS
 
 
 #include <cxxabi.h>

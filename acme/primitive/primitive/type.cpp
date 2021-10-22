@@ -4,7 +4,49 @@
 string cxxabi_demangle (const char* name);
 
 
-string demangle(const char * name)
+#if defined(WINDOWS)
+
+
+
+string demangle(const char* psz)
+{
+
+   if (psz[0] == 'c' &&
+      psz[1] == 'l' &&
+      psz[2] == 'a' &&
+      psz[3] == 's' &&
+      psz[4] == 's' &&
+      psz[5] == ' ')
+   {
+
+      return psz + 6;
+
+   }
+   else if (psz[0] == 's' &&
+      psz[1] == 't' &&
+      psz[2] == 'r' &&
+      psz[3] == 'u' &&
+      psz[4] == 'c' &&
+      psz[5] == 't' &&
+      psz[6] == ' ')
+   {
+
+      return psz + 7;
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
+
+
+#else
+
+string demangle(const char* name)
 {
 
    auto str = ::cxxabi_demangle(name);
@@ -14,7 +56,6 @@ string demangle(const char * name)
 }
 
 
-#if !defined(WINDOWS)
 
 char * g_pszDemangle = nullptr;
 size_t g_sizeDemangle = 0;

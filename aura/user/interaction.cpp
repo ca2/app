@@ -7338,9 +7338,9 @@ void interaction::post_non_client_destroy()
 
    }
 
-   set(e_matter_task_ready);
+   set(e_flag_task_ready);
 
-   set(e_matter_task_terminated);
+   set(e_flag_task_terminated);
 
    if (::is_set(m_pobjectParentTask))
    {
@@ -7403,7 +7403,7 @@ bool interaction::is_ready_to_quit() const
 
    bool bShouldContinue = task_get_run();
 
-   return !bShouldContinue && is(e_matter_task_ready);
+   return !bShouldContinue && is(e_flag_task_ready);
 
 }
 
@@ -9572,7 +9572,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
 bool interaction::call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer)
 {
 
-   if (is(e_matter_destroying))
+   if (is(e_flag_destroying))
    {
 
       return false;

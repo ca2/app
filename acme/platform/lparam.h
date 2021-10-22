@@ -20,17 +20,17 @@ public:
    lparam(::i32 x, ::i32 y) { m_lparam = __MAKE_LPARAM(x, y); }
 
 
-   /// catching/receiving matter
+   /// catching/receiving element
    inline lparam(void * p) { m_lparam = (iptr)p;  }
 
 
-   /// posting/sending matter
-   lparam(const ::matter * pobject);
+   /// posting/sending element
+   lparam(const ::element * pelement);
 
 
-   /// posting/sending matter
+   /// posting/sending element
    template < typename T >
-   inline lparam(const __pointer(T) & p) : lparam((const ::matter *) p.m_p) { }
+   inline lparam(const __pointer(T) & p) : lparam((const ::element *) p.m_p) { }
 
 
 
@@ -76,7 +76,7 @@ public:
    __pointer(T) move()
    {
 
-      auto p = ___pointer < T > ( e_move_transfer, (::matter *)m_lparam );
+      auto p = ___pointer < T > ( e_move_transfer, (::element*)m_lparam );
 
       m_lparam = 0;
 

@@ -1776,7 +1776,7 @@ namespace user
 
       }
       
-      m_puserinteraction->set(e_matter_destroying);
+      m_puserinteraction->set(e_flag_destroying);
       
       m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 

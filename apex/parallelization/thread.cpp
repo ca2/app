@@ -1762,7 +1762,7 @@ bool thread::task_get_run() const
 
       auto bFinishing = is_finishing();
 
-      auto bDestroying = is(e_matter_destroying);
+      auto bDestroying = is(e_flag_destroying);
 
       return !bFinishing;
 
@@ -2998,10 +2998,10 @@ namespace apex
 //}
 
 
-bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)
+bool thread::post_element(const ::id & id, wparam wparam, ::element * pelement)
 {
 
-   return post_message(id, wparam, pmatter);
+   return post_message(id, wparam, pelement);
 
 }
 
@@ -3105,7 +3105,7 @@ bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 }
 
 
-bool thread::send_object(const ::id & id, wparam wparam, ::matter * pmatter, ::duration durWaitStep)
+bool thread::send_element(const ::id & id, wparam wparam, ::element * pelement, const ::duration & duration)
 {
 
    if (!id.is_message())
@@ -3137,14 +3137,14 @@ bool thread::send_object(const ::id & id, wparam wparam, ::matter * pmatter, ::d
 
    }
 
-   send_message(id, wparam, pmatter, durWaitStep);
+   send_message(id, wparam, pelement, duration);
 
    return true;
 
 }
 
 
-bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::duration durWaitStep)
+bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, const ::duration & duration)
 {
 
    if (!id.is_message())
@@ -3173,12 +3173,14 @@ bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::durat
    auto pmessage = __new(::send_thread_message(this));
 
    pmessage->m_message.m_id = id;
+
    pmessage->m_message.wParam = wparam;
+
    pmessage->m_message.lParam = lparam;
 
    post_message(e_message_system, e_system_message_meta, pmessage);
 
-   pmessage->m_ev.wait(durWaitStep);
+   pmessage->m_ev.wait(duration);
 
    return true;
 
@@ -4613,29 +4615,6 @@ bool thread::kick_thread()
 }
 
 
-
-
-
-
-
-//void thread::_001OnThreadMessage(::message::message * pmessage)
-//{
-//
-//   __pointer(::user::message) pusermessage(pmessage);
-//
-//
-//
-//}
-
-//
-//::handler * thread::handler()
-//{
-//
-//   return m_phandler;
-//
-//}
-
-
 ::e_status thread::verb()
 {
 
@@ -4647,18 +4626,9 @@ bool thread::kick_thread()
 void thread::do_request(::create * pcreate)
 {
 
-   post_object(e_message_system, e_system_message_create, pcreate);
-
-   //return ::success;
+   post_element(e_message_system, e_system_message_create, pcreate);
 
 }
-
-
-//::mutex * g_pmutexThreadOn = nullptr;
-
-//map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn = nullptr;
-
-
 
 
 CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)

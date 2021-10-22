@@ -48,7 +48,7 @@ property_object::~property_object()
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (has(e_matter_destroying))
+   if (has(e_flag_destroying))
    {
 
       //finish(nullptr);

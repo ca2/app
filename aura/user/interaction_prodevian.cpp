@@ -143,7 +143,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!is(e_matter_destroying) && !is_finishing())
+            if (!is(e_flag_destroying) && !is_finishing())
             {
 
                update_screen();
@@ -1145,9 +1145,9 @@ namespace user
 
          }
 
-         if (m_puserinteraction->is(e_matter_destroying)
+         if (m_puserinteraction->is(e_flag_destroying)
             || m_puserinteraction->is_finishing()
-            || m_pimpl->is(e_matter_destroying)
+            || m_pimpl->is(e_flag_destroying)
             || m_pimpl->is_finishing())
          {
 

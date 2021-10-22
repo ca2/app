@@ -1289,7 +1289,7 @@ bool object::check_tasks_finished()
 
    }
 
-   auto synchronouslykeepbitCheckingChildrenTask = synchronously_keep_bit(this, m_ematter, e_matter_checking_children_task, true, false);
+   auto synchronouslykeepbitCheckingChildrenTask = synchronously_keep_bit(this, m_eflagElement, e_flag_checking_children_task, true, false);
 
    try
    {
@@ -1371,7 +1371,7 @@ bool object::check_tasks_finished()
 
    }
 
-   if(!is(e_matter_checking_children_task))
+   if(!is(e_flag_checking_children_task))
    {
 
       try

@@ -356,9 +356,7 @@ void* task::s_os_task(void* p)
 
       clear_message_queue(ptask->m_itask);
 
-      ptask->set(e_matter_task_terminated);
-
-      //ptask->m_ptaskParent.release();
+      ptask->set(e_flag_task_terminated);
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 
@@ -861,7 +859,7 @@ bool task::has_message() const
 
    m_bIsRunning = true;
 
-   set(e_matter_task_started);
+   set(e_flag_task_started);
 
    if (::is_null(m_pobjectParentTask))
    {

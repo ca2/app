@@ -17,14 +17,17 @@ public:
    
    ::interlocked_count                 m_countReference;
 
+   enum_flag                           m_eflagElement;
+
+
 #if OBJECT_REFERENCE_COUNT_DEBUG
-   inline element() { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-   inline element(const element &) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
+   inline element() : m_eflagElement(e_flag_none) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
+   inline element(const enum_flag & element) : m_eflagElement(element.m_eelementflag) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
 #else
-   inline element() : m_countReference(1) { }
-   inline element(const element &) : m_countReference(1) { }
+   inline element() : m_eflagElement(e_flag_none), m_countReference(1) { }
+   inline element(const element& element) : m_eflagElement(element.m_eflagElement), m_countReference(1) { }
 #endif
-   inline element(element && element) : m_countReference(element.m_countReference) {  }
+   inline element(element && element) : m_eflagElement(element.m_eflagElement), m_countReference(element.m_countReference) {  }
    virtual ~element() {}
 
 
@@ -60,7 +63,26 @@ public:
    void handle(::message::message * pmessage) override;
 
    
-   
+   inline bool is(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
+   inline void set(enum_flag eflag) { m_eflagElement = (enum_flag)((::u32)(eflag) | (::u32)(eflag)); }
+   inline void unset(enum_flag eflag) { m_eflagElement = (enum_flag)((::u32)(eflag) & (~(::u32)(eflag))); }
+
+
+   inline bool is_finishing() const { return is(e_flag_finishing); }
+   inline void set_finishing() { set(e_flag_finishing); }
+   inline void unset_finishing() { unset(e_flag_finishing); }
+
+
+   inline bool is_heap_allocated() const { return is(e_flag_heap_allocated); }
+   inline void set_heap_allocated() { set(e_flag_heap_allocated); }
+   inline void unset_heap_allocated() { unset(e_flag_heap_allocated); }
+
+
+   inline bool is_destroying() const { return is(e_flag_destroying); }
+   inline void set_destroying() { set(e_flag_destroying); }
+   inline void unset_destroying() { unset(e_flag_destroying); }
+
+      
 };
 
 

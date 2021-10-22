@@ -228,17 +228,13 @@ public:
    //inline bool command_value_is_true(const ::id& id) const;
 
 
-   ///virtual u32 ResumeThread();
    virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(const ::id & id, wparam wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(const ::id & id, wparam wParam, ::matter * pmatter);
+   virtual bool post_element(const ::id & id, wparam wParam, ::element * pelement);
 
-   virtual bool send_object(const ::id & id, wparam wParam, ::matter * pmatter, ::duration durationTimeout = ::duration::infinite());
-
-   //virtual bool post_task(const ::routine & routine);
-   //virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_element(const ::id & id, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
 
 
    template < typename PREDICATE >

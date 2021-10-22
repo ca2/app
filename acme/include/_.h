@@ -477,7 +477,9 @@ template<class T>
 
 #include <type_traits>
 
+
 class matter;
+class element;
 
 
 
@@ -1093,8 +1095,6 @@ CLASS_DECL_ACME ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priorit
 #include "acme/node/operating_system/argcargv.h"
 
 
-class matter;
-
 
 CLASS_DECL_ACME void release_on_end(::matter *pmatter);
 
@@ -1707,29 +1707,6 @@ enum enum_command
 class composite_base;
 
 
-class matter;
-
-
-class matter;
-
-
-//namespace acme
-//{
-//
-//
-//   class printer;
-//
-//
-//
-//} // namespace acme
-
-
-//extern "C"
-//CLASS_DECL_ACME void register_acme_library(const char * psz, ::acme::library * plibrary);
-//
-//
-//extern "C"
-//CLASS_DECL_ACME void register_get_new_acme_library(const char* psz, PFN_NEW_ACME_LIBRARY pfnNewAuraLibrary);
 
 
 #define DECLARE_NEW_ACME_LIBRARY(X) extern "C" \
@@ -2062,9 +2039,6 @@ class payload;
 
 
 class property_set;
-
-
-class matter;
 
 
 class payload_array;
@@ -2730,13 +2704,6 @@ struct plane_system;
 class factory_map;
 
 typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
-
-//#ifdef WINDOWS
-//CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableOleDDE = false);
-//#endif
-
-
-class matter;
 
 
 using argument = payload;

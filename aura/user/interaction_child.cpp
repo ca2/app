@@ -188,7 +188,7 @@ namespace user
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
-      m_puserinteraction->set(e_matter_task_started);
+      m_puserinteraction->set(e_flag_task_started);
 
       return true;
 

@@ -76,7 +76,7 @@ public:
 #endif
 
 
-   virtual ::e_status initialize_matter(::matter* pmatter);
+   ::e_status initialize_matter(::matter* pmatter) override;
 
 
    virtual ::e_status on_initialize_object();
@@ -121,7 +121,6 @@ public:
    virtual void kick_idle();
 
 
-   virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
    //::e_status destroy() override;
 
@@ -214,21 +213,6 @@ public:
 
    virtual void post_quit();
 
-
-   inline void set_ok() { set(e_object_success); clear(e_object_timeout); clear(e_object_failure); }
-   inline void set_nok(enum_object estatusFailure = e_object_failure) { clear(e_object_success); set(estatusFailure); }
-   inline void set_modified(bool bModified = true) { set(e_object_changed, bModified); }
-
-
-   inline void set_fail() { set(e_object_failure); clear(e_object_success); }
-   inline void set_timeout() { set(e_object_timeout); }
-   inline void set_persistent(bool bSet = true) { set(e_object_persist, bSet); }
-
-
-   inline bool is_ok() const { return has(e_object_success); }
-   inline bool nok() const { return has(e_object_failure) || has(e_object_timeout); }
-   inline bool is_modified() const { return has(e_object_changed); }
-   inline bool is_persistent() { return has(e_object_persist); }
 
 
 

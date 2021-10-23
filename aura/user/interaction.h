@@ -579,15 +579,15 @@ namespace user
 
       interaction * get_tooltip();
 
-      virtual ::e_status set_tool_window(bool bSet = true) override;
+      ::e_status set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
-      virtual ::user::form * get_form() override;
-      virtual ::user::form * get_parent_form() override;
+      ::user::form * get_form() override;
+      ::user::form * get_parent_form() override;
 
       ::user::interaction * get_user_interaction() override;
 
-      virtual matter* get_taskpool_container() override;
+      ::element * get_taskpool_container() override;
 
       //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
 

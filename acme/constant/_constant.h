@@ -42,9 +42,9 @@ enum enum_factory : ::i64
 #define INVALID_ID ((::u64) -1)
 
 
-//#define e_object_success (1 << 0)
-//#define e_object_timeout (1 << 1)
-//#define e_object_failure (1 << 2)
+//#define e_flag_success (1 << 0)
+//#define e_flag_timeout (1 << 1)
+//#define e_flag_failure (1 << 2)
 //#define PERSIST_ID (1 << 3)
 //#define e_object_factory (1 << 4)
 //#define e_object_storing (1 << 5)
@@ -299,14 +299,6 @@ enum enum_object : i64
 
 
    e_object_none,
-   e_object_success = 1 << 0,
-   e_object_timeout = 1 << 1,
-   e_object_failure = 1 << 2,
-   e_object_persist = 1 << 3,
-   e_object_factory = 1 << 4,
-   e_object_acquire = 1 << 6,
-   e_object_default = 1 << 7,
-   e_object_changed = 1 << 9,
    aaa_want_to_erase_object_locked = 1 << 10,
    aaa_want_to_erase_object_shared = 1 << 11,
    aaa_want_to_erase_object_read_only_link = 1 << 12,

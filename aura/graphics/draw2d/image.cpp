@@ -167,7 +167,7 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+::e_status image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
    throw interface_only_exception();
@@ -177,18 +177,18 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+::e_status image::create(const ::size_i32& size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
-   return create_ex(size, nullptr, 0, eobjectCreate, iGoodStride, bPreserve);
+   return create_ex(size, nullptr, 0, eflagCreate, iGoodStride, bPreserve);
 
 }
 
 
-::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
+::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate)
 {
 
-   return create_ex(size, pcolorref, iScan, eobjectCreate);
+   return create_ex(size, pcolorref, iScan, eflagCreate);
 
 }
 
@@ -415,7 +415,8 @@ bool image::create_isotropic(double_array& daRate, ::enum_priority epriority)
    m_sizeAlloc.cy = 0;
    pixmap::reset();
    pixmap::unmap();
-   m_eobject = e_object_none;
+   clear(e_flag_success);
+   clear(e_flag_failure);
 
    return ::success;
 
@@ -3976,7 +3977,7 @@ bool image::Screen(::image* pimage)
 }
 
 
-bool image::copy_from(::image* pimage, const ::point_i32  & point, ::eobject eobjectCreate)
+bool image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag eflagCreate)
 {
 
    ::size_i32 s(pimage->size() - point);
@@ -4020,10 +4021,10 @@ bool image::copy_from(::image* pimage, const ::point_i32  & point, ::eobject eob
 }
 
 
-bool image::copy_from(::image * pimage, eobject eobjectCreate)
+bool image::copy_from(::image * pimage, enum_flag eflagCreate)
 {
 
-   return copy_from(pimage, nullptr, eobjectCreate);
+   return copy_from(pimage, nullptr, eflagCreate);
 
 }
 
@@ -9480,7 +9481,7 @@ stream& image::read(::stream& stream)
 }
 
 
-::matter* image::clone() const
+::element * image::clone() const
 {
 
    auto pimage = ((::image*)this)->__create<::image>();

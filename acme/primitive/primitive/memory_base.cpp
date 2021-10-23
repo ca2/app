@@ -1904,7 +1904,7 @@ memsize memory_base::length() const
 }
 
 
-::matter * memory_base::clone() const
+::element * memory_base::clone() const
 {
 
    auto pmemory = new memory();

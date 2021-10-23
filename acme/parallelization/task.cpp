@@ -480,8 +480,10 @@ void task::unregister_task()
    if (m_routinea.has_element())
    {
 
-      while (auto routine = m_routinea.pick_first())
+      do
       {
+
+         auto routine = m_routinea.pick_first();
 
          synchronouslock.unlock();
 
@@ -489,11 +491,14 @@ void task::unregister_task()
 
          synchronouslock.lock();
 
-      }
+      } while (m_routinea.has_element());
+
+
+      return ::success;
 
    }
 
-   return ::success;
+   return ::success_none;
 
 }
 

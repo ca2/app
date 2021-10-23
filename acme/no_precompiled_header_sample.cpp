@@ -1,7 +1,17 @@
 
+
+struct DURATION;
+
+
 class matter;
 class subject;
 class context;
+class payload;
+class duration;
+class task_pool;
+class object;
+class stream;
+
 
 namespace message
 {

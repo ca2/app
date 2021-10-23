@@ -162,7 +162,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   virtual ::matter * clone() const override;
+   ::element * clone() const override;
 
 
    inline byte *           internal_get_data() const;

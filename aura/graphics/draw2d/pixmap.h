@@ -16,6 +16,7 @@ struct pixmap
 #endif
 {
 
+
 #ifndef __cplusplus
    struct image_header        m_header;
 #endif

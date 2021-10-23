@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   ::matter* check_box::clone() const
+   ::element * check_box::clone() const
    {
 
       auto pcheckbox = new ::user::check_box;

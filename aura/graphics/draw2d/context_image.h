@@ -85,7 +85,7 @@ public:
    virtual ::image_pointer create_image();
 
 
-   virtual ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK);
+   virtual ::image_pointer create_image(const ::size_i32 & size, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
 };

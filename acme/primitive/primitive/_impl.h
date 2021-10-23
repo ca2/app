@@ -2480,7 +2480,7 @@ inline __transport(TYPE) object::__id_create(const ::id& id)
    
    }
    
-   p->m_eobject |= e_object_factory;
+   p->set(e_flag_factory);
    
    auto estatus = p->initialize(this);
 
@@ -2948,7 +2948,7 @@ inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 
    }
 
-   p->m_eobject |= e_object_factory;
+   p->set(e_flag_factory);
 
    auto estatus = p->initialize(this);
 

@@ -60,7 +60,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
          //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         pimageCompose->copy_from(pimageFrame, ::e_object_none);
+         pimageCompose->copy_from(pimageFrame, ::e_flag_none);
 
       }
       else
@@ -80,7 +80,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
    else if (m_edisposal == ::draw2d::disposal_background)
    {
 
-      pimageCompose->copy_from(pimageFrame, ::e_object_none);
+      pimageCompose->copy_from(pimageFrame, ::e_flag_none);
 
       //pimageCompose->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -124,7 +124,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
         }*/
 
 
-   m_pimage->copy_from(pimageCompose, ::e_object_none);
+   m_pimage->copy_from(pimageCompose, ::e_flag_none);
 
    pframea->m_durationTotal += m_duration;
 

@@ -37,6 +37,10 @@ public:
    ~image() override;
 
 
+   using image_meta::clear;
+   using object::clear;
+
+
    virtual void defer_update_image();
 
 
@@ -229,18 +233,18 @@ public:
 
    virtual bool create_thumbnail(const ::string & pszPath);
 
-   virtual ::e_status create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   virtual ::e_status create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    virtual ::e_status create(::draw2d::graphics* pgraphics);
-   virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   virtual ::e_status create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    using ::object::initialize;
-   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG);
-   inline ::e_status preserve(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
+   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+   inline ::e_status preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
    {
 
-      return create(size, eobjectCreate, iGoodStride, true);
+      return create(size, eflagCreate, iGoodStride, true);
 
    }
-   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
 
 
    virtual bool host(const ::pixmap * ppixmap);
@@ -268,7 +272,7 @@ public:
 
    //virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
-   //virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
+   //virtual bool copy(const ::image * pimage, enum_flag eflagCreate = e_flag_success);
    //virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size_i32 & size);
@@ -335,8 +339,8 @@ public:
 
    virtual bool lighten(double dRate);
 
-   virtual bool copy_from(::image * pimage, const ::point_i32 & point, eobject eobjectCreate = e_object_success);
-   virtual bool copy_from(::image * pimage, eobject eobjectCreate = e_object_success);
+   virtual bool copy_from(::image * pimage, const ::point_i32 & point, enum_flag eflagCreate = e_flag_success);
+   virtual bool copy_from(::image * pimage, enum_flag eflagCreate = e_flag_success);
    //virtual bool copy_to(::image * pimage, const ::point_i32 & point = nullptr);
 
    virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);
@@ -378,8 +382,8 @@ public:
    virtual bool invert_rgb();
 
 
-   //virtual ::e_status     create_image(int cx, int cy, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
-   //virtual ::e_status     create_image(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(int cx, int cy, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
 
@@ -399,7 +403,7 @@ public:
    ::stream & read(::stream & stream) override;
 
    
-   ::matter * clone() const override;
+   ::element * clone() const override;
 
 
    inline int line(int line);
@@ -507,11 +511,11 @@ public:
 // //
 // //
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 // //
 // //
 // template < typename COMPOSER >
-// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
 //::e_status __construct(::image_pointer & pimage);
@@ -519,10 +523,10 @@ public:
 inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource);
 //
 //
-inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
 //
 //
-inline ::e_status __preserve(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+inline ::e_status __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1);
 //
 //
 //

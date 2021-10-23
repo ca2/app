@@ -421,7 +421,7 @@ context_image::~context_image()
 
    }
 
-   pimage->m_eobject -= e_object_success;
+   pimage->clear(e_flag_success);
 
    fork([this, pimage, strMatter]()
       {
@@ -507,7 +507,7 @@ context_image::~context_image()
 
       }
 
-      pimage->m_eobject -= e_object_success;
+      pimage->clear(e_flag_success);
 
       if (!_load_thumbnail(pimage, varFile))
       {
@@ -960,7 +960,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 }
 
 
-::image_pointer context_image::create_image(const ::size_i32 & size, ::eobject eobjectFlag)
+::image_pointer context_image::create_image(const ::size_i32 & size, ::enum_flag eflagCreate)
 {
 
    auto pimage = __create < ::image >();
@@ -972,7 +972,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 
    }
 
-   auto estatus = pimage->create(size, eobjectFlag);
+   auto estatus = pimage->create(size, eflagCreate);
 
    if (!estatus)
    {

@@ -270,6 +270,26 @@ void element::operator()(const ::payload & payload)
 }
 
 
+::e_status element::initialize(::object* pobject)
+{
+
+   auto estatus = initialize_matter(pobject);
+
+   return estatus;
+
+}
+
+
+
+::e_status element::initialize_matter(::matter* pmatter)
+{
+
+   return ::success;
+
+}
+
+
+
 strsize element::sz_len() const
 {
 

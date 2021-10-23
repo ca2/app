@@ -64,16 +64,6 @@ void matter::dump(dump_context & dumpcontext) const
 
 
 
-::e_status matter::initialize(::object * pobject)
-{
-
-   auto estatus = initialize_matter(pobject);
-
-   return estatus;
-
-}
-
-
 //::e_status matter::set_object(::object* pobject)
 //{
 //

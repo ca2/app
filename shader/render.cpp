@@ -409,7 +409,7 @@ namespace app_shader
             if(m_pimageLabel->g() == nullptr)
             {
 
-               m_pimageLabel->create(16, 16);
+               m_pimageLabel->create({ 16, 16 });
 
             }
 
@@ -528,7 +528,7 @@ namespace app_shader
             if(m_pimageError->g() == nullptr)
             {
 
-               m_pimageError->create(16, 16);
+               m_pimageError->create({ 16 });
 
             }
 

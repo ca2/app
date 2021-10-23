@@ -570,7 +570,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
    auto type = __type_name(p);
 
-   if (p->has(e_object_factory))
+   if (p->has(e_flag_factory))
    {
 
       strText = stream.factory_id_to_text(type);

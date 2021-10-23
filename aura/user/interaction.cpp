@@ -923,7 +923,7 @@ namespace user
    }
 
 
-   matter *interaction::get_taskpool_container()
+   ::element *interaction::get_taskpool_container()
    {
 
       return get_parent_frame();
@@ -9538,7 +9538,7 @@ bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
       {
 
          // discards object
-         __pointer(::object) spo(lparam);
+         __pointer(::element) spo(lparam);
 
 
       }

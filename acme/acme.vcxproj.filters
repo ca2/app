@@ -293,31 +293,13 @@
     <ClInclude Include="primitive\api\api_rotate.h">
       <Filter>Header Files\primitive\api</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\application_bias.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\atomic.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\bit.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\cflag.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\collection.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\collection_file.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\edit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\factory.h">
@@ -327,9 +309,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\id_space.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked_long.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h">
@@ -342,9 +321,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\malloc.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\math_math.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory.h">
@@ -395,9 +371,6 @@
     <ClInclude Include="primitive\primitive\property.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\primitive_update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\pointer2.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -408,9 +381,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory_container.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_c.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory_base.h">
@@ -734,9 +704,6 @@
     <ClInclude Include="filesystem\file\text_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\types.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
@@ -806,12 +773,6 @@
     <ClInclude Include="primitive\string\_c_trait_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\smillis.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\topic_text_string.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\_defer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -832,9 +793,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\_text_stream_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum_type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\binary_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -916,9 +874,6 @@
     </ClInclude>
     <ClInclude Include="inline\_acid_app_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\impact_data.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
@@ -1181,9 +1136,6 @@
     <ClInclude Include="platform\object_type_counter.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\var.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1238,9 +1190,6 @@
     <ClInclude Include="inline\application_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_command_line.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\acme_str_pool.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1255,21 +1204,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\aaa_edit_file.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\promise1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\future.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pred_method.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pred_future.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\_defer.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1328,27 +1262,6 @@
     <ClInclude Include="primitive\geometry2d\_collection_contains.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\promise.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_context_object_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\change.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\source.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\action.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\object_reference_count_debug_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1376,14 +1289,8 @@
     <ClInclude Include="platform\timer_task.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\function_pointer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\procedure.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -1829,9 +1736,6 @@
     <ClInclude Include="primitive\collection\runnable_array.h">
       <Filter>Source Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\layered.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\collection\common.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
@@ -2107,9 +2011,6 @@
     </ClInclude>
     <ClInclude Include="parallelization\cleanup_task.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\text.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\text\translator.h">
       <Filter>Header Files\primitive\text</Filter>
@@ -2793,6 +2694,45 @@
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\enum_bitset.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\bbb_object.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enumeration.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enumeration1.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\id_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\interlocked.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\interlocked_count.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\object_meta.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\payload_type.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\set_bit.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\stick.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\system.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
@@ -3947,9 +3887,6 @@
     </None>
     <None Include="acme.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="primitive\primitive\block.inl">
-      <Filter>Header Files\primitive\primitive</Filter>
     </None>
     <None Include="exception\_.inl">
       <Filter>Header Files\exception</Filter>

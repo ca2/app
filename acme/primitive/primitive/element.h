@@ -84,11 +84,33 @@ public:
    virtual ::task_pool * taskpool();
 
 
+   virtual ::e_status initialize(::object* pobject);
+
+
+   virtual ::e_status initialize_matter(::matter* pmatter);
+
 
    inline bool has(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
-   inline void set(enum_flag eflag) { m_eflagElement = (enum_flag)((::u32)(eflag) | (::u32)(eflag)); }
+   inline void set(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
    inline void set(enum_flag eflag, bool bSet) { if(bSet) set(eflag); else clear(eflag); }
-   inline void clear(enum_flag eflag) { m_eflagElement = (enum_flag)((::u32)(eflag) & (~(::u32)(eflag))); }
+   inline void clear(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
+
+
+   inline void set_ok() { set(e_flag_success); clear(e_flag_timeout); clear(e_flag_failure); }
+   inline void set_nok(enum_flag estatusFailure = e_flag_failure) { clear(e_flag_success); set(estatusFailure); }
+   inline void set_modified(bool bModified = true) { set(e_flag_changed, bModified); }
+
+
+   inline void set_fail() { set(e_flag_failure); clear(e_flag_success); }
+   inline void set_timeout() { set(e_flag_timeout); }
+   inline void set_persistent(bool bSet = true) { set(e_flag_persist, bSet); }
+
+
+   inline bool is_ok() const { return has(e_flag_success); }
+   inline bool nok() const { return has(e_flag_failure) || has(e_flag_timeout); }
+   inline bool is_modified() const { return has(e_flag_changed); }
+   inline bool is_persistent() { return has(e_flag_persist); }
+
 
 
    inline bool is_finishing() const { return has(e_flag_finishing); }

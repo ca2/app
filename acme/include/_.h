@@ -2035,9 +2035,6 @@ inline bool nok(const TYPE *p)
 class istring;
 
 
-class payload;
-
-
 class property_set;
 
 
@@ -2065,9 +2062,9 @@ typedef bool FN_TIMER(timer *ptimer);
 
 typedef FN_TIMER *PFN_TIMER;
 
-#define NOK_IMAGE_OBJECT (NONE_ID)
-#define IMAGE_OBJECT_OK (SUCCESS)
-#define DEFAULT_CREATE_IMAGE_OBJECT_FLAG (IMAGE_OBJECT_OK)
+#define NOK_IMAGE (::e_flag_none)
+#define OK_IMAGE (::e_flag_success)
+#define DEFAULT_CREATE_IMAGE_FLAG (::e_flag_success)
 
 //#include "acme/constant/_constant.h"
 
@@ -2226,9 +2223,6 @@ class fixed_alloc_no_sync;
 
 
 class critical_section;
-
-
-class payload_array;
 
 
 class channel;
@@ -2707,9 +2701,6 @@ typedef void(*PFN_factory_exchange)(::factory_map * pfactorymap);
 
 
 using argument = payload;
-
-
-class payload_array;
 
 
 using arguments = payload_array;
@@ -3986,7 +3977,9 @@ CLASS_DECL_ACME string get_status_message(::e_status estatus);
 
 #include "acme/primitive/collection/file_path_map.h"
 
-#include "acme/primitive/primitive/edit.h"
+
+//#include "acme/primitive/primitive/edit.h"
+
 
 class mq_base;
 

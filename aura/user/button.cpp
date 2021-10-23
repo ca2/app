@@ -62,7 +62,7 @@ namespace user
    }
 
 
-   ::matter* button::clone() const
+   ::element * button::clone() const
    {
 
       auto pcheckbox = new ::user::button;

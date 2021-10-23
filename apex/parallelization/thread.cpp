@@ -768,36 +768,45 @@ bool thread::thread_step()
 bool thread::pump_runnable()
 {
 
-   _synchronous_lock synchronouslock(mutex());
-
-   while(task_get_run())
+   if (run_posted_routines() == success_none)
    {
 
-      if (m_routinea.is_empty())
-      {
-
-         return false;
-
-      }
-
-      auto method = m_routinea.first();
-
-      m_routinea.erase_at(0);
-
-      if (method)
-      {
-
-         synchronouslock.unlock();
-
-         method();
-
-         return true;
-
-      }
+      return false;
 
    }
 
-   return false;
+   return true;
+
+   //_synchronous_lock synchronouslock(mutex());
+
+   //while(task_get_run())
+   //{
+
+   //   if (m_routinea.is_empty())
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   auto method = m_routinea.first();
+
+   //   m_routinea.erase_at(0);
+
+   //   if (method)
+   //   {
+
+   //      synchronouslock.unlock();
+
+   //      method();
+
+   //      return true;
+
+   //   }
+
+   //}
+
+   //return false;
 
 }
 

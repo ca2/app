@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/message.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -21,6 +21,8 @@ namespace user
 
    frame_window::frame_window()
    {
+
+      m_puserframewindow = this;
 
       m_flagNonClient.erase(non_client_background);
       m_flagNonClient.erase(non_client_focus_rect);
@@ -48,7 +50,7 @@ namespace user
 #endif
 
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
 
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
@@ -86,7 +88,7 @@ namespace user
    void frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
    {
 
-      UNREFERENCED_PARAMETER(prectangle);
+      __UNREFERENCED_PARAMETER(prectangle);
 
    }
 
@@ -94,7 +96,7 @@ namespace user
    void frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(rectangle);
 
    }
 
@@ -102,7 +104,7 @@ namespace user
    //void frame_window::NotifyFloatingWindows(u32 dwFlags)
    //{
 
-   //   UNREFERENCED_PARAMETER(dwFlags);
+   //   __UNREFERENCED_PARAMETER(dwFlags);
 
    //}
 
@@ -189,7 +191,7 @@ namespace user
    }
 
 
-   void frame_window::update_active_document(::subject::subject * psubject)
+   void frame_window::update_active_document(::subject * psubject)
    {
 
       auto pdocument = get_active_document();
@@ -497,7 +499,7 @@ namespace user
 
                   get_window_rect(rectangle);
 
-                  pimage1 = create_image(rectangle.size());
+                  pimage1 = m_pcontext->context_image()->create_image(rectangle.size());
 
                   synchronization_object * psync = pimpl->m_pgraphics->get_draw_lock();
 
@@ -505,11 +507,19 @@ namespace user
 
                   synchronous_lock synchronouslock(psync);
 
-                  auto rectDst = ::rectangle_f64(rectangle.size());
+                  auto rectangleTarget = ::rectangle_f64(rectangle.size());
 
-                  pimage1->get_graphics()->draw(rectDst, pgraphics);
+                  image_source imagesource(pgraphics);
 
-                  auto pcopydesk = psession->copydesk();
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage1->get_graphics()->draw(imagedrawing);
+
+                  auto pwindow = window();
+
+                  auto pcopydesk = pwindow->copydesk();
 
                   pcopydesk->image_to_desk(pimage1);
 
@@ -541,7 +551,21 @@ namespace user
 
                   pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
+                  rectangle_f64 rectangleSource(rectangle.size());
+
+                  {
+
+                     image_source imagesource(pimage1, rectangleSource);
+
+                     rectangle_f64 rectangleTarget(pimage2->size());
+
+                     image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                     pimage2->get_graphics()->draw(imagedrawing);
+
+                  }
 
                   pcontextimage->save_image(m_psystem->m_pacmedir->system() / "control_alt_p_w300.png", pimage2);
 
@@ -586,7 +610,7 @@ namespace user
 
    void frame_window::OnPaletteChanged(__pointer(::user::interaction) pFocusWnd)
    {
-      UNREFERENCED_PARAMETER(pFocusWnd);
+      __UNREFERENCED_PARAMETER(pFocusWnd);
       // trans user::frame_window::OnPaletteChanged(pFocusWnd);
    }
 
@@ -635,9 +659,9 @@ namespace user
    bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id)
    {
       
-      UNREFERENCED_PARAMETER(pwindow);
-      UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(pwindow);
+      __UNREFERENCED_PARAMETER(nHitTest);
+      __UNREFERENCED_PARAMETER(id);
       
       __pointer(::user::frame_window) pFrameWnd = top_level_frame();
 
@@ -768,9 +792,9 @@ namespace user
 
    void frame_window::ShowOwnedWindows(bool bShow)
    {
-      UNREFERENCED_PARAMETER(bShow);
+      __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
@@ -877,7 +901,7 @@ namespace user
    //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::create * pcreate)
    //{
 
-   //   UNREFERENCED_PARAMETER(pszMenuName);
+   //   __UNREFERENCED_PARAMETER(pszMenuName);
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
@@ -906,7 +930,7 @@ namespace user
          if (pusersystem->m_typeNewView || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
-            if (::user::create_view(pusersystem, this, "pane_first").is_null())
+            if (::user::create_view(pusersystem, this, FIRST_PANE).is_null())
             {
 
                return false;
@@ -981,7 +1005,7 @@ namespace user
       if (!on_create_client(pusersystem))
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
+         CATEGORY_ERROR(appmsg, "Failed to create client pane/::user::impact for frame.");
 
          return -1;
 
@@ -1013,7 +1037,7 @@ namespace user
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 
-      UNREFERENCED_PARAMETER(puiParent);
+      __UNREFERENCED_PARAMETER(puiParent);
 
       // only do this once
       //   ASSERT_VALID_IDR(nIDResource);
@@ -1027,20 +1051,20 @@ namespace user
 
       //dwDefaultStyle &= ~WS_VISIBLE;
 
-      ::rectangle_i32 rectFrame;
+      ::rectangle_i32 rectangleFrame;
 
       __pointer(::user::place_holder) pholder;
 
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
 
-         pholder->get_client_rect(rectFrame);
+         pholder->get_client_rect(rectangleFrame);
 
       }
       else
       {
 
-         rectFrame = nullptr;
+         rectangleFrame = nullptr;
 
       }
 
@@ -1050,7 +1074,7 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
       //{
@@ -1113,7 +1137,7 @@ namespace user
       const char * lpszClass = GetIconWndClass(dwDefaultStyle, nIDResource);
 
       string strTitle = m_strTitle;
-      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectDefault,
+      if (!create_window_ex(0, lpszClass, strTitle, dwDefaultStyle, rectangleDefault,
 
       puiParent, nIDResource, (LPVOID) pContext))
       {
@@ -1167,7 +1191,7 @@ namespace user
       if (get_active_view() == nullptr)
       {
 
-         __pointer(::user::interaction) pwindow = get_child_by_id("pane_first");
+         __pointer(::user::interaction) pwindow = get_child_by_id(FIRST_PANE);
 
          if (pwindow != nullptr && base_class < ::user::impact > ::bases(pwindow))
          {
@@ -1232,7 +1256,7 @@ namespace user
       //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
       //{
       //   get_parent()->place_hold(this);
-      //   //get_parent()->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   //get_parent()->on_layout(pgraphics);
       //}
 
    }
@@ -1241,7 +1265,7 @@ namespace user
    void frame_window::InitialFramePosition(bool bForceRestore)
    {
 
-      UNREFERENCED_PARAMETER(bForceRestore);
+      __UNREFERENCED_PARAMETER(bForceRestore);
 
       if (m_bFrameMoveEnable)
       {
@@ -1268,7 +1292,7 @@ namespace user
    void frame_window::OnClose()
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*if (m_lpfnCloseProc != nullptr)
       (*m_lpfnCloseProc)(this);
 
@@ -1341,38 +1365,26 @@ namespace user
    }
 
 
-   void frame_window::on_command_message(::message::command* pcommand)
+   //void frame_window::on_command(::message::command* pcommand)
+   //{
+
+   //   ::user::frame::on_command(pcommand);
+
+   //}
+
+
+   void frame_window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::user::frame::on_command_message(pcommand);
-
-   }
-
-
-   void frame_window::route_command_message(::message::command* pcommand)
-   {
-
-      // pump through current ::user::impact FIRST
-      __pointer(::user::impact) pview = get_active_view();
-
-      if (pview != nullptr)
+      if (bRouteToKeyDescendant)
       {
 
-         pview->on_command_message(pcommand);
+         __pointer(::user::impact) pview = get_active_view();
 
-         if (pcommand->m_bRet)
+         if (pview != nullptr)
          {
 
-            return;
-
-         }
-
-         auto pdocument = pview->get_document();
-
-         if (pdocument)
-         {
-
-            pdocument->on_command_message(pcommand);
+            pview->route_command(pcommand, false);
 
             if (pcommand->m_bRet)
             {
@@ -1385,367 +1397,7 @@ namespace user
 
       }
 
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
-
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //pview = get_child_by_id("pane_first");
-
-      //if (pview != nullptr)
-      //{
-
-      //   pview->route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //if (pcommand->m_pcommandtargetSource != this)
-      //{
-
-      //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      on_command_message(pcommand);
-
-      if (pcommand->m_bRet)
-      {
-
-         return;
-
-      }
-
-      // then pump through parent
-      __pointer(::user::interaction) puiParent = get_parent();
-
-      while (puiParent)
-      {
-
-         puiParent->on_command_message(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-         puiParent = puiParent->get_parent();
-
-      }
-
-      // last but not least, pump through cast
-      ::application* papp = get_application();
-
-      if (papp != nullptr)
-      {
-
-         papp->on_command_message(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-      }
-
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      if(puser)
-      {
-
-         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
-
-         if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
-         {
-
-            ptarget->on_command_message(pcommand);
-
-            if (pcommand->m_bRet)
-            {
-
-               return;
-
-            }
-
-         }
-
-      }
-
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
-
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //pview = get_child_by_id("pane_first");
-
-      //if (pview != nullptr)
-      //{
-
-      //   pview->route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //if (pcommand->m_pcommandtargetSource != this)
-      //{
-
-      //   // then pump through frame
-      //   ::user::frame_window::route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      // then pump through parent
-      //__pointer(::user::interaction) puiParent = get_parent();
-      //while (puiParent)
-      //{
-
-      //   puiParent->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //// last but not least, pump through cast
-      //::aura::application* papp = get_application();
-
-      //if (papp != nullptr)
-      //{
-
-      //   papp->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-      //__pointer(channel) ptarget = psession->get_keyboard_focus();
-
-      //if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
-      //   && !m_interactionaCommandHandlers.contains(ptarget))
-      //{
-
-      //   ptarget->on_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
-
-      ////::user::box::route_command_message(pcommand);
-
-      ////if (pcommand->m_bRet)
-      ////{
-
-      ////   return;
-
-      ////}
-
-      ////if (pcommand->m_pcommandtargetSource == this)
-      ////{
-
-      ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// pump through current ::user::impact FIRST
-      ////__pointer(::user::impact) pview = get_active_view();
-
-      ////if (pview != nullptr)
-      ////{
-
-      ////   pview->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////for (auto& pview : m_interactionaCommandHandlers)
-      ////{
-
-      ////   if (pview != nullptr && pview != get_active_view())
-      ////   {
-
-      ////      pview->route_command_message(pcommand);
-
-      ////      if (pcommand->m_bRet)
-      ////      {
-
-      ////         return;
-
-      ////      }
-
-      ////   }
-
-      ////}
-
-      ////pview = get_child_by_id("pane_first");
-
-      ////if (pview != nullptr)
-      ////{
-
-      ////   pview->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////if (pcommand->m_pcommandtargetSource != this)
-      ////{
-
-      ////   // then pump through frame
-      ////   ::user::frame::route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// then pump through parent
-      ////__pointer(::user::interaction) puiParent = get_parent();
-
-      ////if (puiParent != nullptr)
-      ////{
-
-      ////   puiParent->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////// last but not least, pump through cast
-      ////::aura::application* papp = get_application();
-
-      ////if (papp != nullptr)
-      ////{
-
-      ////   papp->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
-
-      ////__pointer(channel) ptarget = psession->get_keyboard_focus();
-
-      ////if (ptarget != nullptr && ptarget != this)
-      ////{
-
-      ////   ptarget->route_command_message(pcommand);
-
-      ////   if (pcommand->m_bRet)
-      ////   {
-
-      ////      return;
-
-      ////   }
-
-      ////}
+      ::user::box::route_command(pcommand, false);
 
    }
 
@@ -1775,8 +1427,8 @@ namespace user
 
    //LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
    //{
-   //   UNREFERENCED_PARAMETER(wParam);
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(wParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
    //   // trans   user::frame_window::OnActivateTopLevel(wParam, lParam);
 
    //   // exit Shift+F1 help mode on activation changes
@@ -1901,7 +1553,7 @@ namespace user
    //void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
    //{
    //   
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
 
    //   __pointer(::user::frame_window) pFrameWnd = top_level_frame();
 
@@ -1946,7 +1598,7 @@ namespace user
    //void frame_window::OnDropFiles(HDROP hDropInfo)
    //{
 
-   //   UNREFERENCED_PARAMETER(hDropInfo);
+   //   __UNREFERENCED_PARAMETER(hDropInfo);
 
    //}
 
@@ -1962,43 +1614,137 @@ namespace user
    // when Windows session ends, close all documents
    void frame_window::OnEndSession(bool bEnding)
    {
-      UNREFERENCED_PARAMETER(bEnding);
+      __UNREFERENCED_PARAMETER(bEnding);
    }
 
-   ///////////////////////////////////////////////////////////////////////////////
-   //// Support for Shell DDE Execute messages
 
-   //LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
-   //{
+   ::e_status frame_window::show_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      if(!is_child(pcontrolbar))
+      {
+
+         pcontrolbar->set_parent(this);
+
+      }
+
+      pcontrolbar->display();
+
+      pcontrolbar->set_need_layout();
+
+      pcontrolbar->set_need_redraw();
+
+      pcontrolbar->post_redraw();
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      RepositionBars();
+
+      post_redraw();
+
+      return ::success;
+
+   }
 
 
-   //   return 0L;
-   //}
+   ::e_status frame_window::hide_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      if(!is_child(pcontrolbar))
+      {
+
+         pcontrolbar->set_parent(this);
+
+      }
+
+      pcontrolbar->hide();
+
+      RepositionBars();
+
+      return error_interface_only;
+
+   }
 
 
-   //// always ACK the execute command - even if we do nothing
-   //LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
-   //{
+   __transport(toolbar) frame_window::get_toolbar(const ::id & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   {
+
+      auto & toolbartransport = m_mapToolbar[idToolbar];
+
+      if(bCreate && toolbartransport.not_initialized())
+      {
+
+         toolbartransport = create_toolbar(idToolbar, strToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+
+         if(toolbartransport)
+         {
+
+            add_control_bar(toolbartransport);
+
+         }
+
+      }
+
+      return toolbartransport;
+
+   }
 
 
+   __transport(toolbar) frame_window::create_toolbar(const ::id & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   {
 
-   //   return 0L;
+      auto toolbartransport = __id_create < toolbar >(type);
 
-   //}
+      if(!toolbartransport)
+      {
 
-   //LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
-   //{
+         return toolbartransport;
+
+      }
+
+      toolbartransport->m_dwStyle = uStyle;
+
+      toolbartransport->m_dwCtrlStyle = dwCtrlStyle;
+
+      auto estatus = toolbartransport->create_child(this);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto pcontext = get_context();
+
+      string strToolbar(strToolbarParam);
+
+      if(strToolbar.is_empty())
+      {
+
+         strToolbar = idToolbar + ".toolbar";
+
+      }
+
+      string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
+
+      string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
+
+      if(!toolbartransport->LoadXmlToolBar(strXml))
+      {
+
+         return error_failed;
+
+      }
+
+      return toolbartransport;
+
+   }
 
 
-   //   return 0L;
-
-   //}
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // frame_window attributes
-
-   ::user::impact * frame_window::get_active_view() const
+   ::user::interaction * frame_window::get_active_view() const
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));
@@ -2072,7 +1818,7 @@ namespace user
 
    void frame_window::OnSetFocus(__pointer(::user::interaction) pOldWnd)
    {
-      UNREFERENCED_PARAMETER(pOldWnd);
+      __UNREFERENCED_PARAMETER(pOldWnd);
       if (m_pviewActive != nullptr)
          m_pviewActive->set_keyboard_focus();
       /*trans else
@@ -2106,10 +1852,10 @@ namespace user
 
    void frame_window::GetMessageString(::u32 nID, string & rMessage) const
    {
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(rMessage);
+      __UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   char * psz = rMessage.GetBuffer(255);
 
       if (::aura::LoadString(nID, psz) != 0)
@@ -2226,7 +1972,7 @@ namespace user
 
 //   void frame_window::OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho)
 //   {
-//      UNREFERENCED_PARAMETER(pWho);
+//      __UNREFERENCED_PARAMETER(pWho);
 //      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
 //#ifdef WINDOWS
 //      if (nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
@@ -2369,17 +2115,17 @@ namespace user
             // Leaving Preview
             m_lpfnCloseProc = nullptr;
 
-            // shift original "pane_first" back to its rightful ID
+            // shift original FIRST_PANE back to its rightful ID
                   __pointer(::user::interaction) oswindow = get_child_by_id(__IDW_PANE_SAVE);
             if (oswindow != nullptr)
             {
-            __pointer(::user::interaction) oswindow_Temp = get_child_by_id("pane_first");
+            __pointer(::user::interaction) oswindow_Temp = get_child_by_id(FIRST_PANE);
             if (oswindow_Temp != nullptr)
             __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
-            __set_dialog_control_id_(oswindow, "pane_first");
+            __set_dialog_control_id_(oswindow, FIRST_PANE);
             }
 
-            on_layout(::draw2d::graphics_pointer & pgraphics);
+            on_layout(pgraphics);
 
 
             // show any modeless dialogs, popup windows, float tools, etc
@@ -2423,7 +2169,7 @@ namespace user
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
-         //         ::u32 dwTime2= ::millis::now();
+         //         ::u32 dwTime2= ::duration::now();
 
          //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //TRACE("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -2438,9 +2184,9 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, false);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, &rectangle, false);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, true);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, &rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2452,7 +2198,7 @@ namespace user
       else
       {
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder);
 
       }
 
@@ -2470,7 +2216,7 @@ namespace user
       case borderGet:
          ASSERT(pRectBorder != nullptr);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery,
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery,
                         pRectBorder);
 
          break;
@@ -2482,10 +2228,10 @@ namespace user
          if (pRectBorder == nullptr)
 
          {
-            if (!m_rectBorder.is_null())
+            if (!m_rectangleBorder.is_null())
             {
                // releasing all border space -- recalc needed
-               m_rectBorder.Null();
+               m_rectangleBorder.Null();
                return true;
             }
             // original rectangle_i32 is is_empty & pRectBorder is nullptr, no recalc needed
@@ -2494,11 +2240,11 @@ namespace user
 
          }
 
-         if (m_rectBorder != *pRectBorder)
+         if (m_rectangleBorder != *pRectBorder)
          {
 
             // the rects are different -- recalc needed
-            m_rectBorder.copy(pRectBorder);
+            m_rectangleBorder.copy(pRectBorder);
 
             return true;
 
@@ -2524,7 +2270,7 @@ namespace user
    bool frame_window::OnEraseBkgnd(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
       if (m_pviewActive != nullptr)
       {
@@ -2573,7 +2319,7 @@ namespace user
 //
 //#else
 //
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
 //
 //#endif
 //
@@ -2673,14 +2419,14 @@ namespace user
    }
 
 
-   bool frame_window::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-   {
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+//   ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+//   {
+//
+//      throw ::interface_only_exception();
+//
+//      return false;
+//
+//   }
 
 
    void frame_window::common_construct()
@@ -2695,7 +2441,7 @@ namespace user
 
       m_cModalStack = 0;              // initialize modality support
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectBorder.Null();
+      m_rectangleBorder.Null();
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = nullptr;         // not in list yet
@@ -2708,18 +2454,11 @@ namespace user
    }
 
 
-   void frame_window::RemoveControlBar(::user::control_bar *pBar)
-   {
-      m_barptra.erase(pBar);
-
-   }
-
-
    // query end session for main frame will attempt to close it all down
    void frame_window::_001OnQueryEndSession(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2727,7 +2466,7 @@ namespace user
    void frame_window::_001OnSetFocus(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2741,7 +2480,7 @@ namespace user
    bool frame_window::OnBarCheck(::u32 nID)
    {
 
-      UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(nID);
 
       return false;
 
@@ -2764,7 +2503,7 @@ namespace user
    void frame_window::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2777,10 +2516,10 @@ namespace user
    }
 
 
-   void frame_window::on_control_event(::user::control_event * pevent)
+   void frame_window::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -2792,7 +2531,7 @@ namespace user
 
       bool bUpdateWindow;
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       if(strType.contains_ci("veriwell_keyboard") && strType.contains_ci("main_frame"))
       {
@@ -2840,7 +2579,7 @@ namespace user
 
       }
 
-      bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+      bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
       auto psession = get_session();
 
@@ -2914,10 +2653,22 @@ namespace user
    }
 
 
-   void frame_window::AddControlBar(::user::control_bar *pBar)
+   ::e_status frame_window::add_control_bar(::user::control_bar *pcontrolbar)
    {
 
-      m_barptra.add_unique(pBar);
+      m_controlbara.add_unique(pcontrolbar);
+
+      return ::success;
+
+   }
+
+
+   ::e_status frame_window::erase_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      m_controlbara.erase(pcontrolbar);
+
+      return ::success;
 
    }
 

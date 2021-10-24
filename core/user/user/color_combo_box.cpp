@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace user
@@ -9,7 +12,7 @@ namespace user
    color_combo_box::color_combo_box() 
    {
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
       m_pdocument = nullptr;
       m_bMouseDown = false;
 
@@ -57,7 +60,7 @@ namespace user
    void color_combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_bMouseDown = true;
 
@@ -71,7 +74,7 @@ namespace user
    void color_combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 
@@ -111,13 +114,13 @@ namespace user
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-               m_pview = m_pdocument->get_typed_view < ::userex::color_view >();
+               m_pimpact = m_pdocument->get_typed_view < ::userex::color_view >();
 
-               m_pview->m_bCompact = true;
+               m_pimpact->m_bCompact = true;
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 
-               m_pframewindow = m_pview->top_level_frame()->cast < ::simple_frame_window >();
+               m_pframewindow = m_pimpact->top_level_frame()->cast < ::simple_frame_window >();
 
                m_pframewindow->set_owner(this);
 
@@ -128,16 +131,16 @@ namespace user
 
             }
 
-            m_pview->m_hls = m_hls;
+            m_pimpact->m_hls = m_hls;
 
             auto pframe = frame();
 
             if(bNew)
             {
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectWindow);
+               get_window_rect(rectangleWindow);
 
                pframe->m_sizeMinimum.cx = 300;
 
@@ -145,7 +148,7 @@ namespace user
 
                pframe->order(e_zorder_top_most);
                
-               pframe->set_dim(rectWindow.left, rectWindow.bottom, 400, 200);
+               pframe->set_dim(rectangleWindow.left, rectangleWindow.bottom, 400, 200);
                
                pframe->display();
 
@@ -169,21 +172,21 @@ namespace user
    }
 
 
-   void color_combo_box::on_control_event(::user::control_event * pevent)
+   void color_combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_puserinteraction == m_pview)
+      if(psubject->m_puserelement == m_pimpact)
       {
 
-         pevent->m_puserinteraction = this;
+         psubject->m_puserelement = this;
 
-         pevent->m_id = m_id;
+         psubject->m_puserelement->m_id = m_id;
 
-         m_hls = m_pview->m_hls;
+         m_hls = m_pimpact->m_hls;
 
       }
 
-      ::user::interaction::on_control_event(pevent);
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
@@ -191,14 +194,14 @@ namespace user
    void color_combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (!m_itemHover.is_set())
       {
 
-         m_itemHover = ::user::e_element_client;
+         m_itemHover = ::e_element_client;
 
          set_need_redraw();
 
@@ -212,11 +215,11 @@ namespace user
    void color_combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = ::user::e_element_none;
+      m_itemHover = ::e_element_none;
 
       set_need_redraw();
 
@@ -255,7 +258,7 @@ namespace user
    void color_combo_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
 
@@ -354,7 +357,7 @@ namespace user
 
          color.alpha = 255;
 
-         ::draw2d::brush_pointer pbrush(e_create);
+         ::draw2d::brush_pointer pbrush(e_create, this);
 
          if (!is_window_enabled())
          {
@@ -371,7 +374,7 @@ namespace user
 
          {
 
-            auto colorBackground = get_color(pstyle, ::user::e_element_background, estate);
+            auto colorBackground = get_color(pstyle, ::e_element_background, estate);
 
             if (!colorBackground.is_ok())
             {
@@ -400,23 +403,23 @@ namespace user
 
             color2.hls_rate(0.0, 0.3, 0.5);
 
-            pgraphics->draw_rectangle(rEdit, color2);
+            pgraphics->draw_inset_rectangle(rEdit, color2);
 
          }
 
-         auto rectPadding = get_padding(pstyle);
+         auto rectanglePadding = get_padding(pstyle);
 
-         rEdit.deflate(rectPadding);
+         rEdit.deflate(rectanglePadding);
 
          pgraphics->fill_rectangle(rEdit, color.get_rgba());
 
       }
 
-      ::rectangle_i32 rectDropDown;
+      ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectDropDown, e_element_drop_down);
+      get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      ::rectangle_i32 rectDropIn(rectDropDown);
+      ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
       ::color::color color(get_color(pstyle, estate));
 
@@ -429,21 +432,21 @@ namespace user
 
       color.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(color);
+      pbrush->create_solid(color);
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
-      pgraphics->fill_rectangle(rectDropIn);
+      pgraphics->fill_rectangle(rectangleDropIn);
 
-      ::draw2d::path_pointer path(e_create);
+      auto ppath = __create < ::draw2d::path > ();
 
       point_f64_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(argb(210, 0, 0, 0));
+      pbrush->create_solid(argb(210, 0, 0, 0));
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
       pgraphics->fill_polygon(pointa);
 

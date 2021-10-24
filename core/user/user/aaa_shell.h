@@ -129,7 +129,7 @@ namespace user
       index                                              m_iThread;
       ::mutex                                            m_mutexImage;
       //__pointer_array(thread)                            m_threadptra;
-      millis                                               m_millisLastMax;
+      ::duration                                               m_durationLastMax;
       ::u32                                              m_bMax;
       bool                                               m_bInitialized;
 

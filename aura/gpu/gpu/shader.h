@@ -20,6 +20,8 @@ namespace gpu
       
       unsigned int m_uId;
 
+      string      m_strError;
+
       shader();
       virtual ~shader();
 

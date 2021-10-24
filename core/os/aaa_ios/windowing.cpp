@@ -162,7 +162,7 @@ bool oswindow_erase(UIWindow * window)
 //{
 //
 //   if(::is_null(*this))
-//      __throw(::exception::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+//      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 //
 //   m_pimpl = pinteraction;
 //
@@ -538,7 +538,7 @@ void defer_dock_application(int_bool bDock)
 int_bool destroy_window(oswindow window)
 {
 
-   UNREFERENCED_PARAMETER(window);
+   __UNREFERENCED_PARAMETER(window);
 
    return true;
 

@@ -1,6 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#include "acme/const/timer.h"
+#endif
+
+#include "acme/constant/timer.h"
 
 
 namespace userex
@@ -10,11 +13,7 @@ namespace userex
    wait_message_dialog::wait_message_dialog()
    {
       
-      m_iSecond = -1;
-
-      m_millisStart = 0;
-
-      m_millisDelay = 0;
+      m_second.m_i = -1;
 
    }
 
@@ -33,33 +32,33 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_control_event(::user::control_event * pevent)
+   void wait_message_dialog::handle(::subject * psubject, ::context * pcontext)
    {
       
-      dialog::on_control_event(pevent);
+      dialog::handle(psubject, pcontext);
       
-      if(pevent->m_puserinteraction == m_pform)
+      if(psubject->user_interaction() == m_pform)
       {
       
-         if(pevent->m_eevent == ::user::e_event_create)
+         if(psubject->m_id == ::e_subject_create)
          {
             
-            if(m_millisDelay > 0)
+            if(m_durationDelay > 0_s)
             {
                
                m_pform->set_timer(e_timer_reload, 50_ms);
                
-               payload("wait_message_dialog_timeout") = m_millisDelay.seconds();
+               payload("wait_message_dialog_timeout") = m_durationDelay;
                
             }
             
-            m_millisStart.Now();
+            m_durationStart.Now();
 
          }
-         else if(pevent->m_eevent == ::user::e_event_timer)
+         else if(psubject->m_id == ::e_subject_timer)
          {
             
-            if(pevent->m_etimer == e_timer_reload)
+            if(psubject->m_etimer == e_timer_reload)
             {
 
                on_timeout_check();
@@ -69,14 +68,14 @@ namespace userex
          }
          
       }
-      else if(pevent->m_eevent == ::user::e_event_click)
+      else if(psubject->m_id == ::e_subject_click)
       {
 
-         m_idResponse = pevent->m_puserinteraction->m_id;
+         m_idResponse = psubject->user_interaction()->m_id;
 
          EndModalLoop(m_idResponse);
 
-         pevent->m_bRet = true;
+         psubject->m_bRet = true;
 
       }
 
@@ -86,9 +85,9 @@ namespace userex
    bool wait_message_dialog::on_timeout_check()
    {
 
-      auto tickTimeout = m_millisStart.elapsed();
+      auto tickTimeout = m_durationStart.elapsed();
 
-      if (tickTimeout > (m_millisDelay - 500_ms))
+      if (tickTimeout > (m_durationDelay - 500_ms))
       {
 
          if (on_timeout())
@@ -123,26 +122,26 @@ namespace userex
    }
 
 
-   void wait_message_dialog::on_timer_soft_reload(millis tickTimeout)
+   void wait_message_dialog::on_timer_soft_reload(::duration tickTimeout)
    {
 
-      auto iSecond = (m_millisDelay - tickTimeout).seconds();
+      auto second = (m_durationDelay - tickTimeout).integral_second();
       
-      if(iSecond <= 0)
+      if(second.m_i <= 0)
       {
          
          return;
          
       }
       
-      if(iSecond == (int) m_iSecond)
+      if(second == m_second)
       {
          
          return;
          
       }
       
-      m_iSecond = (int) iSecond;
+      m_second = second;
       
       auto pinteraction = m_pform->get_child_by_id("timeout");
       
@@ -151,7 +150,7 @@ namespace userex
 
          string str;
 
-         str.Format("%d", iSecond);
+         str.Format("%d", second.m_i);
 
          pinteraction->_001SetText(str, ::e_source_sync);
 
@@ -160,7 +159,7 @@ namespace userex
       if (m_pdocument != nullptr)
       {
 
-         payload("wait_message_dialog_timeout") = iSecond;
+         payload("wait_message_dialog_timeout") = second;
 
          m_pform->soft_reload();
 

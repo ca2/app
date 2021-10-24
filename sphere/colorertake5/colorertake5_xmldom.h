@@ -46,11 +46,11 @@ namespace colorertak5
        message += "ParseException: " + msg;
        if (line > -1)
        {
-          message += " at line: " + __str(line);
+          message += " at line: " + __string(line);
        }
        if (pos > -1)
        {
-          message += ", pos: " + __str(pos);
+          message += ", pos: " + __string(pos);
        }
      };
    protected:

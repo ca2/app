@@ -33,6 +33,15 @@ namespace acme
    public:
 
 
+      union
+      {
+
+         ::u64                               m_uNodeFlags;
+
+         bool                                m_bHasNodePostedSystemInitialRequest : 1;
+
+      };
+
       ::apex::node *                         m_papexnode;
       ::aura::node *                         m_pauranode;
 
@@ -44,6 +53,12 @@ namespace acme
       ::apex::PLATFORM_NAMESPACE::node *     m_pApexPlatform;
       ::aura::PLATFORM_NAMESPACE::node *     m_pAuraPlatform;
 
+      ::PLATFORM_NAMESPACE::node *           m_pNode;
+
+
+      ::windowing_universal_windows::node *  m_pWindowingUniversalWindowsNode;
+
+
       ::windowing_x11::node *                m_pNodeX11;
       ::windowing_xcb::node *                m_pNodeXcb;
       ::node_gtk::node *                     m_pNodeGtk;
@@ -54,27 +69,29 @@ namespace acme
       ::desktop_environment_kde::node *      m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node *     m_pNodeDesktopEnvironmentXfce;
 
-      //::user::enum_desktop    m_edesktop;
+      //bool                    m_bUserDarkMode;
 
-      ::logic::bit            m_bLastDarkModeApp;
-
-      ::logic::bit            m_bLastDarkModeSystem;
-
-      ::color::color          m_colorSystemAppBackground;
-      double                  m_dSystemLuminance;
+      //bool                    m_bDarkModeSystem;
+      bool                    m_bDarkMode;
+      ::color::color          m_colorBackground;
+      double                  m_dLuminance;
       int                     m_iWeatherDarkness;
       ::file::path            m_pathModule;
 
-      ::user::enum_desktop                               m_edesktop;
+      ::user::enum_desktop    m_edesktop;
 
 
       node();
       ~node() override;
 
-
+#ifdef _DEBUG
 
       i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+
+#endif
+      
+      virtual ::string get_file_type_identifier(const char * path);
 
 
       virtual ::e_status call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
@@ -106,11 +123,11 @@ namespace acme
 
       virtual ::e_status system_main();
 
-      virtual ::e_status on_start_system();
-      
       virtual ::e_status _will_finish_launching();
 
       virtual ::e_status reboot();
+
+      virtual ::e_status implement();
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
@@ -146,8 +163,15 @@ namespace acme
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual ::e_status  set_last_run_application_path(const string& strAppId);
 
+      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 
-      virtual ::e_status register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard);
+      virtual ::e_status install_keyboard_hook(::matter * pmatterListener);
+      virtual ::e_status uninstall_keyboard_hook(::matter * pmatterListener);
+      
+      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+
+      virtual ::e_status install_mouse_hook(::matter * pmatterListener);
+      virtual ::e_status uninstall_mouse_hook(::matter * pmatterListener);
 
 
       virtual ::file::path _module_path();
@@ -169,39 +193,21 @@ namespace acme
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
-      virtual ::e_status set_system_dark_mode1(bool bSet = true);
+      inline bool dark_mode() const { return m_bDarkMode; }
 
-      virtual ::e_status set_app_dark_mode1(bool bSet = true);
+      inline ::color::color background_color() const { return m_colorBackground; }
 
-      virtual ::e_status set_internal_system_dark_mode(bool bSet = true);
+      inline double luminance() const { return m_dLuminance; }
 
-      virtual ::e_status set_internal_app_dark_mode(bool bSet = true);
-
-      virtual bool is_system_dark_mode();
-
-      virtual bool is_app_dark_mode();
-
-      virtual ::color::color get_system_app_background_color();
-
-      virtual void set_system_app_background_color(::color::color color);
-
-      virtual double get_system_app_luminance();
-
-      virtual void set_system_app_luminance(double dLuminance);
+      virtual void background_color(const ::color::color & color);
 
       virtual int get_simple_ui_darkness();
 
       virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      virtual bool _os_calc_app_dark_mode();
+      virtual void fetch_user_color();
 
-      virtual bool _os_calc_system_dark_mode();
-
-      virtual void os_calc_user_dark_mode();
-
-      virtual void on_os_dark_mode_change();
-
-      virtual void defer_initialize_dark_mode();
+      virtual void on_user_color();
 
       virtual string os_get_user_theme();
 
@@ -221,34 +227,17 @@ namespace acme
 
       virtual void enable_wallpaper_change_notification();
 
-      template < typename PRED >
-      void node_fork(PRED pred)
+      template < typename PREDICATE >
+      void node_fork(PREDICATE predicate)
       {
 
-         node_branch(__routine(pred));
+         node_post(__routine(predicate));
 
       }
 
-      virtual ::e_status node_branch(const ::routine & routine);
+      virtual ::e_status node_post(const ::routine & routine);
 
-      template < typename PRED >
-      ::e_status node_sync(const ::duration & durationTimeout, PRED pred)
-      {
-
-         auto estatus = node_sync(durationTimeout, __routine(pred));
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
-
-      virtual ::e_status node_sync(const ::duration & durationTimeout, const ::routine & routine);
+      virtual ::e_status node_send(const ::routine & routine);
 
 //      template < typename PRED >
 //      void user_fork(PRED pred)
@@ -275,18 +264,18 @@ namespace acme
 
       //virtual void enum_display_monitors(::aura::session * psession);
 
-      virtual void os_post_quit();
+      virtual void node_quit();
 
-      virtual bool should_launch_on_node(::subject::subject * psubject);
+      virtual bool should_launch_on_node(::subject * psubject);
 
-      virtual bool defer_launch_on_node(::subject::subject * psubject);
+      virtual bool defer_launch_on_node(::subject * psubject);
 
-      virtual bool launch_on_node(::subject::subject * psubject);
+      virtual bool launch_on_node(::subject * psubject);
 
 
       virtual string get_user_name();
 
-      virtual ::color::color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
 
       virtual ::color::color get_default_color(::u64 u);
 
@@ -360,10 +349,54 @@ namespace acme
       
       virtual string get_environment_variable(const ::string & pszEnvironmentVariable);
       
-      virtual string expand_env(string str);
+      virtual string expand_environment_variables(const string & str);
 
-
+#ifndef _UWP
       virtual array <::serial::port_info> list_serial_ports();
+
+#endif
+
+
+      virtual string get_user_language();
+
+
+      virtual bool get_application_exclusivity_security_attributes(memory & memory);
+
+      virtual ::e_status register_spa_file_type(const ::string & strAppIdHandler);
+
+      virtual bool low_is_app_app_admin_running(string strPlatform, string strConfiguration);
+      virtual void defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+      virtual ::e_status start_program_files_app_app_admin(string strPlatform, string strConfiguration);
+
+      virtual ::e_status get_folder_path_from_user(::file::path & pathFolder);
+
+
+      //virtual ::string expand_environment_variables(const ::string & str);
+      
+      virtual ::file::path command_find_path(const ::string & pszCommand);
+
+
+
+      virtual ::e_status launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
+
+
+
+      virtual ::e_status shell_execute_async(const char * pszFile, const char * pszParams);
+      virtual ::e_status shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+
+      virtual ::e_status root_execute_async(const char * pszFile, const char * pszParams);
+      virtual ::e_status root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = minute());
+
+      
+      //::file::path command_find_path(const ::string & pszCommand);
+
+
+//      virtual ::user::enum_desktop calculate_edesktop();
+//
+//
+//      virtual ::user::enum_desktop get_edesktop();
+
+      virtual ::e_status on_start_system();
 
 
    };

@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -121,14 +124,15 @@ namespace html
          if(pdata->m_pcoredata->m_pform != nullptr)
          {
 
-            ::user::control_event ev;
+            auto psubject = create_subject(::e_subject_initialize_control);
 
-            ev.m_puserinteraction = m_pcheckbox;
-            ev.m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
-            ev.m_eevent = ::user::e_event_initialize_control;
-            ev.m_uiEvent = 0;
+            psubject->m_puserelement = m_pcheckbox;
 
-            pdata->m_pcoredata->m_pform->on_control_event(&ev);
+            psubject->m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
+
+            psubject->m_uiEvent = 0;
+
+            pdata->m_pcoredata->m_pform->route(psubject);
 
          }
 
@@ -166,8 +170,8 @@ namespace html
 
 //         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectWindow;
-         //m_pcheckbox->get_window_rect(rectWindow);
+         //::rectangle_i32 rectangleWindow;
+         //m_pcheckbox->get_window_rect(rectangleWindow);
   //       ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
 
     //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
@@ -182,7 +186,7 @@ namespace html
       void input_checkbox::on_change_layout(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pcheckbox->place(m_box);
 

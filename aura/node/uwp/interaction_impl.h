@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -27,10 +27,10 @@ namespace uwp
       point_f64                                                            m_pointLastMouseMove;
       //point_f64                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
-      millis                                                              m_millisLastMouseMove;
-      Agile < Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
-      Agile < Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
-      Agile < Windows::UI::Core::CoreWindow >                           m_window;
+      ::duration                                                              m_durationLastMouseMove;
+      Agile < ::winrt::Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
+      Agile < ::winrt::Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
+      Agile < ::winrt::Windows::UI::Core::CoreWindow >                           m_window;
       ::thread *                                                        m_pthreadDraw;
       ::user::primitive *                                               m_pbasewnd;
       ::user::interaction *                                             m_pguieCapture;
@@ -49,8 +49,8 @@ namespace uwp
       virtual void construct(oswindow hwnd);
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool has_pending_graphical_update();
@@ -72,7 +72,7 @@ namespace uwp
 
       static const MSG* GetCurrentMessage();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
@@ -87,11 +87,11 @@ namespace uwp
 
       virtual oswindow _get_handle();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -260,7 +260,7 @@ namespace uwp
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
                                 ::draw2d::region* prgnUpdate = nullptr,
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -270,7 +270,7 @@ namespace uwp
 
 #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(millis millis, u32 dwFlags);
+      virtual bool AnimateWindow(const ::duration & duration, u32 dwFlags);
 
 #endif   // WINVER >= 0x0500
 
@@ -392,7 +392,7 @@ namespace uwp
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, millis tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags, ::u32  uCount, ::duration tickTimeout);
 
 #endif   // WINVER >= 0x0500
 
@@ -681,7 +681,7 @@ namespace uwp
       void _001OnTriggerMouseInside();
 
 
-      Agile < Windows::UI::Core::CoreWindow > get_os_window();
+      Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
       void set_view_port_org(::image * pimage);
 
@@ -709,14 +709,14 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 
-inline ::uwp::interaction_impl * __uwp_user_interaction_impl(::layered * playered)
+inline ::universal_windows::interaction_impl * __uwp_user_interaction_impl(::layered * playered)
 {
 
-   return (::uwp::interaction_impl *)playered->layer(LAYERED_OS_USER_INTERACTION_IMPL);
+   return (::universal_windows::interaction_impl *)playered->layer(LAYERED_OS_USER_INTERACTION_IMPL);
 
 }
 

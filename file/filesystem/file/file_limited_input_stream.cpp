@@ -31,13 +31,13 @@ namespace file
       return size;
    }
 
-   filesize limited_istream::seek(filesize offset, e_seek seekOrigin)
+   filesize limited_istream::seek(filesize offset, enum_seek seekOrigin)
    {
       switch(seekOrigin)
       {
-      case ::file::seek_begin: _virtPos = offset; break;
-      case ::file::seek_current: _virtPos += offset; break;
-      case ::file::seek_end: _virtPos = _size + offset; break;
+      case ::e_seek_set: _virtPos = offset; break;
+      case ::e_seek_current: _virtPos += offset; break;
+      case ::e_seek_end: _virtPos = _size + offset; break;
       default: 
          __throw(system_exception(STG_E_INVALIDFUNCTION));
       }

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "static_start.h"
-#include "apex/net/sockets/_.h"
+#include "apex/networking/sockets/_.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 #include "apex/platform/app_core.h"
@@ -10,6 +10,7 @@
 //#include "aura/os/_os.h"
 //
 //#include <sqlite3.h>
+#include <locale.h>
 
 #ifdef RASPBIAN
 #define PLATFORM_NAMESPACE linux
@@ -611,7 +612,7 @@ namespace aura
 
       //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 
-      __construct_new(::channel::s_pmutexChannel);
+      ::channel::s_pmutexChannel = __new(::mutex);
 
       //g_paurastrpool = new aura_str_pool();
 
@@ -958,15 +959,6 @@ namespace aura
 
       }
 
-#ifdef WINDOWS
-
-      ::acme::set_extended_output_debug_string_a();
-
-      ::acme::set_extended_output_debug_string_w();
-
-#endif
-
-      //g_pfn_create_system = &aura_create_aura_system;
 
       return true;
 
@@ -990,14 +982,6 @@ namespace aura
       ::parallelization::destroy();
 
       __node_aura_pre_term();
-
-#ifdef WINDOWS
-
-      ::acme::set_simple_output_debug_string_a();
-
-      ::acme::set_simple_output_debug_string_w();
-
-#endif
 
       processor_cache_oriented_destroy_all_memory_pools();
 
@@ -1268,13 +1252,13 @@ namespace aura
 ////         //
 ////         //#endif
 ////
-////         //#if defined(APPLEOS)
+////         //#if defined(__APPLE__)
 ////         //
 ////         //         g_poswindowdataptra = new oswindow_dataptra;
 ////         //
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //
-////         //#endif // defined(APPLEOS)
+////         //#endif // defined(__APPLE__)
 ////
 ////
 ////
@@ -1357,13 +1341,13 @@ namespace aura
 //      {
 //
 //
-//         //#if defined(APPLEOS)
+//         //#if defined(__APPLE__)
 //         //
 //         //         delete g_poswindowdataptra;
 //         //
 //         //         g_poswindowdataptra = nullptr;
 //         //
-//         //#endif // defined(APPLEOS)
+//         //#endif // defined(__APPLE__)
 //
 //
 //

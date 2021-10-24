@@ -91,10 +91,10 @@ namespace user
    }
 
 
-   bool message_window::message_window_set_timer(uptr uId,::u32 dwMillis)
+   bool message_window::message_window_set_timer(uptr uId, const ::duration & duration)
    {
 
-      return SetTimer(uId,dwMillis,nullptr) != false;
+      return SetTimer(uId, duration, nullptr) != false;
 
    }
 

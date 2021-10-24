@@ -129,7 +129,7 @@ extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 {
    // Remove this if you use lpReserved
-   UNREFERENCED_PARAMETER(lpReserved);
+   __UNREFERENCED_PARAMETER(lpReserved);
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {

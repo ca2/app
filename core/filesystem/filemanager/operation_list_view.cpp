@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -9,7 +11,7 @@ namespace filemanager
    operation_list_view::operation_list_view()
    {
 
-      m_millisLastUpdate.Now();
+      m_durationLastUpdate.Now();
 
    }
 
@@ -26,7 +28,7 @@ namespace filemanager
    void operation_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -95,18 +97,19 @@ namespace filemanager
 
       m_pmeshcache = m_puserlistcache;
 
-      SetTimer(123,500,nullptr);
+      SetTimer(123,500_ms,nullptr);
 
    }
+
 
    void operation_list_view::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
       {
-         /*if(m_millisLastUpdate.elapsed() > 500)
+         /*if(m_durationLastUpdate.elapsed() > 500)
          {
-         m_millisLastUpdate= ::millis::now();
+         m_durationLastUpdate= ::duration::now();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
          }*/
@@ -118,12 +121,12 @@ namespace filemanager
    void operation_list_view::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
 
-      UNREFERENCED_PARAMETER(iOperation);
+      __UNREFERENCED_PARAMETER(iOperation);
 
-      if(bFinal || m_millisLastUpdate.elapsed() > 200)
+      if(bFinal || m_durationLastUpdate.elapsed() > 200_ms)
       {
 
-         m_millisLastUpdate= ::millis::now();
+         m_durationLastUpdate= ::duration::now();
 
          _001OnUpdateItemCount();
 
@@ -152,10 +155,10 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void operation_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      BASE::on_subject(psubject, pcontext);
+      BASE::handle(psubject, pcontext);
 
       if (psubject->id() == INITIAL_UPDATE)
       {

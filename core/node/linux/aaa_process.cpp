@@ -143,14 +143,14 @@ void install_sigchld_handler()
 }
 
 
-CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::e_priority epriority);
+CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
 namespace ansios
 {
 
 
-   process::process()
+   operating_system::process()
    {
 
    }
@@ -162,10 +162,10 @@ namespace ansios
    }
 
 
-   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir, ::enum_priority epriority)
    {
 
-      if(!::process::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
+      if(!::operating_system::process::create_child_process(pszCmdLine, bPiped, pszDir, epriority))
       {
 
          return false;
@@ -182,7 +182,7 @@ namespace ansios
 
       posix_spawnattr_init(&attr);
 
-      if(epriority != ::priority_normal && epriority != ::priority_none)
+      if(epriority != ::e_priority_normal && epriority != ::e_priority_none)
       {
 
          i32 iPolicy = SCHED_OTHER;
@@ -414,7 +414,7 @@ namespace ansios
       //int status = posix_spawn(&m_iPid,argv[0],nullptr,nullptr,(char * const *)argv.get_data(),environ);
 
       debug_print("synch_elevated : posix_spawn return status %d", status);
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {

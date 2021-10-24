@@ -69,7 +69,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
 //
 //   void construct();
 //
-//   void reserve(strsize n) { UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
+//   void reserve(strsize n) { __UNREFERENCED_PARAMETER(n); } // wstring does not prereserve
 //
 //
 //   using wstring::operator =;

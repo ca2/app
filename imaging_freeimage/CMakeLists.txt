@@ -19,7 +19,7 @@ list(APPEND library_source
         saving.cpp)
 
 
-add_library(imaging_freeimage SHARED ${library_source})
+add_library(imaging_freeimage SHARED ${library_source} loading_svg.cpp)
 
 
 target_precompile_headers(imaging_freeimage PRIVATE framework.h)
@@ -40,10 +40,11 @@ if (MSVC)
 
 elseif(LINUX)
 
+    pkg_check_modules(PKGCONFIG librsvg-2.0 cairo)
 
-    target_compile_options(imaging_freeimage PRIVATE -fpermissive)
+    target_compile_options(imaging_freeimage PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
     #target_link_options(imaging_freeimage PRIVATE -Wl,-rpath=$ORIGIN)
-    target_link_libraries(imaging_freeimage PRIVATE freeimage)
+    target_link_libraries(imaging_freeimage PRIVATE freeimage ${PKGCONFIG_LIBRARIES})
     target_link_libraries(imaging_freeimage PRIVATE acme apex aqua aura)
     target_link_options(imaging_freeimage PRIVATE -Wl,-z,defs)
 

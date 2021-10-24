@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_.h"
-#include "acme/const/id.h"
+#include "acme/node/operating_system/_c.h"
+#include "acme/node/operating_system/_.h"
+#include "acme/constant/id.h"
 
 
 namespace parallelization

@@ -8,14 +8,14 @@ public:
 
 
    simple_tab_control();
-   virtual ~simple_tab_control();
+   ~simple_tab_control() override;
 
 
-   virtual void pre_subclass_window();
+   void pre_subclass_window() override;
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 };
 

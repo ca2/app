@@ -1,5 +1,5 @@
 #include "framework.h" // previously aqua/user/user.h
-#include "acme/const/activate.h"
+#include "acme/constant/activate.h"
 #include "aura/message/user.h"
 
 namespace aura
@@ -21,7 +21,7 @@ namespace aura
    void drawable::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -34,19 +34,19 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, const ::point_i32& point)
+   void drawable::hit_test(::item& item, const ::point_i32& point)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(point);
 
    }
 
 
-   void drawable::on_hit_test(::user::item& item)
+   void drawable::on_hit_test(::item& item)
    {
 
-      UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(item);
 
    }
 
@@ -133,7 +133,7 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, ::message::mouse* pmouse)
+   void drawable::hit_test(::item& item, ::message::mouse* pmouse)
    {
 
       hit_test(item, pmouse->m_point);
@@ -141,15 +141,15 @@ namespace aura
    }
 
 
-   ::user::item drawable::hit_test(const ::point_i32& point)
+   ::item drawable::hit_test(const ::point_i32& point)
    {
 
-      ::user::item item; hit_test(item, point); return item;
+      ::item item; hit_test(item, point); return item;
 
    }
 
 
-   ::user::item drawable::hit_test(::message::mouse* pmouse)
+   ::item drawable::hit_test(::message::mouse* pmouse)
    {
 
       return hit_test(pmouse->m_point);

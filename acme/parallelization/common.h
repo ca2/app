@@ -10,7 +10,7 @@ class single_lock;
 
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #include <semaphore.h>
 #endif
 
@@ -24,7 +24,7 @@ class single_lock;
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 #define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX
@@ -106,16 +106,16 @@ namespace primitive
 } // namespace primitive
 
 
-namespace exception
-{
+//namespace exception
+//{
+//
+//
+//   class exception;
+//   class base;
+//
+//
+//} // namespace exception
 
 
-   class exception;
-   class base;
 
-
-} // namespace exception
-
-
-
-//CLASS_DECL_ACME thread* __begin_thread(::matter * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_ACME thread* __begin_thread(::matter * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

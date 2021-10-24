@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "static_start.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
 //#include "apex/os/_os.h"
@@ -132,7 +132,7 @@ namespace apex
    ::mutex * g_pmutexCred;
 
 
-   class ::exception::engine* g_pexceptionengine;
+   class ::exception_engine* g_pexceptionengine;
 
    ::mutex * g_pmutexMessageDispatch;
 
@@ -557,7 +557,7 @@ namespace apex
 
 #endif
 
-      __construct_new(::channel::s_pmutexChannel);
+      ::channel::s_pmutexChannel = __new(mutex);
 
       //g_papexstrpool = new apex_str_pool();
 
@@ -1185,13 +1185,13 @@ namespace apex
 ////         //
 ////         //#endif
 ////
-////         //#if defined(APPLEOS)
+////         //#if defined(__APPLE__)
 ////         //
 ////         //         g_poswindowdataptra = new oswindow_dataptra;
 ////         //
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //
-////         //#endif // defined(APPLEOS)
+////         //#endif // defined(__APPLE__)
 ////
 ////
 ////      }
@@ -1273,13 +1273,13 @@ namespace apex
 //      {
 //
 //
-//         //#if defined(APPLEOS)
+//         //#if defined(__APPLE__)
 //         //
 //         //         delete g_poswindowdataptra;
 //         //
 //         //         g_poswindowdataptra = nullptr;
 //         //
-//         //#endif // defined(APPLEOS)
+//         //#endif // defined(__APPLE__)
 //
 //
 //

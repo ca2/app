@@ -1,6 +1,9 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
+#if !BROAD_PRECOMPILED_HEADER
 #include "_graphics.h"
+#endif
+
 #endif
 #include "core/id.h"
 #include "core/html/html/_html.h"
@@ -121,7 +124,7 @@ namespace html
 
       }
 
-      f = parse_dimension(m_propertyset[idName].to_string());
+      f = parse_dimension(m_propertyset[idName].get_string());
 
       return true;
 
@@ -196,7 +199,7 @@ namespace html
       if(pstyle != nullptr)
       {
 
-         f = parse_dimension(pstyle->m_propertyset[idName].to_string());
+         f = parse_dimension(pstyle->m_propertyset[idName].get_string());
 
       }
 
@@ -818,16 +821,16 @@ namespace html
                string strParent;
                if(pelement->m_pparent->m_pstyle->get_text(idName, strSubClass, pdata, pelement->m_pparent, strParent))
                {
-                  str = __str((i32)((double) atof(str) * atoi(strParent)));
+                  str = __string((i32)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = __str((i32)((double) atof(str) * 12));
+                  str = __string((i32)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = __str((i32)((double) atof(str) * 12));
+               str = __string((i32)((double) atof(str) * 12));
             }
          }
       }
@@ -867,7 +870,7 @@ namespace html
    {
 
       const char * psz = strParam;
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       while(*psz != '\0' && *psz != '}')
       {
          const char * pszStart = psz;

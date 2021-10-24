@@ -27,17 +27,18 @@ namespace graphics
       i32_map < ::draw2d::pen_pointer >   m_mappen2;
       i32_map < ::draw2d::pen_pointer >   m_mappen1;
       //int                               m_iColorPointer;
+      ::user::interaction *               m_puserinteraction;
 
       
       int                                 m_iLastPenColor;
       int                                 m_iLastPen;
 
 
-      console(::size_i32 sizeTile);
-      virtual ~console();
+      console(::user::interaction * pinteraction, ::size_i32 sizeTile);
+      ~console() override;
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context & dump) const override;
 
 
@@ -66,7 +67,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, enum_dos_color edoscolor);
 
-      virtual string to_string() const override;
+      string get_string() const override;
 
 
    };

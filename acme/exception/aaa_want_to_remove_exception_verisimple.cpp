@@ -1,7 +1,7 @@
 #include "framework.h"
 
 //
-//veri::exception::exception::veri::exception::exception(const char * pszMessage):
+//veri::exception::veri::exception(const char * pszMessage):
 //   ::exception(pszMessage)
 //{
 //
@@ -11,15 +11,15 @@
 //
 //
 //
-//veri::exception::exception::~veri::exception::exception()
+//veri::exception::~veri::exception()
 //{
 //}
 //
 //
 //
-//CLASS_DECL_ACME stream & operator << (stream & os, vericonst ::exception::exception & e)
+//CLASS_DECL_ACME stream & operator << (stream & os, vericonst ::exception & e)
 //{
 //
-//   return os << "veri::exception::exception(" << e.m_strMessage << ")";
+//   return os << "veri::exception(" << e.m_strMessage << ")";
 //
 //}

@@ -380,95 +380,123 @@ namespace zip
    void in_file::write(const void * pdata,memsize nCount)
 
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nCount);
       //ASSERT_VALID(this);
       ASSERT(get_zip_file() != nullptr);
 
       ASSERT(false);
    }
 
-   filesize in_file::seek(filesize lOff,::file::e_seek nFrom)
+
+   filesize in_file::translate(filesize offset, ::enum_seek eseek)
    {
-      //   ASSERT_VALID(this);
-      //ASSERT(get_zip_file() != nullptr);
-      //ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-      //ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
+      u64 iNewPosition;
 
-      u64 iNewPos;
-      if(nFrom == ::file::seek_begin)
+      if(eseek == ::e_seek_set)
       {
-         iNewPos = lOff;
+
+         iNewPosition = offset;
+
       }
-      else if(nFrom == ::file::seek_end)
+      else if(eseek == ::e_seek_from_end)
       {
-         iNewPos = UNZ_FILE_INFO->uncompressed_size - lOff;
+
+         iNewPosition = UNZ_FILE_INFO->uncompressed_size - offset;
+
       }
-      else if(nFrom == ::file::seek_current)
+      else if(eseek == ::e_seek_current)
       {
-         iNewPos = m_iPosition + lOff;
+
+         iNewPosition = m_iPosition + offset;
+
       }
       else
       {
-         __throw(error_invalid_argument, "zip::in_file::seek invalid seek option");
+
+         throw ::exception(error_invalid_argument, "zip::in_file::seek invalid seek option");
+
       }
 
-      if(iNewPos < m_iPosition)
+      if(iNewPosition < m_iPosition)
       {
+
          if(unzCloseCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return ::numeric_info < filesize >::allset();
+         {
+
+            return -1;
+
+         }
+
          if(unzOpenCurrentFile(get_zip_file()->m_pfUnzip) != UNZ_OK)
-            return ::numeric_info < filesize >::allset();
+         {
+
+            return -1;
+
+         }
+
          m_iPosition = 0;
+
       }
 
-      if(iNewPos > m_iPosition)
+      if(iNewPosition > m_iPosition)
       {
-         i64 iRemain = iNewPos - m_iPosition;
+
+         i64 iRemain = iNewPosition - m_iPosition;
+
          i64 iGet;
+
          i32 iRead;
+
          byte pbBuf[1024];
 
          while(iRemain > 0)
          {
+
             iGet = minimum(iRemain,1024);
+
             iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip,pbBuf,(u32)iGet);
 
             iRemain -= iRead;
+
             if(iRead < iGet)
+            {
+
                break;
+
+            }
+
          }
-         iNewPos -= iRemain;
+
+         iNewPosition -= iRemain;
+
       }
 
-      m_iPosition = iNewPos;
+      m_iPosition = iNewPosition;
 
-      return iNewPos;
+      return iNewPosition;
+
    }
+
 
    filesize in_file::get_position() const
    {
+
       return m_iPosition;
+
    }
+
 
    void in_file::flush()
    {
-      //   ASSERT_VALID(this);
 
    }
 
+
    void in_file::close()
    {
-      //   ASSERT_VALID(this);
-      //ASSERT(get_zip_file() != nullptr);
-
-      bool bError = false;
-      /*if(get_zip_file() != nullptr)
-      {
-      unzCloseCurrentFile(get_zip_file()->m_pf);
-      }*/
 
       m_filea.erase_all();
       m_infilea.erase_all();
@@ -476,25 +504,9 @@ namespace zip
       m_straPrefix.erase_all();
       m_strFileName.Empty();
 
-      if(bError)
-         __throw(::exception::exception(0));
    }
 
 
-   //void in_file::lock(filesize dwPos,filesize dwCount)
-   //{
-   //   UNREFERENCED_PARAMETER(dwPos);
-   //   UNREFERENCED_PARAMETER(dwCount);
-   //}
-
-
-   //void in_file::unlock(filesize dwPos,filesize dwCount)
-   //{
-   //   UNREFERENCED_PARAMETER(dwPos);
-   //   UNREFERENCED_PARAMETER(dwCount);
-   //}
-
-   
    void in_file::set_size(filesize dwNewLen)
    {
       
@@ -513,21 +525,20 @@ namespace zip
 
    void in_file::assert_valid() const
    {
-      //matter::assert_valid();
-      // we permit the descriptor m_hFile to be any value for derived classes
+
+
    }
+
 
    void in_file::dump(dump_context & dumpcontext) const
    {
-      //   matter::dump(dumpcontext);
 
       dumpcontext << "with handle " << (uptr)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";
       dumpcontext << "\n";
+
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // FileException helpers
 
    /* Error Codes */
 #ifndef LINUX

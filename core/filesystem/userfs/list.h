@@ -4,7 +4,7 @@
 namespace userfs
 {
 
-   class main_view;
+   class main_impact;
 
    class CLASS_DECL_CORE list :
       virtual public ::user::form_list_view
@@ -37,7 +37,7 @@ namespace userfs
 
       void add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       __pointer(::image_list) GetActionButtonImageList(index i);
 
@@ -80,10 +80,10 @@ namespace userfs
 
 
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnHScroll);
@@ -99,8 +99,8 @@ namespace userfs
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       __pointer(::user::mesh_data) create_mesh_data() override;
 

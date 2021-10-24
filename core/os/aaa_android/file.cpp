@@ -15,7 +15,7 @@ void fd_set_size(i32 fd, i64 iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
-      __throw(::exception::exception("fd_set_size exception"));
+      __throw(::exception("fd_set_size exception"));
 
 }
 
@@ -73,7 +73,11 @@ CLASS_DECL_CORE void dll_processes(u32_array & dwa, string_array & straProcesses
 // ::file::path dir::bookmark()
 // {
 
-//    return pacmedir->localconfig() / "favorites";
+//    return          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig() / "favorites";
 
 // }
 

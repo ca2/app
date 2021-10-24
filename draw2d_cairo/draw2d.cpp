@@ -83,14 +83,14 @@ namespace draw2d_cairo
 
       }
 
-      synchronous_lock synchronouslock(mutex());
-
-      if (!m_papi->open())
-      {
-
-         return false;
-
-      }
+//      synchronous_lock synchronouslock(mutex());
+//
+//      if (!m_papi->open())
+//      {
+//
+//         return false;
+//
+//      }
 
       return true;
 
@@ -113,10 +113,10 @@ namespace draw2d_cairo
 
 
 //
-//   e_format draw2d::file_extension_to_format(const ::payload & varFile)
+//   e_format draw2d::file_extension_to_format(const ::payload & payloadFile)
 //   {
 //
-//      return text_to_format(varFile.get_file_path().final_extension());
+//      return text_to_format(payloadFile.get_file_path().final_extension());
 //
 //   }
 //
@@ -170,7 +170,7 @@ namespace draw2d_cairo
          if (m_papi)
          {
 
-            m_papi->close();
+            //m_papi->close();
 
             m_papi->destroy();
 
@@ -221,7 +221,7 @@ namespace draw2d_cairo
 //      catch (...)
 //      {
 //
-//         message_box("except", "except", e_message_box_ok);
+//         output_error_message("except", "except", e_message_box_ok);
 //
 //      }
 //
@@ -276,7 +276,7 @@ namespace draw2d_cairo
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      ::draw2d::brush_pointer pbrushText(e_create);
+//      auto pbrushText = __create < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);
@@ -291,10 +291,10 @@ namespace draw2d_cairo
 //   byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
 //   byte bMin, i32 iRadius)
 //   {
-//      UNREFERENCED_PARAMETER(xDest);
-//      UNREFERENCED_PARAMETER(yDest);
-//      UNREFERENCED_PARAMETER(xSrc);
-//      UNREFERENCED_PARAMETER(ySrc);
+//      __UNREFERENCED_PARAMETER(xDest);
+//      __UNREFERENCED_PARAMETER(yDest);
+//      __UNREFERENCED_PARAMETER(xSrc);
+//      __UNREFERENCED_PARAMETER(ySrc);
 //      i32 iFilterW = iRadius * 2 + 1;
 //      i32 iFilterH = iRadius * 2 + 1;
 //      i32 iFilterHalfW = iFilterW / 2;
@@ -971,7 +971,7 @@ namespace draw2d_cairo
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::file_exists(path))
+//                        if (::m_psystem->m_pacmefile->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;
@@ -1164,7 +1164,7 @@ namespace draw2d_cairo
 //         if (!write_text_factory_exchange(::factory::get_factory_map()))
 //         {
 //
-//            message_box("Failed to initialize draw2d library.");
+//            output_error_message("Failed to initialize draw2d library.");
 //
 //            estatus = error_failed;
 //

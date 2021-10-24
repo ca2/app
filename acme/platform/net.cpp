@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 CLASS_DECL_ACME string url_decode(const ::string & strParam)
@@ -363,23 +364,6 @@ string url_encode(const char * psz)
 
 
 #if defined(MACOS)
-
-void openURL(const string &url_str);
-
-
-void openURL(const string &url_str)
-{
-   CFURLRef url = CFURLCreateWithBytes(
-                  nullptr,                        // allocator
-                  (const ::u8*)url_str.c_str(),     // URLBytes
-                  url_str.length(),            // length
-                  kCFStringEncodingASCII,      // encoding
-                  nullptr                         // baseURL
-                  );
-   LSOpenCFURLRef(url,0);
-   CFRelease(url);
-}
-
 #elif defined(APPLE_IOS)
 
 void openURL(const string &url_str);
@@ -451,10 +435,18 @@ void openURL(const string &url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
+//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
 //
-//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
+//         auto pacmedir = psystem->m_pacmedir;
 //
+//pacmedir->system() / "config\\user.txt");
+////
+////   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\pass.txt");
+////
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{
 //
@@ -1011,9 +1003,17 @@ void openURL(const string& url_str)
 //
 //   credentials.m_bInteractive = bInteractive;
 //
-//   //strUsername = file_as_string(pacmedir->system() / "config\\user.txt");
+//   //strUsername = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+   /*      auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\user.txt")*/;
 //
-//   //strPassword = file_as_string(pacmedir->system() / "config\\pass.txt");
+//   //strPassword = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\pass.txt");
 //
 //   //if(strUsername.has_char() && strPassword.has_char())
 //   //{

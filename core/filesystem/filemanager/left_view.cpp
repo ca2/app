@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "_data.h"
 #include "core/user/user/_tree.h"
 
@@ -23,7 +26,7 @@ namespace filemanager
    void left_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::user::split_view::install_message_routing(pchannel);
 
    }
@@ -60,7 +63,7 @@ namespace filemanager
       if(pusertree.is_null())
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 
@@ -79,12 +82,12 @@ namespace filemanager
    }
 
 
-   void left_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void left_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
 //      //__update(::update)
 //      {

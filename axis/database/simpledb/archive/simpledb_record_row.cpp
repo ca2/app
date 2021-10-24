@@ -19,7 +19,7 @@ namespace simpledb
             payload_array payloada = m_var.payloada();
             if (payloada.get_count() != m_ptable->m_fielddefinition.get_count())
             {
-               __throw(::exception::exception("no fields specified and values ::count is different from table '" + m_ptable->m_strName + "' field count"));
+               __throw(::exception("no fields specified and values ::count is different from table '" + m_ptable->m_strName + "' field count"));
             }
             else
             {

@@ -22,30 +22,30 @@ namespace userex
       int                              m_iForkAddDib;
 
       image_list_view();
-      virtual ~image_list_view();
+      ~image_list_view() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual string_array get_ls_pattern_stra() const;
 
-      virtual bool update_data(bool bSaveAndValidate) override;
+      bool update_data(bool bSaveAndValidate) override;
 
-      virtual bool _001GetItemText(string & str, index iItem) override;
-#ifdef DEBUG
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      bool _001GetItemText(string & str, index iItem) override;
+#ifdef _DEBUG
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 #endif
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void load_images();
 

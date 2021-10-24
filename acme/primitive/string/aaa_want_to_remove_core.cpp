@@ -43,9 +43,9 @@
 //
 //void const_empty_string::set_string(const ::string & str, const ::action_context & context)
 //{
-//   UNREFERENCED_PARAMETER(str);
-//   UNREFERENCED_PARAMETER(context);
-//   __throw(::exception::exception("cannot set const string"));
+//   __UNREFERENCED_PARAMETER(str);
+//   __UNREFERENCED_PARAMETER(context);
+//   __throw(::exception("cannot set const string"));
 //}
 //
 //namespace str

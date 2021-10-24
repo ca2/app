@@ -7,7 +7,7 @@
 #include <fcntl.h>
 
 
-namespace uwp
+namespace universal_windows
 {
 
    stdio_file::stdio_file()
@@ -72,7 +72,7 @@ namespace uwp
       if (szMode[0] == 'r' && (nOpenFlags & ::file::e_open_read_write) ||
             szMode[0] != 'r' && !(nOpenFlags & ::file::e_open_write))
       {
-         // ::file::seek_current szMode mismatched, need to add '+' to fix
+         // ::e_seek_current szMode mismatched, need to add '+' to fix
          szMode[nMode++] = '+';
       }
 
@@ -204,7 +204,7 @@ namespace uwp
          lpsz = rString.get_string_buffer(nMaxSize + nLen) + nLen;
       }
 
-      // remov '\n' from ::file::seek_end of string if present
+      // remov '\n' from ::e_seek_end of string if present
       lpsz = rString.get_string_buffer(0);
       nLen = rString.get_length();
       if (nLen != 0 && lpsz[nLen-1] == '\n')
@@ -214,11 +214,11 @@ namespace uwp
    }
 
 
-   filesize stdio_file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize stdio_file::seek(filesize lOff, ::enum_seek eseek)
    {
 
       ASSERT_VALID(this);
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
+      ASSERT(nFrom == ::e_seek_set || nFrom == ::e_seek_end || nFrom == ::e_seek_current);
       ASSERT(m_pStream != nullptr);
 
       if (fseek(m_pStream, (long)lOff, nFrom) != 0)
@@ -353,7 +353,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

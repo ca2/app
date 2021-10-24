@@ -41,7 +41,7 @@ namespace user
 
       virtual scroll_data* get_horizontal_scroll_data() override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void send_xscroll_message(enum_scroll_command ecommand);
 
@@ -91,7 +91,7 @@ namespace user
 
       virtual void send_yscroll_message(enum_scroll_command ecommand);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
@@ -139,7 +139,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual bool GetActiveClientRect(RECTANGLE_I32 * prectangle);

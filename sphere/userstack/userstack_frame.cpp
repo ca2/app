@@ -122,14 +122,14 @@ namespace userstack
       else if(uEvent == 4033)
       {
          ::point_i32 point;
-         if(m_bHoverMouse && ::get_tick() > m_millisLastHover + 300)
+         if(m_bHoverMouse && ::get_tick() > m_durationLastHover + 300)
          {
             OnHoverAction();
          }
          point = psession->get_cursor_position();
          if(!m_bHoverMouse && point.x == 0 && point.y == 0)
          {
-            m_millisLastHover = ::millis::now();
+            m_durationLastHover = ::duration::now();
             m_bHoverMouse = true;
 
          }
@@ -194,9 +194,9 @@ namespace userstack
    void frame::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
-//      auto pmouse = pmessage->m_pmouse;
+//      auto pmouse = pmessage->m_union.m_pmouse;
 //      m_bMouseOver = false;
 //      bergedgesp(::aura::application) papp = dynamic_cast < bergedgesp(::aura::application) > (this);
    }
@@ -410,7 +410,7 @@ namespace userstack
          }
 
       }
-      catch(const ::exception::exception & )
+      catch(const ::exception & )
       {
       }
       catch(...)

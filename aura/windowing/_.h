@@ -6,6 +6,16 @@
 #pragma once
 
 
+namespace windowing_universal_windows
+{
+
+
+   class window;
+
+
+} // namespace windowing_universal_windows
+
+
 namespace windowing
 {
 

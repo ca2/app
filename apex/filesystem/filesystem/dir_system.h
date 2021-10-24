@@ -25,6 +25,7 @@ public:
    ::file::path                  m_pathInstall;
 
    bool                          m_bMatterFromHttpCache;
+   bool                          m_bMatterFromResource;
 
 
    dir_system();

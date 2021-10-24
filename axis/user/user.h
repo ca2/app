@@ -11,17 +11,15 @@ namespace axis
    public:
 
       
-
-
       user();
-      virtual ~user();
+      ~user() override;
 
 
-      virtual ::e_status init() override;
-      virtual ::e_status term() override;
+      ::e_status init() override;
+      ::e_status term() override;
 
 
-      virtual ::user::style* get_user_style() override;
+      //::user::style* user_style() override;
 
 
    };

@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef void FN_CAIRO_TEXT(cairo_t *, const ::string &);
+typedef void FN_CAIRO_TEXT(cairo_t *, const char *);
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 
 #if defined(USE_PANGO)
@@ -48,7 +48,7 @@ namespace draw2d_cairo
 
       virtual void * detach() override;
 
-      bool IsPrinting() override;            // true if being used for printing
+      // bool IsPrinting() override;            // true if being used for printing
 
       //::draw2d::pen *     get_current_pen() override;
       //::draw2d::brush *   get_current_brush() override;
@@ -79,8 +79,8 @@ namespace draw2d_cairo
       virtual i32 SaveDC() override;
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDevicecaps(i32 nIndex);
-      ::u32 SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags) override;
-      ::u32 GetBoundsRect(::rectangle_f64 * rectBounds, ::u32 flags) override;
+      ::u32 SetBoundsRect(const ::rectangle_f64 & rectangleBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(::rectangle_f64 * rectangleBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode) override;
 
       // Drawing-Tool Functions
@@ -202,6 +202,7 @@ namespace draw2d_cairo
       //i32 OffsetClipRgn(const ::size_f64 & size_f64) override;
       //i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
+      bool fill_contains(const point_f64 & point) override;
 
       virtual ::e_status reset_clip() override;
 
@@ -303,9 +304,9 @@ namespace draw2d_cairo
 
 
       //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
-      virtual bool _draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
-      virtual bool _stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
-      //bool _stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc) override;
+      virtual bool _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc);
+      virtual bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc);
+      //bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource) override;
 
 
       ::color::color GetPixel(double x, double y) override;
@@ -327,7 +328,7 @@ namespace draw2d_cairo
 //                          ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
 //                          ::u32 clrTransparent) override;
 
-      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc, double dOpacity) override;
+      //virtual bool _alpha_blend_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource, double dOpacity) override;
 
       /*bool alpha_blend(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
         ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
@@ -357,14 +358,14 @@ namespace draw2d_cairo
       //virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPDRAWTEXTPARAMS lpDTParams = nullptr) override;
       virtual bool draw_text_ex(const ::string & str, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
 
-      size_f64 get_text_extent(const ::string & lpszString, strsize nCount, strsize iIndex) override;
-      size_f64 get_text_extent(const ::string & lpszString, strsize nCount) override;
+      size_f64 get_text_extent(const char * lpszString, strsize nCount, strsize iIndex) override;
+      size_f64 get_text_extent(const char * lpszString, strsize nCount) override;
       size_f64 get_text_extent(const block & block) override;
-      bool _GetTextExtent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex);
-      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount, strsize iIndex) override;
-      bool get_text_extent(size_f64 & size_f64, const ::string & lpszString, strsize nCount) override;
+      bool _GetTextExtent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex);
+      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount, strsize iIndex) override;
+      bool get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount) override;
       bool get_text_extent(size_f64 & size_f64, const ::string & str) override;
-      size_f64 GetOutputTextExtent(const ::string & lpszString, strsize nCount) override;
+      size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       size_f64 GetOutputTextExtent(const ::string & str) override;
       //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       //size_f64 GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions) override;
@@ -396,7 +397,7 @@ namespace draw2d_cairo
 //      bool DrawFrameControl(const ::rectangle_f64 & rectangle_f64, ::u32 nType, ::u32 nState) override;
 
 //      // Scrolling Functions
-//      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectScroll, const ::rectangle_f64 & rectClip,
+//      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
 //                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 
 //      // font Functions
@@ -442,7 +443,7 @@ namespace draw2d_cairo
 
       // MetaFile Functions
       //xxx      bool PlayMetaFile(HMETAFILE hMF) override;
-//      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectBounds) override;
+//      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectangleBounds) override;
       //    bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData) override;
       // can be used for enhanced metafiles only
 
@@ -471,14 +472,14 @@ namespace draw2d_cairo
       // Misc Helper Functions
       //static ::draw2d::brush* PASCAL GetHalftoneBrush(::object * pobject);
 //      void DrawDragRect(const ::rectangle_f64 & rectangle_f64, const ::size_f64 & size_f64,
-//                        const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
+//                        const ::rectangle_f64 & rectangleLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
       //void fill_rectangle(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
       //void fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       bool fill_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;
-      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
-      //void draw3d_rect(double x, double y, double cx, double cy,
+      //bool draw_inset_3d_rectangle(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //void draw_inset_3d_rectangle(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 
 
@@ -486,8 +487,8 @@ namespace draw2d_cairo
 
       // Implementation
    public:
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       //      HGDIOBJ SelectObject(HGDIOBJ) override;      // do not use for regions
 

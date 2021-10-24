@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#define MAKELONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+//#define __MAKE_LONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
 
 
 enum enum_position
@@ -229,137 +229,6 @@ namespace user
    };
 
 
-   enum enum_element : ::i64
-   {
-
-      e_element_none,
-      e_element_frame_window,
-      e_element_tab,
-      e_element_tab_layout_background,
-      e_element_tab_client_background,
-      e_element_tab_item_background,
-      e_element_tab_near_scroll,
-      e_element_tab_far_scroll,
-      e_element_close_tab_button,
-      e_element_status_image,
-      e_element_text,
-      e_element_list,
-      e_element_item_text,
-      e_element_item_background,
-      e_element_hilite_text,
-      e_element_icon,
-      e_element_background,
-      e_element_separator,
-      e_element_face,
-      e_element_border,
-      e_element_lite_border,
-      e_element_client,
-      e_element_non_client, // but m_bMouseHoverOnCapture ?
-      e_element_area,
-      e_element_drop_down,
-      e_element_combo_edit,
-      e_element_item,
-      e_element_search_edit,
-      e_element_search_ok,
-      e_element_scrollbar,
-      e_element_scrollbar_draw,
-      e_element_scrollbar_strong,
-      e_element_scrollbar_rect,
-      e_element_scrollbar_rectA,
-      e_element_scrollbar_rectB,
-      e_element_scrollbar_pageA,
-      e_element_scrollbar_pageB,
-      e_element_margin_top,
-      e_element_margin_left,
-      e_element_margin_right,
-      e_element_margin_bottom,
-      e_element_window_title,
-      e_element_image,
-      e_element_close_button,
-      e_element_close_icon,
-      e_element_hilite,
-      e_element_dark_shadow,
-      e_element_button_text,
-      e_element_button_background,
-      e_element_button_hilite,
-      e_element_button_shadow,
-      e_element_button_dark_shadow,
-      e_element_check,
-      e_element_switch_button,
-      e_element_switch_icon,
-
-
-      e_element_split = 10'000,
-
-      e_element_desk_launcher_1,
-      e_element_desk_launcher_2,
-      e_element_desk_launcher_3,
-      e_element_desk_launcher_4,
-      e_element_desk_launcher_5,
-      e_element_desk_launcher_6,
-      e_element_desk_launcher_7,
-      e_element_desk_launcher_8,
-      e_element_desk_launcher_last = e_element_desk_launcher_8,
-      e_element_desk_close,
-      e_element_desk_change_view,
-      e_element_desk_change_theme,
-      e_element_desk_last,
-
-      e_element_start,
-      e_element_reset,
-      e_element_cancel,
-
-   };
-
-
-   enum enum_event
-   {
-
-      e_event_none,
-      e_event_initialize_control,
-      e_event_action,
-      e_event_left_button_down,
-      e_event_left_button_double_click,
-      e_event_click,
-      e_event_context_menu,
-      //e_event_m_button_down,
-      //e_event_m_button_up,
-      e_event_list_clicked,
-      //e_event_mouse_enter,
-      //e_event_mouse_leave,
-      e_event_set_check,
-      e_event_timer,
-      e_event_enter_key,
-      e_event_escape,
-      e_event_tab_key,
-      e_event_key_down,
-      e_event_after_change_text,
-      e_event_after_change_text_format,
-      e_event_after_change_cur_sel,
-      e_event_after_change_cur_hover,
-      e_event_mouse_enter,
-      e_event_mouse_leave,
-      e_event_timebar_change,
-      e_event_menu_hover,
-      e_event_context_menu_close,
-      e_event_set_focus,
-      e_event_kill_focus,
-      e_event_on_create_impact,
-      e_event_on_create_tab,
-      e_event_form_initialize,
-      e_event_create,
-      e_event_layout,
-      e_event_calc_item_height,
-      e_event_change_view_style,
-      e_event_item_clicked,
-      e_event_image_list_action,
-      e_event_load_form_data,
-      e_event_save_form_data,
-      e_event_close_app,
-      e_event_switch,
-
-   };
-
 
 
 
@@ -386,22 +255,6 @@ namespace user
    //};
 
    
-   enum enum_flag
-   {
-
-      e_flag_none,
-      e_flag_border = 1<<0,
-      e_flag_modifier_impact = 1 << 1,
-      e_flag_tool_impact = 1 << 2,
-      e_flag_blur_background = 1 << 3,
-      e_flag_hide_all_others_on_show = 1 << 4,
-      e_flag_hide_topic_on_show = 1 << 5,
-      e_flag_strict_update = 1 << 6,
-      e_flag_hide_on_kill_focus = 1 << 7,
-      e_flag_background_bypass = 1 << 8,
-
-   };
-
 
    //enum e_rect
    //{
@@ -599,16 +452,16 @@ enum enum_toolbar_item_style
    e_toolbar_item_style_dropdown = e_toolbar_style_dropdown,
    e_toolbar_item_style_autosize = e_toolbar_style_autosize,
    e_toolbar_item_style_noprefix = e_toolbar_style_noprefix,
-//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-   e_toolbar_item_style_checked = MAKELONG(0, e_toolbar_item_state_checked),
-   e_toolbar_item_style_pressed = MAKELONG(0, e_toolbar_item_state_pressed),
-   e_toolbar_item_style_disabled = MAKELONG(0, e_toolbar_item_state_enabled),
-   e_toolbar_item_style_indeterminate = MAKELONG(0, e_toolbar_item_state_indeterminate),
-   e_toolbar_item_style_hidden = MAKELONG(0, e_toolbar_item_state_hidden),
-   e_toolbar_item_style_wrapped = MAKELONG(0, e_toolbar_item_state_wrap),
-   e_toolbar_item_style_ellipses = MAKELONG(0, e_toolbar_item_state_ellipses),
-   e_toolbar_item_style_marked = MAKELONG(0, e_toolbar_item_state_marked),
+//#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+   e_toolbar_item_style_checked = __MAKE_LONG(0, e_toolbar_item_state_checked),
+   e_toolbar_item_style_pressed = __MAKE_LONG(0, e_toolbar_item_state_pressed),
+   e_toolbar_item_style_disabled = __MAKE_LONG(0, e_toolbar_item_state_enabled),
+   e_toolbar_item_style_indeterminate = __MAKE_LONG(0, e_toolbar_item_state_indeterminate),
+   e_toolbar_item_style_hidden = __MAKE_LONG(0, e_toolbar_item_state_hidden),
+   e_toolbar_item_style_wrapped = __MAKE_LONG(0, e_toolbar_item_state_wrap),
+   e_toolbar_item_style_ellipses = __MAKE_LONG(0, e_toolbar_item_state_ellipses),
+   e_toolbar_item_style_marked = __MAKE_LONG(0, e_toolbar_item_state_marked),
 };
 
 

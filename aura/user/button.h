@@ -17,10 +17,11 @@ namespace user
          style_none,
          style_normal,
          style_simple,
-         style_bitmap,
+         style_image,
          style_image_and_text,
          style_push,
-         style_list
+         style_list,
+         style_stock_icon,
       };
 
       class bitmap
@@ -57,23 +58,23 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       e_style                             m_estyle;
-      ::rectangle_i32                     m_rectText;
+      ::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-      ::rectangle_i32                     m_rectCheckBox;
+      ::rectangle_i32                     m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
 
       button();
       button(const ::string & pszName, const ::id & id);
-      virtual ~button();
+      ~button() override;
 
 
       void user_button_construct();
 
 
-      ::matter* clone() const override;
+      ::element * clone() const override;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
 
@@ -85,7 +86,7 @@ namespace user
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics);
@@ -110,7 +111,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -146,7 +147,7 @@ namespace user
       //virtual ::color::color get_button_text_color();
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

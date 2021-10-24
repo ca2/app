@@ -18,7 +18,7 @@ protected:
    sync_future()
    {
 
-      __defer_construct(m_peventCompletion);
+      m_peventCompletion = __new(manual_reset_event);
 
    }
 public:
@@ -40,7 +40,7 @@ public:
 
    }
 
-   inline synchronization_result wait(const ::duration& duration = duration::infinite())
+   inline ::e_status wait(const ::duration& duration = duration::infinite())
    {
 
       return m_peventCompletion->wait(duration);

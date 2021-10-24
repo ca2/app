@@ -39,6 +39,10 @@ namespace user
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
       auto pstyle = get_style(pgraphics);
 
       if (m_estyle == style_image)
@@ -62,30 +66,30 @@ namespace user
 
          auto estate = get_user_state();
 
-         auto color = get_color(pstyle, ::user::e_element_text, estate);
+         auto color = get_color(pstyle, ::e_element_text, estate);
 
          pgraphics->set_text_color(color);
 
-         auto rectPadding = get_padding(pstyle);
+         auto rectanglePadding = get_padding(pstyle);
 
-         rectangleClient.deflate(rectPadding);
+         rectangleClient.deflate(rectanglePadding);
 
          if (m_estockicon != e_stock_icon_none)
          {
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->m_color = pgraphics->get_current_brush()->m_color;
+            ppen->m_color = pgraphics->get_current_brush()->m_color;
 
-            pen->m_dWidth = 1.0;
+            ppen->m_dWidth = 1.0;
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
-            ::rectangle_i32 rectIcon(rectangleClient);
+            ::rectangle_i32 rectangleIcon(rectangleClient);
 
-            rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+            rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-            pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+            pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
          }
          else
@@ -97,13 +101,13 @@ namespace user
 
             //pgraphics->draw_text(strText, rectangleClient, ealign, edrawtext);
 
-            //m_rectTextBoundingBox.left = 0;
+            //m_rectangleTextBoundingBox.left = 0;
 
-            //m_rectTextBoundingBox.top = 0;
+            //m_rectangleTextBoundingBox.top = 0;
 
-            //m_rectTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
+            //m_rectangleTextBoundingBox.set_size(pgraphics->get_text_extent(strText));
 
-            //m_rectTextBoundingBox.Align(ealign, rectangleClient);
+            //m_rectangleTextBoundingBox.Align(ealign, rectangleClient);
 
          }
 
@@ -115,7 +119,7 @@ namespace user
    //void still::on_message_left_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -124,7 +128,7 @@ namespace user
    //   if (hit_test(pmouse->)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_button_down))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_button_down))
    //      {
 
    //         psession->m_puiLastLButtonDown = this;
@@ -141,7 +145,7 @@ namespace user
    //void still::on_message_middle_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -154,7 +158,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_down))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_down))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -171,7 +175,7 @@ namespace user
    //void still::on_message_middle_button_up(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   pmessage->previous();
 
@@ -184,7 +188,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_up))
+   //      if (!simple_process_system_message(pmessage, ::e_subject_m_button_up))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -207,7 +211,7 @@ namespace user
    //void still::on_message_left_button_up(::message::message * pmessage)
    //{
 
-   //   //auto pmouse = pmessage->m_pmouse;
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
    //   //enum_element eelement;
 
@@ -231,15 +235,15 @@ namespace user
    //   //   else
    //   //   {
 
-   //   //      ::user::control_event ev;
+   //   //      ::subject subject;
 
-   //   //      ev.m_puserinteraction = this;
+   //   //      subject.m_puserinteraction = this;
 
-   //   //      ev.m_eevent = ::user::e_event_click;
+   //   //      subject.m_id = ::e_subject_click;
 
-   //   //      on_control_event(&ev);
+   //   //      route(&subject);
 
-   //   //      pmessage->m_bRet = ev.m_bRet;
+   //   //      pmessage->m_bRet = subject.m_bRet;
 
    //   //      if (!pmessage->m_bRet)
    //   //      {
@@ -273,7 +277,7 @@ namespace user
    //void still::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   //auto pmouse = pmessage->m_pmouse;
+   //   //auto pmouse = pmessage->m_union.m_pmouse;
 
    //   //enum_element eelement;
 
@@ -294,18 +298,18 @@ namespace user
 
    //   //   if (iOldHover == -1)
    //   //   {
-   //   //      ::user::control_event ev;
-   //   //      ev.m_puserinteraction = this;
-   //   //      ev.m_eevent = ::user::e_event_mouse_enter;
+   //   //      ::subject subject;
+   //   //      subject.m_puserinteraction = this;
+   //   //      subject.m_id = ::e_subject_mouse_enter;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
    //   //   else if (iHover == -1)
    //   //   {
-   //   //      ::user::control_event ev;
-   //   //      ev.m_puserinteraction = this;
-   //   //      ev.m_eevent = ::user::e_event_mouse_leave;
+   //   //      ::subject subject;
+   //   //      subject.m_puserinteraction = this;
+   //   //      subject.m_id = ::e_subject_mouse_leave;
    //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -325,9 +329,9 @@ namespace user
    //   //if (iOldHover >= 0)
    //   //{
    //   //   set_need_redraw();
-   //   //   ::user::control_event ev;
-   //   //   ev.m_puserinteraction = this;
-   //   //   ev.m_eevent = ::user::e_event_mouse_leave;
+   //   //   ::subject subject;
+   //   //   subject.m_puserinteraction = this;
+   //   //   subject.m_id = ::e_subject_mouse_leave;
    //   //   if (get_parent() != nullptr)
    //   //   {
    //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -338,14 +342,14 @@ namespace user
 
    //}
 
-   //void still::on_hit_test(::user::item & item)
+   //void still::on_hit_test(::item & item)
    //{
 
    //   return control::hit_test(pmouse);
 
-   //   //::rectangle_i32 rectWindow;
-   //   //get_window_rect(rectWindow);
-   //   //if (rectWindow.contains(point))
+   //   //::rectangle_i32 rectangleWindow;
+   //   //get_window_rect(rectangleWindow);
+   //   //if (rectangleWindow.contains(point))
    //   //{
    //   //   eelement = element_area;
    //   //   return 0;
@@ -372,7 +376,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -401,7 +405,7 @@ namespace user
       if (m_estyle == style_text)
       {
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          string str;
 
@@ -456,7 +460,7 @@ namespace user
    void still::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       sync_style();
 
@@ -506,7 +510,7 @@ namespace user
 
       rectangle.bottom = (::i32) (rectangle.top + sizeText.cy);
 
-      m_rectText = rectangle;
+      m_rectangleText = rectangle;
 
       string strText;
 
@@ -518,11 +522,13 @@ namespace user
 
       ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
 
+      ::enum_text_wrap etextwrap = m_etextwrap;
+
       m_textouta.text_outa().erase_all();
 
-      auto pfont = get_font(pstyle, ::user::e_element_none);
+      auto pfont = get_font(pstyle, ::e_element_none);
 
-      pgraphics->create_simple_multiline_layout(m_textouta, strText, rectangleClient, pfont, ealign);
+      pgraphics->create_simple_multiline_layout(m_textouta, strText, rectangleClient, pfont, ealign, etextwrap);
 
    }
 
@@ -552,11 +558,6 @@ namespace user
 
    void still::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-
-      //if(pstyle == nullptr)
-      //   return;
-
-
 
       ::rectangle_i32 rectangleClient;
 
@@ -642,7 +643,7 @@ namespace user
       if (rectangle.is_ok())
       {
 
-         pgraphics->draw_rectangle(rectangleClient, colorBorder);
+         pgraphics->draw_inset_rectangle(rectangleClient, colorBorder);
 
       }
 
@@ -650,55 +651,70 @@ namespace user
 
       rectangleClient.top += 3;
 
-      ::rectangle_i32 rectText = m_rectText;
+      ::rectangle_i32 rectangleText = m_rectangleText;
 
       //      string str = ::str::international::utf8_to_unicode(str);
 
       if (m_pimage->is_ok())
       {
-         ::rectangle_i32 rectDib;
-         rectDib = m_rectText;
-         rectDib.bottom = minimum(rectText.top + m_pimage->height(), rectText.bottom);
-         rectDib.right = minimum(rectText.left + m_pimage->width(), rectText.right);
-         //m_pimage->to(pgraphics, rectDib);
-         m_pimage->bitmap_blend(pgraphics, rectDib);
-         rectText.left += m_pimage->width();
+         ::rectangle_i32 rectangleDib;
+         rectangleDib = m_rectangleText;
+         rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
+         rectangleDib.right = minimum(rectangleText.left + m_pimage->width(), rectangleText.right);
+         //m_pimage->to(pgraphics, rectangleDib);
+
+         {
+
+            image_source imagesource(m_pimage);
+
+            auto rectangle = rectangleDib;
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
+
+         rectangleText.left += m_pimage->width();
+
       }
 
 
-      ::draw2d::brush_pointer brushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())
       {
 
          //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextPress);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_itemHover.is_set())
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextHover);
-         brushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
+         pbrushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
          //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
-         brushText->create_solid(get_color(pstyle, e_element_text));
+         pbrushText->create_solid(get_color(pstyle, e_element_text));
       }
 
-      pgraphics->set(brushText);
+      pgraphics->set(pbrushText);
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
-      pgraphics->draw_text(strText, rectText, e_align_top_left);
+      pgraphics->draw_text(strText, rectangleText, e_align_top_left);
 
    }
 
@@ -715,26 +731,26 @@ namespace user
    void still::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       ::user::enum_key iKey = pkey->m_ekey;
 
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_click;
+         subject.m_id = ::e_subject_click;
 
-         ev.m_actioncontext.m_pmessage = pmessage;
+         subject.m_actioncontext.m_pmessage = pmessage;
 
-         ev.m_actioncontext.add(e_source_user);
+         subject.m_actioncontext.add(e_source_user);
 
-         on_control_event(&ev);
+         route(&subject);
 
-         pmessage->m_bRet = ev.m_bRet;
+         pmessage->m_bRet = subject.m_bRet;
 
          if (pmessage->m_bRet)
          {
@@ -790,7 +806,7 @@ namespace user
          else if (m_itemHover.is_set() || is_left_button_pressed())
          {
 
-            //pgraphics->draw3d_rect(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
+            //pgraphics->draw_inset_3d_rectangle(rectangleClient,pstyle->_001GetColor(color_border_hover),pstyle->_001GetColor(color_border_hover));
 
             //rectangleClient.deflate(1,1);
 
@@ -818,11 +834,11 @@ namespace user
       if (pimage->area() > 0 && rectangleClient.area() > 0)
       {
 
-         ::rectangle_i32 rectAspect;
+         ::rectangle_i32 rectangleAspect;
 
-         rectAspect.left = 0;
+         rectangleAspect.left = 0;
 
-         rectAspect.top = 0;
+         rectangleAspect.top = 0;
 
          double dW = (double)rectangleClient.width() / (double)pimage->width();
 
@@ -830,13 +846,25 @@ namespace user
 
          double dMin = maximum(minimum(dW, dH), 1.0);
 
-         rectAspect.right = (::i32) (pimage->width() * dMin);
+         rectangleAspect.right = (::i32) (pimage->width() * dMin);
 
-         rectAspect.bottom = (::i32) (pimage->height() * dMin);
+         rectangleAspect.bottom = (::i32) (pimage->height() * dMin);
 
-         rectAspect.Align(e_align_center, rectangleClient);
+         rectangleAspect.Align(e_align_center, rectangleClient);
 
-         pgraphics->stretch(rectangleClient, pimage->g(), ::rectangle_i32(pimage->get_size()));
+         {
+
+            image_source imagesource(pimage, ::rectangle_f64(pimage->get_size()));
+
+            rectangle_f64 rectangle(rectangleClient);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            pgraphics->draw(imagedrawing);
+
+         }
 
       }
 
@@ -950,7 +978,7 @@ namespace user
    }
 
 
-   void still::on_hit_test(::user::item& item)
+   void still::on_hit_test(::item& item)
    {
 
       auto iItem = m_textouta.hit_test(item.m_pointClient);

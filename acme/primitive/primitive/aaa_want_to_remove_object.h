@@ -64,7 +64,7 @@ public:
 
 
    __pointer(thread) fork(
-                           ::e_priority epriority = priority_normal,
+                           ::enum_priority epriority = e_priority_normal,
                            ::u32 nStackSize = 0,
                            u32 dwCreateFlags = 0,
                            LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
@@ -74,15 +74,15 @@ public:
 
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    void message_receiver_destruct();
 
    void _001OnUpdate(::message::message * pmessage);
 
 
-   virtual ::e_status     request_file(::payload varFile);
-   virtual ::e_status     request_file(::payload varFile, ::payload varQuery);
+   virtual ::e_status     request_file(::payload payloadFile);
+   virtual ::e_status     request_file(::payload payloadFile, ::payload varQuery);
    virtual ::e_status     request(arguments arguments);
 
    virtual ::e_status     do_request(::create * pcreate);
@@ -123,13 +123,13 @@ public:
 
    
    template < typename PRED >
-   ::image_pointer get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   ::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
 
-   virtual ::image_pointer load_image(const ::payload & varFile, bool bCache = true, bool bCreateHelperMaps = false);
+   virtual ::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bCreateHelperMaps = false);
    virtual ::image_pointer load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false);
    virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
-   virtual ::image_pointer load_thumbnail(const ::payload & varFile, int w, int h);
+   virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
    virtual ::image_pointer load_thumbnail(const char * pszPath);
    virtual ::image_pointer load_dib(const ::file::path & pathDib);
 
@@ -230,7 +230,7 @@ public:
 
 
    __pointer(thread) begin(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 dwCreateFlags = 0,
    LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
@@ -294,7 +294,7 @@ inline i64 release(c_derived * & pca)
 
    c_derived * p = pca;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
    ::id id = p->m_id;
    //char * pszType = nullptr;
@@ -340,7 +340,7 @@ inline i64 release(c_derived * & pca)
 
    }
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //   try
 //   {

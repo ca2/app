@@ -319,7 +319,7 @@ public:
 
 
    stream():m_pvarOptions(nullptr) {}
-   virtual ~stream();
+   ~stream() override;
 
    inline ::payload & options();
 
@@ -344,12 +344,12 @@ public:
 
    inline void exchange(const ::id & id, void * pdata, memsize s);
 
-   virtual void add_exception(const ::exception::exception & e);
-   virtual void on_catch_all_exception();
+   void add_exception(const ::exception & e) override;
+   void on_catch_all_exception() override;
 
-   virtual void write_object(const ::id & id, ::matter * pobject);
+   virtual void write_element(const ::id & id, ::element * pelement);
 
-   virtual __pointer(::matter) read_object(const ::id & id);
+   virtual __pointer(::element) read_element(const ::id & id);
 
 
    virtual bool is_open() const;
@@ -501,7 +501,7 @@ public:
 
    //::filesize tellp();
    //virtual void seekp(filesize position) ;
-   //virtual void seekp(filesize offset, ::file::e_seek eseek);
+   //virtual void seekp(filesize offset, ::enum_seek eseek);
    virtual void put(char ch);
 
 
@@ -595,7 +595,7 @@ public:
 
 //   filesize tellg() ;
 //   virtual void seekg(filesize position);
-//   virtual void seekg(filesize offset, ::file::e_seek eseek);
+//   virtual void seekg(filesize offset, ::enum_seek eseek);
 
    ::filesize get_left() const;
 
@@ -791,7 +791,7 @@ namespace std
 //
 //inline stream & operator >> (stream & s, ::file::path & path);
 //
-//inline stream & operator >> (stream & s, ::millis & millis);
+//inline stream & operator >> (stream & s, ::duration & ::duration);
 //
 //inline stream & operator << (stream & s, const ::file::path & path);
 //
@@ -876,7 +876,7 @@ namespace std
 //template < typename TYPE >
 //inline stream & operator <<(stream & s, const __pointer_array(TYPE) & a);
 //
-//inline stream & operator <<(stream & s, const ::millis & millis);
+//inline stream & operator <<(stream & s, const ::duration & duration);
 //
 ////template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE > >
 ////inline stream & operator <<(stream & s, const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
@@ -901,7 +901,7 @@ namespace std
 //
 //
 //
-//inline stream & operator << (stream & s, ::file_result & pfile)
+//inline stream & operator << (stream & s, ::file_transport & pfile)
 //{
 //
 //   operator << (s, pfile.m_p);

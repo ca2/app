@@ -12,7 +12,7 @@ namespace filemanager
       namespace simple
       {
 
-         class view;
+         class impact;
 
          enum EItemType
          {
@@ -106,7 +106,7 @@ namespace filemanager
 
             __pointer(::image_list)                           m_pil;
             index                                   m_iParentFolder;
-            __pointer(::filemanager::fs::simple::view)      m_pserver;
+            __pointer(::filemanager::fs::simple::impact)      m_pserver;
 
 
             i32                                             m_iIconFolder;
@@ -148,9 +148,9 @@ namespace filemanager
             virtual count _001GetItemCount() override;
             virtual void _001SearchGetItemText(::user::mesh_item * pitem) override;
 
-            virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+            virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-            virtual bool on_click(const ::user::item & item) override;
+            virtual bool on_click(const ::item & item) override;
 
             DECLARE_MESSAGE_HANDLER(on_message_create);
             DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);

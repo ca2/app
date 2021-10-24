@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.17)
 project(app_message_box CXX)
 
 
-
 list(APPEND library_source
         _.cpp
         _.h
@@ -13,7 +12,6 @@ list(APPEND library_source
         framework.h
         window.cpp
         window.h)
-
 
 
 add_executable(app_message_box ${library_source})
@@ -42,7 +40,12 @@ elseif(LINUX)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
+
 add_dependencies(app_message_box ${app_common_dependencies})
+add_dependencies(app_message_box apex_${PLATFORM_NAME})
+add_dependencies(app_message_box ${default_node})
+add_dependencies(app_message_box ${default_draw2d})
+add_dependencies(app_message_box ${default_write_text})
 
 
 target_include_directories(app_message_box PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)

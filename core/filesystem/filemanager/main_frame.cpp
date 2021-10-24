@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -24,13 +26,13 @@ namespace filemanager
    void main_frame::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 
    }
 
 
-   bool main_frame::on_create_bars()
+   ::e_status main_frame::on_create_bars()
    {
 
       return ::simple_frame_window::on_create_bars();

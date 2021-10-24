@@ -54,7 +54,7 @@ namespace hotplugin
       string                        m_strBitmapChannel;
       ::point_i32                         m_pointCursorPhase;
 
-      millis m_millisSync;
+      ::duration m_durationSync;
       i32                       m_iDelta;
 
 
@@ -62,14 +62,14 @@ namespace hotplugin
       virtual ~plugin();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       // host should implement
       virtual bool         open_link(const ::string & strLink,const string & pszTarget);
       virtual bool         reload_plugin();
 
       virtual void delete_this() override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       // Host location is not the updated url - if there is a way to update the url and
       // maintain the same plugin instance, what would lead to an out-of-date location url.
       // It is the location url of the page that hosts the plugin when the plugin was created.
@@ -187,8 +187,8 @@ namespace hotplugin
       //virtual ::form_property_set * get_form_property_set() override;
 
       virtual ::e_status destroy() override;
-      //virtual void install_message_routing(::channel * pchannel) override;
-      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void install_message_routing(::channel * pchannel) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

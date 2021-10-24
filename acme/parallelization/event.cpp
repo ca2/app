@@ -2,10 +2,11 @@
 #include "acme/operating_system.h"
 
 
+
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -13,7 +14,7 @@
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -21,12 +22,12 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
 #endif
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 #ifdef __MACH__
+
 #include <mach/clock.h>
 #include <mach/mach.h>
-#endif
 
 struct mach_calendar_clock
 {
@@ -62,6 +63,10 @@ struct mach_calendar_clock
    
 } g_machcalendarclock;
 
+
+#endif // __MACH__
+
+
 void clock_getrealtime(struct timespec * pts)
 {
 
@@ -88,12 +93,11 @@ void clock_getrealtime(struct timespec * pts)
 
 
 event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstrName ARG_SEC_ATTRS)
-
 {
 
 #ifdef WINDOWS_DESKTOP
 
-   m_hsync = ::CreateEventW(PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, wstring(pstrName));
+   m_hsync = ::CreateEventW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, bManualReset, bInitiallyOwn, pstrName ? nullptr : wstring(pstrName).c_str());
 
    if (m_hsync == NULL)
    {
@@ -120,7 +124,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
 
    }
 
-   m_hsync = (HSYNC) ::CreateEventEx(psaAttribute, ::str::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_hsync = ::CreateEventEx((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, pstrName ? nullptr : wstring(pstrName).c_str(), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
    if (m_hsync == nullptr)
    {
@@ -148,7 +152,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       m_mutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_mutex,&attr)))
       {
-         __throw(::exception::exception("RC_OBJECT_NOT_CREATED"));
+         __throw(::exception("RC_OBJECT_NOT_CREATED"));
       }
 
 
@@ -411,7 +415,7 @@ bool event::ResetEvent()
    else
    {
 
-      __throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
+      throw ::exception(error_failed,"It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted.");
 
    }
 
@@ -422,7 +426,7 @@ bool event::ResetEvent()
 }
 
 
-synchronization_result event::wait ()
+::e_status event::_wait ()
 {
 
    //__throw(todo("thread"));
@@ -450,7 +454,7 @@ synchronization_result event::wait ()
       if(iResult == WAIT_OBJECT_0)
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
       else if (iResult == WAIT_TIMEOUT)
@@ -459,7 +463,7 @@ synchronization_result event::wait ()
          if (!task_get_run())
          {
 
-            return e_synchronization_result_abandoned_base;
+            return abandoned_base;
 
          }
 
@@ -467,7 +471,7 @@ synchronization_result event::wait ()
       else
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 
@@ -548,15 +552,15 @@ synchronization_result event::wait ()
 
    //}
 
-   return e_synchronization_result_signaled_base;
+   return signaled_base;
 
 }
 
 
-synchronization_result event::wait (const duration & durationTimeout)
+::e_status event::_wait (const class ::wait & wait)
 {
 
-   synchronization_result result;
+   ::e_status estatus;
 
    //__throw(todo("thread"));
    //if(durationTimeout > 1_s && m_eobject & e_object_alertable_wait)
@@ -576,13 +580,11 @@ synchronization_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   auto osduration = durationTimeout.u32_millis();
-
    auto hsync = this->hsync();
 
-   DWORD dwResult = ::WaitForSingleObjectEx(hsync, osduration, false);
+   DWORD dwResult = ::WaitForSingleObjectEx(hsync, wait, false);
 
-   result = windows_wait_result_to_synchronization_result(dwResult);
+   estatus = windows_wait_result_to_status(dwResult);
 
 #elif defined(ANDROID)
 
@@ -627,13 +629,12 @@ synchronization_result event::wait (const duration & durationTimeout)
 
    result =  m_bSignaled ? synchronization_result(e_synchronization_result_signaled_base) : synchronization_result(e_synchronization_result_timed_out);
 
-
 #else
 
    if(m_bManualEvent)
    {
 
-      if(durationTimeout.is_pos_infinity())
+      if(wait.is_infinite())
       {
 
          pthread_mutex_lock((pthread_mutex_t *) m_mutex);
@@ -661,24 +662,23 @@ synchronization_result event::wait (const duration & durationTimeout)
          if(m_bSignaled)
          {
 
-            result = synchronization_result(e_synchronization_result_signaled_base);
+            estatus = signaled_base;
 
          }
          else
          {
 
-            result = synchronization_result(e_synchronization_result_error);
+            estatus = error_failed;
 
          }
 
       }
       else
       {
+
          timespec abstime;
          
          timespec timeNow;
-
-         ((duration & ) durationTimeout).normalize();
 
          pthread_mutex_lock((pthread_mutex_t *) m_mutex);
 
@@ -688,9 +688,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
          clock_getrealtime(&abstime);
 
-         abstime.tv_sec += durationTimeout.m_secs.m_i;
-
-         abstime.tv_nsec += durationTimeout.m_nanos.m_i;
+         abstime += wait;
 
          while(abstime.tv_nsec > 1000 * 1000 * 1000)
          {
@@ -726,7 +724,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
                pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
 
-               return e_synchronization_result_timed_out;
+               return error_wait_timeout;
 
             }
 
@@ -737,13 +735,13 @@ synchronization_result event::wait (const duration & durationTimeout)
          if(m_bSignaled)
          {
 
-            result = e_synchronization_result_signaled_base;
+            estatus = signaled_base;
 
          }
          else
          {
 
-            result = e_synchronization_result_error;
+            estatus = error_failed;
 
          }
 
@@ -759,13 +757,10 @@ synchronization_result event::wait (const duration & durationTimeout)
 
       delay.tv_nsec = 1000 * 1000;
 
-      u32 timeout = durationTimeout.u32_millis();
+      auto start = ::duration::now();
 
-      auto start = ::millis::now();
-
-      while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
+      while(wait.is_infinite() || start.elapsed() < wait)
       {
-
 
          sembuf sb;
 
@@ -787,7 +782,7 @@ synchronization_result event::wait (const duration & durationTimeout)
             else
             {
 
-               return e_synchronization_result_error;
+               return error_failed;
 
             }
 
@@ -795,13 +790,13 @@ synchronization_result event::wait (const duration & durationTimeout)
          else
          {
 
-            return e_synchronization_result_signaled_base;
+            return signaled_base;
 
          }
 
       }
 
-      result= e_synchronization_result_timed_out;
+      estatus = error_wait_timeout;
 
    }
 
@@ -823,7 +818,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
    //}
 
-   return result;
+   return estatus;
 
 }
 
@@ -861,7 +856,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(millis(0)).signaled();
+      return ((event *) this)->wait(::duration(0)).signaled();
 
    }
 
@@ -916,117 +911,117 @@ bool event::is_signaled() const
 //
 //end**************************************************************************
 
-bool event::lock(const duration & durationTimeout)
-{
-
-   return wait(durationTimeout).succeeded();
-
-//#ifdef WINDOWS
+//bool event::lock(const class ::wait & wait)
+//{
 //
-//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
+//   return wait(durationTimeout).succeeded();
 //
-//   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
-//      return true;
-//   else
-//      return false;
+////#ifdef WINDOWS
+////
+////   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
+////
+////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
+////      return true;
+////   else
+////      return false;
+////
+////#elif defined(ANDROID)
+////
+////   pthread_mutex_lock((pthread_mutex_t *) m_mutex);
+////
+////   ((duration & ) durationTimeout).normalize();
+////
+////
+////   if(m_bManualEvent)
+////   {
+////
+////      i32 iSignal = m_iSignalId;
+////
+////      while(!m_bSignaled && iSignal == m_iSignalId)
+////      {
+////
+////         timespec delay;
+////         delay.tv_sec = durationTimeout.m_i;
+////         delay.tv_nsec = durationTimeout.m_i;
+////         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay))
+////            break;
+////
+////      }
+////
+////      return m_bSignaled;
+////
+////   }
+////   else
+////   {
+////
+////      timespec delay;
+////      delay.tv_sec = durationTimeout.m_i;
+////      delay.tv_nsec = durationTimeout.m_i;
+////      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay);
+////
+////      return is_locked();
+////
+////   }
+////
+////   pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
+////
+////#else
+////
+////
+////   timespec delay;
+////
+////
+////   if(m_bManualEvent)
+////   {
+////
+////      wait(durationTimeout);
+////
+////      return m_bSignaled;
+////
+////   }
+////   else
+////   {
+////
+////      u32 timeout = durationTimeout.u32_millis();
+////
+////      u32 start= ::duration::now();
+////
+////      while(start.elapsed() < timeout)
+////      {
+////
+////         sembuf sb;
+////
+////         sb.sem_op   = -1;
+////         sb.sem_num  = 0;
+////         sb.sem_flg  = IPC_NOWAIT;
+////
+////         i32 ret = semop((i32) m_hsync, &sb, 1);
+////
+////         if(ret < 0)
+////         {
+////            if(ret == EPERM)
+////            {
+////               nanosleep(&delay, nullptr);
+////            }
+////            else
+////            {
+////               return false;
+////            }
+////         }
+////         else
+////         {
+////            return true;
+////         }
+////
+////      }
+////
+////   }
+////
+////   return false;
+////
+////#endif
 //
-//#elif defined(ANDROID)
-//
-//   pthread_mutex_lock((pthread_mutex_t *) m_mutex);
-//
-//   ((duration & ) durationTimeout).normalize();
-//
-//
-//   if(m_bManualEvent)
-//   {
-//
-//      i32 iSignal = m_iSignalId;
-//
-//      while(!m_bSignaled && iSignal == m_iSignalId)
-//      {
-//
-//         timespec delay;
-//         delay.tv_sec = durationTimeout.m_i;
-//         delay.tv_nsec = durationTimeout.m_i;
-//         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay))
-//            break;
-//
-//      }
-//
-//      return m_bSignaled;
-//
-//   }
-//   else
-//   {
-//
-//      timespec delay;
-//      delay.tv_sec = durationTimeout.m_i;
-//      delay.tv_nsec = durationTimeout.m_i;
-//      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_mutex, &delay);
-//
-//      return is_locked();
-//
-//   }
-//
-//   pthread_mutex_unlock((pthread_mutex_t *) m_mutex);
-//
-//#else
-//
-//
-//   timespec delay;
-//
-//
-//   if(m_bManualEvent)
-//   {
-//
-//      wait(durationTimeout);
-//
-//      return m_bSignaled;
-//
-//   }
-//   else
-//   {
-//
-//      u32 timeout = durationTimeout.u32_millis();
-//
-//      u32 start= ::millis::now();
-//
-//      while(start.elapsed() < timeout)
-//      {
-//
-//         sembuf sb;
-//
-//         sb.sem_op   = -1;
-//         sb.sem_num  = 0;
-//         sb.sem_flg  = IPC_NOWAIT;
-//
-//         i32 ret = semop((i32) m_hsync, &sb, 1);
-//
-//         if(ret < 0)
-//         {
-//            if(ret == EPERM)
-//            {
-//               nanosleep(&delay, nullptr);
-//            }
-//            else
-//            {
-//               return false;
-//            }
-//         }
-//         else
-//         {
-//            return true;
-//         }
-//
-//      }
-//
-//   }
-//
-//   return false;
-//
-//#endif
-
-}
+//}
 
 
 bool event::unlock()

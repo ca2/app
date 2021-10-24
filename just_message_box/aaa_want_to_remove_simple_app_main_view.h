@@ -5,27 +5,27 @@ namespace simple_drawing
 {
 
 
-   class CLASS_DECL_APP_SIMPLE_DRAWING main_view:
+   class CLASS_DECL_APP_SIMPLE_DRAWING main_impact:
       virtual public ::userex::split_view
    {
    public:
 
 
       ::userex::top_view *    m_ptopview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
-      main_view(::object * pobject);
-      virtual ~main_view();
+      main_impact(::object * pobject);
+      virtual ~main_impact();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact() override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

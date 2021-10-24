@@ -1,13 +1,13 @@
 #include "framework.h"
 #include "aura/update.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 namespace prompt
 {
 
 
-   view::view(::object * pobject) :
+   impact::impact(::object * pobject) :
       ::object(pobject),
       ::user::interaction(pobject)
    {
@@ -15,76 +15,76 @@ namespace prompt
    }
 
 
-   view::~view()
+   impact::~impact()
    {
 
    }
 
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
-      MESSAGE_LINK(e_message_size, pchannel, this, &view::on_message_size);
-      MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
-      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      MESSAGE_LINK(e_message_size, pchannel, this, &impact::on_message_size);
+      MESSAGE_LINK(e_message_paint, pchannel, this, &impact::_001OnPaint);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
 
       //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
       //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
       //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
       //MESSAGE_LINK(e_message_key_up, pchannel, this, &::user::interaction::on_message_key_up);
 
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &view::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &view::on_message_right_button_up);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &impact::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
+      MESSAGE_LINK(e_message_right_button_up, pchannel, this, &impact::on_message_right_button_up);
 //
 
-      MESSAGE_LINK(MessageOp, pchannel, this, &view::_001OnOp);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &view::on_message_show_window);
+      MESSAGE_LINK(MessageOp, pchannel, this, &impact::_001OnOp);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &impact::on_message_show_window);
 
 
 
 
    }
    /////////////////////////////////////////////////////////////////////////////
-   // view drawing
+   // impact drawing
 
-   void view::OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // view diagnostics
+   // impact diagnostics
 
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       ::user::impact::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       ::user::impact::dump(dumpcontext);
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // view message handlers
+   // impact message handlers
 
-   // vmpLightView.cpp : implementation of the view class
+   // vmpLightView.cpp : implementation of the impact class
    //
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // view
+   // impact
 
 
-   bool view::pre_create_window(::user::system * pusersystem)
+   bool impact::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -96,7 +96,7 @@ namespace prompt
 
 
 
-   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
       
       if(psubject->id() == id_update_current_area)
@@ -109,19 +109,19 @@ namespace prompt
    }
 
 
-   void view::on_message_destroy(::message::message * pmessage)
+   void impact::on_message_destroy(::message::message * pmessage)
    {
       ::user::impact::on_message_destroy(pmessage);
    }
 
-   void view::on_message_size(::message::message * pmessage)
+   void impact::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
-      ::rectangle_i32 rectDesktop;
+      ::rectangle_i32 rectangleDesktop;
 
-      best_monitor(rectDesktop);
+      best_monitor(rectangleDesktop);
 
       ::rectangle_i32 rectangleClient = get_client_rect();
       
@@ -136,7 +136,7 @@ namespace prompt
       iH = minimum(iH, 120);
       
       double r = (double) iW / (double) iH;
-      double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
+      double rScreen = (double) rectangleDesktop.width() / (double) rectangleDesktop.height();
       if(r < rScreen)
       {
          iH = (i32) (iW / rScreen);
@@ -147,21 +147,21 @@ namespace prompt
       }
    }
 
-   void view::_001OnPaint(::message::message * pmessage)
+   void impact::_001OnPaint(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
-   void view:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -169,7 +169,7 @@ namespace prompt
    }
 
 
-   void view::on_message_context_menu(::message::message * pmessage)
+   void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();
@@ -178,7 +178,7 @@ namespace prompt
    }
 
 
-   void view::_001OnTabClick(i32 iTab)
+   void impact::_001OnTabClick(i32 iTab)
    {
       if(iTab == 1)
       {
@@ -186,10 +186,10 @@ namespace prompt
       }
    }
 
-   // void view::on_message_set_cursor(::message::message * pmessage)
+   // void impact::on_message_set_cursor(::message::message * pmessage)
    // {
 
-   //    auto pmouse = pmessage->m_pmouse;
+   //    auto pmouse = pmessage->m_union.m_pmouse;
 
    //    pmouse->m_ecursor = cursor_arrow;
 
@@ -198,7 +198,7 @@ namespace prompt
    // }
 
 
-   ::user::document * view::get_document()
+   ::user::document * impact::get_document()
    {
 
       return ::user::impact::get_document();
@@ -206,37 +206,37 @@ namespace prompt
    }
 
 
-   void view::on_message_left_button_down(::message::message * pmessage)
+   void impact::on_message_left_button_down(::message::message * pmessage)
    {
-      //   auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      //   auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
-   void view::on_message_left_button_up(::message::message * pmessage)
+   void impact::on_message_left_button_up(::message::message * pmessage)
    {
-      //auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      //auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
       KillTimer(5432180);
 
 
    }
 
-   void view::on_message_right_button_up(::message::message * pmessage)
+   void impact::on_message_right_button_up(::message::message * pmessage)
    {
-      //auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+      //auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
-   void view::_001OnOp(::message::message * pmessage)
+   void impact::_001OnOp(::message::message * pmessage)
    {
       //__pointer(::user::message) pusermessage(pmessage);
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
-   void view::_001OnTimer(::timer * ptimer)
+   void impact::_001OnTimer(::timer * ptimer)
    {
 
       ::user::impact::_001OnTimer(ptimer);
@@ -244,9 +244,9 @@ namespace prompt
    }
 
 
-   void view::GetDateTime(string & strDateTime)
+   void impact::GetDateTime(string & strDateTime)
    {
-      ::datetime::time time = ::datetime::time::get_current_time();
+      ::datetime::time time = ::datetime::time::now();
       string strDate;
       string strWeekDay;
       string strTime;
@@ -286,10 +286,10 @@ namespace prompt
       strDateTime.Format("%s %s %s", strDate.c_str(), strWeekDay.c_str(), strTime.c_str());
    }
 
-   void view::on_message_show_window(::message::message * pmessage)
+   void impact::on_message_show_window(::message::message * pmessage)
    {
       //   __pointer(::message::show_window) pshowwindow(pmessage);
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 

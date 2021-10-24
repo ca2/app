@@ -30,7 +30,7 @@ public:
       if (!estatus)
       {
 
-         __throw(::exception::exception(estatus));
+         __throw(estatus);
 
       }
 
@@ -73,7 +73,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   ::task_pointer                          m_ptask;
 //   bool                                         m_bExecuting;
 //   bool                                         m_bPending;
-//   ::millis                                       m_millisStart;
+//   ::duration                                       m_durationStart;
 //
 //   runner()
 //   {
@@ -94,7 +94,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //   void operator()(::duration duration, PRED pred)
 //   {
 //
-//      m_millisStart = ::millis::now() + duration;
+//      m_durationStart = ::duration::now() + duration;
 //
 //      m_bPending = true;
 //
@@ -113,7 +113,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 //
 //                   }
 //
-//                   if(m_millisStart.elapsed() >= 0 && !m_bExecuting)
+//                   if(m_durationStart.elapsed() >= 0 && !m_bExecuting)
 //                   {
 //
 //                      m_bPending = false;
@@ -226,7 +226,7 @@ template < typename PRED >
 //
 
 //template < typename PRED >
-//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, e_priority epriority = priority_normal)
+//::task * fork(::object * pobject, PRED pred, const char * pszTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
 //   auto ppredtask = __new(predicate_task < PRED >(pobject, pred));
@@ -297,7 +297,7 @@ template < typename PRED >
 
 
 //template < typename PRED >
-//inline auto object::fork(PRED pred, const char * pszTag, int iCallStackAddUp, e_priority epriority)
+//inline auto object::fork(PRED pred, const char * pszTag, int iCallStackAddUp, enum_priority epriority)
 //{
 //
 //   iCallStackAddUp++;
@@ -340,37 +340,37 @@ template < typename PRED >
 
 
 
-template < typename T >
-inline void fork_release(::object * pobjectParent, __pointer(T) & t)
-{
-
-   try
-   {
-
-      T * p;
-
-      p = t.m_p;
-
-      p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobjectParent, "fork_release"));
-
-      t.release();
-
-      ::fork(pobjectParent, [&]()
-             {
-
-                ::release(p);
-
-             });
-
-   }
-   catch (...)
-   {
-
-
-   }
-
-}
-
+//template < typename T >
+//inline void fork_release(::object * pobjectParent, __pointer(T) & t)
+//{
+//
+//   try
+//   {
+//
+//      T * p;
+//
+//      p = t.m_p;
+//
+//      p->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_P_NOTE(pobjectParent, "fork_release"));
+//
+//      t.release();
+//
+//      pobjectParent->fork([&]()
+//             {
+//
+//                ::release(p);
+//
+//             });
+//
+//   }
+//   catch (...)
+//   {
+//
+//
+//   }
+//
+//}
+//
 
 
 template < typename PRED >

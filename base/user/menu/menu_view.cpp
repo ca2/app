@@ -9,12 +9,10 @@ namespace user
 {
 
 
-   menu_view::menu_view() :
-      m_brBkSel(e_create),
-      m_brBkHoverSel(e_create),
-      m_penBkSel(e_create),
-      m_pen(e_create)
+   menu_view::menu_view() 
    {
+
+      m_bClickDefaultMouseHandling = true;
 
       payload(FONTSEL_IMPACT) = true;
 
@@ -22,13 +20,13 @@ namespace user
 
       m_flagNonClient.erase(non_client_focus_rect);
 
-      m_brBkHoverSel->create_solid(argb(255, 230, 230, 230));
+      m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
 
-      m_brBkSel->create_solid(argb(255, 240, 240, 240));
+      m_pbrushBkSel->create_solid(argb(255, 240, 240, 240));
 
-      m_penBkSel->create_solid(3.0, argb(255, 0, 148, 202));
+      m_ppenBkSel->create_solid(3.0, argb(255, 0, 148, 202));
 
-      m_pen->create_solid(1.0, argb(255, 210, 210, 210));
+      m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
 
    }
 
@@ -60,7 +58,7 @@ namespace user
 
       ::user::impact::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::on_message_destroy);
@@ -68,7 +66,7 @@ namespace user
    }
 
 
-   bool menu_view::on_click(const ::user::item & item)
+   bool menu_view::on_click(const ::item & item)
    {
 
       if (!is_window_enabled())
@@ -131,7 +129,7 @@ namespace user
 
          command.m_id = idCommand;
 
-         route_command_message(&command);
+         route_command(&command);
 
          return command.m_bRet;
 
@@ -145,6 +143,11 @@ namespace user
    void menu_view::on_message_create(::message::message * pmessage)
    {
 
+      m_pbrushBkSel.create(this);
+      m_pbrushBkHoverSel.create(this);
+      m_ppenBkSel.create(this);
+      m_ppen.create(this);
+
       __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
@@ -157,7 +160,7 @@ namespace user
       if (!estatus)
       {
 
-         pcreate->failed("Failed to create new xml document for menu view");
+         pcreate->failed("Failed to create new xml document for menu impact");
 
          return;
 
@@ -165,7 +168,7 @@ namespace user
 
       //set_topic_text("menu_view> ");
 
-      string strId = get_document()->m_pimpactsystem->m_strMatter;
+      auto id = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 
@@ -177,19 +180,19 @@ namespace user
 
       auto pcontextimage = pcontext->context_image();
 
-      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", false);
+      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", { .cache = false });
 
-      m_fontTitle.create(this);
+      m_pfontTitle.create(this);
 
       auto psystem = m_psystem->m_pbasesystem;
 
       auto pnode = psystem->node();
 
-      m_fontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
+      m_pfontTitle->create_point_font(pnode->font_name(e_font_sans_ui), 14, 800);
 
-      m_font.create(this);
+      m_pfont.create(this);
 
-      m_font->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
+      m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
 
       if (GetTypedParent<::user::split_view>() != nullptr)
       {
@@ -214,17 +217,17 @@ namespace user
    }
 
 
-   void menu_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void menu_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
 
          auto peditview = _001TypedWindow < ::user::plain_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
+         if (peditview != nullptr && psubject->m_puserelement == peditview)
          {
 
             string strText;
@@ -241,7 +244,7 @@ namespace user
    bool menu_view::get_item_rect(index i, RECTANGLE_I32 * prectangle)
    {
 
-      int iHeight = (int) ( m_fontTitle->m_dFontSize * 1.25 + 20);
+      int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);
 
       int x = 10;
 
@@ -290,7 +293,7 @@ namespace user
    }
 
 
-   void menu_view::on_hit_test(::user::item & item)
+   void menu_view::on_hit_test(::item & item)
    {
 
       index iPos = 0;
@@ -318,7 +321,7 @@ namespace user
          if (rectangle.contains(item.m_pointHitTest))
          {
 
-            item = { ::user::e_element_item, iPos, iMenu, -1 };
+            item = { ::e_element_item, iPos, iMenu, -1 };
 
             return;
 
@@ -334,7 +337,7 @@ namespace user
             if (rectangle.contains(item.m_pointHitTest))
             {
 
-               item = { ::user::e_element_item, iPos, iMenu, iCommand };
+               item = { ::e_element_item, iPos, iMenu, iCommand };
 
                return;
 
@@ -346,7 +349,7 @@ namespace user
 
       }
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
    }
 
@@ -356,12 +359,7 @@ namespace user
 
       ::image_pointer pimage1;
 
-      if (!m_pimageMem)
-      {
-
-         m_pimageMem.create();
-
-      }
+      __defer_construct_new(m_pimageMem);
 
       pimage1 = m_pimageMem;
 
@@ -395,7 +393,13 @@ namespace user
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->stretch(m_pimageLogo->rectangle({ 10, 10 }), m_pimageLogo->get_graphics());
+      image_source imagesource(m_pimageLogo);
+
+      image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pgraphics->draw(imagedrawing);
 
       ::rectangle_i32 rectangle;
 
@@ -423,11 +427,11 @@ namespace user
          
          strTitle = pnode->attribute("title");
 
-         pgraphics->set(m_fontTitle);
+         pgraphics->set(m_pfontTitle);
 
          get_item_rect(iPos, rMenu);
 
-         pgraphics->set(m_pen);
+         pgraphics->set(m_ppen);
 
          draw_header_rectangle(pgraphics, rMenu);
 
@@ -453,9 +457,9 @@ namespace user
 
                rMenu.unite(rMenu, rectangle);
 
-               pgraphics->set(m_pen);
+               pgraphics->set(m_ppen);
 
-               ::user::item item(::user::e_element_item, iPos, i, j);
+               ::item item(::e_element_item, iPos, i, j);
 
                if (m_itemHover == item)
                {
@@ -463,7 +467,7 @@ namespace user
                   if (m_itemCurrent == item)
                   {
 
-                     pgraphics->set(m_brBkHoverSel);
+                     pgraphics->set(m_pbrushBkHoverSel);
 
                      draw_item_rectangle_hover_sel001(pgraphics, rectangle);
 
@@ -471,7 +475,7 @@ namespace user
                   else
                   {
 
-                     pgraphics->set(m_brBkSel);
+                     pgraphics->set(m_pbrushBkSel);
 
                      draw_item_rectangle_hover001(pgraphics, rectangle);
 
@@ -481,7 +485,7 @@ namespace user
                else if (m_itemCurrent == item)
                {
 
-                  pgraphics->set(m_brBkSel);
+                  pgraphics->set(m_pbrushBkSel);
 
                   draw_item_rectangle_sel001(pgraphics, rectangle);
 
@@ -493,7 +497,7 @@ namespace user
 
                }
 
-               pgraphics->set(m_font);
+               pgraphics->set(m_pfont);
 
                if (m_itemCurrent == item)
                {
@@ -517,7 +521,7 @@ namespace user
                if (m_itemCurrent == item)
                {
 
-                  pgraphics->set(m_penBkSel);
+                  pgraphics->set(m_ppenBkSel);
 
                   pgraphics->move_to(rectangle.left + 1, rectangle.top);
                   pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
@@ -535,13 +539,19 @@ namespace user
                if (pimage1->is_set())
                {
 
-                  ::rectangle_i32 rectDib;
+                  ::rectangle_i32 rectangleDib;
 
-                  rectDib.left = rectangle.right - pimage1->width() - 10;
-                  rectDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
-                  rectDib.set_size(pimage1->width(), pimage1->height());
+                  rectangleDib.left = rectangle.right - pimage1->width() - 10;
+                  rectangleDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
+                  rectangleDib.set_size(pimage1->width(), pimage1->height());
 
-                  pgraphics->stretch(rectDib, pimage1->g());
+                  image_source imagesource(pimage1);
+
+                  image_drawing_options imagedrawingoptions(rectangleDib);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
@@ -564,7 +574,7 @@ namespace user
 
          get_item_rect(iPos, rectangle);
 
-         pgraphics->set(m_pen);
+         pgraphics->set(m_ppen);
 
          draw_header_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
 
@@ -610,7 +620,17 @@ namespace user
 
       }
 
-      pgraphicsParam->stretch(rectangleClient, pimage1->get_graphics());
+      {
+
+         image_source imagesource(pimage1);
+
+         image_drawing_options imagedrawingoptions(rectangleClient);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphicsParam->draw(imagedrawing);
+
+      }
 
    }
 
@@ -636,12 +656,12 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(::payload varFile)
+   bool menu_view::load_xml(::payload payloadFile)
    {
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->file().as_string(varFile);
+      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
       if (!m_pxmldoc->load(str))
       {
@@ -689,7 +709,7 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), false);
+            ::image_pointer pimage1 = pcontextimage->load_image(pnode->child_at(iCommand)->attribute("image"), { .cache = false });
 
             if (pimage1)
             {

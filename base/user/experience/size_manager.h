@@ -15,7 +15,7 @@ namespace experience
       e_hittest                     m_ehittestSizing;
       e_hittest                     m_ehittestCursor;
       point_i32                         m_pointCursorOrigin;
-      ::rectangle_i32                        m_rectWindowOrigin;
+      ::rectangle_i32                        m_rectangleWindowOrigin;
       size_i32                          m_sizeMinimumBorder;
       ::u32                          m_uiSWPFlags;
       enum_grip                        m_egripMask;

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/const/id.h"
-#include "acme/const/impact.h"
+#include "acme/constant/id.h"
+#include "acme/constant/impact.h"
 
 
 

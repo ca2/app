@@ -21,7 +21,7 @@ string vs_build(::object * pobject)
 
    path = pacmedir->config() / "programming/vs_build.txt";
 
-   string strVsBuild = file_as_string(path);
+   string strVsBuild = pobject->m_psystem->m_pacmefile->as_string(path);
 
    strVsBuild.trim();
 
@@ -153,7 +153,7 @@ namespace introjection
 
             strMessage = "There is a hole here. You should fill it with fullfillment. Missing f**k " + path;
 
-            message_box(strMessage, strMessage, e_message_box_ok);
+            //message_box(strMessage, strMessage, e_message_box_ok);
 
          }
 
@@ -440,7 +440,7 @@ namespace introjection
       bResult = setenv("PATH",str,true);
 #endif
 
-      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool %d",bResult);
+      TRACE("compiler::prepare_compile_and_link_environment SetEnvironmentVariable return bool " << bResult);
 
 
    }
@@ -474,8 +474,7 @@ namespace introjection
 
       }
 
-      ::process::process_pointer process(e_create);
-
+      ::operating_system::process_pointer process(e_create, this);
 
       ::file::path pathEnvTxt;
 
@@ -483,9 +482,9 @@ namespace introjection
 
       pathEnvTxt = pacmedir->system() / "env.txt";
 
-      file_put_contents(pacmedir->system() / "env1.bat",pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env1.bat", pacmedir->system() / "env.bat > \"" + pathEnvTxt + "\"");
 
-      file_put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
+      m_psystem->m_pacmefile->put_contents(pacmedir->system() / "env.bat","@call " + strBuildCmd + "\r\n@set");
 
       auto psystem = m_psystem;
 
@@ -495,7 +494,7 @@ namespace introjection
 
       string strLog;
 
-      strLog = file_as_string(pacmedir->system() / "env.txt");
+      strLog = m_psystem->m_pacmefile->as_string(pacmedir->system() / "env.txt");
 
       string_array stra;
 
@@ -587,7 +586,7 @@ namespace introjection
       if (m_strApp.is_empty())
       {
 
-         __throw(::exception::exception("call compiler::initialize"));
+         throw ::exception(error_failed, "call compiler::initialize");
 
       }
 
@@ -615,7 +614,7 @@ namespace introjection
 
       single_lock synchronouslock(plibrary->mutex());
 
-      if (!synchronouslock.lock(millis(0)))
+      if (!synchronouslock.lock(0_s))
       {
 
          synchronouslock.lock();
@@ -718,7 +717,11 @@ namespace introjection
 
       }
 
-      ::dir::mk("/::payload/tmp/ca2/intermediate");
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create("/::payload/tmp/ca2/intermediate");
 
 #else
 
@@ -1120,15 +1123,15 @@ namespace introjection
 
       str.replace("%TARGET_PATH%",strTargetPath);
 
-      ::process::process_pointer process(e_create);
+      ::operating_system::process_pointer process(e_create, this);
 
 #ifdef LINUX
 
-      file_put_contents("/tmp/introj.bash", str);
+      m_psystem->m_pacmefile->put_contents("/tmp/introj.bash", str);
 
       chmod("/tmp/introj.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
-      process->create_child_process("/tmp/introj.bash",true,nullptr,::priority_highest);
+      process->create_child_process("/tmp/introj.bash",true,nullptr,::e_priority_highest);
 
 #else
 
@@ -1136,7 +1139,7 @@ namespace introjection
 
       pcontext->m_papexcontext->file().put_contents(strCmdCompile, str);
 
-      process->create_child_process(str,true,m_pathProjectDir,::priority_highest);
+      process->create_child_process(str,true,m_pathProjectDir,::e_priority_highest);
 
 #endif
 
@@ -1172,10 +1175,10 @@ namespace introjection
 
       }
 
-      strLog= file_as_string(strClog);
+      strLog= m_psystem->m_pacmefile->as_string(strClog);
 
 #else
-auto tickStart = ::millis::now();
+auto tickStart = ::duration::now();
 
       while(::task_get_run())
       {
@@ -1302,21 +1305,21 @@ auto tickStart = ::millis::now();
 
          bTimeout = false;
 
-         ::process::process_pointer process(e_create);
+         ::operating_system::process_pointer process(e_create, this);
 
-         //         set_thread_priority(::priority_highest);
+         //         set_thread_priority(::e_priority_highest);
 
 #ifdef LINUX
 
-         file_put_contents("/tmp/introl.bash", str);
+         m_psystem->m_pacmefile->put_contents("/tmp/introl.bash", str);
 
          chmod("/tmp/introl.bash", S_IRWXU | S_IRWXG | S_IRWXO);
 
-         process->create_child_process("/tmp/introl.bash",true,nullptr,::priority_highest);
+         process->create_child_process("/tmp/introl.bash",true,nullptr,::e_priority_highest);
 
 #else
 
-         process->create_child_process(str,true,nullptr,::priority_highest);
+         process->create_child_process(str,true,nullptr,::e_priority_highest);
 #endif
 #else
 
@@ -1382,7 +1385,7 @@ auto tickStart = ::millis::now();
 
 #ifdef MACOS
 
-         strLog= file_as_string(strLlog);
+         strLog= m_psystem->m_pacmefile->as_string(strLlog);
 
 #else
 
@@ -1474,14 +1477,14 @@ auto tickStart = ::millis::now();
       if(!plibrary->m_plibrary->open(strTargetPath))
       {
 
-         message_box("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_error_message("Failed to open bot library (1)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 
       if(!plibrary->m_plibrary->open_library(strLibTitle))
       {
 
-         message_box("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
+         output_error_message("Failed to open bot library (2)\n\n" + plibrary->m_plibrary->m_strMessage);
 
       }
 

@@ -40,8 +40,8 @@ namespace extended
       status(const std::initializer_list < ::e_status >& list);
       status(const status& status);
       status(status&& status);
-      status(const ::exception::exception& e);
-      status(const std::initializer_list < ::exception::exception >& list);
+      status(const ::exception& e);
+      status(const std::initializer_list < ::exception >& list);
       ~status();
 
 
@@ -56,15 +56,15 @@ namespace extended
 
       void add(::enum_status estatus);
 
-      void add(const ::exception::exception& e);
+      void add(const ::exception& e);
 
 
-      void add(const std::initializer_list < ::exception::exception >& list);
+      void add(const std::initializer_list < ::exception >& list);
       
 
       void add(const std::initializer_list < ::e_status     >& list);
 
-      bool get_exception(::exception::exception& e, const ::e_status& estatus);
+      bool get_exception(::exception& e, const ::e_status& estatus);
 
       bool get_exit_status(::e_status& estatus) const;
       ::e_status get_greatest_exception_on_range(enum_status estatusOpenStart, enum_status estatusOpenEnd) const;
@@ -147,13 +147,10 @@ namespace extended
 template < typename EXCEPTION >
 inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew);
 
-CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::matter * pobject, ::exception::exception * pexceptionNew);
+CLASS_DECL_ACME __pointer(::exception) __trace_context_move_throw_exception(::matter * pobject, ::exception * pexceptionNew);
 
 
 
-#define __throw(...) throw(::exception::exception(__VA_ARGS__))
-#define __rethrow(pe) throw pe;
-#define __throw_exit(estatus) __throw(exit_exception(estatus))
 
 
 
@@ -161,7 +158,7 @@ CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exc
 //#define rp(T) ::transport < T >
 
 
-using unexpected_situation = ::exception::exception;
+using unexpected_situation = ::exception;
 
 
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
    class CLASS_DECL_ACME exception 
@@ -12,7 +12,7 @@ namespace exception
 
       ::e_status              m_estatus;
 
-      //enum_exception          m_eexception;
+      //enum_exception        m_eexception;
       bool                    m_bDumpBackTrace;
       __pointer(callstack)    m_pcallstack;
       bool                    m_bHandled;
@@ -71,8 +71,8 @@ namespace exception
 
 
    //   array() {}
-   //   array(const ::exception::exception & e) : __pointer_array(exception)({ pexception }) {}
-   //   array(const std::initializer_list < ::exception::exception * > & list) : __pointer_array(exception)(list) {}
+   //   array(const ::exception & e) : __pointer_array(exception)({ pexception }) {}
+   //   array(const std::initializer_list < ::exception * > & list) : __pointer_array(exception)(list) {}
 
 
       string get_all_messages(const __pointer_array(exception) & a);
@@ -82,16 +82,16 @@ namespace exception
 
 
    //using exception_pointer = __pointer(exception);
-
-
-} // namespace exception
+//
+//
+//} // namespace exception
 
 
 #if defined(__APPLE__)
 
 
 class ns_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
@@ -111,25 +111,25 @@ public:
 
 
 
-template < typename EXCEPTION >
-inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
-{
-
-   ERR(pexceptionNew->get_message());
-
-   return ::__move_transfer(pexceptionNew);
-
-}
+//template < typename EXCEPTION >
+//inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
+//{
+//
+//   ERR(pexceptionNew->get_message());
+//
+//   return ::__move_transfer(pexceptionNew);
+//
+//}
 
 
 //class CLASS_DECL_ACME status_exception :
-//   public ::exception::exception
+//   public ::exception
 //{
 //public:
 //
 //
 //   status_exception(const ::e_status & estatus, const char * pszStatus = nullptr) :
-//      ::exception::exception(pszStatus, estatus)
+//      ::exception(pszStatus, estatus)
 //   {
 //
 //   }
@@ -145,7 +145,7 @@ inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew)
 
 
 class CLASS_DECL_ACME win32_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
@@ -167,13 +167,13 @@ public:
 
 
 class CLASS_DECL_ACME assert_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
 
    assert_exception(const char* pszFileName, int iLine) :
-      ::exception::exception(error_failed)
+      ::exception(error_failed)
    {
 
       m_strMessage.Format("Assert Exception at file \"%s\", line %d", pszFileName, iLine);
@@ -186,13 +186,13 @@ public:
 
 
 class CLASS_DECL_ACME what_exclamation_exclamation :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
 
    what_exclamation_exclamation(const char* pszMessage) :
-      ::exception::exception(error_what_exclamation_exclamation, pszMessage)
+      ::exception(error_what_exclamation_exclamation, pszMessage)
    {
 
    }
@@ -202,7 +202,7 @@ public:
 //
 //#ifdef WINDOWS
 //class CLASS_DECL_ACME hresult_exception :
-//   public ::exception::exception
+//   public ::exception
 //{
 //public:
 //
@@ -239,3 +239,26 @@ public:
 //};
 //
 //#endif
+
+
+class CLASS_DECL_ACME error_number :
+   public ::exception
+{
+public:
+   
+   
+   int m_iErrNo;
+
+   error_number(::e_status estatus, int iError, const char * pszMessage = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr ) :
+   ::exception(
+                          estatus, pszMessage, iSkip, caller_address),
+   m_iErrNo(iError)
+   {
+   }
+   
+   ~error_number()
+   {
+      
+   }
+   
+};

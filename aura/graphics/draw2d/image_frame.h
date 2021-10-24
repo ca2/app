@@ -7,21 +7,18 @@ class CLASS_DECL_AURA image_frame :
 public:
 
 
-   ::rectangle_i32                        m_rectangle;
+   ::rectangle_i32               m_rectangle;
    ::image_pointer               m_pimage;
-   millis                          m_tick;
+   ::duration                    m_duration;
    index                         m_iFrame;
    ::draw2d::e_disposal          m_edisposal;
-   ::color::color                      m_colorTransparent;
+   ::color::color                m_colorTransparent;
    bool                          m_bTransparent;
    bool                          m_bLocalPalette;
 
 
    image_frame();
-   virtual ~image_frame();
-
-
-   //virtual bool to(::draw2d::graphics_pointer & pgraphics);
+   ~image_frame() override;
 
    
    virtual void gif_set_disposal(int iDisposal);

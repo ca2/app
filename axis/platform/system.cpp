@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "apex/platform/app_core.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
 #include "axis/const/idpool.h"
@@ -295,14 +295,14 @@ namespace axis
 
       ::e_status estatus = ::aura::system::inline_term();
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
-      ::acme::del(m_pfactorymapsquare);
+      m_pfactorymapsquare.release();
 
       return estatus;
 

@@ -2,7 +2,7 @@
 
 
 class invalid_type :
-   virtual public ::exception::exception
+   virtual public ::exception
 {
 public:
 

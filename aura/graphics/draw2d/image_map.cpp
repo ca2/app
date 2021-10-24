@@ -19,7 +19,7 @@ image_pointer & size_image::get(const concrete < ::size_i32 > & size, bool & bEx
    if (pimage->is_null())
    {
 
-      __construct(pimage);
+      m_psystem->__construct(pimage);
       
       pimage->create(size);
 

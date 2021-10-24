@@ -9,7 +9,7 @@
 #include "aura/user/windows_tsf/edit_window.h"
 #endif
 #endif
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 //#include "_tree.h"
 
 //extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
@@ -85,7 +85,7 @@ namespace aura
 
             string strBase64 = str.Mid(iEncoding + 1, iBase64 - iEncoding - 1);
 
-            string strPack = "%pack" + __str(iPack + 1) + "%";
+            string strPack = "%pack" + __string(iPack + 1) + "%";
 
             str = str.Left(iEncoding + 1) + strPack + str.Mid(iBase64);
 
@@ -112,11 +112,11 @@ namespace user
    //{
    //public:
 
-   //   ::draw2d::pen_pointer              m_penCaret;
-   //   ::draw2d::brush_pointer            m_brushText;
-   //   ::draw2d::brush_pointer            m_brushTextCr;
-   //   ::draw2d::brush_pointer            m_brushTextSel;
-   //   ::draw2d::brush_pointer            m_brushTextEmpty;
+   //   ::draw2d::pen_pointer              m_ppenCaret;
+   //   ::draw2d::brush_pointer            m_pbrushText;
+   //   ::draw2d::brush_pointer            m_pbrushTextCr;
+   //   ::draw2d::brush_pointer            m_pbrushTextSel;
+   //   ::draw2d::brush_pointer            m_pbrushTextEmpty;
 
    //   plain_edit_internal();
    //   ~plain_edit_internal();
@@ -217,7 +217,7 @@ namespace user
       m_iViewSize = 0;
       m_bLMouseDown = false;
       m_bRMouseDown = false;
-      m_millisCaretPeriod = 1000;
+      m_durationCaretPeriod = 1_s;
 
 
 
@@ -262,14 +262,14 @@ namespace user
 
 
 
-      connect_command_probe("edit_cut", &plain_edit::_001OnUpdateEditCut);
-      connect_command("edit_cut", &plain_edit::_001OnEditCut);
-      connect_command_probe("edit_copy", &plain_edit::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &plain_edit::_001OnEditCopy);
-      connect_command_probe("edit_paste", &plain_edit::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &plain_edit::_001OnEditPaste);
-      connect_command_probe("edit_delete", &plain_edit::_001OnUpdateEditDelete);
-      connect_command("edit_delete", &plain_edit::_001OnEditDelete);
+      add_command_prober("edit_cut", this, &plain_edit::_001OnUpdateEditCut);
+      add_command_handler("edit_cut", this, &plain_edit::_001OnEditCut);
+      add_command_prober("edit_copy", this, &plain_edit::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", this, &plain_edit::_001OnEditCopy);
+      add_command_prober("edit_paste", this, &plain_edit::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", this, &plain_edit::_001OnEditPaste);
+      add_command_prober("edit_delete", (interaction *) this, &interaction::_001OnUpdateEditDelete);
+      add_command_handler("edit_delete", (interaction *) this, &interaction::_001OnEditDelete);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -288,12 +288,12 @@ namespace user
    void plain_edit::OnDraw(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
    }
 
 
-   void plain_edit::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void plain_edit::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(psubject->id() == id_current_text_changed)
@@ -314,7 +314,7 @@ namespace user
       else
       {
 
-         ::user::interaction::on_subject(psubject, pcontext);
+         ::user::interaction::handle(psubject, pcontext);
 
       }
 
@@ -354,14 +354,12 @@ namespace user
    }
 
 
-   
-
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_millisLastDraw = ::millis::now();
+      m_durationLastDraw = ::duration::now();
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       auto pstyle = get_style(pgraphics);
 
@@ -420,9 +418,9 @@ namespace user
 
       
 
-      auto rectPadding = get_padding(pstyle);
+      auto rectanglePadding = get_padding(pstyle);
 
-      rectangleClient.deflate(rectPadding);
+      rectangleClient.deflate(rectanglePadding);
 
       double left = rectangleClient.left;
 
@@ -432,13 +430,13 @@ namespace user
       strsize iSelEndOriginal;
       strsize lim = 0;
 
-      ::draw2d::pen_pointer & penCaret = m_pcontrolstyle->m_penCaret;
+      ::draw2d::pen_pointer & ppenCaret = m_pcontrolstyle->m_ppenCaret;
 
-      ::draw2d::brush_pointer & brushText = m_pcontrolstyle->m_brushText;
+      ::draw2d::brush_pointer & pbrushText = m_pcontrolstyle->m_pbrushText;
 
-      ::draw2d::brush_pointer & brushTextCr = m_pcontrolstyle->m_brushTextCr;
+      ::draw2d::brush_pointer & pbrushTextCr = m_pcontrolstyle->m_pbrushTextCr;
 
-      ::draw2d::brush_pointer & brushTextSel = m_pcontrolstyle->m_brushTextSel;
+      ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
       auto pointOffset = get_viewport_offset();
 
@@ -478,7 +476,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -507,7 +505,7 @@ namespace user
          if (m_strEmtpyText.has_char())
          {
 
-            pgraphics->set(m_pcontrolstyle->m_brushTextEmpty);
+            pgraphics->set(m_pcontrolstyle->m_pbrushTextEmpty);
 
             pgraphics->text_out(left, y, m_strEmtpyText);
 
@@ -557,9 +555,9 @@ namespace user
             if (m_errora.get_size() > 0)
             {
 
-               millis tickTimeout = 1000;
+               ::duration tickTimeout = 1_s;
 
-               millis tickPeriod = 100;
+               ::duration tickPeriod = 100_ms;
 
                if (m_errora[0].m_tick.elapsed() > tickTimeout)
                {
@@ -695,7 +693,7 @@ namespace user
                (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                crBkSel);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -709,7 +707,7 @@ namespace user
                   (double)minimum((double)m_dLineHeight, (double)rectangleClient.bottom - y)),
                   colorComposeBk);
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -717,15 +715,15 @@ namespace user
             if(bOverride)
             {
 
-               brushText->create_solid(crOverride);
+               pbrushText->create_solid(crOverride);
 
-               pgraphics->set(brushText);
+               pgraphics->set(pbrushText);
 
             }
             else
             {
 
-               pgraphics->set(brushTextCr);
+               pgraphics->set(pbrushTextCr);
 
             }
 
@@ -752,7 +750,7 @@ namespace user
             else
             {
 
-               pgraphics->set(brushTextSel);
+               pgraphics->set(pbrushTextSel);
 
             }
 
@@ -771,11 +769,11 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               ::draw2d::pen_pointer pen(e_create);
+               auto ppen = __create < ::draw2d::pen > ();
 
-               pen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
+               ppen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
 
-               pgraphics->set(pen);
+               pgraphics->set(ppen);
 
                pgraphics->draw_error_line((int)xA, (int) m_dLineHeight, (int)xB, 1);
 
@@ -796,7 +794,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x1, y);
 
@@ -818,7 +816,7 @@ namespace user
 
 #endif
 
-               pgraphics->set(penCaret);
+               pgraphics->set(ppenCaret);
 
                pgraphics->move_to(left + x2, y);
 
@@ -834,12 +832,12 @@ namespace user
 
       }
 
-      millis d1 = t1.elapsed();
+      auto d1 = t1.elapsed();
 
-      if (d1 > 50)
+      if (d1 > 50_ms)
       {
 
-         CINFO(prodevian)("plain_edit took more than 50ms to draw " + __str(d1));
+         CATEGORY_INFORMATION(prodevian, "plain_edit took more than 50ms to draw " << d1.integral_millisecond());
 
       }
 
@@ -851,6 +849,8 @@ namespace user
 
       __pointer(::message::create) pcreate(pmessage);
 
+#ifndef _UWP
+
       auto estatus = initialize_text_composition_client(this, this);
 
       if (!estatus)
@@ -861,6 +861,8 @@ namespace user
          return;
 
       }
+
+#endif
 
       auto psession = get_session();
 
@@ -929,7 +931,7 @@ namespace user
 
       //}
 
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -943,7 +945,7 @@ namespace user
    void plain_edit::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -987,7 +989,7 @@ namespace user
    void plain_edit::on_message_right_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1057,30 +1059,30 @@ namespace user
 
             screen_to_client(pointCursor);
 
-            ::rectangle_i32 rectActiveClient;
+            ::rectangle_i32 rectangleActiveClient;
 
-            GetActiveClientRect(rectActiveClient);
+            GetActiveClientRect(rectangleActiveClient);
 
-            if (pointCursor.x < rectActiveClient.left)
+            if (pointCursor.x < rectangleActiveClient.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x > rectActiveClient.right)
+            else if (pointCursor.x > rectangleActiveClient.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y < rectActiveClient.top)
+            if (pointCursor.y < rectangleActiveClient.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y > rectActiveClient.bottom)
+            else if (pointCursor.y > rectangleActiveClient.bottom)
             {
 
                scroll_down_line();
@@ -1111,7 +1113,7 @@ namespace user
 
             KillTimer(500);
 
-            SetTimer(501, 300, nullptr);
+            SetTimer(501, 300_ms, nullptr);
 
          }
 
@@ -1135,23 +1137,23 @@ namespace user
 
       auto psession = get_session();
 
-      INFO("on_message_key_down (1)");
+      INFORMATION("on_message_key_down (1)");
 
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_key_down;
+         subject.m_id = ::e_subject_key_down;
 
-         ev.m_actioncontext.m_pmessage = pmessage;
+         subject.m_actioncontext.m_pmessage = pmessage;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if (ev.m_bRet)
+         if (subject.m_bRet)
          {
 
             return;
@@ -1160,9 +1162,9 @@ namespace user
 
       }
 
-      INFO("on_message_key_down (2)");
+      INFORMATION("on_message_key_down (2)");
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -1181,17 +1183,17 @@ namespace user
          if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_enter_key;
+            subject.m_id = ::e_subject_enter_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                on_action("submit");
@@ -1224,17 +1226,17 @@ namespace user
 
             pkey->previous();
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_puserinteraction = this;
+            subject.m_puserelement = this;
 
-            ev.m_eevent = ::user::e_event_tab_key;
+            subject.m_id = ::e_subject_tab_key;
 
-            ev.m_actioncontext = ::e_source_user;
+            subject.m_actioncontext = ::e_source_user;
 
-            on_control_event(&ev);
+            route(&subject);
 
-            if(!ev.m_bRet && ev.m_bOk)
+            if(!subject.m_bRet && subject.m_bOk)
             {
 
                keyboard_set_focus_next();
@@ -1259,17 +1261,17 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_escape)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_escape;
+         subject.m_id = ::e_subject_escape;
 
-         ev.m_actioncontext = ::e_source_user;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("escape");
@@ -1284,9 +1286,9 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_c)
       {
 
-      auto psession = get_session();
+         auto psession = get_session();
 
-      if (psession->is_key_pressed(::user::e_key_control))
+         if (psession->is_key_pressed(::user::e_key_control))
          {
 
             pkey->m_bRet = true;
@@ -1359,7 +1361,7 @@ namespace user
 
       }
 
-      INFO("on_message_key_down (3)");
+      INFORMATION("on_message_key_down (3)");
 
       m_pmessagekeyLast = pkey;
 
@@ -1373,7 +1375,7 @@ namespace user
    void plain_edit::on_message_key_up(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       auto psession = get_session();
 
@@ -1458,7 +1460,7 @@ namespace user
 
       }
 
-      INFO("key_to_char (1)");
+      INFORMATION("key_to_char (1)");
 
       on_message_character(&key);
 
@@ -1488,7 +1490,7 @@ namespace user
 
       }
 
-      return peditfile->get_length();
+      return (strsize) peditfile->get_length();
 
    }
 
@@ -1517,7 +1519,7 @@ namespace user
 
       char * psz = str.get_string_buffer((strsize)(iSize + 1));
 
-      m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
       m_ptree->m_peditfile->read(psz, (memsize)iSize);
 
@@ -1610,7 +1612,7 @@ namespace user
 
       char * psz = str.get_string_buffer((strsize)(iSize + 1));
 
-      m_ptree->m_peditfile->seek((filesize)iBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek((filesize)iBeg, ::e_seek_set);
 
       m_ptree->m_peditfile->read(psz, (memsize)(iSize));
 
@@ -1628,11 +1630,11 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          m_ptree->m_peditfile->Delete((memsize)(m_ptree->m_iSelEnd - m_ptree->m_iSelBeg));
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          m_ptree->m_peditfile->Insert(psz, strlen(psz));
 
@@ -1894,7 +1896,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         auto pmouse = pmessage->m_pmouse;
+         auto pmouse = pmessage->m_union.m_pmouse;
 
          auto psession = get_session();
 
@@ -1923,11 +1925,11 @@ namespace user
 
                synchronous_lock synchronouslock(mutex());
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
 
-               get_window_rect(rectWindow);
+               get_window_rect(rectangleWindow);
 
-               if (pmouse->m_point.x < rectWindow.left - 30)
+               if (pmouse->m_point.x < rectangleWindow.left - 30)
                {
 
                   output_debug_string("test06");
@@ -1969,7 +1971,7 @@ namespace user
    void plain_edit::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (plain_edit_is_enabled())
       {
@@ -1986,7 +1988,7 @@ namespace user
 
             m_bLMouseDown = true;
 
-            SetTimer(e_timer_overflow_scrolling, 50, nullptr);
+            SetTimer(e_timer_overflow_scrolling, 50_ms, nullptr);
 
             set_mouse_capture();
 
@@ -2033,7 +2035,7 @@ namespace user
    void plain_edit::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 
@@ -2111,7 +2113,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -2204,7 +2206,7 @@ namespace user
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
 
          iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
 
@@ -2497,9 +2499,9 @@ namespace user
 
             synchronous_lock synchronouslock(mutex());
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
             m_ptree->m_peditfile->Insert(strText, strText.get_length());
 
 
@@ -2554,7 +2556,7 @@ namespace user
 
       ::index iLine;
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       size_f64 sizeUniText;
 
@@ -2656,7 +2658,7 @@ namespace user
 
       {
 
-         m_ptree->m_peditfile->seek(iViewOffset, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(iViewOffset, ::e_seek_set);
 
          iRead = m_ptree->m_peditfile->read(mem.get_data(), iViewSize);
 
@@ -3076,7 +3078,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -3217,9 +3219,9 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics.defer_create();
+      __defer_construct(pgraphics);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::rectangle_i32 rectangleClient;
 
@@ -3572,14 +3574,10 @@ end:
    }
 
 
-
-
    void plain_edit::FileSave()
    {
 
       synchronous_lock synchronouslock(mutex());
-
-
 
       m_ptree->m_peditfile->flush();
 
@@ -3614,7 +3612,7 @@ end:
       char * psz;
 
 
-      m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
       if (m_sizeTotal.cx <= 0)
       {
@@ -3787,7 +3785,7 @@ end:
 
       char * psz;
 
-      m_ptree->m_peditfile->seek(iOffset, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iOffset, ::e_seek_set);
 
       if (m_sizeTotal.cx <= 0)
       {
@@ -4031,7 +4029,7 @@ finished_update:
 
             }
 
-            m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -4067,7 +4065,7 @@ finished_update:
 
             __memset(buf, 0, sizeof(buf));
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
 
             m_ptree->m_peditfile->read(buf, sizeof(buf));
 
@@ -4092,7 +4090,7 @@ finished_update:
 
             }
 
-            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
 
@@ -4193,7 +4191,7 @@ finished_update:
 
       }
 
-      m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
       m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -4300,7 +4298,7 @@ finished_update:
 
       }
 
-      m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
       if(i2 > i1)
       {
@@ -4373,9 +4371,9 @@ finished_update:
          if (pmessage->m_bRet)
             return;
 
-         INFO("plain_edit::on_message_character (1)");
+         INFORMATION("plain_edit::on_message_character (1)");
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          string strChar;
 
@@ -4535,7 +4533,7 @@ finished_update:
             else if (pkey->m_ekey == ::user::e_key_back)
             {
 
-               INFO("plain_edit::on_message_character (key_back)");
+               INFORMATION("plain_edit::on_message_character (key_back)");
 
                if (is_text_composition_active())
                {
@@ -4589,7 +4587,7 @@ finished_update:
 
                         strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                         strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
-                        m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
+                        m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                         m_ptree->m_peditfile->read(buf, sizeof(buf));
                         const char * psz;
                         strsize iMultiByteUtf8DeleteCount;
@@ -4633,7 +4631,7 @@ finished_update:
                         }
 
                         m_ptree->m_iSelEnd -= iMultiByteUtf8DeleteCount;
-                        m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+                        m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                         m_ptree->m_peditfile->Delete((memsize)iMultiByteUtf8DeleteCount);
 
                         m_pinsert = nullptr;
@@ -4783,7 +4781,7 @@ finished_update:
                else if (m_ptree->m_iSelEnd < m_ptree->m_peditfile->get_length())
                {
                   char buf[32];
-                  m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+                  m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                   memsize uRead = m_ptree->m_peditfile->read(buf, 32);
                   if (uRead == 2 &&
                         buf[0] == '\r' &&
@@ -4828,7 +4826,7 @@ finished_update:
                   {
                      char buf[64];
                      char * psz;
-                     m_ptree->m_peditfile->seek(maximum(0, m_ptree->m_iSelEnd - 32), ::file::seek_begin);
+                     m_ptree->m_peditfile->seek(maximum(0, m_ptree->m_iSelEnd - 32), ::e_seek_set);
                      psz = &buf[minimum(32, m_ptree->m_iSelEnd)];
                      memsize uRead = m_ptree->m_peditfile->read(buf, 64);
                      if (uRead == 2 &&
@@ -4971,7 +4969,7 @@ finished_update:
                   if (pkey->m_ekey == ::user::e_key_return)
                   {
                      // Kill Focus => Kill Key Repeat timer
-                     //message_box("VK_RETURN reached plain_edit");
+                     //output_error_message("VK_RETURN reached plain_edit");
                   }
 
                   string str;
@@ -5028,7 +5026,7 @@ finished_update:
                         iCode |= 0x80000000;
                      }
                      //str = psession->keyboard().process_key(pkey);
-                     __throw(todo("keyboard"));
+                     __throw(todo, "keyboard");
                   }
 
                   insert_text(str, false, e_source_user);
@@ -5464,13 +5462,13 @@ finished_update:
 
       string strComposition(strText.Mid(iComposingBeg, iComposingEnd - iComposingBeg));
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
 
       m_ptree->m_peditfile->Delete((memsize)(iComposingEnd - iComposingBeg));
 
       IndexRegisterDelete(iComposingBeg, iComposingEnd - iComposingBeg);
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
+      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
 
       auto iLength = strComposition.get_length();
 
@@ -5538,7 +5536,7 @@ finished_update:
 
       synchronous_lock synchronouslock(mutex());
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_delete)
       {
@@ -5550,7 +5548,7 @@ finished_update:
             if (i1 != i2)
             {
                ::sort::sort_non_negative(i1, i2);
-               m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(i1, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
                m_pinsert = nullptr;
@@ -5564,11 +5562,11 @@ finished_update:
                __memset(buf, 0, sizeof(buf));
                strsize iProperBegin = maximum(0, m_ptree->m_iSelEnd - 256);
                strsize iCur = m_ptree->m_iSelEnd - iProperBegin;
-               m_ptree->m_peditfile->seek(iProperBegin, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(iProperBegin, ::e_seek_set);
                m_ptree->m_peditfile->read(buf, sizeof(buf));
                const char * psz = ::str::uni_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
-               m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+               m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
                m_ptree->m_peditfile->Delete((memsize)(iMultiByteUtf8DeleteCount));
 
                m_pinsert = nullptr;
@@ -5586,7 +5584,7 @@ finished_update:
       if (iTimer == 0)
       {
 
-         if (has_keyboard_focus() && is_window_visible())// && m_millisLastDraw.elapsed() > m_millisCaretPeriod / 8)
+         if (has_keyboard_focus() && is_window_visible())// && m_durationLastDraw.elapsed() > m_durationCaretPeriod / 8)
          {
 
             if (is_different(m_bLastCaret, is_caret_on()))
@@ -5604,7 +5602,7 @@ finished_update:
 
          //if(m_dwFocusStart + m_dwCaretTime < ::get_tick())
          //{
-         // auto m_millisFocusStart = ::millis::now();
+         // auto m_durationFocusStart = ::duration::now();
          //   m_bCaretOn = !m_bCaretOn;
          //   //set_need_redraw();
          //   set_need_redraw();
@@ -5647,8 +5645,8 @@ finished_update:
 
    void plain_edit::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(iCount);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(iCount);
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
@@ -5699,10 +5697,10 @@ finished_update:
 
          if(iLineEnd > iLineStart)
          {
-         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::file::seek_begin);
+         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::e_seek_set);
          m_editfileLineIndex.Delete(5 * (iLineEnd - iLineStart));
          }
-         m_editfileLineIndex.seek(5 * iLineStart, ::file::seek_begin);
+         m_editfileLineIndex.seek(5 * iLineStart, ::e_seek_set);
          iLineSize = iLineStartRemain + iLineEndRemain;
          m_editfileLineIndex.write(&iLineSize, 4);
          m_editfileLineIndex.write(&flag, 1);
@@ -5713,8 +5711,8 @@ finished_update:
    void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(pcszWhat);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(pcszWhat);
 
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
@@ -6062,7 +6060,7 @@ finished_update:
          if(m_ptree->m_peditfile->get_length() > 0)
          {
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
 
@@ -6071,7 +6069,7 @@ finished_update:
          if(str.has_char())
          {
 
-            m_ptree->m_peditfile->seek(0, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
             m_ptree->m_peditfile->Insert(str, str.get_length());
 
@@ -6115,10 +6113,10 @@ finished_update:
    }
 
 
-   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & context)
+   void plain_edit::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext)
    {
 
-      if(context.is_user_source())
+      if(actioncontext.is_user_source())
       {
 
          if(::is_set(m_propertyText))
@@ -6128,9 +6126,7 @@ finished_update:
 
             auto papplication = get_application();
 
-            auto psubject = papplication->subject(m_propertyText->m_id);
-
-            papplication->handle_subject(psubject);
+            papplication->on_property_changed(m_propertyText.m_pproperty, actioncontext);
 
          }
 
@@ -6148,20 +6144,16 @@ finished_update:
 
 #endif
       
-      if(has_control_event_handler())
+      if(has_handler())
       {
 
-         auto pevent = __new(::user::control_event);
+         auto psubject = create_subject(::e_subject_after_change_text);
 
-         pevent->m_puserinteraction = this;
+         psubject->m_puserelement = this;
 
-         pevent->m_id = m_id;
+         psubject->m_actioncontext = actioncontext;
 
-         pevent->m_eevent = ::user::e_event_after_change_text;
-
-         pevent->m_actioncontext = context;
-
-         post_object(e_message_control_event, 0, pevent);
+         route(psubject);
 
       }
 
@@ -6184,9 +6176,9 @@ finished_update:
 
       str.replace("\r", "\r\n");
       
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
       
       pcopydesk->set_plain_text(str);
 
@@ -6206,9 +6198,9 @@ finished_update:
 
       string str;
 
-      auto psession = get_session();
+      auto pwindow = get_window();
       
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
 
       if(!pcopydesk->get_plain_text(str))
       {
@@ -6222,17 +6214,17 @@ finished_update:
       if(m_bEnterKeyOnPaste)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_enter_key;
+         subject.m_id = ::e_subject_enter_key;
 
-         ev.m_actioncontext = ::e_source_paste;
+         subject.m_actioncontext = ::e_source_paste;
 
-         on_control_event(&ev);
+         route(&subject);
 
-         if(!ev.m_bRet && ev.m_bOk)
+         if(!subject.m_bRet && subject.m_bOk)
          {
 
             on_action("submit");
@@ -6262,7 +6254,7 @@ finished_update:
    void plain_edit::_001OnHScroll(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -6287,7 +6279,7 @@ finished_update:
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
       
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -6334,7 +6326,7 @@ finished_update:
 
       m_ewindowflag |= e_window_flag_focus;
 
-      SetTimer(100, 50, nullptr);
+      SetTimer(100, 50_ms, nullptr);
 
       if (!m_bCaretVisible)
       {
@@ -6459,7 +6451,7 @@ finished_update:
    void plain_edit::_001OnEditCut(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -6494,7 +6486,7 @@ finished_update:
    void plain_edit::_001OnEditCopy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -6507,9 +6499,9 @@ finished_update:
 
       __pointer(::message::command) pcommand(pmessage);
 
-      auto psession = get_session();
+      auto pwindow = window();
       
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
       
       pcommand->enable(pcopydesk->has_plain_text());
 
@@ -6519,7 +6511,7 @@ finished_update:
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (is_window_enabled())
       {
@@ -6572,7 +6564,7 @@ finished_update:
    void plain_edit::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -6679,7 +6671,7 @@ finished_update:
 
          char *psz = strLine.get_string_buffer(iLineLen);
 
-         m_ptree->m_peditfile->seek(m_iaLineBeg[iLine], ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_iaLineBeg[iLine], ::e_seek_set);
 
          m_ptree->m_peditfile->read(psz, iLineLen);
 
@@ -6811,7 +6803,7 @@ finished_update:
          if (i1 != i2)
          {
 
-            m_ptree->m_peditfile->seek(i1, ::file::seek_begin);
+            m_ptree->m_peditfile->seek(i1, ::e_seek_set);
 
             m_ptree->m_peditfile->Delete((memsize)(i2 - i1));
 
@@ -6823,10 +6815,10 @@ finished_update:
 
          m_ptree->m_iSelEnd = i1;
 
-         m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::file::seek_begin);
+         m_ptree->m_peditfile->seek(m_ptree->m_iSelEnd, ::e_seek_set);
          m_ptree->m_iSelEnd += strText.get_length();
          m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::file::seek_begin);
+         //m_ptree->m_peditfile->seek(m_ptree->m_iSelBeg, ::e_seek_set);
 
          auto iLength = strText.get_length();
 
@@ -6929,42 +6921,43 @@ finished_update:
    }
 
 
+
    void plain_edit_style::on_update(::draw2d::graphics_pointer& pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
    {
 
-      m_penCaret.release();
+      m_ppenCaret.release();
 
-      m_brushText.release();
+      m_pbrushText.release();
 
-      m_brushTextCr.release();
+      m_pbrushTextCr.release();
 
-      m_brushTextSel.release();
+      m_pbrushTextSel.release();
 
-      m_brushTextEmpty.release();
+      m_pbrushTextEmpty.release();
 
-      __construct(m_penCaret);
+      puserinteraction->__construct(m_ppenCaret);
 
-      __construct(m_brushText);
+      puserinteraction->__construct(m_pbrushText);
 
-      __construct(m_brushTextCr);
+      puserinteraction->__construct(m_pbrushTextCr);
 
-      __construct(m_brushTextSel);
+      puserinteraction->__construct(m_pbrushTextSel);
 
-      __construct(m_brushTextEmpty);
+      puserinteraction->__construct(m_pbrushTextEmpty);
 
       auto color = puserinteraction->get_color(pstyle, e_element_text);
 
-      m_penCaret->create_solid(1.0, color);
+      m_ppenCaret->create_solid(1.0, color);
 
-      m_brushTextCr->create_solid(color);
+      m_pbrushTextCr->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
 
-      m_brushTextSel->create_solid(color);
+      m_pbrushTextSel->create_solid(color);
 
       color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
 
-      m_brushTextEmpty->create_solid(color);
+      m_pbrushTextEmpty->create_solid(color);
 
    }
 

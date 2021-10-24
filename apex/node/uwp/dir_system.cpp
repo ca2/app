@@ -2,7 +2,7 @@
 //#include "apex/xml/_.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -99,7 +99,7 @@ namespace uwp
    //      str += "\\trash_that_is_not_trash\\";
    //      string strFormat;
    //      ::datetime::time time;
-   //      time = ::datetime::time::get_current_time();
+   //      time = ::datetime::time::now();
    //      strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
    //      str += strFormat;
    //      if (strDir.m_pszData[2] == '\\')
@@ -120,7 +120,7 @@ namespace uwp
    //::file::path dir_system::appdata()
    //{
 
-   //   return ::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
+   //   return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
 
    //}
 
@@ -128,7 +128,7 @@ namespace uwp
    //::file::path dir_system::usersystemappdata(::object * pobject, const ::string & strPrefix)
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return appdata() / strPrefix;
 
@@ -163,7 +163,7 @@ namespace uwp
    //::file::path dir_system::default_os_user_path_prefix(::object * pobject)
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return "CurrentUser";
 
@@ -245,7 +245,7 @@ namespace uwp
    //::file::path dir_system::commonappdata()
    //{
 
-   //   return ::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
+   //   return ::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path / "commonappdata";
 
    //}
 
@@ -294,7 +294,7 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

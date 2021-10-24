@@ -18,7 +18,7 @@ ___launch::~___launch()
 
 CLASS_DECL_ACME ::e_status __launch(
    matter* pmatter,
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 dwCreateFlags,
    itask_t* pithread,
@@ -90,7 +90,7 @@ void* ___launch::s_os_thread_proc(void* p)
 #endif
 
 
-::e_status ___launch::fork(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
+::e_status ___launch::fork(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, itask_t* pithread, htask_t* phthread)
 {
 
    htask_t htask = null_hthread;

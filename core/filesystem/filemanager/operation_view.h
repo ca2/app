@@ -42,7 +42,7 @@ namespace filemanager
 
       __pointer(operation_document) get_document();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(_001OnMainPostMessage);

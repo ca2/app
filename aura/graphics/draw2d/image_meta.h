@@ -15,11 +15,8 @@ public:
    ::draw2d::graphics_pointer       m_pgraphics;
    double                           m_dSpeed;
    double                           m_dIsotropicRate;
-   ::size_i32                           m_sizeAlloc;
-   mutable bool                     m_bTrans; // optionally used by implementation
-   mutable bool                     m_bMapped; // optionally used by implementation
-   bool                             m_bReduced; // optionally used by implementation
-   point_i32                            m_point;
+   ::size_i32                       m_sizeAlloc;
+   point_i32                        m_point;
    double                           m_dFontFactor;
    ::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
@@ -39,8 +36,6 @@ public:
       //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
       m_dSpeed = 1.0;
       m_dIsotropicRate = 1.0;
-      m_bMapped = false;
-      m_bReduced = false;
       m_dFontFactor = 1.0;
       m_ealphamode = ::draw2d::e_alpha_mode_blend;
       m_bOwn = true;

@@ -5,7 +5,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -182,7 +182,7 @@ void synchronization_array::erase(index index)
 }
 
 
-synchronization_result synchronization_array::wait()
+::e_status synchronization_array::wait()
 {
 
    return wait(duration::infinite());
@@ -190,42 +190,43 @@ synchronization_result synchronization_array::wait()
 }
 
 
-synchronization_result synchronization_array::wait(const duration & duration, bool bWaitForAll, ::u32 uWakeMask)
+::e_status synchronization_array::wait(const class ::wait & wait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
    u32 windowsWaitResult;
+
+#if !defined(_UWP)
 
    if (uWakeMask)
    {
 
-      auto millis = duration.u32_millis();
-
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), millis, uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), wait, uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
-   {
 
-      auto millis = duration.u32_millis();
+#endif
+
+   {
 
       ::u32 uCount = (u32)m_hsyncaCache.size();
 
       auto psynca = m_hsyncaCache.get_data();
 
-      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, millis);
+      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, wait);
 
    }
 
-   return windows_wait_result_to_synchronization_result(windowsWaitResult);
+   return windows_wait_result_to_status(windowsWaitResult);
    
 #else
 
@@ -236,11 +237,11 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 
    }
 
-//   auto start = ::millis::now();
+//   auto start = ::duration::now();
 
    bool FoundExternal=false;
 
-   ::synchronization_result result;
+   ::e_status estatus;
 
 //   ::duration durationWaitNow;
 
@@ -272,18 +273,19 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 //      do
       {
 
-         auto osduration = __os(duration);
 
+#if !defined(_UWP)
          if (uWakeMask)
          {
 
-            result = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), osduration, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), wait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
+#endif
          {
 
-            result = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, osduration, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) synchronization_object_count(), synchronization_object_data(), bWaitForAll, wait, true);
 
          }
 
@@ -293,14 +295,14 @@ synchronization_result synchronization_array::wait(const duration & duration, bo
 //   }
 //   while (result == e_synchronization_result_timed_out);
 
-   return result;
+   return estatus;
 
 #endif
 
 }
 
 
-synchronization_result synchronization_array::contains( const synchronization_result& result ) const
+::e_status synchronization_array::contains(const ::e_status & result) const
 {
 
    __throw(todo);
@@ -324,6 +326,9 @@ synchronization_result synchronization_array::contains( const synchronization_re
 
    //return synchronization_result( e_synchronization_result_error );
 
+   return error_failed;
+
 }
+
 
 

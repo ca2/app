@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE form_view:
       virtual public ::form_view,
-      virtual public ::filemanager_impact
+      virtual public ::filemanager_impact_base
    {
    public:
       
@@ -16,7 +16,7 @@ namespace filemanager
 
 
       void on_update(::aura::impact * pSender,e_update eupdate,object* pupdate);
-      virtual void on_control_event(::user::control_event * pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext);
 
 
    };

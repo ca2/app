@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/user/_user.h"
 #include "_data.h"
 #include "_tree.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 #include "aura/message.h"
 
 
@@ -41,12 +41,14 @@ namespace user
       m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
-      m_pimagelist               = nullptr;
       m_uchHoverAlphaInit        = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
       m_evOpen.m_eobject += e_object_alertable_wait;
       m_evExpand.m_eobject += e_object_alertable_wait;
+
+      m_sizeItemMaximum.cx = 16;
+      m_sizeItemMaximum.cy = 16;
 
    }
 
@@ -64,17 +66,52 @@ namespace user
       }
 
 
+      auto estatus = __compose_new(m_ptree);
+
+      if (!estatus)
+      {
+
+         _ERROR(pcreate, "Error creating tree data at ::user::tree::on_message_create");
+
+         return;
+
+      }
+
+      estatus = __construct_new(m_pimagelist);
+
+      if (!estatus)
+      {
+
+         _ERROR(pcreate, "Error creating image list at ::user::tree::on_message_create");
+
+         return;
+
+      }
+
+      estatus = m_pimagelist->create(16, 16, 0, 10, 10);
+
+      if (!estatus)
+      {
+
+         _ERROR(pcreate, "Error creating image list (2) at ::user::tree::on_message_create");
+
+         return;
+
+      }
+
       fork([this]()
          {
 
-            task_set_name(string(type_name()) + "::Expand");
+            _001SetExpandImage("matter://list/expand.png");
+
+            task_set_name(__type_name(this) + "::Expand");
 
             auto pthread = ::get_task();
 
             while (pthread->task_get_run())
             {
 
-               m_evExpand.wait();
+               m_evExpand.wait(500_ms);
 
                if (m_treeitemaExpand.has_element())
                {
@@ -93,17 +130,20 @@ namespace user
 
          });
 
+
       fork([this]()
          {
 
-            task_set_name(string(type_name()) + "::Open");
+            _001SetCollapseImage("matter://list/collapse.png");
+
+            task_set_name(__type_name(this) + "::Open");
 
             auto pthread = ::get_task();
 
             while (pthread->task_get_run())
             {
 
-               m_evOpen.wait();
+               m_evOpen.wait(500_ms);
 
                if (m_treeitemaOpen.has_element())
                {
@@ -124,47 +164,6 @@ namespace user
 
          });
 
-      auto estatus = __compose_new(m_ptree);
-
-      if (!estatus)
-      {
-
-         pcreate->error("Error creating tree data at ::user::tree::on_message_create");
-
-         return;
-
-      }
-
-      estatus = __construct_new(m_pimagelist);
-
-      if (!estatus)
-      {
-
-         pcreate->error("Error creating image list at ::user::tree::on_message_create");
-
-         return;
-
-      }
-
-      estatus = m_pimagelist->create(16, 16, 0, 10, 10);
-
-      if (!estatus)
-      {
-
-         pcreate->error("Error creating image list (2) at ::user::tree::on_message_create");
-
-         return;
-
-      }
-
-      fork([this]()
-      {
-
-         _001SetCollapseImage("list/collapse.png");
-
-         _001SetExpandImage("list/expand.png");
-
-      });
 
 
    }
@@ -173,9 +172,13 @@ namespace user
    void tree::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
       {
 
-         millis tickStart;
+         ::duration tickStart;
 
          tickStart.Now();
 
@@ -183,10 +186,10 @@ namespace user
 
          auto tickElapsed = tickStart.elapsed();
 
-         if (tickElapsed > 50)
+         if (tickElapsed > 50_ms)
          {
 
-            //WARN("tree drawing took more than 50ms");
+            //WARNING("tree drawing took more than 50ms");
 
          }
 
@@ -194,7 +197,7 @@ namespace user
 
       {
 
-         millis tickStart;
+         ::duration tickStart;
 
          tickStart.Now();
 
@@ -215,9 +218,9 @@ namespace user
 
          auto pointCursor = _001ScreenToClient(pwindowing->get_cursor_position());
 
-         ::u32 dwHoverIn = 384;
+         auto dwHoverIn = 300_ms;
 
-         ::u32 dwHoverOut = 1284;
+         auto dwHoverOut = 1200_ms;
 
          bool bTreeHover = rectangleClient.contains(pointCursor);
 
@@ -228,16 +231,19 @@ namespace user
                m_bHoverStart = true;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_millisHoverStart.Now();
+               m_durationHoverStart.Now();
 
             }
-            if(m_millisHoverStart.elapsed() > dwHoverIn)
+            if(m_durationHoverStart.elapsed() > dwHoverIn)
             {
                m_uchHoverAlpha = 255;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverStart.elapsed()) / dwHoverIn)));
+               auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
+               auto ω = -π * f; // omega pi
+               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(ω * t)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -251,17 +257,20 @@ namespace user
                m_bHoverStart = false;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
 
-               m_millisHoverEnd.Now();
+               m_durationHoverEnd.Now();
 
             }
 
-            if(m_millisHoverEnd.elapsed()  > dwHoverOut)
+            if(m_durationHoverEnd.elapsed()  > dwHoverOut)
             {
                m_uchHoverAlpha = 0;
             }
             else
             {
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - pow(2.718281, -3.3 * __double(m_millisHoverEnd.elapsed()) / dwHoverOut)));
+               auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
+               auto ω = -π * f; // omega pi
+               auto t = m_durationHoverStart.elapsed().floating_second().m_d;
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(ω * t)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
@@ -307,15 +316,15 @@ namespace user
             drawitemdata.m_rectangle.right = m_iCurrentViewWidth;
 
             {
-               millis tickItem;
+               ::duration tickItem;
                tickItem.Now();
                _001DrawItem(drawitemdata);
                auto tickElapsed = tickStart.elapsed();
 
-               if (tickElapsed > 20)
+               if (tickElapsed > 20_ms)
                {
 
-                  //WARN("tree item drawing took more than 20ms");
+                  //WARNING("tree item drawing took more than 20ms");
 
                }
 
@@ -338,10 +347,10 @@ namespace user
 
          auto tickElapsed = tickStart.elapsed();
 
-         if (tickElapsed > 50)
+         if (tickElapsed > 50_ms)
          {
 
-            //WARN("tree drawing took more than 50ms");
+            //WARNING("tree drawing took more than 50ms");
 
          }
 
@@ -353,9 +362,7 @@ namespace user
    void tree::_001DrawItem(tree_draw_item & data)
    {
 
-      millis millis;
-
-      millis.Now();
+      auto start = duration(e_now);
 
       ::rectangle_i32 rectangle;
 
@@ -364,6 +371,15 @@ namespace user
       __pointer(::data::tree_item) pitem = data.m_pitem;
 
       __pointer(::image_list) pimagelistItem = pitem->get_image_list();
+
+      if (pimagelistItem->m_size > m_sizeItemMaximum)
+      {
+
+         m_sizeItemMaximum = pimagelistItem->m_size;
+
+         set_need_layout();
+
+      }
 
       __pointer(::image_list) pimagelistTree = get_image_list();
 
@@ -402,25 +418,25 @@ namespace user
 
       }
 
-      auto tickElapsed = millis.elapsed();
-      millis.Now();
-      if (tickElapsed > 2)
+      auto elapsed = start.elapsed();
+      start.Now();
+      if (elapsed > 2_ms)
       {
 
-         //WARN("tree item drawing section took more than 2ms");
+         //WARNING("tree item drawing section took more than 2ms");
 
       }
 
-      //TRACE("(1)TreeItemElapsed %d", millis.elapsed());
+      //TRACE("(1)TreeItemElapsed %d", ::duration.elapsed());
 
       //      ::aura::savings & savings = psession->m_paurasession->savings();
 
       if (bHover) // selected
       {
 
-         auto rectFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
+         auto rectangleFill = ::rectangle_f64(data.m_rectangleClient.left, data.m_rectangle.top, data.m_rectangleClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
+         data.m_pdc->fill_rectangle(rectangleFill, argb(127, 125, 166, 228));
 
       }
 
@@ -436,19 +452,19 @@ namespace user
          //else
          //{
 
-         //   ::rectangle_i32 rectUnion;
+         //   ::rectangle_i32 rectangleUnion;
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
 
-         //      rectUnion = rectangle;
+         //      rectangleUnion = rectangle;
 
          //   }
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_text))
          //   {
 
-         //      rectUnion.unite(rectangle, rectUnion);
+         //      rectangleUnion.unite(rectangle, rectangleUnion);
 
          //   }
 
@@ -456,8 +472,8 @@ namespace user
 
          //   ::color::color crTranslucid = rgb(0, 0, 0);
 
-         //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
-         //   rectUnion.width(), rectUnion.height(),
+         //   imaging.color_blend(data.m_pdc,    rectangleUnion.left, rectangleUnion.top,
+         //   rectangleUnion.width(), rectangleUnion.height(),
          //   crTranslucid, 127);
 
          //}
@@ -490,7 +506,7 @@ namespace user
       if(strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
       {
 
-         ::draw2d::brush_pointer brushText;
+         ::draw2d::brush_pointer pbrushText;
 
          if(bSelected) // selected
          {
@@ -498,13 +514,13 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelectedHighlight;
+               pbrushText = m_pbrushTextSelectedHighlight;
 
             }
             else
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
 
@@ -515,21 +531,21 @@ namespace user
             if(bHover)
             {
 
-               brushText = m_brushTextSelected;
+               pbrushText = m_pbrushTextSelected;
 
             }
             else
             {
 
-               brushText = m_brushText;
+               pbrushText = m_pbrushText;
 
             }
 
          }
 
-         data.m_pdc->set(brushText);
+         data.m_pdc->set(pbrushText);
 
-         data.m_pdc->set(m_fontTreeItem);
+         data.m_pdc->set(m_pfontTreeItem);
 
          data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
 
@@ -549,7 +565,7 @@ namespace user
    void tree::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //if (!m_bTrackMouseLeave)
       {
@@ -575,7 +591,7 @@ namespace user
    void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //on_click(item);
 
@@ -603,7 +619,7 @@ namespace user
    void tree::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //pmouse->previous();
 
@@ -629,7 +645,7 @@ namespace user
    void tree::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
 
@@ -719,7 +735,7 @@ namespace user
    void tree::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -733,7 +749,7 @@ namespace user
    void tree::on_message_right_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       perform_right_click(pmouse->m_nFlags, pmouse->m_point);
 
@@ -752,7 +768,7 @@ namespace user
    }
 
 
-   bool tree::on_click(const ::user::item & item)
+   bool tree::on_click(const ::item & item)
    {
 
       return false;
@@ -760,7 +776,7 @@ namespace user
    }
 
 
-   bool tree::on_right_click(const ::user::item & item)
+   bool tree::on_right_click(const ::item & item)
    {
 
       return false;
@@ -891,8 +907,8 @@ namespace user
 
          prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
-
          int iHDiff = 0;
+
          if (m_pimagelist != nullptr)
          {
 
@@ -948,7 +964,7 @@ namespace user
 
       //::data::simple_lock lock(pitem->m_pitem);
 
-      UNREFERENCED_PARAMETER(bLayout);
+      __UNREFERENCED_PARAMETER(bLayout);
 
       auto pointOffset = get_viewport_offset();
 
@@ -1136,21 +1152,21 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_colorTreeBackground = get_color(pstyle, ::user::e_element_background);
+      m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      __defer_construct(m_brushTextSelectedHighlight);
-      __defer_construct(m_brushTextSelected);
-      __defer_construct(m_brushTextHighlight);
-      __defer_construct(m_brushText);
+      __defer_construct(m_pbrushTextSelectedHighlight);
+      __defer_construct(m_pbrushTextSelected);
+      __defer_construct(m_pbrushTextHighlight);
+      __defer_construct(m_pbrushText);
 
-      __defer_construct(m_fontTreeItem);
+      __defer_construct(m_pfontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
+      m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
+      m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushTextHighlight->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
+      m_pbrushText->create_solid(get_color(pstyle, ::e_element_item_text));
 
-      m_fontTreeItem = get_font(pstyle);
+      m_pfontTreeItem = get_font(pstyle);
 
    }
 
@@ -1311,7 +1327,7 @@ namespace user
    void tree::_001SetExpandImage(const ::string & pszMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add_file(pszMatter);
+      m_iImageExpand = m_pimagelist->add(image_payload(this, pszMatter));
 
    }
 
@@ -1319,7 +1335,7 @@ namespace user
    void tree::_001SetCollapseImage(const ::string & pszMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add_file(pszMatter);
+      m_iImageCollapse = m_pimagelist->add(image_payload(this, pszMatter));
 
    }
 
@@ -1503,18 +1519,18 @@ namespace user
 
       pgraphics->CreateCompatibleDC(nullptr);
 
-      //::write_text::font_pointer font(e_create);
-      //font->operator=(*pdraw2d->fonts().GetListCtrlFont());
-      //font->set_bold();
+      //auto pfont = __create < ::write_text::font > ();
+      //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
+      //pfont->set_bold();
       //g->set_font(font);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::size_i32 size;
 
       size = pgraphics->get_text_extent(unitext("Ág"));
 
-      int iItemHeight = 1;
+      int iItemHeight = m_sizeItemMaximum.cy + 1;
 
       if (size.cy > iItemHeight)
       {
@@ -2203,13 +2219,13 @@ namespace user
    }
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (m_ptree)
       {
 
-         m_ptree->on_subject(psubject, pcontext);
+         m_ptree->handle(psubject, pcontext);
 
       }
 

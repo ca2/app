@@ -21,17 +21,12 @@ matter::~matter()
 
 #endif
 
-   if (m_eobject & e_object_any_hook)
+   ::release(m_pmutex);
+
+   if (m_eobject & e_object_any_hook && m_psystem)
    {
 
-      ::release(m_pmutex);
-
-      if (m_eobject & e_object_any_update)
-      {
-
-         erase_from_any_source();
-
-      }
+      m_psystem->erase_from_any_hook(this);
 
    }
 
@@ -46,14 +41,6 @@ void matter::assert_valid() const
 
 void matter::dump(dump_context & dumpcontext) const
 {
-
-}
-
-
-::enum_type matter::get_payload_type() const
-{ 
-   
-   return e_type_element; 
 
 }
 
@@ -75,16 +62,6 @@ void matter::dump(dump_context & dumpcontext) const
 
 }
 
-
-
-::e_status matter::initialize(::object * pobject)
-{
-
-   auto estatus = initialize_matter(pobject);
-
-   return estatus;
-
-}
 
 
 //::e_status matter::set_object(::object* pobject)
@@ -127,44 +104,12 @@ void matter::dump(dump_context & dumpcontext) const
 //}
 
 
-//::e_status matter::finish(::property_object * pcontextobjectFinish)
-::e_status matter::destroy()
-{
-
-   //auto estatus = set_finish();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   //m_psystem->add_pending_finish(this);
-
-   //   return estatus;
-
-   //}
-
-   ////estatus = on_finish();
-
-   ////if (estatus == error_pending)
-   ////{
-
-   ////   //m_psystem->add_pending_finish(this);
-
-   ////   return estatus;
-
-   ////}
-
-   //return estatus;
-
-   return ::success;
-
-
-}
 
 
 void matter::post_quit()
 {
 
-   set_finish_bit();
+   set_finishing();
 
 }
 
@@ -172,7 +117,7 @@ void matter::post_quit()
 ::e_status matter::set_finish()
 {
 
-   set_finish_bit();
+   set_finishing();
 
    //destroy();
 
@@ -231,94 +176,33 @@ const char* matter::debug_note() const
 }
 
 
-#ifdef _DEBUG
-
-i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+::element * matter::clone() const
 {
 
-   auto c = ++m_countReference;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   add_ref_history(pReferer, pszObjRefDbg);
-
-#endif
-
-   return c;
-
-}
-
-
-i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   auto c = --m_countReference;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   if (c > 0)
-   {
-
-      dec_ref_history(pReferer, pszObjRefDbg);
-
-   }
-
-#endif
-
-   return c;
-
-}
-
-
-i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   if (i == 0)
-   {
-
-      delete_this();
-
-   }
-
-   return i;
-
-}
-
-
-#endif
-
-
-::matter * matter::clone() const
-{
-
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return nullptr;
 
 }
 
 
-::e_status matter::call_member(::i64 iId)
+bool matter::is_ready_to_quit() const
 {
 
-   return ::success_none;
+   return true;
 
 }
 
 
-//::e_status matter::command_handler(const char * pszCommand)
-//{
-//   
-//   return ::success_none;
-//
-//}
-
-
-
 void matter::set_mutex(synchronization_object* psync)
 {
+
+   if (::is_set(psync))
+   {
+
+      psync->increment_reference_count();
+
+   }
 
    ::release(m_pmutex);
 
@@ -327,10 +211,10 @@ void matter::set_mutex(synchronization_object* psync)
 }
 
 
-void matter::erase_from_any_source()
-{
-
-}
+//void matter::erase_from_any_source()
+//{
+//
+//}
 
 
 //::e_status matter::branch()
@@ -367,11 +251,9 @@ void matter::defer_create_mutex()
    if (!m_pmutex)
    {
 
-      m_pmutex = new ::mutex;
+      set_mutex(__new(::mutex));
 
    }
-
-   set(e_object_any_hook);
 
 }
 
@@ -475,40 +357,6 @@ void matter::kick_idle()
 }
 
 
-::e_status matter::operator()()
-{
-
-   ::e_status estatus;
-
-   try
-   {
-
-      estatus = run();
-
-   }
-   catch (...)
-   {
-
-      estatus = ::error_exception;
-
-   }
-
-   return estatus;
-
-}
-
-
-void matter::operator()(::message::message * pmessage)
-{
-
-
-}
-
-
-void matter::operator()(const ::payload & payload)
-{
-
-}
 
 
 void matter::on_future(const ::payload & payload)
@@ -517,120 +365,8 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::e_status matter::run()
-{
-
-   while(true)
-   {
-
-      auto estatus = step();
-
-      if(!estatus)
-      {
-
-         break;
-
-      }
-
-   }
-
-   return ::success;
-
-}
 
 
-::e_status matter::step()
-{
-
-   return ::error_failed;
-
-}
-
-
-::payload matter::realize()
-{
-
-   return ::success;
-
-}
-
-
-::e_status matter::add_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //__throw(error_not_implemented);
-
-   pmatter->increment_reference_count();
-
-   return ::success;
-
-   //return ::error_not_implemented;
-
-}
-
-
-::e_status matter::add_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::release_composite2(::matter * pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::finalize_composite(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::e_status matter::release_reference(::matter* pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return ::success_none;
-
-}
-
-
-::matter* matter::get_taskpool_container()
-{
-
-   return nullptr;
-
-}
-
-
-::task_pool* matter::taskpool()
-{
-
-   auto pcontainer = get_taskpool_container();
-
-   if (pcontainer)
-   {
-
-      auto ptaskpool = pcontainer->taskpool();
-
-      if (ptaskpool)
-      {
-
-         return ptaskpool;
-
-      }
-
-   }
-
-   return nullptr;
-
-}
 
 
 //::task* matter::defer_branch(const ::id& id, const ::routine & routine)
@@ -675,65 +411,71 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+//void matter::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+//{
+//
+//   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+//
+//}
+//
+//
+//void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
+//{
+//
+//   va_list valist;
+//
+//   va_start(valist, pszFormat);
+//
+//   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
+//
+//   va_end(valist);
+//
+//}
+
+
+//void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
+//{
+//
+//   string str;
+//
+//   va_list ptr1;
+//
+//   va_copy(ptr1, valist);
+//
+//   str.FormatV(pszFormat, valist);
+//
+//   va_end(ptr1);
+//
+//   __tracea(elevel, pszFunction, pszFile, iLine, str);
+//
+//}
+
+
+//void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
+//{
+//
+//   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
+//
+//}
+//
+//
+//void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
+//{
+//
+//   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
+//
+//}
+
+
+enum_trace_category matter::trace_category() const
 {
 
-   m_psystem->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+   return e_trace_category_general;
 
 }
 
 
-void matter::__tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const
-{
-
-   va_list valist;
-
-   va_start(valist, pszFormat);
-
-   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, valist);
-
-   va_end(valist);
-
-}
-
-
-void matter::__tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist) const
-{
-
-   string str;
-
-   str.FormatV(pszFormat, valist);
-
-   __tracea(elevel, pszFunction, pszFile, iLine, str);
-
-}
-
-
-void matter::__simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const
-{
-
-   __tracev(elevel, pszFunction, pszFile, iLine, pszFormat, args);
-
-}
-
-
-void matter::__simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const
-{
-
-   __tracea(elevel, pszFunction, pszFileName, iLine, psz);
-
-}
-
-
-e_trace_category matter::trace_category() const
-{
-
-   return trace_category_general;
-
-}
-
-
-e_trace_category matter::trace_category(const ::matter * pobject) const
+enum_trace_category matter::trace_category(const ::matter * pobject) const
 {
 
    return pobject->trace_category();
@@ -741,26 +483,10 @@ e_trace_category matter::trace_category(const ::matter * pobject) const
 }
 
 
-const char * matter::topic_text() const
+string matter::topic_text() const
 {
 
-   return typeid(*this).name();
-
-}
-
-
-::synchronization_result matter::sync_wait()
-{
-
-   return e_synchronization_result_error;
-
-}
-
-
-::synchronization_result matter::sync_wait(const ::duration & duration)
-{
-
-   return e_synchronization_result_error;
+   return __type_name(this);
 
 }
 
@@ -778,19 +504,19 @@ const char * matter::topic_text() const
 //   if (!psubject->is_up_to_date())
 //   {
 //
-//      on_subject(psubject, pcontext);
+//      handle(psubject, pcontext);
 //
 //      if(!psubject->m_bitProcessed)
 //      {
 //
-//         on_subject(psubject, pcontext);
+//         handle(psubject, pcontext);
 //
 //      }
 //
 //      if(psubject->m_bitProcessed)
 //      {
 //
-//         on_subject(psubject, pcontext);
+//         handle(psubject, pcontext);
 //
 //      }
 //
@@ -820,28 +546,6 @@ const char * matter::topic_text() const
 //}
 
 
-strsize matter::sz_len() const
-{
-
-   return strlen(typeid(*this).name());
-
-}
-
-
-void matter::to_sz(char * sz, strsize len) const
-{
-
-   strncpy(sz, typeid(*this).name(), len);
-
-}
-
-
-bool matter::should_run_async() const
-{
-
-   return false;
-
-}
 
 
 ::e_status matter::__thread_main()
@@ -955,48 +659,51 @@ bool matter::should_run_async() const
 }
 
 
-void matter::exchange(stream& s)
-{
-
-}
-
-
-stream & matter::write(stream& s) const
-{
-
-   return s;
-
-}
-
-
-stream& matter::read(stream& s)
-{
-
-   return s;
-
-}
-
-
 //void matter::to_string(const class string_exchange & str) const
 //{
 //
-//   str = type_c_str();
+//   str = __type_name(this);
 //
 //}
 //
 
-void matter::subject_handler(::subject::subject * psubject)
-{
+
+//void matter::route(::signal * psignal)
+//{
+//
+//
+//}
+
+//
+//void matter::signal(::signal * psignal)
+//{
+//
+//
+//}
+
+//
+//void matter::signal(::signal * psignal)
+//{
+//
+//
+//}
 
 
-}
+//void matter::route(::subject * psubject, ::context * pcontext)
+//{
+//
+//
+//}
 
 
-void matter::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-{
+//void matter::post_process(::subject * psubject, ::context * pcontext)
+//{
+//
+//
+//}
 
 
-}
+
 
 
 CLASS_DECL_ACME ::e_status __call(const ::routine & routine)

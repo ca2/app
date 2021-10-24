@@ -6,7 +6,7 @@ namespace ansios
 
 
    class CLASS_DECL_ACME process :
-      virtual public ::process::process
+      virtual public ::operating_system::process
    {
    public:
 
@@ -15,7 +15,7 @@ namespace ansios
       virtual ~process();
 
 
-      virtual bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = nullptr, ::e_priority epriority = ::priority_normal) override;
+      virtual bool create_child_process(const char * pszCmdLine,bool bPiped,const char * pszDir = nullptr, ::enum_priority epriority = ::e_priority_normal) override;
 
       virtual bool has_exited() override;
 

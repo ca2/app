@@ -16,42 +16,43 @@ namespace user
       {
       public:
 
-         rectangle_f64                   m_rectangle;
-         rectangle_f64                   m_rectDrawing;
 
-         rectangle_f64                   m_rectRegion;
-         rectangle_f64                   m_rectRegionDrawing;
+         rectangle_f64                    m_rectangle;
+         rectangle_f64                    m_rectangleDrawing;
+
+         rectangle_f64                    m_rectangleRegion;
+         rectangle_f64                    m_rectangleRegionDrawing;
 
 
-         rectangle_f64                   m_rectCursor;
-         bool                    m_bDrag;
-         double                  m_dRotate;
-         ::draw2d::region_pointer     m_region;
-         rectangle_f64                   m_rectBounding;
-         polygon_f64                m_polygon;
-         polygon_f64                m_polygonDrawing;
-         point_f64_array            m_ptaCursor;
-         double                  m_dZoom;
-         point_f64                  m_pointDrag2;
+         rectangle_f64                    m_rectangleCursor;
+         bool                             m_bDrag;
+         double                           m_dRotate;
+         ::draw2d::region_pointer         m_region;
+         rectangle_f64                    m_rectangleBounding;
+         polygon_f64                      m_polygon;
+         polygon_f64                      m_polygonDrawing;
+         point_f64_array                  m_pointaCursor;
+         double                           m_dZoom;
+         point_f64                        m_pointDrag2;
 
-         bool                    m_bOutline;
-         int                     m_iOutlineWidth;
-         ::color::hls                   m_hlsOutline;
+         bool                             m_bOutline;
+         int                              m_iOutlineWidth;
+         ::color::hls                     m_hlsOutline;
 
-         bool                    m_bGlowDropShadow;
-         int                     m_iGlowDropShadowOffset;
-         int                     m_iGlowDropShadowBlur;
-         ::color::hls                   m_hlsGlowDropShadow;
+         bool                             m_bGlowDropShadow;
+         int                              m_iGlowDropShadowOffset;
+         int                              m_iGlowDropShadowBlur;
+         ::color::hls                     m_hlsGlowDropShadow;
 
-         int                     m_iBlur;
-         bool                    m_bGrayscale;
-         bool                    m_bInvert;
-         int                     m_iOpacity; // 0 - 100
-         int                     m_iSaturation; // 0 - 200
+         int                              m_iBlur;
+         bool                             m_bGrayscale;
+         bool                             m_bInvert;
+         int                              m_iOpacity; // 0 - 100
+         int                              m_iSaturation; // 0 - 200
 
 
          picture_impl();
-         virtual ~picture_impl();
+         ~picture_impl() override;
 
          
          virtual void exchange(::stream & stream) override;
@@ -60,23 +61,23 @@ namespace user
       };
 
 
-      point_f64_array                  m_ptaCache1;
+      point_f64_array                  m_pointaCache1;
 
 
       __composite(picture_impl)     m_ppictureimpl;
 
 
       picture();
-      virtual ~picture();
+      ~picture() override;
 
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
       using ::aura::drawable::hit_test;
-      virtual void hit_test(::user::item & item, const ::point_i32 & point) override;
+      virtual void hit_test(::item & item, const ::point_i32 & point) override;
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;
@@ -123,8 +124,8 @@ namespace user
       virtual ::size_f64 get_size();
       virtual ::size_f64 get_request_size();
 
-      virtual ::image_pointer defer_draw_drop_shadow_phase1(rectangle_i32 & rectDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow, ::image_pointer pimage);
-      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow);
+      virtual ::image_pointer defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow, ::image_pointer pimage);
+      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow);
 
       virtual bool set_text_editable(bool bEditable = true);
 
@@ -140,7 +141,7 @@ namespace user
       virtual void draw_impl(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin);
+      virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin);
 
 
       virtual void exchange(::stream & stream) override;

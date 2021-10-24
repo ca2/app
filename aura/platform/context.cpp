@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/user/_user.h"
 
 
 namespace aura
@@ -23,8 +24,6 @@ namespace aura
    {
 
       auto estatus = ::apex::context::initialize_context();
-
-      
 
       if (!estatus)
       {
@@ -51,6 +50,19 @@ namespace aura
 
    }
 
+
+   //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
+
+   //   auto pmessagebox = __create < ::user::message_box >();
+
+   //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+
+   //   auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
+
+   //   return pextendedfuture;
+
+   //}
 
 
 //   ::file::path context::defer_make_file_system_url(string str)
@@ -392,7 +404,7 @@ namespace aura
 //         ::file::path pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 //
 //         if ((path & ::file::e_flag_get_local_path)
-//            || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+//            || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
 //         {
 //
 //            return pathCache;
@@ -401,12 +413,12 @@ namespace aura
 //
 //         ::file::path pathMeta = pathCache + ".meta_information";
 //
-//         retry retry(millis(500), one_minute());
+//         retry retry(::duration(500), one_minute());
 //
 //         if (!(path & ::file::e_flag_bypass_cache))
 //         {
 //
-//            string strFirstLine = file_line_dup(pathMeta, 0);
+//            string strFirstLine = m_psystem->m_pacmefile->line(pathMeta, 0);
 //
 //            if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
 //            {
@@ -420,7 +432,7 @@ namespace aura
 //               if (!retry([pathMeta]()
 //               {
 //
-//                  return file_line_dup(pathMeta, 0) != "processing";
+//                  return m_psystem->m_pacmefile->line(pathMeta, 0) != "processing";
 //
 //               }))
 //               {
@@ -437,7 +449,7 @@ namespace aura
 //
 //         ::file::enum_type etype = ::file::e_type_none;
 //
-//         if (is_file_or_dir_dup(pathSide, &etype))
+//         if (m_psystem->m_pacmepath->is_file_or_dir(pathSide, &etype))
 //         {
 //
 //            if (etype == ::file::e_type_file)
@@ -596,13 +608,13 @@ namespace aura
 //
 //
 //
-//   file_pointer context::friendly_get_file(::payload varFile, const ::file::e_open& eopen)
+//   file_pointer context::friendly_get_file(::payload payloadFile, const ::file::e_open& eopen)
 //   {
 //
 //      try
 //      {
 //
-//         return file().get_file(varFile, eopen);
+//         return file().get_file(payloadFile, eopen);
 //
 //      }
 //      catch (::file::exception& e)
@@ -637,8 +649,8 @@ namespace aura
 //   string context::http_get(const string& strUrl, ::property_set& set)
 //   {
 //
-//      UNREFERENCED_PARAMETER(strUrl);
-//      UNREFERENCED_PARAMETER(set);
+//      __UNREFERENCED_PARAMETER(strUrl);
+//      __UNREFERENCED_PARAMETER(set);
 //
 //      return "";
 //
@@ -942,10 +954,10 @@ namespace aura
 //
 //
 //
-//   ::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
+//   ::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //
-//      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(varFile));
+//      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 //
 //      read(reader);
 //
@@ -954,10 +966,10 @@ namespace aura
 //   }
 //
 //
-//   ::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter* pobject)
+//   ::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject)
 //   {
 //
-//      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(varFile));
+//      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 //
 //      write(writer);
 //

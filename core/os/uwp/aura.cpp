@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include <winternl.h>
 //#include <VersionHelpers.h>
 
@@ -21,15 +21,15 @@ namespace audio
 // {
 
 
-//    ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=]()
+//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler ([=]()
 //    {
 
-//       Windows::UI::Popups::MessageDialog ^ msg = ref new Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref new ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
 
 // //UICommand^ continueCommand = ref new UICommand(
 //       //      "Try again",
 //       //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       Windows::UI::Popups::UICommand ^ upgradeCommand = ref new Windows::UI::Popups::UICommand(
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref new ::winrt::Windows::UI::Popups::UICommand(
 //             "OK");
 
 //       // Add the commands to the dialog
@@ -42,7 +42,7 @@ namespace audio
 //       // Set the command to be invoked when escape is pressed
 //       msg->CancelCommandIndex = 0;
 
-//       Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
+//       ::winrt::Windows::UI::Popups::IUICommand ^ command = wait(msg->ShowAsync());
 
 //    })));
 
@@ -56,7 +56,7 @@ namespace audio
 
 
 
-VOID WINAPI sleep(::u32 dwMilliseconds)
+VOID WINAPI sleep(::u32 dw::durations)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -81,7 +81,7 @@ VOID WINAPI sleep(::u32 dwMilliseconds)
    }
 
    // Emulate sleep by waiting with timeout on an event that is never signalled.
-   WaitForSingleObjectEx(sleepEvent, dwMilliseconds, false);
+   WaitForSingleObjectEx(sleepEvent, dw::durations, false);
 }
 #endif
 
@@ -109,90 +109,6 @@ LSTATUS
 LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 
 */
-
-/*
-
-bool os_initialize()
-{
-
-   ::os_thread::s_pmutex = new ::mutex();
-
-   ::os_thread::s_pptra = new simple_array < os_thread * > ();
-
-   //sleep(15 * 1000);
-
-   if(!initialize_primitive_trace())
-      return false;
-
-
-
-
-#ifndef _UWP
-
-   HMODULE hmoduleUser32 = ::LoadLibrary("User32");
-   g_pfnChangeWindowMessageFilter = (LPFN_ChangeWindowMessageFilter) ::GetProcAddress(hmoduleUser32, "ChangeWindowMessageFilter");
-
-
-   HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
-   g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32, "RegGetValueW");
-
-#endif
-
-   return true;
-
-}
-
-
-bool os_finalize()
-{
-
-   finalize_primitive_trace();
-
-   return true;
-
-}
-*/
-/*
-
-LSTATUS
-APIENTRY
-WinRegGetValueW(
-    HKEY hkey,
-    const widechar * lpSubKey,
-    const widechar * lpValue,
-    ::u32 dwFlags,
-    LPDWORD pdwType,
-	 PVOID pvData,
-    LPDWORD pcbData
-    )
-{
-   if(g_pfnRegGetValueW != nullptr)
-   {
-      return g_pfnRegGetValueW(hkey, lpSubKey, lpValue, dwFlags, pdwType, pvData, pcbData);
-   }
-   else
-   {
-      LSTATUS lstatus = RegQueryValueExW(hkey, lpSubKey, nullptr, pdwType, (LPBYTE) pvData, pcbData);
-      if(lstatus == ERROR_SUCCESS)
-      {
-         if(pvData != nullptr && (dwFlags & RRF_RT_REG_SZ) != 0 && *pdwType == REG_SZ)
-         {
-            ((WCHAR *)pvData)[*pcbData] = L'\0';
-         }
-      }
-      return lstatus;
-   }
-}
-
-*/
-
-/*Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
-Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;
-ulong_ptr                        g_gdiplusToken             = nullptr;
-ulong_ptr                        g_gdiplusHookToken         = nullptr;
-*/
-
-
 
 
 int_bool main_initialize()
@@ -332,13 +248,13 @@ string normalize_path(const ::string & lpcszPath)
 
 string key_to_char(wparam wparam, lparam lparam)
 {
-   __throw(::exception::exception("todo"));
+   __throw(::exception("todo"));
 }
 
 
 
 
-string get_system_error_message(u32 dwError)
+string get_last_error_message(u32 dwError)
 {
    wstring wstr;
    unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
@@ -360,18 +276,10 @@ string get_system_error_message(u32 dwError)
 
 
 
-//void output_debug_string(const ::string & psz)
+//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations )
 //{
 //
-//   ::output_debug_string(wstring(psz));
-//
-//}
-
-
-//::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds )
-//{
-//
-//   return ::WaitForSingleObjectEx(hHandle, dwMilliseconds, false);
+//   return ::WaitForSingleObjectEx(hHandle, dw::durations, false);
 //
 //}
 
@@ -592,14 +500,15 @@ bool __node_aura_pos_term()
 
 }
 
-void os_term_application()
-{
-
-   ::Windows::ApplicationModel::Core::CoreApplication::Exit();
-
-}
-
-
+//
+//void os_term_application()
+//{
+//
+//   ::winrt::Windows::ApplicationModel::Core::CoreApplication::Exit();
+//
+//}
+//
+//
 
 
 

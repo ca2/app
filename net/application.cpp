@@ -1,7 +1,4 @@
 #include "framework.h"
-#define NO_IMAGING
-#include "aura/application.h"
-#include "aura/update.h"
 
 
 namespace app_net
@@ -18,6 +15,8 @@ namespace app_net
       m_strBaseSupportId = "app_app";
 
       m_bLicense = false;
+
+      m_bImaging = false;
 
    }
 
@@ -58,7 +57,7 @@ namespace app_net
 
       m_pwindow->create_main_window();
 
-      m_pwindow->start_layout();
+      //m_pwindow->start_layout();
 
       m_pwindow->display(e_display_normal);
 
@@ -66,7 +65,7 @@ namespace app_net
 
       m_pwindow->set_need_redraw();
 
-      m_pwindow->set_layout_ready();
+      //m_pwindow->set_layout_ready();
 
       m_pwindow->post_redraw();
 
@@ -95,7 +94,6 @@ namespace app_net
 #endif
 
 
-   __namespace_application_factory("app/net");
 
 
 } // namespace app_net

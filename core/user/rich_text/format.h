@@ -15,35 +15,33 @@ namespace user
       public:
 
 
-         __pointer_array(format) *     m_pcontainer;
-         index                         m_iIndex;
+         __pointer_array(format) *           m_pcontainer;
+         index                               m_iIndex;
 
-         bool                          m_bBold;
-         bool                          m_bItalic;
-         bool                          m_bUnderline;
-         string                        m_strFontFamily;
-         double                        m_dFontSize;
-         ::color::color                     m_colorForeground;
-         ::color::color                     m_colorBackground;
-         e_script                      m_escript;
-         e_line_height                 m_elineheight;
+         bool                                m_bBold;
+         bool                                m_bItalic;
+         bool                                m_bUnderline;
+         string                              m_strFontFamily;
+         double                              m_dFontSize;
+         ::color::color                      m_colorForeground;
+         ::color::color                      m_colorBackground;
+         e_script                            m_escript;
+         e_line_height                       m_elineheight;
 
 
          // cache or transport (not serialized)
-         mutable bool                 m_bUpdated;
-         mutable ::write_text::font_pointer    m_font;
-         mutable ::e_align              m_ealign;
+         mutable bool                        m_bUpdated;
+         mutable ::write_text::font_pointer  m_pfont;
+         mutable ::e_align                   m_ealign;
 
 
          format();
-         format(__pointer_array(format)* pcontainer);
-         format(const format & format);
-         virtual ~format();
+         //format(__pointer_array(format)* pcontainer);
+         //format(const format & format);
+         ~format() override;
 
 
          virtual ::e_status initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
-         //virtual ::stream & write(::stream & stream) const override;
-         //virtual ::stream & read(::stream & stream) override;
 
          virtual void exchange(::stream & stream) override;
 

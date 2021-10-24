@@ -24,7 +24,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void plain_edit_view::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(eupdate == 2000)
@@ -144,7 +144,7 @@ namespace calculator
                pmatter = parser.parse(strExp);
 
             }
-            catch(numeric_parser_exception & exp)
+            catch(numeric_parsing_exception & exp)
             {
 
                e.m_strMessage = exp.m_strMessage;
@@ -185,7 +185,7 @@ namespace calculator
                            }
                            else
                            {
-                              strVal = __str(1.0 / m_val.mod());
+                              strVal = __string(1.0 / m_val.mod());
                            }
                         }
                      }
@@ -287,7 +287,7 @@ namespace calculator
          /*         if(m_ptopview != nullptr)
                   {
 
-                     m_ptopview->m_pview->post_message(message_view_update);
+                     m_ptopview->m_pimpact->post_message(message_view_update);
 
                   }*/
 
@@ -303,7 +303,7 @@ namespace calculator
       {
 
 
-         //      if(m_ptopview == nullptr || m_ptopview->m_pview == nullptr)
+         //      if(m_ptopview == nullptr || m_ptopview->m_pimpact == nullptr)
          //       return;
 
          on_update(nullptr,2000,nullptr);

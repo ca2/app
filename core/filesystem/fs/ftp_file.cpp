@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "apex/filesystem/fs/_fs.h"
-#include "core/net/ftp/_.h"
+#include "core/filesystem/fs/_fs.h"
+#include "core/networking/ftp/_.h"
 #include "ftp_file.h"
 
 
@@ -136,10 +136,10 @@ filesize ftpfs_file::get_size() const
 }
 
 
-filesize ftpfs_file::seek(filesize lOff, ::file::e_seek nFrom)
+filesize ftpfs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   return m_pfile->seek(lOff, nFrom);
+   return m_pfile->translate(offset, eseek);
 
 }
 

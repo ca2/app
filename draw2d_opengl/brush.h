@@ -15,7 +15,7 @@ namespace draw2d_opengl
       virtual ~brush();
 
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
 
    };

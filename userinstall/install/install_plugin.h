@@ -45,8 +45,8 @@ namespace install
 
       thread_start_ca2     m_startca2;
       canvas               m_canvas;
-      millis m_millisLastInstallingCheck;
-      millis m_millisLastRestart;
+      ::duration m_durationLastInstallingCheck;
+      ::duration m_durationLastRestart;
       // logged in ? alarm comments
       bool                 m_bLogged;
       // in login process, login screen should be shown
@@ -60,13 +60,13 @@ namespace install
       bool                 m_bRestartCa2;
       bool                 m_bPendingRestartCa2;
       bool                 m_bPendingStream;
-      millis m_millisLastOk;
+      ::duration m_durationLastOk;
 
       bool                 m_bPluginShiftKey;
 
       string               m_strLoginRequestingServer;
 
-      ::rectangle_i32             m_rectSent;
+      ::rectangle_i32             m_rectangleSent;
       string_array              m_straLinesNativeLaunch;
 
       //bool                 m_bHasCred;
@@ -77,7 +77,7 @@ namespace install
       virtual ~plugin();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
 

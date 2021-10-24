@@ -7,16 +7,16 @@ class CLASS_DECL_CORE simple_printer_list_view :
 public:
 
 
-   __pointer(::user::impact)                   m_pview;
+   __pointer(::user::impact)                   m_pimpact;
 
 
    simple_printer_list_view();
    virtual ~simple_printer_list_view();
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
-   virtual bool on_click(const ::user::item & item);
+   virtual bool on_click(const ::item & item) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_create);
 

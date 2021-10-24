@@ -45,7 +45,7 @@
 //   void receive_response(const ::payload&) override
 //   {
 //
-//      __throw(error_interface_only);
+//      throw ::interface_only_exception();
 //
 //   }
 //
@@ -56,23 +56,29 @@
 
 
 
-template < typename PRED >
+template < typename PREDICATE >
 class predicate_routine :
    virtual public ::matter
 {
 public:
 
 
-   PRED m_predicate;
+   PREDICATE      m_predicate;
+   ::duration     m_durationTimeout = DURATION{64,0};
 
 
-   predicate_routine(PRED pred) : m_predicate(pred) { }
-   virtual ~predicate_routine() {}
+
+   predicate_routine(PREDICATE predicate) : m_predicate(predicate) { }
+   predicate_routine(const ::duration & duration, PREDICATE predicate) : m_durationTimeout(duration), m_predicate(predicate) { }
+   ~predicate_routine() override {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
 
    //inline ::e_status operator()() const;
+
+   DURATION timeout() const override { return m_durationTimeout; }
+
 
    virtual ::e_status run() override
    {
@@ -104,7 +110,13 @@ template < typename PRED >
 }
 
 
+template < typename PRED >
+::routine __routine(const ::duration & duration, PRED pred)
+{
 
+   return __new(predicate_routine<PRED>(duration, pred));
+
+}
 
 
 ::e_status run_task(::matter * pobjectTask);
@@ -114,13 +126,13 @@ class processor
 {
 public:
 
-   virtual void schedule(::matter * pobjectTask, e_priority epriority = priority_normal) = 0;
+   virtual void schedule(::matter * pobjectTask, enum_priority epriority = e_priority_normal) = 0;
 
 };
 
 
 template < typename PRED >
-inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = priority_normal)
+inline auto schedule(processor * pprocessor, PRED pred, enum_priority epriority = e_priority_normal)
 {
 
    auto pobjectTask = create_predicate(pred);
@@ -133,7 +145,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 //
 //template < typename PRED >
-//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, e_priority), PRED pred, ::duration durationTimeout = one_minute(), e_priority epriority = priority_normal);
+//auto sync_predicate(void (* pfnBranch )(::object * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout = one_minute(), enum_priority epriority = e_priority_normal);
 
 
 
@@ -143,7 +155,7 @@ inline auto schedule(processor * pprocessor, PRED pred, e_priority epriority = p
 
 
 
-//CLASS_DECL_ACME void main_branch(::matter * pobjectTask, e_priority epriority);
+//CLASS_DECL_ACME void main_branch(::matter * pobjectTask, enum_priority epriority);
 
 
 

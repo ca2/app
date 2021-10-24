@@ -27,7 +27,7 @@
 #endif
 
 
-#define PLATFORM_NAMESPACE uwp
+#define PLATFORM_NAMESPACE universal_windows
 
 #define DEFAULT_DIR_SEPARATOR "\\"
 
@@ -39,11 +39,11 @@
 //#define BSD_STYLE_SOCKETS
 
 
-#define PLATFORM_NAME   "uwp"
+#define PLATFORM_NAME   "universal_windows"
 
-#ifdef _DEBUG
-#define DEBUG
-#endif
+// #ifdef _DEBUG
+// #define DEBUG
+// #endif
 
 
 #define DECL_C __cdecl
@@ -92,7 +92,7 @@
 
 #ifdef __cplusplus
 
-#define LOG_THIS_TAG (typeid(*this).name())
+#define LOG_THIS_TAG (__type_name(this))
 #define LOG_MEMBER_PREFIX __FUNCTION__
 
 #define ALOG_FUNCTION __FUNCTION__

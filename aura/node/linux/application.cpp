@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "aura/os/linux/_linux.h"
+#include "aura/node/operating_system/linux/_linux.h"
 
 
 //#include <X11/cursorfont.h>
@@ -62,7 +62,7 @@ namespace aura
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }
@@ -513,7 +513,7 @@ namespace aura
 
          ::file::path path = pnode->get_desktop_file_path(papplication);
 
-         if(path.has_char() && !file_exists(path))
+         if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

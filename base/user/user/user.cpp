@@ -444,12 +444,12 @@ namespace base
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(pClassName);
-      UNREFERENCED_PARAMETER(pWindowName);
-      UNREFERENCED_PARAMETER(uStyle);
-      UNREFERENCED_PARAMETER(hInstance);
-      UNREFERENCED_PARAMETER(pParam);
+      __UNREFERENCED_PARAMETER(dwExStyle);
+      __UNREFERENCED_PARAMETER(pClassName);
+      __UNREFERENCED_PARAMETER(pWindowName);
+      __UNREFERENCED_PARAMETER(uStyle);
+      __UNREFERENCED_PARAMETER(hInstance);
+      __UNREFERENCED_PARAMETER(pParam);
 
       auto pinteraction = __new(::user::interaction);
 
@@ -681,15 +681,15 @@ namespace base
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(::draw2d::graphics_pointer & pgraphics);
+//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -886,7 +886,7 @@ namespace base
 //            //else
 //            //{
 //
-//            //   puiParent = get_document()->get_typed_view < ::bergedge::view >();
+//            //   puiParent = get_document()->get_typed_view < ::bergedge::impact >();
 //
 //            //}
 //
@@ -1003,7 +1003,7 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1017,7 +1017,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -1031,7 +1031,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -1214,7 +1214,7 @@ namespace base
    ::user::style_pointer user::instantiate_user_style(const ::string & pszExperienceLibrary, ::application* papp)
    {
 
-      INFO("aura::session::instantiate_user_theme");
+      INFORMATION("aura::session::instantiate_user_theme");
 
       if (papp == nullptr)
       {
@@ -1366,7 +1366,7 @@ namespace base
          if (!plibrary)
          {
 
-            ERR("Failed to Load %s", strLibrary.c_str());
+            ERROR("Failed to Load %s", strLibrary.c_str());
 
             continue;
 
@@ -1377,7 +1377,7 @@ namespace base
          if (!pstyle)
          {
 
-            INFO("could not create user_style from ", strLibrary.c_str());
+            INFORMATION("could not create user_style from ", strLibrary.c_str());
 
             continue;
 
@@ -1400,9 +1400,9 @@ namespace base
       if (!pstyle)
       {
 
-         message_box("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
+         output_error_message("Failed to find/open 'experience' library.\n\nSome reasons:\n   - No 'experience' library present;\n   - Failure to open any suitable 'experience' library.",nullptr, e_message_box_ok);
 
-         __throw(exit_exception(get_system()));
+         throw exit_exception(get_system());
 
       }
 
@@ -1436,7 +1436,7 @@ namespace base
          if (!m_puserstyle)
          {
 
-            ERR("aura::session::defer_instantiate_user_theme");
+            ERROR("aura::session::defer_instantiate_user_theme");
 
             __throw(error_resource);
 

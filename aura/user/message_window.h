@@ -30,7 +30,7 @@ namespace user
 
       virtual bool message_window_is_initialized();
 
-      virtual bool message_window_set_timer(uptr uId,::u32 dwMillis);
+      virtual bool message_window_set_timer(uptr uId, const ::duration & duration);
 
       virtual bool message_window_post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 

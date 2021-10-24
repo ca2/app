@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "_winrt.h"
-#include "aura/node/uwp/_uwp.h"
+#include "aura/node/universal_windows/_uwp.h"
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
@@ -20,7 +20,7 @@ CLASS_DECL_CORE int_bool ui_get_cursor_pos(POINT_I32 * ppt)
 
    ::point_i32 pointCursor;
 
-   ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
+   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
    {
 
       try
@@ -62,21 +62,21 @@ CLASS_DECL_CORE int_bool GetCursorPos(POINT_I32 * lppoint)
    if (g_iMouse < 0)
       return false;
 
-   Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-          ref new Windows::UI::Core::DispatchedHandler([]()
+   ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+          ref new ::winrt::Windows::UI::Core::DispatchedHandler([]()
    {
 
-      Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
+      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Devices::Input::PointerDevice ^ > ^ deva = ::winrt::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
       for (unsigned int u = 0; u < deva->Size; u++)
       {
 
-         Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
+         ::winrt::Windows::Devices::Input::PointerDevice ^ dev = deva->GetAt(u);
 
-         if (dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
+         if (dev->PointerDeviceType == ::winrt::Windows::Devices::Input::PointerDeviceType::Mouse)
          {
 
-            Windows::UI::Input::PointerPoint ^ pointerPoint = ::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
+            ::winrt::Windows::UI::Input::PointerPoint ^ pointerPoint = ::winrt::Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 
             g_iMouseX = (::i32)pointerPoint->RawPosition.X;
 
@@ -98,26 +98,26 @@ CLASS_DECL_CORE int_bool GetCursorPos(POINT_I32 * lppoint)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 }
 
-CLASS_DECL_CORE void main_branch(::matter* pobjectTask, e_priority epriority)
-{
-
-   ::wait(
-      Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([pobjectTask]()
-   {
-
-            pobjectTask->call();
-
-   })));
-
-}
+//CLASS_DECL_CORE void main_branch(::matter* pobjectTask, enum_priority epriority)
+//{
+//
+//   ::wait(
+//      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([pobjectTask]()
+//   {
+//
+//            pobjectTask->call();
+//
+//   })));
+//
+//}
 
 #undef papplication
 
-::Windows::UI::Xaml::papplication^ get_xaml_app();
+::winrt::Windows::UI::Xaml::papplication^ get_xaml_app();
 
 
 
@@ -132,14 +132,14 @@ CLASS_DECL_CORE void main_branch(::matter* pobjectTask, e_priority epriority)
 
 using namespace Platform;
 using namespace Microsoft::WRL;
-using namespace Windows::Foundation;
-using namespace Windows::UI::Core;
-using namespace Windows::ApplicationModel;
-using namespace Windows::ApplicationModel::Core;
-using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::System;
-using namespace Windows::Graphics::Display;
-using namespace Windows::System::Threading;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::ApplicationModel;
+using namespace ::winrt::Windows::ApplicationModel::Core;
+using namespace ::winrt::Windows::ApplicationModel::Activation;
+using namespace ::winrt::Windows::System;
+using namespace ::winrt::Windows::Graphics::Display;
+using namespace ::winrt::Windows::System::Threading;
 
 uptr keycode_to_char(uptr n)
 {
@@ -147,103 +147,103 @@ uptr keycode_to_char(uptr n)
 }
 
 
-uptr virtualkey_to_char(::Windows::System::VirtualKey e)
+uptr virtualkey_to_char(::winrt::Windows::System::VirtualKey e)
 {
    switch (e)
    {
-   case ::Windows::System::VirtualKey::Number0:
+   case ::winrt::Windows::System::VirtualKey::Number0:
       return '0';
-   case ::Windows::System::VirtualKey::Number1:
+   case ::winrt::Windows::System::VirtualKey::Number1:
       return '1';
-   case ::Windows::System::VirtualKey::Number2:
+   case ::winrt::Windows::System::VirtualKey::Number2:
       return '2';
-   case ::Windows::System::VirtualKey::Number3:
+   case ::winrt::Windows::System::VirtualKey::Number3:
       return '3';
-   case ::Windows::System::VirtualKey::Number4:
+   case ::winrt::Windows::System::VirtualKey::Number4:
       return '4';
-   case ::Windows::System::VirtualKey::Number5:
+   case ::winrt::Windows::System::VirtualKey::Number5:
       return '5';
-   case ::Windows::System::VirtualKey::Number6:
+   case ::winrt::Windows::System::VirtualKey::Number6:
       return '6';
-   case ::Windows::System::VirtualKey::Number7:
+   case ::winrt::Windows::System::VirtualKey::Number7:
       return '7';
-   case ::Windows::System::VirtualKey::Number8:
+   case ::winrt::Windows::System::VirtualKey::Number8:
       return '8';
-   case ::Windows::System::VirtualKey::Number9:
+   case ::winrt::Windows::System::VirtualKey::Number9:
       return '9';
-   case ::Windows::System::VirtualKey::A:
+   case ::winrt::Windows::System::VirtualKey::A:
       return 'a';
-   case ::Windows::System::VirtualKey::B:
+   case ::winrt::Windows::System::VirtualKey::B:
       return 'b';
-   case ::Windows::System::VirtualKey::C:
+   case ::winrt::Windows::System::VirtualKey::C:
       return 'c';
-   case ::Windows::System::VirtualKey::D:
+   case ::winrt::Windows::System::VirtualKey::D:
       return 'd';
-   case ::Windows::System::VirtualKey::E:
+   case ::winrt::Windows::System::VirtualKey::E:
       return 'e';
-   case ::Windows::System::VirtualKey::F:
+   case ::winrt::Windows::System::VirtualKey::F:
       return 'f';
-   case ::Windows::System::VirtualKey::G:
+   case ::winrt::Windows::System::VirtualKey::G:
       return 'g';
-   case ::Windows::System::VirtualKey::H:
+   case ::winrt::Windows::System::VirtualKey::H:
       return 'h';
-   case ::Windows::System::VirtualKey::I:
+   case ::winrt::Windows::System::VirtualKey::I:
       return 'i';
-   case ::Windows::System::VirtualKey::J:
+   case ::winrt::Windows::System::VirtualKey::J:
       return 'j';
-   case ::Windows::System::VirtualKey::K:
+   case ::winrt::Windows::System::VirtualKey::K:
       return 'k';
-   case ::Windows::System::VirtualKey::L:
+   case ::winrt::Windows::System::VirtualKey::L:
       return 'l';
-   case ::Windows::System::VirtualKey::M:
+   case ::winrt::Windows::System::VirtualKey::M:
       return 'm';
-   case ::Windows::System::VirtualKey::N:
+   case ::winrt::Windows::System::VirtualKey::N:
       return 'n';
-   case ::Windows::System::VirtualKey::O:
+   case ::winrt::Windows::System::VirtualKey::O:
       return 'o';
-   case ::Windows::System::VirtualKey::P:
+   case ::winrt::Windows::System::VirtualKey::P:
       return 'p';
-   case ::Windows::System::VirtualKey::Q:
+   case ::winrt::Windows::System::VirtualKey::Q:
       return 'q';
-   case ::Windows::System::VirtualKey::R:
+   case ::winrt::Windows::System::VirtualKey::R:
       return 'r';
-   case ::Windows::System::VirtualKey::S:
+   case ::winrt::Windows::System::VirtualKey::S:
       return 's';
-   case ::Windows::System::VirtualKey::T:
+   case ::winrt::Windows::System::VirtualKey::T:
       return 't';
-   case ::Windows::System::VirtualKey::U:
+   case ::winrt::Windows::System::VirtualKey::U:
       return 'u';
-   case ::Windows::System::VirtualKey::V:
+   case ::winrt::Windows::System::VirtualKey::V:
       return 'v';
-   case ::Windows::System::VirtualKey::W:
+   case ::winrt::Windows::System::VirtualKey::W:
       return 'w';
-   case ::Windows::System::VirtualKey::X:
+   case ::winrt::Windows::System::VirtualKey::X:
       return 'x';
-   case ::Windows::System::VirtualKey::Y:
+   case ::winrt::Windows::System::VirtualKey::Y:
       return 'y';
-   case ::Windows::System::VirtualKey::Z:
+   case ::winrt::Windows::System::VirtualKey::Z:
       return 'z';
-   case ::Windows::System::VirtualKey::Shift:
+   case ::winrt::Windows::System::VirtualKey::Shift:
       return VK_SHIFT;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::winrt::Windows::System::VirtualKey::LeftShift:
       return VK_LSHIFT;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::winrt::Windows::System::VirtualKey::RightShift:
       return VK_RSHIFT;
-   case ::Windows::System::VirtualKey::Control:
+   case ::winrt::Windows::System::VirtualKey::Control:
       return VK_CONTROL;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::winrt::Windows::System::VirtualKey::LeftControl:
       return VK_LCONTROL;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::winrt::Windows::System::VirtualKey::RightControl:
       return VK_RCONTROL;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::winrt::Windows::System::VirtualKey::Menu:
       return VK_MENU;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::winrt::Windows::System::VirtualKey::LeftMenu:
       return VK_LMENU;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::winrt::Windows::System::VirtualKey::RightMenu:
       return VK_RMENU;
-   case ::Windows::System::VirtualKey::Tab:
+   case ::winrt::Windows::System::VirtualKey::Tab:
       return VK_TAB;
-   case ::Windows::System::VirtualKey::Enter:
+   case ::winrt::Windows::System::VirtualKey::Enter:
       return VK_RETURN;
    default:
       ;
@@ -252,147 +252,147 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
+::user::enum_key virtualkey_to_userkey(::winrt::Windows::System::VirtualKey e, bool& bSpecialKey)
 {
    bSpecialKey = false;
    switch (e)
    {
-   case ::Windows::System::VirtualKey::Number0:
+   case ::winrt::Windows::System::VirtualKey::Number0:
       return ::user::e_key_0;
-   case ::Windows::System::VirtualKey::Number1:
+   case ::winrt::Windows::System::VirtualKey::Number1:
       return ::user::e_key_1;
-   case ::Windows::System::VirtualKey::Number2:
+   case ::winrt::Windows::System::VirtualKey::Number2:
       return ::user::e_key_2;
-   case ::Windows::System::VirtualKey::Number3:
+   case ::winrt::Windows::System::VirtualKey::Number3:
       return ::user::e_key_3;
-   case ::Windows::System::VirtualKey::Number4:
+   case ::winrt::Windows::System::VirtualKey::Number4:
       return ::user::e_key_4;
-   case ::Windows::System::VirtualKey::Number5:
+   case ::winrt::Windows::System::VirtualKey::Number5:
       return ::user::e_key_5;
-   case ::Windows::System::VirtualKey::Number6:
+   case ::winrt::Windows::System::VirtualKey::Number6:
       return ::user::e_key_6;
-   case ::Windows::System::VirtualKey::Number7:
+   case ::winrt::Windows::System::VirtualKey::Number7:
       return ::user::e_key_7;
-   case ::Windows::System::VirtualKey::Number8:
+   case ::winrt::Windows::System::VirtualKey::Number8:
       return ::user::e_key_8;
-   case ::Windows::System::VirtualKey::Number9:
+   case ::winrt::Windows::System::VirtualKey::Number9:
       return ::user::e_key_9;
-   case ::Windows::System::VirtualKey::A:
+   case ::winrt::Windows::System::VirtualKey::A:
       return ::user::e_key_a;
-   case ::Windows::System::VirtualKey::B:
+   case ::winrt::Windows::System::VirtualKey::B:
       return ::user::e_key_b;
-   case ::Windows::System::VirtualKey::C:
+   case ::winrt::Windows::System::VirtualKey::C:
       return ::user::e_key_c;
-   case ::Windows::System::VirtualKey::D:
+   case ::winrt::Windows::System::VirtualKey::D:
       return ::user::e_key_d;
-   case ::Windows::System::VirtualKey::E:
+   case ::winrt::Windows::System::VirtualKey::E:
       return ::user::e_key_e;
-   case ::Windows::System::VirtualKey::F:
+   case ::winrt::Windows::System::VirtualKey::F:
       return ::user::e_key_f;
-   case ::Windows::System::VirtualKey::G:
+   case ::winrt::Windows::System::VirtualKey::G:
       return ::user::e_key_g;
-   case ::Windows::System::VirtualKey::H:
+   case ::winrt::Windows::System::VirtualKey::H:
       return ::user::e_key_h;
-   case ::Windows::System::VirtualKey::I:
+   case ::winrt::Windows::System::VirtualKey::I:
       return ::user::e_key_i;
-   case ::Windows::System::VirtualKey::J:
+   case ::winrt::Windows::System::VirtualKey::J:
       return ::user::e_key_j;
-   case ::Windows::System::VirtualKey::K:
+   case ::winrt::Windows::System::VirtualKey::K:
       return ::user::e_key_k;
-   case ::Windows::System::VirtualKey::L:
+   case ::winrt::Windows::System::VirtualKey::L:
       return ::user::e_key_l;
-   case ::Windows::System::VirtualKey::M:
+   case ::winrt::Windows::System::VirtualKey::M:
       return ::user::e_key_m;
-   case ::Windows::System::VirtualKey::N:
+   case ::winrt::Windows::System::VirtualKey::N:
       return ::user::e_key_n;
-   case ::Windows::System::VirtualKey::O:
+   case ::winrt::Windows::System::VirtualKey::O:
       return ::user::e_key_o;
-   case ::Windows::System::VirtualKey::P:
+   case ::winrt::Windows::System::VirtualKey::P:
       return ::user::e_key_p;
-   case ::Windows::System::VirtualKey::Q:
+   case ::winrt::Windows::System::VirtualKey::Q:
       return ::user::e_key_q;
-   case ::Windows::System::VirtualKey::R:
+   case ::winrt::Windows::System::VirtualKey::R:
       return ::user::e_key_r;
-   case ::Windows::System::VirtualKey::S:
+   case ::winrt::Windows::System::VirtualKey::S:
       return ::user::e_key_s;
-   case ::Windows::System::VirtualKey::T:
+   case ::winrt::Windows::System::VirtualKey::T:
       return ::user::e_key_t;
-   case ::Windows::System::VirtualKey::U:
+   case ::winrt::Windows::System::VirtualKey::U:
       return ::user::e_key_u;
-   case ::Windows::System::VirtualKey::V:
+   case ::winrt::Windows::System::VirtualKey::V:
       return ::user::e_key_v;
-   case ::Windows::System::VirtualKey::W:
+   case ::winrt::Windows::System::VirtualKey::W:
       return ::user::e_key_w;
-   case ::Windows::System::VirtualKey::X:
+   case ::winrt::Windows::System::VirtualKey::X:
       return ::user::e_key_x;
-   case ::Windows::System::VirtualKey::Y:
+   case ::winrt::Windows::System::VirtualKey::Y:
       return ::user::e_key_y;
-   case ::Windows::System::VirtualKey::Z:
+   case ::winrt::Windows::System::VirtualKey::Z:
       return ::user::e_key_z;
-   case ::Windows::System::VirtualKey::Shift:
+   case ::winrt::Windows::System::VirtualKey::Shift:
       bSpecialKey = true;
       return ::user::e_key_shift;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::winrt::Windows::System::VirtualKey::LeftShift:
       bSpecialKey = true;
       return ::user::e_key_left_shift;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::winrt::Windows::System::VirtualKey::RightShift:
       bSpecialKey = true;
       return ::user::e_key_right_shift;
-   case ::Windows::System::VirtualKey::Control:
+   case ::winrt::Windows::System::VirtualKey::Control:
       bSpecialKey = true;
       return ::user::e_key_control;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::winrt::Windows::System::VirtualKey::LeftControl:
       bSpecialKey = true;
       return ::user::e_key_left_control;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::winrt::Windows::System::VirtualKey::RightControl:
       bSpecialKey = true;
       return ::user::e_key_right_control;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::winrt::Windows::System::VirtualKey::Menu:
       bSpecialKey = true;
       return ::user::e_key_alt;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::winrt::Windows::System::VirtualKey::LeftMenu:
       bSpecialKey = true;
       return ::user::e_key_left_alt;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::winrt::Windows::System::VirtualKey::RightMenu:
       bSpecialKey = true;
       return ::user::e_key_right_alt;
-   case ::Windows::System::VirtualKey::Tab:
+   case ::winrt::Windows::System::VirtualKey::Tab:
       bSpecialKey = true;
       return ::user::e_key_tab;
-   case ::Windows::System::VirtualKey::Enter:
+   case ::winrt::Windows::System::VirtualKey::Enter:
       bSpecialKey = true;
       return ::user::e_key_return;
-   case ::Windows::System::VirtualKey::Delete:
+   case ::winrt::Windows::System::VirtualKey::Delete:
       bSpecialKey = true;
       return ::user::e_key_delete;
-   case ::Windows::System::VirtualKey::Back:
+   case ::winrt::Windows::System::VirtualKey::Back:
       bSpecialKey = true;
       return ::user::e_key_back;
-   case ::Windows::System::VirtualKey::Left:
+   case ::winrt::Windows::System::VirtualKey::Left:
       bSpecialKey = true;
       return ::user::e_key_left;
-   case ::Windows::System::VirtualKey::Right:
+   case ::winrt::Windows::System::VirtualKey::Right:
       bSpecialKey = true;
       return ::user::e_key_right;
-   case ::Windows::System::VirtualKey::Up:
+   case ::winrt::Windows::System::VirtualKey::Up:
       bSpecialKey = true;
       return ::user::e_key_up;
-   case ::Windows::System::VirtualKey::Down:
+   case ::winrt::Windows::System::VirtualKey::Down:
       bSpecialKey = true;
       return ::user::e_key_down;
-   case ::Windows::System::VirtualKey::PageUp:
+   case ::winrt::Windows::System::VirtualKey::PageUp:
       bSpecialKey = true;
       return ::user::e_key_up;
-   case ::Windows::System::VirtualKey::PageDown:
+   case ::winrt::Windows::System::VirtualKey::PageDown:
       bSpecialKey = true;
       return ::user::e_key_down;
-   case ::Windows::System::VirtualKey::Home:
+   case ::winrt::Windows::System::VirtualKey::Home:
       bSpecialKey = true;
       return ::user::e_key_home;
-   case ::Windows::System::VirtualKey::End:
+   case ::winrt::Windows::System::VirtualKey::End:
       bSpecialKey = true;
       return ::user::e_key_end;
-   case ::Windows::System::VirtualKey::Escape:
+   case ::winrt::Windows::System::VirtualKey::Escape:
       bSpecialKey = true;
       return ::user::e_key_escape;
    case 186:
@@ -409,7 +409,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       return ::user::e_key_semicolon2;
    case 193:
       return ::user::e_key_slash2;
-   case ::Windows::System::VirtualKey::Space:
+   case ::winrt::Windows::System::VirtualKey::Space:
       return ::user::e_key_space;
    default:
       ;
@@ -424,99 +424,99 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-uptr virtualkey_to_code(::Windows::System::VirtualKey e)
+uptr virtualkey_to_code(::winrt::Windows::System::VirtualKey e)
 {
    switch (e)
    {
    case 190:
       return '.';
-   case ::Windows::System::VirtualKey::Number0:
+   case ::winrt::Windows::System::VirtualKey::Number0:
       return 1;
-   case ::Windows::System::VirtualKey::Number1:
+   case ::winrt::Windows::System::VirtualKey::Number1:
       return 2;
-   case ::Windows::System::VirtualKey::Number2:
+   case ::winrt::Windows::System::VirtualKey::Number2:
       return 3;
-   case ::Windows::System::VirtualKey::Number3:
+   case ::winrt::Windows::System::VirtualKey::Number3:
       return 4;
-   case ::Windows::System::VirtualKey::Number4:
+   case ::winrt::Windows::System::VirtualKey::Number4:
       return 5;
-   case ::Windows::System::VirtualKey::Number5:
+   case ::winrt::Windows::System::VirtualKey::Number5:
       return 6;
-   case ::Windows::System::VirtualKey::Number6:
+   case ::winrt::Windows::System::VirtualKey::Number6:
       return 7;
-   case ::Windows::System::VirtualKey::Number7:
+   case ::winrt::Windows::System::VirtualKey::Number7:
       return 8;
-   case ::Windows::System::VirtualKey::Number8:
+   case ::winrt::Windows::System::VirtualKey::Number8:
       return 9;
-   case ::Windows::System::VirtualKey::Number9:
+   case ::winrt::Windows::System::VirtualKey::Number9:
       return 10;
-   case ::Windows::System::VirtualKey::A:
+   case ::winrt::Windows::System::VirtualKey::A:
       return 'a';
-   case ::Windows::System::VirtualKey::B:
+   case ::winrt::Windows::System::VirtualKey::B:
       return 'b';
-   case ::Windows::System::VirtualKey::C:
+   case ::winrt::Windows::System::VirtualKey::C:
       return 'ca';
-   case ::Windows::System::VirtualKey::D:
+   case ::winrt::Windows::System::VirtualKey::D:
       return 'd';
-   case ::Windows::System::VirtualKey::E:
+   case ::winrt::Windows::System::VirtualKey::E:
       return 'e';
-   case ::Windows::System::VirtualKey::F:
+   case ::winrt::Windows::System::VirtualKey::F:
       return 'f';
-   case ::Windows::System::VirtualKey::G:
+   case ::winrt::Windows::System::VirtualKey::G:
       return 'g';
-   case ::Windows::System::VirtualKey::H:
+   case ::winrt::Windows::System::VirtualKey::H:
       return 'h';
-   case ::Windows::System::VirtualKey::I:
+   case ::winrt::Windows::System::VirtualKey::I:
       return 'i';
-   case ::Windows::System::VirtualKey::J:
+   case ::winrt::Windows::System::VirtualKey::J:
       return 'j';
-   case ::Windows::System::VirtualKey::K:
+   case ::winrt::Windows::System::VirtualKey::K:
       return 'k';
-   case ::Windows::System::VirtualKey::L:
+   case ::winrt::Windows::System::VirtualKey::L:
       return 'l';
-   case ::Windows::System::VirtualKey::M:
+   case ::winrt::Windows::System::VirtualKey::M:
       return 'm';
-   case ::Windows::System::VirtualKey::N:
+   case ::winrt::Windows::System::VirtualKey::N:
       return 'n';
-   case ::Windows::System::VirtualKey::O:
+   case ::winrt::Windows::System::VirtualKey::O:
       return 'o';
-   case ::Windows::System::VirtualKey::P:
+   case ::winrt::Windows::System::VirtualKey::P:
       return 'p';
-   case ::Windows::System::VirtualKey::Q:
+   case ::winrt::Windows::System::VirtualKey::Q:
       return 'q';
-   case ::Windows::System::VirtualKey::R:
+   case ::winrt::Windows::System::VirtualKey::R:
       return 'r';
-   case ::Windows::System::VirtualKey::S:
+   case ::winrt::Windows::System::VirtualKey::S:
       return 's';
-   case ::Windows::System::VirtualKey::T:
+   case ::winrt::Windows::System::VirtualKey::T:
       return 't';
-   case ::Windows::System::VirtualKey::U:
+   case ::winrt::Windows::System::VirtualKey::U:
       return 'u';
-   case ::Windows::System::VirtualKey::V:
+   case ::winrt::Windows::System::VirtualKey::V:
       return 'v';
-   case ::Windows::System::VirtualKey::W:
+   case ::winrt::Windows::System::VirtualKey::W:
       return 'w';
-   case ::Windows::System::VirtualKey::Y:
+   case ::winrt::Windows::System::VirtualKey::Y:
       return 'y';
-   case ::Windows::System::VirtualKey::Z:
+   case ::winrt::Windows::System::VirtualKey::Z:
       return 'z';
-   case ::Windows::System::VirtualKey::Shift:
+   case ::winrt::Windows::System::VirtualKey::Shift:
       return VK_SHIFT;
-   case ::Windows::System::VirtualKey::LeftShift:
+   case ::winrt::Windows::System::VirtualKey::LeftShift:
       return VK_LSHIFT;
-   case ::Windows::System::VirtualKey::RightShift:
+   case ::winrt::Windows::System::VirtualKey::RightShift:
       return VK_RSHIFT;
-   case ::Windows::System::VirtualKey::Control:
+   case ::winrt::Windows::System::VirtualKey::Control:
       return VK_CONTROL;
-   case ::Windows::System::VirtualKey::LeftControl:
+   case ::winrt::Windows::System::VirtualKey::LeftControl:
       return VK_LCONTROL;
-   case ::Windows::System::VirtualKey::RightControl:
+   case ::winrt::Windows::System::VirtualKey::RightControl:
       return VK_RCONTROL;
-   case ::Windows::System::VirtualKey::Menu:
+   case ::winrt::Windows::System::VirtualKey::Menu:
       return VK_MENU;
-   case ::Windows::System::VirtualKey::LeftMenu:
+   case ::winrt::Windows::System::VirtualKey::LeftMenu:
       return VK_LMENU;
-   case ::Windows::System::VirtualKey::RightMenu:
+   case ::winrt::Windows::System::VirtualKey::RightMenu:
       return VK_RMENU;
    default:
       ;
@@ -582,7 +582,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    CLASS_DECL_CORE color32_t get_system_app_background_color()
 //    {
 
-//       auto color = psystem->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = psystem->get_session()->m_frameworkview->m_puisettings->GetColorValue(::winrt::Windows::UI::ViewManagement::UIColorType::Background);
 
 //       auto r = color.R;
 
@@ -597,7 +597,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 //    CLASS_DECL_CORE double get_system_app_luminance()
 //    {
 
-//       auto color = psystem->get_session()->m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+//       auto color = psystem->get_session()->m_frameworkview->m_puisettings->GetColorValue(::winrt::Windows::UI::ViewManagement::UIColorType::Background);
 
 //       double r = color.R;
 

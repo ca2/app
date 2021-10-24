@@ -1,6 +1,9 @@
 #include "framework.h"
-#include "aura/user/shell.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+#include "aura/user/shell.h"
+
 
 
 namespace userfs
@@ -14,10 +17,10 @@ namespace userfs
       m_iNameSubItem = -1;
       m_iIconSubItem = -1;
 
-      m_rectMargin.left = 0;
-      m_rectMargin.top = 0;
-      m_rectMargin.bottom = 0;
-      m_rectMargin.right = 0;
+      m_rectangleMargin.left = 0;
+      m_rectangleMargin.top = 0;
+      m_rectangleMargin.bottom = 0;
+      m_rectangleMargin.right = 0;
 
       //create_int(::user::int_list_item_draw_text_flags, e_align_left_center | DT_SINGLELINE | DT_PATH_ELLIPSIS);
 
@@ -74,14 +77,14 @@ namespace userfs
 
    void list::_001OnTimer(::timer * ptimer)
    {
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::form_list_view::_001OnTimer(ptimer);
 
    }
 
 
-   bool list::on_click(const ::user::item & item)
+   bool list::on_click(const ::item & item)
    {
 
       ::user::range range;
@@ -104,12 +107,12 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         ::payload varFile;
+         ::payload payloadFile;
          ::payload varQuery;
          if(iUItem == iLItem)
          {
 
-            varFile = fs_list_item(iLItem)->get_user_path();
+            payloadFile = fs_list_item(iLItem)->get_user_path();
 
          }
          else
@@ -124,11 +127,11 @@ namespace userfs
 
             }
 
-            varFile = stra;
+            payloadFile = stra;
 
          }
 
-         //get_document()->request_file(varFile, varQuery);
+         //get_document()->request_file(payloadFile, varQuery);
 
       }
 
@@ -153,7 +156,7 @@ namespace userfs
    }
 
 
-   void list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void list::handle(::subject * psubject, ::context * pcontext)
    {
 
 
@@ -161,8 +164,8 @@ namespace userfs
 
    void list::on_message_left_button_double_click(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+//      auto pmouse = pmessage->m_union.m_pmouse;
       /*         index iItem;
             list_data * pdata = fslist();
             if(_001HitTest_(pmouse->m_point, iItem))
@@ -175,7 +178,7 @@ namespace userfs
 
    void list::_001OnCancelMode(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
@@ -494,8 +497,8 @@ namespace userfs
    void list::_017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -503,8 +506,8 @@ namespace userfs
    void list::_017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -512,7 +515,7 @@ namespace userfs
    void list::_017OpenContextMenu(const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(context);
 
    }
 
@@ -520,8 +523,8 @@ namespace userfs
    void list::_017OpenFolder(__pointer(::file::item) item, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(item);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(context);
       ASSERT(false);
 
    }
@@ -530,16 +533,16 @@ namespace userfs
    //void list::_017OpenFolder(const ::userfs::list_item &item, const ::action_context & context)
    //{
 
-   //   UNREFERENCED_PARAMETER(item);
-   //   UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(item);
+   //   __UNREFERENCED_PARAMETER(context);
    //   ASSERT(false);
 
    //}
 
    void list::_017OpenFile(const ::file::item_array &itema, const ::action_context & context)
    {
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(context);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(context);
       ASSERT(false);
    }
 
@@ -561,7 +564,7 @@ namespace userfs
 
    void list::_001OnButtonAction(::user::interaction * pinteraction)
    {
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
       //      list_data * pdata = fslist();
       /* filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
@@ -693,7 +696,7 @@ namespace userfs
    void list::_001OnFileRename(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::range range;
 
@@ -726,7 +729,7 @@ namespace userfs
 
    void list::on_message_show_window(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::message::show_window) pshow(pmessage);
 
       //db_server * pcentral = dynamic_cast < db_server * > (psystem->m_psimpledb->db());
@@ -945,10 +948,37 @@ namespace userfs
 
             auto puser = psession->user();
 
-            pitem->m_iImage = puser->shell()->get_file_image(
-                              pfsitem->m_filepathFinal,
-                              pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::file_attribute_directory : ::user::shell::file_attribute_normal,
-                              ::user::shell::icon_normal);
+            ::file::path pathUser = pfsitem->m_filepathUser;
+
+            auto pcontext = m_pcontext->m_papexcontext;
+
+            ::file::path pathProcessed = pcontext->defer_process_path(pathUser);
+
+            auto iImage = puser->shell()->get_file_image(
+                            pathProcessed,
+                            pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                              ::user::shell::e_icon_normal);
+
+            if (iImage < 0)
+            {
+
+               puser->shell()->warn_when_ok(pathProcessed, { this });
+
+               iImage = puser->shell()->get_file_image(
+                  pfsitem->m_filepathFinal,
+                  pset->is_dir(pfsitem->m_filepathFinal) ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  ::user::shell::e_icon_normal);
+
+               if(iImage < 0)
+               {
+
+                  puser->shell()->warn_when_ok(pfsitem->m_filepathFinal, {this});
+
+               }
+
+            }
+
+            pitem->m_iImage = iImage;
 
             if (pitem->m_iImage >= 0)
             {
@@ -971,11 +1001,12 @@ namespace userfs
 
       }
 
-
       return ::user::form_list_view::_001GetItemImage(pitem);
 
    }
 
 
 } // namespace userfs
+
+
 

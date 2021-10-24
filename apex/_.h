@@ -15,21 +15,7 @@
 #endif
 
 
-#ifdef DEBUG
-#ifndef _DEBUG
-#define _DEBUG
-#endif
-#endif
 
-
-#ifdef _DEBUG
-#define __DEBUG
-#ifndef DEBUG
-#define DEBUG
-#endif
-#else
-#define NNDEBUG
-#endif
 
 #define CA2_APEX
 
@@ -74,8 +60,8 @@
 #include "__standard_type.h"
 
 
-typedef i64 memsize_storage;
-typedef i64 strsize_storage;
+typedef iptr memsize_storage;
+typedef iptr strsize_storage;
 
 
 typedef iptr memsize;
@@ -202,9 +188,7 @@ namespace apex
 
 #endif
 
-//#include "apex/platform/object_reference_count_debug.h"
-
-#include "apex/os/os.h"
+#include "apex/node/operating_system/operating_system.h"
 
 #include "apex/include/_include.h"
 

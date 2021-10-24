@@ -7,30 +7,29 @@ class CLASS_DECL_BASE simple_scroll_bar :
 public:
 
 
-   ::draw2d::pen_pointer            m_penDraw;
-   ::draw2d::brush_pointer          m_brushDraw;
+   ::draw2d::pen_pointer            m_ppenDraw;
+   ::draw2d::brush_pointer          m_pbrushDraw;
    ::image_pointer                  m_pimageDots;
    bool                             m_bTrackOffsetThumbAdjusted;
-   point_i32                            m_pointTrack;
-   ::rectangle_i32                           m_rectTrack;
-   ::rectangle_i32                           m_rectA;
-   ::rectangle_i32                           m_rectB;
-   point_f64                           m_ptaA[4]; // pontos da primeira seta
-   point_f64                           m_ptaB[4]; // pontos da segunda seta
-   ::draw2d::region_pointer         m_rgnA; // região da primeira seta
-   ::draw2d::region_pointer         m_rgnB; // região da segunda seta
+   point_i32                        m_pointTrack;
+   ::rectangle_i32                  m_rectangleTrack;
+   ::rectangle_i32                  m_rectangleA;
+   ::rectangle_i32                  m_rectangleB;
+   point_f64                        m_pointaA[4]; // pontos da primeira seta
+   point_f64                        m_pointaB[4]; // pontos da segunda seta
+   ::draw2d::region_pointer         m_pregionA; // região da primeira seta
+   ::draw2d::region_pointer         m_pregionB; // região da segunda seta
    ::u32                            m_uiTimer;
 
 
    simple_scroll_bar();
-   virtual ~simple_scroll_bar();
-
+   ~simple_scroll_bar() override;
 
 
    virtual void pre_translate_message(::message::message * pmessage) override;
    //virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr) override;
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics);
@@ -69,29 +68,29 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
    //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
-   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
 
-   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
+   void draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangleDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
 
 
 
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void on_hit_test(::user::item & item) override;
-   //virtual ::user::enum_element _001HitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem) override;
+   virtual void on_hit_test(::item & item) override;
+   //virtual ::enum_element _001HitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem) override;
 
-   virtual bool scrollbar_action(const ::user::item & item, ::draw2d::graphics_pointer & pgraphics);
+   virtual bool scrollbar_action(const ::item & item, ::draw2d::graphics_pointer & pgraphics);
 
    virtual bool scrollbar_lineA(::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_lineB(::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_pageB(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_pageA(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
 
-   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement) override;
-   virtual ::color::color scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
-   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)override;
+   virtual ::color::color scrollbar_color_strong(::user::style * pstyle, ::enum_element eelement) override;
+   virtual ::color::color scrollbar_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_border_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_lite_border_color(::user::style* pstyle, ::enum_element eelement)override;
+   virtual ::color::color scrollbar_draw_color(::user::style* pstyle, ::enum_element eelement)override;
 
 
 };

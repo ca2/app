@@ -16,9 +16,13 @@
 #pragma once
 
 
-#include "acme/os/uwp/file_winrt.h"
-#include "acme/os/uwp/parallelization_winrt.h"
-//#include "acme/os/uwp/gdi_winrt.h"
+#ifdef __cplusplus_winrt
+
+#include "acme/node/operating_system/universal_windows/file_winrt.h"
+#include "acme/node/operating_system/universal_windows/parallelization_winrt.h"
+
+#enidf
+//#include "acme/node/operating_system/universal_windows/gdi_winrt.h"
 
 
 

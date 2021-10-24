@@ -10,7 +10,7 @@ namespace apex
       virtual public ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
-      ,virtual public ::exception::translator
+      ,virtual public ::exception_translator
 #endif
    {
    public:
@@ -25,8 +25,6 @@ namespace apex
 
       // apex commented
       //__composite(::apex::multimedia)                    m_pmultimedia;
-
-      string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
       // __composite(::apex::estamira)                      m_pestamira;
 
@@ -92,10 +90,10 @@ namespace apex
 
       bool                                               m_bGudoNetCache;
 
-      __composite(::process::department)                 m_pprocess;
+      __composite(::operating_system::department)        m_pprocess;
 
-      __composite(::parallelization::threading)           m_pthreading;
-      ::e_display                                         m_edisplay;
+      __composite(::parallelization::threading)          m_pthreading;
+      ::e_display                                        m_edisplay;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
       bool                                               m_bFinalizeIfNoSessionSetting;
@@ -109,8 +107,8 @@ namespace apex
       string                                             m_strInstallVersion;
       string                                             m_strInstallPlatform;
 
-      millis                                               m_millisMainStart;
-      millis                                               m_millisAfterApplicationFirstRequest;
+      ::duration                                         m_durationMainStart;
+      ::duration                                         m_durationAfterApplicationFirstRequest;
 
       //::mutex                                 m_spmutexOpenweatherCity;
 
@@ -129,7 +127,7 @@ namespace apex
 
       string_array                                            m_straCommandLineAccumul;
       string_array                                            m_straCommandLineExtra;
-      millis                                               m_millisCommandLineLast;
+      ::duration                                               m_durationCommandLineLast;
       int                                                m_iCommandLineDelay;
       ::task_pointer                                m_pthreadCommandLine;
 
@@ -211,11 +209,6 @@ namespace apex
 
       //__pointer_array(::acme::library)                         m_libraryspa;
 
-#ifdef _UWP
-
-      Agile < Windows::UI::Core::CoreWindow >      m_window;
-
-#endif
 
 
 
@@ -226,7 +219,7 @@ namespace apex
       void common_construct();
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
       i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -252,7 +245,7 @@ namespace apex
 
 #elif defined(_UWP)
 
-      ::e_status system_construct(Array < String^ >^ refstra);
+      ::e_status system_construct(const ::string_array & stra);
 
 #else
 
@@ -271,7 +264,7 @@ namespace apex
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
-      virtual ::e_status on_pre_run_thread() override;
+      //::e_status on_pre_run_task() override;
 
       virtual ::e_status init_system() override;
       virtual void term_system();
@@ -327,12 +320,12 @@ namespace apex
       //virtual ::e_status create_gpu();
 
 
-      //::task_group * task_group(::e_priority epriority = ::priority_none);
+      //::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
+      //virtual __pointer(::subject) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const ::string & pszPlatform) override;
@@ -453,7 +446,7 @@ namespace apex
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-      //thread_tools * tools(::e_priority epriority);
+      //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       // apex commented
@@ -478,7 +471,7 @@ namespace apex
       //class base_factory                           &  factory();
 
 
-      ::process::department                        &  process();
+      ::operating_system::department                        &  process();
 
       //using acme::system::process;
 
@@ -711,14 +704,6 @@ namespace apex
 
 
 
-
-      //#ifndef _UWP
-
-      virtual void get_time(micro_duration * pmicroduration);
-
-      //#endif
-
-
       virtual void on_start_find_applications_from_cache();
       virtual void on_end_find_applications_from_cache(stream & is);
 
@@ -749,7 +734,7 @@ namespace apex
 
       virtual bool merge_accumulated_on_open_file(::create * pcreate);
 
-      virtual bool on_open_file(::payload varFile, string strExtra);
+      virtual bool on_open_file(::payload payloadFile, string strExtra);
       
       ::e_status on_open_file(const ::string & pszFile) override;
 
@@ -796,7 +781,7 @@ namespace apex
 
 
 
-      void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
+      //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
       virtual string get_user_language();
@@ -922,7 +907,7 @@ namespace apex
 
 
 
-//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -1010,9 +995,10 @@ namespace apex
 
       void system_id_update(::i64 iUpdate, ::i64 iPayload) override;
 
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant) override;
 
-      void subject_handler(::subject::subject * psubject) override;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void signal(::signal * psignal) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 
@@ -1025,7 +1011,7 @@ namespace apex
       virtual int console_end(::e_status estatus);
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
       virtual ::e_status get_public_internet_domain_extension_list(string_array& stra) override;

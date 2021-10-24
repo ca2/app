@@ -404,11 +404,11 @@ void numeric_array < TYPE, t_etypePayload >::implode(string & str, const char * 
       string strSeparator(pcszSeparator);
 
       index i = start;
-      str = __str(this->element_at(i));
+      str = __string(this->element_at(i));
       i++;
       for(; i <= last; i++)
       {
-         str += strSeparator + __str(this->element_at(i));
+         str += strSeparator + __string(this->element_at(i));
       }
    }
    else
@@ -445,11 +445,11 @@ string numeric_array < TYPE, t_etypePayload >::surround_and_implode(const char *
    if(iStart <= iEnd)
    {
       index i = iStart;
-      str = strPrefix + __str(this->element_at(i)) + strSuffix;
+      str = strPrefix + __string(this->element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
       {
-         str += strSeparator + strPrefix + __str(this->element_at(i)) + strSuffix;
+         str += strSeparator + strPrefix + __string(this->element_at(i)) + strSuffix;
       }
    }
    return str;
@@ -807,7 +807,6 @@ inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::count N)
 
 }
 
-
 template < primitive_floating FLOATING >
 inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
 {
@@ -830,7 +829,6 @@ inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
    return (FLOATING)(d / (double) N);
 
 }
-
 
 inline int get_mean(const int * A, ::count N)
 {

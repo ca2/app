@@ -16,10 +16,14 @@ namespace mathematics
       delete m_pimpl;
    }
 
+   
    void binary_operation::set_value_string(const char * psz)
    {
-      __throw(::exception::exception("not implemented"));
+      
+      __throw(error_not_implemented, "not implemented");
+
    }
+
 
    string binary_operation::get_value_string(e_get_value egetvalue)
    {

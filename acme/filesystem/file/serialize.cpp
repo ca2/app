@@ -578,7 +578,7 @@
 ////   }
 ////
 ////
-////   filesize byte_stream_memory_file::seek(filesize offset, e_seek seekOrigin)
+////   filesize byte_stream_memory_file::seek(filesize offset, enum_seek seekOrigin)
 ////   {
 ////
 ////      return memory_file::seek(offset, seekOrigin);

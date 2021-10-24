@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "core/id.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"
+#endif
+
 
 
 namespace html
@@ -195,10 +198,10 @@ namespace html
    }
 
 
-   void core_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void core_data::handle(::subject * psubject, ::context * pcontext)
    {
 
-      html_data::on_subject(psubject, pcontext);
+      html_data::handle(psubject, pcontext);
 
    }
 
@@ -275,7 +278,7 @@ namespace html
 
       }
 
-      m_pelement = __new(element);
+      m_pelement = ::move_transfer(new ::html::element);
 
       //m_pelement->m_pbase = new ::html::tag(nullptr);
 
@@ -313,15 +316,11 @@ namespace html
          for (auto & pinteraction : m_pform->m_puserinteractionpointeraChild->interactiona())
          {
             
-            ::user::control_event event;
+            auto psubject = create_subject(::e_subject_initialize_control);
 
-            event.m_eevent = ::user::e_event_initialize_control;
+            psubject->m_puserelement = pinteraction;
 
-            event.m_puserinteraction = pinteraction;
-
-            event.m_id = pinteraction->m_id;
-
-            m_pform->route_control_event(&event);
+            m_pform->route(psubject);
 
          }
 
@@ -339,7 +338,7 @@ namespace html
    void core_data::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_tab)
       {
@@ -393,10 +392,12 @@ namespace html
 
       if (m_pcallback != nullptr)
       {
-         ::user::control_event ev;
-         ev.m_puserinteraction = m_puserinteraction;
-         ev.m_eevent = ::user::e_event_form_initialize;
-         m_puserinteraction->on_control_event(&ev);
+         
+         auto psubject = create_subject(::e_subject_form_initialize);
+
+         psubject->m_puserelement = m_puserinteraction;
+         
+         m_puserinteraction->route(psubject);
 
       }
 
@@ -418,6 +419,10 @@ namespace html
       synchronous_lock synchronouslock(mutex());
 
       m_pgraphics = pgraphics;
+
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       //if(m_strPathName.find_ci("alarms_index") >= 0)
       //{
@@ -614,7 +619,7 @@ namespace html
    void core_data::on_image_loaded(image* pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
       if (m_puserinteraction != nullptr)
       {
@@ -691,7 +696,7 @@ namespace html
    }
 
 
-   bool core_data::open_document(const ::payload & varFile)
+   bool core_data::open_document(const ::payload & payloadFile)
    {
 
       //i32 iRetry = 0;
@@ -713,28 +718,28 @@ namespace html
 
       //payload = 3;
 
-      ::file::path pathUrl = varFile.get_file_path();
+      ::file::path pathUrl = payloadFile.get_file_path();
 
-      varFile["url"] = pathUrl;
+      payloadFile["url"] = pathUrl;
 
-      string strDebugUrl1 = varFile.get_file_path();
+      string strDebugUrl1 = payloadFile.get_file_path();
 
       if (m_strPathName.has_char())
       {
 
-         varFile["url"] = defer_solve_relative(pathUrl, m_strPathName);
+         payloadFile["url"] = defer_solve_relative(pathUrl, m_strPathName);
 
       }
 
-      varFile["http_set"] = get_property_set()["http_propset"].propset();
+      payloadFile["http_set"] = get_property_set()["http_propset"].propset();
 
-      bool bNoCache = varFile["nocache"].get_bool();
+      bool bNoCache = payloadFile["nocache"].get_bool();
 
       byte_array ba;
 
       //bool bCancel = false;
 
-      ////on_before_navigate(varFile, 0, 0, ba, nullptr, &bCancel);
+      ////on_before_navigate(payloadFile, 0, 0, ba, nullptr, &bCancel);
 
       //if (bCancel)
       //{
@@ -743,30 +748,30 @@ namespace html
 
       //}
 
-      varFile["http_set"]["app"] = get_application();
+      payloadFile["http_set"]["app"] = get_application();
 
       //varQuery.propset()["headers"].propset()[__id(accept)] = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
-      varFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+      payloadFile["http_set"]["headers"].propset()[__id(accept)] = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
       //      varQuery.propset()["headers"].propset()["Accept-Language"] = "en-us,en;q=0.5";
             //varQuery.propset()["headers"].propset()["Accept-Encoding"] = "gzip,deflate";
       //      varQuery.propset()["headers"].propset()["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-      varFile["http_set"]["headers"].propset()["Cache-Control"] = "maximum-age=0";
+      payloadFile["http_set"]["headers"].propset()["Cache-Control"] = "maximum-age=0";
 
       string str;
 
    repeat:
 
-      varFile["nocache"] = bNoCache;
+      payloadFile["nocache"] = bNoCache;
 
-      string strDebugUrl2 = varFile.get_file_path();
+      string strDebugUrl2 = payloadFile.get_file_path();
 
       auto pcontext = get_context();
 
-      str = pcontext->m_papexcontext->file().as_string(varFile);
+      str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
-      //if (!varFile["http_set"]["get_headers"].propset()["Location"].is_empty())
+      //if (!payloadFile["http_set"]["get_headers"].propset()["Location"].is_empty())
       //{
-      //   string strLocation = varFile["http_set"]["get_headers"].propset()["Location"];
+      //   string strLocation = payloadFile["http_set"]["get_headers"].propset()["Location"];
       //   iRetry++;
       //   if (iRetry > 8)
       //   {
@@ -781,7 +786,7 @@ namespace html
       //   else
       //   {
       //      
-      //      varFile = purl->override_if_set_at_source(varFile, varFile["http_set"]["get_headers"].propset()["Location"]);
+      //      payloadFile = purl->override_if_set_at_source(payloadFile, payloadFile["http_set"]["get_headers"].propset()["Location"]);
 
       //      goto restart;
 
@@ -790,7 +795,7 @@ namespace html
 
       if (str.is_empty())
       {
-         string strCandidate = m_strPathName / varFile.get_file_path();
+         string strCandidate = m_strPathName / payloadFile.get_file_path();
          str = pcontext->m_papexcontext->file().as_string(strCandidate);
          if (str.is_empty())
          {
@@ -869,17 +874,17 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(::payload& varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& payloadFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)
    //   {
-   //      m_pcallback->on_before_navigate(this, varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
+   //      m_pcallback->on_before_navigate(this, payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
 
    //   }
    //   else if (m_pform != nullptr)
    //   {
-   //      m_pform->on_before_navigate(varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
+   //      m_pform->on_before_navigate(payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
 
    //   }
    //}

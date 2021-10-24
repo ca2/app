@@ -91,18 +91,139 @@ bool synchronization_object::lock()
 }
 
 
-bool synchronization_object::lock(const duration & durationTimeout)
+bool synchronization_object::lock(const class ::wait & wait)
 {
 
-   return wait(durationTimeout).succeeded();
+   return this->wait(wait).succeeded();
 
 }
 
 
-synchronization_result synchronization_object::wait()
+bool synchronization_object::_lock()
 {
 
-   return wait(::duration::infinite());
+   return _wait().succeeded();
+
+}
+
+
+bool synchronization_object::_lock(const class ::wait & wait)
+{
+
+   return this->_wait(wait).succeeded();
+
+}
+
+
+::e_status synchronization_object::_wait()
+{
+
+   return _wait(::duration::infinite());
+
+}
+
+
+::e_status synchronization_object::wait()
+{
+
+   auto ptask = ::get_task();
+
+   if (::is_null(ptask))
+   {
+
+      ptask = m_psystem;
+
+   }
+
+   if (::is_null(ptask))
+   {
+
+      return _wait();
+
+   }
+
+   while (ptask->task_get_run())
+   {
+
+      auto estatus = _wait(100_ms);
+
+      if (!estatus.wait_timeout())
+      {
+
+         return estatus;
+
+      }
+
+   }
+
+   return abandoned_base;
+
+}
+
+
+::e_status synchronization_object::wait(const class ::wait & wait)
+{
+   
+   if (wait < 200_ms)
+   {
+
+      return this->_wait(wait);
+
+   }
+
+   auto ptask = ::get_task();
+
+   if (::is_null(ptask))
+   {
+
+      ptask = m_psystem;
+
+   }
+
+   if (::is_null(ptask))
+   {
+
+      return _wait(wait);
+
+   }
+
+   ::e_status estatus = error_wait_timeout;
+
+   if (wait.is_infinite())
+   {
+
+      do
+      {
+
+         estatus = _wait(100_ms);
+
+      } while (estatus.wait_timeout() && ptask->task_get_run());
+
+   }
+   else
+   {
+
+      auto waitStart = ::wait::now();
+
+      do
+      {
+
+         auto waitNow = minimum(wait - waitStart.elapsed(), 100_ms);
+
+         if (waitNow <= 0_ms)
+         {
+
+            break;
+
+         }
+
+         estatus = _wait(waitNow);
+
+      } while (estatus.wait_timeout() && ptask->task_get_run());
+
+   }
+
+   return estatus;
 
 }
 
@@ -139,7 +260,7 @@ bool synchronization_object::unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nu
 }
 
 
-synchronization_result synchronization_object::wait(const duration & durationTimeout)
+::e_status synchronization_object::_wait(const class ::wait & wait)
 {
 
 #ifdef WINDOWS
@@ -147,15 +268,15 @@ synchronization_result synchronization_object::wait(const duration & durationTim
    if (m_hsync)
    {
 
-      auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false);
+      auto windowsWaitResult = ::WaitForSingleObjectEx(m_hsync, wait, false);
 
-      return windows_wait_result_to_synchronization_result(windowsWaitResult);
+      return windows_wait_result_to_status(windowsWaitResult);
 
    }
 
 #endif
 
-   return e_synchronization_result_error;
+   return error_failed;
 
 }
 

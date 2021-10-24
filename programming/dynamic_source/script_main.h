@@ -21,7 +21,7 @@ namespace dynamic_source
       ~script_main() override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       virtual ::i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 

@@ -46,7 +46,7 @@ public:
 
 #elif defined(_UWP)
 
-   ::e_status system_construct(Array < String^ >^ refstra);
+   ::e_status system_construct(const string_array & stra);
 
 #else
 

@@ -5,9 +5,7 @@ namespace file
 {
 
 
-   set::set() :
-      m_ppathaSearch(e_create_new),
-      m_pbaRecursive(e_create_new)
+   set::set()
    {
 
       defer_create_mutex();
@@ -17,6 +15,27 @@ namespace file
 
    set::~set()
    {
+
+   }
+
+
+   ::e_status set::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_ppathaSearch.create_new(this);
+      
+      m_pbaRecursive.create_new(this);
+
+      return estatus;
 
    }
 
@@ -211,7 +230,7 @@ namespace file
    bool set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      if (!m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, bAddSearch))
+      if (!m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, bAddSearch))
       {
 
          return false;
@@ -226,14 +245,14 @@ namespace file
          if (!bAddSearch)
          {
 
-            m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, true);
+            m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, true);
 
             ::file::set::refresh();
 
             if (m_listing.is_empty())
             {
 
-               m_pcontext->m_papexcontext->os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
+               m_pcontext->m_papexcontext->os_context()->::os_context::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

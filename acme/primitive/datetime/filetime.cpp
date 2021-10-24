@@ -290,16 +290,18 @@ bool get_filetime_set(const char * psz, filetime & filetimeCreation, filetime & 
 
 }
 
+
 CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const ::datetime::time& time)
 {
 
    ::filetime filetime;
 
-   time_to_file_time(&filetime.m_filetime, &time.m_time);
+   time_to_file_time(&filetime.m_filetime, &time.m_i);
 
    return set_modified_filetime(psz, filetime);
 
 }
+
 
 CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const filetime & filetimeModified)
 {

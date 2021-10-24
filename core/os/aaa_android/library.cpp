@@ -67,7 +67,7 @@ CLASS_DECL_CORE void * __node_library_open(const ::string & pszPath, string & st
       if (psz != nullptr)
       {
 
-         strMessage += "strerror("+__str(iError) +") = " + string(psz);
+         strMessage += "strerror("+__string(iError) +") = " + string(psz);
 
       }
 

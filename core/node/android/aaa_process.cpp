@@ -142,7 +142,7 @@ CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //{
 //
 //
-//   process::process()
+//   operating_system::process()
 //   {
 //
 //   }
@@ -157,7 +157,7 @@ CLASS_DECL_CORE void process_get_os_priority(i32 * piOsPolicy, sched_param * ppa
 //   bool process::create_child_process(const ::string & pszCmdLine,bool bPiped, const ::string & pszDir,i32 iCa2Priority)
 //   {
 //
-//      if(!::process::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
+//      if(!::operating_system::process::create_child_process(pszCmdLine,bPiped,pszDir,iCa2Priority))
 //         return false;
 //
 //      string_array straParam;

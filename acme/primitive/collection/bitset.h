@@ -120,7 +120,11 @@ public:
 	//	if (_Bits <= _Pos)
 		//	DEBUG_ERROR("bitset index outside range");
 		if (_Bits <= _Pos)
-			__throw(::exception::exception("bitset index outside range"));
+		{
+
+			__throw(error_index_out_of_bounds, "bitset index outside range");
+
+		}
 
  //#elif _ITERATOR_DEBUG_LEVEL == 1
 //		_SCL_SECURE_VALIDATE_RANGE(_Pos < _Bits);

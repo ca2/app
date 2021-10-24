@@ -13,7 +13,7 @@ namespace filemanager
       {
 
 
-         class view;
+         class impact;
 
          enum EFolderType
          {
@@ -60,7 +60,7 @@ namespace filemanager
             i32                                          m_iIconFolderSelected;
             i32                                          m_iIconArtistNormal;
             i32                                          m_iIconArtistSelected;
-            __pointer(::filemanager::fs::simple::view)   m_pserver;
+            __pointer(::filemanager::fs::simple::impact)   m_pserver;
             FolderArray                                  m_foldera;
             i64                                          m_iParentFolder;
 
@@ -81,8 +81,8 @@ namespace filemanager
             index _001GetItemImage(__pointer(::data::tree_item) pitem, bool bSelected);
 
 
-            virtual void assert_valid() const override;
-            virtual void dump(dump_context & dumpcontext) const override;
+            void assert_valid() const override;
+            void dump(dump_context & dumpcontext) const override;
 
 
          };

@@ -18,12 +18,12 @@ namespace filemanager
 
 
       __pointer(::user::list_cache)       m_puserlistcache;
-      millis                              m_millisLastUpdate;
+      ::duration                              m_durationLastUpdate;
 
 
       operation_list_view();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       void _001InsertColumns() override;
 
@@ -38,7 +38,7 @@ namespace filemanager
       void OnFileOperationStep(i32 iOperation,bool bFinal);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       __pointer(operation_document) get_document();

@@ -10,7 +10,7 @@
 #ifdef WINDOWS
 
 
-#include "aura/os/windows_common/_c.h"
+#include "aura/node/operating_system/windows_common/_c.h"
 
 
 #ifndef LIBRARY_MAIN_DEBUG_BOX
@@ -27,9 +27,9 @@
 #endif
 
 
-#ifdef _UWP
-[MTAThread]
-#endif
+//#ifdef _UWP
+//[MTAThread]
+//#endif
 
 
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
@@ -49,13 +49,13 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(__APPLE__)
 
 
-//#if !defined(CUBE)
+#if !defined(CUBE)
 
 
 #include "acme/asset/new.cpp"
 
 
-//#endif
+#endif
 
 
 #endif

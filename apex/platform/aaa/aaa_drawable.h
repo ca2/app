@@ -39,14 +39,14 @@ namespace apex
 
       virtual bool is_composite();
 
-      virtual void hit_test(::user::item & item, const ::point & point);
-      virtual void on_hit_test(::user::item & item);
+      virtual void hit_test(::item & item, const ::point_i32 & point);
+      virtual void on_hit_test(::item & item);
 
-      virtual void hit_test(::user::item & item, ::message::mouse * pmouse);
+      virtual void hit_test(::item & item, ::message::mouse * pmouse);
 
-      virtual ::user::item hit_test(const ::point & point);
+      virtual ::item hit_test(const ::point_i32 & point);
 
-      virtual ::user::item hit_test(::message::mouse * pmouse);
+      virtual ::item hit_test(::message::mouse * pmouse);
 
 
 
@@ -69,8 +69,8 @@ namespace apex
    //   //virtual bool _get_client_rect(RECT32 * prect) = 0;
    //   //virtual bool _get_window_rect(RECT32 * prect) = 0;
    //   
-   //   //virtual ::point _client_parent_top_left() = 0;
-   //   //virtual ::point _client_screen_top_left() = 0;
+   //   //virtual ::point_i32 _client_parent_top_left() = 0;
+   //   //virtual ::point_i32 _client_screen_top_left() = 0;
 
 
    //   //mutable size      m_sizeClient;

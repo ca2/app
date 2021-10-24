@@ -155,7 +155,7 @@ namespace gpu
 
       }
 
-      m_pbuffer->m_pimage = create_image(size);
+      m_pbuffer->m_pimage = m_pcontext->context_image()->create_image(size);
 
       if (!::is_ok(m_pbuffer->m_pimage))
       {
@@ -290,7 +290,7 @@ namespace gpu
 
       string strFragment = file.as_string(path);
 
-      string strExtension = path.extension();
+      string strExtension = path.all_extensions();
 
       string strVersion = get_shader_version_text();
 

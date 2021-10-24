@@ -26,14 +26,14 @@ namespace user
 
 
       tab_view();
-      virtual ~tab_view();
+      ~tab_view() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);
@@ -41,59 +41,65 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
 
 
-      virtual void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
+      void on_change_tab_count(::array < ::user::tab_pane * > array = ::array < ::user::tab_pane * >()) override;
 
-      virtual void on_erase_child(::user::interaction* pinteraction) override;
+      void on_erase_child(::user::interaction* pinteraction) override;
 
-      virtual void on_erase_place_holder_child(::user::interaction* pinteraction) override;
+      void on_erase_place_holder_child(::user::interaction* pinteraction) override;
 
-      virtual void on_hide_child(::user::interaction* pinteraction) override;
+      void on_hide_child(::user::interaction* pinteraction) override;
 
-      virtual void on_hide_place_holder_child(::user::interaction* pinteraction) override;
+      void on_hide_place_holder_child(::user::interaction* pinteraction) override;
 
-      virtual id get_view_id() override;
+      id get_view_id() override;
 
-      virtual ::user::interaction * get_view_uie() override;
+      ::user::interaction * get_view_uie() override;
 
       virtual ::user::impact_data * get_view_creator_data();
 
-      virtual ::user::document * get_view_document() override;
+      ::user::document * get_view_document() override;
 
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDropTab(index iPane, enum_position eposition) override;
+      void _001OnDropTab(index iPane, enum_position eposition) override;
 
-      virtual ::user::interaction * _001GetTabWnd(::index iTab) override;
+      ::user::interaction * _001GetTabWnd(::index iTab) override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
+      bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 
-      virtual void on_after_host_impact(::user::impact_data * pimpactdata) override;
+      void on_after_host_impact(::user::impact_data * pimpactdata) override;
 
-      virtual void _001DropTargetWindowInitialize(::user::tab * pinterface) override;
+      void _001DropTargetWindowInitialize(::user::tab * pinterface) override;
 
-      virtual void _001DropTargetWindowRelay(::user::tab * pinterface) override;
+      void _001DropTargetWindowRelay(::user::tab * pinterface) override;
 
-      virtual void _001DropTargetWindowFinalize(::user::tab * pinterface) override;
+      void _001DropTargetWindowFinalize(::user::tab * pinterface) override;
 
-      virtual void rotate() override;
+      void rotate() override;
 
-      virtual ::user::tab_pane * create_tab_by_id(id id) override;
+      ::user::tab_pane * create_tab_by_id(const ::id & idTab) override;
 
-      virtual void _001OnShowTab(::user::tab * ptab) override;
+      virtual void create_impact_menu(::user::impact_data * pimpactdata);
 
-      virtual void on_change_cur_sel() override;
+      ::e_status prepare_impact_menu(::user::menu * pmenu);
 
-      virtual void _001OnTabClick(::index iTab) override;
+      void _001OnShowTab(::user::tab * ptab) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void _on_change_cur_sel();
 
-      virtual bool pre_create_window(::user::system * pusersystem) override;
+      void on_change_cur_sel() override;
 
-      virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView) override;
+      void _001OnTabClick(::index iTab) override;
 
-      virtual void _001OnRemoveTab(class tab_pane * ptab) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
+
+      bool pre_create_window(::user::system * pusersystem) override;
+
+      void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView) override;
+
+      void _001OnRemoveTab(class tab_pane * ptab) override;
 
 
    };

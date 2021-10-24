@@ -362,7 +362,7 @@ string & property::get_http_post(::string & str) const
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)
 //         return const_cast<property *>(this)->get_value();
-//      __throw(::exception::exception("unsuported!!"));
+//      __throw(::exception("unsuported!!"));
 //   }
 //}
 //
@@ -435,7 +435,7 @@ string & property::get_http_post(::string & str) const
 ////   if(pchannel)
 ////   {
 ////
-////      pchannel->send_update((::e_id) m_id.i64(), context);
+////      pchannel->send_update((::enum_id) m_id.i64(), context);
 ////
 ////   }
 ////
@@ -1843,16 +1843,22 @@ void on_property_destruct2()
 
 }
 
+
+#define DEBUG_PROPERTY_COUNT 0
+
+#if DEBUG_PROPERTY_COUNT
 critical_section g_criticalsectionProperty;
 ptr_array < property > g_propertya;
-
+#endif
 
 void on_property_construct(property * pproperty)
 {
 
    g_interlockedcountProperty++;
 
-   output_debug_string("prop" + __str(g_interlockedcountProperty.operator i64()) + "\n");
+#if DEBUG_PROPERTY_COUNT
+
+   output_debug_string("prop" + __string(g_interlockedcountProperty.operator i64()) + "\n");
 
    on_property_construct2();
 
@@ -1860,12 +1866,16 @@ void on_property_construct(property * pproperty)
 
    g_propertya.add(pproperty);
 
+#endif
+
 }
 
 void on_property_destruct(property* pproperty)
 {
 
    g_interlockedcountProperty--;
+
+#if DEBUG_PROPERTY_COUNT
 
    on_property_destruct2();
 
@@ -1876,7 +1886,7 @@ void on_property_destruct(property* pproperty)
    if (g_propertya.get_size() % 100 == 0)
    {
 
-      output_debug_string("PROPS("+__str(g_propertya.get_size())+")\n");
+      output_debug_string("PROPS("+__string(g_propertya.get_size())+")\n");
 
       int iCount = 250;
 
@@ -1897,6 +1907,8 @@ void on_property_destruct(property* pproperty)
       }
 
    }
+
+#endif
 
 }
 

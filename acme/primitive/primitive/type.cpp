@@ -1,26 +1,61 @@
 #include "framework.h"
 
 
-namespace str
+string cxxabi_demangle (const char* name);
+
+
+#if defined(WINDOWS)
+
+
+
+string demangle(const char* psz)
 {
-   
-   
-   string demangle(const char * name)
+
+   if (psz[0] == 'c' &&
+      psz[1] == 'l' &&
+      psz[2] == 'a' &&
+      psz[3] == 's' &&
+      psz[4] == 's' &&
+      psz[5] == ' ')
    {
-      
-      string str(name);
-      
-      ::demangle(str);
-      
-      return str;
-      
+
+      return psz + 6;
+
    }
-   
-   
-} // namespace str
+   else if (psz[0] == 's' &&
+      psz[1] == 't' &&
+      psz[2] == 'r' &&
+      psz[3] == 'u' &&
+      psz[4] == 'c' &&
+      psz[5] == 't' &&
+      psz[6] == ' ')
+   {
+
+      return psz + 7;
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
 
 
-#if !defined(WINDOWS)
+#else
+
+string demangle(const char* name)
+{
+
+   auto str = ::cxxabi_demangle(name);
+
+   return str;
+
+}
+
+
 
 char * g_pszDemangle = nullptr;
 size_t g_sizeDemangle = 0;
@@ -28,27 +63,27 @@ critical_section * g_pcsDemangle = nullptr;
 
 #include <cxxabi.h>
 
-//string demangle (const char* name)
-//{
-//
-//   int status = -4;
-//   char* res = abi::__cxa_demangle(name, 0, 0, &status);
-//   string str;
-//   if (status == 0)
-//   {
-//      str = res;
-//
-//   }
-//   else
-//   {
-//      str = name;
-//   }
-//   if (res != nullptr)
-//   {
-//      free(res);
-//   }
-//   return str;
-//}
+string cxxabi_demangle (const char* name)
+{
+
+   int status = -4;
+   char* res = abi::__cxa_demangle(name, 0, 0, &status);
+   string str;
+   if (status == 0)
+   {
+      str = res;
+
+   }
+   else
+   {
+      str = name;
+   }
+   if (res != nullptr)
+   {
+      free(res);
+   }
+   return str;
+}
 
 #endif
 
@@ -94,13 +129,13 @@ critical_section * g_pcsDemangle = nullptr;
 //   m_idFriendly      = info.name();
 //   m_id              = info.raw_name();
 //#elif defined(ANDROID)
-//   m_idFriendly	   = demangle(info.name());
+//   m_idFriendly	   = info.name();
 //   m_id			      = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#else
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#endif
 //
@@ -139,10 +174,10 @@ critical_section * g_pcsDemangle = nullptr;
 //   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#elif defined(__APPLE__)
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#else
-//   m_idFriendly      = demangle(info.name());
+//   m_idFriendly      = info.name();
 //   m_id              = info.name();
 //#endif
 ////   m_pfactoryitem.release();

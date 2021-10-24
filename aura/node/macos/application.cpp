@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "aura/os/_.h"
+#include "aura/node/operating_system/_.h"
 #include <mach-o/dyld.h>
 #include <sys/time.h>
 
@@ -31,9 +31,9 @@ namespace aura
 //      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
-//   ::user::document * application::_001OpenDocumentFile(::payload varFile)
+//   ::user::document * application::_001OpenDocumentFile(::payload payloadFile)
 //   {
-//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
+//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
 
@@ -47,7 +47,7 @@ namespace aura
 
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 //      return false;
 //   }
 
@@ -302,7 +302,7 @@ namespace aura
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      UNREFERENCED_PARAMETER(bShow);
+//      __UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 //
@@ -314,12 +314,20 @@ namespace aura
 //
 //      path -= 3;
 //      
-//      if(::dir::is(path))
+//      if(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(path))
 //      {
 //
-//         ::file::path path2 = pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
+//         ::file::path path2 =          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "monitor-0/desk/2desk" / path.name();
 //         
-//         if(::file_exists(path2))
+//         if(::m_psystem->m_pacmefile->exists(path2))
 //         {
 //
 //            ::unlink(path2);
@@ -328,11 +336,19 @@ namespace aura
 //         
 //         auto pathFolder2 = path2.folder();
 //         
-//         ::dir::mk(pathFolder2);
+//                  auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->create(pathFolder2);
 //         
 //         bool bFilePathIsLink = file_path_is_link(path2);
 //         
-//         if(!bFilePathIsLink && ::dir::is(pathFolder2))
+//         if(!bFilePathIsLink &&          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathFolder2))
 //         {
 //
 //            ::system("ln -s \"" + path + "\"" + " \"" + path2 + "\"");

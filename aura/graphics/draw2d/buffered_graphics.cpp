@@ -17,10 +17,10 @@ namespace draw2d
    }
 
 
-   void buffered_graphics::Prepare(const rectangle_i32 & rectParam)
+   void buffered_graphics::Prepare(const rectangle_i32 & rectangleParam)
    {
 
-      ::rectangle_i32 rectangle(rectParam);
+      ::rectangle_i32 rectangle(rectangleParam);
 
       m_p->SetViewportOrg(rectangle.top_left());
 

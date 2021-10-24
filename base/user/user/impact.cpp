@@ -39,14 +39,14 @@ namespace user
       //    MESSAGE_LINK(e_message_create        , pchannel, this, &impact::on_message_create);
 
       // Standard commands for split pane
-      //  //      connect_command(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
+      //  //      add_command_handler(ID_WINDOW_SPLIT , &impact::_001OnSplitCmd);
       //    connect_command_probe(ID_WINDOW_SPLIT ,  &impact::_001OnUpdateSplitCmd);
 
       // Standard commands for next pane
       //  connect_command_probe(ID_NEXT_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //connect_command(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
+      //add_command_handler(ID_NEXT_PANE   , &impact::_001OnNextPaneCmd);
       //      connect_command_probe(ID_PREV_PANE    , &impact::_001OnUpdateNextPaneMenu);
-      //    connect_command(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
+      //    add_command_handler(ID_PREV_PANE    , &impact::_001OnNextPaneCmd);
 
       //}}__MSG_MAP
       // special command for Initial Update
@@ -124,7 +124,7 @@ namespace user
          if(::user::impact::get_document() == nullptr)
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Creating a pane with no ::user::document.\n");
+            CATEGORY_WARNING(appmsg, "Warning: Creating a pane with no ::user::document.");
 
          }
 
@@ -148,17 +148,17 @@ namespace user
 
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction                        = this;
+         subject.m_puserelement              = this;
 
-         ev.m_eevent                      = ::user::e_event_on_create_impact;
+         subject.m_id                      = ::e_subject_on_create_impact;
 
-         ev.m_actioncontext.m_pmessage    = pmessage;
+         subject.m_actioncontext.m_pmessage    = pmessage;
 
-         ev.m_actioncontext.add(e_source_initialize);
+         subject.m_actioncontext.add(e_source_initialize);
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 
@@ -177,7 +177,7 @@ namespace user
    void impact::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       __pointer(::user::frame_window) pFrame = get_parent_frame();
 
@@ -280,11 +280,11 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Command routing
 
-   void impact::route_command_message(::message::command * pcommand)
+   void impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       // ::user::layout intentional
-      on_command_message(pcommand);
+      command_handler(pcommand);
 
       if(pcommand->m_bRet)
       {
@@ -298,7 +298,7 @@ namespace user
       if (pdocument)
       {
 
-         pdocument->on_command_message(pcommand);
+         pdocument->command_handler(pcommand);
 
          if (pcommand->m_bRet)
          {
@@ -309,79 +309,23 @@ namespace user
 
       }
 
-      //for (auto& pinteraction : m_interactionaCommandHandlers)
-      //{
+      __pointer(::user::interaction) puserinteractionParent = get_parent();
 
-      //   if (pinteraction && pinteraction != get_active_view())
-      //   {
-
-      //      pinteraction->on_command_message(pcommand);
-
-      //      if (pcommand->m_bRet)
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      // then pump through parent
-      __pointer(::user::interaction) puiParent = get_parent();
-
-      while (puiParent)
+      if (puserinteractionParent)
       {
 
-         puiParent->on_command_message(pcommand);
-
-         if (pcommand->m_bRet)
-         {
-
-            return;
-
-         }
-
-         puiParent = puiParent->get_parent();
+         puserinteractionParent->route_command(pcommand, false);
 
       }
-
-      // last but not least, pump through cast
-      ::application* papp = get_application();
-
-      if (papp != nullptr)
+      else
       {
 
-         papp->on_command_message(pcommand);
+         __pointer(::apex::context) pcontext = get_context();
 
-         if (pcommand->m_bRet)
+         if (pcontext)
          {
 
-            return;
-
-         }
-
-      }
-
-      auto puser = user();
-
-      if(puser)
-      {
-
-         __pointer(channel) ptarget = puser->get_keyboard_focus(m_pthreadUserInteraction);
-
-         if (ptarget != nullptr && ptarget != this && ptarget != this)
-         {
-
-            ptarget->on_command_message(pcommand);
-
-            if (pcommand->m_bRet)
-            {
-
-               return;
-
-            }
+            pcontext->route_command(pcommand);
 
          }
 
@@ -390,7 +334,7 @@ namespace user
    }
 
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //   //call_update(INITIAL_UPDATE);        // initial update
@@ -398,10 +342,10 @@ namespace user
    //}
 
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
-   //   ::user::box::on_subject(psubject, pcontext);
+   //   ::user::box::handle(psubject, pcontext);
 
    //   //if (pHint != nullptr)
    //   //{
@@ -447,9 +391,9 @@ namespace user
 
    //void impact::OnViewUpdateHint(__pointer(::user::impact) pSender, LPARAM lHint, ::update * pHint)
    //{
-   //   UNREFERENCED_PARAMETER(pimpact);
-   //   UNREFERENCED_PARAMETER(eupdate);
-   //   UNREFERENCED_PARAMETER(pHint);
+   //   __UNREFERENCED_PARAMETER(pimpact);
+   //   __UNREFERENCED_PARAMETER(eupdate);
+   //   __UNREFERENCED_PARAMETER(pHint);
    //}
 
 
@@ -464,6 +408,7 @@ namespace user
       return false;   // not implemented, so not selected
    }
 
+
    void impact::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact))
    {
       //    UNUSED(pActivateView);   // unused in release builds
@@ -477,6 +422,46 @@ namespace user
          {
 
             set_keyboard_focus();
+
+         }
+
+         __pointer(::user::document) pdocument = get_document();
+
+         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+
+         if (pdocument && pframewindow)
+         {
+
+            auto ptoolbar = pdocument->get_toolbar(pframewindow, true);
+
+            if(::is_set(ptoolbar))
+            {
+
+               pframewindow->show_control_bar(ptoolbar);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         __pointer(::user::document) pdocument = get_document();
+
+         __pointer(::user::frame_window) pframewindow = get_parent_frame();
+
+         if (pdocument && pframewindow)
+         {
+
+            auto ptoolbar = pdocument->get_toolbar(pframewindow, false);
+
+            if(::is_set(ptoolbar))
+            {
+
+               pframewindow->hide_control_bar(ptoolbar);
+
+            }
 
          }
 
@@ -613,7 +598,7 @@ namespace user
 
    void impact::OnUpdateSplitCmd(::message::command* pCmdUI)
    {
-      UNREFERENCED_PARAMETER(pCmdUI);
+      __UNREFERENCED_PARAMETER(pCmdUI);
       /*ENSURE_ARG(pCmdUI != nullptr);
       CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
@@ -632,7 +617,7 @@ namespace user
 
    void impact::OnUpdateNextPaneMenu(::message::command* pCmdUI)
    {
-      UNREFERENCED_PARAMETER(pCmdUI);
+      __UNREFERENCED_PARAMETER(pCmdUI);
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
       pCmdUI->m_nID == ID_PREV_PANE);
       CSplitterWnd* pSplitter = GetParentSplitter(this, false);
@@ -642,7 +627,7 @@ namespace user
 
    bool impact::OnNextPaneCmd(::u32 nID)
    {
-      UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
       return false;
@@ -657,7 +642,7 @@ namespace user
 
    //void impact::OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo)
    //{
-   //   UNREFERENCED_PARAMETER(pInfo);
+   //   __UNREFERENCED_PARAMETER(pInfo);
    //   ASSERT_VALID(pgraphics);
    //   UNUSED(pgraphics); // unused in release builds
 
@@ -705,7 +690,7 @@ namespace user
 
    }
 
-   //void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   //void impact::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //   __pointer(::user::message) pusermessage(pmessage);
@@ -731,7 +716,7 @@ namespace user
    __pointer(::user::interaction) impact::create_view(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       auto pusersystem = __new(::user::system);
 
@@ -751,9 +736,9 @@ namespace user
    __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create_new, this);
 
-      auto pusersystem = __new(::user::system);
+      auto pusersystem = __create_new < ::user::system >();
 
       pcreate->m_pmatterUserPayload = pusersystem;
 
@@ -856,7 +841,7 @@ namespace user
          if (pobject.is_null() || ::is_null(pobject->get_application()))
          {
             
-            ERR("Cannot create view. Document doesn't have context application. (Should it be a blocking thing...)");
+            _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
 
             return nullptr;
 
@@ -894,9 +879,7 @@ namespace user
 
          auto pdocument = pview->get_document();
 
-         auto psubject = pdocument->subject(id_initial_update);
-
-         pdocument->handle_subject(psubject);
+         pdocument->signal(id_initial_update);
 
       }
 
@@ -925,7 +908,7 @@ namespace user
    void impact::on_message_left_button_down(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       pmessage->previous();
 
@@ -940,14 +923,14 @@ namespace user
 
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+      //auto pmouse = pmessage->m_union.m_pmouse;
    }
 
    void impact::on_message_mouse_move(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-      //   auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+      //   auto pmouse = pmessage->m_union.m_pmouse;
    }
 
 
@@ -972,7 +955,7 @@ namespace user
    //}
 
 
-   i32 impact::get_total_page_count(::subject::context * pcontext)
+   i32 impact::get_total_page_count(::context * pcontext)
    {
 
       return 1;
@@ -989,15 +972,15 @@ namespace user
    //void impact::on_draw_view_nc(::image * pimage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
    //}
 
    //void impact::on_draw_view(::draw2d::graphics_pointer & pgraphics, __pointer_array(::data::data) spadata)
    //{
 
-   //   UNREFERENCED_PARAMETER(pgraphics);
-   //   UNREFERENCED_PARAMETER(spadata);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(spadata);
 
    //}
 
@@ -1020,7 +1003,7 @@ namespace user
 
    //   }
 
-   //   retry_multi_lock synchronouslock(synchronization_object, millis(1), millis(1));
+   //   retry_multi_lock synchronouslock(synchronization_object, ::duration(1), ::duration(1));
 
    //   try
    //   {
@@ -1073,14 +1056,14 @@ namespace user
    // ::user::impact drawing support
 
 
-   /*void impact::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   /*void impact::handle(::subject * psubject, ::context * pcontext)
    {
    call_update(INITIAL_UPDATE);        // initial update
    }*/
 
    /*   void impact::on_update(::user::impact * pSender, LPARAM lHint, object * pHint)
    {
-   ::user::impact::on_subject(psubject, pcontext);
+   ::user::impact::handle(psubject, pcontext);
    }
    */
    /////////////////////////////////////////////////////////////////////////////
@@ -1226,7 +1209,7 @@ namespace user
 //
 //   DROPEFFECT impact::OnDragScroll(u32 /*dwKeyState*/, point_i32 /*point_i32*/)
 //   {
-//#if !defined(___NO_OLE_SUPPORT) && !defined(_UWP) && !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID) && !defined(SOLARIS)
+//#if !defined(___NO_OLE_SUPPORT) && !defined(_UWP) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 //      return DROPEFFECT_SCROLL; // this means do the default
 //#else
 //      return 0;
@@ -1269,22 +1252,22 @@ namespace user
 
    void impact::_001OnUpdateSplitCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnSplitCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnUpdateNextPaneMenu(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnNextPaneCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -1301,13 +1284,13 @@ namespace user
 
    void impact::_001OnFilePrintPreview(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
    void impact::_001OnFilePrint(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -1338,7 +1321,7 @@ namespace user
    }
 
    __pointer(::user::impact) pview =  (pview);
-   pview->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   pview->handle(::subject * psubject, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1374,7 +1357,7 @@ namespace user
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   ( (pview))->on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+   ( (pview))->handle(::subject * psubject, ::context * pcontext);
    if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
    {
    // erase the 3d style from the frame, since the ::user::impact is
@@ -1388,16 +1371,16 @@ namespace user
 
    void impact::on_message_right_button_down(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       get_parent_frame()->set_active_view((this));
    }
 
    void impact::on_message_middle_button_down(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-      //      auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+      //      auto pmouse = pmessage->m_union.m_pmouse;
 
       get_parent_frame()->set_active_view((this));
    }

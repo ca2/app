@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //   class CLASS_DECL_APEX folder_watch :
@@ -20,4 +20,4 @@
 //   };
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows

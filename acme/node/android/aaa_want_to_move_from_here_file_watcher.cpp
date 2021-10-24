@@ -272,15 +272,15 @@
 //
 //            pevent = (struct inotify_event *)&buff[i];
 //
-//            a.m_strFilename = pevent->name;
+//            a.m_strFilename = psubject->name;
 //
-//            a.m_pwatch = m_watchmap[(id &)pevent->wd];
+//            a.m_pwatch = m_watchmap[(id &)psubject->wd];
 //
-//            a.m_ulOsAction = pevent->mask;
+//            a.m_ulOsAction = psubject->mask;
 //
 //            handle_action(&a);
 //
-//            i += sizeof(struct inotify_event) + pevent->len;
+//            i += sizeof(struct inotify_event) + psubject->len;
 //
 //         }
 //

@@ -22,9 +22,9 @@ namespace draw2d
    void object::dump(dump_context& dumpcontext) const
    {
 
-      UNREFERENCED_PARAMETER(dumpcontext);
+      __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -32,7 +32,7 @@ namespace draw2d
    void object::assert_valid() const
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -40,7 +40,7 @@ namespace draw2d
    bool object::CreateStockObject(i32 nIndex)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -50,7 +50,7 @@ namespace draw2d
    bool object::UnrealizeObject()
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -78,7 +78,7 @@ namespace draw2d
    ::u32 object::GetObjectType() const
    {
       
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
       
       return 0;
 
@@ -88,9 +88,9 @@ namespace draw2d
    bool object::operator==(const object & obj) const
    {
       
-      UNREFERENCED_PARAMETER(obj);
+      __UNREFERENCED_PARAMETER(obj);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -100,9 +100,9 @@ namespace draw2d
    bool object::operator!=(const object & obj) const
    {
 
-      UNREFERENCED_PARAMETER(obj);
+      __UNREFERENCED_PARAMETER(obj);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -116,6 +116,10 @@ namespace draw2d
       {
 
          ::draw2d::object* pthis = (::draw2d::object*) this;
+
+         ::draw2d::lock draw2dlock;
+
+         ::draw2d::device_lock devicelock(pthis);
 
          if (this->m_osdata[0])
          {

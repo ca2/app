@@ -16,6 +16,7 @@ struct pixmap
 #endif
 {
 
+
 #ifndef __cplusplus
    struct image_header        m_header;
 #endif
@@ -25,6 +26,9 @@ struct pixmap
    ::point_i32                   m_point;
    ::color32_t *                 m_pcolorrefRaw;
    ::size_i32                    m_sizeRaw;
+   mutable bool                  m_bTrans; // optionally used by implementation
+   mutable bool                  m_bMapped; // optionally used by implementation
+   bool                          m_bReduced; // optionally used by implementation
 
 
 #ifdef __cplusplus
@@ -35,7 +39,9 @@ struct pixmap
          m_iScan = 0;
          m_pcolorref1 = nullptr;
          m_pcolorrefRaw = nullptr;
-
+         m_bMapped = false;
+         m_bReduced = false;
+         m_bTrans = false;
       }
 
 
@@ -67,6 +73,7 @@ struct pixmap
          map();
 
       }
+
 
 
       int scan_size() const { return m_iScan; }
@@ -152,22 +159,22 @@ struct pixmap
    //   }
    //
    //
-   //   ::rectangle_i32 map(::rectangle_i32 rectNew)
+   //   ::rectangle_i32 map(::rectangle_i32 rectangleNew)
    //   {
    //
-   //      auto rectPrevious = rectangle_i32();
+   //      auto rectanglePrevious = rectangle_i32();
    //
-   //      operator =(rectNew);
+   //      operator =(rectangleNew);
    //
-   //      return rectPrevious;
+   //      return rectanglePrevious;
    //
    //   }
    //
    //
-   //   void unmap(::rectangle_i32 rectPrevious)
+   //   void unmap(::rectangle_i32 rectanglePrevious)
    //   {
    //
-   //      operator =(rectPrevious);
+   //      operator =(rectanglePrevious);
    //
    //   }
    //
@@ -217,7 +224,7 @@ struct pixmap
 
 
       pixmap * m_pbitmap;
-      ::rectangle_i32      m_rectPrevious;
+      ::rectangle_i32      m_rectanglePrevious;
       bool        m_bMapped;
 
 
@@ -247,7 +254,7 @@ struct pixmap
 
       }
 
-      bool map(::rectangle_i32 rectMap)
+      bool map(::rectangle_i32 rectangleMap)
       {
 
          if (m_bMapped)
@@ -257,9 +264,9 @@ struct pixmap
 
          }
 
-         m_rectPrevious = m_pbitmap->rectangle();
+         m_rectanglePrevious = m_pbitmap->rectangle();
 
-         m_pbitmap->map(rectMap);
+         m_pbitmap->map(rectangleMap);
 
          m_bMapped = true;
 
@@ -278,7 +285,7 @@ struct pixmap
 
          }
 
-         m_pbitmap->map(m_rectPrevious);
+         m_pbitmap->map(m_rectanglePrevious);
 
          m_bMapped = false;
 

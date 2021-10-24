@@ -25,7 +25,7 @@ namespace filemanager
 
 
       document();
-      virtual ~document();
+      ~document() override;
 
 
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
@@ -33,8 +33,8 @@ namespace filemanager
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
 
       
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual ::fs::data *                         fs_data();
@@ -67,7 +67,7 @@ namespace filemanager
       virtual void defer_check_manager_id(string strNewManagerId = "");
       virtual void on_request(::create * pcreate) override;
 
-      virtual bool do_prompt_file_name(::payload & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       __pointer(::filemanager::data) create_file_manager_data(::create * pcreate = nullptr);
 
@@ -129,8 +129,8 @@ namespace filemanager
       virtual void on_command(::message::command * pcommand) override;
       virtual void on_command_probe(::message::command * pcommand) override;
 
-      virtual bool on_new_document() override;
-      virtual bool on_open_document(const ::payload & varFile) override;
+      bool on_new_document() override;
+      virtual bool on_open_document(const ::payload & payloadFile) override;
 
       virtual bool HandleDefaultFileManagerItemCmdMsg(::message::command * pcommand,::file::item_array & itema);
 
@@ -143,7 +143,11 @@ namespace filemanager
 
       bool set_filemanager_data(::filemanager::data * pdata);
 
-      virtual bool on_create_bars(::user::frame_window * pframe) override;
+
+      //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
+
+
+      ::id get_toolbar_id() override;
 
 
       virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);

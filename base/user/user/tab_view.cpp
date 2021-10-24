@@ -13,7 +13,6 @@ namespace user
       m_flagNonClient.erase(non_client_background);
       m_flagNonClient.erase(non_client_focus_rect);
 
-      get_data()->m_pcallback       = this;
       m_pimpactdata                   = nullptr;
       m_pimpactdataOld                = nullptr;
       m_bCloseDocumentIfNoTabs      = false;
@@ -46,6 +45,10 @@ namespace user
    void tab_view::on_message_create(::message::message * pmessage)
    {
 
+      auto pdata = get_data();
+
+      pdata->m_pcallback = this;
+
       if (pmessage->previous())
       {
 
@@ -56,12 +59,12 @@ namespace user
    }
 
 
-   void tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      tab::on_subject(psubject, pcontext);
+      tab::handle(psubject, pcontext);
 
-      impact::on_subject(psubject, pcontext);
+      impact::handle(psubject, pcontext);
 
    }
 
@@ -69,7 +72,7 @@ namespace user
    void tab_view::_001OnSetFocus(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if(get_view_uie() != nullptr)
       {
@@ -114,7 +117,7 @@ namespace user
 
       }
 
-      if (pview.is_set())
+      if (pview.is_set() && pview != this)
       {
 
          pview->OnActivateView(bActivate, pActivateView, pDeactiveView);
@@ -199,9 +202,9 @@ namespace user
    void tab_view::install_message_routing(::channel * pchannel)
    {
 
-      impact::install_message_routing(pchannel);
-
       ::user::tab::install_message_routing(pchannel);
+
+      impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
@@ -399,7 +402,7 @@ namespace user
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (i32)pchannel->get_data()->m_iClickTab);
 
-      auto rectangle = pchannel->_001ClientToScreen(pchannel->get_data()->m_rectTabClient);
+      auto rectangle = pchannel->_001ClientToScreen(pchannel->get_data()->m_rectangleTabClient);
 
       m_pdroptargetwindow->m_bTransparent = true;
 
@@ -419,7 +422,7 @@ namespace user
    void tab_view::_001DropTargetWindowRelay(::user::tab * pchannel)
    {
 
-      UNREFERENCED_PARAMETER(pchannel);
+      __UNREFERENCED_PARAMETER(pchannel);
 
       set_need_redraw();
 
@@ -428,7 +431,7 @@ namespace user
 
    void tab_view::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
-      UNREFERENCED_PARAMETER(pchannel);
+      __UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
       {
          //psystem->erase_frame(m_pdroptargetwindow);
@@ -453,7 +456,7 @@ namespace user
    }
 
 
-   void tab_view::on_change_cur_sel()
+   void tab_view::_on_change_cur_sel()
    {
 
       index iTab = get_current_tab_index();
@@ -464,9 +467,9 @@ namespace user
 
       auto ptabdata = get_data();
 
-      ::rectangle_i32 rectTabClient = ptabdata->m_rectTabClient;
+      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, rectTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(id, rectangleTabClient);
 
       if (pimpactdata == nullptr)
       {
@@ -499,7 +502,7 @@ namespace user
                if (pane_holder(iTab) == nullptr)
                {
 
-                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectTabClient);
+                  get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = place_hold(pimpactdata->m_puserinteraction, get_data()->m_rectangleTabClient);
 
                }
                else
@@ -515,7 +518,7 @@ namespace user
             else
             {
 
-               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+               get_data()->m_tabpanecompositea[iTab]->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
 
             }
 
@@ -575,7 +578,10 @@ namespace user
 
       }
 
-      if (m_pimpactdataOld && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus)
+      if (m_pimpactdataOld 
+         && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
+         && m_pimpactdataOld->m_id != MENU_IMPACT
+         && m_pimpactdataOld->m_id != OPTIONS_IMPACT)
       {
 
          output_debug_string("::user::e_flag_hide_on_kill_focus");
@@ -587,8 +593,8 @@ namespace user
       if (m_pimpactdata != nullptr)
       {
 
-         if (m_pimpactdata->m_eflag & ::user::e_flag_hide_all_others_on_show
-            || m_pimpactdata->m_eflag & ::user::e_flag_hide_topic_on_show)
+         if (m_pimpactdata->m_eflag.has(::user::e_flag_hide_all_others_on_show)
+            || m_pimpactdata->m_eflag.has(::user::e_flag_hide_topic_on_show))
          {
 
             ::user::tab_pane_composite_array & panecompositea = get_data()->m_tabpanecompositea;
@@ -636,12 +642,12 @@ namespace user
 
       m_pimpactdata->m_pplaceholder->get_client_rect(rectangleClient);
 
-      if (!rectTabClient.is_empty())
+      if (!rectangleTabClient.is_empty())
       {
 
          m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
-         m_pimpactdata->m_pplaceholder->place(rectTabClient);
+         m_pimpactdata->m_pplaceholder->place(rectangleTabClient);
 
          m_pimpactdata->m_pplaceholder->display();
 
@@ -682,13 +688,36 @@ namespace user
 
       papplication->on_change_cur_sel(this);
 
+
+
    }
 
 
-   ::user::tab_pane * tab_view::create_tab_by_id(id id)
+   void tab_view::on_change_cur_sel()
    {
 
-      if (get_impact_data(id, get_data()->m_rectTabClient) == nullptr)
+      _on_change_cur_sel();
+
+      if (m_pimpactdata->m_id == MENU_IMPACT)
+      {
+
+         create_impact_menu(m_pimpactdata);
+
+         __pointer(::user::menu) pmenu = get_view_uie();
+
+         prepare_impact_menu(pmenu);
+
+         return;
+
+      }
+
+   }
+
+
+   ::user::tab_pane * tab_view::create_tab_by_id(const ::id & id)
+   {
+
+      if (get_impact_data(id, get_data()->m_rectangleTabClient) == nullptr)
       {
 
          return nullptr;
@@ -705,6 +734,21 @@ namespace user
       }
 
       return get_data()->m_tabpanecompositea[iTab];
+
+   }
+
+
+   ::e_status tab_view::prepare_impact_menu(::user::menu * pmenu)
+   {
+
+      if (pmenu->load_xml_menu("matter://impact.menu"))
+      {
+
+         pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
+
+      }
+
+      return ::success;
 
    }
 
@@ -770,14 +814,14 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_view::create_impact(id id, const ::rectangle_i32 & rectCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_view::create_impact(id id, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
    //   if (m_pviewcreator == nullptr)
    //      return nullptr;
 
-   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(id, rectCreate);
+   //   ::user::impact_data * pimpactdata = m_pviewcreator->::user::impact_creator::create_impact(id, rectangleCreate);
 
 
    //   if (pimpactdata != nullptr)
@@ -941,18 +985,18 @@ namespace user
 
          {
 
-            millis t1 = millis::now();
+            ::duration t1 = ::duration::now();
 
             _001DrawThis(pgraphics);
 
-            millis d1 = t1.elapsed();
+            ::duration d1 = t1.elapsed();
 
-            if(d1 > 50)
+            if(d1 > 50_ms)
             {
 
-               string strType = type_name();
+               string strType = __type_name(this);
 
-               CINFO(prodevian)("(more than 50ms) "+strType+"::_000DrawThis took " + __str(d1) + ".\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
 
             }
 
@@ -997,7 +1041,7 @@ namespace user
          if (!pimpactdata->m_pplaceholder)
          {
 
-            auto pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+            auto pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
 
             pimpactdata->m_pplaceholder = pplaceholder;
 
@@ -1039,17 +1083,10 @@ namespace user
    }
 
 
-   void tab_view::route_command_message(::message::command * pcommand)
+   void tab_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      if (!handle(pcommand))
-      {
-
-         return;
-
-      }
-
-      impact::route_command_message(pcommand);
+      impact::route_command(pcommand, bRouteToKeyDescendant);
 
    }
 
@@ -1157,14 +1194,14 @@ namespace user
 
          pgraphics->fill_rectangle(rectangle, crBk);
 
-         pgraphics->draw_rectangle(rectangle, crBorder);
+         pgraphics->draw_inset_rectangle(rectangle, crBorder);
 
       }
 
    }
 
 
-   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
+   //bool tab_drop_target_window::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction)
    //{
 
    //   etranslucency = e_translucency_present;
@@ -1176,7 +1213,7 @@ namespace user
    void tab_drop_target_window::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto psession = get_session();
 

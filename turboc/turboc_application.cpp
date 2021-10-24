@@ -56,8 +56,8 @@ namespace turboc
       create_factory <::turboc::top_view >();
       create_factory <::turboc::lite_view >();
       create_factory <::turboc::full_view >();
-      create_factory <::turboc::view >();
-      create_factory <::turboc::main_view >();
+      create_factory <::turboc::impact >();
+      create_factory <::turboc::main_impact >();
       create_factory <::turboc::switcher_view >();
       create_factory <::turboc::pane_view >();
 
@@ -78,7 +78,7 @@ namespace turboc
       "main",
       __type(::turboc::document),
       __type(::turboc::frame),       // top level SDI frame::user::interaction_impl
-      __type(::turboc::main_view));
+      __type(::turboc::main_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseView = pDocTemplate;
       pDocTemplate = new ::user::single_document_template(
@@ -203,7 +203,7 @@ namespace turboc
 
       m_iErrorAiFont = -1;
 
-      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::priority_normal,0,0,NULL);
+      __begin_thread(get_application(),&thread_proc_load_ai_font,this,::e_priority_normal,0,0,NULL);
 
    }
 

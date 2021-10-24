@@ -2,7 +2,7 @@
 #pragma once
 
 
-class clib_memory_allocator
+class CLASS_DECL_ACME clib_memory_allocator
 {
 public:
 
@@ -14,7 +14,7 @@ public:
 };
 
 
-class memory_allocator
+class CLASS_DECL_ACME memory_allocator
 {
 public:
 

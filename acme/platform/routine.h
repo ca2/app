@@ -6,9 +6,13 @@
 
 
    class CLASS_DECL_ACME routine :
-           public ::function_pointer
+      public ::function_pointer
    {
    public:
+
+
+      routine() {}
+      ~routine() {}
 
 
       using ::function_pointer::function_pointer;

@@ -21,7 +21,7 @@
 //
 //   if(dwTimeout != (::u32) U32_INFINITE_TIMEOUT)
 //   {
-//      start= ::millis::now();
+//      start= ::duration::now();
 //   }
 //
 //
@@ -83,7 +83,7 @@
 //            {
 //               return WAIT_TIMEOUT;
 //            }
-//            if(pwaitableptra[i]->lock(millis(0)))
+//            if(pwaitableptra[i]->lock(::duration(0)))
 //            {
 //               return WAIT_OBJECT_0 + i;
 //            }
@@ -1009,7 +1009,7 @@
 ////htask_t start_thread(::u32(WINAPI * pfn)(LPVOID),LPVOID pv,i32 iPriority)
 ////{
 ////
-////   UNREFERENCED_PARAMETER(iPriority);
+////   __UNREFERENCED_PARAMETER(iPriority);
 ////
 ////   return create_thread(NULL,0,pfn,pv,0,NULL);
 ////
@@ -1254,7 +1254,7 @@
 ////   try
 ////   {
 ////
-////      m_htask->m_pevent->wait(millis(dwMillis));
+////      m_htask->m_pevent->wait(::duration(dwMillis));
 ////
 ////   }
 ////   catch(...)

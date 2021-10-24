@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "acme/os/ansios/file_raw.h"
+#include "acme/node/operating_system/ansi/file_raw.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
 
@@ -46,10 +46,10 @@ namespace linux
    }
 
 
-   file_result file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+   file_transport file_context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
    {
 
-      return ::file_context::get_file(varFile, eopen);
+      return ::file_context::get_file(payloadFile, eopen);
 
    }
 
@@ -105,7 +105,11 @@ namespace linux
 
       auto pacmedir = psystem->m_pacmedir;
 
-      pathJson = pacmedir->home() / ".dropbox/info.json";
+      pathJson =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home() / ".dropbox/info.json";
 
       return pathJson;
 

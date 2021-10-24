@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "remote_native_file.h"
 
@@ -7,8 +7,8 @@ namespace fs
 {
 
 
-   remote_native_file::remote_native_file(::payload varFile) :
-      m_varFile(varFile)
+   remote_native_file::remote_native_file(::payload payloadFile) :
+      m_varFile(payloadFile)
    {
 
    }
@@ -52,16 +52,22 @@ namespace fs
       }
    }
 
-   filesize remote_native_file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize remote_native_file::seek(filesize lOff, ::enum_seek eseek)
    {
+
       if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
-         return m_httpfile.seek(lOff, nFrom);
+
+         return m_httpfile.translate(lOff, eseek);
+
       }
       else
       {
-         return m_memfile.seek(lOff, nFrom);
+
+         return m_memfile.translate(lOff, eseek);
+
       }
+
    }
 
 
@@ -69,7 +75,7 @@ namespace fs
    {
       /*if(m_nOpenFlags & ::file::e_open_write)
       {
-      __throw(::exception::exception("Cannot open remote_native_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse."));
+      __throw(::exception("Cannot open remote_native_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse."));
       return;
       }*/
 
@@ -117,7 +123,7 @@ namespace fs
 
          m_pcontext->m_papexcontext->http().put(strUrl,m_varFile["xmledit"].cast < ::memory_file >(),setRequest);
 
-         string strResponse(setRequest["get_response"]);
+         string strResponse(setRequest["get_response"].get_string());
 
          property_set set;
 

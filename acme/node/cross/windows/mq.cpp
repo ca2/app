@@ -1,7 +1,7 @@
 #include "framework.h"
-//#include "acme/os/_c.h"
-//#include "acme/os/_.h"
-//#include "acme/os/_os.h"
+//#include "acme/node/operating_system/_c.h"
+//#include "acme/node/operating_system/_.h"
+//#include "acme/node/operating_system/_os.h"
 //#include "message_queue.h"
 //
 //#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in

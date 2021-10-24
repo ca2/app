@@ -220,7 +220,7 @@ namespace os
 
       //bool bShow = true;
 
-//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectDesktop.right-m_point.x, m_rectDesktop.bottom-m_point.y, m_size.cx, m_size.cy);
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right-m_point.x, m_rectangleDesktop.bottom-m_point.y, m_size.cx, m_size.cy);
 
       //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
 
@@ -301,7 +301,7 @@ namespace os
 
                            //                lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                            //                  lpMsg->wParam        = 0;
-                           //              lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+                           //              lpMsg->lParam        = __MAKE_LONG(e.xbutton.x_root, e.xbutton.y_root);
 
                         }
 
@@ -430,7 +430,7 @@ namespace os
 
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->wParam        = e.xkey.keycode;
-                        //lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
+                        //lpMsg->lParam        = __MAKE_LONG(0, e.xkey.keycode);
 
 
 
@@ -441,7 +441,7 @@ namespace os
                         //lpMsg->hwnd          = oswindow_get(display, e.xbutton.window);
                         //lpMsg->message       = e_message_mouse_move;
                         //lpMsg->wParam        = 0;
-                        //lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
+                        //lpMsg->lParam        = __MAKE_LONG(e.xmotion.x_root, e.xmotion.y_root);
 
                         on_mouse_move(e.xmotion.x, e.xmotion.y);
 
@@ -593,37 +593,37 @@ namespace os
    void simple_ui::on_draw_framebuffer()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      ::get_window_rect(m_window, rectWindow);
+      ::get_window_rect(m_window, rectangleWindow);
 
-      if(rectWindow.size() != m_rectangleWindow.size())
+      if(rectangleWindow.size() != m_rectangleWindow.size())
       {
 
-         on_size(rectWindow.width(), rectWindow.height());
+         on_size(rectangleWindow.width(), rectangleWindow.height());
 
       }
 
-      if(rectWindow.top_left() != m_rectangleWindow.top_left())
+      if(rectangleWindow.top_left() != m_rectangleWindow.top_left())
       {
 
-         on_move(rectWindow.left, rectWindow.top);
+         on_move(rectangleWindow.left, rectangleWindow.top);
 
       }
 
-      m_rectangleWindow = rectWindow;
+      m_rectangleWindow = rectangleWindow;
 
 
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rectangle_i32 rectangleClient = rectWindow;
+         ::rectangle_i32 rectangleClient = rectangleWindow;
 
-         rectangleClient -= rectWindow.top_left();
+         rectangleClient -= rectangleWindow.top_left();
 
          ::rectangle_i32 rectangle;
 
-         rectangle = rectWindow;
+         rectangle = rectangleWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
 
@@ -649,46 +649,46 @@ namespace os
 
          while (size >= 8)
          {
-            dst[0] = LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
+            dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
+            dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
 
-            dst[4 + 0] = LOBYTE(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 1] = LOBYTE(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
-            dst[4 + 2] = LOBYTE(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 0] = __LOBYTE(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 1] = __LOBYTE(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
+            dst[4 + 2] = __LOBYTE(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
 
-            dst[8 + 0] = LOBYTE(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 1] = LOBYTE(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
-            dst[8 + 2] = LOBYTE(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 0] = __LOBYTE(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 1] = __LOBYTE(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
+            dst[8 + 2] = __LOBYTE(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
 
-            dst[12 + 0] = LOBYTE(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 1] = LOBYTE(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
-            dst[12 + 2] = LOBYTE(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 0] = __LOBYTE(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 1] = __LOBYTE(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
+            dst[12 + 2] = __LOBYTE(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
 
-            dst[16 + 0] = LOBYTE(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 1] = LOBYTE(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
-            dst[16 + 2] = LOBYTE(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 0] = __LOBYTE(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 1] = __LOBYTE(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
+            dst[16 + 2] = __LOBYTE(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
 
-            dst[20 + 0] = LOBYTE(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 1] = LOBYTE(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
-            dst[20 + 2] = LOBYTE(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 0] = __LOBYTE(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 1] = __LOBYTE(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
+            dst[20 + 2] = __LOBYTE(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
 
-            dst[24 + 0] = LOBYTE(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 1] = LOBYTE(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
-            dst[24 + 2] = LOBYTE(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 0] = __LOBYTE(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 1] = __LOBYTE(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
+            dst[24 + 2] = __LOBYTE(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
 
-            dst[28 + 0] = LOBYTE(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 1] = LOBYTE(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
-            dst[28 + 2] = LOBYTE(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 0] = __LOBYTE(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 1] = __LOBYTE(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
+            dst[28 + 2] = __LOBYTE(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
 
             dst += 4 * 8;
             size -= 8;
          }
          while (size--)
          {
-            dst[0] = LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-            dst[1] = LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-            dst[2] = LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+            dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
+            dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
+            dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
             dst += 4;
          }
 
@@ -729,7 +729,7 @@ namespace os
 
       m_xlib.create(m_window, cx, cy);
 
-      on_layout(::draw2d::graphics_pointer & pgraphics);
+      on_layout(pgraphics);
 
       return true;
 

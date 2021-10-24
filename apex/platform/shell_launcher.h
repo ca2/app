@@ -42,8 +42,8 @@ namespace apex
       shell_launcher();
       virtual ~shell_launcher();
 
-      virtual ::e_status setup(duration durationTimeout = ::one_minute());
-      virtual ::e_status setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+      virtual ::e_status setup(duration durationTimeout = ::minute());
+      virtual ::e_status setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::minute());
 
       virtual ::e_status launch();
 

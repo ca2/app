@@ -241,10 +241,18 @@ void command_line::_001ParseCommandLine(const ::string & strCommandLine)
    if (!m_varQuery.propset().has_property("build") || m_varQuery["build"].is_empty())
    {
 
-      if (file_exists(pacmedir->system() / "config\\plugin\\build.txt"))
+      if (m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = file_as_string(pacmedir->system() / "config\\plugin\\build.txt");
+         string str = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\plugin\\build.txt");
 
          m_varQuery["build"] = str;
 
@@ -260,7 +268,7 @@ void command_line::_001ParseCommandLineUri(const ::string & strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 }
 

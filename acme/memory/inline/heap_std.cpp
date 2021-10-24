@@ -1,4 +1,4 @@
-﻿
+
 
 #if !defined(MCHECK) && !defined(_VLD) && !defined(__MCRTDBG) && !MEMDLEAK
 
@@ -56,7 +56,7 @@ void * unaligned_memory_allocate(memsize size)
 
    void * punaligned;
 
-#if defined(APPLEOS) || defined(LINUX)
+#if defined(__APPLE__) || defined(LINUX)
 
    punaligned = aligned_memory_allocate(size);
 
@@ -107,9 +107,9 @@ void * aligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char * s
 
    void * paligned;
 
-   UNREFERENCED_PARAMETER(nBlockUse);
-   UNREFERENCED_PARAMETER(szFileName);
-   UNREFERENCED_PARAMETER(nLine);
+   __UNREFERENCED_PARAMETER(nBlockUse);
+   __UNREFERENCED_PARAMETER(szFileName);
+   __UNREFERENCED_PARAMETER(nLine);
 
    align = align <= 0 ? ALIGN_BYTE_COUNT : align;
 
@@ -160,7 +160,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
 
    void* punaligned;
 
-#if defined(APPLEOS) || defined(LINUX)
+#if defined(__APPLE__) || defined(LINUX)
 
    punaligned = aligned_memory_allocate(size);
 
@@ -213,7 +213,7 @@ void * unaligned_memory_allocate_debug(memsize size, i32 nBlockUse, const char *
 void * _memory_allocate(memsize size)
 {
 
-//#if defined(APPLEOS) || defined(RASPBIAN) || defined(WINDOWS)
+//#if defined(__APPLE__) || defined(RASPBIAN) || defined(WINDOWS)
 
    return aligned_memory_allocate(size);
 
@@ -229,7 +229,7 @@ void * _memory_allocate(memsize size)
 void * _memory_allocate_no_track(memsize size)
 {
 
-//#if defined(APPLEOS) || defined(RASPBIAN)
+//#if defined(__APPLE__) || defined(RASPBIAN)
 
    return aligned_memory_allocate(size);
 

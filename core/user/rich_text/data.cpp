@@ -69,17 +69,11 @@ namespace user
 
          m_bCaretRight = false;
 
-         m_pformata = __new(__pointer_array(format));
-
-         m_pformatCurrent = add_format();
-
-         m_plinea = __new(__pointer_array(line));
-
          m_iSelBeg = 0;
 
          m_iSelEnd = 0;
 
-         m_millisCaretPeriod = 1000;
+         m_durationCaretPeriod = 1_s;
 
          defer_create_mutex();
 
@@ -99,16 +93,53 @@ namespace user
       }
 
 
+      ::e_status data::initialize_data(::data::data_container_base * pdocument)
+      {
+
+         auto estatus = ::data::data::initialize_data(pdocument);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = __construct_new(m_pformata);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         m_pformatCurrent = add_format();
+
+         estatus = __construct_new(m_plinea);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       __pointer(format) data::add_format()
       {
 
-         auto pformat = __new(format);
+         auto pformat = __create_new < format >();
 
          pformat->initialize_user_rich_text_format(m_pformata);
 
          m_pformata->add(pformat);
 
-         return pformat;
+         return ::move(pformat);
 
       }
 
@@ -260,9 +291,9 @@ namespace user
             for (auto & pbox : pline->ptra())
             {
 
-               rBox.maximum(pbox->m_rectDevice);
+               rBox.maximum(pbox->m_rectangleDevice);
 
-               yLast = pbox->m_rectHitTest.top;
+               yLast = pbox->m_rectangleHitTest.top;
 
                if (point.y < yLast)
                {
@@ -271,12 +302,12 @@ namespace user
 
                }
 
-               if (pbox->m_rectHitTest.contains_y(point.y))
+               if (pbox->m_rectangleHitTest.contains_y(point.y))
                {
 
-                  double xLeft = pbox->m_rectDevice.left;
+                  double xLeft = pbox->m_rectangleDevice.left;
 
-                  double xLast = pbox->m_rectHitTest.left;
+                  double xLast = pbox->m_rectangleHitTest.left;
 
                   double xRight;
 
@@ -374,24 +405,24 @@ namespace user
 
             auto& pbox = pline->element_at(iBox);
 
-            if (x <= pbox->m_rectHitTest.left)
+            if (x <= pbox->m_rectangleHitTest.left)
             {
 
                return pbox->m_iPosBeg;
 
             }
-            else if (iBox >= pline->get_upper_bound() && x > pbox->m_rectHitTest.right)
+            else if (iBox >= pline->get_upper_bound() && x > pbox->m_rectangleHitTest.right)
             {
 
                return pbox->m_iPosEnd + 1;
 
             }
-            else if (x <= pbox->m_rectHitTest.right)
+            else if (x <= pbox->m_rectangleHitTest.right)
             {
 
-               double xLeft = pbox->m_rectBox.left;
+               double xLeft = pbox->m_rectangleBox.left;
 
-               double xLast = pbox->m_rectHitTest.left;
+               double xLast = pbox->m_rectangleHitTest.left;
 
                double xRight;
 
@@ -787,7 +818,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         m_pedit->on_after_change(::user::e_event_after_change_text);
+         m_pedit->on_after_change(::e_subject_after_change_text);
 
       }
 
@@ -929,7 +960,7 @@ namespace user
 
          }
 
-         m_pedit->on_after_change(::user::e_event_after_change_text_format);
+         m_pedit->on_after_change(::e_subject_after_change_text_format);
 
       }
 
@@ -1259,11 +1290,11 @@ namespace user
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
-               //int iHeight = pspan->format()->m_font->get_height();
+               //int iHeight = pspan->format()->m_pfont->get_height();
 
                //pbox->m_rectangle.set(x, 0, x, 0);
 
-               //pbox->m_rectHitTest.set(x, 0, x, 0);
+               //pbox->m_rectangleHitTest.set(x, 0, x, 0);
 
                //pbox->m_size.set_size(0, iHeight);
 
@@ -1314,9 +1345,9 @@ namespace user
                   pbox->m_sizeBox.cx = 0;
 
                   // just horizonal layout
-                  pbox->m_rectBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
 
-                  pbox->m_rectHitTest = pbox->m_rectBox;
+                  pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                   pline->add(pbox);
 
@@ -1366,9 +1397,9 @@ namespace user
                   pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                   // just horizonal layout
-                  pbox->m_rectBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
 
-                  pbox->m_rectHitTest = pbox->m_rectBox;
+                  pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                   pline->add(pbox);
 
@@ -1413,9 +1444,9 @@ namespace user
                pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                // just horizonal layout
-               pbox->m_rectBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
 
-               pbox->m_rectHitTest = pbox->m_rectBox;
+               pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                pline->add(pbox);
 
@@ -1445,9 +1476,9 @@ namespace user
                pbox->m_sizeBox.cx = dPosition;
 
                // just horizonal layout
-               pbox->m_rectBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
 
-               pbox->m_rectHitTest = pbox->m_rectBox;
+               pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
                pline->add(pbox);
 
@@ -1492,7 +1523,7 @@ namespace user
          if (m_pedit->is_picture_enabled())
          {
 
-            rectangle = m_pedit->m_ppictureimpl->m_rectDrawing;
+            rectangle = m_pedit->m_ppictureimpl->m_rectangleDrawing;
 
             rectangle -= rectangle.origin();
 
@@ -1531,7 +1562,7 @@ namespace user
 
          auto rectangle = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
+         //pgraphics->draw_inset_3d_rectangle(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
@@ -1547,7 +1578,7 @@ namespace user
          if (bHasFocus && m_pedit->is_text_editable())
          {
 
-            bCaretOn = m_pedit->m_millisFocusStart.on_off(m_millisCaretPeriod);
+            bCaretOn = m_pedit->m_durationFocusStart.integral_millisecond().on_off(m_durationCaretPeriod.integral_millisecond());
 
          }
 
@@ -1596,9 +1627,9 @@ namespace user
 
                   iMaxCy = maximum(iMaxCy, (int) pbox->m_sizeBox.cy);
 
-                  pbox->m_rectBox.top = y;
+                  pbox->m_rectangleBox.top = y;
 
-                  pbox->m_rectHitTest.top = y;
+                  pbox->m_rectangleHitTest.top = y;
 
                }
 
@@ -1607,11 +1638,11 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  pbox->m_rectBox.bottom = nexty;
+                  pbox->m_rectangleBox.bottom = nexty;
 
-                  pbox->m_rectHitTest.bottom = nexty;
+                  pbox->m_rectangleHitTest.bottom = nexty;
 
-                  //pbox->m_rectBox.right += 2;
+                  //pbox->m_rectangleBox.right += 2;
 
                }
 
@@ -1694,7 +1725,7 @@ namespace user
                               if (iBoxPosBeg == pboxBeg->m_iPosBeg)
                               {
 
-                                 l = pboxBeg->m_rectBox.left;
+                                 l = pboxBeg->m_rectangleBox.left;
 
                               }
                               else
@@ -1709,13 +1740,13 @@ namespace user
                               if (iBoxPosEnd == pboxEnd->m_iPosBeg)
                               {
 
-                                 r = pboxEnd->m_rectBox.left;
+                                 r = pboxEnd->m_rectangleBox.left;
 
                               }
                               else if (iBoxPosEnd >= pboxEnd->m_iPosEnd + 1)
                               {
 
-                                 r = pboxEnd->m_rectBox.right;
+                                 r = pboxEnd->m_rectangleBox.right;
 
                               }
                               else
@@ -1726,9 +1757,9 @@ namespace user
 
                               pgraphics->fill_rectangle(
                                  ::rectangle_f64_dimension(l,
-                                 pboxBeg->m_rectBox.top,
+                                 pboxBeg->m_rectangleBox.top,
                                  r,
-                                 pboxEnd->m_rectBox.bottom),
+                                 pboxEnd->m_rectangleBox.bottom),
                                  crBkSel);
 
                            }
@@ -1752,7 +1783,7 @@ namespace user
             if (m_pedit->m_ppictureimpl != nullptr)
             {
 
-               rDropShadow = m_pedit->m_ppictureimpl->m_rectDrawing;
+               rDropShadow = m_pedit->m_ppictureimpl->m_rectangleDrawing;
 
                rDropShadow.offset(-rDropShadow.center());
 
@@ -1763,9 +1794,9 @@ namespace user
             if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bGlowDropShadow)
             {
 
-               pimage->create(m_pedit->m_ppictureimpl->m_rectDrawing.size());
+               pimage->create(m_pedit->m_ppictureimpl->m_rectangleDrawing.size());
 
-               ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectDrawing.size();
+               ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectangleDrawing.size();
 
                pimage->g()->SetViewportOrg(sz.cx / 2, sz.cy / 2);
 
@@ -1820,12 +1851,12 @@ namespace user
 
                   }
 
-                  auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
+                  auto dDescent = pbox->m_pspan->m_pformat->m_pfont->get_descent(pgraphics);
 
                   pgraphics->fill_rectangle(::rectangle_f64(r,
-                     pbox->m_rectBox.top + 1,
+                     pbox->m_rectangleBox.top + 1,
                      r + 0.5,
-                     pbox->m_rectBox.bottom - dDescent),
+                     pbox->m_rectangleBox.bottom - dDescent),
                      argb(255, 0, 0, 0));
 
                }
@@ -1844,13 +1875,13 @@ namespace user
                for (auto& pbox : pline->ptra())
                {
 
-                  pbox->m_rectDevice = pbox->m_rectBox;
+                  pbox->m_rectangleDevice = pbox->m_rectangleBox;
 
-                  m.transform(pbox->m_rectHitTest.top_left());
-                  m.transform(pbox->m_rectHitTest.bottom_right());
+                  m.transform(pbox->m_rectangleHitTest.top_left());
+                  m.transform(pbox->m_rectangleHitTest.bottom_right());
 
-                  m.transform(pbox->m_rectDevice.top_left());
-                  m.transform(pbox->m_rectDevice.bottom_right());
+                  m.transform(pbox->m_rectangleDevice.top_left());
+                  m.transform(pbox->m_rectangleDevice.bottom_right());
 
                }
 
@@ -2066,6 +2097,25 @@ namespace user
       }
 
 
+      ::e_status data::__initialize(__pointer(::user::rich_text::format) & pformat)
+      {
+
+         __defer_construct(pformat);
+
+         auto estatus = pformat->initialize_user_rich_text_format(m_pformata);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+      }
+
+
       stream & data::write(::stream & stream) const
       {
 
@@ -2073,7 +2123,7 @@ namespace user
 
          {
 
-            ::papaya::array::exchange_container_as_parent(stream, *m_pformata);
+            ::papaya::array::exchange_container(stream, (data *) this, *m_pformata);
 
          }
 
@@ -2101,7 +2151,7 @@ namespace user
 
          {
 
-            ::papaya::array::exchange_container_as_parent(stream, *m_pformata);
+            ::papaya::array::exchange_container(stream, this, *m_pformata);
 
          }
 
@@ -2116,7 +2166,7 @@ namespace user
       }
 
 
-      void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectBox)
+      void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangleBox)
       {
 
          synchronous_lock synchronouslock(pgraphics->mutex());
@@ -2153,7 +2203,7 @@ namespace user
 
                //}
 
-               ::rectangle_i32 rectangle = pbox->m_rectBox;
+               ::rectangle_i32 rectangle = pbox->m_rectangleBox;
 
 
                if (pformat->m_escript == script_subscript)
@@ -2172,24 +2222,24 @@ namespace user
                if (m_pedit->m_ppictureimpl != nullptr && m_pedit->m_ppictureimpl->m_bOutline)
                {
 
-                  ::draw2d::path_pointer path(e_create);
+                  auto ppath = __create < ::draw2d::path > ();
 
-                  //path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
-                  path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
+                  //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
+                  ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  ::draw2d::pen_pointer pen(e_create);
+                  auto ppen = __create < ::draw2d::pen > ();
 
-                  ::draw2d::brush_pointer brush(e_create);
+                  auto pbrush = __create < ::draw2d::brush >();
 
-                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, ::color::color(m_pedit->m_ppictureimpl->m_hlsOutline));
+                  ppen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, ::color::color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
-                  brush->create_solid(pformat->m_colorForeground);
+                  pbrush->create_solid(pformat->m_colorForeground);
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->set(brush);
+                  pgraphics->set(pbrush);
 
-                  pgraphics->path(path);
+                  pgraphics->path(ppath);
 
                }
                else

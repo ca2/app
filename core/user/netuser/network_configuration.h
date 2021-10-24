@@ -13,7 +13,7 @@ namespace usernet
 
 
       __pointer(::user::document)               m_pdocument;
-      __pointer(::user::form_view)              m_pview;
+      __pointer(::user::form_view)              m_pimpact;
 
 
       network_configuration();
@@ -25,7 +25,7 @@ namespace usernet
 
       void on_show();
 
-      void on_control_event(::user::control_event * pevent);
+      void handle(::subject * psubject, ::context * pcontext);
 
    };
 

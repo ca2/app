@@ -7,7 +7,6 @@ namespace user
 
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
-      virtual public ::user::callback,
       virtual public ::aura::drawable,
       virtual public ::timer_callback,
       virtual public ::conversation
@@ -143,10 +142,16 @@ namespace user
       bool                                         m_bHoverDefaultMouseHandling : 1;
       bool                                         m_bEditDefaultHandling : 1;
       bool                                         m_bKeyboardMultipleSelectionDefaultHandling : 1;
+      bool                                         m_bDataUpdateDefaultHandling : 1;
       bool                                         m_bLockSketchToDesign : 1;
       bool                                         m_bParentScrollX : 1;
       bool                                         m_bParentScrollY : 1;
       bool                                         m_bUserInteractionHost : 1;
+      bool                                         m_bEnableDragMove : 1;
+      
+      enum_text_wrap                               m_etextwrap;
+
+      __pointer(::user::interaction_scaler)        m_pinteractionScaler;
 
 
 
@@ -191,10 +196,6 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
-      __pointer(__pointer_array(::user::callback))      m_pusercallbackaControlEventHandler;
-
-
-
       //bool                                    m_bOnSetFinish;
 
       //class draw_select
@@ -235,24 +236,24 @@ namespace user
 
       bool                                         m_bOverdraw;
       ::index                                      m_iIndex;
-      ::user::item                                 m_itemLButtonDown;
-      ::user::item                                 m_itemCurrent;
-      ::user::item                                 m_itemHover;
-      ::user::item                                 m_itemHoverMouse;
-      ::user::item                                 m_itemPressed;
+      ::item                                 m_itemLButtonDown;
+      ::item                                 m_itemCurrent;
+      ::item                                 m_itemHover;
+      ::item                                 m_itemHoverMouse;
+      ::item                                 m_itemPressed;
       ::size_i32                                       m_sizeRestoreBroad;
       ::size_i32                                       m_sizeRestoreCompact;
       enumeration < e_non_client >                       m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
-      ::millis                                     m_millisMouseMoveSkip;
+      ::duration                                     m_durationMouseMoveSkip;
       ::point_i32                                      m_pointMouseMoveSkip;
-      ::millis                                     m_millisMouseMovePeriod;
+      ::duration                                     m_durationMouseMovePeriod;
       bool                                         m_bMouseMovePending;
       ::point_i32                                      m_pointMouseMove;
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
-      millis                                         m_millisLastRedraw;
+      ::duration                                         m_durationLastRedraw;
       ::id                                         m_idView;
       ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
@@ -270,15 +271,15 @@ namespace user
       //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::millis                                     m_millisMouseMove;
-      ::millis                                     m_millisMouseMoveIgnore;
+      ::duration                                     m_durationMouseMove;
+      ::duration                                     m_durationMouseMoveIgnore;
       double                                       m_dItemHeight;
       point_i32                                        m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
       bool                                         m_bBackgroundBypass;
-      millis                                       m_millisLastFullUpdate;
+      ::duration                                       m_durationLastFullUpdate;
       bool                                         m_bSizeMove;
-      millis                                       m_millisLastVisualChange;
+      ::duration                                       m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
@@ -306,7 +307,7 @@ namespace user
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
       /// this window is a checkbox [a menu checkbox],
-      /// this window is a player/view [a menu picture/video/chat?!])
+      /// this window is a player/impact [a menu picture/video/chat?!])
       bool                                         m_bWfiUpDownTarget;
 
 
@@ -327,7 +328,7 @@ namespace user
       __pointer(::aura::draw_context)              m_pdrawcontext;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
-      __pointer_array(::user::item)                m_useritema;
+      __pointer_array(::item)                m_useritema;
       __pointer(::user::form)                      m_pform;
       __pointer(alpha_source)                      m_palphasource;
       __pointer(::aura::drawable)                  m_pdrawableBackground;
@@ -348,8 +349,10 @@ namespace user
       virtual void on_create_user_interaction();
 
 
-      virtual bool is_branch_current() const;
+      virtual bool is_branch_current() const override;
 
+
+      bool is_ready_to_quit() const override;
 
 
       //class control_descriptor& descriptor();
@@ -376,7 +379,7 @@ namespace user
 
       ::user::interaction * get_host_window() const override;
 
-      ::user::item * get_user_item(const ::user::item& item);
+      ::item * get_user_item(const ::item& item);
 
       virtual ::user::enum_state get_user_state() const;
 
@@ -390,6 +393,9 @@ namespace user
 
       const class ::user::interaction_layout& layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
+
+      inline double screen_scaler() const;
+      inline double font_scaler() const;
 
 
       //void clear();
@@ -431,14 +437,16 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual ::e_status main_async(const ::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::e_status main_async(const ::routine & routine, enum_priority epriority = e_priority_normal);
 
 
       //virtual void enumerate_composite(matter_array& a) override;
 
-      virtual ::e_status interaction_sync(const ::duration & duration, const ::routine & routine);
+      virtual bool is_user_thread() const;
 
-      virtual ::e_status interaction_branch(const ::routine & routine) override;
+      virtual ::e_status interaction_send(const ::routine & routine);
+
+      virtual ::e_status interaction_post(const ::routine & routine) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -456,7 +464,7 @@ namespace user
          return ::is_set(this)
             && m_pimpl.is_set()
             && (m_ewindowflag & e_window_flag_is_window)
-            && !m_pimpl->m_bDestroying;
+            && !m_pimpl->is_destroying();
 
       }
 
@@ -564,21 +572,22 @@ namespace user
       // end updown
 
 
+
       virtual bool child_set_unique_id(::user::interaction* pinteraction);
 
       virtual string default_id_prefix() const;
 
       interaction * get_tooltip();
 
-      virtual ::e_status set_tool_window(bool bSet = true) override;
+      ::e_status set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
-      virtual ::user::form * get_form();
-      virtual ::user::form * get_parent_form();
+      ::user::form * get_form() override;
+      ::user::form * get_parent_form() override;
 
       ::user::interaction * get_user_interaction() override;
 
-      virtual matter* get_taskpool_container() override;
+      ::element * get_taskpool_container() override;
 
       //task_pointer defer_fork(const ::id& id, const matter_pointer& pmatter);
 
@@ -628,7 +637,7 @@ namespace user
       virtual void _001OnAfterAppearance();
 
 
-      virtual void defer_restore(const ::rectangle_i32& rectRequest);
+      virtual void defer_restore(const ::rectangle_i32& rectangleRequest);
       ::property_object * parent_property_set_holder() const override;
 
       virtual void set_reposition(bool bSetThis = true);
@@ -664,7 +673,7 @@ namespace user
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
-      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectHint = nullptr) override;
+      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
@@ -693,7 +702,7 @@ namespace user
 
 
       virtual bool is_frame_window();
-      virtual bool is_this_visible(enum_layout elayout = e_layout_design) override;
+      bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
       virtual bool sketch_on_display();
 
@@ -738,11 +747,11 @@ namespace user
       virtual bool is_left_button_pressed() const;
 
 
-      virtual ::e_status set_current_item(const ::user::item & item, const ::action_context & action_context);
-      virtual ::user::item current_item();
+      virtual ::e_status set_current_item(const ::item & item, const ::action_context & action_context);
+      virtual ::item current_item();
 
 
-      virtual ::user::item hover_item();
+      virtual ::item hover_item();
 
 
       virtual bool _is_window() const override;
@@ -758,22 +767,19 @@ namespace user
 
       virtual bool on_before_set_parent(::user::primitive * pinterface);
       virtual bool on_set_parent(::user::primitive * pinterface);
+      virtual bool on_add_child(::user::interaction * puserinteractionChild);
       virtual void on_after_set_parent();
 
 
       virtual bool on_set_owner(::user::primitive * pinterface);
 
 
-
-
-
-      virtual ::user::primitive * first_child_user_primitive() override;
-      virtual ::user::primitive * top_user_primitive() override;
-      virtual ::user::primitive * under_user_primitive() override;
-      virtual ::user::primitive * above_user_primitive() override;
-      virtual ::user::primitive * next_user_primitive() override;
-      virtual ::user::primitive * previous_user_primitive() override;
-
+      ::user::element * first_child_user_primitive() override;
+      ::user::element * top_user_primitive() override;
+      ::user::element * under_user_primitive() override;
+      ::user::element * above_user_primitive() override;
+      ::user::element * next_user_primitive() override;
+      ::user::element * previous_user_primitive() override;
 
 
       virtual ::user::interaction* first_child() override;
@@ -923,25 +929,6 @@ namespace user
       virtual void EndModalLoop(id nResult) override;
 
 
-      //virtual void route_control_event(::user::control_event* pevent);
-
-      virtual void on_control_event(::message::message* pmessage);
-
-      //virtual void on_notify_control_event(control_event* pevent);
-      
-      inline bool has_control_event_handler() const
-      {
-         
-         return m_pusercallbackaControlEventHandler &&
-         m_pusercallbackaControlEventHandler->has_element();
-         
-      }
-      
-      void add_control_event_handler(::user::callback * pusercallback, bool bPriority = false);
-      
-      virtual void route_control_event(::user::control_event* pevent);
-
-      virtual void on_control_event(::user::control_event* pevent) override;
 
 
       virtual bool update_data(bool bSaveAndValidate = true) override;
@@ -954,10 +941,10 @@ namespace user
       virtual void on_kill_keyboard_focus() override;
 
 
-      virtual ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
 
 
-      virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
@@ -1039,13 +1026,13 @@ namespace user
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
 //         ::draw2d::region* prgnUpdate = nullptr,
 //         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
 //
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,
          ::draw2d::region* prgnUpdate = nullptr,
          ::u32 flags = 0);
 
@@ -1099,12 +1086,14 @@ namespace user
       virtual bool post_object(const ::id & id, wparam wParam, lparam lParam);
 
 
+      //virtual bool user_post(const ::id& id, wparam wParam = 0, lparam lParam = 0) override;
+
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool call_and_set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, const ::duration & durationElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 //      virtual bool enable_window(bool bEnable = true) override;
@@ -1184,7 +1173,7 @@ namespace user
       virtual strsize get_window_text(char* pszStringBuf, strsize nMaxCount) override;
 
       virtual string get_window_text() override;
-      virtual void get_window_text(string& rectString) override;
+      virtual void get_window_text(string& rectangleString) override;
       virtual strsize get_window_text_length() override;
 
       virtual ::user::frame* frame() const;
@@ -1193,7 +1182,7 @@ namespace user
       virtual ::user::frame* get_owner_frame() const;
 
 
-      virtual ::user::callback* get_user_callback();
+      //virtual ::handler* get_user_callback();
 
       virtual void defer_set_icon();
 
@@ -1223,7 +1212,7 @@ namespace user
       oswindow get_safe_oswindow() const;
       virtual oswindow get_oswindow() const override;
 
-      //virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
+      //virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr, ::u32 flags = 0);
       //virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       ////      virtual void Invalidate(bool bErase = true);
       //virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true);
@@ -1235,11 +1224,14 @@ namespace user
       //virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      //virtual void route_control_event(::user::control_event* pevent);
-      //virtual void on_control_event(::user::control_event* pevent) override;
+      //virtual void route(::subject * psubject, ::context * pcontext);
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       /*virtual bool pre_create_window(::user::system* pusersystem);*/
+      using ::user::primitive::handle;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
+
 
 
       virtual void install_message_routing(::channel* pchannel) override;
@@ -1272,7 +1264,7 @@ namespace user
       virtual bool on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
-      DECLARE_MESSAGE_HANDLER(on_message_user_post);
+      //DECLARE_MESSAGE_HANDLER(on_message_user_post);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -1283,7 +1275,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_need_load_form_data);
       DECLARE_MESSAGE_HANDLER(on_message_need_save_form_data);
       DECLARE_MESSAGE_HANDLER(on_message_display_change);
-      DECLARE_MESSAGE_HANDLER(on_message_control_event);
+      DECLARE_MESSAGE_HANDLER(on_message_subject);
 
 
       //virtual DECLARE_MESSAGE_HANDLER(_002OnLButtonDown);
@@ -1315,6 +1307,8 @@ namespace user
 
       ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::interaction * get_child_by_id(const id & id, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const id & id, ::index iItem, i32 iLevel) override;
+
       ::user::interaction * child_from_point(const ::point_i32 & point);
 
 
@@ -1345,7 +1339,7 @@ namespace user
       virtual bool is_host_top_level() const;
       virtual bool is_os_host() const;
 
-      ::user::primitive* get_parent_primitive() const override;
+      ::user::element * get_parent_primitive() const override;
 
       virtual ::user::interaction* get_parent() const override;
       virtual ::user::interaction* get_top_level() const override;
@@ -1380,7 +1374,10 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
+      virtual ::e_status show_control_bar(::user::control_bar * pcontrolbar);
+      virtual ::e_status hide_control_bar(::user::control_bar * pcontrolbar);
+
+      void RepositionBars(::u32 nIDFirst = 0, ::u32 nIDLast = 0xffff, ::id idLeftOver = FIRST_PANE, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectangleClient = nullptr, bool bStretch = true) override;
 
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
       virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
@@ -1405,7 +1402,7 @@ namespace user
       virtual void message_handler(::message::message* pmessage) override;
       //virtual lresult message_handler(MESSAGE * pmessage) override;
 
-      virtual void GuieProc(::message::message* pmessage) override;
+      //virtual void GuieProc(::message::message* pmessage) override;
 
       //virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -1459,24 +1456,24 @@ namespace user
       //virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
-      static Agile<Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
-      Agile<Windows::UI::Core::CoreWindow> get_os_window()
+      static Agile<::winrt::Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
+      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window()
       {
          return get_os_window(this);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window(interaction* pinteraction)
+      static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window(interaction* pinteraction)
       {
          return (*s_get_os_window)(pinteraction);
       }
-      static Agile<Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
+      static Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window_default(interaction* pinteraction)
       {
-         UNREFERENCED_PARAMETER(pinteraction);
+         __UNREFERENCED_PARAMETER(pinteraction);
          return nullptr;
       }
 #endif
 
-      // <3ThomasBorregaardS�rensen__!!
-      ::e_status command_handler(const ::id& id) override;
+      //// <3ThomasBorregaardS�rensen__!! (I need to suck you, and take care of you, both front and back and middle but it ought to be unexplored by else...)
+      ::e_status handle_command(const ::id& id) override;
 
       virtual bool has_command_handler(::message::command* pcommand) override;
 
@@ -1520,6 +1517,12 @@ namespace user
 
 
       virtual void display_child(const ::rectangle_i32 & rectangle);
+      inline void display_child(::i32 x, ::i32 y, ::i32 cx, ::i32 cy)
+      {
+
+         display_child(rectangle_i32_dimension(x, y, cx, cy));
+
+      }
 
 
       virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32* prectangle);
@@ -1531,8 +1534,7 @@ namespace user
       virtual edisplay initial_restore_display();
 
 
-
-      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
 
        //virtual void reset_window_state();
 
@@ -1544,7 +1546,7 @@ namespace user
       virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
       virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectRequest = ::rectangle_i32(), bool bPreserveSize = false);
+      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECTANGLE_I32* prectangle);
@@ -1622,7 +1624,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual void keyboard_focus_OnKeyDown(::message::message* pmessage) override;
@@ -1708,8 +1710,8 @@ namespace user
       virtual ::e_status on_edit_delete(const ::action_context& action_context);
 
 
-      virtual bool on_click(const ::user::item & item);
-      virtual bool on_right_click(const ::user::item & item);
+      virtual bool on_click(const ::item & item);
+      virtual bool on_right_click(const ::item & item);
 
 
       virtual int width();
@@ -1732,9 +1734,9 @@ namespace user
       virtual void clear_bitmap_source() override;
 
 
-      void install_click_default_mouse_handling(::channel* pchannel);
-      void install_hover_default_mouse_handling(::channel* pchannel);
-      void install_update_data_message_routing(::channel * pchannel);
+      //void install_click_default_mouse_handling(::channel* pchannel);
+      //void install_hover_default_mouse_handling(::channel* pchannel);
+      //void install_update_data_message_routing(::channel * pchannel);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
@@ -1753,27 +1755,32 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      //virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
+      //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_subject esubject);
 
       using ::aura::drawable::hit_test;
-      virtual void hit_test(::user::item& item, const ::point_i32 & point) override;
+      virtual void hit_test(::item& item, const ::point_i32 & point) override;
 
       using ::aura::drawable::on_hit_test;
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);
 
-      virtual bool get_rect(::user::item& item);
+      virtual bool get_rect(::item& item);
 
-      inline auto rectangle(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rectangle; }
+      inline auto rectangle(const ::item& item) { get_rect((::item &) item); return item.m_rectangle; }
 
-      virtual __pointer(::user::item) add_user_item(const ::user::item & item);
+      virtual __pointer(::item) add_user_item(const ::item & item);
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item * pitem);
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem);
+
+
+      __pointer(::extended::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+
+
 
 
       // control member function BEGIN
@@ -1789,7 +1796,7 @@ namespace user
       //bool _003IsCustomMessage();
       //::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
-      virtual void route_command_message(::message::command* pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       virtual bool has_function(enum_control_function econtrolfunction) const;
       //virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
@@ -1815,7 +1822,7 @@ namespace user
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
       //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
       //DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
@@ -1825,10 +1832,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnEditDelete);
       //DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
       //DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
-      //virtual void route_control_event(::user::control_event* pevent) override;
+      //virtual void route(::subject * psubject, ::context * pcontext) override;
       //virtual void on_notify_control_event(control_event* pevent) override;
-      //virtual void on_control_event(::user::control_event* pevent) override;
-      //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_subject esubject) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
       //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);
@@ -1867,11 +1874,11 @@ namespace user
       virtual enum_stock_icon get_stock_icon();
 
 
-      virtual void post_routine(const ::routine & routine);
-      virtual void prodevian_post_routine(const ::routine & routine);
+      virtual ::e_status post_routine(const ::routine & routine) override;
+      virtual ::e_status prodevian_post_routine(const ::routine & routine);
 
 
-      virtual void send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
+      virtual ::e_status send_routine(const ::routine & routine) override;
 
 
    /*   template < typename PRED >
@@ -1911,7 +1918,7 @@ namespace user
 
       bool _001InitialFramePosition();
 
-      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectOptionalRateOrSize = {0., 0., 0., 0.});
+      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectangleOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 

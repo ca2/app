@@ -36,13 +36,13 @@ namespace experience
       {
 
          ::rectangle_i32 rectangle;
-         ::rectangle_i32 rectBorder;
-         ::rectangle_i32 rectText;
+         ::rectangle_i32 rectangleBorder;
+         ::rectangle_i32 rectangleText;
          ::rectangle_i32 rectangleClient;
-         ::rectangle_i32 rectIcon;
-         ::rectangle_i32 rectClose;
+         ::rectangle_i32 rectangleIcon;
+         ::rectangle_i32 rectangleClose;
 
-         ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
+         ptab->get_data()->m_ppen->create_solid(1,rgb(32,32,32));
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
@@ -56,9 +56,9 @@ namespace experience
 
          auto pstyle = ptab->get_style(pgraphics);
 
-         ::draw2d::brush_pointer brushText(e_create);
+         auto pbrushText = __create < ::draw2d::brush > ();
 
-         ::draw2d::pen_pointer penBorder(e_create);
+         auto ppenBorder = __create < ::draw2d::pen > ();
 
          static int iCurrentTab = -1;
 
@@ -71,144 +71,166 @@ namespace experience
             
             auto ppane = ptab->get_data()->m_tabpanecompositea[iPane].get();
 
-            if(!ppane->m_bTabPaneVisible)
+            if (!ppane->m_bTabPaneVisible)
+            {
+
                continue;
+
+            }
 
             iTab++;
 
-            if(!ptab->get_element_rect(iTab,rectangle, ::user::e_element_tab))
-               continue;
-
-            if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
-               continue;
-
-            if(rectBorder.right > iTabWidth)
+            if (!ptab->get_element_rect(iTab, rectangle, ::e_element_tab))
             {
 
-               iTabWidth = rectBorder.right;
+               continue;
 
             }
 
-            if(rectBorder.bottom > iTabHeight)
+            if (!ptab->get_element_rect(iTab, rectangleBorder, ::e_element_border))
             {
 
-               iTabHeight = rectBorder.bottom;
+               continue;
 
             }
 
-            if(!ptab->get_element_rect(iTab,rectangleClient, ::user::e_element_client))
+            if(rectangleBorder.right > iTabWidth)
+            {
+
+               iTabWidth = rectangleBorder.right;
+
+            }
+
+            if(rectangleBorder.bottom > iTabHeight)
+            {
+
+               iTabHeight = rectangleBorder.bottom;
+
+            }
+
+            if(!ptab->get_element_rect(iTab,rectangleClient, ::e_element_client))
                continue;
 
-            bool bTextRect = ptab->get_element_rect(iTab, rectText, ::user::e_element_text);
+            bool bTextRect = ptab->get_element_rect(iTab, rectangleText, ::e_element_text);
 
             if(ptab->get_data()->m_bVertical)
             {
 
-               if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
+               if(ptab->get_element_rect(iTab,rectangleIcon, ::e_element_icon))
                {
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                  ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
+                  image_source imagesource(ppane->m_pimage);
+
+                  image_drawing_options imagedrawingoptions(rectangleIcon);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
-               ::draw2d::path_pointer path(e_create);
+               auto ppath = __create < ::draw2d::path > ();
 
                if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
                {
 
-                  path->add_line(rectBorder.right,rectBorder.bottom,rectBorder.left + 1,rectBorder.bottom);
+                  ppath->begin_figure();
 
-                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectangleClient.left));
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
 
-                  path->add_line(rectangleClient.left,rectBorder.top);
+                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
 
-                  path->add_line(rectBorder.right,rectBorder.top);
+                  ppath->add_line(rectangleClient.left,rectangleBorder.top);
 
-                  path->close_figure();
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
 
-                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
+                  ppath->close_figure();
 
-                  pgraphics->set(ppane->m_brushFillSel);
+                  ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-                  pgraphics->fill_path(path);
+                  pgraphics->set(ppane->m_pbrushFillSel);
 
-                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                  pgraphics->fill_path(ppath);
 
-                  pgraphics->set(penBorder);
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_selected));
 
-                  pgraphics->draw_path(path);
+                  pgraphics->set(ppenBorder);
+
+                  pgraphics->draw_path(ppath);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
+                     && ptab->m_itemHover != ::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
+                     pgraphics->set_font(ptab, ::e_element_none, (::user::e_state_selected | ::user::e_state_hover));
 
                   }
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                   }
 
-                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
+                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
                }
                else
                {
 
-                  path->add_line(rectBorder.right,rectBorder.bottom,rectBorder.left + 1,rectBorder.bottom);
-                  path->add_line(rectBorder.left,rectBorder.top - (rectBorder.left - rectangleClient.left));
-                  path->add_line(bTextRect ? rectText.left : rectBorder.left,rectBorder.top);
-                  path->add_line(rectBorder.right,rectBorder.top);
-                  path->add_line(rectBorder.right,rectBorder.bottom);
+                  ppath->begin_figure();
 
-                  path->close_figure();
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom,rectangleBorder.left + 1,rectangleBorder.bottom);
+                  ppath->add_line(rectangleBorder.left,rectangleBorder.top - (rectangleBorder.left - rectangleClient.left));
+                  ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left,rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.bottom);
+
+                  ppath->close_figure();
 
                   if(ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
+                     && ptab->m_itemHover != ::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
                   {
 
-                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+                     ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(ppane->m_brushFillHover);
+                     pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(path);
+                     pgraphics->fill_path(ppath);
 
-                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->set(penBorder);
+                     pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(path);
+                     pgraphics->draw_path(ppath);
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
                   }
                   else
                   {
 
-                     ppane->m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
+                     ppane->m_pbrushFill->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
-                     pgraphics->set(ppane->m_brushFill);
+                     pgraphics->set(ppane->m_pbrushFill);
 
-                     pgraphics->fill_path(path);
+                     pgraphics->fill_path(ppath);
 
-                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                     pgraphics->set(penBorder);
+                     pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(path);
+                     pgraphics->draw_path(ppath);
 
-                     pgraphics->set_font(ptab, ::user::e_element_none);
+                     pgraphics->set_font(ptab, ::e_element_none);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
+                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text));
 
                   }
 
@@ -218,16 +240,22 @@ namespace experience
             else
             {
 
-               if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
+               if(ptab->get_element_rect(iTab,rectangleIcon, ::e_element_icon))
                {
 
                   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                  ppane->m_pimage->bitmap_blend(pgraphics,rectIcon);
+                  image_source imagesource(ppane->m_pimage);
+
+                  image_drawing_options imagedrawingoptions(rectangleIcon);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
-               ::draw2d::path_pointer path(e_create);
+               auto ppath = __create < ::draw2d::path >();
 
                if(ptab->get_data()->m_idaSel.contains(ppane->m_id))
                {
@@ -239,107 +267,107 @@ namespace experience
 
                   }
 
-                  path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
+                  ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
 
-                  path->add_line(rectangleClient.right,rectBorder.top);
+                  ppath->add_line(rectangleClient.right,rectangleBorder.top);
 
-                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectangleClient.right));
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1,rectangleClient.bottom);
+                  ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
 
-                  ppane->m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
+                  ppane->m_pbrushFillSel->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
-                  pgraphics->set(ppane->m_brushFillSel);
+                  pgraphics->set(ppane->m_pbrushFillSel);
 
-                  pgraphics->fill_path(path);
+                  pgraphics->fill_path(ppath);
 
-                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+                  ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                  pgraphics->set(penBorder);
+                  pgraphics->set(ppenBorder);
 
-                  pgraphics->draw_path(path);
+                  pgraphics->draw_path(ppath);
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
+                     && ptab->m_itemHover != ::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected | ::user::e_state_hover);
 
                   }
                   else
                   {
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
+                     pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
                   }
 
-                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
+                  pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
 
                }
                else
                {
 
-                  path->add_line(rectBorder.left,rectangleClient.bottom,rectBorder.left,rectBorder.top);
+                  ppath->add_line(rectangleBorder.left,rectangleClient.bottom,rectangleBorder.left,rectangleBorder.top);
 
-                  path->add_line(rectangleClient.right,rectBorder.top);
+                  ppath->add_line(rectangleClient.right,rectangleBorder.top);
 
-                  path->add_line(rectBorder.right,rectBorder.top + (rectBorder.right - rectangleClient.right));
+                  ppath->add_line(rectangleBorder.right,rectangleBorder.top + (rectangleBorder.right - rectangleClient.right));
 
-                  path->add_line(rectBorder.right - 1,rectangleClient.bottom);
+                  ppath->add_line(rectangleBorder.right - 1,rectangleClient.bottom);
 
-                  path->close_figure();
+                  ppath->close_figure();
 
                   if (ptab->m_itemHover == iTab
-                     && ptab->m_itemHover != ::user::e_element_close_tab_button
-                     && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
+                     && ptab->m_itemHover != ::e_element_close_tab_button
+                     && !ptab->m_itemHover.in_range(::e_element_split, 100))
                   {
 
-                     ppane->m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
+                     ppane->m_pbrushFillHover->CreateLinearGradientBrush(rectangleBorder.top_left(),rectangleBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
-                     pgraphics->set(ppane->m_brushFillHover);
+                     pgraphics->set(ppane->m_pbrushFillHover);
 
-                     pgraphics->fill_path(path);
+                     pgraphics->fill_path(ppath);
 
-                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_hover));
+                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border, ::user::e_state_hover));
 
-                     pgraphics->set(penBorder);
+                     pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(path);
+                     pgraphics->draw_path(ppath);
 
-                     pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
+                     pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_hover);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
+                     pbrushText->create_solid(ptab->get_color(pstyle, ::e_element_item_text, ::user::e_state_hover));
 
                   }
                   else
                   {
 
-                     ::draw2d::brush_pointer brushFill(e_create);
+                     auto pbrushFill = __create < ::draw2d::brush >();
 
-                     brushFill->CreateLinearGradientBrush(
-                        rectBorder.top_left(),
-                        rectBorder.bottom_left(),
+                     pbrushFill->CreateLinearGradientBrush(
+                        rectangleBorder.top_left(),
+                        rectangleBorder.bottom_left(),
                         argb(230, 175, 175, 170),
                         argb(250, 195, 195, 190)); //*/
 
-                        // brushFill->create_solid(::color::color::white);
+                        // pbrushFill->create_solid(::color::color::white);
 
-                     pgraphics->set(brushFill);
+                     pgraphics->set(pbrushFill);
 
-                     pgraphics->fill_path(path);
+                     pgraphics->fill_path(ppath);
 
-                     penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border));
+                     ppenBorder->create_solid(1.0, ptab->get_color(pstyle, ::e_element_border));
 
-                     pgraphics->set(penBorder);
+                     pgraphics->set(ppenBorder);
 
-                     pgraphics->draw_path(path);
+                     pgraphics->draw_path(ppath);
 
-                     pgraphics->set_font(ptab, ::user::e_element_none);
+                     pgraphics->set_font(ptab, ::e_element_none);
 
-                     auto colorText = ptab->get_color(pstyle, ::user::e_element_item_text);
+                     auto colorText = ptab->get_color(pstyle, ::e_element_item_text);
 
-                     brushText->create_solid(colorText);
+                     pbrushText->create_solid(colorText);
 
                   }
 
@@ -350,55 +378,55 @@ namespace experience
             if(bTextRect)
             {
 
-               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectText,brushText);
+               _001OnTabPaneDrawTitle(*ppane,ptab,pgraphics,rectangleText, pbrushText);
 
             }
 
-            if(ptab->get_element_rect(iTab,rectClose, ::user::e_element_close_tab_button))
+            if(ptab->get_element_rect(iTab,rectangleClose, ::e_element_close_tab_button))
             {
 
-               pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
+               pgraphics->set_font(ptab, ::e_element_close_tab_button);
 
                if (ptab->m_itemHover == iTab
-                  && ptab->m_itemHover == ::user::e_element_close_tab_button)
+                  && ptab->m_itemHover == ::e_element_close_tab_button)
                {
 
-                  brushText = ptab->get_data()->m_brushCloseHover;
+                  pbrushText = ptab->get_data()->m_pbrushCloseHover;
 
                }
                else
                {
 
-                  brushText = ptab->get_data()->m_brushClose;
+                  pbrushText = ptab->get_data()->m_pbrushClose;
 
                }
 
-               pgraphics->set(brushText);
+               pgraphics->set(pbrushText);
 
-               pgraphics->draw_text("x",rectClose,e_align_center);
+               pgraphics->draw_text("x",rectangleClose,e_align_center);
 
             }
 
          }
 
-         ::rectangle_i32 rectScroll;
+         ::rectangle_i32 rectangleScroll;
 
          bool bScroll = ptab->has_tab_scrolling();
 
          if(bScroll)
          {
 
-            if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_near_scroll))
+            if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_near_scroll))
             {
 
-               pgraphics->fill_rectangle(rectScroll, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
             }
 
-            if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_far_scroll))
+            if(ptab->get_element_rect(-1,rectangleScroll, ::e_element_tab_far_scroll))
             {
 
-               pgraphics->fill_rectangle(rectScroll, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
 
             }
 
@@ -409,12 +437,12 @@ namespace experience
       }
 
 
-      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & brushText)
+      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & pbrushText)
       {
 
          string_array & straTitle = pane.m_straTitle;
 
-         pgraphics->set(brushText);
+         pgraphics->set(pbrushText);
 
          if(straTitle.get_count() <= 1)
          {
@@ -427,15 +455,15 @@ namespace experience
          else
          {
 
-            ::rectangle_i32 rectText(rectangle);
+            ::rectangle_i32 rectangleText(rectangle);
 
-            ::write_text::font_pointer font;
+            ::write_text::font_pointer pfont;
 
-            font = pgraphics->get_current_font();
+            pfont = pgraphics->get_current_font();
 
             size_i32 sSep = ptab->get_data()->m_sizeSep;
 
-            ::rectangle_i32 rectEmp;
+            ::rectangle_i32 rectangleEmp;
 
             for(index i = 0; i < straTitle.get_size(); i++)
             {
@@ -444,20 +472,20 @@ namespace experience
 
                size_i32 s = pane.m_sizeaText[i];
 
-               rectText.right =rectText.left + s.cx;
+               rectangleText.right =rectangleText.left + s.cx;
 
-               pgraphics->_DrawText(str,rectText, e_align_bottom_left, e_draw_text_no_prefix);
+               pgraphics->_DrawText(str,rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
 
-               rectText.left += s.cx;
+               rectangleText.left += s.cx;
 
                if(i < straTitle.get_upper_bound())
                {
 
-                  rectText.right = rectText.left + sSep.cx;
+                  rectangleText.right = rectangleText.left + sSep.cx;
 
-                  rectEmp = rectText;
+                  rectangleEmp = rectangleText;
 
-                  rectEmp.deflate(1, 1);
+                  rectangleEmp.deflate(1, 1);
 
                   ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
 
@@ -465,34 +493,34 @@ namespace experience
 
                   status < ::color::color > colorText;
 
-                  if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
+                  if(ptab->m_itemHover == (::index) ::e_element_split + i)
                   {
 
-                     pgraphics->fill_rectangle(rectEmp,argb(128, 150, 190, 255));
+                     pgraphics->fill_rectangle(rectangleEmp,argb(128, 150, 190, 255));
 
-                     colorText = ptab->get_color(this, ::user::e_element_item_text, ::user::e_state_hover);
+                     colorText = ptab->get_color(this, ::e_element_item_text, ::user::e_state_hover);
 
                   }
                   else
                   {
 
-                     colorText = ptab->get_color(this, ::user::e_element_item_text);
+                     colorText = ptab->get_color(this, ::e_element_item_text);
 
                   }
 
-                  ::draw2d::brush_pointer brush(e_create);
+                  auto pbrush = __create < ::draw2d::brush >();
 
-                  brush->create_solid(colorText);
+                  pbrush->create_solid(colorText);
 
-                  pgraphics->set(brush);
+                  pgraphics->set(pbrush);
 
-                  pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
+                  pgraphics->set_font(ptab, ::e_element_close_tab_button);
 
                   pgraphics->set_alpha_mode(emode);
 
-                  pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
+                  pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectangleText, e_align_center, e_draw_text_no_prefix);
 
-                  rectText.left += sSep.cx;
+                  rectangleText.left += sSep.cx;
 
                }
 
@@ -518,39 +546,39 @@ namespace experience
          if (pdata->m_bVertical)
          {
 
-            pdata->m_rectMargin.set(2, 3, 1, 0);
+            pdata->m_rectangleMargin.set(2, 3, 1, 0);
 
-            pdata->m_rectBorder.set(11, 1, 6, 0);
+            pdata->m_rectangleBorder.set(11, 1, 6, 0);
 
-            pdata->m_rectTextMargin.set(3, 0, 1, 0);
+            pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-            pdata->m_iTabHeight += pdata->m_rectBorder.top + pdata->m_rectBorder.bottom +
-                                   pdata->m_rectMargin.top + pdata->m_rectMargin.bottom;
+            pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+                                   pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
-            pdata->m_iTabWidth += pdata->m_rectBorder.left + pdata->m_rectBorder.right +
-                                  pdata->m_rectMargin.left + pdata->m_rectMargin.right;
+            pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
+                                  pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
          }
          else
          {
 
-            pdata->m_rectMargin.set(3, 2, 0, 1);
+            pdata->m_rectangleMargin.set(3, 2, 0, 1);
 
-            pdata->m_rectBorder.set(0, 1, 11, 6);
+            pdata->m_rectangleBorder.set(0, 1, 11, 6);
 
-            pdata->m_rectTextMargin.set(3, 0, 1, 0);
+            pdata->m_rectangleTextMargin.set(3, 0, 1, 0);
 
-            pdata->m_iTabHeight += pdata->m_rectBorder.top + pdata->m_rectBorder.bottom +
-                                   pdata->m_rectMargin.top + pdata->m_rectMargin.bottom;
+            pdata->m_iTabHeight += pdata->m_rectangleBorder.top + pdata->m_rectangleBorder.bottom +
+                                   pdata->m_rectangleMargin.top + pdata->m_rectangleMargin.bottom;
 
-            pdata->m_iTabWidth += pdata->m_rectBorder.left + pdata->m_rectBorder.right +
-                                  pdata->m_rectMargin.left + pdata->m_rectMargin.right;
+            pdata->m_iTabWidth += pdata->m_rectangleBorder.left + pdata->m_rectangleBorder.right +
+                                  pdata->m_rectangleMargin.left + pdata->m_rectangleMargin.right;
 
          }
 
          ptab->defer_handle_auto_hide_tabs(false);
 
-         pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
+         pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
          ptab->m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
 
@@ -608,37 +636,37 @@ namespace experience
                iTabHeight = cy;
             }
 
-            iTabWidth += ptab->get_data()->m_rectBorder.left + ptab->get_data()->m_rectBorder.right +
-                         ptab->get_data()->m_rectMargin.left + ptab->get_data()->m_rectMargin.right +
-                         ptab->get_data()->m_rectTextMargin.left + ptab->get_data()->m_rectTextMargin.right;
+            iTabWidth += ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right +
+                         ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right +
+                         ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
             ptab->get_data()->m_iTabWidth = iTabWidth;
 
-            iTabHeight += ptab->get_data()->m_rectBorder.top + ptab->get_data()->m_rectBorder.bottom +
-                          ptab->get_data()->m_rectMargin.top + ptab->get_data()->m_rectMargin.bottom +
-                          ptab->get_data()->m_rectTextMargin.top + ptab->get_data()->m_rectTextMargin.bottom;
+            iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
+                          ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom +
+                          ptab->get_data()->m_rectangleTextMargin.top + ptab->get_data()->m_rectangleTextMargin.bottom;
 
             ptab->get_data()->m_iTabHeight = iTabHeight;
 
             ::rectangle_i32 rectangleClient = ptab->get_client_rect();
 
-            ptab->get_data()->m_rectTab.left       = rectangleClient.left;
-            ptab->get_data()->m_rectTab.top        = rectangleClient.top;
-            ptab->get_data()->m_rectTab.right      = ptab->get_data()->m_rectTab.left + ptab->get_data()->m_iTabWidth;
-            ptab->get_data()->m_rectTab.bottom     = rectangleClient.bottom;
+            ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
+            ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
+            ptab->get_data()->m_rectangleTab.right      = ptab->get_data()->m_rectangleTab.left + ptab->get_data()->m_iTabWidth;
+            ptab->get_data()->m_rectangleTab.bottom     = rectangleClient.bottom;
 
             /*      m_puserinteraction->set_window_position(
             e_zorder_top,
-            m_rectTab.left,
-            m_rectTab.top,
-            m_rectTab.width(),
-            m_rectTab.height(),
+            m_rectangleTab.left,
+            m_rectangleTab.top,
+            m_rectangleTab.width(),
+            m_rectangleTab.height(),
             0);*/
 
-            ptab->get_data()->m_rectTabClient.left       = ptab->m_bShowTabs ? ptab->get_data()->m_rectTab.right : rectangleClient.left;
-            ptab->get_data()->m_rectTabClient.top        = ptab->get_data()->m_rectTab.top;
-            ptab->get_data()->m_rectTabClient.right      = rectangleClient.right;
-            ptab->get_data()->m_rectTabClient.bottom     = ptab->get_data()->m_rectTab.bottom;
+            ptab->get_data()->m_rectangleTabClient.left       = ptab->m_bShowTabs ? ptab->get_data()->m_rectangleTab.right : rectangleClient.left;
+            ptab->get_data()->m_rectangleTabClient.top        = ptab->get_data()->m_rectangleTab.top;
+            ptab->get_data()->m_rectangleTabClient.right      = rectangleClient.right;
+            ptab->get_data()->m_rectangleTabClient.bottom     = ptab->get_data()->m_rectangleTab.bottom;
 
          }
          else
@@ -648,7 +676,7 @@ namespace experience
 
             i32 cy;
 
-            pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
+            pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
             ::rectangle_i32 rectangleClient = ptab->get_client_rect();
             //ptab->get_client_rect(rectangleClient);
@@ -714,9 +742,9 @@ namespace experience
 
 
                ppane->m_size.cx = size.cx + ixAdd
-                                    + ptab->get_data()->m_rectBorder.left + ptab->get_data()->m_rectBorder.right
-                                    + ptab->get_data()->m_rectMargin.left + ptab->get_data()->m_rectMargin.right
-                                    + ptab->get_data()->m_rectTextMargin.left + ptab->get_data()->m_rectTextMargin.right;
+                                    + ptab->get_data()->m_rectangleBorder.left + ptab->get_data()->m_rectangleBorder.right
+                                    + ptab->get_data()->m_rectangleMargin.left + ptab->get_data()->m_rectangleMargin.right
+                                    + ptab->get_data()->m_rectangleTextMargin.left + ptab->get_data()->m_rectangleTextMargin.right;
 
                x += ppane->m_size.cx;
             }
@@ -728,8 +756,8 @@ namespace experience
                iTabHeight = cy;
             }
 
-            iTabHeight += ptab->get_data()->m_rectBorder.top + ptab->get_data()->m_rectBorder.bottom +
-                          ptab->get_data()->m_rectMargin.top + ptab->get_data()->m_rectMargin.bottom + ptab->get_data()->m_iHeightAddUp;
+            iTabHeight += ptab->get_data()->m_rectangleBorder.top + ptab->get_data()->m_rectangleBorder.bottom +
+                          ptab->get_data()->m_rectangleMargin.top + ptab->get_data()->m_rectangleMargin.bottom + ptab->get_data()->m_iHeightAddUp;
 
             ptab->get_data()->m_iTabHeight = iTabHeight;
 
@@ -745,31 +773,31 @@ namespace experience
 
 
 
-            ptab->get_data()->m_rectTab.left       = rectangleClient.left;
-            ptab->get_data()->m_rectTab.top        = rectangleClient.top;
-            ptab->get_data()->m_rectTab.right      = rectangleClient.right;
-            ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
+            ptab->get_data()->m_rectangleTab.left       = rectangleClient.left;
+            ptab->get_data()->m_rectangleTab.top        = rectangleClient.top;
+            ptab->get_data()->m_rectangleTab.right      = rectangleClient.right;
+            ptab->get_data()->m_rectangleTab.bottom     = ptab->get_data()->m_rectangleTab.top + ptab->get_data()->m_iTabHeight;
 
             /*      set_window_position(
             e_zorder_top,
-            m_rectTab.left,
-            m_rectTab.top,
-            m_rectTab.width(),
-            m_rectTab.height(),
+            m_rectangleTab.left,
+            m_rectangleTab.top,
+            m_rectangleTab.width(),
+            m_rectangleTab.height(),
             0);*/
 
-            rectangle_i32 & rectTabClient = ptab->get_data()->m_rectTabClient;
+            rectangle_i32 & rectangleTabClient = ptab->get_data()->m_rectangleTabClient;
 
             //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
             bool bTabbedClient = ptab->m_bShowTabs;
 
-            rectTabClient.left = ptab->get_data()->m_rectTab.left;
-            rectTabClient.top = bTabbedClient ? ptab->get_data()->m_rectTab.bottom : rectangleClient.top;
-            rectTabClient.right = ptab->get_data()->m_rectTab.right;
-            rectTabClient.bottom = rectangleClient.bottom;
+            rectangleTabClient.left = ptab->get_data()->m_rectangleTab.left;
+            rectangleTabClient.top = bTabbedClient ? ptab->get_data()->m_rectangleTab.bottom : rectangleClient.top;
+            rectangleTabClient.right = ptab->get_data()->m_rectangleTab.right;
+            rectangleTabClient.bottom = rectangleClient.bottom;
 
 
-            //TRACE0("rectTabClient");
+            //TRACE0("rectangleTabClient");
          }
 
          for(i32 iPane = 0; iPane < ptab->get_data()->m_tabpanecompositea.get_size(); iPane++)
@@ -814,13 +842,13 @@ namespace experience
       }
 
 
-      ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+      ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
       {
 
          if (::is_set(pinteraction))
          {
 
-            string strType = pinteraction->type_c_str();
+            //string strType = __type_name(pinteraction);
 
 //            if (strType.contains("form"))
 //            {
@@ -834,7 +862,7 @@ namespace experience
             if (econtroltype == ::user::e_control_type_form)
             {
 
-               if (eelement == ::user::e_element_background)
+               if (eelement == ::e_element_background)
                {
 
                   if (is_dark_mode())
@@ -859,7 +887,7 @@ namespace experience
                if (estate & ::user::e_state_selected)
                {
 
-                  if (eelement == ::user::e_element_background)
+                  if (eelement == ::e_element_background)
                   {
 
                      if (is_dark_mode())
@@ -876,7 +904,7 @@ namespace experience
                      }
 
                   }
-                  else if (eelement == ::user::e_element_text)
+                  else if (eelement == ::e_element_text)
                   {
 
                      if (is_dark_mode())
@@ -898,7 +926,7 @@ namespace experience
                else
                {
 
-                  if (eelement == ::user::e_element_background)
+                  if (eelement == ::e_element_background)
                   {
 
                      if (is_dark_mode())
@@ -915,7 +943,7 @@ namespace experience
                      }
 
                   }
-                  else if (eelement == ::user::e_element_text)
+                  else if (eelement == ::e_element_text)
                   {
 
                      if (is_dark_mode())
@@ -940,7 +968,7 @@ namespace experience
             || econtroltype == ::user::e_control_type_tree)
             {
 
-               if (eelement == ::user::e_element_background)
+               if (eelement == ::e_element_background)
                {
 
                   if (is_dark_mode())
@@ -957,7 +985,7 @@ namespace experience
                   }
 
                }
-               else if (eelement == ::user::e_element_item_background)
+               else if (eelement == ::e_element_item_background)
                {
 
                   if (estate & ::user::e_state_selected)
@@ -974,7 +1002,7 @@ namespace experience
                   }
 
                }
-               else if (eelement == ::user::e_element_item_text)
+               else if (eelement == ::e_element_item_text)
                {
 
                   if (is_dark_mode())
@@ -996,7 +1024,7 @@ namespace experience
             else if (econtroltype == ::user::e_control_type_tab)
             {
 
-               if (eelement == ::user::e_element_item_text)
+               if (eelement == ::e_element_item_text)
                {
 
                   if(estate & ::user::e_state_hover)
@@ -1024,7 +1052,7 @@ namespace experience
                   }
 
                }
-               else if (eelement == ::user::e_element_item_background)
+               else if (eelement == ::e_element_item_background)
                {
 
                   return ::color::color(0, 0, 0, 0);
@@ -1035,7 +1063,7 @@ namespace experience
 
          }
          
-         if (eelement == ::user::e_element_check)
+         if (eelement == ::e_element_check)
          {
 
             //if (estate & ::user::e_state_hover)
@@ -1057,7 +1085,7 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::e_element_border)
+         else if (eelement == ::e_element_border)
          {
 
             if (estate & ::user::e_state_hover)
@@ -1113,19 +1141,19 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::e_element_scrollbar)
+         else if (eelement == ::e_element_scrollbar)
          {
 
             return __acolor(100, 192, 192, 192);
 
          }
-         else if (eelement == ::user::e_element_scrollbar_rect)
+         else if (eelement == ::e_element_scrollbar_rect)
          {
 
             return __acolor(160, 140, 140, 140);
 
          }
-         else if (eelement == ::user::e_element_item_text)
+         else if (eelement == ::e_element_item_text)
          {
 
             if (estate & ::user::e_state_new_input)
@@ -1164,7 +1192,7 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::e_element_item_background)
+         else if (eelement == ::e_element_item_background)
          {
 
             if (estate & ::user::e_state_hover)
@@ -1247,7 +1275,7 @@ namespace experience
             }
 
          }
-         else if (eelement == ::user::e_element_text)
+         else if (eelement == ::e_element_text)
          {
 
             if (estate & ::user::e_state_new_input)
@@ -1286,7 +1314,46 @@ namespace experience
             }
 
         }
-        else if (eelement == ::user::e_element_background)
+         else if (eelement == ::e_element_border)
+         {
+
+            if (estate & ::user::e_state_new_input)
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 130, 130, 130);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 192, 192, 192);
+
+               }
+
+            }
+            else
+            {
+
+               if (is_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+         }
+        else if (eelement == ::e_element_background)
         {
 
            if (is_dark_mode())
@@ -1352,7 +1419,7 @@ namespace experience
       bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
       {
 
-         ::color::color colorBackground = pscrollbar->get_color(this, ::user::e_element_scrollbar);
+         ::color::color colorBackground = pscrollbar->get_color(this, ::e_element_scrollbar);
 
          ::rectangle_i32 rectangleClient = pscrollbar->get_client_rect();
 
@@ -1374,42 +1441,42 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectTrack;
+         ::rectangle_i32 rectangleTrack;
 
-         pscrollbar->GetTrackRect(rectTrack, pgraphics);
+         pscrollbar->GetTrackRect(rectangleTrack, pgraphics);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         pscrollbar->get_window_rect(rectWindow);
+         pscrollbar->get_window_rect(rectangleWindow);
 
-         ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::user::e_element_scrollbar_rect);
+         ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::e_element_scrollbar_rect);
 
          auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
 
-         ::draw2d::pen_pointer penDraw(e_create);
+         auto ppenDraw = __create < ::draw2d::pen > ();
 
-         penDraw->create_solid(1, colorBorder);
+         ppenDraw->create_solid(1, colorBorder);
 
-         ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::user::e_element_scrollbar_rect);
+         ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::e_element_scrollbar_rect);
 
-         ::draw2d::brush_pointer brushDraw(e_create);
+         auto pbrushDraw = __create < ::draw2d::brush > ();
 
-         brushDraw->create_solid(colorTrack);
+         pbrushDraw->create_solid(colorTrack);
 
-         pgraphics->set(penDraw);
+         pgraphics->set(ppenDraw);
 
-         pgraphics->set(brushDraw);
+         pgraphics->set(pbrushDraw);
 
-         pgraphics->rectangle(rectTrack);
+         pgraphics->rectangle(rectangleTrack);
 
          if (pbar->m_bTracking || pbar->is_true("tracking_on"))
          {
 
-            ::u32 tickFadeIn = 490;
+            auto periodFadeIn = 490_ms;
 
-            ::u32 tickFadeOut = 490;
+            auto periodFadeOut = 490_ms;
 
-            byte uchAlpha = maximum(0u, minimum(255u, (byte) pbar->find_u32("tracking_alpha")));
+            double dRate = maximum(0u, minimum(1.0, pbar->find_u32("tracking_alpha")/255.0));
 
             if (pbar->m_bTracking)
             {
@@ -1418,7 +1485,7 @@ namespace experience
                {
 
                   pbar->payload("tracking_on") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_millis().m_i + uchAlpha * tickFadeIn / 255);
+                  pbar->payload("tracking_start_time") = duration(e_now) + dRate * periodFadeIn;
                   pbar->payload("tracking_fade_in") = true;
                   pbar->payload("tracking_fade_out") = false;
                   pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1434,13 +1501,13 @@ namespace experience
 
                   pbar->payload("tracking_fade_in") = false;
                   pbar->payload("tracking_fade_out") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_millis().m_i + (255 - uchAlpha) * tickFadeOut / 255);
+                  pbar->payload("tracking_start_time") = duration(e_now) + (1.0 - dRate) * periodFadeOut;
 
                }
 
             }
 
-            ::point_i32 point1 = rectTrack.top_left() + pbar->m_sizeTrackOffset;
+            ::point_i32 point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
             pbar->client_to_screen(point1);
 
@@ -1458,15 +1525,17 @@ namespace experience
 
             //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
+            byte uchAlpha;
+
             if (pbar->is_true("tracking_fade_in"))
             {
 
-               auto tickFade = pbar->payload("tracking_start").millis().elapsed();
+               auto elapsed = pbar->payload("tracking_start_time").duration().elapsed();
 
-               if (tickFade < tickFadeIn)
+               if (elapsed < periodFadeIn)
                {
 
-                  uchAlpha = __byte(tickFade * 255 / tickFadeIn);
+                  uchAlpha = __byte(elapsed.integral_millisecond().m_i * 255 / periodFadeIn.m_i);
 
                }
                else
@@ -1482,12 +1551,12 @@ namespace experience
             else if (pbar->is_true("tracking_fade_out"))
             {
 
-               auto dwFade = pbar->payload("tracking_start").millis().elapsed();
+               auto elapsed = pbar->payload("tracking_start_time").duration().elapsed().integral_millisecond();
 
-               if (dwFade < tickFadeOut)
+               if (elapsed < periodFadeOut)
                {
 
-                  uchAlpha = __byte(dwFade * 255 / tickFadeOut);
+                  uchAlpha = __byte((periodFadeOut.m_i - elapsed.m_i) * 255 / periodFadeOut.m_i);
 
                }
                else
@@ -1507,46 +1576,46 @@ namespace experience
                uchAlpha = 255;
             }
 
-            ::rectangle_i32 rectMachineThumb;
+            ::rectangle_i32 rectangleMachineThumb;
 
             bool bSimple = pbar->is_true("tracking_simple");
 
             if (bSimple)
             {
 
-               int iSize = rectTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
+               int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+               rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
-               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + ::size_i32(iSize, iSize);
+               rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
-               ::rectangle_i32 rectIntersect;
+               ::rectangle_i32 rectangleIntersect;
 
-               rectIntersect.intersect(rectMachineThumb, rectTrack);
+               rectangleIntersect.intersect(rectangleMachineThumb, rectangleTrack);
 
-               i32 iArea = (i32)(maximum(1, rectIntersect.area()));
+               i32 iArea = (i32)(maximum(1, rectangleIntersect.area()));
 
-               rectMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
+               rectangleMachineThumb.inflate(1 + iSize * (iSize * iSize) * 4 / (iArea * 5), 1 + iSize * (iSize * iSize) * 2 / (iArea * 3));
 
-               pbar->draw_mac_thumb_simple(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+               pbar->draw_mac_thumb_simple(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
             }
             else
             {
 
-               int iSize = rectTrack.size().get_normal(pbar->m_eorientation);
+               int iSize = rectangleTrack.size().get_normal(pbar->m_eorientation);
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
+               rectangleMachineThumb.top_left() = rectangleTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
-               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + ::size_i32(iSize, iSize);
+               rectangleMachineThumb.bottom_right() = rectangleMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
-               rectMachineThumb.assign_normal(rectTrack, pbar->m_eorientation);
+               rectangleMachineThumb.assign_normal(rectangleTrack, pbar->m_eorientation);
 
-               rectMachineThumb.constraint_v7(rectTrack);
+               rectangleMachineThumb.constraint_v7(rectangleTrack);
 
-               rectMachineThumb.deflate(1, 1);
+               rectangleMachineThumb.deflate(1, 1);
 
-               pbar->draw_mac_thumb_dots(pgraphics, rectMachineThumb, rectTrack, uchAlpha);
+               pbar->draw_mac_thumb_dots(pgraphics, rectangleMachineThumb, rectangleTrack, uchAlpha);
 
             }
 
@@ -1554,13 +1623,13 @@ namespace experience
 
          }
 
-         ::draw2d::pen_pointer penGrip(e_create);
+         auto ppenGrip = __create < ::draw2d::pen > ();
 
-         penGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rect));
+         ppenGrip->create_solid(2.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rect));
 
-         pgraphics->set(penGrip);
+         pgraphics->set(ppenGrip);
 
-         ::point_i32 pointCenter = rectTrack.center();
+         ::point_i32 pointCenter = rectangleTrack.center();
 
          if (pbar->m_eorientation == e_orientation_horizontal)
          {
@@ -1585,70 +1654,70 @@ namespace experience
 
          }
 
-         ::draw2d::pen_pointer penArrow(e_create);
+         auto ppenArrow = __create < ::draw2d::pen > ();
 
-         penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectA));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-         pgraphics->set(penArrow);
+         pgraphics->set(ppenArrow);
 
-         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_rectA));
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectA));
 
-         pgraphics->set(pbar->m_brushDraw);
+         pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->rectangle(pbar->m_rectA);
+         pgraphics->rectangle(pbar->m_rectangleA);
 
-         penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-         pgraphics->set(penArrow);
+         pgraphics->set(ppenArrow);
 
-         pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_rectB));
+         pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_rectB));
 
-         pgraphics->set(pbar->m_brushDraw);
+         pgraphics->set(pbar->m_pbrushDraw);
 
-         pgraphics->rectangle(pbar->m_rectB);
+         pgraphics->rectangle(pbar->m_rectangleB);
 
          ::rectangle_i32 rectangle;
 
-         if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageA || pbar->m_itemHover == ::user::e_element_scrollbar_pageA)
+         if (pbar->m_itemCurrent == ::e_element_scrollbar_pageA || pbar->m_itemHover == ::e_element_scrollbar_pageA)
          {
 
-            pbar->GetPageARect(rectangleClient, rectTrack, rectangle, pgraphics);
+            pbar->GetPageARect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
-            pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageA));
+            pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageA));
 
-            pgraphics->set(pbar->m_brushDraw);
+            pgraphics->set(pbar->m_pbrushDraw);
 
             pgraphics->fill_rectangle(rectangle);
 
          }
-         else if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageB || pbar->m_itemHover == ::user::e_element_scrollbar_pageB)
+         else if (pbar->m_itemCurrent == ::e_element_scrollbar_pageB || pbar->m_itemHover == ::e_element_scrollbar_pageB)
          {
 
-            pbar->GetPageBRect(rectangleClient, rectTrack, rectangle, pgraphics);
+            pbar->GetPageBRect(rectangleClient, rectangleTrack, rectangle, pgraphics);
 
-            pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageB));
+            pbar->m_pbrushDraw->create_solid(pbar->scrollbar_color(this, ::e_element_scrollbar_pageB));
 
-            pgraphics->set(pbar->m_brushDraw);
+            pgraphics->set(pbar->m_pbrushDraw);
 
             pgraphics->fill_rectangle(rectangle);
 
          }
 
-         penArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
-         penArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
-         penArrow->m_elinejoin = ::draw2d::e_line_join_round;
+         ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinecapEnd = ::draw2d::e_line_cap_round;
+         ppenArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-         penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectA));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectA));
 
-         pgraphics->set(penArrow);
+         pgraphics->set(ppenArrow);
 
-         pgraphics->polyline(pbar->m_ptaA, 3);
+         pgraphics->polyline(pbar->m_pointaA, 3);
 
-         penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
+         ppenArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::e_element_scrollbar_rectB));
 
-         pgraphics->set(penArrow);
+         pgraphics->set(ppenArrow);
 
-         pgraphics->polyline(pbar->m_ptaB, 3);
+         pgraphics->polyline(pbar->m_pointaB, 3);
 
          return true;
 

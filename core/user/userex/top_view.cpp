@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace userex
@@ -37,10 +40,10 @@ namespace userex
    }
 
 
-   void top_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void top_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
    }
 
@@ -70,7 +73,7 @@ namespace userex
       if (m_peditview == nullptr)
       {
 
-         message_box("Could not create folder edit view");
+         output_error_message("Could not create folder edit impact");
 
       }
 
@@ -81,7 +84,7 @@ namespace userex
       if (m_ptoggleview == nullptr)
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 
@@ -111,16 +114,16 @@ namespace userex
 
       string strType = "top_view";
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       ::user::split_view::_001OnDraw(pgraphics);
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) "+strType+"::_000OnDraw took " + __str(d1) + ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) "<< strType << "::_000OnDraw took " << integral_millisecond(d1) << ".\n");
 
       }
 

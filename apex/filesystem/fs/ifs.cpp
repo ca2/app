@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
 
@@ -22,7 +22,7 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    auto psystem = get_system()->m_papexsystem;
 
-   if(dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
+   if(dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -42,7 +42,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    auto psystem = m_psystem->m_papexsystem;
 
-   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
+   if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -87,7 +87,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    auto psystem = m_psystem->m_papexsystem;
 
-   if (dir.m_millisLast.elapsed() < psystem->m_millisFileListingCache)
+   if (dir.m_durationLast.elapsed() < psystem->m_durationFileListingCache)
    {
 
       listing = dir;
@@ -110,11 +110,11 @@ bool ifs::has_subdir(const ::file::path & path)
       if(str == "You have not logged in! Exiting!")
       {
 
-         __throw(::exception::exception("uifs:// You have not logged in!"));
+         __throw(error_wrong_state, "uifs:// You have not logged in!");
 
       }
 
-      dir.m_millisLast.now();
+      dir.m_durationLast.now();
 
       listing = ::error_failed;
 
@@ -296,7 +296,7 @@ int ifs::is_dir(const ::file::path & path)
 
    auto psystem = m_psystem->m_papexsystem;
 
-   if(dir.m_millisLast.timeout(psystem->m_millisFileListingCache))
+   if(dir.m_durationLast.timeout(psystem->m_durationFileListingCache))
    {
 
       ::file::listing listing;
@@ -321,13 +321,13 @@ int ifs::is_dir(const ::file::path & path)
 
 bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 {
-   UNREFERENCED_PARAMETER(pszDst);
-   UNREFERENCED_PARAMETER(pszSrc);
+   __UNREFERENCED_PARAMETER(pszDst);
+   __UNREFERENCED_PARAMETER(pszSrc);
    return true;
 }
 
 
-file_result ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
+file_transport ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    auto pfile = __new(ifs_file( path));

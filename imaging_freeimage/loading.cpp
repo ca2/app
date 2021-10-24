@@ -2,7 +2,7 @@
 #include "_imaging_freeimage.h"
 
 
-CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & varFile);
+CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
 
 
 namespace imaging_freeimage
@@ -162,7 +162,7 @@ namespace imaging_freeimage
    const char * pszId)
 
    {
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
    ::memory_file file(this);
 
@@ -235,18 +235,18 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimage, const ::payload & varFileParam, const ::image::load_options & loadoptions)
    {
 
-      auto pmemory = create_memory();
+      memory memory;
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile = varFileParam;
+      payloadFile = varFileParam;
 
       {
 
-         auto tmp = varFile.get_file_path();
+         auto tmp = payloadFile.get_file_path();
 
          if (tmp.ends_ci(".gif"))
          {
@@ -257,13 +257,29 @@ namespace imaging_freeimage
 
       }
 
-      set_bypass_cache_if_empty(varFile);
+      set_bypass_cache_if_empty(payloadFile);
 
-      m_pcontext->m_papexcontext->file().as_memory(varFile, *pmemory);
+      ::file::path path = payloadFile.get_file_path();
 
-      //m_pcontext->m_papexcontext->file().non_empty_memory(varFile, *pmemory);
+      ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      const char * psz = (const char *)pmemory->get_data();
+      auto estatus = m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
+
+      auto p1 = memory.get_data();
+
+      int s1 = memory.get_size();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+
+      //m_pcontext->m_papexcontext->file().non_empty_memory(payloadFile, *pmemory);
+
+      const char * psz = (const char *)memory.get_data();
 
       if (::is_null(psz))
       {
@@ -279,7 +295,7 @@ namespace imaging_freeimage
 
       }
 
-      if (pmemory->is_empty())
+      if (memory.is_empty())
       {
 
          return false;
@@ -290,21 +306,51 @@ namespace imaging_freeimage
 
       auto pcontextimage = pcontext->context_image();
 
-      auto estatus = pcontextimage->load_svg(pimage, pmemory);
+      auto pszData = memory.get_data();
 
-      if (::succeeded(estatus))
+      int size = memory.get_size();
+
+      char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
+
+      bool bPng = size > sizeof(pszPngSignature)
+      && strncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+
+      bool bJpegBegins = memory.begins("\x0FF\x0D8", 2);
+
+      bool bJpegEnds = memory.ends("\x0FF\x0D9", 2);
+
+      bool bJpeg =  bJpegBegins && bJpegEnds;
+
+      bool bJfif = memory.begins("JFIF", 4);
+
+      bool bExif = memory.begins("Exif", 4);
+
+      bool bBinary = *pszData == '\0';
+
+      if(!bPng
+      && !bBinary
+      && !bJpeg
+      && !bJfif
+      && !bExif)
       {
 
-         auto pdata = pimage->get_data();
+         estatus = pcontextimage->load_svg(pimage, memory);
 
-         return estatus;
+         if (::succeeded(estatus))
+         {
+
+            auto pdata = pimage->get_data();
+
+            return estatus;
+
+         }
 
       }
 
-      if (pmemory->get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
+      if (memory.get_size() > 3 && strnicmp(psz, "gif", 3) == 0)
       {
 
-         if (!_load_multi_frame_image(pimage, pmemory))
+         if (!_load_multi_frame_image(pimage, memory))
          {
 
             pimage->set_nok();
@@ -323,7 +369,7 @@ namespace imaging_freeimage
 
       }
 
-      FIMEMORY * pmem = FreeImage_OpenMemory(pmemory->get_data(), (::u32) pmemory->get_size());
+      FIMEMORY * pmem = FreeImage_OpenMemory(memory.get_data(), (::u32) memory.get_size());
 
       if (pmem == nullptr)
       {

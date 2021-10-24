@@ -34,10 +34,14 @@ namespace xml
    {
       if(m_pnode == nullptr)
       {
+         
          if(m_pdocument == nullptr)
          {
-            __throw(::exception::exception("Cannot output to a nullptr document"));
+         
+            throw ::exception("Cannot output to a nullptr document");
+
          }
+
          m_pnode = m_pdocument->root();
          m_pnode->set_name(pcszName);
 
@@ -102,7 +106,7 @@ namespace xml
    //void output_tree::set_double_attr(const char * pcszName, double dValue)
 
    //{
-   //   m_pnode->set_attr(pcszName, __str(dValue));
+   //   m_pnode->set_attr(pcszName, __string(dValue));
 
    //}
 

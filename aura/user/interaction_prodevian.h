@@ -11,45 +11,44 @@ namespace user
    public:
 
 
-      synchronization_array                                m_synchronizationa;
+      synchronization_array                     m_synchronizationa;
 
       manual_reset_event                        m_evUpdateScreen;
 
       __pointer(::user::interaction)            m_puserinteraction;
       __pointer(::user::interaction_impl)       m_pimpl;
 
-      __composite(::user::thread)               m_puserthread;
-      nano_timer                                m_nanotimer;
+      __reference(::user::thread)               m_puserthread;
+      nanosecond_timer                          m_nanosecondtimer;
 
-      ::nanos                                   m_nanosNow;
+      ::duration                                m_durationNow;
 
-      ::nanos                                   m_nanosPostRedrawProdevian;
-      ::nanos                                   m_nanosPostRedrawNominal;
+      ::duration                                m_durationPostRedrawProdevian;
+      ::duration                                m_durationPostRedrawNominal;
 
       //i64                                       m_iFrameId;
-      ::nanos                                   m_nanosLastFrame;
+      ::duration                                m_durationLastFrame;
       //i64                                       m_iLastFrameId;
-      ::nanos                                   m_nanosNextFrame;
-      ::nanos                                   m_nanosNextScreenUpdate;
+      ::duration                                m_durationNextFrame;
+      ::duration                                m_durationNextScreenUpdate;
       //::count                                   m_cLost;
-      ::array < ::nanos >                       m_nanosaFrame;
+      ::array < ::duration >                    m_durationaFrame;
 
-      millis                                    m_millisBeforeUpdateScreen;
-      millis                                    m_millisAfterUpdateScreen;
-      millis                                    m_millisDuringUpdateScreen;
-      millis                                    m_millisOufOfUpdateScreen;
+      ::duration                                m_durationBeforeUpdateScreen;
+      ::duration                                m_durationAfterUpdateScreen;
+      ::duration                                m_durationDuringUpdateScreen;
+      ::duration                                m_durationOufOfUpdateScreen;
 
 
-      millis                                    m_millisBeforeDrawing;
-      millis                                    m_millisAfterDrawing;
-      millis                                    m_millisDuringDrawing;
-      millis                                    m_millisOutOfDrawing;
+      ::duration                                m_durationBeforeDrawing;
+      ::duration                                m_durationAfterDrawing;
+      ::duration                                m_durationDuringDrawing;
+      ::duration                                m_durationOutOfDrawing;
 
-      millis                                    m_millisLastScreenUpdate;
-      ::routine                        m_routineUpdateScreen;
-      ::routine                        m_routineWindowShow;
+      ::duration                                m_durationLastScreenUpdate;
+      ::routine                                 m_routineUpdateScreen;
+      ::routine                                 m_routineWindowShow;
       
-
 
       bool                                      m_bRedraw;
       bool                                      m_bUpdateBuffer; // internal offscreen buffer
@@ -68,14 +67,18 @@ namespace user
 
 
       prodevian();
-      virtual ~prodevian();
+      ~prodevian() override;
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
+
+
+      virtual ::e_status defer_create_prodevian();
+
 
 
       virtual ::e_status initialize_prodevian(interaction_impl * pimpl);
@@ -88,6 +91,9 @@ namespace user
       void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       bool update_screen();
 
+      
+      virtual void profiling_on_before_update_screen();
+      virtual void profiling_on_after_update_screen();
       
 
       void defer_prodevian_step();

@@ -11,7 +11,7 @@ const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
 string linux_get_file_icon_path(string strPath, int iSize)
 {
 
-   return ::str::from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
+   return ::string_from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
 
 }
 
@@ -20,7 +20,7 @@ const char * linux_g_direct_get_file_content_type(const char * pszFile);
 string core_linux_get_file_content_type(string strPath)
 {
 
-   return ::str::from_strdup(linux_g_direct_get_file_content_type(strPath));
+   return ::string_from_strdup(linux_g_direct_get_file_content_type(strPath));
 
 }
 
@@ -56,7 +56,7 @@ namespace linux
 //            m_threadaGetImage.add(fork([&]()
 //            {
 //
-//               ::parallelization::set_priority(::priority_highest);
+//               ::parallelization::set_priority(::e_priority_highest);
 //
 //               shell_run();
 //
@@ -525,7 +525,11 @@ namespace linux
 
          ::str::international::unicode_to_utf8(strPath, lpcszPath);
 
-         if (dir::is(strPath))
+         if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
          {
 
             return folder_file_system;
@@ -1065,7 +1069,7 @@ namespace linux
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//               m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point(), 0);
+//               m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
 //               m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //               m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
 //               m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1079,10 +1083,10 @@ namespace linux
 //               pimage = __create_image(d->size());
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//               pimage->get_graphics()->draw(::point(), d->size(), d->get_graphics());
+//               pimage->get_graphics()->draw(::point_i32(), d->size(), d->get_graphics());
 //               pimage->get_graphics()->fill_rectangle(rectangle(d->size()), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//               m_pil[iSize]->m_pimage->g()->draw(::point(), d->size(), pimage->get_graphics());
+//               m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //            }

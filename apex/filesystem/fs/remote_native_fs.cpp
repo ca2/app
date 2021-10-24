@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/sockets/_sockets.h"
+#include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "remote_native_file.h"
 
@@ -143,7 +143,7 @@ namespace fs
       //      if(pchild->get_name() != "folder")
       //         continue;
 
-      //      m_mapdirTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
+      //      m_mapdirTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
 
       //      m_mapfileTimeout.erase_key(listing.m_pathUser);
 
@@ -167,7 +167,7 @@ namespace fs
       //      if(pchild->get_name() != "file")
       //         continue;
 
-      //      m_mapfileTimeout[listing.m_pathUser]= ::millis::now() + (15 * 1000);
+      //      m_mapfileTimeout[listing.m_pathUser]= ::duration::now() + (15 * 1000);
 
       //      m_mapdirTimeout.erase_key(listing.m_pathUser);
 
@@ -210,12 +210,12 @@ namespace fs
 
       defer_initialize();
 
-      millis millisLast;
+      ::duration millisLast;
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
             ::file::listing l;
@@ -235,7 +235,7 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             
             ::file::listing l;
@@ -250,7 +250,7 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > psystem->m_millisFileListingCache)
+         if(millisLast.elapsed() > psystem->m_durationFileListingCache)
          {
             return 0;
          }
@@ -308,13 +308,13 @@ namespace fs
 
    bool remote_native::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
-      UNREFERENCED_PARAMETER(pszDst);
-      UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(pszDst);
+      __UNREFERENCED_PARAMETER(pszSrc);
       return true;
    }
 
 
-   file_result remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_transport remote_native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile = __new(remote_native_file(path));
@@ -335,7 +335,9 @@ namespace fs
 
    bool remote_native::file_exists(const ::file::path & pszPath)
    {
+
       return ::fs::data::file_exists(pszPath);
+
    }
 
 

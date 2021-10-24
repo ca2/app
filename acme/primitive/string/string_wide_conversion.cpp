@@ -21,13 +21,4 @@ wtostring::~wtostring()
 
    }
 
-   if(m_pdata != nullptr)
-   {
-      
-      natural_release();
-      
-      m_pdata = nullptr;
-
-   }
-
 }

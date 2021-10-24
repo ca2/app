@@ -3,7 +3,7 @@
 db_stra_set::db_stra_set(db_server * pserver, ::database::key & id) :
    m_id(id)
 {
-   UNREFERENCED_PARAMETER(pserver);
+   __UNREFERENCED_PARAMETER(pserver);
    m_iMaximumCount = 32;
 }
 

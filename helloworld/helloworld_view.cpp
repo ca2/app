@@ -10,7 +10,7 @@ namespace helloworld
 
 
 
-   view::view(::object * pobject):
+   impact::impact(::object * pobject):
       object(pobject),
       impact_base(pobject),
       m_pimageColor,
@@ -43,7 +43,7 @@ namespace helloworld
 
       m_prender = new render(this);
 
-      m_prender->m_pview = this;
+      m_prender->m_pimpact = this;
 
       m_prender->m_pmutexText = &m_mutexText;
 
@@ -55,32 +55,32 @@ namespace helloworld
 
    }
 
-   view::~view()
+   impact::~impact()
    {
    }
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       user::box::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       user::box::dump(dumpcontext);
    }
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       impact_base::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create,pchannel,this,&view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
+      MESSAGE_LINK(e_message_create,pchannel,this,&impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
 
    }
 
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -109,9 +109,9 @@ namespace helloworld
             GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(strText,::e_source_initialize);
 
 
-//            file_put_contents("C:\\dennisheazle\\ft.txt", __str((iptr)get_top_level()->get_handle()));
+//            m_psystem->m_pacmefile->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
 
-            //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__str((iptr)get_top_level()->get_handle()), ::e_source_initialize);
+            //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }
@@ -131,12 +131,12 @@ namespace helloworld
 
    }
 
-   void view::on_message_destroy(::message::message * pmessage)
+   void impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -176,17 +176,17 @@ namespace helloworld
       else
       {
 
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       }
 
    }
 
 
-   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact_base::on_subject(psubject, pcontext);
+      impact_base::handle(psubject, pcontext);
 
       ::update * pupdate = dynamic_cast < ::update *> (pupdate);
 
@@ -198,7 +198,7 @@ namespace helloworld
          if (peditview != nullptr)
          {
 
-            if (pupdate->m_ehint == id_after_change_text && psubject->m_puserinteraction == peditview)
+            if (pupdate->m_ehint == id_after_change_text && psubject->user_interaction() == peditview)
             {
 
                string strText;
@@ -220,7 +220,7 @@ namespace helloworld
 
 
 
-   void view::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_prender->_006OnDraw(pgraphics);
@@ -232,7 +232,7 @@ namespace helloworld
 
 
 
-   ::user::document * view::get_document()
+   ::user::document * impact::get_document()
    {
 
       return  (::user::impact::get_document());
@@ -244,7 +244,7 @@ namespace helloworld
 
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -292,7 +292,7 @@ namespace helloworld
    }
 
 
-   string view::get_processed_helloworld()
+   string impact::get_processed_helloworld()
    {
 
       synchronous_lock slText(&m_mutexText);
@@ -340,15 +340,15 @@ namespace helloworld
 
 
                get_document()->on_open_document(m_strImage);
-               //   ::payload varFile;
+               //   ::payload payloadFile;
                //
-               //   varFile["url"] = strImage;
+               //   payloadFile["url"] = strImage;
                //
-               //   varFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
+               //   payloadFile["http_set"]["raw_http"] = purl->get_server(m_strImage).find_wci("ca2") < 0;
                //
                //   ::image_pointer pimage;
                //
-/*               //   if(pimage->load_image(varFile))
+/*               //   if(pimage->load_image(payloadFile))
                //   {
                //
                //      if(strImage == m_strImage)
@@ -394,7 +394,7 @@ namespace helloworld
    }
 
 
-   string view::get_helloworld()
+   string impact::get_helloworld()
    {
 
       synchronous_lock synchronouslock(&m_mutexText);
@@ -449,7 +449,7 @@ namespace helloworld
    }
 
 
-   void view::defer_check_on_draw_layout()
+   void impact::defer_check_on_draw_layout()
    {
 
       if (m_prender != nullptr)
@@ -473,7 +473,7 @@ namespace helloworld
    }
 
 
-   void view::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_draw_image_layer(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_set() && m_prender->m_pimageImage->area() > 0)
@@ -482,14 +482,14 @@ namespace helloworld
 
          //m_bFirstDone = true;
 
-         ::rectangle_i32 rectWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
-         ::rectangle_i32 rectImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::rectangle_i32 rectangleWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::rectangle_i32 rectangleImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
-         rectImage.FitOnCenterOf(rectWork);
+         rectangleImage.FitOnCenterOf(rectangleWork);
 
          m_pimagePost->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimagePost->get_graphics()->StretchBlt(rectImage.left, rectImage->top, rectImage->width(), rectImage->height(),
+         m_pimagePost->get_graphics()->StretchBlt(rectangleImage.left, rectangleImage->top, rectangleImage->width(), rectangleImage->height(),
 /*                                                m_prender->m_pimagepimage->g(), 0, 0,
                                                 m_prender->m_pimageImage->get_size()->cx,
                                                 m_prender->m_pimageImage->get_size()->cy);

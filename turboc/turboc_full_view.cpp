@@ -8,7 +8,7 @@ namespace turboc
 
    full_view::full_view(::object * pobject):
       ::object(pobject),
-      view(pobject)
+      impact(pobject)
    {
 
       m_bLite = false;
@@ -41,7 +41,7 @@ namespace turboc
    void full_view::install_message_handling(::message::dispatch * pdispatch)
    {
 
-      view::install_message_handling(pdispatch);
+      impact::install_message_handling(pdispatch);
 
       IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&full_view::on_message_create);
 
@@ -63,7 +63,7 @@ namespace turboc
 
       //   papplication->load_ai_font();
 
-      //   __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+      //   __begin_thread(get_application(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
 
       //}
 
@@ -72,14 +72,14 @@ namespace turboc
 
    void full_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
    }
 
 
    void full_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      view::_001OnDraw(pgraphics);
+      impact::_001OnDraw(pgraphics);
 
    }
 
@@ -91,7 +91,7 @@ namespace turboc
    }
 
 
-/*   void view::turboc_render_full_view(::image * pimage)
+/*   void impact::turboc_render_full_view(::image * pimage)
    {
 
       if(m_pimageWork->area() <= 0)
@@ -112,7 +112,7 @@ namespace turboc
 
 //      i32 iCount = 30;
 
-      ::draw2d::brush_pointer brushText(this_create);
+      ::draw2d::brush_pointer pbrushText(this_create);
 
       double T = 2.3;
 
@@ -135,7 +135,7 @@ namespace turboc
 
       }
 
-      double t= ::millis::now() / 1000.0;
+      double t= ::duration::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -170,7 +170,7 @@ namespace turboc
 
       }
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       string strHelloMultiverse = get_processed_turboc();
 
@@ -200,11 +200,11 @@ namespace turboc
 
 /*         m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         brushText->create_solid(argb(255,255,255,255));
+         pbrushText->create_solid(argb(255,255,255,255));
 
-/*         m_pimage->g()->SelectObject(brushText);
+/*         m_pimage->g()->SelectObject(pbrushText);
 
-/*         m_pimage->g()->set_font(m_font);
+/*         m_pimage->g()->set_font(m_pfont);
 
 /*         m_pimage->g()->text_out((m_cx - size_i32->cx) / 2,(m_cy - size_i32->cy) / 2,strHelloMultiverse);
 
@@ -248,7 +248,7 @@ namespace turboc
       if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         pbrushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
       }
       else
@@ -257,19 +257,19 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            brushText->create_solid(argb(255,184,184,177));
+            pbrushText->create_solid(argb(255,184,184,177));
 
          }
          else
          {
 
-            brushText->create_solid(argb(255,255,255,255));
+            pbrushText->create_solid(argb(255,255,255,255));
 
          }
 
       }
 
-      pgraphics->SelectObject(brushText);
+      pgraphics->SelectObject(pbrushText);
 
       pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 

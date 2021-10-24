@@ -64,23 +64,23 @@ const char * callstack::get_dup(const char * pszFormat, i32 iSkip, int iCount)
 //
 //   const char * psz;
 //
-//   synchronous_lock synchronouslock(::exception::engine().mutex());
+//   synchronous_lock synchronouslock(::exception_engine().mutex());
 //
 //#if defined(LINUX)
 //
-//   psz = strdup(::exception::engine().stack_trace(iSkip, m_caller_address));
+//   psz = strdup(::exception_engine().stack_trace(iSkip, m_caller_address));
 //
 //#elif defined(__APPLE__)
 //   
-//   ::exception::engine().stack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount);
+//   ::exception_engine().stack_trace(iSkip, m_caller_address, m_pszFormat, m_iCount);
 //   
-//   psz = _strdup(::exception::engine()._strS);
+//   psz = _strdup(::exception_engine()._strS);
 //
 //#else
 //
-//   ::exception::engine().stack_trace(iSkip, m_pszFormat, m_iCount);
+//   ::exception_engine().stack_trace(iSkip, m_pszFormat, m_iCount);
 //
-//   psz = _strdup(::exception::engine()._strS);
+//   psz = _strdup(::exception_engine()._strS);
 //
 //#endif
 //

@@ -1,27 +1,10 @@
 #pragma once
 
 
-struct voidarg : public payload_type < voidarg >{ voidarg(); };
-
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 
-namespace factory
-{
-
-   template < typename TYPE >
-   __pointer(TYPE) create();
-
-
-} // namespace factory
-
-
-template < class root_derived >
-inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-template < class root_derived >
-inline i64 release(root_derived * & pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -45,18 +28,18 @@ public:
 
    inline ___pointer();
    inline ___pointer(std::nullptr_t);
-   inline ___pointer(const lparam & lparam);
+   //inline explicit ___pointer(const lparam & lparam);
 
    inline ___pointer(const ___pointer & t);
    inline ___pointer(___pointer && t);
    //inline ___pointer(const ::trait & trait);
 
 
-   inline ___pointer(enum_create_new) :
-      m_p(new T)
-   {
+   //inline ___pointer(enum_create_new) :
+   //   m_p(new T)
+   //{
 
-   }
+   //}
 
 
    inline ___pointer(enum_create_new, ::object * pobject) :
@@ -67,25 +50,16 @@ public:
 
    }
 
-   template < TEMPLATE_TYPE >
-   inline ___pointer(enum_create, TEMPLATE_ARG) :
-      m_p(nullptr)
-   {
+   //template < TEMPLATE_TYPE >
+   //inline ___pointer(enum_create, TEMPLATE_ARG) :
+   //   m_p(nullptr)
+   //{
 
-      create();
+   //   create();
 
-   }
+   //}
 
-   template < typename OBJECT >
-   inline ___pointer(enum_create, OBJECT * p) :
-      m_p(nullptr)
-   {
-
-      create();
-
-      m_p->initialize(p);
-
-   }
+   inline ___pointer(enum_create, ::object * p);
 
    inline ___pointer(enum_move_transfer, T * p) : m_p(p) {}
 
@@ -210,7 +184,7 @@ public:
    //template < typename OTHER >
    //inline ___pointer & operator -=(__composite(OTHER) & p) { m_p->release(p); return *this; }
 
-   inline static string type_str();
+   //inline static const char * __type_name(this);
 
    inline T * operator ->();
    inline T * operator ->() const;
@@ -424,35 +398,35 @@ public:
    inline bool operator ==(const T * p) const { return m_p == p; }
    inline bool operator !=(const T * p) const { return m_p != p; }
 
-   template < typename TYPE = T >
-   inline __pointer(T) & defer_create_new();
+   //template < typename TYPE = T >
+   //inline __pointer(T) & defer_create_new();
 
    template < typename TYPE >
    inline __pointer(T) & defer_assign_to(TYPE * & p);
 
+   //template < typename TYPE = T >
+   //inline __pointer(T) & create_new();
+
    template < typename TYPE = T >
-   inline __pointer(T) & create_new();
+   inline __pointer(T) & defer_create_new(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & defer_create_new(OBJECT * pobject);
+   template < typename TYPE = T >
+   inline __pointer(T) & create_new(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create_new(OBJECT * pobject);
+   //template < TEMPLATE_TYPE >
+   //inline __pointer(T) & defer_create(TEMPLATE_ARG);
 
-   template < TEMPLATE_TYPE >
-   inline __pointer(T) & defer_create(TEMPLATE_ARG);
+   //template < TEMPLATE_TYPE >
+   //inline __pointer(T) & create(TEMPLATE_ARG);
 
-   template < TEMPLATE_TYPE >
-   inline __pointer(T) & create(TEMPLATE_ARG);
+   template < typename TYPE = T >
+   inline __pointer(T) & defer_create(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT  >
-   inline __pointer(T) & defer_create(OBJECT * pobject);
+   template < typename TYPE = T >
+   inline __pointer(T) & create(::object * pobject);
 
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobject);
-
-   template < typename TYPE = T, typename OBJECT >
-   inline __pointer(T) & create(OBJECT * pobject, bool bCreate);
+   template < typename TYPE = T >
+   inline __pointer(T) & create(::object * pobject, bool bCreate);
 
    inline __pointer(T) & clone(::matter * pobject);
 
@@ -504,92 +478,64 @@ inline void destruct(T * p)
 }
 
 
-// destroy solves this.
-
-template < class T >
-class guard____pointer :
-   public ::___pointer < T >
-{
-public:
-   guard____pointer() {}
-   guard____pointer(const lparam& lparam) : ::___pointer<T>(lparam) {}
-
-   guard____pointer(const ___pointer < T > & t): ::___pointer< T>(t) {}
-   guard____pointer(guard____pointer < T > && t): ::___pointer<T>(::move(t)) {}
-   guard____pointer(const allocer & allocer): ::___pointer<T>(allocer) {}
-   template < class T2 >
-   guard____pointer(T2 * p) : ::___pointer <T>(p) {}
-   guard____pointer(T * p) : ::___pointer <T>(p) {}
-
-   template < class T2 >
-   guard____pointer(const T2 * p): ::___pointer <T>(p) {}
-
-   template < class T2 >
-   guard____pointer(const ___pointer < T2 > & t): ::___pointer <T>(t) {}
-
-
-   template < class T2 >
-   guard____pointer(guard____pointer < T2 > && t) :
-      ::___pointer <T>(::move(t)) {}
-
-   ~guard____pointer()
-   {
-
-      if(::is_set(this->m_p))
-      {
-
-         ::destruct(this->m_p);
-
-      }
-
-      this->release();
-
-   }
-
-
-};
+//// destroy solves this.
+//
+//template < class T >
+//class guard____pointer :
+//   public ::___pointer < T >
+//{
+//public:
+//   guard____pointer() {}
+//   guard____pointer(const lparam& lparam) : ::___pointer<T>(lparam) {}
+//
+//   guard____pointer(const ___pointer < T > & t): ::___pointer< T>(t) {}
+//   guard____pointer(guard____pointer < T > && t): ::___pointer<T>(::move(t)) {}
+//   //guard____pointer(const allocer & allocer): ::___pointer<T>(allocer) {}
+//   template < class T2 >
+//   guard____pointer(T2 * p) : ::___pointer <T>(p) {}
+//   guard____pointer(T * p) : ::___pointer <T>(p) {}
+//
+//   template < class T2 >
+//   guard____pointer(const T2 * p): ::___pointer <T>(p) {}
+//
+//
+//   template < class T2 >
+//   guard____pointer(const ___pointer < T2 > & t): ::___pointer <T>(t) {}
+//
+//
+//   template < class T2 >
+//   guard____pointer(guard____pointer < T2 > && t) :
+//      ::___pointer <T>(::move(t)) {}
+//
+//
+//   ~guard____pointer()
+//   {
+//
+//      if(::is_set(this->m_p))
+//      {
+//
+//         ::destruct(this->m_p);
+//
+//      }
+//
+//      this->release();
+//
+//   }
+//
+//
+//};
+//
 
 template < typename T >
 inline bool __found(const __pointer(T) & p) { return p.is_set(); }
+
 
 template < typename T >
 inline bool __not_found(const __pointer(T) & p) { return p.is_null(); }
 
 
-
-//namespace papaya
-//{
-//
-//
-//   template < typename T>
-//   _____pointer(T) & defer_new(_____pointer(T) & t, ::matter * p)
-//   {
-//
-//      if (t.is_null())
-//      {
-//
-//         T * ptype = new T(p);
-//
-//         ptype->m_countReference--;
-//
-//         t = ptype;
-//
-//
-//
-//      }
-//
-//      return t;
-//   }
-//
-//} // namespace papaya
-
-
-
-
-
 template < typename T >
 inline __pointer(T) __move_transfer(T * p) { return ::___pointer < T >(e_move_transfer, p); }
-
 
 
 template < typename TYPE >
@@ -617,7 +563,6 @@ inline __pointer(TYPE) __clone(const __pointer(TYPE) & p)
    return p->clone();
 
 }
-
 
 
 template < typename TYPE >
@@ -652,14 +597,9 @@ inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
 }
 
 
-template < typename TYPE >
-inline ::i64 release(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
-template < typename TYPE >
-inline ::i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-template < class REFERENCE >
-inline ::i64 release(__reference(REFERENCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+template < class T >
+inline ___pointer < T > & __move(___pointer < T > & p, ::lparam & lparam);
 
 
 

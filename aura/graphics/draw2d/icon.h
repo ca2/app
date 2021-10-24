@@ -10,12 +10,13 @@ namespace draw2d
    /// icon * -> image_source_pointer concept
    /// </summary>
    class CLASS_DECL_AURA icon :
-      virtual public ::matter
+      virtual public ::image_source_interface
    {
    protected:
 
 
       friend class ::windowing::icon;
+
 
       __pointer(::windowing::icon)              m_pwindowingicon;
       __pointer(size_image)                     m_pimagemap;
@@ -24,15 +25,15 @@ namespace draw2d
       bool                                      m_bAutoDelete;
       string                                    m_strAppTrayIcon;
 
-   public:
 
+   public:
       
 
       icon();
-      virtual ~icon();
+      ~icon() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      ::e_status initialize(::object * pobject) override;
 
 
       virtual ::e_status initialize_with_windowing_icon(::windowing::icon * picon);
@@ -43,7 +44,10 @@ namespace draw2d
 
       string get_tray_icon_name();
 
+
       ::size_i32 get_size();
+
+
       ::size_i32 get_smaller_size(const ::size_i32 & size);
 
 
@@ -53,33 +57,18 @@ namespace draw2d
       inline ::size_f64 origin() const { return ::size_f64(); }
 
 
-      image * get_image(const concrete < ::size_i32 > & size);
-      image * get_image(const concrete < ::size_i32 > & size) const
-      {
+//      image_pointer get_image(const concrete < ::size_i32 > & size);
 
-         return ((icon *)this)->get_image(size);
 
-      }
+      image_pointer image_source_image(const concrete < ::size_i32 > & size) override;
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
-      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
-      { 
 
-         auto pimage = get_image(sizeDst);
+      concrete < ::size_i32 > image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
-         if (!pimage)
-         {
-
-            return sizeDst;
-
-         }
-
-         return pimage->size(sizeDst, eimageselection); 
       
-      }
-
-      inline concrete < ::size_i32 > size() const { return get_image(::size_f64())->size(); }
+      concrete < ::size_i32 > image_source_size() const override;
 
          
    };

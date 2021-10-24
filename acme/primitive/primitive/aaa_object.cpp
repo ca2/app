@@ -20,7 +20,7 @@ namespace exception
 }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
@@ -125,7 +125,7 @@ void object::create_object_meta()
 void object::to_string(const class string_exchange & str) const
 {
 
-   str = string(type_name()) + " (0x" + ::hex::lower_from((uptr)this) + ")";
+   str = __type_name(this) + " (0x" + ::hex::lower_from((uptr)this) + ")";
 
 }
 
@@ -140,7 +140,7 @@ void object::to_string(const class string_exchange & str) const
    if (m_pcompositea->add_unique(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
    {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
       object_on_add_composite(pmatter);
 
@@ -165,10 +165,10 @@ void object::to_string(const class string_exchange & str) const
    if (m_preferencea->get_upper_bound() == 8)
    {
 
-      if (string(type_name()).contains("application"))
+      if (__type_name(this).contains("application"))
       {
 
-         string strMessage = "what is this? : " +string( m_preferencea->last()->type_name());
+         string strMessage = "what is this? : " +string( m_preferencea->last()__type_name());
          output_debug_string(strMessage);
       }
 
@@ -509,7 +509,7 @@ void object::set_topic_text(const ::string & strTopicText)
 ::e_status object::initialize(::object * pobject)
 {
 
-   auto estatus = ::subject::manager::initialize(pobject);
+   auto estatus = ::manager::initialize(pobject);
 
    if (!estatus)
    {
@@ -635,7 +635,7 @@ void object::defer_update_object_id()
 ::id object::calc_default_object_id() const
 {
 
-   string strType = type_name();
+   string strType = __type_name(this);
 
    ::str::begins_eat_ci(strType, "class ");
 
@@ -667,20 +667,20 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request_file(const ::payload & varFile)
+::e_status     object::request_file(const ::payload & payloadFile)
 {
 
-   return request_file(varFile, e_type_new);
+   return request_file(payloadFile, e_type_new);
 
 }
 
 
-::e_status     object::request_file(const ::payload& varFile,::payload varQuery)
+::e_status     object::request_file(const ::payload& payloadFile,::payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
 
-   pcommandline->m_varFile = varFile;
+   pcommandline->m_varFile = payloadFile;
 
    pcommandline->m_varQuery = varQuery;
 
@@ -813,7 +813,7 @@ void object::destruct()
 void object::system(const char * pszProjectName)
 {
 
-   UNREFERENCED_PARAMETER(pszProjectName);
+   __UNREFERENCED_PARAMETER(pszProjectName);
 
 }
 
@@ -991,7 +991,7 @@ void object::copy_from(const object & o)
 
    synchronous_lock synchronouslock(mutex());
 
-   string strTypeName = type_name();
+   string strTypeName = __type_name(this);
 
    if (m_pcompositea)
    {
@@ -1012,7 +1012,7 @@ void object::copy_from(const object & o)
 
          }
 
-         string strCompositeType = pcomposite->type_name();
+         string strCompositeType = __type_name(pcomposite);
 
          if (strTypeName.contains("session"))
          {
@@ -1136,11 +1136,11 @@ void object::copy_from(const object & o)
 //   if (m_bitFinishing)
 //   {
 //
-//      string strTypeName = type_name();
+//      string strTypeName = __type_name(this);
 //
 //#ifdef ANDROID
 //
-//      demangle(strTypeName);
+//      strTypeName;
 //
 //#endif
 //
@@ -1220,7 +1220,7 @@ void object::copy_from(const object & o)
 
    //               string strThreadType;
 
-   //               strThreadType = pcomposite->type_name();
+   //               strThreadType = __type_name(pcomposite);
 
    //               strWaiting += strThreadType;
 
@@ -1239,7 +1239,7 @@ void object::copy_from(const object & o)
    //         if (strWaiting.has_char())
    //         {
 
-   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", type_name(), strWaiting.c_str());
+   //            TRACE("The thread %s is waiting for the following threads to finish:\r\n%s", __type_name(this), strWaiting.c_str());
 
    //         }
 
@@ -1252,7 +1252,7 @@ void object::copy_from(const object & o)
    //   {
 
 
-   //      string strType = type_name();
+   //      string strType = __type_name(this);
 
    //      if (strType.contains_ci("session"))
    //      {
@@ -1449,11 +1449,11 @@ bool object::__is_child_task(::task * ptask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point_i32 of view)...
+// ->at simple objects (from finish point_i32 of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish point_i32 of view)...
+// ->for complex objects (from finish point_i32 of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
@@ -1589,7 +1589,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::handle_exception(const ::exception::exception & e)
+::e_status object::handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1604,7 +1604,7 @@ void object::multiple_fork(const ::routine_array & procedurea)
 }
 
 
-::e_status object::top_handle_exception(const ::exception::exception & e)
+::e_status object::top_handle_exception(const ::exception & e)
 {
 
    if(::is_exit_exception_status(e.estatus()))
@@ -1652,7 +1652,7 @@ void object::process_exit_status(const ::e_status& estatus)
 }
 
 
-::e_status object::process_exception(const ::exception::exception & e)
+::e_status object::process_exception(const ::exception & e)
 {
 
    if (e.m_bHandled)
@@ -1701,9 +1701,9 @@ void object::task_erase(::task* ptask)
       try
       {
 
-         string strThreadThis = type_name();
+         string strThreadThis = __type_name(this);
 
-         string strThreadChild = ptask->type_name();
+         string strThreadChild = __type_name(ptask);
 
          synchronous_lock synchronouslock(mutex());
 
@@ -1962,7 +1962,7 @@ void object::task_erase(::task* ptask)
 
 //__pointer(thread) object::start(
 //   ::matter* pmatter,
-//   ::e_priority epriority = priority_normal,
+//   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
 //   u32 dwCreateFlags = 0)
 //{
@@ -1986,7 +1986,7 @@ void object::message_receiver_destruct()
 void object::_001OnUpdate(::message::message * pmessage)
 {
 
-   ::subject::subject subject(this, (::iptr)pmessage->m_wparam);
+   ::subject subject(this, (::iptr)pmessage->m_wparam);
 
    subject.m_payload = (::matter*) (::iptr) pmessage->m_lparam;
 
@@ -2102,15 +2102,19 @@ __pointer(::matter) object::running(const char * pszTag) const
 //__pointer(::handle::ini) object::appini()
 //{
 //
-//   return __new(::handle::ini(pacmedir->localconfig()));
+//   return __new(::handle::ini(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig()));
 //
 //}
 
 
-::file_result object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+::file_transport object::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
 {
 
-   return pcontext->m_papexcontext->file().get_file(varFile, eopen);
+   return pcontext->m_papexcontext->file().get_file(payloadFile, eopen);
 
 }
 
@@ -2157,7 +2161,7 @@ void debug_context_object(::object * pobject)
 CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 {
 
-   string strType = ::str::demangle(pusermessage->type_name());
+   string strType = __type_name(pusermessage);
 
    if (strType.contains_ci("user::thread"))
    {
@@ -2199,7 +2203,7 @@ bool __no_continue(::e_status estatus)
             }
 
          }
-         catch(const ::exception::exception & e)
+         catch(const ::exception & e)
          {
 
             if(__no_continue(e.m_estatus))
@@ -2256,7 +2260,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 
    auto strExtension = payload.get_file_path().extension();
 
-   if (strExtension == __str(id))
+   if (strExtension == __string(id))
    {
 
       return "";
@@ -2353,7 +2357,7 @@ __pointer(::extended::future < ::conversation >) object::message_box(const char*
 //}
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
 void object::set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)

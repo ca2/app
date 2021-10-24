@@ -1,6 +1,19 @@
 #include "framework.h"
 
 
+/*
+
+
+::image_source imagesource();
+
+::image_drawing_options imagedrawingoptions();
+
+::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+
+*/
+
+
 image_list::image_list()
 {
 
@@ -44,7 +57,7 @@ bool image_list::create(i32 cx, i32 cy)
 bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
 {
 
-   UNREFERENCED_PARAMETER(nFlags);
+   __UNREFERENCED_PARAMETER(nFlags);
 
    if(cx <= 0)
       return false;
@@ -120,12 +133,21 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
    try
    {
 
-      UNREFERENCED_PARAMETER(iFlag);
+      __UNREFERENCED_PARAMETER(iFlag);
 
-      return pgraphics->draw(
-         rectangle_f64(point, m_size ),
-         m_pimage, 
-         point_f64((double) (iImage * m_size.cx), 0.));
+      point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+
+      rectangle_f64 rectangleSource(pointSource, m_size);
+
+      image_source imagesource(m_pimage, rectangleSource);
+
+      rectangle_f64 rectangleTarget(point, m_size);
+
+      image_drawing_options imagedrawingoptions(rectangleTarget);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      return pgraphics->draw(imagedrawing);
 
    }
    catch(...)
@@ -144,7 +166,7 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    synchronous_lock synchronouslock(mutex());
 
-   UNREFERENCED_PARAMETER(iFlag);
+   __UNREFERENCED_PARAMETER(iFlag);
 
    if (opacity.is_opaque())
    {
@@ -153,11 +175,19 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   class ::image_drawing imagedrawing;
+   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
 
-   imagedrawing.set(::rectangle_i32(point, m_size), m_pimage, ::point_i32(iImage * m_size.cx, 0));
+   rectangle_f64 rectangleSource(pointSource, m_size);
 
-   imagedrawing = ::color_filter(opacity);
+   image_source imagesource(m_pimage, rectangleSource);
+
+   rectangle_f64 rectangleTarget(point, m_size);
+
+   image_drawing_options imagedrawingoptions(rectangleTarget);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   imagedrawing.opacity(opacity);
 
    return pgraphics->draw(imagedrawing);
 
@@ -197,17 +227,26 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    }
 
-   UNREFERENCED_PARAMETER(iFlag);
+   __UNREFERENCED_PARAMETER(iFlag);
 
-   sz.cx = minimum(m_size.cx, sz.cx);
-   sz.cy = minimum(m_size.cy, sz.cy);
    pointOffset.x = minimum(m_size.cx, pointOffset.x);
    pointOffset.y = minimum(m_size.cy, pointOffset.y);
+   sz.cx = maximum(0, minimum(m_size.cx-pointOffset.x, sz.cx));
+   sz.cy = maximum(0, minimum(m_size.cy-pointOffset.y, sz.cy));
 
-   return pgraphics->draw(
-      rectangle_f64(point, sz ), 
-      m_pimage,
-      point_f64(iImage * m_size.cx + pointOffset.x, pointOffset.y));
+   point_f64 pointSource((double)(iImage * m_size.cx), 0.);
+
+   rectangle_f64 rectangleSource(pointSource, sz);
+
+   image_source imagesource(m_pimage, rectangleSource);
+
+   rectangle_f64 rectangleTarget(point, sz);
+
+   image_drawing_options imagedrawingoptions(rectangleTarget);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   return pgraphics->draw(imagedrawing);
 
 }
 
@@ -253,194 +292,179 @@ i32 image_list::reserve_image(int iItem)
 }
 
 
-i32 image_list::add(::draw2d::icon * picon, int iItem)
-{
-
-   if (is_null(picon))
-   {
-
-      return -1;
-
-   }
-
-   synchronous_lock synchronouslock(mutex());
-
-   iItem = reserve_image(iItem);
-
-   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
-   
-   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   m_pimage->g()->fill_rectangle(rectangle, 0);
-
-
-//#ifdef _UWP
-//
-//   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
-//
-//#else
-
-   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
-
-   auto sizeDst = m_size;
-
-   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
-
-   m_pimage->get_graphics()->draw(rectDst, picon);
-
-//#endif
-
-   return iItem;
-
-}
-
-
-i32 image_list::add(::windowing::icon * picon, int iItem)
-{
-
-   if (is_null(picon))
-   {
-
-      return -1;
-
-   }
-
-   synchronous_lock synchronouslock(mutex());
-
-   iItem = reserve_image(iItem);
-
-   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
-
-   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-   m_pimage->g()->fill_rectangle(rectangle, 0);
-
-   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
-
-   auto sizeDst = m_size;
-
-   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
-
-   auto pdraw2dicon = __create < ::draw2d::icon >();
-
-   pdraw2dicon->initialize_with_windowing_icon(picon);
-
-   //auto pimageDebug = create_image(m_rectImage.size());
+//i32 image_list::set(int iItem, ::draw2d::icon * picon)
 //{
-
-//   auto ret = get_image_list()->draw(pimageDebug->g(), (i32)m_iImage, { 0,0 }, m_rectImage.size(), ::point_i32(), 0);
-//   auto pcolorref = pimageDebug->get_data();
-//   output_debug_string("imageDebug");
-
+//
+//   if (is_null(picon))
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   iItem = reserve_image(iItem);
+//
+//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+//   
+//   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//   m_pimage->g()->fill_rectangle(rectangle, 0);
+//
+//
+////#ifdef _UWP
+////
+////   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
+////
+////#else
+//
+//   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+//
+//   auto sizeDst = m_size;
+//
+//   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
+//
+//   m_pimage->get_graphics()->draw(rectangleTarget, picon);
+//
+////#endif
+//
+//   return iItem;
+//
 //}
 
-   if (iItem == 14)
-   {
-
-      output_debug_string("14 16");
-
-   }
-   m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
-
-   return iItem;
-
-}
-
-
-i32 image_list::add_icon(::payload varFile, int iItem)
-{
-
-   auto picon = __create < ::windowing::icon >();
-
-   if (!picon)
-   {
-
-      return -1;
-
-   }
-
-   if (!picon->load_file(varFile))
-   {
-
-      return -1;
-
-   }
-
-//#ifdef WINDOWS_DESKTOP
 //
-//   i32 iSize = minimum(m_size.cx, m_size.cy);
+//i32 image_list::set(int iItem, ::windowing::icon * picon)
+//{
 //
-//   ::file::path path = varFile.get_file_path();
+//   if (is_null(picon))
+//   {
 //
-//   path = pcontext->m_papexcontext->defer_process_matter_path(path);
+//      return -1;
 //
-//   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
-//      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+//   }
 //
-//#endif
+//   synchronous_lock synchronouslock(mutex());
 //
-   
-   auto iIcon = add(picon);
-   
-   if(iIcon < -1)
-   {
-
-      return -1;
-
-   }
-
-   return iIcon;
-
-}
-
-
-i32 image_list::add_matter_icon(const ::string & pszMatter, int iItem)
-{
-
-   auto pcontext = get_context();
-
-   return add_icon(pcontext->m_papexcontext->dir().matter(pszMatter));
-
-}
-
-
-i32 image_list::add_file(::payload varFile, int iItem)
-{
-
-   synchronous_lock synchronouslock(mutex());
-
-   iItem = reserve_image(iItem);
-
-   fork([this, varFile, iItem]()
-      {
-
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->context_image();
-
-         auto pimage = pcontextimage->load_image(varFile, true);
-
-         if (!::is_ok(pimage))
-         {
-
-            return;
-
-         }
-
-         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-
-         m_pimage->draw(
-            ::rectangle_f64(::point_i32(iItem * m_size.cx, 0),  m_size ),
-            pimage);
-
-      });
-
-   return iItem;
-
-}
+//   iItem = reserve_image(iItem);
+//
+//   auto rectangle = ::rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+//
+//   m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//   m_pimage->g()->fill_rectangle(rectangle, 0);
+//
+//   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+//
+//   auto sizeDst = m_size;
+//
+//   auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
+//
+//   auto pdraw2dicon = __create < ::draw2d::icon >();
+//
+//   pdraw2dicon->initialize_with_windowing_icon(picon);
+//
+//   m_pimage->get_graphics()->draw(rectangleTarget, pdraw2dicon);
+//
+//   return iItem;
+//
+//}
 
 
-i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
+//i32 image_list::add_icon(::payload payloadFile, int iItem)
+//{
+//
+//   auto picon = __create < ::windowing::icon >();
+//
+//   if (!picon)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   if (!picon->load_file(payloadFile))
+//   {
+//
+//      return -1;
+//
+//   }
+//
+////#ifdef WINDOWS_DESKTOP
+////
+////   i32 iSize = minimum(m_size.cx, m_size.cy);
+////
+////   ::file::path path = payloadFile.get_file_path();
+////
+////   path = pcontext->m_papexcontext->defer_process_matter_path(path);
+////
+////   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
+////      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+////
+////#endif
+////
+//   
+//   auto iIcon = add(picon);
+//   
+//   if(iIcon < -1)
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   return iIcon;
+//
+//}
+//
+
+//i32 image_list::add_matter_icon(const ::string & pszMatter, int iItem)
+//{
+//
+//   auto pcontext = get_context();
+//
+//   return add_icon(pcontext->m_papexcontext->dir().matter(pszMatter));
+//
+//}
+//
+
+//i32 image_list::add_file(::payload payloadFile, int iItem)
+//{
+//
+//   synchronous_lock synchronouslock(mutex());
+//
+//   iItem = reserve_image(iItem);
+//
+//   fork([this, payloadFile, iItem]()
+//      {
+//
+//         auto pcontext = m_pcontext->m_pauracontext;
+//
+//         auto pcontextimage = pcontext->context_image();
+//
+//         auto pimage = pcontextimage->load_image(payloadFile, true);
+//
+//         if (!::is_ok(pimage))
+//         {
+//
+//            return;
+//
+//         }
+//
+//         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//
+//         m_pimage->draw(
+//            ::rectangle_f64(::point_i32(iItem * m_size.cx, 0),  m_size ),
+//            pimage);
+//
+//      });
+//
+//   return iItem;
+//
+//}
+
+
+i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -454,22 +478,66 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    }
 
-//   m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//
-//   auto rectangle = rectangle_f64_dimension(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
-//
-//   m_pimage->get_graphics()->fill_rectangle(rectangle, argb(0, 0, 0, 0));
-
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   auto pdata = pimage->get_data();
+   imagedrawing.m_rectangleTarget.set(::point_f64(iItem * m_size.cx, 0), m_size);
 
-   m_pimage->get_graphics()->draw(
-      ::rectangle_f64(::point_f64(iItem * m_size.cx, 0), m_size), pimage, ::point_f64((double) x, (double) y));
+   m_pimage->get_graphics()->draw(imagedrawing);
 
    return iItem;
 
 }
+
+
+//i32 image_list::set_file(int iItem, ::file::file * pfile)
+//{
+//
+//   auto pcontextimage = pobjectContext->m_pcontext->context_image();
+//
+//   auto pimage = pcontextimage->get_image(pfile);
+//
+//   if(!::is_ok(pimage))
+//   {
+//
+//      return -1;
+//
+//   }
+//
+//   image_source imagesource(pimage);
+//
+//   rectangle_f64 rectangle(m_size);
+//
+//   image_drawing_options imagedrawingoptions(rectangle);
+//
+//   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//   i32 iImage = this->set(iItem, imagedrawing);
+//
+//   return iImage;
+//
+//}
+//
+//
+//i32 image_list::set_icon(int iItem, ::object * pobjectContext, const ::payload & payload)
+//{
+//
+//   auto pcontextimage = pobjectContext->m_pcontext->context_image();
+//
+//   auto pimage = pcontextimage->get_image(payload);
+//
+//   image_source imagesource(pimage);
+//
+//   rectangle_f64 rectangle(m_size);
+//
+//   image_drawing_options imagedrawingoptions(rectangle);
+//
+//   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//
+//   i32 iImage = this->set(iItem, imagedrawing);
+//
+//   return iImage;
+//
+//}
 
 
 //i32 image_list::add_matter(const ::string & pcsz, ::object * pobject, int iItem)
@@ -511,7 +579,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 ::image_pointer image_list::get_image(int iImage)
 {
 
-   ::image_pointer pimage = create_image(m_size);
+   ::image_pointer pimage = m_pcontext->context_image()->create_image(m_size);
 
    if (!pimage)
    {
@@ -527,14 +595,14 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 }
 
 
-i32 image_list::add_std_matter(const ::string & pcsz, int iItem)
-{
-
-   auto pcontext = get_context();
-
-   return add_file(pcontext->m_papexcontext->dir().matter(pcsz), iItem);
-
-}
+//i32 image_list::add_std_matter(const ::string & pcsz, int iItem)
+//{
+//
+//   auto pcontext = get_context();
+//
+//   return add_file(pcontext->m_papexcontext->dir().matter(pcsz), iItem);
+//
+//}
 
 
 i32 image_list::_get_alloc_count()

@@ -165,7 +165,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -202,7 +202,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -238,7 +238,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -282,7 +282,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -382,11 +382,11 @@ namespace user
    }
 
 
-   void form_window::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void form_window::handle(::subject * psubject, ::context * pcontext)
    {
       
       
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
 
       //for(i32 i = 0; i < m_controldescriptorset.get_size(); i++)
@@ -396,6 +396,99 @@ namespace user
       //      continue;
       //   _001Update(pinteraction);
       //}
+
+      ::user::form_control::handle(psubject, pcontext);
+
+      if (psubject->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (psubject->m_id == ::e_subject_tab_key)
+      {
+
+         __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
+
+         if (pfocus != nullptr)
+         {
+
+            pfocus->set_keyboard_focus();
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         __pointer(interaction) pinteraction = psubject->user_interaction();
+
+         if (!pinteraction)
+         {
+
+            return;
+
+         }
+
+         if (pinteraction->has_function(e_control_function_action))
+         {
+
+            if (pinteraction != nullptr)
+            {
+
+               _001OnButtonAction(pinteraction);
+
+               psubject->m_bRet = true;
+
+            }
+
+            return;
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+      {
+
+         __pointer(interaction) pinteraction = psubject->user_interaction();
+
+         if (!pinteraction)
+         {
+
+            return;
+
+         }
+
+         if (pinteraction->m_eddx == e_control_ddx_dbflags)
+         {
+
+            iptr_array ia;
+
+            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+
+            __pointer(check) pcheck = psubject->user_interaction();
+
+            if (pcheck->echeck() == ::check_checked)
+            {
+
+               ia.add_unique(pinteraction->m_iDataValue);
+
+            }
+            else
+            {
+
+               ia.erase(pinteraction->m_iDataValue);
+
+            }
+
+            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+
+         }
+
+      }
+
+
    }
 
    void form_window::_001Update(::user::interaction * pinteraction)
@@ -592,7 +685,7 @@ namespace user
 
    void form_window::_000OnPosCreate(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::user::message) pusermessage(pmessage);
    }
 
@@ -727,8 +820,8 @@ namespace user
    bool form_window::_001Validate(::user::interaction * pinteraction, ::payload & payload)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
-      UNREFERENCED_PARAMETER(payload);
+      __UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(payload);
 
       return true;
 
@@ -748,14 +841,14 @@ namespace user
    bool form_window::_001OnBeforeSave(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
       return true;
 
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -865,14 +958,14 @@ namespace user
 
       }
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_puserinteraction         = pinteraction;
-      ev.m_actioncontext = ::e_source_database;
-      ev.m_eevent       = ::user::e_event_initialize_control;
-      ev.m_uiEvent      = 0;
+      subject.m_puserelement         = pinteraction;
+      subject.m_actioncontext = ::e_source_database;
+      subject.m_id       = ::e_subject_initialize_control;
+      subject.m_uiEvent      = 0;
 
-      on_control_event(&ev);
+      route(&subject);
 
    }
 
@@ -880,7 +973,7 @@ namespace user
    void form_window::_001OnButtonAction(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
    }
 
@@ -955,7 +1048,7 @@ namespace user
                   0, 0,
                   ::payload);
                __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
-               pcombo->ResetContent();
+               pcombo->reset_content();
                string str;
                for(i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
                {
@@ -1073,10 +1166,10 @@ namespace user
    }
 
 
-   ::e_status form_window::open_document(const ::payload & varFile)
+   ::e_status form_window::open_document(const ::payload & payloadFile)
    {
 
-      auto estatus = ::user::form_control::open_document(varFile);
+      auto estatus = ::user::form_control::open_document(payloadFile);
 
       if(!estatus)
       {
@@ -1089,108 +1182,109 @@ namespace user
 
    }
 
-   //if (pevent->m_eevent == ::user::e_event_form_initialize)
+   //if (psubject->m_id == ::e_subject_form_initialize)
    //{
 
    //   call_sync(get_document()->m_mapRunnablea["load"]);
 
    //}
 
-   void form_window::on_control_event(::user::control_event * pevent)
-   {
 
-      ::user::form_control::on_control_event(pevent);
+   //void form_window::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if (pevent->m_bRet)
-      {
+   //   ::user::form_control::handle(psubject, pcontext);
 
-         return;
+   //   if (psubject->m_bRet)
+   //   {
 
-      }
+   //      return;
 
-      if(pevent->m_eevent == ::user::e_event_tab_key)
-      {
+   //   }
 
-         __pointer(::user::primitive) pfocus = pevent->m_puserinteraction->keyboard_get_next_focusable();
+   //   if(psubject->m_id == ::e_subject_tab_key)
+   //   {
 
-         if(pfocus != nullptr)
-         {
+   //      __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
 
-            pfocus->set_keyboard_focus();
+   //      if(pfocus != nullptr)
+   //      {
 
-         }
+   //         pfocus->set_keyboard_focus();
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_click)
-      {
+   //      }
 
-         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
+   //   }
+   //   else if(psubject->m_id == ::e_subject_click)
+   //   {
 
-         if (!pinteraction)
-         {
+   //      __pointer(interaction) pinteraction = psubject->user_interaction();
 
-            return;
+   //      if (!pinteraction)
+   //      {
 
-         }
+   //         return;
 
-         if(pinteraction->has_function(e_control_function_action))
-         {
+   //      }
 
-            if(pinteraction != nullptr)
-            {
+   //      if(pinteraction->has_function(e_control_function_action))
+   //      {
 
-               _001OnButtonAction(pinteraction);
+   //         if(pinteraction != nullptr)
+   //         {
 
-               pevent->m_bRet = true;
+   //            _001OnButtonAction(pinteraction);
 
-            }
+   //            psubject->m_bRet = true;
 
-            return;
+   //         }
 
-         }
+   //         return;
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_set_check && pevent->m_actioncontext.is_user_source())
-      {
+   //      }
 
-         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
+   //   }
+   //   else if(psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+   //   {
 
-         if (!pinteraction)
-         {
+   //      __pointer(interaction) pinteraction = psubject->user_interaction();
 
-            return;
+   //      if (!pinteraction)
+   //      {
 
-         }
+   //         return;
 
-         if(pinteraction->m_eddx == e_control_ddx_dbflags)
-         {
+   //      }
 
-            iptr_array ia;
+   //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
+   //      {
 
-            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+   //         iptr_array ia;
 
-            __pointer(check) pcheck = pevent->m_puserinteraction;
+   //         //pinteraction->data_get(pdescriptor->m_datakey, ia);
 
-            if(pcheck->echeck() == ::check_checked)
-            {
+   //         __pointer(check) pcheck = psubject->user_interaction();
 
-               ia.add_unique(pinteraction->m_iDataValue);
+   //         if(pcheck->echeck() == ::check_checked)
+   //         {
 
-            }
-            else
-            {
+   //            ia.add_unique(pinteraction->m_iDataValue);
 
-               ia.erase(pinteraction->m_iDataValue);
+   //         }
+   //         else
+   //         {
 
-            }
+   //            ia.erase(pinteraction->m_iDataValue);
 
-            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+   //         }
 
-         }
+   //         //pinteraction->data_get(pdescriptor->m_datakey, ia);
 
-      }
+   //      }
 
-   }
+   //   }
+
+   //}
 
 
    bool form_window::_001Initialize()
@@ -1260,18 +1354,18 @@ namespace user
    //}
 
 
-   //void form_window::on_before_navigate(::payload & varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+   //void form_window::on_before_navigate(::payload & payloadFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(nFlags);
-   //   UNREFERENCED_PARAMETER(pszTargetFrameName);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   __UNREFERENCED_PARAMETER(nFlags);
+   //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
 
-   //   UNREFERENCED_PARAMETER(baPostedData);
-   //   UNREFERENCED_PARAMETER(pszHeaders);
+   //   __UNREFERENCED_PARAMETER(baPostedData);
+   //   __UNREFERENCED_PARAMETER(pszHeaders);
 
-   //   UNREFERENCED_PARAMETER(pbCancel);
+   //   __UNREFERENCED_PARAMETER(pbCancel);
 
    //}
    //

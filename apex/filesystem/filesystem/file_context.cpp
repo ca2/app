@@ -1,12 +1,11 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-
-
-
-
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -14,7 +13,7 @@
 #include "apex/platform/app_core.h"
 
 #elif defined(_UWP)
-#include "apex/os/_os.h"
+#include "apex/node/operating_system/_operating_system.h"
 #endif
 
 #include <stdio.h>
@@ -140,7 +139,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir))
    {
 
       strsize iFind = ::str::find_file_extension("zip:", path);
@@ -178,7 +177,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   return is_file_or_dir_dup(path, petype) != false;
+   return m_psystem->m_pacmepath->is_file_or_dir(path, petype) != false;
 
 }
 
@@ -194,7 +193,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -331,7 +330,7 @@ file_context::time(const ::file::path &psz, i32 iMaxLevel, const string &pszPref
       if (!m_pcontext->m_papexcontext->dir().is(str))
       {
 
-         __throw(::exception::exception("time square dir does not exist"));
+         __throw(error_path_not_found, "time square dir does not exist");
 
       }
 
@@ -571,10 +570,10 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-::payload file_context::as_json(const ::payload &varFile)
+::payload file_context::as_json(const ::payload &payloadFile)
 {
 
-   string str = as_string(varFile);
+   string str = as_string(payloadFile);
 
    str.trim();
 
@@ -595,10 +594,10 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
       v.parse_json(pszJson);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
-      TRACE(e.get_message());
+      INFORMATION(e.get_message());
 
       v = ::e_type_new;
 
@@ -606,7 +605,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
    catch (...)
    {
 
-      TRACE("GENERAL Exception parsing json file_context::as_json : \"" + str + "\"");
+      INFORMATION("GENERAL Exception parsing json file_context::as_json : \"" << str << "\"");
 
       v = ::e_type_new;
 
@@ -617,12 +616,12 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-string file_context::as_string(const ::payload &varFile)
+string file_context::as_string(const ::payload &payloadFile)
 {
 
    memory memory;
 
-   if (!as_memory(varFile, memory))
+   if (!as_memory(payloadFile, memory))
    {
 
       return "";
@@ -634,10 +633,10 @@ string file_context::as_string(const ::payload &varFile)
 }
 
 
-bool file_context::as_memory(const ::payload &varFile, memory_base &mem)
+bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 {
 
-   auto pfile = get_file(varFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+   auto pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
 
    if (!pfile)
    {
@@ -669,137 +668,153 @@ bool file_context::as_memory(const ::payload &varFile, memory_base &mem)
 }
 
 
-void file_context::put_lines(const ::payload &varFile, const string_array &stra)
+::e_status file_context::put_lines(const ::payload &payloadFile, const string_array &stra, const plain_text_file_options & options)
 {
-
-   file_pointer spfile;
 
    try
    {
 
-      spfile = get_file(varFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create |
-                                 ::file::e_open_defer_create_directory);
+      auto pfile = get_file(payloadFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create | ::file::e_open_defer_create_directory);
+
+      if (!pfile)
+      {
+
+         return pfile;
+
+      }
+
+      if (options.m_bUtf8Bom)
+      {
+
+         pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
+
+      }
+
+      pfile->put_lines(stra);
+
+      return success;
 
    }
    catch (...)
    {
 
-      return;
-
    }
 
-   _put_lines(spfile, stra);
+   return error_exception;
 
 }
 
 
-void file_context::put_lines_utf8(const ::payload &varFile, const string_array &stra)
-{
+//::e_status file_context::put_lines_utf8(const ::payload &payloadFile, const string_array &stra)
+//{
+//
+//   try
+//   {
+//
+//      auto pfile = get_file(payloadFile, ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create | ::file::e_open_defer_create_directory);
+//
+//      if (!pfile)
+//      {
+//
+//         return pfile;
+//
+//      }
+//
+//      pfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
+//
+//      pfile->put_lines(stra);
+//
+//      return success;
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//   return error_exception;
+//
+//}
 
-   file_pointer spfile;
+
+//void file_context::_put_lines(::file::file *pfile, const string_array &stra)
+//{
+//
+//   if (pfile == nullptr)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   for (auto &strLine : stra)
+//   {
+//
+//      pfile->println(strLine);
+//
+//   }
+//
+//}
+
+
+::e_status file_context::get_lines(string_array &stra, const ::payload &payloadFile, bool bAddEmpty)
+{
 
    try
    {
 
-      spfile = get_file(varFile, ::file::e_open_text | ::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create |
-                                 ::file::e_open_defer_create_directory);
+      auto pfile = get_file(payloadFile, ::file::e_open_text | ::file::e_open_read);
+
+      if (!pfile)
+      {
+
+         return pfile;
+
+      }
+
+      string strLine;
+
+      while (pfile->read_string(strLine))
+      {
+
+         if (bAddEmpty || !strLine.is_empty())
+         {
+
+            stra.add(strLine);
+
+         }
+
+      }
+
+      return ::success;
 
    }
    catch (...)
    {
 
-      return;
-
    }
 
-   if (spfile.is_null())
-   {
-
-      return;
-
-   }
-
-   spfile->write(UTF8_BOM, STATIC_ASCII_STRING_LENGTH(UTF8_BOM));
-
-   _put_lines(spfile, stra);
+   return error_exception;
 
 }
 
 
-void file_context::_put_lines(::file::file *pfile, const string_array &stra)
+bool file_context::put_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
 {
 
-   if (pfile == nullptr)
-   {
-
-      return;
-
-   }
-
-   for (auto &strLine : stra)
-   {
-
-      pfile->println(strLine);
-
-   }
-
-}
-
-
-void file_context::lines(string_array &stra, const ::payload &varFile)
-{
-
-
-   file_result pfile;
-
-   try
-   {
-
-      pfile = get_file(varFile, ::file::e_open_text | ::file::e_open_read);
-
-   }
-   catch (...)
-   {
-
-      return;
-
-   }
-
-   if (!pfile)
-   {
-
-      return;
-
-   }
-
-   string strLine;
-
-   while (pfile->read_string(strLine))
-   {
-
-      stra.add(strLine);
-
-   }
-
-}
-
-
-bool file_context::put_contents(const ::payload &varFile, const void *pvoidContents, ::count count)
-{
-
-   file_result pfile;
+   file_transport pfile;
 
    int iTry = 0;
 
    try
    {
 
-      pfile = get_file(varFile,
+      pfile = get_file(payloadFile,
                         ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                         ::file::e_open_defer_create_directory);
 
    }
-   catch(const ::exception::exception &)
+   catch(const ::exception &)
    {
 
       return false;
@@ -819,14 +834,19 @@ bool file_context::put_contents(const ::payload &varFile, const void *pvoidConte
 
    }
 
-   pfile->write(pvoidContents, count);
+   if(count > 0)
+   {
+
+      pfile->write(pvoidContents, count);
+
+   }
 
    return true;
 
 }
 
 
-bool file_context::add_contents(const ::payload &varFile, const void *pvoidContents, ::count count)
+bool file_context::add_contents(const ::payload &payloadFile, const void *pvoidContents, ::count count)
 {
 
    file_pointer spfile;
@@ -834,7 +854,7 @@ bool file_context::add_contents(const ::payload &varFile, const void *pvoidConte
    try
    {
 
-      spfile = get_file(varFile,
+      spfile = get_file(payloadFile,
                         ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_no_truncate |
                         ::file::e_open_share_exclusive | ::file::e_open_defer_create_directory);
 
@@ -859,13 +879,13 @@ bool file_context::add_contents(const ::payload &varFile, const void *pvoidConte
 }
 
 
-bool file_context::put_contents(const ::payload &varFile, const char *pcszContents)
+bool file_context::put_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
    if (pcszContents == nullptr)
    {
 
-      return put_contents(varFile, "", 0);
+      return put_contents(payloadFile, "", 0);
 
    }
    else
@@ -875,20 +895,20 @@ bool file_context::put_contents(const ::payload &varFile, const char *pcszConten
 
       ::str::fix_eol(strContents);
 
-      return put_contents(varFile, strContents, strContents.get_length());
+      return put_contents(payloadFile, strContents, strContents.get_length());
 
    }
 
 }
 
 
-bool file_context::add_contents(const ::payload &varFile, const char *pcszContents)
+bool file_context::add_contents(const ::payload &payloadFile, const char *pcszContents)
 {
 
    if (pcszContents != nullptr)
    {
 
-      return add_contents(varFile, pcszContents, strlen(pcszContents));
+      return add_contents(payloadFile, pcszContents, strlen(pcszContents));
 
 
    }
@@ -898,12 +918,12 @@ bool file_context::add_contents(const ::payload &varFile, const char *pcszConten
 }
 
 
-bool file_context::put_contents(const ::payload &varFile, ::file::file *pfile)
+bool file_context::put_contents(const ::payload &payloadFile, ::file::file *pfile)
 {
 
    file_pointer spfile;
 
-   spfile = get_file(varFile,
+   spfile = get_file(payloadFile,
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
@@ -932,20 +952,20 @@ bool file_context::put_contents(const ::payload &varFile, ::file::file *pfile)
 }
 
 
-bool file_context::put_contents(const ::payload &varFile, memory &mem)
+bool file_context::put_contents(const ::payload &payloadFile, memory &mem)
 {
 
-   return put_contents(varFile, mem.get_data(), (count) mem.get_size());
+   return put_contents(payloadFile, mem.get_data(), (count) mem.get_size());
 
 }
 
 
-bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszContents)
+bool file_context::put_contents_utf8(const ::payload &payloadFile, const char *pcszContents)
 {
 
    file_pointer spfile;
 
-   spfile = get_file(varFile,
+   spfile = get_file(payloadFile,
                      ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
                      ::file::e_open_defer_create_directory);
 
@@ -969,6 +989,21 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 }
 
 
+::file_transport file_context::create_resource_file(const char* path)
+{
+
+   return nullptr;
+
+}
+
+bool file_context::resource_is_file_or_dir(const char* path)
+{
+
+   return false;
+
+}
+
+
 ::extended::status file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 {
 
@@ -985,7 +1020,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
       ::file::path strDirSrc(varSource.get_file_path());
       ::file::path strDirDst(varTarget.get_file_path());
 
-      if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends(strDirSrc, ".zip")))
+      if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends(strDirSrc, ".zip")))
       {
 
          strDirSrc += ":";
@@ -1032,7 +1067,11 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
          }
 
-         if (!::file_copy_dup(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
+         auto psystem = m_psystem;
+
+         auto pacmefile = psystem->m_pacmefile;
+
+         if (!pacmefile->copy(varTarget.get_file_path(), varSource.get_file_path(), !bFailIfExists))
          {
 
             return ::error_failed;
@@ -1081,7 +1120,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
          string strError;
          strError.Format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
                          varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
-         __throw(::error_io, strError);
+         throw ::exception(::error_io, strError);
       }
 
       bool bGeneralFailure = false;
@@ -1127,8 +1166,8 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
                bStatusFail = true;
 
-               TRACE("During copy, failed to get status from input file \"%s\" bFailIfExists=%d",
-                     varSource.get_file_path().c_str(), bFailIfExists);
+               INFORMATION("During copy, failed to get status from input file \"" << 
+                     varSource.get_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
 
             }
 
@@ -1145,8 +1184,8 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 
                   bStatusFail = true;
 
-                  TRACE("During copy, failed to set status to output file \"%s\" bFailIfExists=%d",
-                        varTarget.get_file_path().c_str(), bFailIfExists);
+                  INFORMATION("During copy, failed to set status to output file \""
+                     << varTarget.get_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
                }
 
@@ -1215,7 +1254,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::extended::status file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1268,14 +1307,14 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //
 //#elif defined(_UWP)
 //
-//   ::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//   ::winrt::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
 //
 //   if (file == nullptr)
 //   {
 //
 //      //output_debug_string("test");
 //
-//      __throw(::exception::exception("file::file_context::move Could not move file, could not open source file"));
+//      __throw(::exception("file::file_context::move Could not move file, could not open source file"));
 //
 //   }
 //
@@ -1297,7 +1336,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //   }
 //   else
 //   {
-//      ::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
+//      ::winrt::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
 //      if (strNameOld == strNameNew)
 //      {
 //         ::wait(file->MoveAsync(folder));
@@ -1315,7 +1354,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //      i32 err = errno;
 //      string strError;
 //      strError.Format("Failed to delete file error=%d", err);
-//      __throw(::exception::exception(strError));
+//      __throw(::exception(strError));
 //   }
 //#endif
 //
@@ -1327,7 +1366,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::extended::status file_context::del(const ::file::path & path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return error_interface_only;
 
@@ -1382,7 +1421,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 //      {
 //         string strError;
 //         strError.Format("Failed to delete file error=%d", err);
-//         __throw(::exception::exception(strError));
+//         __throw(::exception(strError));
 //      }
 //   }
 //#endif
@@ -1412,7 +1451,7 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
    }
    else
    {
-      string strExt = psz.ext();
+      string strExt = psz.final_extension();
       if (!strExt.is_empty())
       {
          strExt = "-" + strExt;
@@ -1501,9 +1540,12 @@ void file_context::trash_that_is_not_trash(const ::file::path &psz)
 bool file_context::get_status(const ::file::path &path, ::file::file_status &status)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   UNREFERENCED_PARAMETER(status);
-   __throw(error_interface_only);
+   __UNREFERENCED_PARAMETER(path);
+   __UNREFERENCED_PARAMETER(status);
+
+   throw ::interface_only_exception();
+
+   return false;
 
 }
 
@@ -1511,9 +1553,12 @@ bool file_context::get_status(const ::file::path &path, ::file::file_status &sta
 ::extended::status file_context::set_status(const ::file::path &path, const ::file::file_status &status)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   UNREFERENCED_PARAMETER(status);
-   __throw(error_interface_only);
+   __UNREFERENCED_PARAMETER(path);
+   __UNREFERENCED_PARAMETER(status);
+
+   throw ::interface_only_exception();
+
+   return ::success;
 
 }
 
@@ -1581,7 +1626,7 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-   //__throw(error_interface_only);
+   //throw ::interface_only_exception();
 
    return false;
 
@@ -1619,7 +1664,7 @@ bool file_context::is_read_only(const ::file::path &psz)
 ::extended::transport < ::file::file > file_context::resource_get_file(const ::file::path & path)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -1809,7 +1854,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   if (spfile.is_null())
 //   {
 //
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   }
 //
@@ -1851,15 +1896,15 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //      string strRelative = stra[i].relative();
 //      write_gen_string(spfile, &ctx, strRelative);
 //      if (pfile2->open(stra[i], ::file::e_open_read | ::file::e_open_binary).failed())
-//         __throw(::exception::exception("failed"));
+//         __throw(::exception("failed"));
 //      write_n_number(spfile, &ctx, (i32)pfile2->get_size());
 //      while ((uRead = pfile2->read(buf, iBufSize)) > 0)
 //      {
 //         spfile->write(buf, uRead);
 //         MD5_Update(&ctx, buf, (size_t)uRead);
 //      }
-//      spfile->seek(iPos, ::file::seek_begin);
-//      strMd5 = __str(ctx);
+//      spfile->seek(iPos, ::e_seek_set);
+//      strMd5 = __string(ctx);
 //      write_gen_string(spfile, nullptr, strMd5);
 //      spfile->seek_to_end();
 //
@@ -1878,7 +1923,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   file_pointer spfile = get_file(pszFile, ::file::e_open_read | ::file::e_open_binary);
 //
 //   if (spfile.is_null())
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   read_gen_string(spfile, nullptr, strVersion);
 //
@@ -1910,7 +1955,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //         ::file::path strPath = ::file::path(pszDir) / strRelative;
 //         m_pcontext->m_papexcontext->dir().mk(strPath.folder());
 //         if (pfile2->open(strPath, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write).failed())
-//            __throw(::exception::exception("failed"));
+//            __throw(::exception("failed"));
 //         read_n_number(spfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
@@ -1922,9 +1967,9 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //            iLen -= uRead;
 //         }
 //         pfile2->close();
-//         strMd5New = __str(ctx);
+//         strMd5New = __string(ctx);
 //         if (strMd5 != strMd5New)
-//            __throw(::exception::exception("failed"));
+//            __throw(::exception("failed"));
 //      }
 //   }
 //
@@ -1977,7 +2022,7 @@ i32 file_context::cmp(const ::file::path &psz1, const ::file::path &psz2)
 //   }
 //
 //   if (ch != 'n')
-//      __throw(::exception::exception("failed"));
+//      __throw(::exception("failed"));
 //
 //   if (pctx != nullptr)
 //   {
@@ -2028,15 +2073,15 @@ bool
 file_context::resolve_link(::file::path &pathTarget, const string &strSource, string *pstrDirectory, string *pstrParams)
 {
 
-   return m_pcontext->m_papexcontext->os().resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
+   return m_pcontext->m_papexcontext->os_context()->resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
 
 }
 
 
-string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
+string file_context::get_hash(const ::payload &payloadFile, enum_hash ehash)
 {
 
-   auto pfile = get_file(varFile, ::file::e_open_binary | ::file::e_open_read);
+   auto pfile = get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read);
 
    if (!pfile)
    {
@@ -2069,22 +2114,22 @@ string file_context::get_hash(const ::payload &varFile, enum_hash ehash)
 }
 
 
-string file_context::md5(const ::payload &varFile)
+string file_context::md5(const ::payload &payloadFile)
 {
 
-   return get_hash(varFile, e_hash_md5);
+   return get_hash(payloadFile, e_hash_md5);
 
 }
 
 
-string file_context::nessie(const ::payload &varFile)
+string file_context::nessie(const ::payload &payloadFile)
 {
 
    __throw(todo, "nessie");
 
    return "";
 
-   //auto pfile = get_file(varFile, ::file::e_open_binary | ::file::e_open_read);
+   //auto pfile = get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read);
 
    //if (!pfile)
    //{
@@ -2110,7 +2155,7 @@ string file_context::nessie(const ::payload &varFile)
 
    //}
 
-   //return __str(ns);
+   //return __string(ns);
 
 }
 
@@ -2118,7 +2163,9 @@ string file_context::nessie(const ::payload &varFile)
 bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strFilename)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
+
+   return false;
 
 }
 
@@ -2164,7 +2211,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 //   while (true)
 //   {
 
-//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__str(iTry), 20);
+//      pathDownloading = pathOut + ".downloading." + ::str::zero_pad(__string(iTry), 20);
 
 //      fileOut = papp->file().get_file(pathDownloading, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
@@ -2249,7 +2296,7 @@ bool file_context::post_output(::file::path pathOut, ::file::path pathDownloadin
       if (rename(pathOut, pathDownloading))
       {
 
-         TRACE("Failed to rename \"downloading\" file from %s to %s", pathDownloading.c_str(), pathOut.c_str());
+         INFORMATION("Failed to rename \"downloading\" file from " << pathDownloading << " to " << pathOut);
 
          del(pathDownloading);
 
@@ -2270,7 +2317,7 @@ bool file_context::post_output(::file::path pathOut, ::file::path pathDownloadin
 }
 
 
-file_result file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
+file_transport file_context::file_get_file(::file::path path, const ::file::e_open &eopenFlags)
 {
 
    file_pointer pfile;
@@ -2296,7 +2343,7 @@ file_result file_context::file_get_file(::file::path path, const ::file::e_open 
       }
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       return e.m_estatus;
@@ -2312,7 +2359,7 @@ file_result file_context::file_get_file(::file::path path, const ::file::e_open 
 }
 
 
-file_result file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
+file_transport file_context::data_get_file(string strData, const ::file::e_open &eopenFlags)
 {
 
    ASSERT(strData.begins_ci("data:"));
@@ -2349,7 +2396,7 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
             if (pbase64->decode(*pmemoryfile->get_primitive_memory(), strData.Mid(iEncoding + 1)))
             {
 
-               TRACE("::file::file_context::data_get_file Succeeded");
+               INFORMATION("::file::file_context::data_get_file Succeeded");
 
                return pmemoryfile;
 
@@ -2361,14 +2408,14 @@ file_result file_context::data_get_file(string strData, const ::file::e_open &eo
 
    }
 
-   TRACE("::file::file_context::data_get_file Failed");
+   INFORMATION("::file::file_context::data_get_file Failed");
 
    return ::error_failed;
 
 }
 
 
-file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
+file_transport file_context::zip_get_file(::file::file *pfile, const ::file::e_open &eopenFlags)
 {
 
    auto pinfile = __new(zip::in_file);
@@ -2379,7 +2426,7 @@ file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open
       if (pinfile->unzip_open(pfile))
       {
 
-         TRACE("::file::file_context::zip_get_file Succeeded");
+         INFORMATION("::file::file_context::zip_get_file Succeeded");
 
          return pinfile;
 
@@ -2387,14 +2434,14 @@ file_result file_context::zip_get_file(::file::file *pfile, const ::file::e_open
 
    }
 
-   TRACE("::file::file_context::zip_get_file Failed");
+   INFORMATION("::file::file_context::zip_get_file Failed");
 
    return nullptr;
 
 }
 
 
-file_result file_context::http_get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
+file_transport file_context::http_get_file(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
    if (eopenFlags & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
@@ -2404,7 +2451,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    }
 
-   ::file::path path = varFile.get_file_path();
+   ::file::path path = payloadFile.get_file_path();
 
    ::url_domain domain;
 
@@ -2425,17 +2472,23 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
       if (::str::ends(pathCache, "en_us_international.xml"))
       {
-         TRACE("Debug Here");
+         
+         INFORMATION("Debug Here");
+
       }
 
       if (::str::ends(pathCache, "text_select.xml"))
       {
-         TRACE("Debug Here");
+
+         INFORMATION("Debug Here");
+
       }
 
       if (::str::ends(pathCache, "arialuni.ttf"))
       {
-         TRACE("Debug Here : arialuni.ttf");
+
+         INFORMATION("Debug Here : arialuni.ttf");
+
       }
 
 #ifdef WINDOWS
@@ -2468,14 +2521,14 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
       synchronous_lock synchronouslock(m_pcontext->m_papexcontext->http().m_pmutexDownload);
 
-      if (!(path & ::file::e_flag_bypass_cache) && ::file_exists(pathCache))
+      if (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmefile->exists(pathCache))
       {
 
          synchronouslock.unlock();
 
          auto pfile = file_get_file(pathCache, eopenFlags);
 
-         bool bBypassCacheIfEmpty = get_bypass_cache_if_empty(varFile);
+         bool bBypassCacheIfEmpty = get_bypass_cache_if_empty(payloadFile);
 
          bool bBypassCache = !bBypassCacheIfEmpty || pfile->is_empty();
 
@@ -2499,7 +2552,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
    }
 
-   property_set set = varFile["http_set"].propset();
+   property_set set = payloadFile["http_set"].propset();
 
    auto pmemoryfile = create_memory_file();
 
@@ -2518,7 +2571,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
       try
       {
 
-         pmemoryfile->seek_begin();
+         pmemoryfile->seek_to_begin();
 
          auto pfileOut = m_pcontext->m_papexcontext->file().get_writer(pathCache);
 
@@ -2541,7 +2594,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
       }
 
-      pmemoryfile->seek_begin();
+      pmemoryfile->seek_to_begin();
 
    }
 
@@ -2549,30 +2602,30 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 
 }
 
-::file_result file_context::shared_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::shared_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
-   return get_reader(varFile, eopenFlags | ::file::e_open_share_deny_none);
+   return get_reader(payloadFile, eopenFlags | ::file::e_open_share_deny_none);
 
 }
 
 
-::file_result file_context::get_reader(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::get_reader(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_result preader;
+   ::file_transport preader;
 
-   if (varFile.m_etype == ::e_type_element)
+   if (payloadFile.m_etype == ::e_type_element)
    {
 
-      preader = varFile.cast<::file::file>();
+      preader = payloadFile.cast<::file::file>();
 
    }
 
    if (!preader)
    {
 
-      preader = get_file(varFile, eopenFlags | ::file::e_open_read);
+      preader = get_file(payloadFile, eopenFlags | ::file::e_open_read);
 
    }
 
@@ -2581,22 +2634,22 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 }
 
 
-::file_result file_context::get_writer(const ::payload &varFile, const ::file::e_open &eopenFlags)
+::file_transport file_context::get_writer(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
-   ::file_result pwriter;
+   ::file_transport pwriter;
 
-   if (varFile.m_etype == ::e_type_element)
+   if (payloadFile.m_etype == ::e_type_element)
    {
 
-      pwriter = varFile.cast<::file::file>();
+      pwriter = payloadFile.cast<::file::file>();
 
    }
 
    if (!pwriter)
    {
 
-      pwriter = get_file(varFile, eopenFlags);
+      pwriter = get_file(payloadFile, eopenFlags);
 
    }
 
@@ -2605,7 +2658,7 @@ file_result file_context::http_get_file(const ::payload &varFile, const ::file::
 }
 
 
-file_result file_context::get_file(const ::payload &varFile, const ::file::e_open &eopenFlags)
+file_transport file_context::get_file(const ::payload &payloadFile, const ::file::e_open &eopenFlags)
 {
 
    try
@@ -2613,10 +2666,10 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
       ::file_pointer pfile;
 
-      if (varFile.get_type() == ::e_type_element)
+      if (payloadFile.get_type() == ::e_type_element)
       {
 
-         pfile = varFile.cast<::file::file>();
+         pfile = payloadFile.cast<::file::file>();
 
          if (pfile.is_set())
          {
@@ -2626,13 +2679,13 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          }
 
       }
-      else if (varFile.get_type() == ::e_type_property_set)
+      else if (payloadFile.get_type() == ::e_type_property_set)
       {
 
-         if (varFile.has_property("file"))
+         if (payloadFile.has_property("file"))
          {
 
-            pfile = varFile.propset()["file"].cast<::file::file>();
+            pfile = payloadFile.propset()["file"].cast<::file::file>();
 
             if (pfile.is_set())
             {
@@ -2645,7 +2698,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
 
       }
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       if (path.begins_ci("data:"))
       {
@@ -2662,7 +2715,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
       }
 
       if (!(path & ::file::e_flag_required) &&
-          varFile.is_property_true("required"))
+          payloadFile.is_property_true("required"))
       {
 
          path |= ::file::e_flag_required;
@@ -2670,7 +2723,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
       }
 
       if (!(path & ::file::e_flag_bypass_cache)
-          && ((eopenFlags & ::file::e_open_no_cache) || varFile.is_property_true("nocache")))
+          && ((eopenFlags & ::file::e_open_no_cache) || payloadFile.is_property_true("nocache")))
       {
 
          path |= ::file::e_flag_bypass_cache;
@@ -2682,12 +2735,12 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
       if (path.is_empty())
       {
 
-         TRACE("::file::file_context::get_file file with empty name!!");
+         INFORMATION("::file::file_context::get_file file with empty name!!");
 
          return ::error_file_not_found;
 
       }
-      else if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
       {
 
          auto pfile = get_reader(path);
@@ -2710,7 +2763,13 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
       else if (::str::begins(path, "http://") || ::str::begins(path, "https://"))
       {
 
-         return http_get_file(varFile, eopenFlags);
+         return http_get_file(payloadFile, eopenFlags);
+
+      }
+      else if (::str::begins_eat(path, "zipresource://"))
+      {
+
+         return create_resource_file(path);
 
       }
       else
@@ -2776,7 +2835,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
          if (eopenFlags & ::file::e_open_text)
          {
 
-            pfile = __create_new<::stdio_file>();
+            //pfile = __create_new<::stdio_file>();
 
          }
 
@@ -2965,7 +3024,7 @@ bool file_context::is_link(string strPath)
 
    ::file::path pathGlobalIni = onedrive_global_ini();
 
-   string strIni = file_as_string(pathGlobalIni);
+   string strIni = m_psystem->m_pacmefile->as_string(pathGlobalIni);
 
    if (strIni.is_empty())
    {
@@ -3123,84 +3182,84 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-//::payload file_context::as_json(const ::payload & varFile)
+//::payload file_context::as_json(const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->as_json(get_application(), varFile);
+//   return psystem->m_spfile->as_json(get_application(), payloadFile);
 //
 //}
 
 
-//string file_context::as_string(const ::payload & varFile)
+//string file_context::as_string(const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->as_string(get_application(), varFile);
+//   return psystem->m_spfile->as_string(get_application(), payloadFile);
 //
 //}
 //
 //
-//bool file_context::as_memory(const ::payload & varFile, memory_base & mem)
+//bool file_context::as_memory(const ::payload & payloadFile, memory_base & mem)
 //{
 //
-//   return psystem->m_spfile->as_memory(get_application(), varFile, mem);
-//
-//}
-
-//
-//void file_context::lines(string_array & stra, const ::payload & varFile)
-//{
-//
-//   return psystem->m_spfile->lines(stra, varFile, get_application());
-//
-//}
-//
-//
-//void file_context::put_lines(const ::payload & varFile, const string_array & stra)
-//{
-//   return psystem->m_spfile->put_lines(varFile, stra, get_application());
-//}
-//
-//bool file_context::put_contents(const ::payload & varFile, const void * pvoidContents, ::count count)
-//{
-//   return psystem->m_spfile->put_contents(varFile, pvoidContents, count, get_application());
-//}
-//
-//bool file_context::put_contents(const ::payload & varFile, const char * pcszContents)
-//
-//{
-//   return psystem->m_spfile->put_contents(varFile, pcszContents, get_application());
-//
-//}
-//
-//
-//bool file_context::add_contents(const ::payload & varFile, const char * pcszContents)
-//{
-//
-//   return psystem->m_spfile->add_contents(varFile, pcszContents, get_application());
+//   return psystem->m_spfile->as_memory(get_application(), payloadFile, mem);
 //
 //}
 
-
-//bool file_context::put_contents(const ::payload & varFile, const ::stream & stream)
-//{
-
-//   return psystem->m_spfile->put_contents(varFile, stream, get_application());
-
-//}
-
-
-//bool file_context::put_contents(const ::payload & varFile, memory & mem)
+//
+//void file_context::lines(string_array & stra, const ::payload & payloadFile)
 //{
 //
-//   return psystem->m_spfile->put_contents(varFile, mem, get_application());
+//   return psystem->m_spfile->lines(stra, payloadFile, get_application());
 //
 //}
 //
 //
-//bool file_context::put_contents_utf8(const ::payload & varFile, const char * pcszContents)
+//void file_context::put_lines(const ::payload & payloadFile, const string_array & stra)
+//{
+//   return psystem->m_spfile->put_lines(payloadFile, stra, get_application());
+//}
+//
+//bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count)
+//{
+//   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_application());
+//}
+//
+//bool file_context::put_contents(const ::payload & payloadFile, const char * pcszContents)
+//
+//{
+//   return psystem->m_spfile->put_contents(payloadFile, pcszContents, get_application());
+//
+//}
+//
+//
+//bool file_context::add_contents(const ::payload & payloadFile, const char * pcszContents)
 //{
 //
-//   return psystem->m_spfile->put_contents_utf8(varFile, pcszContents, get_application());
+//   return psystem->m_spfile->add_contents(payloadFile, pcszContents, get_application());
+//
+//}
+
+
+//bool file_context::put_contents(const ::payload & payloadFile, const ::stream & stream)
+//{
+
+//   return psystem->m_spfile->put_contents(payloadFile, stream, get_application());
+
+//}
+
+
+//bool file_context::put_contents(const ::payload & payloadFile, memory & mem)
+//{
+//
+//   return psystem->m_spfile->put_contents(payloadFile, mem, get_application());
+//
+//}
+//
+//
+//bool file_context::put_contents_utf8(const ::payload & payloadFile, const char * pcszContents)
+//{
+//
+//   return psystem->m_spfile->put_contents_utf8(payloadFile, pcszContents, get_application());
 //
 //}
 
@@ -3211,16 +3270,16 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-::extended::transport < ::file::file > file_context::friendly_get_file(const ::payload &varFile, const ::file::e_open & eopenFlags)
+::extended::transport < ::file::file > file_context::friendly_get_file(const ::payload &payloadFile, const ::file::e_open & eopenFlags)
 {
 
    try
    {
 
-      return get_file(varFile, eopenFlags);
+      return get_file(payloadFile, eopenFlags);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       return e;
@@ -3238,10 +3297,10 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 
 //
 //
-//::file_result file_context::get_file(const ::payload & varFile, ::u32 nOpenFlags)
+//::file_transport file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
-//   return m_pcontext->m_papexcontext->file().get_file(get_application(), varFile, nOpenFlags);
+//   return m_pcontext->m_papexcontext->file().get_file(get_application(), payloadFile, nOpenFlags);
 //
 //}
 
@@ -3277,42 +3336,42 @@ bool file_context::is_file_or_dir(const ::file::path &pszPath, ::file::enum_type
 //}
 
 
-bool file_context::crypto_set(const ::payload &varFile, const char *pszData, const char *pszSalt)
+bool file_context::crypto_set(const ::payload &payloadFile, const char *pszData, const char *pszSalt)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
 }
 
 
-bool file_context::crypto_get(const ::payload &varFile, string &str, const char *pszSalt)
+bool file_context::crypto_get(const ::payload &payloadFile, string &str, const char *pszSalt)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
 }
 
 
-bool file_context::save_lines(const ::payload &varFile, string_array &stra)
+bool file_context::save_lines(const ::payload &payloadFile, string_array &stra)
 {
 
    string str = stra.implode("\n");
 
-   put_contents_utf8(varFile, str);
+   put_contents_utf8(payloadFile, str);
 
    return true;
 
 }
 
 
-bool file_context::load_lines(string_array &stra, const ::payload &varFile)
+bool file_context::load_lines(string_array &stra, const ::payload &payloadFile)
 {
 
-   string str = as_string(varFile);
+   string str = as_string(payloadFile);
 
    stra.add_lines(str);
 
@@ -3416,14 +3475,14 @@ bool file_context::touch(const ::file::path &path)
 
 }
 
-//string file_context::md5(const ::payload & varFile)
+//string file_context::md5(const ::payload & payloadFile)
 //{
-//   return psystem->m_spfile->md5(varFile, get_application());
+//   return psystem->m_spfile->md5(payloadFile, get_application());
 //}
 
-//string file_context::nessie(const ::payload & varFile)
+//string file_context::nessie(const ::payload & payloadFile)
 //{
-//   return psystem->m_spfile->nessie(varFile, get_application());
+//   return psystem->m_spfile->nessie(payloadFile, get_application());
 //}
 
 //
@@ -3480,10 +3539,10 @@ bool file_context::touch(const ::file::path &path)
 
 
 
-void set_bypass_cache_if_empty(::payload & varFile)
+void set_bypass_cache_if_empty(::payload & payloadFile)
 {
 
-   auto etype = varFile.m_etype;
+   auto etype = payloadFile.m_etype;
 
    if(etype != e_type_element)
    {
@@ -3491,26 +3550,26 @@ void set_bypass_cache_if_empty(::payload & varFile)
       if(etype != e_type_property_set)
       {
 
-         ::file::path path = varFile.get_file_path();
+         ::file::path path = payloadFile.get_file_path();
 
-         varFile["url"] = path;
+         payloadFile["url"] = path;
 
       }
 
-      varFile["bypass_cache_if_empty"] = true;
+      payloadFile["bypass_cache_if_empty"] = true;
 
    }
 
 }
 
 
-bool get_bypass_cache_if_empty(const ::payload & varFile)
+bool get_bypass_cache_if_empty(const ::payload & payloadFile)
 {
 
-   if(varFile.m_etype == e_type_property_set)
+   if(payloadFile.m_etype == e_type_property_set)
    {
 
-      if(varFile.is_true("bypass_cache_if_empty"))
+      if(payloadFile.is_true("bypass_cache_if_empty"))
       {
 
          return true;

@@ -27,7 +27,7 @@
 //      estatus = m_pobjectRunnable->call();
 //
 //   }
-//   catch (const ::exception::exception& e)
+//   catch (const ::exception& e)
 //   {
 //
 //      estatus = e.m_estatus;

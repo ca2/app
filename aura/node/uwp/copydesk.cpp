@@ -5,15 +5,15 @@
 #include <shlobj.h>
 
 
-CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
+CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
 
-bool node_save_image(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp);
-
-
-CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+bool node_save_image(::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp);
 
 
-namespace uwp
+CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+
+
+namespace universal_windows
 {
 
 
@@ -51,21 +51,21 @@ namespace uwp
       defer_main_thread([&patha, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::winrt::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (view != nullptr)
+         if (impact != nullptr)
          {
 
-            if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+            if (impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
             {
 
                m_bHasFile = true;
 
             }
-            else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+            else if (impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
             {
 
-               ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+               ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
                if (items)
                {
@@ -125,7 +125,7 @@ namespace uwp
 
             on_content_changed();
 
-            ::Windows::ApplicationModel::DataTransfer::Clipboard::ContentChanged += ref new ::Windows::Foundation::EventHandler <::Platform::Object ^>(m_eventsink, &event_sink::ContentChanged);
+            ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::ContentChanged += ref new ::winrt::Windows::Foundation::EventHandler <::Platform::Object ^>(m_eventsink, &event_sink::ContentChanged);
 
          }));
 
@@ -145,7 +145,7 @@ namespace uwp
    bool copydesk::_set_plain_text(const ::string & str)
    {
 
-      auto package = ref new ::Windows::ApplicationModel::DataTransfer::DataPackage;
+      auto package = ref new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
 
       if (package == nullptr)
       {
@@ -154,14 +154,14 @@ namespace uwp
 
       }
 
-      package->RequestedOperation = ::Windows::ApplicationModel::DataTransfer::DataPackageOperation::Copy;
+      package->RequestedOperation = ::winrt::Windows::ApplicationModel::DataTransfer::DataPackageOperation::Copy;
 
       package->SetText(str);
 
       defer_main_thread([&package, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::Clipboard::SetContent(package);
+         ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::SetContent(package);
 
       });
 
@@ -178,9 +178,9 @@ namespace uwp
       defer_main_thread([&str, &bOk, this]()
       {
 
-         auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         auto dataPackage = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (dataPackage != nullptr && dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
+         if (dataPackage != nullptr && dataPackage->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
          {
 
             str = ::wait(dataPackage->GetTextAsync())->Begin();
@@ -208,7 +208,7 @@ namespace uwp
    void copydesk::on_content_changed()
    {
 
-      auto dataPackageView = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+      auto dataPackageView = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
       if (dataPackageView == nullptr)
       {
@@ -219,15 +219,15 @@ namespace uwp
 
       auto pformats = dataPackageView->AvailableFormats;
 
-      m_bHasImage = ::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap);
+      m_bHasImage = ::papaya::array::contains_item(pformats, ::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Bitmap);
 
-      if (::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+      if (::papaya::array::contains_item(pformats, ::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
       {
 
          m_bHasFile = true;
 
       }
-      else if (::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+      else if (::papaya::array::contains_item(pformats, ::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
       {
 
          m_bHasFile = true;
@@ -240,7 +240,7 @@ namespace uwp
 
       }
 
-      m_bHasPlainText = ::papaya::array::contains_item(pformats, ::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text);
+      m_bHasPlainText = ::papaya::array::contains_item(pformats, ::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text);
 
    }
 
@@ -269,7 +269,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

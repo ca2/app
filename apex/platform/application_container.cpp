@@ -58,7 +58,7 @@ void application_container::erase_application(::application * papp)
    if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
-      destroy();
+      set_finish();
 
    }
 
@@ -269,7 +269,7 @@ application_array application_container::get_applicationa()
 __pointer(::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
 {
 
-   INFO("apex::application::instantiate_application");
+   INFORMATION("apex::application::instantiate_application");
 
    ::e_status estatus = ::success;
 
@@ -303,7 +303,7 @@ __pointer(::application) application_container::instantiate_application(const ch
          if (psystem->m_papplicationStartup->m_strAppId != strAppId)
          {
 
-            TRACE("Wrong papplication Data Type");
+            INFORMATION("Wrong papplication Data Type");
 
             return nullptr;
 
@@ -425,7 +425,7 @@ __pointer(::application) application_container::assert_running(const char * pszA
   if (papp.is_null())
   {
 
-     __pointer(::create) spcreate(e_create_new);
+     __pointer(::create) spcreate(e_create_new, this);
 
      papp = start_application(pszAppId, spcreate, strLocale, strSchema);
 
@@ -464,7 +464,7 @@ __pointer(::application) application_container::start_application(const char * p
 
    string strBuild;
 
-   ::file::path pathExe = m_psystem->m_pacmepath->app_module();
+   ::file::path pathExe = m_psystem->m_pacmefile->executable();
 
    auto psystem = get_system()->m_papexsystem;
 
@@ -492,7 +492,8 @@ __pointer(::application) application_container::start_application(const char * p
          else
          {
 
-            message_box("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            //output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            output_debug_string("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -516,7 +517,7 @@ __pointer(::application) application_container::start_application(const char * p
    if (!papp->on_start_application())
    {
 
-      TRACE("One or more errors occurred during on_start_application execution.");
+      INFORMATION("One or more errors occurred during on_start_application execution.");
 
    }
 
@@ -527,12 +528,12 @@ __pointer(::application) application_container::start_application(const char * p
    psystem->merge_accumulated_on_open_file(pcreate);
 
    //papp->do_request(pcreate);
-   papp->post_object(e_message_system, e_system_message_create, pcreate);
+   papp->post_element(e_message_system, e_system_message_create, pcreate);
 
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())
+   //            if (pcreate->m_pcommandline->m_eventReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }
@@ -571,7 +572,7 @@ __pointer(::application) application_container::start_application(const char * p
       papp = create_application(pszAppId, bSynch, pcreate);
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))

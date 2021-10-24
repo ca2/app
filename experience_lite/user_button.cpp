@@ -8,8 +8,8 @@ namespace user
       ::user::button(pobject),
       ::experience::button(pobject),
       m_spregion(e_create),
-      m_pen(e_create),
-      m_brush(e_create)
+      m_ppen(e_create),
+      m_pbrush(e_create)
    {
 
    }
@@ -57,9 +57,9 @@ namespace user
       if (!is_window_enabled())
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_brushButtonBackDisabled);
+         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_penButtonBackDisabled);
+         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackDisabled);
 
          crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -67,9 +67,9 @@ namespace user
       else if (m_itemHover)
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_brushButtonBackSel);
+         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackSel);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_penButtonBackSel);
+         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackSel);
 
          crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -77,9 +77,9 @@ namespace user
       else if (has_focus())
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_brushButtonBackFocus);
+         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_penButtonBackFocus);
+         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBackFocus);
 
          crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -87,29 +87,29 @@ namespace user
       else
       {
 
-         pgraphics->SelectObject(m_pcontrolbox->m_brushButtonBack);
+         pgraphics->SelectObject(m_pcontrolbox->m_pbrushButtonBack);
 
-         pgraphics->SelectObject(m_pcontrolbox->m_penButtonBack);
+         pgraphics->SelectObject(m_pcontrolbox->m_ppenButtonBack);
 
          crText = m_pcontrolbox->m_colorButtonFore;
 
       }
 
-      ::rectangle_i32 rectEllipse(rectangleClient);
+      ::rectangle_i32 rectangleEllipse(rectangleClient);
 
       ::rectangle_i32 rW;
 
       get_window_rect(rW);
 
-      rectEllipse.deflate(0, 0, 2, 2);
+      rectangleEllipse.deflate(0, 0, 2, 2);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       pgraphics->fill_rectangle(rectangleClient, pgraphics->m_pbrush->m_cr);
 
-      //pgraphics->FillEllipse(rectEllipse);
+      //pgraphics->FillEllipse(rectangleEllipse);
 
-      //pgraphics->DrawEllipse(rectEllipse);
+      //pgraphics->DrawEllipse(rectangleEllipse);
 
       if (m_estockicon == stock_icon_none)
       {
@@ -128,23 +128,23 @@ namespace user
       else
       {
 
-         m_brush->create_solid(pgraphics->get_current_pen().is_set()
+         m_pbrush->create_solid(pgraphics->get_current_pen().is_set()
                                ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
-         pgraphics->SelectObject(m_brush);
+         pgraphics->SelectObject(m_pbrush);
 
-         m_pen->create_solid(1.0, pgraphics->get_current_pen().is_set()
+         m_ppen->create_solid(1.0, pgraphics->get_current_pen().is_set()
                              ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
-         pgraphics->SelectObject(m_pen);
+         pgraphics->SelectObject(m_ppen);
 
-         ::rectangle_i32 rectIcon(rectEllipse);
+         ::rectangle_i32 rectangleIcon(rectangleEllipse);
 
-         rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+         rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-         pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
-         //pgraphics->FillSolidRect(rectEllipse, argb(255, 255, 255, 255));
+         //pgraphics->FillSolidRect(rectangleEllipse, argb(255, 255, 255, 255));
 
       }
 
@@ -195,7 +195,7 @@ namespace user
    }
 
 
-   void button::on_hit_test(::user::item & item)
+   void button::on_hit_test(::item & item)
    {
 
       synchronous_lock synchronouslock(mutex());

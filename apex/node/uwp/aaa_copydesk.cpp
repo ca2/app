@@ -4,15 +4,15 @@
 #include <shlobj.h>
 
 
-CLASS_DECL_APEX bool node_save_image(Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
+CLASS_DECL_APEX bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
 
-bool node_save_image(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::application * papp);
-
-
-CLASS_DECL_APEX bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+bool node_save_image(::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::application * papp);
 
 
-namespace uwp
+CLASS_DECL_APEX bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+
+
+namespace universal_windows
 {
 
 
@@ -33,9 +33,9 @@ namespace uwp
       defer_main_thread([&bHasFile, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::winrt::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if(view == nullptr)
+         if(impact == nullptr)
          {
 
             //iFileCount = 0;
@@ -43,22 +43,22 @@ namespace uwp
 
          }
 
-         if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+         if(impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
          {
 
             bHasFile = true;
 
          }
-         //else if(view->Contains("FileDrop"))
+         //else if(impact->Contains("FileDrop"))
          //{
 
          //   HGLOBAL hglobal;
 
-         //   ::Windows::Storage::Streams::IInputStream ^ stream = (::Windows::Storage::Streams::IInputStream ^):: wait(view->GetDataAsync("FileDrop"));
+         //   ::winrt::Windows::Storage::Streams::IInputStream ^ stream = (::winrt::Windows::Storage::Streams::IInputStream ^):: wait(impact->GetDataAsync("FileDrop"));
 
-         //   ::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
+         //   ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
 
-         //   stream->ReadAsync(buffer, sizeof(HGLOBAL), ::Windows::Storage::Streams::InputStreamOptions::None);
+         //   stream->ReadAsync(buffer, sizeof(HGLOBAL), ::winrt::Windows::Storage::Streams::InputStreamOptions::None);
 
          //   memory memory;
 
@@ -74,10 +74,10 @@ namespace uwp
          //   bHasFile = true;
 
          //}
-         else if(view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+         else if(impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
          {
 
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+            ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
             bHasFile = true;
 
@@ -99,25 +99,25 @@ namespace uwp
       defer_main_thread([&bHasFile, &patha, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::DataPackageView ^ view = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         ::winrt::Windows::ApplicationModel::DataTransfer::DataPackageView ^ impact = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
-         if (view == nullptr)
+         if (impact == nullptr)
          {
 
             return;
 
          }
 
-         if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
+         if (impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::ApplicationLink))
          {
 
             bHasFile = true;
 
          }
-         else if (view->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
+         else if (impact->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::StorageItems))
          {
 
-            ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ items = ::wait(view->GetStorageItemsAsync());
+            ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Storage::IStorageItem ^ > ^ items = ::wait(impact->GetStorageItemsAsync());
 
             for (int i = 0; i < items->Size; i++)
             {
@@ -223,7 +223,7 @@ namespace uwp
    bool copydesk::_set_plain_text(const ::string & str)
    {
 
-      auto package = ref new ::Windows::ApplicationModel::DataTransfer::DataPackage;
+      auto package = ref new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
 
       if (package == nullptr)
       {
@@ -232,14 +232,14 @@ namespace uwp
 
       }
 
-      package->RequestedOperation = ::Windows::ApplicationModel::DataTransfer::DataPackageOperation::Copy;
+      package->RequestedOperation = ::winrt::Windows::ApplicationModel::DataTransfer::DataPackageOperation::Copy;
 
       package->SetText(str);
 
       defer_main_thread([&package, this]()
       {
 
-         ::Windows::ApplicationModel::DataTransfer::Clipboard::SetContent(package);
+         ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::SetContent(package);
 
       });
 
@@ -256,7 +256,7 @@ namespace uwp
       defer_main_thread([&str, &bOk, this]()
       {
 
-         auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         auto dataPackage = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
          if (dataPackage == nullptr)
          {
@@ -265,7 +265,7 @@ namespace uwp
 
          }
 
-         if (!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
+         if (!dataPackage->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
          {
 
             return;
@@ -291,7 +291,7 @@ namespace uwp
       defer_main_thread([&bOk, this]()
       {
 
-         auto dataPackage = ::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
+         auto dataPackage = ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::GetContent();
 
          if (dataPackage == nullptr)
          {
@@ -300,7 +300,7 @@ namespace uwp
 
          }
 
-         if (!dataPackage->Contains(::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
+         if (!dataPackage->Contains(::winrt::Windows::ApplicationModel::DataTransfer::StandardDataFormats::Text))
          {
 
             return;
@@ -340,7 +340,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

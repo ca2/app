@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
 
 
@@ -12,7 +15,7 @@ namespace userex
 
       m_id = "font_view";
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_ptopview = nullptr;
 
@@ -72,28 +75,59 @@ namespace userex
    }
 
 
-   void font_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void font_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
 
-         if (m_ptopview != nullptr && psubject->m_puserprimitive == m_ptopview->m_peditview)
+         if (m_ptopview != nullptr && psubject->m_puserelement == m_ptopview->m_peditview)
          {
 
-            synchronous_lock synchronouslock(m_pview->m_pfontlist->mutex());
+            synchronous_lock synchronouslock(m_pimpact->m_pfontlist->mutex());
 
             string strText;
 
             m_ptopview->m_peditview->_001GetText(strText);
 
-            m_pview->m_pfontlist->m_strText = strText;
+            m_pimpact->m_pfontlist->m_strText = strText;
 
          }
 
       }
+      else if (psubject->user_element_id() == impact_font_sel)
+      {
+
+         if (psubject->m_id == ::e_subject_after_change_cur_sel)
+         {
+
+            if (m_bSourceFontSel)
+            {
+
+               string strText;
+
+               strText = m_pimpact->m_pfontlist->m_strFontFamily;
+
+               m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
+
+               m_ptopview->m_peditview->m_pfont.defer_create(this);
+
+               m_ptopview->m_peditview->m_pfont->set_family_name(strText);
+
+               m_pimpact->m_pfontlist->m_strText = "";
+
+            }
+
+         }
+
+      }
+
+      ::user::impact::handle(psubject, pcontext);
+
+
+
 
    }
 
@@ -121,27 +155,27 @@ namespace userex
       if (m_ptopview == nullptr)
       {
 
-         message_box("Could not create folder edit view");
+         output_error_message("Could not create folder edit impact");
 
       }
 
-      m_pview = create_view < ::user::font_list_view >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
+      m_pimpact = create_view < ::user::font_list_view >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
 
-      if (m_pview == nullptr)
+      if (m_pimpact == nullptr)
       {
 
-         message_box("Could not create file list ::user::impact");
+         output_error_message("Could not create file list ::user::impact");
 
       }
 
       if(get_document()->m_pviewTopic == nullptr)
       {
 
-         get_document()->m_pviewTopic = m_pview;
+         get_document()->m_pviewTopic = m_pimpact;
 
       }
 
-      m_pview->set_font_list_type(::write_text::font_list::type_wide);
+      m_pimpact->set_font_list_type(::write_text::font_list::type_wide);
 
    }
 
@@ -168,7 +202,7 @@ namespace userex
 
       }
 
-      if (!m_pview || !m_pview->m_pfontlist)
+      if (!m_pimpact || !m_pimpact->m_pfontlist)
       {
 
          return false;
@@ -178,11 +212,11 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_pview->m_pfontlist->m_strText = "";
+         m_pimpact->m_pfontlist->m_strText = "";
 
       }
 
-      if (!m_pview->m_pfontlist->set_sel_by_name(str))
+      if (!m_pimpact->m_pfontlist->set_sel_by_name(str))
       {
 
          return false;
@@ -194,39 +228,39 @@ namespace userex
    }
 
 
-   void font_view::on_control_event(::user::control_event * pevent)
-   {
+   //void font_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::user::impact::on_control_event(pevent);
+   //   ::user::impact::handle(psubject, pcontext);
 
-      if (pevent->m_id == impact_font_sel)
-      {
+   //   if (psubject->m_puserelement->m_id == impact_font_sel)
+   //   {
 
-         if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
-         {
+   //      if (psubject->m_id == ::e_subject_after_change_cur_sel)
+   //      {
 
-            if (m_bSourceFontSel)
-            {
+   //         if (m_bSourceFontSel)
+   //         {
 
-               string strText;
+   //            string strText;
 
-               strText = m_pview->m_pfontlist->m_strFontFamily;
+   //            strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-               m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
+   //            m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
 
-               m_ptopview->m_peditview->m_pfont.defer_create(this);
+   //            m_ptopview->m_peditview->m_pfont.defer_create(this);
 
-               m_ptopview->m_peditview->m_pfont->set_family_name(strText);
+   //            m_ptopview->m_peditview->m_pfont->set_family_name(strText);
 
-               m_pview->m_pfontlist->m_strText = "";
+   //            m_pimpact->m_pfontlist->m_strText = "";
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
 } // namespace userex

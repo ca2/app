@@ -38,7 +38,6 @@ namespace draw2d
    draw2d::~draw2d()
    {
 
-
    }
 
 
@@ -62,6 +61,8 @@ namespace draw2d
          return estatus;
 
       }
+
+      lock::__s_initialize();
 
       return estatus;
 
@@ -147,10 +148,10 @@ namespace draw2d
 
 
 
-   e_format draw2d::file_extension_to_format(const ::payload & varFile)
+   e_format draw2d::file_extension_to_format(const ::payload & payloadFile)
    {
 
-      return text_to_format(varFile.get_file_path().final_extension());
+      return text_to_format(payloadFile.get_file_path().final_extension());
 
    }
 
@@ -228,6 +229,8 @@ namespace draw2d
 
       m_papi.release();
 
+      lock::__s_finalize();
+
       auto estatus = ::acme::department::destroy();
 
       return estatus;
@@ -235,7 +238,7 @@ namespace draw2d
    }
 
 
-   __pointer(save_image) draw2d::new_save_image(const ::payload& varFile, const ::payload& varOptions)
+   __pointer(save_image) draw2d::new_save_image(const ::payload& payloadFile, const ::payload& varOptions)
    {
 
       auto psaveimage = __new(save_image);
@@ -251,7 +254,7 @@ namespace draw2d
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+         eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 
       }
 
@@ -345,7 +348,7 @@ namespace draw2d
       catch (...)
       {
 
-         message_box("except", "except", e_message_box_ok);
+         output_error_message("except", "except", e_message_box_ok);
 
       }
 
@@ -402,7 +405,7 @@ namespace draw2d
 
       auto bA = colorfilter.opacity().get_alpha();
 
-      ::draw2d::brush_pointer pbrushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
       pbrushText->create_solid(colorText & ::opacity(bA));
 
@@ -419,10 +422,10 @@ namespace draw2d
    byte * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
    byte bMin, i32 iRadius)
    {
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
+      __UNREFERENCED_PARAMETER(xDest);
+      __UNREFERENCED_PARAMETER(yDest);
+      __UNREFERENCED_PARAMETER(xSrc);
+      __UNREFERENCED_PARAMETER(ySrc);
       i32 iFilterW = iRadius * 2 + 1;
       i32 iFilterH = iRadius * 2 + 1;
       i32 iFilterHalfW = iFilterW / 2;
@@ -1099,7 +1102,7 @@ breakFilter2:
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::file_exists(path))
+//                        if (::m_psystem->m_pacmefile->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;
@@ -1294,7 +1297,7 @@ breakFilter2:
          if (!estatus)
          {
 
-            message_box("Failed to initialize draw2d library.");
+            output_error_message("Failed to initialize write_text library.");
 
             estatus = error_failed;
 
@@ -1311,7 +1314,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("write_text factory exchange has failed.\n\nSome reasons:\n   - No write_text library present;\n   - Failure to open any suitable write_text library.");
 
          return estatus;
 
@@ -1326,7 +1329,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("Couldn't construct new write_text.");
+         INFORMATION("Couldn't construct new write_text.");
 
          return estatus;
 
@@ -1337,7 +1340,7 @@ breakFilter2:
       if (!estatus)
       {
 
-         TRACE("Couldn't initialize write_text (init1).");
+         INFORMATION("Couldn't initialize write_text (init1).");
 
          return estatus;
 
@@ -1415,7 +1418,7 @@ breakFilter2:
 
       }
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem;
 
       estatus = psystem->do_factory_exchange("write_text", strLibrary);
 
@@ -1468,7 +1471,7 @@ breakFilter2:
       if (strLibrary != "write_text_pango")
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         auto psystem = m_psystem;
 
          estatus = psystem->do_factory_exchange("write_text", "pango");
 
@@ -1518,6 +1521,22 @@ breakFilter2:
       //return PLATFORM_COMMON_STRING;
 
 #endif
+
+   }
+
+
+   ::e_status draw2d::lock_device()
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status draw2d::unlock_device()
+   {
+
+      return ::success;
 
    }
 

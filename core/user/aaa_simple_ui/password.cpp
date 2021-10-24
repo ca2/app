@@ -31,10 +31,10 @@ namespace simple_ui
 
       auto pstyle = get_style(pgraphics);
 
-      color32          = get_color(pstyle, ::user::e_element_text);
-      crBk        = get_color(pstyle, ::user::e_element_background);
-      crSel       = get_color(pstyle, ::user::e_element_text, ::user::e_state_selected);
-      crBkSel     = get_color(pstyle, ::user::e_element_background, ::user::e_state_selected);
+      color32          = get_color(pstyle, ::e_element_text);
+      crBk        = get_color(pstyle, ::e_element_background);
+      crSel       = get_color(pstyle, ::e_element_text, ::user::e_state_selected);
+      crBkSel     = get_color(pstyle, ::e_element_background, ::user::e_state_selected);
 
 
       //::job * pjob = pgraphics->m_pjob;
@@ -54,7 +54,7 @@ namespace simple_ui
          TRACE("Print Job Is Printing page %d",pprinttask->m_iPrintingPage);
       }*/
 
-      bool bCaretOn = m_millisFocusStart.on_off(m_millisCaretPeriod);
+      bool bCaretOn = m_durationFocusStart.on_off(m_durationCaretPeriod);
 
 
       //rectangleClient.deflate(0, 0, 1, 1);
@@ -106,7 +106,7 @@ namespace simple_ui
       else
       {
       class imaging & imaging = psystem->imaging();
-      //_001DrawBackground(pgraphics, rectClipBox);
+      //_001DrawBackground(pgraphics, rectangleClipBox);
       imaging.color_blend(
       pgraphics,
       rectangleClient,
@@ -118,7 +118,7 @@ namespace simple_ui
       color.set_rgb(rgb(227,227,210));
       color.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
-      //pgraphics->draw3d_rect(rectangleClient,crBorder,crBorder);
+      //pgraphics->draw_inset_3d_rectangle(rectangleClient,crBorder,crBorder);
 
       if(m_ptree == nullptr)
          return;
@@ -159,11 +159,11 @@ namespace simple_ui
       strsize iSelEnd;
       strsize lim = 0;
 
-      ::draw2d::pen_pointer penCaret(e_create);
+      auto ppenCaret = __create < ::draw2d::pen > ();
 
-      ::draw2d::brush_pointer brushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
-      penCaret->create_solid(1.0,argb(255,0,0,0));
+      ppenCaret->create_solid(1.0,argb(255,0,0,0));
 
 
       /*   rectangleClient.top = m_point.y;
@@ -228,8 +228,8 @@ namespace simple_ui
          ::str::fill(strExtent2,'*');
          ::str::fill(strExtent3,'*');
 
-         brushText->create_solid(color32);
-         pgraphics->set(brushText);
+         pbrushText->create_solid(color32);
+         pgraphics->set(pbrushText);
          pgraphics->text_out(left,y,strExtent1);
 
          size_f64 size1(0.0,0.0);
@@ -243,15 +243,15 @@ namespace simple_ui
          if(iEnd > iStart)
          {
 
-            auto rectFill = ::rectangle_f64_dimension((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
-            pgraphics->fill_rectangle(rectFill,argb(255,120,240,180));
-            brushText->create_solid(crSel);
-            pgraphics->set(brushText);
+            auto rectangleFill = ::rectangle_f64_dimension((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
+            pgraphics->fill_rectangle(rectangleFill,argb(255,120,240,180));
+            pbrushText->create_solid(crSel);
+            pgraphics->set(pbrushText);
             pgraphics->text_out(left + size1.cx,y,strExtent2);
          }
 
-         brushText->create_solid(color32);
-         pgraphics->set(brushText);
+         pbrushText->create_solid(color32);
+         pgraphics->set(pbrushText);
          pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
          //maxcy = maximum(size1.cy, size2.cy);
@@ -259,7 +259,7 @@ namespace simple_ui
          if(bFocus && bCaretOn && i3 == str1.get_length())
          {
             
-            pgraphics->set(penCaret);
+            pgraphics->set(ppenCaret);
             pgraphics->move_to(left + size1.cx,y);
             pgraphics->line_to(left + size1.cx,y + dLineHeight);
 
@@ -267,7 +267,7 @@ namespace simple_ui
          else if(bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
          {
             
-            pgraphics->set(penCaret);
+            pgraphics->set(ppenCaret);
             pgraphics->move_to(left + size2.cx + size1.cx,y);
             pgraphics->line_to(left + size2.cx + size1.cx,y + dLineHeight);
 

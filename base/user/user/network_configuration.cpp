@@ -8,7 +8,7 @@ namespace user
    network_configuration::network_configuration()
    {
 //      m_pdocument   = nullptr;
-      //    m_pview  = nullptr;
+      //    m_pimpact  = nullptr;
    }
 
    network_configuration::~network_configuration()
@@ -20,8 +20,8 @@ namespace user
       /*m_pdocument = papplication->create_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
-         m_pview = m_pdocument->get_typed_view < ::user::form > ();
-         m_pview->m_pcallback = this;
+         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact->m_pcallback = this;
          return true;
       }*/
       return false;
@@ -33,8 +33,8 @@ namespace user
       m_pdocument = psession->user()->create_child_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
-         m_pview = m_pdocument->get_typed_view < ::user::form > ();
-         m_pview->m_pcallback = this;
+         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact->m_pcallback = this;
          return true;
       }*/
       return false;
@@ -48,16 +48,16 @@ namespace user
          return;
       }
       xml::node node(this);
-      if(node.load(psystem->file_as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
+      if(node.load(psystem->m_psystem->m_pacmefile->as_string(System, pcontext->m_papexcontext->dir().appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
          i32 iProxyPort = node.attr("port");
-         __pointer(::user::interaction) pinteraction = m_pview->get_child_by_name("server");
+         __pointer(::user::interaction) pinteraction = m_pimpact->get_child_by_name("server");
          __pointer(::user::primitive) ptext =  (pinteraction);
          ptext->_001SetText(strProxy, false);
-         pinteraction = m_pview->get_child_by_name("port");
+         pinteraction = m_pimpact->get_child_by_name("port");
          ptext =  (pinteraction);
-         ptext->_001SetText(__str(iProxyPort), false);
+         ptext->_001SetText(__string(iProxyPort), false);
       }*/
    }
 

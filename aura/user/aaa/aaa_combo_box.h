@@ -56,7 +56,7 @@ namespace user
       void user_combo_box_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
@@ -70,7 +70,7 @@ namespace user
 
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa) override;
 
-      virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
+      virtual void set_current_item(const ::item & item, const ::action_context & action_context) override;
 
       virtual bool has_action_hover();
 
@@ -94,7 +94,7 @@ namespace user
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -125,7 +125,7 @@ namespace user
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 
@@ -186,7 +186,7 @@ namespace user
       index DeleteString(index nIndex);
       index InsertString(index nIndex, const ::string & pszString);
 
-      void ResetContent();
+      void reset_content();
       index Dir(index attr, const ::string & pszWildCard);
 
 
@@ -219,7 +219,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable() override;
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

@@ -25,9 +25,9 @@ namespace filemanager
 
       virtual data * filemanager_data() override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnAdd);
       DECLARE_MESSAGE_HANDLER(_001OnRemove);

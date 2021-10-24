@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_html.h"
+#endif
+
 
 
 html_data::html_data()
@@ -118,7 +121,7 @@ void html_data::implement(::draw2d::graphics_pointer & pgraphics)
 void html_data::on_message_key_down(::message::message * pmessage)
 {
 
-   auto pkey = pmessage->m_pkey;
+   auto pkey = pmessage->m_union.m_pkey;
 
    if(pkey->m_ekey == ::user::e_key_tab)
    {
@@ -212,10 +215,10 @@ bool html_data::open_link(const ::string & pszPath)
 }
 
 
-bool html_data::open_document(const ::payload & varFile)
+bool html_data::open_document(const ::payload & payloadFile)
 {
 
- return m_pcoredata->open_document(varFile);
+ return m_pcoredata->open_document(payloadFile);
 
 }
 
@@ -228,10 +231,10 @@ bool html_data::open_document(const ::payload & varFile)
 }
 
 
-//void html_data::on_before_navigate(::payload & varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & payloadFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 //{
 //
-//   m_pcoredata->on_before_navigate(varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
+//   m_pcoredata->on_before_navigate(payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
 //
 //}
 

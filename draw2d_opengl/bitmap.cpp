@@ -81,7 +81,7 @@ namespace draw2d_opengl
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, i32 stride)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       //::acme::del(m_pbitmap);
 
@@ -94,7 +94,7 @@ namespace draw2d_opengl
    bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       return false;
    }
@@ -103,7 +103,7 @@ namespace draw2d_opengl
    bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       m_sizeOut.cx = size.cx;
 
@@ -163,7 +163,7 @@ namespace draw2d_opengl
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
       //::size_i32 size;
       //VERIFY(::SetBitmapDimensionEx((HBITMAP)get_handle(), nWidth, nHeight, &size));
@@ -557,7 +557,7 @@ namespace draw2d_opengl
          glReadPixels(0, 0, m_sizeOut.cx, m_sizeOut.cy, GL_BGRA_EXT, GL_UNSIGNED_BYTE, pdata);
          e = glGetError();
 
-         output_debug_string("error " + __str((int)e));
+         output_debug_string("error " + __string((int)e));
 
       }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "axis/user/_user.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 #define DEBUG_LIST_ITEM_DRAWING 0
@@ -28,6 +28,8 @@ namespace user
    {
 
       defer_create_mutex();
+
+      m_bClickDefaultMouseHandling = true;
 
       m_bTransparent = true;
 
@@ -61,7 +63,7 @@ namespace user
 
       ::user::scroll_base::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::on_message_destroy);
@@ -71,9 +73,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &list_box::on_message_left_button_down);
       MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
-      //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &list_box::on_message_left_button_up);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
@@ -87,7 +87,7 @@ namespace user
 
       pmessage->previous();
 
-      add_control_event_handler(this);
+      add_handler(this);
 
    }
 
@@ -213,7 +213,7 @@ namespace user
 
       m_straList.add(pszString);
 
-      m_straValue.add(__str(dwItemData));
+      m_straValue.add(__string(dwItemData));
 
       return m_straList.get_upper_bound();
 
@@ -286,19 +286,19 @@ namespace user
    }
 
 
-   void list_box::on_control_event(::user::control_event * pevent)
+   void list_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction == this)
+         if(psubject->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
-               m_pcombo->set_current_item(pevent->m_item, pevent->m_actioncontext);
+               m_pcombo->set_current_item(psubject->m_item, psubject->m_actioncontext);
 
                m_pcombo->ShowDropDown(false);
 
@@ -306,7 +306,7 @@ namespace user
             else
             {
 
-               set_current_item(pevent->m_item, pevent->m_actioncontext);
+               set_current_item(psubject->m_item, psubject->m_actioncontext);
 
             }
 
@@ -364,9 +364,9 @@ namespace user
 
       //}
 
-      ::rectangle_f64 rectClipBox;
+      ::rectangle_f64 rectangleClipBox;
 
-      pgraphics->get_clip_box(&rectClipBox);
+      pgraphics->get_clip_box(&rectangleClipBox);
 
       pgraphics->reset_clip();
 
@@ -392,26 +392,26 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      colorBackground = get_color(pstyle, ::user::e_element_background);
+      colorBackground = get_color(pstyle, ::e_element_background);
 
-      ::draw2d::brush_pointer brBk(e_create);
+      auto pbrushBk = __create < ::draw2d::brush > ();
 
-      brBk->create_solid(colorBackground);
+      pbrushBk->create_solid(colorBackground);
 
-      pgraphics->set(brBk);
+      pgraphics->set(pbrushBk);
 
       pgraphics->fill_rectangle(rectangleClient);
 
-      ::rectangle_i32 rectItem;
+      ::rectangle_i32 rectangleItem;
 
-      rectItem = rectangleClient;
+      rectangleItem = rectangleClient;
 
-      rectItem.bottom = rectangleClient.top;
+      rectangleItem.bottom = rectangleClient.top;
 
       if (m_pcombo && m_pcombo->m_bEdit)
       {
 
-         rectItem.bottom += _001GetItemHeight();
+         rectangleItem.bottom += _001GetItemHeight();
 
       }
 
@@ -425,20 +425,20 @@ namespace user
 
       screen_to_client(pointCursor, ::user::e_layout_design);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       auto itemHover = hover_item();
 
       auto itemCurrent = current_item();
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
       for (index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
-         rectItem.top = rectItem.bottom;
+         rectangleItem.top = rectangleItem.bottom;
 
-         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
 #if DEBUG_LIST_ITEM_DRAWING
 
@@ -474,25 +474,25 @@ namespace user
 
          }
 
-         colorBackground = get_color(pstyle, ::user::e_element_item_background, estate);
+         colorBackground = get_color(pstyle, ::e_element_item_background, estate);
 
-         colorText = get_color(pstyle, ::user::e_element_item_text, estate);
+         colorText = get_color(pstyle, ::e_element_item_text, estate);
 
-         brBk->create_solid(colorBackground);
+         pbrushBk->create_solid(colorBackground);
 
-         br->create_solid(colorText);
+         pbrush->create_solid(colorText);
 
-         pgraphics->set(brBk);
+         pgraphics->set(pbrushBk);
 
-         pgraphics->fill_rectangle(rectItem);
+         pgraphics->fill_rectangle(rectangleItem);
 
          _001GetListText(iItem, strItem);
 
-         pgraphics->set(br);
+         pgraphics->set(pbrush);
 
-         auto rectText = rectItem;
+         auto rectangleText = rectangleItem;
 
-         rectText.deflate(m_iPadding);
+         rectangleText.deflate(m_iPadding);
 
 #if DEBUG_LIST_ITEM_DRAWING
 
@@ -501,17 +501,17 @@ namespace user
 
 #endif
 
-         pgraphics->draw_text(strItem, rectText);
+         pgraphics->draw_text(strItem, rectangleText);
 
       }
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
-      pen->create_solid(1.0, crBorder);
+      ppen->create_solid(1.0, crBorder);
 
-      pgraphics->set(pen);
+      pgraphics->set(ppen);
 
       rectangleClient.deflate(0, 0, 1, 1);
 
@@ -547,7 +547,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -622,10 +622,10 @@ namespace user
 
       psize->cx += m_iBorder * 2;
 
-      //auto rectComboClient = get_client_rect();
+      //auto rectangleComboClient = get_client_rect();
 
-      //psize->cx = maximum(psize->cx, rectComboClient.width());
-      //psize->cx = maximum(psize->cx, rectComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
+      //psize->cx = maximum(psize->cx, rectangleComboClient.width());
 
    }
 
@@ -794,12 +794,12 @@ namespace user
       if (m_pcombo)
       {
 
-         bool bGoingToShow = m_pcombo->m_millisShowComboList.elapsed() < 300_ms;
+         bool bGoingToShow = m_pcombo->m_durationShowComboList.elapsed() < 300_ms;
 
          if (!bGoingToShow)
          {
 
-            m_millisKillFocus.Now();
+            m_durationKillFocus.Now();
 
             m_bPendingKillFocusHiding = true;
 
@@ -817,7 +817,7 @@ namespace user
             //   if (layout().sketch().is_screen_visible())
             //   {
 
-            //      m_millisLastVisibilityChange.Now();
+            //      m_durationLastVisibilityChange.Now();
 
             //      hide();
 
@@ -914,7 +914,7 @@ namespace user
    void list_box::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if (pkey->m_ekey == ::user::e_key_escape)
       {
@@ -974,114 +974,15 @@ namespace user
    void list_box::on_message_key_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
-
-
-//   void list_box::on_message_left_button_down(::message::message * pmessage)
-//   {
-//
-//      auto pmouse = pmessage->m_pmouse;
-//
-//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-//
-//      auto rectangleClient = get_client_rect();
-//
-//      auto psession = get_session();
-//
-//      psession->user()->set_mouse_focus_LButtonDown(this);
-//
-//      m_itemLButtonDown = -1;
-//
-//      if (rectangleClient.contains(point))
-//      {
-//
-//         m_itemLButtonDown = hit_test(pmouse);
-//
-//         set_mouse_capture();
-//
-//      }
-//
-//      pmessage->m_bRet = true;
-//
-//   }
-
-
-//   void list_box::on_message_left_button_up(::message::message * pmessage)
-//   {
-//
-//      auto pmouse = pmessage->m_pmouse;
-//
-//      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
-//
-//      auto rectangleClient = get_client_rect();
-//
-//      auto psession = get_session();
-//
-//      psession->user()->set_mouse_focus_LButtonDown(this);
-//
-//      auto puser = psession->user();
-//
-//      auto pwindowing = puser->windowing();
-//
-//      pwindowing->release_mouse_capture();
-//
-//      if (rectangleClient.contains(point))
-//      {
-//
-//         auto itemHit = hit_test(pmouse);
-//
-//         if (itemHit == m_itemLButtonDown)
-//         {
-//
-//            m_itemCurrent = itemHit;
-//
-//            if (::is_set(m_pcombo))
-//            {
-//
-//               m_pcombo->_001ShowDropDown(false);
-//
-//            }
-//
-//            if(has_control_event_handler())
-//            {
-//
-//               ::user::control_event ev;
-//
-//               ev.m_puserinteraction = this;
-//
-//               ev.m_id = m_id;
-//
-//               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-//
-//               ev.m_actioncontext = ::e_source_user;
-//
-//               ev.m_item = itemHit;
-//
-//               route_control_event(&ev);
-//
-//            }
-//
-//            set_need_redraw();
-//
-//            post_redraw();
-//
-//         }
-//
-//      }
-//
-//
-//
-//      pmouse->m_bRet = true;
-//
-//   }
 
 
    void list_box::on_message_middle_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -1108,7 +1009,7 @@ namespace user
    void list_box::on_message_right_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       auto point = pmouse->m_point;
 
@@ -1135,8 +1036,8 @@ namespace user
    void list_box::on_message_mouse_move(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
-      //auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
       //pmessage->m_bRet = true;
 
@@ -1184,13 +1085,13 @@ namespace user
    }
 
 
-   void list_box::on_hit_test(::user::item & item)
+   void list_box::on_hit_test(::item & item)
    {
 
       /*if (m_pcombo == nullptr)
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 
@@ -1200,7 +1101,7 @@ namespace user
 
       auto rectangleClient = get_client_rect();
 
-      ::rectangle_i32 rectItem = rectangleClient;
+      ::rectangle_i32 rectangleItem = rectangleClient;
 
       int iAddUp = 0;
 
@@ -1214,14 +1115,14 @@ namespace user
       for (::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectItem.top = rectangleClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectangleItem.top = rectangleClient.top + (_001GetItemHeight() * (int) (iAddUp + iItem));
 
-         rectItem.bottom = rectItem.top + _001GetItemHeight();
+         rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
-         if (rectItem.contains(item.m_pointHitTest))
+         if (rectangleItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::user::e_element_item, iItem };
+            item  = {::e_element_item, iItem };
 
             return;
 
@@ -1230,11 +1131,11 @@ namespace user
 
       }
 
-      rectItem.top = rectangleClient.top;
+      rectangleItem.top = rectangleClient.top;
 
-      rectItem.bottom = rectItem.top + _001GetItemHeight();
+      rectangleItem.bottom = rectangleItem.top + _001GetItemHeight();
 
-      if (rectItem.contains(item.m_pointHitTest))
+      if (rectangleItem.contains(item.m_pointHitTest))
       {
 
          item = e_element_search_edit;
@@ -1256,14 +1157,14 @@ namespace user
    }
 
 
-   void list_box::on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull)
+   void list_box::on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull)
    {
 
       {
 
          lock_sketch_to_design lockSketchToDesign(this);
 
-         ::rectangle_i32 rectMonitor;
+         ::rectangle_i32 rectangleMonitor;
 
          auto psession = get_session();
 
@@ -1273,56 +1174,56 @@ namespace user
 
          auto pdisplay = pwindowing->display();
 
-         ::index i = pdisplay->get_best_monitor(rectMonitor, rectWindow);
+         ::index i = pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow);
 
-         ::rectangle_i32 rectList;
+         ::rectangle_i32 rectangleList;
 
-         rectList.left = rectWindow.left;
-         rectList.right = rectWindow.left + maximum(rectWindow.width(), sizeFull.cx);
-         rectList.top = rectWindow.bottom;
-         rectList.bottom = rectWindow.bottom + sizeFull.cy;
+         rectangleList.left = rectangleWindow.left;
+         rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx);
+         rectangleList.top = rectangleWindow.bottom;
+         rectangleList.bottom = rectangleWindow.bottom + sizeFull.cy;
 
          if (i < 0)
          {
 
-            m_pcombo->get_parent()->get_window_rect(rectMonitor);
+            m_pcombo->get_parent()->get_window_rect(rectangleMonitor);
 
          }
 
-         if (rectList.bottom > rectMonitor.bottom - m_iBorder)
+         if (rectangleList.bottom > rectangleMonitor.bottom - m_iBorder)
          {
 
-            rectList.bottom = rectMonitor.bottom - m_iBorder;
+            rectangleList.bottom = rectangleMonitor.bottom - m_iBorder;
 
-            ::rectangle_i32 rectListOver;
+            ::rectangle_i32 rectangleListOver;
 
-            rectListOver.left = rectList.left;
-            rectListOver.right = rectList.right;
-            rectListOver.bottom = rectWindow.top;
-            rectListOver.top = rectWindow.top - sizeFull.cy;
+            rectangleListOver.left = rectangleList.left;
+            rectangleListOver.right = rectangleList.right;
+            rectangleListOver.bottom = rectangleWindow.top;
+            rectangleListOver.top = rectangleWindow.top - sizeFull.cy;
 
-            if (rectListOver.top < rectMonitor.top + m_iBorder)
+            if (rectangleListOver.top < rectangleMonitor.top + m_iBorder)
             {
 
-               rectListOver.move_to(rectListOver.left, rectMonitor.top);
+               rectangleListOver.move_to(rectangleListOver.left, rectangleMonitor.top);
 
             }
 
-            rectList = rectListOver;
+            rectangleList = rectangleListOver;
 
          }
 
-         if (rectList.right > rectMonitor.right - m_iBorder)
+         if (rectangleList.right > rectangleMonitor.right - m_iBorder)
          {
 
-            rectList.offset(rectMonitor.right - (rectList.right - m_iBorder), 0);
+            rectangleList.offset(rectangleMonitor.right - (rectangleList.right - m_iBorder), 0);
 
          }
 
-         if (rectList.left < rectMonitor.left)
+         if (rectangleList.left < rectangleMonitor.left)
          {
 
-            rectList.move_left_to(0);
+            rectangleList.move_left_to(0);
 
          }
 
@@ -1340,7 +1241,7 @@ namespace user
          if (i < 0)
          {
 
-            m_pcombo->get_parent()->screen_to_client(rectList);
+            m_pcombo->get_parent()->screen_to_client(rectangleList);
 
          }
 
@@ -1357,7 +1258,7 @@ namespace user
 
             display();
 
-            place(::rectangle_i32(rectList).inflate(m_iBorder));
+            place(::rectangle_i32(rectangleList).inflate(m_iBorder));
 
             if (!create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent()))
             {
@@ -1374,7 +1275,7 @@ namespace user
          else
          {
 
-            place(::rectangle_i32(rectList).inflate(m_iBorder));
+            place(::rectangle_i32(rectangleList).inflate(m_iBorder));
 
          }
 
@@ -1393,7 +1294,7 @@ namespace user
    }
 
 
-   ::e_status list_box::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status list_box::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       if(m_pcombo)
@@ -1433,7 +1334,7 @@ namespace user
    void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
    {
 
-      index iSel = m_straValue.find_first(__str(u));
+      index iSel = m_straValue.find_first(__string(u));
 
       if (iSel < 0)
       {

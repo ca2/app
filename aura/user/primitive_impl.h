@@ -19,7 +19,7 @@ namespace user
 
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
-      bool                                      m_bDestroying;
+      //bool                                      m_bDestroying;
       int                                       m_iPendingRectMatch;
       __pointer(::user::interaction)            m_puserinteraction;
       __pointer(::user::box)                    m_puserbox;
@@ -92,7 +92,7 @@ namespace user
       virtual bool window_move(i32 x, i32 y);
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0);
 
 
       virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
@@ -219,7 +219,7 @@ namespace user
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
-      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool SetTimer(uptr uEvent, ::duration millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
 
@@ -243,7 +243,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive);
       virtual ::e_status clear_keyboard_focus() override;

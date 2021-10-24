@@ -156,7 +156,7 @@ namespace user
 
          m_strTitle = strText;
 
-         string strImage (pnode->attribute("image"));
+         string strImage (pnode->attribute("image").get_string());
 
          if (strImage.has_char())
          {

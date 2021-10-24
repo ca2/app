@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "aura/user/shell.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 
@@ -185,11 +188,11 @@ namespace filemanager
       create_factory <form >();
       create_factory <document >();
       create_factory <child_frame >();
-      create_factory <view >();
+      create_factory <impact >();
       create_factory <path_view >();
       create_factory <save_as_view >();
       create_factory <left_view >();
-      create_factory <main_view >();
+      create_factory <main_impact >();
       create_factory <file_list >();
       create_factory <preview >();
       create_factory <main_frame >();
@@ -206,7 +209,7 @@ namespace filemanager
       create_factory <operation_list_view >();
       create_factory <save_as_edit_view >();
       create_factory <save_as_button>();
-      create_factory <fs::simple::view >();
+      create_factory <fs::simple::impact >();
       create_factory <fs::simple::list_view >();
 
       //__compose_new(this, m_pmap);
@@ -332,7 +335,7 @@ namespace filemanager
                              strTemplateId,
                              __type(document),
                              __type(frame),
-                             __type(view)));
+                             __type(impact)));
       }
 
       auto psession = get_session();
@@ -404,7 +407,7 @@ namespace filemanager
          auto pcontext = get_context();
 
          if (pathFilemanagerProject.is_empty() || pcontext->m_papexcontext->dir().is(pathFilemanagerProject)
-               || pathFilemanagerProject.extension().compare_ci("component") != 0)
+               || pathFilemanagerProject.final_extension().compare_ci("component") != 0)
          {
 
             m_pathFilemanagerProject = m_psystem->m_pacmedir->localconfig() / "user.component";
@@ -592,7 +595,7 @@ namespace filemanager
    }
 
 
-   document * component::find_filemanager(::payload varFile)
+   document * component::find_filemanager(::payload payloadFile)
    {
 
       __pointer(document) pdocument;
@@ -611,14 +614,14 @@ namespace filemanager
 
       //   pdocument = pdocument->get_main_document();
 
-      //   if (pdocument->m_strManagerId == varFile.get_string().Left(get_manager_id_len()))
+      //   if (pdocument->m_strManagerId == payloadFile.get_string().Left(get_manager_id_len()))
       //   {
 
       //      return pdocument;
 
       //   }
 
-      //   if (pdocument->filemanager_item()->m_filepathFinal.is_equal_fast(varFile))
+      //   if (pdocument->filemanager_item()->m_filepathFinal.is_equal_fast(payloadFile))
       //   {
 
       //      return pdocument;
@@ -633,7 +636,7 @@ namespace filemanager
    }
 
 
-   document * component::open_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -641,7 +644,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new(::create(papplication->handler(), varFile, true));
+      //   pcreate = __new(::create(papplication->handler(), payloadFile, true));
 
       //}
 
@@ -651,7 +654,7 @@ namespace filemanager
 
       //pcreate->prop("component::callback") = pcallback;
 
-      //pcreate->m_pcommandline->m_varFile = varFile;
+      //pcreate->m_pcommandline->m_varFile = payloadFile;
 
       //m_pdocumenttemplateProject->m_bQueueDocumentOpening = false;
 
@@ -675,7 +678,7 @@ namespace filemanager
 
       //   string strManagerId;
 
-      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, varFile, get_application());
+      //   ::file::path pathFolder = filemanager_project_entry(strManagerId, payloadFile, get_application());
 
       //   ptabview->set_current_tab_by_id("verifile://" + pathFolder);
 
@@ -688,10 +691,10 @@ namespace filemanager
    }
 
 
-   document * component::restore_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      filemanager()->m_filepath = varFile.get_file_path();
+      filemanager()->m_filepath = payloadFile.get_file_path();
 
       filemanager()->m_pcreate = pcreate;
 
@@ -699,7 +702,7 @@ namespace filemanager
 
       filemanager()->m_pcallback = pcallback;
 
-      filemanager()->open(nullptr, varFile);
+      filemanager()->open(nullptr, payloadFile);
 
       return filemanager()->m_pdocument;
 
@@ -728,10 +731,10 @@ namespace filemanager
    }
 
 
-   bool component::erase_filemanager(::payload varFile)
+   bool component::erase_filemanager(::payload payloadFile)
    {
 
-      //document * pdocument = find_manager(varFile);
+      //document * pdocument = find_manager(payloadFile);
 
       //m_pdocumenttemplateProject->erase_document(pdocument);
 
@@ -1088,7 +1091,7 @@ namespace filemanager
 //document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
-//   UNREFERENCED_PARAMETER(bMakeVisible);
+//   __UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   __pointer(::create) pcreate(e_create);
 
@@ -1146,7 +1149,7 @@ namespace filemanager
 //document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
 //{
 
-//   UNREFERENCED_PARAMETER(bMakeVisible);
+//   __UNREFERENCED_PARAMETER(bMakeVisible);
 
 //   __pointer(::create) pcreate(e_create);
 

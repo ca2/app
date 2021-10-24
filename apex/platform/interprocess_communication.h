@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 typedef int key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;
@@ -19,42 +19,6 @@ namespace interprocess_communication
       virtual public object
    {
    public:
-
-//#ifdef _UWP
-//
-//      //i32              m_iSerial;
-//
-//#elif defined(WINDOWS_DESKTOP)
-//
-//
-//      HWND              m_hwnd;
-//
-//
-//#elif defined(APPLEOS)
-//
-//
-//      CFMessagePortRef     m_port;
-//
-//
-//#elif !defined(_UWP)
-//
-//      key_t                m_key;
-//      int                  m_iQueue;
-//
-//      struct data_struct
-//      {
-//
-//
-//         long     mtype;
-//         long     request;
-//         int      size;
-//         char     data[0];
-//
-//
-//      };
-//
-//
-//#endif
 
 
       string   m_strBaseChannel;
@@ -78,11 +42,7 @@ namespace interprocess_communication
 
 
 
-#if defined(_UWP)
-      virtual bool open(const ::string & pszChannel);
-#else
       virtual bool open(const ::string & pszChannel, ::launcher * plauncher = nullptr);
-#endif
       virtual bool close();
 
 
@@ -91,6 +51,7 @@ namespace interprocess_communication
 
 
       virtual bool is_tx_ok();
+
 
    };
 
@@ -104,29 +65,55 @@ namespace interprocess_communication
    public:
 
 
+      class CLASS_DECL_APEX dispatch_item :
+         virtual public ::matter
+      {
+      public:
+
+
+         u64         m_uData;
+         string      m_strMessage;
+         memory      m_memory;
+
+
+         dispatch_item(::string && strMessage) : m_uData(0x80000000), m_strMessage(strMessage) {}
+         dispatch_item(u64 uData, ::memory && memory) : m_uData(0x80000000), m_memory(::move(memory)) {}
+
+         bool is_text_message() const {
+            return m_uData == 0x80000000
+               ;
+         }
+
+      };
+
+
       class CLASS_DECL_APEX receiver :
          virtual public ::matter
       {
       public:
 
 
-         virtual void on_interprocess_receive(rx * prx,const ::string & pszMessage);
-         virtual void on_interprocess_receive(rx * prx,int message,void * pdata,memsize len);
+         virtual void on_interprocess_receive(rx * prx, __pointer(dispatch_item) && pdispatchitem);
+         virtual void on_interprocess_receive(rx * prx, ::string && strMessage);
+         virtual void on_interprocess_receive(rx * prx, int message, ::memory && memory);
          virtual void on_interprocess_post(rx * prx, i64 a, i64 b);
 
 
       };
 
 
-      __pointer(receiver)     m_preceiver;
-      rx_private *            m_pp;
+      __pointer(receiver)                 m_preceiver;
+      rx_private *                        m_pp;
+      __pointer_array(dispatch_item)      m_dispatchitema;
+      manual_reset_event                  m_evDispatchItemNew;
+      ::mutex                             m_mutexDispatch;
 
 
 #ifndef WINDOWS
 
       bool                    m_bRunning;
       bool                    m_bRun;
-      __pointer(::task)  m_pthread;
+      __pointer(::task)       m_pthread;
 
 #endif
 
@@ -134,27 +121,34 @@ namespace interprocess_communication
       rx();
       ~rx() override;
 
+      
+      ::e_status on_initialize_object() override;
+
 
       virtual bool create(const ::string & pszChannel);
       ::e_status destroy() override;
 
 
-      virtual void * on_interprocess_receive(rx * prx,const ::string & pszMessage);
-      virtual void * on_interprocess_receive(rx * prx,int message,void * pdata,memsize len);
-      virtual void * on_interprocess_post(rx * prx, i64 a, i64 b);
+      virtual void on_interprocess_receive(::string && strMessage);
+      virtual void on_interprocess_receive(int message, ::memory && memory);
+      virtual void on_interprocess_post(i64 a, i64 b);
 
 
       virtual bool on_idle();
 
-//ifndef WINDOWS
-//
-//      bool start_receiving();
-//
-//      void * receive();
-//
-//#endif
 
       virtual bool is_rx_ok();
+
+      
+      void dispatch_message(::string && strMessage);
+      void dispatch_message(::u64 uData, ::memory && memory);
+
+
+      void dispatch_item(__pointer(dispatch_item) && pdispatchitem);
+
+
+      void task_dispatch();
+
 
    };
 
@@ -170,28 +164,20 @@ namespace interprocess_communication
       __pointer(tx)           m_ptx;
       __pointer(rx)           m_prx;
       string                  m_strChannel;
-      unsigned int            m_millisTimeout;
+      unsigned int            m_durationTimeout;
 
 
       interprocess_communication();
-      virtual ~interprocess_communication();
+      ~interprocess_communication() override;
 
-#if defined(_UWP)
-      virtual bool open_ab(const ::string & pszChannel, const ::string & pszModule);
-      virtual bool open_ba(const ::string & pszChannel, const ::string & pszModule);
-#elif defined(WINDOWS)
-      virtual bool open_ab(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
-      virtual bool open_ba(const ::string & pszChannel,const ::string & pszModule,launcher * plauncher = nullptr);
-#else
-      virtual bool open_ab(const ::string & pszChannel, launcher * plauncher = nullptr);
-      virtual bool open_ba(const ::string & pszChannel, launcher * plauncher = nullptr);
-#endif
+      virtual bool open_ab(const ::string & strChannel, launcher * plauncher = nullptr);
+      virtual bool open_ba(const ::string & strChannel, launcher * plauncher = nullptr);
       virtual bool close();
 
       virtual void restart_apex_ipc();
 
-      virtual bool ensure_tx(const ::string & pszMessage, duration durationTimeout = one_hour());
-      virtual bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = one_hour());
+      virtual bool ensure_tx(const ::string & strMessage, duration durationTimeout = hour());
+      virtual bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = hour());
 
 
       virtual bool is_rx_tx_ok();

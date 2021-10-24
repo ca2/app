@@ -60,26 +60,26 @@ int DLL_CALLCONV __SeekProc2(fi_handle handle, long offset, int origin)
    if (origin == SEEK_SET)
    {
 
-      origin = ::file::seek_begin;
+      origin = ::e_seek_set;
 
    }
    else if (origin == SEEK_CUR)
    {
 
-      origin = ::file::seek_current;
+      origin = ::e_seek_current;
 
    }
    else if (origin == SEEK_END)
    {
 
-      origin = ::file::seek_end;
+      origin = ::e_seek_from_end;
 
    }
 
    try
    {
 
-      pfile->seek(offset, (::file::e_seek) origin);
+      pfile->translate(offset, (::enum_seek) origin);
 
    }
    catch (...)

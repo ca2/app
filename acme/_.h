@@ -2,6 +2,8 @@
 #pragma once
 
 
+
+
 #if defined(__cplusplus) && !defined(_ACID_LIBRARY)
 #include "acme/memory/allocation.h"
 #endif
@@ -33,7 +35,7 @@
 
 #include "acme/platform/object_type_counter.h"
 
-#include "acme/const/_const.h"
+#include "acme/constant/_constant.h"
 
 #include "acme/memory/memory_allocate.h"
 

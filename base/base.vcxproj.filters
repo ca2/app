@@ -23,9 +23,6 @@
     <Filter Include="Source Files\user\experience">
       <UniqueIdentifier>{e8e7e51f-6779-4c4f-a216-d4b1836c328d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{927aabd0-68ea-4a3e-8e94-f937c9736e4e}</UniqueIdentifier>
     </Filter>
@@ -74,6 +71,9 @@
     </Filter>
     <Filter Include="Header Files\const">
       <UniqueIdentifier>{93b133e7-09a5-4366-9706-30ace0fdabfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -323,7 +323,7 @@
     <ClInclude Include="inline\application\windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\linux.h">

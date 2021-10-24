@@ -22,7 +22,7 @@ namespace user
    {
 #ifdef _DEBUG
       if (m_pdocument != nullptr)
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying single_document_template with live ::user::document.\n");
+         CATEGORY_WARNING(appmsg, "Warning: destroying single_document_template with live ::user::document.");
 #endif
    }
 
@@ -80,7 +80,7 @@ namespace user
       if (pcreate->m_id.is_null())
       {
 
-         pcreate->m_id = m_typeView.m_strName;
+         pcreate->m_id = m_typeImpact.m_strName;
 
       }
 
@@ -152,7 +152,7 @@ namespace user
       {
          // linux message_box(__IDP_FAILED_TO_CREATE_DOC);
 
-         message_box("Failed to create document");
+         output_error_message("Failed to create document");
 
          return;
 
@@ -187,7 +187,7 @@ namespace user
             if(!result.get_exit_status(estatus))
             {
 
-               message_box("Failed to create Document");
+               output_error_message("Failed to create Document");
 
             }
 
@@ -208,9 +208,9 @@ namespace user
 
       }
 
-      ::payload varFile = pcreate->get_file();
+      ::payload payloadFile = pcreate->get_file();
 
-      if (varFile.is_empty() || varFile.is_numeric())
+      if (payloadFile.is_empty() || payloadFile.is_numeric())
       {
 
          // create a new ::user::document
@@ -227,7 +227,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
+            CATEGORY_WARNING(appmsg, "::user::document::on_new_document returned false.\n");
 
             if (bCreated)
             {
@@ -255,7 +255,7 @@ namespace user
          if (!on_open_document(pdocument, pcreate))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned false.\n");
+            CATEGORY_WARNING(appmsg, "::user::document::on_open_document returned false.\n");
 
             if (bCreated)
             {
@@ -275,14 +275,14 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(trace_category_appmsg, e_trace_level_warning, "Error: on_new_document failed after trying "
+                  CATEGORY_WARNING(appmsg, "Error: on_new_document failed after trying "
                         "to open a ::user::document - trying to continue.\n");
                   // assume we can continue
                }
             }
             return;        // open failed
          }
-         pdocument->set_path_name(varFile);
+         pdocument->set_path_name(payloadFile);
          pdocument->update_title();
          pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
 
@@ -304,6 +304,15 @@ namespace user
          InitialUpdateFrame(pFrame,pdocument,bMakeVisible);
 
       }
+
+ /*     auto papplication = get_application();
+
+      if (papplication)
+      {
+
+         papplication->defer_process_activation_message();
+
+      }*/
 
       if (pcreate->m_pcommandline)
       {

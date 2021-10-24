@@ -36,7 +36,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwind
 
 #ifdef _UWP
 
-#include "apex/os/uwp/_uwp.h"
+#include "apex/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 
@@ -52,6 +52,7 @@ namespace apex
    session::session()
    {
 
+      //m_bOnInitializeWindowObject = false;
       m_papexsession = this;
       ::object::m_pcontext = this;
       m_pcontext = this;
@@ -153,6 +154,40 @@ namespace apex
    }
 
 
+   //::e_status session::on_initialize_window_object()
+   //{
+
+   //   if (m_bOnInitializeWindowObject)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bOnInitializeWindowObject = true;
+
+   //   auto estatus = _on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
+
+
+   //::e_status session::_on_initialize_window_object()
+   //{
+
+   //   return ::success;
+
+   //}
+
+
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
    {
 
@@ -175,7 +210,15 @@ namespace apex
 
    }
 
+
+   //::e_status session::ui_init()
+   //{
+
+   //   return ::success;
+
+   //}
    
+
    //void session::enum_display_monitors()
    //{
 
@@ -376,12 +419,12 @@ namespace apex
       //if(!estatus)
       //{
 
-      //   __throw(::exception::exception(estatus));
+      //   __throw(::exception(estatus));
 
       //}
 
 
-      INFO(".1");
+      INFORMATION(".1");
 
       return true;
 
@@ -423,7 +466,7 @@ namespace apex
    ::e_status session::process_init()
    {
 
-      INFO("apex::session::process_init");
+      INFORMATION("apex::session::process_init");
 
       //auto estatus = ::apex::context::initialize_context();
 
@@ -439,15 +482,15 @@ namespace apex
       if (!estatus)
       {
 
-         INFO("acme::str_context Failed to Allocate!!");
+         INFORMATION("acme::str_context Failed to Allocate!!");
 
          return estatus;
 
       }
 
-      INFO("acme::str_context Succeeded to Allocate!!");
+      INFORMATION("acme::str_context Succeeded to Allocate!!");
 
-      INFO("apex::session::process_init success");
+      INFORMATION("apex::session::process_init success");
 
       return ::success;
 
@@ -535,46 +578,21 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      auto papplication = pmessage->m_lparam.cast <::application>();
+      auto papplication = pmessage->m_lparam.move <::application>();
 
       erase_application(papplication);
 
    }
 
-   //::e_status session::init()
-   //{
-
-
-
-   //   return true;
-
-   //}
-
-
-   //void session::term()
-   //{
-
-   //   m_paccount.release();
-
-
-
-
-
-
-   //}
-
 
    void session::term2()
    {
-
-
 
    }
 
 
    void session::term1()
    {
-
 
    }
 
@@ -585,37 +603,8 @@ namespace apex
       auto psystem = get_system()->m_papexsystem;
 
       psystem->post_message(e_message_erase_session, m_iEdge);
-      //psystem->session_erase(m_iEdge);
 
    }
-
-
-//   bool session::defer_create_session_frame_window()
-//   {
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (m_puiSession)
-//      {
-//
-//         return true;
-//
-//      }
-//
-//      ::e_status estatus = __compose(m_puiSession, ::move(create_system_message_window(this)));
-//
-//      if (!estatus)
-//      {
-//
-//         return false;
-//
-//      }
-//
-//#endif
-//
-//      return true;
-//
-//   }
 
 
    bool session::on_get_task_name(string& strTaskName)
@@ -638,16 +627,6 @@ namespace apex
    void session::on_request(::create * pcreate)
    {
 
-      // it was here
-      //auto estatus = defer_initialize_host_window();
-      //
-      //if(!estatus)
-      //{
-      //
-      //   __throw(::exception::exception(estatus));
-      //
-      //}
-
       auto psystem = get_system()->m_papexsystem;
 
       if (pcreate->m_ecommand == command_protocol)
@@ -659,16 +638,14 @@ namespace apex
 
       }
 
-      TRACE("::apex::session::on_request(__pointer(::create)) " + string(type_name()));
-
-      INFO("::apex::session::on_request(__pointer(::create)) %s ", __c_str(THIS_FRIENDLY_NAME()));
+      INFORMATION("::apex::session::on_request(__pointer(::create)) " << __type_name(this));
 
       string strAppId = pcreate->m_strAppId;
 
       if (strAppId.has_char())
       {
 
-         INFO("m_strAppId = " + pcreate->m_strAppId);
+         INFORMATION("m_strAppId = " << pcreate->m_strAppId);
 
          auto papp = start_application(pcreate->m_strAppId, pcreate, m_strLocale, m_strSchema);
 
@@ -683,7 +660,7 @@ namespace apex
 
       }
 
-      INFO("m_strAppId Is Empty!!");
+      INFORMATION("m_strAppId Is Empty!!");
 
       string strApp = pcreate->m_pcommandline->m_strApp;
 
@@ -695,7 +672,6 @@ namespace apex
       }
 
       m_varCurrentViewFile = pcreate->m_pcommandline->m_varFile;
-
 
       //string strApp;
 
@@ -731,9 +707,9 @@ namespace apex
          else if (m_bShowPlatform)
          {
             //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
+            //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame());
+            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);
@@ -806,7 +782,8 @@ namespace apex
                else
                {
 
-                  message_box("Could not create requested application: \"" + strApp + "\"");
+                  //output_error_message("Could not create requested application: \"" + strApp + "\"");
+                  output_debug_string("Could not create requested application: \"" + strApp + "\"");
 
                   ::count c = psystem->payload("app").array_get_count();
 
@@ -831,7 +808,7 @@ namespace apex
                if(!papp->on_start_application())
                {
 
-                  TRACE("One or more errors occurred during on_start_application execution.");
+                  INFORMATION("One or more errors occurred during on_start_application execution.");
 
                }
 
@@ -872,7 +849,7 @@ namespace apex
    //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return nullptr;
 
@@ -902,7 +879,7 @@ namespace apex
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_varFile);
+      string strOriginalPathName(pcreate->m_pcommandline->m_varFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -941,7 +918,7 @@ namespace apex
       else
       {
 
-         string strExtension = strPathName.extension();
+         string strExtension = strPathName.final_extension();
 
          string_array straApp;
 
@@ -1020,7 +997,7 @@ namespace apex
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         // apex::session, axis::session and ::base::session, could get more specialized handling in apex::application (apex::system)
@@ -1064,8 +1041,6 @@ namespace apex
    //   }
 
    //}
-
-
 
 
    bool session::is_licensed(const ::string & pszAppId, bool bInteractive)
@@ -1115,8 +1090,10 @@ namespace apex
       }
 
       bool bPressed = false;
+
       if (ekey == ::user::e_key_shift)
       {
+
          m_pmapKeyPressed->lookup(::user::e_key_shift, bPressed);
          if (bPressed)
             goto ret;
@@ -1194,8 +1171,6 @@ ret:
    }
 
 
-   
-
    ::e_status session::init1()
    {
 
@@ -1230,7 +1205,7 @@ ret:
       //   if (!bCreateSessionWindow)
       //   {
 
-      //      WARN("Could not create session window");
+      //      WARNING("Could not create session window");
 
       //   }
 
@@ -1259,7 +1234,7 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create ifs");
+            INFORMATION("Failed to create ifs");
 
          }
 
@@ -1275,7 +1250,7 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create remotefs");
+            INFORMATION("Failed to create remotefs");
 
          }
 
@@ -1310,9 +1285,9 @@ ret:
 
          plink->fill_os_user();
 
-         pset->m_spafsdata.add(plink);
+         pset->m_spafsdata.add(plink.m_p);
 
-         pset->m_spafsdata.add(__create_new < ::fs::native>());
+         pset->m_spafsdata.add(__create_new < ::fs::native>().m_p);
 
          estatus = __compose(m_pfsdata, pset);
 
@@ -1321,14 +1296,14 @@ ret:
 
             m_result.add(estatus);
 
-            TRACE("Failed to create fsdata");
+            INFORMATION("Failed to create fsdata");
 
          }
 
 
       }
 
-      INFO(".2");
+      INFORMATION(".2");
 
 
       return true;
@@ -1349,7 +1324,7 @@ ret:
 
       ::e_status estatus;
 
-      INFO("apex::session::init2 .1");
+      INFORMATION("apex::session::init2 .1");
 
       auto psystem = get_system()->m_papexsystem;
 
@@ -1389,7 +1364,9 @@ ret:
       if (!InitializeLocalDataCentral())
       {
 
-         message_box("Could not initialize Local data central");
+         //output_error_message("Could not initialize Local data central");
+
+         output_debug_string("Could not initialize Local data central");
 
          return false;
 
@@ -1571,7 +1548,7 @@ namespace apex
    void session::launch_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -1579,7 +1556,7 @@ namespace apex
    void session::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -1627,7 +1604,7 @@ namespace apex
    {
 
 
-      return m_pcontext->m_papexcontext->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os_context()->is_remote_session();
 
 
    }
@@ -1650,7 +1627,7 @@ namespace apex
    //   }
    //   else
    //   {
-   //      __throw(::exception::exception("not expected enum_mouse value"));
+   //      __throw(::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -1664,7 +1641,7 @@ namespace apex
 //   bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pdata);
+//      __UNREFERENCED_PARAMETER(pdata);
 //
 //      if (itema.get_size() > 0)
 //      {
@@ -1726,7 +1703,7 @@ namespace apex
    //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
    //{
 
-   //   UNREFERENCED_PARAMETER(pcreate);
+   //   __UNREFERENCED_PARAMETER(pcreate);
 
    //   ::user::place_holder_ptra holderptra;
 
@@ -1746,7 +1723,7 @@ namespace apex
    //   //else
    //   //{
 
-   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::view >());
+   //   //   holderptra.add(get_document()->get_typed_view < ::bergedge::impact >());
 
    //   //}
 
@@ -1789,7 +1766,7 @@ namespace apex
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 
@@ -1968,7 +1945,7 @@ namespace apex
 //
 //      }
 //
-//#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+//#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //      //attach_thread_input_to_main_thread(false);
 //#endif
 //
@@ -2004,12 +1981,12 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array& straTitle = pane.m_straTitle;
 
-   //   pgraphics->set(brushText);
+   //   pgraphics->set(pbrushText);
 
    //   if (straTitle.get_count() <= 1)
    //   {
@@ -2020,43 +1997,43 @@ namespace apex
    //   else
    //   {
 
-   //      ::rectangle_i32 rectText(rectangle);
+   //      ::rectangle_i32 rectangleText(rectangle);
 
 
-   //      ::write_text::font_pointer font;
+   //      ::write_text::font_pointer pfont;
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
-   //      ::rectangle_i32 rectEmp;
+   //      ::rectangle_i32 rectangleEmp;
    //      for (index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
    //         size_i32 s = pane.m_sizeaText[i];
-   //         rectText.right = rectText.left + s.cx;
-   //         pgraphics->_DrawText(str, rectTexte_bottom_left, e_draw_text_no_prefix);
-   //         rectText.left += s.cx;
+   //         rectangleText.right = rectangleText.left + s.cx;
+   //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
+   //         rectangleText.left += s.cx;
    //         if (i < straTitle.get_upper_bound())
    //         {
-   //            rectText.right = rectText.left + sSep.cx;
-   //            rectEmp = rectText;
-   //            rectEmp.deflate(1, 1);
+   //            rectangleText.right = rectangleText.left + sSep.cx;
+   //            rectangleEmp = rectangleText;
+   //            rectangleEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
+   //            if (ptab->m_itemHover == (::enum_element)(::e_element_split + i))
    //            {
-   //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
-   //               pgraphics->set(ptab->get_data()->m_brushTextHover);
+   //               pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 184, 255));
+   //               pgraphics->set(ptab->get_data()->m_pbrushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rectangle(rectEmp,argb(128,208,223,233));
-   //               pgraphics->set(ptab->get_data()->m_brushText);
+   //               //pgraphics->fill_rectangle(rectangleEmp,argb(128,208,223,233));
+   //               pgraphics->set(ptab->get_data()->m_pbrushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);
    //            pgraphics->set_alpha_mode(emode);
-   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectText, e_align_center, e_draw_text_no_prefix);
-   //            rectText.left += sSep.cx;
-   //            pgraphics->set(font);
-   //            pgraphics->set(brushText);
+   //            pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT, rectangleText, e_align_center, e_draw_text_no_prefix);
+   //            rectangleText.left += sSep.cx;
+   //            pgraphics->set(pfont);
+   //            pgraphics->set(pbrushText);
    //         }
    //      }
 
@@ -2107,6 +2084,28 @@ namespace apex
    }
 
 
+   void session::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   {
+
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsystem)
+      {
+
+         m_papexsystem->route_command(pcommand, false);
+
+      }
+
+   }
+
+
    void session::frame_pre_translate_message(::message::message* pmessage)
    {
 
@@ -2153,7 +2152,7 @@ namespace apex
       //         }
 
       //      }
-      //      catch (const ::exception::exception & e)
+      //      catch (const ::exception & e)
       //      {
 
       //         if (e.is < ::exit_exception>())
@@ -2171,7 +2170,7 @@ namespace apex
       //   }
 
       //}
-      //catch (const ::exception::exception & e)
+      //catch (const ::exception & e)
       //{
 
       //   if (e.is < ::exit_exception>())

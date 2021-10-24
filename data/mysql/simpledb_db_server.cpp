@@ -221,7 +221,7 @@ void db_server::close()
 // bool db_server::data_server_load(::database::client * pclient, ::database::key id, ::file::output_stream & writable, ::update * pupdate)
 // {
 
-//    UNREFERENCED_PARAMETER(pobject);
+//    __UNREFERENCED_PARAMETER(pobject);
 
 //    if(!load(calc_data_key(pclient,id),writable))
 //       return false;
@@ -234,7 +234,7 @@ void db_server::close()
 // bool db_server::data_server_save(::database::client * pclient, ::database::key id, ::file::input_stream & readable, ::update * pupdate)
 // {
 
-//    UNREFERENCED_PARAMETER(pobject);
+//    __UNREFERENCED_PARAMETER(pobject);
 
 //    if(!save(calc_data_key(pclient,id),readable))
 //       return false;

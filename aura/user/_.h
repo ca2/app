@@ -14,7 +14,6 @@ namespace graphics
 } // namespace graphics
 
 
-
 namespace user
 {
 
@@ -28,14 +27,10 @@ namespace user
 
    class message;
 
+   class frame_window;
+
 
 } // namespace user
-
-
-//// like ON_MESSAGE but no return value
-//#define ON_MESSAGE_VOID(message, memberFxn) \
-//{ message,0,0,0,::aura::Sig_vv,\
-//   (__PMSG)(__PMSGW)(void (__MSG_CALLwindow::*)())&memberFxn },
 
 
 #include "control_event_listener.h"
@@ -46,16 +41,11 @@ namespace user
 
 
 #include "aura/platform/drawable.h"
-//#include "aura/user/check.h"
-//#include "aura/user/text.h"
 #include "aura/user/window_state.h"
-#include "aura/user/callback.h"
-//#include "aura/user/primitive.h"
-
+//#include "aura/user/callback.h"
 
 
 #include "aura/user/style_control.h"
-//#include "aura/user/plain_edit_style.h"
 
 
 #include "aura/user/style_base.h"
@@ -74,7 +64,6 @@ namespace user
    class keyboard;
    class copydesk;
    class main_frame;
-   //class window_map;
    class plain_edit;
 
 
@@ -85,33 +74,21 @@ namespace user
 #endif
 
 
-
    class plain_text_set_sel_command;
    class plain_text_tree;
    class plain_text_command;
    class tree_draw_item;
 
-   //class shell;
-
-
-
 
 } // namespace user
-
-
 
 
 CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindow);
 
 
-
-//#include "language.h"
-//#include "language_map.h"
-
-
 #include "system.h"
 
-#include "acme/const/button_state.h"
+#include "acme/constant/button_state.h"
 
 #include "mouse.h"
 
@@ -121,43 +98,15 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindo
 
 #include "key.h"
 
-#include "acme/const/activate.h"
+#include "acme/constant/activate.h"
 
 #include "aura/message/user.h"
-
-
-
-
-
-//#include "form_callback.h"
-//#include "impact_creator.h"
-
-
-
-//#include "document_manager_container.h"
 
 
 #include "range.h"
 
 
-//#include "mesh_item.h"
-//#include "list_item.h"
-
-
-//#include "mesh_data.h"
-//#include "list_data.h"
-
-
-//#include "aura/filesystem/file/html_file.h"
-
-
 #include "message_window_listener.h"
 
 
-
-//#include "aura/platform/message_box.h"
-
-
-
-//#include "controller.h"
 

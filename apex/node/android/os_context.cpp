@@ -46,7 +46,7 @@ namespace android
             AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;*/
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
    }
@@ -107,14 +107,14 @@ namespace android
       /*    tkp.Privileges[0].Attributes = 0;
           AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
           return true;*/
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
    }
 
    void os_context::terminate_processes_by_title(const char * pszName)
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return;
 
       /*      ::u32 dwPid;
@@ -206,7 +206,7 @@ namespace android
 
       CloseHandle( hProcess );
       return strName;*/
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return "";
 
    }
@@ -214,7 +214,7 @@ namespace android
    void os_context::get_all_processes(::u32_array & dwa )
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return;
 
       /*
@@ -236,7 +236,7 @@ namespace android
 
    //string os_context::get_module_path(HMODULE hmodule)
    //{
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return "";
    //   /*
    //   string strPath;
@@ -255,7 +255,7 @@ namespace android
 
    ::payload os_context::connection_settings_get_auto_detect()
    {
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       return false;
 
       /*
@@ -278,7 +278,7 @@ namespace android
    ::payload os_context::connection_settings_get_auto_config_url()
    {
 
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       return "";
       /*
             registry::Key key;
@@ -296,7 +296,7 @@ namespace android
    bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
       return false;
 
       /*
@@ -315,7 +315,7 @@ namespace android
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce", true);
 
@@ -330,7 +330,7 @@ namespace android
    bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -347,7 +347,7 @@ namespace android
    bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand, bool bSet)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -364,7 +364,7 @@ namespace android
 
    bool os_context::defer_register_ca2_plugin_for_mozilla()
    {
-      //  ::exception::throw_not_implemented();
+      //  throw interface_only_exception();
       return false;
 
       /*
@@ -382,7 +382,7 @@ namespace android
                   keyPlugin.SetValue("Path", ::apex::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", get_application()->file_as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", get_application()->m_psystem->m_pacmefile->as_string(m_pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -403,7 +403,7 @@ namespace android
 
    bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -442,7 +442,7 @@ namespace android
    bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -459,7 +459,7 @@ namespace android
 
    bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -491,7 +491,7 @@ namespace android
 
    bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*
@@ -535,7 +535,7 @@ namespace android
    bool os_context::native_modern_web_browser(const char * lpcsz)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
    }
 
@@ -543,7 +543,7 @@ namespace android
    bool os_context::native_full_web_browser(const char * lpcsz)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return false;
 
       /*    registry reg;
@@ -592,7 +592,7 @@ namespace android
    ::e_status os_context::create_service()
    {
 
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       return error_failed;
 
 
@@ -601,21 +601,21 @@ namespace android
 
    ::e_status os_context::erase_service()
    {
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
       return error_failed;
 
    }
 
    ::e_status os_context::start_service()
    {
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       return error_failed;
 
    }
 
    ::e_status os_context::stop_service()
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       return error_failed;
 
    }
@@ -624,7 +624,7 @@ namespace android
    //void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    //{
 
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return;
    //   /*
    //         RaiseException( dwExceptionCode, dwExceptionFlags, 0, nullptr );
@@ -634,7 +634,7 @@ namespace android
    bool os_context::is_remote_session()
    {
 
-//      ::exception::throw_not_implemented();
+//      throw interface_only_exception();
       return false;
       /*
             return GetSystemMetrics(SM_REMOTESESSION) != false;
@@ -645,7 +645,7 @@ namespace android
    //void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    //{
 
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return;
 
 
@@ -727,7 +727,7 @@ namespace android
 //
 //                        pitem = __new(::write_text::font_enumeration_item);
 //
-//                        if (::file_exists(path))
+//                        if (::m_psystem->m_pacmefile->exists(path))
 //                        {
 //
 //                           pitem->m_strFile = path;

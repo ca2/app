@@ -9,26 +9,28 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
-template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-inline constexpr bool __lt(const INTEGER1 & a, const INTEGER2 & b) { return a < b; }
-template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-inline constexpr bool __le(const INTEGER1 & a, const INTEGER2 & b) { return a <= b; }
-template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-inline constexpr bool __lt(const NATURAL1 & a, const INTEGER2 & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
-template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-inline constexpr bool __le(const NATURAL1 & a, const INTEGER2 & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
 
 
-template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-inline constexpr bool __lt(const INTEGER1 & a, const NATURAL2 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
-template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-inline constexpr bool __le(const INTEGER1 & a, const NATURAL2 & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
+template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+inline constexpr bool __lt(const SIGNED1 & a, const SIGNED2 & b) { return a < b; }
+template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+inline constexpr bool __le(const SIGNED1 & a, const SIGNED2 & b) { return a <= b; }
+template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+inline constexpr bool __lt(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
+template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+inline constexpr bool __le(const UNSIGNED1 & a, const SIGNED2 & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
 
 
-template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-inline constexpr bool __lt(const NATURAL1 & a, const NATURAL2 & b) { return a < b; }
-template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-inline constexpr bool __le(const NATURAL1 & a, const NATURAL2 & b) { return a <= b; }
+template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+inline constexpr bool __lt(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
+template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+inline constexpr bool __le(const SIGNED1 & a, const UNSIGNED2 & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
+
+
+template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+inline constexpr bool __lt(const UNSIGNED1 & a, const UNSIGNED2 & b) { return a < b; }
+template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+inline constexpr bool __le(const UNSIGNED1 & a, const UNSIGNED2 & b) { return a <= b; }
 
 
 template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
@@ -62,17 +64,17 @@ template < typename T1, typename T2 >
 inline constexpr auto __gt(const T1 & a, const T2 & b) { return __lt(b, a); }
 
 
-template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-constexpr typename largest_type < INTEGER1, INTEGER2 >::type minimum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(a, b) ? ((typename largest_type < INTEGER1, INTEGER2 >::type)a ): ((typename largest_type < INTEGER1, INTEGER2 >::type)b); }
+template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+constexpr typename largest_type < SIGNED1, SIGNED2 >::type minimum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a ): ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
 
-template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-constexpr INTEGER2 minimum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(a, b) ? ((INTEGER2) a) : b; }
+template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+constexpr SIGNED2 minimum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(a, b) ? ((SIGNED2) a) : b; }
 
-template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-constexpr INTEGER1 minimum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(a, b) ? a : ((INTEGER1) b); }
+template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+constexpr SIGNED1 minimum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? a : ((SIGNED1) b); }
 
-template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-constexpr typename largest_type < NATURAL1, NATURAL2 >::type minimum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(a, b) ? ((typename largest_type < NATURAL1, NATURAL2 >::type)a) : ((typename largest_type < NATURAL1, NATURAL2 >::type)b); }
+template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type minimum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(a, b) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
 
 
 template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
@@ -90,17 +92,17 @@ constexpr TYPE1 minimum(const TYPE1 & a, const TYPE2 & b) { return __lt(a, b) ? 
 
 
 
-template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
-constexpr typename largest_type < INTEGER1, INTEGER2 >::type maximum(const INTEGER1 & a, const INTEGER2 & b) { return __lt(b, a) ? ((typename largest_type < INTEGER1, INTEGER2 >::type)a) : ((typename largest_type < INTEGER1, INTEGER2 >::type)b); }
+template < primitive_signed SIGNED1, primitive_signed SIGNED2 >
+constexpr typename largest_type < SIGNED1, SIGNED2 >::type maximum(const SIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < SIGNED1, SIGNED2 >::type)a) : ((typename largest_type < SIGNED1, SIGNED2 >::type)b); }
 
-template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
-constexpr INTEGER2 maximum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(b, a) ? ((INTEGER2)a) :  b; }
+template < primitive_unsigned UNSIGNED1, primitive_signed SIGNED2 >
+constexpr SIGNED2 maximum(const UNSIGNED1 & a, const SIGNED2 & b) { return __lt(b, a) ? ((SIGNED2)a) :  b; }
 
-template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
-constexpr INTEGER1 maximum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(b, a) ?  a : ((INTEGER1)b); }
+template < primitive_signed SIGNED1, primitive_unsigned UNSIGNED2 >
+constexpr SIGNED1 maximum(const SIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ?  a : ((SIGNED1)b); }
 
-template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
-constexpr typename largest_type < NATURAL1, NATURAL2 >::type maximum(const NATURAL1 & a, const NATURAL2 & b) { return __lt(b, a) ? ((typename largest_type < NATURAL1, NATURAL2 >::type)a) : ((typename largest_type < NATURAL1, NATURAL2 >::type)b); }
+template < primitive_unsigned UNSIGNED1, primitive_unsigned UNSIGNED2 >
+constexpr typename largest_type < UNSIGNED1, UNSIGNED2 >::type maximum(const UNSIGNED1 & a, const UNSIGNED2 & b) { return __lt(b, a) ? ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)a) : ((typename largest_type < UNSIGNED1, UNSIGNED2 >::type)b); }
 
 template < primitive_integral INTEGRAL1, primitive_floating FLOATING2 >
 constexpr FLOATING2 maximum(const INTEGRAL1 & a, const FLOATING2 & b) { return __lt(b, a) ? ((FLOATING2)a) : b; }
@@ -115,16 +117,18 @@ template < typename TYPE1, typename TYPE2 >
 constexpr TYPE1 maximum(const TYPE1 & a, const TYPE2 & b) { return __lt(b, a) ? a : ((TYPE1)b); }
 
 
+
 #include "count.h"
 
 
 #include "index.h"
 
 
-template < primitive_integer INTEGER >
-inline bool __found(INTEGER i) { return i >= 0; }
-template < primitive_integer INTEGER >
-inline bool __not_found(INTEGER i) { return i < 0; }
+
+template < primitive_signed SIGNED >
+inline bool __found(SIGNED i) { return i >= 0; }
+template < primitive_signed SIGNED >
+inline bool __not_found(SIGNED i) { return i < 0; }
 
 
 
@@ -225,6 +229,11 @@ inline short  __loword(INTEGRAL i) {return i & 0xffff; }
 
 template < primitive_integral INTEGRAL >
 inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
+
+
+
+//#endif
+
 
 
 

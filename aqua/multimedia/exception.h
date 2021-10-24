@@ -17,7 +17,7 @@ namespace multimedia
 
 
    class CLASS_DECL_AQUA exception :
-      public ::exception::exception
+      public ::exception
    {
    public:
 

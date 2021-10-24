@@ -1,28 +1,8 @@
 #pragma once
 
 
-class property_object;
-class task;
-class action_context;
-class object;
-class dump_context;
-class synchronization_object;
-class __id;
-class string_exchange;
-
-inline bool is_set_ptr(const void * p){return (uptr)p > 65536;}
-
-//inline ::object* __object(::p* playered);
-
-
-
-
-// ATTENTION
-// Shared with:
-// Objective-C++
-
-
-class CLASS_DECL_ACME matter
+class CLASS_DECL_ACME matter :
+   virtual public element
 {
 private:
 
@@ -32,31 +12,7 @@ private:
 
 public:
 
-   union
-   {
-
-      ::u32       m_uObject;
-
-      struct
-      {
-
-         //bool        m_bTaskPending : 1;
-         bool        m_bHeapAllocated : 1;
-         bool        m_bSetFinish : 1;
-         bool        m_bDestroying : 1;
-         bool        m_bProcessed : 1;
-         bool        m_bTaskStarted : 1;
-         bool        m_bTaskTerminated : 1;
-         bool        m_bCheckingChildrenTask : 1;
-         bool        m_bCheckChildrenTaskPostQuit : 1;
-         bool        m_bTaskReady : 1;
-         bool        m_bDataStruct : 1;
-
-      };
-
-   };
-
-
+   
    union
    {
 
@@ -72,7 +28,6 @@ public:
    };
 
    
-   ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
    class ::system *                    m_psystem;
 
@@ -90,22 +45,24 @@ public:
 //#endif
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference")); }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) { increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (2)")); }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) { if (matter.m_pmutex) defer_create_mutex(); increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS OBJECT_REFERENCE_COUNT_DEBUG_COMMA_NOTE("Initial Reference (3)")); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(e_object_none), m_psystem(nullptr), m_pobjrefdbg(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) {  }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) {  }
+   inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
+   inline matter(class ::system * psystem) : m_psystem(psystem), m_pmutex(nullptr), m_ematter(e_element_none), m_uError(0), m_eobject(e_object_none), m_pobjrefdbg(matter.m_pobjrefdbg) { }
 #else
-   inline matter() : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(1), m_eobject(e_object_none), m_psystem(nullptr) { }
-   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uObject(0), m_uError(0), m_countReference(1), m_eobject(eobject), m_psystem(nullptr) { }
-   inline matter(const matter& matter) : m_pmutex(nullptr), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(1), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
-   inline matter(matter&& matter) : m_pmutex(matter.m_pmutex), m_uObject(matter.m_uObject), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
+   inline matter() : m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
+   inline matter(const eobject& eobject) : m_pmutex(nullptr), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
+   inline matter(const matter& matter) : m_pmutex(nullptr), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
+   inline matter(matter&& matter) : element(matter), m_pmutex(matter.m_pmutex), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
+   inline matter(class ::system * psystem) : m_psystem(psystem), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 #endif
 
-   virtual ~matter();
+   ~matter() override;
 
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context& dumpcontext) const;
+   virtual void  assert_valid() const;
+   virtual void  dump(dump_context& dumpcontext) const;
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -119,10 +76,7 @@ public:
 #endif
 
 
-   virtual ::enum_type get_payload_type() const;
-
-
-   virtual ::e_status initialize_matter(::matter* pmatter);
+   ::e_status initialize_matter(::matter* pmatter) override;
 
 
    virtual ::e_status on_initialize_object();
@@ -135,12 +89,15 @@ public:
    inline bool is_shared() const { return m_countReference > 1; }
 
 
+   virtual bool is_ready_to_quit() const;
+
    // synchronization_object/::mutex
    inline synchronization_object* mutex() const { return ::is_set_ptr(this) ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(synchronization_object* psync);
    void defer_create_mutex();
 
    //::e_status branch();
+
 
    inline class ::system* get_system() const { return (class ::system *) m_psystem; }
 
@@ -158,38 +115,12 @@ public:
    //virtual ::index task_add(::task* pthread);
    virtual void task_erase(::task* pthread);
 
-
    virtual void notify_on_destroy(::property_object * pobject);
 
 
    virtual void kick_idle();
 
-   //::e_status add_update(const ::id & id);
-   //::e_status erase_update(const ::id& id);
-   void erase_from_any_source();
 
-   //inline bool is_shared() const { return m_countReference > 1; }
-
-
-   inline const char* type_c_str() const { return typeid(*this).name(); }
-#ifdef WINDOWS
-   inline const char* type_name() const { return type_c_str() + (sizeof("class ") - 1); }
-#else
-   inline const char* type_name() const { return type_c_str(); }
-#endif
-
-#ifdef DEBUG
-   virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-#else
-   inline i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-   inline i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
-#endif
-
-   
-   virtual ::e_status initialize(::object * pobject);
    virtual ::e_status set_finish();
    //::e_status destroy() override;
 
@@ -212,49 +143,61 @@ public:
    virtual ::e_status osthread_term();
 
 
-   virtual ::e_status add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status add_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-
-
-   virtual ::e_status release_composite2(::matter * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status finalize_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual ::e_status release_reference(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//
+//
+//   virtual ::e_status release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status finalize_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//   virtual ::e_status release_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
    virtual ::e_status set_generic_object_name(const char* pszName);
 
 
-   virtual ::matter * get_taskpool_container();
-
-
-   virtual ::task_pool * taskpool();
-
 
    //virtual ::task * defer_branch(const ::id & id, const ::routine & routine);
 
 
-   virtual void delete_this();
+   void delete_this() override;
 
 
    virtual const char* debug_note() const;
-   virtual ::matter * clone() const;
-
-   // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual ::e_status call_member(::i64 i64);
+   virtual ::element * clone() const;
 
 
-   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
-   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
-   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+   using element::has;
+   using element::set;
+   using element::clear;
 
 
    inline bool has(const ::eobject& eobject) const { return m_eobject.has(eobject); }
+   inline void set(const ::eobject& eobject, bool bSet) { if (bSet) set(eobject); else clear(eobject); }
+   inline void set(const ::eobject & eobject) { m_eobject |= eobject; }
+   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
+
+
    inline ::u64 get_object_flag() { return m_eobject; }
 
 
-   inline void clear_finish_bit() { m_bSetFinish = false; }
-   inline void set_finish_bit() { m_bSetFinish = true; }
-   inline bool finish_bit() const { return m_bSetFinish; }
+   //inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }
+   //inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((::u32)(m_ematter) | (::u32)(ematter)); }
+   //inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((::u32)(m_ematter) & (~(::u32)(ematter))); }
+
+
+   //inline bool is_finishing() const { return is(e_element_finishing); }
+   //inline void set_finishing() { set(e_element_finishing); }
+   //inline void unset_finishing() { unset(e_element_finishing); }
+
+
+   //inline bool is_heap_allocated() const { return is(e_element_heap_allocated); }
+   //inline void set_heap_allocated() { set(e_element_heap_allocated); }
+   //inline void unset_heap_allocated() { unset(e_element_heap_allocated); }
+
+
+   //inline bool is_destroying() const { return is(e_element_destroying); }
+   //inline void set_destroying() { set(e_element_destroying); }
+   //inline void unset_destroying() { unset(e_element_destroying); }
 
 
    //virtual ::e_status on_finish();
@@ -265,87 +208,56 @@ public:
    // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual     ::e_status     destroy()     ;
    virtual ::e_status destroy_composites();
 
 
    virtual void post_quit();
 
 
-   inline void set_ok() { set(e_object_success); clear(e_object_timeout); clear(e_object_failure); }
-   inline void set_nok(enum_object estatusFailure = e_object_failure) { clear(e_object_success); set(estatusFailure); }
-   inline void set_modified(bool bModified = true) { set(e_object_changed, bModified); }
 
 
-   inline void set_fail() { set(e_object_failure); clear(e_object_success); }
-   inline void set_timeout() { set(e_object_timeout); }
-   inline void set_persistent(bool bSet = true) { set(e_object_persist, bSet); }
+
+   inline const ::element * context_trace_object() const { return this; }
 
 
-   inline bool is_ok() const { return has(e_object_success); }
-   inline bool nok() const { return has(e_object_failure) || has(e_object_timeout); }
-   inline bool is_modified() const { return has(e_object_changed); }
-   inline bool is_persistent() { return has(e_object_persist); }
+   //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
+   //virtual void __tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const;
+   //virtual void __tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args) const;
+
+   //virtual void __simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const;
+   //virtual void __simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const;
 
 
-   inline bool is_storing() const { return has(e_object_storing); }
-   inline bool is_loading() const { return !is_storing(); }
+   virtual enum_trace_category trace_category(const matter * pcontext) const;
+   virtual enum_trace_category trace_category() const;
 
 
-   inline void set_storing() { set(e_object_storing); }
-   inline void set_loading() { clear(e_object_storing); }
+   virtual string topic_text() const;
 
 
-   inline void defer_set_storing() { if (!is_storing()) set_storing(); }
-   inline void defer_set_loading() { if (!is_loading()) set_loading(); }
+   inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }
+   inline tracer trace_log_information(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_information, etracecategory); }
+   inline tracer trace_log_warning(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_warning, etracecategory); }
+   inline tracer trace_log_error(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_error, etracecategory); }
+   inline tracer trace_log_fatal(enum_trace_category etracecategory) { return tracer(m_psystem, e_trace_level_fatal, etracecategory); }
 
 
-   inline const ::matter * context_trace_object() const { return this; }
+   inline tracer trace(enum_trace_level etracelevel) { return tracer(m_psystem, etracelevel, trace_category()); }
+   inline tracer trace_log_information() { return tracer(m_psystem, e_trace_level_information, trace_category()); }
+   inline tracer trace_log_warning() { return tracer(m_psystem, e_trace_level_warning, trace_category()); }
+   inline tracer trace_log_error() { return tracer(m_psystem, e_trace_level_error, trace_category()); }
+   inline tracer trace_log_fatal() { return tracer(m_psystem, e_trace_level_fatal, trace_category()); }
 
 
-   virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const;
-   virtual void __tracef(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...) const;
-   virtual void __tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args) const;
-
-   virtual void __simple_tracev(enum_trace_level elevel, const char* pszFunction, const char* pszFile, i32 iLine, const char* pszFormat, va_list args) const;
-   virtual void __simple_tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFileName, i32 iLine, const char* psz) const;
+   virtual void trace_last_status();
 
 
-   virtual e_trace_category trace_category(const matter * pcontext) const;
-   virtual e_trace_category trace_category() const;
-
-
-   virtual const char * topic_text() const;
-
-   virtual ::synchronization_result sync_wait();
-   virtual ::synchronization_result sync_wait(const ::duration & duration);
-
-   // <3ThomasBorregaardSørensen__!! likes handler concept...
-   virtual void subject_handler(::subject::subject * psubject);
-   virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
-
-
-   virtual ::e_status operator()();
-   virtual void operator()(::message::message * pmessage);
-   virtual void operator()(const ::payload & payload);
-   virtual ::e_status run();
-   virtual ::e_status step();
-   virtual ::payload realize();
    virtual void on_future(const ::payload & payload);
 
    virtual void clear_member() { }
 
-   virtual void exchange(::stream& s);
-
-   virtual stream& write(::stream& stream) const;
-   virtual stream& read(::stream& stream);
 
 
-   //virtual void to_string(string_exchange & str) const;
-   virtual strsize sz_len() const;
-   virtual void to_sz(char* sz, strsize len) const;
-
-   virtual bool should_run_async() const;
 
 
 };

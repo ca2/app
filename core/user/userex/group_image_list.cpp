@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace userex
@@ -41,10 +44,30 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_item_clicked)
+      {
+
+
+      }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         if (psubject->user_interaction()->m_id == m_id)
+         {
+
+            show_menu();
+
+         }
+
+      }
+
+      return ::user::impact::handle(psubject, pcontext);
+
 
    }
 
@@ -103,7 +126,7 @@ namespace userex
 
       auto pcontextimage = pcontext->context_image();
 
-      m_pimage = pcontextimage->load_image("project->jpg", false);
+      m_pimage = pcontextimage->load_image("project.jpg", { .cache = false });
 
       pcreate->previous();
 
@@ -216,7 +239,7 @@ namespace userex
    }
 
 
-   ::e_status group_image_list_view::set_current_item(const ::user::item & item, const ::action_context & context)
+   ::e_status group_image_list_view::set_current_item(const ::item & item, const ::action_context & context)
    {
 
       auto estatus = ::user::impact::set_current_item(item, context);
@@ -329,29 +352,29 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_control_event(::user::control_event * pevent)
-   {
+   //void group_image_list_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if (pevent->m_eevent == ::user::e_event_item_clicked)
-      {
+   //   if (psubject->m_id == ::e_subject_item_clicked)
+   //   {
 
 
-      }
-      else if (pevent->m_eevent == ::user::e_event_click)
-      {
+   //   }
+   //   else if (psubject->m_id == ::e_subject_click)
+   //   {
 
-         if (pevent->m_puserinteraction->m_id == m_id)
-         {
+   //      if (psubject->user_interaction()->m_id == m_id)
+   //      {
 
-            show_menu();
+   //         show_menu();
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return ::user::impact::on_control_event(pevent);
+   //   return ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    string group_image_list_view::get_menu_xml()
@@ -388,13 +411,13 @@ namespace userex
 
       ::user::interaction * pinteraction = &m_buttonMenu;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      pinteraction->get_window_rect(rectWindow);
+      pinteraction->get_window_rect(rectangleWindow);
 
       auto puser = user();
 
-      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
+      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
@@ -479,22 +502,22 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectMenu(rectangleClient);
+      ::rectangle_i32 rectangleMenu(rectangleClient);
 
-      rectMenu.bottom = rectangleClient.top + 32;
+      rectangleMenu.bottom = rectangleClient.top + 32;
 
-      m_buttonMenu.display_child(rectMenu);
+      m_buttonMenu.display_child(rectangleMenu);
 
-      ::rectangle_i32 rectList(rectangleClient);
+      ::rectangle_i32 rectangleList(rectangleClient);
 
-      rectList.top = rectangleClient.top + 32;
+      rectangleList.top = rectangleClient.top + 32;
 
       auto * plist = get_current_list();
 
       if (plist != nullptr)
       {
 
-         plist->place(rectList);
+         plist->place(rectangleList);
 
          plist->order_top();
 

@@ -8,7 +8,6 @@ namespace aura
    class CLASS_DECL_AURA application :
       virtual public ::aqua::application,
       virtual public ::aura::context,
-      virtual public ::user::callback,
       virtual public ::filemanager::callback
    {
    public:
@@ -149,14 +148,14 @@ namespace aura
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void enumerate_composite(matter_array& a);
@@ -264,7 +263,7 @@ namespace aura
       //virtual void SetCurrentHandles() override;
 
 
-      //virtual ::e_status process_exception(const ::exception::exception & e) override;
+      //virtual ::e_status process_exception(const ::exception & e) override;
 
 
       //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
@@ -294,9 +293,9 @@ namespace aura
 
 
 
-      //virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -344,14 +343,14 @@ namespace aura
 
       //virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
-      virtual void on_control_event(::user::control_event* pevent) override;
-      virtual void on_notify_control_event(::user::control_event* pevent);
-      virtual void route_control_event(::user::control_event* pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //virtual void on_notify_control_event(::user::control_event* pevent);
+      //virtual void route(::subject * psubject, ::context * pcontext);
 
 
 
-      //user virtual bool on_open_document(::user::document * pdocument, ::payload varFile);
-      //user virtual bool on_save_document(::user::document * pdocument, ::payload varFile);
+      //user virtual bool on_open_document(::user::document * pdocument, ::payload payloadFile);
+      //user virtual bool on_save_document(::user::document * pdocument, ::payload payloadFile);
 
 
 
@@ -389,8 +388,8 @@ namespace aura
       //virtual ::file::path appconfig_folder() override;
 
 
-      //virtual void assert_valid() const override;
-      //virtual void dump(dump_context & dumpcontext) const override;
+      //void assert_valid() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
 
       //virtual ::file::path get_app_localconfig_folder() override;
@@ -403,7 +402,7 @@ namespace aura
       //virtual bool app_data_set(const ::id & id, ::object & obj) override;
       //virtual bool app_data_get(const ::id & id, ::object & obj) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual string dialog_box(const ::string & pszMatter, property_set & propertyset) override;
 
@@ -426,7 +425,7 @@ namespace aura
 
 
       //virtual void release_parents() override;
-      virtual ::object * parent_property_set_holder() const override;
+      ::property_object * parent_property_set_holder() const override;
 
 
       //virtual bool is_set_finish() const override;
@@ -486,7 +485,7 @@ namespace aura
       //virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2) override;
 
 
-      //virtual bool process_exception(const ::exception::exception & e) override;
+      //virtual bool process_exception(const ::exception & e) override;
 
 
       //virtual bool is_system() const override;
@@ -755,7 +754,7 @@ namespace aura
 
       //virtual void throw_not_installed();
 
-      //virtual void play_audio(::payload varFile, bool bSynch = false);
+      //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
       //virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true) override;
 
@@ -763,7 +762,7 @@ namespace aura
 
       //virtual string get_app_user_friendly_task_bar_name() override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 
@@ -778,7 +777,7 @@ namespace aura
 
 
 
-      //virtual bool on_open_document_file(::payload varFile) override;
+      //virtual bool on_open_document_file(::payload payloadFile) override;
 
       //virtual string get_app_id(string wstr) override;
 
@@ -826,7 +825,7 @@ namespace aura
 
       //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 
-      //virtual void on_control_event(::user::control_event * pevent);
+      //virtual void handle(::subject * psubject, ::context * pcontext);
 
 
 
@@ -906,7 +905,7 @@ namespace aura
 
 
       virtual bool on_idle(::i32 lCount) override; // return true if more idle processing
-      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
 //      bool GetResourceData(::u32 nID, const ::string & lcszType, memory& storage);
@@ -922,7 +921,7 @@ namespace aura
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
-      virtual void route_command_message(::message::command* pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual void EnableHtmlHelp();
 
@@ -1008,7 +1007,7 @@ namespace aura
 
 
 
-      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject::subject * psubject) override;
+      void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::subject * psubject) override;
 
 
       virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
@@ -1017,7 +1016,7 @@ namespace aura
       virtual void prepare_form(id id, ::form_document* pdocument);
 
 
-      void report_error(const ::exception::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
+      void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;
 
 
       bool can_close_application() override;
@@ -1045,6 +1044,7 @@ namespace aura
       bool os_on_start_application() override;
 
 #endif
+
 
 
    };

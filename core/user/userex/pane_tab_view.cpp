@@ -1,6 +1,11 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "core/user/account/_account.h"
 #include "aura/update.h"
 #include "base/user/user/tab_pane.h"
@@ -147,8 +152,8 @@ namespace userex
 
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_view::on_message_create);
 
-      connect_command("file_save_as", &pane_tab_view::_001OnFileSaveAs);
-      connect_command_probe("file_save_as", &pane_tab_view::_001OnUpdateFileSaveAs);
+      add_command_handler("file_save_as", this, &pane_tab_view::_001OnFileSaveAs);
+      add_command_prober("file_save_as", this, &pane_tab_view::_001OnUpdateFileSaveAs);
 
    }
 
@@ -184,23 +189,25 @@ namespace userex
       }
 
 
-      __pointer(simple_frame_window) pframe = get_parent();
+      //__pointer(simple_frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
-      {
+      //if (pframe.is_set())
+      //{
 
-         string strAppOptions(pframe->m_varFrame["app_options"]["resource"]);
+      //   string strAppOptions(pframe->m_varFrame["options_impact"]["resource"]);
 
-         if (strAppOptions.has_char())
-         {
+      //   if (strAppOptions.has_char())
+      //   {
 
-            string strTitle(pframe->m_varFrame["app_options"]["title"]);
+      //      string strTitle(pframe->m_varFrame["options_impact"]["title"]);
 
-            add_tab(strTitle, "app_options");
+      //      if(strTitle.is_empty())
 
-         }
+      //      add_tab(strTitle, "options_impact");
 
-      }
+      //   }
+
+      //}
 
    }
 
@@ -238,17 +245,17 @@ namespace userex
 
       ::user::tab_view::on_change_cur_sel();
 
-      if(m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
+      if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
       {
 
-         if(get_parent_frame()->ContinueModal())
+         if (get_parent_frame()->ContinueModal())
          {
 
             get_parent_frame()->EndModalLoop("yes");
 
          }
 
-         if(::is_set(filemanager_document()))
+         if (::is_set(filemanager_document()))
          {
 
             filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
@@ -256,6 +263,39 @@ namespace userex
          }
 
       }
+      else if(m_pimpactdata->m_id == OPTIONS_IMPACT)
+      {
+
+         if (::is_set(m_pdocumentMenu))
+         {
+
+            auto strOptionsImpact = get_application()->prepare_impact_options();
+
+#ifdef _DEBUG
+
+            auto pcontext = m_pcontext->m_papexcontext;
+
+            pcontext->file().put(pcontext->dir().home() / "debug_ca2/menu_view" / get_application()->m_strAppId + ".html", strOptionsImpact);
+
+#endif
+
+            if (!m_pdocumentMenu->open_document(strOptionsImpact))
+            {
+
+               output_error_message("Failed to open the menu.");
+
+               return;
+
+            }
+
+            ::user::impact * pview = m_pdocumentMenu->get_view(0);
+
+            pview->set_need_load_form_data();
+
+         }
+
+      }
+
 
    }
 
@@ -263,7 +303,7 @@ namespace userex
    bool pane_tab_view::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
-      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectTabClient);
+      pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
 
       if (pimpactdata->m_pplaceholder == nullptr)
       {
@@ -382,10 +422,10 @@ namespace userex
    }
 
 
-   ::user::tab_pane * pane_tab_view::create_tab_by_id(id id)
+   ::user::tab_pane * pane_tab_view::create_tab_by_id(const ::id & id)
    {
 
-      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectTabClient);
+      ::user::impact_data * pimpactdata = get_impact_data(id, get_data()->m_rectangleTabClient);
 
       if(pimpactdata == nullptr)
       {
@@ -425,7 +465,7 @@ namespace userex
       else if (pimpactdata->m_id == "account")
       {
 
-         __pointer(::account::view) pview = create_view < ::account::view >();
+         __pointer(::account::impact) pview = create_view < ::account::impact >();
 
          if (pview.is_set())
          {
@@ -437,6 +477,22 @@ namespace userex
             pimpactdata->m_iExtendOnParent = 0;
 
          }
+
+      }
+      else if (pimpactdata->m_id == MENU_IMPACT)
+      {
+
+//         create_menu_impact(pimpactdata);
+
+      }
+      else if (pimpactdata->m_id == OPTIONS_IMPACT)
+      {
+
+         auto puser = user()->m_pcoreuser;
+
+         m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+
+         pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
       }
       else if (is_font_sel(pimpactdata->m_id))
@@ -476,14 +532,14 @@ namespace userex
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview->m_pview->add_control_event_handler(this);
+         m_pfontview->m_pimpact->add_handler(this);
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pview)
          {
 
-            m_pfontview->m_pview->add_control_event_handler(pview);
+            m_pfontview->m_pimpact->add_handler(pview);
 
          }
 
@@ -511,14 +567,14 @@ namespace userex
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorview->add_control_event_handler(this);
+         m_pcolorview->add_handler(this);
 
          __pointer(::user::interaction) pview = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pview)
          {
 
-            m_pcolorview->add_control_event_handler(pview);
+            m_pcolorview->add_handler(pview);
 
          }
 
@@ -664,12 +720,12 @@ namespace userex
       //   }
 
       //}
-      else if (pimpactdata->m_id == "app_options")
-      {
+      //else if (pimpactdata->m_id == "app_options")
+      //{
 
-         create_app_options(pimpactdata);
+      //   create_app_options(pimpactdata);
 
-      }
+      //}
       else if (pimpactdata->m_id.is_text())
       {
 
@@ -765,7 +821,7 @@ namespace userex
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::view) pview = get_view();
+      __pointer(::account::impact) pview = get_view();
 
       if (pview.is_null())
       {
@@ -779,10 +835,29 @@ namespace userex
    }
 
 
-   void pane_tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_context_menu_close)
+      {
+
+         if (m_pimpactdataOld != nullptr)
+         {
+
+            set_current_tab_by_id(m_pimpactdataOld->m_id);
+
+            psubject->m_bRet = true;
+
+            return;
+
+         }
+
+      }
+
+      ::user::tab_view::handle(psubject, pcontext);
+
 
    }
 
@@ -796,76 +871,77 @@ namespace userex
 
    }
 
-   void pane_tab_view::on_control_event(::user::control_event * pevent)
-   {
 
-      if (pevent->m_eevent == ::user::e_event_context_menu_close)
-      {
+   //void pane_tab_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-         if (m_pimpactdataOld != nullptr)
-         {
+   //   if (psubject->m_id == ::e_subject_context_menu_close)
+   //   {
 
-            set_current_tab_by_id(m_pimpactdataOld->m_id);
+   //      if (m_pimpactdataOld != nullptr)
+   //      {
 
-            pevent->m_bRet = true;
+   //         set_current_tab_by_id(m_pimpactdataOld->m_id);
 
-            return;
+   //         psubject->m_bRet = true;
 
-         }
+   //         return;
 
-      }
+   //      }
 
-      ::user::tab_view::on_control_event(pevent);
+   //   }
 
-   }
+   //   ::user::tab_view::handle(psubject, pcontext);
+
+   //}
 
 
-   bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)
-   {
+   //bool pane_tab_view::create_app_options(::user::impact_data * pimpactdata)
+   //{
 
-      string strAppOptions = "matter://options.html";
+   //   string strAppOptions = "matter://options.html";
 
-      __pointer(simple_frame_window) pframe = get_parent();
+   //   __pointer(simple_frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
-      {
+   //   if (pframe.is_set())
+   //   {
 
-         strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+   //      strAppOptions = pframe->m_varFrame["app_options"]["resource"];
 
-      }
+   //   }
 
-      payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
+   //   payload("app_options_title") = get_tab_by_id(pimpactdata->m_id)->get_title();
 
-      auto pcontext = m_pcontext;
-      
-      auto psession = pcontext->m_pcoresession;
-      
-      auto puser = psession->m_puser->m_pcoreuser;
+   //   auto pcontext = m_pcontext;
+   //   
+   //   auto psession = pcontext->m_pcoresession;
+   //   
+   //   auto puser = psession->m_puser->m_pcoreuser;
 
-      m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
+   //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-      //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_typed_view<::user::form>();
 
-      //if (pform)
-      //{
+   //   //if (pform)
+   //   //{
 
-      //   if (pform->m_puserinteractionpointeraChild)
-      //   {
+   //   //   if (pform->m_puserinteractionpointeraChild)
+   //   //   {
 
-      //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
-      //      {
+   //   //      for (auto& p : pform->m_puserinteractionpointeraChild->interactiona())
+   //   //      {
 
-      //         p->add_control_event_handler(this);
+   //   //         p->add_control_event_handler(this);
 
-      //      }
+   //   //      }
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void pane_tab_view::prepare_form(id id, ::form_document * pdocument)

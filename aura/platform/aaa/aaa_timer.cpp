@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 #define THREADED_TIMER
 
@@ -48,7 +48,7 @@ timer::~timer()
 }
 
 
-bool timer::start(int millis, bool bPeriodic)
+bool timer::start(int ::duration, bool bPeriodic)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -64,7 +64,7 @@ bool timer::start(int millis, bool bPeriodic)
 
    m_bPeriodic = bPeriodic;
 
-   m_dwMillis = millis;
+   m_dwMillis = ::duration;
 
    try
    {
@@ -424,7 +424,7 @@ void timer::impl_init()
    //if (e_timer_create(CLOCK_REALTIME, &m_sev, &m_timerid) == -1)
    //{
 
-   //   __throw(::exception::exception("e_timer_create failed"));
+   //   __throw(::exception("e_timer_create failed"));
 
    //}
 
@@ -563,7 +563,7 @@ bool timer::impl_restart()
 ::e_status timer::run()
 {
 
-   while (task_sleep(::millis((::i64) m_dwMillis)))
+   while (task_sleep(::duration((::i64) m_dwMillis)))
    {
 
       try

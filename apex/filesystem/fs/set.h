@@ -35,7 +35,7 @@ namespace fs
       virtual bool fast_has_subdir(const ::file::path & psz)override;
       virtual bool is_link(const ::file::path & psz)override;
 
-      virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
+      virtual file_transport get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
       virtual bool is_zero_latency(const ::file::path & psz)override;
 

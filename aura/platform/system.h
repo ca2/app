@@ -12,13 +12,13 @@ namespace aura
    public:
 
 
-#ifdef _UWP
-
-      
-      ::uwp::directx_application_source ^                   m_applicationsource;
-
-
-#endif
+//#ifdef _UWP
+//
+//      
+//      ::universal_windows::directx_application_source ^                   m_applicationsource;
+//
+//
+//#endif
 
       bool m_bAvoidFirstResponder;
 
@@ -44,10 +44,11 @@ namespace aura
       //__composite(::sockets::sockets)                    m_psockets;
 
 
+      __pointer(::windowing::window)                       m_pwindowMain;
 
 
-      __pointer(::matter)                                      m_pDraw2dFactoryExchange;
-      __pointer(::draw2d::draw2d)                              m_pdraw2d;
+      __pointer(::matter)                                  m_pDraw2dFactoryExchange;
+      __pointer(::draw2d::draw2d)                          m_pdraw2d;
 
       //::file::path                                       m_pathConfig;
       //::file::path                                       m_pathCa2Roaming;
@@ -105,7 +106,7 @@ namespace aura
 //
 //      bool                                               m_bGudoNetCache;
 //
-//      __composite(::process::department)                 m_pprocess;
+//      __composite(::operating_system::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
 //      ::e_display                                         m_edisplay;
@@ -116,7 +117,7 @@ namespace aura
 
 //#ifdef _UWP
 //
-//      ::uwp::directx_framework_view ^                          m_frameworkview;
+//      ::universal_windows::directx_framework_view ^                          m_frameworkview;
 //
 //#endif
 
@@ -130,8 +131,8 @@ namespace aura
 //      string                                             m_strInstallVersion;
 //      string                                             m_strInstallPlatform;
 //
-//      millis                                               m_millisMainStart;
-//      millis                                               m_millisAfterApplicationFirstRequest;
+//      ::duration                                               m_durationMainStart;
+//      ::duration                                               m_durationAfterApplicationFirstRequest;
 //
 //
 //
@@ -152,7 +153,7 @@ namespace aura
 //
 //      string_array                                            m_straCommandLineAccumul;
 //      string_array                                            m_straCommandLineExtra;
-//      millis                                               m_millisCommandLineLast;
+//      ::duration                                               m_durationCommandLineLast;
 //      int                                                m_iCommandLineDelay;
 //      ::task_pointer                                m_pthreadCommandLine;
 //
@@ -169,8 +170,8 @@ namespace aura
 //
 //#else
 //
-//      rectangle_i32_array                                         m_rectaMonitor;
-//      rectangle_i32_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectangleaMonitor;
+//      rectangle_i32_array                                         m_rectangleaWork;
 //
 //#endif
 //
@@ -255,15 +256,13 @@ namespace aura
 
 #ifdef _UWP
 
-      __reference(::uwp::interaction_impl)            m_pimplMain;
-      //Agile < Windows::UI::Core::CoreWindow >      m_window;
+      __reference(::universal_windows::interaction_impl)            m_pimplMain;
+      //Agile < ::winrt::Windows::UI::Core::CoreWindow >      m_window;
 
 #endif
 
-
-
       system();
-      virtual ~system();
+      ~system() override;
 
 
       void common_construct();
@@ -360,7 +359,7 @@ namespace aura
       virtual string crypto_md5_text(const ::string & str) override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) _message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual __pointer(::extended::future < ::conversation >) _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future()) override;
 
 
@@ -384,7 +383,7 @@ namespace aura
 
       //virtual bool verb();
 
-      //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal) override;
+      //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal) override;
 
 
       //virtual bool process_initialize();
@@ -427,7 +426,7 @@ namespace aura
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-      //thread_tools * tools(::e_priority epriority);
+      //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       //class ::user::window_map                     &  window_map();
@@ -445,7 +444,7 @@ namespace aura
 
 
       //::aura::str                                  &  str();
-      //::process::department                        &  process();
+      //::operating_system::department                        &  process();
 
 
       //::xml::department                            &  xml();
@@ -568,11 +567,11 @@ namespace aura
 
       //virtual ::e_status initialize_sockets();
 
-      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
       ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 
-      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
-      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, bool bCache = true, bool bSync = false);
+      ::image_pointer get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -750,7 +749,7 @@ namespace aura
 //
 //      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
 //
-//      virtual bool on_open_file(::payload varFile, string strExtra) override;
+//      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
 //
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
@@ -886,18 +885,18 @@ namespace aura
 
       //      u32 guess_code_page(const ::string & str);
 
-#ifdef _UWP
-
-      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
-
-
-#endif
+//#ifdef _UWP
+//
+//      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
+//
+//
+//#endif
 
       //virtual void post_fork_uri(const ::string & pszUri,application_bias * papplicationbias);
 
 
 
-//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -917,7 +916,7 @@ namespace aura
       //virtual ::e_status do_request(::create* pcommand) override;
 
 
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      virtual void set_context(::context* pcontext) override;
 //      virtual void set_context_thread(::thread* pthread) override;
@@ -949,6 +948,8 @@ namespace aura
 
       //virtual void on_graphics_ready() override;
 
+
+      //::e_status _on_initialize_window_object() override;
 
 
       //system();
@@ -984,22 +985,24 @@ namespace aura
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      void subject_handler(::subject::subject * psubject) override;
+      //void signal(::signal * psignal) override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
 
-
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
+      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
-      //virtual bool on_application_menu_action(const ::string & pszCommand);
+
 
 
    };
 
+
    CLASS_DECL_AURA ::mutex * get_image_mutex();
+
 
 } // namespace aura
 

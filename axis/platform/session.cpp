@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "axis/user/_user.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 
@@ -49,7 +49,7 @@ int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, i
 
 #ifdef _UWP
 
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/node/operating_system/_uwp.h"
 
 #elif defined(LINUX)
 
@@ -139,7 +139,7 @@ namespace axis
    ::e_status session::process_init()
    {
 
-      INFO("axis::session::process_init");
+      INFORMATION("axis::session::process_init");
 
       auto estatus = ::aura::session::process_init();
 
@@ -152,7 +152,7 @@ namespace axis
 
 
 
-      INFO("axis::session::process_init success");
+      INFORMATION("axis::session::process_init success");
 
       return ::success;
 
@@ -213,7 +213,7 @@ namespace axis
    //         papp = create_application(pszAppId, bSynch, pcreate);
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         // aura::session, axis::session and ::base::session, could get more specialized handling in aura::application (aura::system)
@@ -677,7 +677,7 @@ namespace axis
       //if (!InitializeLocalDataCentral())
       //{
 
-      //   message_box("Could not initialize Local data central");
+      //   output_error_message("Could not initialize Local data central");
 
       //   return ::error_failed;
 
@@ -804,13 +804,13 @@ namespace axis
    //   if (!estatus || !m_puser)
    //   {
 
-   //      ERR(".4");
+   //      ERROR(".4");
 
    //      return false;
 
    //   }
 
-   //   INFO("end");
+   //   INFORMATION("end");
    //   return true;
 
    //}
@@ -963,7 +963,7 @@ namespace axis
    //   if (!InitializeLocalDataCentral())
    //   {
 
-   //      message_box("Could not initialize Local data central");
+   //      output_error_message("Could not initialize Local data central");
 
    //      return false;
 
@@ -1161,7 +1161,7 @@ namespace axis
 
       }
 
-#if !defined(LINUX) && !defined(APPLEOS) && !defined(ANDROID)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
       //attach_thread_input_to_main_thread(false);
 #endif
 
@@ -1208,19 +1208,19 @@ namespace axis
    }
 
 
-   ::user::style * session::get_user_style()
-   {
+   //::user::style * session::get_user_style()
+   //{
 
-      if (!m_puser)
-      {
+   //   if (!m_puser)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return m_puser->m_puserstyle;
+   //   return m_puser->m_puserstyle;
 
-   }
+   //}
 
 
    void session::on_user_logon(::account::user* puser)
@@ -1263,9 +1263,7 @@ namespace axis
          if (papp.is_set())
          {
 
-            auto psubject = papp->subject(id_change_user);
-
-            papp->handle_subject(psubject);
+            papp->signal(id_change_user);
 
          }
 

@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "acme/const/GLOBAL_ID.h"
+#include "acme/constant/GLOBAL_ID.h"
 
 
-#include "acme/const/procedure.h"
+#include "acme/constant/procedure.h"
 
 
 

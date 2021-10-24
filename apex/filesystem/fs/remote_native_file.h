@@ -16,7 +16,7 @@ namespace fs
       ::payload                              m_varFile;
 
 
-      remote_native_file(::payload varFile);
+      remote_native_file(::payload payloadFile);
       virtual ~remote_native_file();
 
       using ::sockets::http_batch_buffer::read;
@@ -27,7 +27,7 @@ namespace fs
       virtual void write(const void * pdata, memsize nCount);
 
 
-      filesize seek(filesize lOff, ::file::e_seek  nFrom);
+      filesize seek(filesize lOff, ::enum_seek eseek);
 
       virtual filesize get_size() const;
 

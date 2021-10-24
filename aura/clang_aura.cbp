@@ -698,8 +698,8 @@
 		<Unit filename="filesystem/filemanager/left_view.h" />
 		<Unit filename="filesystem/filemanager/main_frame.cpp" />
 		<Unit filename="filesystem/filemanager/main_frame.h" />
-		<Unit filename="filesystem/filemanager/main_view.cpp" />
-		<Unit filename="filesystem/filemanager/main_view.h" />
+		<Unit filename="filesystem/filemanager/main_impact.cpp" />
+		<Unit filename="filesystem/filemanager/main_impact.h" />
 		<Unit filename="filesystem/filemanager/operation.cpp" />
 		<Unit filename="filesystem/filemanager/operation.h" />
 		<Unit filename="filesystem/filemanager/operation_child_frame.cpp" />
@@ -726,8 +726,8 @@
 		<Unit filename="filesystem/filemanager/tree.h" />
 		<Unit filename="filesystem/filemanager/update_hint.cpp" />
 		<Unit filename="filesystem/filemanager/update_hint.h" />
-		<Unit filename="filesystem/filemanager/view.cpp" />
-		<Unit filename="filesystem/filemanager/view.h" />
+		<Unit filename="filesystem/filemanager/impact.cpp" />
+		<Unit filename="filesystem/filemanager/impact.h" />
 		<Unit filename="filesystem/filesystem.h" />
 		<Unit filename="filesystem/filesystem/aaa_want_to_remove_application_dir.h" />
 		<Unit filename="filesystem/filesystem/aaa_want_to_remove_application_file.h" />
@@ -793,8 +793,8 @@
 		<Unit filename="filesystem/userfs/list_item.h" />
 		<Unit filename="filesystem/userfs/list_item_array.cpp" />
 		<Unit filename="filesystem/userfs/list_item_array.h" />
-		<Unit filename="filesystem/userfs/main_view.cpp" />
-		<Unit filename="filesystem/userfs/main_view.h" />
+		<Unit filename="filesystem/userfs/main_impact.cpp" />
+		<Unit filename="filesystem/userfs/main_impact.h" />
 		<Unit filename="filesystem/userfs/tree.cpp" />
 		<Unit filename="filesystem/userfs/tree.h" />
 		<Unit filename="filesystem/userfs/userfs.cpp" />
@@ -1031,8 +1031,8 @@
 		<Unit filename="html/user/internal.h" />
 		<Unit filename="html/user/user.cpp" />
 		<Unit filename="html/user/user.h" />
-		<Unit filename="html/user/view.cpp" />
-		<Unit filename="html/user/view.h" />
+		<Unit filename="html/user/impact.cpp" />
+		<Unit filename="html/user/impact.h" />
 		<Unit filename="html_lite/_.h" />
 		<Unit filename="html_lite/attributes.cpp" />
 		<Unit filename="html_lite/attributes.h" />
@@ -1611,8 +1611,8 @@
 		<Unit filename="os/cross/ansios/ansios_file_raw.h" />
 		<Unit filename="os/cross/ansios/exception_engine.h" />
 		<Unit filename="os/cross/cross.h" />
-		<Unit filename="os/cross/uwp/cross_metrowin_user.cpp" />
-		<Unit filename="os/cross/uwp/metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/cross_metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/metrowin_user.cpp" />
 		<Unit filename="os/cross/windows/_.h" />
 		<Unit filename="os/cross/windows/cross_windows_crt.cpp" />
 		<Unit filename="os/cross/windows/cross_windows_crt_debug.cpp" />
@@ -2089,7 +2089,7 @@
 		<Unit filename="primitive/collection/string_map.h" />
 		<Unit filename="primitive/collection/string_to_string_map.cpp" />
 		<Unit filename="primitive/collection/string_to_string_map.h" />
-		<Unit filename="primitive/collection/stringa.cpp" />
+		<Unit filename="primitive/collection/string_array.cpp" />
 		<Unit filename="primitive/collection/stringl.cpp" />
 		<Unit filename="primitive/collection/stringl.h" />
 		<Unit filename="primitive/collection/template.h" />
@@ -2524,8 +2524,8 @@
 		<Unit filename="user/account/account_simple_ui.cpp" />
 		<Unit filename="user/account/account_simple_ui.h" />
 		<Unit filename="user/account/simple_ui_style.h" />
-		<Unit filename="user/account/view.cpp" />
-		<Unit filename="user/account/view.h" />
+		<Unit filename="user/account/impact.cpp" />
+		<Unit filename="user/account/impact.h" />
 		<Unit filename="user/databaseuser/_.h" />
 		<Unit filename="user/databaseuser/_databaseuser.h" />
 		<Unit filename="user/databaseuser/key_mesh_data.cpp" />

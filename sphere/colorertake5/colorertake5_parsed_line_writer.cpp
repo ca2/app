@@ -20,7 +20,7 @@ namespace colorertake5
    */
    void ParsedLineWriter::tokenWrite(stream & markupWriter, stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions)
    {
-      UNREFERENCED_PARAMETER(docLinkHash);
+      __UNREFERENCED_PARAMETER(docLinkHash);
       index pos = 0;
       for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
       {
@@ -73,7 +73,7 @@ namespace colorertake5
    */
    void ParsedLineWriter::markupWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
-      UNREFERENCED_PARAMETER(docLinkHash);
+      __UNREFERENCED_PARAMETER(docLinkHash);
 
       index pos = 0;
 

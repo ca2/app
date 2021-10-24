@@ -193,18 +193,18 @@ bool app_core::on_result(const ::e_status & estatus)
 //
 //#endif
 
-   m_millisStart = ::first_millis();
+   m_durationStart = ::first_millis();
 
-   m_millisAfterApplicationFirstRequest = m_millisStart;
+   m_durationAfterApplicationFirstRequest = m_durationStart;
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
       sleep(10000_ms);
 
    }
 
-   if (file_exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
+   if (m_psystem->m_pacmefile->exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
       //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
@@ -340,12 +340,12 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      os_message_box(nullptr, "going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
+      os_message_box(nullptr, "going to seteuid to: " + __string(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         os_message_box(nullptr, "uid=" + __str(uid), "seteuid success", e_message_box_ok);
+         os_message_box(nullptr, "uid=" + __string(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -514,15 +514,23 @@ CLASS_DECL_AURA void set_debug_pointer(void * p);
 
    // what could influence time before Main?
    // cold start (never previously called program and its Dlls...)?
-   ::aura::get_system()->m_millisMainStart = m_millisStart;
+   ::aura::get_system()->m_durationMainStart = m_durationStart;
 
    //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
-   ::file::path pathOutputDebugString = pacmedir->system() / strAppId / "output_debug_string.txt" ;
+   ::file::path pathOutputDebugString =          auto psystem = m_psystem;
 
-   ::file::path pathGlobalOutputDebugString = pacmedir->config() / "output_debug_string.txt" ;
+         auto pacmedir = psystem->m_pacmedir;
 
-   ::aura::g_bOutputDebugString = file_exists(pathOutputDebugString)||  file_exists(pathGlobalOutputDebugString);
+pacmedir->system() / strAppId / "output_debug_string.txt" ;
+
+   ::file::path pathGlobalOutputDebugString =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "output_debug_string.txt" ;
+
+   ::aura::g_bOutputDebugString = m_psystem->m_pacmefile->exists(pathOutputDebugString)||  m_psystem->m_pacmefile->exists(pathGlobalOutputDebugString);
 
    return true;
 
@@ -542,7 +550,11 @@ void app_core::set_command_line(const ::string & psz)
 
    m_strCommandLine = psz;
 
-   ::file::path pathFolder = pacmedir->ca2roaming() / "program";
+   ::file::path pathFolder =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->ca2roaming() / "program";
 
    string strAppId = get_command_line_param(psz, "app");
 
@@ -553,7 +565,7 @@ void app_core::set_command_line(const ::string & psz)
 
       ::file::path path = pathFolder / "last_command_line.txt";
 
-      file_put_contents(path, get_command_line());
+      m_psystem->m_pacmefile->put_contents(path, get_command_line());
 
       ::file::path pathExecutable = consume_param(psz, nullptr);
 
@@ -564,7 +576,7 @@ void app_core::set_command_line(const ::string & psz)
       if (file_is_equal_path_dup(pathExecutable.title(), strAppTitle))
       {
 
-         file_put_contents(path, pathExecutable);
+         m_psystem->m_pacmefile->put_contents(path, pathExecutable);
 
       }
 
@@ -606,7 +618,7 @@ void app_core::set_command_line(const ::string & psz)
 //         if (!m_plibrary->open(strLibrary, false, true))
 //         {
 //
-//            message_box("failed to open application initialization library (1)");
+//            output_error_message("failed to open application initialization library (1)");
 //
 //            return;
 //
@@ -615,7 +627,7 @@ void app_core::set_command_line(const ::string & psz)
 //         if (!m_plibrary->open_ca2_library(strLibrary))
 //         {
 //
-//            message_box("failed to open application initialization library (2)");
+//            output_error_message("failed to open application initialization library (2)");
 //
 //            return;
 //
@@ -671,7 +683,7 @@ void app_core::set_command_line(const ::string & psz)
 //      //   if (pfnDeferTerm == nullptr)
 //      //   {
 //
-//      //      message_box("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
+//      //      output_error_message("Missing corresponding defer_*_term for the defer_*_init backbone library." + e_message_box_icon_error);
 //
 //      //      on_result(error_failed);
 //
@@ -713,7 +725,7 @@ void app_core::set_command_line(const ::string & psz)
 void app_core::system_end()
 {
 
-   os_term_application();
+   //os_term_application();
 
    os_term_windowing();
 
@@ -726,7 +738,7 @@ void app_core::system_end()
 
       ansi_count_copy(szEllapsed, ::file::path(APP_CORE_BASE_DIR) / "show_elapsed.txt", sizeof(szEllapsed));
 
-      auto tickEnd = ::millis::now();
+      auto tickEnd = ::duration::now();
 
       char szTimeMessage[2108];
 
@@ -751,18 +763,18 @@ void app_core::system_end()
 
          sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 
-         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papplication Request Completion %"  PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
-         millis iMillisecondsTotal = tickEnd - m_millisStart;
+         ::duration i::durationsTotal = tickEnd - m_durationStart;
 
-         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", iMillisecondsTotal.m_i);
+         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::durationsTotal.m_i);
          ::output_debug_string(szTimeMessage);
          printf("%s", szTimeMessage);
 
-         int iMilliseconds = iMillisecondsTotal.m_i % 1000;
-         int iSecondsTotal = (int)(iMillisecondsTotal.m_i / 1000);
+         int i::durations = i::durationsTotal.m_i % 1000;
+         int iSecondsTotal = (int)(i::durationsTotal.m_i / 1000);
          int iSeconds = iSecondsTotal % 60;
          int iMinutesTotal = iSecondsTotal / 60;
          int iMinutes = iMinutesTotal % 60;
@@ -773,25 +785,25 @@ void app_core::system_end()
          if (iDays > 0)
          {
 
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, iMilliseconds);
+            sprintf(szTimeMessage, "\n|  Total Elapsed Time %d days %02d:%02d:%02d %03d ms", iDays, iHours, iMinutes, iSeconds, i::durations);
 
          }
          else if (iHours > 0)
          {
 
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, iMilliseconds);
+            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d:%02d %03d ms", iHours, iMinutes, iSeconds, i::durations);
 
          }
          else if (iMinutes > 0)
          {
 
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, iMilliseconds);
+            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02d:%02d %03d ms", iMinutes, iSeconds, i::durations);
 
          }
          else
          {
 
-            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, iMilliseconds);
+            sprintf(szTimeMessage, "\n|  Total Elapsed Time %02ds %03d ms", iSeconds, i::durations);
 
          }
 
@@ -851,7 +863,7 @@ void app_core::system_end()
 
             char szTimeMessage1[2048];
 
-            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_millisAfterApplicationFirstRequest - m_millisStart).m_i);
+            sprintf(szTimeMessage1, " Just After First papplication Request Completion %" PRId64 " ms", (m_durationAfterApplicationFirstRequest - m_durationStart).m_i);
 
             if (file_length_raw(szEllapsed) > 0)
             {
@@ -868,7 +880,7 @@ void app_core::system_end()
 
             char szTimeMessage2[2048];
 
-            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_millisStart).m_i);
+            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_durationStart).m_i);
 
             file_add_contents_raw(szEllapsed, szUTCTime);
 
@@ -1411,7 +1423,7 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 string apple_get_bundle_identifier()
 {
 
-   return ::str::from_strdup(ns_get_bundle_identifier());
+   return ::string_from_strdup(ns_get_bundle_identifier());
 
 }
 
@@ -1909,7 +1921,7 @@ __transport(::aura::application) app_core::get_new_application(::object* pobject
 
 #ifndef _UWP
 
-               message_box("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
+               output_error_message("papplication \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", e_message_box_icon_error);
 
 #endif
 

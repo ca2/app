@@ -135,7 +135,7 @@ bool defer_process_x_message(htask_t htask, LPMESSAGE lpMsg, oswindow interactio
 
                   lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                   lpMsg->wParam        = 0;
-                  lpMsg->lParam        = MAKELONG(e.xbutton.x_root, e.xbutton.y_root);
+                  lpMsg->lParam        = __MAKE_LONG(e.xbutton.x_root, e.xbutton.y_root);
 
                }
 
@@ -168,7 +168,7 @@ bool defer_process_x_message(htask_t htask, LPMESSAGE lpMsg, oswindow interactio
 
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->wParam        = e.xkey.keycode;
-               lpMsg->lParam        = MAKELONG(0, e.xkey.keycode);
+               lpMsg->lParam        = __MAKE_LONG(0, e.xkey.keycode);
 
 
 
@@ -179,7 +179,7 @@ bool defer_process_x_message(htask_t htask, LPMESSAGE lpMsg, oswindow interactio
                lpMsg->hwnd          = oswindow_get(display, e.xbutton.interaction_impl);
                lpMsg->message       = e_message_mouse_move;
                lpMsg->wParam        = 0;
-               lpMsg->lParam        = MAKELONG(e.xmotion.x_root, e.xmotion.y_root);
+               lpMsg->lParam        = __MAKE_LONG(e.xmotion.x_root, e.xmotion.y_root);
 
                bRet                 = true;
 
@@ -241,22 +241,22 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 
   int iCa2Max;
 
-/*   if(nCa2Priority == ::priority_normal)
+/*   if(nCa2Priority == ::e_priority_normal)
   {
 
      iOsPolicy = SCHED_OTHER;
 
-     iCa2Min = (int) ::priority_normal;
+     iCa2Min = (int) ::e_priority_normal;
 
-     iCa2Max = (int) ::priority_normal;
+     iCa2Max = (int) ::e_priority_normal;
 
   }*/
-  if(nCa2Priority > ::priority_normal)
+  if(nCa2Priority > ::e_priority_normal)
   {
 
      iOsPolicy = SCHED_RR;
 
-     iCa2Min = (int) ::priority_normal;
+     iCa2Min = (int) ::e_priority_normal;
 
      iCa2Max = 99;
 
@@ -269,7 +269,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 
      iCa2Min = 0;
 
-     iCa2Max = (int) ::priority_normal;
+     iCa2Max = (int) ::e_priority_normal;
 
   }
 
@@ -308,7 +308,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //   if(iOsPolicy == SCHED_RR)
 //   {
 //
-//      iCa2Min = (int) ::priority_normal;
+//      iCa2Min = (int) ::e_priority_normal;
 //
 //      iCa2Max = 99;
 //
@@ -318,16 +318,16 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //      iCa2Min = 0;
 //
-//      iCa2Max = (int) ::priority_normal;
+//      iCa2Max = (int) ::e_priority_normal;
 //
 //   }*/
 //   else
 //   {
 //
-//      //iCa2Min = (int) ::priority_normal;
+//      //iCa2Min = (int) ::e_priority_normal;
 //      iCa2Min = (int) 0;
 //
-//      iCa2Max = (int) ::priority_normal;
+//      iCa2Max = (int) ::e_priority_normal;
 //
 //   }
 //
@@ -339,7 +339,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, i32 nCa2Priority)
 //
 //   if(iOsMax == iOsMin)
 //   {
-//      iCa2Priority = (i32) ::priority_normal;
+//      iCa2Priority = (i32) ::e_priority_normal;
 //   }
 //   else
 //   {

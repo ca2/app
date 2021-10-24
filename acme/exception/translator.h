@@ -24,19 +24,19 @@
 #endif
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #define EXCEPTION_TRANSLATOR_USE_SIGNAL
 #endif
 
 
 //extern CLASS_DECL_ACME bool g_bExiting;
 
+//
+//namespace exception
+//{
 
-namespace exception
-{
 
-
-   class CLASS_DECL_ACME translator :
+   class CLASS_DECL_ACME exception_translator :
       virtual public matter
    {
    protected:
@@ -51,8 +51,8 @@ namespace exception
 //
 //#endif
 
-      translator();
-      virtual ~translator();
+      exception_translator();
+      ~exception_translator() override;
 
 //#ifdef WINDOWS
 //      virtual void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
@@ -66,7 +66,7 @@ namespace exception
       virtual bool detach();
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
 
       virtual string _get_standard_exception_name(u32 uiCode);
@@ -77,7 +77,7 @@ namespace exception
 
    };
 
-
-} // namespace exception
-
-
+//
+//} // namespace exception
+//
+//

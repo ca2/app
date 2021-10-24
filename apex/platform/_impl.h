@@ -85,13 +85,15 @@ namespace apex
 //}
 
 
-template < typename RECEIVER >
-bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
-{
-
-   return _add_handler(id, preceiver, reinterpret_cast<void *&>(phandler), __handler(preceiver, phandler));
-
-}
+//template < typename RECEIVER >
+//bool channel::add_message_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message * pmessage))
+//{
+//
+//   ::message::__handler(preceiver, phandler)
+//
+//   return _add_message_handler(id, preceiver, reinterpret_cast<void *&>(phandler), );
+//
+//}
 
 
 //template < typename RECEIVER >
@@ -400,7 +402,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception::exception(::error_wrong_type));
+//      __throw(::exception(::error_wrong_type));
 //
 //   }
 //
@@ -433,7 +435,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   c_derived * ptr = pca;
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 ////   ::id id = p->m_id;
 //   //char * pszType = nullptr;
@@ -481,7 +483,7 @@ bool channel::add_handler(const ::id & id, RECEIVER* preceiver, void (RECEIVER::
 //
 //   }
 //
-//   //#ifdef DEBUG
+//   //#ifdef _DEBUG
 //   //
 //   //   try
 //   //   {

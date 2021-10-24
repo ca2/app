@@ -19,24 +19,25 @@ namespace user
 
       
       slider();
-      virtual ~slider();
+      ~slider() override;
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
+      void _001OnTimer(::timer * ptimer) override;
+      
       void set_scalar(scalar_base * pscalar);
 
       void set_rate(double dRate);
 
       double get_slide_rate();
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void get_slider_rect(::rectangle_i32 & rectangle);
 

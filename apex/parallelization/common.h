@@ -21,7 +21,7 @@ class single_lock;
 
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #include <semaphore.h>
 #endif
 
@@ -35,7 +35,7 @@ class single_lock;
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 #define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX
@@ -79,15 +79,15 @@ class multi_lock;
 //{
 //
 //
-//   CLASS_DECL_APEX bool set_priority(::e_priority epriority);
+//   CLASS_DECL_APEX bool set_priority(::enum_priority epriority);
 //
-//   CLASS_DECL_APEX ::e_priority priority();
+//   CLASS_DECL_APEX ::enum_priority priority();
 //
 //
 //   inline i32 get_priority_none()
 //   {
 //
-//      return priority_none;
+//      return e_priority_none;
 //
 //   }
 //
@@ -95,7 +95,7 @@ class multi_lock;
 //   inline i32 get_priority_normal()
 //   {
 //
-//      return priority_normal;
+//      return e_priority_normal;
 //
 //   }
 //
@@ -168,16 +168,16 @@ namespace primitive
 } // namespace primitive
 
 
-namespace exception
-{
+//namespace exception
+//{
+//
+//
+//   class exception;
+//   class base;
+//
+//
+//} // namespace exception
+//
 
 
-   class exception;
-   class base;
-
-
-} // namespace exception
-
-
-
-//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::object * pobject, __THREADPROC pfnThreadProc, LPVOID pParam, i32 epriority = ::e_priority_normal, ::u32 nStackSize = 0, u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask_t * puiId = nullptr, error * perror = nullptr);

@@ -76,9 +76,9 @@ namespace opengl
 
       glCompileShader(uShader);
 
-      string strSummary;
+      //string strSummary;
 
-      ::e_status estatus = shader_compile_errors(uShader, type, strSummary);
+      ::e_status estatus = shader_compile_errors(uShader, type, m_strError);
 
       if (!estatus)
       {
@@ -86,7 +86,7 @@ namespace opengl
          return 0;
 
       }
-
+      m_strError.Empty();
 
       return uShader;
 
@@ -333,7 +333,7 @@ namespace opengl
 
       }
 
-      _S_TRACE("%s", strSummary.c_str());
+      INFORMATION(strSummary);
 
       return estatus;
 
@@ -368,7 +368,7 @@ namespace opengl
 
       }
 
-      _S_TRACE("%s", strSummary.c_str());
+      INFORMATION(strSummary);
 
       return estatus;
 

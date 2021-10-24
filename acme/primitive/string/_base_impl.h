@@ -26,31 +26,31 @@ void string_base < TYPE_CHAR >::construct() noexcept
 //#endif
 
 
-#ifdef _UWP
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >::string_base(Array <byte >^ a)
-{
-
-   *this = string_base < TYPE_CHAR >((const ansichar *) a->begin(), a->Length);
-
-}
-
-
-template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >::string_base(Object^ o)
-{
-
-   *this = o->ToString()->Begin();
-
-}
-
-
-
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >::string_base(Array <byte >^ a)
+//{
+//
+//   *this = string_base < TYPE_CHAR >((const ansichar *) a->begin(), a->Length);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//string_base < TYPE_CHAR >::string_base(Object^ o)
+//{
+//
+//   *this = o->ToString()->Begin();
+//
+//}
+//
+//
+//
+//
+//
+//#endif
 
 
 
@@ -1047,7 +1047,7 @@ strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, str
 }
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1113,7 +1113,7 @@ strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1178,7 +1178,7 @@ strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strs
 }
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 ::count string_base < TYPE_CHAR >::replace_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -1259,7 +1259,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
 ::count string_base < TYPE_CHAR >::replace_ci_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
@@ -2303,7 +2303,7 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(CHAR_TYPE chTarget)
 
 // erase all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(PCHAR szTargets)
 {
    return(trim_right(szTargets).trim_left(szTargets));
@@ -2855,45 +2855,45 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
 
 
 // set the string_base < TYPE_CHAR > to the value of environment ::payload 'pszVar'
-template < typename TYPE_CHAR >
-bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar)
-{
+// template < typename TYPE_CHAR >
+// bool string_base < TYPE_CHAR >::xxxget_environment_variable(const CHAR_TYPE* pszVar)
+// {
 
-   u32 nLength = ::str::get_environment_variable(pszVar, nullptr, 0);
+//    u32 nLength = ::str::xxxget_environment_variable(pszVar, nullptr, 0);
 
-   bool bRetVal = false;
+//    bool bRetVal = false;
 
-   if (nLength == 0)
-   {
+//    if (nLength == 0)
+//    {
 
-      Empty();
+//       Empty();
 
-   }
-   else
-   {
+//    }
+//    else
+//    {
 
-      CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
+//       CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
 
-      ::str::get_environment_variable(pszVar, pszBuffer, nLength);
+//       ::str::xxxget_environment_variable(pszVar, pszBuffer, nLength);
 
-      release_string_buffer();
+//       release_string_buffer();
 
-      bRetVal = true;
+//       bRetVal = true;
 
-   }
+//    }
 
-   return(bRetVal);
+//    return(bRetVal);
 
-}
+// }
 
 
-template < typename TYPE_CHAR >
-bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
-{
+// template < typename TYPE_CHAR >
+// bool string_base < TYPE_CHAR >::xxxgetenv(const CHAR_TYPE* pszVar)
+// {
 
-   return get_environment_variable(pszVar);
+//    return xxxget_environment_variable(pszVar);
 
-}
+// }
 
 
 #ifndef _CSTRING_BUFFER_SIZE
@@ -3137,8 +3137,18 @@ void string_base < TYPE_CHAR >::push_back(CHAR_TYPE ch)
 
 
 
+
+
+
+
+
+
+
+
+
+
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::begins(const string_base & str) const
+inline bool string_base < TYPE_CHAR > ::begins(const string_base& str) const
 {
 
    return ::str::begins(*this, str);
@@ -3147,7 +3157,7 @@ inline bool string_base < TYPE_CHAR > ::begins(const string_base & str) const
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::ends(const string_base & str) const
+inline bool string_base < TYPE_CHAR > ::ends(const string_base& str) const
 {
 
    return ::str::ends(*this, str);
@@ -3156,7 +3166,7 @@ inline bool string_base < TYPE_CHAR > ::ends(const string_base & str) const
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::begins_ci(const string_base & str) const
+inline bool string_base < TYPE_CHAR > ::begins_ci(const string_base& str) const
 {
 
    return ::str::begins_ci(*this, str);
@@ -3165,7 +3175,7 @@ inline bool string_base < TYPE_CHAR > ::begins_ci(const string_base & str) const
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::ends_ci(const string_base & str) const
+inline bool string_base < TYPE_CHAR > ::ends_ci(const string_base& str) const
 {
 
    return ::str::ends_ci(*this, str);
@@ -3174,7 +3184,7 @@ inline bool string_base < TYPE_CHAR > ::ends_ci(const string_base & str) const
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::begins_eat(const string_base & strPrefix)
+inline bool string_base < TYPE_CHAR > ::begins_eat(const string_base& strPrefix)
 {
 
    return ::str::begins_eat(*this, strPrefix);
@@ -3183,7 +3193,7 @@ inline bool string_base < TYPE_CHAR > ::begins_eat(const string_base & strPrefix
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::ends_eat(const string_base & strPrefix)
+inline bool string_base < TYPE_CHAR > ::ends_eat(const string_base& strPrefix)
 {
 
    return ::str::ends_eat(*this, strPrefix);
@@ -3192,7 +3202,7 @@ inline bool string_base < TYPE_CHAR > ::ends_eat(const string_base & strPrefix)
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const string_base & strPrefix)
+inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const string_base& strPrefix)
 {
 
    return ::str::begins_eat_ci(*this, strPrefix);
@@ -3201,7 +3211,7 @@ inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const string_base & strPre
 
 
 template < typename TYPE_CHAR >
-inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base & strPrefix)
+inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base& strPrefix)
 {
 
    return ::str::ends_eat_ci(*this, strPrefix);
@@ -3210,7 +3220,7 @@ inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const string_base & strPrefi
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins(const string_base & strPrefix)
+inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_begins(const string_base& strPrefix)
 {
 
    if (!begins(strPrefix))
@@ -3224,8 +3234,9 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins(con
 
 }
 
+
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins_ci(const string_base & strPrefix)
+inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_begins_ci(const string_base& strPrefix)
 {
 
    if (!begins_ci(strPrefix))
@@ -3240,9 +3251,8 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins_ci(
 }
 
 
-
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends(const string_base & strPrefix)
+inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_ends(const string_base& strPrefix)
 {
 
    if (!ends(strPrefix))
@@ -3256,8 +3266,9 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends(const
 
 }
 
+
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends_ci(const string_base & strPrefix)
+inline string_base < TYPE_CHAR >& string_base < TYPE_CHAR > ::ensure_ends_ci(const string_base& strPrefix)
 {
 
    if (!ends_ci(strPrefix))
@@ -3270,6 +3281,169 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends_ci(co
    return *this;
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins(const CHAR_TYPE * psz) const
+{
+
+   return ::str::begins(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends(const CHAR_TYPE* psz) const
+{
+
+   return ::str::ends(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_ci(const CHAR_TYPE* psz) const
+{
+
+   return ::str::begins_ci(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_ci(const CHAR_TYPE* psz) const
+{
+
+   return ::str::ends_ci(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eat(const CHAR_TYPE* psz)
+{
+
+   return ::str::begins_eat(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eat(const CHAR_TYPE* psz)
+{
+
+   return ::str::ends_eat(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::begins_eat_ci(const CHAR_TYPE* psz)
+{
+
+   return ::str::begins_eat_ci(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline bool string_base < TYPE_CHAR > ::ends_eat_ci(const CHAR_TYPE* psz)
+{
+
+   return ::str::ends_eat_ci(*this, psz);
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins(const CHAR_TYPE* psz)
+{
+
+   if (!begins(psz))
+   {
+
+      operator =(string_base(psz) + *this);
+
+   }
+
+   return *this;
+
+}
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_begins_ci(const CHAR_TYPE* psz)
+{
+
+   if (!begins_ci(psz))
+   {
+
+      operator =(string_base(psz) + *this);
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends(const CHAR_TYPE* psz)
+{
+
+   if (!ends(psz))
+   {
+
+      operator =(string_base(psz) + *this);
+
+   }
+
+   return *this;
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR > ::ensure_ends_ci(const CHAR_TYPE* psz)
+{
+
+   if (!ends_ci(psz))
+   {
+
+      operator =(string(psz) + *this);
+
+   }
+
+   return *this;
+
+}
+
+
+
+
+
+
+
 
 
 
@@ -4946,7 +5120,7 @@ bool string_base < TYPE_CHAR >::contains_all_wci(const STRINGA & stra) const
 
 
 template < typename TYPE_CHAR >
-template < pointer_castable < TYPE_CHAR > PCHAR >
+template < raw_pointer_castable < TYPE_CHAR > PCHAR >
 string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, strsize & iStart) const
 {
    ASSERT(iStart >= 0);

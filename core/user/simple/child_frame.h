@@ -11,7 +11,7 @@ public:
    virtual ~simple_child_frame();
 
 
-   virtual void route_command_message(::message::command * pcommand) override;
+   void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
    virtual bool pre_create_window(::user::system * pusersystem) override;
 
 

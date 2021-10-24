@@ -4,7 +4,7 @@
 #include "common.h"
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #include <semaphore.h>
 #endif
 
@@ -23,7 +23,7 @@
 //extern thread_local __pointer(property_set) t_ppropertyset;
 
 
-CLASS_DECL_APEX void main_branch(::matter* pobjectTask, e_priority epriority);
+//CLASS_DECL_APEX void main_branch(::element * pelementTask, enum_priority epriority);
 
 
 property_set& _thread_property_set();
@@ -41,7 +41,7 @@ property_set & thread_property_set();
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 //#define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX
@@ -160,7 +160,7 @@ namespace parallelization
 {
 
 
-   //CLASS_DECL_APEX bool set_priority(e_priority epriority);
+   //CLASS_DECL_APEX bool set_priority(enum_priority epriority);
 
    //CLASS_DECL_APEX i32 priority();
 
@@ -168,7 +168,7 @@ namespace parallelization
    //inline i32 get_priority_none()
    //{
 
-   //   return priority_none;
+   //   return e_priority_none;
 
    //}
 
@@ -176,7 +176,7 @@ namespace parallelization
    //inline i32 get_priority_normal()
    //{
 
-   //   return priority_normal;
+   //   return e_priority_normal;
 
    //}
 
@@ -202,7 +202,7 @@ public:
    virtual ::count get_count_except_current_thread();
    //virtual ::e_status finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual ::e_status destroy() override;
-   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
+   virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
    thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
@@ -298,7 +298,7 @@ public:
 
 //#ifdef _UWP
 //
-//#include "apex/os/uwp/multithreading_winrt.h"
+//#include "apex/os/universal_windows/multithreading_winrt.h"
 //
 //#endif
 
@@ -310,19 +310,19 @@ string get_task_name(htask_t htask);
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
 
-#if !defined(_UWP)
-
-
-
-inline void main_async(const ::routine & routine, e_priority epriority = priority_normal)
-{
-
-   main_branch(routine, epriority);
-
-}
-
-
-#endif
+//#if !defined(_UWP)
+//
+//
+//
+//inline void main_async(const ::routine & routine, enum_priority epriority = e_priority_normal)
+//{
+//
+//   main_branch(routine, epriority);
+//
+//}
+//
+//
+//#endif
 
 
 

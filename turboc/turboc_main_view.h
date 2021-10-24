@@ -12,22 +12,22 @@ namespace turboc
 
 
       top_view *              m_ptopview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
       switcher_view(::object * pobject);
       virtual ~switcher_view();
 
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact();
 
       virtual void on_update(::aura::impact * pSender,e_update eupdate,object* pHint);
 
-      virtual void on_control_event(::user::control_event * pevent);
+      virtual void handle(::subject * psubject, ::context * pcontext);
 
 
    };

@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "core/user/databaseuser/_databaseuser.h"
 
 
@@ -24,7 +26,7 @@ namespace filemanager
    void folder_list_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::simple_list_view::install_message_routing(pchannel);
 
    }
@@ -178,10 +180,10 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void folder_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      FILEMANAGER_SHOW_IMPACT::on_subject(psubject, pcontext);
+      FILEMANAGER_SHOW_IMPACT::handle(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {
@@ -193,7 +195,7 @@ namespace filemanager
 
          }
 
-         initialize(__str(filemanager_data()->m_id), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
+         initialize(__string(filemanager_data()->m_id), filemanager_data()->m_bEnableRecursiveFolderSelectionList);
 
       }
 

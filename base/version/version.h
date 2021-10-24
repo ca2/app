@@ -1,17 +1,17 @@
 #pragma once
 
 
-#ifndef DEBUG
-#ifdef _DEBUG
-#define DEBUG
-#endif
-#endif
+// #ifndef DEBUG
+// #ifdef _DEBUG
+// #define DEBUG
+// #endif
+// #endif
 
-#ifndef _DEBUG
-#ifdef DEBUG
-#define _DEBUG
-#endif
-#endif
+// #ifndef _DEBUG
+// #ifdef _DEBUG
+// #define _DEBUG
+// #endif
+// #endif
 
 
 

@@ -5,7 +5,9 @@
 #include "acme/id.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/parallelization/install_mutex.h"
 
 
 namespace acme
@@ -14,6 +16,10 @@ namespace acme
 
    node::node()
    {
+
+      //m_bUserDarkMode = false;
+
+      m_uNodeFlags = 0;
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
@@ -54,7 +60,7 @@ namespace acme
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -76,10 +82,18 @@ namespace acme
 #endif
 
 
+   ::string node::get_file_type_identifier(const char * path)
+   {
+      
+      return "";
+      
+   }
+
+
    ::e_status node::call_async(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -89,7 +103,7 @@ namespace acme
    ::e_status node::call_sync(const ::string & pszPath, const ::string & pszParam, const ::string & pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -126,7 +140,7 @@ namespace acme
    ::e_status node::_launch_macos_app(const ::string & pszAppFolder)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return ::error_interface_only;
       
@@ -136,7 +150,7 @@ namespace acme
    ::e_status node::_launch_macos_app_args(const ::string & pszAppFolder, const ::string & pszArgs)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return error_interface_only;
       
@@ -166,7 +180,7 @@ namespace acme
    enum_operating_system node::get_operating_system() const
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return e_operating_system_unknown;
 
@@ -179,7 +193,7 @@ namespace acme
       if (m_edesktop == ::user::e_desktop_none)
       {
 
-         calculate_edesktop();
+         m_edesktop = calculate_edesktop();
 
       }
 
@@ -190,8 +204,6 @@ namespace acme
 
    ::user::enum_desktop node::calculate_edesktop()
    {
-
-      // Implement m_edesktop update
 
       return ::user::e_desktop_none;
 
@@ -223,12 +235,12 @@ namespace acme
    }
 
 
-   ::e_status node::on_start_system()
-   {
-      
-      return ::success;
+   //::e_status node::defer_()
+   //{
+   //   
+   //   return ::success;
 
-   }
+   //}
 
 
    ::e_status node::_will_finish_launching()
@@ -242,7 +254,17 @@ namespace acme
    ::e_status node::reboot()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::implement()
+   {
+
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -294,13 +316,13 @@ namespace acme
    //}
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
 
 
    ::e_status node::register_dll(const ::file::path& pathDll)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -401,7 +423,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      strBuild = file_as_string(path);
+      strBuild = m_psystem->m_pacmefile->as_string(path);
 
       return strBuild.has_char();
 
@@ -415,7 +437,7 @@ namespace acme
 
       path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 
-      return file_put_contents(path, pszBuild);
+      return m_psystem->m_pacmefile->put_contents(path, pszBuild);
 
    }
 
@@ -437,7 +459,7 @@ namespace acme
       
       auto pathLastRun = get_last_run_application_path(strAppId);
       
-      if(pathLastRun.has_char() && ::file_exists(pathLastRun))
+      if(pathLastRun.has_char() && m_psystem->m_pacmefile->exists(pathLastRun))
       {
          
          return pathLastRun;
@@ -504,7 +526,11 @@ namespace acme
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      ::file::path path = ::file_as_string(pathFile);
+      auto psystem = m_psystem;
+
+      auto pfile = psystem->m_pacmefile;
+
+      ::file::path path = pfile->as_string(pathFile);
 
       return path;
 
@@ -514,16 +540,56 @@ namespace acme
    ::e_status node::set_last_run_application_path(const ::string & strAppId)
    {
 
-      ::file::path path = m_psystem->m_pacmepath->app_module();
+      ::file::path path = m_psystem->m_pacmefile->executable();
 
       ::file::path pathFile = get_last_run_application_path_file(strAppId);
 
-      return file_put_contents(pathFile, path);
+      return m_psystem->m_pacmefile->put_contents(pathFile, path);
 
    }
 
 
-   ::e_status node::register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
+   ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+   
+      return ::success;
+      
+   }
+
+
+   ::e_status node::install_keyboard_hook(::matter * pmatterListener)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::uninstall_keyboard_hook(::matter * pmatterListener)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::install_mouse_hook(::matter * pmatterListener)
+   {
+
+      return ::success;
+
+   }
+
+   
+   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+
+      return ::success;
+   
+   }
+
+
+   ::e_status node::uninstall_mouse_hook(::matter * pmatterListener)
    {
 
       return ::success;
@@ -557,7 +623,7 @@ namespace acme
    ::color::color node::get_system_color(enum_system_color esystemcolor)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return argb(0, 0, 0, 0);
 
@@ -567,139 +633,111 @@ namespace acme
 
 
 
-   bool node::_os_calc_app_dark_mode()
-   {
+   //bool node::get_app_dark_mode()
+   //{
 
-      return _os_calc_system_dark_mode();
+   //   return get_system_dark_mode();
+
+   //}
+
+
+   //bool node::get_system_dark_mode()
+   //{
+
+   //   return get_app_dark_mode();
+
+   //}
+
+   
+   void node::fetch_user_color()
+   {
 
    }
 
 
-   bool node::_os_calc_system_dark_mode()
+   void node::on_user_color()
    {
 
-      return _os_calc_app_dark_mode();
 
    }
 
 
-   void node::defer_initialize_dark_mode()
+   //void node::defer_update_dark_mode()
+   //{
+
+   //}
+
+
+   //::e_status node::set_user_dark_mode(bool bSet)
+   //{
+
+   //   if (::is_different(m_bUserDarkMode, bSet))
+   //   {
+
+   //      m_bUserDarkMode = bSet;
+
+   //      on_dark_mode_change();
+
+   //   }
+
+   //   return ::success;
+
+   //}
+
+
+   //bool node::is_user_dark_mode()
+   //{
+
+   //   return m_bUserDarkMode;
+
+   //}
+
+   //
+   //::color::color node::get_user_background_color()
+   //{
+
+   //   return m_colorUserBackground;
+
+   //}
+
+
+   void node::background_color(const ::color::color & color)
    {
 
-      if (m_bLastDarkModeApp.is_set() && m_bLastDarkModeSystem.is_set())
+      if (m_colorBackground == color)
       {
 
          return;
 
       }
 
-      node_sync(10_s, __routine([this]()
-                          {
+      m_colorBackground = color;
 
-                             os_calc_user_dark_mode();
+      m_dLuminance = m_colorBackground.get_luminance();
 
-                          }));
+      m_bDarkMode = m_dLuminance < 0.5;
 
-   }
-
-
-   ::e_status node::set_system_dark_mode1(bool bSet)
-   {
+      on_user_color();
 
 
-      return ::success;
 
    }
 
 
-   ::e_status node::set_app_dark_mode1(bool bSet)
-   {
+   //double node::get_user_luminance()
+   //{
 
-      return ::success;
+   //   return m_dUserLuminance;
 
-   }
-
-
-   ::e_status node::set_internal_system_dark_mode(bool bDark)
-   {
-
-      m_bLastDarkModeApp = bDark;
-
-      return ::success;
-
-   }
+   //}
 
 
-   ::e_status node::set_internal_app_dark_mode(bool bDark)
-   {
+   //void node::set_system_app_luminance(double dLuminance)
+   //{
 
-      m_bLastDarkModeApp = bDark;
+   //   m_dSystemLuminance = dLuminance;
 
-      return ::success;
-
-   }
-
-
-   bool node::is_system_dark_mode()
-   {
-
-      if (m_bLastDarkModeSystem.is_empty())
-      {
-
-         os_calc_user_dark_mode();
-
-      }
-
-      return m_bLastDarkModeSystem;
-
-   }
-
-   
-   bool node::is_app_dark_mode()
-   {
-
-      if (m_bLastDarkModeApp.is_empty())
-      {
-
-         defer_initialize_dark_mode();
-
-      }
-
-      return m_bLastDarkModeApp;
-
-   }
-
-
-   ::color::color node::get_system_app_background_color()
-   {
-
-      return m_colorSystemAppBackground;
-
-   }
-
-
-   void node::set_system_app_background_color(::color::color color)
-   {
-
-      m_colorSystemAppBackground = color;
-
-   }
-
-
-   double node::get_system_app_luminance()
-   {
-
-      return m_dSystemLuminance;
-
-   }
-
-
-   void node::set_system_app_luminance(double dLuminance)
-   {
-
-      m_dSystemLuminance = dLuminance;
-
-   }
+   //}
 
 
    int node::get_simple_ui_darkness()
@@ -718,33 +756,51 @@ namespace acme
    }
 
 
-   void node::os_calc_user_dark_mode()
+   ///// returns true if the operating system dark mode has changed
+   //bool node::_os_calc_user_dark_mode()
+   //{
+
+   //   bool bDarkModeApp = _os_calc_app_dark_mode();
+
+   //   bool bDarkModeSystem = _os_calc_system_dark_mode();
+
+   //   if (m_bLastDarkModeApp != bDarkModeApp
+   //      || m_bLastDarkModeSystem != bDarkModeSystem)
+   //   {
+
+   //      m_bLastDarkModeApp = bDarkModeApp;
+
+   //      m_bLastDarkModeSystem = bDarkModeSystem;
+
+   //      return true;
+
+   //   }
+
+   //   return false;
+
+   //}
+
+
+   //void node::os_calc_user_dark_mode()
+   //{
+
+   //   bool bChanged = _os_calc_user_dark_mode();
+
+   //   if(bChanged)
+   //   {
+   //   
+   //      on_os_dark_mode_change();
+
+   //   }
+
+   //}
+
+
+ /*  void node::on_os_dark_mode_change()
    {
 
-      bool bDarkModeApp = _os_calc_app_dark_mode();
 
-      bool bDarkModeSystem = _os_calc_system_dark_mode();
-
-      if(m_bLastDarkModeApp != bDarkModeApp
-      || m_bLastDarkModeSystem != bDarkModeSystem)
-      {
-
-         m_bLastDarkModeApp = bDarkModeApp;
-
-         m_bLastDarkModeSystem = bDarkModeSystem;
-
-         on_os_dark_mode_change();
-
-      }
-
-   }
-
-
-   void node::on_os_dark_mode_change()
-   {
-
-
-   }
+   }*/
 
 
    string node::os_get_user_theme()
@@ -827,62 +883,29 @@ namespace acme
    }
 
 
-   ::e_status node::node_branch(const ::routine & routine)
+   ::e_status node::node_post(const ::routine & routine)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
    }
 
 
-   ::e_status node::node_sync(const ::duration & durationTimeout, const ::routine & routine)
+   ::e_status node::node_send(const ::routine & routine)
    {
 
-      if(is_main_thread())
+      auto estatus = __send_routine(this, &node::node_post, routine);
+      
+      if(!estatus)
       {
-
-         auto estatus = routine();
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
 
          return estatus;
 
       }
-      else
-      {
 
-         auto psignalization = __new(::promise::signalization);
-
-         auto proutine = __routine([this, routine, psignalization]()
-                                   {
-
-                                      routine();
-
-                                      psignalization->m_evReady.SetEvent();
-
-                                      //::release((::matter * &)psignalization.m_p);
-
-                                   });
-
-         node_branch(proutine);
-
-         if (psignalization->m_evReady.wait().failed())
-         {
-
-            return error_timeout;
-
-         }
-
-         return ::success;
-
-      }
+      return estatus;
 
    }
 
@@ -920,13 +943,13 @@ namespace acme
 //   }
 
 
-   void node::os_post_quit()
+   void node::node_quit()
    {
 
    }
 
 
-  bool node::should_launch_on_node(::subject::subject * psubject)
+  bool node::should_launch_on_node(::subject * psubject)
   {
 
       return false;
@@ -934,7 +957,7 @@ namespace acme
   }
 
 
-  bool node::defer_launch_on_node(::subject::subject * psubject)
+  bool node::defer_launch_on_node(::subject * psubject)
   {
 
       bool bShouldLaunchOnNode = should_launch_on_node(psubject);
@@ -960,7 +983,7 @@ namespace acme
   }
 
 
-  bool node::launch_on_node(::subject::subject * psubject)
+  bool node::launch_on_node(::subject * psubject)
   {
 
       return false;
@@ -977,15 +1000,15 @@ namespace acme
   }
 
 
-  ::color::color node::get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate)
+  ::color::color node::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
   {
 
      ::color::color color;
 
-     if (eelement == ::user::e_element_background)
+     if (eelement == ::e_element_background)
      {
 
-        if (is_app_dark_mode())
+        if (dark_mode())
         {
 
            color = argb(255, 0x50, 0x50, 0x58);
@@ -1002,7 +1025,7 @@ namespace acme
      else
      {
 
-        if (is_app_dark_mode())
+        if (dark_mode())
         {
 
            color = argb(255, 255, 255, 255);
@@ -1048,7 +1071,7 @@ namespace acme
    //::e_status node::get_system_time(system_time_t * psystemtime)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return error_interface_only;
 
@@ -1058,7 +1081,7 @@ namespace acme
    //::e_status node::file_time_to_local_file_time(filetime_t *, filetime_t const*)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return error_interface_only;
 
@@ -1068,7 +1091,7 @@ namespace acme
    ::e_status node::open_folder(const ::file::path & pathFolder)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
      
       return ::error_interface_only;
 
@@ -1078,7 +1101,7 @@ namespace acme
    ::e_status node::open_file(const ::file::path & path)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
      
       return ::error_interface_only;
 
@@ -1202,7 +1225,7 @@ namespace acme
 
       auto pacmedir = psystem->acmedir();
 
-      auto pathFolder = pacmedir->get_memory_map_base_folder_path();
+      auto pathFolder =  pacmedir->get_memory_map_base_folder_path();
 
       auto path = pathFolder / (strName + ".filememorymap");
 
@@ -1249,7 +1272,7 @@ namespace acme
    ::e_status node::launch_app(const ::string & psz, const char ** argv, int iFlags)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return error_interface_only;
       
@@ -1260,7 +1283,7 @@ namespace acme
    ::e_status node::create_process(const ::string & pszCommandLine, u32 * pprocessID)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1270,7 +1293,7 @@ namespace acme
    ::e_status node::run_silent(const ::string & strFunct, const ::string & strstrParams)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1280,7 +1303,7 @@ namespace acme
    bool node::process_modules(string_array& stra, u32 processID)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1290,7 +1313,7 @@ namespace acme
    bool node::load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1300,7 +1323,7 @@ namespace acme
    id_array node::get_pids()
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return id_array();
       
@@ -1339,7 +1362,7 @@ namespace acme
    string node::module_path_from_pid(u32 pid)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return "";
 
@@ -1349,7 +1372,7 @@ namespace acme
    string node::command_line_from_pid(u32 pid)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return "";
 
@@ -1359,7 +1382,7 @@ namespace acme
    bool node::is_shared_library_busy(u32 processid, const string_array& stra)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1369,7 +1392,7 @@ namespace acme
    bool node::is_shared_library_busy(const string_array& stra)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1379,7 +1402,7 @@ namespace acme
    bool node::process_contains_module(string& strImage, ::u32 processID, const ::string & pszLibrary)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1389,7 +1412,7 @@ namespace acme
    void node::shared_library_process(dword_array& dwa, string_array& straProcesses, const ::string & pszLibrary)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -1397,7 +1420,7 @@ namespace acme
    bool node::is_process_running(::u32 pid)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -1412,7 +1435,27 @@ namespace acme
    }
 
 
-   string node::expand_env(string str)
+   string node::expand_environment_variables(const string & str)
+   {
+
+      return str;
+
+   }
+
+#if !defined(_UWP)
+
+   array <::serial::port_info> node::list_serial_ports()
+   {
+
+      throw ::interface_only_exception();
+
+      return ::array <::serial::port_info>();
+
+   }
+
+#endif
+
+   string node::get_user_language()
    {
 
       return "";
@@ -1420,12 +1463,168 @@ namespace acme
    }
 
 
-   array <::serial::port_info> node::list_serial_ports()
+   bool node::get_application_exclusivity_security_attributes(memory & memory)
    {
 
-      __throw(error_interface_only);
+      return true;
 
-      return ::array <::serial::port_info>();
+   }
+
+
+   ::e_status node::register_spa_file_type(const ::string & strAppIdHandler)
+   {
+      
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   bool node::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
+   {
+
+      ::install::admin_mutex smutex(this, strPlatform);
+
+      return smutex.already_exists();
+
+   }
+
+
+   void node::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   {
+
+      if (low_is_app_app_admin_running(strPlatform, strConfiguration))
+      {
+
+         return;
+
+      }
+
+      start_program_files_app_app_admin(strPlatform, strConfiguration);
+
+   }
+
+
+   ::e_status node::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
+   {
+
+      return error_failed;
+
+   }
+
+
+   ::e_status node::get_folder_path_from_user(::file::path & pathFolder)
+   {
+
+      throw ::interface_only_exception();
+
+      return ::error_interface_only;
+
+   }
+
+
+   //::string node::expand_environment_variables(const ::string & str)
+   //{
+
+   //   return str;
+
+   //}
+
+   ::file::path node::command_find_path(const ::string & pszCommand)
+   {
+
+#ifdef _UWP
+
+      return "";
+
+#else
+
+      string strPath = getenv("PATH");
+
+      string_array straPath;
+
+      straPath.explode(":", strPath);
+
+      for (auto & str : straPath)
+      {
+
+         ::file::path path;
+
+         path = str;
+
+         path /= pszCommand;
+
+         if (m_psystem->m_pacmefile->exists(path))
+         {
+
+            return path;
+
+         }
+
+      }
+
+      return pszCommand;
+
+#endif
+
+   }
+
+
+   ::e_status node::launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::shell_execute_async(const char * pszFile, const char * pszParams)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::root_execute_async(const char * pszFile, const char * pszParams)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status node::on_start_system()
+   {
+
+      return ::success;
 
    }
 

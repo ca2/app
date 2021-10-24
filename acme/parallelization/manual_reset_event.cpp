@@ -14,6 +14,8 @@ manual_reset_event::manual_reset_event(char * sz, bool bInitiallyOwn) :
    ::event(sz, bInitiallyOwn, true)
 {
 
+   m_estatus = ::success;
+
 }
 
 manual_reset_event::~manual_reset_event()

@@ -6,7 +6,7 @@ namespace turboc
 
 
    class CLASS_DECL_TURBOC lite_view:
-      virtual public view
+      virtual public impact
    {
    public:
 
@@ -14,9 +14,9 @@ namespace turboc
       lite_view(::object * pobject);
       virtual ~lite_view();
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

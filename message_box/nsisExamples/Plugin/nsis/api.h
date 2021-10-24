@@ -18,7 +18,7 @@
 #define _NSIS_EXEHEAD_API_H_
 
 // Starting with NSIS 2.42, you can check the version of the plugin API in exec_flags->plugin_api_version
-// The format is 0xXXXXYYYY where X is the major version and Y is the minor version (MAKELONG(y,x))
+// The format is 0xXXXXYYYY where X is the major version and Y is the minor version (__MAKE_LONG(y,x))
 // When doing version checks, always remember to use >=, ex: if (pX->exec_flags->plugin_api_version >= NSISPIAPIVER_1_0) {}
 
 #define NSISPIAPIVER_1_0 0x00010000

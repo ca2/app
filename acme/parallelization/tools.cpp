@@ -15,7 +15,7 @@ task_tool::~task_tool()
 }
 
 
-task_group::task_group(::matter * pmatter, ::e_priority epriority)
+task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 {
 
    defer_create_mutex();
@@ -45,7 +45,7 @@ task_group::task_group(::matter * pmatter, ::e_priority epriority)
 
       auto & ptooltask = m_taska[iThread];
 
-      ptooltask = __create_new < ::tool_task >();
+      ptooltask = m_psystem->__create_new < ::tool_task >();
 
       ptooltask->initialize_tool_task(this);
 
@@ -55,10 +55,10 @@ task_group::task_group(::matter * pmatter, ::e_priority epriority)
 
       ptooltask->m_uThreadAffinityMask = translate_processor_affinity((int) (ptooltask->m_iThread));
 
-      if (epriority == ::priority_none)
+      if (epriority == ::e_priority_none)
       {
 
-         ptooltask->branch(::priority_highest);
+         ptooltask->branch(::e_priority_highest);
 
       }
       else
@@ -80,7 +80,7 @@ task_group::~task_group()
 }
 
 
-bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
+::e_status task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -111,7 +111,7 @@ bool task_group::prepare(::enum_task_op etaskop, ::count cIteration)
 
    m_cSpan = maximum(1, cIteration / get_count());
 
-   return true;
+   return ::success;
 
 }
 
@@ -201,7 +201,7 @@ bool task_group::add_predicate(::predicate_holder_base * ppred)
 }
 
 
-bool task_group::wait()
+::e_status task_group::wait()
 {
 
    //synchronous_lock synchronouslock(mutex());
@@ -222,16 +222,24 @@ bool task_group::wait()
 }
 
 
-bool task_group::process()
+::e_status task_group::process()
 {
 
    set_ready_to_start();
 
-   wait();
+   auto estatus = wait();
 
-   return true;
+   if(!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return estatus;
 
 }
+
 
 //bool task_group::select_toolset(task_group * pset)
 //{
@@ -318,7 +326,7 @@ bool tool_task::set_predicate(::predicate_holder_base * ppred)
       while (task_get_run())
       {
 
-         if (!m_pevStart->wait(millis(300)).succeeded())
+         if (!m_pevStart->wait(300_ms).succeeded())
          {
 
             continue;
@@ -377,7 +385,7 @@ void tool_task::reset()
 }
 
 
-//CLASS_DECL_ACME ::task_group * get_task_group(::e_priority epriority)
+//CLASS_DECL_ACME ::task_group * get_task_group(::enum_priority epriority)
 //{
 //
 //   return  ::apex::get_system()->tools(epriority);
@@ -427,7 +435,7 @@ void task_group::select_tool(task_tool* ptool)
 
       auto & pitem = ptool->item_at(i);
 
-      pitem = ::__id_create < ::task_tool_item > (ptool->m_id);
+      pitem = m_psystem->__id_create < ::task_tool_item > (ptool->m_id);
 
       pitem->m_ptask = ptask;
 

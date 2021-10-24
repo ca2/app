@@ -471,7 +471,7 @@
     <ClInclude Include="inline\application\macos.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
@@ -622,12 +622,6 @@
     <ClCompile Include="user\user\notification_area.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\notify_icon.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\notify_icon_listener.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\picture.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -701,9 +695,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\menu.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_command.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\validate.cpp">
@@ -794,6 +785,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab_pane_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

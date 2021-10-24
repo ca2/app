@@ -19,22 +19,22 @@ namespace acme
 
 
       timer_array();
-      virtual ~timer_array();
+      ~timer_array() override;
 
 
 
-      virtual bool create_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool create_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
       virtual bool delete_timer(uptr uEvent);
 
-      virtual bool set_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool set_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
-      virtual bool erase_timer(::timer * ptimer) override;
+      bool erase_timer(::timer * ptimer) override;
 
 
       ::e_status destroy() override;
       virtual void delete_all_timers();
 
-      virtual bool on_timer(::timer * ptimer) override;
+      bool on_timer(::timer * ptimer) override;
       virtual void _001OnTimer(::timer * ptimer);
 
       virtual bool e_timer_is_ok() override;

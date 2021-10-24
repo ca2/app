@@ -33,7 +33,7 @@ namespace prompt
 
       create_factory <prompt::document >();
       create_factory <prompt::frame >();
-      create_factory <prompt::view >();
+      create_factory <prompt::impact >();
       create_factory <prompt::pane_view >();
       create_factory <prompt::primary_view >();
 
@@ -76,17 +76,17 @@ namespace prompt
    }
 
 
-   //void department::route_command_message(::message::command * pcommand)
+   //void department::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    //{
 
-   //   ::acme::department::route_command_message(pcommand);
+   //   ::acme::department::route_command(pcommand);
 
    //}
 
 
    void department::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
       {
          pcontext->m_papexcontext->os().file_open(this, itema[0]->m_filepathFinal, "", itema[0]->m_filepathFinal.folder());

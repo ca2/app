@@ -13,7 +13,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #undef USE_MISC
 
 
@@ -21,7 +21,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #endif
 
 
@@ -171,11 +171,15 @@ static int g_iMutex = 0;
 
       }
 
-      ::dir::mk(::file::path(strName).folder());
+               auto psystem = m_psystem;
 
-      ::file_put_contents(strName, strName);
+         auto pacmedir = psystem->m_pacmedir;
 
-      string strTest = file_as_string(strName);
+pacmedir->create(::file::path(strName).folder());
+
+      ::m_psystem->m_pacmefile->put_contents(strName, strName);
+
+      string strTest = m_psystem->m_pacmefile->as_string(strName);
 
       //int isCreator = 0;
 
@@ -234,7 +238,11 @@ static int g_iMutex = 0;
 
 #ifdef ANDROID
 
-         path = pacmedir->system() / "::payload/tmp/ca2/lock/::mutex" / string(pstrName);
+         path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "::payload/tmp/ca2/lock/::mutex" / string(pstrName);
 
 #else
 
@@ -248,7 +256,11 @@ static int g_iMutex = 0;
 
 #ifdef ANDROID
 
-         path = pacmedir->system() / "home/user/ca2/lock/::mutex" / string(pstrName);
+         path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "home/user/ca2/lock/::mutex" / string(pstrName);
 
 #elif defined __APPLE__
 
@@ -269,7 +281,11 @@ static int g_iMutex = 0;
 
       path /= pstrName;
 
-      dir::mk(path.folder());
+               auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 
@@ -327,9 +343,13 @@ static int g_iMutex = 0;
 
       path /= pstrName;
 
-      ::dir::mk(path.folder());
+               auto psystem = m_psystem;
 
-      ::file_put_contents(path, m_pszName);
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
+
+      ::m_psystem->m_pacmefile->put_contents(path, m_pszName);
 
       m_key = ftok(path, 1); //Generate a unique key or supply a value
 
@@ -699,9 +719,9 @@ synchronization_result ::mutex::wait(const duration & duration)
 
       }
 
-      auto tickTimeout = duration.millis();
+      auto tickTimeout = duration.::duration();
 
-      auto tickStart = ::millis::now();
+      auto tickStart = ::duration::now();
 
       while (true)
       {
@@ -1567,7 +1587,11 @@ __pointer(::mutex) open_mutex(const char * lpszName)
 
    path /= lpszName;
 
-   dir::mk(path.folder());
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(path.folder());
 
    int iFd = open(path, O_RDWR, S_IRWXU);
 

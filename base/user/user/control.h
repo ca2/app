@@ -27,7 +27,7 @@ namespace user
    //   virtual ~control();
 
 
-   //   virtual void install_message_routing(::channel * pchannel) override;
+   //   void install_message_routing(::channel * pchannel) override;
 
    //   /// if you (developer) don't know how to create a control,
    //   /// you should be able (control developer pay attention now),
@@ -45,7 +45,7 @@ namespace user
    //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   //   virtual void route_command_message(::message::command * pcommand) override;
+   //   void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
    //   virtual bool has_function(enum_control_function econtrolfunction) const;
    //   virtual enum_control_type get_control_type() const override;
@@ -85,7 +85,7 @@ namespace user
 
    //   //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
 
-   //   //virtual void on_hit_test(::user::item & item) override;
+   //   //virtual void on_hit_test(::item & item) override;
 
    //   DECLARE_MESSAGE_HANDLER(on_message_create);
    //   //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -95,13 +95,13 @@ namespace user
    //   DECLARE_MESSAGE_HANDLER(_001OnSetFocus);
    //   DECLARE_MESSAGE_HANDLER(_001OnKillFocus);
 
-   //   virtual void route_control_event(::user::control_event* pevent) override;
+   //   virtual void route(::subject * psubject, ::context * pcontext) override;
 
    //   virtual void on_notify_control_event(control_event* pevent) override;
 
-   //   virtual void on_control_event(::user::control_event * pevent) override;
+   //   virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-   //   //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
+   //   //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_subject esubject) override;
 
    //   //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
 

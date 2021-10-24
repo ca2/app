@@ -281,18 +281,26 @@ namespace account
 
          double r = (double)(64) / (double)m_pimage->height();
 
-         pgraphics->stretch(
-         rectangle_i32_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
-         i32 (m_pimage->width() * r), i32 (m_pimage->height() * r)),
-         m_pimage->g(),
-         rectangle_i32_dimension(0, 0, m_pimage->width(), m_pimage->height()));
+         auto rectangleSource = rectangle_f64_dimension(0, 0, m_pimage->width(), m_pimage->height());
+
+         image_source imagesource(m_pimage);
+
+         auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
+                                                        i32 (m_pimage->width() * r), i32 (m_pimage->height() * r));
+
+         image_drawing_options imagedrawingoptions(rectangleTarget);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
       }
       else if (m_bCred && m_strCred.has_char())
       {
+
          float fHeight = 18.0;
 
-         ::write_text::font_pointer f(e_create);
+         ::write_text::font_pointer f(e_create, this);
 
          /*f->create_pixel_font(pnode->font_name(e_font_sans_ex), (i32)height(rectangleClient) * 0.7);
 
@@ -316,7 +324,15 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
-         pgraphics->draw(::rectangle_i32(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
+         image_source imagesource(m_picon95);
+
+         auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry));
+
+         image_drawing_options imagedrawingoptions(rectangleTarget);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
       }
       else

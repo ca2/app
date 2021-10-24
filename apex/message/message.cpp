@@ -67,8 +67,13 @@ namespace message
          return false;
 
       }
-         
-      m_phandlera->m_pData[m_iRouteIndex].m_handler(this);
+
+      if (m_pdispatchera->m_pData)
+      {
+
+         m_pdispatchera->m_pData[m_iRouteIndex]->handle(this);
+
+      }
 
       return m_bRet; 
    

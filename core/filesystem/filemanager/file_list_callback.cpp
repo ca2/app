@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 
 
 namespace filemanager
@@ -23,21 +26,21 @@ namespace filemanager
    bool file_list_callback::initialize_file_list_callback()
    {
 
-      m_pimagelistSubItemHover = __new(::image_list);
+      m_pimagelistSubItemHover = __create_new < ::image_list >();
 
-      m_pimagelistItemHover = __new(::image_list);
+      m_pimagelistItemHover = __create_new < ::image_list >();
 
-      m_pimagelistNormal = __new(::image_list);
+      m_pimagelistNormal = __create_new < ::image_list >();
 
-      ::draw2d::graphics_pointer spgraphics(e_create);
+      ::draw2d::graphics_pointer spgraphics(e_create, this);
 
       spgraphics->CreateCompatibleDC(nullptr);
 
       m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
 
-      m_pimagelistSubItemHover->add_file("matter://filemanager/execute_16.png");
-      m_pimagelistSubItemHover->add_file("matter://filemanager/check_off_16.png");
-      m_pimagelistSubItemHover->add_file("matter://filemanager/check_on_16.png");
+      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/execute_16.png"));
+      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_off_16.png"));
+      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_on_16.png"));
 
       auto psystem = get_system()->m_pcoresystem;
 
@@ -81,31 +84,31 @@ namespace filemanager
 
    void file_list_callback::OnButtonAction(id i, __pointer(::file::item)  item)
    {
-      UNREFERENCED_PARAMETER(i);
-      UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(item);
    }
 
 
 
    bool file_list_callback::GetMenuItemCallback(id iId)
    {
-      UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(iId);
       return false;
    }
 
    void file_list_callback::OnMenuItemAction(id iId, const ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
    }
 
 
    void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -113,7 +116,7 @@ namespace filemanager
    __pointer(::image_list) file_list_callback::GetActionButtonImageList(id i)
    {
 
-      UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(i);
 
       return nullptr;
 

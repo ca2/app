@@ -7,20 +7,20 @@
 
 using namespace Platform;
 using namespace Microsoft::WRL;
-using namespace Windows::Foundation;
-using namespace Windows::UI::Core;
-using namespace Windows::ApplicationModel;
-using namespace Windows::ApplicationModel::Core;
-using namespace Windows::ApplicationModel::Activation;
-using namespace Windows::::acme::get_system();
-using namespace Windows::Graphics::Display;
-using namespace Windows::::acme::get_system()::Threading;
-using namespace Windows::UI::Text::Core;
-using namespace Windows::UI::ViewManagement;
+using namespace ::winrt::Windows::Foundation;
+using namespace ::winrt::Windows::UI::Core;
+using namespace ::winrt::Windows::ApplicationModel;
+using namespace ::winrt::Windows::ApplicationModel::Core;
+using namespace ::winrt::Windows::ApplicationModel::Activation;
+using namespace ::winrt::Windows::::acme::get_system();
+using namespace ::winrt::Windows::Graphics::Display;
+using namespace ::winrt::Windows::::acme::get_system()::Threading;
+using namespace ::winrt::Windows::UI::Text::Core;
+using namespace ::winrt::Windows::UI::ViewManagement;
 
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -48,9 +48,9 @@ namespace uwp
       // the apps's responsibility.
       m_window = window;
 
-      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
+      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::Windows::UI::Core::CoreWindow^, ::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
+      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
       // Create a CoreTextEditContext for our custom edit control.
       CoreTextServicesManager^ manager = CoreTextServicesManager::GetForCurrentView();
@@ -113,7 +113,7 @@ namespace uwp
       UpdateFocusUI();
    }
 
-   void impact::CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, ::Windows::UI::Core::PointerEventArgs ^args)
+   void impact::CoreWindow_PointerPressed(::winrt::Windows::UI::Core::CoreWindow^ sender, ::winrt::Windows::UI::Core::PointerEventArgs ^args)
    {
       // See whether the pointer is inside or outside the control.
       //Rect contentRect = GetElementRect(BorderPanel);
@@ -190,7 +190,7 @@ namespace uwp
    }
 
 
-   void impact::Element_Unloaded(Object ^ sender, ::Windows::UI::Xaml::RoutedEventArgs ^ e)
+   void impact::Element_Unloaded(Object ^ sender, ::winrt::Windows::UI::Xaml::RoutedEventArgs ^ e)
    {
       m_window->KeyDown -= m_tokenKeyDown;
       m_window->PointerPressed -= m_tokenPointerPressed;
@@ -431,7 +431,7 @@ namespace uwp
       Rect selectionRect = get_input_selection_rect();
 
 
-      // Next, convert to screen coordinates in view pixels.
+      // Next, convert to screen coordinates in impact pixels.
       Rect windowBounds = m_window->Bounds;
       contentRect.X += windowBounds.X;
       contentRect.Y += windowBounds.Y;
@@ -481,7 +481,7 @@ namespace uwp
    }
 
 
-   void impact::CoreWindow_KeyDown(::Windows::UI::Core::CoreWindow^ sender, KeyEventArgs ^args)
+   void impact::CoreWindow_KeyDown(::winrt::Windows::UI::Core::CoreWindow^ sender, KeyEventArgs ^args)
    {
       // Do not process keyboard input if the custom edit control does not
       // have focus.
@@ -618,7 +618,7 @@ namespace uwp
 
    void impact::UpdateFocusUI()
    {
-      //BorderPanel->BorderBrush = _internalFocus ? new ::Windows::UI::Xaml::Media::SolidColorBrush(::Windows::UI::Colors::Green) : null;
+      //BorderPanel->BorderBrush = _internalFocus ? new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
    }
 
    void impact::UpdateTextUI()
@@ -662,7 +662,7 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

@@ -4,15 +4,17 @@
 #undef __spin_namespace
 
 
-#ifdef __cplusplus
+#ifdef cplusplus
 
 
+#include "acme/include/_c.h"
 #include "acme/include/_.h"
 
 
 #elif defined(__MM)
 
 
+#include "acme/include/_c.h"
 #include "acme/include/_c_bridge.h"
 #include "acme/include/objc.h"
 #include "acme/include/objcpp.h"

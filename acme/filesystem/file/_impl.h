@@ -22,7 +22,7 @@ inline void __object_string_exchange(::stream & s, TYPE & t)
 
       string str;
 
-      str = t.to_string();
+      str = t.get_string();
 
       __string_exchange(s, str);
 
@@ -34,7 +34,7 @@ inline void __object_string_exchange(::stream & s, TYPE & t)
 
       __string_exchange(s, str);
 
-      t.from_string(str);
+      t.parse_string(str);
 
    }
 
@@ -75,25 +75,25 @@ inline void __exchange(stream & s, memory_base & memory)
 //   s.default_exchange(block);
 //}
 
-inline stream & operator <<(stream & s, const ::millis & millis)
-{
+//inline stream & operator <<(stream & s, const ::duration & duration)
+//{
+//
+//   s << ::duration.integral_milliseconds();
+//
+//   return s;
+//
+//}
 
-   s << millis.m_i;
-
-   return s;
-
-}
 
 
-
-inline stream & operator >>(stream & s, ::millis & millis)
-{
-
-   s >> millis.m_i;
-
-   return s;
-
-}
+//inline stream & operator >>(stream & s, ::duration & ::duration)
+//{
+//
+//   s >> ::duration.m_i;
+//
+//   return s;
+//
+//}
 
 
 //inline stream & stream::operator << (e_set_storing) { set_storing(); return *this; }
@@ -418,7 +418,7 @@ inline stream & operator >>(stream & s, __pointer_array(TYPE) & a)
 inline stream & operator <<(stream & s, const ::datetime::time & time)
 {
 
-   s << time.m_time;
+   s << time.m_i;
 
    return s;
 
@@ -429,7 +429,7 @@ inline stream & operator <<(stream & s, const ::datetime::time & time)
 inline stream & operator >>(stream & s, ::datetime::time & time)
 {
 
-   s >> time.m_time;
+   s >> time.m_i;
 
    return s;
 
@@ -463,7 +463,7 @@ inline stream & operator >>(stream & s, ::memory_base & memory)
 inline stream & operator >>(stream & s, ::datetime::zonetime & z)
 {
 
-   s.write((i64)z.m_time);
+   s.write((i64)z.m_i);
    s.write((i32)z.m_iZoneOffset);
 
    return s;
@@ -475,7 +475,7 @@ inline stream & operator >>(stream & s, ::datetime::zonetime & z)
 inline stream & operator <<(stream & s, const ::datetime::zonetime & z)
 {
 
-   s.read((i64 &)z.m_time);
+   s.read((i64 &)z.m_i);
    s.read((i32 &)z.m_iZoneOffset);
 
    return s;
@@ -568,18 +568,18 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
    string strText;
 
-   auto type = p->type_name();
+   auto type = __type_name(p);
 
-   if (p->has(e_object_factory))
+   if (p->has(e_flag_factory))
    {
 
-      strText = stream.factory_id_to_text(::str::demangle(type));
+      strText = stream.factory_id_to_text(type);
 
    }
    else
    {
 
-      strText = "factoryless://" + ::str::demangle(type);
+      strText = "factoryless://" + type;
 
    }
 
@@ -593,10 +593,10 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void matter::save_to(const ::payload & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pobject)
 //{
 //
-//   auto writer = m_pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
+//   auto writer = m_pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 //
 //   __save_object(writer, pobject);
 //
@@ -864,7 +864,8 @@ inline void __exchange(::stream & s, u32 & u) { s.default_exchange(u); }
 inline void __exchange(::stream & s, u64 & u) { s.default_exchange(u); }
 inline void __exchange(::stream & s, float & f) { s.default_exchange(f); }
 inline void __exchange(::stream & s, double & d) { s.default_exchange(d); }
-inline void __exchange(::stream & s, ::datetime::time & time) { s.default_exchange(time.m_time); }
+inline void __exchange(::stream & s, ::datetime::time & time) { s.default_exchange(time.m_i); }
+inline void __exchange(::stream & s, ::duration & duration) { s.default_exchange(duration.m_iSecond); s.default_exchange(duration.m_iNanosecond); }
 inline void __exchange(::stream & s, const char * psz) { s.write_only(psz); }
 inline void __exchange(::stream & s, string & str) { s.default_exchange(str); }
 inline void __exchange(::stream & s, ::file::path & path) { s.default_exchange(path); }
@@ -933,7 +934,7 @@ inline text_stream & operator << (text_stream & stream, const TYPE & t)
 }
 
 
-inline text_stream & operator << (text_stream & stream, const file_result & pfile)
+inline text_stream & operator << (text_stream & stream, const file_transport & pfile)
 {
 
    stream.defer_set_storing();
@@ -1129,7 +1130,7 @@ void var_stream::default_exchange(TYPE & t)
       }
 
   }
-  catch(const ::exception::exception & e)
+  catch(const ::exception & e)
   {
 
      add_exception(e);

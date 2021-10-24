@@ -23,10 +23,12 @@ namespace windowing
    {
    public:
 
-      //i64_map < ::user::enum_key >     m_mapKey;
 
       keyboard();
-      virtual ~keyboard();
+      ~keyboard() override;
+      
+      
+      ::user::enum_key wparam_to_userkey(wparam wparam) override;
 
 
       int groupCount() const;

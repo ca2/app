@@ -107,4 +107,49 @@ namespace primitive
 } // namespace primitive
 
 
+#define __member(TYPE) ::primitive::member < TYPE >
+#define __composite(TYPE) ::primitive::composite < TYPE >
+#define __reference(TYPE) ::primitive::reference < TYPE >
+
+
+
+
+
+template<typename TYPE>
+inline bool is_null(const __composite(TYPE) & p)
+{
+
+   return p.is_null();
+
+}
+
+
+template<typename TYPE>
+inline bool is_null(const __reference(TYPE) & p)
+{
+
+   return p.is_null();
+
+}
+
+
+
+template<typename TYPE>
+inline bool is_set(const __composite(TYPE) & p)
+{
+
+   return p.is_set();
+
+}
+
+
+template<typename TYPE>
+inline bool is_set(const __reference(TYPE) & p)
+{
+
+   return p.is_set();
+
+}
+
+
 

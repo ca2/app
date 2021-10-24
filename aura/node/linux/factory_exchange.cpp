@@ -1,10 +1,10 @@
 #include "framework.h"
-//#include "acme/os/_const_console.h"
-//#include "acme/os/console.h"
+//#include "acme/node/operating_system/_const_console.h"
+//#include "acme/node/operating_system/console.h"
 //#include "console.h"
 #include "_linux.h"
 #include "aura/node/_node.h"
-#include "aura/os/_os2.h"
+#include "aura/node/operating_system/_operating_system.h"
 //#include "copydesk.h"
 
 

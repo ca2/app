@@ -23,7 +23,7 @@
  *     Xscaled = Xstart * Multiplier / Divider
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ACME i64 _stdcall muldiv64(i64 operant, i64 multiplier, i64 divider);
+CLASS_DECL_ACME i64 muldiv64(i64 operant, i64 multiplier, i64 divider);
 
 
 /*
@@ -33,7 +33,7 @@ CLASS_DECL_ACME i64 _stdcall muldiv64(i64 operant, i64 multiplier, i64 divider);
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-CLASS_DECL_ACME i64 _stdcall mulshr64(i64 operant, i64 multiplier, byte rshift);
+CLASS_DECL_ACME i64 mulshr64(i64 operant, i64 multiplier, byte rshift);
 
 
 CLASS_DECL_ACME void mul64(u64 v1, u64 v2, u64 & hi, u64 & lo);

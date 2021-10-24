@@ -52,15 +52,15 @@ namespace filemanager
 
       void filemanager_save_project();
 
-      document * find_filemanager(::payload varFile);
+      document * find_filemanager(::payload payloadFile);
 
-      document * restore_filemanager(::payload varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * restore_filemanager(::payload payloadFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      document * open_filemanager(::payload varFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
+      document * open_filemanager(::payload payloadFile, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
       document * add_filemanager(const ::file::path & pathFolder, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
 
-      bool erase_filemanager(::payload varFile);
+      bool erase_filemanager(::payload payloadFile);
 
       bool erase_filemanager(document * pdocument);
 

@@ -55,7 +55,7 @@ CLASS_DECL_ACME void set_main_thread();
 //
 #ifdef LINUX
 
-#include "apex/os/binreloc.h"
+#include "apex/node/operating_system/binreloc.h"
 
 const char* br_init_get_symbol();
 
@@ -151,29 +151,35 @@ void application_common(::apex::system * psystem)
 
 #endif
 
+#ifdef NO_AUDIO
+
+   psystem->m_bImaging = false;
+
+#endif
+
 }
 
-
-template < typename APPLICATION >
-class static_application_factory :
-   public static_setup
-{
-public:
-
-
-   virtual ::application* new_application() { return new APPLICATION; }
-
-
-   static_application_factory(const char * pszName = "") :
-      static_setup(flag_application, pszName)
-   {
-
-
-   }
-
-
-};
-
+//
+//template < typename APPLICATION >
+//class static_application_factory :
+//   public static_setup
+//{
+//public:
+//
+//
+//   virtual ::application* new_application() { return new APPLICATION; }
+//
+//
+//   static_application_factory(const char * pszName = "") :
+//      static_setup(flag_application, pszName)
+//   {
+//
+//
+//   }
+//
+//
+//};
+//
 
 #define __namespace_application_factory(APPID) \
 ::static_application_factory < application > g_applicationfactory(APPID);

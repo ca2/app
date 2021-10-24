@@ -17,15 +17,15 @@ namespace file
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
-   inline path path::folder() const { return { ::dir::name(*this), m_epath }; }
-   inline path path::sibling(const path & path) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
-   inline path path::sibling(const ::string & str) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
-   inline path path::sibling(const ::string & psz) const { return { ::dir::name(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
+   inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
+   inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(path), m_epath }; }
+   inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(str), m_epath }; }
+   inline path path::sibling(const ::string & psz) const { return { ::file_path_folder(*this) + sep() + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::extension() const { return &m_pdata[find_skip_or_length('.', rfind(sep()) + 1)]; }
    inline string path::final_extension() const { return file_final_extension_dup(operator const char * ()); }
    inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
    inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
-   //   inline path path::folder() const { return ::dir::name(*this); }
+   //   inline path path::folder() const { return ::file_path_folder(*this); }
    inline bool path::operator == (const ::payload & payload) const { return operator == (string(payload)); }
    inline bool path::operator != (const ::payload & payload) const { return operator != (string(payload)); }
 

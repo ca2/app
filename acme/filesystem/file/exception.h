@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME exception :
-      public ::exception::exception
+      public ::exception
    {
    public:
 

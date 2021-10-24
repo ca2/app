@@ -9,19 +9,19 @@ namespace userex
 
 
    class CLASS_DECL_CORE progress_control :
-      virtual public ::progress_control
+      virtual public ::progress::real
    {
    public:
 
 
       ::user::document *    m_pdocument;
-      progress_view *       m_pview;
+      progress_view *       m_pimpact;
 
 
       progress_control();
       virtual ~progress_control();
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
 
@@ -47,20 +47,20 @@ namespace userex
 
       
       
-      ::progress_control *          m_pprogresscontrol;
+      __pointer(::progress::real)        m_pprogressreal;
 
       __pointer(::user::progress)   m_pprogress;
 
-      ::rectangle_i32                        m_rectStatus;
+      ::rectangle_i32                        m_rectangleStatus;
 
 
       progress_view();
       virtual ~progress_view();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
-#ifdef DEBUG
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
+#ifdef _DEBUG
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override
       {
          return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -70,9 +70,9 @@ namespace userex
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 #endif
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);

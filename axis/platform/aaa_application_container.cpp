@@ -202,7 +202,7 @@ application_array application_container::get_applicationa()
 __pointer(::aura::application) application_container::instantiate_application(const ::string & pszAppId, ::create * pcreate)
 {
 
-   INFO("aura::application::instantiate_application");
+   INFORMATION("aura::application::instantiate_application");
 
    __pointer(::aura::application) papp;
 
@@ -408,7 +408,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          else
          {
 
-            message_box("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
+            output_error_message("papplication \"" + strApp + "\"\nat path \"" + pathExe + "\"\n is not installed.");
 
             return nullptr;
 
@@ -447,7 +447,7 @@ __pointer(::aura::application) application_container::start_application(const ::
    //         while (task_get_run())
    //         {
    //
-   //            if (pcreate->m_pcommandline->m_eventReady.wait(millis(84)).signaled())
+   //            if (pcreate->m_pcommandline->m_eventReady.wait(::duration(84)).signaled())
    //               break;
    //
    //         }
@@ -485,7 +485,7 @@ __pointer(::aura::application) application_container::start_application(const ::
          papp = create_application(pszAppId, bSynch, pcreate);
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception & e)
       {
 
          if (handle_exception(pe))

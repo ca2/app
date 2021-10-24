@@ -2,9 +2,9 @@
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
 #include "aqua/xml.h"
-//#include "acme/os/_os.h"
-//#include "acme/os/cross.h"
-#include "aura/os/_user.h"
+//#include "acme/node/operating_system/_os.h"
+//#include "acme/node/operating_system/cross.h"
+#include "aura/node/operating_system/_user.h"
 #include "toolbar.h"
 
 #define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
@@ -50,8 +50,8 @@ namespace user
       m_sizeButton.cy = 22;
 
       // top and bottom borders are 1 larger than default for ease of grabbing
-      m_rectBorder.top = 3;
-      m_rectBorder.bottom = 3;
+      m_rectangleBorder.top = 3;
+      m_rectangleBorder.bottom = 3;
    }
 
    toolbar::~toolbar()
@@ -99,7 +99,7 @@ namespace user
 //      ASSERT_VALID(puiParent);   // must have a parent
 //      ASSERT (!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
-//      //SetBorders(rectBorders);
+//      //SetBorders(rectangleBorders);
 //
 //      // save the style
 //      m_dwStyle = (uStyle & CBRS_ALL);
@@ -190,15 +190,15 @@ namespace user
          //cyHeight -= afxData.cyBorder2;
          cyHeight -= 2;
 
-      m_rectBorder.bottom = (::i32) ((cyHeight - m_sizeButton.cy) / 2);
-      // if there is an extra pixel, m_rectBorder.top will get it
-      m_rectBorder.top = (::i32) (cyHeight - m_sizeButton.cy - m_rectBorder.bottom);
-      if (m_rectBorder.top < 0)
+      m_rectangleBorder.bottom = (::i32) ((cyHeight - m_sizeButton.cy) / 2);
+      // if there is an extra pixel, m_rectangleBorder.top will get it
+      m_rectangleBorder.top = (::i32) (cyHeight - m_sizeButton.cy - m_rectangleBorder.bottom);
+      if (m_rectangleBorder.top < 0)
       {
          TRACE("Warning: toolbar::SetHeight(%d) is smaller than button.",
                nHeight);
-         m_rectBorder.bottom += m_rectBorder.top;
-         m_rectBorder.top = 0;  // will clip at bottom
+         m_rectangleBorder.bottom += m_rectangleBorder.top;
+         m_rectangleBorder.top = 0;  // will clip at bottom
       }
 
       // recalculate the non-client region
@@ -440,7 +440,7 @@ namespace user
 
       // handle any delayed on_layout
       //if (m_bDelayedButtonLayout)
-      //   ((toolbar*)this)->set_need_layout(::draw2d::graphics_pointer & pgraphics);
+      //   ((toolbar*)this)->set_need_layout(pgraphics);
 
 //      // now it is safe to get the item rectangle_i32
 //#ifdef WINDOWS_DESKTOP
@@ -825,7 +825,7 @@ namespace user
    struct ___CONTROLPOS
    {
       index nIndex, nID;
-      ::rectangle_i32 rectOldPos;
+      ::rectangle_i32 rectangleOldPos;
    };
 
 
@@ -958,7 +958,7 @@ namespace user
 //
 //                     client_to_screen(&rectangle);
 //
-//                     pControl[nControlCount].rectOldPos = rectangle;
+//                     pControl[nControlCount].rectangleOldPos = rectangle;
 //
 //                     nControlCount++;
 //
@@ -1020,7 +1020,7 @@ namespace user
 //
 //                     auto rectangle = pwindow->get_window_rect();
 //
-//                     auto size = rectangle.origin() - pControl[i].rectOldPos.top_left();
+//                     auto size = rectangle.origin() - pControl[i].rectangleOldPos.top_left();
 //
 //                     GetItemRect(pControl[i].nIndex, &rectangle);
 //
@@ -1133,37 +1133,39 @@ return { 0,0 };
    bool toolbar::SetButtonText(index nIndex, const ::string & pszText)
 
    {
-      // attempt to lookup string index in map
-      iptr nString = -1;
-      void * p;
-      string wstrText(pszText);
-
-      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
-         nString = (iptr)p;
-
-      // add new string if not already in map
-      if (nString == -1)
-      {
-         // initialize map if necessary
-         if (m_pStringMap == nullptr)
-            m_pStringMap = new string_to_ptr;
-
-         string str;
-         str = pszText;
-
-         // add new string to toolbar list
-         string strTemp(str);
-         ::exception::throw_not_implemented();
-         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
-         if (nString == -1)
-            return false;
-
-         // cache string away in string map
-         m_pStringMap->set_at(wstrText, (void *)nString);
-
-         ASSERT(m_pStringMap->lookup(wstrText, p));
-
-      }
+      
+      throw todo;
+//      // attempt to lookup string index in map
+//      iptr nString = -1;
+//      void * p;
+//      string wstrText(pszText);
+//
+//      if (m_pStringMap != nullptr && m_pStringMap->lookup(wstrText, p))
+//         nString = (iptr)p;
+//
+//      // add new string if not already in map
+//      if (nString == -1)
+//      {
+//         // initialize map if necessary
+//         if (m_pStringMap == nullptr)
+//            m_pStringMap = new string_to_ptr;
+//
+//         string str;
+//         str = pszText;
+//
+//         // add new string to toolbar list
+//         string strTemp(str);
+//         throw interface_only_exception();
+//         // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const ::string &)(const unichar *)strTemp);
+//         if (nString == -1)
+//            return false;
+//
+//         // cache string away in string map
+//         m_pStringMap->set_at(wstrText, (void *)nString);
+//
+//         ASSERT(m_pStringMap->lookup(wstrText, p));
+//
+//      }
 
 
       // machine the toolbar button description
@@ -1360,7 +1362,7 @@ return { 0,0 };
    void toolbar::OnPaint()
    {
       if (m_bDelayedButtonLayout)
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       default_window_procedure();
    }
@@ -1370,12 +1372,12 @@ return { 0,0 };
    void toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       //if (m_bDelayedButtonLayout)
       //{
 
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   on_layout(pgraphics);
 
       //}
 
@@ -1466,7 +1468,7 @@ return { 0,0 };
 
    void toolbar::_001OnSysColorChange(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // re-color bitmap for toolbar
 //      if (m_hInstImageWell != nullptr && m_hbmImageWell != nullptr)
       {
@@ -1614,14 +1616,14 @@ return { 0,0 };
 //            if(pData[i].fsState & TBSTATE_WRAP)
 //               ASSERT(false);
 //         }
-//         ::rectangle_i32 rectItem;
-//         ::rectangle_i32 rectSize(0, 0, 0, 0);
+//         ::rectangle_i32 rectangleItem;
+//         ::rectangle_i32 rectangleSize(0, 0, 0, 0);
 //         for (i = 0; i < nCount; i++)
 //         {
-//            GetItemRect(i, rectItem);
-//            rectSize.unite(rectSize, rectItem);
+//            GetItemRect(i, rectangleItem);
+//            rectangleSize.unite(rectangleSize, rectangleItem);
 //         }
-//         sizeResult = rectSize.size();
+//         sizeResult = rectangleSize.size();
 //
 //         delete[] pData;
 //      }
@@ -1679,7 +1681,7 @@ return { 0,0 };
 
       //// handle any delayed on_layout
       //if(m_bDelayedButtonLayout)
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   on_layout(pgraphics);
 
       if(iItem >= 0 && iItem < m_itema.get_size())
       {
@@ -1787,7 +1789,7 @@ return { 0,0 };
 
                auto pcontextimage = pcontext->context_image();
 
-               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), false);
+               item->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
 
             }
 

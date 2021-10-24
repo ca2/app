@@ -174,7 +174,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //      }
 //
-//      __throw(::exception::exception(m_strErrorMessage));
+//      __throw(::exception(m_strErrorMessage));
 //
 //   }
 //
@@ -234,7 +234,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //            set_value(pred());
 //
 //         }
-//         catch(const ::exception::exception & e)
+//         catch(const ::exception & e)
 //         {
 //
 //            set_error_message(e->get_message());
@@ -257,7 +257,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //   void wait(__pointer(THREAD) & pthread, const duration & duration = ::duration::infinite())
 //   {
 //
-//      millis tickStart = millis::now();
+//      ::duration tickStart = ::duration::now();
 //
 //      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
 //      {
@@ -279,7 +279,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //         if(!duration.is_infinite())
 //         {
 //
-//            if((millis::now() - tickStart) > duration.get_total_milliseconds())
+//            if((::duration::now() - tickStart) > duration.get_total_milliseconds())
 //            {
 //
 //               return;
@@ -360,7 +360,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 
 
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority)
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, ::duration durationTimeout, enum_priority epriority)
 {
 
    auto proutine = __sync_routine(pred);
@@ -388,7 +388,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //
 //
 //template < typename PRED >
-//void async_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, e_priority epriority)
+//void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, enum_priority epriority)
 //{
 //
 //   auto pobjectTask = __task_procedure(pred);
@@ -442,7 +442,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //
 //      }
 //
-//      __throw(::exception::exception(m_strErrorMessage));
+//      __throw(::exception(m_strErrorMessage));
 //
 //   }
 //
@@ -503,7 +503,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRE
 //               set_value(pred());
 //
 //            }
-//            catch(const ::exception::exception & e)
+//            catch(const ::exception & e)
 //            {
 //
 //               set_error_message(e.get_message());

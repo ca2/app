@@ -116,7 +116,11 @@ bool db_server::initialize()
 
    ::file::path str;
 
-   //str = pacmedir->system() / "database.sqlite";
+   //str =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "database.sqlite";
 
    if (papplication->is_system())
    {
@@ -272,7 +276,7 @@ void db_server::close()
 bool db_server::data_server_load(::database::client * pclient, ::database::key key, memory & memory, ::update * pupdate)
 {
 
-   UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(pobject);
 
    if (!load(calc_data_key(pclient, key), memory))
    {
@@ -291,7 +295,7 @@ bool db_server::data_server_save(::database::client * pclient, ::database::key k
 
    synchronous_lock synchronouslock(mutex());
 
-   UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(pobject);
 
    if (!save(calc_data_key(pclient, key), memory))
    {

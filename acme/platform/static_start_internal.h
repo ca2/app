@@ -45,13 +45,13 @@ namespace acme
 #ifdef WINDOWS
 
 
-   CLASS_DECL_ACME void set_simple_output_debug_string_a();
+   // CLASS_DECL_ACME void set_simple_output_debug_string_a();
 
-      CLASS_DECL_ACME void set_extended_output_debug_string_a();
+   //    CLASS_DECL_ACME void set_extended_output_debug_string_a();
 
-      CLASS_DECL_ACME void set_simple_output_debug_string_w();
+   //    CLASS_DECL_ACME void set_simple_output_debug_string_w();
 
-      CLASS_DECL_ACME void set_extended_output_debug_string_w();
+   //    CLASS_DECL_ACME void set_extended_output_debug_string_w();
 
 
       //#endif
@@ -100,7 +100,7 @@ namespace acme
    extern ::mutex * g_pmutexCred;
 
 
-   extern class ::exception::engine * g_pengine;
+   extern class ::exception_engine * g_pengine;
 
 
    extern ::mutex * g_pmutexMessageDispatch;
@@ -127,7 +127,7 @@ namespace acme
 //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
-   extern ::nanos g_nanosFirst;
+   extern ::nanosecond g_nanosecondFirst;
 
 //plex_heap_alloc_array * g_pplexheapallocarray;
 

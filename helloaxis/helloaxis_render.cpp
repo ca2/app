@@ -25,10 +25,10 @@ namespace helloaxis
       //m_bFirst23 = false;
       //m_bFastOnEmpty = true;
       //m_bFast = true;
-      //m_millisLastFast = 0;
-      //m_millisAnime = 2000;
-      //m_millisFastAnime = 500;
-      //m_millisLastOk = 0;
+      //m_durationLastFast = 0;
+      //m_durationAnime = 2000;
+      //m_durationFastAnime = 500;
+      //m_durationLastOk = 0;
 
 
 
@@ -120,7 +120,7 @@ namespace helloaxis
       //for (auto & bilbo : m_bilboa)
       //{
 
-      //   //m_pview->data_get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
+      //   //m_pimpact->data_get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
 
       //   i++;
 
@@ -139,9 +139,9 @@ namespace helloaxis
 
       return ::helloaura::render::run();
 
-//      ::parallelization::set_priority(::priority_time_critical);
+//      ::parallelization::set_priority(::e_priority_time_critical);
 //
-////      double dFps = m_pview->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
+////      double dFps = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_dFps;
 //
 //      double dFps = 0.2;
 //
@@ -195,7 +195,7 @@ namespace helloaxis
 //
 //            }
 //
-//            sleep(millis(dWait));
+//            sleep(::duration(dWait));
 //
 //            iLastFrameId = iFrameId;
 //
@@ -260,7 +260,7 @@ namespace helloaxis
 //
 //      //      i32 iCount = 30;
 //
-//      ::draw2d::brush_pointer brushText(e_create);
+//      auto pbrushText = __create < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -284,7 +284,7 @@ namespace helloaxis
 //
 //      }
 //
-//      double t= ::millis::now() / 1000.0;
+//      double t= ::duration::now() / 1000.0;
 //
 //      double w = 2.0 * 3.1415 / T;
 //
@@ -302,7 +302,7 @@ namespace helloaxis
 //
 //      }
 //
-//      pgraphics->set_font(m_font);
+//      pgraphics->set_font(m_pfont);
 //
 //      size = pgraphics->get_text_extent(strHelloAXIS);
 //
@@ -336,15 +336,15 @@ namespace helloaxis
 //
 //                  m_pimage->Fill(0, 0, 0, 0);
 //
-//                  m_pimage->g()->set_font(m_font);
+//                  m_pimage->g()->set_font(m_pfont);
 //
 //                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //                  m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//                  brushText->create_solid(argb(255, 255, 255, 255));
+//                  pbrushText->create_solid(argb(255, 255, 255, 255));
 //
-//                  m_pimage->g()->SelectObject(brushText);
+//                  m_pimage->g()->SelectObject(pbrushText);
 //
 //                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2, (m_cyCache1 - size_i32->cy) / 2, strHelloAXIS);
 //
@@ -430,14 +430,14 @@ namespace helloaxis
 //
 //      //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
 //
-//      pgraphics->set_font(m_font);
+//      pgraphics->set_font(m_pfont);
 //
 //      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
 //
-//         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
+//         pbrushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
 //      }
 //      else
@@ -446,19 +446,19 @@ namespace helloaxis
 //         if (m_bAlternate)
 //         {
 //
-//            brushText->create_solid(argb(255, 184, 184, 177));
+//            pbrushText->create_solid(argb(255, 184, 184, 177));
 //
 //         }
 //         else
 //         {
 //
-//            brushText->create_solid(argb(255, 255, 255, 255));
+//            pbrushText->create_solid(argb(255, 255, 255, 255));
 //
 //         }
 //
 //      }
 //
-//      pgraphics->SelectObject(brushText);
+//      pgraphics->SelectObject(pbrushText);
 //
 //      //if(!m_bAlternate)
 //      {
@@ -502,7 +502,7 @@ namespace helloaxis
 //
 //      //      i32 iCount = 30;
 //
-//      ::draw2d::brush_pointer brushText(e_create);
+//      auto pbrushText = __create < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -526,7 +526,7 @@ namespace helloaxis
 //
 //      }
 //
-//      double t= ::millis::now() / 1000.0;
+//      double t= ::duration::now() / 1000.0;
 //
 //      double w = 2.0 * 3.1415 / T;
 //
@@ -565,7 +565,7 @@ namespace helloaxis
 //
 //
 //
-//      pgraphics->set_font(m_font);
+//      pgraphics->set_font(m_pfont);
 //
 //      string strHelloAXIS = get_helloaura();
 //
@@ -602,11 +602,11 @@ namespace helloaxis
 //
 //            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            brushText->create_solid(argb(255, 255, 255, 255));
+//            pbrushText->create_solid(argb(255, 255, 255, 255));
 //
-//            m_pimage->g()->SelectObject(brushText);
+//            m_pimage->g()->SelectObject(pbrushText);
 //
-//            m_pimage->g()->set_font(m_font);
+//            m_pimage->g()->set_font(m_pfont);
 //
 //            m_pimage->g()->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient->height() - size_i32->cy) / 2, strHelloAXIS);
 //
@@ -652,7 +652,7 @@ namespace helloaxis
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
 //
-//         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
+//         pbrushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
 //      }
 //      else
@@ -661,19 +661,19 @@ namespace helloaxis
 //         if (m_bAlternate)
 //         {
 //
-//            brushText->create_solid(argb(255, 184, 184, 177));
+//            pbrushText->create_solid(argb(255, 184, 184, 177));
 //
 //         }
 //         else
 //         {
 //
-//            brushText->create_solid(argb(255, 255, 255, 255));
+//            pbrushText->create_solid(argb(255, 255, 255, 255));
 //
 //         }
 //
 //      }
 //
-//      pgraphics->SelectObject(brushText);
+//      pgraphics->SelectObject(pbrushText);
 //
 //      pgraphics->text_out((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS);
 //
@@ -846,7 +846,7 @@ namespace helloaxis
 //
 //            if (!m_bFirst23)
 //            {
-// auto m_tick23 = ::millis::now();
+// auto m_tick23 = ::duration::now();
 //               m_uiCurrent23 = 0;
 //               m_strLast23.Empty();
 //               m_strCurrent23.Empty();
@@ -964,9 +964,9 @@ namespace helloaxis
 //
 //            {
 //
-//               //synchronous_lock slText(&m_pview->m_mutexText);
+//               //synchronous_lock slText(&m_pimpact->m_mutexText);
 //
-//               //strHelloAXIS = m_pview->get_processed_helloaura().c_str();
+//               //strHelloAXIS = m_pimpact->get_processed_helloaura().c_str();
 //
 //               strHelloAXIS = "Hello Axis!!";
 //
@@ -977,9 +977,9 @@ namespace helloaxis
 //
 //               float fHeight = 100.0;
 //
-//               ::write_text::font_pointer font(e_create);
+//               auto pfont = __create < ::write_text::font > ();
 //
-//               font->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
+//               pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 //
 //               pgraphics->set_font(font);
 //
@@ -989,9 +989,9 @@ namespace helloaxis
 //
 //               double ratey = fHeight * 0.84 / size.cy;
 //
-//               font->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+//               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
 //
-//               m_font = font;
+//               m_pfont = font;
 //
 //               m_bNewLayout = false;
 //
@@ -1003,13 +1003,13 @@ namespace helloaxis
 //
 //            ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
-//            ::draw2d::brush_pointer brush(e_create);
+//            auto pbrush = __create < ::draw2d::brush >();
 //
-//            brush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
+//            pbrush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
 //            pgraphics->SelectObject(brush);
 //
-//            pgraphics->set_font(m_font);
+//            pgraphics->set_font(m_pfont);
 //
 //            pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
@@ -1025,12 +1025,12 @@ namespace helloaxis
 //
 //      }
 //
-//      //::u32 dw= ::millis::now();
+//      //::u32 dw= ::duration::now();
 //
-//      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
+//      if (m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
 //      {
 //
-////         synchronous_lock sl1(m_pview->get_wnd()->mutex());
+////         synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
 //
 //         synchronous_lock slDraw(&m_mutexDraw);
 //
@@ -1041,9 +1041,9 @@ namespace helloaxis
 //
 //            {
 //
-//               //synchronous_lock slText(&m_pview->m_mutexText);
+//               //synchronous_lock slText(&m_pimpact->m_mutexText);
 //
-//               //helloaura_fast_render(m_pview->get_processed_helloaura());
+//               //helloaura_fast_render(m_pimpact->get_processed_helloaura());
 //               helloaura_fast_render("Hello Axis!!");
 //
 //            }
@@ -1055,7 +1055,7 @@ namespace helloaxis
 //         if (m_bFast || !m_bFirstDone)
 //         {
 //
-//            m_millisLastFast= ::millis::now();
+//            m_durationLastFast= ::duration::now();
 //
 //         }
 //
@@ -1065,18 +1065,18 @@ namespace helloaxis
 //
 //         //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 //
-////         m_pview->m_bOkPending = true;
+////         m_pimpact->m_bOkPending = true;
 //
 //         return;
 //
 //   }
 
-      //if (m_pview->m_bOkPending)
+      //if (m_pimpact->m_bOkPending)
       //{
 
-      //   m_pview->m_bOkPending = false;
+      //   m_pimpact->m_bOkPending = false;
 
-      //   m_millisLastOk= ::millis::now();
+      //   m_durationLastOk= ::duration::now();
 
       //}
 
@@ -1095,12 +1095,12 @@ namespace helloaxis
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //if (m_millisLastOk.elapsed() < m_millisAnime)
+      //if (m_durationLastOk.elapsed() < m_durationAnime)
       //{
 
       //   byte uchAlpha;
 
-      //   uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+      //   uchAlpha = byte(maximum(0, minimum(255, (m_durationLastOk.elapsed()) * 255 / m_durationAnime)));
 
 /*      //   psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1140,7 +1140,7 @@ namespace helloaxis
       //      if (!m_mapDib23[strImage].load_image(strImage, true, true))
       //      {
 
-      //         __throw(::exception::exception("Failed to load \"" + strImage + "\""));
+      //         __throw(::exception("Failed to load \"" + strImage + "\""));
 
       //      }
 
@@ -1168,7 +1168,7 @@ namespace helloaxis
 //
 //            bilbo.m_b = true;
 //
-////            m_pview->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+////            m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 //
 //         }
 //         else if (!bilbo.m_bNew && bilbo.m_b)
@@ -1178,7 +1178,7 @@ namespace helloaxis
 //
 //            bilbo.m_b = false;
 //
-////            m_pview->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+////            m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 //
 //         }
 //
@@ -1202,9 +1202,9 @@ namespace helloaxis
 
       return ::helloaura::render::in_anime();
 
-      //if (m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
+      //if (m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
       //   return true;
-      //if (m_millisLastOk.elapsed() < m_millisAnime)
+      //if (m_durationLastOk.elapsed() < m_durationAnime)
       //   return true;
       //return false;
    }
@@ -1239,9 +1239,9 @@ namespace helloaxis
 //
 //      float fHeight = 100.0;
 //
-//      ::write_text::font_pointer font(e_create);
+//      auto pfont = __create < ::write_text::font > ();
 //
-////      font->create_pixel_font(m_pview->m_strFont, fHeight, e_font_weight_bold);
+////      pfont->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 //
 //      pgraphics->set_font(font);
 //
@@ -1251,31 +1251,31 @@ namespace helloaxis
 //
 //      double ratey = fHeight * 0.84 / size.cy;
 //
-////      font->create_pixel_font(m_pview->m_strFont, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
+////      pfont->create_pixel_font(m_pimpact->m_strFont, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx), e_font_weight_bold);
 //
 //      m_dMinRadius = maximum(1.0, minimum(m_rectangleClient.height() * ratey, m_rectangleClient.width() * size.cy * ratey / size.cx) / 46.0);
 //
 //      m_dMaxRadius = m_dMinRadius * 2.3;
 //
-//      m_font = font;
+//      m_pfont = font;
 //
-//      pgraphics->set_font(m_font);
+//      pgraphics->set_font(m_pfont);
 //
 //      size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      ::draw2d::path_pointer path(e_create);
+//      auto ppath = __create < ::draw2d::path > ();
 //
-//      path->m_bFill = false;
+//      ppath->m_bFill = false;
 //
-//      path->add_string((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS, m_font);
+//      ppath->add_string((m_rectangleClient.width() - size.cx) / 2, (m_rectangleClient.height() - size.cy) / 2, strHelloAXIS, m_pfont);
 //
-//      ::draw2d::pen_pointer pen(e_create);
+//      auto ppen = __create < ::draw2d::pen > ();
 //
-//      pen->create_solid(1.0, argb(255, 90, 90, 80));
+//      ppen->create_solid(1.0, argb(255, 90, 90, 80));
 //
-//      ::draw2d::pen_pointer penW(e_create);
+//      auto ppenW = __create < ::draw2d::pen > ();
 //
-//      penW->create_solid(3.0, argb(84, 255, 255, 255));
+//      ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //
@@ -1283,8 +1283,8 @@ namespace helloaxis
 //
 //      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      pgraphics->draw_path(path, penW);
-//      pgraphics->draw_path(path, pen);
+//      pgraphics->draw_path(path, ppenW);
+//      pgraphics->draw_path(ppath, ppen);
 //      //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }

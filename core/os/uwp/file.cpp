@@ -2,10 +2,10 @@
 #include "_uwp.h"
 
 
-CLASS_DECL_CORE memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
+CLASS_DECL_CORE memsize read_buffer(void* p, ::winrt::Windows::Storage::Streams::IBuffer^ ibuf, memsize size, memsize pos)
 {
    
-   Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
+   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
    
    Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
    
@@ -39,7 +39,7 @@ CLASS_DECL_CORE memsize read_buffer(void* p, ::Windows::Storage::Streams::IBuffe
 }
 
 
-CLASS_DECL_CORE memory_file_pointer create_memory_file(::Windows::Storage::Streams::IInputStream^ stream)
+CLASS_DECL_CORE memory_file_pointer create_memory_file(::winrt::Windows::Storage::Streams::IInputStream^ stream)
 {
 
    auto pfile = create_memory_file();
@@ -49,9 +49,9 @@ CLASS_DECL_CORE memory_file_pointer create_memory_file(::Windows::Storage::Strea
    while (pthread && pthread->task_get_run())
    {
 
-      ::Windows::Storage::Streams::IBuffer^ buffer = ref new ::Windows::Storage::Streams::Buffer(1_mb);
+      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
 
-      ::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::Windows::Storage::Streams::InputStreamOptions::None));
+      ::winrt::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 
       memory mem;
 

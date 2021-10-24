@@ -11,7 +11,7 @@
 //inline void __var_exchange(var_stream & s, const ::id & id, u64 & u) { s.default_exchange(id, u); }
 //inline void __var_exchange(var_stream & s, const ::id & id, float & f) { s.default_exchange(id, f); }
 //inline void __var_exchange(var_stream & s, const ::id & id, double & d) { s.default_exchange(id, d); }
-//inline void __var_exchange(var_stream & s, const ::id & id, ::datetime::time & time) { s.default_exchange(id, time.m_time); }
+//inline void __var_exchange(var_stream & s, const ::id & id, ::datetime::time & time) { s.default_exchange(id, time.m_iSecond); }
 //inline void __var_exchange(var_stream & s, const ::id & id, const char * psz) { s.write_only(id, psz); }
 //inline void __var_exchange(var_stream & s, const ::id & id, string & str) { s.default_exchange(id, str); }
 //inline void __var_exchange(var_stream & s, const ::id & id, ::file::path & path) { s.default_exchange(id, path); }
@@ -38,7 +38,7 @@ inline void __exchange(::var_stream& s, u32& u) { s.default_exchange(u); }
 inline void __exchange(::var_stream& s, u64& u) { s.default_exchange(u); }
 inline void __exchange(::var_stream& s, float& f) { s.default_exchange(f); }
 inline void __exchange(::var_stream& s, double& d) { s.default_exchange(d); }
-inline void __exchange(::var_stream& s, ::datetime::time& time) { s.default_exchange(time.m_time); }
+inline void __exchange(::var_stream& s, ::datetime::time& time) { s.default_exchange(time.m_i); }
 inline void __exchange(::var_stream& s, const char* psz) { s.write_only(psz); }
 inline void __exchange(::var_stream& s, string& str) { s.default_exchange(str); }
 inline void __exchange(::var_stream& s, ::file::path& path) { s.default_exchange(path); }

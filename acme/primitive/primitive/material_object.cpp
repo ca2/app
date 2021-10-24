@@ -9,7 +9,7 @@ material_object::~material_object()
 
 //__transport(task) material_object::branch(
 //   ::matter* pmatter,
-//   ::e_priority epriority,
+//   ::enum_priority epriority,
 //   u32 nStackSize,
 //   u32 dwCreateFlags
 //   ARG_SEC_ATTRS)
@@ -28,19 +28,48 @@ material_object::~material_object()
 //}
 
 
-::string material_object::to_string() const
+::string material_object::get_string() const
 {
 
-   return type_c_str();
+   return __type_name(this);
 
 }
 
 
 // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-::e_status material_object::command_handler(const ::id & id)
+::e_status material_object::handle_command(const ::id & id)
 {
    
    return ::success_none;
    
 }
+
+
+bool material_object::is_branch_current() const
+{
+
+   return true;
+
+}
+
+
+::e_status material_object::post_routine(const ::routine & routine)
+{
+
+   throw ::interface_only_exception();
+
+   return error_interface_only;
+
+}
+
+
+::e_status material_object::send_routine(const ::routine & routine)
+{
+
+   return __send_routine(this, &material_object::post_routine, routine);
+
+   //return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+
+}
+
 

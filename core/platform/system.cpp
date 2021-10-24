@@ -2,7 +2,7 @@
 #include "acme/platform/static_setup.h"
 #include "core/user/user/_user.h"
 #include "core/const/idpool.h"
-#include "core/net/ftp/file_status.h"
+#include "core/networking/ftp/file_status.h"
 
 
 bool __rich_text_initialize();

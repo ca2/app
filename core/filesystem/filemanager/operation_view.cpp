@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -22,7 +24,7 @@ namespace filemanager
    {
       pmessage->previous();
 
-      get_document()->m_thread.m_pview = this;
+      get_document()->m_thread.m_pimpact = this;
 
       m_pviewcreator = __new(::user::impact_creator());
 
@@ -39,7 +41,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         message_box("Could not create transfer list ::user::impact");
+         output_error_message("Could not create transfer list ::user::impact");
 
       }
 
@@ -49,7 +51,7 @@ namespace filemanager
       m_pinfoview = create_view < operation_info_view >();
       if(m_pinfoview == nullptr)
       {
-         message_box("Could not create transfer information ::user::impact");
+         output_error_message("Could not create transfer information ::user::impact");
       }
       SetPane(1,m_pinfoview,false);
 
@@ -85,7 +87,7 @@ namespace filemanager
 
    void operation_view::on_message_destroy(::message::message *pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 

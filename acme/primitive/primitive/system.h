@@ -10,7 +10,7 @@ namespace apex
       virtual public class ::system,
       virtual public ::apex::context
 #ifndef WINDOWS
-      ,virtual public ::exception::translator
+      ,virtual public ::exception_translator
 #endif
    {
    public:
@@ -105,7 +105,7 @@ namespace apex
 
       bool                                               m_bGudoNetCache;
 
-      __composite(::process::department)                 m_pprocess;
+      __composite(::operating_system::department)                 m_pprocess;
 
       __composite(::parallelization::threading)           m_pthreading;
       ::e_display                                         m_edisplay;
@@ -124,8 +124,8 @@ namespace apex
       string                                             m_strInstallVersion;
       string                                             m_strInstallPlatform;
 
-      millis                                               m_millisMainStart;
-      millis                                               m_millisAfterApplicationFirstRequest;
+      ::duration                                               m_durationMainStart;
+      ::duration                                               m_durationAfterApplicationFirstRequest;
 
       //::mutex                                 m_spmutexOpenweatherCity;
 
@@ -144,7 +144,7 @@ namespace apex
 
       string_array                                            m_straCommandLineAccumul;
       string_array                                            m_straCommandLineExtra;
-      millis                                               m_millisCommandLineLast;
+      ::duration                                               m_durationCommandLineLast;
       int                                                m_iCommandLineDelay;
       ::task_pointer                                m_pthreadCommandLine;
 
@@ -226,7 +226,7 @@ namespace apex
 
 #ifdef _UWP
 
-      Agile < Windows::UI::Core::CoreWindow >      m_window;
+      Agile < ::winrt::Windows::UI::Core::CoreWindow >      m_window;
 
 #endif
 
@@ -293,12 +293,12 @@ namespace apex
       //virtual ::e_status create_gpu();
 
 
-      //::task_group * task_group(::e_priority epriority = ::priority_none);
+      //::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 
       //::task_tool * task_tool(::enum_task_tool etool);
 
 
-      virtual __pointer(::subject::subject) new_subject(const MESSAGE& message);
+      virtual __pointer(::subject) new_subject(const MESSAGE& message);
 
       //virtual string install_get_platform() override;
       //virtual void install_set_platform(const char * pszPlatform) override;
@@ -405,7 +405,7 @@ namespace apex
       virtual string url_encode(const ::string & str);
 
 
-      virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
+      void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
 
@@ -413,7 +413,7 @@ namespace apex
 
 
       //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-      //thread_tools * tools(::e_priority epriority);
+      //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       // apex commented
@@ -447,7 +447,7 @@ namespace apex
 
 
       ::apex::str                                  &  str();
-      ::process::department                        &  process();
+      ::operating_system::department                        &  process();
 
       //using acme::system::process;
 
@@ -738,7 +738,7 @@ namespace apex
 
       virtual bool merge_accumulated_on_open_file(::create * pcreate);
 
-      virtual bool on_open_file(::payload varFile, string strExtra);
+      virtual bool on_open_file(::payload payloadFile, string strExtra);
 
       // apex commented
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
@@ -909,7 +909,7 @@ namespace apex
 
 
 
-//      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
+//      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
 
 
 
@@ -993,8 +993,8 @@ namespace apex
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
-      virtual void on_subject(::subject::subject * psubject) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void on_subject(::subject * psubject) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       // virtual void on_command_create(::create* pcreate);
 

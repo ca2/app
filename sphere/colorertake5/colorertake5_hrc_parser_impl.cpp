@@ -38,7 +38,7 @@ namespace colorertake5
       {
          parseHRC(pszSource);
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          __rethrow(pexception);

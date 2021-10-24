@@ -7,11 +7,11 @@ int main(int argc, char * argv[], char * envp[])
 
    string strAppId = executable_get_app_id();
 
-   ::apex::node * pnode = nullptr;
+   __pointer(::apex::node) pnode;
 
    {
 
-      auto psystem = platform_create_system(strAppId);
+      auto psystem = platform_create_system(strAppId); // new:platform_create_system
 
       auto papplicationStartup = psystem->new_application(strAppId);
 
@@ -47,12 +47,14 @@ int main(int argc, char * argv[], char * envp[])
       //
       //   return iErrorStatus;
 
-      auto estatus = psystem->init_system();
+      auto estatus = psystem->call_init_system();
 
       if (!estatus)
       {
 
-         return estatus.error_status();
+         auto iExitCode = estatus.exit_code();
+
+         return iExitCode;
 
       }
 
@@ -66,9 +68,9 @@ int main(int argc, char * argv[], char * envp[])
 
    auto estatus = pnode->main();
 
-   ::i32 iErrorStatus = estatus.error_status();
+   ::i32 iExitCode = estatus.exit_code();
 
-   return iErrorStatus;
+   return iExitCode;
 
 }
 

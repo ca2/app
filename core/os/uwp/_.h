@@ -12,11 +12,11 @@
 
 //#ifndef _UWP
 //
-//CLASS_DECL_CORE void WINAPI sleep(::u32 dwMilliseconds);
+//CLASS_DECL_CORE void WINAPI sleep(::u32 dw::durations);
 //
 //#endif
 
-/*#define GetAValue(rgb)      (LOBYTE((rgb)>>24))
+/*#define GetAValue(rgb)      (__LOBYTE((rgb)>>24))
 #define argb(a, r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)|(((::u32)(byte)(a))<<24)))*/
 
 
@@ -43,7 +43,7 @@ CLASS_DECL_CORE oswindow set_focus(oswindow oswindow);
 CLASS_DECL_CORE void attach_thread_input_to_main_thread(int_bool bAttach);
 
 
-//CLASS_DECL_CORE ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dwMilliseconds );
+//CLASS_DECL_CORE ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations );
 
 
 

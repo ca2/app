@@ -1,4 +1,4 @@
-//
+﻿//
 //  property_object.h
 //  apex
 //
@@ -17,10 +17,10 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   ::e_status                                         m_estatus;
+   ::e_status                                      m_estatus;
    __pointer(::id_map < ::routine_array >)         m_pmapPropertyRoutine;
    __pointer(::i64_array)                          m_pia;
-   __pointer(property_set)                            m_ppropertyset;
+   __pointer(property_set)                         m_ppropertyset;
 
 
    property_object() { }
@@ -73,10 +73,10 @@ public:
    virtual void exchange(::stream & stream) override;
 
 
-   virtual ::e_status handle_exception(const ::exception::exception& e);
+   virtual ::e_status handle_exception(const ::exception& e);
 
 
-   virtual void add_exception(const ::exception::exception & e);
+   virtual void add_exception(const ::exception & e);
    virtual void on_catch_all_exception();
 
 
@@ -87,7 +87,7 @@ public:
 
 
 
-   inline bool is_status_ok() const { return (bool)m_estatus; }
+   inline bool is_status_ok() const { return m_estatus; }
    inline bool has_failed_status() const { return !is_status_ok(); }
 
 
@@ -101,14 +101,14 @@ public:
 //
 //#else
 
-   inline ::routine_array & _routine_array(const ::id& id);
+   //inline ::routine_array * _routine_array(const ::id& id);
 
-   inline ::routine_array & routine_array(const ::id& id);
+   ::routine_array * routine_array(const ::id& id, bool bCreate = false);
 
 //#endif
 
 
-   inline void add_routine(const ::id& id, const ::routine& routine);
+   ::e_status add_routine(const ::id& id, const ::routine& routine);
 
 
 

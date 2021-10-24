@@ -46,11 +46,11 @@ public:
 
    void erase(index index);
 
-   virtual synchronization_result wait();
+   virtual ::e_status wait();
 
-   virtual synchronization_result wait(const duration & duration, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::e_status wait(const class ::wait & wait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
-   virtual synchronization_result contains(const synchronization_result & result) const;
+   virtual ::e_status contains(const ::e_status & result) const;
 
    synchronization_array & operator = (const synchronization_array & synca);
 

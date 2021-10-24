@@ -1,9 +1,12 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
 
 
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
 //#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
@@ -67,20 +70,20 @@ namespace userex
    }
 
 
-   void home_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void home_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
 
-   void home_view::on_control_event(::user::control_event * pevent)
-   {
+   //void home_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::user::impact::on_control_event(pevent);
+   //   ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    void home_view::on_message_create(::message::message * pmessage)
@@ -90,11 +93,11 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //::draw2d::pen_pointer pen(e_create);
+      //auto ppen = __create < ::draw2d::pen > ();
 
-      //pen->create_solid(1.0, argb(255, 255, 255, 255));
+      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(pen);
+      //m_pimageBeam->g()->set(ppen);
 
       //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
 
@@ -121,7 +124,7 @@ namespace userex
    void home_view::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::show_window) pshowwindow(pmessage);
 
    }
@@ -177,7 +180,7 @@ namespace userex
    void home_view::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -195,7 +198,7 @@ namespace userex
    void home_view::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -213,17 +216,17 @@ namespace userex
 
       pwindowing->release_mouse_capture();
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_eevent = ::user::e_event_after_change_cur_sel;
+      subject.m_id = ::e_subject_after_change_cur_sel;
 
-      ev.m_id = m_idView;
+      subject.m_id = m_idView;
 
-      ev.m_puserinteraction = this;
+      subject.m_puserelement = this;
 
-      ev.m_actioncontext = ::e_source_user;
+      subject.m_actioncontext = ::e_source_user;
 
-      on_control_event(&ev);
+      route(&subject);
 
    }
 
@@ -231,7 +234,7 @@ namespace userex
    void home_view::on_message_mouse_move(::message::message * pmessage)
    {
 
-      //auto pmouse = pmessage->m_pmouse;
+      //auto pmouse = pmessage->m_union.m_pmouse;
 
    }
 
@@ -252,27 +255,27 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectColors;
+      ::rectangle_i32 rectangleColors;
 
-      get_client_rect(rectColors);
+      get_client_rect(rectangleColors);
 
       //if (!m_bCompact)
       //{
 
-      //   rectColors.left = rectangleClient.center().x;
-      //   rectColors.bottom = rectangleClient.center().y;
+      //   rectangleColors.left = rectangleClient.center().x;
+      //   rectangleColors.bottom = rectangleClient.center().y;
 
-      //   rectColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
+      //   rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 
       //}
 
-      //m_rectColors = rectColors;
+      //m_rectangleColors = rectangleColors;
 
-      //m_pimage = create_image({m_rectColors->width() / 2,  m_rectColors->height()});
+      //m_pimage = create_image({m_rectangleColors->width() / 2,  m_rectangleColors->height()});
 
       //m_pimage->g()->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
-      //m_pimageLuminance = create_image({m_rectColors->width() / 8,  m_rectColors->height()});
+      //m_pimageLuminance = create_image({m_rectangleColors->width() / 8,  m_rectangleColors->height()});
 
       //rebuild_luminance();
 

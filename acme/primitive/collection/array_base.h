@@ -38,8 +38,10 @@ CONTAINER_TYPE CONTAINER
 DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
-::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); } \
+::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
+::index add_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add(a); } \
 ::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
+::index add_unique_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add_unique(a); } \
 ::index erase_ ## ITEM(TYPE * p) { return CONTAINER.erase(p); } \
 CONTAINER_TYPE ITEM ## a_section(::index iStart = 0, ::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
 template < typename ARRAY > \
@@ -541,13 +543,12 @@ public:
    ::index erase_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
 
-
    ::index make_room_at(::index nIndex, ::count nCount = 1);
 
    
    TYPE pick_at(::index nIndex);
-   TYPE pick_first(::index nIndex = 0) { return pick_at(nIndex); }
-   TYPE pick_last(::index nIndex = -1) { return pick_at(m_nSize + nIndex); }
+   TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
+   TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(m_nSize + nIndex)); }
    array_base pick_at(::index nIndex, ::count nCount);
 
 

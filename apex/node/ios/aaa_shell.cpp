@@ -43,7 +43,7 @@ namespace ios
 //                                      [&]()
 //         {
 //
-//            ::parallelization::set_priority(::priority_highest);
+//            ::parallelization::set_priority(::e_priority_highest);
 //            shell_run();
 //
 //         }));
@@ -642,7 +642,11 @@ namespace ios
 ////
 ////                     string strIcon;
 ////
-////                     strIcon = pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
+////                     strIcon =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "ios/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 ////
 ////                     for (auto iSize : m_iaSize)
 ////                     {
@@ -1317,7 +1321,11 @@ namespace ios
 //
 //      ::str::international::unicode_to_utf8(strPath, lpcszPath);
 //
-//      if (dir::is(strPath))
+//      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
 //      {
 //         return folder_file_system;
 //      }
@@ -1363,7 +1371,7 @@ namespace ios
    //               for (auto & folder : m_mapFolder)
    //               {
 
-   //                  if (folder.element2().m_millisStart.elapsed() > 30000)
+   //                  if (folder.element2().m_durationStart.elapsed() > 30000)
    //                  {
 
    //                     m_mapFolder.erase_key(folder.element1());
@@ -1880,7 +1888,7 @@ namespace ios
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point(), 0);
+//            m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
 //            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 //            m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
 //            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1895,10 +1903,10 @@ namespace ios
 //            pimage = create_image(s);
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//            pimage->get_graphics()->draw(::point(), d.size(), d.get_graphics());
+//            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
 //            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//            m_pil[iSize]->m_pimage->g()->draw(::point(), d->size(), pimage->get_graphics());
+//            m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         }
@@ -1999,7 +2007,11 @@ namespace ios
 
       string strPath(lpcszPath);
 
-      if (dir::is(strPath))
+      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
       {
          return folder_file_system;
       }

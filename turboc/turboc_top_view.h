@@ -13,16 +13,16 @@ namespace turboc
 
       edit_view *             m_peditview;
       toggle_view *           m_ptoggleview;
-      view *                  m_pview;
+      impact *                  m_pimpact;
 
 
       top_view(::object * pobject);
       virtual ~top_view();
 
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       void on_create_split_impact();
 

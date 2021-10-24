@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 
 
 namespace filemanager
@@ -30,12 +33,8 @@ namespace filemanager
    }
 
 
-   bool child_frame::on_create_bars()
+   ::e_status child_frame::on_create_bars()
    {
-
-      //auto pdocument = get_active_document();
-
-      //return pdocument->on_create_bars(this);
 
       return ::simple_frame_window::on_create_bars();
 
@@ -50,10 +49,10 @@ namespace filemanager
    }
 
 
-   void child_frame::route_command_message(::message::command * pcommand)
+   void child_frame::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      simple_child_frame::route_command_message(pcommand);
+      simple_child_frame::route_command(pcommand);
 
    }
 
@@ -114,7 +113,7 @@ namespace filemanager
    void child_frame::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

@@ -58,14 +58,14 @@ namespace experience
       try
       {
 
-         if (string(type_name()).contains_ci("control_box"))
+         if (__type_name(this).contains_ci("control_box"))
          {
 
             output_debug_string("control_box");
 
          }
 
-         ::rectangle_i32 rectClip;
+         ::rectangle_i32 rectangleClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
@@ -81,7 +81,7 @@ namespace experience
             rectangleClient.bottom++;
             rectangleClient.right++;
 
-            rectClip = rectangleClient;
+            rectangleClip = rectangleClient;
 
             bFirst = false;
 
@@ -94,20 +94,20 @@ namespace experience
             
             ::user::interaction * pinteraction = this;
 
-            ::rectangle_i32 rectFocus;
+            ::rectangle_i32 rectangleFocus;
 
             index i = 0;
 
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_client_rect(rectFocus);
+               pinteraction->get_client_rect(rectangleFocus);
 
-               pinteraction->client_to_host(rectFocus);
+               pinteraction->client_to_host(rectangleFocus);
 
-               host_to_client(rectFocus);
+               host_to_client(rectangleFocus);
 
-               m_pshapeaClip->add_item(__new(rectangle_shape(rectFocus)));
+               m_pshapeaClip->add_item(__new(rectangle_shape(rectangleFocus)));
                
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
@@ -127,14 +127,14 @@ namespace experience
       catch (...)
       {
 
-         __throw(::exception::exception("no more a u"));
+         throw ::exception(error_failed, "no more a u");
 
       }
 
    }
 
 
-   void button::on_hit_test(::user::item & item)
+   void button::on_hit_test(::item & item)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -148,7 +148,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               item = ::user::e_element_non_client;
+               item = ::e_element_non_client;
 
                return;
 
@@ -161,7 +161,7 @@ namespace experience
             if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
             {
 
-               item = ::user::e_element_non_client;
+               item = ::e_element_non_client;
 
                return;
 

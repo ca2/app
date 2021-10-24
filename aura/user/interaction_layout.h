@@ -46,14 +46,14 @@ namespace user
 
       enumeration < enum_flag >                          m_eflag;
       bool                                      m_bFillParent;
-      ::rectangle_i32                                    m_rectHint;
-      ::rectangle_i32                                    m_rectPadding;
+      ::rectangle_i32                                    m_rectangleHint;
+      ::rectangle_i32                                    m_rectanglePadding;
       int                                       m_iCellPadding;
       ::size_i32                                    m_sizeSpan;
       ::size_f64                                   m_sizeWeight;
 
 
-      millis                                      m_millisLastSketchToDesign;
+      ::duration                                      m_durationLastSketchToDesign;
       enum_layout_experience                       m_elayoutexperience;
 
 

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   main_view::main_view(::object * pobject):
+   main_impact::main_impact(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -15,13 +15,13 @@ namespace turboc
    }
 
 
-   main_view::~main_view()
+   main_impact::~main_impact()
    {
 
    }
 
 
-   void main_view::assert_valid() const
+   void main_impact::assert_valid() const
    {
 
       ::user::split_view::assert_valid();
@@ -29,7 +29,7 @@ namespace turboc
    }
 
 
-   void main_view::dump(dump_context & dumpcontext) const
+   void main_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_view::dump(dumpcontext);
@@ -37,13 +37,13 @@ namespace turboc
    }
 
 
-   void main_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void main_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
-   void main_view::on_create_split_impact()
+   void main_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -70,7 +70,7 @@ namespace turboc
          if(m_ptopview == NULL)
          {
 
-            message_box(NULL,"Could not create folder edit view");
+            message_box(NULL,"Could not create folder edit impact");
 
          }
 
@@ -78,29 +78,29 @@ namespace turboc
 
       }
 
-      //m_pview = create_view < lite_view >();
+      //m_pimpact = create_view < lite_view >();
 
-      m_pview = create_view < view >();
+      m_pimpact = create_view < impact >();
 
-      if(m_pview == NULL)
+      if(m_pimpact == NULL)
       {
 
          message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 
-      m_ptopview->m_pview = m_pview;
+      m_ptopview->m_pimpact = m_pimpact;
 
 
       if(papplication->m_bMultiverseChat)
       {
-         SetPane(1,m_pview,false);
+         SetPane(1,m_pimpact,false);
 
       }
 
       else
       {
-         SetPane(1,m_pview,false);
+         SetPane(1,m_pimpact,false);
       }
 
 
@@ -108,26 +108,26 @@ namespace turboc
 
 
 
-   void main_view::on_control_event(::user::control_event * pevent)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "turboc_toggle")
+         if(psubject->user_element_id() == "turboc_toggle")
          {
 
-            if(m_pview->m_bLite && !papplication->m_bLoadAiFont)
+            if(m_pimpact->m_bLite && !papplication->m_bLoadAiFont)
             {
 
                papplication->load_ai_font();
 
             }
 
-            m_pview->m_bLite = !m_pview->m_bLite;
+            m_pimpact->m_bLite = !m_pimpact->m_bLite;
 
 
-            m_pview->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(pgraphics);
 
          }
 

@@ -222,6 +222,6 @@ namespace file
 //inline memsize stream::gcount() { return m_gcount; }
 //inline filesize stream::tellg() { return m_p->tell(); }
 //inline stream & stream::seekg(filesize position) { m_p->seek_from_begin(position); return *this; }
-//inline stream & stream::seekg(filesize offset, ::file::e_seek eseek) { m_p->seek(offset, eseek); return *this; }
+//inline stream & stream::seekg(filesize offset, ::enum_seek eseek) { m_p->seek(offset, eseek); return *this; }
 
 //inline filesize stream::get_left() const { return m_p->get_length() - m_p->get_position(); }

@@ -9,17 +9,12 @@ namespace experience
    {
 
 
-      frame::frame() :
-         m_penText1(e_create),
-         m_penFace1(e_create),
-         m_penHilight1(e_create),
-         m_penShadow1(e_create),
-         m_penDkShadow1(e_create)
+      frame::frame()
       {
 
          m_colorActiveCaptionTextBk = 0;
 
-         m_rectMarginNormal.set(1, 1, 1, 1);
+         m_rectangleMarginNormal.set(1, 1, 1, 1);
 
          m_colorCaptionText = argb(255, 255, 255, 255);
 
@@ -43,7 +38,7 @@ namespace experience
       void frame::OnMove(__pointer(::user::interaction) pframewindow)
       {
 
-         UNREFERENCED_PARAMETER(pframewindow);
+         __UNREFERENCED_PARAMETER(pframewindow);
 
       }
 
@@ -57,7 +52,7 @@ namespace experience
 
          ::rectangle_i32 rectangleClient(rectangle);
 
-         ::rectangle_i32 rectInflate;
+         ::rectangle_i32 rectangleInflate;
 
          if (rectangleClient.area() <= 0)
          {
@@ -70,14 +65,14 @@ namespace experience
 
          //i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
-         //rectInflate = rectangleClient;
-         //rectInflate.inflate(iInflate, iInflate);
+         //rectangleInflate = rectangleClient;
+         //rectangleInflate.inflate(iInflate, iInflate);
 
          ////__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
 
-         //::rectangle_i32 rectScreen;
+         //::rectangle_i32 rectangleScreen;
 
-         //pframewindow->best_monitor(rectScreen);
+         //pframewindow->best_monitor(rectangleScreen);
 
          //::image_pointer pimage;
 
@@ -86,8 +81,8 @@ namespace experience
          //pimage = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
 
          //pimage2 = create_image({rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2});
-         //::rectangle_i32 rectWindow = rectangleClient;
-         //pframewindow->client_to_screen(rectWindow);
+         //::rectangle_i32 rectangleWindow = rectangleClient;
+         //pframewindow->client_to_screen(rectangleWindow);
          ////pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
          //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
          ////bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
@@ -100,8 +95,8 @@ namespace experience
          ////spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
          ////b = imaging.bitmap_blend(pgraphics, prectangle->left, prectangle->top,
 
-         //rectWindow.width(),
-         //rectWindow.height(),
+         //rectangleWindow.width(),
+         //rectangleWindow.height(),
          //&spgraphics,
          //iInflate, iInflate, 128);*/
          ///*BLENDFUNCTION bf;
@@ -112,12 +107,12 @@ namespace experience
          //::alpha_blend(pgraphics->get_handle1(),
          //prectangle->left, prectangle->top,
 
-         //rectWindow.width(),
-         //rectWindow.height(),
+         //rectangleWindow.width(),
+         //rectangleWindow.height(),
          //spgraphics->get_handle1(),
          //0, 0,
-         //rectWindow.width(),
-         //rectWindow.height(),
+         //rectangleWindow.width(),
+         //rectangleWindow.height(),
          //bf);*/
 
          //pgraphics->BitBlt(rectangleClient.left, rectangleClient.top, rectangleClient.width(), rectangleClient.height(), pimage->g(), iInflate, iInflate);
@@ -177,7 +172,7 @@ namespace experience
 
       frame::enum_element operator++(frame::enum_element & eelement, i32 i)
       {
-         UNREFERENCED_PARAMETER(i);
+         __UNREFERENCED_PARAMETER(i);
          return (frame::enum_element) (*((i32*)&eelement))++;
       }
 
@@ -195,14 +190,13 @@ namespace experience
 
             }
 
-            prectangle->left = m_rectCaption.left;
+            prectangle->left = m_rectangleCaption.left + m_pcontrolbox->m_iDefaultButtonMargin;
 
-            prectangle->top = m_rectCaption.top;
+            prectangle->right = prectangle->left + 16;
 
-            prectangle->right = prectangle->left + m_iCaptionHeight;
+            prectangle->bottom = m_iTitleBottom;
 
-            prectangle->bottom = prectangle->top + m_iCaptionHeight;
-
+            prectangle->top = prectangle->bottom - 16;
 
             return true;
 
@@ -327,19 +321,19 @@ namespace experience
 
          auto pstyle = pframewindow->get_style(pgraphics);
 
-         auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+         auto crButtonHilite = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
+         auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::e_element_button_dark_shadow);
 
-         auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+         auto crButtonFace = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-         auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+         auto crButtonShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
-         m_penText1->create_solid(1, argb(255, 255, 255, 255));
-         m_penFace1->create_solid(1, opaque(crButtonFace));
-         m_penHilight1->create_solid(1, opaque(crButtonHilite));
-         m_penShadow1->create_solid(1, opaque(crButtonShadow));
-         m_penDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
+         m_ppenText1->create_solid(1, argb(255, 255, 255, 255));
+         m_ppenFace1->create_solid(1, opaque(crButtonFace));
+         m_ppenHilight1->create_solid(1, opaque(crButtonHilite));
+         m_ppenShadow1->create_solid(1, opaque(crButtonShadow));
+         m_ppenDkShadow1->create_solid(1, opaque(crButtonDarkShadow));
          m_colorDkShadow = crButtonDarkShadow;
          m_colorFrameBorder = argb(255, 0, 0, 0);
 
@@ -360,6 +354,13 @@ namespace experience
             pcontrolbox->set_button_color_system_default_001();
 
          }
+
+         __construct(m_ppenText1);
+         __construct(m_ppenFace1);
+         __construct(m_ppenHilight1);
+         __construct(m_ppenShadow1);
+         __construct(m_ppenDkShadow1);
+
          set_frame_color_system_default_001();
          set_moveable_border_color(m_pframewindow->get_moveable_border_color());
 
@@ -425,29 +426,28 @@ namespace experience
       }
 
 
-      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
+      void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleParam, enum_border eborder, const ::color::color & crTopLeft, const ::color::color & crBottomRight)
       {
 
-         ::rectangle_i32 rectangle(rectParam);
+         ::rectangle_i32 rectangle(rectangleParam);
+
          i32 x = rectangle.left;
          i32 y = rectangle.top;
          i32 cx = rectangle.width() - 1;
          i32 cy = rectangle.height() - 1;
 
-
-
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         ::draw2d::pen_pointer pen;
+         ::draw2d::pen_pointer ppen;
 
          if (eborder & e_border_top || eborder & e_border_left)
          {
 
-            pen.create(this);
+            ppen.create(this);
 
-            pen->create_solid(1.0, crTopLeft);
+            ppen->create_solid(1.0, crTopLeft);
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
          }
 
@@ -469,14 +469,14 @@ namespace experience
 
          }
 
-         if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
+         if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
          {
 
-            pen.create(this);
+            ppen.create(this);
 
-            pen->create_solid(1.0, crBottomRight);
+            ppen->create_solid(1.0, crBottomRight);
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
          }
 
@@ -501,7 +501,7 @@ namespace experience
       }
 
 
-      //void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+      //void frame::handle(::subject * psubject, ::context * pcontext)
       //{
 
       //   if(psubject->m_id == id_user_style_change)
@@ -526,7 +526,7 @@ namespace experience
 
          ::experience::frame::title_bar_layout(pgraphics);
 
-         m_rectCaptionTextBk = m_rectCaption;
+         m_rectangleCaptionTextBk = m_rectangleCaption;
 
       }
 
@@ -544,7 +544,13 @@ namespace experience
 
          //auto psession = get_session();
 
+         //pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+
 
          if (!m_pframewindow->layout().is_full_screen()
             && !m_pframewindow->layout().is_zoomed()
@@ -553,7 +559,7 @@ namespace experience
             && m_pframewindow->m_bShowControlBox)
          {
 
-            millis tick1;
+            ::duration tick1;
 
             tick1.Now();
 
@@ -568,13 +574,13 @@ namespace experience
          if (m_pframewindow->layout().is_minimal())
          {
 
-            ::rectangle_i32 rectIcon;
+            ::rectangle_i32 rectangleIcon;
 
-            millis tick2;
+            ::duration tick2;
 
             tick2.Now();
 
-            if (get_element_rect(rectIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
             {
 
                auto pdrawicon = m_pframewindow->get_draw_icon();
@@ -582,11 +588,17 @@ namespace experience
                if (pdrawicon != nullptr)
                {
 
-                  ::rectangle_f64 rectDst(pdrawicon->get_smaller_size(rectIcon.size()));
+                  image_source imagesource(pdrawicon);
 
-                  rectDst.CenterOf(rectIcon);
+                  rectangle_f64 rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
 
-                  pgraphics->draw(rectDst, pdrawicon);
+                  rectangleTarget.CenterOf(rectangleIcon);
+
+                  image_drawing_options imagedrawingoptions(rectangleTarget);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
@@ -594,29 +606,29 @@ namespace experience
 
             //printf("B. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            millis tick3;
+            ::duration tick3;
 
             tick3.Now();
 
-            ::rectangle_i32 rectGrip;
+            ::rectangle_i32 rectangleGrip;
 
-            if (get_element_rect(rectGrip, ElementMoveGripMinimal))
+            if (get_element_rect(rectangleGrip, ElementMoveGripMinimal))
             {
 
                int i = 0;
 
-               while (i < rectGrip.width() - 5 + 1)
+               while (i < rectangleGrip.width() - 5 + 1)
                {
 
-                  auto rect3d = ::rectangle_f64_dimension(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
+                  auto rect3d = ::rectangle_f64_dimension(rectangleGrip.left + i, rectangleGrip.top, 3, rectangleGrip.height());
 
-                  pgraphics->draw_3drect(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
+                  pgraphics->draw_inset_3d_rectangle(rect3d, argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                   i += 5;
 
                }
 
-               //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
+               //pgraphics->Draw3dRect(rectangleGrip.left + 12,rectangleGrip.top,3,rectangleGrip.height(),argb(184,255,255,255),argb(184,84,84,84));
 
             }
 
@@ -626,7 +638,7 @@ namespace experience
          else if (!m_pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent() && m_pframewindow->m_bShowControlBox)
          {
 
-            millis tick2;
+            ::duration tick2;
 
             tick2.Now();
 
@@ -693,24 +705,24 @@ namespace experience
 
                pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
             else
             {
 
 
-               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectangleCaptionTextBk, m_colorCaptionTextBk);
 
             }
 
             //printf("D. frame::on_draw_frame %d\n", tick2.elapsed().m_i);
 
-            millis tick3;
+            ::duration tick3;
 
             tick3.Now();
 
-            ::rectangle_i32 rectIcon;
+            ::rectangle_i32 rectangleIcon;
 
             auto pframewindow = m_pframewindow;
 
@@ -741,17 +753,17 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+               crMoveableBorder = pframewindow->get_color(pstyle, ::e_element_button_background);
 
-               crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+               crMoveableBorderHilight = pframewindow->get_color(pstyle, ::e_element_button_hilite);
 
-               crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+               crMoveableBorderShadow = pframewindow->get_color(pstyle, ::e_element_button_shadow);
 
             }
 
             //printf("E. frame::on_draw_frame %d\n", tick3.elapsed().m_i);
 
-            millis tick4;
+            ::duration tick4;
 
             tick4.Now();
 
@@ -761,7 +773,7 @@ namespace experience
 
             rectangle -= rectangle.top_left();
 
-            if (get_element_rect(rectIcon, ElementTopLeftIcon))
+            if (get_element_rect(rectangleIcon, ElementTopLeftIcon))
             {
 
                ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
@@ -769,11 +781,17 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  ::rectangle_f64 rectDst(picon->get_smaller_size(rectIcon.size()));
+                  image_source imagesource(picon);
 
-                  rectDst.CenterOf(rectIcon);
+                  //rectangle_f64 rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
 
-                  pgraphics->draw(rectIcon, picon);
+                  //rectangleTarget.CenterOf(rectangleIcon);
+
+                  image_drawing_options imagedrawingoptions(rectangleIcon);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pgraphics->draw(imagedrawing);
 
                }
 
@@ -783,7 +801,7 @@ namespace experience
 
             //class fonts & fonts = pdraw2d->fonts();
 
-            millis tick5;
+            ::duration tick5;
 
             tick5.Now();
 
@@ -791,15 +809,15 @@ namespace experience
 
             pframewindow->get_window_text(wstrWindowText);
 
-            ::draw2d::brush_pointer brushText(e_create);
+            auto pbrushText = __create < ::draw2d::brush > ();
 
-            brushText->create_solid(m_colorCaptionText);
+            pbrushText->create_solid(m_colorCaptionText);
 
-            pgraphics->set(brushText);
+            pgraphics->set(pbrushText);
 
-            pgraphics->set_font(pframewindow, ::user::e_element_window_title);
+            pgraphics->set_font(pframewindow, ::e_element_window_title);
 
-            pgraphics->draw_text(wstrWindowText, m_rectWindowText, e_align_left_center, e_draw_text_no_prefix);
+            pgraphics->draw_text(wstrWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 
             //printf("G. frame::on_draw_frame %d\n", tick5.elapsed().m_i);
 
@@ -811,7 +829,7 @@ namespace experience
       void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pgraphics);
 
       }
 

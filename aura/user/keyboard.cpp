@@ -225,7 +225,7 @@ namespace user
 //
 //      }
 //
-//      string str = __str(w);
+//      string str = __string(w);
 //
 //      //strFile = pcontext->m_papexcontext->dir().matter("keyboard/windows/" + str + ".xml");
 //
@@ -259,6 +259,24 @@ namespace user
    }
 
 
+   ::user::enum_key keyboard::wparam_to_userkey(wparam wparam)
+   {
+      
+      auto psystem = m_psystem->m_paurasystem;
+   
+      auto psession = psystem->get_session();
+      
+      auto puser = psession->user();
+      
+      auto pwindowing = puser->windowing();
+      
+      auto pkeyboard = pwindowing->keyboard();
+      
+      return pkeyboard->wparam_to_userkey(wparam);
+      
+      
+   }
+
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {
 
@@ -283,7 +301,9 @@ namespace user
 
       if(str.is_empty())
       {
-         TRACE("unable to load os keyboard on_layout");
+
+         INFORMATION("unable to load os keyboard on_layout");
+         
          //if(is_debugger_attached())
          //{
 
@@ -368,7 +388,7 @@ namespace user
       //   if(is_debugger_attached())
       //   {
 
-      //      message_box("keyboard default.xml has no keyboard entries?!?!?!?!");
+      //      output_error_message("keyboard default.xml has no keyboard entries?!?!?!?!");
 
       //   }
 
@@ -530,7 +550,11 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//      string strOverride = file_as_string(pacmedir->system() / "config\\system\\keyboard_layout.txt");
+//      string strOverride = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "config\\system\\keyboard_layout.txt");
 //
 //      if(strOverride.has_char())
 //      {
@@ -784,16 +808,16 @@ namespace user
 
    #if defined(MACOS)
 
-      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
-
-      if(ekey != ::user::e_key_none)
-      {
-
-          pkey->m_ekey = ekey;
-
-          return;
-
-      }
+//      auto ekey = ::user::vkcode_to_userkey(pkey->m_wparam);
+//
+//      if(ekey != ::user::e_key_none)
+//      {
+//
+//          pkey->m_ekey = ekey;
+//
+//          return;
+//
+//      }
 
    #elif !defined(LINUX)
 
@@ -837,6 +861,13 @@ namespace user
       {
 
          pkey->m_ekey = m_mapKey[(i32) pkey->m_iVirtualKey];
+
+      }
+      
+      if(pkey->m_ekey == ::user::e_key_none)
+      {
+
+         pkey->m_ekey = wparam_to_userkey(pkey->m_wparam);
 
       }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -21,11 +21,13 @@ namespace process
    }
 
 
-   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::e_priority epriority)
+   bool process::create_child_process(const ::string & strCmdLine, bool bPiped, const ::string & strDir, ::enum_priority epriority)
    {
 
       if(bPiped)
       {
+
+         m_pipe.initialize(this);
 
          if(!m_pipe.create(false, true))
             return false;
@@ -50,18 +52,17 @@ namespace process
    string process::read(bool bUntilExit)
    {
 
-      UNREFERENCED_PARAMETER(bUntilExit);
+      __UNREFERENCED_PARAMETER(bUntilExit);
 
       return m_pipe.m_ppipeOut->read();
 
    }
 
 
-   void process::wait_until_exit(i32 iWaitMax)
+   void process::wait_until_exit(const class ::wait & wait)
    {
-auto tickStart = ::millis::now();
-
-      i32 i = 1;
+      
+      auto start = ::wait::now();
 
       while(true)
       {
@@ -73,16 +74,27 @@ auto tickStart = ::millis::now();
 
          }
 
-         if(iWaitMax >= 0 && tickStart.elapsed() > iWaitMax)
+         if(!wait.is_null())
          {
 
-            break;
+            auto waitNow = minimum(wait - start.elapsed(), 100_ms);
+
+            if (!waitNow)
+            {
+
+               break;
+
+            }
+
+            preempt(waitNow);
 
          }
+         else
+         {
 
-         sleep(100_ms);
+            preempt(100_ms);
 
-         i++;
+         }
 
       }
 
@@ -113,10 +125,7 @@ auto tickStart = ::millis::now();
    }
 
 
-   
-
-} // namespace process
-
+} // namespace operating_system
 
 
 

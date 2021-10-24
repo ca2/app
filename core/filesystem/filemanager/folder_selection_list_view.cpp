@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "_data.h"
 #include "aura/update.h"
 #include "core/user/user/_tree.h"
@@ -50,7 +52,7 @@ namespace filemanager
       if(m_pusertree == nullptr)
       {
 
-         message_box("Could not create folder tree view");
+         output_error_message("Could not create folder tree impact");
 
       }
 
@@ -59,7 +61,7 @@ namespace filemanager
       if(ptree == nullptr)
       {
 
-         message_box("Could not create folder tree");
+         output_error_message("Could not create folder tree");
       
       }
       else
@@ -78,7 +80,7 @@ namespace filemanager
       if(m_plistview == nullptr)
       {
 
-         message_box("Could not create file list");
+         output_error_message("Could not create file list");
 
       }
 
@@ -122,10 +124,10 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void folder_selection_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 
@@ -173,11 +175,11 @@ namespace filemanager
 
       auto pdocument = get_document();
 
-      auto psubject = pdocument->subject(id_synchronize_folder_selection);
+      ::subject subject(id_synchronize_folder_selection);
 
-      psubject->m_actioncontext = context + ::e_source_selection;
+      subject.m_actioncontext = context + ::e_source_selection;
 
-      pdocument->update_all_views(psubject);
+      pdocument->update_all_views(&subject);
 
    }
 

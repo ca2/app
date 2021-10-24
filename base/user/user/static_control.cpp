@@ -92,8 +92,8 @@ namespace user
    void static_control::on_message_left_button_down(::message::message * pmessage)
    {
 
-//      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+//      auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = true;
 
@@ -103,20 +103,20 @@ namespace user
    void static_control::on_message_left_button_up(::message::message * pmessage)
    {
 
-//      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+//      auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bLButtonDown)
       {
 
          m_bLButtonDown = false;
 
-         ::user::control_event ev;
-         ev.m_puserinteraction = this;
-         ev.m_eevent = ::user::e_event_click;
-         ev.m_actioncontext = ::e_source_user;
+         ::subject subject;
+         subject.m_puserelement = this;
+         subject.m_id = ::e_subject_click;
+         subject.m_actioncontext = ::e_source_user;
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 
@@ -126,8 +126,8 @@ namespace user
    void static_control::on_message_mouse_move(::message::message * pmessage)
    {
 
-//      auto pmouse = pmessage->m_pmouse;
-      UNREFERENCED_PARAMETER(pmessage);
+//      auto pmouse = pmessage->m_union.m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -135,7 +135,7 @@ namespace user
    {
 
 //      __pointer(::message::mouse) pleave(pmessage);
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = false;
 
@@ -159,11 +159,11 @@ namespace user
 
          auto pointCursor = pwindowing->get_cursor_position();
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         get_window_rect(rectWindow);
+         get_window_rect(rectangleWindow);
 
-         if(rectWindow.contains(pointCursor))
+         if(rectangleWindow.contains(pointCursor))
          {
 
             crText = ::color::color(255, 0, 0, 0);
@@ -186,7 +186,7 @@ namespace user
 
       pgraphics->set_text_color(crText);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       pgraphics->text_out(0, 0, get_window_text());
 

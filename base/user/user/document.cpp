@@ -43,7 +43,7 @@ namespace user
       if (is_modified())
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying an unsaved document.\n");
+         CATEGORY_WARNING(appmsg, "Warning: destroying an unsaved document.\n");
 
       }
 #endif
@@ -212,10 +212,10 @@ namespace user
    }
 
 
-   //void document::route_command_message(::message::command * pcommand)
+   //void document::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    //{
 
-   //   channel::route_command_message(pcommand);
+   //   channel::route_command(pcommand);
 
    //   if (pcommand->m_bRet)
    //      return;
@@ -223,7 +223,7 @@ namespace user
    //   if (m_pimpactsystem != nullptr)
    //   {
 
-   //      m_pimpactsystem->route_command_message(pcommand);
+   //      m_pimpactsystem->route_command(pcommand);
 
    //      if (pcommand->m_bRet)
    //         return;
@@ -233,7 +233,7 @@ namespace user
    //}
 
 
-   //void document::route_command_message(::message::command* pcommand)
+   //void document::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    //{
 
    //   on_command_message(pcommand);
@@ -333,10 +333,27 @@ namespace user
    //}
 
 
-   bool document::on_create_bars(::user::frame_window * pframe)
+   ::id document::get_toolbar_id()
    {
 
-        return true;
+      return m_pimpactsystem->m_id.to_string() + "/top";
+
+   }
+
+
+   __transport(toolbar) document::get_toolbar(::user::frame_window * pframewindow, bool bCreate)
+   {
+
+      auto toolbartransport = pframewindow->get_toolbar(get_toolbar_id(), bCreate);
+
+      if(!toolbartransport)
+      {
+
+         return toolbartransport;
+
+      }
+
+      return toolbartransport;
 
    }
 
@@ -346,7 +363,7 @@ namespace user
 
       run_property("on_create");
 
-      call_routine(CREATE_ROUTINE);
+      call_routines_with_id(CREATE_ROUTINE);
 
       //::database::client::initialize_data_client(papplication->dataserver());
 
@@ -356,11 +373,11 @@ namespace user
    ::id document::get_topic_view_id()
    {
 
-      auto psubject = subject(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_view_id);
 
-      update_all_views(psubject);
+      update_all_views(psignal);
 
-      return psubject->payload(id_id);
+      return psignal->payload(id_id);
 
    }
 
@@ -368,13 +385,13 @@ namespace user
    bool document::set_topic_view_by_id(::id id)
    {
 
-      auto psubject = subject(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_view_id);
 
-      psubject->payload(id_id) = id;
+      psignal->payload(id_id) = id;
 
-      update_all_views(psubject);
+      update_all_views(psignal);
 
-      return psubject->m_bRet;
+      return psignal->m_bRet;
 
    }
 
@@ -540,7 +557,7 @@ namespace user
 
          pview = get_view(index);
 
-         if (info == ::str::demangle(pview->type_name()))
+         if (info == __type_name(pview))
          {
 
             if (indexFind == countFind)
@@ -574,7 +591,7 @@ namespace user
       for (index index = 0; index < countView; index++)
       {
          pview = get_view(index);
-         if (info == ::str::demangle(pview->type_name()))
+         if (info == __type_name(pview))
          {
             if (id == pview->m_id)
                return pview;
@@ -673,15 +690,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document::set_path_name(::payload varFile, bool bAddToMRU)
+   void document::set_path_name(::payload payloadFile, bool bAddToMRU)
    {
-      UNREFERENCED_PARAMETER(bAddToMRU);
+      __UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
-         strPathName = varFile.propset()["url"];
+         strPathName = payloadFile.propset()["url"];
       }
-      else if (varFile.cast < ::file::file>() != nullptr)
+      else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
          auto psystem = m_psystem->m_pbasesystem;
@@ -693,7 +710,7 @@ namespace user
       }
       else
       {
-         strPathName = varFile;
+         strPathName = payloadFile;
       }
       // store the path fully qualified
       //char szFullPath[_MAX_PATH];
@@ -816,12 +833,12 @@ namespace user
    }
 
 
-   bool document::open_document(const ::payload & varFile)
+   bool document::open_document(const ::payload & payloadFile)
    {
 
       delete_contents();
 
-      if (!on_open_document(varFile))
+      if (!on_open_document(payloadFile))
       {
 
          m_bNew = false;
@@ -840,9 +857,9 @@ namespace user
 
          m_bModified = false;
 
-         m_path = varFile;
+         m_path = payloadFile;
 
-         m_strTitle = varFile.get_file_path().name();
+         m_strTitle = payloadFile.get_file_path().name();
 
       }
 
@@ -912,9 +929,9 @@ namespace user
 
       __keep(m_pcreate, pcreate);
 
-      ::payload varFile = pcreate->get_file();
+      ::payload payloadFile = pcreate->get_file();
 
-      if (!open_document(varFile))
+      if (!open_document(payloadFile))
       {
 
          return false;
@@ -926,17 +943,17 @@ namespace user
    }
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
       auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
       {
 
-         report_load_exception(varFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
          return false;
 
@@ -955,10 +972,10 @@ namespace user
          preader->close();
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
-         report_load_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -979,21 +996,21 @@ namespace user
    }
 
 
-   bool document::on_save_document(const ::payload & varFile)
+   bool document::on_save_document(const ::payload & payloadFile)
    {
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
       if(!pwriter)
       {
 
-         ::file::path path = varFile.get_file_path();
+         ::file::path path = payloadFile.get_file_path();
 
          TRACE("Failed to save document : file path : %s", path.c_str());
 
-         //report_save_exception(varFile, pwriter, "__IDP_INVALID_FILENAME");
+         //report_save_exception(payloadFile, pwriter, "__IDP_INVALID_FILENAME");
 
          return false;
 
@@ -1012,10 +1029,10 @@ namespace user
          pwriter->close();
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
-         report_save_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_save_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -1024,17 +1041,21 @@ namespace user
    }
 
 
-
    bool document::on_save_document(::file::file * pfile)
    {
 
-      ::binary_stream writer(pfile);
-      
-      write(writer);
+      {
+
+         ::binary_stream writer(pfile);
+
+         write(writer);
+
+      }
 
       return true;
 
    }
+
 
    void document::on_close_document()
    {
@@ -1163,29 +1184,29 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
+   void document::report_load_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
    {
 
-      report_save_load_exception(varFile, presult, false, pszDefault);
+      report_save_load_exception(payloadFile, presult, false, pszDefault);
 
    }
 
 
-   void document::report_save_exception(const ::payload & varFile, file_result presult, const ::string & pszDefault)
+   void document::report_save_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
    {
 
-      report_save_load_exception(varFile, presult, true, pszDefault);
+      report_save_load_exception(payloadFile, presult, true, pszDefault);
 
    }
 
 
-   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const ::string & pszDefault)
+   void document::report_save_load_exception(const ::payload & payloadFile, file_transport presult, bool bSave, const ::string & pszDefault)
    {
 
       try
       {
 
-         UNREFERENCED_PARAMETER(bSave);
+         __UNREFERENCED_PARAMETER(bSave);
 
          string strPrompt(pszDefault);
 
@@ -1213,8 +1234,8 @@ namespace user
          //   else*/ if (base_class < ::file::exception >::bases(e))
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
-         //      // ::exception::throw_not_implemented();
-         //      TRACE(trace_category_appmsg, e_trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+         //      // throw interface_only_exception();
+         //      CATEGORY_WARNING(appmsg, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
          //      if (pfe->m_strFileName.is_empty())
@@ -1261,13 +1282,15 @@ namespace user
          //{
          //   string strTitle = ::file::path(pszPathName).title();
 
-         //   //::exception::throw_not_implemented();
+         //   //throw interface_only_exception();
          //   /*
          //   ::aura::FormatString1(prompt, nIDP, strTitle);*/
          //}
 
          //message_box(prompt, e_message_box_icon_exclamation, nHelpContext);
-         message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
+         //message_box(strPrompt, nullptr, e_message_box_icon_exclamation);
+
+         output_error_message(strPrompt);
 
       }
       catch (...)
@@ -1372,7 +1395,7 @@ namespace user
       {
 
 
-         INFO("Unsaved Document");
+         INFORMATION("Unsaved Document");
 
          return false;       // don't continue
 
@@ -1427,23 +1450,23 @@ namespace user
    }
 
 
-   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload varFile)
+   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload payloadFile)
    {
 
-      return on_open_document(varFile);
+      return on_open_document(payloadFile);
 
    }
 
 
-   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload varFile, bool bReplace)
+   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload payloadFile, bool bReplace)
    {
 
-      return do_save(varFile, bReplace);
+      return do_save(payloadFile, bReplace);
 
    }
 
 
-   bool document::do_save(::payload varFile, bool bReplace)
+   bool document::do_save(::payload payloadFile, bool bReplace)
    // Save the document_interface data to a file
    // pszPathName = path name where to save document_interface file
 
@@ -1455,7 +1478,7 @@ namespace user
    // if 'bReplace' is false will not machine path name (SaveCopyAs)
    {
 
-      ::payload newName = varFile;
+      ::payload newName = payloadFile;
 
       if (newName.is_empty())
       {
@@ -1491,7 +1514,7 @@ namespace user
             }
          }
 
-         //if (!papplication->do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+         //if (!papplication->do_prompt_file_name(newName, __string("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
            // return false;       // don't even attempt to save
 
       }
@@ -1503,7 +1526,7 @@ namespace user
       if (!on_save_document(newName))
       {
 
-         if (varFile.is_empty())
+         if (payloadFile.is_empty())
          {
 
             // be sure to delete the file
@@ -1514,10 +1537,10 @@ namespace user
                pcontext->m_papexcontext->file().del(newName);
 
             }
-            catch(const ::exception::exception &)
+            catch(const ::exception &)
             {
 
-               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
+               CATEGORY_WARNING(appmsg, "Warning: failed to delete file after failed SaveAs.\n");
 
             }
 
@@ -1546,7 +1569,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
+            CATEGORY_WARNING(appmsg, "Warning: File save with new name failed.\n");
 
             return false;
 
@@ -1559,7 +1582,7 @@ namespace user
          if (!do_save(m_path))
          {
 
-            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save failed.\n");
+            CATEGORY_WARNING(appmsg, "Warning: File save failed.\n");
 
             return false;
 
@@ -1784,11 +1807,11 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdata);
-   //   string strUrl(varFile);
+   //   __UNREFERENCED_PARAMETER(pdata);
+   //   string strUrl(payloadFile);
    //   if(::str::begins_eat(strUrl,"ext://"))
    //   {
    //      papplication->open_link(strUrl,"", pszTargetFrameName);
@@ -1811,7 +1834,7 @@ namespace user
 
    void document::form_document_set_property_set(const property_set & set)
    {
-      UNREFERENCED_PARAMETER(set);
+      __UNREFERENCED_PARAMETER(set);
    }
 
 
@@ -1869,7 +1892,7 @@ namespace user
    }
 
 
-   void document::update_all_views(::subject::subject * psubject)
+   void document::update_all_views(::subject * psubject)
    {
 
       ASSERT(psubject->m_psender == nullptr || !m_viewa.is_empty());
@@ -1882,7 +1905,7 @@ namespace user
          if (pview != psubject->m_psender)
          {
 
-            pview->on_subject(psubject, nullptr);
+            pview->handle(psubject, nullptr);
 
             if(psubject->m_bRet)
             {
@@ -1898,7 +1921,7 @@ namespace user
    }
 
 
-   void document::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void document::handle(::subject * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -1906,12 +1929,12 @@ namespace user
    }
 
 
-   void document::update_all_views(impact * pimpact, const ::id & id)
+   void document::update_all_views(impact * pimpactSender, const ::id & id)
    {
 
-      auto psubject = subject(id);
+      auto psubject = create_subject(id);
 
-      psubject->m_psender = pimpact;
+      psubject->m_psender = pimpactSender;
 
       update_all_views(psubject);
 

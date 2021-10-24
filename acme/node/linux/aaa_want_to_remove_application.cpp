@@ -5,7 +5,7 @@
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 namespace acme
@@ -56,7 +56,7 @@ namespace acme
 //   bool application::_001OnDDECommand(const char * pcsz)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }

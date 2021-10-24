@@ -14,7 +14,7 @@ namespace helloworld
 
       ::user::split_view *                            m_ptopviewLast;
       impact_base *                                     m_pviewLast;
-      view *                                          m_pviewLastBilbo;
+      impact *                                          m_pviewLastBilbo;
       ::user::impact_data *                     m_pviewdataTopic;
       string                                          m_strTopicTitle;
 
@@ -30,19 +30,19 @@ namespace helloworld
 
       void on_create_impact(::user::impact_data * pimpactdata);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void on_control_event(::user::control_event * pevent);
+      void handle(::subject * psubject, ::context * pcontext);
       void on_change_cur_sel();
 
       virtual ::file::path prepare_menu_view();
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);

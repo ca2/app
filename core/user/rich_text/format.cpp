@@ -29,38 +29,38 @@ namespace user
       }
 
 
-      format::format(__pointer_array(format)* pcontainer)
-      {
+      //format::format(__pointer_array(format)* pcontainer)
+      //{
 
 
-         defer_create_mutex();
+      //   defer_create_mutex();
 
-         m_bBold = false;
-         m_bItalic = false;
-         m_bUnderline = false;
-         m_dFontSize = 12.0;
-         m_colorForeground = argb(255, 0, 0, 0);
-         m_colorBackground = 0;
-         m_escript = script_normal;
-         m_elineheight = line_height_single;
-         m_bUpdated = false;
+      //   m_bBold = false;
+      //   m_bItalic = false;
+      //   m_bUnderline = false;
+      //   m_dFontSize = 12.0;
+      //   m_colorForeground = argb(255, 0, 0, 0);
+      //   m_colorBackground = 0;
+      //   m_escript = script_normal;
+      //   m_elineheight = line_height_single;
+      //   m_bUpdated = false;
 
-         initialize_user_rich_text_format(pcontainer);
+      //   initialize_user_rich_text_format(pcontainer);
 
-      }
+      //}
 
 
 
-      format::format(const format & format)
-      {
+      //format::format(const format & format)
+      //{
 
-         initialize_user_rich_text_format(format.m_pcontainer);
+      //   initialize_user_rich_text_format(format.m_pcontainer);
 
-         defer_create_mutex();
+      //   defer_create_mutex();
 
-         operator = (format);
+      //   operator = (format);
 
-      }
+      //}
 
 
       format::~format()
@@ -73,25 +73,15 @@ namespace user
       ::e_status format::initialize_user_rich_text_format(__pointer_array(format)* pcontainer)
       {
 
-         __throw(todo);
-         //auto estatus = ::object::initialize(pcontainer);
+         m_pcontainer = pcontainer;
 
-         //if (!estatus)
-         //{
+         auto psystem = m_psystem->m_paurasystem;
 
-         //   return estatus;
+         auto pnode = psystem->node();
 
-         //}
+         m_strFontFamily = pnode->font_name(e_font_sans);
 
-//         m_pcontainer = pcontainer;
-//
-//         auto psystem = m_psystem->m_paurasystem;
-//
-//         auto pnode = psystem->node();
-//
-//         m_strFontFamily = pnode->font_name(e_font_sans);
-//
-//         return ::success;
+         return ::success;
 
       }
 
@@ -266,10 +256,10 @@ namespace user
       ::write_text::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
       {
 
-         if (!m_bUpdated || m_font.is_null())
+         if (!m_bUpdated || m_pfont.is_null())
          {
 
-            ((format*)this)->m_font.create();
+            pgraphics->__defer_construct(((format*)this)->m_pfont);
 
             if (m_dFontSize < 6.0)
             {
@@ -287,7 +277,7 @@ namespace user
 
             }
 
-            m_font->create_point_font(m_strFontFamily, dFontSize,
+            m_pfont->create_point_font(m_strFontFamily, dFontSize,
                                       m_bBold ? e_font_weight_bold : e_font_weight_normal,
                                       m_bItalic,
                                       m_bUnderline);
@@ -296,7 +286,7 @@ namespace user
 
          }
 
-         return m_font;
+         return m_pfont;
 
       }
 

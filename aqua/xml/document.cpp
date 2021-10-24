@@ -9,7 +9,7 @@ namespace xml
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
    {
 
-      m_pdocument            = this;
+      //m_pdocument            = this;
 //      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : get_system()->m_pxml->m_pparseinfoDefault.m_p;
 //      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : get_system()->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
@@ -26,7 +26,7 @@ namespace xml
    document & document::operator = (const document & document)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return *this;
 
@@ -65,7 +65,7 @@ namespace xml
 
       string str;
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return load(str);
 
@@ -82,10 +82,19 @@ namespace xml
    }
 
 
-   ::e_status document::initialize_matter(::matter* pmatter)
+   ::e_status document::initialize(::object * pobject)
    {
 
-      auto estatus = node::initialize_matter(pmatter);
+      auto estatus = ::object::initialize(pobject);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = node::initialize_matter(pobject);
 
       if (!estatus)
       {
@@ -119,10 +128,9 @@ namespace xml
 
       m_pnodeRoot->initialize_matter(this);
 
-      m_nodea.add(m_pnodeRoot);
+      m_nodea.add(m_pnodeRoot.m_p);
 
    }
-
 
 
    void document::set_name(const ::string & strName)
@@ -186,7 +194,7 @@ namespace xml
 
          m_nodea.erase_all();
 
-         m_pnodeRoot.release();
+         //m_pnodeRoot.release();
 
          return false;
 
@@ -242,7 +250,7 @@ namespace xml
       if(*pszXml == '\0')
       {
 
-         __throw(::exception::exception("No Entity"));
+         throw ::exception(error_parsing, "No Entity");
 
       }
 
@@ -264,7 +272,7 @@ namespace xml
                || *pszXml == '=')
          {
 
-            __throw(::exception::exception("Not expected character on Entity Reference"));
+            throw ::exception(error_parsing, "Not expected character on Entity Reference");
 
          }
 
@@ -290,7 +298,7 @@ namespace xml
       if(ent.is_empty() && extEnt.is_empty() && (strName.is_empty() || strName[0] != '#'))
       {
 
-         __throw(::exception::exception("Undefined Entity Reference"));
+         throw ::exception(error_parsing, "Undefined Entity Reference");
 
       }
 
@@ -391,14 +399,20 @@ namespace xml
    }
 
 
-   //void document::io(::stream & stream)
-   //{
+   ::stream& document::write(::stream& stream) const
+   {
 
-   //   ::xml::node::io(stream);
+      return node::write(stream);
 
-   //}
+   }
 
 
+   ::stream& document::read(::stream& stream)
+   {
+
+      return node::read(stream);
+
+   }
 
 
 } // namespace xml

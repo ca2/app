@@ -27,7 +27,7 @@ namespace colorertake5
       //   ::exception_pointer esp(pe);
       //   __throw(ParserFactoryException(pe->get_message()));
       //}
-      catch(const ::exception::exception & e)
+      catch(const ::exception & e)
       {
 
          __throw(ParserFactoryException(e->get_message()));
@@ -179,7 +179,7 @@ namespace colorertake5
       {
          string relPath = hrcLocations.element_at(idx);
          string path;
-         if(file_path_is_relative_dup(relPath))
+         if(file_path_is_relative(relPath))
          {
             path = catalogPath.sibling(relPath);
             string path2del = path;
@@ -209,7 +209,7 @@ namespace colorertake5
                   {
                      hrcParser->loadSource(patha[i], str);
                   }
-                  catch(::exception::exception  *pe)
+                  catch(::exception  *pe)
                   {
                      ::exception_pointer esp(pe);
                      string str = pe->get_message();
@@ -228,7 +228,7 @@ namespace colorertake5
                {
                   hrcParser->loadSource(path, strSource);
                }
-               catch(const ::exception::exception & e)
+               catch(const ::exception & e)
                {
 
                   string str = e->get_message();
@@ -316,7 +316,7 @@ namespace colorertake5
                }
 
             }
-            catch(::exception::exception & )
+            catch(::exception & )
             {
 
             }
@@ -356,7 +356,7 @@ namespace colorertake5
                   mapper->loadRegionMappings(stream);
                }
             }
-            catch(::exception::exception &)
+            catch(::exception &)
             {
             }
          }

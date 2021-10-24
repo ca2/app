@@ -376,7 +376,7 @@ void CScriptLex::match(i32 expected_tk)
    {
       string errorString ="Got " + getTokenStr(tk) + " expected " + getTokenStr(expected_tk)
                           + " at " + getPosition(tokenStart);
-      __throw(CScriptException(errorString));
+      throw CScriptException(errorString);
    }
    getNextToken();
 }
@@ -435,7 +435,7 @@ string CScriptLex::getTokenStr(i32 token)
    }
 
    string msg;
-   msg = string("?[") + __str(token) + "]";
+   msg = string("?[") + __string(token) + "]";
    return msg;
 }
 
@@ -1332,7 +1332,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
          case LEX_LEQUAL:    return new CScriptVar(da<=db);
          case '>':     return new CScriptVar(da>db);
          case LEX_GEQUAL:    return new CScriptVar(da>=db);
-         default: __throw(CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Int datatype"));
+         default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Int datatype");
          }
       }
       else
@@ -1352,7 +1352,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
          case LEX_LEQUAL:    return new CScriptVar(da<=db);
          case '>':     return new CScriptVar(da>db);
          case LEX_GEQUAL:    return new CScriptVar(da>=db);
-         default: __throw(CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Double datatype"));
+         default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Double datatype");
          }
       }
    }
@@ -1363,7 +1363,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       {
       case LEX_EQUAL: return new CScriptVar(a==b);
       case LEX_NEQUAL: return new CScriptVar(a!=b);
-      default: __throw(CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Array datatype"));
+      default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Array datatype");
       }
    }
    else if (a->isObject())
@@ -1373,7 +1373,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       {
       case LEX_EQUAL: return new CScriptVar(a==b);
       case LEX_NEQUAL: return new CScriptVar(a!=b);
-      default: __throw(CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Object datatype"));
+      default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the Object datatype");
       }
    }
    else
@@ -1390,7 +1390,7 @@ CScriptVar *CScriptVar::mathsOp(CScriptVar *b, i32 op)
       case LEX_LEQUAL:    return new CScriptVar(da<=db);
       case '>':     return new CScriptVar(da>db);
       case LEX_GEQUAL:    return new CScriptVar(da>=db);
-      default: __throw(CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the string datatype"));
+      default: throw CScriptException("Operation "+CScriptLex::getTokenStr(op)+" not supported on the string datatype");
       }
    }
    ASSERT(0);
@@ -1653,13 +1653,13 @@ void tinyjs::execute(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += string("\n") + __str(i) + ": " + callstack[i];
+         msg += string("\n") + __string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
       l = oldLex;
 
-      __throw(CScriptException(msg));
+      throw CScriptException(msg);
    }
    delete l;
    l = oldLex;
@@ -1695,13 +1695,13 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += "\n" + __str(i) + ": " + callstack[i];
+         msg += "\n" + __string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
       l = oldLex;
 
-      __throw(CScriptException(msg));
+      throw CScriptException(msg);
    }
    delete l;
    l = oldLex;
@@ -1797,7 +1797,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       {
          string errorMsg = "Expecting '";
          errorMsg = errorMsg + function->name + "' to be a function";
-         __throw(CScriptException(errorMsg.c_str()));
+         throw CScriptException(errorMsg.c_str());
       }
       l->match('(');
       // create a new symbol table entry for execution of this function
@@ -1849,7 +1849,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
           * have messed up and left us with the wrong ScriptLex, so
           * we want to be careful here... */
 
-         ::exception::exception exception;
+         ::exception exception;
 
          CScriptLex *oldLex = l;
          CScriptLex *newLex = new CScriptLex(function->payload->getString());
@@ -2098,7 +2098,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (execute)
             {
                CScriptVarLink *a = axis(execute);
-               contents->addChild(__str(idx), a->payload);
+               contents->addChild(__string(idx), a->payload);
                CLEAN(a);
             }
             idx++;
@@ -2544,8 +2544,8 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("WHILE Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition().c_str());
-         __throw(CScriptException("LOOP_ERROR"));
+         TRACE("WHILE Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS <<" iterations at " << l->getPosition());
+         throw CScriptException("LOOP_ERROR");
       }
    }
    else if (l->tk==LEX_R_FOR)
@@ -2603,8 +2603,8 @@ void tinyjs::statement(bool &execute)
       if (loopCount<=0)
       {
          root->trace();
-         TRACE("FOR Loop exceeded %d iterations at %s\n", TINYJS_LOOP_MAX_ITERATIONS, l->getPosition().c_str());
-         __throw(CScriptException("LOOP_ERROR"));
+         TRACE("FOR Loop exceeded " << TINYJS_LOOP_MAX_ITERATIONS << "iterations at " << l->getPosition());
+         throw CScriptException("LOOP_ERROR");
       }
    }
    else if (l->tk==LEX_R_RETURN)

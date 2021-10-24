@@ -15,7 +15,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX log :
-      virtual public ::trace::log
+      virtual public ::log
    {
    public:
 
@@ -23,7 +23,7 @@ namespace apex
 
 
       bool                                m_bTrace;
-      __composite(::trace::trace)         m_ptrace;
+      __composite(::trace)                m_ptrace;
       ::mutex                             m_mutexTrace;
       string_array                        m_straSeparator;
       FILE *                              m_pfile;
@@ -52,9 +52,9 @@ namespace apex
 
       ::e_status process_init() override;
 
-      virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) const override;
+      //virtual void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) const override;
 
-      void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
+      void set_trace_category(enum_trace_category etracecategory, enum_trace_level etracelevelMinimum);
 
       virtual void success(const char * psz);
 

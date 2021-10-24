@@ -18,12 +18,12 @@ namespace userex
       top_view();
       virtual ~top_view();
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void on_create_split_impact() override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) override;
 

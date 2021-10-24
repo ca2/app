@@ -29,13 +29,13 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
-            return m_pspan->m_daPositionDeviceLeft[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceLeft[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectBox.left;
+            return m_pspan->m_daPositionDeviceLeft[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceLeft[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left;
 
          }
          else
          {
 
-            return m_pspan->m_daPositionDeviceLeft[iPos - m_iPosBeg] + m_rectDevice.left;
+            return m_pspan->m_daPositionDeviceLeft[iPos - m_iPosBeg] + m_rectangleDevice.left;
 
          }
       
@@ -48,13 +48,13 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
-            return m_pspan->m_daPositionDeviceRight[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceRight[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectBox.left;
+            return m_pspan->m_daPositionDeviceRight[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionDeviceRight[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left;
 
          }
          else
          {
 
-            return m_pspan->m_daPositionDeviceRight[iPos - m_iPosBeg] + m_rectDevice.left;
+            return m_pspan->m_daPositionDeviceRight[iPos - m_iPosBeg] + m_rectangleDevice.left;
 
          }
       
@@ -67,13 +67,13 @@ namespace user
          if (iPos <= m_iPosBeg)
          {
 
-            return m_rectDevice.left;
+            return m_rectangleDevice.left;
 
          }
          else if (iPos > m_iPosEnd)
          {
 
-            return m_rectDevice.right;
+            return m_rectangleDevice.right;
 
          }
          else
@@ -100,13 +100,13 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
-            return m_pspan->m_daPositionLeft[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionLeft[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectBox.left;
+            return m_pspan->m_daPositionLeft[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionLeft[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left;
 
          }
          else
          {
 
-            return m_pspan->m_daPositionLeft[iPos - m_pspan->m_iPosBeg] + m_rectBox.left;
+            return m_pspan->m_daPositionLeft[iPos - m_pspan->m_iPosBeg] + m_rectangleBox.left;
 
          }
 
@@ -119,13 +119,13 @@ namespace user
          if (m_iPosBeg > m_pspan->m_iPosBeg)
          {
 
-            return m_pspan->m_daPositionRight[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionRight[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectBox.left;
+            return m_pspan->m_daPositionRight[iPos - m_pspan->m_iPosBeg] - m_pspan->m_daPositionRight[m_iPosBeg - m_pspan->m_iPosBeg - 1] + m_rectangleBox.left;
 
          }
          else
          {
 
-            return m_pspan->m_daPositionRight[iPos - m_pspan->m_iPosBeg] + m_rectBox.left;
+            return m_pspan->m_daPositionRight[iPos - m_pspan->m_iPosBeg] + m_rectangleBox.left;
 
          }
 
@@ -138,13 +138,13 @@ namespace user
          if (iPos <= m_iPosBeg)
          {
 
-            return m_rectBox.left;
+            return m_rectangleBox.left;
 
          }
          else if (iPos > m_iPosEnd)
          {
 
-            return m_rectBox.right;
+            return m_rectangleBox.right;
 
          }
          else
@@ -156,7 +156,7 @@ namespace user
 
   //          double dThisLeft = get_pos_left(iPos);
 
-//            return ((dPreviousRight + dThisLeft) / 2.0) + m_rectBox.left;
+//            return ((dPreviousRight + dThisLeft) / 2.0) + m_rectangleBox.left;
 
          }
 

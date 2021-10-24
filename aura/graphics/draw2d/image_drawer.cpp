@@ -7,7 +7,7 @@
 bool image_drawer::draw(const image_drawing & imagedrawing)
 {
 
-   if (::is_null(imagedrawing.m_pimage))
+   if (::is_null(imagedrawing.m_pimagesource))
    {
 
       return false;
@@ -33,19 +33,19 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 }
 
 
-//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc)
+//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
-//   if (rectDst.size() == rectSrc.size())
+//   if (rectangleTarget.size() == rectangleSource.size())
 //   {
 //
-//      _draw_raw(rectDst, imagedrawing, rectSrc.top_left());
+//      _draw_raw(rectangleTarget, imagedrawing, rectangleSource.top_left());
 //
 //   }
 //   else
 //   {
 //
-//      _stretch_raw(rectDst, imagedrawing, rectSrc);
+//      _stretch_raw(rectangleTarget, imagedrawing, rectangleSource);
 //
 //   }
 //
@@ -54,7 +54,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
+//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -62,7 +62,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc)
+//bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
 //   return false;
@@ -70,7 +70,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_blend(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
+//bool image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -83,16 +83,22 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
 {
 
-   if (imagedrawing.m_rectSrc.size() == imagedrawing.m_rectDst.size())
+   auto rectangleSource = imagedrawing.source_rectangle();
+
+   auto rectangleTarget = imagedrawing.target_rectangle();
+
+   auto pimage = imagedrawing.image();
+
+   if (rectangleSource.size() == rectangleTarget.size())
    {
 
-      return _draw_raw(imagedrawing.m_rectDst, imagedrawing.m_pimage, imagedrawing, imagedrawing.m_rectSrc.top_left());
+      return _draw_raw(rectangleTarget, pimage, imagedrawing, rectangleSource.top_left());
 
    }
    else
    {
 
-      return _stretch_raw(imagedrawing.m_rectDst, imagedrawing.m_pimage, imagedrawing, imagedrawing.m_rectSrc);
+      return _stretch_raw(rectangleTarget, pimage, imagedrawing, rectangleSource);
 
    }
 
@@ -101,7 +107,7 @@ bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
 }
 
 
-bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+bool image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
 {
 
    return false;
@@ -109,7 +115,7 @@ bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, image * pimage, co
 }
 
 
-bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectSrc)
+bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
 {
 
    return false;

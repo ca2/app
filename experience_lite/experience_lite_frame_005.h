@@ -22,8 +22,8 @@
             public:
 
 
-               ::draw2d::brush_pointer                m_brushGrip;
-               ::draw2d::brush_pointer                m_brushTextCaption;
+               ::draw2d::brush_pointer                m_pbrushGrip;
+               ::draw2d::brush_pointer                m_pbrushTextCaption;
 
 
                frame_005(::object * pobject);

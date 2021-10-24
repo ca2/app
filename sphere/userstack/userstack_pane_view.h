@@ -36,14 +36,14 @@ namespace userstack
       void on_create_impact(::user::impact_data * pimpactdata) override;
       void on_change_cur_sel() override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       void check_3click_dir(const ::file::path & psz);
       void check_menu_dir(const ::file::path & psz);
       void check_desktop_dir(const ::file::path & psz);
 
       void _001InitializeFormPreData(::user::form * pform) override;
-      void on_control_event(::user::control_event * pevent) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       /*   virtual void OnFileManagerOpenContextMenuFolder(
             ::filemanager::data * pdata,
@@ -55,12 +55,12 @@ namespace userstack
 
       virtual void set_display(i32 iDisplay);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       DECLARE_MESSAGE_HANDLER(_001OnMenuMessage);

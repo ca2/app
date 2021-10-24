@@ -1,6 +1,6 @@
 #pragma once
 
-CLASS_DECL_ACME void throw_resource_exception(const char * psz);
+//CLASS_DECL_ACME void throw_resource_exception(const char * psz);
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -40,7 +40,7 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, OBJECT * p)
 
          ::release(p);
 
-         throw_resource_exception("OBJECT * p is not of type T (pointer < T >).");
+         throw ::resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
       }
 
@@ -85,23 +85,6 @@ inline ___pointer < T > ::___pointer(const T * p) :
 
 }
 
-
-template < class T >
-inline ___pointer < T > ::___pointer(const lparam& lparam)
-{
-
-   auto * p = (::matter *) lparam.m_lparam;
-
-   m_p = dynamic_cast < T * > (p);
-
-   if (::is_null(m_p))
-   {
-
-      ::release(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
-
-   }
-
-}
 
 
 template < class T >
@@ -408,12 +391,24 @@ inline bool operator !=(const ___pointer < T1 > & t1, const ___pointer < T2 > & 
 }
 
 
-template < class T >
-inline bool operator ==(lparam l, const ___pointer < T > & sp) { return ((T *) l) == sp.m_p; }
 
 
-template < class T >
-inline bool operator !=(lparam l, const ___pointer < T > & sp) { return ((T *) l) != sp.m_p; }
+template < typename TYPE >
+inline bool is_set(const __pointer(TYPE) & p)
+{
+
+   return p.is_set();
+
+}
+
+
+template<typename TYPE>
+inline bool is_null(const __pointer(TYPE) & p)
+{
+
+   return ::is_null(p.m_p);
+
+}
 
 
 

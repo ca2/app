@@ -8,80 +8,101 @@ namespace user
 {
 
 
-   class message_box :
-      virtual public ::user::interaction
+   class CLASS_DECL_AURA message_box :
+      virtual public conversation
    {
    public:
 
 
-      bool                             m_bFirstLayoutDone;
+      virtual __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      virtual ::e_status add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
 
 
-      //__pointer(::future < enum_dialog_result >) m_pprocess;
-      bool                             m_bOsUserThemeColorModified;
-      bool                             m_bInvalidated;
-      string_array                     m_stra;
-      string                           m_strTitle;
-      string                           m_strFontName;
+   };
 
-      //Window                           m_window;
-      ::point_i32                      m_point;
-      ::size_i32                       m_size;
 
-      int                              m_iLineHeight;
-      int                              m_iTextAscent;
+   class CLASS_DECL_AURA default_message_box :
+      virtual public ::user::interaction,
+      virtual public message_box
+   {
+   public:
 
-      __pointer_array(button)          m_buttona;
 
-      int                              m_iButtonTop;
-      int                              m_iButtonHeight;
-      int                              m_iButtonWidth;
+      bool                                            m_bFirstLayoutDone;
 
-      __pointer(still)                 m_pstill;
 
-      //XftFont * m_pfont;
-      //XftDraw * m_pdraw;
-      //XFontSet                         m_fs;
-      //char **                          m_listMissingCharset;
-      //GC                               m_gcText;
-      //GC                               m_gcTextHover;
-      //GC                               m_gcBar;
-      //::color::color                   m_colorButton;
-      //::color::color                   m_colorButtonHover;
-      //::color::color                   m_colorButtonPress;
-      //::color::color                   m_colorBorder;
-      //::color::color                   m_colorBorderHover;
-      //::color::color                   m_colorBorderPress;
-      //::color::color                   m_colorBorderHover1;
-      //::color::color                   m_colorBorderHover2;
-      //::color::color                   m_colorBorderHover3;
+      //__pointer(::future < enum_dialog_result >)    m_pprocess;
+      bool                                            m_bOsUserThemeColorModified;
+      bool                                            m_bInvalidated;
+      string_array                                    m_stra;
+      string                                          m_strTitle;
+      string                                          m_strFontName;
 
-      //Colormap                         m_colormap;
-      //int                              m_iScreen;
-      //Visual * m_pvisual;
-      int                              m_iMarginTop;
-      int                              m_iMarginLeft;
-      int                              m_iMarginRight;
-      int                              m_iMarginBottom;
-      int                              m_iLineSpacing;
-      int                              m_iButtonHSpacing;
-      int                              m_iButtonHPadding;
-      int                              m_iButtonVPadding;
-      int                              m_iMidSpacing;
+      //Window                                        m_window;
+      ::point_i32                                     m_point;
+      ::size_i32                                      m_size;
 
-      //::color::color                   m_colorBack;
-      //::color::color                   m_colorFace;
-      //::color::color                   m_colorFore;
+      int                                             m_iLineHeight;
+      int                                             m_iTextAscent;
 
-      //::color::color                   m_colorFaceHover;
-      //::color::color                   m_colorFacePress;
+      __pointer(button)                               m_pbuttonClose;
+      __pointer_array(button)                         m_buttona;
 
-      int                              m_iResult;
+      int                                             m_iButtonTop;
+      int                                             m_iButtonHeight;
+      int                                             m_iButtonWidth;
+
+      __pointer(still)                                m_pstill;
+
+      //XftFont *                                     m_pfont;
+      //XftDraw *                                     m_pdraw;
+      //XFontSet                                      m_fs;
+      //char **                                       m_listMissingCharset;
+      //GC                                            m_gcText;
+      //GC                                            m_gcTextHover;
+      //GC                                            m_gcBar;
+      //::color::color                                m_colorButton;
+      //::color::color                                m_colorButtonHover;
+      //::color::color                                m_colorButtonPress;
+      //::color::color                                m_colorBorder;
+      //::color::color                                m_colorBorderHover;
+      //::color::color                                m_colorBorderPress;
+      //::color::color                                m_colorBorderHover1;
+      //::color::color                                m_colorBorderHover2;
+      //::color::color                                m_colorBorderHover3;
+
+      //Colormap                                      m_colormap;
+      //int                                           m_iScreen;
+      //Visual *                                      m_pvisual;
+      int                                             m_iMarginTop;
+      int                                             m_iMarginLeft;
+      int                                             m_iMarginRight;
+      int                                             m_iMarginBottom;
+      int                                             m_iLineSpacing;
+      int                                             m_iButtonHSpacing;
+      int                                             m_iButtonHPadding;
+      int                                             m_iButtonVPadding;
+      int                                             m_iMidSpacing;
+
+      //::color::color                                m_colorBack;
+      //::color::color                                m_colorFace;
+      //::color::color                                m_colorFore;
+
+      //::color::color                                m_colorFaceHover;
+      //::color::color                                m_colorFacePress;
+
+      int                                             m_iResult;
 
 
       //message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
-      message_box();
-      virtual ~message_box();
+      default_message_box();
+      ~default_message_box() override;
+
+
+      // message_box_interface
+      __pointer(::extended::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      ::e_status add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
+
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -98,7 +119,6 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      virtual ::e_status show(const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox);
 
    protected:
       void do_show();
@@ -114,7 +134,7 @@ namespace user
 
       //void call_expose(Display * pdisplay);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -128,7 +148,7 @@ namespace user
 
       //virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
 
       
 
@@ -137,6 +157,10 @@ namespace user
       bool on_click(int iResult);
 
       virtual void close_window();
+
+
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+
 
 
    };

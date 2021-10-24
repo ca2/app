@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::user::place_holder * place_holder_container::get_new_place_holder(const ::rectangle_i32 & rectCreate)
+   ::user::place_holder * place_holder_container::get_new_place_holder(const ::rectangle_i32 & rectangleCreate)
    {
 
       auto pplaceholder = __create_new < ::user::place_holder >();
@@ -55,9 +55,9 @@ namespace user
       return bRemove;
    }
 
-   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectCreate)
+   ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectangleCreate)
    {
-      __pointer(place_holder) pholder = get_new_place_holder(rectCreate);
+      __pointer(place_holder) pholder = get_new_place_holder(rectangleCreate);
       if(!on_place_hold(pinteraction, pholder))
       {
          erase_place_holder(pholder);
@@ -131,7 +131,7 @@ namespace user
    //}
 
 
-   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const rectangle_i32 & rectCreate)
+   place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const rectangle_i32 & rectangleCreate)
    {
 
       place_holder_ptra holderptra;
@@ -141,7 +141,7 @@ namespace user
       for(i32 i = 0; i < this->get_count(); i++)
       {
 
-         pholder = this->element_at(i)->place_hold(pinteraction,rectCreate);
+         pholder = this->element_at(i)->place_hold(pinteraction,rectangleCreate);
 
          if(pholder != nullptr)
          {

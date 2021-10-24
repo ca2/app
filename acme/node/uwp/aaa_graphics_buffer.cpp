@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "_uwp.h"
-#include "acme/os/uwp/_uwp.h"
+#include "acme/node/operating_system/universal_windows/_uwp.h"
 #include "acme/message.h"
 #include "acme/user/_user.h"
 #include "buffer.h"
@@ -20,7 +20,7 @@
 #endif
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -93,7 +93,7 @@ namespace uwp
 
       pdevicecontext->BeginDraw();
 
-      auto colorBackground = m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto colorBackground = m_frameworkview->m_puisettings->GetColorValue(::winrt::Windows::UI::ViewManagement::UIColorType::Background);
 
       D2D1_COLOR_F color32 = {};
 
@@ -189,7 +189,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

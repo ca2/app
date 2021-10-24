@@ -1,13 +1,13 @@
 #include "framework.h"
 //#include "acme/node/ansios/ansios.h"
 #include "_linux.h"
-#include "acme/os/linux/_linux.h"
+#include "acme/node/operating_system/linux/_linux.h"
 
 
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 namespace acme
@@ -58,7 +58,7 @@ namespace acme
 //   bool application::_001OnDDECommand(const char * pcsz)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }
@@ -507,7 +507,7 @@ namespace acme
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 
-         if(path.has_char() && !file_exists(path))
+         if(path.has_char() && !m_psystem->m_pacmefile->exists(path))
          {
 
             auto pfile = __create_new<::linux::desktop_file>();

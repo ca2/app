@@ -37,8 +37,8 @@ public:
    virtual ~memory_file();
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    virtual bool is_valid() const override;
@@ -46,15 +46,17 @@ public:
 
 
    void load_string(string & str);
-   //void create(memsize iSize = -1);
-   filesize seek(filesize lOff, ::file::e_seek  nFrom) override;
+   filesize translate(filesize offset, ::enum_seek eseek) override;
    filesize get_position() const override;
 
-   virtual ::file::path get_file_path() const override;
 
-   virtual void set_size(filesize dwNewLen) override;
-   virtual ::filesize get_size() const override;
+   ::file::path get_file_path() const override;
+
+
+   void set_size(filesize dwNewLen) override;
+   ::filesize get_size() const override;
    void clear();
+
 
 
    using ::file::file::read;
@@ -69,9 +71,9 @@ public:
 
    void flush() override;
 
-   string to_string() const override;
+   string get_string() const override;
 
-   //virtual void full_load(::payload varFile);
+   //virtual void full_load(::payload payloadFile);
 
    using ::file::file::get_internal_data;
    virtual void * get_internal_data() override;
@@ -206,5 +208,5 @@ public:
 
 //auto __create_memory_stream() { return ::memory_stream(; }
 
-inline memory_file_pointer create_memory_file() { return __create_new < ::memory_file >(); }
+inline memory_file_pointer create_memory_file() { return __new(::memory_file); }
 inline memory_file_pointer create_memory_file(::memory_base & memory) { return __new(::memory_file(memory)); }

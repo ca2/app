@@ -17,7 +17,7 @@ namespace user
    //   
    //   edit_plain_text_view();
 
-   //   virtual void install_message_routing(::channel * pchannel);
+   //   void install_message_routing(::channel * pchannel) override;
 
    //   virtual void _001OnSetText(const ::action_context & action_context);
    //   virtual void _001OnUpdate(const ::action_context & action_context);

@@ -57,8 +57,8 @@ namespace simpledb
 
    bool manager::get_output_internal(const ::string & pszCommand, memory & memory)
    {
-      UNREFERENCED_PARAMETER(pszCommand);
-      UNREFERENCED_PARAMETER(memory);
+      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(memory);
       return true;
    }
 

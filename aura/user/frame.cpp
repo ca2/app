@@ -9,6 +9,7 @@ namespace user
    frame::frame()
    {
 
+      m_puserframewindow = nullptr;
       m_bSnapToBars = false;
       m_bAddToTitle = false;
       m_bPrefixTitle = false;
@@ -32,7 +33,7 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      connect_command("app_exit", &frame::on_message_app_exit);
+      add_command_handler("app_exit", this, &frame::on_message_app_exit);
 
       //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &window::on_message_set_cursor);
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::on_message_app_exit);
@@ -121,6 +122,78 @@ namespace user
       m_straMenuParent.add(strPath);
       m_straMenuName.add(strText);
       m_straMenuId.add(strId);
+
+      return ::success;
+
+   }
+
+
+   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
+   {
+
+      return nullptr;
+
+   }
+
+
+//   ::user::toolbar * frame::get_toolbar(const ::id & idToolBar)
+//   {
+//
+//      return nullptr;
+//
+//   }
+
+
+   ::e_status frame::add_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::erase_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::show_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status frame::hide_control_bar(::user::control_bar * pcontrolbar)
+   {
+
+      throw interface_only_exception();
+
+      return error_interface_only;
+
+   }
+
+
+//   __transport(::utoolbar) frame::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   {
+//
+//      return false;
+//
+//   }
+
+
+   ::e_status frame::on_create_bars()
+   {
 
       return ::success;
 
@@ -376,7 +449,7 @@ namespace user
 
 
 
-   void frame::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void frame::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_user_style_change)
@@ -385,7 +458,7 @@ namespace user
          on_user_style_change();
 
       }
-      else if (psubject->m_id == id_os_dark_mode)
+      else if (psubject->m_id == id_user_color)
       {
 
          set_need_redraw();
@@ -412,23 +485,6 @@ namespace user
    }
 
 
-   
-   bool frame::on_create_bars()
-   {
-
-      return true;
-
-   }
-
-
-
-   ::user::tool_window * frame::tool_window(enum_tool etool, bool bCreate)
-   {
-
-      return nullptr;
-
-   }
-
 
    bool frame::is_frame_window()
    {
@@ -438,12 +494,6 @@ namespace user
    }
 
 
-   bool frame::LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-   {
-
-      return false;
-
-   }
 
 
    void frame::InitialFramePosition(bool bForceRestore)

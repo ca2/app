@@ -51,17 +51,17 @@
 #include <IOKit/serial/ioss.h>
 #endif
 
-using serial::MillisecondTimer;
+using serial::::durationTimer;
 using serial::serial;
 using serial::serial_exception;
 using serial::port_not_opened_exception;
 using serial::io_exception;
 
 
-MillisecondTimer::MillisecondTimer(const u32 millis)
+::durationTimer::::durationTimer(const u32 ::duration)
    : expiry(timespec_now())
 {
-   i64 tv_nsec = expiry.tv_nsec + (millis * 1e6);
+   i64 tv_nsec = expiry.tv_nsec + (::duration * 1e6);
    if (tv_nsec >= 1e9)
    {
       i64 sec_diff = tv_nsec / static_cast<int> (1e9);
@@ -75,16 +75,16 @@ MillisecondTimer::MillisecondTimer(const u32 millis)
 }
 
 i64
-MillisecondTimer::remaining()
+::durationTimer::remaining()
 {
    timespec now(timespec_now());
-   i64 millis = (expiry.tv_sec - now.tv_sec) * 1e3;
-   millis += (expiry.tv_nsec - now.tv_nsec) / 1e6;
-   return millis;
+   i64 ::duration = (expiry.tv_sec - now.tv_sec) * 1e3;
+   ::duration += (expiry.tv_nsec - now.tv_nsec) / 1e6;
+   return ::duration;
 }
 
 timespec
-MillisecondTimer::timespec_now()
+::durationTimer::timespec_now()
 {
    timespec time;
 # ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
@@ -102,11 +102,11 @@ MillisecondTimer::timespec_now()
 }
 
 timespec
-timespec_from_ms(const u32 millis)
+timespec_from_ms(const u32 ::duration)
 {
    timespec time;
-   time.tv_sec = millis / 1e3;
-   time.tv_nsec = (millis - (time.tv_sec * 1e3)) * 1e6;
+   time.tv_sec = ::duration / 1e3;
+   time.tv_nsec = (::duration - (time.tv_sec * 1e3)) * 1e6;
    return time;
 }
 
@@ -578,10 +578,10 @@ serial::serial_impl::read(u8 * buf, size_t size)
    }
    size_t bytes_read = 0;
 
-   // Calculate total timeout in milliseconds t_c + (t_m * N)
+   // Calculate total timeout in ::durations t_c + (t_m * N)
    long total_timeout_ms = m_timeout.read_timeout_constant;
    total_timeout_ms += m_timeout.read_timeout_multiplier * static_cast<long> (size);
-   MillisecondTimer total_timeout((u32)total_timeout_ms);
+   ::durationTimer total_timeout((u32)total_timeout_ms);
 
    // Pre-fill buffer with available bytes
    {
@@ -665,10 +665,10 @@ serial::serial_impl::write(const u8 * data, size_t length)
    fd_set writefds;
    size_t bytes_written = 0;
 
-   // Calculate total timeout in milliseconds t_c + (t_m * N)
+   // Calculate total timeout in ::durations t_c + (t_m * N)
    long total_timeout_ms = m_timeout.write_timeout_constant;
    total_timeout_ms += m_timeout.write_timeout_multiplier * static_cast<long> (length);
-   MillisecondTimer total_timeout((u32)total_timeout_ms);
+   ::durationTimer total_timeout((u32)total_timeout_ms);
 
    bool first_iteration = true;
    while (bytes_written < length)

@@ -105,7 +105,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
 
    if (bFound)
    {
-      f->seek(tblDir.uOffset, ::file::seek_begin);
+      f->seek(tblDir.uOffset, ::e_seek_set);
       TT_NAME_TABLE_HEADER ttNTHeader;
       f->read(&ttNTHeader, sizeof(TT_NAME_TABLE_HEADER));
       ttNTHeader.uNRCount = SWAPWORD(ttNTHeader.uNRCount);
@@ -124,7 +124,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
             
             auto nPos = f->get_position();
             
-            f->seek(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset, ::file::seek_begin);
+            f->seek(tblDir.uOffset + ttRecord.uStringOffset + ttNTHeader.uStorageOffset, ::e_seek_set);
 
             //bug fix: see the post by SimonSays to read more about it
             char* lpszNameBuf = csTemp.get_string_buffer(ttRecord.uStringLength + 1);
@@ -140,7 +140,7 @@ string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
 
             }
 
-            f->seek(nPos, ::file::seek_begin);
+            f->seek(nPos, ::e_seek_set);
 
          }
 

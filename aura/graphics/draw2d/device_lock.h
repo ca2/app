@@ -1,57 +1,27 @@
+// Refactoring device_lock by camilo by 2021-09-08 16:25 BRT <3ThomasBS__!!
 #pragma once
 
-//#error
-//
-//#ifdef _UWP
-//
-//#include "acme/os/windows_common/comptr.h"
-//#include <d2d1_1.h>
-//
-//#endif
-//
 
 namespace draw2d
 {
-
-
+   
+   
    class CLASS_DECL_AURA device_lock
    {
    public:
-
-#ifdef _UWP
-
-      comptr < ID2D1Multithread > m_D2DMultithread;
-
-#endif
-
-      device_lock(::user::interaction * pinteraction);
+   
+   
+      ::matter *                    m_pmatter;
+   
+      
+      device_lock(::matter * pmatter);
       ~device_lock();
 
-
-   };
-
-
-   class CLASS_DECL_AURA lock :
-      public synchronous_lock
-   {
-   public:
-
-      static ::mutex * g_pmutex;
-
-      lock() :
-         synchronous_lock(g_pmutex)
-      {
-
-      }
-
-      virtual ~lock()
-      {
-
-      }
-
+   
    };
 
 
 } // namespace draw2d
+
 
 

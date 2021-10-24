@@ -27,10 +27,10 @@ bool text_stream::is_stream_null()
 }
 
 
-string text_stream::to_string() const
+string text_stream::get_string() const
 {
    
-   return m_p->to_string();
+   return m_p->get_string();
    
 }
 
@@ -164,7 +164,7 @@ void text_stream::print_number(const ::string & str)
 void text_stream::write(i32 i)
 {
 
-   print_number(__str(i));
+   print_number(__string(i));
 
 }
 
@@ -172,7 +172,7 @@ void text_stream::write(i32 i)
 void text_stream::write(u32 u)
 {
 
-   print_number(__str(u));
+   print_number(__string(u));
 
 }
 
@@ -180,7 +180,7 @@ void text_stream::write(u32 u)
 void text_stream::write(i64 i)
 {
 
-   print_number(__str(i));
+   print_number(__string(i));
 
 }
 
@@ -188,7 +188,7 @@ void text_stream::write(i64 i)
 void text_stream::write(u64 u)
 {
 
-   print_number(__str(u));
+   print_number(__string(u));
 
 }
 
@@ -212,7 +212,7 @@ void text_stream::write(double d)
 
    str.Format("%f", d);
 
-   print_number(__str(d));
+   print_number(__string(d));
 
 }
 
@@ -366,20 +366,24 @@ void text_stream::read(i32 & i)
 {
    u64 uRead = m_p->read(&i, sizeof(i));
    if (uRead != sizeof(i))
-      __throw(::exception::exception("failed to read i32"));
+      __throw(error_io, "failed to read i32");
 }
 
 void text_stream::read(u32 & u)
 {
    u64 uRead = m_p->read(&u, sizeof(u));
    if (uRead != sizeof(u))
-      __throw(::exception::exception("failed to read u32"));
+      __throw(error_io, "failed to read u32");
 }
+
 
 void text_stream::read(i64 & i)
 {
+
    m_p->read(&i, sizeof(i));
+
 }
+
 
 void text_stream::read(u64 & u)
 {

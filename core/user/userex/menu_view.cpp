@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 menu_view::menu_view()
@@ -8,39 +11,34 @@ menu_view::menu_view()
 }
 
 
-void menu_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void menu_view::handle(::subject * psubject, ::context * pcontext)
 {
-   ::user::form_view::on_subject(psubject, pcontext);
-}
-
-
-void menu_view::on_control_event(::user::control_event * pevent)
-{
+   ::user::form_view::handle(psubject, pcontext);
 
    auto papplication = get_application();
 
-   papplication->on_control_event(pevent);
+   papplication->handle(psubject, pcontext);
 
-   if(pevent->m_bRet)
+   if (psubject->m_bRet)
    {
 
       return;
 
    }
 
-   if(m_pcallback != nullptr)
+   if (m_pcallback != nullptr)
    {
 
-      m_pcallback->on_control_event(pevent);
+      m_pcallback->handle(psubject, pcontext);
 
    }
 
-   if(get_parent() != nullptr)
+   if (get_parent() != nullptr)
    {
 
-      get_parent()->on_control_event(pevent);
+      get_parent()->handle(psubject, pcontext);
 
-      if(pevent->m_bRet)
+      if (psubject->m_bRet)
       {
 
          return;
@@ -49,8 +47,47 @@ void menu_view::on_control_event(::user::control_event * pevent)
 
    }
 
+
 }
 
+//
+//void menu_view::handle(::subject * psubject, ::context * pcontext)
+//{
+//
+//   auto papplication = get_application();
+//
+//   papplication->handle(psubject, pcontext);
+//
+//   if(psubject->m_bRet)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   if(m_pcallback != nullptr)
+//   {
+//
+//      m_pcallback->handle(psubject, pcontext);
+//
+//   }
+//
+//   if(get_parent() != nullptr)
+//   {
+//
+//      get_parent()->handle(psubject, pcontext);
+//
+//      if(psubject->m_bRet)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
+//
+//}
+//
 
 void menu_view::install_message_routing(::channel * pchannel)
 {
@@ -76,28 +113,28 @@ void menu_view::_001OnTimer(::timer * ptimer)
    if(m_pcallback != nullptr)
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_eevent = ::user::e_event_timer;
+      subject.m_id = ::e_subject_timer;
 
-      ev.m_uiEvent = ptimer->m_uEvent;
+      subject.m_uiEvent = ptimer->m_uEvent;
       
-      ev.m_etimer = ptimer->m_etimer;
+      subject.m_etimer = ptimer->m_etimer;
 
-      ev.m_puserinteraction = this;
+      subject.m_puserelement = this;
 
       auto papplication = get_application();
 
-      papplication->on_control_event(&ev);
+      papplication->route(&subject);
 
-      if(ev.m_bRet)
+      if(subject.m_bRet)
       {
 
          return;
 
       }
 
-      m_pcallback->on_control_event(&ev);
+      m_pcallback->route(&subject);
 
    }
 

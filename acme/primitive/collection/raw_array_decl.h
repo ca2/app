@@ -30,8 +30,8 @@ public:
    virtual ~raw_array();
 
 
-   //virtual void assert_valid() const override;
-   //virtual void dump(dump_context & dumpcontext) const override;
+   //void assert_valid() const override;
+   //void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -58,7 +58,8 @@ public:
    //void set_at_grow(::index nIndex, ARG_TYPE newElement);
    //TYPE & element_at_grow(::index nIndex);
    TYPE get_at_grow(::index nIndex);
-   ::index add(ARG_TYPE newElement);
+   ::index add(ARG_TYPE newElement) { return add_item(newElement); }
+   ::index add_item(ARG_TYPE newElement);
    ::index add(const raw_array& src);
    virtual ::index add_new(::count count);
    virtual TYPE & add_new();

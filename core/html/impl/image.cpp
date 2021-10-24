@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -29,9 +32,15 @@ namespace html
 
                auto sizeDst = m_pimage->size();
 
-               auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+               auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
 
-               pgraphics->draw(rectDst, m_pimage->get_graphics());
+               image_source imagesource(m_pimage);
+
+               image_drawing_options imagedrawingoptions(rectangleTarget);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
                
             }
 
@@ -50,7 +59,7 @@ namespace html
          if (pelement->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            string strSrc(pelement->m_propertyset["src"]);
+            string strSrc(pelement->m_propertyset["src"].get_string());
 
             m_pimage = pdata->get_image(strSrc);
 
@@ -89,7 +98,7 @@ namespace html
 
             single_lock lockImage(mutex());
 
-            if (lockImage.lock(0))
+            if (lockImage.lock(0_s))
             {
 
                int cx = m_pimage->width();

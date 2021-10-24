@@ -4,7 +4,7 @@
 
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -121,12 +121,12 @@ namespace uwp
    }
 
 
-   file_result file_context::get_file(const ::payload& varFile, const ::file::e_open & eopen)
+   file_transport file_context::get_file(const ::payload& payloadFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       string strPrefix;
 
@@ -135,7 +135,7 @@ namespace uwp
       if (folder != nullptr)
       {
 
-         auto pbuffer = __new(::uwp::native_buffer);
+         auto pbuffer = __new(::universal_windows::native_buffer);
 
          //::extended::status ::extended::status = spfile->open(folder, strPath,nOpenFlags);
 
@@ -152,14 +152,14 @@ namespace uwp
 
       }
 
-      spfile = ::file_context::get_file(varFile, eopen);
+      spfile = ::file_context::get_file(payloadFile, eopen);
 
       return spfile;
 
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

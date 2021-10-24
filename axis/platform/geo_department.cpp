@@ -55,11 +55,31 @@ namespace geo
          *file.get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
 
 
-         //pcontext->m_papexcontext->file().to_array(m_straCity, pacmedir->system() / "weather-cit.bin");
-         //pcontext->m_papexcontext->file().to_array(m_straCityLo, pacmedir->system() / "weather-cil.bin");
-         //pcontext->m_papexcontext->file().to_array(m_iaIds, pacmedir->system() / "weather-ids.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLon, pacmedir->system() / "weather-lon.bin");
-         //pcontext->m_papexcontext->file().to_array(m_daLat, pacmedir->system() / "weather-lat.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-cit.bin");
+         //pcontext->m_papexcontext->file().to_array(m_straCityLo,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-cil.bin");
+         //pcontext->m_papexcontext->file().to_array(m_iaIds,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-ids.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLon,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-lon.bin");
+         //pcontext->m_papexcontext->file().to_array(m_daLat,          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "weather-lat.bin");
 
 
          bOk = m_straCityLo.get_size() == m_straCity.get_size()
@@ -470,7 +490,7 @@ namespace geo
 
       property_set set;
 
-      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __str(pcity->m_iId) + "&APPID=" + string(pszId);
+      string strUrl = "http://api.openweathermap.org/data/2.5/weather?id=" + __string(pcity->m_iId) + "&APPID=" + string(pszId);
 
       auto psystem = get_system()->m_paxissystem;
 
@@ -545,9 +565,9 @@ namespace geo
 
       ::datetime::time_span spanTimeout(1, 0, 0, 0);
 
-      ::datetime::time now = ::datetime::time::get_current_time();
+      ::datetime::time now = ::datetime::time::now();
 
-      ::mutex m(e_create_new, false, "Global\\ca2_datetime_departament");
+      ::mutex m(pcity, false, "Global\\ca2_datetime_departament");
 
       {
 
@@ -594,19 +614,19 @@ namespace geo
 
       property_set set;
 
-      string strLat = __str(pcity->m_dLat);
+      string strLat = __string(pcity->m_dLat);
 
-      string strLng = __str(pcity->m_dLon);
+      string strLng = __string(pcity->m_dLon);
 
       string strKey;
 
 #ifdef WINDOWS
 
-      strKey = file_as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
 
 #else
 
-      strKey = file_as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
 
 #endif
 
@@ -726,19 +746,19 @@ namespace geo
       //
       //         property_set set;
       //
-      //         string strLat = __str(pcity->m_dLat);
+      //         string strLat = __string(pcity->m_dLat);
       //
-      //         string strLng = __str(pcity->m_dLon);
+      //         string strLng = __string(pcity->m_dLon);
       //
       //         string strKey;
       //
       //#ifdef WINDOWS
       //
-      //         strKey = file_as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
+      //         strKey = m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\seed\\timezonedb.txt");
       //
       //#else
       //
-      //         strKey = file_as_string("/sensitive/sensitive/seed/timezonedb.txt");
+      //         strKey = m_psystem->m_pacmefile->as_string("/sensitive/sensitive/seed/timezonedb.txt");
       //
       //#endif
       //

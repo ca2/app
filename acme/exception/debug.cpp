@@ -61,7 +61,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNum
 //
 //
 //misc_exception::misc_exception(const char * pszMessage) :
-//   ::exception::exception(pszMessage)
+//   ::exception(pszMessage)
 //{
 //
 //}
@@ -83,7 +83,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName,int iLineNum
 //   CLASS_DECL_ACME string error_message(u32 dwError)
 //   {
 //
-//      return get_system_error_message(dwError);
+//      return get_last_error_message(dwError);
 //
 //   }
 //

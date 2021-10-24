@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace userex
@@ -12,7 +15,7 @@ namespace userex
    }
 
 
-   void error_dialog::Initialize(const ::exception::exception & e)
+   void error_dialog::Initialize(const ::exception & e)
    {
 
       m_exception = e;

@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -171,7 +174,7 @@ namespace html
             if (!m_pelemental->m_propertyset.is_new_or_null("width"))
             {
 
-               string strWidth(m_pelemental->m_propertyset["width"]);
+               string strWidth(m_pelemental->m_propertyset["width"].get_string());
 
                if (strWidth.find("%") > 0)
                {
@@ -439,7 +442,7 @@ namespace html
       void cell::on_change_layout(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 

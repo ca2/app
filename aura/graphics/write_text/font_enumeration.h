@@ -6,7 +6,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_enumeration :
-      virtual public ::subject::manager
+      virtual public ::manager
    {
    public:
 
@@ -27,12 +27,12 @@ namespace write_text
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      void subject_handler(::subject::subject * psubject) override;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void signal(::signal * psignal) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
-      virtual void check_need_update(::subject::subject * psubject);
-      //virtual bool update(::subject::subject * psubject);
+      virtual void check_need_update(::subject * psubject);
+      //virtual bool update(::subject * psubject);
       virtual ::e_status update();
 
 

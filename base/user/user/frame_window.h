@@ -29,52 +29,53 @@ namespace user
 
       };
 
-      __pointer_array(::user::control_bar)      m_barptra; // array of all control bars that have this interaction_impl as their dock site
+      __pointer_array(::user::control_bar)      m_controlbara; // array of all control bars that have this interaction_impl as their dock site
 
-      bool                                      m_bAutoWindowFrame;
-      bool                                      m_bWindowFrame;
-      bool                                      m_bLayered;
-      i32                                       m_iFrameData;
-      ::id                                      m_idHelp;         // xxx mrs
-      ::user::impact_system *                   m_pdocumenttemplate;
+      bool                                         m_bAutoWindowFrame;
+      bool                                         m_bWindowFrame;
+      bool                                         m_bLayered;
+      i32                                          m_iFrameData;
+      ::id                                         m_idHelp;         // xxx mrs
+      ::user::impact_system *                      m_pdocumenttemplate;
 
-      i32                                       m_nWindow;  // general purpose interaction_impl number - display as ":n"
+      i32                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
 //      // 1 => first of many windows viewing ::user::document, 2=> second
 //#ifdef WINDOWS_DESKTOP
-//    HMENU                                     m_hMenuDefault;       // default menu resource for this frame
-//    HACCEL                                    m_hAccelTable;       // accelerator table
+//    HMENU                                        m_hMenuDefault;       // default menu resource for this frame
+//    HACCEL                                       m_hAccelTable;       // accelerator table
 //#endif
-      u32                                       m_dwPromptContext;    // current help prompt action_context for message box
-      bool                                      m_bHelpMode;           // if true, then Shift+F1 help mode is active
-      ::user::frame_window *                    m_pNextFrameWnd; // next frame_window in cast global list
-      ::rectangle_i32                           m_rectBorder;         // for OLE border space negotiation
+      u32                                          m_dwPromptContext;    // current help prompt action_context for message box
+      bool                                         m_bHelpMode;           // if true, then Shift+F1 help mode is active
+      ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list
+      ::rectangle_i32                              m_rectangleBorder;         // for OLE border space negotiation
 
-      i32                                       m_nShowDelay;           // SW_ command for delay show/hide
+      i32                                          m_nShowDelay;           // SW_ command for delay show/hide
 
-      bool                                      m_bFrameMoveEnable;
+      bool                                         m_bFrameMoveEnable;
 
 
-      string                                    m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
-      ::u32                                     m_nIDTracking;         // tracking command ID or string IDS
-      ::u32                                     m_nIDLastMessage;      // last displayed message string IDS
-      ::user::impact *                          m_pviewActive;       // current active ::user::impact
-      ::u32                                     m_cModalStack;         // BeginModalState depth
-      ::user::interaction_ptra                  m_uiptraDisable;       // windows disabled because of BeginModalState
+      string                                       m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
+      ::u32                                        m_nIDTracking;         // tracking command ID or string IDS
+      ::u32                                        m_nIDLastMessage;      // last displayed message string IDS
+      ::user::impact *                             m_pviewActive;       // current active ::user::impact
+      ::u32                                        m_cModalStack;         // BeginModalState depth
+      ::user::interaction_ptra                     m_uiptraDisable;       // windows disabled because of BeginModalState
 //#ifdef WINDOWS_DESKTOP
-//      HMENU                                     m_hMenuAlt;           // menu to update to (nullptr means default)
+//      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
 //#endif
-      bool                                      m_bInRecalcLayout;     // avoid recursion in on_layout
-      ::type                                    m_pFloatingFrameClass;
+      bool                                         m_bInRecalcLayout;     // avoid recursion in on_layout
+      ::type                                       m_pFloatingFrameClass;
 
-      ::u32                                     m_nIdleFlags;          // set of bit flags for idle processing
+   ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
-      ::user::impact *                          m_pviewMain;
+      ::user::impact *                                m_pviewMain;
+      id_map < __transport(::user::toolbar) >      m_mapToolbar;
 
 
 
       frame_window();
-      virtual ~frame_window();
+      ~frame_window() override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -86,18 +87,18 @@ namespace user
       void common_construct();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context & dc) const override;
 
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual ::id get_topic_view_id();
       virtual bool set_topic_view_by_id(const ::id & id);
 
 
-      virtual void update_active_document(::subject::subject * psubject);
+      virtual void update_active_document(::subject * psubject);
       virtual void update_active_document(const ::id & id);
 
 
@@ -153,8 +154,41 @@ namespace user
 
       virtual ::user::document * get_active_document();
 
-      virtual ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
+
+      ::e_status add_control_bar(::user::control_bar * pcontrolbar) override;
+      ::e_status erase_control_bar(::user::control_bar * pcontrolbar) override;
+
+
+      ::e_status show_control_bar(::user::control_bar * pcontrolbar) override;
+      ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
+
+
+      virtual __transport(toolbar) get_toolbar(const ::id & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+
+
+      virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+
+      //   template < class TOOLBAR >
+      // bool load_toolbar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+      template < class TOOLBAR >
+      ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+
+
+      //   virtual bool load_toolbar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+      //   {
+      //      return load_toolbar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
+      //   }
+
+//      virtual ::e_status load_toolbar(const ::id & idToolbar, const ::string & strToolBar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
+//      {
+//
+//         return load_toolbar < ::user::toolbar >(idToolbar, strToolBar, dwCtrlStyle, uStyle);
+//
+//      }
+
+
+      ::user::interaction * get_active_view() const override;           // active ::user::impact or nullptr
+      void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
@@ -200,12 +234,10 @@ namespace user
       void OnUpdateControlBarMenu(::message::command* pCmdUI);
       bool OnBarCheck(::u32 nID);
 
-      //virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override;
-      virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP) override;
 
       
-      virtual void on_command_message(::message::command * pcommand) override;
-      virtual void route_command_message(::message::command* pcommand) override;
+      //virtual void on_command(::message::command * pcommand) override;
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual void on_update_frame_title(bool bAddToTitle);
 
@@ -281,7 +313,7 @@ namespace user
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       __pointer(::user::interaction) WindowDataGetWnd();
@@ -289,8 +321,6 @@ namespace user
 
 
       friend class user;
-      virtual void AddControlBar(::user::control_bar *pBar);
-      virtual void RemoveControlBar(::user::control_bar *pBar);
 
 
       void data_on_after_change(::message::message * pmessage);

@@ -284,20 +284,20 @@ filesize memory_file::get_position() const
 }
 
 
-filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
+filesize memory_file::translate(filesize offset, ::enum_seek eseek)
 {
 
    ASSERT(is_valid());
 
-   ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-   //ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+   ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
+   //ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
    memsize dwNew = (memsize)m_position;
 
-   switch (nFrom)
+   switch (eseek)
    {
-   case ::file::seek_begin:
-      if(lOff < 0)
+   case ::e_seek_set:
+      if(offset < 0)
       {
 
          dwNew = 0;
@@ -305,12 +305,12 @@ filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
       }
       else
       {
-         dwNew = (memsize)lOff;
+         dwNew = (memsize)offset;
 
       }
       break;
-   case ::file::seek_end:
-      if(lOff < -(memsize)get_size())
+   case ::e_seek_from_end:
+      if(offset < -(memsize)get_size())
       {
 
          dwNew = 0;
@@ -318,11 +318,11 @@ filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
       }
       else
       {
-         dwNew = (memsize)(get_size() + lOff);
+         dwNew = (memsize)(get_size() + offset);
       }
       break;
-   case ::file::seek_current:
-      if(lOff < -(memsize)m_position)
+   case ::e_seek_current:
+      if(offset < -(memsize)m_position)
       {
 
          dwNew = 0;
@@ -331,7 +331,7 @@ filesize memory_file::seek(filesize lOff, ::file::e_seek nFrom)
       else
       {
 
-         dwNew = (memsize)(m_position + lOff);
+         dwNew = (memsize)(m_position + offset);
 
       }
       break;
@@ -433,10 +433,10 @@ void memory_file::flush()
 }
 
 
-string memory_file::to_string() const
+string memory_file::get_string() const
 {
    
-   return memory_container::to_string();
+   return memory_container::get_string();
    
 }
 
@@ -457,12 +457,12 @@ void memory_file::dump(dump_context & dumpcontext) const
 }
 
 
-//void memory_file::full_load(::payload varFile)
+//void memory_file::full_load(::payload payloadFile)
 //{
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = m_pcontext->m_papexcontext->file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+//   auto pfile = m_pcontext->m_papexcontext->file().get_file(payloadFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {
@@ -544,7 +544,7 @@ void memory_file::to(::file::file* pfileOut, memsize uiSize)
 
       ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), uiSize);
 
-      pfileOut->seek(get_internal_data_size(), ::file::seek_current);
+      pfileOut->position() += get_internal_data_size();
 
    }
    else

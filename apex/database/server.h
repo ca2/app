@@ -24,21 +24,21 @@ namespace database
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::subject::subject * psubject = nullptr);
+      virtual bool _data_server_load(client * pclient, const key & key, get_memory getmemory, ::subject * psubject = nullptr);
 
 
-      virtual bool _data_server_save(client * pclient, const key & key, block block, ::subject::subject * psubject = nullptr);
+      virtual bool _data_server_save(client * pclient, const key & key, block block, ::subject * psubject = nullptr);
 
 
-      virtual bool data_pulse_change      (client * pclient, const key & key, ::subject::subject * psubject = nullptr);
+      virtual bool data_pulse_change      (client * pclient, const key & key, ::subject * psubject = nullptr);
 
 
-      virtual bool on_before_data_change  (client * pclient, const key & key, ::payload & varNew, ::subject::subject * psubject = nullptr);
-      virtual bool on_after_data_change   (client * pclient, const key & key, const ::payload & payload, ::subject::subject * psubject = nullptr);
+      virtual bool on_before_data_change  (client * pclient, const key & key, ::payload & varNew, ::subject * psubject = nullptr);
+      virtual bool on_after_data_change   (client * pclient, const key & key, const ::payload & payload, ::subject * psubject = nullptr);
 
 
-      virtual ::payload data_load(client * pclient, const key & key, ::subject::subject * psubject = nullptr);
-      virtual bool data_save(client * pclient, const key & key, ::payload & payload, ::subject::subject * psubject = nullptr);
+      virtual ::payload data_load(client * pclient, const key & key, ::subject * psubject = nullptr);
+      virtual bool data_save(client * pclient, const key & key, ::payload & payload, ::subject * psubject = nullptr);
 
 
    };

@@ -163,7 +163,7 @@ namespace file
    void listener::handle_file_action(::file::action * paction)
    {
 
-      UNREFERENCED_PARAMETER(paction);
+      __UNREFERENCED_PARAMETER(paction);
 
    }
 
@@ -321,7 +321,7 @@ namespace file
       for (auto & pair : m_watchmap)
       {
 
-         if (::file_is_equal_path(pathFolder, pair.element2()->m_pathFolder))
+         if (::file_path_is_equal(pathFolder, pair.element2()->m_pathFolder))
          {
 
             erase_watch(pair.element1());

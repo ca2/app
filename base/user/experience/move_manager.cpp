@@ -56,13 +56,13 @@ namespace experience
 
       auto pointCursor = pmouse->m_point;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_pframewindow->get_window_rect(rectWindow);
+      m_pframewindow->get_window_rect(rectangleWindow);
 
       m_pointCursorOrigin = pointCursor;
 
-      m_pointWindowOrigin = rectWindow.top_left();
+      m_pointWindowOrigin = rectangleWindow.top_left();
 
       m_pointMove = m_pointWindowOrigin;
 
@@ -249,9 +249,9 @@ namespace experience
       else if (bApply)
       {
 
-         auto rectRequest = m_pframewindow->screen_rect();
+         auto rectangleRequest = m_pframewindow->screen_rect();
 
-         index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr);
+         index iMatchingMonitor = m_pframewindow->good_move(rectangleRequest, nullptr);
 
          if (iMatchingMonitor >= 0)
          {
@@ -259,7 +259,7 @@ namespace experience
             if (!pmouse)
             {
 
-               pmouse->m_point = -m_pointWindowOrigin + rectRequest.top_left() + m_pointCursorOrigin;
+               pmouse->m_point = -m_pointWindowOrigin + rectangleRequest.top_left() + m_pointCursorOrigin;
 
             }
 

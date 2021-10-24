@@ -54,6 +54,8 @@ namespace simpledb
 
       if(!ptransport)
       {
+         
+         WARNING("Failed to load database_sqlite3");
 
          return false;
 
@@ -258,19 +260,19 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject::subject * psubject)
+   bool server::_data_server_load(::database::client * pclient, const ::database::key & id, get_memory getmemory, ::subject * psubject)
    {
 
       ::database::key key;
 
       key = pclient->calc_data_key(id);
 
-      string strType = ::str::demangle(pclient->type_name());
+      string strType = __type_name(pclient);
 
       if(strType.contains("filemanager::frame"))
       {
 
-         INFO("filemanager");
+         INFORMATION("filemanager");
 
       }
 
@@ -286,19 +288,19 @@ namespace simpledb
    }
 
 
-   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject::subject * psubject)
+   bool server::_data_server_save(::database::client * pclient, const ::database::key & id, block block, ::subject * psubject)
    {
 
       ::database::key key;
 
       key = pclient->calc_data_key(id);
 
-      string strType = ::str::demangle(pclient->type_name());
+      string strType = __type_name(pclient);
 
       if(strType.contains("filemanager::frame"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 

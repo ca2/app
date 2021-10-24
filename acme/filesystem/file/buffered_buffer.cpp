@@ -37,43 +37,53 @@ namespace file
    }
 
 
-   filesize buffered_file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
       u64 uiBegBufPosition = m_uiBufLPos;
+
       u64 uiEndBufPosition = m_uiBufUPos;
+
       u64 uiNewPos;
-      if(nFrom == ::file::seek_begin)
-      {
-         if(lOff < 0)
-            lOff = 0;
-         uiNewPos = lOff;
-      }
-      else if(nFrom == ::file::seek_end)
-      {
 
-         uiNewPos = m_pfile->get_size() + lOff;
-
-      }
-      else if(nFrom == ::file::seek_current)
+      if(eseek == ::e_seek_set)
       {
          
-         i64 iNewPos = m_uiPosition + lOff;
-
-         if (iNewPos < 0)
+         if (offset < 0)
          {
 
-            iNewPos = 0;
+            offset = 0;
 
          }
-         else if (::comparison::gt(iNewPos, m_pfile->get_size()))
+
+         uiNewPos = offset;
+
+      }
+      else if(eseek == ::e_seek_from_end)
+      {
+
+         uiNewPos = m_pfile->get_size() + offset;
+
+      }
+      else if(eseek == ::e_seek_current)
+      {
+         
+         i64 iNewPosition = m_uiPosition + offset;
+
+         if (iNewPosition < 0)
          {
 
-            iNewPos = m_pfile->get_size();
+            iNewPosition = 0;
+
+         }
+         else if (::comparison::gt(iNewPosition, m_pfile->get_size()))
+         {
+
+            iNewPosition = m_pfile->get_size();
 
          }
          
-         uiNewPos = iNewPos;
+         uiNewPos = iNewPosition;
 
       }
       else
@@ -92,7 +102,7 @@ namespace file
       else
       {
 
-         m_uiPosition = m_pfile->seek(uiNewPos, ::file::seek_begin);
+         m_uiPosition = m_pfile->set_position(uiNewPos);
 
          if (m_bDirty)
          {
@@ -213,7 +223,7 @@ namespace file
 
       }
 
-      m_pfile->seek((filesize) m_uiPosition, ::file::seek_begin);
+      m_pfile->set_position((filesize) m_uiPosition);
 
       memsize uiCopy;
 
@@ -230,7 +240,18 @@ namespace file
 
       }
 
-      memsize uRead    = m_pfile->read(m_storage.get_data(), uiCopy);
+      memsize uRead    = 0;
+
+      try
+      {
+
+         uRead = m_pfile->read(m_storage.get_data(), uiCopy);
+
+      }
+      catch(...)
+      {
+
+      }
 
       m_uiBufLPos       = m_uiPosition;
 
@@ -341,7 +362,7 @@ namespace file
       if(m_bDirty)
       {
 
-         m_pfile->seek((filesize) m_uiWriteLPos, ::file::seek_begin);
+         m_pfile->set_position((filesize) m_uiWriteLPos);
 
          m_pfile->write(&m_storage.get_data()[m_uiWriteLPos - m_uiBufLPos], (memsize) (m_uiWriteUPos - m_uiWriteLPos + 1));
 

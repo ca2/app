@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -262,7 +265,7 @@ namespace html
       void table::layout_phase2(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -270,7 +273,7 @@ namespace html
       void table::layout_phase3(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          move_to(pdata);
 
@@ -349,7 +352,7 @@ namespace html
          /*if(m_iBorder > 0)
          {
 
-         pdata->m_pcoredata->m_pdc->draw3d_rect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
+         pdata->m_pcoredata->m_pdc->draw_inset_3d_rectangle(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
          get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), argb(255, 190, 184, 184), argb(255, 90, 90, 90));
 
          }*/

@@ -3,7 +3,7 @@
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <sys/ipc.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #include <sys/time.h>
 #include <time.h>
 #include <sys/time.h>
@@ -11,7 +11,7 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
 #endif
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 
 #ifdef __MACH__
 #include <mach/clock.h>
@@ -103,7 +103,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       m_mutex = new pthread_mutex_t;
       if((rc = pthread_mutex_init((pthread_mutex_t *) m_mutex,&attr)))
       {
-         __throw(::exception::exception("RC_OBJECT_NOT_CREATED"));
+         __throw(::exception("RC_OBJECT_NOT_CREATED"));
       }
 
 
@@ -366,7 +366,7 @@ bool event::ResetEvent()
    else
    {
 
-      __throw(::exception::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
+      __throw(::exception("It does not make sense to Reset a Event that is Automatic. It can be only Pulsed/Broadcasted."));
 
    }
 
@@ -681,7 +681,7 @@ synchronization_result event::wait (const duration & durationTimeout)
 
       u32 timeout = durationTimeout.u32_millis();
 
-      auto start = ::millis::now();
+      auto start = ::duration::now();
 
       while(durationTimeout.is_pos_infinity() || start.elapsed() < timeout)
       {
@@ -773,7 +773,7 @@ bool event::is_signaled() const
    else
    {
 
-      return ((event *) this)->wait(millis(0)).signaled();
+      return ((event *) this)->wait(::duration(0)).signaled();
 
    }
 
@@ -901,7 +901,7 @@ bool event::lock(const duration & durationTimeout)
 //
 //      u32 timeout = durationTimeout.u32_millis();
 //
-//      u32 start= ::millis::now();
+//      u32 start= ::duration::now();
 //
 //      while(start.elapsed() < timeout)
 //      {

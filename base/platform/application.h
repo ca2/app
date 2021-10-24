@@ -36,8 +36,8 @@ namespace base
       virtual ::e_status initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       inline ::base::system* get_system() const;
@@ -143,7 +143,7 @@ namespace base
 //      //virtual void SetCurrentHandles() override;
 //
 //
-//      virtual bool process_exception(const ::exception::exception & e) override;
+//      virtual bool process_exception(const ::exception & e) override;
 //
 //
 //      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
@@ -173,7 +173,7 @@ namespace base
 //
 //
 //
-//      virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+//      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 //
 //
 //      virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -221,14 +221,14 @@ namespace base
 //
 //      virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
-//      virtual void on_control_event(::user::control_event* pevent) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
-//      virtual void route_control_event(::user::control_event* pevent);
+//      virtual void route(::subject * psubject, ::context * pcontext);
 //
 //
 //
-//      virtual bool on_open_document(::user::document * pdocument, ::payload varFile);
-//      virtual bool on_save_document(::user::document * pdocument, ::payload varFile);
+//      virtual bool on_open_document(::user::document * pdocument, ::payload payloadFile);
+//      virtual bool on_save_document(::user::document * pdocument, ::payload payloadFile);
 //
 //
 //
@@ -266,8 +266,8 @@ namespace base
 //      virtual ::file::path appconfig_folder();
 //
 //
-//      //virtual void assert_valid() const override;
-//      //virtual void dump(dump_context & dumpcontext) const override;
+//      //void assert_valid() const override;
+//      //void dump(dump_context & dumpcontext) const override;
 //
 //
 //      virtual ::file::path get_app_localconfig_folder();
@@ -280,7 +280,7 @@ namespace base
 //      virtual bool app_data_set(const ::id & id, ::object & obj);
 //      virtual bool app_data_get(const ::id & id, ::object & obj);
 //
-//      virtual void install_message_routing(::channel * pchannel) override;
+//      void install_message_routing(::channel * pchannel) override;
 //
 //      virtual string dialog_box(const ::string & pszMatter, property_set & propertyset);
 //
@@ -363,7 +363,7 @@ namespace base
 //      virtual bool is_equal_file_path(const ::file::path & path1, const ::file::path & path2);
 //
 //
-//      //virtual bool process_exception(const ::exception::exception & e) override;
+//      //virtual bool process_exception(const ::exception & e) override;
 //
 //
 //      //virtual bool is_system() const override;
@@ -632,7 +632,7 @@ namespace base
 //
 //      //virtual void throw_not_installed();
 //
-//      //virtual void play_audio(::payload varFile, bool bSynch = false);
+//      //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 //
 //      virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true);
 //
@@ -640,7 +640,7 @@ namespace base
 //
 //      virtual string get_app_user_friendly_task_bar_name();
 //
-//      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //      //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 //
@@ -655,7 +655,7 @@ namespace base
 //
 //
 //
-//      virtual bool on_open_document_file(::payload varFile);
+//      virtual bool on_open_document_file(::payload payloadFile);
 //
 //      virtual string get_app_id(string wstr);
 //
@@ -706,7 +706,7 @@ namespace base
 //
 //      //virtual ::draw2d::icon * get_icon(object * pobject, bool bBigIcon) const;
 //
-//      //virtual void on_control_event(::user::control_event * pevent);
+//      //virtual void handle(::subject * psubject, ::context * pcontext);
 //
 //
 //
@@ -814,7 +814,7 @@ namespace base
 //
 //      // overrides for implementation
 //      virtual bool on_idle(::i32 lCount); // return true if more idle processing
-//      virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage) override;
+//      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 //
 //      void EnableModelessEx(bool bEnable);
 //#ifdef WINDOWS
@@ -837,7 +837,7 @@ namespace base
 //      void OnUpdateRecentFileMenu(::message::command* pcommand);
 //
 //      //virtual void send_app_language_changed();
-//      virtual void route_command_message(::message::command* pcommand) override;
+//      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 //
 //
 //
@@ -851,7 +851,7 @@ namespace base
 //
 //      //bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 //
-//      //virtual bool process_exception(const ::exception::exception & e) override;
+//      //virtual bool process_exception(const ::exception & e) override;
 //
 //      //virtual bool on_uninstall() override;
 //
@@ -957,7 +957,7 @@ namespace base
 //      // registered with the doc manager.
 //      i32 get_open_document_count();
 //
-//      //virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
+//      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
 //
 //      void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 //
@@ -1004,7 +1004,7 @@ namespace base
 //      //virtual ::e_status init_instance() override;
 //
 //
-////      virtual bool process_exception(const ::exception::exception & e) override;
+////      virtual bool process_exception(const ::exception & e) override;
 //
 //
 //
@@ -1018,8 +1018,8 @@ namespace base
 //      //      virtual ::aura::file_system & file_system();
 //      //virtual bool _001OnDDECommand(const ::string & pcsz) override;
 //
-//      virtual ::user::document* _001OpenDocumentFile(::payload varFile);
-//      //virtual bool on_open_document_file(::payload varFile) override;
+//      virtual ::user::document* _001OpenDocumentFile(::payload payloadFile);
+//      //virtual bool on_open_document_file(::payload payloadFile) override;
 //      //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 //
 //
@@ -1086,7 +1086,7 @@ namespace base
 //      //virtual ::aura::printer* get_printer(const ::string & pszDeviceName) override;
 //
 //
-//      //virtual void assert_valid() const override;
+//      //void assert_valid() const override;
 //      //virtual void dump(dump_context& dumpcontext) const override;
 //
 //
@@ -1122,7 +1122,7 @@ namespace base
 //      //////////////////////////////////////////////////////////////////////////////////////////////////
 //      // Session/Session
 //      //
-//      //         virtual __pointer(::bergedge::view) get_view();
+//      //         virtual __pointer(::bergedge::impact) get_view();
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
@@ -1139,7 +1139,7 @@ namespace base
 //
 //
 //
-////virtual void assert_valid() const;
+////void assert_valid() const override;
 ////virtual void dump(dump_context & action_context) const;
 //
 //
@@ -1169,7 +1169,7 @@ namespace base
 //application& operator = (const application& app)
 //{
 //
-//   UNREFERENCED_PARAMETER(app);
+//   __UNREFERENCED_PARAMETER(app);
 //
 //   // do nothing
 //
@@ -1216,7 +1216,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 //virtual void prepare_form(id id, ::form_document* pdocument);
 //
 //
-//virtual void report_error(::exception::exception* pexception, int iMessageFlags, const ::string & pszTopic);
+//virtual void report_error(::exception* pexception, int iMessageFlags, const ::string & pszTopic);
 //
 //
 //
@@ -1232,9 +1232,9 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 ////virtual ::e_status     initialize(::object * pobject) override;
 //
 //
-////virtual void install_message_routing(::channel * pchannel) override;
+////void install_message_routing(::channel * pchannel) override;
 //
-////virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+////virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 ////virtual ::e_status process_init() override;
 //
@@ -1266,8 +1266,8 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //
 //
-////using ::aura::application::on_control_event;
-//using ::user::form_callback::on_control_event;
+////using ::aura::application::handle_event;
+//using ::user::form_callback::handle_event;
 //
 //
 ////virtual void erase_document_template(::user::impact_system* pimpactsystem);
@@ -1280,7 +1280,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 ////virtual ::draw2d::icon* get_icon(object* pobject, bool bBigIcon) const override;
 //
-////virtual void on_control_event(::user::control_event* pevent) override;
+////virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //

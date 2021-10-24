@@ -7,7 +7,7 @@ namespace process
 {
 
 
-   CLASS_DECL_CORE bool set_priority(::e_priority epriority)
+   CLASS_DECL_CORE bool set_priority(::enum_priority epriority)
    {
 
       i32 iPolicy = SCHED_OTHER;
@@ -186,11 +186,11 @@ CLASS_DECL_CORE void main_sync_runnable(::object * pobjectRunnable, ::duration d
 
       }
 
-      pevent->SetEvent();
+      psubject->SetEvent();
 
    });
 
-   pevent->wait(durationTimeout);
+   psubject->wait(durationTimeout);
 
 }
 

@@ -42,7 +42,7 @@ namespace android
                                        [&]()
          {
 
-            ::parallelization::set_priority(::priority_highest);
+            ::parallelization::set_priority(::e_priority_highest);
             shell_run();
 
          }));
@@ -395,7 +395,11 @@ namespace android
 //
 //                     string strIcon;
 //
-//                     strIcon = pacmedir->config() / "android/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
+//                     strIcon =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->config() / "android/app_theme" / m_strShellThemePrefix + strExtension + ".ico";
 //
 //                     for (auto iSize : m_iaSize)
 //                     {
@@ -1064,7 +1068,11 @@ namespace android
 
       ::str::international::unicode_to_utf8(strPath, lpcszPath);
 
-      if (dir::is(strPath))
+      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
       {
          return folder_file_system;
       }
@@ -1122,7 +1130,7 @@ namespace android
    //               for (auto & folder : m_mapFolder)
    //               {
 
-   //                  if (folder.element2().m_millisStart.elapsed() > 30000)
+   //                  if (folder.element2().m_durationStart.elapsed() > 30000)
    //                  {
 
    //                     m_mapFolder.erase_key(folder.element1());

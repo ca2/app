@@ -5,8 +5,8 @@ namespace helloworld
 {
 
 
-   class CLASS_DECL_APP_HELLOWORLD view :
-      virtual public hellobase::view,
+   class CLASS_DECL_APP_HELLOWORLD impact :
+      virtual public hellobase::impact,
       virtual public hellobase::impact_base
    {
    public:
@@ -28,11 +28,11 @@ namespace helloworld
       bool                    m_b001LayoutIgnoreEmpty;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
@@ -43,11 +43,11 @@ namespace helloworld
          return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
       }
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       ::user::document * get_document();
 

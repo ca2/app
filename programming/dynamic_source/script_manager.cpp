@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "aura/user/_user.h"
 
 
@@ -154,7 +154,7 @@ namespace dynamic_source
 
                }
 
-               ::sleep(20_s);
+               ::preempt(20_s);
 
             }
 
@@ -311,7 +311,7 @@ namespace dynamic_source
 
       pmain->run_property("on_create");
 
-      pmain->call_routine(CREATE_ROUTINE);
+      pmain->call_routines_with_id(CREATE_ROUTINE);
 
       pmain->m_pmain = pmain;
       
@@ -327,7 +327,7 @@ namespace dynamic_source
 
       pinstance->run_property("on_create");
 
-      pinstance->call_routine(CREATE_ROUTINE);
+      pinstance->call_routines_with_id(CREATE_ROUTINE);
 
       auto pthread = pdssocket->get_thread();
 
@@ -388,7 +388,7 @@ namespace dynamic_source
             {
 
             }
-            catch (const ::exception::exception & e)
+            catch (const ::exception & e)
             {
 
                string str = e.get_message();
@@ -415,7 +415,7 @@ namespace dynamic_source
             pinstance->m_pmain->main_finalize();
 
          }
-         catch(const ::exception::exception &)
+         catch(const ::exception &)
          {
 
             TRACE("Error: exception at script_manager::handle main_finalize");
@@ -460,7 +460,7 @@ namespace dynamic_source
       //   {
       //      pinst2->release();
       //   }
-      //   catch (const ::exception::exception&)
+      //   catch (const ::exception&)
       //   {
       //      TRACE("Error: exception at script_manager::handle destroy pinstance");
       //   }
@@ -477,7 +477,7 @@ namespace dynamic_source
       //{
       //   pinstance.release();
       //}
-      //catch (const ::exception::exception&)
+      //catch (const ::exception&)
       //{
       //   TRACE("Error: exception at script_manager::handle destroy pinstance");
       //}
@@ -606,7 +606,7 @@ namespace dynamic_source
 
             pinstance->run_property("on_create");
             
-            pinstance->call_routine(CREATE_ROUTINE);
+            pinstance->call_routines_with_id(CREATE_ROUTINE);
 
             if (pinstanceParent->m_pmain->m_iDebug > 0)
             {
@@ -1099,18 +1099,22 @@ namespace dynamic_source
          return "";
    }
 
-#ifdef WINDOWS
-#define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
-   || (psz[0] == '\\' && psz[1] == '\\'))
-#else
-#define is_absolute_path(psz) (psz[0] == '/')
-#endif
+// #ifdef WINDOWS
+// #define is_absolute_path(psz) ((isalpha(psz[0]) && psz[1] == ':') \
+//    || (psz[0] == '\\' && psz[1] == '\\'))
+// #else
+// #define is_absolute_path(psz) (psz[0] == '/')
+// #endif
+
 
    ::file::path script_manager::real_path(const ::file::path & str)
    {
+
 #ifdef WINDOWS
-      if(is_absolute_path(str))
+
+      if(file_path_is_absolute(str))
       {
+
          if(include_matches_file_exists(str))
             return str;
          return "";
@@ -1120,7 +1124,7 @@ namespace dynamic_source
          return real_path(m_strNetseedDsCa2Path, str);
       }
 #else
-      if(is_absolute_path(str))
+      if(file_path_is_absolute(str))
       {
          if(include_matches_file_exists(str))
             return str;
@@ -1144,10 +1148,10 @@ namespace dynamic_source
       if (ppair != nullptr)
       {
 
-         if (::datetime::time::get_current_time() < ppair->element2()->m_timeExpiry)
+         if (::datetime::time::now() < ppair->element2()->m_timeExpiry)
          {
 
-            ppair->element2()->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
+            ppair->element2()->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
 
             return ppair->element2();
 
@@ -1169,7 +1173,7 @@ namespace dynamic_source
 
       psession->initialize_dynamic_source_session(pszId, this);
 
-      psession->m_timeExpiry = ::datetime::time::get_current_time() + m_secsSessionExpiration;
+      psession->m_timeExpiry = ::datetime::time::now() + m_secsSessionExpiration;
 
       m_mapSession.set_at(pszId, psession);
 
@@ -1185,7 +1189,7 @@ namespace dynamic_source
       
       ::datetime::time timeNow;
       
-      timeNow = ::datetime::time::get_current_time();
+      timeNow = ::datetime::time::now();
       
       auto passoc = m_mapSession.get_start();
       
@@ -1231,12 +1235,12 @@ namespace dynamic_source
    __pointer(::crypto::rsa) script_manager::get_rsa_key()
    {
 
-      /*if(m_millisLastRsa.elapsed() > (5000))
+      /*if(m_durationLastRsa.elapsed() > (5000))
       {
 
          calc_rsa_key();
 
-         m_millisLastRsa= ::millis::now();
+         m_durationLastRsa= ::duration::now();
 
       }*/
 
@@ -1421,7 +1425,7 @@ namespace dynamic_source
       if(ppair == nullptr)
          return false;
 
-      if (ppair->element2().m_tick.elapsed().seconds() > 60)
+      if (ppair->element2().m_tick.elapsed() > 60_s)
       {
 
          return false;
@@ -1563,7 +1567,7 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->seek(i, ::file::seek_begin);
+            f->set_position(i);
 
             if(f->read(buf, 4) < 4)
                return false;

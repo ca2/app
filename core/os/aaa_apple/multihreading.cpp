@@ -87,7 +87,7 @@ bool task_set_name(const ::string & psz)
 string task_get_name()
 {
    
-   return ::str::from_strdup(ns_get_thread_name());
+   return ::string_from_strdup(ns_get_thread_name());
    
 }
 

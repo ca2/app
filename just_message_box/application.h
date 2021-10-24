@@ -13,17 +13,21 @@ namespace app_just_message_box
 
 
       application();
-      virtual ~application();
+      ~application() override;
 
 
-      virtual ::e_status init_instance() override;
-      virtual void term_application() override;
+      ::e_status init_instance() override;
+      void term_application() override;
 
-      virtual void on_request(::create * pcreate) override;
 
-#ifdef DEBUG
+      void on_request(::create * pcreate) override;
+
+
+#ifdef _DEBUG
+
       virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+
 #endif
 
 

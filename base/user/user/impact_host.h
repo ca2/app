@@ -19,7 +19,7 @@ namespace user
 
 
       class CLASS_DECL_BASE exception :
-         virtual public ::exception::exception
+         virtual public ::exception
       {
       public:
 
@@ -39,7 +39,7 @@ namespace user
       virtual ~impact_host();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -102,7 +102,7 @@ namespace user
       virtual ::user::impact_data * get_impact_data(const id& id, bool bCallOnCreateView = true);
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual ::count get_view_count();

@@ -34,15 +34,15 @@ class string;
 typedef iptr strsize;
 class payload;
 
-namespace subject
-{
+//namespace subject
+//{
 
    
    class subject;
    class context;
 
 
-} // namespace subject
+//} // namespace subject
 
 
 namespace message
@@ -59,37 +59,56 @@ class application;
 class system;
 
 
-#include "acme/const/_.h"
+#include "acme/constant/_.h"
 #include "acme/parallelization/_types.h"
-#include "acme/os/parallelization.h"
+#include "acme/node/operating_system/parallelization.h"
 //#include "acme/platform/struct.h"
-//#include "acme/os/cross/_.h"
-//#include "acme/os/acme.h"
+//#include "acme/node/operating_system/cross/_.h"
+//#include "acme/node/operating_system/acme.h"
 
 
 #include "acme/include/_c.h"
-//#include "acme/os/apple/_c_mm.h"
+//#include "acme/node/operating_system/apple/_c_mm.h"
+
+
+class synchronization_object;
+class dump_context;
+class task;
+class property_object;
+class object;
+class duration;
+
+
+#include "acme/include/_forward_declaration.h"
 
 
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/platform/object_type_counter.h"
-#include "acme/const/_const.h"
+#include "acme/constant/_constant.h"
+#include "acme/constant/id.h"
+//#include "acme/primitive/primitive/tracer.h"
 #include "acme/platform/object_reference_count_debug.h"
 #include "acme/primitive/primitive/uid.h"
 #include "acme/primitive/primitive/estatus.h"
 #include "acme/primitive/primitive/eobject.h"
-#include "acme/os/argcargv.h"
+#include "acme/node/operating_system/argcargv.h"
 #include "acme/primitive/mathematics/index.h"
 #include "acme/primitive/primitive/interlocked.h"
 #include "acme/parallelization/synchronization_result.h"
-#include "acme/primitive/datetime/_.h"
+//#include "acme/primitive/datetime/_.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/primitive/primitive/interlocked_count.h"
-#include "acme/primitive/primitive/matter.h"
-
+#include "acme/subject/handler.h"
+#include "acme/primitive/primitive/element.h"
+//#include "acme/primitive/primitive/tracer.h"
+//#include "acme/subject/handler.h"
+//#include "acme/primitive/primitive/matter.h"
+#ifdef __APPLE__
+#include "acme/node/operating_system/apple/_apple_no_templates.h"
+#endif
 
 #include "acme/parallelization/_impl_synchronization_result.h"
-#include "acme/primitive/datetime/_impl.h"
+//#include "acme/primitive/datetime/_impl.h"
 
 
 

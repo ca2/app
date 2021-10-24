@@ -4,7 +4,7 @@
 //bool timer::impl_start()
 //{
 //
-//   ::Windows::Foundation::TimeSpan span;
+//   ::winrt::Windows::Foundation::TimeSpan span;
 //
 //   span.Duration = m_dwMillis * 1000 * 10;
 //
@@ -94,7 +94,7 @@
 //
 //   }
 //
-//   ::Windows::Foundation::TimeSpan span;
+//   ::winrt::Windows::Foundation::TimeSpan span;
 //
 //   span.Duration = m_dwMillis * 1000 * 10;
 //

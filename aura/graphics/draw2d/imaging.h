@@ -24,7 +24,7 @@ public:
 
 
    imaging();
-   virtual ~imaging();
+   ~imaging() override;
 
 
    virtual ::e_status initialize(::object * pobject) override;

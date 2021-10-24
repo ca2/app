@@ -40,7 +40,7 @@ namespace draw2d
 
       virtual ::e_status destroy() override;
 
-      virtual void dump(dump_context & dumpcontext) const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
       virtual bool create_solid(::color::color color);
@@ -62,7 +62,7 @@ namespace draw2d
 
       //virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
 
-      brush & operator = (const ::draw2d::brush & brushSrc);
+      brush & operator = (const ::draw2d::brush & pbrushSrc);
 
    };
 

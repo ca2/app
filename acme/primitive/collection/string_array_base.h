@@ -53,9 +53,9 @@ public:
    }
 
    string_array_base(const string_array_base & array);
-#ifdef _UWP
-   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
-#endif
+//#ifdef _UWP
+//   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
+//#endif
    string_array_base(CHAR_TYPE * const * ppsz, ::count c);
    ~string_array_base() override;
 
@@ -420,7 +420,7 @@ public:
 
    //   void XFV001Expand();
 
-   string_array_base & operator =(const ::payload payload);
+   string_array_base & operator =(const ::payload & payload);
 //   string_array_base & operator =(const string_array_base & stra);
    string_array_base & operator =(const i64_array & ia);
 //   string_array_base & operator =(const string_array_base & stra);
@@ -548,8 +548,26 @@ public:
    }
 
 
-};
+   inline void from_strdup(ansichar ** ppParam)
+   {
 
+      ansichar ** ppsz = ppParam;
+
+      string_array stra;
+
+      while(*ppsz != nullptr)
+      {
+         add(::string_from_strdup(*ppsz));
+         ppsz++;
+      }
+
+      free(ppParam);
+
+   }
+
+
+
+};
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -944,7 +962,7 @@ void string_array_base < Type, RawType, t_etypePayload >::copy(const i64_array &
 
    for(::index i = 0; i < this->m_nSize; i++)
    {
-      get_data()[i] = __str(src[i]);
+      get_data()[i] = __string(src[i]);
    }
 
 }
@@ -1517,28 +1535,28 @@ string_array_base < Type, RawType, t_etypePayload > ::string_array_base(CHAR_TYP
 }
 
 
-#ifdef _UWP
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-string_array_base < Type, RawType, t_etypePayload > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
-{
-
-   for (unsigned int u = 0; u < refstra->Length; u++)
-   {
-
-      Type str;
-
-      str = refstra[u]->Begin();
-
-      add(str);
-
-   }
-
-}
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//string_array_base < Type, RawType, t_etypePayload > ::string_array_base(Platform::Array < Platform::String ^ > ^ refstra)
+//{
+//
+//   for (unsigned int u = 0; u < refstra->Length; u++)
+//   {
+//
+//      Type str;
+//
+//      str = refstra[u]->Begin();
+//
+//      add(str);
+//
+//   }
+//
+//}
+//
+//
+//#endif
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -4354,7 +4372,7 @@ Type & string_array_base < Type, RawType, t_etypePayload > ::random_element()
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 
@@ -4370,7 +4388,7 @@ const Type & string_array_base < Type, RawType, t_etypePayload > ::random_elemen
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 
@@ -4386,7 +4404,7 @@ Type string_array_base < Type, RawType, t_etypePayload > ::pop_random_element()
    if(this->is_empty())
    {
 
-      __throw(::exception::exception("invalid call"));
+      __throw(error_wrong_state, "invalid call");
 
    }
 
@@ -5120,31 +5138,6 @@ CLASS_DECL_ACME void add_csv(string_array & stra, const ::string & str);
 
 
 
-namespace stra
-{
-
-
-   inline CLASS_DECL_ACME string_array from_strdup(ansichar ** ppParam)
-   {
-
-      ansichar ** ppsz = ppParam;
-
-      string_array stra;
-
-      while(*ppsz != nullptr)
-      {
-         stra.add(::str::from_strdup(*ppsz));
-         ppsz++;
-      }
-
-      free(ppParam);
-
-      return stra;
-
-   }
-
-
-} // namespace stra
 
 
 

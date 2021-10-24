@@ -28,11 +28,11 @@
 //
 //   }
 //
-//   filesize seekable::seek(filesize offset, e_seek seekOrigin)
+//   filesize seekable::seek(filesize offset, enum_seek seekOrigin)
 //   {
-//      UNREFERENCED_PARAMETER(offset);
-//      UNREFERENCED_PARAMETER(seekOrigin);
-//      ::exception::throw_interface_only();
+//      __UNREFERENCED_PARAMETER(offset);
+//      __UNREFERENCED_PARAMETER(seekOrigin);
+//      throw ::interface_only_exception();
 //      return 0;
 //   }
 //

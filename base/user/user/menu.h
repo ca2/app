@@ -100,11 +100,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNcCreate);
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       __pointer(::user::menu_item) get_menu_item();
 
@@ -114,7 +114,7 @@ namespace user
 
       virtual bool create_menu(const string_array & straCommand, const string_array & straCommandTitle);
 
-      virtual void destroy_menu();
+      ::e_status destroy() override;
 
       virtual bool add_menu(::xml::node * pnode);
 
@@ -133,8 +133,8 @@ namespace user
 
       virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
-      // <3ThomasBorregaardS�rensen__!!
-      ::e_status command_handler(const ::id& id) override;
+      //// <3ThomasBorregaardS�rensen__!!
+      ::e_status handle_command(const ::id& id) override;
 
 
    };

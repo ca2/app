@@ -19,17 +19,17 @@ namespace userstack
       image_list  *              m_pimagelist;
       __pointer(::user::document)                 m_pdocument;
       bool                       m_bHoverMouse;
-      millis m_millisLastHover;
+      ::duration m_durationLastHover;
       bool                       m_bTimerOn;
 
       bool                       m_bMouseOver;
 
-      __pointer(view)                     m_pview;
+      __pointer(impact)                     m_pimpact;
       __pointer(pane_view)                m_ppaneview;
 
 
       frame(::object * pobject);
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnApp1);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
@@ -43,8 +43,8 @@ namespace userstack
 
       virtual ~frame();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void pre_translate_message(::message::message * pmessage);

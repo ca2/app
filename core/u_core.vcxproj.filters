@@ -46,12 +46,6 @@
     <Filter Include="Header Files\filesystem\filehandler">
       <UniqueIdentifier>{02504658-3083-4945-ae36-b9e20001f2d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{995e04bd-59d1-4399-af85-01c86c4dff8a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\net\ftp">
-      <UniqueIdentifier>{94de05d4-e1e2-4583-b333-2e1d0f319dff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\inline">
       <UniqueIdentifier>{f2586eb8-ac2f-4b7d-bdec-3d82d329fd76}</UniqueIdentifier>
     </Filter>
@@ -133,9 +127,6 @@
     <Filter Include="Source Files\user\netuser">
       <UniqueIdentifier>{671a6698-75c2-4bda-9290-cf55891836cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple_ui">
-      <UniqueIdentifier>{1eb44692-a156-40c3-97a6-dfb01baa3cf1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem">
       <UniqueIdentifier>{32746bb1-d4d5-4962-b09c-4097d17fbafe}</UniqueIdentifier>
     </Filter>
@@ -150,12 +141,6 @@
     </Filter>
     <Filter Include="Source Files\filesystem\filehandler">
       <UniqueIdentifier>{1868322a-80a4-4138-9585-54540a3fca27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{c0a173da-96c3-419c-b19e-cbdc73a404b7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net\ftp">
-      <UniqueIdentifier>{b4e1099a-bef3-4479-93b0-94075e735662}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
@@ -196,10 +181,10 @@
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{062c77e9-de3c-472e-b0b3-04717fc151ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\uwp">
+    <Filter Include="Source Files\node\universal_windows">
       <UniqueIdentifier>{87d20dfb-f4da-4de9-870b-5dab08de1043}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\node\uwp">
+    <Filter Include="Header Files\node\universal_windows">
       <UniqueIdentifier>{d9e0eae9-a79f-43e4-a757-5ccc1de8e877}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html\element">
@@ -207,6 +192,18 @@
     </Filter>
     <Filter Include="Source Files\html\element">
       <UniqueIdentifier>{4341eb08-4b1b-4049-8b79-8899300b345e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking">
+      <UniqueIdentifier>{c0a173da-96c3-419c-b19e-cbdc73a404b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\ftp">
+      <UniqueIdentifier>{b4e1099a-bef3-4479-93b0-94075e735662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{995e04bd-59d1-4399-af85-01c86c4dff8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\ftp">
+      <UniqueIdentifier>{94de05d4-e1e2-4583-b333-2e1d0f319dff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -621,7 +618,7 @@
     <ClInclude Include="user\account\simple_ui_style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\view.h">
+    <ClInclude Include="user\account\impact.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="user\simple_ui\edit_box.h">
@@ -804,9 +801,6 @@
     <ClInclude Include="filesystem\filemanager\iconoverlayer.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\impact.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_item_action.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -816,7 +810,7 @@
     <ClInclude Include="filesystem\filemanager\main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\main_view.h">
+    <ClInclude Include="filesystem\filemanager\main_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation.h">
@@ -858,9 +852,6 @@
     <ClInclude Include="filesystem\filemanager\update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\view.h">
-      <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filemanager\_.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
@@ -894,7 +885,7 @@
     <ClInclude Include="filesystem\userfs\list_item_array.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\main_view.h">
+    <ClInclude Include="filesystem\userfs\main_impact.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\tree.h">
@@ -929,42 +920,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filehandler\tree_interface.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_impl.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\client_socket.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\data_types.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\file.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\file_list_parser.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\file_status.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\interface.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\output.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\output_stream.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\transfer_notification.h">
-      <Filter>Header Files\net\ftp</Filter>
-    </ClInclude>
-    <ClInclude Include="net\ftp\_.h">
-      <Filter>Header Files\net\ftp</Filter>
     </ClInclude>
     <ClInclude Include="inline\application_common.h">
       <Filter>Header Files\inline</Filter>
@@ -1011,7 +966,7 @@
     <ClInclude Include="inline\application\macos.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\uwp.h">
+    <ClInclude Include="inline\application\universal_windows.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
@@ -1182,7 +1137,7 @@
     <ClInclude Include="html\user\frame.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\view.h">
+    <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\_.h">
@@ -1302,14 +1257,14 @@
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\shell_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\shell_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\uwp\_uwp.h">
-      <Filter>Header Files\node\uwp</Filter>
+    <ClInclude Include="node\universal_windows\_uwp.h">
+      <Filter>Header Files\node\universal_windows</Filter>
     </ClInclude>
     <ClInclude Include="html\impl\element.h">
       <Filter>Header Files\html\impl</Filter>
@@ -1323,6 +1278,42 @@
     <ClInclude Include="html\element\_.h">
       <Filter>Header Files\html\element</Filter>
     </ClInclude>
+    <ClInclude Include="networking\ftp\_.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\client_socket.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\data_types.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\file.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\file_list_parser.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\file_status.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\interface.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\output.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\output_stream.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\ftp\transfer_notification.h">
+      <Filter>Header Files\networking\ftp</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_impl.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">
@@ -1334,7 +1325,7 @@
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
     </None>
-    <None Include="core.def">
+    <None Include="u_core.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
@@ -1454,9 +1445,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\shell.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\statusbar.cpp">
@@ -1639,35 +1627,11 @@
     <ClCompile Include="user\account\account_simple_ui.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\view.cpp">
+    <ClCompile Include="user\account\impact.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
       <Filter>Source Files\user\netuser</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\edit_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\interaction.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\label.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\message_box.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\password.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\style.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\tap.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui\top.cpp">
-      <Filter>Source Files\user\simple_ui</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\ftpfs.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
@@ -1738,16 +1702,13 @@
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\impact.cpp">
-      <Filter>Source Files\filesystem\filemanager</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\filemanager\left_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\main_view.cpp">
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\operation.cpp">
@@ -1789,7 +1750,7 @@
     <ClCompile Include="filesystem\filemanager\update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\view.cpp">
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\_.cpp">
@@ -1813,7 +1774,7 @@
     <ClCompile Include="filesystem\userfs\list_item_array.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\main_view.cpp">
+    <ClCompile Include="filesystem\userfs\main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\tree.cpp">
@@ -1836,27 +1797,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filehandler\tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\client_socket.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\data_types.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\file.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\file_list_parser.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\file_status.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\output.cpp">
-      <Filter>Source Files\net\ftp</Filter>
-    </ClCompile>
-    <ClCompile Include="net\ftp\output_stream.cpp">
-      <Filter>Source Files\net\ftp</Filter>
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
@@ -1954,7 +1894,7 @@
     <ClCompile Include="html\user\user.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\view.cpp">
+    <ClCompile Include="html\user\impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
@@ -1978,9 +1918,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="node\uwp\shell_uwp.cpp">
-      <Filter>Source Files\node\uwp</Filter>
-    </ClCompile>
     <ClCompile Include="html\impl\element.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
@@ -1989,6 +1926,36 @@
     </ClCompile>
     <ClCompile Include="user\user\list_column.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filemanager\impact_base.cpp">
+      <Filter>Source Files\filesystem\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\ftpnet.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\client_socket.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\data_types.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\file.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\file_list_parser.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\file_status.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\output.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\ftp\output_stream.cpp">
+      <Filter>Source Files\networking\ftp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

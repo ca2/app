@@ -12,7 +12,7 @@ namespace turboc
 {
 
 
-   view::view(::object * pobject):
+   impact::impact(::object * pobject):
       ::object(pobject),
       m_pimage1,
       m_pimage2,
@@ -21,7 +21,7 @@ namespace turboc
       m_pimageWork,
       m_pimageTemplate,
       m_pimageFast,
-      m_font(this_create),
+      m_pfont(this_create),
 
 
 
@@ -36,11 +36,11 @@ namespace turboc
 
       m_bVoidTransfer =  false;
 
-      m_millisAnime = 2000;
+      m_durationAnime = 2000;
 
       m_bNewLayout = false;
 
-      m_millisFastAnime = 584;
+      m_durationFastAnime = 584;
 
       m_bOkPending = true;
 
@@ -72,31 +72,31 @@ namespace turboc
 
    }
 
-   view::~view()
+   impact::~impact()
    {
    }
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       ::aura::impact::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       ::aura::impact::dump(dumpcontext);
    }
 
-   void view::install_message_handling(::message::dispatch * pdispatch)
+   void impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::aura::impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&view::on_message_create);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&impact::on_message_create);
 
    }
 
 
-   void view::on_message_create(signal_details * pmessage)
+   void impact::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -116,7 +116,7 @@ namespace turboc
 
          }
 
-         __begin_thread(get_application(),&thread_proc_render,this,::priority_normal,0,0,NULL);
+         __begin_thread(get_application(),&thread_proc_render,this,::e_priority_normal,0,0,NULL);
 
       }
 
@@ -126,7 +126,7 @@ namespace turboc
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       if(m_strNewHelloMultiverse.is_empty())
@@ -148,13 +148,13 @@ namespace turboc
       if(m_bHelloLayoutOn001Layout)
       {
 
-         ::turboc::view::on_layout(pgraphics);
+         ::turboc::impact::on_layout(pgraphics);
 
       }
       else
       {
 
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       }
 
@@ -163,22 +163,22 @@ namespace turboc
 
 
 
-   void view::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
+   void impact::on_update(::aura::impact * pSender, e_update eupdate, object* pupdate)
    {
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
    }
 
-   bool view::in_anime()
+   bool impact::in_anime()
    {
-      if(m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if(m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
          return true;
-      if(m_millisLastOk.elapsed() < m_millisAnime)
+      if(m_durationLastOk.elapsed() < m_durationAnime)
          return true;
       return false;
    }
 
 
-/*   void view::_006OnDraw(::image * pimage)
+/*   void impact::_006OnDraw(::image * pimage)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -201,9 +201,9 @@ namespace turboc
 
 
 
-            m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-            pgraphics->set_font(m_font);
+            pgraphics->set_font(m_pfont);
 
             pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -211,25 +211,25 @@ namespace turboc
 
             double ratey = fHeight * 0.84 / size.cy;
 
-            m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+            m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
-            //m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
+            //m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
             //m_dMaxRadius = m_dMinRadius * 2.3;
 
             //m_pimageFast->Fill(0,0,0,0);
 
-            //pgraphics->set_font(m_font);
+            //pgraphics->set_font(m_pfont);
 
             //size = pgraphics->get_text_extent(strHelloMultiverse);
 
             //::draw2d::path_pointer path(this_create);
 
-            //path->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_font);
+            //ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
 
             //::draw2d::pen_pointer pen(this_create);
 
-            //pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
+            //ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
             //pgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
 
@@ -250,11 +250,11 @@ namespace turboc
 
          ::draw2d::brush_pointer brush(this_create);
 
-         brush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         pbrush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
          pgraphics->SelectObject(brush);
 
-         pgraphics->set_font(m_font);
+         pgraphics->set_font(m_pfont);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -268,7 +268,7 @@ namespace turboc
 
       }
 
-      if(m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if(m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
       {
 
          synchronous_lock slDraw(&m_mutexDraw);
@@ -287,7 +287,7 @@ namespace turboc
          if(m_bFast || !m_bFirstDone)
          {
 
-            m_millisLastFast= ::millis::now();
+            m_durationLastFast= ::duration::now();
 
          }
 
@@ -306,7 +306,7 @@ namespace turboc
 
          m_bOkPending = false;
 
-         m_millisLastOk= ::millis::now();
+         m_durationLastOk= ::duration::now();
 
       }
 
@@ -340,10 +340,10 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if(m_millisLastOk.elapsed() < m_millisAnime)
+      if(m_durationLastOk.elapsed() < m_durationAnime)
       {
 
-         byte uchAlpha = maximum(0,minimum(255,(m_millisLastOk.elapsed()) * 255 / m_millisAnime));
+         byte uchAlpha = maximum(0,minimum(255,(m_durationLastOk.elapsed()) * 255 / m_durationAnime));
 
          ::rectangle_i32 rectangleClient;
 
@@ -370,7 +370,7 @@ namespace turboc
 
    }
 
-   void view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -400,7 +400,7 @@ namespace turboc
 
    }
 
-   void view::turboc_fast_render(const ::string & strHelloMultiverse)
+   void impact::turboc_fast_render(const ::string & strHelloMultiverse)
    {
 
       if(m_cx <= 0 || m_cy <= 0)
@@ -425,9 +425,9 @@ namespace turboc
 
       float fHeight = 100.0;
 
-      m_font->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
+      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),fHeight,e_font_weight_bold);
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -435,27 +435,27 @@ namespace turboc
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      m_font->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
+      m_pfont->create_pixel_font(pnode->font_name(e_font_sans),minimum(m_cy * ratey,m_cx * size.cy * ratey / size.cx),e_font_weight_bold);
 
-      m_dMinRadius = maximum(1.0,m_font->m_dFontSize / 23.0);
+      m_dMinRadius = maximum(1.0,m_pfont->m_dFontSize / 23.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
 
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       size = pgraphics->get_text_extent(strHelloMultiverse);
 
       ::draw2d::path_pointer path(this_create);
 
-      path->m_bFill = false;
+      ppath->m_bFill = false;
 
-      path->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_font);
+      ppath->add_string((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse,m_pfont);
 
       ::draw2d::pen_pointer pen(this_create);
 
-      pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
+      ppen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -471,14 +471,14 @@ namespace turboc
 
 
 
-   ::aura::document * view::get_document()
+   ::aura::document * impact::get_document()
    {
 
       return  (::aura::impact::get_document());
 
    }
 
-   void view::turboc_render()
+   void impact::turboc_render()
    {
 
       {
@@ -496,7 +496,7 @@ namespace turboc
 
    }
 
-   void view::full_render()
+   void impact::full_render()
    {
 
       size_i32 sizeNew = size_i32(m_cx, m_cy) + size(100,100);
@@ -517,7 +517,7 @@ namespace turboc
          {
 
 
-            //          ::u32 dwTime2= ::millis::now();
+            //          ::u32 dwTime2= ::duration::now();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 //            TRACE("hello_view::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
@@ -568,7 +568,7 @@ namespace turboc
          }
          {
 
-//            ::u32 dwTime2= ::millis::now();
+//            ::u32 dwTime2= ::duration::now();
 
             //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
             //TRACE("hello_view::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -596,7 +596,7 @@ namespace turboc
    }
 
 
-/*   void view::_001OnPostProcess(::image * pimage)
+/*   void impact::_001OnPostProcess(::image * pimage)
    {
 
       if(m_eeffect == effect_crt)
@@ -642,7 +642,7 @@ namespace turboc
 
          ::draw2d::pen_pointer pen(this_create);
 
-         pen->create_solid(0.5,argb(84,0,0,0));
+         ppen->create_solid(0.5,argb(84,0,0,0));
 
 /*         pimage->g()->SelectObject(pen);
 
@@ -659,7 +659,7 @@ namespace turboc
    }
 
 
-   void view::turboc_draw()
+   void impact::turboc_draw()
    {
 
       if(m_bVoidTransfer)
@@ -700,14 +700,14 @@ namespace turboc
    }
 
 
-   ::u32 view::thread_proc_render(void * pparam)
+   ::u32 impact::thread_proc_render(void * pparam)
    {
 
-      view * pviewParam = (view *)pparam;
+      impact * pviewParam = (impact *)pparam;
 
       {
 
-         __pointer(view) pview = pviewParam;
+         __pointer(impact) pview = pviewParam;
 
          while(::task_get_run() && pview->IsWindow())
          {
@@ -741,7 +741,7 @@ namespace turboc
    }
 
 
-   void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -766,7 +766,7 @@ namespace turboc
    }
 
 
-   string view::get_processed_turboc()
+   string impact::get_processed_turboc()
    {
 
       string str = get_turboc();
@@ -827,7 +827,7 @@ namespace turboc
    }
 
 
-   string view::get_turboc()
+   string impact::get_turboc()
    {
 
       synchronous_lock synchronouslock(&m_mutexText);
@@ -866,7 +866,7 @@ namespace turboc
    }
 
 
-/*   void view::turboc_render(::image * pimage)
+/*   void impact::turboc_render(::image * pimage)
    {
 
       if(m_pimageImage->is_set() && m_pimageImage->area() > 0)
@@ -874,12 +874,12 @@ namespace turboc
 
          m_bFirstDone = true;
 
-         ::rectangle_i32 rectWork(0,0,m_pimageWork->width(),m_pimageWork->height());
-         ::rectangle_i32 rectImage(0,0,m_pimageImage->width(),m_pimageImage->height());
+         ::rectangle_i32 rectangleWork(0,0,m_pimageWork->width(),m_pimageWork->height());
+         ::rectangle_i32 rectangleImage(0,0,m_pimageImage->width(),m_pimageImage->height());
 
-         rectImage.FitOnCenterOf(rectWork);
+         rectangleImage.FitOnCenterOf(rectangleWork);
 
-/*         pimage->g()->StretchBlt(rectImage.left,rectImage.top,rectImage.width(),rectImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
+/*         pimage->g()->StretchBlt(rectangleImage.left,rectangleImage.top,rectangleImage.width(),rectangleImage.height(),m_pimagepimage->g(),0,0,m_pimageImage->width(),m_pimageImage->height());
 
 
       }

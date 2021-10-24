@@ -1,4 +1,4 @@
-// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSørensen__!!
+// Created by camilo on 2021-06-08 02:30 BRT <3ThomasBorregaardSï¿½rensen__!!
 #include "framework.h"
 
 
@@ -109,7 +109,7 @@ namespace write_text
    ::e_status drawer::get_text_metrics(::write_text::text_metric* pmetrics)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -119,14 +119,144 @@ namespace write_text
    ::e_status drawer::TextOutRaw(double x, double y, const block& block)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
    }
 
+   
+   ::e_status drawer::split_text(string_array & stra, double w, enum_text_wrap etextwrap)
+   {
 
-   ::e_status drawer::create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::rectangle_i32& rectangle, ::write_text::font* pfont, const ::e_align& ealign)
+      if (etextwrap == e_text_wrap_none)
+      {
+
+         return ::success;
+
+      }
+
+      for (::index i = 0; i < stra.get_size(); i++)
+      {
+
+         ::count c = _split_text(stra, i, w, etextwrap);
+
+         i += c;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::count drawer::_split_text(string_array & stra, ::index i, double w, enum_text_wrap etextwrap)
+   {
+
+      switch (etextwrap)
+      {
+      case e_text_wrap_word:
+         return _split_text_word(stra, i, w);
+      case e_text_wrap_word_then_character:
+         return _split_text_word_then_character(stra, i, w);
+      case e_text_wrap_character:
+         return _split_text_character(stra, i, w);
+      default:
+         return 0;
+      };
+
+   }
+
+
+   ::count drawer::_split_text_word(string_array & stra, ::index i, double w)
+   {
+
+      return _split_text_character(stra, i, w);
+
+   }
+   
+   
+   ::count drawer::_split_text_word_then_character(string_array & stra, ::index i, double w)
+   {
+      
+      return _split_text_character(stra, i, w);
+
+   }
+
+
+   ::count drawer::_split_text_character(string_array & stra, ::index i, double w)
+   {
+
+      ::count c = 0;
+
+      string str = stra[i];
+
+      const char * pszStart = str;
+
+      auto pszEnd = pszStart;
+
+      string strNow;
+
+      while (pszEnd)
+      {
+
+         auto pszLast = pszEnd;
+
+         pszEnd = ::str::utf8_inc(pszEnd);
+
+         string strNow = string(pszStart, pszEnd - pszStart);
+
+         if (get_text_extent(strNow).cx > w)
+         {
+
+            if (pszLast > pszStart)
+            {
+
+               strNow = string(pszStart, pszLast - pszStart);
+
+               pszStart = pszLast;
+
+            }
+            else
+            {
+
+               pszStart = pszEnd;
+
+            }
+
+            if (c == 0)
+            {
+
+               stra.set_at(i, strNow);
+
+            }
+            else
+            {
+
+               stra.insert_at(i + c, strNow);
+
+            }
+
+            c++;
+
+         }
+
+         if (*pszEnd == '\0')
+         {
+
+            break;
+
+         }
+
+      }
+
+      return c;
+
+   }
+
+
+
+   ::e_status drawer::create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::rectangle_i32& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap)
    {
 
       string_array stra;
@@ -144,6 +274,8 @@ namespace write_text
       double h = rectangle.height();
 
       double cx = 0.;
+
+      split_text(stra, w, etextwrap);
 
       for (auto& strLine : stra)
       {

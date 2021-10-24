@@ -40,7 +40,7 @@ namespace user
       if (m_id.is_empty())
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 
@@ -90,7 +90,7 @@ namespace user
    void box::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -292,7 +292,7 @@ namespace user
          return true;
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(pe);
@@ -427,15 +427,15 @@ namespace user
 
       string strDisplay;
 
-      //::rectangle rectNormal;
+      //::rectangle rectangleNormal;
 
-      //get_rect_normal(rectNormal);
+      //get_rect_normal(rectangleNormal);
 
-      ::rectangle rectMainMonitor;
+      ::rectangle rectangleMainMonitor;
 
-      psession->get_main_monitor(rectMainMonitor);
+      psession->get_main_monitor(rectangleMainMonitor);
 
-      strDisplay.Format("Display(%d, %d)", rectMainMonitor.width(), rectMainMonitor.height());
+      strDisplay.Format("Display(%d, %d)", rectangleMainMonitor.width(), rectangleMainMonitor.height());
 
       return strDisplay;
 

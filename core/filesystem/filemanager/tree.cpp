@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "aura/user/shell.h"
 #include "_data.h"
 #include "aura/template/list.h"
@@ -20,6 +22,35 @@ namespace filemanager
    {
 
    }
+
+
+#ifdef _DEBUG
+
+
+   i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 tree::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 tree::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return ::object::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+#endif
 
 
    ::e_status tree::initialize_filemanager_tree(document * pdocument)
@@ -540,10 +571,13 @@ namespace filemanager
 
    void tree::StartAnimation()
    {
+      
       m_iAnimate = 1;
-      m_usertreea[0]->SetTimer(1234567, 50, nullptr);
+      
+      m_usertreea[0]->SetTimer(1234567, 50_ms, nullptr);
 
    }
+
 
    void tree::TakeAnimationSnapshot()
    {
@@ -637,7 +671,7 @@ namespace filemanager
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
 
    }
 
@@ -760,15 +794,15 @@ namespace filemanager
    void tree::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      UNREFERENCED_PARAMETER(pusertree);
+      __UNREFERENCED_PARAMETER(pusertree);
 
    }
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
    }
 

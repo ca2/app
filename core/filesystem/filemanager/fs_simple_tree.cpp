@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "_data.h"
 #include "aqua/xml.h"
 #include "core/user/user/_tree.h"
@@ -45,11 +47,19 @@ namespace filemanager
 
             m_pimagelist->create(16, 16);
 
-            m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal->ico");
-            m_iIconFolderSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected->ico");
-            m_iIconArtistNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal->ico");
-            m_iIconArtistSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected->ico");
+//#ifdef WINDOWS
+//
+//            m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+//            m_iIconFolderSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_selected.ico");
+//            m_iIconArtistNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+//            m_iIconArtistSelected = m_pimagelist->add_matter_icon("mplite/vmskarlib_artist_selected.ico");
+//
+//#endif
 
+            m_iIconFolderNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            m_iIconFolderSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_selected"));
+            m_iIconArtistNormal = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            m_iIconArtistSelected = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_selected"));
             return estatus;
 
          }
@@ -87,7 +97,7 @@ namespace filemanager
             else
             {
 
-               message_box("error"); // simple parsing error check
+               output_error_message("error"); // simple parsing error check
 
                return;
 
@@ -155,7 +165,7 @@ namespace filemanager
 
                pfolder->m_strName = pnodeItem->attribute("name");
 
-               string strType(pnodeItem->attribute("type"));
+               string strType(pnodeItem->attribute("type").get_string());
 
                if(strType == "normal")
                {

@@ -11,6 +11,8 @@ namespace user
    image_list::image_list()
    {
 
+      m_bClickDefaultMouseHandling = true;
+
       m_sizeImage.set(0, 0);
 
       m_iTextHeight = 30;
@@ -97,7 +99,7 @@ namespace user
 
       }
 
-      return string(get_current_image()->extension()->payload("read_only_link"));
+      return get_current_image()->extension()->payload("read_only_link").get_string();
 
    }
 
@@ -107,7 +109,7 @@ namespace user
 
       ::user::box::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &image_list::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list::on_message_destroy);
@@ -115,7 +117,7 @@ namespace user
    }
 
 
-   bool image_list::on_click(const ::user::item & item)
+   bool image_list::on_click(const ::item & item)
    {
 
       index_array iaSel = m_iaSel;
@@ -152,17 +154,13 @@ namespace user
 
       }
 
-      ::user::control_event event;
+      ::subject subject(e_subject_image_list_action);
 
-      event.m_eevent    = ::user::e_event_image_list_action;
+      subject.m_item      = item;
 
-      event.m_item      = item;
+      subject.m_puserelement      = this;
 
-      event.m_puserinteraction      = this;
-
-      event.m_id        = m_id;
-
-      on_control_event(&event);
+      route(&subject);
 
       _001SetSelection(iaSel, ::e_source_user);
 
@@ -194,10 +192,10 @@ namespace user
    }
 
 
-   bool image_list::get_rect(::user::item & item)
+   bool image_list::get_rect(::item & item)
    {
 
-      if (item == ::user::e_element_item)
+      if (item == ::e_element_item)
       {
 
          if (!item.is_valid_item(m_imagea.get_count()))
@@ -275,7 +273,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::e_element_icon)
+      else if (item == ::e_element_icon)
       {
 
          {
@@ -301,7 +299,7 @@ namespace user
          return true;
 
       }
-      else if (item == ::user::e_element_text)
+      else if (item == ::e_element_text)
       {
 
          if (m_bNoName)
@@ -335,7 +333,7 @@ namespace user
    }
 
 
-   void image_list::on_hit_test(::user::item& item)
+   void image_list::on_hit_test(::item& item)
    {
 
       ::count c = m_imagea.get_count();
@@ -361,7 +359,7 @@ namespace user
 
       item = -1;
 
-      item = ::user::e_element_none;
+      item = ::e_element_none;
 
    }
 
@@ -381,18 +379,18 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleClient, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_rectangle(rectangleClient, argb(255, 192, 192, 192));
+      pgraphics->draw_inset_rectangle(rectangleClient, argb(255, 192, 192, 192));
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       ::count cCount = m_imagea.get_count();
 
-      for (::user::item item = 0; item.m_iItem < cCount; item.m_iItem++)
+      for (::item item = 0; item.m_iItem < cCount; item.m_iItem++)
       {
 
-         ::user::item itemText;
+         ::item itemText;
 
-         ::rectangle_i32 rectSel;
+         ::rectangle_i32 rectangleSel;
 
          itemText = e_element_text;
 
@@ -427,7 +425,7 @@ namespace user
                if (pimage->area() <= 0)
                {
 
-                  ::rectangle_i32 rectImage;
+                  ::rectangle_i32 rectangleImage;
 
                   double dW = (double)rectangle.width() / (double)pimageSrc->width();
 
@@ -437,34 +435,42 @@ namespace user
 
                   ::size_i32 szNew = pimageSrc->get_size() * dMin;
 
-                  pimage = create_image(szNew);
+                  pimage = m_pcontext->context_image()->create_image(szNew);
 
                   pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage->g()->stretch(::rectangle_i32(szNew), pimageSrc->get_graphics(),pimageSrc->rectangle());
+                  image_source imagesource(pimageSrc);
+
+                  rectangle_f64 rectangle(szNew);
+
+                  image_drawing_options imagedrawingoptions(rectangle);
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimage->g()->draw(imagedrawing);
 
                }
 
-               ::rectangle_i32 rectImage;
+               ::rectangle_i32 rectangleImage;
 
-               rectImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
+               rectangleImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
 
-               rectImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
+               rectangleImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
 
-               rectImage.right = rectImage.left + pimage->width();
+               rectangleImage.right = rectangleImage.left + pimage->width();
 
-               rectImage.bottom = rectImage.top + pimage->height();
+               rectangleImage.bottom = rectangleImage.top + pimage->height();
 
-               rectSel = rectImage;
+               rectangleSel = rectangleImage;
 
                if (!m_bNoName)
                {
 
-                  rectSel.bottom = itemText.m_rectangle.bottom;
+                  rectangleSel.bottom = itemText.m_rectangle.bottom;
 
                }
 
-               rectSel.inflate(5, 5);
+               rectangleSel.inflate(5, 5);
 
                ::color::color crBorder = 0;
 
@@ -530,23 +536,29 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_rectangle(rectSel, crSel);
+                  pgraphics->fill_rectangle(rectangleSel, crSel);
 
                }
 
-               pgraphics->stretch(rectImage, pimage->g());
+               image_source imagesource(pimage);
+
+               image_drawing_options imagedrawingoptions(rectangleImage);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               pgraphics->draw(imagedrawing);
 
                if (bSel)
                {
 
 
-                  rectImage.inflate(1, 1);
+                  rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_rectangle(rectSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
-                  rectImage.inflate(1, 1);
+                  rectangleImage.inflate(1, 1);
 
-                  pgraphics->draw_rectangle(rectSel, crBorder);
+                  pgraphics->draw_inset_rectangle(rectangleSel, crBorder);
 
                }
 
@@ -588,14 +600,14 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      ::rectangle_i32 rectTotal(0, 0, 0, 0);
+      ::rectangle_i32 rectangleTotal(0, 0, 0, 0);
 
       ::size_i32 sizeImage;
 
       for (index i = 0; i < m_imagea.get_count(); i++)
       {
 
-         ::user::item item(e_element_item, i);
+         ::item item(e_element_item, i);
 
          if (get_rect(item))
          {
@@ -607,7 +619,7 @@ namespace user
 
             }
 
-            rectTotal.unite(rectTotal, item.m_rectangle);
+            rectangleTotal.unite(rectangleTotal, item.m_rectangle);
 
          }
 
@@ -624,13 +636,13 @@ namespace user
 
       }
 
-      rectTotal.left = 0;
+      rectangleTotal.left = 0;
 
-      rectTotal.top = 0;
+      rectangleTotal.top = 0;
 
-      rectTotal.bottom += m_iPad;
+      rectangleTotal.bottom += m_iPad;
 
-      //m_sizeTotal = rectTotal.size();
+      //m_sizeTotal = rectangleTotal.size();
 
       //m_scrolldataVertical.m_iPage = rectangleClient.height();
 
@@ -696,10 +708,10 @@ namespace user
    }
 
 
-   void image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void image_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
@@ -707,7 +719,7 @@ namespace user
          __throw(todo, "core");
          //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         //if (peditview != nullptr && psubject->m_puserinteraction == peditview)
+         //if (peditview != nullptr && psubject->user_interaction() == peditview)
          //{
 
          //   string strText;
@@ -721,7 +733,7 @@ namespace user
    }
 
 
-   ::user::item image_list::current_item()
+   ::item image_list::current_item()
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -770,17 +782,17 @@ namespace user
 
          m_iaSel = ia;
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         ev.m_item = current_item();
+         subject.m_item = current_item();
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         on_control_event(&ev);
+         route(&subject);
 
       }
 

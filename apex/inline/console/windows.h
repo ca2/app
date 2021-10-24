@@ -132,24 +132,10 @@ public:
          
       }
 
-
    }
 
 
 };
-
-
-
-//int wmain(int argc, wchar_t* argv[])
-//{
-//
-//   console console(argc, argv);
-//
-//   main();
-//
-//   return console.result();
-//
-//}
 
 
 

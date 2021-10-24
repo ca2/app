@@ -3,7 +3,9 @@
 #include "core/html/html/_.h"
 #include "core/html/impl/_impl.h"
 #include "core/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_element.h"
+#endif
 
 
 namespace html
@@ -431,7 +433,7 @@ namespace html
    void element::implement_phase2(html_data * phtmldata)
    {
 
-      UNREFERENCED_PARAMETER(phtmldata);
+      __UNREFERENCED_PARAMETER(phtmldata);
 
    }
 
@@ -1055,7 +1057,7 @@ namespace html
             psz++;
          if (*psz != '/' && *psz != '>')
          {
-            __throw(::exception::exception("run tag fixer tabjs"));
+            throw ::exception(error_parsing, "run tag fixer tabjs");
          }
          if (*psz == '/')
          {
@@ -1064,7 +1066,7 @@ namespace html
                psz++;
             if (*psz != '>')
             {
-               __throw(::exception::exception("run tag fixer tabjs"));
+               throw ::exception(error_parsing, "run tag fixer tabjs");
             }
             return true;
          }
@@ -1111,7 +1113,7 @@ namespace html
          psz++;
       if (*psz != '<')
       {
-         __throw(::exception::exception("run tag fixer tabjs"));
+         throw ::exception(error_parsing, "run tag fixer tabjs");
       }
       psz++;
       // skip white space
@@ -1129,14 +1131,14 @@ namespace html
          return true;
       }
 
-      __throw(::exception::exception("invalid xml file"));
+      throw ::exception(error_parsing, "invalid xml file");
 
    }
 
 
    void element::parse_attributes(html_data * phtmldata, const char * & psz)
    {
-      UNREFERENCED_PARAMETER(phtmldata);
+      __UNREFERENCED_PARAMETER(phtmldata);
       char chQuote;
       while (*psz != '\0' && *psz != '/' && *psz != '>')
       {
@@ -1744,7 +1746,7 @@ namespace html
 
          }
 
-         return m_pdata->m_pcoredata->m_pform->get_color(pstyle, ::user::e_element_text);
+         return m_pdata->m_pcoredata->m_pform->get_color(pstyle, ::e_element_text);
 
       }
       else if(ecolor == ::css::color_background)
@@ -1776,9 +1778,9 @@ namespace html
    ::write_text::font_pointer element::get_font()
    {
 
-      //font = m_pdata->get_font(this)->m_font;
+      //font = m_pdata->get_font(this)->m_pfont;
 
-      return m_pdata->get_font(this)->m_font;
+      return m_pdata->get_font(this)->m_pfont;
 
       //if (font.is_null())
       //{

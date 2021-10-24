@@ -23,7 +23,7 @@ namespace dynamic_source
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    ::i64 script_main::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)

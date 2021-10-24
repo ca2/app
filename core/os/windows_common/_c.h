@@ -5,10 +5,10 @@ struct lib_main_int
 {
 
    int m_iAny = 0;
-   ::millis m_millisProcessAttach = 0;
-   ::millis m_millisProcessDetach = 0;
-   ::millis m_millisThreadAttach = 0;
-   ::millis m_millisThreadDetach = 0;
+   ::duration m_durationProcessAttach = 0;
+   ::duration m_durationProcessDetach = 0;
+   ::duration m_durationThreadAttach = 0;
+   ::duration m_durationThreadDetach = 0;
 
 };
 

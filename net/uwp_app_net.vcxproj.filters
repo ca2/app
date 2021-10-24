@@ -11,29 +11,24 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e158df90-895f-41dc-a33b-4f6050669943}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\uwp">
+    <Filter Include="Source Files\universal_windows">
       <UniqueIdentifier>{a1d64786-692a-45ed-9af9-ea7d868bb66e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries">
-      <UniqueIdentifier>{8a24db2e-6172-4ee0-a0f0-864740b1ff43}</UniqueIdentifier>
+      <UniqueIdentifier>{dc535c98-b364-4bad-9669-8dcea246d5ab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x86">
-      <UniqueIdentifier>{e906fbd2-0cd9-4e26-9e54-fa42d1cd6306}</UniqueIdentifier>
+      <UniqueIdentifier>{76504347-f86b-465b-ae56-bab917af9ecf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x86\basis">
-      <UniqueIdentifier>{c9c634d0-e8c4-49a0-88a3-fc06ee544238}</UniqueIdentifier>
+      <UniqueIdentifier>{3e60624d-9015-427d-8c04-784ff1fa78b3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x64">
-      <UniqueIdentifier>{ddc45200-2be9-4d3e-afba-f30b8e6c76d3}</UniqueIdentifier>
+      <UniqueIdentifier>{4724028a-3a61-4761-b3d8-1e44e7ac3118}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries\x64\basis">
-      <UniqueIdentifier>{7f6e16eb-f799-487c-987d-1858be971319}</UniqueIdentifier>
+      <UniqueIdentifier>{6e7e5a89-a722-41b5-b750-750c500a4ad9}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="uwp\_.cpp">
-      <Filter>Source Files\uwp</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Square71x71Logo.scale-100.png">
@@ -90,10 +85,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="uwp_app_net_TemporaryKey.pfx" />
-    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\pcre.dll" />
-    <None Include="..\..\..\archive\storage-uwp\third\binary\Win32\basis\zlib.dll" />
-    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\pcre.dll" />
-    <None Include="..\..\..\archive\storage-uwp\third\binary\x64\basis\zlib.dll" />
     <None Include="uwp_app_simple_app_TemporaryKey.pfx" />
+    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\archive\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
+      <Filter>Libraries\x86\basis</Filter>
+    </None>
+    <None Include="..\..\..\archive\storage-universal_windows\third\binary\x64\basis\pcre.dll">
+      <Filter>Libraries\x64\basis</Filter>
+    </None>
+    <None Include="..\..\..\archive\storage-universal_windows\third\binary\x64\basis\zlib.dll">
+      <Filter>Libraries\x64\basis</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="universal_universal\main.cpp">
+      <Filter>Source Files\universal_windows</Filter>
+    </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

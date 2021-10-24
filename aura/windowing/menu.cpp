@@ -34,7 +34,7 @@ namespace windowing
    }
 
 
-   __pointer(menu) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   __pointer(menu) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
    {
 
       int iCount = (int)straParent.get_count();
@@ -48,12 +48,12 @@ namespace windowing
 
       }
 
-      auto pmenu = __create < menu >();
+      auto pmenu = pobject->__create < menu >();
 
       for (int i = 0; i < straParent.get_count(); i++)
       {
 
-         auto pitem = __create < menu_item >();
+         auto pitem = pobject->__create < menu_item >();
 
          pitem->m_strParent = straParent[i];
          pitem->m_strMenu = straMenu[i];
@@ -73,7 +73,7 @@ namespace windowing
       //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
       //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
 
-      return pmenu;
+      return ::move(pmenu);
 
    }
 

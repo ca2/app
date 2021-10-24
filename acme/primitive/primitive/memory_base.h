@@ -25,6 +25,7 @@ inline i32 msb(N n)
 
 
 class bstring_manager;
+class read_only_memory;
 class memory;
 class shared_memory;
 class virtual_memory;
@@ -61,6 +62,7 @@ public:
 
    e_memory                m_ememory;
 
+   read_only_memory *      m_preadonlymemory;
    memory *                m_pprimitivememory;
    shared_memory *         m_psharedmemory;
    virtual_memory *        m_pvirtualmemory;
@@ -109,10 +111,18 @@ public:
    virtual string as_utf8() const;
 
    virtual char * c_str();
+
+   virtual bool begins(const block& block) const;
    virtual bool begins(const char * psz, strsize iCount = -1) const;
    virtual bool begins_ci(const char * psz, strsize iCount = -1) const;
    virtual bool begins(const ::string & str, strsize iCount = -1) const;
    virtual bool begins_ci(const ::string & str, strsize iCount = -1) const;
+
+   virtual bool ends(const block& block) const;
+   virtual bool ends(const char * psz, strsize iCount = -1) const;
+   virtual bool ends_ci(const char * psz, strsize iCount = -1) const;
+   virtual bool ends(const ::string & str, strsize iCount = -1) const;
+   virtual bool ends_ci(const ::string & str, strsize iCount = -1) const;
 
    //virtual byte * detach_primitive_memory();
    //virtual byte * detach_virtual_memory();
@@ -154,7 +164,7 @@ public:
    void allocate_add_up(memsize iAddUp);
 
 
-   virtual ::matter * clone() const override;
+   ::element * clone() const override;
 
 
    inline byte *           internal_get_data() const;
@@ -165,6 +175,10 @@ public:
    inline memsize          size() const;
    inline byte *           data() const;
    inline byte *           data();
+
+
+   inline byte * begin() const { return get_data();  }
+   inline byte * end() const { return get_data() + size(); }
 
    inline const char * c_str() const { return (char*)data(); }
    inline char * sz() { return (char*)data(); }
@@ -197,8 +211,8 @@ public:
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
    //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
-   string to_string() const override;
-   string to_string(memsize iStart, memsize uiSize = -1) const;
+   string get_string() const override;
+   string get_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);
    void eat_begin(void * pdata, memsize iSize);
@@ -261,12 +275,13 @@ public:
 
    inline void set_char_at_grow(strsize iChar, char ch);
 
-   inline byte * find(const block& block, ::index iStart = 0) const;
-   inline ::index find_index(const block& block, ::index iStart = 0) const;
-   inline byte* reverse_find(const block& block, ::index iStart = 0) const;
-   inline ::index reverse_find_index(const block& block, ::index iStart = 0) const;
-   inline byte* reverse_find_byte_not_in_block(const block& block, ::index iStart = 0) const;
-   inline ::index reverse_find_index_of_byte_not_in_block(const block& block, ::index iStart = 0) const;
+
+   byte * find(const block& block, ::index iStart = 0) const;
+   ::index find_index(const block& block, ::index iStart = 0) const;
+   byte* reverse_find(const block& block, ::index iStart = 0) const;
+   ::index reverse_find_index(const block& block, ::index iStart = 0) const;
+   byte* reverse_find_byte_not_in_block(const block& block, ::index iStart = 0) const;
+   ::index reverse_find_index_of_byte_not_in_block(const block& block, ::index iStart = 0) const;
 
    byte * find_line_prefix(const ::block& blockPrefix, ::index iStart = 0);
    ::index find_line_prefix_index(const ::block& blockPrefix, ::index iStart = 0);
@@ -276,18 +291,20 @@ public:
 #if defined(_UWP) && defined(__cplusplus_winrt)
 
    inline Array < uchar, 1U > ^ get_os_bytes(memsize pos = 0, memsize size = -1) const;
-   inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memsize pos = 0, memsize size = -1) const;
-   inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
+   inline ::winrt::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memsize pos = 0, memsize size = -1) const;
+   inline ::winrt::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memsize pos = 0, memsize size = -1) const;
    inline void set_os_bytes(Array < uchar, 1U > ^ a, memsize pos = 0, memsize size = -1);
-   inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
-   inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
-
-#elif defined(APPLEOS)
-
-   CFDataRef get_os_cf_data(memsize pos = 0, memsize size = -1) const;
-   void set_os_cf_data(CFDataRef data, memsize pos = 0, memsize size = -1);
+   inline void set_os_crypt_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
+   inline void set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos = 0, memsize size = -1);
 
 #endif
+   
+//#if defined(__APPLE__)
+//
+//   CFDataRef get_os_cf_data(memsize pos = 0, memsize size = -1) const;
+//   void set_os_cf_data(CFDataRef data, memsize pos = 0, memsize size = -1);
+//
+//#endif
 
 
 

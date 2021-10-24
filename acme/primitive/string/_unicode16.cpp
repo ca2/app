@@ -216,7 +216,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //      {
 //
 //         // invalid code_point, do something !
-//         __throw(::exception::exception("utf16_to_utf16_len :: invalid code_point, do something ! "));
+//         __throw(::exception("utf16_to_utf16_len :: invalid code_point, do something ! "));
 //
 //         //++len;
 //
@@ -427,7 +427,7 @@ wd16char surrogate_to_utf16(wd16char _1st, wd16char _2nd)
 //         else
 //         {
 //
-//            __throw(::exception::exception("utf16_to_utf16_len"));
+//            __throw(::exception("utf16_to_utf16_len"));
 //
 //         }
 //
@@ -470,7 +470,7 @@ wd16char surrogate_to_utf16(wd16char _1st, wd16char _2nd)
 //         else
 //         {
 //
-//            __throw(::exception::exception("utf16_to_utf16_len"));
+//            __throw(::exception("utf16_to_utf16_len"));
 //
 //         }
 //
@@ -827,7 +827,7 @@ strsize utf16_to_utf16_len(const wd16char* codepoints, strsize input_size)
       {
 
          // invalid code_point, do something !
-         __throw(::exception::exception("utf16_to_utf16_len :: invalid code_point, do something ! "));
+         __throw(error_invalid_character, "utf16_to_utf16_len :: invalid code_point, do something ! ");
 
          //++len;
 

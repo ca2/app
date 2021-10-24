@@ -11,13 +11,13 @@ public:
    virtual ~simple_pane_document();
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
-   virtual bool on_new_document() override;
-   virtual bool on_open_document(const ::payload & varFile) override;
+   bool on_new_document() override;
+   virtual bool on_open_document(const ::payload & payloadFile) override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
    virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
    virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #else

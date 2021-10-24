@@ -954,7 +954,7 @@ namespace apex
       if (pthreadItem != ptask && pthreadItem != nullptr)
       {
 
-         TRACE("\nthread_ptra::get_count_except_current_thread %s", typeid(*pthreadItem).name());
+         INFORMATION("thread_ptra::get_count_except_current_thread " << typeid(*pthreadItem).name());
 
          c++;
 
@@ -967,10 +967,10 @@ namespace apex
 }
 
 
-void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslock)
+void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronouslock)
 {
 
-   ::datetime::time timeEnd = ::datetime::time::get_current_time() + maximum(seconds(2), duration);
+   auto waitStart = ::wait::now();
 
    try
    {
@@ -979,18 +979,14 @@ void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslo
       //
       ::count cCount = get_count_except_current_thread();
 
-      ::datetime::time timeNow = ::datetime::time::get_current_time();
-
-      while (cCount > 0 && timeNow < timeEnd)
+      while (cCount > 0 && waitStart.elapsed() < wait)
       {
 
          synchronouslock.unlock();
 
-         timeNow = ::datetime::time::get_current_time();
-
          cCount = get_count_except_current_thread();
 
-         sleep(500_ms);
+         preempt(500_ms);
 
          synchronouslock.lock();
 
@@ -1003,9 +999,6 @@ void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslo
    }
 
 }
-
-
-
 
 
 ::task_pointer thread::calc_parent()
@@ -1082,4 +1075,8 @@ void thread_ptra::wait(const duration& duration, synchronous_lock& synchronouslo
    return psystemContext;
 
 }
+
+
+
+
 

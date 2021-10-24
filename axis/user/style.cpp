@@ -42,52 +42,6 @@ namespace axis
    }
 
 
-   //void style::select_default()
-   //{
-
-   //   if (pstyle.is_set())
-   //   {
-
-   //      m_puserstyleSelect = pstyle;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_puserstyleSelect = this;
-
-   //   }
-
-   //}
-
-
-
-
-
-
-
-
-   //void style::initialize_style()
-   //{
-
-   //   ::user::style::initialize_style();
-
-   //   ::color::color color;
-   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
-
-   //   class ::color::color colorHover(color);
-   //   colorHover.hls_rate(0.0, 0.3, 0.0);
-
-   //   class ::color::color colorPress(color);
-   //   colorPress.hls_rate(0.0, 0.7, 0.0);
-
-   //   m_eschema = schema_default;
-
-   //   create_opaque_color(color_text, ::color_black);
-
-   //}
-
-
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
    {
 
@@ -106,20 +60,20 @@ namespace axis
 
          int h = rectangle.height();
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
          if (bHover)
          {
 
-            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+            ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
 
          }
          else
          {
 
-            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+            ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          }
 
@@ -148,15 +102,15 @@ namespace axis
          //else
          //{
 
-         //   pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //   ppen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          //}pinteraction->get ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200)
 
          auto colorCheck = pinteraction->get_color(this, estate);
 
-         pen->create_solid(1 * (w + h) / 30, colorCheck);
+         ppen->create_solid(1 * (w + h) / 30, colorCheck);
 
-         pgraphics->set(pen);
+         pgraphics->set(ppen);
 
          pgraphics->move_to(2 * w / 15, 8 * h / 15);
          pgraphics->line_to(6 * w / 15, 12 * h / 15);
@@ -225,14 +179,14 @@ namespace axis
       if (get_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
-         ::draw2d::brush_pointer brush(e_create);
+         auto pbrush = __create < ::draw2d::brush >();
 
          if (!pinteraction->m_flagNonClient.has(::user::interaction::non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            brush->create_solid(pinteraction->get_color(this, ::user::e_element_background, ::user::e_state_hover));
+            pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
-            pgraphics->set(brush);
+            pgraphics->set(pbrush);
 
             pgraphics->fill_rectangle(rectangleClient);
 
@@ -246,35 +200,35 @@ namespace axis
             if (bHover)
             {
 
-               ::draw2d::pen_pointer& pen = m_penFocusRect0;
+               ::draw2d::pen_pointer & ppen = m_ppenFocusRect0;
 
-               if (!pen)
+               if (!ppen)
                {
 
-                  pen.create();
+                  ppen.create(this);
 
-                  pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border, ::user::e_state_hover));
+                  ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border, ::user::e_state_hover));
 
                }
 
-               pgraphics->draw_rectangle(rectangleClient, pen);
+               pgraphics->draw_rectangle(rectangleClient, ppen);
 
             }
             else
             {
 
-               ::draw2d::pen_pointer& pen = m_penFocusRect1;
+               ::draw2d::pen_pointer & ppen = m_ppenFocusRect1;
 
-               if (!pen)
+               if (!ppen)
                {
 
-                  pen.create();
+                  ppen.create(this);
 
-                  pen->create_solid(1.0, argb(190, 90, 90, 80));
+                  ppen->create_solid(1.0, argb(190, 90, 90, 80));
 
                }
 
-               pgraphics->draw_rectangle(rectangleClient, pen);
+               pgraphics->draw_rectangle(rectangleClient, ppen);
 
             }
 
@@ -298,18 +252,18 @@ namespace axis
 
                {
 
-                  ::draw2d::pen_pointer& pen = m_penFocusRect2;
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect2;
 
-                  if (!pen)
+                  if (!ppen)
                   {
 
-                     pen.create();
+                     ppen.create(this);
 
-                     pen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
+                     ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
                   }
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -320,20 +274,20 @@ namespace axis
 
                {
 
-                  ::draw2d::pen_pointer& pen = m_penFocusRect3;
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect3;
 
-                  if (!pen)
+                  if (!ppen)
                   {
 
-                     pen.create();
+                     ppen.create(this);
 
-                     pen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
+                     ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
                   }
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -351,28 +305,28 @@ namespace axis
 
                   //   pathRound.create();
 
-                  //   pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //   ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //   pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //   ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //   pathRound->end_figure(true);
+                  //   ppathRound->end_figure(true);
 
                   //}
 
-                  ::draw2d::pen_pointer& pen = m_penFocusRect4;
+                  ::draw2d::pen_pointer & ppen = m_ppenFocusRect4;
 
-                  if (!pen)
+                  if (!ppen)
                   {
 
-                     pen.create();
+                     ppen.create(this);
 
-                     pen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
+                     ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
                   }
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -383,22 +337,22 @@ namespace axis
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
-                  ::draw2d::pen_pointer pen(e_create);
+                  auto ppen = __create < ::draw2d::pen > ();
 
-                  pen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
+                  ppen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -410,22 +364,22 @@ namespace axis
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
-                  ::draw2d::pen_pointer pen(e_create);
+                  auto ppen = __create < ::draw2d::pen > ();
 
-                  pen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
+                  ppen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -438,22 +392,22 @@ namespace axis
 
                {
 
-                  //::draw2d::path_pointer pathRound(e_create);
+                  //auto ppathRound = __create < ::draw2d::path >();
 
-                  //pathRound->begin_figure(true, ::draw2d::fill_mode_winding);
+                  //ppathRound->begin_figure(true, ::draw2d::fill_mode_winding);
 
-                  //pathRound->add_round_rect(rectangleClient, 1 * 2);
+                  //ppathRound->add_round_rect(rectangleClient, 1 * 2);
 
-                  //pathRound->end_figure(true);
+                  //ppathRound->end_figure(true);
 
                   //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
-                  ::draw2d::pen_pointer pen(e_create);
+                  auto ppen = __create < ::draw2d::pen > ();
 
-                  pen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
+                  ppen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
-                  pgraphics->set(pen);
+                  pgraphics->set(ppen);
 
-                  pgraphics->draw_rectangle(rectangleClient, pen);
+                  pgraphics->draw_rectangle(rectangleClient, ppen);
 
                }
 
@@ -466,11 +420,11 @@ namespace axis
          else
          {
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(3.0, argb(255, 90, 80, 255));
+            ppen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rectangle(rectangleClient, pen);
+            pgraphics->draw_rectangle(rectangleClient, ppen);
 
          }
 
@@ -478,11 +432,11 @@ namespace axis
       else
       {
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen >();
 
-         pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border));
+         ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
-         pgraphics->draw_rectangle(rectangleClient, pen);
+         pgraphics->draw_rectangle(rectangleClient, ppen);
 
       }
 
@@ -507,10 +461,10 @@ namespace axis
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, brushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
 
    //}
 
@@ -642,7 +596,7 @@ namespace axis
 
   //  //  }
 
-  //    font->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+  //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
 
   //    return font;
 
@@ -866,7 +820,7 @@ namespace axis
    }
 
 
-   ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -877,7 +831,7 @@ namespace axis
          if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::e_element_background)
+            if (eelement == ::e_element_background)
             {
 
                return ::color::color(0, 0, 0, 0);
@@ -1135,10 +1089,10 @@ namespace axis
       //}
 
 
-      //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
+      //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText)
       //{
 
-      //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, brushText);
+      //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);
 
       //}
 
@@ -1246,7 +1200,7 @@ namespace axis
 
      //  //  }
 
-     //    font->create_point_font(pszFamilyName, dFontSize, iFontWeight);
+     //    pfont->create_point_font(pszFamilyName, dFontSize, iFontWeight);
 
      //    return font;
 

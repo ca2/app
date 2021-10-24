@@ -20,16 +20,16 @@ namespace userstack
    void form_callback::update(::user::form * pform, ::update & update)
    {
 
-      UNREFERENCED_PARAMETER(pform);
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(pform);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
 
-   void form_callback::on_control_event(::user::control_event * pevent)
+   void form_callback::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
    }
 

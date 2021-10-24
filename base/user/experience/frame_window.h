@@ -15,7 +15,7 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       __composite(::experience::frame)             m_pframe;
-      ::rectangle_i32                                       m_rectPending;
+      ::rectangle_i32                                       m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -23,7 +23,7 @@ namespace experience
       bool                                         m_bFullScreenCtrl;
 
 
-      ::logic::bit                                 m_bitMinimizeToTray;
+      ::boolean                                 m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
       
       ::u32                                        m_uiSWPFlags;
@@ -50,7 +50,7 @@ namespace experience
 
 
       frame_window();
-      virtual ~frame_window();
+      ~frame_window() override;
 
 
       virtual __pointer(::experience::experience) create_experience(const ::string & strExperienceLibrary);
@@ -75,20 +75,9 @@ namespace experience
 
       void display_system_minimize() override;
 
-      //::e_status frame_toggle_restore() override;
-
       virtual ::e_status initialize_frame_window_experience();
 
-      void on_command_message(::message::command* pcommand) override;
-      void route_command_message(::message::command* pcommand) override;
-
-
-
-      //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
-
-
-      //virtual bool WfiOnBeginSizing(::u32 nType, const ::point_i32 & point);
-      //virtual bool WfiOnBeginMoving(const ::point_i32 & point);
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       ::e_status frame_experience_restore() override;
 
@@ -128,22 +117,23 @@ namespace experience
 
 
       virtual void set_frame(::experience::frame * pframe);
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
+
+
+      void on_command(::message::command * pcommand) override;
       
 
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonDown);
       DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);
       DECLARE_MESSAGE_HANDLER(_001OnNcLButtonUp);
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
       DECLARE_MESSAGE_HANDLER(_001OnActivate);
-      //DECLARE_MESSAGE_HANDLER(_001OnCommand);
       DECLARE_MESSAGE_HANDLER(_001OnSysCommand);
       DECLARE_MESSAGE_HANDLER(on_message_size);
 
@@ -152,7 +142,7 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
+      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
 
 
@@ -179,8 +169,6 @@ namespace experience
       virtual void message_handler(::message::message * pusermessage) override;
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
-
 
       void enable_frame_experience(bool bEnable = true);
       void enable_dock(bool bEnable = true);
@@ -206,10 +194,11 @@ namespace experience
 
       virtual void on_visual_applied() override;
 
+
    };
 
 
-
 } // namespace experience
+
 
 

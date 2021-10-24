@@ -1,7 +1,13 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/id.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 dialog::dialog()
@@ -39,16 +45,16 @@ dialog::~dialog()
 }
 
 
-void dialog::on_control_event(::user::control_event * pevent)
+void dialog::handle(::subject * psubject, ::context * pcontext)
 {
 
-   if(::is_set(pevent->m_puserinteraction) && m_pform == nullptr)
+   if(::is_set(psubject->user_interaction()) && m_pform == nullptr)
    {
 
-      if(pevent->m_eevent == ::user::e_event_create)
+      if(psubject->m_id == ::e_subject_create)
       {
 
-         m_pform = pevent->m_puserinteraction;
+         m_pform = psubject->user_interaction();
 
       }
 
@@ -94,7 +100,7 @@ bool dialog::show(const ::string & pszMatter)
 
       string str;
 
-      str.Format("Could not show dialog %s", pszMatter);
+      str.Format("Could not show dialog %s", pszMatter.c_str());
 
       TRACE(str);
 
@@ -172,19 +178,19 @@ void dialog::EndModalLoop(id idResult)
 void dialog::on_position_parent_frame()
 {
 
-   ::rectangle_i32 rectOpen;
+   ::rectangle_i32 rectangleOpen;
 
-   m_pframe->best_monitor(rectOpen);
+   m_pframe->best_monitor(rectangleOpen);
 
-   i32 iWidth = rectOpen.width();
+   i32 iWidth = rectangleOpen.width();
 
-   i32 iHeight = rectOpen.height();
+   i32 iHeight = rectangleOpen.height();
 
-   rectOpen.deflate(iWidth / 5, iHeight / 5);
+   rectangleOpen.deflate(iWidth / 5, iHeight / 5);
 
    m_pframe->order(e_zorder_top);
 
-   m_pframe->place(rectOpen);
+   m_pframe->place(rectangleOpen);
 
    m_pframe->ActivateFrame();
 

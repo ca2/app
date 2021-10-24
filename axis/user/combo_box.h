@@ -33,7 +33,7 @@ namespace user
 
       ::size_i32                    m_sizeFull;
       //string                        m_strText;
-      ::millis                      m_millisShowComboList;
+      ::duration                      m_durationShowComboList;
       __pointer(list_box)           m_plistbox;
 
       ::type                        m_typeListBox;
@@ -51,7 +51,7 @@ namespace user
       void user_combo_box_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
@@ -83,7 +83,7 @@ namespace user
 
       virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -116,15 +116,15 @@ namespace user
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 
       //virtual bool create_interaction(::user::interaction * puiParent, const ::id & id) override;
 
       //::count get_count();
-      //::user::item current_item() override;
-      ::e_status set_current_item(const ::user::item & item, const ::action_context & actioncontext) override;
+      //::item current_item() override;
+      ::e_status set_current_item(const ::item & item, const ::action_context & actioncontext) override;
 
 
       virtual string get_current_item_string_value();
@@ -217,7 +217,7 @@ namespace user
       virtual bool keyboard_focus_is_focusable() const override;
 
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

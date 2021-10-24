@@ -116,7 +116,7 @@ void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
 void html_form::_001OnImageLoaded(::message::message * pmessage)
 {
    
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
    
    if(get_html_data() != nullptr)
    {
@@ -132,7 +132,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          synchronous_lock lock(get_html_data()->mutex());
 
-         auto pimage = create_image({ 50,  50 });
+         auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
 
          get_html_data()->delete_implementation();
 
@@ -193,19 +193,23 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
    if(get_html_data() == nullptr)
    {
 
+      set_need_layout();
+
       return;
 
    }
 
    get_html_data()->layout(this);
 
-   ::user::control_event ev;
+   {
 
-   ev.m_eevent = ::user::e_event_layout;
+      auto psubject = create_subject(::e_subject_layout);
 
-   ev.m_puserinteraction = this;
+      psubject->m_puserelement = this;
 
-   on_control_event(&ev);
+      route(psubject);
+
+   }
 
    if (m_bNeedLoadFormData)
    {
@@ -239,7 +243,7 @@ void html_form::on_message_create(::message::message * pmessage)
 void html_form::on_message_left_button_down(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::point_i32 point;
 
@@ -285,7 +289,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 void html_form::on_message_mouse_move(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    track_mouse_hover();
 
@@ -366,7 +370,7 @@ void html_form::on_message_mouse_leave(::message::message * pmessage)
 void html_form::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::point_i32 point(pmouse->m_point);
 
@@ -485,23 +489,23 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const ::payload & varFile)
+::e_status html_form::open_document(const ::payload & payloadFile)
 {
 
-   auto path = varFile.get_file_path();
+   auto path = payloadFile.get_file_path();
 
    auto psystem = m_psystem->m_paurasystem;
 
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
 
-         path = varFile.propset()["url"];
+         path = payloadFile.propset()["url"];
 
       }
-      else if (varFile.cast < ::file::file >() != nullptr)
+      else if (payloadFile.cast < ::file::file >() != nullptr)
       {
 
          auto psystem = m_psystem;
@@ -514,7 +518,7 @@ void html_form::set_need_load_form_data()
       else
       {
 
-         path = varFile;
+         path = payloadFile;
 
       }
 
@@ -522,7 +526,7 @@ void html_form::set_need_load_form_data()
 
    auto phtmldata = get_html_data();
 
-   if(!phtmldata->open_document(varFile))
+   if(!phtmldata->open_document(payloadFile))
    {
 
       return false;
@@ -674,7 +678,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 void html_form::on_message_key_down(::message::message * pmessage)
 {
    
-   auto pkey = pmessage->m_pkey;
+   auto pkey = pmessage->m_union.m_pkey;
    
    if(pkey->m_ekey == ::user::e_key_tab)
    {
@@ -707,7 +711,7 @@ void html_form::defer_implement()
       
    }
 
-   auto pimage = create_image({ 50,  50 });
+   auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 
@@ -731,7 +735,7 @@ void html_form::defer_html_layout()
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
       return;
 
-   auto pimage = create_image({ 50,  50 });
+   auto pimage = m_pcontext->context_image()->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 
@@ -774,10 +778,10 @@ bool html_form::load_html(const ::string & str)
 
 
 
-void html_form::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_form::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::user::form_view::on_subject(psubject, pcontext);
+   ::user::form_view::handle(psubject, pcontext);
 
    ////__update(::update)
    {
@@ -809,10 +813,10 @@ void html_form::on_subject(::subject::subject * psubject, ::subject::context * p
 
 
 
-void html_form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_form_view::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::html_form::on_subject(psubject, pcontext);
+   ::html_form::handle(psubject, pcontext);
 
    ////__update(::update)
    {
@@ -884,7 +888,7 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->on_subject(psubject, pcontext);
+         m_pcallback->handle(psubject, pcontext);
 
       }
 
@@ -893,10 +897,10 @@ void html_form_view::on_subject(::subject::subject * psubject, ::subject::contex
 }
 
 
-void html_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void html_view::handle(::subject * psubject, ::context * pcontext)
 {
 
-   ::html_form::on_subject(psubject, pcontext);
+   ::html_form::handle(psubject, pcontext);
 
    ////__update(::update)
    {
@@ -940,7 +944,7 @@ void html_form::on_form_implemented()
    if(::is_set(pdocument))
    {
       
-      pdocument->call_routine("load");
+      pdocument->call_routines_with_id("load");
       
    }
    

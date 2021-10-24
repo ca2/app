@@ -347,6 +347,24 @@ public:
    const association * plookup(ARG_KEY key) const;
    association * plookup(ARG_KEY key);
 
+
+   bool should_set(ARG_KEY key)
+   { 
+      
+      if (has(key))
+      {
+
+         return false;
+
+      }
+
+      set_at(key);
+
+      return true;
+
+   }
+
+
    
    KEY * pget(ARG_KEY key);
 
@@ -479,8 +497,8 @@ public:
    association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
 

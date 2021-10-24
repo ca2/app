@@ -35,7 +35,7 @@ namespace user
 
       pmessage->previous();
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -51,7 +51,7 @@ namespace user
    void slider::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       //::rectangle rectangle;
 
@@ -87,7 +87,7 @@ namespace user
    void slider::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bSlide)
       {
@@ -112,7 +112,7 @@ namespace user
    void slider::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if(m_bSlide)
       {
@@ -215,11 +215,11 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
+      pgraphics->draw_inset_3d_rectangle(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
       pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)

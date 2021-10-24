@@ -17,14 +17,13 @@ public:
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
-   millis                                          m_millisLastSaveWindowRect;
-   millis                                          m_millisLastSaveWindowRectRequest;
+   ::duration                                          m_durationLastSaveWindowRect;
+   ::duration                                          m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
-   ::rectangle_i32                                          m_FullScreenWindowRect;
+   ::rectangle_i32                                 m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
-   id_map < __composite(::user::toolbar) >         m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
    __pointer(::windowing::icon)                    m_piconNotify;
@@ -34,7 +33,7 @@ public:
 
 
    simple_frame_window();
-   virtual ~simple_frame_window();
+   ~simple_frame_window() override;
 
 
    virtual ::e_status initialize(::object * pobject) override;
@@ -57,18 +56,18 @@ public:
    virtual bool would_display_notify_icon();
 
 
-   virtual bool keyboard_focus_is_focusable() const override;
+   bool keyboard_focus_is_focusable() const override;
 
    virtual bool create_bars();
-   virtual bool on_create_bars() override;
+   ::e_status on_create_bars() override;
 
-   virtual void on_visual_applied() override;
+   void on_visual_applied() override;
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
    virtual bool on_before_set_parent(__pointer(::user::interaction) pframewindow);
-   virtual bool on_set_parent(::user::primitive * puiParent) override;
-   virtual void on_after_set_parent() override;
+   bool on_set_parent(::user::primitive * puiParent) override;
+   void on_after_set_parent() override;
 
    virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
@@ -114,23 +113,6 @@ public:
 
    //virtual bool LoadToolBar(::type sptype,id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
-   virtual bool LoadToolBar(::type sptype, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
-
-//   template < class TOOLBAR >
-  // bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
-   template < class TOOLBAR >
-   bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
-
-
-//   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
-//   {
-//      return LoadToolBar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
-//   }
-
-   virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP) override
-   {
-      return LoadToolBar < ::user::toolbar >(idToolBar,pszToolBar,dwCtrlStyle,uStyle);
-   }
 
 
    virtual void InitialFramePosition(bool bForceRestore = false) override;
@@ -155,7 +137,7 @@ public:
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   ::e_status command_handler(const ::id & id) override;
+   //::e_status command_handler(const ::id & id) override;
 
 
    virtual bool _001CanEnterScreenSaver() override;
@@ -207,8 +189,8 @@ public:
    virtual string get_window_default_matter() override;
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    void OnHScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
@@ -228,9 +210,9 @@ public:
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
-   void on_control_event(::user::control_event * pevent) override;
+   void handle(::subject * psubject, ::context * pcontext) override;
 
-   virtual void route_command_message(::message::command * pcommand) override;
+   void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
    virtual void data_on_after_change(::message::message * pmessage);
 

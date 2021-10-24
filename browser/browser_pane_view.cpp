@@ -115,9 +115,9 @@ namespace browser
       if(get_view_id() == MENU_IMPACT
             || get_view_id() == MAIN_IMPACT
             || get_view_id() == MAIN_SWITCHER_IMPACT
-            || stra.contains(__str((int)MENU_IMPACT))
-            || stra.contains(__str((int)MAIN_IMPACT))
-            || stra.contains(__str((int)MAIN_SWITCHER_IMPACT)))
+            || stra.contains(__string((int)MENU_IMPACT))
+            || stra.contains(__string((int)MAIN_IMPACT))
+            || stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
       {
 
 
@@ -157,7 +157,7 @@ namespace browser
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
@@ -167,20 +167,20 @@ namespace browser
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
 
          }
-         else if (stra.contains(__str((int)MAIN_IMPACT))
-                  && stra.contains(__str((int)MAIN_SWITCHER_IMPACT)))
+         else if (stra.contains(__string((int)MAIN_IMPACT))
+                  && stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
          {
 
             {
 
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_view"));
-               //m_pviewLastBilbo = dynamic_cast <view *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
                pviewLast->set_need_layout();
                //m_pviewdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
@@ -188,7 +188,7 @@ namespace browser
             }
             {
                auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_switcher_view"));
-               //m_pviewLastBilbo = dynamic_cast <view *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+               //m_pviewLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
                pviewLast->set_need_layout();
                //m_pviewdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
@@ -235,7 +235,7 @@ namespace browser
             for (auto & pslide : m_pviewLastBilbo->m_prender->slideshow())
             {
 
-               __pointer(::user::check_box) pcheck = pview->get_child_by_id("slide" + __str(i));
+               __pointer(::user::check_box) pcheck = pview->get_child_by_id("slide" + __string(i));
 
                m_checkptraBilbo.add(pcheck);
 
@@ -339,17 +339,17 @@ namespace browser
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pevent->get_form()) == m_pdocMenu->get_view(0) && pevent->m_puserinteraction != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (psubject->get_form()) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
       {
 
-         if(pevent->m_eevent == ::user::e_event_after_change_text)
+         if(psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puserinteraction->m_id == "roll_fps" && !pevent->m_context.is(::e_source_initialize)
-                  && !pevent->m_context.is(::e_source_database))
+            if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is(::e_source_initialize)
+                  && !psubject->m_context.is(::e_source_database))
             {
 
                try
@@ -380,7 +380,7 @@ namespace browser
 
                      }
                      m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_millisRoll.Now();
+                     m_pviewLast->m_durationRoll.Now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -388,19 +388,19 @@ namespace browser
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
                {
                }
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
                return;
 
 
             }
-            //else if(pevent->m_puserinteraction->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
+            //else if(psubject->user_element_id() == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -415,8 +415,8 @@ namespace browser
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
+            //         m_pflagview->m_dwRoll= ::duration::now();
+            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -427,22 +427,22 @@ namespace browser
 
 
          }
-         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puserinteraction != nullptr)
+         else if (psubject->m_id == ::e_subject_set_check && psubject->user_interaction() != nullptr)
          {
 
-            string strCheck = pevent->m_puserinteraction->m_id;
+            string strCheck = psubject->user_element_id();
 
 
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (pevent->m_puserinteraction != nullptr && !pevent->m_context.is(::e_source_initialize)
-                     && !pevent->m_context.is(::e_source_sync))
+               if (psubject->user_interaction() != nullptr && !psubject->m_context.is(::e_source_initialize)
+                     && !psubject->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = pevent->m_puserinteraction;
+                  __pointer(::user::check) pcheck = psubject->user_interaction();
 
                   if (m_pviewLastBilbo != nullptr && pcheck.is_set())
                   {
@@ -457,7 +457,7 @@ namespace browser
 
                   }
 
-                  pevent->m_bRet = true;
+                  psubject->m_bRet = true;
                   return;
 
 
@@ -470,13 +470,13 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && pevent->m_puserinteraction == m_pfontview->m_pview)
+         if (m_pfontview != nullptr && psubject->user_interaction() == m_pfontview->m_pimpact)
          {
 
-            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+            if (psubject->m_id == ::e_subject_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -492,10 +492,10 @@ namespace browser
                }
 
             }
-            else if (pevent->m_eevent == ::user::e_event_after_change_cur_hover)
+            else if (psubject->m_id == ::e_subject_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_hover_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {
@@ -509,17 +509,17 @@ namespace browser
             }
 
          }
-         else if (pevent->m_puserinteraction == m_pcolorview)
+         else if (psubject->user_interaction() == m_pcolorview)
          {
 
 
-            if (pevent->m_eevent == ::user::e_event_after_change_cur_sel
-                  || pevent->m_eevent == ::user::e_event_after_change_cur_hover)
+            if (psubject->m_id == ::e_subject_after_change_cur_sel
+                  || psubject->m_id == ::e_subject_after_change_cur_hover)
             {
 
                m_pcolorview->get_color().get_hls(m_pviewLastBilbo->m_prender->m_hlsForeground);
 
-               if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+               if (psubject->m_id == ::e_subject_after_change_cur_sel)
                {
 
                   m_pviewLastBilbo->data_set("cur_color", m_pviewLastBilbo->m_prender->m_hlsForeground);
@@ -536,7 +536,7 @@ namespace browser
       }
 
 
-      ::userex::pane_tab_view::on_control_event(pevent);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 
@@ -607,12 +607,12 @@ namespace browser
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
 
 
-      ::userex::pane_tab_view::on_subject(psubject, pcontext);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 

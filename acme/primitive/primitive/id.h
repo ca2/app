@@ -5,7 +5,10 @@
 #include "acme/primitive/comparison/hash.h"
 
 
-enum e_id : ::u64;
+enum enum_id : ::u64;
+
+
+class lparam;
 
 
 template <typename T>
@@ -48,6 +51,7 @@ public:
       e_type_task_tool,
       e_type_timer,
       e_type_message,
+      e_type_subject,
       e_type_property,
       e_type_command,
       e_type_command_probe,
@@ -85,12 +89,13 @@ public:
             ::u64                m_u;
             ::i64                m_i;
             const char *         m_psz;
-            e_id                 m_eid;
+            enum_id              m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
             enum_task_tool       m_etasktool;
             enum_timer           m_etimer;
             enum_message         m_emessage;
+            enum_subject         m_esubject;
          };
 
          enum_type                  m_etype;
@@ -122,19 +127,21 @@ public:
 
    inline id();
    inline id(enum_type etype);
-   inline id(e_id eid);
+   inline id(enum_id eid);
    inline id(enum_property eproperty);
    inline id(enum_factory efactory);
    inline id(enum_task_tool etasktool);
    inline id(enum_timer etimer);
    inline id(enum_message emessage);
+   inline id(enum_subject esubject);
    inline id(enum_type etype, ::i64 i);
    inline id(const id & id);
    id(const char * psz);
-   template < primitive_integer INTEGER >
-   id(INTEGER i);
-   template < primitive_natural NATURAL >
-   id(NATURAL n);
+
+   template < primitive_signed SIGNED >
+   id(SIGNED i);
+   template < primitive_unsigned UNSIGNED >
+   id(UNSIGNED u);
    id(const ::lparam & lparam);
    id(const ::string & str);
    id(const ::payload & payload);
@@ -196,7 +203,7 @@ public:
 
    }
 
-   bool _is_compounded(enum_type etype) const { return (m_etype & etype) != 0;}
+   bool _is_compounded(enum_type etype) const { return (m_etype & 0xffffffff) == etype;}
 
 
 
@@ -236,6 +243,7 @@ public:
    inline bool operator >= (const ::string & str) const;
 
 
+
    template < primitive_integral INTEGRAL >
    inline int compare(INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
@@ -250,15 +258,15 @@ public:
    inline bool operator > (INTEGRAL i) const;
    template < primitive_integral INTEGRAL >
    inline bool operator >= (INTEGRAL i) const;
+//#endif
 
-
-   inline int compare(::e_id i) const;
-   inline bool operator == (::e_id eid) const;
-   inline bool operator != (::e_id eid) const;
-   inline bool operator < (::e_id eid) const;
-   inline bool operator <= (::e_id eid) const;
-   inline bool operator > (::e_id eid) const;
-   inline bool operator >= (::e_id eid) const;
+   inline int compare(::enum_id i) const;
+   inline bool operator == (::enum_id eid) const;
+   inline bool operator != (::enum_id eid) const;
+   inline bool operator < (::enum_id eid) const;
+   inline bool operator <= (::enum_id eid) const;
+   inline bool operator > (::enum_id eid) const;
+   inline bool operator >= (::enum_id eid) const;
 
 
    inline int compare(::enum_message emessage) const;
@@ -270,20 +278,32 @@ public:
    inline bool operator >= (::enum_message emessage) const;
 
 
+   inline int compare(::enum_subject esubject) const;
+   inline bool operator == (::enum_subject esubject) const;
+   inline bool operator != (::enum_subject esubject) const;
+   inline bool operator < (::enum_subject esubject) const;
+   inline bool operator <= (::enum_subject esubject) const;
+   inline bool operator > (::enum_subject esubject) const;
+   inline bool operator >= (::enum_subject esubject) const;
+
+
    id & operator = (const ::payload & payload);
    id & operator = (const property & prop);
    id & operator = (const id & id);
    id & operator = (const char * psz);
    id & operator = (const ::string & str);
+
    template < primitive_integer INTEGER >
    id & operator = (INTEGER i);
    template < primitive_natural NATURAL >
    id & operator = (NATURAL u);
+   id & operator = (const enum_id & eid);
    id & operator = (const enum_property & eproperty);
    id & operator = (const enum_factory & efactory);
    id & operator = (const enum_task_tool & etasktool);
    id & operator = (const enum_timer & etimer);
    id & operator = (const enum_message & emessage);
+   id & operator = (const enum_subject & esubject);
 
 
    inline ansistring to_string_base() const { return to_string(); }
@@ -298,7 +318,7 @@ public:
 
    inline void to_string(string & str) const;
    inline string to_string() const;
-   inline string __string() const;
+   //inline string __string() const;
 
 
    inline bool is_null() const;
@@ -371,7 +391,7 @@ inline id::id(enum_type etype)
 }
 
 
-inline id::id(e_id eid) :
+inline id::id(enum_id eid) :
    m_etype(e_type_id),
    m_eid(eid) // used m_i to reset 64-bit field
 {
@@ -420,6 +440,13 @@ inline id::id(enum_message emessage) :
 }
 
 
+inline id::id(enum_subject esubject) :
+   m_etype(e_type_subject),
+   m_esubject(esubject)
+{
+
+}
+
 
 inline id::id(enum_type etype, ::i64 i) :
    m_etype(etype),
@@ -447,8 +474,9 @@ inline id::id(const char * psz, id_space *)
 }
 
 
-template < primitive_integer INTEGER >
-inline id::id(INTEGER i)
+
+template < primitive_signed SIGNED >
+inline id::id(SIGNED i)
 {
 
    m_etype = e_type_integer;
@@ -458,7 +486,7 @@ inline id::id(INTEGER i)
 }
 
 
-template < primitive_natural UNSIGNED >
+template < primitive_unsigned UNSIGNED >
 inline id::id(UNSIGNED u)
 {
 
@@ -468,15 +496,7 @@ inline id::id(UNSIGNED u)
 
 }
 
-
-inline id::id(const ::lparam& lparam)
-{
-
-   m_etype = e_type_integer;
-
-   m_u = lparam.m_lparam;
-
-}
+//#endif
 
 
 inline int id::compare(const id & id) const
@@ -625,12 +645,12 @@ inline string id::to_string() const
 }
 
 
-inline string id::__string() const
-{
-
-   return str();
-
-}
+//inline string id::__string() const
+//{
+//
+//   return str();
+//
+//}
 
 
 inline bool id::is_empty() const
@@ -682,13 +702,13 @@ inline string id::str() const
    else if(is_integer())
    {
 
-      return __str(m_i);
+      return __string(m_i);
 
    }
    else
    {
 
-      return string("(type:") + __str(m_iType) + ",body:" + __str(m_iBody) + ")";
+      return string("(type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
 
    }
 
@@ -756,7 +776,7 @@ template < primitive_integral INTEGRAL >
 inline int id::compare(INTEGRAL i) const
 {
 
-   return __COMPARE_SQUARE(primitive_type() - e_type_integer, m_i - i);
+   return __COMPARE_SQUARE((::i32)primitive_type() - (::i32)e_type_integer, (::i64) m_i - (::i64)i);
 
 }
 
@@ -814,8 +834,9 @@ inline bool id::operator >= (INTEGRAL i) const
 
 }
 
+//#endif
 
-inline int id::compare(::e_id eid) const
+inline int id::compare(::enum_id eid) const
 {
 
    return __COMPARE_SQUARE(m_etype - e_type_id, m_i - eid);
@@ -823,7 +844,7 @@ inline int id::compare(::e_id eid) const
 }
 
 
-inline bool id::operator == (::e_id eid) const
+inline bool id::operator == (::enum_id eid) const
 {
 
    return compare(eid) == 0;
@@ -831,7 +852,7 @@ inline bool id::operator == (::e_id eid) const
 }
 
 
-inline bool id::operator != (::e_id eid) const
+inline bool id::operator != (::enum_id eid) const
 {
 
    return compare(eid) != 0;
@@ -839,7 +860,7 @@ inline bool id::operator != (::e_id eid) const
 }
 
 
-inline bool id::operator < (::e_id eid) const
+inline bool id::operator < (::enum_id eid) const
 {
 
    return compare(eid) < 0;
@@ -847,7 +868,7 @@ inline bool id::operator < (::e_id eid) const
 }
 
 
-inline bool id::operator <= (::e_id eid) const
+inline bool id::operator <= (::enum_id eid) const
 {
 
    return compare(eid) <= 0;
@@ -855,7 +876,7 @@ inline bool id::operator <= (::e_id eid) const
 }
 
 
-inline bool id::operator > (::e_id eid) const
+inline bool id::operator > (::enum_id eid) const
 {
 
    return compare(eid) > 0;
@@ -863,7 +884,7 @@ inline bool id::operator > (::e_id eid) const
 }
 
 
-inline bool id::operator >= (::e_id eid) const
+inline bool id::operator >= (::enum_id eid) const
 {
 
    return compare(eid) >= 0;
@@ -874,10 +895,9 @@ inline bool id::operator >= (::e_id eid) const
 inline int id::compare(::enum_message emessage) const
 {
 
-   return __COMPARE_SQUARE(m_etype - e_type_message, m_i - emessage);
+   return __COMPARE_SQUARE(m_etype - e_type_message, m_emessage - emessage);
 
 }
-
 
 
 inline bool id::operator == (::enum_message emessage) const
@@ -924,6 +944,62 @@ inline bool id::operator >= (::enum_message emessage) const
 {
 
    return compare(emessage) >= 0;
+
+}
+
+
+inline int id::compare(::enum_subject esubject) const
+{
+
+   return __COMPARE_SQUARE(m_etype - e_type_subject, m_esubject - esubject);
+
+}
+
+
+inline bool id::operator == (::enum_subject esubject) const
+{
+
+   return compare(esubject) == 0;
+
+}
+
+
+inline bool id::operator != (::enum_subject esubject) const
+{
+
+   return compare(esubject) != 0;
+
+}
+
+
+inline bool id::operator < (::enum_subject esubject) const
+{
+
+   return compare(esubject) < 0;
+
+}
+
+
+inline bool id::operator <= (::enum_subject esubject) const
+{
+
+   return compare(esubject) <= 0;
+
+}
+
+
+inline bool id::operator > (::enum_subject esubject) const
+{
+
+   return compare(esubject) > 0;
+
+}
+
+
+inline bool id::operator >= (::enum_subject esubject) const
+{
+
+   return compare(esubject) >= 0;
 
 }
 

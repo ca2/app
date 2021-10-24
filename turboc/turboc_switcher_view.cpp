@@ -39,7 +39,7 @@ namespace turboc
 
    void switcher_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
@@ -62,69 +62,69 @@ namespace turboc
       if(m_ptopview == NULL)
       {
 
-         message_box(NULL,"Could not create folder edit view");
+         message_box(NULL,"Could not create folder edit impact");
 
       }
 
       SetPane(0,m_ptopview,false);
 
-      m_pview = create_view < lite_view >();
+      m_pimpact = create_view < lite_view >();
 
-      m_pview->m_bAlternate = true;
+      m_pimpact->m_bAlternate = true;
 
-      if(m_pview == NULL)
+      if(m_pimpact == NULL)
       {
 
          message_box(NULL,"Could not create file list ::aura::impact");
 
       }
 
-      m_ptopview->m_pview = m_pview;
+      m_ptopview->m_pimpact = m_pimpact;
 
 
-      SetPane(1,m_pview,false);
+      SetPane(1,m_pimpact,false);
 
 
    }
 
 
 
-   void switcher_view::on_control_event(::user::control_event * pevent)
+   void switcher_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "switcher_toggle")
+         if(psubject->user_element_id() == "switcher_toggle")
          {
 
-            __pointer(view) pview = m_pview;
+            __pointer(impact) pview = m_pimpact;
 
             if(base_class < lite_view >::bases(pview))
             {
 
-               m_pview = create_view < full_view >();
+               m_pimpact = create_view < full_view >();
 
             }
             else
             {
 
-               m_pview = create_view < lite_view >();
+               m_pimpact = create_view < lite_view >();
 
             }
 
-            if(m_pview == NULL)
+            if(m_pimpact == NULL)
             {
 
                message_box(NULL,"Could not create file list ::aura::impact");
 
             }
 
-            m_pview->m_bAlternate = true;
+            m_pimpact->m_bAlternate = true;
 
-            m_ptopview->m_pview = m_pview;
+            m_ptopview->m_pimpact = m_pimpact;
 
-            SetPane(1,m_pview,false);
+            SetPane(1,m_pimpact,false);
 
             pview->DestroyWindow();
 

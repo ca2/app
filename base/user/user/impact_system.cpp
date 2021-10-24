@@ -13,17 +13,17 @@ namespace user
 {
 
 
-   impact_system::impact_system(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass)
+   impact_system::impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact)
    {
 
       m_bHiddenOnNotifyIcon = false;
 
       m_puserinteractionOwner = nullptr;
 
-      m_strMatter = pszMatter;
-      m_typeDocument = pDocClass;
-      m_typeFrame = pFrameClass;
-      m_typeView = pViewClass;
+      m_id = id;
+      m_typeDocument = typeDocument;
+      m_typeFrame = typeFrame;
+      m_typeImpact = typeImpact;
       m_pAttachedFactory = nullptr;
 
       load_template();
@@ -104,7 +104,7 @@ namespace user
       {
          // see if extension matches
          ASSERT(strFilterExt[0] == '.');
-         string strExtension = pszPathName.ext();
+         string strExtension = pszPathName.final_extension();
 
          if (strExtension.has_char())
          {
@@ -128,7 +128,7 @@ namespace user
       if (!m_typeDocument)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_document.\n");
+         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_document.");
 
          ASSERT(false);
 
@@ -145,7 +145,7 @@ namespace user
       if (!estatus || !pdocument)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of ::user::document type %hs failed.\n", m_typeDocument.name().c_str());
+         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.name());
 
          return nullptr;
 
@@ -167,7 +167,7 @@ namespace user
 
       bool bAddToTitle = is_true("add_to_title");
 
-      ASSERT(m_strMatter.has_char());
+      ASSERT(m_id.has_char());
 
       __pointer(::user::system) pusersystem = pcreate->m_pmatterUserPayload;
 
@@ -195,7 +195,7 @@ namespace user
       else
       {
 
-         pusersystem->m_typeNewView = m_typeView;
+         pusersystem->m_typeNewView = m_typeImpact;
 
       }
 
@@ -204,7 +204,7 @@ namespace user
       if (!m_typeFrame)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
+         CATEGORY_ERROR(appmsg, "Error: you must override impact_system::create_new_frame.\n");
 
          ASSERT(false);
 
@@ -221,13 +221,15 @@ namespace user
       if (!estatus || !pframe)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
+         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
 
          string strMessage;
 
          strMessage.Format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.name().c_str());
 
-         message_box(strMessage);
+         //message_box(strMessage);
+
+         output_error_message(strMessage);
 
          return nullptr;
 
@@ -240,7 +242,7 @@ namespace user
       if (!pusersystem->m_typeNewView)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: creating frame with no default ::user::impact.\n");
+         CATEGORY_WARNING(appmsg,"Warning: creating frame with no default ::user::impact.\n");
 
       }
 
@@ -273,14 +275,14 @@ namespace user
       __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
 
       // create new from resource
-      if (!pframe->LoadFrame(m_strMatter,
+      if (!pframe->LoadFrame(m_id,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
          puserinteractionParent,
                               pusersystem))
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: impact_system couldn't create a frame.\n");
+         CATEGORY_WARNING(appmsg,"Warning: impact_system couldn't create a frame.\n");
 
          // frame will be deleted in post_non_client_destroy cleanup
 
@@ -384,10 +386,10 @@ namespace user
    }
 
 
-   void impact_system::route_command_message(::message::command * pcommand)
+   void impact_system::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
    }
 
@@ -396,7 +398,7 @@ namespace user
    {
       channel::dump(dumpcontext);
 
-      dumpcontext << "m_strMatter = " << m_strMatter.c_str();
+      dumpcontext << "m_strMatter = " << m_id.to_string();
       dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
       if (m_typeDocument)
@@ -432,7 +434,7 @@ namespace user
    }
 
 
-   void impact_system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact_system::handle(::subject * psubject, ::context * pcontext)
    {
 
       update_all_views(psubject);
@@ -440,7 +442,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::subject::subject * psubject)
+   void impact_system::update_all_views(::subject * psubject)
    {
 
       ::count count = get_document_count();

@@ -6,21 +6,21 @@ template < typename ITERABLE >
 inline ::count __iterable_count(const ITERABLE & iterable);
 
 
-#ifdef _UWP
-
-
-template < typename T >
-inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
-{
-
-   return a.Size;
-
-}
-
-
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//template < typename T >
+//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ a)
+//{
+//
+//   return a.Size;
+//
+//}
+//
+//
+//
+//
+//#endif
 
 
 class strid_array;
@@ -241,20 +241,47 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 #include "string_array_base.h"
 
 
-
 template < typename TYPE >
-inline string ___type_str()
+inline string __type_name()
 {
 
-   string strType = typeid(TYPE).name();
+   auto pszType = typeid(TYPE).name();
 
-   ::demangle(strType);
+   string strName = demangle(pszType);
 
-   return strType;
+   return strName;
 
 }
 
-#define __type_str(TYPE) ::___type_str < TYPE >()
+
+template < typename TYPE >
+inline string __type_name(const TYPE & t)
+{
+
+   TYPE & tNonConst = (TYPE &) t;
+
+   auto pszType = typeid(tNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
+
+
+template < typename TYPE >
+inline string __type_name(const TYPE * p)
+{
+
+   TYPE * pNonConst = (TYPE *) p;
+
+   auto pszType = typeid(*pNonConst).name();
+
+   string strName = demangle(pszType);
+
+   return strName;
+
+}
 
 
 #include "acme/graphics/draw2d/_const.h"
@@ -269,12 +296,14 @@ inline string ___type_str()
 #include "acme/primitive/primitive/payload.h"
 
 
+#include "acme/parallelization/keep_task_payload.h"
+
+
 #include "payload_array.h"
+#include "acme/platform/options.h"
 #include "acme/primitive/primitive/property.h"
 
 
-
-//#include "acme/message/_.h"
 #include "acme/primitive/primitive/property_set.h"
 
 
@@ -339,6 +368,9 @@ class CLASS_DECL_ACME time_array :
 //#include "runnable_array.h"
 
 #include "base_2array.h"
+
+
+#include "duration.h"
 
 
 #include "acme/primitive/primitive/property_set_papaya.h"

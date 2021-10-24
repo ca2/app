@@ -213,7 +213,7 @@
 		9AD11F7E24F51D4900177261 /* linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5424F51D4600177261 /* linux.h */; };
 		9AD11F7F24F51D4900177261 /* macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5524F51D4600177261 /* macos.h */; };
 		9AD11F8024F51D4900177261 /* windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5624F51D4600177261 /* windows.h */; };
-		9AD11F8124F51D4900177261 /* uwp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5724F51D4700177261 /* uwp.h */; };
+		9AD11F8124F51D4900177261 /* universal_windows.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5724F51D4700177261 /* universal_windows.h */; };
 		9AD11F8224F51D4900177261 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5824F51D4700177261 /* android.h */; };
 		9AD11F8424F51D4900177261 /* application_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5A24F51D4700177261 /* application_common.h */; };
 		9AD11F8524F51D4900177261 /* _app_impl1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD11D5B24F51D4700177261 /* _app_impl1.h */; };
@@ -460,7 +460,7 @@
 		9AD11D5424F51D4600177261 /* linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = linux.h; sourceTree = "<group>"; };
 		9AD11D5524F51D4600177261 /* macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macos.h; sourceTree = "<group>"; };
 		9AD11D5624F51D4600177261 /* windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows.h; sourceTree = "<group>"; };
-		9AD11D5724F51D4700177261 /* uwp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uwp.h; sourceTree = "<group>"; };
+		9AD11D5724F51D4700177261 /* universal_windows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = universal_windows.h; sourceTree = "<group>"; };
 		9AD11D5824F51D4700177261 /* android.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = android.h; sourceTree = "<group>"; };
 		9AD11D5A24F51D4700177261 /* application_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_common.h; sourceTree = "<group>"; };
 		9AD11D5B24F51D4700177261 /* _app_impl1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _app_impl1.h; sourceTree = "<group>"; };
@@ -841,7 +841,7 @@
 				9AD11D5424F51D4600177261 /* linux.h */,
 				9AD11D5524F51D4600177261 /* macos.h */,
 				9AD11D5624F51D4600177261 /* windows.h */,
-				9AD11D5724F51D4700177261 /* uwp.h */,
+				9AD11D5724F51D4700177261 /* universal_windows.h */,
 				9AD11D5824F51D4700177261 /* android.h */,
 			);
 			path = application;
@@ -974,7 +974,7 @@
 				9AD11EB824F51D4800177261 /* version.config.h in Headers */,
 				9AD11F7324F51D4900177261 /* _draw2d_impl.h in Headers */,
 				9AD11F6C24F51D4900177261 /* button.h in Headers */,
-				9AD11F8124F51D4900177261 /* uwp.h in Headers */,
+				9AD11F8124F51D4900177261 /* universal_windows.h in Headers */,
 				9AD11EAC24F51D4800177261 /* _impl.h in Headers */,
 				9AD11F6724F51D4900177261 /* list_view.h in Headers */,
 				9AD11EBC24F51D4800177261 /* control_box.h in Headers */,
@@ -1048,7 +1048,7 @@
 		9AD117EB24F51BE400177261 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AD117F224F51BE400177261 = {
@@ -1255,7 +1255,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1352,8 +1352,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
-					"$(WorkspaceDir)/archive//storage-$(PLATFORM_MODIFIER)/library/x64/$(CONFIGURATION)",
-					"$(WorkspaceDir)/archive",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;

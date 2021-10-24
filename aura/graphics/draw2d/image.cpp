@@ -51,29 +51,9 @@ void sort_image_rgb(TYPE& R, TYPE& G, TYPE& B)
 }
 
 
-/*
-byte byte_clip(double d);
-
-
-inline byte byte_clip(double d)
-{
-   if(d >= 255.0)
-      return 255;
-   if(d <= 0.0)
-      return 0;
-   return (byte) d;
-}
-
-inline byte byte_clip(int i)
-{
-   return minimum(255, maximum(0, i));
-}
-*/
-
-
 image::image()
 {
-
+   
 }
 
 
@@ -83,25 +63,35 @@ image::~image()
 }
 
 
-//void image::delete_this()
-//{
-//
-//   ::object::delete_this();
-//
-//}
-
-
-//void image::common_construct()
-//{
-//
-//
-//}
-
 
 ::size_i32 image::get_image_drawer_size() const
 {
 
    return get_size();
+
+}
+
+
+::image_pointer image::image_source_image(const concrete < ::size_i32 > &)
+{
+   
+   return this; 
+
+}
+
+
+concrete < ::size_i32 > image::image_source_size(const ::size_f64 &, enum_image_selection) const
+{ 
+   
+   return get_size(); 
+
+}
+
+
+concrete < ::size_i32 > image::image_source_size() const 
+{
+   
+   return get_size(); 
 
 }
 
@@ -119,7 +109,7 @@ image::~image()
 ::draw2d::bitmap_pointer image::get_bitmap() const
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -130,7 +120,7 @@ image::~image()
 ::draw2d::bitmap_pointer image::detach_bitmap()
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return nullptr;
 
@@ -143,7 +133,7 @@ image::~image()
 bool image::realize(::draw2d::graphics* pgraphics) const
 {
 
-   UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pgraphics);
 
    return true;
 
@@ -177,12 +167,40 @@ bool image::defer_realize(::draw2d::graphics* pgraphics) const
 }
 
 
-::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+::e_status image::create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
 {
 
-   return ::error_interface_only;
+   throw interface_only_exception();
+
+   return error_interface_only;
 
 }
+
+
+::e_status image::create(const ::size_i32& size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
+{
+
+   return create_ex(size, nullptr, 0, eflagCreate, iGoodStride, bPreserve);
+
+}
+
+
+::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate)
+{
+
+   return create_ex(size, pcolorref, iScan, eflagCreate);
+
+}
+
+
+//::e_status image::initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::eobject eobjectCreate)
+//{
+//
+//   throw interface_only_exception();
+//
+//   return error_interface_only;
+//
+//}
 
 
 //::e_status     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
@@ -212,9 +230,9 @@ bool image::on_host_read_pixels(const ::pixmap* ppixmap)
 bool image::dc_select(bool bSelect)
 {
 
-   UNREFERENCED_PARAMETER(bSelect);
+   __UNREFERENCED_PARAMETER(bSelect);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return false;
 
@@ -233,7 +251,7 @@ bool image::dc_select(bool bSelect)
 
    }
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
    return ::error_failed;
 
@@ -282,7 +300,7 @@ bool image::create_isotropic(::image* pimage)
 
    pimage->create({ cx, cy });
 
-   if (::parallelization::priority() == ::priority_idle)
+   if (::parallelization::priority() == ::e_priority_idle)
    {
 
       map();
@@ -306,7 +324,13 @@ bool image::create_isotropic(::image* pimage)
 
       pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pimage->g()->stretch(::rectangle_i32_dimension(0, 0, cx, cy), get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
+      image_source imagesource(get_graphics(), ::rectangle_i32_dimension(0, 0, width(), height()));
+
+      image_drawing_options imagedrawingoptions(::rectangle_i32_dimension(0, 0, cx, cy));
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      pimage->g()->draw(imagedrawing);
 
    }
 
@@ -317,7 +341,7 @@ bool image::create_isotropic(::image* pimage)
 }
 
 
-bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
+bool image::create_isotropic(double_array& daRate, ::enum_priority epriority)
 {
 
    return false;
@@ -391,7 +415,8 @@ bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
    m_sizeAlloc.cy = 0;
    pixmap::reset();
    pixmap::unmap();
-   m_eobject = e_object_none;
+   clear(e_flag_success);
+   clear(e_flag_failure);
 
    return ::success;
 
@@ -463,11 +488,11 @@ bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
 //{
 //
 //
-//   UNREFERENCED_PARAMETER(pgraphics);
-//   UNREFERENCED_PARAMETER(point);
-//   UNREFERENCED_PARAMETER(size);
-//   UNREFERENCED_PARAMETER(pointSrc);
-//   ::exception::throw_interface_only();
+//   __UNREFERENCED_PARAMETER(pgraphics);
+//   __UNREFERENCED_PARAMETER(point);
+//   __UNREFERENCED_PARAMETER(size);
+//   __UNREFERENCED_PARAMETER(pointSrc);
+//   throw ::interface_only_exception();
 //
 //   return false;
 //
@@ -482,7 +507,7 @@ bool image::create_isotropic(double_array& daRate, ::e_priority epriority)
 //}
 
 
-bool image::stretch(::image* pimage)
+bool image::stretch_image(::image* pimage)
 {
 
    auto pgraphics = get_graphics();
@@ -501,12 +526,18 @@ bool image::stretch(::image* pimage)
 
    }
 
-   return pgraphics->stretch(::rectangle_f64(this->size()), pimage->g(), ::rectangle_f64(pimage->size()));
+   image_source imagesource(pimage->g(), ::rectangle_f64(pimage->size()));
+
+   image_drawing_options imagedrawingoptions(rectangle());
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   return pgraphics->draw(imagedrawing);
 
 }
 
 
-bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam)
+bool image::_draw_raw(const ::rectangle_i32& rectangleDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam)
 {
 
    ::image* pimageDst = this;
@@ -528,7 +559,15 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
       get_graphics()->set_alpha_mode(m_ealphamode);
 
-      return get_graphics()->draw(rectDstParam, pimageSrc->get_graphics(), pointSrcParam);
+      image_source imagesource(pimageSrc, { pointSrcParam, rectangleDstParam.size() } );
+
+      rectangle_f64 rectangle(rectangleDstParam);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      return get_graphics()->draw(imagedrawing);
 
    }
 
@@ -536,16 +575,16 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectDst(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectangleDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
-   rectDst += m_point;
+   rectangleTarget += m_point;
 
    if (pointSrc.x < 0)
    {
 
-      rectDst.left -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -554,47 +593,47 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
    if (pointSrc.y < 0)
    {
 
-      rectDst.top -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectDst.left < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      rectDst.right += rectDst.left;
+      rectangleTarget.right += rectangleTarget.left;
 
-      rectDst.left = 0;
+      rectangleTarget.left = 0;
 
    }
 
-   if (rectDst.width() < 0)
-   {
-
-      return true;
-
-   }
-
-   if (rectDst.top < 0)
-   {
-
-      rectDst.bottom += rectDst.top;
-
-      rectDst.top = 0;
-
-   }
-
-   if (rectDst.height() < 0)
+   if (rectangleTarget.width() < 0)
    {
 
       return true;
 
    }
 
-   int xEnd = minimum(rectDst.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   if (rectangleTarget.top < 0)
+   {
 
-   int yEnd = minimum(rectDst.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+      rectangleTarget.bottom += rectangleTarget.top;
+
+      rectangleTarget.top = 0;
+
+   }
+
+   if (rectangleTarget.height() < 0)
+   {
+
+      return true;
+
+   }
+
+   int xEnd = minimum(rectangleTarget.width(), minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
+
+   int yEnd = minimum(rectangleTarget.height(), minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -614,7 +653,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
+   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(color32_t)];
 
    u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -650,7 +689,7 @@ bool image::_draw_raw(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, c
 }
 
 
-bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, byte bA)
+bool image::blend(const ::rectangle_i32& rectangleDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, byte bA)
 {
 
    ::image* pimageDst = this;
@@ -659,18 +698,18 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    pimageSrc->map();
 
-   ::rectangle_i32 rectDst(rectDstParam);
+   ::rectangle_i32 rectangleTarget(rectangleDstParam);
 
    ::point_i32 pointSrc(pointSrcParam);
 
-   ::size_i32 size(rectDst.size());
+   ::size_i32 size(rectangleTarget.size());
 
-   rectDst += m_point;
+   rectangleTarget += m_point;
 
    if (pointSrc.x < 0)
    {
 
-      rectDst.left -= pointSrc.x;
+      rectangleTarget.left -= pointSrc.x;
 
       pointSrc.x = 0;
 
@@ -679,18 +718,18 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
    if (pointSrc.y < 0)
    {
 
-      rectDst.top -= pointSrc.y;
+      rectangleTarget.top -= pointSrc.y;
 
       pointSrc.y = 0;
 
    }
 
-   if (rectDst.left < 0)
+   if (rectangleTarget.left < 0)
    {
 
-      size.cx += rectDst.left;
+      size.cx += rectangleTarget.left;
 
-      rectDst.left = 0;
+      rectangleTarget.left = 0;
 
    }
 
@@ -701,12 +740,12 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    }
 
-   if (rectDst.top < 0)
+   if (rectangleTarget.top < 0)
    {
 
-      size.cy += rectDst.top;
+      size.cy += rectangleTarget.top;
 
-      rectDst.top = 0;
+      rectangleTarget.top = 0;
 
    }
 
@@ -717,9 +756,9 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    }
 
-   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectDst.left));
+   int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - rectangleTarget.left));
 
-   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectDst.top));
+   int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - rectangleTarget.top));
 
    if (xEnd < 0)
    {
@@ -739,7 +778,7 @@ bool image::blend(const ::rectangle_i32& rectDstParam, ::image* pimageSrc, const
 
    i32 scanSrc = pimageSrc->m_iScan;
 
-   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(color32_t)];
+   u8* pdst = &((u8*)pimageDst->colorref())[scanDst * rectangleTarget.top + rectangleTarget.left * sizeof(color32_t)];
 
    u8* psrc = &((u8*)pimageSrc->colorref())[scanSrc * pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
@@ -1624,14 +1663,14 @@ bool image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 }
 
 
-bool image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image* pimage, const ::rectangle_i32& rectSrcParam)
+bool image::draw_ignore_alpha(const ::point_i32& pointDstParam, ::image* pimage, const ::rectangle_i32& rectangleSrcParam)
 {
 
    ::point_i32 pointDst(pointDstParam);
 
-   ::point_i32 pointSrc(rectSrcParam.top_left());
+   ::point_i32 pointSrc(rectangleSrcParam.top_left());
 
-   ::size_i32 size(rectSrcParam.size());
+   ::size_i32 size(rectangleSrcParam.size());
 
    if (pointDst.x < 0)
    {
@@ -2297,8 +2336,8 @@ bool image::from_alpha()
 
 bool image::mult_alpha(::image* pimage, bool bPreserveAlpha)
 {
-   UNREFERENCED_PARAMETER(pimage);
-   UNREFERENCED_PARAMETER(bPreserveAlpha);
+   __UNREFERENCED_PARAMETER(pimage);
+   __UNREFERENCED_PARAMETER(bPreserveAlpha);
 
    u8* dst = (u8*)get_data();
    i64 size = scan_area();
@@ -2309,46 +2348,46 @@ bool image::mult_alpha(::image* pimage, bool bPreserveAlpha)
 
    while (size >= 8)
    {
-      dst[0] = LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-      dst[1] = LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-      dst[2] = LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+      dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
+      dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
+      dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
 
-      dst[4 + 0] = LOBYTE(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
-      dst[4 + 1] = LOBYTE(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
-      dst[4 + 2] = LOBYTE(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
+      dst[4 + 0] = __LOBYTE(((i32)dst[4 + 0] * (i32)dst[4 + 3]) >> 8);
+      dst[4 + 1] = __LOBYTE(((i32)dst[4 + 1] * (i32)dst[4 + 3]) >> 8);
+      dst[4 + 2] = __LOBYTE(((i32)dst[4 + 2] * (i32)dst[4 + 3]) >> 8);
 
-      dst[8 + 0] = LOBYTE(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
-      dst[8 + 1] = LOBYTE(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
-      dst[8 + 2] = LOBYTE(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
+      dst[8 + 0] = __LOBYTE(((i32)dst[8 + 0] * (i32)dst[8 + 3]) >> 8);
+      dst[8 + 1] = __LOBYTE(((i32)dst[8 + 1] * (i32)dst[8 + 3]) >> 8);
+      dst[8 + 2] = __LOBYTE(((i32)dst[8 + 2] * (i32)dst[8 + 3]) >> 8);
 
-      dst[12 + 0] = LOBYTE(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
-      dst[12 + 1] = LOBYTE(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
-      dst[12 + 2] = LOBYTE(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
+      dst[12 + 0] = __LOBYTE(((i32)dst[12 + 0] * (i32)dst[12 + 3]) >> 8);
+      dst[12 + 1] = __LOBYTE(((i32)dst[12 + 1] * (i32)dst[12 + 3]) >> 8);
+      dst[12 + 2] = __LOBYTE(((i32)dst[12 + 2] * (i32)dst[12 + 3]) >> 8);
 
-      dst[16 + 0] = LOBYTE(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
-      dst[16 + 1] = LOBYTE(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
-      dst[16 + 2] = LOBYTE(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
+      dst[16 + 0] = __LOBYTE(((i32)dst[16 + 0] * (i32)dst[16 + 3]) >> 8);
+      dst[16 + 1] = __LOBYTE(((i32)dst[16 + 1] * (i32)dst[16 + 3]) >> 8);
+      dst[16 + 2] = __LOBYTE(((i32)dst[16 + 2] * (i32)dst[16 + 3]) >> 8);
 
-      dst[20 + 0] = LOBYTE(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
-      dst[20 + 1] = LOBYTE(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
-      dst[20 + 2] = LOBYTE(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
+      dst[20 + 0] = __LOBYTE(((i32)dst[20 + 0] * (i32)dst[20 + 3]) >> 8);
+      dst[20 + 1] = __LOBYTE(((i32)dst[20 + 1] * (i32)dst[20 + 3]) >> 8);
+      dst[20 + 2] = __LOBYTE(((i32)dst[20 + 2] * (i32)dst[20 + 3]) >> 8);
 
-      dst[24 + 0] = LOBYTE(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
-      dst[24 + 1] = LOBYTE(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
-      dst[24 + 2] = LOBYTE(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
+      dst[24 + 0] = __LOBYTE(((i32)dst[24 + 0] * (i32)dst[24 + 3]) >> 8);
+      dst[24 + 1] = __LOBYTE(((i32)dst[24 + 1] * (i32)dst[24 + 3]) >> 8);
+      dst[24 + 2] = __LOBYTE(((i32)dst[24 + 2] * (i32)dst[24 + 3]) >> 8);
 
-      dst[28 + 0] = LOBYTE(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
-      dst[28 + 1] = LOBYTE(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
-      dst[28 + 2] = LOBYTE(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
+      dst[28 + 0] = __LOBYTE(((i32)dst[28 + 0] * (i32)dst[28 + 3]) >> 8);
+      dst[28 + 1] = __LOBYTE(((i32)dst[28 + 1] * (i32)dst[28 + 3]) >> 8);
+      dst[28 + 2] = __LOBYTE(((i32)dst[28 + 2] * (i32)dst[28 + 3]) >> 8);
 
       dst += 4 * 8;
       size -= 8;
    }
    while (size--)
    {
-      dst[0] = LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
-      dst[1] = LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
-      dst[2] = LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
+      dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3]) >> 8);
+      dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3]) >> 8);
+      dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3]) >> 8);
       dst += 4;
    }
 
@@ -2556,37 +2595,37 @@ bool image::div_alpha()
 
    /*      while (size >= 8)
          {
-            dst[0] = LOBYTE(((i32)dst[0] * (i32)dst[3])>> 8);
-            dst[1] = LOBYTE(((i32)dst[1] * (i32)dst[3])>> 8);
-            dst[2] = LOBYTE(((i32)dst[2] * (i32)dst[3])>> 8);
+            dst[0] = __LOBYTE(((i32)dst[0] * (i32)dst[3])>> 8);
+            dst[1] = __LOBYTE(((i32)dst[1] * (i32)dst[3])>> 8);
+            dst[2] = __LOBYTE(((i32)dst[2] * (i32)dst[3])>> 8);
 
-            dst[4+0] = LOBYTE(((i32)dst[4+0] * (i32)dst[4+3])>> 8);
-            dst[4+1] = LOBYTE(((i32)dst[4+1] * (i32)dst[4+3])>> 8);
-            dst[4+2] = LOBYTE(((i32)dst[4+2] * (i32)dst[4+3])>> 8);
+            dst[4+0] = __LOBYTE(((i32)dst[4+0] * (i32)dst[4+3])>> 8);
+            dst[4+1] = __LOBYTE(((i32)dst[4+1] * (i32)dst[4+3])>> 8);
+            dst[4+2] = __LOBYTE(((i32)dst[4+2] * (i32)dst[4+3])>> 8);
 
-            dst[8+0] = LOBYTE(((i32)dst[8+0] * (i32)dst[8+3])>> 8);
-            dst[8+1] = LOBYTE(((i32)dst[8+1] * (i32)dst[8+3])>> 8);
-            dst[8+2] = LOBYTE(((i32)dst[8+2] * (i32)dst[8+3])>> 8);
+            dst[8+0] = __LOBYTE(((i32)dst[8+0] * (i32)dst[8+3])>> 8);
+            dst[8+1] = __LOBYTE(((i32)dst[8+1] * (i32)dst[8+3])>> 8);
+            dst[8+2] = __LOBYTE(((i32)dst[8+2] * (i32)dst[8+3])>> 8);
 
-            dst[12+0] = LOBYTE(((i32)dst[12+0] * (i32)dst[12+3])>> 8);
-            dst[12+1] = LOBYTE(((i32)dst[12+1] * (i32)dst[12+3])>> 8);
-            dst[12+2] = LOBYTE(((i32)dst[12+2] * (i32)dst[12+3])>> 8);
+            dst[12+0] = __LOBYTE(((i32)dst[12+0] * (i32)dst[12+3])>> 8);
+            dst[12+1] = __LOBYTE(((i32)dst[12+1] * (i32)dst[12+3])>> 8);
+            dst[12+2] = __LOBYTE(((i32)dst[12+2] * (i32)dst[12+3])>> 8);
 
-            dst[16+0] = LOBYTE(((i32)dst[16+0] * (i32)dst[16+3])>> 8);
-            dst[16+1] = LOBYTE(((i32)dst[16+1] * (i32)dst[16+3])>> 8);
-            dst[16+2] = LOBYTE(((i32)dst[16+2] * (i32)dst[16+3])>> 8);
+            dst[16+0] = __LOBYTE(((i32)dst[16+0] * (i32)dst[16+3])>> 8);
+            dst[16+1] = __LOBYTE(((i32)dst[16+1] * (i32)dst[16+3])>> 8);
+            dst[16+2] = __LOBYTE(((i32)dst[16+2] * (i32)dst[16+3])>> 8);
 
-            dst[20+0] = LOBYTE(((i32)dst[20+0] * (i32)dst[20+3])>> 8);
-            dst[20+1] = LOBYTE(((i32)dst[20+1] * (i32)dst[20+3])>> 8);
-            dst[20+2] = LOBYTE(((i32)dst[20+2] * (i32)dst[20+3])>> 8);
+            dst[20+0] = __LOBYTE(((i32)dst[20+0] * (i32)dst[20+3])>> 8);
+            dst[20+1] = __LOBYTE(((i32)dst[20+1] * (i32)dst[20+3])>> 8);
+            dst[20+2] = __LOBYTE(((i32)dst[20+2] * (i32)dst[20+3])>> 8);
 
-            dst[24+0] = LOBYTE(((i32)dst[24+0] * (i32)dst[24+3])>> 8);
-            dst[24+1] = LOBYTE(((i32)dst[24+1] * (i32)dst[24+3])>> 8);
-            dst[24+2] = LOBYTE(((i32)dst[24+2] * (i32)dst[24+3])>> 8);
+            dst[24+0] = __LOBYTE(((i32)dst[24+0] * (i32)dst[24+3])>> 8);
+            dst[24+1] = __LOBYTE(((i32)dst[24+1] * (i32)dst[24+3])>> 8);
+            dst[24+2] = __LOBYTE(((i32)dst[24+2] * (i32)dst[24+3])>> 8);
 
-            dst[28+0] = LOBYTE(((i32)dst[28+0] * (i32)dst[28+3])>> 8);
-            dst[28+1] = LOBYTE(((i32)dst[28+1] * (i32)dst[28+3])>> 8);
-            dst[28+2] = LOBYTE(((i32)dst[28+2] * (i32)dst[28+3])>> 8);
+            dst[28+0] = __LOBYTE(((i32)dst[28+0] * (i32)dst[28+3])>> 8);
+            dst[28+1] = __LOBYTE(((i32)dst[28+1] * (i32)dst[28+3])>> 8);
+            dst[28+2] = __LOBYTE(((i32)dst[28+2] * (i32)dst[28+3])>> 8);
 
             dst += 4 * 8;
             size -= 8;
@@ -3275,7 +3314,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage)
 }
 
 
-bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectParam)
+bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectangleParam)
 {
 
    map();
@@ -3284,7 +3323,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const 
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectangleParam))
 
    {
 
@@ -3353,7 +3392,7 @@ bool image::channel_from(::color::enum_channel echannel, ::image* pimage, const 
 
 
 
-bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectParam, bool bIfAlphaIgnorePreDivPosMult)
+bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, const ::rectangle_i32& rectangleParam, bool bIfAlphaIgnorePreDivPosMult)
 {
 
    map();
@@ -3362,7 +3401,7 @@ bool image::channel_multiply(::color::enum_channel echannel, ::image* pimage, co
 
    ::rectangle_i32 rectangle;
 
-   if (!rectangle.intersect(this->rectangle(), rectParam))
+   if (!rectangle.intersect(this->rectangle(), rectangleParam))
 
    {
 
@@ -3525,63 +3564,66 @@ bool image::fill_stippled_glass(i32 R, i32 G, i32 B)
 //}
 
 
-bool image::copy(const ::image* pimage, ::eobject eobjectCreate)
-{
-
-   if (size() != pimage->size())
-   {
-
-      create(pimage->size(), eobjectCreate);
-
-   }
-   else
-   {
-
-      m_eobject = eobjectCreate;
-
-   }
-
-   //pimage->defer_realize(pimage->get_graphics());
-   //defer_realize(pimage->get_graphics());
-
-   map();
-
-   ((::image*)pimage)->map();
-   // If DibSize Wrong Re-create image_impl
-   // do Paste
-
-   if (m_iScan == pimage->m_iScan)
-   {
-
-      ::memcpy_dup(get_data(), pimage->get_data(), height() * m_iScan);
-
-   }
-   else
-   {
-
-      int iScan = minimum(m_iScan, pimage->m_iScan);
-
-      for (int i = 0; i < height(); i++)
-      {
-
-         ::memcpy_dup(&((u8*)get_data())[m_iScan * i], &((u8*)pimage->get_data())[pimage->m_iScan * i], iScan);
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-bool image::bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangle)
-{
-
-   return pgraphics->stretch(rectangle, get_graphics()) != false;
+//bool image::copy_from(::image* pimage, ::eobject eobjectCreate)
+//{
+//
+//   if (size() != pimage->size())
+//   {
+//
+//      create(pimage->size(), eobjectCreate);
+//
+//   }
+//   else
+//   {
+//
+//      m_eobject = eobjectCreate;
+//
+//   }
+//
+//   //pimage->defer_realize(pimage->get_graphics());
+//   //defer_realize(pimage->get_graphics());
+//
+//   map();
+//
+//   ((::image*)pimage)->map();
+//   // If DibSize Wrong Re-create image_impl
+//   // do Paste
+//
+//   if (m_iScan == pimage->m_iScan)
+//   {
+//
+//      ::memcpy_dup(get_data(), pimage->get_data(), height() * m_iScan);
+//
+//   }
+//   else
+//   {
+//
+//      int iScan = minimum(m_iScan, pimage->m_iScan);
+//
+//      for (int i = 0; i < height(); i++)
+//      {
+//
+//         ::memcpy_dup(&((u8*)get_data())[m_iScan * i], &((u8*)pimage->get_data())[pimage->m_iScan * i], iScan);
+//
+//      }
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
-}
+//bool image::bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32& rectangle)
+//{
+//
+//   image_source imagesource(pgraphics);
+//
+//
+//   return pgraphics->stretch(rectangle, get_graphics()) != false;
+//
+//
+//}
 
 
 bool image::color_blend(color32_t cr, byte bAlpha)
@@ -3935,14 +3977,10 @@ bool image::Screen(::image* pimage)
 }
 
 
-//////////////////////////////////////////////////////////////////////
-// rectangle_i32 Functions
-//////////////////////////////////////////////////////////////////////
-
-bool image::copy_from(::image* pimage, i32 x, i32 y)
+bool image::copy_from(::image* pimage, const ::point_i32  & point, ::enum_flag eflagCreate)
 {
 
-   ::size_i32 s(pimage->width() - x, pimage->height());
+   ::size_i32 s(pimage->size() - point);
 
    if (size() != s)
    {
@@ -3959,7 +3997,17 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->draw(::rectangle_f64(s), pimage, ::point_f64(x, y)))
+      image_source imagesource(pimage, { point, s } );
+
+      ::rectangle_f64 rectangle(s);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
+      if (!g()->draw(imagedrawing))
       {
 
          return false;
@@ -3973,12 +4021,20 @@ bool image::copy_from(::image* pimage, i32 x, i32 y)
 }
 
 
-bool image::copy_to(::image* pimage, i32 x, i32 y)
+bool image::copy_from(::image * pimage, enum_flag eflagCreate)
 {
 
-   return pimage->copy_from(this);
+   return copy_from(pimage, nullptr, eflagCreate);
 
 }
+
+
+//bool image::copy_to(::image* pimage, const point_i32 & point)
+//{
+//
+//   return pimage->copy_from(this);
+//
+//}
 
 
 bool image::fill_rectangle(const ::rectangle_i32& rectangle, i32 R, i32 G, i32 B)
@@ -5123,7 +5179,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -5148,7 +5204,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -5170,7 +5226,7 @@ bool image::RadialFill(
    //
    //#ifdef _UWP
    //
-   //      ::exception::throw_not_implemented();
+   //      throw interface_only_exception();
    //
    //#else
    //
@@ -5596,7 +5652,7 @@ bool image::rotate180(::image* pimage)
 bool image::rotate270(::image* pimage)
 {
 
-   if (!create(pimage->size()))
+   if (!create({pimage->height(), pimage->width()}))
    {
 
       return false;
@@ -6498,7 +6554,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->stretch(::size_f64(cxSource, cySource), pimage->g());
+      image_source imagesource(pimage);
+
+      rectangle_f64 rectangle(::size_f64(cxSource, cySource));
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      get_graphics()->draw(imagedrawing);
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -6507,7 +6571,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
          cy /= 2.0;
 
-         if (::parallelization::priority() == ::priority_idle)
+         if (::parallelization::priority() == ::e_priority_idle)
          {
 
             map();
@@ -6529,7 +6593,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          else
          {
 
-            get_graphics()->stretch(::rectangle_i32_dimension((i32)x, (i32)y, (i32)cx, (i32)cy), pimage->g(), ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy));
+            image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, (i32)cx, (i32)cy));
+
+            auto rectangle = rectangle_f64_dimension(x, y, cx, cy);
+
+            image_drawing_options imagedrawingoptions(rectangle);
+
+            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+            get_graphics()->draw(imagedrawing);
 
          }
 
@@ -6575,7 +6647,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
          for (int y = 0, dy = (i32)cy; dy > 0; y += dy, dy /= 2)
          {
 
-            if (::parallelization::priority() == ::priority_idle)
+            if (::parallelization::priority() == ::e_priority_idle)
             {
 
                map();
@@ -6601,7 +6673,15 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
             else
             {
 
-               get_graphics()->stretch(::rectangle_i32_dimension(x, y, dx, dy), pimage->get_graphics(), ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+               image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+               auto rectangle = rectangle_f64_dimension(x, y, dx, dy);
+
+               image_drawing_options imagedrawingoptions(rectangle);
+
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+               get_graphics()->draw(imagedrawing);
 
             }
 
@@ -6850,10 +6930,10 @@ bool image::set_alpha_mode(::draw2d::enum_alpha_mode emode)
 i32 image::cos(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6863,10 +6943,10 @@ i32 image::cos(i32 i, i32 iAngle)
 i32 image::sin(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6876,10 +6956,10 @@ i32 image::sin(i32 i, i32 iAngle)
 i32 image::cos10(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6889,10 +6969,10 @@ i32 image::cos10(i32 i, i32 iAngle)
 i32 image::sin10(i32 i, i32 iAngle)
 {
 
-   UNREFERENCED_PARAMETER(i);
-   UNREFERENCED_PARAMETER(iAngle);
+   __UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(iAngle);
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return 0;
 
@@ -6900,12 +6980,12 @@ i32 image::sin10(i32 i, i32 iAngle)
 
 /*   i32 image::width()
    {
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    i32 image::height()
    {
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    i64 image::area()
@@ -8104,11 +8184,14 @@ bool image::map(bool bApplyAlphaTransform) const
    if (!m_bMapped)
    {
 
-      ((::image*)this)->map(bApplyAlphaTransform);
+      if (((::image *)this)->_map(bApplyAlphaTransform))
+      {
 
-      pixmap::map();
+         pixmap::map();
 
-      m_bMapped = true;
+         m_bMapped = true;
+
+      }
 
    }
 
@@ -8128,14 +8211,14 @@ bool image::unmap() const
       if (_get_graphics() != nullptr)
       {
 
-         ::rectangle_i32 rectThis(m_size);
+         ::rectangle_i32 rectangleThis(m_size);
 
-         ::rectangle_i32 rectMap(rectangle());
+         ::rectangle_i32 rectangleMap(rectangle());
 
-         if (rectThis.contains(rectMap.origin()))
+         if (rectangleThis.contains(rectangleMap.origin()))
          {
 
-            _get_graphics()->SetViewportOrg(rectMap.origin());
+            _get_graphics()->SetViewportOrg(rectangleMap.origin());
 
          }
          else
@@ -8169,13 +8252,13 @@ bool image::set_mapped()
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      UNREFERENCED_PARAMETER(puserinteraction);
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(puserinteraction);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
 //      // and ready to be queried if post queried
 //
-////      ::exception::throw_interface_only();
+////      throw ::interface_only_exception();
 //
 //
 //      return true;
@@ -8186,10 +8269,10 @@ bool image::set_mapped()
 //bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(puserinteraction);
-//   UNREFERENCED_PARAMETER(pmessage);
+//   __UNREFERENCED_PARAMETER(puserinteraction);
+//   __UNREFERENCED_PARAMETER(pmessage);
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return false;
 
@@ -8546,7 +8629,15 @@ bool image::create_circle(::image* pimage, int diameter)
 
       get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      get_graphics()->stretch(rectangle_i32_dimension(0, 0, diameter, diameter), pimage->g(), rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+      image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+      auto rectangle = rectangle_f64_dimension(0, 0, diameter, diameter);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      get_graphics()->draw(imagedrawing);
 
    }
 
@@ -8613,7 +8704,15 @@ bool image::create_framed_square(::image* pimage, int inner, int outer, color32_
 
    fill(cr);
 
-   get_graphics()->stretch(::rectangle_i32_dimension(outer, outer, inner, inner), pimage->g(), ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+   image_source imagesource(pimage, ::rectangle_i32_dimension(0, 0, pimage->width(), pimage->height()));
+
+   auto rectangle = rectangle_f64_dimension(outer, outer, inner, inner);
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   get_graphics()->draw(imagedrawing);
 
    return true;
 
@@ -8623,25 +8722,25 @@ bool image::create_framed_square(::image* pimage, int inner, int outer, color32_
 void image_copy(::image* pimagethis, ::image* pimage)
 {
 
-   pimagethis->copy(pimage);
+   pimagethis->copy_from(pimage);
 
 }
 
 
-void image_create(::object* pobject, ::image_pointer& pimage)
-{
+//void image_create(::object* pobject, ::image_pointer& pimage)
+//{
+//
+//   __construct(pimage, pobject);
+//
+//}
 
-   __construct(pimage, pobject);
-
-}
-
-
-void image_create_image(::image* pimage, const ::size_i32& size)
-{
-
-   pimage->create(size);
-
-}
+//
+//void image_create_image(::image* pimage, const ::size_i32& size)
+//{
+//
+//   pimage->create(size);
+//
+//}
 
 
 unsigned int* image_get_data(::image* pimage)
@@ -8806,7 +8905,7 @@ save_image::save_image()
 }
 
 
-//save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
+//save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
 //   __pointer(::aura::system) psystem = m_psystem;
@@ -8818,7 +8917,7 @@ save_image::save_image()
 //
 //      __pointer(::aura::system) psystem = m_psystem;
 //
-//      eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+//      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //
 //   }
 //
@@ -8929,14 +9028,18 @@ void image::defer_update_image()
 
    auto pimage = pframes->calc_current_frame(m_dynamic);
 
-   if (pimage)
+   if (pimage 
+      && m_pgraphics != pimage->m_pgraphics
+      && m_pbitmap != pimage->m_pbitmap)
    {
 
-      ::pixmap* ppixmapDst = this;
-
-      ::pixmap* ppixmapSrc = pimage;
+      unmap();
 
       pimage->unmap();
+
+      ::pixmap * ppixmapDst = this;
+
+      ::pixmap * ppixmapSrc = pimage;
 
       m_pgraphics = pimage->m_pgraphics;
 
@@ -8949,7 +9052,41 @@ void image::defer_update_image()
 }
 
 
+__pointer(::image) image::get_image(const ::size_i32 & size)
+{
 
+   if (size == get_size())
+   {
+
+      return this;
+
+   }
+
+   auto pimageNew = m_pcontext->context_image()->create_image(size);
+
+   image_source imagesource(this, this->rectangle());
+
+   auto rectangle = pimageNew->rectangle();
+
+   image_drawing_options imagedrawingoptions(rectangle);
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   pimageNew->g()->draw(imagedrawing);
+
+   return pimageNew;
+
+}
+
+
+__pointer(::image) image::get_image(::i32 cx, ::i32 cy)
+{
+
+   auto pimageNew = get_image( ::size_i32( cx, cy ));
+
+   return pimageNew;
+
+}
 
 
 #if 0
@@ -9344,12 +9481,12 @@ stream& image::read(::stream& stream)
 }
 
 
-::matter* image::clone() const
+::element * image::clone() const
 {
 
    auto pimage = ((::image*)this)->__create<::image>();
 
-   pimage->copy(this);
+   pimage->copy_from((::image *) this);
 
    pimage->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 
@@ -9447,13 +9584,10 @@ http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 }
 
 
-
-
-
-bool image::map(bool bApplyAlphaTransform)
+bool image::_map(bool bApplyAlphaTransform)
 {
 
-   pixmap::map(bApplyAlphaTransform);
+   pixmap::map(this->rectangle());
 
    return true;
 

@@ -63,12 +63,12 @@ namespace user
    }
 
 
-   ::user::document* server::open_document_file(::application* pappOnBehalfOf, ::payload varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
+   ::user::document* server::open_document_file(::application* pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
    {
 
       auto pcreate = pappOnBehalfOf->__create_new< ::create>();
       
-      pcreate->initialize_create(pappOnBehalfOf->m_strAppId, varFile, bMakeVisible, puiParent, eflag, id);
+      pcreate->initialize_create(pappOnBehalfOf->m_strAppId, payloadFile, bMakeVisible, puiParent, eflag, id);
 
       do_request(pcreate);
 

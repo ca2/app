@@ -12,43 +12,13 @@ inline bool __enum_is_failed(const ::e_status & e)
 }
 
 
-inline duration & duration::operator = (const ::datetime::time_span & span)
-{
-
-   raw_set(span.GetTotalSeconds());
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator += (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i + span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
-inline duration & duration::operator -= (const ::datetime::time_span & span)
-{
-
-   set(m_secs.m_i - span.GetTotalSeconds(), m_nanos.m_i);
-
-   return *this;
-
-}
-
-
-template < class T >
-inline string ___pointer < T >::type_str()
-{
-
-   return __type_str(T);
-
-}
+//template < class T >
+//inline const char * ___pointer < T >::__type_name(this)
+//{
+//
+//   return __type_name(*m_p);
+//
+//}
 
 
 //namespace promise
@@ -71,12 +41,12 @@ inline string ___pointer < T >::type_str()
 //} // namespace promise
 
 
-inline type::type(const ::matter * pobject)
+inline type::type(const ::element * pelement)
 {
 
-   m_strName = typeid(*(matter *)pobject).name();
+   m_strName = typeid(*(element *)pelement).name();
 
-   demangle(m_strName);
+   m_strName;
 
 }
 
@@ -87,7 +57,7 @@ inline type::type(const __pointer(BASE) & point)
 
    m_strName = typeid(*((BASE *)point.m_p)).name();
 
-   demangle(m_strName);
+   m_strName;
 
 }
 
@@ -145,10 +115,10 @@ inline bool get_memory::get_base64(const ::string & str)
 
 
 //template < typename PRED >
-//inline ::image_result matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_transport matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
 //{
 //
-//   return get_system()->get_image(this, varFile, uTrait, pred);
+//   return get_system()->get_image(this, payloadFile, uTrait, pred);
 //
 //}
 
@@ -334,7 +304,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       else if (id.is_text())
       {
 
-         return __str(m_i) + "." + string(id.m_psz);
+         return __string(m_i) + "." + string(id.m_psz);
 
       }
       else
@@ -351,7 +321,7 @@ inline CLASS_DECL_ACME id id::operator + (const id & id) const
       if (is_text())
       {
 
-         return string(m_psz) + "." + __str(id.m_i);
+         return string(m_psz) + "." + __string(id.m_i);
 
       }
       else
@@ -530,7 +500,7 @@ inline property_set ca_property_set()
 //
 //   string strRight(stringable);
 //
-//   return __str(psz) + strRight;
+//   return __string(psz) + strRight;
 //
 //}
 
@@ -549,7 +519,7 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
 //{
 //
-//   return __str(psz) + payload.get_string();
+//   return __string(psz) + payload.get_string();
 //
 //}
 //
@@ -676,7 +646,9 @@ inline bool id::begins(const ::string & strPrefix) const
    else
    {
 
-      __throw(::exception::exception("Unexpected ::id m_etype"));
+      __throw(error_wrong_type, "Unexpected::id m_etype");
+
+      return false;
 
    }
 
@@ -718,7 +690,9 @@ inline bool id::begins_ci(const ::string & strPrefix) const
    else
    {
 
-      __throw(::exception::exception("Unexpected ::id m_etype"));
+      __throw(error_wrong_type, "Unexpected ::id m_etype");
+
+      return false;
 
    }
 
@@ -755,7 +729,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
          if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
          {
 
-            if(is_set() && m_p->type_name() == strText)
+            if(is_set() && __type_name(m_p) == strText)
             {
 
                ::output_debug_string("POINTER: loading into existing matter of same class type (1)");
@@ -774,7 +748,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   stream.set_fail_bit();
 
                }
-               else if(m_p->type_name() != strText)
+               else if(__type_name(m_p) != strText)
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
@@ -791,7 +765,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
 
             ::id id = stream.text_to_factory_id(strText);
 
-            if(is_set() && m_p->type_name() == id)
+            if(is_set() && __type_name(m_p) == id)
             {
 
                ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
@@ -808,7 +782,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
 
                }
-               else if(::str::demangle(p->type_name()) != id.to_string())
+               else if(__type_name(p) != id.to_string())
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
@@ -867,7 +841,7 @@ inline bool succeeded(const ::payload & payload)
    else
    {
 
-      __throw(error_unexpected_situation);
+      throw ::exception(error_unexpected_situation);
 
    }
 
@@ -955,31 +929,24 @@ inline bool succeeded(const ::property & property)
 //}
 //
 //
+//template < class T >
+//template < typename TEMPLATER >
+//inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
+//{
+//
+//   __construct(*this);
+//
+//   return *this;
+//
+//}
+
+
 template < class T >
-template < typename TEMPLATER >
-inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
+template < typename TYPE >
+inline __pointer(T) & ___pointer < T >::create(::object * pobject)
 {
 
-   __construct(*this);
-
-   return *this;
-
-}
-
-
-template < class T >
-template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
-{
-
-  auto p = __create < TYPE >();
-
-  if (p)
-  {
-
-     p->initialize(pobject);
-
-  }
+  auto p = pobject->__create < TYPE >();
 
   return operator =(p);
 
@@ -987,8 +954,8 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
 
 
 template < class T >
-template < typename TYPE, typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
+template < typename TYPE >
+inline __pointer(T) & ___pointer < T >::create(::object * pobject, bool bCreate)
 {
 
   if (bCreate)
@@ -1561,32 +1528,32 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 }
 
 
+//template < typename T >
+//template < typename TEMPLATER >
+//inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
+//{
+//
+//   if (is_null())
+//   {
+//
+//      operator=(__create < TYPE >());
+//
+//   }
+//
+//   return *this;
+//
+//}
+//
+
 template < typename T >
-template < typename TEMPLATER >
-inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
+template < typename TYPE >
+inline __pointer(T) & ___pointer<T> ::defer_create(::object * pobject)
 {
 
    if (is_null())
    {
 
-      operator=(__create < TYPE >());
-
-   }
-
-   return *this;
-
-}
-
-
-template < typename T >
-template < typename TYPE, typename OBJECT  >
-inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
-{
-
-   if (is_null())
-   {
-
-      operator=(__create < TYPE >(pobject));
+      operator=(pobject->__create < TYPE >());
 
    }
 
@@ -1617,114 +1584,78 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 }
 
 
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions)
+//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _load_from_file(pobject, varFile, *pvarOptions);
+//      return _load_from_file(pobject, payloadFile, *pvarOptions);
 //
 //   }
 //   else
 //   {
 //
-//      return _load_from_file(pobject, varFile, e_type_empty_argument);
+//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
+//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& payloadFile)
 //{
 //
-//   return _load_from_file(pobject, varFile, e_type_empty_argument);
+//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter * pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter * pobject)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _save_to_file(varFile, *pvarOptions, pobject);
+//      return _save_to_file(payloadFile, *pvarOptions, pobject);
 //
 //   }
 //   else
 //   {
 //
-//      return _save_to_file(varFile, e_type_empty_argument, pobject);
+//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::matter* pobject)
 //{
 //
-//   return _save_to_file(varFile, e_type_empty_argument, pobject);
+//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //}
 //
 //
 
 //
-//inline ::file_result matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::e_open_read) ;
+//   return get_file(payloadFile, eopen | ::file::e_open_read) ;
 //
 //}
 //
 //
-//inline ::file_result matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::e_open_write);
+//   return get_file(payloadFile, eopen | ::file::e_open_write);
 //
 //}
 
 
-#ifndef DEBUG
-
-
-inline i64 matter::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   return m_countReference++;
-
-}
-
-
-inline i64 matter::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   return --m_countReference;
-
-}
-
-
-inline i64 matter::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   if (i == 0)
-   {
-
-      delete_this();
-
-   }
-
-   return i;
-
-}
-
-#endif
 
 
 
@@ -2081,7 +2012,7 @@ inline bool type::operator == (const ::id& id) const
       case e_type_path:
          return m_ppath;
       case e_type_routine:
-         return m_pmatterRoutine;
+         return m_pelementRoutine;
       default:
          break;
       }
@@ -2096,7 +2027,7 @@ inline bool type::operator == (const ::id& id) const
 //void method::pred(PRED pred)
 //{
 //
-//   m_pmatter = method(pred);
+//   m_pelement = method(pred);
 //
 //}
 //
@@ -2105,7 +2036,7 @@ inline bool type::operator == (const ::id& id) const
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pmatter = __new(predicate_future < PRED > (pred));
+//   m_pelement = __new(predicate_future < PRED > (pred));
 //
 //}
 //
@@ -2113,7 +2044,7 @@ inline bool type::operator == (const ::id& id) const
 //
 
 //template < typename TYPE >
-//inline __pointer(TYPE) matter::cast(const ::id & id)
+//inline __pointer(TYPE) element::cast(const ::id & id)
 //{
 //
 //   return value(id).cast < TYPE>();
@@ -2157,7 +2088,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 
 //
 //template < typename PRED >
-//inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+//inline ::count fork_count_end(::element* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -2227,14 +2158,14 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //inline void future::operator()(const ::payload & payload) const
 //{
 //
-//   if (!m_pmatter)
+//   if (!m_pelement)
 //   {
 //
 //      return;
 //
 //   }
 //
-//   return m_pmatter->receive_response(payload);
+//   return m_pelement->receive_response(payload);
 //
 //}
 //
@@ -2274,7 +2205,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 //inline ::e_status method::operator()() const
 //{ 
 //   
-//   return ::is_set(m_pmatter) ? m_pmatter->call() : (::e_status) ::success_none; 
+//   return ::is_set(m_pelement) ? m_pelement->call() : (::e_status) ::success_none;
 //
 //}
 
@@ -2352,11 +2283,8 @@ void ___release(TYPE * & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 #endif
 
 
-inline bool millis::done(const ::millis & millis) const { return elapsed(millis) >= 0; }
-inline bool millis::done() const { return elapsed() >= 0; }
-
-
-
+//inline bool ::duration::done(const ::duration & duration) const { return elapsed(::duration).m_i >= 0; }
+//inline bool ::duration::done() const { return elapsed().m_i >= 0; }
 
 
 template < >
@@ -2450,23 +2378,45 @@ inline ::apex::session * object::get_session() const
 
 
 
-template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__create()
+template < typename TYPE >
+inline __transport(TYPE) object::__create()
 {
 
-   auto p = ::__create<BASE_TYPE>();
+   auto & pfactory = ::factory::get_factory < TYPE >();
 
-   if (p)
+   if (!pfactory)
    {
 
-      auto estatus = p->initialize(this);
+      return ::error_not_implemented;
 
-      if (!estatus)
-      {
+   }
 
-         return estatus;
+   auto ptypeNew = pfactory->call_new();
 
-      }
+   if (!ptypeNew)
+   {
+
+      return ::error_no_memory;
+
+   }
+
+   __pointer(TYPE) p;
+
+   __dynamic_cast(p, ptypeNew);
+
+   if (!p)
+   {
+
+      return ::error_wrong_type;
+
+   }
+
+   auto estatus = p->initialize(this);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2475,27 +2425,73 @@ inline __transport(BASE_TYPE) object::__create()
 }
 
 
-template < typename BASE_TYPE >
-inline __transport(BASE_TYPE) object::__id_create(const ::id& id)
+
+//   auto p = ::move(__create<BASE_TYPE>());
+//
+//   if (p)
+//   {
+//
+//      auto estatus = p->initialize(this);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//   }
+//
+//   return ::move(p);
+//
+//}
+//
+//
+template < typename TYPE >
+inline __transport(TYPE) object::__id_create(const ::id& id)
 {
 
-   auto p = ::__id_create<BASE_TYPE>(id);
+   auto pfactory = ::factory::get_factory(id);
+   
+   if (!pfactory)
+   {
+   
+      return error_no_factory;
+   
+   }
+   
+   auto ptypeNew = pfactory->call_new();
+   
+   if (!ptypeNew)
+   {
+   
+      return error_no_memory;
+   
+   }
+   
+   __pointer(TYPE) p;
+   
+   __dynamic_cast(p, ptypeNew);
+   
+   if (!p)
+   {
+   
+      return error_wrong_type;
+   
+   }
+   
+   p->set(e_flag_factory);
+   
+   auto estatus = p->initialize(this);
 
-   if (p)
+   if (!estatus)
    {
 
-      auto estatus = p->initialize(this);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+      return estatus;
 
    }
 
-   return p;
+   return ::move(p);
 
 }
 
@@ -2506,7 +2502,7 @@ inline __transport(TYPE) object::__create_new()
 
    ASSERT(::is_set(this));
 
-   auto p = ::__create_new<TYPE>();
+   auto p = __new(TYPE());
 
    if (p)
    {
@@ -2522,7 +2518,7 @@ inline __transport(TYPE) object::__create_new()
 
    }
 
-   return p;
+   return ::move(p);
 
 }
 
@@ -2543,7 +2539,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE)& pcomposite)
 
       }
 
-      auto ptypeNew = pfactory->call_new();
+      auto ptypeNew = ::move(pfactory->call_new());
 
       if (!ptypeNew)
       {
@@ -2831,12 +2827,19 @@ template < typename TYPE >
 inline ::e_status object::__defer_construct(__pointer(TYPE)& p)
 {
 
-   ::e_status estatus = ::success_none;
-
-   if(::is_null(p))
+   if (::is_set(p))
    {
 
-      estatus = __construct(p);
+      return ::success_none;
+
+   }
+
+   auto estatus = __construct(p);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2864,16 +2867,49 @@ inline ::e_status object::__defer_construct_new(__pointer(TYPE)& p)
 
 
 template < typename TYPE >
-inline ::e_status object::__construct(__pointer(TYPE)& p)
+inline ::e_status object::__construct(__pointer(TYPE) & p)
 {
 
-   auto estatus = ::__construct(p);
-
-   if (estatus && p)
+   auto & pfactory = ::factory::get_factory < TYPE >();
+   
+   if (!pfactory)
    {
 
-      estatus = p->initialize(this);
+      ERROR("object::__construct has failed to find factory for type \"" <<  __type_name < TYPE >() << "\"");
 
+      return ::error_not_implemented;
+
+   }
+   
+   auto ptypeNew = pfactory->call_new();
+   
+   if (!ptypeNew)
+   {
+
+      ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name < TYPE >() + "\"");
+
+      return ::error_no_memory;
+   
+   }
+   
+   __dynamic_cast(p, ptypeNew);
+   
+   if (!p)
+   {
+
+      ERROR("object::__construct object("<< __type_name(ptypeNew) << ") is not of type \"" + __type_name < TYPE >() + "\"");
+
+      return ::error_wrong_type;
+   
+   }
+   
+   auto estatus = p->initialize(this);
+
+   if(!estatus)
+   {
+   
+      return estatus;
+   
    }
 
    return estatus;
@@ -2885,12 +2921,41 @@ template < typename TYPE >
 inline ::e_status object::__id_construct(__pointer(TYPE)& p, const ::id& id)
 {
 
-   auto estatus = ::__id_construct(p, id);
+   auto pfactory = ::factory::get_factory(id);
 
-   if (estatus && p)
+   if (!pfactory)
    {
 
-      estatus = p->initialize(this);
+      return error_no_factory;
+
+   }
+
+   auto ptypeNew = pfactory->call_new();
+
+   if (!ptypeNew)
+   {
+
+      return error_no_memory;
+
+   }
+
+   __dynamic_cast(p, ptypeNew);
+
+   if (!p)
+   {
+
+      return error_wrong_type;
+
+   }
+
+   p->set(e_flag_factory);
+
+   auto estatus = p->initialize(this);
+
+   if (!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2903,12 +2968,21 @@ template < typename TYPE >
 inline ::e_status object::__construct_new(__pointer(TYPE)& p)
 {
 
-   auto estatus = ::__construct_new(p);
+   p = __new(TYPE);
 
-   if(estatus.succeeded())
+   if (!p)
    {
 
-      estatus = p->initialize(this);
+      return error_no_memory;
+
+   }
+
+   auto estatus = p->initialize(this);
+
+   if(!estatus)
+   {
+
+      return estatus;
 
    }
 
@@ -2990,7 +3064,7 @@ inline ::e_status object::__release(__pointer(SOURCE)& psource OBJECT_REFERENCE_
 }
 
 
-CLASS_DECL_ACME void object_on_add_composite(const matter* pusermessage);
+CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage);
 
 
 //template < typename BASE_TYPE >
@@ -3060,16 +3134,16 @@ template < typename SOURCE >
 inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
-   ::matter* pmatter = psource;
+   ::element* pelement = psource;
 
-   if (::is_null(pmatter))
+   if (::is_null(pelement))
    {
 
       return error_wrong_type;
 
    }
 
-   //return add_reference(pmatter OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   //return add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
    return ::success;
 
@@ -3202,72 +3276,72 @@ inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_D
 //}
 //
 
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions)
+//inline ::e_status context::load_from_file(::element* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _load_from_file(pobject, varFile, *pvarOptions);
+//      return _load_from_file(pobject, payloadFile, *pvarOptions);
 //
 //   }
 //   else
 //   {
 //
-//      return _load_from_file(pobject, varFile, e_type_empty_argument);
+//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
+//inline ::e_status context::load_from_file(::element* pobject, const ::payload& payloadFile)
 //{
 //
-//   return _load_from_file(pobject, varFile, e_type_empty_argument);
+//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::element* pobject)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _save_to_file(varFile, *pvarOptions, pobject);
+//      return _save_to_file(payloadFile, *pvarOptions, pobject);
 //
 //   }
 //   else
 //   {
 //
-//      return _save_to_file(varFile, e_type_empty_argument, pobject);
+//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //   }
 //
 //}
 //
 
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::element* pobject)
 //{
 //
-//   return _save_to_file(varFile, e_type_empty_argument, pobject);
+//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //}
 
 
-inline ::file_result object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_reader(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return get_file(varFile, eopen | ::file::e_open_read);
+   return get_file(payloadFile, eopen | ::file::e_open_read);
 
 }
 
 
-inline ::file_result object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_writer(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return get_file(varFile, eopen | ::file::e_open_write);
+   return get_file(payloadFile, eopen | ::file::e_open_write);
 
 }
 
@@ -3401,7 +3475,7 @@ inline ::file_result object::get_writer(const ::payload& varFile, const ::file::
 
 
 template < typename TYPE >
-inline ::e_status object::__construct(::task_pointer& p, void (TYPE::* pfn)(), e_priority epriority)
+inline ::e_status object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
 {
 
    p = fork(pfn, epriority);
@@ -3422,13 +3496,13 @@ template < typename TYPE >
 inline ::e_status object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
 {
 
-   return __construct(p, pfn, priority_below_normal);
+   return __construct(p, pfn, e_priority_below_normal);
 
 }
 
 
 template < typename TYPE >
-inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), e_priority epriority)
+inline ::task_pointer object::defer_branch(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority)
 {
 
    auto pfork = fork(pfn, epriority);
@@ -3450,10 +3524,10 @@ inline void add_routine(::routine_array& routinea, PRED pred)
 
 
 
-inline ::e_status object::defer_branch(::task_pointer& pthread, const ::routine& routine)
+inline ::e_status object::defer_branch(::task_pointer& ptask, const ::routine& routine)
 {
 
-   auto estatus = __defer_construct(pthread);
+   auto estatus = __defer_construct(ptask);
 
    if (!estatus)
    {
@@ -3462,9 +3536,9 @@ inline ::e_status object::defer_branch(::task_pointer& pthread, const ::routine&
 
    }
 
-   pthread->m_pmatter = routine;
+   ptask->m_pelement = routine;
 
-   return pthread->branch();
+   return ptask->branch();
 
 }
 
@@ -3483,7 +3557,7 @@ inline ::task_pointer object::predicate_run(bool bSync, PRED pred)
 
 
 template < typename PREDICATE >
-inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+inline __transport(task) object::fork(PREDICATE predicate, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto proutine = __routine(predicate);
@@ -3495,7 +3569,7 @@ inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriorit
 
    }
 
-   auto ptask = this->branch(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+   auto ptask = this->branch_task(proutine, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
 
    if(!ptask)
    {
@@ -3509,34 +3583,26 @@ inline __transport(task) object::fork(PREDICATE predicate, ::e_priority epriorit
 }
 
 
-inline routine_array& property_object::_routine_array(const ::id& id)
-{
-   
-   return m_pmapPropertyRoutine->operator[](id);
-
-}
-
-
-inline routine_array& property_object::routine_array(const ::id& id)
-{ 
-   
-   ::__defer_construct_new(m_pmapPropertyRoutine);
-   
-   return m_pmapPropertyRoutine->operator[](id);
-
-}
-
-
-inline void property_object::add_routine(const ::id& id, const ::routine& routine)
-{
-
-   routine_array(id).add(routine);
-
-}
+//inline routine_array * property_object::_routine_array(const ::id& id)
+//{
+//
+//   auto passociation = m_pmapPropertyRoutine->plookup(id);
+//
+//   if (::is_null(passociation))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//   
+//   return &passociation->m_element2;
+//
+//}
+//
 
 
-template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-auto material_object::__sync_status_payload(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
+template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
+::e_status material_object::__send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD method, PAYLOAD_REFERENCE & payload)
 {
 
    auto psynchronization = __new(::promise::synchronization);
@@ -3563,13 +3629,13 @@ auto material_object::__sync_status_payload(const ::duration & duration, BRANCHI
 
                                 psynchronization->m_evReady.SetEvent();
 
-                                ::release((::matter * &)psynchronization.m_p);
+                                ::release((::element * &)psynchronization.m_p);
 
                              });
 
-   (pbranching->*branching_method)(proutine);
+   (pposting->*posting_method)(proutine);
 
-   if (psynchronization->m_evGoingToWrite.wait(duration).failed())
+   if (psynchronization->m_evGoingToWrite.wait(proutine->timeout()).failed())
    {
 
       psynchronization->m_bTimeout = true;
@@ -3654,11 +3720,11 @@ auto material_object::__sync_status_payload(const ::duration & duration, BRANCHI
 
 
 
-template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
-::e_status material_object::__sync_routine(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, ::routine routine)
+template < typename POSTING_OBJECT, typename POSTING_METHOD >
+::e_status material_object::__send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine)
 {
 
-   if(pbranching->is_branch_current())
+   if(pposting->is_branch_current())
    {
 
       return routine();
@@ -3685,17 +3751,17 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
 
                                 psignalization->m_evReady.SetEvent();
 
-                                psignalization->m_pmatterHold.release();
+                                psignalization->m_pelementHold.release();
 
-                                //::release((::matter * &)psignalization.m_p);
+                                //::release((::element * &)psignalization.m_p);
 
                              });
 
-   psignalization->m_pmatterHold = proutine;
+   psignalization->m_pelementHold = proutine;
 
-   (pbranching->*branching_method)(proutine);
+   (pposting->*posting_method)(proutine);
 
-   if (psignalization->m_evReady.wait(duration).failed())
+   if (psignalization->m_evReady.wait(proutine->timeout()).failed())
    {
 
       return error_timeout;
@@ -3703,82 +3769,6 @@ template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
    }
 
    return psignalization->m_estatus;
-
-}
-
-
-
-inline byte* memory_base::find(const ::block& block, ::index iStart) const
-{
-
-   return (byte*)memmem(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
-
-}
-
-
-inline ::index memory_base::find_index(const ::block& block, ::index iStart) const
-{
-
-   auto p = find(block, iStart);
-
-   if (!p)
-   {
-
-      return -1;
-
-   }
-
-   return ((byte*)p) - get_data();
-
-}
-
-
-inline byte* memory_base::reverse_find(const ::block& block, ::index iStart) const
-{
-
-   return (byte*)reverse_memmem(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
-
-}
-
-
-inline ::index memory_base::reverse_find_index(const ::block& block, ::index iStart) const
-{
-
-   auto p = reverse_find(block, iStart);
-
-   if (!p)
-   {
-
-      return -1;
-
-   }
-
-   return ((byte*)p) - get_data();
-
-}
-
-
-inline byte* memory_base::reverse_find_byte_not_in_block(const ::block& block, ::index iStart) const
-{
-
-   return (byte*)reverse_byte_not_in_block(get_data() + iStart, get_size() - iStart, (byte*)block.get_data(), block.get_size());
-
-}
-
-
-inline ::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block& block, ::index iStart) const
-{
-
-   auto p = reverse_find_byte_not_in_block(block, iStart);
-
-   if (!p)
-   {
-
-      return -1;
-
-   }
-
-   return ((byte*)p) - get_data();
 
 }
 
@@ -3797,6 +3787,10 @@ inline void assign(::block & block, const ::payload & r)
 
 }
 
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
 inline void assign(long & l, const payload & payload)
 {
 
@@ -3811,6 +3805,9 @@ inline void assign(unsigned long & ul, const payload & payload)
    ul = payload.get_unsigned_long();
 
 }
+
+
+#endif // defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
 
 
 inline void assign(::i8 & i, const payload & payload)
@@ -3909,3 +3906,64 @@ inline payload_cast::operator property_set () const
 }
 
 
+inline id::id(const ::lparam & lparam)
+{
+
+   m_etype = e_type_integer;
+
+   m_u = lparam.m_lparam;
+
+}
+
+
+template < class T >
+inline ___pointer < T > & __move(___pointer < T > & p, lparam & lparam)
+{
+
+   auto pelement = (::element *)lparam.m_lparam;
+
+   p.m_p = dynamic_cast <T *> (pelement);
+
+   if (::is_null(p))
+   {
+
+      ::release(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_NOTE(nullptr, "pointer::pointer(LPARAM)"));
+
+   }
+
+   return p;
+
+}
+
+
+template < class T >
+inline ___pointer < T > ::___pointer(enum_create, ::object * p) :
+   m_p(nullptr)
+{
+
+   operator=(p->__create < T >());
+
+}
+
+
+template < class T >
+template < typename __TEMPLATE_TYPE__ >
+::count pointer_array < T > ::set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy, __TEMPLATE_TYPE__)
+{
+
+   ::index i = this->get_size();
+
+   comparable_array < ___pointer < T >, const T * > ::set_size(nNewSize);
+
+   ::count c = this->get_size();
+
+   for (; i < c; i++)
+   {
+
+      pobject->__construct(this->element_at(i));
+
+   }
+
+   return c;
+
+}

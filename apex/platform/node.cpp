@@ -24,6 +24,28 @@ namespace apex
    }
 
 
+#ifdef _DEBUG
+
+
+   i64 node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return acme::node::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+   i64 node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
+   {
+
+      return acme::node::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   }
+
+
+#endif
+
+
    ::e_status node::on_initialize_object()
    {
 
@@ -61,10 +83,34 @@ namespace apex
       
    }
 
+   
+   string node::system_options_html()
+   {
 
-   ::e_status
-   node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco,
-                           int iIcon)
+      string strFooter__;
+
+      strFooter__ += "<br/>";
+      strFooter__ += "<br/>";
+
+      strFooter__ += system_options_main_body();
+
+      strFooter__ += "</body>";
+      strFooter__ += "</html>";
+
+      return strFooter__;
+
+   }
+
+
+   string node::system_options_main_body()
+   {
+
+      return "";
+
+   }
+
+
+   ::e_status node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 
       return ::error_interface_only;
@@ -147,7 +193,7 @@ namespace apex
    ::e_status node::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -231,14 +277,12 @@ namespace apex
    }
 
 
-   void node::on_os_dark_mode_change()
+   void node::on_user_color()
    {
 
       auto psystem = m_psystem->m_papexsystem;
 
-      auto psubject = psystem->subject(id_os_dark_mode);
-
-      psubject->notify();
+      psystem->signal(id_user_color);
 
    }
 
@@ -246,7 +290,7 @@ namespace apex
    void node::os_menu_item_enable(void * pitem, bool bEnable)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
    }
 
@@ -254,7 +298,7 @@ namespace apex
    void node::os_menu_item_check(void * pitem, bool bCheck)
    {
    
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
    }
 

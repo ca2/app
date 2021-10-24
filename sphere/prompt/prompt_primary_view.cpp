@@ -17,18 +17,18 @@ namespace prompt
 
       m_iCompromised = 0;
 
-      connect_command_probe("edit_copy", &primary_view::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &primary_view::_001OnEditCopy);
-      connect_command_probe("edit_paste", &primary_view::_001OnUpdateEditPaste);
-      connect_command("edit_paste", &primary_view::_001OnEditPaste);
+      add_command_prober("edit_copy", &primary_view::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", &primary_view::_001OnEditCopy);
+      add_command_prober("edit_paste", &primary_view::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", &primary_view::_001OnEditPaste);
 
    }
 
 
-   void primary_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void primary_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
@@ -170,7 +170,7 @@ namespace prompt
 
                         m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
 
-                        papplication->send_simple_command("winactionareaview::show_calendar(\""+ __str((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        papplication->send_simple_command("winactionareaview::show_calendar(\""+ __string((i32) pmatter->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
 
                         bOk = true;
 
@@ -229,7 +229,7 @@ namespace prompt
 
    void primary_view::_001OnEditCopy(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_copy();
    }
 
@@ -242,7 +242,7 @@ namespace prompt
 
    void primary_view::_001OnEditPaste(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_paste();
    }
 

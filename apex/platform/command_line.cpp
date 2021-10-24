@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 command_line::command_line()
@@ -245,10 +246,10 @@ void command_line::_001ParseCommandLine(const ::string & strCommandLine)
    if (!m_varQuery.propset().has_property("build") || m_varQuery["build"].is_empty())
    {
 
-      if (file_exists(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt"))
+      if (m_psystem->m_pacmefile->exists(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt"))
       {
 
-         string str = file_as_string(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt");
+         string str = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\plugin\\build.txt");
 
          m_varQuery["build"] = str;
 
@@ -264,7 +265,7 @@ void command_line::_001ParseCommandLineUri(const ::string & strCommandLine)
 
    m_strCommandLine = strCommandLine;
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 }
 

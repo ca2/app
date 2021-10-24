@@ -35,7 +35,7 @@ class CLASS_DECL_ACME static_numeric_info < u64 >
 }; // numeric_info
 
 
-#if defined(WINDOWS) || defined(APPLEOS)
+#if defined(WINDOWS) || defined(__APPLE__)
 
 template <>
 class CLASS_DECL_ACME static_numeric_info < long unsigned int >

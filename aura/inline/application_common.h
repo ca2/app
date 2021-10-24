@@ -52,7 +52,7 @@ extern "C" void gpu_opengl_factory_exchange(::factory_map * pfactorymap);
 
 #ifdef LINUX
 
-#include "acme/os/ansios/binreloc.h"
+#include "acme/node/operating_system/ansi/binreloc.h"
 
 const char* br_init_get_symbol();
 
@@ -168,38 +168,6 @@ void application_common(::apex::system * psystem)
 
 
 }
-
-
-
-
-template < typename APPLICATION >
-class static_application_factory :
-   public static_setup
-{
-public:
-
-
-   virtual ::matter* new_application_as_matter() override
-   {
-      auto papplication = new APPLICATION;
-#ifdef NO_IMAGING
-      papplication->m_bImaging = false;
-#endif
-
-      return papplication;
-
-   }
-
-
-   static_application_factory(const char * pszName = "") :
-      static_setup(flag_application, pszName)
-   {
-
-
-   }
-
-
-};
 
 
 #define __namespace_application_factory(APPID) \

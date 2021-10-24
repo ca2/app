@@ -9,7 +9,7 @@ namespace console
       ::object(pobject)
    {
 
-      m_millisCaretPeriod   = 500;
+      m_durationCaretPeriod   = 500;
 
       m_iNewChar        = 0;
 
@@ -57,7 +57,7 @@ namespace console
       __pointer(::message::show_window) pshowwindow(pmessage);
       if(pshowwindow->m_bShow)
       {
-         m_millisLastError= ::millis::now();
+         m_durationLastError= ::duration::now();
          m_bOk = false;
       }
    }
@@ -75,7 +75,7 @@ namespace console
 
       }
 
-      m_millisCaretStart= ::millis::now();
+      m_durationCaretStart= ::duration::now();
 
    }
 
@@ -94,7 +94,7 @@ namespace console
       else
       {
 
-         m_millisLastError= ::millis::now();
+         m_durationLastError= ::duration::now();
 
          m_bOk = false;
 
@@ -113,9 +113,9 @@ namespace console
    void prompt_impact::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
-      m_millisCaretStart.Now();
+      m_durationCaretStart.Now();
 
       ::message::key & key = *pkey;
 
@@ -254,7 +254,7 @@ namespace console
    void prompt_impact::on_message_key_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -270,7 +270,7 @@ namespace console
    int prompt_impact::getch()
    {
 
-      m_millisCaretPeriod.Now();
+      m_durationCaretPeriod.Now();
 
       m_iNewChar = 0x80000000;
 
@@ -304,7 +304,7 @@ namespace console
 
       color32_t crTopic;
 
-      if(m_millisLastError.elapsed() < 84 && !m_bOk)
+      if(m_durationLastError.elapsed() < 84 && !m_bOk)
       {
 
          crTopic = argb(255,255,0,210);
@@ -319,7 +319,7 @@ namespace console
 
       }
 
-      bool bCaretOn = m_millisCaretStart.on_off(m_millisCaretPeriod);
+      bool bCaretOn = m_durationCaretStart.on_off(m_durationCaretPeriod);
 
       auto rectangleClient = get_client_rect();
 
@@ -345,16 +345,16 @@ namespace console
       if(bCaretOn)
       {
 
-         ::rectangle_i32 rectCaret;
+         ::rectangle_i32 rectangleCaret;
 
-         rectCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
-         rectCaret.right = rectCaret.left + m_sizeChar.cx;
-         rectCaret.top = m_sizeChar.cy - 3;
-         rectCaret.bottom = m_sizeChar.cy;
+         rectangleCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
+         rectangleCaret.right = rectangleCaret.left + m_sizeChar.cx;
+         rectangleCaret.top = m_sizeChar.cy - 3;
+         rectangleCaret.bottom = m_sizeChar.cy;
 
 
 
-         pgraphics->fill_rectangle(rectCaret,crTopic);
+         pgraphics->fill_rectangle(rectangleCaret,crTopic);
 
       }
 

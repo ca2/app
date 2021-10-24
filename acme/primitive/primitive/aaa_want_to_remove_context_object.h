@@ -95,7 +95,7 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   //inline void __throw(const ::exception::exception & e) const;
+   //inline void __throw(const ::exception & e) const;
 
 
    virtual void __tracea(matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
@@ -125,8 +125,8 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -189,7 +189,7 @@ struct CLASS_DECL_ACME matter :
 
    // very close to the operating system
    htask_t __create_thread(
-      ::e_priority epriority = ::priority_normal,
+      ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0,
       LPSECURITY_ATTRIBUTES psa = nullptr,
@@ -215,7 +215,7 @@ struct CLASS_DECL_ACME matter :
    //}
 
 
-   inline ::image_pointer get_image(const ::payload & varFile, bool bCache = true, bool bSync = false);
+   inline ::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = false);
    inline ::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = false);
 
 

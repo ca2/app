@@ -20,7 +20,7 @@ namespace user
       string                              m_str;
       ::rectangle_i32                              m_rectangle;
       bool                                m_bEnableIfHasCommandHandler;
-      ::write_text::font_pointer              m_font;
+      ::write_text::font_pointer              m_pfont;
 
 
       toolbar_item();
@@ -119,7 +119,7 @@ namespace user
       inline toolbar_control& GetToolBarCtrl() const;
 
       virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
+      ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
@@ -130,10 +130,10 @@ namespace user
 //#endif
 
 
-      virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
+      void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool LoadXmlToolBar(const ::string & pszFileName);
@@ -161,9 +161,9 @@ namespace user
 //      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = false);
 //#endif
-      void on_layout(::draw2d::graphics_pointer & pgraphics); // called for for delayed button on_layout
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override; // called for for delayed button on_layout
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnNcHitTest);
       DECLARE_MESSAGE_HANDLER(on_message_non_client_calculate_size);
@@ -175,7 +175,7 @@ namespace user
 
       //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       //virtual index _001GetHoverItem();
@@ -189,23 +189,23 @@ namespace user
 //
 //
 //// Styles for toolbar buttons
-//#define TBBS_BUTTON     MAKELONG(TBSTYLE_BUTTON, 0) // this entry is button
-//#define e_toolbar_item_style_separator  MAKELONG(TBSTYLE_SEP, 0)    // this entry is a separator
-//#define TBBS_CHECKBOX   MAKELONG(TBSTYLE_CHECK, 0)  // this is an auto check button
-//#define TBBS_GROUP      MAKELONG(TBSTYLE_GROUP, 0)  // marks the start of a group
+//#define TBBS_BUTTON     __MAKE_LONG(TBSTYLE_BUTTON, 0) // this entry is button
+//#define e_toolbar_item_style_separator  __MAKE_LONG(TBSTYLE_SEP, 0)    // this entry is a separator
+//#define TBBS_CHECKBOX   __MAKE_LONG(TBSTYLE_CHECK, 0)  // this is an auto check button
+//#define TBBS_GROUP      __MAKE_LONG(TBSTYLE_GROUP, 0)  // marks the start of a group
 //#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
-//#define TBBS_DROPDOWN   MAKELONG(TBSTYLE_DROPDOWN, 0) // drop down style
-//#define TBBS_AUTOSIZE   MAKELONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   MAKELONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
+//#define TBBS_DROPDOWN   __MAKE_LONG(TBSTYLE_DROPDOWN, 0) // drop down style
+//#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
+//#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
 //
 //// styles for display states
-//#define TBBS_CHECKED    MAKELONG(0, TBSTATE_CHECKED)    // button is checked/down
-//#define TBBS_PRESSED    MAKELONG(0, TBSTATE_PRESSED)    // button is being depressed
-//#define e_toolbar_item_style_disabled   MAKELONG(0, TBSTATE_ENABLED)    // button is disabled
-//#define TBBS_INDETERMINATE  MAKELONG(0, TBSTATE_INDETERMINATE)  // third state
-//#define TBBS_HIDDEN     MAKELONG(0, e_toolbar_button_hidden) // button is hidden
-//#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
-//#define TBBS_ELLIPSES   MAKELONG(0, TBSTATE_ELIPSES)
-//#define TBBS_MARKED      MAKELONG(0, TBSTATE_MARKED)
+//#define TBBS_CHECKED    __MAKE_LONG(0, TBSTATE_CHECKED)    // button is checked/down
+//#define TBBS_PRESSED    __MAKE_LONG(0, TBSTATE_PRESSED)    // button is being depressed
+//#define e_toolbar_item_style_disabled   __MAKE_LONG(0, TBSTATE_ENABLED)    // button is disabled
+//#define TBBS_INDETERMINATE  __MAKE_LONG(0, TBSTATE_INDETERMINATE)  // third state
+//#define TBBS_HIDDEN     __MAKE_LONG(0, e_toolbar_button_hidden) // button is hidden
+//#define TBBS_WRAPPED    __MAKE_LONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
+//#define TBBS_ELLIPSES   __MAKE_LONG(0, TBSTATE_ELIPSES)
+//#define TBBS_MARKED      __MAKE_LONG(0, TBSTATE_MARKED)
 //
 

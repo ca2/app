@@ -78,7 +78,7 @@ namespace user
 
       m_pimpl = pimpl;
 
-      string strType = ::str::demangle(m_pimpl->m_puserinteraction->type_name());
+      string strType = __type_name(m_pimpl->m_puserinteraction);
 
       m_strDebugType = strType;
 
@@ -89,7 +89,7 @@ namespace user
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 thread::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
@@ -218,9 +218,9 @@ namespace user
 
 #endif
 
-      //set_topic_text("window_thread_" + ::str::demangle(m_pimpl->m_puserinteraction->type_name()) + "> ");
+      //set_topic_text("window_thread_" + __type_name(m_pimpl->m_puserinteraction)) + "> ";
 
-      ::task_set_name(::str::demangle(m_pimpl->m_puserinteraction->type_name()));
+      ::task_set_name(__type_name(m_pimpl->m_puserinteraction));
 
 #ifdef WINDOWS_DESKTOP
 
@@ -263,13 +263,17 @@ namespace user
 
       m_pwindowing = pwindowing;
 
-      if (!m_pimpl->native_create_host())
+      estatus = m_pimpl->native_create_host();
+
+      if(!estatus)
       {
+
+         m_pimpl->m_puserinteraction->m_pusersystem->m_routineFailure();
 
          if (is_debugger_attached())
          {
 
-            message_box("Window not created", "Window not created", e_message_box_icon_warning);
+            output_error_message("Window not created", "Window not created", e_message_box_icon_warning);
 
          }
 
@@ -281,9 +285,19 @@ namespace user
 
          destroy();
 
-         return false;
+         return estatus;
 
       }
+
+      auto pusersystem = m_pimpl->m_puserinteraction->m_pusersystem;
+
+      if(pusersystem && pusersystem->m_routineSuccess)
+      {
+
+         pusersystem->m_routineSuccess();
+
+      }
+
 
       //}
       //else
@@ -297,8 +311,6 @@ namespace user
 
       //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-      __refer(m_pprodevian, m_pimpl->m_pprodevian);
-
       m_oswindow = m_pimpl->m_pwindow->get_oswindow();
 
       //delete m_pusersystem;
@@ -308,6 +320,8 @@ namespace user
       return true;
 
    }
+
+
 
 
    bool thread::pump_runnable()
@@ -359,7 +373,7 @@ namespace user
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -368,19 +382,21 @@ namespace user
       try
       {
 
-         if (!get_message(&m_message, nullptr, 0, 0))
+         auto estatus = get_message(&m_message, nullptr, 0, 0);
+
+         if(estatus == status_quit)
          {
 
             if (m_strDebugType.contains("filemanager"))
             {
 
-               //INFO("filemanager");
+               //INFORMATION("filemanager");
 
             }
 
-            TRACE(trace_category_appmsg, e_trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            CATEGORY_INFORMATION(appmsg, __type_name(this) << " thread::pump_message - Received e_message_quit.\n");
 
-            ::output_debug_string(string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            //::output_debug_string(__type_name(this)) << " thread::pump_message - Received e_message_quit.\n");
 
             m_nDisablePumpCount++; // application must die
             // Note: prevents calling message loop things in 'exit_thread'
@@ -401,7 +417,7 @@ namespace user
 
             if (m_pimpl 
                && m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_is_window
-               && ::thread::finish_bit())
+               && ::thread::is_finishing())
             {
 
                m_pimpl->m_puserinteraction->start_destroying_window();
@@ -426,27 +442,43 @@ namespace user
          if (m_message.m_id != WM_KICKIDLE && m_message.m_id != e_message_quit)
          {
 
-            if (m_message.m_id == e_message_destroy_window && m_strDebugType.contains("notify_icon"))
+            if (m_message.m_id == e_message_destroy_window)
             {
 
-               INFO("notify_icon");
+               if (m_strDebugType.contains("notify_icon"))
+               {
+
+                  INFORMATION("notify_icon");
+
+               }
+               else if (m_strDebugType.contains("main_frame"))
+               {
+
+                  INFORMATION("main_frame");
+
+               }
 
             }
 
-            process_message();
+            if (estatus != status_kick_idle)
+            {
+
+               process_message();
+
+            }
 
          }
 
          return true;
 
       }
-      catch (const ::exception::exception & e)
+      catch (const ::exception & e)
       {
 
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -469,7 +501,7 @@ namespace user
       catch (...)
       {
 
-         INFO("... exception");
+         INFORMATION("... exception");
 
       }
 
@@ -527,12 +559,12 @@ namespace user
                      if (msg.m_id == ::e_message_redraw)
                      {
 
-                        string strType = ::str::demangle(puserinteraction->type_name());
+                        string strType = __type_name(puserinteraction);
 
                         if (strType.contains_ci("filemanager"))
                         {
 
-                           //INFO("filemanager");
+                           //INFORMATION("filemanager");
 
                         }
 
@@ -803,7 +835,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      INFO("user::thread::run");
+      INFORMATION("user::thread::run");
 
       if (m_strDebugType.contains("main_frame"))
       {
@@ -877,13 +909,20 @@ namespace user
          while (task_get_run())
          {
 
+            if (m_pimpl)
+            {
+
+               m_pimpl->process_message();
+
+            }
+
             if (!pump_message())
             {
 
                if (m_strDebugType.contains("filemanager"))
                {
 
-                  //INFO("filemanager");
+                  //INFORMATION("filemanager");
 
                }
 
@@ -942,7 +981,7 @@ namespace user
       if (m_strDebugType.contains("filemanager"))
       {
 
-         //INFO("filemanager");
+         //INFORMATION("filemanager");
 
       }
 
@@ -1086,12 +1125,12 @@ namespace user
       else
       {
 
-         //string strType = m_puserinteraction->type_name();
+         //string strType = __type_name(m_puserinteraction);
 
          if (m_strDebugType.contains("filemanager"))
          {
 
-            //INFO("filemanager");
+            //INFORMATION("filemanager");
 
          }
 
@@ -1104,12 +1143,20 @@ namespace user
    }
 
 
+   ::e_status thread::set_finish()
+   {
+
+      return ::thread::set_finish();
+
+   }
+
+
    void thread::term_thread()
    {
 
       if (m_pimpl && m_pimpl->m_puserinteraction && m_pimpl->m_puserinteraction->m_strName.contains("notify_icon"))
       {
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
       }
 
       synchronous_lock synchronouslock(mutex());

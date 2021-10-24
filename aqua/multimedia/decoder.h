@@ -26,7 +26,7 @@ namespace multimedia
       virtual ::e_status      multimedia_open(::file::file * pfile);
       virtual ::e_status      multimedia_close();
 
-      virtual ::e_status      impl_multimedia_open(::file::file * varFile);
+      virtual ::e_status      impl_multimedia_open(::file::file * payloadFile);
       virtual ::e_status      impl_multimedia_close();
 
 
@@ -34,7 +34,7 @@ namespace multimedia
       virtual void            multimedia_set_origin_path(const ::string & strOriginPath);
 
 
-      virtual bool            multimedia_get_attribute(::e_id attribute, ::payload & payload);
+      virtual bool            multimedia_get_attribute(::enum_id attribute, ::payload & payload);
 
       virtual void            FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle);
 

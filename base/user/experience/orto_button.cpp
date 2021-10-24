@@ -1,14 +1,13 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 namespace experience
 {
 
 
-   orto_button::orto_button() :
-      m_spregion(e_create)
+   orto_button::orto_button()
    {
 
 
@@ -84,7 +83,7 @@ namespace experience
 
          get_window_text(str);
 
-         pgraphics->set_font(this, ::user::e_element_none);
+         pgraphics->set_font(this, ::e_element_none);
 
          pgraphics->set_text_color(crText);
 
@@ -94,27 +93,27 @@ namespace experience
       else
       {
 
-         ::draw2d::brush_pointer brush(e_create);
+         auto pbrush = __create < ::draw2d::brush >();
 
-         brush->create_solid(crText);
+         pbrush->create_solid(crText);
 
-         pgraphics->set(brush);
+         pgraphics->set(pbrush);
 
-         ::draw2d::pen_pointer pen(e_create);
+         auto ppen = __create < ::draw2d::pen > ();
 
-         pen->m_dWidth = 1.0;
+         ppen->m_dWidth = 1.0;
 
-         pen->m_color = crText;
+         ppen->m_color = crText;
 
-         pen->set_modified();
+         ppen->set_modified();
 
-         pgraphics->set(pen);
+         pgraphics->set(ppen);
 
-         ::rectangle_i32 rectIcon(rectangleClient);
+         ::rectangle_i32 rectangleIcon(rectangleClient);
 
-         rectIcon.deflate(rectIcon.width() / 6, rectIcon.height() / 6);
+         rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
 
-         pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+         pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
       }
 
@@ -124,21 +123,21 @@ namespace experience
    void orto_button::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void orto_button::on_message_left_button_down(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void orto_button::on_message_left_button_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //set_need_redraw();
 
@@ -229,6 +228,8 @@ namespace experience
 
       ::user::interaction::get_client_rect(rectangleClient);
 
+      __defer_construct(m_spregion);
+
       m_spregion->create_ellipse(rectangleClient);
 
    }
@@ -246,13 +247,13 @@ namespace experience
 
 
 
-   void orto_button::on_hit_test(::user::item & item)
+   void orto_button::on_hit_test(::item & item)
    {
 
       if (m_spregion.is_null())
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 
@@ -261,13 +262,13 @@ namespace experience
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = ::user::e_element_none;
+         item = ::e_element_none;
 
          return;
 
       }
 
-      item = ::user::e_element_client;
+      item = ::e_element_client;
 
    }
 

@@ -171,7 +171,7 @@ namespace mathematics
 
          //   //int c = prime100k_count();
 
-         //   ::datetime::time time = ::datetime::time::get_current_time();
+         //   ::datetime::time time = ::datetime::time::now();
 
          //   int l = get_nanos() % c;
 
@@ -247,7 +247,7 @@ namespace mathematics
 //      void generate_random_bytes(void* p, memsize s)
 //      {
 //
-//         Windows::Storage::Streams::IBuffer^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(s);
+//         ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(s);
 //
 //         memory mem;
 //
@@ -297,7 +297,7 @@ namespace mathematics
 
       }
 
-      m_posdata = __create_new < math_os_data>();
+      m_posdata = m_psystem->__create_new < math_os_data>();
 
       if (!estatus)
       {
@@ -323,16 +323,16 @@ namespace mathematics
 
    u64 mathematics::gen_rand()
    {
-#if defined(_UWP)
-      u64 uiLo = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      return uiLo | (uiHi << 32);
-#else
+//#if defined(_UWP)
+//      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      return uiLo | (uiHi << 32);
+//#else
       u64 u = 0;
       gen_rand(&u, sizeof(u));
       return u;
-#endif
-
+//#endif
+//
    }
 
    void mathematics::random_bytes(void * buf, memsize dwLen)
@@ -619,7 +619,7 @@ namespace apex
       i32 CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::get_millis().m_i / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::get_integral_millisecond().m_i / 100) % 5000) % 1000;
 
       }
 

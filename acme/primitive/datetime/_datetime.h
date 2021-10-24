@@ -11,21 +11,20 @@ CLASS_DECL_ACME dump_context & operator <<(dump_context & dumpcontext, ::datetim
 #endif
 
 
-//#include "acme/primitive/datetime/secs.h"
+//#include "acme/primitive/datetime/second.h"
 //
 //
-//#include "acme/primitive/datetime/millis.h"
+//#include "acme/primitive/datetime/::duration.h"
 //
 //
-//#include "acme/primitive/datetime/micros.h"
+//#include "acme/primitive/datetime/microsecond.h"
 //
 //
-//#include "acme/primitive/datetime/nanos.h"
+//#include "acme/primitive/datetime/nanosecond.h"
 //
 //
 //
 //#include "acme/primitive/datetime/duration.h"
-
 
 
 class filetime;
@@ -39,15 +38,19 @@ class filetime;
 #include "acme/primitive/datetime/filetime.h"
 
 
+CLASS_DECL_ACME void preempt(const ::duration & duration);
 
 
-CLASS_DECL_ACME void sleep(const ::duration & duration);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_SECOND & second);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MILLISECOND & millisecond);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_MICROSECOND & microsecond);
+CLASS_DECL_ACME void preempt(const ::INTEGRAL_NANOSECOND & nanosecond);
 
 
-CLASS_DECL_ACME void sleep(const ::secs & secs);
-CLASS_DECL_ACME void sleep(const ::millis & millis);
-CLASS_DECL_ACME void sleep(const ::micros & micros);
-CLASS_DECL_ACME void sleep(const ::nanos & nanos);
+//inline void preempt(const class ::wait & wait) { preempt(integral_millisecond(wait.m_)); }
+
+
+CLASS_DECL_ACME void precision_wait(const ::duration & duration);
 
 
 #include "department.h"

@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "core/user/rich_text/_rich_text.h"
 
 
@@ -35,11 +38,34 @@ namespace user
 
       }
 
-      auto pformat = __new(::user::rich_text::format);
+      estatus = __defer_construct_new(m_pformata);
 
-      estatus = pformat->initialize_user_rich_text_format(&m_formata);
+      if (!estatus)
+      {
 
-      m_formata.add(pformat);
+         return estatus;
+
+      }
+
+      auto pformat = __create_new < ::user::rich_text::format > ();
+
+      if (!pformat)
+      {
+
+         return pformat;
+
+      }
+
+      estatus = pformat->initialize_user_rich_text_format(m_pformata);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pformata->add(pformat);
 
       return estatus;
 
@@ -81,31 +107,31 @@ namespace user
       }
       int iControl = 0;
       auto estatus = __compose(m_pbuttonBold);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonItalic);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonUnderline);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pcomboFamily);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pcomboSize);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonForeground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonBackground);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonSubscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonSuperscript);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonLineHeight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignLeft);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignCenter);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
       estatus = __compose(m_pbuttonAlignRight);
-      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
+      iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __string(iControl) + ")"); return; }
 
       m_pbuttonBold->create_control(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
@@ -212,48 +238,50 @@ namespace user
    void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::draw2d::brush_pointer brBk(e_create);
+      auto pbrushBk = __create < ::draw2d::brush > ();
 
       ::rectangle_i32 rectangleClient;
 
       get_client_rect(rectangleClient);
 
-      brBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
+      pbrushBk->CreateLinearGradientBrush(rectangleClient.top_left(), rectangleClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rectangle(rectangleClient, brBk);
+      pgraphics->fill_rectangle(rectangleClient, pbrushBk);
 
    }
 
 
    void format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
-      throw "create line layout";
-      //m_pbuttonBold->display_child(5, 5, 20, 20);
-      //m_pbuttonItalic->display_child(25, 5, 20, 20);
-      //m_pbuttonUnderline->display_child(45, 5, 20, 20);
-      //m_pcomboFamily->display_child(70, 5, 120, 20);
-      //m_pcomboSize->display_child(195, 5, 40, 20);
-
-      //int x = 245;
+      
       //throw "create line layout";
-      //m_pbuttonForeground->display_child(x, 5, 20, 20);
-      //x += 20;
-      //m_pbuttonBackground->display_child(x, 5, 20, 20);
-      //x += 20;
-      //m_pbuttonSubscript->display_child(x, 5, 20, 20);
-      //x += 20;
-      //m_pbuttonSuperscript->display_child(x, 5, 20, 20);
-      //x += 20;
 
-      //x += 10;
+      m_pbuttonBold->display_child(5, 5, 20, 20);
+      m_pbuttonItalic->display_child(25, 5, 20, 20);
+      m_pbuttonUnderline->display_child(45, 5, 20, 20);
+      m_pcomboFamily->display_child(70, 5, 120, 20);
+      m_pcomboSize->display_child(195, 5, 40, 20);
 
-      //m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
-      //x += 20;
-      //m_pbuttonAlignCenter->display_child(x, 5, 20, 20);
-      //x += 20;
-      //m_pbuttonAlignRight->display_child(x, 5, 20, 20);
-      //x += 20;
+      int x = 245;
+      //throw "create line layout";
+      m_pbuttonForeground->display_child(x, 5, 20, 20);
+      x += 20;
+      m_pbuttonBackground->display_child(x, 5, 20, 20);
+      x += 20;
+      m_pbuttonSubscript->display_child(x, 5, 20, 20);
+      x += 20;
+      m_pbuttonSuperscript->display_child(x, 5, 20, 20);
+      x += 20;
+
+      x += 10;
+
+      m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
+      x += 20;
+      m_pbuttonAlignCenter->display_child(x, 5, 20, 20);
+      x += 20;
+      m_pbuttonAlignRight->display_child(x, 5, 20, 20);
+      x += 20;
 
       //m_pbuttonItalic->
       //m_pbuttonUnderline->
@@ -278,16 +306,16 @@ namespace user
 
 
 
-   void format_tool::on_control_event(::user::control_event * pevent)
+   void format_tool::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_actioncontext.is_user_source())
+      if (psubject->m_actioncontext.is_user_source())
       {
 
-         if (pevent->m_eevent == ::user::e_event_click)
+         if (psubject->m_id == ::e_subject_click)
          {
 
-            if (pevent->m_puserinteraction->m_id == "font_bold")
+            if (psubject->user_interaction()->m_id == "font_bold")
             {
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
@@ -296,10 +324,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_italic")
+            else if (psubject->user_interaction()->m_id == "font_italic")
             {
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
@@ -308,10 +336,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_underline")
+            else if (psubject->user_interaction()->m_id == "font_underline")
             {
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
@@ -320,10 +348,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_subscript")
+            else if (psubject->user_interaction()->m_id == "font_subscript")
             {
 
                m_pbuttonSubscript->_001ToggleCheck(::e_source_user);
@@ -339,10 +367,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_superscript")
+            else if (psubject->user_interaction()->m_id == "font_superscript")
             {
 
                m_pbuttonSuperscript->_001ToggleCheck(::e_source_user);
@@ -358,11 +386,11 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
-            else if (pevent->m_puserinteraction->m_id == "e_align_left")
+            else if (psubject->user_interaction()->m_id == "e_align_left")
             {
 
                m_pbuttonAlignLeft->_001SetCheck(::check_checked, ::e_source_user);
@@ -385,10 +413,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "e_align_center")
+            else if (psubject->user_interaction()->m_id == "e_align_center")
             {
 
                m_pbuttonAlignCenter->_001SetCheck(::check_checked, ::e_source_user);
@@ -411,10 +439,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "e_align_right")
+            else if (psubject->user_interaction()->m_id == "e_align_right")
             {
 
                m_pbuttonAlignRight->_001SetCheck(::check_checked, ::e_source_user);
@@ -437,10 +465,10 @@ namespace user
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
-            else if (pevent->m_puserinteraction->m_id == "font_foreground")
+            else if (psubject->user_interaction()->m_id == "font_foreground")
             {
 
                fork([&]()
@@ -451,58 +479,58 @@ namespace user
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_after_change_text)
+         else if (psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_size")
+            if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_enter_key)
+         else if (psubject->m_id == ::e_subject_enter_key)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_size")
+            if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
          }
-         else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+         else if (psubject->m_id == ::e_subject_after_change_cur_sel)
          {
 
-            if (pevent->m_puserinteraction->m_id == "combo_family")
+            if (psubject->user_interaction()->m_id == "combo_family")
             {
 
                m_eattribute |= ::user::rich_text::attribute_family;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
 
             }
-            else if (pevent->m_puserinteraction->m_id == "combo_size")
+            else if (psubject->user_interaction()->m_id == "combo_size")
             {
 
                m_eattribute |= ::user::rich_text::attribute_size;
 
                update_data(true);
 
-               pevent->Ret();
+               psubject->Ret();
 
             }
 
@@ -510,14 +538,14 @@ namespace user
 
       }
 
-      if (pevent->m_bRet)
+      if (psubject->m_bRet)
       {
 
          return;
 
       }
 
-      return ::user::tool_window::on_control_event(pevent);
+      return ::user::tool_window::handle(psubject, pcontext);
 
    }
 
@@ -540,9 +568,9 @@ namespace user
 
          iRound = (int) dFontSize;
 
-         m_formata[0]->m_dFontSize = (double)iRound;
+         m_pformata->first()->m_dFontSize = (double)iRound;
 
-         strEdit = __str(iRound);
+         strEdit = __string(iRound);
 
       }
       else if (dRound >= 0.75)
@@ -552,9 +580,9 @@ namespace user
 
          iRound++;
 
-         m_formata[0]->m_dFontSize = (double)iRound;
+         m_pformata->first()->m_dFontSize = (double)iRound;
 
-         strEdit = __str(iRound);
+         strEdit = __string(iRound);
 
       }
       else
@@ -562,9 +590,9 @@ namespace user
 
          iDouble = (int) ((dFontSize + 0.25) * 2.0);
 
-         m_formata[0]->m_dFontSize = ((double)iRound) / 2.0;
+         m_pformata->first()->m_dFontSize = ((double)iRound) / 2.0;
 
-         strEdit = __str(iDouble / 2) + ".5";
+         strEdit = __string(iDouble / 2) + ".5";
 
       }
 
@@ -576,14 +604,14 @@ namespace user
    bool format_tool::update_data(bool bSaveAndValidate)
    {
 
-      if (m_formata.is_empty() || !m_formata[0])
+      if (m_pformata->is_empty() || !m_pformata->first())
       {
 
          return false;
 
       }
 
-      synchronous_lock synchronouslock(m_formata[0]->mutex());
+      synchronous_lock synchronouslock(m_pformata->first()->mutex());
 
       if (bSaveAndValidate)
       {
@@ -601,7 +629,7 @@ namespace user
 
             auto pfontenumerationitem = pfontenumerationitema->element_at(itemCurrent);
 
-            m_formata[0]->m_strFontFamily = pfontenumerationitem->m_strName;
+            m_pformata->first()->m_strFontFamily = pfontenumerationitem->m_strName;
 
          }
 
@@ -611,57 +639,57 @@ namespace user
 
          set_font_size(strtod(str, nullptr));
 
-         m_formata[0]->m_bUnderline = m_pbuttonUnderline->echeck() == ::check_checked;
-         m_formata[0]->m_bItalic = m_pbuttonItalic->echeck() == ::check_checked;
-         m_formata[0]->m_bBold = m_pbuttonBold->echeck() == ::check_checked;
+         m_pformata->first()->m_bUnderline = m_pbuttonUnderline->echeck() == ::check_checked;
+         m_pformata->first()->m_bItalic = m_pbuttonItalic->echeck() == ::check_checked;
+         m_pformata->first()->m_bBold = m_pbuttonBold->echeck() == ::check_checked;
          if (m_pbuttonSuperscript->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_escript = ::user::rich_text::script_superscript;
+            m_pformata->first()->m_escript = ::user::rich_text::script_superscript;
 
          }
          else if (m_pbuttonSubscript->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_escript = ::user::rich_text::script_subscript;
+            m_pformata->first()->m_escript = ::user::rich_text::script_subscript;
 
          }
          else
          {
 
-            m_formata[0]->m_escript = ::user::rich_text::script_normal;
+            m_pformata->first()->m_escript = ::user::rich_text::script_normal;
 
          }
          if (m_pbuttonAlignRight->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_ealign = e_align_right;
+            m_pformata->first()->m_ealign = e_align_right;
 
          }
          else if (m_pbuttonAlignCenter->echeck() == ::check_checked)
          {
 
-            m_formata[0]->m_ealign = e_align_center;
+            m_pformata->first()->m_ealign = e_align_center;
 
          }
          else
          {
 
-            m_formata[0]->m_ealign = e_align_left;
+            m_pformata->first()->m_ealign = e_align_left;
 
          }
 
-         m_formata[0]->m_bUpdated = false;
+         m_pformata->first()->m_bUpdated = false;
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_id = m_id;
+         //subject.m_id = m_id;
 
-         route_control_event(&ev);
+         route(&subject);
 
       }
       else
@@ -671,19 +699,19 @@ namespace user
 
          __pointer(::user::font_list) pfontlist = pcombolistbox;
 
-         index iIndex = pfontlist->m_pfontlist->find_name(m_formata[0]->m_strFontFamily);
+         index iIndex = pfontlist->m_pfontlist->find_name(m_pformata->first()->m_strFontFamily);
 
          m_pcomboFamily->set_current_item(iIndex, ::e_source_sync);
 
-         set_font_size(m_formata[0]->m_dFontSize);
+         set_font_size(m_pformata->first()->m_dFontSize);
 
-         m_pbuttonBold->_001SetCheck(m_formata[0]->m_bBold ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         m_pbuttonItalic->_001SetCheck(m_formata[0]->m_bItalic ? ::check_checked : ::check_unchecked, ::e_source_sync);
-         m_pbuttonUnderline->_001SetCheck(m_formata[0]->m_bUnderline ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         m_pbuttonBold->_001SetCheck(m_pformata->first()->m_bBold ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         m_pbuttonItalic->_001SetCheck(m_pformata->first()->m_bItalic ? ::check_checked : ::check_unchecked, ::e_source_sync);
+         m_pbuttonUnderline->_001SetCheck(m_pformata->first()->m_bUnderline ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
-         bool bLeft = m_formata[0]->m_ealign == e_align_left;
-         bool bCenter = m_formata[0]->m_ealign == e_align_center;
-         bool bRight = m_formata[0]->m_ealign == e_align_right;
+         bool bLeft = m_pformata->first()->m_ealign == e_align_left;
+         bool bCenter = m_pformata->first()->m_ealign == e_align_center;
+         bool bRight = m_pformata->first()->m_ealign == e_align_right;
 
          m_pbuttonAlignLeft->_001SetCheck(bLeft, ::e_source_sync);
          m_pbuttonAlignCenter->_001SetCheck(bCenter, ::e_source_sync);
@@ -699,28 +727,28 @@ namespace user
    void format_tool::show_for_ui(::user::interaction* pinteraction)
    {
 
-      ::rectangle_i32 rectOther;
+      ::rectangle_i32 rectangleOther;
       
-      pinteraction->get_window_rect(rectOther);
+      pinteraction->get_window_rect(rectangleOther);
 
       set_owner(pinteraction);
 
-      ::rectangle_i32 rectangle(rectOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
+      ::rectangle_i32 rectangle(rectangleOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      get_window_rect(rectWindow);
+      get_window_rect(rectangleWindow);
 
-      ::rectangle_i32 rectRequest;
+      ::rectangle_i32 rectangleRequest;
 
-      rectRequest.left = rectangle.left - 32;
-      rectRequest.top = rectangle.top - 32;
-      rectRequest.right = rectRequest.left + 400;
-      rectRequest.bottom = rectRequest.top + 32;
+      rectangleRequest.left = rectangle.left - 32;
+      rectangleRequest.top = rectangle.top - 32;
+      rectangleRequest.right = rectangleRequest.left + 400;
+      rectangleRequest.bottom = rectangleRequest.top + 32;
 
       enable_window();
 
-      place(rectRequest);
+      place(rectangleRequest);
 
       order(e_zorder_top_most);
 

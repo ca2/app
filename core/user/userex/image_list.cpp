@@ -1,7 +1,10 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
-#include "image_list.h"
+//#include "image_list.h"
 
 
 namespace userex
@@ -140,7 +143,7 @@ namespace userex
 
             auto pcontextimage = pcontext->context_image();
 
-            pimage1 = pcontextimage->load_image(path, false);
+            pimage1 = pcontextimage->load_image(path, { .cache = false });
 
             if (pimage1)
             {
@@ -150,9 +153,15 @@ namespace userex
 
                   ::image_pointer pimageSmall;
 
-                  pimageSmall = create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = m_pcontext->context_image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  pimageSmall->g()->stretch(pimageSmall->rectangle(), pimage1->g(), pimage1->rectangle());
+                  image_source imagesource(pimage1);
+
+                  image_drawing_options imagedrawingoptions(pimageSmall->rectangle());
+
+                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+                  pimageSmall->g()->draw(imagedrawing);
 
                   pimage1 = pimageSmall;
 
@@ -229,7 +238,7 @@ namespace userex
    //void image_list_view::on_message_left_button_down(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   const ::point_i32 & point = pmouse->m_point;
 
@@ -256,7 +265,7 @@ namespace userex
    //void image_list_view::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   auto pmouse = pmessage->m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
    //   const ::point_i32 & point = pmouse->m_point;
 
@@ -310,9 +319,13 @@ namespace userex
       pcreate->previous();
 
       if (pcreate->m_bRet)
+      {
+
          return;
 
-      string strId = get_document()->m_pimpactsystem->m_strMatter;
+      }
+
+      ::id id = get_document()->m_pimpactsystem->m_id;
 
       string strText;
 
@@ -329,17 +342,17 @@ namespace userex
    }
 
 
-   void image_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void image_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::image_list_view::on_subject(psubject, pcontext);
+      ::user::image_list_view::handle(psubject, pcontext);
 
       if (psubject->id() == id_after_change_text)
       {
 
          auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
 
-         if (peditview != nullptr && psubject->m_puserprimitive == peditview)
+         if (peditview != nullptr && psubject->m_puserelement == peditview)
          {
 
             string strText;

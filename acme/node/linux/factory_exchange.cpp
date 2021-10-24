@@ -1,12 +1,12 @@
 #include "framework.h"
-//#include "acme/os/console.h"
+//#include "acme/node/operating_system/console.h"
 //#include "shell_linux.h"
 //#include "console.h"
 //#include "acme/node/posix/pipe.h"
 //#include "acme/node/linux/process.h"
 //#include "_linux.h"
 //#include "acme/node/_node2.h"
-//#include "acme/os/_os2.h"
+//#include "acme/node/operating_system/_os2.h"
 //#include "acme/node/posix/file_memory_map.h"
 //#include "copydesk.h"
 
@@ -21,7 +21,7 @@
 //   //create_factory < ::linux::stdio_file         , ::file::text_file        >();
 //   //create_factory < ::linux::file               , ::file::file             >();
 //   //create_factory < ::linux::os_context         , ::os_context             >();
-//   //create_factory < ::ansios::process           , ::process::process       >();
+//   //create_factory < ::ansios::process           , ::operating_system::process       >();
 //   //create_factory < ::linux::console            , ::console::console       >();
 //   //create_factory < ::xlib::buffer              , ::graphics::graphics     >();
 //   //create_factory < ::linux::interaction_impl   , ::user::interaction_impl >();

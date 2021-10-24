@@ -5,7 +5,7 @@
 
 
 struct user_notify_icon_bridge :
-   virtual public ::matter
+   virtual public ::element
 {
 public:
 

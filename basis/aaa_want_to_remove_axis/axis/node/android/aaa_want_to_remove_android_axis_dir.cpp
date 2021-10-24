@@ -373,10 +373,14 @@ namespace android
       //   }
 
 
-      bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
+      bool          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(const ::file::path & lpcszPath, ::aura::application * papp)
       {
 
-         if (::android::dir::is(lpcszPath, papp))
+         if (::androidpacmedir->is(lpcszPath, papp))
             return true;
 
          if (::file::dir::axis::system::is(lpcszPath, papp))
@@ -386,10 +390,14 @@ namespace android
 
       }
 
-      //   bool dir::is(const ::string & strPath, ::aura::application * papp)
+      //   bool          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(const ::string & strPath, ::aura::application * papp)
       //   {
       //
-      //      if(::linux::dir::is(strPath,papp))
+      //      if(::linuxpacmedir->is(strPath,papp))
       //         return true;
       //
       //      if(::file::dir::axis::system::is(strPath,papp))
@@ -441,7 +449,7 @@ namespace android
 
          strsize iFind = ::str::find_ci(".zip:", str);
 
-         if (thread_set(id_thread_zip_is_dir) && iFind >= 0 && iFind < iLast)
+         if (thread_set(e_task_flag_zip_is_dir) && iFind >= 0 && iFind < iLast)
          {
 
             bool bHasSubFolder = m_pziputil->has_sub_folder(papp, str);
@@ -450,7 +458,11 @@ namespace android
 
          }
 
-         bool bIsDir = ::dir::is(str.Left(iLast));
+         bool bIsDir =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(str.Left(iLast));
 
          return bIsDir;
 

@@ -409,7 +409,7 @@ namespace database
 
       string strSql;
 
-      strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
+      strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item.c_str(), table.c_str(), where.c_str());
 
       return database::query_item(payload, strSql);
 

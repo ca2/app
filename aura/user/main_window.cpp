@@ -9,9 +9,13 @@ namespace user
    main_window::main_window()
    {
 
-      m_bExtendOnParentIfClientOnly = true;
+      m_bEnableDragMove = true;
 
-      enable_drag_move();
+      m_bClickDefaultMouseHandling = true;
+
+      m_bHoverDefaultMouseHandling = true;
+
+      m_bExtendOnParentIfClientOnly = true;
 
    }
 
@@ -27,9 +31,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      install_click_default_mouse_handling(pchannel);
+      //install_click_default_mouse_handling(pchannel);
       
-      install_hover_default_mouse_handling(pchannel);
+      //install_hover_default_mouse_handling(pchannel);
 
    }
 
@@ -39,7 +43,7 @@ namespace user
 
       defer_set_icon();
 
-      add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
+      add_user_item({ ::e_element_close_button, ::e_subject_close_app });
 
    }
 
@@ -47,11 +51,11 @@ namespace user
    ::e_status main_window::create_main_window()
    {
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
+      bool bInitialFramePosition = _001InitialFramePosition(rectangleWindow, m_rectangleInitialRateOrSize);
 
-      place(rectWindow);
+      place(rectangleWindow);
 
       __pointer(::aura::application) papplication = get_application();
 

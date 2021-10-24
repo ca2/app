@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "_data.h"
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+
 #include "core/user/user/_tree.h"
 
 
@@ -22,6 +25,8 @@ namespace userfs
 
    }
 
+
+#ifdef _DEBUG
 
    i64 tree::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
@@ -77,6 +82,9 @@ namespace userfs
    }
 
 
+#endif
+
+
    void tree::assert_valid() const
    {
 
@@ -103,13 +111,13 @@ namespace userfs
 
    void tree::on_message_left_button_double_click(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void tree::on_message_context_menu(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
       //   i32 iItem;
       //   HRESULT hr;
@@ -206,14 +214,18 @@ namespace userfs
 
    void tree::StartAnimation(::user::interaction * pinteraction)
    {
+      
       m_iAnimate = 1;
-      pinteraction->SetTimer(1234567, 50, nullptr);
+      
+      pinteraction->SetTimer(1234567, 50_ms, nullptr);
+
    }
+
 
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -229,7 +241,7 @@ namespace userfs
    void tree::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -380,7 +392,7 @@ namespace userfs
 
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
    }
 
    bool tree::_001IsTranslucent()
@@ -597,7 +609,7 @@ namespace userfs
 
 
 
-   void tree::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree::handle(::subject * psubject, ::context * pcontext)
    {
 
       ////__update(::update)

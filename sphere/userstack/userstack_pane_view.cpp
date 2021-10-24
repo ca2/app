@@ -83,10 +83,10 @@ namespace userstack
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
       
    }
 
@@ -201,7 +201,7 @@ namespace userstack
 
             }
 
-            str = __str((iptr) pcreate->m_papplicationbias->m_puserinteractionParent);
+            str = __string((iptr) pcreate->m_papplicationbias->m_puserinteractionParent);
 
             pcreate->m_pcommandline->m_eventReady.ResetEvent();
 
@@ -238,7 +238,7 @@ namespace userstack
 
          }
 
-         on_layout(::draw2d::graphics_pointer & pgraphics);
+         on_layout(pgraphics);
 
       }
 
@@ -250,7 +250,7 @@ namespace userstack
 
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       set_current_tab_by_id(m_pimpactdataOld->m_id);
    }
 
@@ -260,7 +260,7 @@ namespace userstack
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_view::on_message_create);
       MESSAGE_LINK(WM_USER + 1122, this, this, &pane_view::_001OnMenuMessage);
       MESSAGE_LINK(e_message_right_button_up, pchannel, this, &pane_view::on_message_right_button_up);
-      connect_command("properties", &pane_view::_001OnProperties);
+      add_command_handler("properties", &pane_view::_001OnProperties);
    }
 
    void pane_view::rotate()
@@ -484,8 +484,8 @@ namespace userstack
 
    void pane_view::on_message_right_button_up(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
-//      auto pmouse = pmessage->m_pmouse;
+      __UNREFERENCED_PARAMETER(pmessage);
+//      auto pmouse = pmessage->m_union.m_pmouse;
       /*if(get_view_id() == ::bergedge::impact_winactionarea)
       {
          ::user::menu menu(this);
@@ -499,7 +499,7 @@ namespace userstack
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       //if(get_view_id() == ::bergedge::impact_winactionarea)
       //{
@@ -520,7 +520,7 @@ namespace userstack
    */
    void pane_view::OnFileManagerOpenContextMenuFile(::filemanager::data * pdata, const ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       m_itema = itema;
       //set_current_tab_by_id(::bergedge::impact_properties);
    }
@@ -529,7 +529,7 @@ namespace userstack
 
    void pane_view::_001OnProperties(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      if(get_view_id() == ::bergedge::impact_winactionarea)
 //      {
 //
@@ -581,10 +581,10 @@ namespace userstack
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
    }
 

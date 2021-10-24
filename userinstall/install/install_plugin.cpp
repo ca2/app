@@ -33,7 +33,7 @@
 
 void simple_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
-   //__throw(::exception::exception("integer_exception" + __str($1)));
+   //__throw(::exception("integer_exception" + __string($1)));
 }
 
 #endif // defined WINDOWS
@@ -56,8 +56,16 @@ namespace install
 
 #endif
 
-      if(file_exists(pacmedir->system() / "config\\plugin\\version.txt"))
-         strVersion = file_as_string(pacmedir->system() / "config\\plugin\\version.txt");
+      if(m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\plugin\\version.txt"))
+         strVersion = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\plugin\\version.txt");
 
       return strVersion;
 
@@ -95,11 +103,11 @@ namespace install
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo")); // aura::ipc::ipc
+      __throw(::exception("todo")); // aura::ipc::ipc
 
 #else
 
-      m_millisTimeout             = (5000) * 11;
+      m_durationTimeout             = (5000) * 11;
 
 #endif
 
@@ -108,7 +116,7 @@ namespace install
 
       m_bRestartCa2           = false;
       m_bPendingStream        = false;
-      m_millisLastRestart         = 0;
+      m_durationLastRestart         = 0;
 
       m_bPluginDownloaded     = false;
       m_bPluginTypeTested     = false;
@@ -158,10 +166,10 @@ namespace install
       if(!is_installing())
       {
 
-         if((m_millisLastRestart.elapsed()) > (5000) * 5)
+         if((m_durationLastRestart.elapsed()) > (5000) * 5)
          {
 
-            m_millisLastRestart= ::millis::now();
+            m_durationLastRestart= ::duration::now();
 
             start_ca2();
 
@@ -178,10 +186,10 @@ namespace install
       if(m_phost->m_bInstalling)
       {
 
-         if((m_millisLastInstallingCheck.elapsed()) > 2000)
+         if((m_durationLastInstallingCheck.elapsed()) > 2000)
          {
 
-            m_millisLastInstallingCheck= ::millis::now();
+            m_durationLastInstallingCheck= ::duration::now();
 
             try
             {
@@ -197,10 +205,10 @@ namespace install
          }
 
       }
-      else if((m_millisLastInstallingCheck.elapsed()) > ((5000) * 2))
+      else if((m_durationLastInstallingCheck.elapsed()) > ((5000) * 2))
       {
 
-         m_millisLastInstallingCheck= ::millis::now();
+         m_durationLastInstallingCheck= ::duration::now();
 
          try
          {
@@ -242,7 +250,7 @@ namespace install
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo"));
+      __throw(::exception("todo"));
 
 #else
 
@@ -271,7 +279,7 @@ namespace install
          else if(is_rx_tx_ok())
          {
 
-            m_millisLastOk= ::millis::now();
+            m_durationLastOk= ::duration::now();
 
             m_bRestartCa2        = false;
 
@@ -280,7 +288,7 @@ namespace install
             bJob                 = true;
 
          }
-         else if(m_millisLastOk.elapsed() > ((5000) * 2))
+         else if(m_durationLastOk.elapsed() > ((5000) * 2))
          {
 
 
@@ -290,7 +298,7 @@ namespace install
                if (psystem->install().is_installing_ca2())
                {
 
-                  m_millisLastOk= ::millis::now();
+                  m_durationLastOk= ::duration::now();
 
                   return false; // "no job done"
 
@@ -334,7 +342,7 @@ namespace install
 
             bJob                 = true;
 
-            m_millisLastOk          = ::millis::now();
+            m_durationLastOk          = ::duration::now();
 
          }
 
@@ -380,7 +388,7 @@ namespace install
       thread(pobject)
    {
 
-//      m_durationRunLock = millis(84 + 77);
+//      m_durationRunLock = ::duration(84 + 77);
 
    }
 
@@ -482,7 +490,7 @@ namespace install
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __string(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
@@ -774,7 +782,7 @@ namespace install
 
          // erase install tag : should be turned into a function dependant of spalib at maximum
 
-         if(!node.load(file_as_string(dir::appdata() / "install.xml")))
+         if(!node.load(m_psystem->m_pacmefile->as_string(dir::appdata() / "install.xml")))
             goto run_install;
 
 
@@ -810,7 +818,7 @@ namespace install
 
          lpnodeType->erase_child(pnode);
 
-         file_put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
+         m_psystem->m_pacmefile->put_contents(dir::appdata() / "install.xml", node.get_xml(nullptr));
 
       }
 
@@ -829,18 +837,18 @@ run_install:
 
 #ifdef _UWP
 
-      __throw(::exception::exception("todo"));
+      __throw(::exception("todo"));
 
 #else
 
-      //::u32 dwTime1= ::millis::now();
+      //::u32 dwTime1= ::duration::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //::u32 dwTime3= ::millis::now();
+         //::u32 dwTime3= ::duration::now();
 
          //TRACE("eval1 %d",dwTime3 - dwTime1);
 
@@ -848,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //::u32 dwTime5= ::millis::now();
+            //::u32 dwTime5= ::duration::now();
 
             //TRACE("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -938,14 +946,14 @@ run_install:
 
             }
 
-            //::u32 dwTime7= ::millis::now();
+            //::u32 dwTime7= ::duration::now();
 
             //TRACE("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //::u32 dwTime9= ::millis::now();
+            //::u32 dwTime9= ::duration::now();
 
             //TRACE("blend %d",dwTime9 - dwTime7);
 
@@ -979,12 +987,12 @@ run_install:
 
       RECTANGLE_I32 rectangle_i32;
 
-      RECTANGLE_I32 rectWindow;
+      RECTANGLE_I32 rectangleWindow;
 
-      get_window_rect(&rectWindow);
+      get_window_rect(&rectangleWindow);
 
-      i32 cx = rectWindow.right - rectWindow.left;
-      i32 cy = rectWindow.bottom - rectWindow.top;
+      i32 cx = rectangleWindow.right - rectangleWindow.left;
+      i32 cy = rectangleWindow.bottom - rectangleWindow.top;
 
       rectangle.left         = 0;
       rectangle.top          = 0;
@@ -995,7 +1003,7 @@ run_install:
 
 
 
-      pgraphics->OffsetViewportOrg(rectWindow.left, rectWindow.top);
+      pgraphics->OffsetViewportOrg(rectangleWindow.left, rectangleWindow.top);
 
       //b.create(cx, cy, pgraphics);
 
@@ -1600,10 +1608,10 @@ restart:
       if((m_bLogin && !m_bLogged) || !m_phost->m_bOk || m_bNativeLaunch || m_bPendingRestartCa2)
       {
 
-         if((m_millisLastRestart.elapsed()) > (840 + 770))
+         if((m_durationLastRestart.elapsed()) > (840 + 770))
          {
 
-            m_millisLastRestart= ::millis::now();
+            m_durationLastRestart= ::duration::now();
 
             start_ca2();
 
@@ -1617,7 +1625,7 @@ restart:
 
 #ifdef _UWP
 
-         __throw(::exception::exception("todo"));
+         __throw(::exception("todo"));
 
 #else
 
@@ -1626,12 +1634,12 @@ restart:
 
          get_window_rect(rectangle);
 
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectangleSent != rectangle)
          {
 
             m_phost->m_pbasecomposer->m_bRectSent = true;
 
-            m_rectSent = rectangle;
+            m_rectangleSent = rectangle;
 
             if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(RECTANGLE_I32)))
             {

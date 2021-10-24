@@ -174,7 +174,7 @@ namespace calculator
          }
          else
          {
-            __throw(::exception::exception("unknown function"));
+            __throw(::exception("unknown function"));
          }
          expect(token::type_open_paren);
          i32 iElem = 1;
@@ -235,7 +235,7 @@ namespace calculator
       str = "error: ";
       str += psz;
 
-      throw_numeric_parser_exception(str);
+      throw_numeric_parsing_exception(str);
 
    }
 

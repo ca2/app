@@ -149,7 +149,7 @@ public:
    ::u32 m_nMRUWidth;   // MRUWidth for Dynamic Toolbars
    bool m_bDocking;    // true if this bar has a DockContext
    ::u32 m_uMRUDockID;  // most recent docked dockbar
-   ::rectangle_i32 m_rectMRUDockPos; // most recent docked position
+   ::rectangle_i32 m_rectangleMRUDockPos; // most recent docked position
    u32 m_dwMRUFloatStyle; // most recent floating orientation
    point_i32 m_pointMRUFloatPos; // most recent floating position
 
@@ -174,39 +174,23 @@ namespace user
    public:
 
 
-      // support for delayed hide/show
-      //enum StateFlags
-      //{
-
-        // delayHide = 1,
-         //delayShow = 2,
-         //tempHide = 4,
-         //statusSet = 8
-
-      //};
-
-
       // info about bar (for status bar and toolbar)
-//      i32 m_rectBorder.left, m_rectBorder.right;
-  //    i32 m_rectBorder.top, m_rectBorder.bottom;
-      ::rectangle_i32          m_rectBorder;
-      i32               m_cxDefaultGap;         // default gap value
-      ::u32 m_nMRUWidth;   // For dynamic resizing.
-      bool  m_bDockTrack;
-      bool  m_bFullScreenBar;
-      // array of elements
-      //i32 m_nCount;
-      //void * m_pData;        // m_nCount elements - type depends on derived class
+//      i32 m_rectangleBorder.left, m_rectangleBorder.right;
+  //    i32 m_rectangleBorder.top, m_rectangleBorder.bottom;
+      ::rectangle_i32                           m_rectangleBorder;
+      i32                                       m_cxDefaultGap;         // default gap value
+      ::u32                                     m_nMRUWidth;   // For dynamic resizing.
+      bool                                      m_bDockTrack;
+      bool                                      m_bFullScreenBar;
 
-      ::u32 m_nStateFlags;
+      ::u32                                     m_nStateFlags;
 
-      // support for docking
-      u32 m_dwStyle;    // creation style (used for on_layout)
-      u32 m_dwDockStyle;// indicates how bar can be docked
-      __pointer(::user::frame_window) m_pDockSite; // current dock site, if dockable
-      BaseDockBar* m_pDockBar;   // current dock bar, if dockable
-      BaseDockContext* m_pDockContext;   // used during dragging
-      u32 m_dwCtrlStyle;
+      u32                                       m_dwStyle;
+      u32                                       m_dwDockStyle;
+      __pointer(::user::frame_window)     m_pframewindowDockSite;
+      BaseDockBar*                              m_pDockBar;
+      BaseDockContext *                         m_pDockContext; // used during dragging
+      u32                                       m_dwCtrlStyle;
 
 
 
@@ -214,8 +198,8 @@ namespace user
       virtual ~control_bar();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       // for styles specific to ::user::control_bar
@@ -268,7 +252,7 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const; // adjusts borders etc
       //bool AllocElements(i32 nElements, i32 cbElement);
       virtual bool SetStatusText(i32 nHit);
-      void ResetTimer(::u32 nEvent, ::u32 nTime);
+      void ResetTimer(::u32 nEvent, const ::duration & duration);
       void EraseNonClient();
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 
@@ -293,13 +277,13 @@ namespace user
       //   DECLARE_MESSAGE_HANDLER(_001OnPaint);
       //   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       friend class ::user::frame_window;
       friend class BaseDockBar;
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 

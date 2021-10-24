@@ -49,6 +49,8 @@ namespace user
    inline __pointer(VIEW) impact::create_view(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
    {
 
+      pimpactdata->m_puserinteraction.release();
+
       return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_id, pviewLast, pimpactdata);
 
    }
@@ -112,6 +114,24 @@ namespace user
 
 
 } // namespace user
+
+
+
+namespace user
+{
+
+
+   template < class TOOLBAR >
+      ::e_status frame_window::load_toolbar(const ::id & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle)
+      {
+
+         return load_toolbar(__type(TOOLBAR), idToolbar, strToolbar, dwCtrlStyle, uStyle);
+
+      }
+
+
+} // namespace user
+
 
 
 

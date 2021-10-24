@@ -12,7 +12,7 @@ namespace colorertake5
        @ingroup common
    */
    class CLASS_DECL_SPHERE exception :
-      public ::exception::exception
+      public ::exception
    {
    public:
 

@@ -49,15 +49,13 @@ namespace str
 
    void CLASS_DECL_ACME copy(string & str, const ansichar * pcsz, i32 iCount);
 
-   inline string _001Concat(const ::string & str1, const ::string & strMid, const ::string & str2);
-
    string CLASS_DECL_ACME replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
    string CLASS_DECL_ACME replace_ci(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
    ::count CLASS_DECL_ACME replace_ci_count(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
    ::count CLASS_DECL_ACME utf8_replace(string & str, const ansichar * pszFind, const ansichar * pszReplace, strsize iStart = 0);
    string CLASS_DECL_ACME utf8_replace(const ansichar * pszFind, const ansichar * pszReplace, const ansichar * psz, strsize iStart = 0);
 
-   string CLASS_DECL_ACME random_replace(::matter * pobject, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
+   string CLASS_DECL_ACME random_replace(::matter * pmatter, const string_array & straReplacement, const string_array & straSearch, const ansichar * psz);
 
    strsize CLASS_DECL_ACME find_first(const string_array & straSearch, index & iFound, const ::string & str, index iStart = 0);
 
@@ -124,47 +122,52 @@ namespace str
    CLASS_DECL_ACME  const ansichar *   utf8_dec( const ansichar* pszBeg, const ansichar* psz);
 
 
-   inline  void           to(ansichar & ch, const ansichar * psz);
-   inline  void           to(widechar & ch, const ansichar * psz);
+} // namespace str
 
-   inline  void           to(i8 & i, const ansichar * psz);
-   inline  void           to(i16 & i, const ansichar * psz);
-   inline  void           to(i32 & i, const ansichar * psz);
-   inline  void           to(i64 & i, const ansichar * psz);
-   inline  void           to(i32 & i, i32 iBase, const ansichar * psz);
-   inline  void           to(i64 & i, i32 iBase, const ansichar * psz);
-   inline  void           to(u8 & i, const ansichar * psz);
-   inline  void           to(u16 & i, const ansichar * psz);
-   inline  void           to(u32 & i, const ansichar * psz);
-   inline  void           to(u64 & i, const ansichar * psz);
-   inline  void           to(u32 & i, i32 iBase, const ansichar * psz);
-   inline  void           to(u64 & i, i32 iBase, const ansichar * psz);
+inline  void           from_string(ansichar & ch, const ansichar * psz);
+inline  void           from_string(widechar & ch, const ansichar * psz);
+
+inline  void           from_string(i8 & i, const ansichar * psz);
+inline  void           from_string(i16 & i, const ansichar * psz);
+inline  void           from_string(i32 & i, const ansichar * psz);
+inline  void           from_string(i64 & i, const ansichar * psz);
+inline  void           from_string(i32 & i, i32 iBase, const ansichar * psz);
+inline  void           from_string(i64 & i, i32 iBase, const ansichar * psz);
+inline  void           from_string(u8 & i, const ansichar * psz);
+inline  void           from_string(u16 & i, const ansichar * psz);
+inline  void           from_string(u32 & i, const ansichar * psz);
+inline  void           from_string(u64 & i, const ansichar * psz);
+inline  void           from_string(u32 & i, i32 iBase, const ansichar * psz);
+inline  void           from_string(u64 & i, i32 iBase, const ansichar * psz);
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   inline  void           to(long & l, const ansichar * psz);
-   inline  void           to(long & l, i32 iBase, const ansichar * psz);
+inline  void           from_string(long & l, const ansichar * psz);
+inline  void           from_string(long & l, i32 iBase, const ansichar * psz);
 #endif
 
-   inline  void           to(float & f, const ansichar * psz);
-   inline  void           to(double & d, const ansichar * psz);
+inline  void           from_string(float & f, const ansichar * psz);
+inline  void           from_string(double & d, const ansichar * psz);
 
 
-   inline  void           to(ansichar * sz, const ansichar * psz);
-   inline  void           to(wd16char * sz, const ansichar * psz);
-   inline  void           to(wd32char * sz, const ansichar * psz);
+inline  void           from_string(ansichar * sz, const ansichar * psz);
+inline  void           from_string(wd16char * sz, const ansichar * psz);
+inline  void           from_string(wd32char * sz, const ansichar * psz);
 
-   template < size_t n >
-   inline  void           to(ansichar sz[n], const ansichar * psz);
-   template < size_t n >
-   inline  void           to(wd16char sz[n], const ansichar * psz);
-   template < size_t n >
-   inline  void           to(wd32char sz[n], const ansichar * psz);
-
-
-   inline  void           to(::id & id, const ansichar * psz);
+template < size_t n >
+inline  void           from_string(ansichar sz[n], const ansichar * psz);
+template < size_t n >
+inline  void           from_string(wd16char sz[n], const ansichar * psz);
+template < size_t n >
+inline  void           from_string(wd32char sz[n], const ansichar * psz);
 
 
-   inline void to(::matter & matter, const ansichar * psz);
+inline  void           from_string(::id & id, const ansichar * psz);
+
+inline void from_string(::element & element, const ansichar * psz);
+
+namespace str
+{
+
 
 
    CLASS_DECL_ACME  bool           trim_any_quotes(string & str);
@@ -185,10 +188,10 @@ namespace str
 
 
 
-   inline CLASS_DECL_ACME i32 to_with_fallback(const ansichar * psz, i32 iDefault) { to(iDefault, psz); return iDefault; }
-   inline CLASS_DECL_ACME i64 to_with_fallback(const ansichar * psz, i64 iDefault) { to(iDefault, psz); return iDefault; }
-   inline CLASS_DECL_ACME i32 to_with_fallback(const ansichar * psz, i32 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
-   inline CLASS_DECL_ACME i64 to_with_fallback(const ansichar * psz, i64 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
+   inline CLASS_DECL_ACME i32 to_with_fallback(const ansichar * psz, i32 iDefault) { from_string(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_ACME i64 to_with_fallback(const ansichar * psz, i64 iDefault) { from_string(iDefault, psz); return iDefault; }
+   inline CLASS_DECL_ACME i32 to_with_fallback(const ansichar * psz, i32 iDefault, i32 iBase) { from_string(iDefault, iBase, psz); return iDefault; }
+   inline CLASS_DECL_ACME i64 to_with_fallback(const ansichar * psz, i64 iDefault, i32 iBase) { from_string(iDefault, iBase, psz); return iDefault; }
 
 
    CLASS_DECL_ACME  string &       zero_pad(string & str, strsize iPad);
@@ -244,6 +247,8 @@ namespace str
    CLASS_DECL_ACME string consume_c_quoted_value(const ansichar * & pszParse, const char * pszEnd = nullptr);
 
    CLASS_DECL_ACME string token(string & str, const ansichar * pszSeparatorText, bool bWithSeparator = false);
+
+   //CLASS_DECL_ACME void token(string & strToken, ::string & strSource, const ansichar * pszSeparatorText, bool bWithSeparator = false);
 
    CLASS_DECL_ACME string line(string& str, bool bWithNewLine = false);
 
@@ -407,15 +412,7 @@ namespace str
 CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-
-
-namespace stra
-{
-
-   CLASS_DECL_ACME string_array from_strdup(ansichar ** ppParam);
-
-} // namespace stra
-
+inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2);
 
 
 CLASS_DECL_ACME string _002Underscore(string str);

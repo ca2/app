@@ -35,20 +35,20 @@ namespace experience
 
 
          ::draw2d::fastblur                     m_blur1;
-         ::draw2d::pen_pointer                  m_penText1;
-         ::draw2d::pen_pointer                  m_penFace1;
-         ::draw2d::pen_pointer                  m_penHilight1;
-         ::draw2d::pen_pointer                  m_penShadow1;
-         ::draw2d::pen_pointer                  m_penDkShadow1;
+         ::draw2d::pen_pointer                  m_ppenText1;
+         ::draw2d::pen_pointer                  m_ppenFace1;
+         ::draw2d::pen_pointer                  m_ppenHilight1;
+         ::draw2d::pen_pointer                  m_ppenShadow1;
+         ::draw2d::pen_pointer                  m_ppenDkShadow1;
          status < ::color::color >              m_colorDkShadow;
          status < ::color::color >              m_colorFrameBorder;
          size_i32                               m_minSize;
 
-         ::draw2d::pen_pointer                  m_penHollow1;
-         ::draw2d::pen_pointer                  m_penHollow2;
-         ::draw2d::pen_pointer                  m_penHollow3;
-         ::draw2d::pen_pointer                  m_penHollow4;
-         ::draw2d::pen_pointer                  m_penHollow5;
+         ::draw2d::pen_pointer                  m_ppenHollow1;
+         ::draw2d::pen_pointer                  m_ppenHollow2;
+         ::draw2d::pen_pointer                  m_ppenHollow3;
+         ::draw2d::pen_pointer                  m_ppenHollow4;
+         ::draw2d::pen_pointer                  m_ppenHollow5;
 
 
 
@@ -79,9 +79,9 @@ namespace experience
 
          //virtual void on_style_change() override;
 
-         //virtual void _001OnBeforeMove(const ::rectangle_i32 & rectWindow) override;
+         //virtual void _001OnBeforeMove(const ::rectangle_i32 & rectangleWindow) override;
 
-         //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectWindow) override;
+         //virtual void _001OnBeforeSize(const ::rectangle_i32 & rectangleWindow) override;
 
          virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -51,7 +51,9 @@ bool machine_event::read(machine_event_data * pdata)
    try
    {
 
-      pfile = FILE_open(m_psystem->m_pacmedir->machine_event_file_path(), "r", _SH_DENYNO);
+      //pfile = fopen(m_psystem->m_pacmedir->machine_event_file_path(), "r", _SH_DENYNO);
+
+      pfile = fopen(m_psystem->m_pacmedir->machine_event_file_path(), "r");
 
       if (pfile == nullptr)
       {
@@ -70,7 +72,7 @@ bool machine_event::read(machine_event_data * pdata)
 
    }
 
-   FILE_close(pfile);
+   fclose(pfile);
 
    return true;
 
@@ -85,9 +87,10 @@ bool machine_event::write(machine_event_data * pdata)
    try
    {
 
-      dir::mk(dir::name(m_psystem->m_pacmedir->machine_event_file_path()));
+      m_psystem->m_pacmedir->create(::file_path_folder(m_psystem->m_pacmedir->machine_event_file_path()));
 
-      pfile = FILE_open(m_psystem->m_pacmedir->machine_event_file_path(), "w", _SH_DENYWR);
+      //pfile = fopen(m_psystem->m_pacmedir->machine_event_file_path(), "w", _SH_DENYWR);
+      pfile = fopen(m_psystem->m_pacmedir->machine_event_file_path(), "w");
 
       if (pfile == nullptr)
       {
@@ -104,7 +107,7 @@ bool machine_event::write(machine_event_data * pdata)
 
    }
 
-   FILE_close(pfile);
+   fclose(pfile);
 
    return true;
 

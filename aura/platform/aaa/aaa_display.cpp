@@ -94,7 +94,7 @@ CLASS_DECL_AURA enum_display windows_show_window_to_edisplay(int iShowWindow, en
 
 
 
-CLASS_DECL_AURA string __str(enum_display edisplay)
+CLASS_DECL_AURA string __string(enum_display edisplay)
 {
 
    if(is_docking_appearance(edisplay))

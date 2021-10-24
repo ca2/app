@@ -61,24 +61,38 @@ namespace str
          }
       }*/
 
+
       inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz)
       {
+
 #ifdef WINDOWS
+
          return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz);
+
 #else
-         __throw(todo, "multibyte");
+
+         throw ::exception(todo, "multibyte");
+
 #endif
 
       }
+
 
       inline bool multibyte_to_utf8(::u32 uCodePageSrc, memory & str, const char * pcsz, strsize nCount)
       {
+
 #ifdef WINDOWS
-return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+
+         return MultiByteToMultiByte(CP_UTF8, str, uCodePageSrc, pcsz, nCount);
+
 #else
-         __throw(todo, "multibyte");
+
+         throw ::exception(todo, "multibyte");
+
 #endif
+
       }
+
 
       //inline bool OemToUtf8(memory & str, const char * pcsz)
 

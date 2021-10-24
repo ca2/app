@@ -193,7 +193,7 @@ namespace windowing
 //
 //      synchronous_lock synchronouslock(mutex());
 //
-//      return m_rectaMonitor.get_count();
+//      return m_rectangleaMonitor.get_count();
 //
 //#else
 //
@@ -293,6 +293,13 @@ namespace windowing
 
          __construct(pmonitor);
 
+         if (!pmonitor)
+         {
+
+            return false;
+
+         }
+
          pmonitor->m_iIndex = iWorkspace;
 
          pmonitor->m_pdisplay = this;
@@ -358,27 +365,27 @@ namespace windowing
 
       ::rectangle_i32 rectangle(*prectangle);
 
-      ::rectangle_i32 rectWorkspace;
+      ::rectangle_i32 rectangleWorkspace;
 
-      if (!get_workspace_rectangle(iWorkspace, rectWorkspace))
+      if (!get_workspace_rectangle(iWorkspace, rectangleWorkspace))
       {
 
          return false;
 
       }
 
-      rectangle -= rectWorkspace.top_left();
+      rectangle -= rectangleWorkspace.top_left();
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
-      if (!get_monitor_rectangle(iMonitor, rectMonitor))
+      if (!get_monitor_rectangle(iMonitor, rectangleMonitor))
       {
 
          return false;
 
       }
 
-      rectangle += rectMonitor.top_left();
+      rectangle += rectangleMonitor.top_left();
 
       *prectangle = rectangle;
 
@@ -413,27 +420,27 @@ namespace windowing
 
       ::rectangle_i32 rectangle(prectangle);
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
-      if (!get_monitor_rectangle(iMonitor, rectMonitor))
+      if (!get_monitor_rectangle(iMonitor, rectangleMonitor))
       {
 
          return false;
 
       }
 
-      rectangle -= rectMonitor.top_left();
+      rectangle -= rectangleMonitor.top_left();
 
-      ::rectangle_i32 rectWorkspace;
+      ::rectangle_i32 rectangleWorkspace;
 
-      if (!get_workspace_rectangle(iWorkspace, rectWorkspace))
+      if (!get_workspace_rectangle(iWorkspace, rectangleWorkspace))
       {
 
          return false;
 
       }
 
-      rectangle += rectWorkspace.top_left();
+      rectangle += rectangleWorkspace.top_left();
 
       *prectangle = rectangle;
 
@@ -459,28 +466,28 @@ namespace windowing
    }
 
 
-   void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectParam)
+   void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
    {
 
       for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
-         ::rectangle_i32 rectIntersect;
+         ::rectangle_i32 rectangleIntersect;
 
-         ::rectangle_i32 rectMonitor;
+         ::rectangle_i32 rectangleMonitor;
 
-         if (get_monitor_rectangle(iMonitor, rectMonitor))
+         if (get_monitor_rectangle(iMonitor, rectangleMonitor))
          {
 
-            if (rectIntersect.top_left_null_intersect(&rectParam, rectMonitor))
+            if (rectangleIntersect.top_left_null_intersect(&rectangleParam, rectangleMonitor))
             {
 
-               if (rectIntersect.area() >= 0)
+               if (rectangleIntersect.area() >= 0)
                {
 
-                  rectaMonitor.add(rectMonitor);
+                  rectaMonitor.add(rectangleMonitor);
 
-                  rectaIntersect.add(rectIntersect);
+                  rectaIntersect.add(rectangleIntersect);
 
                }
 
@@ -500,14 +507,14 @@ namespace windowing
 
    i64 g_i_get_best_zoneing = 0;
 
-   index display::_get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest, bool bPreserveSize)
+   index display::_get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
-      ::rectangle_i32 rectangle(rectRequest);
+      ::rectangle_i32 rectangle(rectangleRequest);
 
-      ::rectangle_i32 rectWorkspace;
+      ::rectangle_i32 rectangleWorkspace;
 
-      index iBestWorkspace = get_best_workspace(&rectWorkspace, rectangle);
+      index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
       edisplay edisplay;
 
@@ -517,7 +524,7 @@ namespace windowing
 
       double dMargin = psystem->m_paurasystem->m_dpi;
 
-      if (ZONEING_COMPARE::is_equal(rectangle.top, rectWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+      if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
 
          edisplay |= e_display_top;
@@ -525,18 +532,18 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_top_to(rectWorkspace.top);
+            rectangle.move_top_to(rectangleWorkspace.top);
 
          }
          else
          {
 
-            rectangle.top = rectWorkspace.top;
+            rectangle.top = rectangleWorkspace.top;
 
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rectangle.bottom, rectWorkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      else if (ZONEING_COMPARE::is_equal(rectangle.bottom, rectangleWorkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
          edisplay |= e_display_bottom;
@@ -544,19 +551,19 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_bottom_to(rectWorkspace.bottom);
+            rectangle.move_bottom_to(rectangleWorkspace.bottom);
 
          }
          else
          {
 
-            rectangle.bottom = rectWorkspace.bottom;
+            rectangle.bottom = rectangleWorkspace.bottom;
 
          }
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectRequest.left, rectWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
+      if (ZONEING_COMPARE::is_equal(rectangleRequest.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
       {
 
          edisplay |= e_display_left;
@@ -564,18 +571,18 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_left_to(rectWorkspace.left);
+            rectangle.move_left_to(rectangleWorkspace.left);
 
          }
          else
          {
 
-            rectangle.left = rectWorkspace.left;
+            rectangle.left = rectangleWorkspace.left;
 
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rectRequest.right, rectWorkspace.right, dMargin, !(edisplayPrevious & e_display_right)))
+      else if (ZONEING_COMPARE::is_equal(rectangleRequest.right, rectangleWorkspace.right, dMargin, !(edisplayPrevious & e_display_right)))
       {
 
          edisplay |= e_display_right;
@@ -583,13 +590,13 @@ namespace windowing
          if (bPreserveSize)
          {
 
-            rectangle.move_right_to(rectWorkspace.right);
+            rectangle.move_right_to(rectangleWorkspace.right);
 
          }
          else
          {
 
-            rectangle.right = rectWorkspace.right;
+            rectangle.right = rectangleWorkspace.right;
 
          }
 
@@ -599,16 +606,16 @@ namespace windowing
          && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectWorkspace.top, rectangle.top, rectangle.bottom, rectWorkspace.bottom))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
          {
 
             edisplay |= e_display_bottom;
 
             edisplay |= e_display_top;
 
-            rectangle.bottom = rectWorkspace.bottom;
+            rectangle.bottom = rectangleWorkspace.bottom;
 
-            rectangle.top = rectWorkspace.top;
+            rectangle.top = rectangleWorkspace.top;
 
          }
 
@@ -618,16 +625,16 @@ namespace windowing
          && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectWorkspace.left, rectangle.left, rectangle.right, rectWorkspace.right))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
          {
 
             edisplay |= e_display_left;
 
             edisplay |= e_display_right;
 
-            rectangle.left = rectWorkspace.left;
+            rectangle.left = rectangleWorkspace.left;
 
-            rectangle.right = rectWorkspace.right;
+            rectangle.right = rectangleWorkspace.right;
 
          }
 
@@ -704,13 +711,13 @@ namespace windowing
       else if (edisplay == e_display_zoomed)
       {
 
-         *prectangle = rectWorkspace;
+         *prectangle = rectangleWorkspace;
 
       }
       else
       {
 
-         *prectangle = rectRequest;
+         *prectangle = rectangleRequest;
 
       }
 
@@ -745,14 +752,14 @@ namespace windowing
       //      strP += "B";
 
       //   ::output_debug_string(
-      //      "w" + ::str::from(rectWorkspace.left) + ","
-      //      + ::str::from(rectWorkspace.top) + ","
-      //      + ::str::from(rectWorkspace.right) + ","
-      //      + ::str::from(rectWorkspace.bottom) + " " +
-      //      "r" + ::str::from(prectangle->left) + ","
-      //      + ::str::from(prectangle->top) + ","
-      //      + ::str::from(prectangle->right) + ","
-      //      + ::str::from(prectangle->bottom) + " " +
+      //      "w" + __string(rectangleWorkspace.left) + ","
+      //      + __string(rectangleWorkspace.top) + ","
+      //      + __string(rectangleWorkspace.right) + ","
+      //      + __string(rectangleWorkspace.bottom) + " " +
+      //      "r" + __string(prectangle->left) + ","
+      //      + __string(prectangle->top) + ","
+      //      + __string(prectangle->right) + ","
+      //      + __string(prectangle->bottom) + " " +
       //      strE + " " + strP + "\n");
 
       //}
@@ -760,10 +767,10 @@ namespace windowing
 
       //g_i_get_best_zoneing++;
 
-      //   rectWorkspace.left,
-      //   rectWorkspace.top,
-      //   rectWorkspace.right,
-      //   rectWorkspace.bottom,
+      //   rectangleWorkspace.left,
+      //   rectangleWorkspace.top,
+      //   rectangleWorkspace.right,
+      //   rectangleWorkspace.bottom,
       //   (edisplay & e_display_left)?'L':' ',
       //   (edisplay & e_display_top) ? 'T':' ',
       //   (edisplay & e_display_right) ? 'R':' ',
@@ -778,16 +785,16 @@ namespace windowing
    }
 
 
-   index display::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
+   index display::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation)
    {
 
       index iMatchingMonitor = -1;
 
       i64 iBestArea = -1;
 
-      ::rectangle_i32 rectMatch;
+      ::rectangle_i32 rectangleMatch;
 
-      ::rectangle_i32 rectangle(rectParam);
+      ::rectangle_i32 rectangle(rectangleParam);
 
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
@@ -801,34 +808,34 @@ namespace windowing
       for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
-         ::rectangle_i32 rectIntersect;
+         ::rectangle_i32 rectangleIntersect;
 
-         ::rectangle_i32 rectMonitor;
+         ::rectangle_i32 rectangleMonitor;
 
-         if (get_monitor_rectangle(iMonitor, rectMonitor))
+         if (get_monitor_rectangle(iMonitor, rectangleMonitor))
          {
 
-            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
+            if (rectangleIntersect.top_left_null_intersect(rectangle, rectangleMonitor))
             {
 
-               if (rectIntersect.area() > iBestArea)
+               if (rectangleIntersect.area() > iBestArea)
                {
 
                   iMatchingMonitor = iMonitor;
 
-                  iBestArea = rectIntersect.area();
+                  iBestArea = rectangleIntersect.area();
 
-                  rectMatch = rectMonitor;
+                  rectangleMatch = rectangleMonitor;
 
                }
 
             }
-            else if (rectMonitor.contains(rectangle))
+            else if (rectangleMonitor.contains(rectangle))
             {
 
                iMatchingMonitor = iMonitor;
 
-               rectMatch = rectMonitor;
+               rectangleMatch = rectangleMonitor;
 
             }
 
@@ -842,7 +849,7 @@ namespace windowing
          if (prectangle != nullptr)
          {
 
-            *prectangle = rectMatch;
+            *prectangle = rectangleMatch;
 
          }
 
@@ -857,16 +864,16 @@ namespace windowing
    }
 
 
-   index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
+   index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation)
    {
 
       index iMatchingWorkspace = -1;
 
       i64 iBestArea = -1;
 
-      ::rectangle_i32 rectMatch;
+      ::rectangle_i32 rectangleMatch;
 
-      ::rectangle_i32 rectangle(rectParam);
+      ::rectangle_i32 rectangle(rectangleParam);
 
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
@@ -880,34 +887,34 @@ namespace windowing
       for (index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
       {
 
-         ::rectangle_i32 rectIntersect;
+         ::rectangle_i32 rectangleIntersect;
 
-         ::rectangle_i32 rectMonitor;
+         ::rectangle_i32 rectangleMonitor;
 
-         if (get_workspace_rectangle(iWorkspace, rectMonitor))
+         if (get_workspace_rectangle(iWorkspace, rectangleMonitor))
          {
 
-            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
+            if (rectangleIntersect.top_left_null_intersect(rectangle, rectangleMonitor))
             {
 
-               if (rectIntersect.area() > iBestArea)
+               if (rectangleIntersect.area() > iBestArea)
                {
 
                   iMatchingWorkspace = iWorkspace;
 
-                  iBestArea = rectIntersect.area();
+                  iBestArea = rectangleIntersect.area();
 
-                  rectMatch = rectMonitor;
+                  rectangleMatch = rectangleMonitor;
 
                }
 
             }
-            else if (rectMonitor.contains(rectangle))
+            else if (rectangleMonitor.contains(rectangle))
             {
 
                iMatchingWorkspace = iWorkspace;
 
-               rectMatch = rectMonitor;
+               rectangleMatch = rectangleMonitor;
 
             }
 
@@ -921,7 +928,7 @@ namespace windowing
          if (prectangle != nullptr)
          {
 
-            *prectangle = rectMatch;
+            *prectangle = rectangleMatch;
 
          }
 
@@ -936,34 +943,34 @@ namespace windowing
    }
 
 
-   index display::get_good_iconify(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam)
+   index display::get_good_iconify(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam)
    {
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
+      index iMatchingMonitor = get_best_monitor(rectangleMonitor, rectangleParam);
 
-      prectangle->left = rectMonitor.left;
+      prectangle->left = rectangleMonitor.left;
 
-      prectangle->top = rectMonitor.top;
+      prectangle->top = rectangleMonitor.top;
 
-      prectangle->right = rectMonitor.left;
+      prectangle->right = rectangleMonitor.left;
 
-      prectangle->bottom = rectMonitor.top;
+      prectangle->bottom = rectangleMonitor.top;
 
       return iMatchingMonitor;
 
    }
 
 
-   index display::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, bool bMove, ::user::interaction * pinteraction)
+   index display::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, bool bMove, ::user::interaction * pinteraction)
    {
 
-      ::rectangle_i32 rectRestore(rectParam);
+      ::rectangle_i32 rectangleRestore(rectangleParam);
 
-      ::rectangle_i32 rectMonitor;
+      ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
+      index iMatchingMonitor = get_best_monitor(rectangleMonitor, rectangleParam);
 
       ::size_i32 sizeMin;
 
@@ -980,7 +987,7 @@ namespace windowing
 
       }
 
-      ::rectangle_i32 rectIntersect;
+      ::rectangle_i32 rectangleIntersect;
 
       if (bMove)
       {
@@ -989,59 +996,59 @@ namespace windowing
 
          rectangle_i32_array rectaIntersect;
 
-         get_monitor(rectaMonitor, rectaIntersect, rectParam);
+         get_monitor(rectaMonitor, rectaIntersect, rectangleParam);
 
-         rectaIntersect.get_box(rectIntersect);
+         rectaIntersect.get_box(rectangleIntersect);
 
       }
       else
       {
 
-         rectIntersect.intersect(rectMonitor, &rectParam);
+         rectangleIntersect.intersect(rectangleMonitor, &rectangleParam);
 
       }
 
-      auto sizeMax = rectMonitor.size() * 0.9;
+      auto sizeMax = rectangleMonitor.size() * 0.9;
 
-      if (rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy
-         || rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy)
+      if (rectangleIntersect.width() < sizeMin.cx || rectangleIntersect.height() < sizeMin.cy
+         || rectangleIntersect.width() > sizeMax.cx || rectangleIntersect.height() > sizeMax.cy)
       {
 
-         if (rectMonitor.width() / 7 + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5) > rectMonitor.width()
-            || rectMonitor.height() / 7 + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5) > rectMonitor.width())
+         if (rectangleMonitor.width() / 7 + maximum(sizeMin.cx, rectangleMonitor.width() * 2 / 5) > rectangleMonitor.width()
+            || rectangleMonitor.height() / 7 + maximum(sizeMin.cy, rectangleMonitor.height() * 2 / 5) > rectangleMonitor.width())
          {
 
-            rectRestore = rectMonitor;
+            rectangleRestore = rectangleMonitor;
 
          }
          else
          {
 
-            rectRestore.left = rectMonitor.left + rectMonitor.width() / 7;
+            rectangleRestore.left = rectangleMonitor.left + rectangleMonitor.width() / 7;
 
-            rectRestore.top = rectMonitor.top + rectMonitor.height() / 7;
+            rectangleRestore.top = rectangleMonitor.top + rectangleMonitor.height() / 7;
 
-            rectRestore.right = rectRestore.left + maximum(sizeMin.cx, rectMonitor.width() * 2 / 5);
+            rectangleRestore.right = rectangleRestore.left + maximum(sizeMin.cx, rectangleMonitor.width() * 2 / 5);
 
-            rectRestore.bottom = rectRestore.top + maximum(sizeMin.cy, rectMonitor.height() * 2 / 5);
+            rectangleRestore.bottom = rectangleRestore.top + maximum(sizeMin.cy, rectangleMonitor.height() * 2 / 5);
 
-            if (rectRestore.right > rectMonitor.right - rectMonitor.width() / 7)
+            if (rectangleRestore.right > rectangleMonitor.right - rectangleMonitor.width() / 7)
             {
 
-               rectRestore.offset(rectMonitor.right - rectMonitor.width() / 7 - rectRestore.right, 0);
+               rectangleRestore.offset(rectangleMonitor.right - rectangleMonitor.width() / 7 - rectangleRestore.right, 0);
 
             }
 
-            if (rectRestore.bottom > rectMonitor.bottom - rectMonitor.height() / 7)
+            if (rectangleRestore.bottom > rectangleMonitor.bottom - rectangleMonitor.height() / 7)
             {
 
-               rectRestore.offset(0, rectMonitor.bottom - rectMonitor.height() / 7 - rectRestore.bottom);
+               rectangleRestore.offset(0, rectangleMonitor.bottom - rectangleMonitor.height() / 7 - rectangleRestore.bottom);
 
             }
 
          }
 
-         *prectangle = rectRestore;
+         *prectangle = rectangleRestore;
 
          return iMatchingMonitor;
 
@@ -1052,7 +1059,7 @@ namespace windowing
          if (!bMove)
          {
 
-            *prectangle = rectIntersect;
+            *prectangle = rectangleIntersect;
 
          }
 
@@ -1063,12 +1070,12 @@ namespace windowing
    }
 
 
-   index display::get_window_restore_1(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   index display::get_window_restore_1(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
    {
 
-      ::rectangle_i32 rectRestore(rectParam);
+      ::rectangle_i32 rectangleRestore(rectangleParam);
 
-      ::rectangle_i32 rectWorkspace;
+      ::rectangle_i32 rectangleWorkspace;
 
       ::size_i32 sizeMin;
 
@@ -1083,7 +1090,7 @@ namespace windowing
 
          sizeMin = pinteraction->get_window_minimum_size();
 
-         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectWorkspace, sizeMin, rectParam);
+         iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(rectangleWorkspace, sizeMin, rectangleParam);
 
          sizeBroad = pinteraction->m_sizeRestoreBroad;
 
@@ -1095,26 +1102,26 @@ namespace windowing
 
          sizeMin = m_pwindowing->get_window_minimum_size();
 
-         iMatchingWorkspace = get_best_workspace(&rectWorkspace, rectParam);
+         iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleParam);
 
-         sizeBroad = sizeMin.maximum(rectWorkspace.size() * 4 / 5);
+         sizeBroad = sizeMin.maximum(rectangleWorkspace.size() * 4 / 5);
 
-         sizeCompact = sizeMin.maximum(rectWorkspace.size() * 2 / 5);
+         sizeCompact = sizeMin.maximum(rectangleWorkspace.size() * 2 / 5);
 
       }
 
-      auto rectIntersect = rectWorkspace & rectParam;
+      auto rectangleIntersect = rectangleWorkspace & rectangleParam;
 
-      auto rectTolerance(rectWorkspace);
+      auto rectangleTolerance(rectangleWorkspace);
 
-      auto sizeMax = rectWorkspace.size();
+      auto sizeMax = rectangleWorkspace.size();
 
-      bool b1 = !rectTolerance.contains(rectRestore);
-      bool b2 = rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy;
-      bool b3 = rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy;
-      bool b4 = (edisplayRestore == e_display_compact && rectRestore.size() != sizeCompact);
-      bool b5 = (edisplayRestore == e_display_broad && rectRestore.size() != sizeBroad);
-      bool b6 = (rectRestore.size() == sizeCompact || rectRestore.size() == sizeBroad);
+      bool b1 = !rectangleTolerance.contains(rectangleRestore);
+      bool b2 = rectangleIntersect.width() < sizeMin.cx || rectangleIntersect.height() < sizeMin.cy;
+      bool b3 = rectangleIntersect.width() > sizeMax.cx || rectangleIntersect.height() > sizeMax.cy;
+      bool b4 = (edisplayRestore == e_display_compact && rectangleRestore.size() != sizeCompact);
+      bool b5 = (edisplayRestore == e_display_broad && rectangleRestore.size() != sizeBroad);
+      bool b6 = (rectangleRestore.size() == sizeCompact || rectangleRestore.size() == sizeBroad);
       bool b66 = !(edisplayRestore == e_display_compact || edisplayRestore == e_display_broad);
 
       bool bNotHappyWithTheSizeAndOrPosition = b1 || b2 || b3 || b4 || b5 || (b6 && b66);
@@ -1122,31 +1129,31 @@ namespace windowing
       if (bNotHappyWithTheSizeAndOrPosition)
       {
 
-         if (edisplayRestore == e_display_broad || sizeCompact == rectRestore.size())
+         if (edisplayRestore == e_display_broad || sizeCompact == rectangleRestore.size())
          {
 
-            rectRestore.set_size(sizeBroad);
+            rectangleRestore.set_size(sizeBroad);
 
          }
          else
          {
 
-            rectRestore.set_size(sizeCompact);
+            rectangleRestore.set_size(sizeCompact);
 
          }
 
-         ::rectangle_i32 rectWorkspaceBitSmaller(rectWorkspace);
+         ::rectangle_i32 rectangleWorkspaceBitSmaller(rectangleWorkspace);
 
-         rectWorkspaceBitSmaller.deflate(5);
+         rectangleWorkspaceBitSmaller.deflate(5);
 
-         if (!rectWorkspaceBitSmaller.contains(rectRestore))
+         if (!rectangleWorkspaceBitSmaller.contains(rectangleRestore))
          {
 
-            rectRestore.move_to(rectWorkspace.origin() + rectWorkspace.size() / 10);
+            rectangleRestore.move_to(rectangleWorkspace.origin() + rectangleWorkspace.size() / 10);
 
          }
 
-         *prectangle = rectRestore;
+         *prectangle = rectangleRestore;
 
          return iMatchingWorkspace;
 
@@ -1162,14 +1169,14 @@ namespace windowing
 
 
 
-   index display::get_window_restore_2(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   index display::get_window_restore_2(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
    {
 
-      ::rectangle_i32 rectangle(rectParam);
+      ::rectangle_i32 rectangle(rectangleParam);
 
       index iBestWorkspace = get_window_restore_1(prectangle, rectangle, pinteraction, edisplayRestore);
 
-      bool bChangedSize = ::size_i32(*prectangle) != rectParam.size();
+      bool bChangedSize = ::size_i32(*prectangle) != rectangleParam.size();
 
       if (iBestWorkspace < 0 && !bChangedSize)
       {
@@ -1178,18 +1185,18 @@ namespace windowing
 
       }
 
-      ::rectangle_i32 rectWorkspace;
+      ::rectangle_i32 rectangleWorkspace;
 
-      ::rectangle_i32 rectStart(prectangle);
+      ::rectangle_i32 rectangleStart(prectangle);
 
       ::point_i32 pointLineStart(::top_left(prectangle));
 
-      get_workspace_rectangle(iBestWorkspace, rectWorkspace);
+      get_workspace_rectangle(iBestWorkspace, rectangleWorkspace);
 
-      if (rectStart > pinteraction->m_sizeRestoreCompact)
+      if (rectangleStart > pinteraction->m_sizeRestoreCompact)
       {
 
-         pointLineStart = rectWorkspace.origin();
+         pointLineStart = rectangleWorkspace.origin();
 
          pointLineStart.offset(49, 49);
 
@@ -1217,14 +1224,14 @@ namespace windowing
 
                rectangle.offset(49, 0);
 
-               if (!rectWorkspace.contains(rectangle))
+               if (!rectangleWorkspace.contains(rectangle))
                {
 
                   pointLineStart.offset(0, 49);
 
                   rectangle.move_to(pointLineStart);
 
-                  if (!rectWorkspace.contains(rectangle))
+                  if (!rectangleWorkspace.contains(rectangle))
                   {
 
                      break;
@@ -1243,14 +1250,14 @@ namespace windowing
 
             *prectangle = rectangle;
 
-         } while (rectWorkspace.contains(rectangle));
+         } while (rectangleWorkspace.contains(rectangle));
 
       }
 
       if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
       {
 
-         pointLineStart = rectWorkspace.origin();
+         pointLineStart = rectangleWorkspace.origin();
 
          pointLineStart.offset(49, 49);
 
@@ -1262,7 +1269,7 @@ namespace windowing
 
       }
 
-      rectangle = rectStart;
+      rectangle = rectangleStart;
 
       rectangle.set_size(pinteraction->m_sizeRestoreCompact);
 
@@ -1285,11 +1292,11 @@ namespace windowing
 
             *prectangle = rectangle;
 
-         } while (rectWorkspace.contains(rectangle));
+         } while (rectangleWorkspace.contains(rectangle));
 
       }
 
-      pointLineStart = rectWorkspace.origin();
+      pointLineStart = rectangleWorkspace.origin();
 
       pointLineStart.offset(49, 49);
 
@@ -1312,14 +1319,14 @@ namespace windowing
 
             rectangle.offset(49, 0);
 
-            if (!rectWorkspace.contains(rectangle))
+            if (!rectangleWorkspace.contains(rectangle))
             {
 
                pointLineStart.offset(0, 49);
 
                rectangle.move_to(pointLineStart);
 
-               if (!rectWorkspace.contains(rectangle))
+               if (!rectangleWorkspace.contains(rectangle))
                {
 
                   break;
@@ -1330,11 +1337,11 @@ namespace windowing
 
             *prectangle = rectangle;
 
-         } while (rectWorkspace.contains(rectangle));
+         } while (rectangleWorkspace.contains(rectangle));
 
       }
 
-      pointLineStart = rectWorkspace.origin();
+      pointLineStart = rectangleWorkspace.origin();
 
       pointLineStart.offset(49, 49);
 
@@ -1347,12 +1354,12 @@ namespace windowing
    }
 
 
-   index display::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction)
+   index display::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
    {
 
-      index iMatchingMonitor = initial_frame_position(prectangle, rectParam, true, pinteraction);
+      index iMatchingMonitor = initial_frame_position(prectangle, rectangleParam, true, pinteraction);
 
-      if (__memcmp(prectangle, &rectParam, sizeof(const rectangle_i32 &)))
+      if (__memcmp(prectangle, &rectangleParam, sizeof(const rectangle_i32 &)))
       {
 
          return iMatchingMonitor;

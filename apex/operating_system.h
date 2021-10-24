@@ -2,25 +2,16 @@
 #pragma once
 
 
-#include "operating_system/operating_system.h"
+#include "acme/operating_system.h"
 
 
-#include "apex/os/_c2.h"
+#include "apex/node/operating_system/_.h"
 
 
-#include "apex/os/_2.h"
+#include "apex/node/operating_system/_operating_system.h"
 
 
-#include "apex/os/_os2.h"
-
-
-#include "apex/node/_node.h"
-
-
-#include "apex/net/_impl.h"
-
-
-#include "apex/os/_impl.h"
+#include "apex/node/operating_system/_impl.h"
 
 
 

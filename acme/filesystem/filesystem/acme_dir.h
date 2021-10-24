@@ -2,6 +2,13 @@
 #pragma once
 
 
+#if defined(WINDOWS)
+#define PATH_SEPARATOR "\\"
+#else
+#define PATH_SEPARATOR "/"
+#endif
+
+
 class CLASS_DECL_ACME acme_dir :
    virtual public ::matter
 {
@@ -9,10 +16,29 @@ public:
 
 
    ::PLATFORM_NAMESPACE::acme_dir *          m_pplatformdir;
-
+   acme_file *                               m_pacmefile;
+   acme_path *                               m_pacmepath;
 
    ::file::path                              m_pathInstallFolder;
    ::file::path                              m_pathModuleFolder;
+   
+
+   acme_dir();
+   ~acme_dir() override;
+
+
+   ::e_status initialize(::object * pobject) override;
+
+   
+   //virtual ::file::path module_folder();
+
+
+   virtual ::file::path app(string strPlatform, string strConfiguration);
+   virtual ::file::path app_app_admin(string strPlatform, string strConfiguration);
+   virtual ::file::path app_app_nest(string strPlatform, string strConfiguration);
+   virtual ::file::path app_app(string strPlatform, string strConfiguration);
+   virtual ::file::path vcredist(string strPlatform, string strConfiguration);
+   virtual ::file::path install_log(string strPlatform, string strConfiguration);
 
 
    virtual ::file::path install();
@@ -68,6 +94,76 @@ public:
 
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
+
+   virtual bool is(const char * path1);
+   virtual bool _is(const char * path1);
+   // From acme/filesystem/file/dir.cpp by camilo 
+   // From acme_posix/acme_dir.h
+// on 2021-08-09 03:20 BRT
+// <3ThomasBorregaardS�rensen!!
+
+
+   //namespace posix
+   //{
+
+
+   //   class CLASS_DECL_ACME_POSIX acme_dir :
+   //      virtual public ::acme_dir
+   //   {
+
+   //   public:
+
+   //      acme_dir();
+   //      ~acme_dir();
+
+         //virtual string name(const char * path1);
+
+
+         //virtual ::file::path base_module();
+
+         virtual ::e_status create(const char * path);
+         virtual ::e_status _create(const char * path);
+         virtual ::e_status create_directory(const char * path);
+         virtual ::e_status _create_directory(const char * path);
+
+
+         virtual void rls(::file::patha & stra, const char * psz);
+         virtual void rls_dir(::file::patha & stra, const char * psz);
+
+         virtual void ls(::file::patha & stra, const char * psz);
+         virtual void ls_dir(::file::patha & stra, const char * psz);
+
+         virtual void ls_file(::file::patha & stra, const char * psz);
+
+         virtual int make_path(const char * psz);
+
+
+         /*namespace dir
+         {*/
+
+
+            //virtual string name(const char * pszPath);
+            //virtual bool mk(const ::string & strPath);
+            //virtual bool _mk(const  char * path); // makes a directory path (all intermediates too)
+            //virtual bool is(const char * path);
+            //virtual bool _is(const char * path);
+            //virtual bool mk(const  char * path); // makes a directory path (all intermediates too)
+            //virtual bool mkdir(const  char * path); // only creates if parent dir already exists
+            //virtual void ls(::file::patha & patha, const char * path);
+            //virtual void ls_dir(::file::patha & patha, const char * path);
+            //virtual void ls_file(::file::patha & patha, const char * path);
+            //virtual void rls(::file::patha & patha, const char * path);
+            //virtual void rls_dir(::file::patha & patha, const char * path);
+
+
+            //virtual::file::path ca2_module();
+            //virtual::file::path base_module();
+
+
+         //} // namespace dir
+
+            virtual string get_current_directory();
+
 
 
 };

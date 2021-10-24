@@ -37,18 +37,18 @@ namespace file
 
    public:
 
-      property Windows::Storage::StorageFolder ^                     m_folder;
-      property Windows::Storage::Search::StorageItemQueryResult ^    m_queryresult;
-      property Windows::Foundation::EventRegistrationToken           m_evtoken;
+      property ::winrt::Windows::Storage::StorageFolder ^                     m_folder;
+      property ::winrt::Windows::Storage::Search::StorageItemQueryResult ^    m_queryresult;
+      property ::winrt::event_token           m_evtoken;
       property bool                                                  m_bRecursive;
       property bool                                                  m_bOwn;
 
       static watch_ref ^ create_watch(String ^ strDirectory, bool bRecursive);
 
-      void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Object ^ o)
+      void ContentsChanged(::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Object ^ o)
       {
 
-         //::Windows::Storage::Search::StorageItemQueryResult^ results = (::Windows::Storage::Search::StorageItemQueryResult^) r;
+         //::winrt::Windows::Storage::Search::StorageItemQueryResult^ results = (::winrt::Windows::Storage::Search::StorageItemQueryResult^) r;
 
          //if (results != nullptr)
          //{
@@ -156,24 +156,24 @@ namespace file
 
          watch_ref ^ pwatch = ref new watch_ref;
 
-         Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();
+         ::winrt::Windows::Storage::Search::QueryOptions ^ options = ref new ::winrt::Windows::Storage::Search::QueryOptions();
 
          pwatch->m_bRecursive = bRecursive;
 
          if (pwatch->m_bRecursive)
          {
 
-            options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Deep;
+            options->FolderDepth = ::winrt::Windows::Storage::Search::FolderDepth::Deep;
 
          }
          else
          {
 
-            options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
+            options->FolderDepth = ::winrt::Windows::Storage::Search::FolderDepth::Shallow;
 
          }
 
-         options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
+         options->IndexerOption = ::winrt::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
 
          string strPrefix;
 
@@ -191,7 +191,7 @@ namespace file
          if (pwatch->m_queryresult == nullptr)
             return nullptr;
 
-         pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Storage::Search::IStorageQueryResultBase ^,
+         pwatch->m_evtoken = pwatch->m_queryresult->ContentsChanged += ref new ::winrt::Windows::Foundation::TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,
                  ::Object ^ >(pwatch, &watch_ref::ContentsChanged);
 
          return pwatch;

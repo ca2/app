@@ -15,11 +15,11 @@ namespace browser
       virtual ~document();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool on_new_document();
-      virtual bool on_open_document(const ::payload & varFile) override;
+      virtual bool on_open_document(const ::payload & payloadFile) override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 

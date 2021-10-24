@@ -41,7 +41,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::subject_handler(::subject::subject * psubject)
+   void font_enumeration::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->id() == id_font_enumeration)
@@ -50,26 +50,20 @@ namespace write_text
          check_need_update(psubject);
 
       }
-
-
-   }
-
-
-   void font_enumeration::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
-
-      if (psubject->id() == id_os_font_change)
+      else if (psubject->id() == id_os_font_change)
       {
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         auto psubject = psystem->subject(id_os_font_change);
+         psystem->signal(id_os_font_change);
 
          update();
 
          psubject->set_modified();
 
       }
+
+
 
    }
 
@@ -105,7 +99,7 @@ namespace write_text
 
       double dMaxSimilarity = 0.2;
 
-      __pointer(::aura::system) psystem = m_psystem;
+      auto psystem = m_psystem->m_paurasystem;
 
       auto * pdraw2d = psystem->draw2d();
 
@@ -164,7 +158,7 @@ namespace write_text
       else
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         auto psystem = m_psystem->m_paurasystem;
 
          auto pdraw2d = psystem->draw2d();
 
@@ -179,7 +173,7 @@ namespace write_text
    }
 
 
-   void font_enumeration::check_need_update(::subject::subject * psubject)
+   void font_enumeration::check_need_update(::subject * psubject)
    {
 
       m_bUpdating = true;
@@ -302,7 +296,7 @@ namespace write_text
    ::e_status font_enumeration::on_enumerate_fonts()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 

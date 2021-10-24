@@ -1,8 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
-//#include "acme/os/cross/windows/_windows.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 namespace user
@@ -61,18 +60,18 @@ namespace user
 
             get_horizontal_scroll_info(m_pscrollbarHorizontal->m_scrollinfo);
 
-            ::rectangle_i32 rectNewPos;
+            ::rectangle_i32 rectangleNewPos;
 
             auto pstyle = get_style(pgraphics);
 
-            rectNewPos.left = rectangleClient.left;
-            rectNewPos.top = rectangleClient.bottom - get_int(pstyle,e_int_scroll_bar_width);
-            rectNewPos.right = rectNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
-            rectNewPos.bottom = rectangleClient.bottom;
+            rectangleNewPos.left = rectangleClient.left;
+            rectangleNewPos.top = rectangleClient.bottom - get_int(pstyle,e_int_scroll_bar_width);
+            rectangleNewPos.right = rectangleNewPos.left + rectangleClient.width() - get_final_y_scroll_bar_width();
+            rectangleNewPos.bottom = rectangleClient.bottom;
 
             m_pscrollbarHorizontal->order(e_zorder_top);
 
-            m_pscrollbarHorizontal->place(rectNewPos);
+            m_pscrollbarHorizontal->place(rectangleNewPos);
 
             m_pscrollbarHorizontal->display();
 
@@ -290,11 +289,11 @@ namespace user
 
       m_scrolldataHorizontal.m_bScroll = m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll;
 
-      ::rectangle_i32 rectScroll;
+      ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectScroll);
+      get_client_rect(rectangleScroll);
 
-      m_scrolldataHorizontal.m_iPage = rectScroll.width();
+      m_scrolldataHorizontal.m_iPage = rectangleScroll.width();
 
       if (validate_viewport_offset(m_pointScroll))
       {
@@ -378,20 +377,20 @@ namespace user
 
             get_vertical_scroll_info(m_pscrollbarVertical->m_scrollinfo);
 
-            ::rectangle_i32 rectNewPos;
+            ::rectangle_i32 rectangleNewPos;
 
             auto pstyle = get_style(pgraphics);
 
             int iScrollBarWidth = get_int(pstyle,e_int_scroll_bar_width);
 
-            rectNewPos.left = rectangleClient.right - iScrollBarWidth;
-            rectNewPos.top = rectangleClient.top;
-            rectNewPos.right = rectangleClient.right;
-            rectNewPos.bottom = rectNewPos.top+ rectangleClient.height() - get_final_x_scroll_bar_width();
+            rectangleNewPos.left = rectangleClient.right - iScrollBarWidth;
+            rectangleNewPos.top = rectangleClient.top;
+            rectangleNewPos.right = rectangleClient.right;
+            rectangleNewPos.bottom = rectangleNewPos.top+ rectangleClient.height() - get_final_x_scroll_bar_width();
 
             m_pscrollbarVertical->order(e_zorder_top);
 
-            m_pscrollbarVertical->place(rectNewPos);
+            m_pscrollbarVertical->place(rectangleNewPos);
 
             m_pscrollbarVertical->display();
 
@@ -676,11 +675,11 @@ namespace user
 
       m_scrolldataVertical.m_bScroll = m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll;
 
-      ::rectangle_i32 rectScroll;
+      ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectScroll);
+      get_client_rect(rectangleScroll);
 
-      m_scrolldataVertical.m_iPage = rectScroll.height();
+      m_scrolldataVertical.m_iPage = rectangleScroll.height();
 
       if (validate_viewport_offset(m_pointScroll))
       {
@@ -849,13 +848,13 @@ namespace user
       }
 
 
-      ::rectangle_i32 rectScroll;
+      ::rectangle_i32 rectangleScroll;
 
-      get_client_rect(rectScroll);
+      get_client_rect(rectangleScroll);
 
-      m_scrolldataHorizontal.m_iPage = rectScroll.width();
+      m_scrolldataHorizontal.m_iPage = rectangleScroll.width();
 
-      m_scrolldataVertical.m_iPage = rectScroll.height();
+      m_scrolldataVertical.m_iPage = rectangleScroll.height();
 
       if (validate_viewport_offset(m_pointScroll))
       {

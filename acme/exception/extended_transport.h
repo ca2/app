@@ -83,7 +83,7 @@ namespace extended
       }
 
 
-      transport(const ::exception::exception & e)
+      transport(const ::exception & e)
       {
 
          add(e);
@@ -91,7 +91,7 @@ namespace extended
       }
 
 
-      transport(const std::initializer_list < ::exception::exception > &list)
+      transport(const std::initializer_list < ::exception > &list)
       {
 
          for (auto& e : list)
@@ -290,6 +290,14 @@ namespace extended
       }
 
 
+      bool not_initialized() const
+      {
+
+         return m_estatus == error_not_initialized;
+
+      }
+
+
       ::e_status estatus() const
       {
 
@@ -343,6 +351,8 @@ namespace extended
 
       operator bool() const { return succeeded(); }
 
+      operator ::e_status() const { return estatus(); }
+
       bool operator !() const { return failed(); }
 
       auto operator ->() { return ___pointer<T>::operator ->(); }
@@ -352,14 +362,26 @@ namespace extended
 
    };
 
-   template < typename OBJECT >
-   using future = ::future < OBJECT, ::extended::transport < OBJECT > >;
 
    template < typename OBJECT >
-   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT >, ::extended::future < OBJECT > >;
+   using sequence = ::sequence < OBJECT, ::extended::transport < OBJECT > >;
+
+
+   template < typename OBJECT >
+   using asynchronous = ::asynchronous < OBJECT, ::extended::transport < OBJECT >, ::extended::sequence < OBJECT > >;
 
 
 } // namespace extended
+
+
+
+template < typename TYPE >
+inline bool is_set(const ::extended::transport < TYPE > & t)
+{
+
+   return is_set(t.m_p);
+
+}
 
 
 

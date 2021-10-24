@@ -10,13 +10,21 @@
 
 //#pragma pack(show)
 
+#include "acme/include/_acme.h"
 #include "acme/version/version.h"
-#include "acme/memory/_.h"
 #include "acme/platform/_features.h"
 #include "operating_system/platform_setup.h"
 #include "setup/debug.h"
-#include "operating_system/_.h"
+#include "operating_system/config.h"
 #include "include/_setup.h"
+
+
+#include "acme/include/_macro.h"
+#include "__standard_type.h"
+#include "acme/constant/memory_heap.h"
+#include "operating_system/types.h"
+#include "operating_system/system.h"
+
 
 
 #ifdef WINDOWS
@@ -42,9 +50,8 @@
 
 
 #ifdef _DEBUG
+#ifndef __DEBUG
 #define __DEBUG
-#ifndef DEBUG
-#define DEBUG
 #endif
 #else
 #define NNDEBUG
@@ -94,11 +101,11 @@
 #endif
 
 
-#include "__standard_type.h"
 
 
-typedef i64 memsize_storage;
-typedef i64 strsize_storage;
+
+typedef iptr memsize_storage;
+typedef iptr strsize_storage;
 
 
 typedef iptr memsize;

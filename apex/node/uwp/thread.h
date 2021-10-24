@@ -5,7 +5,7 @@ template < typename PRED >
 void defer_main_thread(PRED pred)
 {
 
-   if (::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->HasThreadAccess)
+   if (::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->HasThreadAccess)
    {
 
       pred();
@@ -15,9 +15,9 @@ void defer_main_thread(PRED pred)
    {
 
       ::wait(
-      Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
-      ::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      ref new Windows::UI::Core::DispatchedHandler([&pred]()
+      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+      ::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+      ref new ::winrt::Windows::UI::Core::DispatchedHandler([&pred]()
       {
 
          pred();

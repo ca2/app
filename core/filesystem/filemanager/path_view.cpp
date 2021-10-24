@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -17,12 +19,10 @@ namespace filemanager
    void path_view::install_message_routing(::channel * pchannel)
    {
 
-      ::filemanager_impact::install_message_routing(pchannel);
+      ::filemanager_impact_base::install_message_routing(pchannel);
       ::user::plain_edit::install_message_routing(pchannel);
 
    }
-
-
 
 
    void path_view::browse_sync(const ::action_context & context)
@@ -60,95 +60,95 @@ namespace filemanager
    }
 
 
-   void path_view::_001OnAfterChangeText(const ::action_context & context)
-   {
+   //void path_view::_001OnAfterChangeText(const ::action_context & context)
+   //{
 
-      if (!context.is_user_source())
-      {
+   //   //if (!context.is_user_source())
+   //   //{
 
-         return;
+   //   //   return;
 
-      }
+   //   //}
 
-      string str;
+   //   //string str;
 
-      _001GetText(str);
+   //   //_001GetText(str);
 
-      __pointer(document) pdocument = filemanager_document();
+   //   //__pointer(document) pdocument = filemanager_document();
 
-      if (pdocument == nullptr)
-      {
+   //   //if (pdocument == nullptr)
+   //   //{
 
-         return;
+   //   //   return;
 
-      }
+   //   //}
 
-      ::fs::data * pfsdata = pdocument->fs_data();
+   //   //::fs::data * pfsdata = pdocument->fs_data();
 
-      if (pfsdata->is_dir(str))
-      {
+   //   //if (pfsdata->is_dir(str))
+   //   //{
 
-         ::file::path strPreviousPath = filemanager_path();
+   //   //   ::file::path strPreviousPath = filemanager_path();
 
-         ::file::path strPath = str;
+   //   //   ::file::path strPath = str;
 
-         if (strPreviousPath != strPath)
-         {
+   //   //   if (strPreviousPath != strPath)
+   //   //   {
 
-            filemanager_document()->browse(str, context + ::e_source_sync);
+   //   //      filemanager_document()->browse(str, context + ::e_source_sync);
 
-         }
+   //   //   }
 
-      }
-      else
-      {
+   //   //}
+   //   //else
+   //   //{
 
-         auto pcontext = get_context();
+   //   //   auto pcontext = get_context();
 
-         ::file::path pathAddress = str;
+   //   //   ::file::path pathAddress = str;
 
-         while (true)
-         {
+   //   //   while (true)
+   //   //   {
 
-            bool bIsDir = false;
+   //   //      bool bIsDir = false;
 
-            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
+   //   //      ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
 
-            bIsDir = filemanager_document()->fs_data()->is_dir(path);
+   //   //      bIsDir = filemanager_document()->fs_data()->is_dir(path);
 
-            if (bIsDir)
-            {
+   //   //      if (bIsDir)
+   //   //      {
 
-               if (filemanager_item()->m_filepathFinal != path)
-               {
+   //   //         if (filemanager_item()->m_filepathFinal != path)
+   //   //         {
 
-                  __keep(m_bVoidSync);
+   //   //            __keep(m_bVoidSync);
 
-                  filemanager_document()->browse(pathAddress, context + ::e_source_sync);
+   //   //            filemanager_document()->browse(pathAddress, context + ::e_source_sync);
 
-               }
+   //   //         }
 
-               break;
+   //   //         break;
 
-            }
+   //   //      }
 
-            if (pathAddress.is_empty())
-            {
+   //   //      if (pathAddress.is_empty())
+   //   //      {
 
-               break;
+   //   //         break;
 
-            }
+   //   //      }
 
-            pathAddress = pathAddress.folder();
+   //   //      pathAddress = pathAddress.folder();
 
-         }
+   //   //   }
 
-      }
+   //   //}
 
-      filemanager_data()->m_pdocument->m_strTopic = str;
+   //   //filemanager_data()->m_pdocument->m_strTopic = str;
 
 
-   }
+   //}
 
 
    void path_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -174,10 +174,10 @@ namespace filemanager
    }
 
 
-   void path_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void path_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {
@@ -209,6 +209,95 @@ namespace filemanager
          FilterApply();
          }*/
       }
+      else if(psubject->id() == e_subject_after_change_text)
+      {
+
+      if (!psubject->m_actioncontext.is_user_source())
+      {
+
+         return;
+
+      }
+
+      string str;
+
+      _001GetText(str);
+
+      __pointer(document) pdocument = filemanager_document();
+
+      if (pdocument == nullptr)
+      {
+
+         return;
+
+      }
+
+      ::fs::data * pfsdata = pdocument->fs_data();
+
+      if (pfsdata->is_dir(str))
+      {
+
+         ::file::path strPreviousPath = filemanager_path();
+
+         ::file::path strPath = str;
+
+         if (strPreviousPath != strPath)
+         {
+
+            filemanager_document()->browse(str, psubject->m_actioncontext + ::e_source_sync);
+
+         }
+
+      }
+      else
+      {
+
+         auto pcontext = get_context();
+
+         ::file::path pathAddress = str;
+
+         while (true)
+         {
+
+            bool bIsDir = false;
+
+            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
+
+            bIsDir = filemanager_document()->fs_data()->is_dir(path);
+
+            if (bIsDir)
+            {
+
+               if (filemanager_item()->m_filepathFinal != path)
+               {
+
+                  __keep(m_bVoidSync);
+
+                  filemanager_document()->browse(pathAddress, psubject->m_actioncontext + ::e_source_sync);
+
+               }
+
+               break;
+
+            }
+
+            if (pathAddress.is_empty())
+            {
+
+               break;
+
+            }
+
+            pathAddress = pathAddress.folder();
+
+         }
+
+      }
+
+      filemanager_data()->m_pdocument->m_strTopic = str;
+
+
+   }
 
    }
 

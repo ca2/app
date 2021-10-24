@@ -213,15 +213,15 @@ void os_post_quit()
 
 }
 
-
 //
-void os_term_application()
-{
+////
+//void os_term_application()
+//{
+////
+//   //ui_app_terminate();
+////
+//}
 //
-   //ui_app_terminate();
-//
-}
-
 
 
 
@@ -237,7 +237,7 @@ namespace process
 {
 
 
-   CLASS_DECL_CORE bool set_priority(::e_priority epriority)
+   CLASS_DECL_CORE bool set_priority(::enum_priority epriority)
    {
 
       return true;

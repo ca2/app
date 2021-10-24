@@ -39,7 +39,7 @@ namespace turboc
 
    void top_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
@@ -62,7 +62,7 @@ namespace turboc
       if(m_peditview == NULL)
       {
 
-         message_box(NULL,"Could not create folder edit view");
+         message_box(NULL,"Could not create folder edit impact");
 
       }
 

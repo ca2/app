@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/user/_user.h"
 #include "aura/message.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 
 
@@ -44,7 +44,7 @@ namespace user
       if (m_id.is_empty())
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 
@@ -94,7 +94,7 @@ namespace user
    void box::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -392,7 +392,7 @@ namespace user
          return true;
 
       }
-      catch (const ::exception::exception & pe)
+      catch (const ::exception & pe)
       {
 
          handle_exception(pe);
@@ -530,15 +530,15 @@ namespace user
    string box::calc_display()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       string strDisplay;
 
-      //rectangle_i32 rectNormal;
+      //rectangle_i32 rectangleNormal;
 
-      //get_rect_normal(rectNormal);
+      //get_rect_normal(rectangleNormal);
 
-      ::rectangle_i32 rectMainMonitor;
+      ::rectangle_i32 rectangleMainMonitor;
 
       auto psession = get_session();
 
@@ -548,9 +548,9 @@ namespace user
 
       auto pdisplay = pwindowing->display();
 
-      pdisplay->get_main_monitor(rectMainMonitor);
+      pdisplay->get_main_monitor(rectangleMainMonitor);
 
-      strDisplay.Format("Display(%d, %d)", rectMainMonitor.width(), rectMainMonitor.height());
+      strDisplay.Format("Display(%d, %d)", rectangleMainMonitor.width(), rectangleMainMonitor.height());
 
       return strDisplay;
 
@@ -572,7 +572,7 @@ namespace user
    void box::defer_update_display()
    {
 
-      synchronous_lock synchronouslock(mutex());
+      //synchronous_lock synchronouslock(mutex());
 
       m_strDisplay = calc_display();
 

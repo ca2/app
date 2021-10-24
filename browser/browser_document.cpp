@@ -48,10 +48,10 @@ namespace browser
    }
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      view * pview = get_typed_view < view >();
+      impact * pview = get_typed_view < impact >();
 
       if(pview == nullptr)
       {
@@ -60,15 +60,15 @@ namespace browser
 
       }
 
-      string strPath = varFile.get_file_path();
+      string strPath = payloadFile.get_file_path();
 
-      varFile["url"] = strPath.c_str();
-      varFile["http_set"]["raw_http"] = true;
-      varFile["http_set"]["disable_common_name_cert_check"] = true;
+      payloadFile["url"] = strPath.c_str();
+      payloadFile["http_set"]["raw_http"] = true;
+      payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
       string str;
 
-/*      ::image_pointer pimage = get_image(varFile, true);
+/*      ::image_pointer pimage = get_image(payloadFile, true);
 
 /*      if(pimage->is_ok())
       {
@@ -95,8 +95,8 @@ namespace browser
 
       }
       else if(get_typed_view < ::user::plain_edit_view >() != nullptr
-              && pcontext->m_papexcontext->file().exists(varFile)
-              && (str = pcontext->m_papexcontext->file().as_string(varFile)).has_char())
+              && pcontext->m_papexcontext->file().exists(payloadFile)
+              && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
       {
 
          get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);

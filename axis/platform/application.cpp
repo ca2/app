@@ -140,47 +140,6 @@ namespace axis
    }
 
 
-
-
-
-   ::file::path command_find_path(const ::string & pszCommand)
-   {
-
-#ifdef _UWP
-
-      return "";
-
-#else
-
-      string strPath = getenv("PATH");
-
-      string_array straPath;
-
-      straPath.explode(":", strPath);
-
-      for (auto & str : straPath)
-      {
-
-         ::file::path path;
-
-         path = str;
-
-         path /= pszCommand;
-
-         if (file_exists(path))
-         {
-
-            return path;
-
-         }
-
-      }
-
-      return pszCommand;
-
-#endif
-
-   }
 //#ifdef WINDOWS_DESKTOP
 //
 //
@@ -272,7 +231,7 @@ namespace axis
    //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(nCode);
 
    //}
 
@@ -305,7 +264,7 @@ namespace axis
 //   ::e_status     application::main()
 //   {
 //
-//      INFO("aura::application::main");
+//      INFORMATION("aura::application::main");
 //
 //      try
 //      {
@@ -317,14 +276,14 @@ namespace axis
 ////         if(m_iErrorCode != 0)
 ////         {
 ////
-////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
 ////
 ////            ::output_debug_string("application::main on_run termination failure\n");
 ////
 ////         }
 //
 //      }
-//      catch (const ::exception::exception & e)
+//      catch (const ::exception & e)
 //      {
 //
 //         if (!handle_exception(e))
@@ -337,7 +296,7 @@ namespace axis
 //      catch (...)
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+//         //dappy(__type_name(this) + " : on_run general exception");
 //
 //      }
 //
@@ -778,7 +737,7 @@ namespace axis
 
       ////}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       create_factory < ::database::field_array >();
       create_factory < ::database::row >();
@@ -791,7 +750,7 @@ namespace axis
 
       //}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       //m_bAxisProcessInitialize = true;
 
@@ -816,7 +775,7 @@ namespace axis
 
       //m_bAxisProcessInitializeResult = true;
 
-      //INFO("axis::application::process_init success");
+      //INFORMATION("axis::application::process_init success");
 
       //return true;
 
@@ -825,13 +784,13 @@ namespace axis
       if(!estatus && estatus != error_not_implemented)
       {
 
-         ERR(".2");
+         ERROR(".2");
 
          return false;
 
       }*/
 
-      INFO("success");
+      INFORMATION("success");
 
       return true;
 
@@ -996,18 +955,18 @@ namespace axis
 //
 //      //}
 //
-//      INFO("aura::application::init_application");
+//      INFORMATION("aura::application::init_application");
 //
 //      //m_bAuraInitializeInstance = true;
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1017,12 +976,12 @@ namespace axis
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1032,12 +991,12 @@ namespace axis
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1047,9 +1006,9 @@ namespace axis
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1057,7 +1016,7 @@ namespace axis
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -1143,12 +1102,12 @@ namespace axis
 
       //}
 
-      //INFO("start");
+      //INFORMATION("start");
 
       ////if (!::aura::application::init1())
       ////{
 
-      ////   ERR(".1");
+      ////   ERROR(".1");
 
       ////   return false;
 
@@ -1157,13 +1116,13 @@ namespace axis
       ////if (!initialize1_experience())
       ////{
 
-      ////   ERR(".2");
+      ////   ERROR(".2");
 
       ////   return false;
 
       ////}
 
-      //m_millisHeartBeat.Now();
+      //m_durationHeartBeat.Now();
 
       ////estatus = __compose(m_puserfs);
 
@@ -1177,7 +1136,7 @@ namespace axis
       ////if (!userfs_init1())
       ////{
 
-      ////   ERR(".3");
+      ////   ERROR(".3");
 
       ////   return false;
 
@@ -1577,7 +1536,7 @@ namespace axis
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -1622,8 +1581,8 @@ namespace axis
    //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -1632,8 +1591,8 @@ namespace axis
    //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -1733,7 +1692,7 @@ namespace axis
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          //if(::is_set(m_psystem))
          //{
@@ -1764,7 +1723,7 @@ namespace axis
             m_estatus = run();
 
          }
-         catch (const ::exception::exception & e)
+         catch (const ::exception & e)
          {
 
             if (handle_exception(e))
@@ -1779,7 +1738,7 @@ namespace axis
          }
 
       }
-      catch (const ::exception::exception &)
+      catch (const ::exception &)
       {
 
       }
@@ -1962,7 +1921,7 @@ namespace axis
 
    //   //m_bAxisInitialize1Result = false;
 
-   //   m_millisHeartBeat.Now();
+   //   m_durationHeartBeat.Now();
 
    //   if (!::aura::application::init1())
    //   {
@@ -2125,10 +2084,10 @@ namespace axis
 
       string strRequestUrl;
 
-      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 

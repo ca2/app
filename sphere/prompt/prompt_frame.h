@@ -27,17 +27,17 @@ namespace prompt
       frame(::object * pobject);
       virtual ~frame();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       void ShowControlBars(bool bShow);
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       bool m_bHoverMouse;
-      millis m_millisLastHover;
+      ::duration m_durationLastHover;
 
       void OnHoverAction(bool bShowWinActionArea);
 

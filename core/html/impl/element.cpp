@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -58,7 +61,7 @@ namespace html
       bool element::hit_test(html_data * pdata, const ::point_f32 & point)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
 //          e_tag etype = m_pelemental->m_etag;_001
 
@@ -79,7 +82,7 @@ namespace html
       double element::bound_hit_test(html_data * pdata, const ::point_f32 & point)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          float dx;
 
@@ -229,7 +232,7 @@ namespace html
       void element::implement_phase1(html_data * pdata, ::html::element * pelemental)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pelemental = pelemental;
 
@@ -241,7 +244,7 @@ namespace html
       void element::implement_phase2(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -257,7 +260,7 @@ namespace html
          m_bound.top = 0;
          m_bound.right = 0;
          m_bound.bottom = 0;
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -658,7 +661,7 @@ namespace html
       void element::layout_phase2(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -856,9 +859,9 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::draw2d::pen_pointer pen(e_create_new, pdata);
-               pen->create_solid(m_border.left, m_border.crLeft);
-               pgraphics->set(pen);
+               auto ppen = pdata->__create < ::draw2d::pen > ();
+               ppen->create_solid(m_border.left, m_border.crLeft);
+               pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
             else
@@ -868,9 +871,9 @@ namespace html
                pa[1] = ::point_f64(bIn.left, bIn.top);
                pa[2] = ::point_f64(bIn.left, bIn.bottom);
                pa[3] = ::point_f64(bOut.left, bOut.bottom);
-               ::draw2d::brush_pointer brush(e_create_new, pdata);
-               brush->create_solid(m_border.crLeft);
-               pgraphics->set(brush);
+               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               pbrush->create_solid(m_border.crLeft);
+               pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
@@ -880,9 +883,9 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
-               ::draw2d::pen_pointer pen(e_create_new, pdata);
-               pen->create_solid(m_border.top, m_border.crTop);
-               pgraphics->set(pen);
+               auto ppen = pdata->__create < ::draw2d::pen > ();
+               ppen->create_solid(m_border.top, m_border.crTop);
+               pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
             else
@@ -892,9 +895,9 @@ namespace html
                pa[1] = ::point_f64(bOut.right, bOut.top);
                pa[2] = ::point_f64(bIn.right, bIn.top);
                pa[3] = ::point_f64(bIn.left, bIn.top);
-               ::draw2d::brush_pointer brush(e_create_new, pdata);
-               brush->create_solid(m_border.crTop);
-               pgraphics->set(brush);
+               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               pbrush->create_solid(m_border.crTop);
+               pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
@@ -904,9 +907,9 @@ namespace html
             {
                ::point_f32 point1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::draw2d::pen_pointer pen(e_create_new, pdata);
-               pen->create_solid(m_border.right, m_border.crRight);
-               pgraphics->set(pen);
+               auto ppen = pdata->__create < ::draw2d::pen > ();
+               ppen->create_solid(m_border.right, m_border.crRight);
+               pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
             else
@@ -916,9 +919,9 @@ namespace html
                pa[1] = ::point_f64(bOut.right, bOut.bottom);
                pa[2] = ::point_f64(bIn.right, bIn.bottom);
                pa[3] = ::point_f64(bIn.right, bIn.top);
-               ::draw2d::brush_pointer brush(e_create_new, pdata);
-               brush->create_solid(m_border.crRight);
-               pgraphics->set(brush);
+               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               pbrush->create_solid(m_border.crRight);
+               pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
@@ -928,9 +931,9 @@ namespace html
             {
                ::point_f32 point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                ::point_f32 point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
-               ::draw2d::pen_pointer pen(e_create_new, pdata);
-               pen->create_solid(m_border.bottom, m_border.crBottom);
-               pgraphics->set(pen);
+               auto ppen = pdata->__create < ::draw2d::pen > ();
+               ppen->create_solid(m_border.bottom, m_border.crBottom);
+               pgraphics->set(ppen);
                pgraphics->draw_line(point1.x, point1.y, point2.x, point2.y);
             }
             else
@@ -940,9 +943,9 @@ namespace html
                pa[1] = ::point_f64(bIn.right, bIn.bottom);
                pa[2] = ::point_f64(bOut.right, bOut.bottom);
                pa[3] = ::point_f64(bOut.left, bOut.bottom);
-               ::draw2d::brush_pointer brush(e_create_new, pdata);
-               brush->create_solid(m_border.crBottom);
-               pgraphics->set(brush);
+               auto pbrush = pdata->__create < ::draw2d::brush > ();
+               pbrush->create_solid(m_border.crBottom);
+               pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
 
             }
@@ -995,7 +998,7 @@ namespace html
 
       void element::on_change_layout(html_data * pdata)
       {
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
       }
 
 
@@ -1214,7 +1217,7 @@ namespace html
             }
          }
 
-         //UNREFERENCED_PARAMETER(pimplChild);
+         //__UNREFERENCED_PARAMETER(pimplChild);
 
          return true;
 

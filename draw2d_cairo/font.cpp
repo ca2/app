@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/user/_user.h"
 
 
 namespace draw2d_cairo
@@ -164,7 +165,25 @@ namespace draw2d_cairo
 
 #if defined(USE_PANGO)
 
+      m_mapPangoLayout.erase_all();
+
       m_pdesc = pango_font_description_new();
+
+      double dFontScaler = 1.0;
+
+      if(::is_set(pgraphics->m_puserinteraction))
+      {
+
+         dFontScaler = pgraphics->m_puserinteraction->font_scaler();
+
+      }
+      else
+      {
+
+         ::output_debug_string("Warning: No ::user::interaction font scaler!\n");
+
+      }
+
 
       pango_font_description_set_family(m_pdesc, m_strFontFamilyName);
 

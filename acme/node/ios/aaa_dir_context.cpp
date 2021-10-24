@@ -171,7 +171,11 @@ namespace ios
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(path))
       {
 
          return true;
@@ -257,7 +261,11 @@ namespace ios
 
             }
 
-            if(!::dir::is(stra[i]))
+            if(!         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(stra[i]))
             {
 
                return false;
@@ -296,7 +304,7 @@ namespace ios
    //   }
    //
    //
-   //   string dir::name(const char * path1)
+   //   string ::file_path_folder(const char * path1)
    //   {
    //      const char * psz = path1 + strlen(path1) - 1;
    //      while(psz >= path1)
@@ -328,7 +336,7 @@ namespace ios
    //      }
    //   }
    //
-   //   string dir::name(const ::string & str)
+   //   string ::file_path_folder(const ::string & str)
    //   {
    //
    //      strsize iLast = str.get_length() - 1;
@@ -382,7 +390,7 @@ namespace ios
 //         str += "\\trash_that_is_not_trash\\";
 //         string strFormat;
 //         ::datetime::time time;
-//         time = ::datetime::time::get_current_time();
+//         time = ::datetime::time::now();
 //         strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
 //         str += strFormat;
 //         if(strDir.m_pszData[2] == '\\')
@@ -463,8 +471,8 @@ namespace ios
    ::file::path dir_context::time_square(const ::string & strPrefix,const ::string & strSuffix)
    {
 
-      UNREFERENCED_PARAMETER(strPrefix);
-      UNREFERENCED_PARAMETER(strSuffix);
+      __UNREFERENCED_PARAMETER(strPrefix);
+      __UNREFERENCED_PARAMETER(strSuffix);
       return time() / "time";
 
    }

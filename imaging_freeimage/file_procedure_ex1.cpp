@@ -33,23 +33,23 @@ i32 _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, i32 origin)
    if (origin == SEEK_SET)
    {
 
-      origin = ::file::seek_begin;
+      origin = ::e_seek_set;
 
    }
    else if (origin == SEEK_CUR)
    {
 
-      origin = ::file::seek_current;
+      origin = ::e_seek_current;
 
    }
    else if (origin == SEEK_END)
    {
 
-      origin = ::file::seek_end;
+      origin = ::e_seek_from_end;
 
    }
 
-   if (pfile->seek(offset, (::file::e_seek) origin) == 0xFFFFFFFF)
+   if (pfile->translate(offset, (::enum_seek) origin) == 0xFFFFFFFF)
    {
 
       return -1;

@@ -25,7 +25,7 @@
 //
 //#include "aura/os/ansios/_.h"
 //#include "aura/os/windows_common/_.h"
-//#include "aura/os/uwp/_.h"
+//#include "aura/os/universal_windows/_.h"
 //
 //#elif defined(WINDOWS_DESKTOP)
 //
@@ -59,7 +59,7 @@
 ////namespace str
 ////{
 ////
-////   //string CLASS_DECL_CORE get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+////   //string CLASS_DECL_CORE get_window_text_timeout(oswindow oswindow, ::duration tickTimeout = 1000);
 ////
 ////} // namespace str
 ////

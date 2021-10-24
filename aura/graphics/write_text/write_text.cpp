@@ -38,9 +38,7 @@ namespace write_text
 
          auto psystem = m_psystem->m_paurasystem;
 
-         auto psubject = psystem->subject(id_font_enumeration);
-
-         psystem->handle_subject(psubject);
+         psystem->signal(id_font_enumeration);
 
       }
 
@@ -87,10 +85,10 @@ namespace write_text
    }
 
 
-   ::e_status write_text::handle_font_enumeration(::subject::subject* psubject)
+   ::e_status write_text::handle_font_enumeration(::subject* psubject)
    {
 
-      __pointer(::subject::subject) psubjectHold(psubject);
+      __pointer(::subject) psubjectHold(psubject);
 
       auto pfonts = this->fonts();
 

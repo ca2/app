@@ -26,10 +26,10 @@ namespace windows
 #include "exception.h"
 
 
-typedef ::multimedia::decoder* CDECL NEW_MULTIMEDIA_DECODER();
+typedef ::multimedia::decoder * NEW_MULTIMEDIA_DECODER();
 
 
-typedef NEW_MULTIMEDIA_DECODER* LPFN_NEW_MULTIMEDIA_DECODER;
+typedef NEW_MULTIMEDIA_DECODER * LPFN_NEW_MULTIMEDIA_DECODER;
 
 
 namespace audio
@@ -82,9 +82,11 @@ namespace veriwell
 
 } // namespace veriwell
 
+
 #include "audio.h"
 
 
 #include "multimedia.h"
+
 
 

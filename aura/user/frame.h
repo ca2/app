@@ -89,7 +89,10 @@ namespace user
       bool                                         m_bAddToTitle : 1;
       bool                                         m_bPrefixTitle : 1;
 
-      __composite(::draw2d::icon)                  m_pdrawicon;
+
+      ::user::frame_window *                       m_puserframewindow;
+
+      __composite(::draw2d::icon)            m_pdrawicon;
 
       enum_style                                   m_estyle;
       string                                       m_strStyle;
@@ -140,34 +143,49 @@ namespace user
       virtual void on_user_style_change();
 
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
       ::e_status display_previous_restore() override;
       void display_system_minimize() override;
 
 
-      virtual bool on_create_bars();
-
       virtual ::color::color get_border_main_body_color();
 
       ::e_status add_menu_item(const ::string & strPath, const ::string & strText, const ::string & strId);
 
 
+      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
+
+
+      //virtual ::user::toolbar * get_toolbar(const ::id & idToolBar);
+
+      virtual ::e_status add_control_bar(::user::control_bar * pcontrolbar);
+      virtual ::e_status erase_control_bar(::user::control_bar * pcontrolbar);
+
+
+      ::e_status show_control_bar(::user::control_bar * pcontrolbar) override;
+      ::e_status hide_control_bar(::user::control_bar * pcontrolbar) override;
+
+
+      //virtual __transport(toolbar) create_toolbar(const ::id & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+
+
+      virtual ::e_status on_create_bars();
+
+
+
+
       virtual ::user::interaction * get_active_view() const;
       virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true);
 
-      virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
-
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 
-      virtual bool LoadToolBar(id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
-
-      virtual bool is_frame_window() override;
+      bool is_frame_window() override;
 
       virtual void InitialFramePosition(bool bForceRestore = false);
 
-      virtual ::size_i32 get_window_minimum_size() override;
+      ::size_i32 get_window_minimum_size() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_app_exit);
       ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);

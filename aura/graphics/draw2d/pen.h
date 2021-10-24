@@ -25,7 +25,7 @@ namespace draw2d
       virtual ~pen();
 
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual bool create_null();
       virtual bool create_solid(double dWidth, const ::color::color &color);
@@ -40,7 +40,7 @@ namespace draw2d
       virtual enum_line_join get_line_join();
       virtual bool set_line_join(enum_line_join elinejoin);
 
-      pen & operator = (const pen & penSrc);
+      pen & operator = (const pen & ppenSrc);
 
 
 
@@ -97,16 +97,16 @@ namespace draw2d
 
    //};
 
-   inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
-   {
+   //inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
+   //{
 
-      auto ppen = ::__create < pen >();
+   //   auto ppen = ::__create < pen >();
 
-      ppen->create_solid(dWidth, color);
+   //   ppen->create_solid(dWidth, color);
 
-      return ppen;
+   //   return ppen;
 
-   }
+   //}
 
 
 } // namespace draw2d

@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 /***
 *int _validdrive( unsigned drive ) -
@@ -236,7 +236,7 @@ return 1;
 }*/
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /*
@@ -263,7 +263,7 @@ namespace uwp
 
       // get the Windows version.
 
-      ::u32 dwWindowsMajorVersion =  (::u32)(LOBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMajorVersion =  (::u32)(__LOBYTE(LOWORD(dwVersion)));
       //   ::u32 dwWindowsMinorVersion =  (::u32)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
@@ -501,7 +501,7 @@ namespace uwp
 //      ::u32 cbFileInfo,
 //      ::u32 uFlags)
 //   {
-//      UNREFERENCED_PARAMETER(cbFileInfo);
+//      __UNREFERENCED_PARAMETER(cbFileInfo);
 //      string strPath;
 //      ::str::international::UnicodeToACP(strPath, pszPath);
 //      SHFILEINFOA shia;
@@ -748,7 +748,7 @@ namespace uwp
 //
 //
 //
-} // namespace uwp
+} // namespace universal_windows
 
 
 

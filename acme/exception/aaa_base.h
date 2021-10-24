@@ -12,7 +12,7 @@
 //
 //
 //   class CLASS_DECL_ACME base :
-//      public ::exception::exception,
+//      public ::exception,
 //   {
 //   public:
 //

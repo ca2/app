@@ -13,7 +13,7 @@ void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ namespace uwp
       virtual ~file();
 
 
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
       virtual void dump(dump_context& dumpcontext) const override;
 
 
@@ -67,7 +67,7 @@ namespace uwp
 
       //virtual __pointer(::file::file) Duplicate() const;
 
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;
+      virtual filesize seek(filesize lOff, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize get_size() const override;
 
@@ -100,4 +100,4 @@ namespace uwp
 
 
 
-} // namespace uwp
+} // namespace universal_windows

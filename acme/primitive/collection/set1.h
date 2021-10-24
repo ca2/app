@@ -469,8 +469,8 @@ public:
    SET_ELEMENT_ITEM * get_element_at(ARG_ELEMENT, ::u32 &, ::u32 &) const;
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
 

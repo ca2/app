@@ -269,7 +269,7 @@ namespace calculator
          else
          {
 
-            __throw(::exception::exception("unknown function"));
+            throw ::exception(error_failed, "unknown function");
 
          }
 
@@ -376,7 +376,7 @@ namespace calculator
 
       str += psz;
 
-      throw_numeric_parser_exception(str);
+      throw_numeric_parsing_exception(str);
 
    }
 

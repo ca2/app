@@ -3,7 +3,7 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -62,7 +62,7 @@ namespace uwp
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", __type_name(this));
 
             }
 
@@ -148,7 +148,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

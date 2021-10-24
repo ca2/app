@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "aura/const/message.h"
 //#include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -18,9 +18,9 @@
 
 #define new ACME_NEW
 
-::point g_pointX11Cursor;
-//::millis g_tickLastMouseMove;
-//::millis g_tickLastX11WindowConfigurationCheck;
+::point_i32 g_pointX11Cursor;
+//::duration g_tickLastMouseMove;
+//::duration g_tickLastX11WindowConfigurationCheck;
 
 
 //void _x11_defer_check_configuration(oswindow oswindow);
@@ -942,14 +942,14 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
       }
 
-      ::rectangle rectTest;
+      ::rectangle rectangleTest;
 
       for(index i = 0; i < windowa.get_size(); i++)
       {
 
          string strItem = x11_get_name(display, windowa[i]);
 
-         ::rectangle rectHigher;
+         ::rectangle rectangleHigher;
 
          if(::is_set(oswindowExclude) && windowa[i] == oswindowExclude->window())
          {
@@ -958,16 +958,16 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
          }
 
-         if(x11_get_window_rect(display, windowa[i], rectHigher))
+         if(x11_get_window_rect(display, windowa[i], rectangleHigher))
          {
 
-            ::rectangle rectHitTest;
+            ::rectangle rectangleHitTest;
 
-            rectHitTest.set(rectHigher.origin(), ::size());
+            rectangleHitTest.set(rectangleHigher.origin(), ::size());
 
-            rectHitTest.inflate(iMargin+1);
+            rectangleHitTest.inflate(iMargin+1);
 
-            if(rectHitTest.contains(pointHitTest))
+            if(rectangleHitTest.contains(pointHitTest))
             {
 
                bIsOrigin = true;
@@ -1046,19 +1046,19 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
-//    ::rectangle rectTest;
+//    ::rectangle rectangleTest;
 
 //    for(iFind++; iFind < windowa.get_size(); iFind++)
 //    {
 
 //       string strItem = x11_get_name(display, windowa[iFind]);
 
-//       ::rectangle rectHigher;
+//       ::rectangle rectangleHigher;
 
-//       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+//       if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
 //       {
 
-//          if(rectTest.intersect(rectHigher, rectangle))
+//          if(rectangleTest.intersect(rectangleHigher, rectangle))
 //          {
 
 //             return true;
@@ -1136,19 +1136,19 @@ void upper_window_rects(oswindow oswindow, rectangle_i32_array & ra)
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectTest;
+   ::rectangle rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       //string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectHigher;
+      ::rectangle rectangleHigher;
 
-      if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+      if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
 
-         ra.add(rectHigher);
+         ra.add(rectangleHigher);
 
       }
 
@@ -1800,7 +1800,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    ::draw2d::brush_pointer pen(e_create_new);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for(index i = 0; i < stra.get_count(); i++)
    {
@@ -3013,7 +3013,7 @@ extern bool b_prevent_xdisplay_lock_log;
 //thread_int_ptr < iptr > t_iXim;
 
 
-//        XGenericEventCookie *cookie = (XGenericEventCookie*)&ev.xcookie;
+//        XGenericEventCookie *cookie = (XGenericEventCookie*)&subject.xcookie;
 //        XNextEvent(display, (XEvent*)&ev);
 //
 //        if (XGetEventData(display, cookie) &&
@@ -3101,7 +3101,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
             auto pupdate = new_update();
 
-            e_id eid;
+            ::enum_id eid;
 
             switch (cookie->evtype)
             {
@@ -3193,7 +3193,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
          if(pinteraction.is_set())
          {
 
-            if(pinteraction->m_millisMouseMove.elapsed() < pinteraction->m_millisMouseMoveIgnore)
+            if(pinteraction->m_durationMouseMove.elapsed() < pinteraction->m_durationMouseMoveIgnore)
             {
 
                bOk = false;
@@ -3203,7 +3203,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
             if(bOk)
             {
 
-               pinteraction->m_millisMouseMove.Now();
+               pinteraction->m_durationMouseMove.Now();
 
                pinteraction->m_pointMouseMove.x = e.xmotion.x_root;
 
@@ -3212,13 +3212,13 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                if(false)
                {
 
-                  if(pinteraction->m_millisMouseMovePeriod > 0)
+                  if(pinteraction->m_durationMouseMovePeriod > 0)
                   {
 
                      ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
                         (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 
-                     if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
+                     if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                         && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                      {
 
@@ -3367,7 +3367,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
                      if(pinteraction->layout().design().display() == ::e_display_iconic)
                      {
 
-                        //file_put_contents("/home/camilo/xxx.txt", "");
+                        //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
 
                         // 1111111111111111111111111111111111111111111
 
@@ -3472,7 +3472,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
                //_x11_defer_check_configuration(msg.hwnd);
 
-               ::point point(e.xconfigure.x, e.xconfigure.y);
+               ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
                ::size size(e.xconfigure.width, e.xconfigure.height);
 
@@ -3960,7 +3960,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("B " + __str(wFocus));
+//            output_debug_string("B " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -3975,7 +3975,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 //         else
 //         {
 //
-//            output_debug_string("D " + __str(wFocus));
+//            output_debug_string("D " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -4410,7 +4410,7 @@ void wm_full_screen(oswindow w, const ::rectangle & rectangle)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 }
 
@@ -5082,8 +5082,8 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   auto point = rectangle.top_left();
 //
-//   millis tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
-//   millis tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
+//   ::duration tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
+//   ::duration tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
 //   bool bMoveDiff = pinteraction->payload("bMoveDiff").get_bool();
 //   bool bSizeDiff = pinteraction->payload("bsizeDiff").get_bool();
 //
@@ -5203,18 +5203,18 @@ void x11_store_name(oswindow oswindow, const ::string & pszName)
 //
 //   }
 //
-//   ::rectangle rectSource;
+//   ::rectangle rectangleSource;
 //
-//   x11_get_window_rect(display, oswindow->window(), rectSource);
+//   x11_get_window_rect(display, oswindow->window(), rectangleSource);
 //
-//   ::rectangle rectTarget;
+//   ::rectangle rectangleTarget;
 //
-//   pinteraction->get_window_rect(rectTarget);
+//   pinteraction->get_window_rect(rectangleTarget);
 //
-//   if(rectTarget != rectSource)
+//   if(rectangleTarget != rectangleSource)
 //   {
 //
-//      pinteraction->place(rectSource);
+//      pinteraction->place(rectangleSource);
 //
 //      pinteraction->set_reposition();
 //

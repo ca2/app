@@ -717,8 +717,8 @@
 		<Unit filename="os/console.h" />
 		<Unit filename="os/cross.h" />
 		<Unit filename="os/cross/_.h" />
-		<Unit filename="os/cross/uwp/cross_metrowin_user.cpp" />
-		<Unit filename="os/cross/uwp/metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/cross_metrowin_user.cpp" />
+		<Unit filename="os/cross/universal_windows/metrowin_user.cpp" />
 		<Unit filename="os/cross/windows/_.h" />
 		<Unit filename="os/cross/windows/crt.cpp" />
 		<Unit filename="os/cross/windows/crt_debug.cpp" />
@@ -1084,7 +1084,7 @@
 		<Unit filename="primitive/collection/string_map.h" />
 		<Unit filename="primitive/collection/string_to_string_map.cpp" />
 		<Unit filename="primitive/collection/string_to_string_map.h" />
-		<Unit filename="primitive/collection/stringa.cpp" />
+		<Unit filename="primitive/collection/string_array.cpp" />
 		<Unit filename="primitive/collection/stringl.cpp" />
 		<Unit filename="primitive/collection/stringl.h" />
 		<Unit filename="primitive/collection/template.h" />

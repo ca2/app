@@ -20,10 +20,10 @@ namespace user
    status_bar::status_bar()
    {
       // setup default border/margin depending on type of system
-      m_rectBorder.top = 2;
-      m_rectBorder.left = 0;
-      m_rectBorder.right = 0;
-      m_rectBorder.bottom = 0;
+      m_rectangleBorder.top = 2;
+      m_rectangleBorder.left = 0;
+      m_rectangleBorder.right = 0;
+      m_rectangleBorder.bottom = 0;
 
       // minimum height set with SB_SETMINHEIGHT is cached
       m_nMinHeight = 0;
@@ -109,7 +109,7 @@ namespace user
 
       //{
 //         HFONT hFont = (HFONT)send_message(WM_GETFONT);
-      ::draw2d::graphics_pointer spgraphicsScreen(e_create);
+      ::draw2d::graphics_pointer spgraphicsScreen(e_create, this);
 
       //__throw(todo);
       /*         HGDIOBJ hOldFont = nullptr;
@@ -458,7 +458,7 @@ namespace user
          else
             pSBP->strText.Empty();
       }
-      catch(::exception::exception *)
+      catch(::exception *)
       {
          // Note: DELETE_EXCEPTION(e) not required
          return false;
@@ -494,7 +494,7 @@ namespace user
 //      TEXTMETRICW tm;
       {
          // os independence
-         ::exception::throw_not_implemented();
+         throw interface_only_exception();
          /*      CClientDC spgraphics(nullptr);
                HFONT hFont = (HFONT)SendMessage(WM_GETFONT);
                HGDIOBJ hOldFont = nullptr;
@@ -505,29 +505,29 @@ namespace user
                   spgraphics->set(hOldFont);*/
       }
 
-      // get border information
-      ::rectangle_i32 rectangle;
-
-      CalcInsideRect(pgraphics, rectangle, bHorz);
-      ::size_i32 size;
-      size.cx =0;
-      size.cy =0;
-
-//#ifdef WINDOWS_DESKTOP
-//      i32 rgBorders[3];
-//      TEXTMETRICW tm;
-//      DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
+//      // get border information
+//      ::rectangle_i32 rectangle;
 //
-//      // determine size, including borders
-//      size.cx = 32767;
-//      size.cy = tm.tmHeight - tm.tmInternalLeading - 1
-//         + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
-//         - rectangle.height();
-//      if (size.cy < m_nMinHeight)
-//         size.cy = m_nMinHeight;
-//#endif
+//      CalcInsideRect(pgraphics, rectangle, bHorz);
+//      ::size_i32 size;
+//      size.cx =0;
+//      size.cy =0;
+//
+////#ifdef WINDOWS_DESKTOP
+////      i32 rgBorders[3];
+////      TEXTMETRICW tm;
+////      DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
+////
+////      // determine size, including borders
+////      size.cx = 32767;
+////      size.cy = tm.tmHeight - tm.tmInternalLeading - 1
+////         + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
+////         - rectangle.height();
+////      if (size.cy < m_nMinHeight)
+////         size.cy = m_nMinHeight;
+////#endif
 
-      return size;
+      //return size;
    }
 
 
@@ -636,7 +636,7 @@ namespace user
    void status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       UpdateAllPanes(false, true);
 
@@ -685,7 +685,7 @@ namespace user
          pmessage->m_bRet = true;
          return;
       }
-      pmessage->m_lresult = SetPaneText(nIndex, (const ::string &)pmessage->m_lparam.m_lparam) ? 0 : -1;
+      pmessage->m_lresult = SetPaneText(nIndex, (const char *)pmessage->m_lparam.m_lparam) ? 0 : -1;
       pmessage->m_bRet = true;
    }
 
@@ -985,19 +985,19 @@ namespace user
 
    //void status_bar::SetPaneInfo(i32 nIndex, i32 iId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   UNREFERENCED_PARAMETER(nIndex);
-   //   UNREFERENCED_PARAMETER(iId);
-   //   UNREFERENCED_PARAMETER(nStyle);
-   //   UNREFERENCED_PARAMETER(cxWidth);
+   //   __UNREFERENCED_PARAMETER(nIndex);
+   //   __UNREFERENCED_PARAMETER(iId);
+   //   __UNREFERENCED_PARAMETER(nStyle);
+   //   __UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    //}
 
    //void status_bar::SetPaneInfo(i32 nIndex, const ::string & pszId, ::u32 nStyle, i32 cxWidth)
    //{
-   //   UNREFERENCED_PARAMETER(nIndex);
-   //   UNREFERENCED_PARAMETER(pszId);
-   //   UNREFERENCED_PARAMETER(nStyle);
-   //   UNREFERENCED_PARAMETER(cxWidth);
+   //   __UNREFERENCED_PARAMETER(nIndex);
+   //   __UNREFERENCED_PARAMETER(pszId);
+   //   __UNREFERENCED_PARAMETER(nStyle);
+   //   __UNREFERENCED_PARAMETER(cxWidth);
    //   //SetPaneInfo(nIndex, pszId, nStyle, cxWidth);
    //}
 

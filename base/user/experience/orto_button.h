@@ -18,17 +18,17 @@ namespace experience
 
 
       orto_button();
-      virtual ~orto_button();
+      ~orto_button() override;
 
 
-      virtual void on_hit_test(::user::item & item);
+      void on_hit_test(::item & item) override;
 
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual bool pre_create_window(::user::system * pusersystem);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void install_message_routing(::channel * pchannel);
-      void UpdateWndRgn();
+      void install_message_routing(::channel * pchannel) override;
+      void UpdateWndRgn() override;
       //void SetEllipsePens(
       //     ::draw2d::pen * ppen,
       //     ::draw2d::pen * ppenSel = nullptr,
@@ -46,13 +46,13 @@ namespace experience
       //     ::color::color crDisabled);
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
-      void _001OnTimer(::timer * ptimer);
+      void _001OnTimer(::timer * ptimer) override;
       //LRESULT OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam);
 
 

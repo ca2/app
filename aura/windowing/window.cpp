@@ -2,11 +2,13 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #include "aura/user/_user.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 namespace windowing
 {
+
+
 
 
    window::window()
@@ -66,6 +68,29 @@ namespace windowing
    }
 
 
+   ::e_status window::on_initialize_object()
+   {
+
+      auto estatus = ::channel::on_initialize_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      puser->on_initialize_window_object();
+
+      return estatus;
+
+   }
+
+
    void window::assert_valid() const
    {
 
@@ -90,6 +115,36 @@ namespace windowing
 
    void window::message_handler(::message::message * pmessage)
    {
+      
+      if(pmessage->m_id == e_message_post_user)
+      {
+
+         if (pmessage->m_wparam == 1)
+         {
+            
+            auto pobject = pmessage->m_union.m_pobject;
+            
+            auto pmatter = pobject->m_pelement.m_p;
+            
+            pmessage = dynamic_cast < ::message::message * >(pmatter);
+
+            if (::is_null(pmessage))
+            {
+
+               return;
+
+            }
+
+            if(pmessage->m_id==e_message_vscroll)
+            {
+               
+               ::output_debug_string("vscroll");
+            
+            }
+
+         }
+         
+      }
 
       m_pimpl->message_handler(pmessage);
 
@@ -99,9 +154,9 @@ namespace windowing
    ::e_status window::create_window(::user::interaction_impl * pimpl)
    {
 
-      UNREFERENCED_PARAMETER(pimpl);
+      __UNREFERENCED_PARAMETER(pimpl);
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
       
@@ -147,10 +202,39 @@ namespace windowing
    }
 
 
+   ::user::copydesk * window::copydesk()
+   {
+
+      if (!m_pcopydesk)
+      {
+
+         __raw_compose(m_pcopydesk);
+
+         if (m_pcopydesk)
+         {
+
+            auto estatus = m_pcopydesk->initialize_copydesk(this);
+
+            if (!estatus)
+            {
+
+               __release(m_pcopydesk);
+
+            }
+
+         }
+
+      }
+
+      return m_pcopydesk;
+
+   }
+
+
    ::e_status window::set_mouse_capture()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
 
@@ -160,7 +244,7 @@ namespace windowing
    //::e_status window::get_capture()
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return m_pcapture;;
 
@@ -171,7 +255,7 @@ namespace windowing
    //::e_status window::set_capture()
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return error_interface_only;
 
@@ -181,9 +265,35 @@ namespace windowing
    ::e_status window::destroy_window()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
+
+   }
+
+
+   ::e_status window::on_destroy()
+   {
+
+      try
+      {
+
+         if (m_pcopydesk.is_set())
+         {
+
+            m_pcopydesk->destroy();
+
+            __release(m_pcopydesk);
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return ::success;
 
    }
 
@@ -206,7 +316,7 @@ namespace windowing
    void window::on_visual_applied()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -214,7 +324,7 @@ namespace windowing
    void window::win_update_graphics()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -240,7 +350,7 @@ namespace windowing
    void window::set_window_text(const ::string & pszString)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -248,16 +358,16 @@ namespace windowing
    strsize window::get_window_text(char * pszStringBuf, strsize nMaxCount)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return 0;
 
    }
 
-   void window::get_window_text(string & rectString)
+   void window::get_window_text(string & rectangleString)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -266,7 +376,7 @@ namespace windowing
    strsize window::get_window_text_length()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return 0;
 
@@ -276,7 +386,7 @@ namespace windowing
    void window::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -285,7 +395,7 @@ namespace windowing
    //bool window::window_is_iconic()
    //{
    //
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
    //
    //   return false;
    //
@@ -295,7 +405,7 @@ namespace windowing
    bool window::is_zoomed()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -305,7 +415,7 @@ namespace windowing
    ::u32 window::ArrangeIconicWindows()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return 0;
 
@@ -334,10 +444,10 @@ namespace windowing
    }
 
 
-   void window::route_command_message(class ::message::command *)
+   void window::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -345,7 +455,7 @@ namespace windowing
    void window::present()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -391,7 +501,7 @@ namespace windowing
    bool window::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -450,7 +560,7 @@ namespace windowing
    bool window::LockWindowUpdate()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -464,10 +574,10 @@ namespace windowing
    }
 
 
-   bool window::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool window::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -477,7 +587,7 @@ namespace windowing
    bool window::is_this_enabled()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -487,7 +597,7 @@ namespace windowing
    bool window::enable_window(bool bEnable)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -498,7 +608,7 @@ namespace windowing
    ::user::interaction * window::GetActiveWindow()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -508,7 +618,7 @@ namespace windowing
    ::user::interaction * window::SetActiveWindow()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -519,7 +629,7 @@ namespace windowing
    ::e_status window::set_foreground_window()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -529,7 +639,7 @@ namespace windowing
    ::user::interaction * window::get_foreground_window()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -539,18 +649,22 @@ namespace windowing
    bool window::is_active_window() const
    {
 
-      __throw(error_interface_only);
+      if(m_pwindowing->get_active_window(m_pimpl->m_puserinteraction->m_pthreadUserInteraction) != this)
+      {
 
-      return false;
+         return false;
+
+      }
+
+      return true;
 
    }
-
 
 
    ::user::interaction * window::get_desktop_window()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -559,7 +673,7 @@ namespace windowing
    ::windowing::window * window::get_next_window(::u32 nFlag)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -569,7 +683,7 @@ namespace windowing
    ::windowing::window * window::get_top_window() const 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -579,7 +693,7 @@ namespace windowing
    ::windowing::window * window::get_window(::u32 nCmd) const 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -589,7 +703,7 @@ namespace windowing
    ::windowing::window * window::get_last_active_popup() const 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -599,7 +713,7 @@ namespace windowing
    ::windowing::window * window::get_parent() const 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -609,7 +723,7 @@ namespace windowing
    oswindow window::get_parent_oswindow() const
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -619,7 +733,7 @@ namespace windowing
    ::e_status window::set_parent(::windowing::window * pwindowNewParent) 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 
@@ -629,7 +743,7 @@ namespace windowing
    ::windowing::window * window::get_owner() const
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -639,7 +753,7 @@ namespace windowing
    oswindow window::get_owner_oswindow() const
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -649,7 +763,7 @@ namespace windowing
    ::e_status window::set_owner(::windowing::window * pwindowNewOwner)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 
@@ -659,7 +773,7 @@ namespace windowing
    point_i32 window::GetCaretPos()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -669,7 +783,7 @@ namespace windowing
    void window::SetCaretPos(const ::point_i32 & point)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -677,7 +791,7 @@ namespace windowing
    void window::HideCaret() 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
      
@@ -685,7 +799,7 @@ namespace windowing
    void window::ShowCaret() 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -693,7 +807,7 @@ namespace windowing
    void window::DragAcceptFiles(bool bAccept)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -711,7 +825,7 @@ namespace windowing
    __pointer(::windowing::icon) window::get_icon() const
    {
 
-      //__throw(error_interface_only);
+      //throw ::interface_only_exception();
 
       ///return nullptr;
 
@@ -723,9 +837,17 @@ namespace windowing
    ::e_status window::set_mouse_cursor(::windowing::cursor * pcursor)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return error_interface_only;
+
+   }
+
+
+   ::point_i32 window::get_mouse_cursor_position()
+   {
+
+      return ::point_i32(0, 0);
 
    }
 
@@ -733,7 +855,7 @@ namespace windowing
    ::e_status window::set_tool_window(bool bSet)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 
@@ -743,7 +865,7 @@ namespace windowing
    void window::on_set_parent(::user::interaction * pinteraction) 
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -751,7 +873,7 @@ namespace windowing
    bool window::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
       
       return false;
    
@@ -761,7 +883,7 @@ namespace windowing
    void window::show_task(bool bShow)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -769,7 +891,7 @@ namespace windowing
    void window::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
@@ -777,12 +899,12 @@ namespace windowing
    void window::non_top_most_upper_window_rects(::rectangle_i32_array & recta)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
    }
 
 
-   void window::post_nc_destroy()
+   void window::post_non_client_destroy()
    {
 
    }
@@ -924,7 +1046,7 @@ namespace windowing
    ::e_status window::set_keyboard_focus()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 
@@ -934,7 +1056,7 @@ namespace windowing
    ::e_status window::set_active_window()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
 
@@ -944,9 +1066,24 @@ namespace windowing
    ::e_status window::bring_to_front()
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return ::error_interface_only;
+
+   }
+
+
+   void window::graphics_lock()
+   {
+
+
+   }
+
+
+   void window::graphics_unlock()
+   {
+
+
 
    }
 
@@ -1010,7 +1147,7 @@ namespace windowing
 
       }
 
-      if (!m_pimpl->m_puserinteraction->m_bUserPrimitiveOk)
+      if (!m_pimpl->m_puserinteraction->m_bUserElementOk)
       {
 
          return true;
@@ -1057,7 +1194,7 @@ namespace windowing
    void window::window_show()
    {
    
-      m_pwindowing->windowing_branch(__routine([this]()
+      m_pwindowing->windowing_post(__routine([this]()
                                              {
 
                                                  auto pimpl = m_pimpl;
@@ -1087,20 +1224,56 @@ namespace windowing
       
    }
 
- ::e_status window::frame_toggle_restore()
-{
+   ::e_status window::frame_toggle_restore()
+   {
     
-    auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
+      auto estatus= m_pimpl->m_puserinteraction->frame_toggle_restore();
     
-    if(!estatus)
-    {
+      if(!estatus)
+      {
        
-       return estatus;
+         return estatus;
     
-    }
-    return estatus;
+      }
+
+      return estatus;
     
- }
+   }
+
+
+   ::e_status window::window_send(const ::routine & routine)
+   {
+
+      auto estatus = __send_routine(this, &window::window_post, routine);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status window::window_post(const ::routine & routine)
+   {
+
+      throw ::interface_only_exception();
+
+      return error_interface_only;
+
+   }
+   
+   
+   bool window::is_branch_current() const
+   {
+
+      return false;
+
+   }
 
 
 } // namespace windowing

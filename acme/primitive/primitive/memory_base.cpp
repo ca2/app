@@ -405,7 +405,8 @@ void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) con
 
       __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + get_size(),((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),pfileOut->get_internal_data_size() - get_size());
       ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(),get_data(),get_size());
-      pfileOut->seek(get_size(),::file::seek_current);
+
+      pfileOut->position() += get_size();
 
    }
    else
@@ -417,6 +418,7 @@ void memory_base::transfer_to(::file::file * pfileOut, memsize uiBufferSize) con
 
 }
 
+
 void memory_base::transfer_from_begin(::file::file * pfileIn,memsize uiBufferSize)
 {
 
@@ -425,6 +427,7 @@ void memory_base::transfer_from_begin(::file::file * pfileIn,memsize uiBufferSiz
    transfer_from(pfileIn,uiBufferSize);
 
 }
+
 
 void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 {
@@ -500,7 +503,7 @@ void memory_base::fread(FILE * pfile)
    while(true)
    {
 
-      auto iRead = FILE_read(buffer, 1, buffer.size(), pfile);
+      memsize iRead = ::fread(buffer, 1, buffer.size(), pfile);
 
       if(iRead > 0)
       {
@@ -601,30 +604,30 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //}
 
 
-#elif defined(_UWP)
-
-comptr < IStream > memory_base::create_istream() const
-{
-
-   if (get_data() == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
-
-   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
-
-   IStream * pstream = nullptr;
-
-   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
-
-   return pstream;
-
-
-}
+//#elif defined(_UWP)
+//
+//comptr < IStream > memory_base::create_istream() const
+//{
+//
+//   if (get_data() == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
+//
+//   ::wait(randomAccessStream->WriteAsync(get_os_buffer()));
+//
+//   IStream * pstream = nullptr;
+//
+//   ::CreateStreamOverRandomAccessStream(randomAccessStream,IID_PPV_ARGS(&pstream));
+//
+//   return pstream;
+//
+//
+//}
 #endif
 
 
@@ -767,7 +770,7 @@ bool memory_base::begins(const char * psz, strsize iCount) const
 
    }
 
-   if ((memsize) iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -805,7 +808,7 @@ bool memory_base::begins_ci(const char * psz, strsize iCount) const
 
    }
 
-   if ((memsize)iCount > get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -827,7 +830,7 @@ bool memory_base::begins(const ::string & str, strsize iCount) const
 
    }
 
-   if ((memsize)iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -849,7 +852,7 @@ bool memory_base::begins_ci(const ::string & str, strsize iCount) const
 
    }
 
-   if ((memsize)iCount < get_size())
+   if (get_size() < iCount)
    {
 
       return false;
@@ -857,6 +860,110 @@ bool memory_base::begins_ci(const ::string & str, strsize iCount) const
    }
 
    return !ansi_count_compare_ci((const char*) get_data(), str.c_str(), iCount);
+
+}
+
+
+bool memory_base::ends(const char * psz, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += strlen(psz) + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !__memcmp(get_data() + get_size() - iCount, psz, iCount);
+
+}
+
+
+bool memory_base::ends_ci(const char * psz, strsize iCount) const
+{
+
+   if (::is_null(psz) || *psz == '\0')
+   {
+
+      return true;
+
+   }
+
+   const char * pszThis = (const char *)get_data();
+
+   if (::is_null(pszThis))
+   {
+
+      return false;
+
+   }
+
+   if (iCount < 0)
+   {
+
+      iCount += strlen(psz) + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !ansi_count_compare_ci(pszThis + get_size() - iCount, psz, (size_t) iCount);
+
+}
+
+
+bool memory_base::ends(const ::string & str, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += str.get_length() + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !__memcmp(get_data() + get_size() - iCount, str.c_str(), iCount);
+
+}
+
+
+bool memory_base::ends_ci(const ::string & str, strsize iCount) const
+{
+
+   if (iCount < 0)
+   {
+
+      iCount += str.get_length() + 1;
+
+   }
+
+   if (get_size() < iCount)
+   {
+
+      return false;
+
+   }
+
+   return !ansi_count_compare_ci((const char*) get_data() + get_size() - iCount, str.c_str(), iCount);
 
 }
 
@@ -1315,15 +1422,15 @@ void memory_base::append_from_string(const ::payload & payload)
 }
 
 
-string memory_base::to_string() const
+string memory_base::get_string() const
 {
 
-   return to_string(0);
+   return get_string(0);
 
 }
 
 
-string memory_base::to_string(memsize iStart, memsize iCount) const
+string memory_base::get_string(memsize iStart, memsize iCount) const
 {
 
    string str;
@@ -1680,20 +1787,20 @@ Array < uchar, 1U > ^ memory_base::get_os_bytes(memsize pos, memsize size) const
 }
 
 
-::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memsize pos, memsize size) const
+::winrt::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memsize pos, memsize size) const
 {
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 
-   return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(pbytes);
+   return ::winrt::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(pbytes);
 
 }
 
 
-::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
+::winrt::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memsize pos, memsize size) const
 {
 
-   ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter();
+   ::winrt::Windows::Storage::Streams::DataWriter ^ writer = ref new ::winrt::Windows::Storage::Streams::DataWriter();
 
    Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 
@@ -1742,22 +1849,22 @@ void memory_base::set_os_bytes(Array < uchar, 1U > ^ a, memsize pos, memsize siz
 }
 
 
-void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
+void memory_base::set_os_crypt_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
 {
 
    Array < uchar, 1U > ^ a = nullptr;
 
-   ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
+   ::winrt::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
 
    return set_os_bytes(a, pos, size);
 
 }
 
 
-void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
+void memory_base::set_os_buffer(::winrt::Windows::Storage::Streams::IBuffer ^ ibuf, memsize pos, memsize size)
 {
 
-   Windows::Storage::Streams::DataReader^ r = Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
+   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
 
    Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
 
@@ -1768,63 +1875,8 @@ void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, mem
 }
 
 
-#elif defined(__APPLE__)
-
-CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
-{
-   if (pos > get_size())
-      __throw(error_invalid_argument);
-   if(size < 0)
-   {
-      size = get_size() - pos;
-
-   }
-   else if (pos + size > get_size())
-   {
-      size = get_size() - pos;
-   }
-   return CFDataCreate(kCFAllocatorDefault, (const ::u8 *)&get_data()[pos], (CFIndex)size);
-}
-
-
-void memory_base::set_os_cf_data(CFDataRef data, memsize pos, memsize size)
-{
-
-   if (pos > CFDataGetLength(data))
-   {
-
-      __throw(error_invalid_argument);
-
-   }
-
-   if (pos > CFDataGetLength(data))
-   {
-
-      __throw(error_invalid_argument);
-
-   }
-
-   if(size < 0)
-   {
-
-      size = CFDataGetLength(data) - pos;
-
-   }
-   else if (pos + size > CFDataGetLength(data))
-   {
-
-      size = CFDataGetLength(data) - pos;
-
-   }
-
-   set_size(size);
-
-   ::memcpy_dup(get_data(), &CFDataGetBytePtr(data)[pos], size);
-
-}
-
-
 #endif
+
 
 memory_base & memory_base::reverse()
 {
@@ -1852,7 +1904,7 @@ memsize memory_base::length() const
 }
 
 
-::matter * memory_base::clone() const
+::element * memory_base::clone() const
 {
 
    auto pmemory = new memory();
@@ -1944,7 +1996,7 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 
    }
 
-   auto iFindEol = find_index(__block('\n'), iStart);
+   auto iFindEol = find_index(memory_block('\n'), iStart);
 
    if (iFindEol < 0)
    {
@@ -1998,6 +2050,116 @@ byte* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
 }
 
 
+bool memory_base::begins(const block& block) const
+{
+
+   if(get_size() < block.get_size())
+   {
+
+      return false;
+
+   }
+
+   int iMemcmp = memcmp(get_data(), block.get_data(), block.get_size());
+
+   return iMemcmp == 0;
+
+}
+
+
+bool memory_base::ends(const block& block) const
+{
+
+   if(get_size() < block.get_size())
+   {
+
+      return false;
+
+   }
+
+   int iMemcmp = memcmp(get_data() + get_size() - block.get_size(), block.get_data(), block.get_size());
+
+   return iMemcmp == 0;
+
+}
+
+
+
+byte * memory_base::find(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::find_index(const ::block & block, ::index iStart) const
+{
+
+   auto p = find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
+
+}
+
+
+byte * memory_base::reverse_find(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)reverse_memmem(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::reverse_find_index(const ::block & block, ::index iStart) const
+{
+
+   auto p = reverse_find(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
+
+}
+
+
+byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
+{
+
+   return (byte *)reverse_byte_not_in_block(get_data() + iStart, get_size() - iStart, (byte *)block.get_data(), block.get_size());
+
+}
+
+
+::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block & block, ::index iStart) const
+{
+
+   auto p = reverse_find_byte_not_in_block(block, iStart);
+
+   if (!p)
+   {
+
+      return -1;
+
+   }
+
+   return ((byte *)p) - get_data();
+
+}
+
+
 namespace papaya
 {
 
@@ -2016,8 +2178,10 @@ namespace papaya
             return;
 
          __memmov(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position() + mem.get_size(), ((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - mem.get_size());
+
          ::memcpy_dup(((u8 *)pfileOut->get_internal_data()) + pfileOut->get_position(), mem.get_data(), mem.get_size());
-         pfileOut->seek(mem.get_size(), ::file::seek_current);
+
+         pfileOut->position() += mem.get_size();
 
       }
       else
@@ -2145,10 +2309,10 @@ CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcon
 
 
 
-//const char * matter::type_name() const
+//const char * matter::__type_name(this) const
 //{
 //
-//   return typeid(*this).name();
+//   return __type_name(this);
 //
 //}
 

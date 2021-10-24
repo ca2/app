@@ -16,9 +16,9 @@
 #pragma once
 
 
-#include "apex/os/uwp/file_winrt.h"
-#include "apex/os/uwp/multithreading_winrt.h"
-#include "apex/os/uwp/gdi_winrt.h"
+#include "apex/os/universal_windows/file_winrt.h"
+#include "apex/os/universal_windows/multithreading_winrt.h"
+#include "apex/os/universal_windows/gdi_winrt.h"
 
 
 

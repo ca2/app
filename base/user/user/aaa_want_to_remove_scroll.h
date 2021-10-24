@@ -37,7 +37,7 @@ namespace user
       virtual ~scroll_x();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void send_xscroll_message(int nSBCode);
 
@@ -103,7 +103,7 @@ namespace user
 
       virtual void send_yscroll_message(int nSBCode);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       //virtual void GetScrollRect(RECT32 * prect);
@@ -154,7 +154,7 @@ namespace user
       virtual bool validate_viewport_offset(point & point) override;
       void layout_scroll_bar() override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       //void GetScrollRect(RECT32 * prect);
 
@@ -172,8 +172,8 @@ namespace user
       virtual ::size get_total_size() override;
 
 
-      virtual ::e_status set_total_size(const ::sized& size) override;
-      virtual ::e_status set_page_size(const ::sized& size) override;
+      virtual ::e_status set_total_size(const ::size_f64& size) override;
+      virtual ::e_status set_page_size(const ::size_f64& size) override;
 
 
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_CORE simple_tab_view :
@@ -10,23 +10,23 @@ public:
    simple_tab_view();
    virtual ~simple_tab_view();
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual void assert_valid() const;
-   virtual void dump(dump_context & dumpcontext) const;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    DECLARE_MESSAGE_HANDLER(on_message_size);
    DECLARE_MESSAGE_HANDLER(on_message_create);
    DECLARE_MESSAGE_HANDLER(on_message_destroy);
 
-   void on_layout(::draw2d::graphics_pointer & pgraphics);
+   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
    virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
 
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
    DECLARE_MESSAGE_HANDLER(on_message_left_button_up);
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

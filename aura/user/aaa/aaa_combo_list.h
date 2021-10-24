@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      ::millis                              m_millisKillFocus;
+      ::duration                              m_durationKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
@@ -19,11 +19,11 @@ namespace user
       int                                 m_iBorder;
       int                                 m_iPadding;
       int                                 m_iMinListItemCount;
-      ::user::item                        m_itemLButtonDown;
+      ::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
 
-      millis                                m_millisLastVisibilityChange;
+      ::duration                                m_durationLastVisibilityChange;
 
 
       list_box();
@@ -33,7 +33,7 @@ namespace user
       void user_combo_list_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -76,11 +76,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
 
-      virtual ::user::item current_item() override;
-      virtual ::user::item hover_item() override;
+      virtual ::item current_item() override;
+      virtual ::item hover_item() override;
 
 
       virtual bool keyboard_focus_is_focusable() override;
@@ -92,7 +92,7 @@ namespace user
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::rectangle & rectWindow, const ::size & sizeFull);
+      void on_drop_down(const ::rectangle & rectangleWindow, const ::size & sizeFull);
 
 
       //virtual bool get_font(::write_text::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;

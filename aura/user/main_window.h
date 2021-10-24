@@ -11,17 +11,17 @@ namespace user
    public:
 
 
-      ::rectangle_f64                                   m_rectInitialRateOrSize;
+      ::rectangle_f64                                   m_rectangleInitialRateOrSize;
 
 
       main_window();
-      virtual ~main_window();
+      ~main_window() override;
 
 
-      virtual void install_message_routing(::channel* pchannel) override;
+      void install_message_routing(::channel* pchannel) override;
 
 
-      virtual void on_create_user_interaction() override;
+      void on_create_user_interaction() override;
 
 
       virtual ::e_status create_main_window();

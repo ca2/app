@@ -87,8 +87,8 @@ namespace user
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz);
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
       void EnableDocking(u32 dwDockStyle);
 
 
@@ -109,7 +109,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetMinHeight);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
    };

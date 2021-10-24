@@ -27,8 +27,8 @@ namespace draw2d
 
    void pen::dump(dump_context & dumpcontext) const
    {
-      UNREFERENCED_PARAMETER(dumpcontext);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(dumpcontext);
+      throw ::interface_only_exception();
    }
 
 
@@ -80,17 +80,17 @@ namespace draw2d
    }
 
 
-   pen & pen::operator = (const pen & penSrc)
+   pen & pen::operator = (const pen & ppenSrc)
    {
 
-      m_epen            = penSrc.m_epen;
-      m_dWidth          = penSrc.m_dWidth;
-      m_color           = penSrc.m_color;
-      m_pbrush          = penSrc.m_pbrush;
-      m_elinecapBeg     = penSrc.m_elinecapBeg;
-      m_elinecapEnd     = penSrc.m_elinecapEnd;
-      m_elinejoin       = penSrc.m_elinejoin;
-      m_epenalign       = penSrc.m_epenalign;
+      m_epen            = ppenSrc.m_epen;
+      m_dWidth          = ppenSrc.m_dWidth;
+      m_color           = ppenSrc.m_color;
+      m_pbrush          = ppenSrc.m_pbrush;
+      m_elinecapBeg     = ppenSrc.m_elinecapBeg;
+      m_elinecapEnd     = ppenSrc.m_elinecapEnd;
+      m_elinejoin       = ppenSrc.m_elinejoin;
+      m_epenalign       = ppenSrc.m_epenalign;
       set_modified();
 
       return *this;

@@ -1,5 +1,8 @@
 ﻿#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "aqua/xml.h"
 
 
@@ -75,11 +78,32 @@ namespace filemanager
 
             m_pil->create(16, 16, 0, 0, 0);
 
-            m_iIconFolder = m_pil->add_matter_icon("mplite/vmskarlib_folder_normal.ico");
+#ifdef WINDOWS
 
-            m_iIconArtist = m_pil->add_matter_icon("mplite/vmskarlib_artist_normal.ico");
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
 
-            m_iIconSong = m_pil->add_matter_icon("mplite/vmskarlib_song_normal.ico");
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
+
+            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
+
+            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+
+            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
+#endif
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+
+            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+
+            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+
+            m_iIconSong = m_pil->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
          }
 
@@ -219,10 +243,10 @@ namespace filemanager
          }
 
 
-         void list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+         void list_view::handle(::subject * psubject, ::context * pcontext)
          {
 
-            simple_list_view::on_subject(psubject, pcontext);
+            simple_list_view::handle(psubject, pcontext);
 
             //if(::is_null(pobject))
             {
@@ -241,7 +265,7 @@ namespace filemanager
          void list_view::on_message_left_button_double_click(::message::message * pmessage)
          {
 
-            auto pmouse = pmessage->m_pmouse;
+            auto pmouse = pmessage->m_union.m_pmouse;
 
             index iItem;
 
@@ -266,7 +290,7 @@ namespace filemanager
          }
 
 
-         bool list_view::on_click(const ::user::item & item)
+         bool list_view::on_click(const ::item & item)
          {
 
             if(m_itema[item.item_index()]->IsFolder())
@@ -355,8 +379,8 @@ namespace filemanager
          void list_view::PostFillTask(string & wstrFile, uptr uiTimer)
          {
 
-            UNREFERENCED_PARAMETER(wstrFile);
-            UNREFERENCED_PARAMETER(uiTimer);
+            __UNREFERENCED_PARAMETER(wstrFile);
+            __UNREFERENCED_PARAMETER(uiTimer);
             ASSERT(false);
 
          }
@@ -365,17 +389,17 @@ namespace filemanager
          void list_view::fill_task()
          {
 
-            //UNREFERENCED_PARAMETER(pParameter);
+            //__UNREFERENCED_PARAMETER(pParameter);
 
             ASSERT(false);
 
             /*FillTask * pobjectTask = (FillTask *) pParameter;
 
 
-            pobjectTask->m_pview->KillTimer(1123);
+            pobjectTask->m_pimpact->KillTimer(1123);
 
             string & wstrPath = pobjectTask->m_wstrFile;
-            MediaLibraryDoc * pdocument = pobjectTask->m_pview->get_document();
+            MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
             __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
 
             i32 iFind;
@@ -401,7 +425,7 @@ namespace filemanager
             pds->erase_row();
             }
 
-            pobjectTask->m_pview->PostMessage(WM_USER + 1217, 0, (LPARAM) pobjectTask);*/
+            pobjectTask->m_pimpact->PostMessage(WM_USER + 1217, 0, (LPARAM) pobjectTask);*/
 
 
 
@@ -555,7 +579,7 @@ namespace filemanager
 
          void list_view::on_message_size(::message::message * pmessage)
          {
-            UNREFERENCED_PARAMETER(pmessage);
+            __UNREFERENCED_PARAMETER(pmessage);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
 
          }
@@ -577,7 +601,7 @@ namespace filemanager
          /*list_view::FillTask::FillTask(__pointer(list_view) pview, LPWString pcsz)
 
          :
-         m_pview(pview),m_wstrFile(pcsz)
+         m_pimpact(pview),m_wstrFile(pcsz)
 
          {
          }*/
@@ -633,7 +657,7 @@ namespace filemanager
 
          void list_view::start_build(i32 iItem)
          {
-            UNREFERENCED_PARAMETER(iItem);
+            __UNREFERENCED_PARAMETER(iItem);
             auto iTopIndex = m_iTopDisplayIndex;
             auto iDisplayItemCount = m_nDisplayCount;
 
@@ -648,9 +672,10 @@ namespace filemanager
             m_bKickActive = true;
 
 
-            SetTimer(123654, 700, nullptr);
+            SetTimer(123654, 700_ms, nullptr);
 
          }
+
 
          void list_view::on_message_context_menu(::message::message * pmessage)
          {
@@ -707,7 +732,7 @@ namespace filemanager
             else
             {
 
-               message_box("error"); // simple parsing error check
+               output_error_message("error"); // simple parsing error check
 
                return;
 

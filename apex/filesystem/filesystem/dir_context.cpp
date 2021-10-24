@@ -3,6 +3,7 @@
 #include "apex/compress/zip/_.h"
 #include "acme/id.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
@@ -37,6 +38,8 @@ namespace zip
 dir_context::dir_context()
 {
 
+   m_bDropboxCalculated = false;
+
    //if (::file::dir_context::g_pthis == nullptr)
    //{
 
@@ -48,7 +51,7 @@ dir_context::dir_context()
 
    //m_pziputil = nullptr;
 
-   //         m_isdirmap.m_millisTimeout = 180000;
+   //         m_isdirmap.m_durationTimeout = 180000;
 
 
 
@@ -355,30 +358,32 @@ inline bool myspace(char ch)
 //::file::path dir_context::relpath(const string & pcszSource,const string & lpcszRelative)
 
 //{
-//   UNREFERENCED_PARAMETER(pcszSource);
+//   __UNREFERENCED_PARAMETER(pcszSource);
 
-//   UNREFERENCED_PARAMETER(pcszRelative);
+//   __UNREFERENCED_PARAMETER(pcszRelative);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
 //::file::path dir_context::relpath(const string & pcszSource, const string & lpcszRelative, const string & psz2)
 
 //{
-//   UNREFERENCED_PARAMETER(pcszSource);
+//   __UNREFERENCED_PARAMETER(pcszSource);
 
-//   UNREFERENCED_PARAMETER(pcszRelative);
+//   __UNREFERENCED_PARAMETER(pcszRelative);
 
-//   UNREFERENCED_PARAMETER(psz2);
-//   __throw(error_interface_only, "this is an interface");
+//   __UNREFERENCED_PARAMETER(psz2);
+//   throw interface_only_exception("this is an interface");
 //}
 
 
 ::file::listing & dir_context::root_ones(::file::listing & listing)
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
+
+   return listing;
 
 }
 
@@ -402,10 +407,10 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathFinal.ext(), ".zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathFinal.final_extension(), "zip") == 0 || l.m_pathFinal.find_ci("zip:") >= 0))
       {
 
-         //__throw(::exception::exception("should implement recursive zip"));
+         //__throw(::exception("should implement recursive zip"));
 
          //m_pziputil->ls(papp,l);
 
@@ -435,7 +440,7 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
+      else if (task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathFinal, ".zip") || ::str::find_file_extension("zip:", l.m_pathFinal) >= 0))
       {
 
          zip_context zip(this);
@@ -462,10 +467,10 @@ inline bool myspace(char ch)
    if (l.m_bRecursive)
    {
 
-      if (l.m_eextract != extract_none && ::thread_is_set(id_thread_zip_is_dir) && (icmp(l.m_pathUser.ext(), ".zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
+      if (l.m_eextract != extract_none && ::task_flag().is_set(e_task_flag_zip_is_dir) && (icmp(l.m_pathUser.final_extension(), "zip") == 0 || l.m_pathUser.find_ci("zip:") >= 0))
       {
 
-         //__throw(::exception::exception("should implement recursive zip"));
+         //__throw(::exception("should implement recursive zip"));
 
          //m_pziputil->ls(papp,l);
 
@@ -493,7 +498,7 @@ inline bool myspace(char ch)
          l.add_tokens(str, "\n", false);
 
       }
-      else if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
+      else if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(l.m_pathUser, ".zip") || ::str::find_file_extension("zip:", l.m_pathUser) >= 0))
       {
 
          zip_context zip(this);
@@ -733,7 +738,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
 
    //}
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       bIs = true;
@@ -741,7 +746,7 @@ bool dir_context::is_cached(bool & bIs, const ::file::path & path)
       return true;
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -874,7 +879,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(path, ".zip")))
    {
 
       //m_isdirmap.set(path, true, 0);
@@ -883,7 +888,7 @@ bool dir_context::is_impl(const ::file::path & path)
 
    }
 
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
       bool bHasSubFolder;
@@ -907,12 +912,12 @@ bool dir_context::name_is(const ::file::path & strPath)
 {
 
    //output_debug_string(strPath);
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::ends_ci(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
    }
-   if (::thread_is_set(id_thread_zip_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
+   if (::task_flag().is_set(e_task_flag_zip_is_dir) && (::str::find_file_extension("zip:", strPath) >= 0))
    {
       bool bHasSubFolder;
 
@@ -1036,7 +1041,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
+//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
 //         {
 //
 //            return false;
@@ -1197,7 +1202,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //         }
 //
 //end:
-//         if (::get_fast_tick_count() > pdir->m_millisLastCheck + m_millisTimeout)
+//         if (::get_fast_tick_count() > pdir->m_durationLastCheck + m_durationTimeout)
 //         {
 //
 //            return false;
@@ -1276,7 +1281,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //                  pfind->m_dwError = dwLastError;
 //
-//                  pfind->m_millisLastCheck = ::get_fast_tick_count();
+//                  pfind->m_durationLastCheck = ::get_fast_tick_count();
 //
 //                  pdir->add(pfind);
 //
@@ -1310,7 +1315,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //            }
 //
-//            pdir->m_millisLastCheck = ::get_fast_tick_count();
+//            pdir->m_durationLastCheck = ::get_fast_tick_count();
 //            iFind0 = iFind3 + 1;
 //         }
 //
@@ -1322,21 +1327,33 @@ bool dir_context::name_is(const ::file::path & strPath)
 //      }
 //
 
+
 ::file::path dir_context::time()
 {
-   __throw(error_interface_only, "this is an interface");
+   
+   throw interface_only_exception("this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::stage()
 {
-   __throw(error_interface_only, "this is an interface");
+
+   throw interface_only_exception("this is an interface");
+
+   return "";
+
 }
 
 
 ::file::path dir_context::stageapp()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
+
+   return "";
 
 }
 
@@ -1344,7 +1361,9 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::netseed()
 {
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
+
+   return "";
 
 }
 
@@ -1388,7 +1407,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //::file::path dir_context::userfolder(::object * pobject)
 //{
 
-//   UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pobject);
 
 //   synchronous_lock synchronouslock(mutex());
 
@@ -1432,8 +1451,11 @@ bool dir_context::name_is(const ::file::path & strPath)
 ::file::path dir_context::time_log(const string & pszId)
 {
 
-   UNREFERENCED_PARAMETER(pszId);
-   __throw(error_interface_only, "this is an interface");
+   __UNREFERENCED_PARAMETER(pszId);
+   
+   throw interface_only_exception("this is an interface");
+
+   return "";
 
 }
 
@@ -1441,8 +1463,11 @@ bool dir_context::name_is(const ::file::path & strPath)
 bool dir_context::mk(const ::file::path & path)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   __throw(error_interface_only, "this is an interface");
+   __UNREFERENCED_PARAMETER(path);
+
+   throw interface_only_exception("this is an interface");
+
+   return false;
 
 }
 
@@ -1450,9 +1475,12 @@ bool dir_context::mk(const ::file::path & path)
 bool dir_context::rm(const ::file::path & path, bool bRecursive)
 {
 
-   UNREFERENCED_PARAMETER(path);
-   UNREFERENCED_PARAMETER(bRecursive);
-   __throw(error_interface_only, "this is an interface");
+   __UNREFERENCED_PARAMETER(path);
+   __UNREFERENCED_PARAMETER(bRecursive);
+
+   throw interface_only_exception("this is an interface");
+
+   return false;
 
 }
 
@@ -1709,14 +1737,14 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
          pathCache = psystem->m_pdirsystem->m_pathLocalAppMatterCacheFolder / pathLs0 / patha[0] + ".map_question";
 
-         TRACE("cache map path: %s", pathCache.c_str());
+         INFORMATION("cache map path: " << pathCache);
 
          path = m_pcontext->m_papexcontext->file().as_string(pathCache);
 
          if (::str::begins_eat_ci(path, "itdoesntexist."))
          {
 
-            millis t = ansi_to_i64(path);
+            ::duration t = INTEGRAL_MILLISECOND(ansi_to_i64(path));
 
             auto elapsed = t.elapsed();
 
@@ -1748,16 +1776,16 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             }
 
-            if (::is_file_or_dir_dup(strFinal, nullptr))
+            if (m_psystem->m_pacmepath->is_file_or_dir(strFinal, nullptr))
             {
 
-               TRACE("!!Cache Hit: %s", strFinal.c_str());
+               INFORMATION("!!Cache Hit: " << strFinal);
 
                return path;
 
             }
 
-            TRACE("...Cache Miss: %s", strFinal.c_str());
+            INFORMATION("...Cache Miss: " << strFinal);
 
          }
 
@@ -1794,7 +1822,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
             path = m_psystem->m_pacmedir->ca2roaming() / "_matter" / strMatter;
 
-            //                  if (::is_file_or_dir_dup(path, nullptr))
+            //                  if (::m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
             //                  {
             //
             //                     goto ret;
@@ -1827,9 +1855,9 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       }
 
-      TRACE("");
-      TRACE("Topic: %s", patha[0].c_str());
-      TRACE("");
+//      TRACE("");
+      INFORMATION("Topic: " << patha[0]);
+//      TRACE("");
 
       string strCandidate = stra.implode("|");
 
@@ -1858,25 +1886,32 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
       strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
-      strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
+      //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
+      strMatter.replace("https://server.ca2.software/", "https://ca2.software/");
 
-      TRACE("");
-      TRACE("");
-      TRACE("matter = ::: %s", strMatter.c_str());
-      TRACE("");
-      TRACE("");
+      //TRACE("");
+      //TRACE("");
+      INFORMATION("matter = " << strMatter);
+      //TRACE("");
+      //TRACE("");
 
       strMatter.trim();
 
-      if (strMatter.has_char() && ::str::begins_eat_ci(strMatter, string(get_server_ca2_cc()) + "matter/"))
+      string strToken = "/matter/";
+
+      auto iFind = strMatter.find_ci(strToken);
+
+      if (strMatter.has_char() && iFind >= 0)
       {
 
-         path = "appmatter://" + strMatter;
+         iFind += strToken.get_length();
+
+         path = "appmatter://" + strMatter.Mid(iFind);
 
          if (bDir)
          {
 
-            ::dir::mk(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
+            m_psystem->m_pacmedir->create(psystem->m_papexsystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter);
 
          }
 
@@ -1885,27 +1920,28 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
       }
 
    }
-   else
+   else if(psystem->m_pdirsystem->m_bMatterFromResource)
    {
 
-      string strMatter;
+   string strMatter;
 
-      for (auto & strLs : straLs)
+   for (auto& strLs : straLs)
+   {
+
+      for (auto& pathItem : patha)
       {
 
-         for (auto & pathItem : patha)
+         strMatter = strLs / pathItem;
+
+         strMatter.replace("\\", "/");
+
+         if (m_psystem->m_papexsystem->file().resource_is_file_or_dir(strMatter))
+         
          {
 
-            strMatter = strLs / pathItem;
+            path = "zipresource://" + strMatter;
 
-            path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
-
-            if (::is_file_or_dir_dup(path, nullptr))
-            {
-
-               goto ret;
-
-            }
+            goto ret;
 
          }
 
@@ -1913,7 +1949,38 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(millis::now().m_i);
+   }
+   else
+   {
+
+
+
+   string strMatter;
+
+   for (auto& strLs : straLs)
+   {
+
+      for (auto& pathItem : patha)
+      {
+
+         strMatter = strLs / pathItem;
+
+         path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / strMatter;
+
+         if (m_psystem->m_pacmepath->is_file_or_dir(path, nullptr))
+         {
+
+            goto ret;
+
+         }
+
+      }
+
+   }
+
+   }
+
+   path = "itdoesntexist." + __string(get_integral_millisecond().m_i);
 
 ret:
 
@@ -1925,7 +1992,7 @@ ret:
       //::file::path pathCache2 = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
       //if ((path & ::file::e_flag_get_local_path)
-      //   || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+      //   || (!(path & ::file::e_flag_bypass_cache) && m_psystem->m_pacmepath->is_file_or_dir(pathCache, nullptr)))
       //{
 
       //   return pathCache;
@@ -2138,9 +2205,11 @@ ret:
 ::file::path dir_context::trash_that_is_not_trash(const ::file::path & psz)
 {
 
-   UNREFERENCED_PARAMETER(psz);
+   __UNREFERENCED_PARAMETER(psz);
 
-   __throw(error_interface_only, "this is an interface");
+   throw interface_only_exception("this is an interface");
+
+   return "";
 
 }
 
@@ -2153,7 +2222,7 @@ ret:
 
       auto psystem = get_system()->m_papexsystem;
 
-      //__throw(error_interface_only, "this is an interface");
+      //throw interface_only_exception("this is an interface");
 
       return psystem->m_pdirsystem->m_pathAppData;
 
@@ -2222,19 +2291,19 @@ ret:
 //::file::path dir_context::usersystemappdata(const string & pcszPrefix)
 
 //{
-//   UNREFERENCED_PARAMETER(pobject);
-//   UNREFERENCED_PARAMETER(pcszPrefix);
+//   __UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 
 //::file::path dir_context::userappdata(::object * pobject)
 //{
 
-//   UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2242,9 +2311,9 @@ ret:
 //::file::path dir_context::userdata(::object * pobject)
 //{
 
-//   UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2252,9 +2321,9 @@ ret:
 //::file::path dir_context::default_os_user_path_prefix(::object * pobject)
 //{
 
-//   UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pobject);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 
 //}
 
@@ -2262,62 +2331,89 @@ ret:
 //::file::path dir_context::default_userappdata(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   UNREFERENCED_PARAMETER(pobject);
-//   UNREFERENCED_PARAMETER(pcszPrefix);
+//   __UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   UNREFERENCED_PARAMETER(pcszLogin);
+//   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 //::file::path dir_context::default_userdata(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   UNREFERENCED_PARAMETER(pobject);
-//   UNREFERENCED_PARAMETER(pcszPrefix);
+//   __UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   UNREFERENCED_PARAMETER(pcszLogin);
+//   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
 
 //::file::path dir_context::default_userfolder(const string & pcszPrefix, const string & lpcszLogin)
 
 //{
-//   UNREFERENCED_PARAMETER(pobject);
-//   UNREFERENCED_PARAMETER(pcszPrefix);
+//   __UNREFERENCED_PARAMETER(pobject);
+//   __UNREFERENCED_PARAMETER(pcszPrefix);
 
-//   UNREFERENCED_PARAMETER(pcszLogin);
+//   __UNREFERENCED_PARAMETER(pcszLogin);
 
-//   __throw(error_interface_only, "this is an interface");
+//   throw interface_only_exception("this is an interface");
 //}
+
 
 ::file::path dir_context::userquicklaunch()
 {
-   __throw(error_interface_only, "this is an interface");
+
+   throw interface_only_exception("this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::userprograms()
 {
-   __throw(error_interface_only, "this is an interface");
+
+   throw interface_only_exception("this is an interface");
+
+   return "";
+
 }
+
 
 ::file::path dir_context::commonprograms()
 {
-   __throw(error_interface_only, "this is an interface");
+
+   throw interface_only_exception("this is an interface");
+
+   return "";
+
 }
+
 
 bool dir_context::is_inside_time(const ::file::path & pszPath)
 {
-   UNREFERENCED_PARAMETER(pszPath);
-   __throw(error_interface_only, "this is an interface");
+
+   __UNREFERENCED_PARAMETER(pszPath);
+
+   throw interface_only_exception("this is an interface");
+
+   return false;
+
 }
+
 
 bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
 {
-   UNREFERENCED_PARAMETER(pszDir);
-   UNREFERENCED_PARAMETER(pszPath);
-   __throw(error_interface_only, "this is an interface");
+
+   __UNREFERENCED_PARAMETER(pszDir);
+   __UNREFERENCED_PARAMETER(pszPath);
+
+   throw interface_only_exception("this is an interface");
+
+   return false;
+
 }
 
 
@@ -2440,21 +2536,41 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 ::file::path dir_context::dropbox()
 {
 
+   if(m_bDropboxCalculated)
+   {
+
+
+      return m_pathDropbox;
+
+   }
+
    ::file::path pathJson = m_pcontext->m_papexcontext->file().dropbox_info_json();
 
    if (!m_pcontext->m_papexcontext->file().exists(pathJson))
    {
 
+#ifdef _UWP_CONSOLE
+
+      auto home = getenv("USERPROFILE");
+      ::file::path pathTxt =::file::path(home) / "dropbox.txt";
+
+#else
+
       ::file::path pathTxt = m_pcontext->m_papexcontext->dir().home() / "dropbox.txt";
+
+#endif
 
       string strPath = m_pcontext->m_papexcontext->file().as_string(pathTxt);
 
       strPath.trim();
 
+      m_pathDropbox = strPath;
+
+      m_bDropboxCalculated = true;
+
       return strPath;
 
    }
-
 
    string strJson = m_pcontext->m_papexcontext->file().as_string(pathJson);
 
@@ -2462,7 +2578,11 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    set.parse_json(strJson);
 
-   return set["personal"]["path"];
+   m_pathDropbox = set["personal"]["path"];
+
+   m_bDropboxCalculated = true;
+
+   return m_pathDropbox;
 
 }
 

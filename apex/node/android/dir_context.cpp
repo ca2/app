@@ -776,7 +776,7 @@ namespace android
 
       }
 
-      if (thread_is_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3], ".zip", 4))
+      if (task_flag().is_set(e_task_flag_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3], ".zip", 4))
       {
 
          return true;
@@ -1004,9 +1004,17 @@ namespace android
 
       m_pdirsystem->m_pathInstall = pathInstall;
 
-      //nodeos_set_home(pacmedir->system() / "home");
+      //nodeos_set_home(         auto psystem = m_psystem;
 
-      //nodeos_set_temp(pacmedir->system() / "temp");
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "home");
+
+      //nodeos_set_temp(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "temp");
 
       m_pdirsystem->m_strCommonAppData = pathInstall / "commonappdata";
 
@@ -1110,7 +1118,7 @@ namespace android
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::datetime::time time;
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
          str += strFormat;
          if (strDir[2] == '\\')
@@ -1133,7 +1141,11 @@ namespace android
 
       string str;
 
-      str = pacmedir->system() / ".ca2/app/appdata";
+      str =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / ".ca2/app/appdata";
       
       string strRelative;
 

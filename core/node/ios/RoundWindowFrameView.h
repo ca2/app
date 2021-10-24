@@ -36,7 +36,7 @@
 
 //@property (nonatomic, copy) NSString *contentText; // The text content (without attributes).
 //@property (nonatomic, strong) UIFont *font; // Font used for text content.
-//@property (nonatomic, getter=isEditing) BOOL editing; // Is view in "editing" mode or not (affects drawn results).
+//@property (nonatomic, getter=isEditing) BOOL editing; // Is impact in "editing" mode or not (affects drawn results).
 //@property (nonatomic) NSRange nsMarkedTextRange; // Marked text range (for input method marked text).
 //@property (nonatomic) NSRange nselectedTextRange; // Selected text range.
 // @property (nonatomic) RoundPlainTextView *textView;

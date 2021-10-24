@@ -68,12 +68,12 @@ void task_pool::on_clock(enum_timer etimer)
 void task_pool::_task_clock(enum_timer etimer, const duration & duration)
 {
 
-   ::millis millis = duration.millis();
+   ::duration ::duration = duration.::duration();
 
    while (true)
    {
 
-      if (!task_sleep(millis))
+      if (!task_sleep(::duration))
       {
 
          break;

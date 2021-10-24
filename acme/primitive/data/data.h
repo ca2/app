@@ -31,11 +31,11 @@ namespace data
 
 
       data();
-      virtual ~data();
+      ~data() override;
 
 
       virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void assert_valid() const override;
 
 
       virtual ::data::data_container_base* get_data_container();
@@ -44,8 +44,8 @@ namespace data
       virtual ::count get_data_bound_view_count() const;
       virtual ::user::primitive * get_data_bound_view(index iInteraction);
 
-      void subject_handler(::subject::subject * psubject) override;
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      //void signal(::signal * psignal) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void on_update_data(i32 iHint);
 

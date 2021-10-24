@@ -60,7 +60,7 @@ namespace sphere
 
       virtual void on_request(::create * pcreate) override;
 
-      ::user::document * _001OpenDocumentFile(::payload varFile) override;
+      ::user::document * _001OpenDocumentFile(::payload payloadFile) override;
 
 
       virtual ::console::department * console();
@@ -82,7 +82,7 @@ namespace sphere
 
       ::colorertake5::ParserFactory                &  parser_factory();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
       void construct();

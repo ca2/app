@@ -378,8 +378,8 @@ namespace sqlite
 
          if (iResult != SQLITE_OK)
          {
-            TRACE("Error: %s", err);
-            __throw(::database::exception(get_error_message()));
+            INFORMATION("Error: " <<  err);
+            throw ::database::exception(get_error_message());
          }
 //         if (setErr(sqlite3_exec((sqlite3 *)get_handle(), "PRAGMA cache_size=-20000", nullptr, nullptr, &err)) != SQLITE_OK)
 //         {
@@ -678,6 +678,29 @@ namespace sqlite
 
    //}
 
+   string database::error1(const ::string& pszPrefix)
+   {
+
+      return "";
+
+   }
+
+
+   void database::trace_error1(const ::string& pszPrefix)
+   {
+
+
+   }
+
+
+   string database::query_error(const ::string& pszPrefix)
+   {
+
+      return "";
+
+   }
+
+
    ::e_status database::set_id_blob(string strKey, ::block block)
    {
 
@@ -883,9 +906,9 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
    auto & prowa = presultset->m_prowa;
 
-   __construct_new(pfielda);
+   presultset->__construct_new(pfielda);
 
-   __construct_new(prowa);
+   presultset->__construct_new(prowa);
 
    if (pfielda->is_empty())
    {
@@ -895,7 +918,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
       for (index i = 0; i < ncol; i++)
       {
 
-         pfielda->element_at(i).defer_create_new();
+         presultset->__defer_construct_new(pfielda->element_at(i));
 
          pfielda->element_at(i)->m_strName = cols[i];
 

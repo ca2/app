@@ -3,7 +3,7 @@
 #include <io.h>
 
 
-int_bool file_exists(const ::string & path1)
+int_bool m_psystem->m_pacmefile->exists(const ::string & path1)
 {
 
    u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -17,10 +17,14 @@ int_bool file_exists(const ::string & path1)
 
 
 
-int_bool file_put_contents(const ::string & path, const ::string & contents,count len)
+int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents,count len)
 {
 
-   dir::mk(dir::name(path));
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(path));
 
    wstring wstr(path);
 
@@ -72,7 +76,7 @@ filesize file_length_dup(const ::string & path)
 
 int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 {
-   return file_is_equal_path(psz1,psz2);
+   return file_path_is_equal(psz1,psz2);
 //   const i32 iBufSize = MAX_PATH * 8;
 //   wstring pwsz1 = ::str::international::utf8_to_unicode(psz1);
 //   wstring pwsz2 = ::str::international::utf8_to_unicode(psz2);
@@ -120,212 +124,6 @@ int_bool file_is_equal_path_dup(const ::string & psz1, const ::string & psz2)
 
 
 
-
-
-
-
-
-//
-//
-//string file_get_mozilla_firefox_plugin_container_path()
-//{
-//
-//   string strPath;
-//   HKEY hkeyMozillaFirefox;
-//
-//   if(::RegOpenKey(HKEY_LOCAL_MACHINE,"SOFTWARE\\Mozilla\\Mozilla Firefox",&hkeyMozillaFirefox) != ERROR_SUCCESS)
-//      return "";
-//   {
-//
-//      ::u32 dwType;
-//      ::u32 dwData;
-//      dwData = 0;
-//      if(::WinRegGetValueW(hkeyMozillaFirefox,nullptr,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,nullptr,&dwData) != ERROR_SUCCESS)
-//      {
-//         goto ret1;
-//      }
-//
-//      wstring wstrVersion;
-//      wstrVersion.alloc(dwData);
-//      if(::WinRegGetValueW(hkeyMozillaFirefox,nullptr,L"CurrentVersion",RRF_RT_REG_SZ,&dwType,wstrVersion,&dwData) != ERROR_SUCCESS)
-//      {
-//         goto ret1;
-//      }
-//      wstrVersion.release_string_buffer();
-//
-//      wstring wstrMainSubKey = wstrVersion + L"\\Main";
-//      dwData = 0;
-//
-//      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,nullptr,&dwData) != ERROR_SUCCESS)
-//      {
-//         goto ret1;
-//      }
-//
-//      wstring wstrDir;
-//      wstrDir.alloc(dwData);
-//      if(::WinRegGetValueW(hkeyMozillaFirefox,wstrMainSubKey,L"Install Directory",RRF_RT_REG_SZ,&dwType,wstrDir,&dwData) != ERROR_SUCCESS)
-//      {
-//         goto ret1;
-//      }
-//      wstrDir.release_string_buffer();
-//
-//      string strDir;
-//
-//      strDir = ::str::international::unicode_to_utf8(wstrDir);
-//
-//      strPath = dir::path(strDir,"plugin-container.exe");
-//   }
-//
-//ret1:
-//   ::RegCloseKey(hkeyMozillaFirefox);
-//   return strPath;
-//
-//}
-//
-//
-//
-
-
-//
-//string get_sys_temp_path()
-//{
-//
-//   unichar  wsz[MAX_PATH * 4];
-//
-//   wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]),wsz)] = L'\0';
-//
-//   return string(wsz);
-//
-//}
-//
-
-
-//string file_as_string(const ::string & path)
-//{
-//
-//   string str;
-//
-//   HANDLE hfile = ::create_file(path,GENERIC_READ,0,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
-//
-//   if(hfile == INVALID_HANDLE_VALUE)
-//      return "";
-//
-//   ::u32 dwSizeHigh;
-//
-//   ::u32 dwSize = ::GetFileSize(hfile,&dwSizeHigh);
-//
-//   char * lpsz = str.get_string_buffer(dwSize);
-//
-//   ::u32 dwRead;
-//
-//   ::ReadFile(hfile,lpsz,dwSize,&dwRead,nullptr);
-//
-//   lpsz[dwSize] = '\0';
-//
-//   str.release_string_buffer(dwSize);
-//
-//   ::CloseHandle(hfile);
-//
-//   return str;
-//
-//
-//}
-
-//
-//
-//bool file_as_memory(memory_base & memory, const ::string & path)
-//{
-//
-//   memory.set_size(0);
-//
-//   HANDLE hfile = ::create_file(path,GENERIC_READ,0,nullptr,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,nullptr);
-//
-//   if(hfile == INVALID_HANDLE_VALUE)
-//      return false;
-//
-//   u64 uiSize = hfile_get_size(hfile);
-//
-//   if(uiSize > ((::count) - 1))
-//   {
-//
-//      ::CloseHandle(hfile);
-//
-//      return false;
-//
-//   }
-//
-//   memory.set_size((::count) uiSize);
-//
-//   ::u32 dwRead;
-//
-//   ::ReadFile(hfile,memory.get_data(),(u32)memory.get_size(),&dwRead,nullptr);
-//
-//   ::CloseHandle(hfile);
-//
-//   return true;
-//
-//}
-
-//
-//
-//string file_module_path_dup()
-//{
-//
-//   char path[MAX_PATH * 4];
-//
-//   if(!GetModuleFileName(nullptr,path,sizeof(path)))
-//      return "";
-//
-//   return path;
-//
-//}
-
-
-
-//void file_read_n_number_dup(HANDLE hfile,::md5::md5 * pctx,i32 & iNumber)
-//{
-//
-//   string str;
-//
-//   char ch;
-//
-//   ::u32 dwRead;
-//
-//   while(ReadFile(hfile,&ch,1,&dwRead,nullptr) && dwRead == 1)
-//   {
-//      if(ch >= '0' && ch <= '9')
-//         str += ch;
-//      else
-//         break;
-//      if(pctx != nullptr)
-//      {
-//         pctx->update(&ch,1);
-//      }
-//   }
-//   if(ch != 'n')
-//      return;
-//   if(pctx != nullptr)
-//   {
-//      pctx->update(&ch,1);
-//   }
-//   iNumber = ansi_to_i32(str);
-//}
-//
-//void file_read_gen_string_dup(HANDLE hfile,::md5::md5 * pctx,string & str)
-//{
-//   i32 iLen;
-//   file_read_n_number_dup(hfile,pctx,iLen);
-//   char * lpsz = (char *)memory_allocate(iLen + 1);
-//   ::u32 dwRead;
-//   ReadFile(hfile,lpsz,iLen,&dwRead,nullptr);
-//   if(pctx != nullptr)
-//   {
-//      pctx->update(lpsz,iLen);
-//   }
-//   lpsz[iLen] = '\0';
-//   str = lpsz;
-//   memory_free_debug(lpsz,0);
-//}
 
 
 string file_module_path_dup()
@@ -1107,7 +905,7 @@ int_bool file_delete(const ::string & lpszFileName)
 
 
 //
-//int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
+//int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
 //{
 //   return file_is_equal_path_dup(psz1,psz2);
 //   /*const i32 iBufSize = MAX_PATH * 8;
@@ -1631,7 +1429,7 @@ void hfile_set_size(HANDLE h,i64 iSize)
    }
 
    if(!SetFilePointerEx(h,liMove,&liRes,dwMeth))
-      __throw(::exception::exception("SetFilePointer error"));
+      __throw(::exception("SetFilePointer error"));
 
    if(plHi != nullptr)
    {
@@ -1651,7 +1449,7 @@ void hfile_set_size(HANDLE h,i64 iSize)
    FILE_STANDARD_INFO info;
 
    if(!GetFileInformationByHandleEx(h,FileStandardInfo,&info,sizeof(info)))
-      __throw(::exception::exception("GetFileSize Error"));
+      __throw(::exception("GetFileSize Error"));
 
    if(lpdwHi != nullptr)
    {
@@ -1757,15 +1555,15 @@ int_bool close_handle(HANDLE h)
 }
 
 
-::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName)
+::winrt::Windows::Storage::StorageFolder ^ get_os_folder(const ::string & lpcszDirName)
 {
 
-   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
+   return wait(::winrt::Windows::Storage::StorageFolder::GetFolderFromPathAsync(string(lpcszDirName)));
 
 }
 
 
-::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
+::winrt::Windows::Storage::StorageFile ^ get_os_file(const ::string & lpcszFileName,::u32 dwDesiredAcces,::u32 dwShareMode,LPSECURITY_ATTRIBUTES lpSA,::u32 dwCreationDisposition,::u32 dwFlagsAndAttributes,HANDLE hTemplateFile)
 {
 
    /*
@@ -1802,13 +1600,13 @@ int_bool close_handle(HANDLE h)
 
    */
 
-   ::Windows::Storage::StorageFile ^ file = nullptr;
+   ::winrt::Windows::Storage::StorageFile ^ file = nullptr;
 
    string strPrefix;
 
    string strRelative;
 
-   ::Windows::Storage::StorageFolder ^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
+   ::winrt::Windows::Storage::StorageFolder ^ folder = winrt_get_folder(lpcszFileName, strPrefix, strRelative);
 
    if (folder == nullptr)
    {
@@ -1820,7 +1618,7 @@ int_bool close_handle(HANDLE h)
    if(dwCreationDisposition == CREATE_ALWAYS)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::ReplaceExisting;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1828,7 +1626,7 @@ int_bool close_handle(HANDLE h)
    else if(dwCreationDisposition == CREATE_NEW)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::FailIfExists;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::FailIfExists;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1836,7 +1634,7 @@ int_bool close_handle(HANDLE h)
    else if(dwCreationDisposition == OPEN_ALWAYS)
    {
 
-      auto optionNew = ::Windows::Storage::CreationCollisionOption::OpenIfExists;
+      auto optionNew = ::winrt::Windows::Storage::CreationCollisionOption::OpenIfExists;
 
       file = wait(folder->CreateFileAsync(strRelative,optionNew));
 
@@ -1852,7 +1650,7 @@ int_bool close_handle(HANDLE h)
 
       file = wait(folder->GetFileAsync(strRelative));
 
-      ::Windows::Storage::StorageStreamTransaction ^ transaction = wait(file->OpenTransactedWriteAsync());
+      ::winrt::Windows::Storage::StorageStreamTransaction ^ transaction = wait(file->OpenTransactedWriteAsync());
 
       transaction->Stream->Size = 0;
 
@@ -1863,7 +1661,7 @@ int_bool close_handle(HANDLE h)
 }
 
 
-bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
+bool get_filetime(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTime,LPFILETIME lpItemTime,LPFILETIME lpLastWriteTime)
 {
 
    if(lpCreationTime != nullptr)
@@ -1876,7 +1674,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
    if(lpItemTime != nullptr || lpLastWriteTime != nullptr)
    {
 
-      ::Windows::Storage::FileProperties::BasicProperties ^ properties = wait(file->GetBasicPropertiesAsync());
+      ::winrt::Windows::Storage::FileProperties::BasicProperties ^ properties = wait(file->GetBasicPropertiesAsync());
 
       if(lpItemTime != nullptr)
       {
@@ -1900,13 +1698,13 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 ::file::path dir::sys_temp()
 {
 
-   return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
+   return ::winrt::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin();
 
 }
 
 
 //
-//int_bool file_exists(const ::string & path1)
+//int_bool m_psystem->m_pacmefile->exists(const ::string & path1)
 //{
 //
 //   string str(path1);
@@ -1923,10 +1721,14 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 //
 
 
-//int_bool file_put_contents(const ::string & path, const ::string & contents,::count len)
+//int_bool m_psystem->m_pacmefile->put_contents(const ::string & path, const ::string & contents,::count len)
 //{
 //
-//   dir::mk(dir::name(path));
+//            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(path));
 //
 //   wstring wstr(path);
 //
@@ -1950,7 +1752,7 @@ bool get_filetime(::Windows::Storage::StorageFile ^ file,LPFILETIME lpCreationTi
 
 
 
-string file_as_string(const ::string & path, strsize iReadAtMostByteCount)
+string m_psystem->m_pacmefile->as_string(const ::string & path, strsize iReadAtMostByteCount)
 {
 
    string str;
@@ -2029,7 +1831,7 @@ bool file_as_memory(memory_base & memory, const ::string & path, iptr iReadAtMos
 
 
 
-int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
+int_bool file_path_is_equal(const ::string & psz1, const ::string & psz2)
 {
 
    return normalize_path(psz1).compare_ci(normalize_path(psz2)) == 0;
@@ -2040,7 +1842,7 @@ int_bool file_is_equal_path(const ::string & psz1, const ::string & psz2)
 string file_get_mozilla_firefox_plugin_container_path()
 {
 
-   __throw(::exception::exception(" todo "));
+   __throw(::exception(" todo "));
 
    return "";
 
@@ -2078,12 +1880,12 @@ int_bool file_set_length(const ::string & pszName,size_t iSize)
 bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite)
 {
 
-   ::Windows::Storage::StorageFolder ^ folder = nullptr;
+   ::winrt::Windows::Storage::StorageFolder ^ folder = nullptr;
 
    try
    {
 
-      folder = get_os_folder(::dir::name(pszNew));
+      folder = get_os_folder(::file_path_folder(pszNew));
 
       if(folder == nullptr)
          return false;
@@ -2097,7 +1899,7 @@ bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite
    }
 
 
-   ::Windows::Storage::StorageFile ^ fileSrc = nullptr;
+   ::winrt::Windows::Storage::StorageFile ^ fileSrc = nullptr;
 
    try
    {
@@ -2118,8 +1920,8 @@ bool file_copy_dup(const char  * pszNew, const ::string & pszSrc,bool bOverwrite
    wstring wstrNew(pszNew);
 
    return ::wait(fileSrc->CopyAsync(folder,wstrNew,bOverwrite ?
-                                    ::Windows::Storage::NameCollisionOption::ReplaceExisting :
-                                    ::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
+                                    ::winrt::Windows::Storage::NameCollisionOption::ReplaceExisting :
+                                    ::winrt::Windows::Storage::NameCollisionOption::FailIfExists)) ? true : false;
 
 
 }

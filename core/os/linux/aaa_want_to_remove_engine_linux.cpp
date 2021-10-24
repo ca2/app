@@ -91,7 +91,7 @@ string dumpBacktrace(void** buffer,size_t count)
       {
          str += "0";
       }
-      str += __str(idx);
+      str += __string(idx);
       //str += ": 0x";
       //str += ::hex::upper_from((uptr) addr);
       str += "  ";
@@ -160,12 +160,12 @@ HANDLE SymGetProcessHandle()
 
 ///////////////////////////////////////////////////////////////////////
 
-//class ::exception::engine * g_pexceptionengine = nullptr;
+//class ::exception_engine * g_pexceptionengine = nullptr;
 
 namespace exception
 {
 
-//   CLASS_DECL_CORE class ::exception::engine & engine()
+//   CLASS_DECL_CORE class ::exception_engine & engine()
 //   {
 //
 //      return *g_pexceptionengine;
@@ -429,7 +429,7 @@ namespace exception
 
          }
 
-         ::exception::engine().reset();
+         ::exception_engine().reset();
 
          bRetry = true;
 
@@ -747,7 +747,7 @@ namespace exception
    PVOID Context
    )
    {
-      class ::exception::engine * pengine = (class ::exception::engine *)Context;
+      class ::exception_engine * pengine = (class ::exception_engine *)Context;
       if (NotificationReason == LDR_DLL_NOTIFICATION_REASON_LOADED)
       {
 
@@ -791,7 +791,7 @@ namespace exception
    bool engine::init()
    {
 
-      //if(!::file_exists("C:\\aura\\exception_engine.txt"))
+      //if(!::m_psystem->m_pacmefile->exists("C:\\aura\\exception_engine.txt"))
       //{
       //   return false;
       //}
@@ -816,7 +816,7 @@ namespace exception
       if (!::SymInitialize(hprocess, 0, true))
       {
          ::u32 dw = ::GetLastError();
-         output_debug_string("Last Error = " + __str(dw));
+         output_debug_string("Last Error = " + __string(dw));
          ASSERT(0);
 
          //load_modules();
@@ -1482,7 +1482,7 @@ namespace exception
             *offset_begin++ = '\0';
             *offset_end++ = '\0';
 
-            string real_name = demangle(mangled_name);
+            string real_name = mangled_name;
 
             ansi_concatenate(_strS, "[bt]: (");
             ansi_from_u64(szN, i, 10);

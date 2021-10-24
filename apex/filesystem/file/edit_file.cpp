@@ -18,14 +18,14 @@ namespace file
    bool edit_item_base::read_byte(u8 * pbyte, ::file::edit_file * pfile)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
    }
 
 
-   filesize edit_item_base::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_position; };
+   filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
 
    byte * edit_item_base::get_data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }
@@ -470,24 +470,34 @@ namespace file
    }
 
 
-   void edit_file::SetFile(file_pointer  pfile)
+   void edit_file::SetFile(file_pointer pfile)
    {
 
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
       {
 
-         pfile = __new(::file::buffered_file(pfile));
+         auto pbufferedfile = __new(::file::buffered_file(pfile));
+
+         pfile = pbufferedfile;
+
+         pbufferedfile->seek_to_begin();
+
+         pbufferedfile->buffer((memsize) minimum(pbufferedfile->get_size(), pbufferedfile->m_uiBufferSize));
 
       }
 
       if(pfile == nullptr)
+      {
+
          __throw(error_invalid_argument);
+
+      }
 
       m_pfile = pfile;
 
       m_size = pfile->get_size();
 
-      m_pfile->seek(0,::file::seek_begin);
+      m_pfile->seek_to_begin();
 
       m_position = 0;
 
@@ -623,7 +633,7 @@ namespace file
          if(!bRead)
          {
 
-            m_pfile->seek_begin(m_positionIteration);
+            m_pfile->set_position(m_positionIteration);
 
             bRead = m_pfile->read(&b, 1) == 1;
 
@@ -766,7 +776,7 @@ namespace file
       pdelete = __new(delete_item);
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
-      seek((filesize)m_position,::file::seek_begin);
+      seek((filesize)m_position,::e_seek_set);
       read(pdelete->m_memstorage.get_data(),uiCount);
       TreeInsert(pdelete);
       m_size -= uiCount;
@@ -786,41 +796,38 @@ namespace file
       return true;
    }
 
-   filesize edit_file::seek(filesize lOff,::file::e_seek nFrom)
+
+   filesize edit_file::seek(filesize lOff,::enum_seek eseek)
    {
-
-
 
       if (m_ptreeitem == m_ptreeitemFlush)
       {
 
-         return m_position = m_pfile->seek(lOff, nFrom);
+         return m_position = m_pfile->translate(lOff, eseek);
 
       }
 
       ASSERT(IsValid());
 
-      ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
-
-//      ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+      ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
 
       filesize dwNew = (u32)-1;
 
-      switch(nFrom)
+      switch(eseek)
       {
-      case ::file::seek_begin:
+      case ::e_seek_set:
 
          dwNew = (filesize)lOff;
 
          break;
 
-      case ::file::seek_end:
+      case ::e_seek_from_end:
 
          dwNew = get_length() - lOff;
 
          break;
 
-      case ::file::seek_current:
+      case ::e_seek_current:
 
          if(lOff < 0)
          {
@@ -843,8 +850,11 @@ namespace file
          }
 
          break;
+
       default:
+
          return (filesize)-1;
+
       }
 
       if (dwNew > m_size)
@@ -854,7 +864,20 @@ namespace file
 
       }
 
-      m_position = dwNew;
+      m_position = 0;
+
+      m_pfile->set_position(0);
+
+      for (::index i = 0; i < dwNew; i++)
+      {
+
+         byte b;
+
+         read(&b, 1);
+
+      }
+
+      ASSERT(m_position == dwNew);
 
       return dwNew;
 
@@ -876,14 +899,14 @@ namespace file
 
       auto pfile = create_memory_file();
 
-      seek(0, ::file::seek_begin);
-      
+      seek(0, ::e_seek_set);
+
       to(pfile);
-      
+
       m_pfile->set_size(0);
-      
-      pfile->seek_begin();
-      
+
+      pfile->seek_to_begin();
+
       m_pfile->from(pfile);
 
       m_pfile->flush();

@@ -14,14 +14,14 @@ namespace message
 #define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
 
 
-#include "const.h"
-#include "id.h"
-#include "receiver.h"
-#include "route.h"
-#include "message.h"
-#include "definition.h"
-#include "channel.h"
-#include "base.h"
+//#include "const.h"
+//#include "id.h"
+//#include "receiver.h"
+//#include "route.h"
+//#include "message.h"
+//#include "definition.h"
+////#include "channel.h"
+//#include "base.h"
 #include "_impl.h"
 #include "listener_smart_pointer_array.h"
 

@@ -884,7 +884,7 @@ SP_LIBEXPORT(sp_error) sp_session_set_cache_size(sp_session *session, size_t siz
  * Make the specified session process any pending events
  *
  * @param[in]   session         Your session object
- * @param[out]  next_timeout    Stores the time (in milliseconds) until you should call this function again
+ * @param[out]  next_timeout    Stores the time (in ::durations) until you should call this function again
  * @return                      One of the following errors, from ::sp_error
  *                              SP_ERROR_OK
  */
@@ -912,7 +912,7 @@ SP_LIBEXPORT(sp_error) sp_session_player_load(sp_session *session, sp_track *tra
  * Seek to position in the currently loaded track
  *
  * @param[in]   session    Your session object
- * @param[in]   offset     Track position, in milliseconds.
+ * @param[in]   offset     Track position, in ::durations.
  * @return                 One of the following errors, from ::sp_error
  *                         SP_ERROR_OK
  */
@@ -1448,7 +1448,7 @@ SP_LIBEXPORT(sp_track *) sp_link_as_track(sp_link *link);
  * The track and offset into track representation for the given link
  *
  * @param[in]   link       The Spotify link whose track you are interested in
- * @param[out]  offset     Pointer to offset into track (in milliseconds). If the link
+ * @param[out]  offset     Pointer to offset into track (in ::durations). If the link
  *                         does not contain an offset this will be set to 0.
  *
  * @return                 The track representation of the given track link
@@ -1689,11 +1689,11 @@ SP_LIBEXPORT(sp_album *) sp_track_album(sp_track *track);
 SP_LIBEXPORT(const ::string &) sp_track_name(sp_track *track);
 
 /**
- * The duration, in milliseconds, of the specified track
+ * The duration, in ::durations, of the specified track
  *
  * @param[in]   track      A track object
  *
- * @return                 The duration of the specified track, in milliseconds
+ * @return                 The duration of the specified track, in ::durations
  *                         If no metadata is available for the track yet, this function returns 0.
  */
 SP_LIBEXPORT(int) sp_track_duration(sp_track *track);

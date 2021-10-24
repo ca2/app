@@ -103,7 +103,7 @@ namespace user
    bool impact_host::on_prepare_impact_data(impact_data * pimpactdata)
    {
 
-      UNREFERENCED_PARAMETER(pimpactdata);
+      __UNREFERENCED_PARAMETER(pimpactdata);
 
       return false;
 
@@ -113,7 +113,7 @@ namespace user
    bool impact_host::on_after_create_impact_data(impact_data * pimpactdata)
    {
 
-      UNREFERENCED_PARAMETER(pimpactdata);
+      __UNREFERENCED_PARAMETER(pimpactdata);
 
       return false;
 
@@ -143,7 +143,7 @@ namespace user
          on_prepare_impact_data(pimpactdata);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          auto ptask = ::get_task();
@@ -169,7 +169,7 @@ namespace user
          on_after_create_impact_data(pimpactdata);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(exception);
@@ -214,7 +214,7 @@ namespace user
 
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          handle_exception(exception);
@@ -314,7 +314,7 @@ namespace user
          throw ::move(exception);
 
       }
-      catch (const ::exception::exception & exception)
+      catch (const ::exception & exception)
       {
 
          m_impactdatamap.erase_key(pimpactdata->m_id);
@@ -565,12 +565,12 @@ namespace user
    {
 
 
-      INFO("-------------------------------------------------------------------");
-      INFO("");
-      INFO("");
-      INFO("impact_host::host_impact (1)");
-      INFO("");
-      INFO("");
+      INFORMATION("-------------------------------------------------------------------");
+      INFORMATION("");
+      INFORMATION("");
+      INFORMATION("impact_host::host_impact (1)");
+      INFORMATION("");
+      INFORMATION("");
 
 
       auto pimpactdata = impact_host_get_impact_data(id, idTitle, pinteraction, pdocument);
@@ -579,12 +579,12 @@ namespace user
       {
 
 
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("impact_host::host_impact (1.1)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("impact_host::host_impact (1.1)");
+         INFORMATION("");
+         INFORMATION("");
 
 
          return nullptr;
@@ -697,7 +697,7 @@ namespace user
    }
 
 
-   void impact_host::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact_host::handle(::subject * psubject, ::context * pcontext)
    {
 
    }

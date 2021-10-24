@@ -36,7 +36,7 @@ namespace graphics
    bool buffer::update_window(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
       return false;
 
@@ -115,7 +115,7 @@ namespace graphics
       ///if (buffer_size() != sizeWindow)
       {
 
-         string strType = m_pimpl->m_puserinteraction->type_name();
+         string strType = __type_name(m_pimpl->m_puserinteraction);
 
          if (strType.contains("list_box"))
          {
@@ -123,7 +123,6 @@ namespace graphics
             output_debug_string("list_box");
 
          }
-
 
          if (!update_buffer(sizeWindow))
          {

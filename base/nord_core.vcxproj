@@ -231,7 +231,7 @@
     <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="filesystem\filemanager\left_view.cpp" />
     <ClCompile Include="filesystem\filemanager\main_frame.cpp" />
-    <ClCompile Include="filesystem\filemanager\main_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\main_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\operation.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_document.cpp" />
@@ -245,7 +245,7 @@
     <ClCompile Include="filesystem\filemanager\tab_view.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
     <ClCompile Include="filesystem\filemanager\update_hint.cpp" />
-    <ClCompile Include="filesystem\filemanager\view.cpp" />
+    <ClCompile Include="filesystem\filemanager\impact.cpp" />
     <ClCompile Include="filesystem\filemanager\_.cpp" />
     <ClCompile Include="filesystem\userfs\document.cpp" />
     <ClCompile Include="filesystem\userfs\item.cpp" />
@@ -253,7 +253,7 @@
     <ClCompile Include="filesystem\userfs\list_data.cpp" />
     <ClCompile Include="filesystem\userfs\list_item.cpp" />
     <ClCompile Include="filesystem\userfs\list_item_array.cpp" />
-    <ClCompile Include="filesystem\userfs\main_view.cpp" />
+    <ClCompile Include="filesystem\userfs\main_impact.cpp" />
     <ClCompile Include="filesystem\userfs\tree.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp" />
@@ -291,7 +291,7 @@
     <ClCompile Include="html\user\form_view.cpp" />
     <ClCompile Include="html\user\frame.cpp" />
     <ClCompile Include="html\user\user.cpp" />
-    <ClCompile Include="html\user\view.cpp" />
+    <ClCompile Include="html\user\impact.cpp" />
     <ClCompile Include="math\calculator\calculator_calculator.cpp" />
     <ClCompile Include="math\calculator\calculator_element.cpp" />
     <ClCompile Include="math\calculator\calculator_parser.cpp" />
@@ -304,7 +304,7 @@
     <ClCompile Include="user\account\account_dialog.cpp" />
     <ClCompile Include="user\account\account_login.cpp" />
     <ClCompile Include="user\account\account_simple_ui.cpp" />
-    <ClCompile Include="user\account\view.cpp" />
+    <ClCompile Include="user\account\impact.cpp" />
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp" />
     <ClCompile Include="user\databaseuser\mesh_data.cpp" />
     <ClCompile Include="user\experience\button.cpp" />
@@ -578,7 +578,7 @@
     <ClInclude Include="user\account\account_login.h" />
     <ClInclude Include="user\account\account_simple_ui.h" />
     <ClInclude Include="user\account\simple_ui_style.h" />
-    <ClInclude Include="user\account\view.h" />
+    <ClInclude Include="user\account\impact.h" />
     <ClInclude Include="user\databaseuser\key_mesh_data.h" />
     <ClInclude Include="user\databaseuser\mesh_data.h" />
     <ClInclude Include="user\databaseuser\_.h" />

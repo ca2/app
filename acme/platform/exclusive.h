@@ -28,8 +28,8 @@ namespace acme
       __pointer(::mutex)      m_pmutex;
 
 
-      exclusive(string str ARG_SEC_ATTRS_DEF);
-      virtual ~exclusive();
+      exclusive(::object * pobject, string str ARG_SEC_ATTRS_DEF);
+      ~exclusive() override;
 
 
       bool exclusive_fails() const;

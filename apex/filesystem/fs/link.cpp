@@ -106,9 +106,10 @@ namespace fs
    {
 
       auto & path = listing.add_get(m_plisting->m_pathUser);
-      path.m_iDir = 1;
-      listing.m_straTitle.add(m_strTitle);
 
+      path.m_iDir = 1;
+
+      listing.m_straTitle.add(m_strTitle);
 
       return listing;
 

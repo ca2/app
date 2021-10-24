@@ -10,10 +10,13 @@ namespace user
    {
    public:
 
+
       ::index        m_iUpdate;
 
+
       control_style();
-      virtual ~control_style();
+      ~control_style();
+
 
       bool is_up_to_date(::user::style * pstyle) const;
 
@@ -30,15 +33,15 @@ namespace user
    public:
 
 
-      ::draw2d::pen_pointer              m_penCaret;
-      ::draw2d::brush_pointer            m_brushText;
-      ::draw2d::brush_pointer            m_brushTextCr;
-      ::draw2d::brush_pointer            m_brushTextSel;
-      ::draw2d::brush_pointer            m_brushTextEmpty;
+      ::draw2d::pen_pointer              m_ppenCaret;
+      ::draw2d::brush_pointer            m_pbrushText;
+      ::draw2d::brush_pointer            m_pbrushTextCr;
+      ::draw2d::brush_pointer            m_pbrushTextSel;
+      ::draw2d::brush_pointer            m_pbrushTextEmpty;
 
 
       plain_edit_style();
-      virtual ~plain_edit_style();
+      ~plain_edit_style() override;
 
 
       virtual void on_update(::draw2d::graphics_pointer & pgraphics, style * ppstyle, ::user::interaction * pinteraction) override;

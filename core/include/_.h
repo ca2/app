@@ -113,7 +113,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #if defined(LINUX)
 
-#include "aura/os/ansios/_.h"
+#include "aura/node/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -156,9 +156,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #include "core/user.h"
 
-#include "core/net/_.h"
-
-
+#include "core/networking/_.h"
 
 #include "core/os/text.h"
 
@@ -259,10 +257,7 @@ namespace ftp
 #include "core/filesystem/_impl.h"
 
 
-#include "core/net/_impl.h"
-
-
-///#include "core/database/database/_impl.h"
+#include "core/networking/_impl.h"
 
 
 #include "core/os/_impl.h"

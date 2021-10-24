@@ -27,7 +27,7 @@ inline i64 atomic_increment(i64 * pi)
   
 #ifdef WINDOWS
   
-  return _InterlockedIncrement64(pi);
+  return _interlockedincrement64(pi);
   
 #elif defined(RASPBIAN) && defined(OS32BIT)
   
@@ -67,7 +67,7 @@ inline i64 atomic_decrement(i64 * pi)
   
 #ifdef WINDOWS
   
-  return _InterlockedDecrement64(pi);
+  return _interlockeddecrement64(pi);
   
 #elif defined(RASPBIAN) && defined(OS32BIT)
   

@@ -10,7 +10,7 @@ typedef THREAD_PROC * thread_proc;
 //CLASS_DECL_APEX htask_t create_thread(
 //thread_proc proc,
 //void * p,
-//::e_priority epriority = ::priority_normal,
+//::enum_priority epriority = ::e_priority_normal,
 //::u32 nStackSize = 0,
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
@@ -56,14 +56,14 @@ CLASS_DECL_APEX void __dec_threading_count();
 
 
 
-#define __prevent_bad_status_exception __keep_thread_flag(id_thread_prevent_bad_status_exception)
+#define __prevent_bad_status_exception __keep_task_flag(e_task_flag_prevent_bad_status_exception)
 
 //CLASS_DECL_APEX enumeration < e_thread_flag > & thread_flags();
 //CLASS_DECL_APEX void thread_set_flag(const enumeration < e_thread_flag > & eflag, bool bSet = true);
 //CLASS_DECL_APEX void thread_set_fast_path(bool bFastPath = true);
 //CLASS_DECL_APEX bool thread_is_fast_path();
 //CLASS_DECL_APEX void thread_set_zip_is_dir(bool bZipIsDir = true);
-//CLASS_DECL_APEX bool thread_set(id_thread_zip_is_dir);
+//CLASS_DECL_APEX bool thread_set(e_task_flag_zip_is_dir);
 //CLASS_DECL_APEX void thread_set_is_timer(bool bIsTimer = true);
 //CLASS_DECL_APEX bool thread_is_timer();
 //CLASS_DECL_APEX void thread_set_resolve_alias(bool bResolveAlias = true);

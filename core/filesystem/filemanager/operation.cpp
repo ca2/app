@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -138,7 +140,7 @@ namespace filemanager
       if(m_fileSrc.is_null())
       {
 
-         TRACE("\n Could not open source file(%d)=%s",m_iFile,pszSrc.c_str());
+         INFORMATION("\n Could not open source file(" << m_iFile <<")="<< pszSrc);
 
          return false;
 
@@ -152,7 +154,7 @@ namespace filemanager
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
          //   propertyset["dstfile"].get_value().set_string(pszDst);
-         //   message_box("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
+         //   output_error_message("filemanager\\do_you_want_to_replace_the_file.xml", propertyset);
          //   return false;
          //}
 
@@ -176,7 +178,7 @@ namespace filemanager
 
             //   });
 
-            //papplication->sync_message_box("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
+            //papplication->sync_output_error_message("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
             //if(iResult == e_dialog_result_yes)
             //{
@@ -210,7 +212,7 @@ namespace filemanager
       if(m_fileDst.is_null())
       {
 
-         TRACE("\n Could not open dest file(%d)=%s", m_iFile, strDst.c_str());
+         INFORMATION("\n Could not open dest file("<<m_iFile<<")=" << strDst);
 
          property_set propertyset;
 
@@ -222,7 +224,7 @@ namespace filemanager
 
       }
 
-      TRACE("\n%d Opened %s %s",m_iFile, pszSrc.c_str(), strDst.c_str());
+      INFORMATION( m_iFile << " Opened "<<pszSrc<<" "<< strDst);
 
       return true;
 
@@ -342,7 +344,7 @@ namespace filemanager
                   try
                   {
 
-                     pcontext->m_papexcontext->os().set_file_status(strDestPath,st);
+                     pcontext->m_papexcontext->os_context()->set_file_status(strDestPath,st);
 
                   }
                   catch(...)
@@ -654,7 +656,7 @@ namespace filemanager
 
    string set_number_value(string strName, i64 iValue)
    {
-      string strValue = __str(iValue);
+      string strValue = __string(iValue);
       string strResult = strName;
       string strMask = get_number_mask(strName);
       strsize j = strValue.get_length() - 1;
@@ -713,7 +715,7 @@ namespace filemanager
       else
       {
          strName = str.title();
-         strExtension = "." + str.ext();
+         strExtension = "." + str.final_extension();
       }
 
 

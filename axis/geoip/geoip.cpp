@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/net/_net.h"
+#include "apex/networking/_networking.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"
 #endif
@@ -12,7 +12,7 @@
 
 #endif
 
-#if defined(APPLEOS) || defined(ANDROID) || defined(LINUX)
+#if defined(__APPLE__) || defined(ANDROID) || defined(LINUX)
 
 #include <netdb.h>
 
@@ -23,7 +23,7 @@ static geoipv6_t IPV6_NULL;
 
 #define GEOIPDATADIR "/aura/geoip"
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
 #include<sys/stat.h>
 #include<sys/mman.h>
@@ -34,7 +34,7 @@ static geoipv6_t IPV6_NULL;
 
 #endif
 
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 
 #include<arpa/inet.h>
 #include<sys/time.h>
@@ -360,7 +360,8 @@ i32 GeoIP_db_avail(i32 type)
    {
       return 0;
    }
-   return file_exists(filePath);
+   //return file_exists(filePath);
+   return 1;
 }
 
 static
@@ -1670,7 +1671,7 @@ char *_get_name_v6 (GeoIP* gi, geoipv6_t ipnum)
 
 char *_GeoIP_num_to_addr (GeoIP* gi, u32 ipnum)
 {
-   UNREFERENCED_PARAMETER(gi);
+   __UNREFERENCED_PARAMETER(gi);
    char *ret_str;
    char *cur_str;
    i32 octet[4];

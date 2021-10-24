@@ -6,7 +6,7 @@ namespace turboc
 
 
    class CLASS_DECL_TURBOC full_view:
-      virtual public view
+      virtual public impact
    {
    public:
 
@@ -15,9 +15,9 @@ namespace turboc
       virtual ~full_view();
 
 
-      virtual void assert_valid() const;
+      void assert_valid() const override;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void install_message_handling(::message::dispatch * pdispatch);
 

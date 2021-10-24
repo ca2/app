@@ -70,7 +70,7 @@ console::console(int argc, wchar_t* argv[])
    if (!psystem->system_beg())
    {
 
-      throw ::exception::exception("The application didn't started.");
+      throw ::exception("The application didn't started.");
 
    }
 
@@ -79,7 +79,7 @@ console::console(int argc, wchar_t* argv[])
    if (!bOk)
    {
 
-      throw ::exception::exception("The application didn't started. (2)");
+      throw ::exception("The application didn't started. (2)");
 
    }
 
@@ -151,7 +151,7 @@ console::console(int argc, char * argv[])
    if (!m_psystem->system_beg())
    {
 
-      throw ::exception::exception("The application didn't started.");
+      throw ::exception("The application didn't started.");
 
    }
 
@@ -160,7 +160,7 @@ console::console(int argc, char * argv[])
    if (!bOk)
    {
 
-      throw ::exception::exception("The application didn't started. (2)");
+      throw ::exception("The application didn't started. (2)");
 
    }
 

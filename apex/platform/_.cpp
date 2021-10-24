@@ -95,7 +95,7 @@ CLASS_DECL_APEX int_bool defer_apex_term();
 //
 //void gen_CrtErrorCheck(i32 i)
 //{
-//   UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(i);
 //}
 //
 //
@@ -409,7 +409,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////
 ////   string strType = get_debug_report_type_text(iType);
 ////
-////   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
+////   output_debug_string(strType + ": file: " + string(psz) + " line:" + __string(iLine) + strModule + strExtra);
 ////
 ////   return 1;
 ////
@@ -441,7 +441,7 @@ CLASS_DECL_APEX int get_apex_init()
 ////   }
 ////
 ////
-////   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+////   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __string(iLine) + strModule + strExtra);
 ////
 ////   return 1;
 ////

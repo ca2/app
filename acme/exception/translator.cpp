@@ -2,11 +2,11 @@
 #include "framework.h"
 
 
-namespace exception
-{
+//namespace exception
+//{
 
 
-   translator::translator()
+   exception_translator::exception_translator()
    {
 
       m_bSet = false;
@@ -20,7 +20,7 @@ namespace exception
    }
 
 
-   translator::~translator()
+   exception_translator::~exception_translator()
    {
 
 #ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
@@ -49,7 +49,7 @@ namespace exception
 //
 //      }
 //
-//      UNREFERENCED_PARAMETER(uiCode);
+//      __UNREFERENCED_PARAMETER(uiCode);
 //
 //      //::acme::application * papp = ::get_application();
 //
@@ -106,7 +106,7 @@ namespace exception
 //   }
 
 
-   bool translator::attach()
+   bool exception_translator::attach()
    {
 
       if (!m_bSet)
@@ -134,7 +134,7 @@ namespace exception
 //
 //#if defined(__SANITIZE_ADDRESS__) || defined(__FOR_PERF__)
 //
-//         INFO("sanitize address compilation, not going to install standard exception translator");
+//         INFORMATION("sanitize address compilation, not going to install standard exception translator");
 //
 //#else
 //
@@ -196,7 +196,7 @@ namespace exception
    }
 
 
-   bool translator::detach()
+   bool exception_translator::detach()
    {
 
       if (m_bSet)
@@ -235,7 +235,7 @@ namespace exception
 //   void translator::filter(u32 uiCode, EXCEPTION_POINTERS* ppointers)
 //   {
 //
-//      UNREFERENCED_PARAMETER(uiCode);
+//      __UNREFERENCED_PARAMETER(uiCode);
 //
 //      switch (ppointers->ExceptionRecord->ExceptionCode)
 //      {
@@ -402,10 +402,10 @@ namespace exception
 //   }
 
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
 
-   string translator::_get_standard_exception_name(u32 uiCode)
+   string exception_translator::_get_standard_exception_name(u32 uiCode)
    {
 
       return "";
@@ -413,7 +413,7 @@ namespace exception
    }
 
 
-   string translator::_get_standard_exception_description(u32 uiCode)
+   string exception_translator::_get_standard_exception_description(u32 uiCode)
    {
 
       return "";
@@ -423,8 +423,8 @@ namespace exception
 
 #endif
 
-
-} // namespace translator
-
-
+//
+//} // namespace translator
+//
+//
 

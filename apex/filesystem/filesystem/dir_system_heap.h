@@ -17,7 +17,7 @@ namespace file
       public:
 
          bool           m_bIsDir;
-         millis m_millisLastCheck;
+         ::duration m_durationLastCheck;
          u32       m_dwError;
 
 
@@ -31,7 +31,7 @@ namespace file
 
 
          ::mutex                m_mutex;
-         millis m_millisTimeout;
+         ::duration m_durationTimeout;
 
 
          is_dir_map(::object * pobject);

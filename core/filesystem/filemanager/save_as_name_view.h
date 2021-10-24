@@ -17,13 +17,13 @@ namespace filemanager
       save_as_edit_view();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual void browse_sync(const ::action_context & action_context);
+      void browse_sync(const ::action_context & action_context) override;
 
 
    };
@@ -38,11 +38,11 @@ namespace filemanager
       save_as_button();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual bool on_click(const ::user::item & item) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual bool on_click(const ::item & item) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual void save_document(::file::path path);
@@ -66,9 +66,9 @@ namespace filemanager
       save_as_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void on_create_split_impact() override;
 

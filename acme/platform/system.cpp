@@ -2,8 +2,15 @@
 #include "acme/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/platform/static_start_internal.h"
+#ifdef CUBE
+#include "acme/platform/static_setup.h"
+#endif
 #include "simple_log.h"
+
+
 
 
 CLASS_DECL_ACME void trace_category_static_init(class ::system* psystem);
@@ -13,7 +20,7 @@ class ::system * g_psystem = nullptr;
 
 extern const char8_t  * g_pszTopLevelDomainList[];
 
-enum_dialog_result message_box_for_console(const ::string & psz, const ::string & pszTitle, const ::e_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox);
 
 
 //namespace acme
@@ -27,9 +34,11 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       trace_category_static_init(this);
 
-      m_ptracelog = __new(simple_log);
+      create_factory < simple_log, logger >();
       
       m_bPostedInitialRequest = false;
+
+      //m_bOnInitializeWindowObject = false;
 
       //m_pcleanuptask = __new(::parallelization::cleanup_task);
 
@@ -79,6 +88,25 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
       }
 
       trace_category_static_term();
+
+      m_pnode->node_quit();
+
+   }
+
+
+   ::e_status system::on_pre_run_task()
+   {
+
+      auto estatus = on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -131,6 +159,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
       if(!estatus)
       {
 
+         FATAL("Failed to construct node " << estatus);
+
          return estatus;
 
       }
@@ -143,6 +173,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
          return estatus;
 
       }
+
+      //::acme::g_pengine;
 
       return estatus;
 
@@ -169,14 +201,14 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    ::e_status system::process_init()
    {
 
-      ::acme::idpool::init();
+      ::acme::idpool::init(this);
 
-      m_pfactorymapsquare = new string_map < __pointer(::factory_map) >();
+      auto estatus = __defer_construct_new(m_pfactorymapsquare);
 
-      if (!m_pfactorymapsquare)
+      if (!estatus)
       {
 
-         return ::error_no_memory;
+         return estatus;
 
       }
 
@@ -198,7 +230,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       //}
 
-      auto estatus = __compose(m_pacmedir);
+      estatus = __raw_compose(m_pacmedir);
 
       if (!estatus)
       {
@@ -211,7 +243,50 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
    //    m_pacmedir->increment_reference_count();
 
-      estatus = __compose(m_pacmepath);
+      estatus = __raw_compose(m_pacmefile);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __raw_compose(m_pacmepath);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pacmedir->m_pacmefile = m_pacmefile;
+      m_pacmedir->m_pacmepath = m_pacmepath;
+      m_pacmefile->m_pacmedir = m_pacmedir;
+      m_pacmefile->m_pacmepath = m_pacmepath;
+      m_pacmepath->m_pacmedir = m_pacmedir;
+      m_pacmepath->m_pacmefile = m_pacmefile;
+
+      estatus = m_pacmefile->initialize(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pacmepath->initialize(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pacmedir->initialize(this);
 
       if (!estatus)
       {
@@ -252,13 +327,20 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //
    //   }
 
+
    void system::TermSystem()
    {
 
       ::acme::idpool::term();
       
-      
-      m_pnode->os_post_quit();
+      //m_pnode->os_post_quit();
+
+   }
+
+
+   void system::erase_from_any_hook(::matter * pmatter)
+   {
+
 
    }
 
@@ -297,24 +379,24 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-   void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
-   {
+   //void system::__tracea(enum_trace_level elevel, const char* pszFunction, const char* pszFile, int iLine, const char* psz) const
+   //{
 
-      if (!m_ptracelog)
-      {
+   //   if (!m_ptracelog)
+   //   {
 
-         ::output_debug_string(psz);
+   //      ::output_debug_string(psz);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
+   //   m_ptracelog->__tracea(elevel, pszFunction, pszFile, iLine, psz);
 
-   }
+   //}
 
 
-   //   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+   //   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
    //   {
    //
    //      return ::error_interface_only;
@@ -322,7 +404,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //   }
    //
    //
-   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, e_priority epriority)
+   //   ::e_status system::main_user_sync(const ::routine & routine, const ::duration & duration, enum_priority epriority)
    //   {
    //
    //      auto proutine = ___sync_routine(routine);
@@ -410,22 +492,60 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object* pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto presult = __new(::future < ::conversation >);
+   //   auto psequence = __new(::sequence < ::conversation >);
 
-      presult->set_status(error_interface_only);
+   //   psequence->set_status(error_interface_only);
 
-      //return presult;
+   //   //return presult;
 
-      //auto pprocess = __new(status < enum_dialog_result >);
+   //   //auto pprocess = __new(status < enum_dialog_result >);
 
-      //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
-      return presult;
+   //   return psequence;
 
-   }
+   //}
+
+
+   //::e_status system::on_initialize_window_object()
+   //{
+
+   //   if (m_bOnInitializeWindowObject)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bOnInitializeWindowObject = true;
+
+   //   auto estatus = _on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
+
+
+   //::e_status system::_on_initialize_window_object()
+   //{
+
+   //   ::e_status estatus = ::success;
+   // 
+   //   m_pnode->_os_calc_user_dark_mode();
+
+   //   return estatus;
+
+   //}
 
 
    CLASS_DECL_ACME class system * get_system()
@@ -482,7 +602,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-   task_group * system::task_group(enum e_priority)
+   task_group * system::task_group(enum enum_priority)
    {
 
       return nullptr;
@@ -509,10 +629,13 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
+      string strLibrary = strComponent + "_" + strImplementation;
+
    #ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
 
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
@@ -520,7 +643,11 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       }
 
-      pfnFactoryExchange();
+//      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+
+      ::factory_map * pfactorymap = ::factory::get_factory_map();
+
+      pfnFactoryExchange(pfactorymap);
 
       return ::success;
 
@@ -586,6 +713,25 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
+   ::e_status system::call_init_system()
+   {
+
+      auto estatus = init_system();
+
+      if(!estatus)
+      {
+
+         FATAL("system init_system has failed " << estatus);
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    ::e_status system::init_system()
    {
 
@@ -593,6 +739,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       if (!estatus)
       {
+
+         FATAL("node_factory_exchange has failed (status=" << estatus << ")");
 
          return estatus;
 
@@ -602,6 +750,8 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       if (!estatus)
       {
+
+         FATAL("create_os_node has failed " << estatus);
 
          return estatus;
 
@@ -810,12 +960,12 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-      ::millis system::get_update_poll_time(const ::id & id)
-      {
+   ::duration system::get_update_poll_time(const ::id & id)
+   {
       
-         return 0;
+      return 0_s;
       
-      }
+   }
 
    
    ::acme::library * system::on_get_library(const ::string & pszLibrary)
@@ -837,10 +987,35 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-   #ifdef CUBE
+   //#ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      //auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
+      //if (::is_null(pfnFactoryExchange))
+      //{
+
+      //   return ::error_failed;
+
+      //}
+
+#ifdef CUBE
+
+      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
+
+      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      string strLibrary = strComponent + "_" + strImplementation;
+
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
+
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
@@ -848,9 +1023,17 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       }
 
-      pfnFactoryExchange();
+      plibrary = __new(::acme::library);
 
-      return ::success;
+      plibrary->initialize_matter(this);
+
+      __construct_new(plibrary->m_pfactorymap);
+
+      plibrary->m_pfactorymap->initialize_matter(this);
+
+      pfnFactoryExchange(plibrary->m_pfactorymap);
+
+      return plibrary;
 
    #else
 
@@ -888,15 +1071,15 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       }
 
-      ::__construct_new(plibrary->m_pfactorymap);
+      __construct_new(plibrary->m_pfactorymap);
 
       plibrary->m_pfactorymap->initialize_matter(this);
 
       pfn_factory_exchange(plibrary->m_pfactorymap);
 
-   #endif
-
       return plibrary;
+
+#endif
 
    }
 
@@ -1036,12 +1219,12 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
 
       stra.erase_empty();
 
-      TRACE("acme::system::get_public_internet_domain_extension_list");
+      INFORMATION("acme::system::get_public_internet_domain_extension_list");
 
       for (auto& str : stra)
       {
 
-         TRACE("%s", str.c_str());
+         INFORMATION("%s" << str);
 
       }
 
@@ -1066,7 +1249,16 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    ::e_status system::on_start_system()
    {
 
-      return ::success;
+      auto estatus = m_pnode->on_start_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -1109,7 +1301,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //::application* system::get_main_application()
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //   return nullptr;
 
@@ -1119,7 +1311,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //void system::system_construct(int argc, char** argv, char** envp)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1127,7 +1319,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
    //{
 
-   //   __throw(error_interface_only);
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1202,7 +1394,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    {
 
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
 
       return nullptr;
@@ -1234,7 +1426,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    }
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
@@ -1285,7 +1477,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
          
       }
       
-//      __throw(error_interface_only);
+//      throw ::interface_only_exception();
    
       return error_interface_only;
    
@@ -1295,7 +1487,7 @@ enum_dialog_result message_box_for_console(const ::string & psz, const ::string 
    ::e_status system::on_open_file(const ::string & pszFile)
    {
       
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
    
       return error_interface_only;
       
@@ -1351,7 +1543,7 @@ void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
 
 void node_will_finish_launching(void * pSystem);
 void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const ::string & pszFile);
+void system_on_open_file(void * pSystem, const char * pszFile);
 
 
 void node_will_finish_launching(void * pSystem)
@@ -1374,7 +1566,7 @@ void system_on_open_untitled_file(void * pSystem)
 }
 
 
-void system_on_open_file(void * pSystem, const ::string & pszFile)
+void system_on_open_file(void * pSystem, const char * pszFile)
 {
 
    auto psystem = (class ::system *) pSystem;

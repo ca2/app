@@ -21,7 +21,7 @@ namespace simple_ui
       virtual ~edit_box();
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);

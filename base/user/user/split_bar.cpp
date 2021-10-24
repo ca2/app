@@ -42,7 +42,7 @@ namespace user
 //      if(!::user::interaction::create_child(pparent))
 //      {
 //
-//         message_box("Could not create Split Bar");
+//         output_error_message("Could not create Split Bar");
 //
 //         return false;
 //
@@ -103,7 +103,7 @@ namespace user
    void split_bar::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       synchronous_lock synchronouslock(mutex());
 
@@ -129,7 +129,7 @@ namespace user
    void split_bar::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       synchronous_lock synchronouslock(mutex());
 
@@ -158,7 +158,7 @@ namespace user
    void split_bar::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       synchronous_lock synchronouslock(mutex());
 

@@ -27,9 +27,9 @@ namespace helloworld
 {
 
    class application;
-   class main_view;
+   class main_impact;
    class document;
-   class view;
+   class impact;
 
 } // namespace flag
 

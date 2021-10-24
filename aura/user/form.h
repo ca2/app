@@ -32,7 +32,7 @@ namespace user
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
@@ -41,7 +41,7 @@ namespace user
 
 
       virtual ::user::form_callback* get_form_callback();
-      virtual ::user::callback* get_user_callback() override;
+      //virtual ::handler* get_user_callback() override;
       virtual ::user::form * get_parent_form() override;
 
 
@@ -56,7 +56,7 @@ namespace user
 
       virtual ::e_status open_html(const ::string& str);
 
-      virtual ::e_status open_document(const ::payload& varFile);
+      virtual ::e_status open_document(const ::payload& payloadFile);
 
       virtual void soft_reload();
 

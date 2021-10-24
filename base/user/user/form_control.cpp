@@ -2,7 +2,7 @@
 #include "base/user/user/_user.h"
 #include "axis/user/validate.h"
 #include "aura/message.h"
-//#include "acme/os/_os.h"
+//#include "acme/node/operating_system/_os.h"
 
 
 namespace user
@@ -11,6 +11,8 @@ namespace user
 
    form_control::form_control()
    {
+
+      m_bDataUpdateDefaultHandling = true;
 
       m_bOnEditUpdate         = false;
       m_bOnLanguageChange     = false;
@@ -134,7 +136,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -171,7 +173,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -207,7 +209,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -251,7 +253,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -344,13 +346,187 @@ namespace user
    }
 
 
-   void form_control::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void form_control::handle(::subject * psubject, ::context * pcontext)
    {
 
-      for(auto pinteraction : proper_children())
+      //for(auto pinteraction : proper_children())
+      //{
+
+      //   _001Update(pinteraction);
+
+      //}
+
+      if (psubject->m_id == ::e_subject_create)
       {
 
-         _001Update(pinteraction);
+         if (is_child(psubject->user_interaction()))
+         {
+
+            psubject->user_interaction()->m_pform = this;
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_set_focus)
+      {
+
+         if (!_001OnControlSetFocus(psubject->user_interaction()))
+         {
+
+            psubject->Nok();
+
+            return;
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_kill_focus)
+      {
+
+         if (!_001OnControlKillFocus(psubject->user_interaction()))
+         {
+
+            psubject->Nok();
+
+            return;
+
+         }
+
+      }
+
+      //if(m_pcallback != nullptr)
+      //{
+
+      //   m_pcallback->handle(psubject, pcontext);
+
+      //   if(psubject->m_bRet)
+      //   {
+
+      //      return;
+
+      //   }
+
+      //}
+
+      ::user::interaction::handle(psubject, pcontext);
+
+      if (psubject->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (psubject->m_id == ::e_subject_tab_key)
+      {
+
+         __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
+
+         if (pfocus != nullptr)
+         {
+
+            pfocus->set_keyboard_focus();
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         __pointer(interaction) pinteraction = psubject->user_interaction();
+
+         if (::is_null(pinteraction))
+         {
+
+            return;
+
+         }
+
+         if (pinteraction->has_function(e_control_function_action))
+         {
+
+            if (pinteraction != nullptr)
+            {
+
+               _001OnButtonAction(pinteraction);
+
+               psubject->m_bRet = true;
+
+               return;
+
+            }
+            else
+            {
+
+               return;
+
+            }
+
+         }
+
+      }
+      else if (psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+      {
+
+         __pointer(interaction) pinteraction = psubject->user_interaction();
+
+         if (!pinteraction)
+         {
+
+            return;
+
+         }
+
+         if (pinteraction->m_eddx == e_control_ddx_dbflags)
+         {
+
+            int_array ia;
+
+            __pointer(::database::client) pclient = pinteraction;
+
+            if (pclient.is_null())
+            {
+
+               TRACE("control doesn't implement database::client");
+
+               return;
+
+            }
+
+            pclient->data_get(pinteraction->m_datakey, ia);
+
+            __pointer(check) pcheck = psubject->user_interaction();
+
+            if (pcheck->echeck() == ::check_checked)
+            {
+
+               ia.add_unique(pinteraction->m_iDataValue);
+
+            }
+            else
+            {
+
+               ia.erase(pinteraction->m_iDataValue);
+
+            }
+
+            pclient->data_set(pinteraction->m_datakey, ia);
+
+         }
+
+      }
+
+      if (::is_set(m_pcallback))
+      {
+
+         m_pcallback->handle(psubject, pcontext);
+
+         if (psubject->m_bRet)
+         {
+
+            return;
+
+         }
 
       }
 
@@ -565,7 +741,7 @@ namespace user
 
    void form_control::_000OnPosCreate(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      __pointer(::user::message) pusermessage(pmessage);
    }
 
@@ -671,7 +847,7 @@ namespace user
       //MESSAGE_LINK(e_message_key_up                       , pchannel,this,&form_control::on_message_key_up);
       MESSAGE_LINK(WM_USER + 123, pchannel,this,&form_control::_001OnUser123);
 
-      install_update_data_message_routing(pchannel);
+      //install_update_data_message_routing(pchannel);
 
    }
 
@@ -725,8 +901,8 @@ namespace user
    bool form_control::_001Validate(::user::interaction * pinteraction,::payload & payload)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
-      UNREFERENCED_PARAMETER(payload);
+      __UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(payload);
 
       return true;
 
@@ -744,7 +920,7 @@ namespace user
    bool form_control::_001OnBeforeSave(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
       return true;
 
@@ -756,16 +932,16 @@ namespace user
 
       ::user::interaction::update_data(bSaveAndValidate);
 
-      ::user::control_event ev;
+      auto psubject = create_subject(id_none);
 
-      ev.m_bOk = true;
+      psubject->m_bOk = true;
 
-      ev.m_puserinteraction = this;
+      psubject->m_puserelement = this;
 
       if (bSaveAndValidate)
       {
 
-         ev.m_eevent = ::user::e_event_save_form_data;
+         psubject->m_id = ::e_subject_save_form_data;
 
          m_bNeedSaveFormData = false;
 
@@ -773,20 +949,20 @@ namespace user
       else
       {
 
-         ev.m_eevent = ::user::e_event_load_form_data;
+         psubject->m_id = ::e_subject_load_form_data;
 
          m_bNeedLoadFormData = false;
 
       }
 
-      on_control_event(&ev);
+      route(psubject);
 
-      return ev.m_bOk;
+      return psubject->m_bOk;
 
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
    {
 
       for(auto pinteraction : proper_children())
@@ -857,14 +1033,14 @@ namespace user
    void form_control::_001OnInitializeForm(::user::interaction * pinteraction)
    {
 
-      ::user::control_event ev;
+      ::subject subject;
 
-      ev.m_puserinteraction         = pinteraction;
-      ev.m_actioncontext        = ::e_source_database;
-      ev.m_eevent       = ::user::e_event_initialize_control;
-      ev.m_uiEvent      = 0;
+      subject.m_puserelement         = pinteraction;
+      subject.m_actioncontext        = ::e_source_database;
+      subject.m_id       = ::e_subject_initialize_control;
+      subject.m_uiEvent      = 0;
 
-      on_control_event(&ev);
+      route(&subject);
 
    }
 
@@ -872,7 +1048,7 @@ namespace user
    void form_control::_001OnButtonAction(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
    }
 
@@ -943,7 +1119,7 @@ namespace user
       0, 0,
       ::payload);
       __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
-      pcombo->ResetContent();
+      pcombo->reset_content();
       string str;
       for(i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
       {
@@ -1077,7 +1253,7 @@ namespace user
    }
 
 
-   ::e_status form_control::open_document(const ::payload & varFile)
+   ::e_status form_control::open_document(const ::payload & payloadFile)
    {
 
       return true;
@@ -1092,184 +1268,184 @@ namespace user
 
    }
 
-   void form_control::on_control_event(::user::control_event * pevent)
-   {
+   //void form_control::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if (pevent->m_eevent == ::user::e_event_create)
-      {
+   //   if (psubject->m_id == ::e_subject_create)
+   //   {
 
-         if (is_child(pevent->m_puserinteraction))
-         {
+   //      if (is_child(psubject->user_interaction()))
+   //      {
 
-            pevent->m_puserinteraction->m_pform = this;
+   //         psubject->user_interaction()->m_pform = this;
 
-         }
+   //      }
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_set_focus)
-      {
+   //   }
+   //   else if(psubject->m_id == ::e_subject_set_focus)
+   //   {
 
-         if(!_001OnControlSetFocus(pevent->m_puserinteraction))
-         {
+   //      if(!_001OnControlSetFocus(psubject->user_interaction()))
+   //      {
 
-            pevent->Nok();
+   //         psubject->Nok();
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_kill_focus)
-      {
+   //   }
+   //   else if(psubject->m_id == ::e_subject_kill_focus)
+   //   {
 
-         if(!_001OnControlKillFocus(pevent->m_puserinteraction))
-         {
+   //      if(!_001OnControlKillFocus(psubject->user_interaction()))
+   //      {
 
-            pevent->Nok();
+   //         psubject->Nok();
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      //if(m_pcallback != nullptr)
-      //{
+   //   //if(m_pcallback != nullptr)
+   //   //{
 
-      //   m_pcallback->on_control_event(pevent);
+   //   //   m_pcallback->handle(psubject, pcontext);
 
-      //   if(pevent->m_bRet)
-      //   {
+   //   //   if(psubject->m_bRet)
+   //   //   {
 
-      //      return;
+   //   //      return;
 
-      //   }
+   //   //   }
 
-      //}
+   //   //}
 
-      ::user::interaction::on_control_event(pevent);
+   //   ::user::interaction::handle(psubject, pcontext);
 
-      if(pevent->m_bRet)
-      {
+   //   if(psubject->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      if(pevent->m_eevent == ::user::e_event_tab_key)
-      {
+   //   if(psubject->m_id == ::e_subject_tab_key)
+   //   {
 
-         __pointer(::user::primitive) pfocus = pevent->m_puserinteraction->keyboard_get_next_focusable();
+   //      __pointer(::user::primitive) pfocus = psubject->user_interaction()->keyboard_get_next_focusable();
 
-         if(pfocus != nullptr)
-         {
+   //      if(pfocus != nullptr)
+   //      {
 
-            pfocus->set_keyboard_focus();
+   //         pfocus->set_keyboard_focus();
 
-         }
+   //      }
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_click)
-      {
+   //   }
+   //   else if(psubject->m_id == ::e_subject_click)
+   //   {
 
-         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
+   //      __pointer(interaction) pinteraction = psubject->user_interaction();
 
-         if (::is_null(pinteraction))
-         {
+   //      if (::is_null(pinteraction))
+   //      {
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-         if(pinteraction->has_function(e_control_function_action))
-         {
+   //      if(pinteraction->has_function(e_control_function_action))
+   //      {
 
-            if(pinteraction != nullptr)
-            {
+   //         if(pinteraction != nullptr)
+   //         {
 
-               _001OnButtonAction(pinteraction);
+   //            _001OnButtonAction(pinteraction);
 
-               pevent->m_bRet = true;
+   //            psubject->m_bRet = true;
 
-               return;
+   //            return;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
-      else if(pevent->m_eevent == ::user::e_event_set_check && pevent->m_actioncontext.is_user_source())
-      {
+   //   }
+   //   else if(psubject->m_id == ::e_subject_set_check && psubject->m_actioncontext.is_user_source())
+   //   {
 
-         __pointer(interaction) pinteraction = pevent->m_puserinteraction;
+   //      __pointer(interaction) pinteraction = psubject->user_interaction();
 
-         if (!pinteraction)
-         {
+   //      if (!pinteraction)
+   //      {
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-         if(pinteraction->m_eddx == e_control_ddx_dbflags)
-         {
+   //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
+   //      {
 
-            int_array ia;
+   //         int_array ia;
 
-            __pointer(::database::client) pclient = pinteraction;
+   //         __pointer(::database::client) pclient = pinteraction;
 
-            if (pclient.is_null())
-            {
+   //         if (pclient.is_null())
+   //         {
 
-               TRACE("control doesn't implement database::client");
+   //            TRACE("control doesn't implement database::client");
 
-               return;
+   //            return;
 
-            }
+   //         }
 
-            pclient->data_get(pinteraction->m_datakey, ia);
+   //         pclient->data_get(pinteraction->m_datakey, ia);
 
-            __pointer(check) pcheck = pevent->m_puserinteraction;
+   //         __pointer(check) pcheck = psubject->user_interaction();
 
-            if(pcheck->echeck() == ::check_checked)
-            {
+   //         if(pcheck->echeck() == ::check_checked)
+   //         {
 
-               ia.add_unique(pinteraction->m_iDataValue);
+   //            ia.add_unique(pinteraction->m_iDataValue);
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               ia.erase(pinteraction->m_iDataValue);
+   //            ia.erase(pinteraction->m_iDataValue);
 
-            }
+   //         }
 
-            pclient->data_set(pinteraction->m_datakey, ia);
+   //         pclient->data_set(pinteraction->m_datakey, ia);
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (::is_set(m_pcallback))
-      {
+   //   if (::is_set(m_pcallback))
+   //   {
 
-         m_pcallback->on_control_event(pevent);
+   //      m_pcallback->handle(psubject, pcontext);
 
-         if (pevent->m_bRet)
-         {
+   //      if (psubject->m_bRet)
+   //      {
 
-            return;
+   //         return;
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    bool form_control::_001OnControlSetFocus(::user::interaction * pinteraction)
@@ -1352,18 +1528,18 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
 
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(nFlags);
-   //   UNREFERENCED_PARAMETER(pszTargetFrameName);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   __UNREFERENCED_PARAMETER(nFlags);
+   //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
 
-   //   UNREFERENCED_PARAMETER(baPostedData);
-   //   UNREFERENCED_PARAMETER(pszHeaders);
+   //   __UNREFERENCED_PARAMETER(baPostedData);
+   //   __UNREFERENCED_PARAMETER(pszHeaders);
 
-   //   UNREFERENCED_PARAMETER(pbCancel);
+   //   __UNREFERENCED_PARAMETER(pbCancel);
 
    //}
 
@@ -1441,28 +1617,28 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_puserinteraction = this;
+         subject.m_puserelement = this;
 
-         ev.m_eevent = ::user::e_event_timer;
+         subject.m_id = ::e_subject_timer;
 
-         ev.m_uiEvent = ptimer->m_uEvent;
+         subject.m_uiEvent = ptimer->m_uEvent;
 
-         ev.m_etimer = ptimer->m_etimer;
+         subject.m_etimer = ptimer->m_etimer;
 
          auto papplication = get_application();
 
-         papplication->on_control_event(&ev);
+         papplication->route(&subject);
 
-         if(ev.m_bRet)
+         if(subject.m_bRet)
          {
 
             return;
 
          }
 
-         m_pcallback->on_control_event(&ev);
+         m_pcallback->route(&subject);
 
       }
 

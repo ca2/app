@@ -94,8 +94,8 @@ namespace core
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
-      //rectangle_i32_array                                            m_rectaMonitor;
-      //rectangle_i32_array                                            m_rectaWorkspace;
+      //rectangle_i32_array                                            m_rectangleaMonitor;
+      //rectangle_i32_array                                            m_rectangleaWorkspace;
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
@@ -152,11 +152,11 @@ namespace core
       virtual ::e_status init() override;
 
 
-      virtual __pointer(::extended::future < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
+      virtual __pointer(::extended::sequence < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
 
 
-      virtual __pointer(::extended::future < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual __pointer(::extended::future < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::sequence < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual __pointer(::extended::sequence < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual ::e_status ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
@@ -178,7 +178,7 @@ namespace core
       virtual ::e_status initialize_html();
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
 
       virtual void _001OnFileNew();
@@ -232,7 +232,7 @@ namespace core
       virtual ::e_status     initialize(::object * pobject) override;
 
 
-      virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual ::e_status initialize_userex();
@@ -302,7 +302,7 @@ namespace core
       ////virtual bool file_is_read_only(const ::string & pszPath);
 
       //// Long PhRESSing time
-      //// time in milliseconds that a pressing is considered a double click
+      //// time in ::durations that a pressing is considered a double click
       //virtual ::u32 get_Long_PhRESSing_time();
 
       //virtual void defer_initialize_user_presence();
@@ -485,7 +485,7 @@ namespace core
 
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       //virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
@@ -536,7 +536,7 @@ namespace core
 
       //void _001OnFileNew();
 
-      ////virtual void route_command_message(::message::command * pcommand) override;
+      ////void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -631,7 +631,7 @@ namespace core
       ////virtual void on_user_logon(::account::user* puser) override;
 
 
-      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText) override;
+      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 
 
       //virtual string_array get_user_wallpaper();
@@ -672,7 +672,7 @@ namespace core
       ////virtual oswindow get_capture() override;
 
 
-      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText) override;
+      ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 
 
       //virtual bool prepare_menu_button(::user::menu_item* pitem) override;

@@ -57,8 +57,8 @@ namespace linux
       virtual ~file();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual filesize get_position() const override;
 
@@ -83,7 +83,7 @@ namespace linux
 
 //      virtual __pointer(::file::file) Duplicate() const;
 
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;
+      virtual filesize seek(filesize lOff, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize get_size() const override;
 

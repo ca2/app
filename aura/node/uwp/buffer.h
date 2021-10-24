@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -33,7 +33,7 @@ namespace uwp
 
       //};
 
-      Microsoft::WRL::ComPtr<ID2D1DeviceContext>      m_pd2d1devicecontext;
+      comptr<ID2D1DeviceContext>      m_pd2d1devicecontext;
       directx_framework_view  ^        m_pframeworkview;
 
       ::draw2d::graphics_pointer       m_pdraw2dgraphics;
@@ -69,7 +69,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

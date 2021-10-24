@@ -63,7 +63,7 @@ namespace user
 
    void document_manager::UnregisterShellFileTypes()
    {
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
       string strPathName, strTemp;
@@ -151,8 +151,8 @@ namespace user
 
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
-      UNREFERENCED_PARAMETER(bCompat);
-      ::exception::throw_not_implemented();
+      __UNREFERENCED_PARAMETER(bCompat);
+      throw interface_only_exception();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
 
@@ -483,12 +483,12 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();
 
-      //return psystem->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      //return psystem->do_prompt_file_name(payloadFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
       return false;
 
@@ -510,7 +510,7 @@ namespace user
    bool document_manager::OnDDECommand(char * pszCommand)
 
    {
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       /*string strCommand = pszCommand;
 
@@ -699,7 +699,7 @@ namespace user
    {
       // prompt the ::account::user (with all document templates)
 
-      __pointer(::create) pcreate(e_create);
+      __pointer(::create) pcreate(e_create, this);
 
       if (!do_prompt_file_name(pcreate->m_pcommandline->m_varFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
@@ -823,7 +823,11 @@ namespace user
             __pointer(::user::frame_window) pFrame = pview->get_parent_frame();
 
             if (pFrame == nullptr)
-               TRACE(trace_category_appmsg, e_trace_level_error, "Error: Can not find a frame for document to activate.\n");
+            {
+             
+               CATEGORY_ERROR(appmsg, "Error: Can not find a frame for document to activate.");
+
+            }
             else
             {
                pFrame->ActivateFrame();
@@ -837,7 +841,7 @@ namespace user
             }
          }
          else
-            TRACE(trace_category_appmsg, e_trace_level_error, "Error: Can not find a ::user::impact for document to activate.\n");
+            CATEGORY_ERROR(appmsg, "Error: Can not find a ::user::impact for document to activate.");
 
          pcreate->m_pcommandline->m_varQuery["document"] = pOpenDocument;
       }
@@ -845,7 +849,7 @@ namespace user
       if (pBestTemplate == nullptr)
       {
 
-         message_box("Failed to open document");
+         output_error_message("Failed to open document");
 
          return;
 
@@ -889,7 +893,7 @@ namespace user
    }
 
 
-   void document_manager::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void document_manager::handle(::subject * psubject, ::context * pcontext)
    {
 
       auto templateptra = m_templateptra;
@@ -897,7 +901,7 @@ namespace user
       for(auto & ptemplate : templateptra.ptra())
       {
 
-         ptemplate->on_subject(psubject, pcontext);
+         ptemplate->handle(psubject, pcontext);
 
       }
 

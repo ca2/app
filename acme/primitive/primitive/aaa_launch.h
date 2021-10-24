@@ -27,7 +27,7 @@ public:
 
 
    ::e_status fork(
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0,
       itask_t* pithread = nullptr,

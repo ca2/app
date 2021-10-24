@@ -24,14 +24,14 @@ namespace user
 
 
       __pointer(::write_text::font_list)   m_pfontlist;
-      ::rectangle_i32                           m_rectMargin;
+      ::rectangle_i32                           m_rectangleMargin;
       bool                             m_bEnsureVisible;
       bool                             m_bFirstShown;
       ::i32                            m_iLayoutSerial;
 
 
       font_list();
-      virtual ~font_list();
+      ~font_list() override;
 
 
       void user_font_list_common_construct();
@@ -47,24 +47,24 @@ namespace user
 
       //virtual void font_list_update();
 
-      //virtual void assert_valid() const;
-      //virtual void dump(dump_context & dumpcontext) const;
+      //void assert_valid() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
       //virtual bool get_color(::color::color & color32, e_color ecolor, ::user::interaction * pinteraction) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
-      virtual ::user::item current_item() override;
+      virtual ::item current_item() override;
 
-      virtual ::user::item hover_item() override;
+      virtual ::item hover_item() override;
 
       string get_cur_sel_face_name();
 
@@ -81,7 +81,7 @@ namespace user
 
       virtual void _001OnTimer(::timer * ptimer) override;
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

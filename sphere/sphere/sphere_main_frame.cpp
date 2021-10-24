@@ -13,7 +13,7 @@ namespace sphere
 
       window_enable_full_screen();
 
-      //create_translucency(::user::e_element_none, ::user::e_translucency_none);
+      //create_translucency(::e_element_none, ::user::e_translucency_none);
 
    }
 
@@ -24,7 +24,7 @@ namespace sphere
    }
 
 
-   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pcontext)
+   //bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::style_context * pcontext)
    //{
 
    //   etranslucency = ::user::e_translucency_present;

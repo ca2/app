@@ -16,7 +16,17 @@ namespace message
 
    class key;
    class mouse;
+   class object;
 
+   union message_union
+   {
+     
+      void *                  m_p;
+      ::message::object *     m_pobject;
+      ::message::key *        m_pkey;
+      ::message::mouse *      m_pmouse;
+      
+   };
 
    class CLASS_DECL_APEX message :
       virtual public ::acme::message
@@ -24,12 +34,13 @@ namespace message
    public:
 
 
-      ::message::key *              m_pkey;
-      ::message::mouse *            m_pmouse;
+      //::message::key *              m_pkey;
+      //::message::mouse *            m_pmouse;
 
+      message_union                 m_union;
 
-      handler_item_array *          m_phandlera;
-      __pointer(channel)            m_pchannel;
+      dispatcher_array *            m_pdispatchera;
+      channel *                     m_pchannel;
       oswindow                      m_oswindow;
       enumeration < enum_flag >     m_eflagMessage;
       index                         m_iRouteIndex;
@@ -48,10 +59,8 @@ namespace message
       inline void common_construct()
       {
 
-         m_pkey = nullptr;
-         m_pmouse = nullptr;
-
-         m_phandlera = nullptr;
+         m_union.m_p = nullptr;
+         m_pdispatchera = nullptr;
          m_pchannel = nullptr;
          m_wparam = 0;
          m_iRouteIndex = -1;
@@ -63,11 +72,13 @@ namespace message
 
       }
 
+
       inline bool is_message() const { return m_id.is_message(); }
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 
-      inline auto route_message() { m_phandlera->m_pData[m_iRouteIndex].m_handler(this); return m_bRet; }
+      inline auto route_message() { m_pdispatchera->m_pData[m_iRouteIndex]->handle(this); return m_bRet; }
+
 
       bool all_previous(); // returns bRet
 

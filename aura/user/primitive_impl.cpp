@@ -3,7 +3,7 @@
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
-#include "acme/os/_user.h"
+#include "acme/node/operating_system/_user.h"
 
 
 namespace user
@@ -18,14 +18,14 @@ namespace user
 
       m_pinteractionimpl = nullptr;
       m_pinteractionchild = nullptr;
-      m_bDestroying = false;
+      //m_bDestroying = false;
       m_bDestroyImplOnly = false;
       m_iPendingRectMatch = -1;
       m_bPendingRedraw = false;
       m_puserinteraction = nullptr;
       m_bIgnoreSizeEvent = false;
       m_bIgnoreMoveEvent = false;
-      m_bUserPrimitiveOk = true;
+      m_bUserElementOk = true;
 
    }
 
@@ -39,7 +39,7 @@ namespace user
    bool primitive_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return true;
 
@@ -49,7 +49,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -60,7 +60,7 @@ namespace user
 
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return false;
 
@@ -70,7 +70,7 @@ namespace user
    //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -80,7 +80,7 @@ namespace user
    //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return true;
 
@@ -123,7 +123,7 @@ namespace user
 
       //m_puserinteraction->message_call(e_message_size, 0, process_state().m_size.lparam());
 
-      //m_puserinteraction->m_millisLastVisualChange.Now();
+      //m_puserinteraction->m_durationLastVisualChange.Now();
 
       //m_puserinteraction->m_bSizeMove = true;
 
@@ -181,9 +181,9 @@ namespace user
 
       }
 
-      UNREFERENCED_PARAMETER(nIDFirst);
+      __UNREFERENCED_PARAMETER(nIDFirst);
 
-      UNREFERENCED_PARAMETER(nIDLast);
+      __UNREFERENCED_PARAMETER(nIDLast);
 
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
@@ -309,7 +309,7 @@ namespace user
    }
 
 
-   //::e_status primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
+   //::e_status primitive_impl::main_async(const promise::routine & routine, enum_priority epriority)
    //{
 
    //   if (!m_puserinteraction)
@@ -349,7 +349,7 @@ namespace user
 
       }
 
-      string strType = ::str::demangle(m_puserinteraction->type_name());
+      string strType = __type_name(m_puserinteraction);
 
       if (strType.contains("list_box"))
       {
@@ -467,7 +467,7 @@ namespace user
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -477,7 +477,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->RedrawWindow(rectUpdate, prgnUpdate, flags);
+      return m_puserinteraction->RedrawWindow(rectangleUpdate, prgnUpdate, flags);
 
    }
 
@@ -1145,7 +1145,7 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer)
    {
 
       if (millisEllapse < 500_ms)
@@ -1170,7 +1170,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(uEvent, millisEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(this, uEvent, millisEllapse, pfnTimer, true);
 
    }
 
@@ -1266,14 +1266,14 @@ namespace user
    bool primitive_impl::start_destroying_window()
    {
 
-      if (!m_bUserPrimitiveOk)
+      if (!m_bUserElementOk)
       {
 
          return true;
 
       }
 
-      m_bUserPrimitiveOk = false;
+      m_bUserElementOk = false;
 
       if (m_puserinteraction == nullptr && !m_bDestroyImplOnly)
       {
@@ -1286,25 +1286,30 @@ namespace user
 
       __pointer(::user::interaction) puiThis = m_puserinteraction;
 
-      try
+      if(puiThis)
       {
 
-         send_message(e_message_destroy);
+         try
+         {
 
-      }
-      catch (...)
-      {
+            puiThis->send_message(e_message_destroy);
 
-      }
+         }
+         catch (...)
+         {
 
-      try
-      {
+         }
 
-         send_message(e_message_non_client_destroy);
+         try
+         {
 
-      }
-      catch (...)
-      {
+            puiThis->send_message(e_message_non_client_destroy);
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
 
@@ -1361,7 +1366,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_impl::get_keyboard_focus()
+   ::user::element * primitive_impl::get_keyboard_focus()
    {
 
       return nullptr;
@@ -1372,7 +1377,7 @@ namespace user
    ::e_status primitive_impl::set_keyboard_focus(::user::primitive * pprimitive)
    {
 
-      UNREFERENCED_PARAMETER(pprimitive);
+      __UNREFERENCED_PARAMETER(pprimitive);
 
       return ::error_failed;
 
@@ -1382,7 +1387,7 @@ namespace user
    ::e_status primitive_impl::erase_keyboard_focus(::user::primitive * pprimitive)
    {
 
-      UNREFERENCED_PARAMETER(pprimitive);
+      __UNREFERENCED_PARAMETER(pprimitive);
 
       return ::error_failed;
 
@@ -1526,7 +1531,8 @@ namespace user
       }
 
       m_puserinteraction->run_property("on_create");
-      m_puserinteraction->call_routine(CREATE_ROUTINE);
+
+      m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
    }
 
@@ -1560,10 +1566,10 @@ namespace user
    void primitive_impl::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
+      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 
@@ -1582,16 +1588,16 @@ namespace user
 
       //}
 
-      //g_p->set_at((iptr)this, ::str::demangle(m_puserinteraction->type_name()) + "xxx" + type_name());
+      //g_p->set_at((iptr)this, __type_name(m_puserinteraction)) + "xxx" + __type_name(this);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &primitive_impl::on_message_show_window);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &primitive_impl::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &primitive_impl::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_create, pchannel, this, &primitive_impl::_001OnPrioCreate);
 
-      if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
+      if (m_puserinteraction && __type_name(m_puserinteraction).contains("notify_icon"))
       {
 
-         INFO("notify_icon");
+         INFORMATION("notify_icon");
 
       }
 
@@ -1608,7 +1614,7 @@ namespace user
    void primitive_impl::show_task(bool bShow)
    {
 
-      UNREFERENCED_PARAMETER(bShow);
+      __UNREFERENCED_PARAMETER(bShow);
 
    }
 

@@ -110,8 +110,8 @@ namespace draw2d_opengl
       virtual i32 SaveDC();
       virtual bool RestoreDC(i32 nSavedDC);
       i32 GetDeviceCaps(i32 nIndex) const;
-      ::u32 SetBoundsRect(const RECTANGLE_I32 &  rectBounds, ::u32 flags);
-      ::u32 GetBoundsRect(RECTANGLE_I32 * rectBounds, ::u32 flags);
+      ::u32 SetBoundsRect(const RECTANGLE_I32 &  rectangleBounds, ::u32 flags);
+      ::u32 GetBoundsRect(RECTANGLE_I32 * rectangleBounds, ::u32 flags);
       bool ResetDC(const DEVMODE* lpDevMode);
 
       // Drawing-Tool Functions
@@ -503,8 +503,8 @@ namespace draw2d_opengl
 
       // Implementation
    public:
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 

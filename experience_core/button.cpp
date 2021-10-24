@@ -12,8 +12,6 @@ namespace experience
       button::button()
       {
 
-         m_pregion.create();
-
       }
 
 
@@ -40,7 +38,7 @@ namespace experience
       void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         millis t1 = millis::now();
+         ::duration t1 = ::duration::now();
 
          if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
@@ -49,12 +47,12 @@ namespace experience
 
          }
 
-         millis d1 = t1.elapsed();
+         ::duration d1 = t1.elapsed();
 
-         if (d1 > 50)
+         if (d1 > 50_ms)
          {
 
-            CINFO(prodevian) ("is_activeis_activeis_active more than 50ms user::button wndframe_core");
+            CATEGORY_INFORMATION(prodevian, "is_activeis_activeis_active more than 50ms user::button wndframe_core");
 
          }
 
@@ -77,9 +75,9 @@ namespace experience
             if (!is_window_enabled())
             {
 
-               pgraphics->set(m_pcontrolbox->m_brushButtonBackDisabled);
+               pgraphics->set(m_pcontrolbox->m_pbrushButtonBackDisabled);
 
-               pgraphics->set(m_pcontrolbox->m_penButtonBackDisabled);
+               pgraphics->set(m_pcontrolbox->m_ppenButtonBackDisabled);
 
                crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
@@ -87,9 +85,9 @@ namespace experience
             else if (hover_item().is_set())
             {
 
-               pgraphics->set(m_pcontrolbox->m_brushButtonBackSel);
+               pgraphics->set(m_pcontrolbox->m_pbrushButtonBackSel);
 
-               pgraphics->set(m_pcontrolbox->m_penButtonBackSel);
+               pgraphics->set(m_pcontrolbox->m_ppenButtonBackSel);
 
                crText = m_pcontrolbox->m_colorButtonForeSel;
 
@@ -97,9 +95,9 @@ namespace experience
             else if (has_keyboard_focus())
             {
 
-               pgraphics->set(m_pcontrolbox->m_brushButtonBackFocus);
+               pgraphics->set(m_pcontrolbox->m_pbrushButtonBackFocus);
 
-               pgraphics->set(m_pcontrolbox->m_penButtonBackFocus);
+               pgraphics->set(m_pcontrolbox->m_ppenButtonBackFocus);
 
                crText = m_pcontrolbox->m_colorButtonForeFocus;
 
@@ -107,9 +105,9 @@ namespace experience
             else
             {
 
-               pgraphics->set(m_pcontrolbox->m_brushButtonBack);
+               pgraphics->set(m_pcontrolbox->m_pbrushButtonBack);
 
-               pgraphics->set(m_pcontrolbox->m_penButtonBack);
+               pgraphics->set(m_pcontrolbox->m_ppenButtonBack);
 
                crText = m_pcontrolbox->m_colorButtonFore;
 
@@ -117,15 +115,15 @@ namespace experience
 
          }
 
-         ::rectangle_i32 rectEllipse(rectangleClient);
+         ::rectangle_i32 rectangleEllipse(rectangleClient);
 
-         rectEllipse.deflate(0, 0, 2, 2);
+         rectangleEllipse.deflate(0, 0, 2, 2);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         pgraphics->fill_ellipse(rectEllipse);
+         pgraphics->fill_ellipse(rectangleEllipse);
 
-         pgraphics->draw_ellipse(rectEllipse);
+         pgraphics->draw_ellipse(rectangleEllipse);
 
          if (m_estockicon == e_stock_icon_none)
          {
@@ -134,7 +132,7 @@ namespace experience
 
             get_window_text(str);
 
-            pgraphics->set_font(this, ::user::e_element_none);
+            pgraphics->set_font(this, ::e_element_none);
 
             pgraphics->set_text_color(crText);
 
@@ -144,37 +142,37 @@ namespace experience
          else
          {
 
-            ::draw2d::brush_pointer brush(e_create);
+            auto pbrush = __create < ::draw2d::brush >();
 
-            if (brush && pgraphics->get_current_pen())
+            if (pbrush && pgraphics->get_current_pen())
             {
 
-               brush->create_solid(pgraphics->get_current_pen()->m_color);
+               pbrush->create_solid(pgraphics->get_current_pen()->m_color);
 
             }
 
-            pgraphics->set(brush);
+            pgraphics->set(pbrush);
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(1.0f, __acolor(255, 255, 255, 255));
+            ppen->create_solid(1.0f, __acolor(255, 255, 255, 255));
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
 
-            ::rectangle_i32 rectIcon(rectEllipse);
+            ::rectangle_i32 rectangleIcon(rectangleEllipse);
 
-            rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
+            rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
-            pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+            pgraphics->draw_stock_icon(rectangleIcon, m_estockicon);
 
          }
 
-         millis d2 = t1.elapsed();
+         ::duration d2 = t1.elapsed();
 
-         if (d2 > 50)
+         if (d2 > 50_ms)
          {
 
-            CINFO(prodevian)( "(d2) more than 50ms user::button wndframe_core");
+            CATEGORY_INFORMATION(prodevian, "(d2) more than 50ms user::button wndframe_core");
 
          }
 
@@ -193,6 +191,8 @@ namespace experience
       {
 
          auto rectangleClient = get_client_rect();
+
+         __defer_construct(m_pregion);
 
          m_pregion->create_ellipse(rectangleClient);
 

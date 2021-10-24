@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-lparam::lparam(const ::matter * p)
+lparam::lparam(const ::element * pelement)
 {
 
-   if (is_null(p))
+   if (is_null(pelement))
    {
 
       m_lparam = 0;
@@ -13,9 +13,9 @@ lparam::lparam(const ::matter * p)
 
    }
 
-   ((matter *) p)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&lparam_debug()));
+   ((element*)pelement)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&lparam_debug()));
 
-   m_lparam = (iptr)(void *) p;
+   m_lparam = (iptr)(void *)pelement;
 
 }
 

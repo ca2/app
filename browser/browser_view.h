@@ -94,7 +94,7 @@ namespace browser
 {
 
 
-   class CLASS_DECL_APP_BROWSER view :
+   class CLASS_DECL_APP_BROWSER impact :
       virtual public impact_base,
       public CefClient,
       public CefRenderHandler,
@@ -109,7 +109,7 @@ namespace browser
 
       void OnPaint(CefRefPtr<CefBrowser> browser,
                    CefRenderHandler::PaintElementType type,
-                   const CefRenderHandler::RectList& dirtyRects,
+                   const CefRenderHandler::rectList& dirtyRects,
                    const void* buffer,
                    int width,
                    int height);
@@ -117,14 +117,14 @@ namespace browser
       void AddRef() const
       {
 
-         ((view *)this)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+         ((impact *)this)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       }
 
       bool Release() const
       {
 
-         return ((view *)this)->release() == 0;
+         return ((impact *)this)->release() == 0;
 
       }
 
@@ -142,7 +142,7 @@ namespace browser
 
       }
       ///
-      // Called to retrieve the view rectangle_i32 which is relative to screen
+      // Called to retrieve the impact rectangle_i32 which is relative to screen
       // coordinates. Return true if the rectangle_i32 was provided.
       ///
       /*--cef()--*/
@@ -175,7 +175,7 @@ namespace browser
                                const CefString& errorText,
                                const CefString& failedUrl) override;
 
-      //The CefRenderHandler::GetViewRect() method will be called to retrieve the desired view rectangle.
+      //The CefRenderHandler::GetViewRect() method will be called to retrieve the desired impact rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
       //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetViewRect() to retrieve the new size_i32 followed by a call to OnPaint().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus events.
@@ -198,16 +198,16 @@ namespace browser
       string                  m_strPostProcessed;
       string                  m_strProcessedHellomultiverse;
 
-      millis m_millisLastImageChange;
+      ::duration m_durationLastImageChange;
       bool                    m_bPendingImageChange;
 //      CefRefPtr <ClientHandler>       m_pclienthandler;
       CefRefPtr<CefBrowser>   m_pbrowser;
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
       {
@@ -242,11 +242,11 @@ namespace browser
                                      bool const canGoBack,
                                      bool const canGoForward);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       ::user::document * get_document();
 

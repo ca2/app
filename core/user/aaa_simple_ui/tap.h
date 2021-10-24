@@ -20,7 +20,7 @@ namespace simple_ui
       tap();
       virtual ~tap();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void simple_ui_draw_simple(::draw2d::graphics_pointer & pgraphics);

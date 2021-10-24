@@ -4,6 +4,16 @@
 #pragma once
 
 
+enum enum_placement
+{
+
+   e_placement_stretch,
+   e_placement_source, // align is meaningful
+   e_placement_aspect_fit, // align is meaninful
+
+};
+
+
 class CLASS_DECL_AURA image_drawing_options :
    public color_filter
 {
@@ -14,6 +24,34 @@ public:
    using color_filter::operator=;
 
 
+   enum_image_selection    m_eimageselection;
+   enum_placement          m_eplacement;
+   point_f64               m_pointAlign;
+   ::rectangle_f64         m_rectangleTarget;
+
+
+   image_drawing_options() :
+      m_eimageselection(e_image_selection_default),
+      m_eplacement(e_placement_stretch)
+   {
+
+
+   }
+
+
+   image_drawing_options(const image_drawing_options & imagedrawingoptions) = default;
+
+   
+   explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default) :
+      m_rectangleTarget(rectangleTarget),
+      m_eplacement(eplacement),
+      m_pointAlign(pointAlign),
+      m_eimageselection(eimageselection)
+   {
+
+   }
+
+
 };
 
 
@@ -21,208 +59,151 @@ using image_drawing_options_pointer = __pointer(image_drawing_options);
 
 
 class CLASS_DECL_AURA image_drawing :
-   public ::image_drawing_options
+   public ::image_drawing_options,
+   public ::image_source
 {
 public:
 
 
-   ::rectangle_f64                     m_rectDst;
-   ::rectangle_f64                     m_rectSrc;
-   image_pointer                       m_pimage;
+   using ::image_drawing_options::operator=;
 
 
-   using image_drawing_options::image_drawing_options;
-   using image_drawing_options::operator=;
-
-
-   template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
-   void set(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource)
+   image_drawing(const ::image_drawing & imagedrawing) :
+      image_drawing_options(imagedrawing),
+      image_source(imagedrawing)
    {
-
-      auto concreteSize = pimagesource->size();
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(pointDst, concreteSize);
-
-      m_rectSrc.set(concreteSize);
 
    }
 
 
-   template < image_source_pointer IMAGE_SOURCE_POINTER >
-   void set(IMAGE_SOURCE_POINTER pimagesource)
+   image_drawing(::image_drawing && imagedrawing) noexcept:
+      image_drawing_options(::move(imagedrawing)),
+      image_source(::move(imagedrawing))
    {
-
-      auto concreteSize = pimagesource->size();
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(concreteSize);
-
-      m_rectSrc.set(concreteSize);
 
    }
 
 
-   template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   void set(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
+   image_drawing(const ::image_drawing_options & imagedrawingoptions, const ::image_source & imagesource) :
+      ::image_drawing_options(imagedrawingoptions),
+      ::image_source(imagesource)
    {
 
-      auto concreteSize = pimagesource->size();
+   }
 
-      auto sizeSrc = pimagesource->size() - pointSrc;
+   image_drawing(const ::image_source & imagesource) :
+      ::image_source(imagesource)
+   {
 
-      m_pimage = pimagesource->get_image(concreteSize);
+   }
 
-      m_rectDst.set(sizeSrc);
+   ::rectangle_f64 source_rectangle() const
+   {
 
-      m_rectSrc.set(pointSrc, sizeSrc);
+      if (m_esubimage == e_sub_image_rate)
+      {
+
+         auto sizeTarget = m_rectangleTarget.size() / m_rectangleSubImage.size();
+
+         auto size = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
+
+         return ::rectangle_f64(
+            m_rectangleSubImage.left * size.cx,
+            m_rectangleSubImage.top * size.cy,
+            m_rectangleSubImage.right * size.cx,
+            m_rectangleSubImage.bottom * size.cy);
+
+      }
+      else if (m_esubimage == e_sub_image_coordinates)
+      {
+
+         // I hope you know you are doing
+
+         return m_rectangleSubImage;
+
+      }
+      else
+      {
+
+         auto sizeTarget(m_rectangleTarget.size());
+
+         return ::rectangle_f64(m_pimagesource->image_source_size(sizeTarget, m_eimageselection));
+
+      }
 
    }
 
 
-   template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-   void set(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectSrc)
+   ::rectangle_f64 target_rectangle() const
    {
 
-      auto concreteSize = pimagesource->size();
+      if (m_eplacement == e_placement_stretch)
+      {
 
-      auto sizeSrc = rectSrc.size();
+         return m_rectangleTarget;
 
-      m_pimage = pimagesource->get_image(concreteSize);
+      }
+      else if (m_eplacement == e_placement_source)
+      {
 
-      m_rectDst.set(sizeSrc);
+         auto rectangle = source_rectangle();
 
-      m_rectSrc.set(rectSrc);
+         rectangle.align_rate(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+
+         return rectangle;
+
+      }
+      else if (m_eplacement == e_placement_aspect_fit)
+      {
+
+         auto rectangle = source_rectangle();
+
+         rectangle.aspect_align_fit(m_pointAlign.x, m_pointAlign.y, m_rectangleTarget);
+
+         return rectangle;
+
+      }
+      else
+      {
+
+         throw "invalid image_drawing::m_eplacement";
+
+      }
 
    }
 
 
-   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
-   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource)
+   ::image_pointer image() const
    {
 
-      auto concreteSize = pimagesource->size();
+      if (m_esubimage == e_sub_image_rate)
+      {
 
-      m_pimage = pimagesource->get_image(concreteSize);
+         auto sizeTarget = m_rectangleTarget.size() / m_rectangleSubImage.size();
 
-      m_rectDst.set(sizeDst);
+         auto concreteSize = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
 
-      m_rectSrc.set(sizeDst);
+         return m_pimagesource->image_source_image(concreteSize);
 
-   }
+      }
+      else if (m_esubimage == e_sub_image_coordinates)
+      {
 
+         auto concreteSize = m_pimagesource->image_source_size();
 
-   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
-   {
+         return m_pimagesource->image_source_image(concreteSize);
 
-      auto concreteSize = pimagesource->size();
+      }
+      else
+      {
 
-      auto sizeSrc = sizeDst;
+         auto sizeTarget = m_rectangleTarget.size();
 
-      m_pimage = pimagesource->get_image(concreteSize);
+         auto concreteSize = m_pimagesource->image_source_size(sizeTarget, m_eimageselection);
 
-      m_rectDst.set(sizeDst);
+         return m_pimagesource->image_source_image(concreteSize);
 
-      m_rectSrc.set(pointSrc, sizeSrc);
-
-   }
-
-
-   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectSrc, enum_image_selection eimageselection = e_image_selection_default)
-   {
-
-      auto concreteSize = pimagesource->size();
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(sizeDst);
-
-      m_rectSrc.set(rectSrc);
-
-   }
-
-
-   template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource)
-   {
-
-      auto concreteSize = pimagesource->size(rectDst.size(), e_image_selection_default);
-
-      auto sizeDst = ::size_i32(rectDst);
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(rectDst);
-
-      m_rectSrc.set(sizeDst);
-
-   }
-
-
-   template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection)
-   {
-
-      auto sizeDst = ::size_i32(rectDst);
-
-      auto concreteSize = pimagesource->size(sizeDst, eimageselection);
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(rectDst);
-
-      m_rectSrc.set(concreteSize);
-
-   }
-
-
-   template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
-   {
-
-      auto concreteSize = pimagesource->size();
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(rectDst);
-
-      m_rectSrc.set(pointSrc, rectDst.size());
-
-   }
-
-
-   template < primitive_rectangle RECTANGLE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
-   void set(const RECTANGLE_DST & rectDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectSrc)
-   {
-
-      auto concreteSize = pimagesource->size();
-
-      //auto sizeDst = ::size_i32(rectSrc);
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(rectDst);
-
-      m_rectSrc.set(rectSrc);
-
-   }
-
-
-   template < primitive_size SIZE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
-   void set(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc)
-   {
-
-      auto concreteSize = pimagesource->size();
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(sizeDst);
-
-      m_rectSrc.set(sizeSrc);
+      }
 
    }
 

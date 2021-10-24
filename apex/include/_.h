@@ -200,12 +200,13 @@ extern CLASS_DECL_APEX int g_bApex;
 
 #ifdef __cplusplus
 
-#define MAKELONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+
 #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+
 
 #else
 
-#define MAKELONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 #define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 
 #endif
@@ -319,6 +320,10 @@ namespace core
 } // namespace core
 
 
+
+#include "acme/platform/library.h"
+
+
 #include "apex/platform/apex_main_struct.h"
 
 
@@ -330,7 +335,7 @@ namespace core
 //enum e_simple_command : ::i64;
 //enum e_message : ::i64;
 //enum e_impact : ::i64;
-//enum e_id : ::u64;
+//enum ::enum_id : ::u64;
 //enum enum_check: ::i32;
 
 
@@ -498,12 +503,12 @@ namespace datetime
 } // namespace datetime
 
 
-namespace trace
-{
+//namespace trace
+//{
 
    class trace;
 
-}
+//}
 
 
 namespace apex
@@ -517,7 +522,8 @@ namespace apex
 
 } // namespace apex
 
-CLASS_DECL_APEX bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
+
+CLASS_DECL_APEX bool enable_trace_category(enum_trace_category ecategory, bool bEnable = true);
 
 
 class app_core;
@@ -724,7 +730,7 @@ namespace calculator
 } // namespace calculator
 
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #undef err_none
 #endif
 
@@ -827,7 +833,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-#include "apex/primitive/subject/_.h"
+#include "apex/subject/_.h"
 
 //#include "apex/primitive/primitive/object.h"
 
@@ -847,14 +853,15 @@ namespace core
 #include "apex/filesystem/filesystem.h"
 
 
-#include "apex/platform/progress.h"
+#include "apex/progress/_.h"
+
 
 #include "apex/parallelization/_.h"
 
 
 #if defined(LINUX)
 
-#include "apex/os/ansios/_.h"
+#include "apex/node/operating_system/ansi/_.h"
 
 #elif defined(_UWP)
 //
@@ -926,16 +933,25 @@ namespace windowing
 } // namespace windowing
 
 
-#include "apex/user/check.h"
-#include "apex/user/text.h"
+//#include "apex/user/check.h"
+//#include "apex/user/text.h"
 #include "apex/user/primitive.h"
 
 
 #include "apex/parallelization/thread.h"
-#include "apex/parallelization/handler.h"
+
+
+class handler_manager;
+
+
+class service;
+class service_handler;
+
+
+//#include "apex/parallelization/handler_manager.h"
 //#include "apex/parallelization/service_status.h"
-#include "apex/parallelization/service.h"
-#include "apex/parallelization/service_handler.h"
+//#include "apex/parallelization/service.h"
+//#include "apex/parallelization/service_handler.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/fork.h"
@@ -965,7 +981,7 @@ namespace user
 
 #include "apex/platform/savings.h"
 
-#include "apex/net/_.h"
+#include "apex/networking/_.h"
 
 class launcher;
 //#include "apex/platform/launcher.h"
@@ -1013,7 +1029,7 @@ namespace zip
 } // namespace zip
 
 
-#include "apex/os/text.h"
+//#include "apex/node/operating_system/text.h"
 
 #include "apex/process/process.h"
 
@@ -1102,9 +1118,9 @@ namespace user
 
 #include "apex/_.h"
 
-#include "apex/user/text.h"
+//#include "apex/user/text.h"
 
-#include "apex/user/check.h"
+//#include "apex/user/check.h"
 
 #include "apex/user/menu_shared_command.h"
 
@@ -1197,17 +1213,17 @@ namespace xml
 
 #define return_(y, x) {y = x; return;}
 
-
-extern "C"
-{
-
-
-   i32 _c_lock_is_active(const char * lpszName);
-   i32 _c_lock(const char * lpszName,void ** pdata);
-   i32 _c_unlock(void ** pdata);
-
-
-}
+//
+//extern "C"
+//{
+//
+//
+//   i32 _c_lock_is_active(const char * lpszName);
+//   i32 _c_lock(const char * lpszName,void ** pdata);
+//   i32 _c_unlock(void ** pdata);
+//
+//
+//}
 
 
 #include "apex/platform/simple_app.h"
@@ -1259,7 +1275,7 @@ namespace mathematics
 #ifndef WINDOWS_DESKTOP
 
 
-#include "apex/os/cross/windows/windows_thread_impl.h"
+#include "apex/node/operating_system/cross/windows/windows_thread_impl.h"
 
 
 #endif
@@ -1277,7 +1293,7 @@ namespace mathematics
 #include "apex/filesystem/file/_.h"
 
 
-//#include "apex/net/_impl.h"
+//#include "apex/networking/_impl.h"
 
 
 #include "apex/filesystem/filesystem/_impl.h"
@@ -1286,7 +1302,7 @@ namespace mathematics
 #include "apex/database/_impl.h"
 
 
-#include "apex/os/_impl.h"
+//#include "apex/node/operating_system/_impl.h"
 
 
 

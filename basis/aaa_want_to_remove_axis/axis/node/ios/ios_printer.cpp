@@ -66,7 +66,7 @@ namespace ios2
    //bool printer::document_properties::initialize(::win2::printer * pprinter, DEVMODE * pdevmode)
    bool printer::document_properties::initialize(::ios2::printer * pprinter)
    {
-//      UNREFERENCED_PARAMETER(pdevmode);
+//      __UNREFERENCED_PARAMETER(pdevmode);
   //    if(m_pdevmode != nullptr)
     //     return false;
       if(m_hdc != nullptr)
@@ -75,7 +75,7 @@ namespace ios2
   //    m_pdevmode = (DEVMODE *) malloc(iSize);
     //  if(!DocumentProperties(nullptr, pprinter->m_hPrinter, (char *) (const ::string &) pprinter->m_strName, m_pdevmode, nullptr, DM_OUT_BUFFER))
       //{
-        // __throw(::exception::exception("failed to get printer DocumentProperties"));
+        // __throw(::exception("failed to get printer DocumentProperties"));
          return false;
       //}
       //return true;

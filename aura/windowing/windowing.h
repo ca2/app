@@ -62,7 +62,7 @@ namespace windowing
       ::windowing::keyboard * keyboard();
 
 
-      virtual bool is_branch_current() const;
+      bool is_branch_current() const override;
 
 
       inline ::aura::application* get_application() const;
@@ -107,7 +107,7 @@ namespace windowing
 
       virtual ::windowing::window * get_active_window(::thread * pthread);
 
-      virtual ::e_status clear_active_window(::thread * pthread);
+      virtual ::e_status clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
       virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
@@ -182,8 +182,8 @@ namespace windowing
       virtual ::e_status lock_set_foreground_window(bool bLock = true);
 
 
-      virtual ::e_status windowing_sync(const ::duration & duration, const ::routine & routine);
-      virtual ::e_status windowing_branch(const ::routine & routine);
+      virtual ::e_status windowing_send(const ::routine & routine);
+      virtual ::e_status windowing_post(const ::routine & routine);
 
 
       virtual void _main_loop();
@@ -208,10 +208,10 @@ namespace windowing
 
 
       template < typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_POINTER >
-      ::e_status windowing_sync(const ::duration & duration, OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
+      ::e_status windowing_send(OBJECT_POINTER pobject, OBJECT_METHOD object_method, PAYLOAD_POINTER ppayload)
       {
 
-         return ::material_object::__sync_status_payload(duration, this, &windowing::windowing_branch, pobject, object_method, ppayload);
+         return ::material_object::__send_payload(this, &windowing::windowing_post, pobject, object_method, ppayload);
 
       }
 

@@ -1,6 +1,7 @@
 #pragma once
 
-#if defined(LINUX) || defined(APPLEOS)
+
+#if defined(LINUX) || defined(__APPLE__)
 #include <sys/types.h>
 #include <sys/sem.h>
 #endif
@@ -13,7 +14,7 @@ class CLASS_DECL_ACME event :
 public:
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
    /// Private Mutexes
    bool              m_bManualEvent;
@@ -26,7 +27,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 
    /// Named Mutexes
    int               m_sem;
@@ -39,10 +40,10 @@ public:
    ~event() override;
 
    // using event_base::lock;
-   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   //bool lock(const ::wait & wait = wait::infinite()) override;
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   bool unlock() override;
 
    //virtual HSYNC hsync() const;
 
@@ -56,12 +57,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual synchronization_result wait ();
+   ::e_status _wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual synchronization_result wait (const duration & duration);
+   ::e_status _wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

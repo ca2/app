@@ -25,7 +25,7 @@ public:
 
    void add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy);
 
-   index max_normal_intersect_area(const RECTANGLE_TYPE & rectangle, const RECTANGLE_TYPE & rectModel);
+   index max_normal_intersect_area(const RECTANGLE_TYPE & rectangle, const RECTANGLE_TYPE & rectangleModel);
 
 
    void get_box(RECTANGLE_BASE_TYPE * prectangle);
@@ -91,14 +91,14 @@ template < typename RECTANGLE_TYPE >
 RECTANGLE_TYPE rectangle_array_base < RECTANGLE_TYPE >::union_rect()
 {
 
-   RECTANGLE_TYPE rectUnion(0, 0, 0, 0);
+   RECTANGLE_TYPE rectangleUnion(0, 0, 0, 0);
 
    for (i32 i = 0; i < this->get_size(); i++)
    {
-      rectUnion.unite(rectUnion, this->element_at(i));
+      rectangleUnion.unite(rectangleUnion, this->element_at(i));
    }
 
-   return rectUnion;
+   return rectangleUnion;
 
 }
 
@@ -169,12 +169,12 @@ void rectangle_array_base < RECTANGLE_TYPE >::add(const SIZE_TYPE & size)
 
 
 template < typename RECTANGLE_TYPE >
-index rectangle_array_base < RECTANGLE_TYPE >::max_normal_intersect_area(const RECTANGLE_TYPE & rectParam, const RECTANGLE_TYPE & rectModel)
+index rectangle_array_base < RECTANGLE_TYPE >::max_normal_intersect_area(const RECTANGLE_TYPE & rectangleParam, const RECTANGLE_TYPE & rectangleModel)
 {
 
    index iFound = -1;
    RECTANGLE_TYPE rectangle;
-   auto iModelArea = rectModel.width() * rectModel.height();
+   auto iModelArea = rectangleModel.width() * rectangleModel.height();
    decltype(iModelArea) iArea;
    decltype(iModelArea) iAreaMax = 0;
 
@@ -184,7 +184,7 @@ index rectangle_array_base < RECTANGLE_TYPE >::max_normal_intersect_area(const R
    for (index i = 0; i < this->get_count(); i++)
    {
 
-      if (rectangle.intersect(&rectParam, this->element_at(i)))
+      if (rectangle.intersect(&rectangleParam, this->element_at(i)))
       {
 
          iArea = rectangle.area() * iModelArea / this->element_at(i).area();

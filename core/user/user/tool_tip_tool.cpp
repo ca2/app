@@ -49,7 +49,7 @@ namespace user
    void tool_tip_tool::BaseToolTipGetRect(RECTANGLE_I32 * prectangle)
 
    {
-      UNREFERENCED_PARAMETER(prectangle);
+      __UNREFERENCED_PARAMETER(prectangle);
 
    }
 
@@ -60,7 +60,7 @@ namespace user
 
    bool tool_tip_tool::BaseToolTipGetText(string & str)
    {
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
       return false;
    }
 

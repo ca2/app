@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#ifndef _UWP
 
 // loop question http://stackoverflow.com/users/2101860/loop
@@ -40,7 +40,7 @@ namespace aura
       //bool tx::open(const ::string & pszChannel, launcher * plauncher)
       //{
 
-      //   UNREFERENCED_PARAMETER(plauncher);
+      //   __UNREFERENCED_PARAMETER(plauncher);
 
       //   if (m_strBaseChannel.has_char())
       //      close();
@@ -130,7 +130,7 @@ namespace aura
 
 
 
-         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __str(message)+ "," + psystem->url_encode(pbase64->encode((byte *)pdata, len));
+         string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + psystem->url_encode(pbase64->encode((byte *)pdata, len));
 
          Uri ^uri = ref new Uri(anotherappURI);
 

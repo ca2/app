@@ -28,7 +28,7 @@ namespace write_text
       virtual ::e_status term() override;
 
 
-      virtual ::e_status handle_font_enumeration(::subject::subject* psubject);
+      virtual ::e_status handle_font_enumeration(::subject* psubject);
 
       
       virtual font_pointer point_font(const ::string & pszFontName, double dFontSize, int iFontWeight = e_font_weight_normal);

@@ -25,7 +25,7 @@ namespace serial
    }
    
    
-   ::e_status serial::initialize_serial(const string& port, u32 baudrate, timeout timeout,
+   ::e_status serial::initialize_serial(const string& port, u32 baudrate, struct timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
@@ -45,12 +45,12 @@ namespace serial
    }
 
 
-   timeout timeout::simpleTimeout(u32 timeout)
+   timeout timeout::simpleTimeout(const ::duration & duration)
    {
 #ifdef WINDOWS
-      return struct timeout(MAXDWORD, timeout, MAXDWORD, timeout, 0);
+      return struct timeout(::duration::infinite(), duration, MAXDWORD, duration, 0);
 #else
-      return ::serial::timeout(maximum(), timeout, 0, timeout, 0);
+      return ::serial::timeout(::duration::infinite(), duration, 0, duration, 0);
 #endif
    }
 
@@ -95,7 +95,7 @@ namespace serial
 
       //timeout timeout(m_pimpl->getTimeout());
       // 
-      //return m_pimpl->waitReadable(timeout.m_millisReadTimeoutConstant);
+      //return m_pimpl->waitReadable(timeout.m_durationReadTimeoutConstant);
 
       return false;
 
@@ -379,12 +379,10 @@ namespace serial
    }
 
 
-   timeout serial::getTimeout() const
+   struct timeout serial::getTimeout() const
    {
 
-      //return m_pimpl->getTimeout();
-
-      return timeout();
+      return nullptr;
 
    }
 

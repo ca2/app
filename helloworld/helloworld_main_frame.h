@@ -18,12 +18,12 @@ namespace helloworld
       virtual ~main_frame();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       using ::simple_frame_window::get_translucency;
-      virtual bool get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction);
+      virtual bool get_translucency(::user::enum_translucency & etranslucency, ::enum_element eelement, ::user::interaction * pinteraction);
       virtual ::experience::frame * experience_get_frame();
 
       virtual bool has_pending_graphical_update();

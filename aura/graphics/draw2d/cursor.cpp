@@ -2,7 +2,7 @@
 #include "aura/operating_system.h"
 #include "aura/user/_user.h"
 //#ifndef WINDOWS
-//#include "acme/os/cross/windows/_windows.h"
+//#include "acme/node/operating_system/cross/windows/_windows.h"
 //#endif
 
 
@@ -23,6 +23,7 @@ void set_cursor_image(void * pimage, int xHotSpot, int yHotSpot);
 
 namespace draw2d
 {
+
 
    cursor::cursor()
    {
@@ -91,6 +92,30 @@ namespace draw2d
 
       return pcursor->m_pimage;
 
+   }
+
+
+   ::image_pointer cursor::image_source_image(const concrete < ::size_i32 > & concreteSize) 
+   {
+      
+      return m_pimage->get_image(concreteSize); 
+   
+   }
+
+
+   concrete < ::size_i32 > cursor::image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const
+   { 
+      
+      return m_pimage->image_source_size(sizeDst, eimageselection); 
+   
+   }
+
+
+   concrete < ::size_i32 > cursor::image_source_size() const
+   {
+      
+      return m_pimage->size(); 
+   
    }
 
 

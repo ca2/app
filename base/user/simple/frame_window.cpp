@@ -32,6 +32,12 @@ namespace base
 simple_frame_window::simple_frame_window()
 {
 
+   m_bEnableDragMove = false;
+
+   m_bClickDefaultMouseHandling = false;
+
+   m_bHoverDefaultMouseHandling = false;
+
    m_bFramePayloadFlags = false;
 
    m_bProdevianFrame = true;
@@ -162,14 +168,14 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_key_up, pchannel, this, &simple_frame_window::_001OnKey);
    MESSAGE_LINK(e_message_sys_key_up, pchannel, this, &simple_frame_window::_001OnKey);
 
-   connect_command_probe("transparent_frame", &simple_frame_window::_001OnUpdateToggleTransparentFrame);
-   connect_command("transparent_frame", &simple_frame_window::_001OnToggleTransparentFrame);
+   add_command_prober("transparent_frame", this, &simple_frame_window::_001OnUpdateToggleTransparentFrame);
+   add_command_handler("transparent_frame", this, &simple_frame_window::_001OnToggleTransparentFrame);
 
-   connect_command_probe("impact_full_screen", &simple_frame_window::_001OnUpdateViewFullScreen);
-   connect_command("impact_full_screen", &simple_frame_window::_001OnViewFullScreen);
+   add_command_prober("impact_full_screen", this, &simple_frame_window::_001OnUpdateViewFullScreen);
+   add_command_handler("impact_full_screen", this, &simple_frame_window::_001OnViewFullScreen);
 
-   connect_command("notify_icon_topic", &simple_frame_window::_001OnNotifyIconTopic);
-   connect_command("app_exit", &simple_frame_window::on_message_app_exit);
+   add_command_handler("notify_icon_topic", this, &simple_frame_window::_001OnNotifyIconTopic);
+   add_command_handler("app_exit", this, &simple_frame_window::on_message_app_exit);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -231,7 +237,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
          }
 
-         bool bDestroying = m_pimpl->m_bDestroying;
+         bool bDestroying = m_pimpl->is_destroying();
 
          if (bDestroying)
          {
@@ -240,7 +246,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
          }
 
-         if (m_millisLastSaveWindowRectRequest.elapsed() < 300_ms)
+         if (m_durationLastSaveWindowRectRequest.elapsed() < 300_ms)
          {
 
             sleep(150_ms);
@@ -254,7 +260,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
 
                _thread_save_window_placement();
 
-               m_millisLastSaveWindowRect.Now();
+               m_durationLastSaveWindowRect.Now();
 
             }
             catch (...)
@@ -263,7 +269,7 @@ void simple_frame_window::SaveWindowRectTaskProcedure()
             }
 
          }
-         else if (m_millisLastSaveWindowRect.elapsed() > 10_s)
+         else if (m_durationLastSaveWindowRect.elapsed() > 10_s)
          {
 
             break;
@@ -303,7 +309,7 @@ void simple_frame_window::defer_save_window_placement()
 
    m_bPendingSaveWindowRect = true;
 
-   m_millisLastSaveWindowRectRequest.Now();
+   m_durationLastSaveWindowRectRequest.Now();
 
    __defer_branch(SaveWindowRect);
 
@@ -352,12 +358,12 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
       }
       else if (wfi_is_down())
       {
-         INFO("-------------------------------------------------------------------");
-         INFO("");
-         INFO("");
-         INFO("interaction_child::WindowDataLoadWindowRect (3)");
-         INFO("");
-         INFO("");
+         INFORMATION("-------------------------------------------------------------------");
+         INFORMATION("");
+         INFORMATION("");
+         INFORMATION("interaction_child::WindowDataLoadWindowRect (3)");
+         INFORMATION("");
+         INFORMATION("");
 
          return false;
 
@@ -365,12 +371,12 @@ bool simple_frame_window::WindowDataLoadWindowRect(bool bForceRestore, bool bIni
 
    }
 
-   INFO("-------------------------------------------------------------------");
-   INFO("");
-   INFO("");
-   INFO("interaction_child::WindowDataLoadWindowRect (4)");
-   INFO("");
-   INFO("");
+   INFORMATION("-------------------------------------------------------------------");
+   INFORMATION("");
+   INFORMATION("");
+   INFORMATION("interaction_child::WindowDataLoadWindowRect (4)");
+   INFORMATION("");
+   INFORMATION("");
 
    return ::experience::frame_window::WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
@@ -440,7 +446,7 @@ void simple_frame_window::_thread_save_window_placement()
    while (::task_get_run())
    {
 
-      if (!task_sleep(300_ms))
+      if (!task_sleep(300'000_us))
       {
 
          break;
@@ -454,7 +460,7 @@ void simple_frame_window::_thread_save_window_placement()
 
       }
 
-      if (m_millisLastSaveWindowRect.elapsed() < 300_ms)
+      if (m_durationLastSaveWindowRect.elapsed() < 300_ms)
       {
 
          continue;
@@ -533,15 +539,24 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       try
       {
 
-         if (m_pnotifyicon)
+         auto psystem = m_psystem;
+
+         auto pnode = psystem->node();
+
+         pnode->node_send(__routine(15_s, [this]()
          {
 
-            m_pnotifyicon->destroy_notify_icon();
+            if (m_pnotifyicon)
+            {
 
-            m_pnotifyicon.release();
+               m_pnotifyicon->destroy_notify_icon();
 
-         }
+               m_pnotifyicon.release();
 
+            }
+
+         }));
+         
       }
       catch (...)
       {
@@ -587,9 +602,9 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
             if(::is_set(pframe))
             {
 
-               auto psubject = subject(id_user_style_change);
+               auto psignal = get_signal(id_user_style_change);
 
-               psubject->add_listener(pframe);
+               psignal->add_handler(pframe);
 
                return pframe;
 
@@ -607,9 +622,9 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    
    strStyle = m_varFrame["style"];
 
-   auto psubject = subject(id_user_style_change);
+   auto psignal = get_signal(id_user_style_change);
 
-   psubject->add_listener(pframe);
+   psignal->add_handler(pframe);
 
    if (strStyle.has_char())
    {
@@ -656,7 +671,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
       pexperienceframe = ::move_transfer(experience_get_frame());
 
    }
-   catch (const ::exception::exception &)
+   catch (const ::exception &)
    {
 
    }
@@ -684,7 +699,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
 
    }
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 
    SetActiveFlag(true);
 
@@ -729,6 +744,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
          m_bAutoWindowFrame = pusersystem->m_bAutoWindowFrame;
 
          m_bWindowFrame = pusersystem->m_bWindowFrame;
+
+         if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+         {
+
+            m_bWindowFrame = false;
+
+         }
 
       }
 
@@ -778,6 +800,13 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
+   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   {
+
+      m_bWindowFrame = false;
+
+   }
+
    if (m_bWindowFrame || m_bFramePayloadFlags)
    {
 
@@ -786,12 +815,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
 //#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_strMatter + "/frame.json";
-
-         auto pcontext = get_context();
-
-         if (m_pdocumenttemplate->m_strMatter.has_char())
+         if (m_pdocumenttemplate->m_id.has_char())
          {
+
+            ::file::path pathFrameJson = "matter://" + m_pdocumenttemplate->m_id + "/frame.json";
+
+            auto pcontext = get_context();
 
             m_varFrame = pcontext->m_papexcontext->file().as_json(pathFrameJson);
 
@@ -920,41 +949,46 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
          //auto psystem = m_psystem->m_papexsystem;
 
-         __defer_construct(m_pnotifyicon);
+         auto estatus = __defer_construct(m_pnotifyicon);
 
-         //m_pnotifyicon->m_puserinteraction = this;
-
-         index iNotifyIconItem = 0;
-
-         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
-
-         auto c = papplication->applicationmenu().get_count();
-
-         for (auto i = 0; i < c; i++)
+         if (estatus.succeeded())
          {
 
-            auto& item = papplication->applicationmenu()[i];
+            //m_pnotifyicon->m_puserinteraction = this;
 
-            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+            index iNotifyIconItem = 0;
 
-         }
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, strAppTitle, "notify_icon_topic");
 
-         if (m_pframe != nullptr
-            && m_pframe->get_control_box() != nullptr
-            && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
-         {
+            auto c = papplication->applicationmenu().get_count();
+
+            for (auto i = 0; i < c; i++)
+            {
+
+               auto & item = papplication->applicationmenu()[i];
+
+               m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, item.m_strName, item.m_strId);
+
+            }
+
+            if (m_pframe != nullptr
+               && m_pframe->get_control_box() != nullptr
+               && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
+            {
+
+               m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
+
+               m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+
+            }
 
             m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
 
-            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Transparent Frame"), "transparent_frame");
+            m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
+
+            post_message(e_message_update_notify_icon);
 
          }
-
-         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, "separator");
-
-         m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-
-         post_message(e_message_update_notify_icon);
 
       }
 
@@ -995,7 +1029,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window true " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window true " + __type_name(this));
 
       //defer_set_icon();
 
@@ -1003,7 +1037,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::on_message_show_window false " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::on_message_show_window false " + __type_name(this));
 
    }
 
@@ -1076,9 +1110,9 @@ void simple_frame_window::_001OnUpdateNotifyIcon(::message::message * pmessage)
 void simple_frame_window::on_message_size(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
-   //m_millisLastVisualChange.Now();
+   //m_durationLastVisualChange.Now();
 
    //if (get_parent() == nullptr)
    //{
@@ -1093,9 +1127,9 @@ void simple_frame_window::on_message_size(::message::message * pmessage)
 void simple_frame_window::on_message_move(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -1164,7 +1198,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (string(type_name()).contains_ci("child_frame"))
+   if (__type_name(this).contains_ci("child_frame"))
    {
 
       output_debug_string("%child_frame%\n");
@@ -1195,7 +1229,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -1207,13 +1241,13 @@ void simple_frame_window::on_reposition()
    //if (m_bWindowFrame)
    //{
 
-   //   on_layout(::draw2d::graphics_pointer & pgraphics);
+   //   on_layout(pgraphics);
 
    //}
 
    ::user::frame_window::on_reposition();
 
-   m_millisLastVisualChange.Now();
+   m_durationLastVisualChange.Now();
 
 
 }
@@ -1221,9 +1255,9 @@ void simple_frame_window::on_reposition()
 
 void simple_frame_window::ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe)
 {
-   UNREFERENCED_PARAMETER(pview);
-   UNREFERENCED_PARAMETER(user);
-   UNREFERENCED_PARAMETER(pframe);
+   __UNREFERENCED_PARAMETER(pview);
+   __UNREFERENCED_PARAMETER(user);
+   __UNREFERENCED_PARAMETER(pframe);
    //   if(pview != nullptr)
    //      pview->OnActivateFrame(WA_INACTIVE, (__pointer(::user::simple_frame_window)) pframe);
 }
@@ -1259,24 +1293,28 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 void simple_frame_window::show_control_bars(const ::e_display & edisplay, bool bLeaveFullScreenBarsOnHide)
 {
 
-   for(auto & pbar : m_toolbarmap.values())
+   for(auto & toolbartransport : m_mapToolbar.values())
    {
 
       try
       {
 
-         if(pbar != nullptr && (is_screen_visible(edisplay) || (!pbar->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+         if(toolbartransport)
          {
 
-            enum_activation eactivation = e_activation_default;
+            if ((is_screen_visible(edisplay) || (!toolbartransport->m_bFullScreenBar || !bLeaveFullScreenBarsOnHide)))
+            {
 
-            pbar->display(edisplay, eactivation);
+               enum_activation eactivation = e_activation_default;
 
-         }
-         else
-         {
+               toolbartransport->display(edisplay, eactivation);
 
-            pbar->hide();
+            } else
+            {
+
+               toolbartransport->hide();
+
+            }
 
          }
 
@@ -1365,7 +1403,7 @@ void simple_frame_window::_001OnExitFullScreen()
 void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    ToggleFullScreen();
 
@@ -1375,7 +1413,7 @@ void simple_frame_window::_001OnViewFullScreen(::message::message * pmessage)
 void simple_frame_window::on_message_mouse_move(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -1448,7 +1486,7 @@ bool simple_frame_window::_001CanEnterScreenSaver()
 void simple_frame_window::_001OnToggleCustomFrame(::message::message * pmessage)
 {
    
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
    
    SetCustomFrame(!GetCustomFrame());
 
@@ -1528,7 +1566,7 @@ void simple_frame_window::ActivateFrame(edisplay edisplay)
 void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 {
 
-   *prectangle = m_rectBorder;
+   *prectangle = m_rectangleBorder;
 
 }
 
@@ -1536,7 +1574,7 @@ void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 void simple_frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
 {
    
-   m_rectBorder = rectangle;
+   m_rectangleBorder = rectangle;
 
 }
 
@@ -1820,7 +1858,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 //void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS * pncsp)
 //
 //{
-//   UNREFERENCED_PARAMETER(bCalcValidRects);
+//   __UNREFERENCED_PARAMETER(bCalcValidRects);
 //   if(is_frame_experience_enabled() && m_pframe != nullptr)
 //   {
 //      OnNcCalcSize(&pncsp->rgrc[0]);
@@ -1918,7 +1956,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    m_id = pusersystem->m_id.to_string() + "::frame";
 
-   UNREFERENCED_PARAMETER(puiParent);
+   __UNREFERENCED_PARAMETER(puiParent);
 
    m_strMatterHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
 
@@ -1931,14 +1969,14 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    }
 
-   ::rectangle_i32 rectFrame;
+   ::rectangle_i32 rectangleFrame;
 
    __pointer(::user::place_holder) pholder;
 
    if(puiParent != nullptr && (pholder = puiParent).is_set())
    {
 
-      pholder->get_client_rect(rectFrame);
+      pholder->get_client_rect(rectangleFrame);
 
    }
 
@@ -1965,10 +2003,10 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          WindowDataLoadWindowRect(bForceRestore, bInitialFramePosition);
 
-         rectFrame = screen_rect();
+         rectangleFrame = screen_rect();
 
-         INFO("simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-         INFO("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+         INFORMATION("simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+         INFORMATION("simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
          if (wfi_is_up_down())
          {
@@ -2007,18 +2045,18 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
             display(e_display_zoomed);
 
-          //  psession->get_main_workspace(rectFrame);
+          //  psession->get_main_workspace(rectangleFrame);
 
          }
 
       }
 
-      rectFrame = screen_rect();
+      rectangleFrame = screen_rect();
 
-      //pusersystem->set_rect(rectFrame);
+      //pusersystem->set_rect(rectangleFrame);
 
-      INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
-      INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
+      INFORMATION("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
+      INFORMATION("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
       if (pusersystem->m_pcreate->m_bMakeVisible)
       {
@@ -2035,7 +2073,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
          layout().sketch().display() = e_display_none;
 
-         INFO("simple_frame_window::LoadFrame DISPLAY_NONE");
+         INFORMATION("simple_frame_window::LoadFrame DISPLAY_NONE");
 
       }
 
@@ -2161,6 +2199,19 @@ void simple_frame_window::on_frame_position()
 
 void simple_frame_window::InitialFramePosition(bool bForceRestore)
 {
+
+   if (m_psystem->m_papexsystem->m_bPreferNoFrameWindow)
+   {
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return;
+
+   }
 
    auto papplication = get_application();
 
@@ -2380,13 +2431,13 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
       {
 
-         bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+         bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
          int iDrawingOrder = DRAWING_ORDER_CLIENT_OVER;
 
@@ -2419,14 +2470,14 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #endif
 
-         millis d1 = t1.elapsed();
+         ::duration d1 = t1.elapsed();
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
-         if(d1 > 50)
+         if(d1 > 50_ms)
          {
 
-            CINFO(prodevian)("(more than 50ms) "+strType+"::_001OnDraw took " + __str(d1) + "millis.\n");
+            CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
 
          }
 
@@ -2441,16 +2492,16 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
-            millis t1 = millis::now();
+            ::duration t1 = ::duration::now();
 
             draw_frame_and_control_box_over(pgraphics);
 
-            millis d1 = t1.elapsed();
+            auto d1 = t1.elapsed();
 
-            if(d1 > 50)
+            if(d1 > 50_ms)
             {
 
-               CINFO(prodevian)("(more than 50ms) draw_frame_and_control_box_over took " + __str(d1) + "millis.\n");
+               CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
 
             }
 
@@ -2473,10 +2524,12 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      image_drawing imagedrawing;
-      
-      imagedrawing.set(rectangleClient.size(), pgraphics);
+      image_source imagesource(pgraphics);
 
+      image_drawing_options imagedrawingoptions(rectangleClient.size());
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      
       imagedrawing.opacity(dAlpha);
 
       pgraphicsParam->draw(imagedrawing);
@@ -2493,14 +2546,18 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    //return;
 
+   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
+
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
    auto pstyle = get_style(pgraphics);
 
-   bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
+   bool bBlurBackground = get_draw_flags(pstyle).has(::user::e_flag_blur_background);
 
    if(bBlurBackground)
    {
 
-      //printf("simplefrmwnd : " + string(type_name()) + " : blur_background");
+      //printf("simplefrmwnd : " + __type_name(this) + " : blur_background");
 
       //auto psystem = m_psystem->m_pbasesystem;
 
@@ -2532,7 +2589,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 #ifndef LINUX
 
-         //printf("simplefrmwnd : " + string(type_name()) + " : ifndef LINUX");
+         //printf("simplefrmwnd : " + __type_name(this) + " : ifndef LINUX");
 
          if(rectangleClient.size() != m_pimageBk->size())
          {
@@ -2550,21 +2607,47 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            ::rectangle_f64 rectDst(rectangleClient.size());
+            ::rectangle_f64 rectangleTarget(rectangleClient.size());
+            
+            {
+               
+               image_source imagesource(pgraphics);
+               
+               image_drawing_options imagedrawingoptions(rectangleTarget);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            m_pimageBlur->g()->draw(rectDst, pgraphics);
+               m_pimageBlur->g()->draw(imagedrawing);
+               
+            }
 
             m_blur.blur(m_pimageBlur, 2);
-
-            image_drawing imagedrawing;
             
-            imagedrawing.set(rectangleClient.size(), m_pimageBk);
+            {
+               
+               image_source imagesource(m_pimageBk);
 
-            imagedrawing.opacity(49);
+               image_drawing_options imagedrawingoptions(rectangleClient.size());
+            
+               imagedrawingoptions.opacity(49);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            m_pimageBlur->draw(imagedrawing);
+               m_pimageBlur->draw(imagedrawing);
+               
+            }
+            
+            {
+               
+               image_source imagesource(m_pimageBlur);
+               
+               image_drawing_options imagedrawingoptions(rectangleClient);
+               
+               image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            pgraphics->stretch(rectangleClient, m_pimageBlur);
+               pgraphics->draw(imagedrawing);
+               
+            }
 
          }
 
@@ -2574,7 +2657,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   //printf("simplefrmwnd : " + string(type_name()) + " : draw_frame");
+   //printf("simplefrmwnd : " + __type_name(this) + " : draw_frame");
 
    draw_frame(pgraphics);
 
@@ -2672,93 +2755,6 @@ bool simple_frame_window::is_application_main_window()
 }
 
 
-bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const ::string & pszToolBar, u32 dwCtrlStyle, u32 uStyle)
-{
-
-   __composite(::user::toolbar) & ptoolbar = m_toolbarmap[idToolBar];
-
-   if(!ptoolbar)
-   {
-
-      auto estatus = __id_compose(ptoolbar, type);
-
-      if(!estatus)
-      {
-
-         return false;
-
-      }
-
-      if (ptoolbar == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ptoolbar->display();
-
-      ptoolbar->m_dwStyle = uStyle;
-
-      ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
-
-      if (!ptoolbar->create_child(this))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   if (ptoolbar.is_null())
-   {
-
-      return false;
-
-   }
-
-   auto pcontext = get_context();
-
-   string strMatter = pcontext->m_papexcontext->dir().matter(pszToolBar);
-
-   if (ptoolbar->payload("matter_annotation") == strMatter)
-   {
-
-      return true;
-
-   }
-
-   string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
-
-   if(!ptoolbar->LoadXmlToolBar(strXml))
-   {
-
-      return false;
-
-   }
-
-   m_toolbarmap.set_at(idToolBar,ptoolbar);
-
-   AddControlBar(ptoolbar);
-
-   ptoolbar->payload("matter_annotation") = strMatter;
-
-   ptoolbar->set_need_layout();
-
-   ptoolbar->set_need_redraw();
-
-   ptoolbar->post_redraw();
-
-   set_need_layout();
-
-   set_need_redraw();
-
-   post_redraw();
-
-   return true;
-
-}
 
 
 void simple_frame_window::defer_create_notification_icon()
@@ -2771,7 +2767,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing()->windowing_branch(__routine([this]
+   windowing()->windowing_post(__routine([this]
    {
 
 //      if (m_pnotifyicon)
@@ -2812,7 +2808,7 @@ void simple_frame_window::defer_create_notification_icon()
 
       }
 
-      m_bitMinimizeToTray.defer(e_bit_true);
+      m_bitMinimizeToTray.defer(e_boolean_true);
 
    }));
 
@@ -2912,10 +2908,10 @@ void simple_frame_window::design_up()
 //}
 
 
-void simple_frame_window::route_command_message(::message::command * pcommand)
+void simple_frame_window::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   ::experience::frame_window::route_command_message(pcommand);
+   ::experience::frame_window::route_command(pcommand, bRouteToKeyDescendant);
 
 }
 
@@ -2939,7 +2935,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //      if (::DragQueryFileW(hDropInfo, iFile, pwszFileName, _MAX_PATH))
 //      {
 //
-//         patha.add(__str(pwszFileName));
+//         patha.add(__string(pwszFileName));
 //
 //      }
 //
@@ -2973,7 +2969,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 ////void simple_frame_window::OnDropFiles(HDROP hDropInfo)
 ////{
 ////
-////   UNREFERENCED_PARAMETER(hDropInfo);
+////   __UNREFERENCED_PARAMETER(hDropInfo);
 ////
 ////}
 ////
@@ -3012,7 +3008,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3075,7 +3071,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3092,7 +3088,7 @@ void simple_frame_window::route_command_message(::message::command * pcommand)
 //
 //#else
 //
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //
 //#endif
 //
@@ -3182,16 +3178,16 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 }
 
 
-void simple_frame_window::on_control_event(::user::control_event * pevent)
+void simple_frame_window::handle(::subject * psubject, ::context * pcontext)
 {
 
-   if(pevent->m_puserinteraction == m_pnotifyicon)
+   if(psubject->user_interaction() == m_pnotifyicon)
    {
 
-      if(pevent->m_eevent == ::user::e_event_context_menu)
+      if(psubject->m_id == ::e_subject_context_menu)
       {
 
-         //OnNotifyIconContextMenu(pevent->m_id);
+         //OnNotifyIconContextMenu(psubject->m_puserelement->m_id);
 
          auto psession = get_session();
 
@@ -3206,16 +3202,16 @@ void simple_frame_window::on_control_event(::user::control_event * pevent)
          puser->track_popup_xml_menu(this, strXml, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
-      else if(pevent->m_eevent == ::user::e_event_left_button_double_click)
+      else if(psubject->m_id == ::e_subject_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(pevent->m_id);
+         //OnNotifyIconLButtonDblClk(psubject->m_puserelement->m_id);
 
       }
-      else if(pevent->m_eevent == ::user::e_event_left_button_down)
+      else if(psubject->m_id == ::e_subject_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(pevent->m_id);
+         //OnNotifyIconLButtonDown(psubject->m_puserelement->m_id);
 
          default_notify_icon_topic();
 
@@ -3226,16 +3222,16 @@ void simple_frame_window::on_control_event(::user::control_event * pevent)
 
 //#endif
 
-   ::experience::frame_window::on_control_event(pevent);
+   ::experience::frame_window::handle(psubject, pcontext);
 
-   if(pevent->m_bRet)
+   if(psubject->m_bRet)
    {
 
       return;
 
    }
 
-   return ::user::frame_window::on_control_event(pevent);
+   return ::user::frame_window::handle(psubject, pcontext);
 
 }
 
@@ -3250,7 +3246,7 @@ string simple_frame_window::get_window_default_matter()
 
    }
 
-   return m_pdocumenttemplate->m_strMatter;
+   return m_pdocumenttemplate->m_id;
 
 }
 
@@ -3266,7 +3262,7 @@ string simple_frame_window::get_window_default_matter()
 //      __pointer(::user::impact) pview;
 //      if (pframe->get_active_view() == nullptr)
 //      {
-//         __pointer(::user::interaction) pwindow = pframe->get_child_by_id("pane_first");
+//         __pointer(::user::interaction) pwindow = pframe->get_child_by_id(FIRST_PANE);
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
 //            pview = (pwindow.m_p);
@@ -3368,16 +3364,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                   {
 
-                     millis t1 = millis::now();
+                     ::duration t1 = ::duration::now();
 
                      pinteraction->_000CallOnDraw(pgraphics);
 
-                     millis d1 = t1.elapsed();
+                     ::duration d1 = t1.elapsed();
 
-                     if(d1 > 50)
+                     if(d1 > 50_ms)
                      {
 
-                        string strType = pinteraction->type_name();
+                        string strType = __type_name(pinteraction);
 
                         //if(strType.contains("pane_view"))
                         //{
@@ -3386,7 +3382,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         //}
 
-                        CINFO(prodevian)("(more than 50ms) " + strType + "::_001OnDraw took " + __str(d1) + "millis.\n");
+                        CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
 
                      }
 
@@ -3408,41 +3404,41 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       _001DrawThis(pgraphics);
 
       //return; // abcxxx
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + "millis.\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
 
       }
 
    }
 
-   millis tx = millis::now();
+   ::duration tx = ::duration::now();
 
    bool bTransparentFrame = frame_is_transparent();
 
    bool bActive = is_active_window();
 
-   millis taxw = millis::now();
+   ::duration taxw = ::duration::now();
 
-   millis daxw = taxw.elapsed();
+   ::duration daxw = taxw.elapsed();
 
-   if(daxw > 50)
+   if(daxw > 50_ms)
    {
 
       output_debug_string("what???axxw\n");
 
    }
 
-   millis txx = millis::now();
+   ::duration txx = ::duration::now();
 
    if (m_bWindowFrame && (!bTransparentFrame || bActive))
    {
@@ -3486,16 +3482,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      {
 
-                        millis t1 = millis::now();
+                        ::duration t1 = ::duration::now();
 
                         pinteraction->_000CallOnDraw(pgraphics);
 
-                        millis d1 = t1.elapsed();
+                        ::duration d1 = t1.elapsed();
 
-                        if (d1 > 50)
+                        if (d1 > 50_ms)
                         {
 
-                           CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + ".\n");
+                           CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
                         }
 
@@ -3518,7 +3514,8 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    }
 
    auto dxx = txx.elapsed();
-   if(dxx > 50)
+
+   if(dxx > 50_ms)
    {
 
       output_debug_string("what???xx");
@@ -3526,7 +3523,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    }
 
    auto dx = tx.elapsed();
-   if(dx > 50)
+   if(dx > 50_ms)
    {
 
       output_debug_string("what???");
@@ -3535,16 +3532,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
-      millis t1 = millis::now();
+      ::duration t1 = ::duration::now();
 
       _008CallOnDraw(pgraphics);
 
-      millis d1 = t1.elapsed();
+      ::duration d1 = t1.elapsed();
 
-      if(d1 > 50)
+      if(d1 > 50_ms)
       {
 
-         CINFO(prodevian)("(more than 50ms) simple_frame_windows::_001DrawThis took " + __str(d1) + ".\n");
+         CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
       }
 
@@ -3744,7 +3741,7 @@ void simple_frame_window::on_simple_command(::message::simple_command * psimplec
 class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uStyle)
 {
 
-   UNREFERENCED_PARAMETER(uStyle);
+   __UNREFERENCED_PARAMETER(uStyle);
 
    return nullptr;
 
@@ -3816,6 +3813,8 @@ bool simple_frame_window::create_bars()
 
    }
 
+   show_control_bars();
+
    //set_need_layout();
 
    return true;
@@ -3823,63 +3822,26 @@ bool simple_frame_window::create_bars()
 }
 
 
-bool simple_frame_window::on_create_bars()
+::e_status simple_frame_window::on_create_bars()
 {
 
    if(!m_bDefaultCreateToolbar)
    {
 
-      return true;
+      return ::success;
 
    }
 
-   string strToolbar = m_pdocumenttemplate->m_strToolbar;
+   ::id id = m_pdocumenttemplate->m_id;
 
-   if (strToolbar.ends_ci(".xml"))
+   if (id.has_char())
    {
 
-      ::file::path pathToolbar = m_pdocumenttemplate->m_strMatter / strToolbar;
-
-      auto pcontext = get_context();
-
-      ::file::path path = pcontext->m_papexcontext->dir().matter(pathToolbar);
-
-      if (pcontext->m_papexcontext->file().exists(path))
-      {
-
-         LoadToolBar(pathToolbar, pathToolbar);
-
-      }
+      get_toolbar(id);
 
    }
 
-
-   __pointer(::user::document) pdocument = get_active_document();
-
-   if (pdocument.is_null())
-   {
-
-      __pointer(::user::interaction) pinteraction = get_child_by_id("pane_first");
-
-      __pointer(::user::impact) pview = pinteraction;
-
-      if (pview.is_set())
-      {
-
-         pdocument = pview->get_document();
-
-      }
-
-   }
-
-   if (pdocument.is_set())
-   {
-
-      pdocument->on_create_bars(this);
-
-   }
-
-   return true;
+   return ::success;
 
 }
 
@@ -3915,7 +3877,7 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //void simple_frame_window::OnNotifyIconLButtonDblClk(::u32 uNotifyIcon)
 //{
 //
-//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//   __UNREFERENCED_PARAMETER(uNotifyIcon);
 //
 //}
 //
@@ -3925,48 +3887,48 @@ void simple_frame_window::_001OnTimer(::timer * ptimer)
 //
 //   default_notify_icon_topic();
 //
-//   UNREFERENCED_PARAMETER(uNotifyIcon);
+//   __UNREFERENCED_PARAMETER(uNotifyIcon);
 //
 //}
 
 
-::e_status simple_frame_window::command_handler(const ::id & id)
-{
-
-   if(id == "notify_icon_topic")
-   {
-
-      _001OnNotifyIconTopic(nullptr);
-
-      return ::success;
-
-   }
-   else if (id == "transparent_frame")
-   {
-
-      _001OnToggleTransparentFrame(nullptr);
-
-      return ::success;
-
-   }
-
-   auto estatus = ::experience::frame_window::command_handler(id);
-
-   if(estatus)
-   {
-
-      return estatus;
-
-   }
-
-   //::message::command command
-
-   //route_command_message()
-
-   return estatus;
-
-
-}
+//::e_status simple_frame_window::command_handler(const ::id & id)
+//{
+//
+//   if(id == "notify_icon_topic")
+//   {
+//
+//      _001OnNotifyIconTopic(nullptr);
+//
+//      return ::success;
+//
+//   }
+//   else if (id == "transparent_frame")
+//   {
+//
+//      _001OnToggleTransparentFrame(nullptr);
+//
+//      return ::success;
+//
+//   }
+//
+//   auto estatus = ::experience::frame_window::command_handler(id);
+//
+//   if(estatus)
+//   {
+//
+//      return estatus;
+//
+//   }
+//
+//   //::message::command command
+//
+//   //route_command_message()
+//
+//   return estatus;
+//
+//
+//}
 
 
 void simple_frame_window::_001OnNotifyIconTopic(::message::message * pmessage)
@@ -4120,7 +4082,7 @@ void simple_frame_window::on_select_user_style()
    if (m_puserstyle.is_null())
    {
 
-      string strSchema(m_varFrame["experience"]);
+      string strSchema(m_varFrame["experience"].get_string());
 
       if (strSchema.has_char() || is_top_level_window())
       {
@@ -4149,7 +4111,7 @@ void simple_frame_window::call_notification_area_action(const ::string & pszId)
    post_routine(__routine([this, id]()
    {
 
-      command_handler(id);
+      handle_command(id);
 
    }));
 

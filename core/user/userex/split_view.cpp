@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "base/user/user/split_pane.h"
 
 
@@ -65,11 +68,11 @@ namespace userex
    }
 
 
-   void split_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void split_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::split_view::on_subject(psubject, pcontext);
-      ::user::impact_host::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
+      ::user::impact_host::handle(psubject, pcontext);
 
    }
 

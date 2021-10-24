@@ -21,7 +21,7 @@ gboolean linux_start_system(gpointer data);
 void CLASS_DECL_CORE __cdecl _ca2_purecall()
 {
 
-   __throw(::exception::exception());
+   __throw(::exception());
 
 }
 
@@ -29,9 +29,9 @@ void CLASS_DECL_CORE __cdecl _ca2_purecall()
 void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
-   UNREFERENCED_PARAMETER(uiCode);
+   __UNREFERENCED_PARAMETER(uiCode);
 
-   UNREFERENCED_PARAMETER(ppointers);
+   __UNREFERENCED_PARAMETER(ppointers);
 
 }
 
@@ -206,19 +206,19 @@ void sn_start_context();
 
 // }
 
-
-void os_term_application()
-{
-
-//   if(g_papexapplication != nullptr)
-//   {
 //
-//      g_application_quit(G_APPLICATION(g_papexapplication));
+//void os_term_application()
+//{
 //
-//   }
-
-}
-
+////   if(g_papexapplication != nullptr)
+////   {
+////
+////      g_application_quit(G_APPLICATION(g_papexapplication));
+////
+////   }
+//
+//}
+//
 
 gboolean gtk_quit_callback(gpointer data)
 {

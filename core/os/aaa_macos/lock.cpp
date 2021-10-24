@@ -46,7 +46,7 @@ int _c_lock(const ::string & lpszName, void ** pdata)
 
    int fd;
 
-   _ca_get_file_name(file::path("/::payload/lib/ca2/")/ lpszName, true, &fd);
+   _ca_get_file_name(file::path("/var/lib/ca2/")/ lpszName, true, &fd);
 
    if(fd == -1)
       return 0;
@@ -108,7 +108,11 @@ string _ca_get_file_name(const ::string & lpszName, bool bCreate, int * pfd)
    str.replace("\\", "/");
    str.replace("::", "_");
 
-   dir::mk(dir::name(str));
+            auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(str));
 
    if(bCreate)
    {

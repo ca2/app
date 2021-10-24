@@ -8,6 +8,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #endif
 
 
+#ifndef __cplusplus_winrt
+
+
 inline block::block(const memory_base & memory) :
    block(memory.get_data(), memory.get_size())
 {
@@ -22,11 +25,17 @@ inline block::block(const memory_base * pmemory) :
 }
 
 
+#endif // __cplusplus_winrt
+
+
 //inline fork_block::fork_block(const memory_base & memory) :
 //   fork_block(memory.get_data(), memory.get_size())
 //{
 //
 //}
+
+
+#ifndef __cplusplus_winrt
 
 
 template < typename BLOCK_TYPE >
@@ -45,6 +54,10 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
    return *get_data();
 
 }
+
+
+#endif // __cplusplus_winrt
+
 
 struct lparam_debug :
    virtual matter
@@ -192,9 +205,9 @@ void memory_counter_increment(T * pthis)
 
       //synchronous_lock synchronouslock(g_pmutexMemoryCounters);
 
-      //int i = atoi(file_as_string(path));
+      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //file_put_contents(path, __str(i + 1));
+      //m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
    }
 
 }
@@ -211,9 +224,9 @@ void memory_counter_decrement(T * pthis)
 
       _memory_counter_decrement(psz);
 
-      //int i = atoi(file_as_string(path));
+      //int i = atoi(m_psystem->m_pacmefile->as_string(path));
 
-      //file_put_contents(path, __str(i - 1));
+      //m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
 
    }
 
@@ -337,48 +350,47 @@ inline __pointer(T) & ___pointer < T >::clone(::matter * pobject)
 }
 
 
-#ifndef __DEBUG
+//#ifndef __DEBUG
+//
+//#include "acme/primitive/primitive/block.inl"
+//
+//#endif // !__DEBUG
 
-#include "acme/primitive/primitive/block.inl"
 
-#endif // !__DEBUG
+#ifndef __cplusplus_winrt
 
 
-namespace str
+// namespace str
+// {
+
+
+
+inline void to_string(string & str, const bool & b)
 {
 
-
-   inline void from(string & str, const millis & millis)
+   if(b)
    {
 
-      str.Format(__prtick, millis.m_i);
+      str = "{[(true)]}";
+
+   }
+   else
+   {
+
+      str = "{[(false)]}";
 
    }
 
-
-   inline void from(string & str, const bool & b)
-   {
-
-      if(b)
-      {
-
-         str = "{[(true)]}";
-
-      }
-      else
-      {
-
-         str = "{[(false)]}";
-
-      }
-
-   }
+}
 
 
-} // namespace str
+// } // namespace str
 
 
-inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
+#endif // __cplusplus_winrt
+
+
+inline void copy(void *, const void *) /* = 0 */ { throw_exception(error_interface_only); }
 
 
 namespace papaya
@@ -393,7 +405,7 @@ namespace papaya
       inline TYPE default_value()
       {
 
-         __throw(::exception::exception("template only exception"));
+         throw interface_only_exception("template only exception");
 
       }
 
@@ -441,6 +453,9 @@ inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
 #endif
 
 
+#ifndef __cplusplus_winrt
+
+
 template < primitive_integral MULTIPLICATOR, primitive_integral NUMERATOR, primitive_integral DENOMINATOR, primitive_integral RESULT >
 inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMINATOR iDenominator)
 {
@@ -450,7 +465,7 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 }
 
 
-inline string __str(const ::e_display & edisplay) { return __str((::enum_display) edisplay); }
+inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 template < typename TYPE >
@@ -522,6 +537,9 @@ template < typename TYPE >
 }
 
 
+#endif // __cplusplus_winrt
+
+
 template < class c_derived >
 inline i64 increment_reference_count(c_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
@@ -547,7 +565,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
    if (::is_null(pderived))
    {
 
-      __throw(::exception::exception(::error_wrong_type));
+      __throw(error_wrong_type);
 
    }
 
@@ -580,7 +598,7 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 
    }
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 //   ::id id = p->m_id;
    //char * pszType = nullptr;
@@ -688,12 +706,14 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
+#ifndef __cplusplus_winrt
+
 
 template < typename RESULT, typename TRANSPORT >
-future < RESULT, TRANSPORT > ::future()
+sequence < RESULT, TRANSPORT > ::sequence()
 {
 
-   m_ptask = ::get_task();
+   //m_ptask = ::get_task();
 
    m_pevent = nullptr;
 
@@ -704,7 +724,7 @@ future < RESULT, TRANSPORT > ::future()
 //void future < RESULT > ::set_object(const RESULT& result, const ::e_status& estatus)
 //{
 //
-//   critical_section_lock lock(get_future_critical_section());
+//   critical_section_lock lock(get_sequence_critical_section());
 //
 //   if (m_transport.m_estatus == error_not_initialized)
 //   {
@@ -733,45 +753,52 @@ future < RESULT, TRANSPORT > ::future()
 
 
 template < typename RESULT, typename TRANSPORT >
-void future < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
+void sequence < RESULT, TRANSPORT > ::set_status(const ::e_status& estatus)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_transport.m_estatus == error_not_initialized)
+   m_transport.m_estatus = estatus;
+
+   if (m_pevent)
    {
 
-      m_transport.m_estatus = estatus;
-
-      if (m_pevent)
-      {
-
-         m_pevent->SetEvent();
-
-      }
-
-      if (m_preceptor)
-      {
-
-         m_ptask->post(__routine([this]()
-            {
-
-               m_preceptor->get(*this);
-
-            }));
-
-      }
+      m_pevent->SetEvent();
 
    }
+   
+   increment_reference_count();
+
+   m_psystem->fork(__routine([this]()
+      {
+      
+         auto pHold = ::move_transfer(this);
+
+         critical_section_lock lock(get_sequence_critical_section());
+
+         while(m_functiona.has_element())
+         {
+
+            auto pfunction = m_functiona.pop_first();
+
+            lock.unlock();
+
+            pfunction->process(*this);
+
+            lock.lock();
+
+         }
+
+      }));
 
 }
 
 
 template < typename OBJECT, typename TRANSPORT >
-TRANSPORT & future < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
+TRANSPORT & sequence < OBJECT, TRANSPORT > ::get_object(const ::duration& duration)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
@@ -802,10 +829,10 @@ TRANSPORT & future < OBJECT, TRANSPORT > ::get_object(const ::duration& duration
 
 
 template < typename OBJECT, typename TRANSPORT >
-::e_status future < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
+::e_status sequence < OBJECT, TRANSPORT > ::wait(const ::duration& duration)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
@@ -839,15 +866,15 @@ template < typename OBJECT, typename TRANSPORT >
 
 template < typename OBJECT, typename TRANSPORT >
 template < typename PREDICATE >
-future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
+sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(PREDICATE predicate)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
 
-      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
 
    }
    else
@@ -866,15 +893,15 @@ future < OBJECT, TRANSPORT > & future < OBJECT, TRANSPORT > ::then(PREDICATE pre
 
 template < typename OBJECT, typename TRANSPORT >
 template < typename PREDICATE >
-future < OBJECT, TRANSPORT >& future < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
+sequence < OBJECT, TRANSPORT > & sequence < OBJECT, TRANSPORT > ::then(const ::duration& duration, PREDICATE predicate)
 {
 
-   critical_section_lock lock(get_future_critical_section());
+   critical_section_lock lock(get_sequence_critical_section());
 
    if (m_transport.m_estatus == error_not_initialized)
    {
 
-      m_preceptor = __new(predicate_receptor < PREDICATE >(predicate));
+      m_functiona.add(__new(function_predicate < PREDICATE >(predicate)));
 
       m_pevent = new manual_reset_event();
 
@@ -919,20 +946,22 @@ future < OBJECT, TRANSPORT >& future < OBJECT, TRANSPORT > ::then(const ::durati
 
 
 
-template < typename OBJECT, typename TRANSPORT , typename FUTURE >
-FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
+template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >
+SEQUENCE * asynchronous < OBJECT, TRANSPORT, SEQUENCE >::sequence()
 {
 
-    if (!m_pfuture)
-    {
+   if (!m_pfuture)
+   {
 
-        ::__construct_new(m_pfuture);
+      m_psystem->__construct_new(m_pfuture);
+       
+      m_pfuture->m_psystem = m_psystem;
 
-        m_pfuture->m_transport = this;
+      m_pfuture->m_transport = this;
 
-    }
+   }
 
-    return m_pfuture;
+   return m_pfuture;
 
 }
 
@@ -951,6 +980,14 @@ FUTURE* asynchronous < OBJECT, TRANSPORT, FUTURE >::future()
 //
 //}
 
+
+#endif // __cplusplus_winrt
+
+
+inline tracer trace_log_information() { return ::get_task()->trace_log_information(); }
+inline tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
+inline tracer trace_log_error() { return ::get_task()->trace_log_error(); }
+inline tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
 
 
 

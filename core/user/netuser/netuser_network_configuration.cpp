@@ -11,7 +11,7 @@ namespace usernet
    {
 
       m_pdocument   = nullptr;
-      m_pview  = nullptr;
+      m_pimpact  = nullptr;
 
    }
 
@@ -35,9 +35,9 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pview = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
 
-         m_pview->set_form_callback(this);
+         m_pimpact->set_form_callback(this);
 
          return true;
 
@@ -62,9 +62,9 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pview = m_pdocument->get_typed_view < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_view < ::user::form > ();
 
-         m_pview->set_form_callback(this);
+         m_pimpact->set_form_callback(this);
 
          return true;
 
@@ -90,37 +90,37 @@ namespace usernet
       if(doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"proxy.xml")))
       {
          
-         string strProxy(doc.root()->attribute("server"));
+         string strProxy(doc.root()->attribute("server").get_string());
 
          i32 iProxyPort;
 
          doc.root()->attribute("port").as(iProxyPort);
          
-         auto pinteraction = m_pview->get_child_by_name("server");
+         auto pinteraction = m_pimpact->get_child_by_name("server");
          
          pinteraction->_001SetText(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
 
-         pinteraction = m_pview->get_child_by_name("port");
+         pinteraction = m_pimpact->get_child_by_name("port");
          
-         pinteraction->_001SetText(__str(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
+         pinteraction->_001SetText(__string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
       }
 
    }
 
 
-   void network_configuration::on_control_event(::user::control_event * pevent)
+   void network_configuration::handle(::subject * psubject, ::context * )
    {
 
       auto pcontext = get_context();
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "submit")
+         if(psubject->user_interaction()->m_id == "submit")
          {
 
-            auto pinteraction = m_pview->get_child_by_name("server");
+            auto pinteraction = m_pimpact->get_child_by_name("server");
 
             string strServer;
 
@@ -141,7 +141,7 @@ namespace usernet
 
                doc.root()->set_attribute("server", strServer);
 
-               pinteraction = m_pview->get_child_by_name("port");
+               pinteraction = m_pimpact->get_child_by_name("port");
 
                string strPort;
 

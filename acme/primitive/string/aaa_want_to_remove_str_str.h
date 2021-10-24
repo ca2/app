@@ -27,7 +27,7 @@ namespace acme
 
 inline int trailingBytesForUTF8(char ch);
 
-#ifdef APPLEOS
+#ifdef __APPLE__
 #undef err_none
 #endif
 
@@ -110,7 +110,7 @@ namespace str
 
 
 
-   bool CLASS_DECL_ACME eat_before(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool CLASS_DECL_ACME eat_before(string & strBefore,const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
    bool CLASS_DECL_ACME eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
 
 
@@ -256,44 +256,44 @@ namespace str
    inline CLASS_DECL_ACME i32 to_with_fallback(const char * psz, i32 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
    inline CLASS_DECL_ACME i64 to_with_fallback(const char * psz, i64 iDefault, i32 iBase) { to(iDefault, iBase, psz); return iDefault; }
 
-   template < typename T >
-   inline string from(const T & t);
+   // template < typename T >
+   // inline string from(const T & t);
 
-   template < typename T >
-   inline string  from_int(const T & t);
+   // template < typename T >
+   // inline string  from_int(const T & t);
 
-   template < typename T >
-   inline string  from_u(const T & t);
+   // template < typename T >
+   // inline string  from_u(const T & t);
 
-   inline CLASS_DECL_ACME string from_strdup(const char * psz);
-
-
+   // inline CLASS_DECL_ACME string from_strdup(const char * psz);
 
 
 
-   /*inline CLASS_DECL_ACME string  from(i32 i);
-   inline CLASS_DECL_ACME string  from(u32 u);
-   inline CLASS_DECL_ACME string  from(i64 i);
-   inline CLASS_DECL_ACME string  from(u64 u);
-   inline CLASS_DECL_ACME string  from(const ::payload & payload);
-   inline CLASS_DECL_ACME string  from(const id & id);
-   inline CLASS_DECL_ACME string  from(double d);
-   inline CLASS_DECL_ACME string  from(float f);*/
+
+
+   /*inline CLASS_DECL_ACME string  to_string(i32 i);
+   inline CLASS_DECL_ACME string  to_string(u32 u);
+   inline CLASS_DECL_ACME string  to_string(i64 i);
+   inline CLASS_DECL_ACME string  to_string(u64 u);
+   inline CLASS_DECL_ACME string  to_string(const ::payload & payload);
+   inline CLASS_DECL_ACME string  to_string(const id & id);
+   inline CLASS_DECL_ACME string  to_string(double d);
+   inline CLASS_DECL_ACME string  to_string(float f);*/
 
    /*
-      CLASS_DECL_ACME  string &       from(string & str, i32 i);
-      CLASS_DECL_ACME  string &       from(string & str, u32 u);
-      CLASS_DECL_ACME  string &       from(string & str, i64 i);
-      CLASS_DECL_ACME  string &       from(string & str, u64 u);
-      CLASS_DECL_ACME  string &       from(string & str, float f);
-      CLASS_DECL_ACME  string &       from(string & str, double d);
-      inline CLASS_DECL_ACME string & from(string & str, const id & id);
-      inline CLASS_DECL_ACME string & from(string & str, const ::payload & payload);
+      CLASS_DECL_ACME  string &       to_string(string & str, i32 i);
+      CLASS_DECL_ACME  string &       to_string(string & str, u32 u);
+      CLASS_DECL_ACME  string &       to_string(string & str, i64 i);
+      CLASS_DECL_ACME  string &       to_string(string & str, u64 u);
+      CLASS_DECL_ACME  string &       to_string(string & str, float f);
+      CLASS_DECL_ACME  string &       to_string(string & str, double d);
+      inline CLASS_DECL_ACME string & to_string(string & str, const id & id);
+      inline CLASS_DECL_ACME string & to_string(string & str, const ::payload & payload);
 
 
    #ifdef ANDROID
 
-      CLASS_DECL_ACME  string &       from(string & str, long int i);
+      CLASS_DECL_ACME  string &       to_string(string & str, long int i);
 
    #endif
    */
@@ -312,7 +312,7 @@ namespace str
    CLASS_DECL_ACME string          ansi_upper(const char * psz);
 
 
-//   string CLASS_DECL_ACME get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
+//   string CLASS_DECL_ACME get_window_text_timeout(::windowing::window * pwindow, ::duration tickTimeout = 1000);
 
    string CLASS_DECL_ACME get_word(
    const char * psz,
@@ -365,7 +365,7 @@ namespace str
 
 
    template < typename TYPE >
-   inline TYPE from_string(const char * psz);
+   inline TYPE string_from_string(const char * psz);
 
 //   CLASS_DECL_ACME void format(string_format * pformat, char const &  i);
 //
@@ -585,32 +585,20 @@ namespace str
 
 
 template < typename T >
-inline c_number < T > & c_number < T >::from(const ::string & str)
+inline c_number < T > & c_number < T >::to_string(const ::string & str)
 {
 
-   ::str::to(m_number, str);
+   ::from_string(m_number, str);
 
    return *this;
 
 }
 
 
-
-
-
-
 CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
-
-
-namespace stra
-{
-
-   CLASS_DECL_ACME string_array from_strdup(char ** ppParam);
-
-} // namespace stra
-
-
-
 CLASS_DECL_ACME string _002Underscore(string str);
+
+
+

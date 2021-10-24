@@ -402,7 +402,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
    if (::is_null(this))
    {
 
-      __throw(::exception::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
+      __throw(::exception("error, m_pdata cannot be nullptr to ::oswindow::set_user_interaction"));
 
    }
 
@@ -653,7 +653,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    draw2d::brush_pointer pen(e_create_new);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for (index i = 0; i < stra.get_count(); i++)
    {
@@ -1165,9 +1165,9 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 void _android_size(float xDummy, float yDummy, float cx, float cy)
 {
 
-   UNREFERENCED_PARAMETER(xDummy);
+   __UNREFERENCED_PARAMETER(xDummy);
 
-   UNREFERENCED_PARAMETER(yDummy);
+   __UNREFERENCED_PARAMETER(yDummy);
 
    if (::get_context_system() == nullptr)
       return;
@@ -1395,7 +1395,7 @@ namespace aura
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 
 }
@@ -1606,7 +1606,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
-   *lprect = psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   *lprect = psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
 
    return true;
 
@@ -1620,7 +1620,7 @@ int GetMainScreenRect(RECTANGLE_I32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
 
    return true;
 

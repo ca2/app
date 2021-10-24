@@ -59,7 +59,7 @@ namespace aura
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }

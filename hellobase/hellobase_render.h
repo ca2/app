@@ -57,7 +57,7 @@ namespace hellobase
             bool                             m_bVoidTransfer;
             bool                             m_bFirstDone;
 
-            ::write_text::font_pointer                m_font;
+            ::write_text::font_pointer                m_pfont;
 
             double                           m_dMinRadius;
             double                           m_dMaxRadius;
@@ -69,12 +69,12 @@ namespace hellobase
 
       ::mutex *                          m_pmutexText;
 
-      view *                           m_pview;
+      impact *                           m_pimpact;
 
 
-      //millis                            m_millisAnime;
-      //millis m_millisLastFast;
-      //::u32                            m_millisFastAnime;
+      //::duration                            m_durationAnime;
+      //::duration m_durationLastFast;
+      //::u32                            m_durationFastAnime;
       //::image_pointer                 m_pimageFast;
 
 
@@ -88,7 +88,7 @@ namespace hellobase
       //::u32                            m_dw23;
 
       //array < bilbo >                  m_bilboa;
-      //millis m_millisLastOk;
+      //::duration m_durationLastOk;
 
 
       //bool                             m_bFast;

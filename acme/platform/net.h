@@ -13,7 +13,7 @@ CLASS_DECL_ACME bool url_query_get_param(string & strParam,const char * pszKey,c
 
 
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
 
 CLASS_DECL_ACME void openURL(const string &url_str);
 

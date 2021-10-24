@@ -3,7 +3,7 @@
 #include "aura/update.h"
 //#include "simple_view.h"
 #include "acme/platform/static_setup.h"
-#include "acme/const/simple_command.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "shell.h"
 
@@ -33,6 +33,7 @@ namespace user
       ::initialize_user_mutex();
       initialize_children_mutex();
 
+      m_bOnInitializeWindowObject = false;
 
    }
 
@@ -58,15 +59,6 @@ namespace user
 
       }
 
-      estatus = __construct_new(m_puserstyle);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
       estatus = create_windowing();
 
       if (!estatus)
@@ -83,6 +75,54 @@ namespace user
    }
 
 
+   ::e_status user::on_initialize_window_object()
+   {
+
+      if (m_bOnInitializeWindowObject)
+      {
+
+         return ::success_none;
+
+      }
+
+      m_bOnInitializeWindowObject = true;
+
+      auto estatus = _on_initialize_window_object();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status user::_on_initialize_window_object()
+   {
+
+      auto estatus = __construct_new(m_puserstyle);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_psystem->m_pnode->fetch_user_color();
+
+      m_puserstyle->default_style_construct();
+
+      return estatus;
+
+   }
+
+
+
    ::user::shell* user::shell()
    {
 
@@ -94,7 +134,7 @@ namespace user
          if (!estatus)
          {
 
-            TRACE("failed to create user shell");
+            INFORMATION("failed to create user shell");
 
          }
 
@@ -332,10 +372,10 @@ namespace user
    }
 
 
-   ::user::style* user::get_user_style()
+   ::user::style* user::user_style()
    {
 
-      return nullptr;
+      return m_puserstyle;
 
    }
 
@@ -396,9 +436,7 @@ namespace user
 
       //}
 
-
-
-      TRACE("::user::application::initialize");
+      INFORMATION("::user::application::initialize");
 
       //xml::document docUser;
 
@@ -792,7 +830,7 @@ namespace aura
 
       }
 
-      m_ethreadClose = thread_application;
+      m_ethreadcontextClose = e_thread_context_application;
 
       //if (get_session())
       //{
@@ -972,15 +1010,15 @@ namespace aura
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(::draw2d::graphics_pointer & pgraphics);
+//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -1070,8 +1108,32 @@ namespace aura
    }
 
 
+   //::e_status system::_on_initialize_window_object()
+   //{
 
+   //   auto estatus = ::aqua::system::_on_initialize_window_object();
 
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   auto psession = session();
+
+   //   estatus = psession->on_initialize_window_object();
+
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   return estatus;
+
+   //}
 
    //::count session::get_monitor_count()
    //{
@@ -1183,7 +1245,7 @@ namespace aura
       //      //else
       //      //{
 
-      //      //   puiParent = get_document()->get_typed_view < ::bergedge::view >();
+      //      //   puiParent = get_document()->get_typed_view < ::bergedge::impact >();
 
       //      //}
 

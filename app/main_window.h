@@ -12,13 +12,13 @@ namespace app_app
 
 
       double      m_dBreathPeriod;
-      millis      m_millisStart;
+      ::duration      m_durationStart;
       double      m_dPhaseShift;
       int         m_iCloseButtonDraw;
 
 
       main_window();
-      virtual ~main_window();
+      ~main_window() override;
 
 
       //bool is_frame_window() override;
@@ -28,7 +28,7 @@ namespace app_app
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem) override;
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem) override;
 
 
    };

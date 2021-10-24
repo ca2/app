@@ -16,7 +16,7 @@
 //matter::matter(const matter & objectSrc)
 //{
 //
-//   UNREFERENCED_PARAMETER(objectSrc);
+//   __UNREFERENCED_PARAMETER(objectSrc);
 //
 //   mutex() = nullptr;
 //
@@ -126,7 +126,7 @@
 //
 //   if(!lock(duration::infinite()))
 //      if(!lock(duration::infinite()))
-//         __throw(::exception::exception("failure to lock matter"));
+//         __throw(::exception("failure to lock matter"));
 //
 //}
 //
@@ -194,8 +194,8 @@
 //bool matter::unlock(::i32 lCount, LPLONG pPrevCount)
 
 //{
-//   UNREFERENCED_PARAMETER(lCount);
-//   UNREFERENCED_PARAMETER(pPrevCount);
+//   __UNREFERENCED_PARAMETER(lCount);
+//   __UNREFERENCED_PARAMETER(pPrevCount);
 
 //   return true;
 //}

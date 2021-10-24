@@ -15,7 +15,7 @@ namespace user
 
 
       place_holder();
-      virtual ~place_holder();
+      ~place_holder() override;
 
 
       __pointer(place_holder) create_shadow_clone();
@@ -23,7 +23,13 @@ namespace user
 
       //virtual bool create_child(::user::place_holder_container * pcontainer);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
+
+
+      bool on_add_child(::user::interaction * puserinteractionChild) override;
+
+      bool is_this_visible(enum_layout elayout = e_layout_design) override;
+
 
       virtual bool can_merge(::user::interaction * pinteraction) override;
       virtual bool merge(::user::interaction * pinteraction) override;
@@ -49,12 +55,13 @@ namespace user
 
       virtual bool _001IsBackgroundBypass();
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual void get_child_rect(RECTANGLE_I32 * prectangle) override;
 
 
    };
+
 
    class CLASS_DECL_BASE place_holder_ptra :
       virtual public __pointer_array(place_holder)

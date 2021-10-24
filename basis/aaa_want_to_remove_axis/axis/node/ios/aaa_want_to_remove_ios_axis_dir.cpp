@@ -53,10 +53,14 @@ namespace ios
       }
 
 
-      bool dir::is(const ::file::path & lpcszPath, ::aura::application * papp)
+      bool          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(const ::file::path & lpcszPath, ::aura::application * papp)
       {
 
-         if(::ios::dir::is(lpcszPath,papp))
+         if(::iospacmedir->is(lpcszPath,papp))
             return true;
 
          if(::file::dir::axis::system::is(lpcszPath, papp))
@@ -66,10 +70,14 @@ namespace ios
 
       }
 
-      //   bool dir::is(const ::string & strPath, ::aura::application * papp)
+      //   bool          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(const ::string & strPath, ::aura::application * papp)
       //   {
       //
-      //      if(::linux::dir::is(strPath,papp))
+      //      if(::linuxpacmedir->is(strPath,papp))
       //         return true;
       //
       //      if(::file::dir::axis::system::is(strPath,papp))
@@ -112,7 +120,7 @@ namespace ios
             return true; // assume empty string is root_ones directory
          }
 
-         if(thread_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3],".zip",4))
+         if(thread_set(e_task_flag_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const ::string &)str)[iLast - 3],".zip",4))
          {
 
             return true;
@@ -121,7 +129,7 @@ namespace ios
 
          strsize iFind = ::str::find_ci(".zip:", str);
 
-         if(thread_set(id_thread_zip_is_dir) && iFind >= 0 && iFind < iLast)
+         if(thread_set(e_task_flag_zip_is_dir) && iFind >= 0 && iFind < iLast)
          {
 
             bool bHasSubFolder = m_pziputil->has_sub_folder(papp, str);
@@ -130,7 +138,11 @@ namespace ios
 
          }
 
-         bool bIsDir = ::dir::is(str.Left(iLast));
+         bool bIsDir =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(str.Left(iLast));
 
          return bIsDir;
 

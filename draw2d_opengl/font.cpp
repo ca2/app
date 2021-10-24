@@ -45,9 +45,9 @@ namespace draw2d_opengl
    }
 
 
-   void font::construct(const ::write_text::font & fontParam)
+   void font::construct(const ::write_text::font & pfontParam)
    {
-      //class font & font = const_cast < ::draw2d_opengl::font & > (dynamic_cast < const ::draw2d_opengl::font & > (fontParam));
+      //class font & font = const_cast < ::draw2d_opengl::font & > (dynamic_cast < const ::draw2d_opengl::font & > (pfontParam));
       //if(font.m_pfont == nullptr)
       //{
       //   if(m_pfont != nullptr)

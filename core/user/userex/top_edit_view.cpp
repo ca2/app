@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
 
 
@@ -10,7 +13,7 @@ namespace userex
    top_edit_view::top_edit_view()
    {
 
-      m_millisDelayedAfterChange = 1000;
+      m_durationDelayedAfterChange = 1_s;
 
       m_ptopview = nullptr;
 
@@ -36,7 +39,7 @@ namespace userex
    }
 
 
-   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)
@@ -73,22 +76,22 @@ namespace userex
    void top_edit_view::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
-      auto psubject = subject(id_key_down);
+      ::subject subject(id_key_down);
 
-      psubject->m_puserprimitive = this;
+      subject.m_puserelement = this;
 
-      psubject->m_ekey = pkey->m_ekey;
+      subject.m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(psubject);
+      get_document()->update_all_views(&subject);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
 
          m_bEnterKeyPressed = true;
 
-         SetTimer(5544, m_millisDelayedAfterChange, nullptr);
+         SetTimer(5544, m_durationDelayedAfterChange, nullptr);
 
       }
       else
@@ -109,7 +112,7 @@ namespace userex
       if (ptimer->m_etimer == 5544)
       {
 
-         if (m_millisLastChange.elapsed() > m_millisDelayedAfterChange)
+         if (m_durationLastChange.elapsed() > m_durationDelayedAfterChange)
          {
 
             KillTimer(ptimer->m_uEvent);
@@ -123,9 +126,9 @@ namespace userex
             if (::is_set(pdocument))
             {
 
-               auto psubject = subject(id_after_change_text_delayed);
+               auto psubject = create_subject(id_after_change_text_delayed);
 
-               psubject->m_puserprimitive = this;
+               psubject->m_puserelement = this;
 
                psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
@@ -140,7 +143,7 @@ namespace userex
    }
 
 
-   void top_edit_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void top_edit_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }
@@ -154,20 +157,20 @@ namespace userex
 
          auto ptopeditview = this;
 
-         auto psubject = ptopeditview->subject(id_after_change_text);
+         auto psubject = create_subject(id_after_change_text);
 
          psubject->m_psender = this;
 
-         psubject->m_puserprimitive = this;
+         psubject->m_puserelement = this;
 
          get_document()->update_all_views(psubject);
 
-         if (m_millisDelayedAfterChange > 0)
+         if (m_durationDelayedAfterChange > 0_s)
          {
 
-            m_millisLastChange.Now();
+            m_durationLastChange.Now();
 
-            SetTimer(5544, m_millisDelayedAfterChange / 5, nullptr);
+            SetTimer(5544, m_durationDelayedAfterChange / 5, nullptr);
 
          }
 

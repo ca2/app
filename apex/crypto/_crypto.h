@@ -20,7 +20,7 @@
 //} // namespace crypto
 //
 //
-//using AXIS_RSA_KEY = Windows::Security::Cryptography::Core::CryptographicKey^;
+//using AXIS_RSA_KEY = ::winrt::Windows::Security::Cryptography::Core::CryptographicKey^;
 //
 //
 //#endif

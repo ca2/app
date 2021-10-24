@@ -17,7 +17,7 @@ namespace browser
    render::render(::object * pobjectParent, bool bAlternate) :
       object(pobjectParent->get_application()),
       thread(pobjectParent),
-      m_font(e_create),
+      m_pfont(e_create),
 
 
 
@@ -46,14 +46,14 @@ namespace browser
 
       m_bFastOnEmpty = true;
       m_bFast = true;
-      m_millisLastFast = 0;
-      m_millisAnime = 300;
-      m_millisFastAnime = 300;
-      m_millisLastOk = 0;
+      m_durationLastFast = 0;
+      m_durationAnime = 300;
+      m_durationFastAnime = 300;
+      m_durationLastOk = 0;
 
       m_strFontSel = pnode->font_name(e_font_sans);
 
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
       m_bImageEnable = true;
 
@@ -94,7 +94,7 @@ namespace browser
 
       m_cyCache1 = 0;
 
-      m_millisSlidePeriod = 5000;
+      m_durationSlidePeriod = 5000;
 
    }
 
@@ -171,7 +171,7 @@ namespace browser
       for (auto & pslide : slideshow())
       {
 
-         m_pview->data_get("slide." + pslide->m_strPath, pslide->m_bDatabase);
+         m_pimpact->data_get("slide." + pslide->m_strPath, pslide->m_bDatabase);
 
          i++;
 
@@ -208,7 +208,7 @@ namespace browser
       try
       {
 
-         auto pview = m_pview;
+         auto pview = m_pimpact;
 
          if(::is_null(pview))
          {
@@ -235,7 +235,7 @@ namespace browser
    ::e_status     render::run()
    {
 
-      ::parallelization::set_priority(::priority_below_normal);
+      ::parallelization::set_priority(::e_priority_below_normal);
 
       nano_timer nanotimer;
 
@@ -431,7 +431,7 @@ namespace browser
 
       rectangleClient.bottom = m_cy;
 
-      ::draw2d::brush_pointer brushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -448,7 +448,7 @@ namespace browser
 
       }
 
-      double t= ::millis::now() / 1000.0;
+      double t= ::duration::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -466,7 +466,7 @@ namespace browser
 
       }
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       size = pgraphics->get_text_extent(strHelloBrowser);
 
@@ -510,15 +510,15 @@ namespace browser
 
 /*                  m_pimage->fill(0, 0, 0, 0);
 
-/*                  m_pimage->g()->set_font(m_font);
+/*                  m_pimage->g()->set_font(m_pfont);
 
 /*                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*                  m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-                  brushText->create_solid(argb(255, 255, 255, 255));
+                  pbrushText->create_solid(argb(255, 255, 255, 255));
 
-/*                  m_pimage->g()->SelectObject(brushText);
+/*                  m_pimage->g()->SelectObject(pbrushText);
 
 /*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2, (m_cyCache1 - size_i32->cy) / 2, strHelloBrowser);
 
@@ -616,14 +616,14 @@ namespace browser
 
       //pgraphics->from(rectangleClient.top_left(),m_pimageTemplate, ::point_i32(), rectangleClient>si);
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(a_rgb(255, ca));
+         pbrushText->create_solid(a_rgb(255, ca));
 
       }
       else
@@ -633,11 +633,11 @@ namespace browser
 
          color.m_iA = 255;
 
-         brushText->create_solid(color);
+         pbrushText->create_solid(color);
 
       }
 
-      pgraphics->SelectObject(brushText);
+      pgraphics->SelectObject(pbrushText);
 
       //if(!m_bAlternate)
       {
@@ -695,7 +695,7 @@ namespace browser
 
       //      i32 iCount = 30;
 
-      ::draw2d::brush_pointer brushText(e_create);
+      auto pbrushText = __create < ::draw2d::brush > ();
 
       double T = 2.3;
 
@@ -719,7 +719,7 @@ namespace browser
 
       }
 
-      double t= ::millis::now() / 1000.0;
+      double t= ::duration::now() / 1000.0;
 
       double w = 2.0 * 3.1415 / T;
 
@@ -756,7 +756,7 @@ namespace browser
 
       }
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
 
       string strGetHelloBrowser;
@@ -803,11 +803,11 @@ namespace browser
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            brushText->create_solid(argb(255, 255, 255, 255));
+            pbrushText->create_solid(argb(255, 255, 255, 255));
 
-/*            m_pimage->g()->SelectObject(brushText);
+/*            m_pimage->g()->SelectObject(pbrushText);
 
-/*            m_pimage->g()->set_font(m_font);
+/*            m_pimage->g()->set_font(m_pfont);
 
 /*            m_pimage->g()->text_out((m_cx - size_i32->cx) / 2, (m_cy - size_i32->cy) / 2, strHelloBrowser);
 
@@ -853,7 +853,7 @@ namespace browser
       if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(a_rgb(255, ca));
+         pbrushText->create_solid(a_rgb(255, ca));
 
       }
       else
@@ -863,11 +863,11 @@ namespace browser
 
          color.m_iA = 255;
 
-         brushText->create_solid(color);
+         pbrushText->create_solid(color);
 
       }
 
-      pgraphics->SelectObject(brushText);
+      pgraphics->SelectObject(pbrushText);
 
       pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
@@ -1042,9 +1042,9 @@ namespace browser
       rectangleClient.bottom = m_cy;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-      millis tickPeriod = m_millisSlidePeriod;
-      millis tickRampUp = tickPeriod / 2;
-      millis tickSlide = 0;
+      ::duration tickPeriod = m_durationSlidePeriod;
+      ::duration tickRampUp = tickPeriod / 2;
+      ::duration tickSlide = 0;
 
       try
       {
@@ -1068,7 +1068,7 @@ namespace browser
 
                synchronous_lock synchronouslock(&m_mutexText);
 
-               strHelloBrowser = m_pview->m_strProcessedHellomultiverse.c_str();
+               strHelloBrowser = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
             }
 
@@ -1077,9 +1077,9 @@ namespace browser
 
                float fHeight = 100.0;
 
-               ::write_text::font_pointer font(e_create);
+               auto pfont = __create < ::write_text::font > ();
 
-               font->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
+               pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
@@ -1089,9 +1089,9 @@ namespace browser
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               pfont->create_pixel_font(pnode->font_name(e_font_sans), minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
-               m_font = font;
+               m_pfont = font;
 
                m_bNewLayout = false;
 
@@ -1103,13 +1103,13 @@ namespace browser
 
             ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 
-            ::draw2d::brush_pointer brush(e_create);
+            auto pbrush = __create < ::draw2d::brush >();
 
-            brush->create_solid(a_rgb(255, ca));
+            pbrush->create_solid(a_rgb(255, ca));
 
             pgraphics->SelectObject(brush);
 
-            pgraphics->set_font(m_font);
+            pgraphics->set_font(m_pfont);
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1125,12 +1125,12 @@ namespace browser
 
       }
 
-      //::u32 dw= ::millis::now();
+      //::u32 dw= ::duration::now();
 
-      if (m_bFast || !m_bFirstDone || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if (m_bFast || !m_bFirstDone || m_durationLastFast.elapsed() < m_durationFastAnime)
       {
 
-         synchronous_lock sl1(m_pview->get_wnd()->mutex());
+         synchronous_lock sl1(m_pimpact->get_wnd()->mutex());
 
          synchronous_lock slDraw(&m_mutexDraw);
 
@@ -1144,9 +1144,9 @@ namespace browser
 
             {
 
-               synchronous_lock slText(&m_pview->m_mutexText);
+               synchronous_lock slText(&m_pimpact->m_mutexText);
 
-               strFork = m_pview->m_strProcessedHellomultiverse.c_str();
+               strFork = m_pimpact->m_strProcessedHellomultiverse.c_str();
 
             }
 
@@ -1159,7 +1159,7 @@ namespace browser
          if (m_bFast || !m_bFirstDone)
          {
 
-            m_millisLastFast= ::millis::now();
+            m_durationLastFast= ::duration::now();
 
          }
 
@@ -1172,18 +1172,18 @@ namespace browser
 
          }
 
-         m_pview->m_bOkPending = true;
+         m_pimpact->m_bOkPending = true;
 
          return;
 
       }
 
-      if (m_pview->m_bOkPending)
+      if (m_pimpact->m_bOkPending)
       {
 
-         m_pview->m_bOkPending = false;
+         m_pimpact->m_bOkPending = false;
 
-         m_millisLastOk= ::millis::now();
+         m_durationLastOk= ::duration::now();
 
       }
 
@@ -1202,12 +1202,12 @@ namespace browser
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if (m_millisLastOk.elapsed() < m_millisAnime)
+      if (m_durationLastOk.elapsed() < m_durationAnime)
       {
 
          byte uchAlpha;
 
-         uchAlpha = byte(maximum(0, minimum(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
+         uchAlpha = byte(maximum(0, minimum(255, (m_durationLastOk.elapsed()) * 255 / m_durationAnime)));
 
 /*         psystem->imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
@@ -1259,7 +1259,7 @@ namespace browser
 /*   //         if (!pimage->load_image(strImage, false, true))
    //         {
 
-   //            __throw(::exception::exception("Failed to load \"" + strImage + "\""));
+   //            __throw(::exception("Failed to load \"" + strImage + "\""));
 
    //         }
 
@@ -1287,22 +1287,22 @@ namespace browser
 
       //      m_pimageaSlide->add_erase(slide->m_bActive, get_image(slide->m_strPath));
 
-      //m_pview->data_set("slide." + slide.m_strPath, slide.m_bActive);
+      //m_pimpact->data_set("slide." + slide.m_strPath, slide.m_bActive);
 
       //   }
 
       //}
 
-//      m_millisSlideStart = ::millis::now() - m_millisSlidePeriod + 50;
+//      m_durationSlideStart = ::duration::now() - m_durationSlidePeriod + 50;
 
    }
 
 
    bool render::in_anime()
    {
-      if (m_bFast || m_millisLastFast.elapsed() < m_millisFastAnime)
+      if (m_bFast || m_durationLastFast.elapsed() < m_durationFastAnime)
          return true;
-      if (m_millisLastOk.elapsed() < m_millisAnime)
+      if (m_durationLastOk.elapsed() < m_durationAnime)
          return true;
       return false;
    }
@@ -1333,9 +1333,9 @@ namespace browser
 
       float fHeight = 100.0;
 
-      ::write_text::font_pointer font(e_create);
+      auto pfont = __create < ::write_text::font > ();
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, fHeight, e_font_weight_bold);
+      pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, fHeight, e_font_weight_bold);
 
       pgraphics->set_font(font);
 
@@ -1345,39 +1345,39 @@ namespace browser
 
       double ratey = fHeight * 0.84 / size.cy;
 
-      font->create_pixel_font(m_pview->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+      pfont->create_pixel_font(m_pimpact->m_prender->m_strFont, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
       m_dMinRadius = maximum(1.0, minimum(m_cy * ratey, m_cx * size.cy * ratey / size.cx) / 46.0);
 
       m_dMaxRadius = m_dMinRadius * 2.3;
 
-      m_font = font;
+      m_pfont = font;
 
-      pgraphics->set_font(m_font);
+      pgraphics->set_font(m_pfont);
 
       size = pgraphics->get_text_extent(strHelloBrowser);
 
-      ::draw2d::path_pointer path(e_create);
+      auto ppath = __create < ::draw2d::path > ();
 
-      path->m_bFill = false;
+      ppath->m_bFill = false;
 
-      path->add_string((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser, m_font);
+      ppath->add_string((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser, m_pfont);
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
-      pen->create_solid(1.0, argb(255, 90, 90, 80));
+      ppen->create_solid(1.0, argb(255, 90, 90, 80));
 
-      ::draw2d::pen_pointer penW(e_create);
+      auto ppenW = __create < ::draw2d::pen > ();
 
-      penW->create_solid(3.0, argb(84, 255, 255, 255));
+      ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->draw_path(path, penW);
+      pgraphics->draw_path(path, ppenW);
 
-      pgraphics->draw_path(path, pen);
+      pgraphics->draw_path(ppath, ppen);
 
    }
 

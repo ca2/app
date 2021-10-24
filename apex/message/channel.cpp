@@ -29,42 +29,39 @@ void channel::install_message_routing(::channel* pchannel)
 }
 
 
-
-
-void channel::erase_receiver(::object * preceiver)
+void channel::erase_handler(::matter * pmatter)
 {
 
    synchronous_lock synchronouslock(channel_mutex());
 
-   for (auto & pair : m_handlermap)
+   for (auto & dispatchera : m_dispatchermap.values())
    {
 
-      if (pair.element2().is_empty())
+      if (dispatchera.is_empty())
       {
 
          continue;
 
       }
 
-      pair.element2().predicate_erase([=](auto & item)
+      dispatchera.predicate_erase([=](auto & dispatcher)
       {
 
-         return item.m_preceiver == preceiver;
+         return dispatcher.m_phandlerTarget == pmatter;
 
       });
 
    }
 
-
 }
 
 
-void channel::transfer_receiver(::message::handler_map & handlermap, ::object * preceiver)
+void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::matter * pmatter)
 {
 
    synchronous_lock synchronouslock(channel_mutex());
 
-   for (auto & pair : m_handlermap)
+   for (auto & pair : m_dispatchermap)
    {
 
       if (pair.element2().is_empty())
@@ -74,28 +71,55 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 
       }
 
-      pair.element2().predicate_each([&](auto & item)
+      pair.element2().predicate_each([&](auto & dispatcher)
       {
 
-         if (item.m_preceiver == preceiver)
+         if (dispatcher.m_phandlerTarget == pmatter)
          {
 
-            auto & routera = handlermap[pair.element1()];
+            auto & dispatcha = dispatchermap[pair.element1()];
 
-            routera.add(item);
+            dispatcha.add(dispatcher);
 
          }
 
       });
 
-      pair.element2().predicate_erase([&](auto & item)
+      pair.element2().predicate_erase([&](auto & dispatcher)
       {
 
-         return item.m_preceiver == preceiver;
+         return dispatcher.m_phandlerTarget == pmatter;
 
       });
 
    }
+
+}
+
+
+::matter * channel::add_message_handler(const ::id & id, const ::message::dispatcher & dispatcher)
+{
+
+   auto & dispatchera = m_dispatchermap[id];
+   
+   // Try to not add already added dispatcher
+   for (index i = 0; i < dispatchera.get_count(); i++)
+   {
+
+      auto & dispatcherItem = dispatchera[i];
+
+      if (dispatcherItem == dispatcher)
+      {
+
+         return nullptr;
+
+      }
+
+   }
+   
+   dispatchera.add(dispatcher);
+
+   return dispatcher.m_phandlerTarget;
 
 }
 
@@ -103,12 +127,23 @@ void channel::transfer_receiver(::message::handler_map & handlermap, ::object * 
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_phandlera = m_handlermap.pget(pmessage->m_id); } if(pmessage->m_phandlera == nullptr) return;
+   if (::is_null(pmessage)) { ASSERT(false); return; } { synchronous_lock synchronouslock(channel_mutex()); pmessage->m_pdispatchera = m_dispatchermap.pget(pmessage->m_id); } if(pmessage->m_pdispatchera == nullptr || pmessage->m_pdispatchera->is_empty()) return;
 
-   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_phandlera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
+   if (pmessage->m_id.is_command_probe())
    {
 
-      pmessage->m_phandlera->m_pData[pmessage->m_iRouteIndex].m_handler(pmessage); if(pmessage->m_bRet) return;
+      pmessage->m_bRet = true;
+
+      return;
+
+   }
+
+   for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_pdispatchera->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
+   {
+
+      auto pdispatcher = pmessage->m_pdispatchera->m_pData[pmessage->m_iRouteIndex];
+
+      pdispatcher->handle(pmessage); if(pmessage->m_bRet) return;
 
    }
 
@@ -197,18 +232,18 @@ void channel::erase_all_routes()
    try
    {
 
-      synchronous_lock synchronouslock(channel_mutex());
+      _synchronous_lock synchronouslock(channel_mutex());
 
       if(m_bNewChannel)
       {
 
-         m_handlermapNew = m_handlermap;
+         m_dispatchermapNew = m_dispatchermap;
 
          m_bNewChannel = false;
 
       }
 
-      m_handlermap.erase_all();
+      m_dispatchermap.erase_all();
 
 //         for (auto & id_route_array : m_idroute)
 //         {
@@ -274,9 +309,9 @@ void channel::channel_common_construct()
 
    m_idaHandledCommands.erase_all();
 
-   m_handlermap.erase_all();
+   m_dispatchermap.erase_all();
 
-   m_handlermapNew.erase_all();
+   m_dispatchermapNew.erase_all();
 
    for (auto& procedurea : m_routinemap.values())
    {
@@ -296,30 +331,21 @@ void channel::channel_common_construct()
 }
 
 
-::e_status channel::handle(::message::command * pcommand)
+//void channel::command_handler(::message::command * pcommand)
+//{
+//
+//   pcommand->handle(this);
+//
+//}
+
+
+void channel::message_handler(::message::message * pmessage)
 {
 
-   return pcommand->handle(this);
 
 }
 
 
-void channel::BeginWaitCursor()
-{
-
-}
-
-
-void channel::EndWaitCursor()
-{
-
-}
-
-
-void channel::RestoreWaitCursor()
-{
-
-}
 
 
 
@@ -336,7 +362,7 @@ void channel::_001SendCommand(::message::command * pcommand)
 
       pcommand->m_id.set_compounded_type(::id::e_type_command);
 
-      route_command_message(pcommand);
+      route_command(pcommand, true);
 
    }
 
@@ -354,22 +380,22 @@ void channel::_001SendCommandProbe(::message::command * pcommand)
 
       pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
-      route_command_message(pcommand);
+      route_command(pcommand);
 
    }
 
 }
 
 
-void channel::route_command_message(::message::command * pcommand)
+void channel::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
 {
 
-   on_command_message(pcommand);
+   command_handler(pcommand);
 
 }
 
 
-void channel::on_command_message(::message::command * pcommand)
+void channel::command_handler(::message::command * pcommand)
 {
 
    if (pcommand->is_command())
@@ -416,22 +442,6 @@ void channel::on_command_message(::message::command * pcommand)
 }
 
 
-void channel::on_command(::message::command * pcommand)
-{
-
-   {
-
-      __scoped_restore(pcommand->m_id.m_etype);
-
-      pcommand->m_id.set_compounded_type(::id::e_type_command);
-
-      route_message(pcommand);
-
-   }
-
-}
-
-
 bool channel::has_command_handler(::message::command * pcommand)
 {
 
@@ -448,23 +458,23 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    }
 
-   auto passoc = m_handlermap.plookup(pcommand->m_id);
+   auto passociation = m_dispatchermap.plookup(pcommand->m_id);
 
-   if (::is_null(passoc))
+   if (::is_null(passociation))
    {
 
       return false;
 
    }
 
-   if (passoc->m_element2.is_empty())
+   if (passociation->m_element2.is_empty())
    {
 
       return false;
 
    }
 
-   if (passoc->element2().is_empty())
+   if (passociation->element2().is_empty())
    {
 
       return false;
@@ -479,58 +489,66 @@ bool channel::has_command_handler(::message::command * pcommand)
 void channel::on_command_probe(::message::command * pcommand)
 {
 
-   {
+   __scoped_restore(pcommand->m_id.m_etype);
 
-      __scoped_restore(pcommand->m_id.m_etype);
+   pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
 
-      pcommand->m_id.set_compounded_type(::id::e_type_command_probe);
+   route_message(pcommand);
 
-      route_message(pcommand);
+   pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
 
-      pcommand->m_bHasCommandHandler = has_command_handler(pcommand);
-
-      pcommand->m_bRet =
-         pcommand->m_bEnableChanged
-         || pcommand->m_bRadioChanged
-         || pcommand->m_echeck != check_undefined;
-
-   }
+   pcommand->m_bRet =
+      pcommand->m_bEnableChanged
+      || pcommand->m_bRadioChanged
+      || pcommand->m_echeck != check_undefined;
 
 }
 
 
-bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler)
+void channel::on_command(::message::command * pcommand)
 {
 
-    auto & handlera = m_handlermap[id];
+   __scoped_restore(pcommand->m_id.m_etype);
 
-    if(preceiver != nullptr || phandler != nullptr)
-    {
+   pcommand->m_id.set_compounded_type(::id::e_type_command);
 
-        for (::index i = 0; i < handlera.get_count(); i++)
-        {
-
-            if (handlera.element_at(i).m_preceiver == preceiver
-                && handlera.element_at(i).m_pHandler == (void *) phandler)
-            {
-
-                return false;
-
-            }
-
-        }
-
-    }
-
-    ::message::handler_item handleritem(preceiver, phandler);
-
-    handleritem.m_handler = handler;
-
-    handlera.add(handleritem);
-
-    return true;
+   route_message(pcommand);
 
 }
+
+
+//bool channel::_add_message_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler)
+//{
+//
+//    auto & handlera = m_handlermap[id];
+//
+//    if(preceiver != nullptr || phandler != nullptr)
+//    {
+//
+//        for (::index i = 0; i < handlera.get_count(); i++)
+//        {
+//
+//            if (handlera.element_at(i).m_preceiver == preceiver
+//                && handlera.element_at(i).m_pHandler == (void *) phandler)
+//            {
+//
+//                return false;
+//
+//            }
+//
+//        }
+//
+//    }
+//
+//    ::message::handler_item handleritem(preceiver, phandler);
+//
+//    handleritem.m_handler = handler;
+//
+//    handlera.add(handleritem);
+//
+//    return true;
+//
+//}
 
 
 ::e_status channel::id_notify(const ::id & id, ::matter * pmatter)
@@ -545,18 +563,7 @@ bool channel::_add_handler(const ::id & id, ::object * preceiver, void * phandle
 }
 
 
-void channel::on_property_changed(property * pproperty, const ::action_context& actioncontext)
-{
 
-   auto psubject = subject(pproperty->m_id);
-
-   psubject->m_actioncontext = actioncontext;
-
-   handle_subject(psubject);
-
-   //process_subject(pproperty->m_id, actioncontext);
-
-}
 
 
 void channel::default_toggle_check_handling(const ::id & id)
@@ -564,7 +571,7 @@ void channel::default_toggle_check_handling(const ::id & id)
 
    auto linkedproperty = fetch_property(id);
 
-   connect_command_predicate(id, [linkedproperty](::message::message * pmessage)
+   add_command_handler(id, [linkedproperty](::message::message * pmessage)
       {
 
          if (linkedproperty->get_bool())

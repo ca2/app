@@ -72,7 +72,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
+   inline bool begins(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
    {
       
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -109,7 +109,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
-   inline bool begins_ci(TOPIC_STRING topic_string, PREFIX_STRING prefix_string)
+   inline bool begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -145,13 +145,13 @@ namespace str
    }
 
 
-   template < typename TYPE, typename PREFIX >
-   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
-   {
-
-      return !::str::string_n_compare_ci(str, strPrefix, ::str::string_safe_length(strPrefix));
-
-   }
+//   template < typename TYPE, typename PREFIX >
+//   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
+//   {
+//
+//      return !::str::string_n_compare_ci(str, strPrefix, ::str::string_safe_length(strPrefix));
+//
+//   }
 
 
    template < typename TYPE, typename FED, typename PREFIX >
@@ -204,7 +204,7 @@ namespace str
 
       }
 
-      str = str.ptr_at(len);
+      str = &str[len];
 
       return true;
 
@@ -272,7 +272,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
+   inline bool ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
@@ -313,7 +313,7 @@ namespace str
 
 
    template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
-   inline bool ends_ci(TOPIC_STRING topic_string, SUFFIX_STRING suffix_string)
+   inline bool ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
    {
 
       using topic_type = typename base_const_c_string < TOPIC_STRING >::type;

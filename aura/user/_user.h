@@ -1,12 +1,7 @@
 #pragma once
 
 
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_.h"
-//#endif
 #include "aura/platform/_platform.h"
-
-
 
 
 class prodevian;
@@ -87,7 +82,7 @@ namespace user
    //   public:
    //
    //
-   //      Agile < Windows::UI::Core::CoreWindow >         m_window;
+   //      Agile < ::winrt::Windows::UI::Core::CoreWindow >         m_window;
    //      ::aura::system_window ^                         m_pwindow;
    //
    //
@@ -244,6 +239,9 @@ namespace user
 #include "graphics_call.h"
 
 
+#include "interaction_scaler.h"
+
+
 #include "interaction.h"
 
 
@@ -259,7 +257,6 @@ namespace user
 //using window_pointer = __pointer(::user::interaction_impl);
 
 //#include "primitive_impl.h"
-
 
 #include "interaction_impl.h"
 
@@ -278,7 +275,7 @@ namespace user
 //#include "menu_interaction.h"
 //#include "menu_item.h"
 //#include "menu.h"
-#include "control_event.h"
+//#include "control_event.h"
 #include "window_map.h"
 
 #include "scroll.h"
@@ -292,7 +289,7 @@ namespace user
 #include "scroll_bar.h"
 
 
-#include "callback.h"
+//#include "callback.h"
 
 
 //#include "form_data.h"
@@ -796,12 +793,7 @@ namespace user
 #include "box.h"
 
 
-
-
-
-
 #include "_impl.h"
-
 
 
 namespace user
@@ -837,7 +829,6 @@ namespace user
 
 
 #include "user.h"
-
 
 
 

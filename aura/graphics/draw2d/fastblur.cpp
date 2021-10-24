@@ -366,7 +366,7 @@ namespace draw2d
       int s = m_p->m_iScan / 4;
 
       {
-auto tickA0 = ::millis::now();
+auto tickA0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -376,7 +376,7 @@ auto tickA0 = ::millis::now();
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
-auto tickA1 = ::millis::now();
+auto tickA1 = ::duration::now();
          ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
@@ -387,7 +387,7 @@ auto tickA1 = ::millis::now();
 
 
       {
-auto tick1 = ::millis::now();
+auto tick1 = ::duration::now();
 
          try
          {
@@ -407,7 +407,7 @@ auto tick1 = ::millis::now();
          {
 
          }
-auto tick2 = ::millis::now();
+auto tick2 = ::duration::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
@@ -429,7 +429,7 @@ auto tick2 = ::millis::now();
       }
 
       {
-auto tickC0 = ::millis::now();
+auto tickC0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
@@ -443,7 +443,7 @@ auto tickC0 = ::millis::now();
                point_i32[3] = (byte)t->z;
             }
          }
-auto tickC1 = ::millis::now();
+auto tickC1 = ::duration::now();
          ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
@@ -452,7 +452,6 @@ auto tickC1 = ::millis::now();
 #else
       u32 * pdata = (u32 *)pimage->colorref();
 
-      u8 * point_i32;
       vector4 * t = timage;
 
       int w = m_size.cx;
@@ -467,32 +466,40 @@ auto tickC1 = ::millis::now();
 
       int s = pimage->scan_size() / 4;
 
+      u8 * p;
+
       {
-auto tickA0 = ::millis::now();
+         
+         auto tickA0 = ::duration::now();
 
          for(index y = 0; y < hj; y++)
          {
+
             for(index x = 0; x < wj; x++)
             {
+
                p = (u8 *)&pdata[y * s + x];
-               t[y * wj + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
+
+               t[y * wj + x] = vector4(p[0],p[1],p[2],p[3]);
+
             }
+
          }
          
-         auto tickA1 = ::millis::now();
+         auto tickA1 = ::duration::now();
 
          auto tickA2 = tickA1 - tickA0;
 
          string str;
 
-         str.Format(__prtick,tickA2.m_i);
+         str = __string(tickA2.integral_millisecond());
 
       }
 
 
       {
 
-         auto tick1 = ::millis::now();
+         auto tick1 = ::duration::now();
 
          try
          {
@@ -513,7 +520,7 @@ auto tickA0 = ::millis::now();
 
          }
          
-         auto tick2 = ::millis::now();
+         auto tick2 = ::duration::now();
 
          auto tick3 = tick2 - tick1;
 
@@ -523,7 +530,7 @@ auto tickA0 = ::millis::now();
             string str1;
             str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",wj,hj,m_iRadius);
             string str2;
-            str2.Format("| time for calculating stack blur : " __prtick "\b",tick3.m_i);
+            str2.Format("| time for calculating stack blur : %" PRId64 "ms\b",tick3.integral_millisecond().m_i);
 
             output_debug_string("/-----------------------------------------\n");
             output_debug_string("| \n");
@@ -532,38 +539,44 @@ auto tickA0 = ::millis::now();
             output_debug_string("| \n");
 
             //::aura::application * papp = pimage->get_application();
-            TRACE("/--------------------------------");
-            TRACE("| fastblur::blur");
-            TRACE("| ");
-            TRACE("| do_fastblur = " __prtick, tick3);
+            INFORMATION("/--------------------------------");
+            INFORMATION("| fastblur::blur");
+            INFORMATION("| ");
+            INFORMATION("| do_fastblur = %" PRId64 "ms", tick3.integral_millisecond());
 
          }
 
       }
 
       {
-auto tickC0 = ::millis::now();
+
+         auto tickC0 = ::duration::now();
 
          for(index y = 0; y < h; y++)
          {
+
             for(index x = 0; x < w; x++)
             {
+
                p = (u8 *)&pdata[y * s + x];
                t = &timage[y * wj + x];
-               point_i32[0] = (byte)t->w;
-               point_i32[1] = (byte)t->x;
-               point_i32[2] = (byte)t->y;
-               point_i32[3] = (byte)t->z;
+               p[0] = (byte)t->w;
+               p[1] = (byte)t->x;
+               p[2] = (byte)t->y;
+               p[3] = (byte)t->z;
+
             }
+
          }
          
-         auto tickC1 = ::millis::now();
+         auto tickC1 = ::duration::now();
          
          auto tickC2 = tickC1 - tickC0;
 
          string str;
 
-         str.Format(__prtick,tickC2.m_i);
+         str = __string(tickC2.integral_millisecond());
+
       }
 
 #endif
@@ -571,7 +584,7 @@ auto tickC0 = ::millis::now();
 #else
 
 
-      //::u32 dw1= ::millis::now();
+      //::u32 dw1= ::duration::now();
 
 #ifdef __arm__
 
@@ -606,7 +619,7 @@ auto tickC0 = ::millis::now();
       }
 
       /*
-auto tick2 = ::millis::now();
+auto tick2 = ::duration::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.Format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
@@ -1116,7 +1129,7 @@ auto tick2 = ::millis::now();
 
             // put pixel in the stack
             vector4& sir = stack[i + radius];
-            sir = point;
+            sir = p;
 
             // rbs is a weight from (1)...(radius+1)...(1)
             const int rbs = r1 - abs(i);
@@ -1169,7 +1182,7 @@ auto tick2 = ::millis::now();
 
             // now this (same) stack entry is the "right" side
             // add new pixel to the stack, and update accumulators
-            sir = point;
+            sir = p;
             insum += sir;
             sum += insum;
 
@@ -1208,7 +1221,7 @@ auto tick2 = ::millis::now();
             yi = maximum(0,yp) + x;
             const vector4& p = tsurface[yi];
 
-            sir = point;
+            sir = p;
 
             const int rbs = r1 - abs(i);
             sum += sir * (float) rbs;
@@ -1383,6 +1396,8 @@ auto tick2 = ::millis::now();
 
       }
 
+      int workstride = w * sizeof(u32);
+
       i32 * pix = (i32 *)pdata;
       u8 * pb = (u8 *)pdata;
       u8 * pwork = (u8 *)prgba;
@@ -1391,7 +1406,7 @@ auto tick2 = ::millis::now();
       for(y = 0; y < h; y++)
       {
 
-         pwork = &pwk[stride * y];
+         pwork = &pwk[workstride * y];
 
          asum = 0;
          rsum = 0;
@@ -1495,7 +1510,7 @@ auto tick2 = ::millis::now();
             yp += stride;
          }
 
-         u8 * r1 = &pwk[(x * 4) + (radius + 1) * stride];
+         u8 * r1 = &pwk[(x * 4) + (radius + 1) * workstride];
          u8 * r2 = &pwk[(x * 4)];
 
          pu8_1 = (u8 *)&pix[x];
@@ -1514,7 +1529,7 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r1 += stride;
+            r1 += workstride;
 
          }
 
@@ -1532,13 +1547,13 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r1 += stride;
-            r2 += stride;
+            r1 += workstride;
+            r2 += workstride;
 
          }
 
          pu8_1 -= stride;
-         r1 -= stride;
+         r1 -= workstride;
 
          for(; y < h; y++)
          {
@@ -1554,7 +1569,7 @@ auto tick2 = ::millis::now();
             asum += r1[3] - r2[3];
 
             pu8_1 += stride;
-            r2 += stride;
+            r2 += workstride;
 
          }
 

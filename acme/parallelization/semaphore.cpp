@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -15,13 +15,13 @@
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #elif defined(ANDROID)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <semaphore.h>
-#include "acme/os/ansios/_ansios.h"
+#include "acme/node/operating_system/ansi/_ansi.h"
 #endif
 
 
@@ -33,7 +33,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
-   m_hsync = ::CreateSemaphoreExW(PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  ::str::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_hsync = ::CreateSemaphoreExW((LPSECURITY_ATTRIBUTES)PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  ::str::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
    if (m_hsync == nullptr)
    {
@@ -86,7 +86,6 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #else
 
-
    m_lMaxCount    = lMaxCount;
 
    if(pstrName != nullptr && *pstrName != '\0')
@@ -106,14 +105,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       }
       else
       {
+
          strPath = "/::payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
+
       }
 
-      dir::mk(::file::path(strPath).folder());
+      pacmedir->create(::file::path(strPath).folder());
 
       m_hsync = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
-
-
 
    }
    else
@@ -128,7 +127,6 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
    semctl_arg.val = lInitialCount;
 
    semctl(static_cast < i32 > (m_hsync), 0, SETVAL, semctl_arg);
-
 
 #endif
 
@@ -160,7 +158,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
 #elif defined(LINUX) || defined(SOLARIS)
 
-synchronization_result semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const class ::wait & wait)
 {
 
    int iRet = 0;
@@ -170,7 +168,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    sb.sem_op = -1;
    sb.sem_flg = 0;
 
-   if(durationTimeout.is_infinite())
+   if(wait.is_infinite())
    {
 
       iRet = semop(static_cast < i32 > (m_hsync), &sb, 1);
@@ -178,19 +176,16 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    else
    {
 
-      timespec ts;
+      timespec timespec;
 
-      ((duration &)durationTimeout).normalize();
+      timespec += wait;
 
-      ts.tv_nsec = durationTimeout.m_nanos.m_i;
-      ts.tv_sec = durationTimeout.m_secs.m_i;
-
-      iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &ts);
+      iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
 
       if(iRet == EINTR || iRet == EAGAIN)
       {
 
-         return e_synchronization_result_timed_out;
+         return error_wait_timeout;
 
       }
 
@@ -199,13 +194,13 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
    if(iRet == 0)
    {
 
-      return e_synchronization_result_signaled_base;
+      return signaled_base;
 
    }
    else
    {
 
-      return e_synchronization_result_error;
+      return error_failed;
 
    }
 
@@ -245,7 +240,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //}
 
 
-synchronization_result semaphore::wait(const duration & durationTimeout)
+::e_status semaphore::wait(const class ::wait & wait)
 {
 
 //   struct sigaction alarm;
@@ -258,7 +253,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 //
 //   struct itimerval timer;
 //
-   if(durationTimeout.is_infinite())
+   if(wait.is_infinite())
    {
 
       struct sembuf sb;
@@ -269,14 +264,13 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
       int i = semop(static_cast < i32 > (m_hsync), &sb, 1);
 
-      return i == 0 ? e_synchronization_result_signaled_base : e_synchronization_result_error;
+      return i == 0 ? signaled_base : error_failed;
 
    }
 
+   ::duration tStart;
 
-   millis tStart;
-
-   tStart = millis::now();
+   tStart = ::duration::now();
 
    struct sembuf sb;
 
@@ -292,7 +286,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       if(i == 0)
       {
 
-         return e_synchronization_result_signaled_base;
+         return signaled_base;
 
       }
 
@@ -301,14 +295,14 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
 
          //task_sleep(100_ms);
 
-         sleep(100_ms);
+         preempt(100_ms);
 
-         millis tRemaining = durationTimeout - tStart.elapsed();
+         ::duration tRemaining = wait - tStart.elapsed();
 
-         if(tRemaining > durationTimeout)
+         if(tRemaining > wait)
          {
 
-            return e_synchronization_result_timed_out;
+            return error_wait_timeout;
 
          }
 
@@ -316,7 +310,7 @@ synchronization_result semaphore::wait(const duration & durationTimeout)
       else
       {
 
-         return e_synchronization_result_error;
+         return error_failed;
 
       }
 

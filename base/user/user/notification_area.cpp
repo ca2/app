@@ -9,7 +9,7 @@ Contact : nish@voidnish.com
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "base/user/user/_user.h"
 //#endif
-//#include "acme/os/windows/process_data.h"
+//#include "acme/node/operating_system/windows/process_data.h"
 //
 //
 //namespace user
@@ -67,7 +67,7 @@ Contact : nish@voidnish.com
 //   void notification_area::ListTrayIcons(i32 defindex /*= 0*/)
 //   {
 //#ifdef WINDOWS_DESKTOP
-//      UNREFERENCED_PARAMETER(defindex);
+//      __UNREFERENCED_PARAMETER(defindex);
 //      m_infoa.erase_all();
 //
 //      m_pil16->erase_all();
@@ -174,7 +174,7 @@ Contact : nish@voidnish.com
 //
 //   void notification_area::EditCopy(i32 iItem)
 //   {
-//      UNREFERENCED_PARAMETER(iItem);
+//      __UNREFERENCED_PARAMETER(iItem);
 //      /*   POSITION pos = GetListCtrl().GetFirstSelectedItemPosition();
 //         if(pos)
 //         {

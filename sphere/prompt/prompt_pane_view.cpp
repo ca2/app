@@ -56,10 +56,10 @@ namespace prompt
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
 
    }
 
@@ -277,7 +277,7 @@ namespace prompt
    void pane_view::_001OnMenuMessage(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       set_current_tab_by_id(m_pimpactdataOld->m_id);
 
@@ -329,19 +329,19 @@ namespace prompt
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::prompt::form_callback::on_control_event(pevent);
+      ::prompt::form_callback::handle(psubject, pcontext);
 
-      if(pevent->m_bRet)
+      if(psubject->m_bRet)
       {
 
          return;
 
       }
 
-      ::userex::pane_tab_view::on_control_event(pevent);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 
@@ -349,7 +349,7 @@ namespace prompt
    void pane_view::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       if(itema.get_size() > 0)
       {

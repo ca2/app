@@ -5,7 +5,7 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       public ::user::form_view
    {
    public:
@@ -25,15 +25,15 @@ namespace filehandler
          string         m_strApp;
          ::index        m_iIndex;
 
-         ::rectangle_i32         m_rectItem;
-         ::rectangle_i32         m_rectStatusImage;
-         ::rectangle_i32         m_rectName;
+         ::rectangle_i32         m_rectangleItem;
+         ::rectangle_i32         m_rectangleStatusImage;
+         ::rectangle_i32         m_rectangleName;
 
          item(::object * pobject);
 
          void parse(const ::string & pszApp);
 
-         void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
+         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
       };
 
@@ -50,7 +50,7 @@ namespace filehandler
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
          void on_layout(const RECTANGLE_I32 * lpcrect);
-         void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics);
+         void draw(__pointer(impact) pview, ::draw2d::graphics_pointer & pgraphics);
 
       };
 
@@ -62,13 +62,13 @@ namespace filehandler
       ::write_text::font_pointer       m_pfont;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void refresh();
 
@@ -79,7 +79,7 @@ namespace filehandler
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      void on_hit_test(::user::item & item);
+      void on_hit_test(::item & item);
 
 
       void layout_list(list * plist);

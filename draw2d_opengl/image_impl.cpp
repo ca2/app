@@ -2333,9 +2333,9 @@ namespace draw2d_opengl
 
       }
 
-      //plusplus::RectF rectDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
+      //plusplus::rectF rectangleDest(0, 0, (plusplus::REAL) m_size.cx, (plusplus::REAL) m_size.cy);
 
-      //plusplus::RectF rectSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
+      //plusplus::rectF rectangleSource(0, 0, (plusplus::REAL) pimage->width(), (plusplus::REAL) pimage->height());
 
       unmap();
       
@@ -2343,7 +2343,7 @@ namespace draw2d_opengl
 
       m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectDest, rectSource, plusplus::UnitPixel);
+      //((plusplus::Graphics * ) m_pgraphics->get_os_data())->DrawImage(((plusplus::Bitmap *)pimage->get_bitmap()->get_os_data()), rectangleDest, rectangleSource, plusplus::UnitPixel);
 
       return true;
 
@@ -2465,9 +2465,9 @@ namespace draw2d_opengl
 //   {
 //
 //
-//      rectangle_i64 rectWindow;
+//      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectangleWindow);
 //
 ////#if !NO_SCREEN_PRE_MULTIPLY_ALPHA
 ////      if(bTransferBuffer && puserinteraction->is_composite() && !m_bReduced)
@@ -2497,7 +2497,7 @@ namespace draw2d_opengl
 //////      #pragma omp parallel for
 //////                     for(index i = 0; i < size; i+=4)
 //////                     {
-//////                           dst[i] = LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
+//////                           dst[i] = __LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
 //////                     }
 //////                  }
 //////
@@ -2524,7 +2524,7 @@ namespace draw2d_opengl
 ////////               {
 ////////                  if(dstA[i] > 3)
 ////////                  {
-////////                     dst[i] = LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
+////////                     dst[i] = __LOBYTE(((i32)dst[i] * (i32)dstA[i]) >> 8);
 ////////                  }
 ////////               }
 ////////            }
@@ -2532,15 +2532,15 @@ namespace draw2d_opengl
 //////#else
 //////         for(index i = 0; i < size; i+=4)
 //////         {
-//////            dstR[i] = LOBYTE(((i32)dstR[i] * (i32)dstA[i]) >> 8);
-//////            dstG[i] = LOBYTE(((i32)dstG[i] * (i32)dstA[i]) >> 8);
-//////            dstB[i] = LOBYTE(((i32)dstB[i] * (i32)dstA[i]) >> 8);
+//////            dstR[i] = __LOBYTE(((i32)dstR[i] * (i32)dstA[i]) >> 8);
+//////            dstG[i] = __LOBYTE(((i32)dstG[i] * (i32)dstA[i]) >> 8);
+//////            dstB[i] = __LOBYTE(((i32)dstB[i] * (i32)dstA[i]) >> 8);
 //////         }
 //////#endif
 //////
 ////      }
 ////#endif
-//      ::rectangle_i32 rectangle(rectWindow);
+//      ::rectangle_i32 rectangle(rectangleWindow);
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2610,13 +2610,13 @@ namespace draw2d_opengl
 //      try
 //      {
 //
-//         ::rectangle_i32 rectWindow;
+//         ::rectangle_i32 rectangleWindow;
 //
-//         puserinteraction->get_window_rect(rectWindow);
+//         puserinteraction->get_window_rect(rectangleWindow);
 //
 //         image image;
 //
-//         if(!image = create_image(rectWindow.bottom_right()))
+//         if(!image = create_image(rectangleWindow.bottom_right()))
 //            return false;
 //
 //         ::draw2d::graphics * pgraphics = pimage->get_graphics();
@@ -2624,25 +2624,25 @@ namespace draw2d_opengl
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::rectangle_i32 rectPaint;
-//         ::rectangle_i32 rectUpdate;
-//         rectUpdate = rectWindow;
-//         rectPaint = rectWindow;
-//         rectPaint.offset(-rectPaint.top_left());
+//         ::rectangle_i32 rectanglePaint;
+//         ::rectangle_i32 rectangleUpdate;
+//         rectangleUpdate = rectangleWindow;
+//         rectanglePaint = rectangleWindow;
+//         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         m_pgraphics-> SetViewportOrg(::point_i32());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
 //         m_pgraphics->SetViewportOrg(::point_i32());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         m_pgraphics->SetViewportOrg(::point_i32());
 //
 //         m_pgraphics->SelectClipRgn( nullptr);
-//         m_pgraphics->BitBlt(rectPaint.left, rectPaint.top,
-//            rectPaint.width(), rectPaint.height(),
-//            pgraphics, rectUpdate.left, rectUpdate.top,
+//         m_pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
+//            rectanglePaint.width(), rectanglePaint.height(),
+//            pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //            SRCCOPY);
 //
 //      }

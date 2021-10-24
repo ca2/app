@@ -72,7 +72,7 @@ namespace experience
       void control_box::on_message_show_window(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
 
       }
 
@@ -80,7 +80,7 @@ namespace experience
       void control_box::on_message_left_button_down(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
 
       }
 
@@ -88,7 +88,7 @@ namespace experience
       void control_box::on_message_left_button_up(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
 
       }
 

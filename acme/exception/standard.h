@@ -37,7 +37,7 @@
 
 #elif defined(WINDOWS)
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 
 #include <sys/ucontext.h>
@@ -73,12 +73,12 @@
 
 
 class CLASS_DECL_ACME standard_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
 
-   friend class ::exception::translator;
+   friend class ::exception_translator;
 
 
 #ifdef WINDOWS
@@ -116,7 +116,7 @@ public:
    static void siginfofree(void * psiginfo);
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP, void * caller_address = nullptr) :
-      ::exception::exception(error_exception, nullptr, iSkip, caller_address),
+      ::exception(error_exception, nullptr, iSkip, caller_address),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
 #ifndef ANDROID
@@ -151,8 +151,8 @@ typedef struct _sig_ucontext
 
 #endif
 
-namespace exception
-{
+//namespace exception
+//{
 //
 //   class standard_access_violation : public standard_exception
 //   {
@@ -174,7 +174,7 @@ namespace exception
 //      }
 //
 //
-//#elif defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+//#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
 //      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
 //#ifdef LINUX
 //#ifdef _LP64
@@ -195,7 +195,7 @@ namespace exception
 //#endif
 //#endif
 //#endif
-////         ::exception::exception(),
+////         ::exception(),
 //         //       ::standard_exception(pobject, signal, psiginfo, pc)
 //      {
 //
@@ -254,7 +254,7 @@ namespace exception
    };
 
 
-#elif defined(LINUX) || defined(APPLEOS)
+#elif defined(LINUX) || defined(__APPLE__)
 
    class standard_sigfpe : public standard_exception
    {
@@ -269,7 +269,13 @@ namespace exception
 #endif
 #else
 #ifdef _LP64
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+      
+#ifdef __ARM_ARCH_ISA_A64
+         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__pc)
+#else
+      standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+
+#endif
 
 #else
 #if defined(APPLE_IOS)
@@ -279,7 +285,7 @@ namespace exception
 #endif
 #endif
 #endif
-//         ::exception::exception(),
+//         ::exception(),
 //         standard_exception(iSignal, psiginfo, pc)
       {
 
@@ -294,13 +300,13 @@ namespace exception
 #endif
 
 
-} // namespace exception
+//} // namespace exception
 
 /*#else
 
 
 #include "translator.h"
-#if !defined(APPLEOS)
+#if !defined(__APPLE__)
 #include <ucontext.h>
 #include <sys/ucontext.h>
 #endif*/

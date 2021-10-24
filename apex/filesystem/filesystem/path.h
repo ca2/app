@@ -31,7 +31,7 @@ namespace file
       path_data
    };
 
-   CLASS_DECL_APEX e_path get_path_type(const ::string & str, e_path epathForce = path_none);
+   CLASS_DECL_APEX e_path file_path_get_type(const ::string & str, e_path epathForce = path_none);
 
    struct CLASS_DECL_APEX path_meta :
       public enumeration < ::file::enum_flag >
@@ -117,7 +117,7 @@ namespace file
 
       template < typename TYPE >
       inline path(const TYPE & t, e_path epath = path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path(__str(t), epath, iDir, bNormalize, iSize)
+         path(__string(t), epath, iDir, bNormalize, iSize)
       {
 
       }
@@ -362,7 +362,7 @@ namespace file
    };
 
 
-   CLASS_DECL_APEX e_path get_path_type(const ::string & str, e_path epathForce);
+   CLASS_DECL_APEX e_path file_path_get_type(const ::string & str, e_path epathForce);
 
 
    inline char path_sep(e_path epath)
@@ -416,10 +416,10 @@ template<>
 inline uptr uptr_hash < const ::file::path & >(const ::file::path & key);
 
 
-CLASS_DECL_APEX ::file::path node_full_file_path(file::path path);
+CLASS_DECL_APEX ::file::path xxxxnode_full_file_path(file::path path);
 
 
-CLASS_DECL_APEX ::file::path __node_full_file_path(file::path path);
+CLASS_DECL_APEX ::file::path __xxxnode_full_file_path(file::path path);
 
 
 inline ::file::path CLASS_DECL_APEX operator / (const ansichar * psz, const ::file::path & pathConcat)

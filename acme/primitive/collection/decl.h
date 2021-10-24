@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define UNREFERENCED_PARAMETER(u)	(void)(u)
-
 template < typename CONTAINER_TYPE >
 struct container_iterator
 {
@@ -289,12 +287,12 @@ namespace constructor
 
       inline static void construct(void * p)
       {
-         UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(p);
       }
       inline static void construct_count(void * p, ::count c)
       {
-         UNREFERENCED_PARAMETER(p);
-         UNREFERENCED_PARAMETER(c);
+         __UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(c);
       }
 
    };
@@ -356,12 +354,12 @@ namespace destructor
 
       inline static void destruct(TYPE * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
       {
-         UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(p);
       }
       inline static void destruct_count(TYPE * p, ::count c OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
       {
-         UNREFERENCED_PARAMETER(p);
-         UNREFERENCED_PARAMETER(c);
+         __UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(c);
       }
 
    };

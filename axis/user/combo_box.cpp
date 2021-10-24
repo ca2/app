@@ -148,15 +148,15 @@ namespace user
 
       //}
 
-      ::rectangle_i32 rectText;
+      ::rectangle_i32 rectangleText;
 
-      get_element_rect(rectText, e_element_text);
+      get_element_rect(rectangleText, e_element_text);
 
-      pgraphics->set_font(this, ::user::e_element_none);
+      pgraphics->set_font(this, ::e_element_none);
 
       ::e_align ealign = e_align_left_center;
 
-      pgraphics->draw_text(strText, rectText, ealign);
+      pgraphics->draw_text(strText, rectangleText, ealign);
 
    }
 
@@ -183,15 +183,15 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa)
    {
 
-      ::rectangle_i32 rectDropDown;
+      ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectDropDown, e_element_drop_down);
+      get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      i32 cx = rectDropDown.width() / 3;
+      i32 cx = rectangleDropDown.width() / 3;
 
       i32 cy = cx * 2 / 3;
 
-      ::point_i32 pointCenter = rectDropDown.center();
+      ::point_i32 pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -209,7 +209,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
       //if(m_bEdit)
       {
@@ -228,11 +228,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::rectangle_i32 rectDropDown;
+      ::rectangle_i32 rectangleDropDown;
 
-      get_element_rect(rectDropDown, e_element_drop_down);
+      get_element_rect(rectangleDropDown, e_element_drop_down);
 
-      ::rectangle_i32 rectDropIn(rectDropDown);
+      ::rectangle_i32 rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
@@ -322,21 +322,21 @@ namespace user
 
       color.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(color);
+      pbrush->create_solid(color);
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
-      pgraphics->fill_rectangle(rectDropIn);
+      pgraphics->fill_rectangle(rectangleDropIn);
 
-      ::draw2d::path_pointer path(e_create);
+      auto ppath = __create < ::draw2d::path > ();
 
       point_f64_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(argb(210, 0, 0, 0));
+      pbrush->create_solid(argb(210, 0, 0, 0));
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
       pgraphics->fill_polygon(pointa);
 
@@ -482,15 +482,15 @@ namespace user
    }
 
 
-   void combo_box::on_hit_test(::user::item & item)
+   void combo_box::on_hit_test(::item & item)
    {
 
-      ::rectangle_i32 rectElement;
+      ::rectangle_i32 rectangleElement;
 
-      if(get_element_rect(rectElement, e_element_drop_down))
+      if(get_element_rect(rectangleElement, e_element_drop_down))
       {
 
-         if (rectElement.contains(item.m_pointHitTest))
+         if (rectangleElement.contains(item.m_pointHitTest))
          {
 
             item = e_element_drop_down;
@@ -543,11 +543,11 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         get_window_rect(rectWindow, ::user::e_layout_sketch);
+         get_window_rect(rectangleWindow, ::user::e_layout_sketch);
 
-         m_plistbox->on_drop_down(rectWindow, m_sizeFull);
+         m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 
       }
 
@@ -557,7 +557,7 @@ namespace user
    void combo_box::on_message_key_down(::message::message * pmessage)
    {
 
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_down)
       {
@@ -577,7 +577,7 @@ namespace user
    void combo_box::on_message_key_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -593,7 +593,7 @@ namespace user
    void combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->previous();
 
@@ -625,7 +625,7 @@ namespace user
    void combo_box::on_message_mouse_leave(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_itemHover = e_element_none;
 
@@ -637,7 +637,7 @@ namespace user
    void combo_box::on_message_left_button_down(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (is_window_enabled())
       {
@@ -647,16 +647,16 @@ namespace user
          if (eelementHit.is_set() && (!m_bEdit || eelementHit == e_element_drop_down))
          {
 
-            millis tickLastVisibilityChangeElapsed;
+            ::duration tickLastVisibilityChangeElapsed;
 
             if (m_plistbox.is_set())
             {
 
-               tickLastVisibilityChangeElapsed = m_plistbox->m_millisLastVisibilityChange.elapsed();
+               tickLastVisibilityChangeElapsed = m_plistbox->m_durationLastVisibilityChange.elapsed();
 
             }
 
-            if (m_plistbox.is_null() || tickLastVisibilityChangeElapsed > 300_tick)
+            if (m_plistbox.is_null() || tickLastVisibilityChangeElapsed > 300_ms)
             {
 
                _001ToggleDropDown();
@@ -681,7 +681,7 @@ namespace user
    void combo_box::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (is_window_enabled())
       {
@@ -749,7 +749,7 @@ namespace user
       if(bShow)
       {
 
-         m_millisShowComboList.Now();
+         m_durationShowComboList.Now();
 
          defer_create_list_box();
 
@@ -765,11 +765,11 @@ namespace user
 
          m_plistbox->query_full_size(pgraphics, m_sizeFull);
 
-         ::rectangle_i32 rectWindow;
+         ::rectangle_i32 rectangleWindow;
 
-         get_window_rect(rectWindow, ::user::e_layout_sketch);
+         get_window_rect(rectangleWindow, ::user::e_layout_sketch);
 
-         m_plistbox->on_drop_down(rectWindow, m_sizeFull);
+         m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 
       }
       else
@@ -825,7 +825,7 @@ namespace user
    }
 
 
-   ::e_status combo_box::set_current_item(const ::user::item & item, const ::action_context & actioncontext)
+   ::e_status combo_box::set_current_item(const ::item & item, const ::action_context & actioncontext)
    {
 
       auto estatus = ::user::plain_edit::set_current_item(item, actioncontext);
@@ -860,31 +860,6 @@ namespace user
       return ::success;
 
    }
-
-
-//   ::user::item combo_box::current_item()
-//   {
-//
-//      if(!m_plistbox)
-//      {
-//
-//         return -1;
-//
-//      }
-//
-//      return m_plistbox->current_item();
-//
-//   }
-
-
-//   void combo_box::set_current_item(const ::user::item & item, const ::action_context & actioncontext)
-//   {
-//
-//      defer_create_list_box();
-//
-//      m_plistbox->set_current_item(item, actioncontext);
-//
-//   }
 
 
    void combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -941,25 +916,44 @@ namespace user
 
          set_current_item(itemCurrent, actioncontext);
 
-         //      if (m_plistbox.is_set())
-         //      {
-         //
-         //         m_plistbox->on_change_combo_sel(m_itemCurrent);
-         //
-         //      }
-
       }
 
    }
 
 
-   void combo_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void combo_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      //if(m_bEdit)
+      ////if(m_bEdit)
+      //{
+
+      //   ::user::plain_edit::handle(psubject, pcontext);
+
+      //}
+
+      if (psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         ::user::plain_edit::on_subject(psubject, pcontext);
+         auto puserinteraction = psubject->user_interaction();
+
+         if (puserinteraction == m_plistbox)
+         {
+
+            set_current_item(psubject->m_item, psubject->m_actioncontext);
+
+            _001ShowDropDown(false);
+
+            psubject->Ret();
+
+            set_need_redraw();
+
+            post_redraw();
+
+            keyboard_set_focus_next();
+
+            return;
+
+         }
 
       }
 
@@ -1183,7 +1177,6 @@ namespace user
 
 
    index combo_box::Dir(index attr, const ::string & pszWildCard)
-
    {
 
 //      ASSERT(is_window());
@@ -1196,47 +1189,6 @@ namespace user
    }
 
 
-   //index combo_box::FindString(index nStartAfter, const ::string & pszString)
-
-   //{
-
-   //   for (index i = nStartAfter++; i < m_straList.get_count(); i++)
-   //   {
-
-   //      if (m_straList[i].compare(pszString) == 0)
-
-   //      {
-
-   //         return i;
-
-   //      }
-
-   //   }
-
-   //   return -1;
-
-   //}
-
-
-   //index combo_box::SelectString(index nStartAfter, const ::string & pszString, const ::action_context & context)
-
-   //{
-
-   //   index iSel = FindString(nStartAfter, pszString);
-
-
-   //   if (iSel >= 0)
-   //   {
-
-   //      set_current_item(iSel, context);
-
-   //   }
-
-   //   return -1;
-
-   //}
-
-   //
    void combo_box::clear()
    {
 
@@ -1256,6 +1208,7 @@ namespace user
 
    }
 
+
    void combo_box::Cut()
    {
 
@@ -1265,6 +1218,7 @@ namespace user
 
    }
 
+
    void combo_box::Paste()
    {
 
@@ -1273,6 +1227,7 @@ namespace user
       //send_message( WM_PASTE, 0, 0);
 
    }
+
 
    i32 combo_box::SetItemHeight(index nIndex, ::u32 cyItemHeight)
    {
@@ -1285,6 +1240,7 @@ namespace user
 
    }
 
+
    i32 combo_box::GetItemHeight(index nIndex)
    {
 
@@ -1296,8 +1252,8 @@ namespace user
 
    }
 
-   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
 
+   index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
    {
 
       //ASSERT(is_window());
@@ -1308,6 +1264,7 @@ namespace user
       return -1;
 
    }
+
 
    i32 combo_box::SetExtendedUI(bool bExtended)
    {
@@ -1320,6 +1277,7 @@ namespace user
 
    }
 
+
    bool combo_box::GetExtendedUI()
    {
 
@@ -1331,8 +1289,8 @@ namespace user
 
    }
 
-   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
 
+   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
    {
 
       //ASSERT(is_window());
@@ -1341,6 +1299,7 @@ namespace user
 
 
    }
+
 
    bool combo_box::GetDroppedState()
    {
@@ -1352,6 +1311,7 @@ namespace user
       return false;
 
    }
+
 
 //   LCID combo_box::GetLocale()
 //   {
@@ -1375,6 +1335,7 @@ namespace user
 //
 //   }
 
+
    index combo_box::GetTopIndex()
    {
 
@@ -1386,6 +1347,7 @@ namespace user
 
    }
 
+
    index combo_box::SetTopIndex(index nIndex)
    {
 
@@ -1396,6 +1358,7 @@ namespace user
       return -1;
 
    }
+
 
    ::count combo_box::InitStorage(::count nItems, ::u32 nBytes)
    {
@@ -1417,6 +1380,7 @@ namespace user
 
    }
 
+
    ::u32 combo_box::GetHorizontalExtent()
    {
 
@@ -1428,6 +1392,7 @@ namespace user
 
    }
 
+
    i32 combo_box::SetDroppedWidth(::u32 nWidth)
    {
 
@@ -1438,6 +1403,7 @@ namespace user
       return -1;
 
    }
+
 
    i32 combo_box::GetDroppedWidth()
    {
@@ -1456,22 +1422,6 @@ namespace user
 
       return m_plistbox->_001GetListText(iSel, str);
 
-      //str.Empty();
-
-      //if (iSel < 0)
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (iSel >= m_straList.get_count())
-      //   return false;
-
-      //str = m_straList[iSel];
-
-      //return true;
-
    }
 
 
@@ -1479,49 +1429,6 @@ namespace user
    {
 
       return m_plistbox->_001FindListText(str);
-
-      //index combo_box::_001FindListText(const ::string & str) const
-      //{
-
-      //   ::count ca = _001GetListCount();
-
-      //   string strItem;
-
-      //   for(index i = 0; i < ca; i++)
-      //   {
-
-      //      _001GetListText(i,strItem);
-
-      //      if(m_bCaseSensitiveMatch)
-      //      {
-
-      //         if(str.compare(strItem) == 0)
-      //            return i;
-
-      //      }
-      //      else
-      //      {
-
-      //         if(str.compare_ci(strItem) == 0)
-      //            return i;
-
-      //      }
-
-      //   }
-
-      //   return -1;
-
-      //}
-
-
-      //if(m_bCaseSensitiveMatch)
-      //{
-      //   return m_straList.find_first(str);
-      //}
-      //else
-      //{
-      //   return m_straList.find_first_ci(str);
-      //}
 
    }
 
@@ -1624,120 +1531,46 @@ namespace user
    }
 
 
-   //bool combo_box::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
-   //{
-
-   //   if (!::user::interaction::create_interaction(pinteractionParent, id))
-   //   {
-
-   //      TRACE("Failed to create control");
-
-   //      return false;
-
-   //   }
-
-   //   display(e_display_none);
-
-   //   m_bMultiLine = false;
-
-   //   return true;
-
-   //}
-
-
    void combo_box::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      //output_debug_string("\nCOMBO_BOX: DOUBLE CLICK\n");
-
       on_message_left_button_down(pmessage);
 
-      //pmessage->m_bRet = true;
-
    }
 
 
-   void combo_box::on_control_event(::user::control_event * pevent)
-   {
+   //void combo_box::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      if(pevent->m_eevent == ::user::e_event_after_change_cur_sel)
-      {
+   //   if(psubject->m_id == ::e_subject_after_change_cur_sel)
+   //   {
 
-         auto puserinteraction = pevent->m_puserinteraction;
+   //      auto puserinteraction = psubject->user_interaction();
 
-         if(puserinteraction == m_plistbox)
-         {
+   //      if(puserinteraction == m_plistbox)
+   //      {
 
-            set_current_item(pevent->m_item, pevent->m_actioncontext);
+   //         set_current_item(psubject->m_item, psubject->m_actioncontext);
 
-//            if(m_plistbox)
-//            {}
-//
-//            m_plistbox
-//
-//            ::id id = translate_property_id(m_id);
-//
-//            if(has_control_event_handler())
-//            {
-//
-//               ::user::control_event ev;
-//
-//               ev.m_puserinteraction = this;
-//
-//               ev.m_id = id;
-//
-//               ev.m_eevent = ::user::e_event_after_change_cur_sel;
-//
-//               ev.m_pmessage = pevent->m_pmessage;
-//
-//               ev.m_item = pevent->m_item;
-//
-//               ev.m_actioncontext = pevent->m_actioncontext;
-//
-//               route_control_event(&ev);
-//
-//               pevent->m_bRet = ev.m_bRet;
-//
-//               set_need_redraw();
-//
-//            }
+   //         _001ShowDropDown(false);
 
-//            string strItem;
-//
-//            _001GetListText(m_itemCurrent, strItem);
-//
-//            //if (m_bEdit)
-//            //{
-//
-//               _001SetText(strItem, ::e_source_sync);
-//
-//            //}
-//            //else
-//            //{
-//
-//              // _001SetText(strItem, ::e_source_sync);
-//
-//            //}
+   //         psubject->Ret();
 
-            _001ShowDropDown(false);
+   //         set_need_redraw();
 
-            pevent->Ret();
+   //         post_redraw();
 
-            set_need_redraw();
+   //         keyboard_set_focus_next();
 
-            post_redraw();
+   //         return;
 
-            keyboard_set_focus_next();
+   //      }
 
-            return;
+   //   }
 
-         }
+   //   ::user::plain_edit::handle(psubject, pcontext);
 
-      }
-
-      ::user::plain_edit::on_control_event(pevent);
-
-   }
+   //}
 
 
 } // namespace user

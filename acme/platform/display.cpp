@@ -19,7 +19,7 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
 }
 
 
-CLASS_DECL_ACME string __str(enum_display edisplay)
+CLASS_DECL_ACME string __string(enum_display edisplay)
 {
 
    if(is_docking_appearance(edisplay))

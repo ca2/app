@@ -11,7 +11,7 @@
 //} // namespace gen
 //
 //
-//namespace uwp
+//namespace universal_windows
 //{
 //
 //
@@ -50,7 +50,7 @@
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const char * pcsz);
 //      virtual void _001EnableShellOpen();
-////      virtual ::user::document * _001OpenDocumentFile(::payload varFile);
+////      virtual ::user::document * _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();
 //
 //      // Loads a cursor resource.
@@ -147,7 +147,7 @@
 //
 //      // called when occurs an standard_exception exception in run
 //      // return true to call run again
-//      virtual bool on_run_exception(const ::exception::exception & e);
+//      virtual bool on_run_exception(const ::exception & e);
 //
 //   // Overridables
 //      // thread initialization
@@ -174,8 +174,8 @@
 //      // Advanced: virtual access to GetMainWnd()
 //      virtual ::user::interaction* GetMainWnd();
 //
-//      virtual void assert_valid() const;
-//      virtual void dump(dump_context & dumpcontext) const;
+//      void assert_valid() const override;
+//      void dump(dump_context & dumpcontext) const override;
 //      virtual void CommonConstruct();
 //      virtual void Delete();
 //         // 'delete this' only if m_bAutoDelete == true
@@ -215,5 +215,5 @@
 //   };
 //
 //
-//} // namespace uwp
+//} // namespace universal_windows
 //

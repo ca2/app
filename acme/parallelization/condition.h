@@ -6,7 +6,7 @@ class CLASS_DECL_ACME condition :
 {
 public:
 
-#if defined(LINUX) || defined(APPLEOS) || defined(SOLARIS)
+#if defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
 
    iptr           m_hsync;
    bool              m_bManualEvent;
@@ -29,14 +29,14 @@ public:
 
 
    condition();
-   virtual ~condition();
+   ~condition() override;
 
 
-   using synchronization_object::lock;
-   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   //using synchronization_object::lock;
+   //virtual bool lock(const class ::wait & wait);
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   virtual bool unlock() override;
 
    virtual void * get_os_data() const;
 
@@ -52,12 +52,12 @@ public:
    */
 
    ///  \brief		waits for an event forever
-   virtual synchronization_result wait ();
+   ::e_status wait () override;
 
    ///  \brief		waits for an event for a specified time
    ///  \lparam		duration time period to wait for an event
    ///  \return	waiting action result as WaitResult
-   virtual synchronization_result wait (const duration & duration);
+   ::e_status wait (const class ::wait & wait) override;
 
    bool is_signaled() const;
 

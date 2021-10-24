@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC view :
+   class CLASS_DECL_TURBOC impact :
       public ::aura::impact
    {
    public:
@@ -23,7 +23,7 @@ namespace turboc
       e_effect                m_eeffect;
       bool                    m_bLite;
 
-      //main_view *             m_pmainview;
+      //main_impact *             m_pmainimpact;
 
       string                  m_strServer;
       ::mutex                   m_mutexWork;
@@ -47,15 +47,15 @@ namespace turboc
       ::image_pointer        m_pimageFast;
       ::image_pointer        m_pimageTemplate;
 
-      ::write_text::font_pointer       m_font;
+      ::write_text::font_pointer       m_pfont;
       string                  m_strNewHelloMultiverse;
       string                  m_strHelloMultiverse;
       bool                    m_bOkPending;
-      millis m_millisLastOk;
-      millis                   m_millisAnime;
+      ::duration m_durationLastOk;
+      ::duration                   m_durationAnime;
       bool                    m_bNewLayout;
-      millis m_millisLastFast;
-      ::u32                   m_millisFastAnime;
+      ::duration m_durationLastFast;
+      ::u32                   m_durationFastAnime;
       bool                    m_bFast;
       bool                    m_bFirstDone;
       bool                    m_bFastOnEmpty;
@@ -76,11 +76,11 @@ namespace turboc
       bool                    m_bAlternate;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void install_message_handling(::message::dispatch * pdispatch);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace operating_system
 {
 //
 //
@@ -19,12 +19,12 @@ namespace process
 //   };
 //
 //
-//   CLASS_DECL_APEX bool set_priority(::e_priority epriority);
+//   CLASS_DECL_APEX bool set_priority(::enum_priority epriority);
 //
       
 
 
-} // namespace process
+} // namespace operating_system
 
 
 

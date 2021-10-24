@@ -323,8 +323,8 @@
 //   void construct(::count nBlockSize = 10);
 //
 //
-//   virtual void assert_valid() const override;
-//   virtual void dump(dump_context & dumpcontext) const override;
+//   void assert_valid() const override;
+//   void dump(dump_context & dumpcontext) const override;
 //
 //
 //
@@ -574,7 +574,7 @@
 //void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE, m_bMultiKey >::construct(::count nBlockSize)
 //{
 //
-//   UNREFERENCED_PARAMETER(nBlockSize);
+//   __UNREFERENCED_PARAMETER(nBlockSize);
 //
 //   m_pnode = nullptr;
 //

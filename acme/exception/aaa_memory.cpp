@@ -2,7 +2,7 @@
 
 
 memory_exception::memory_exception(const char * pszMessage) :
-   ::exception::exception(pszMessage)
+   ::exception(pszMessage)
 {
 
 

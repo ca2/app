@@ -42,7 +42,7 @@ namespace draw2d_cairo
       ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);
       ::size_i32 GetBitmapDimension() const;
 
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool attach(void * posdata);

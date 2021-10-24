@@ -14,8 +14,8 @@ public:
    virtual ~html_document();
 
 
-   virtual void assert_valid() const override;
-   virtual void dump(dump_context & dumpcontext) const override;
+   void assert_valid() const override;
+   void dump(dump_context & dumpcontext) const override;
 
 
    //virtual ::e_status create_html_data();
@@ -27,11 +27,11 @@ public:
 
    DECLARE_MESSAGE_HANDLER(data_on_after_change);
 
-   virtual bool open_document(const ::payload & varFile) override;
+   virtual bool open_document(const ::payload & payloadFile) override;
 
    virtual bool load_html(const ::string & str);
 
-   virtual bool on_new_document() override;
+   bool on_new_document() override;
 
    virtual void form_document_set_property_set(const property_set & set) override;
    virtual property_set * form_document_get_property_set() override;
@@ -40,7 +40,7 @@ public:
    virtual void form_document_set_callback(::user::form_callback * pcallback);
 
    //bool open_document(::create * pcreate) override;
-   bool on_open_document(const ::payload & varFile) override;
+   bool on_open_document(const ::payload & payloadFile) override;
 
    virtual void on_command_probe(::message::command * pcommand) override;
    virtual void on_command(::message::command * pcommand) override;

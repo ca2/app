@@ -31,8 +31,8 @@ namespace aura
 
       void trace::TraceV(const ::string &pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const ::string & pszFormat, va_list args) const
       {
-         UNREFERENCED_PARAMETER(pszFileName);
-         UNREFERENCED_PARAMETER(nLine);
+         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
          trace_module * pmodule = nullptr;
          static const i32 nCount = 1024;
@@ -108,10 +108,10 @@ namespace aura
       CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const ::string & pszFmt, va_list args)
       {
 
-         UNREFERENCED_PARAMETER(pszFileName);
-         UNREFERENCED_PARAMETER(nLine);
-         UNREFERENCED_PARAMETER(dwCategory);
-         UNREFERENCED_PARAMETER(nLevel);
+         __UNREFERENCED_PARAMETER(pszFileName);
+         __UNREFERENCED_PARAMETER(nLine);
+         __UNREFERENCED_PARAMETER(dwCategory);
+         __UNREFERENCED_PARAMETER(nLevel);
 
          string str;
 
@@ -439,7 +439,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel
       if (iLine >= 1)
       {
 
-         strMessage += "(" + __str(iLine) + ")";
+         strMessage += "(" + __string(iLine) + ")";
 
       }
 

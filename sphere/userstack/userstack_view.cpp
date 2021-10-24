@@ -1,17 +1,17 @@
 #include "framework.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 namespace userstack
 {
 
 
-   view::view(::object * pobject) :
+   impact::impact(::object * pobject) :
       ::object(pobject),
-      m_font(e_create)
+      m_pfont(e_create)
    {
 
-      m_font->create_point_font(pnode->font_name(e_font_sans_ex), 8.4);
+      m_pfont->create_point_font(pnode->font_name(e_font_sans_ex), 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;
@@ -27,79 +27,79 @@ namespace userstack
    }
 
 
-   view::~view()
+   impact::~impact()
    {
 
    }
 
 
-   void view::install_message_routing(::channel * pchannel)
+   void impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &view::on_message_destroy);
-      MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
-      MESSAGE_LINK(e_message_create, pchannel, this, &view::on_message_create);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::on_message_context_menu);
-      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::on_message_set_cursor);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::on_message_left_button_up);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &impact::on_message_destroy);
+      MESSAGE_LINK(e_message_paint, pchannel, this, &impact::_001OnPaint);
+      MESSAGE_LINK(e_message_create, pchannel, this, &impact::on_message_create);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
+      //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
 
 //
 
    }
    /////////////////////////////////////////////////////////////////////////////
-   // ::view drawing
+   // ::impact drawing
 
-   void view::OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view diagnostics
+   // ::impact diagnostics
 
 
-   void view::assert_valid() const
+   void impact::assert_valid() const
    {
       ::user::impact::assert_valid();
    }
 
-   void view::dump(dump_context & dumpcontext) const
+   void impact::dump(dump_context & dumpcontext) const
    {
       ::user::impact::dump(dumpcontext);
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view message handlers
+   // ::impact message handlers
 
-   // vmpLightView.cpp : implementation of the ::view class
+   // vmpLightView.cpp : implementation of the ::impact class
    //
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::view
+   // ::impact
 
 
-   bool view::pre_create_window(::user::system * pusersystem)
+   bool impact::pre_create_window(::user::system * pusersystem)
    {
 
       return ::user::impact::pre_create_window(pusersystem);
    }
 
 
-   void view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
 
-   void view::on_message_destroy(::message::message * pmessage)
+   void impact::on_message_destroy(::message::message * pmessage)
    {
       ::user::impact::on_message_destroy(pmessage);
 
@@ -107,22 +107,22 @@ namespace userstack
 
 
 
-   void view::_001OnPaint(::message::message * pmessage)
+   void impact::_001OnPaint(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 
    }
 
 
-   void view:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void impact:: _001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
 
    }
 
-   void view::on_message_create(::message::message * pmessage)
+   void impact::on_message_create(::message::message * pmessage)
    {
       if(pmessage->previous())
          return;
@@ -131,7 +131,7 @@ namespace userstack
 
       __pointer(frame) pframe = GetTypedParent < frame > ();
 
-      pframe->m_pview = this;
+      pframe->m_pimpact = this;
       pframe->m_pdocument = get_document();
 
 
@@ -175,14 +175,14 @@ namespace userstack
 
    }
 
-   void view::on_message_context_menu(::message::message * pmessage)
+   void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();
 
    }
 
-   void view::_001OnTabClick(i32 iTab)
+   void impact::_001OnTabClick(i32 iTab)
    {
       if(iTab == 1)
       {
@@ -190,10 +190,10 @@ namespace userstack
       }
    }
 
-   void view::on_message_set_cursor(::message::message * pmessage)
+   void impact::on_message_set_cursor(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       pmouse->m_ecursor = cursor_arrow;
 
@@ -201,13 +201,13 @@ namespace userstack
 
    }
 
-   void view::pre_translate_message(::message::message * pmessage)
+   void impact::pre_translate_message(::message::message * pmessage)
    {
       ::user::impact::pre_translate_message(pmessage);
    }
 
 
-   ::user::document * view::get_document()
+   ::user::document * impact::get_document()
    {
 
       return ::user::impact::get_document();
@@ -215,7 +215,7 @@ namespace userstack
    }
 
 
-   void view::_001OnTimer(::timer * ptimer)
+   void impact::_001OnTimer(::timer * ptimer)
    {
 
       BASE::_001OnTimer(ptimer);
@@ -241,7 +241,7 @@ namespace userstack
    }
 
 
-   void view::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
+   void impact::GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea)
    {
       
       ::rectangle_i32 rectangleClient = get_client_rect();
@@ -270,16 +270,16 @@ namespace userstack
    }
 
 
-   void view::on_message_left_button_up(::message::message * pmessage)
+   void impact::on_message_left_button_up(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;
       screen_to_client(point);
    }
 
-   void view::check_apps()
+   void impact::check_apps()
    {
       //   if(::IsDebuggerPresent())
       //    return;
@@ -304,63 +304,63 @@ namespace userstack
    }
 
 
-   void view::on_hit_test(::user::item & item)
+   void impact::on_hit_test(::item & item)
    {
       
-      ::rectangle_i32 rectArea;
+      ::rectangle_i32 rectangleArea;
       
-      GetAreaThumbRect(rectArea, m_iV);
+      GetAreaThumbRect(rectangleArea, m_iV);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
       
-         item ={ ::user::e_element_area, m_iV };
+         item ={ ::e_element_area, m_iV };
 
          return;
          
       }
 
-      GetAreaThumbRect(rectArea, m_i_veriwell);
+      GetAreaThumbRect(rectangleArea, m_i_veriwell);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
 
-         item = { ::user::e_element_area, m_i_veriwell };
+         item = { ::e_element_area, m_i_veriwell };
 
          return;
 
       }
 
-      GetAreaThumbRect(rectArea, m_i_winactionarea);
+      GetAreaThumbRect(rectangleArea, m_i_winactionarea);
 
-      if(rectArea.contains(item.m_pointHitTest))
+      if(rectangleArea.contains(item.m_pointHitTest))
       {
          
-         item = { ::user::e_element_area, m_i_winactionarea };
+         item = { ::e_element_area, m_i_winactionarea };
 
          return;
 
       }
       
-      item = ::user::e_element_none;
+      item = ::e_element_none;
       
    }
 
 
-   ::u32 c_cdecl view::ThreadProcShowWindow(LPVOID lpparam)
+   ::u32 c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
    {
-      UNREFERENCED_PARAMETER(lpparam);
+      __UNREFERENCED_PARAMETER(lpparam);
       return 0;
    }
 
 
-   void view::mt_show_window(oswindow oswindow, i32 iShow)
+   void impact::mt_show_window(oswindow oswindow, i32 iShow)
    {
-      UNREFERENCED_PARAMETER(oswindow);
-      UNREFERENCED_PARAMETER(iShow);
+      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(iShow);
    }
 
-   /*void view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   /*void impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);
@@ -380,7 +380,7 @@ namespace userstack
       gcom::backview::user::interaction::on_layout(pgraphics);
    }*/
 
-   void view::_000OnMouse(::message::mouse * pmouse)
+   void impact::_000OnMouse(::message::mouse * pmouse)
    {
       try
       {

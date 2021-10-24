@@ -37,9 +37,6 @@
     <ClInclude Include="frame_Minimal001.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="library.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="style.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,10 +86,10 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="library.cpp">
+    <ClCompile Include="style.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="style.cpp">
+    <ClCompile Include="factory_exchange.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

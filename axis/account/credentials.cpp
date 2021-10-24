@@ -59,7 +59,7 @@ namespace account
       m_strPassword = credentials.m_strPassword;
       m_strPasshash = credentials.m_strPasshash;
 
-      m_rectDialog = credentials.m_rectDialog;
+      m_rectangleDialog = credentials.m_rectangleDialog;
 
       m_estatusHttp = credentials.m_estatusHttp;
 
@@ -138,7 +138,7 @@ namespace account
    /// input
    /// m_strToken
    /// m_strTitle
-   /// m_rectDialog
+   /// m_rectangleDialog
    /// m_pinteractive (optionally?)
    ///
    /// output
@@ -306,7 +306,7 @@ namespace account
 
          }
 
-         if (!task_sleep((int)(40 * iTry)))
+         if (!task_sleep(40_ms * iTry))
          {
 
             return error_cancelled;
@@ -325,7 +325,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = __str((i64)estatus.m_estatus);
+      string strStatus = __string((i64)estatus.m_estatus);
 
       set("open", strStatus);
 
@@ -368,7 +368,7 @@ namespace account
             || m_iPasswordOriginalLength <= 0)
       {
 
-         string strOpenResult = __str((int) error_authentication);
+         string strOpenResult = __string((int) error_authentication);
 
          set("open", strOpenResult);
 
@@ -397,7 +397,7 @@ namespace account
 
          string strPasswordOriginalLength;
 
-         strPasswordOriginalLength = __str(m_iPasswordOriginalLength);
+         strPasswordOriginalLength = __string(m_iPasswordOriginalLength);
 
          set("olen", strPasswordOriginalLength);
 

@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -169,7 +171,7 @@ namespace filemanager
 
       i32 iStepSetCount = 100;
 
-      ::millis millisStepSetSleep = 20;
+      ::duration millisStepSetSleep = 20_ms;
 
       while(task_get_run())
       {
@@ -194,13 +196,13 @@ namespace filemanager
 
          }
 
-         m_pview->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
+         m_pimpact->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pview->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
+      m_pimpact->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
 
       return ::success;
 

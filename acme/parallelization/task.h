@@ -9,7 +9,6 @@ typedef map < task *, itask_t > task_id_map;
 class CLASS_DECL_ACME task :
    virtual public object
 {
-
 public:
 
 
@@ -28,7 +27,7 @@ public:
    string                                          m_strTaskName;
    string                                          m_strTaskTag;
 
-   __pointer(::matter)                             m_pmatter;
+   __pointer(::element)                      m_pelement;
    __pointer(manual_reset_event)                   m_pevSleep;
 
 #ifdef WINDOWS
@@ -41,11 +40,17 @@ public:
    __pointer(counter<::i32>)                       m_pcounter;
    ::task_pointer                                  m_ptask;
    ::routine                                       m_routineNext;
-   ::routine_array                                 m_routineaPost;
+   ::routine_array                                 m_routinea;
 
 
    task();
    ~task() override;
+
+
+   ::e_status on_initialize_object() override;
+
+   
+   virtual ::e_status on_pre_run_task();
 
 
    string get_tag() const override;
@@ -80,7 +85,8 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   ::e_status post(const ::routine& routine) override;
+   ::e_status post_routine(const ::routine& routine) override;
+   
 
    virtual ::e_status run_posted_routines();
 
@@ -102,10 +108,12 @@ public:
 
 
    virtual ::e_status branch(
-      ::e_priority epriority = priority_normal,
+      ::enum_priority epriority = e_priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
+   
+   virtual bool task_sleep(const class ::wait & wait);
 
    //template < typename METHOD >
    //inline static ::task_pointer __task(METHOD method)
@@ -122,7 +130,7 @@ public:
 
 //   static ::task_pointer launch(
 //      ::matter* pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0);
 
@@ -133,7 +141,7 @@ public:
    virtual bool is_thread() const override;
    virtual bool task_get_run() const override;
 
-   virtual bool is_ready_to_quit() const;
+   bool is_ready_to_quit() const override;
 
    virtual bool task_active() const;
    virtual bool is_running() const override;
@@ -160,6 +168,8 @@ public:
    //virtual void finish() override;
 
    virtual void kick_idle() override;
+
+   bool is_branch_current() const override;
 
 
 };

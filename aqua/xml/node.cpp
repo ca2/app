@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "aura/astr.h"
+#include "aqua/_defer.h"
+
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
 
@@ -27,7 +29,7 @@ namespace xml
    node::node(::xml::node * pnodeParent)
    {
 
-      initialize(pnodeParent);
+      initialize_matter(pnodeParent);
 
       m_pxmlnode = this;
       m_pnodeParent           = pnodeParent;
@@ -64,7 +66,7 @@ namespace xml
    node & node::operator = (const node & node)
    {
 
-      __throw(unexpected_situation());
+      throw unexpected_situation();
 
       //if(&node == this)
       //   return *this;
@@ -238,8 +240,12 @@ namespace xml
          return nullptr;
       auto pnodeParent = __xml(m_pnodeParent);
       index i = pnodeParent->find(this);
-      if(i < 0)
-         __throw(::exception::exception("strange: this is not child of this->parent"));
+      if (i < 0)
+      {
+
+         throw ::exception(error_parsing, "strange: this is not child of this->parent");
+
+      }
       i++;
       if(i >= pnodeParent->get_children_count())
          return nullptr;
@@ -294,7 +300,8 @@ namespace xml
             if(::str::begins_consume(pszXml, "<!ENTITY"))
             {
                ::str::consume_spaces(pszXml);
-               string entity_name = ::str::consume_nc_name(pszXml);
+               string entity_name;
+               entity_name = ::str::consume_nc_name(pszXml);
                ::str::consume_spaces(pszXml);
                string entity_value;
                string ext_entity_value;
@@ -483,7 +490,7 @@ namespace xml
                      if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
 
                      }
 
@@ -662,7 +669,7 @@ namespace xml
                      if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
                      {
 
-                        property = pparseinfo->m_pentities->ref_to_entity(property.string());
+                        property = pparseinfo->m_pentities->ref_to_entity(property.get_string());
 
                      }
                      if( quote == '"' || quote == '\'' )
@@ -1327,7 +1334,9 @@ namespace xml
             
             auto pxmlnode = pnode->get_xml_node();
             
-            string strXml = pxmlnode->get_xml(opt);
+            string strXml;
+            
+            strXml = pxmlnode->get_xml(opt);
              
             ostring += strXml;
 
@@ -1352,7 +1361,9 @@ namespace xml
 
          }
 
-         string strTrimmedValue = m_strValue;
+         string strTrimmedValue;
+         
+         strTrimmedValue = m_strValue;
 
          strTrimmedValue.trim();
          // Text Value
@@ -1655,7 +1666,7 @@ namespace xml
       string str;
       while(pnode != nullptr && pnode != this)
       {
-         str = pnode->attribute(pszAttr).string() + ::str::has_char(str, "/");
+         str = pnode->attribute(pszAttr).get_string() + ::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent->get_xml_node();
       }
       if(pnode == nullptr)

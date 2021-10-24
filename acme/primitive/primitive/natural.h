@@ -33,7 +33,7 @@ public:
    typedef TYPE_DATA                   DATA;
 
 
-   ::std::atomic <::count>             m_countReference;
+   iptr                                m_countReference;
    memsize_storage                     m_memsize;
    memsize_storage                     m_datasize;
    DATA                                m_endofmetadata[1024];
@@ -44,7 +44,7 @@ public:
 
    bool natural_is_shared() const { return m_countReference > 1; }
 
-   auto natural_add_ref() { return m_countReference++; }
+   auto natural_add_ref() { return ++m_countReference; }
 
    auto natural_dec_ref() { return --m_countReference; }
 
@@ -173,7 +173,7 @@ public:
 
       auto pmetadata = (natural_meta_data < BASE_META_DATA > *) ALLOCATOR::allocate(memsize + BASE_META_DATA::natural_offset());
 
-      pmetadata->m_countReference = 1;
+      pmetadata->m_countReference = 0;
 
       pmetadata->m_memsize = memsize;
 
@@ -226,9 +226,9 @@ public:
 
          }
 
-         natural_release(pOld);
-
          this->m_pdata = pNew->get_data();
+
+         natural_release(pOld);
 
       }
 
@@ -238,24 +238,19 @@ public:
    void natural_release()
    {
 
-      if (::is_set(this->m_pdata))
-      {
-
-         natural_release(this->m_pdata);
-
-      }
+      auto pdata = this->m_pdata;
 
       m_pdata = default_construct_natural_pointer();
+
+      natural_release(pdata);
 
    }
 
 
-   static void natural_release(DATA * & pdata)
+   static void natural_release(DATA * pdata)
    {
 
       natural_release(NATURAL_META_DATA::from_data(pdata));
-
-      pdata = nullptr;
 
    }
 

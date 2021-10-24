@@ -21,7 +21,7 @@ public:
    ~material_object() override;
 
 
-   virtual ::string to_string() const;
+   virtual ::string get_string() const;
 
    template < typename TYPE >
    inline __pointer(TYPE) cast() { return this; }
@@ -30,34 +30,36 @@ public:
    inline __pointer(TYPE) cast() const { return (::property_object*)this; }
 
    template < typename TYPE >
-   inline bool is() const { return cast < TYPE >(); }
+   inline bool is_a() const { return cast < TYPE >(); }
 
    
    
-   // <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
-   virtual ::e_status command_handler(const ::id & id);
+   //// <3TBS_!! handle -> command_handler <3TBS_(I need to suck you)!!
+   virtual ::e_status handle_command(const ::id & id);
 
 
 
 //   __transport(task) branch(
 //      ::matter* pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
+   virtual bool is_branch_current() const;
 
-   template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
-   auto  __sync_status_payload(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
 
-   //template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename MEMBER_POINTER >
-   //::e_status  __sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, MEMBER_POINTER ppayload);
+   virtual ::e_status post_routine(const ::routine & routine);
 
-   //template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-   //::e_status  __sync_member(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod);
 
-   template < typename BRANCHING_OBJECT, typename BRANCHING_METHOD >
-   ::e_status __sync_routine(const ::duration & duration, BRANCHING_OBJECT pbranching, BRANCHING_METHOD branching_method, ::routine routine);
+   virtual ::e_status send_routine(const ::routine & routine);
+
+
+   template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD, typename PAYLOAD_REFERENCE >
+   ::e_status __send_payload(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER pobject, OBJECT_METHOD objectmethod, PAYLOAD_REFERENCE & payload);
+
+   template < typename POSTING_OBJECT, typename POSTING_METHOD >
+   ::e_status __send_routine(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::routine & routine);
 
 
 };

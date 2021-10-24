@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -10,21 +10,20 @@ namespace process
    {
    public:
 
-
       
-      ::process::bidirectional_pipe       m_pipe;
-      bool                                m_bPiped;
-      int                                 m_iPid;
-      ::process::exit_status              m_exitstatus;
+      ::operating_system::bidirectional_pipe       m_pipe;
+      bool                                         m_bPiped;
+      int                                          m_iPid;
+      ::operating_system::exit_status              m_exitstatus;
 
 
       process();
       ~process() override;
 
 
-      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::e_priority epriority = ::priority_none);
+      virtual bool create_child_process(const ::string & pszCmdLine, bool bPiped = false, const ::string & pszDir = nullptr, ::enum_priority epriority = ::e_priority_none);
 
-      virtual void wait_until_exit(i32 iWaitMax = 0);
+      virtual void wait_until_exit(const class ::wait & wait);
       virtual bool has_exited();
 
       virtual bool write(const ::string & psz);
@@ -40,26 +39,7 @@ namespace process
    typedef __pointer(process) process_pointer;
 
 
-} // namespace process
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} // namespace operating_system
 
 
 

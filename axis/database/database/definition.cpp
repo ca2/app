@@ -48,14 +48,19 @@ namespace database
 
    parameter_list & parameter_list::operator = (const parameter_list & paramlist)
    {
+      
       m_stra = paramlist.m_stra;
+      
       m_row = paramlist.m_row;
+      
       return *this;
+
    }
 
 
    field::field()
    {
+
    }
 
 

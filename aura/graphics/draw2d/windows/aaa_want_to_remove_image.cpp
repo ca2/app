@@ -9,7 +9,7 @@
 CLASS_DECL_AURA bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_image * psaveimage);
 
 #ifdef _UWP
-CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage);
+CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage);
 #endif
 
 ::e_status     imaging::save_image(memory & mem, const ::image * pimage, ::save_image * psaveimage)
@@ -26,7 +26,7 @@ CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStr
 
 #ifdef _UWP
 
-   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 
    //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 
@@ -355,10 +355,10 @@ bool node_save_image(comptr < IStream > pstream, const ::image * pimage, ::save_
 
 #ifdef _UWP
 
-bool node_save_image(Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage)
+bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ stream, const ::image * pimage, ::save_image * psaveimage)
 {
 
-   Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new Windows::Storage::Streams::InMemoryRandomAccessStream();
+   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 
    //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 

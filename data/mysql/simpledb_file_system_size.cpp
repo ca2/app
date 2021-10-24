@@ -195,8 +195,8 @@ index file_size_table::item::FindName(::object * pobject, const ::string & pszNa
 
 void file_size_table::item::update_size(::object * pobject, index & iIteration)
 {
-   UNREFERENCED_PARAMETER(pobject);
-   UNREFERENCED_PARAMETER(iIteration);
+   __UNREFERENCED_PARAMETER(pobject);
+   __UNREFERENCED_PARAMETER(iIteration);
    if(m_bDir)
    {
       m_iSize = 0;
@@ -354,7 +354,7 @@ bool FileSystemSizeWnd::CreateClient()
 
 //#else
 
-   // ::exception::throw_not_implemented();
+   // throw interface_only_exception();
 
 //#endif
 
@@ -373,7 +373,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -422,7 +422,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const ::string & pszPath, boo
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -466,7 +466,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -506,7 +506,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 
@@ -533,9 +533,9 @@ void FileSystemSizeWnd::ClientStartServer()
 
    db_server * pcentral = psystem->m_simpledb.db();
 
-   if(m_millisLastStartTime.elapsed() > 2000)
+   if(m_durationLastStartTime.elapsed() > 2000)
    {
-      m_millisLastStartTime= ::millis::now();
+      m_durationLastStartTime= ::duration::now();
 
       simple_shell_launcher launcher(nullptr, nullptr, pcontext->m_papexcontext->dir().path(psystem->get_module_folder(), "winservice_filesystemsizeapp"), nullptr, nullptr, SW_HIDE);
 
@@ -548,7 +548,7 @@ void FileSystemSizeWnd::ClientStartServer()
 
 #else
 
-   ::exception::throw_not_implemented();
+   throw interface_only_exception();
 
 #endif
 

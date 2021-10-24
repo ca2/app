@@ -160,7 +160,11 @@ namespace linux
 
       ::file::path path;
 
-      path = pacmedir->localconfig() / "monitor-0/desk/2desk";
+      path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->localconfig() / "monitor-0/desk/2desk";
 
       string strPrgName = papplication->m_strAppId;
 
@@ -180,7 +184,11 @@ namespace linux
 
       ::file::path path;
 
-      path = pacmedir->home();
+      path =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home();
 
       path /= ".local/share/applications";
 
@@ -263,9 +271,17 @@ namespace linux
 
       strName.replace(".", "_");
 
-      //pathLaunch = pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
+      //pathLaunch =          auto psystem = m_psystem;
 
-      pathUserBin = pacmedir->home() / "bin" / strName;
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home() / ".config/ca2/bin" / (strName + ".sh");
+
+      pathUserBin =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->home() / "bin" / strName;
 
       ::file::path pathIcon = pcontext->m_papexcontext->dir().matter("main/icon-256.png");
 
@@ -313,7 +329,7 @@ namespace linux
 
       strScript += "\n"; */
 
-      //file_put_contents(pathLaunch, strScript);
+      //m_psystem->m_pacmefile->put_contents(pathLaunch, strScript);
 
       strScript = "#!/bin/bash\n";
 
@@ -330,7 +346,7 @@ namespace linux
 
       strScript += "\n";
 
-      file_put_contents(pathUserBin, strScript);
+      m_psystem->m_pacmefile->put_contents(pathUserBin, strScript);
 
       //chmod(pathLaunch, 0755);
       chmod(pathUserBin, 0600);

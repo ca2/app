@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   exception::exception()
+   ::exception()
    {
 
       string str;
@@ -17,7 +17,7 @@ namespace database
    }
 
 
-   exception::exception(const char * pszFormat, ...)
+   ::exception(const char * pszFormat, ...)
    {
 
       string str;

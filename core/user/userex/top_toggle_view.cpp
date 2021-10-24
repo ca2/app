@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace userex
@@ -30,10 +33,10 @@ namespace userex
    }
 
 
-   void top_toggle_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void top_toggle_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 

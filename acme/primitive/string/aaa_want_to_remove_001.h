@@ -13,7 +13,7 @@
 #define _gen_InterlockedIncrement(ptr) atomic_inc_32((volatile u32 *) ptr)
 #define _gen_InterlockedDecrement(ptr) atomic_dec_32((volatile u32 *) ptr)
 #endif
-#elif defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
+#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #if (defined(RASPBIAN)) && defined(OS32BIT)
 #define _gen_InterlockedIncrement(ptr) __sync_add_and_fetch_4(ptr, 1)
 #define _gen_InterlockedDecrement(ptr) __sync_sub_and_fetch_4(ptr, 1)

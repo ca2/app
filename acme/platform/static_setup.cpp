@@ -7,10 +7,19 @@
 
 
 static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
+   m_pfnFactoryExchange(nullptr),
    m_pszName(pszName),
-   //m_pfnNewAuraApplication(nullptr),
-   //m_pfnNewAuraLibrary(nullptr),
    m_eflag(eflag)
+{
+
+   construct();
+
+}
+
+static_setup::static_setup(PFN_factory_exchange pfnFactoryExchange, const char* pszName) :
+   m_pfnFactoryExchange(pfnFactoryExchange),
+   m_pszName(pszName),
+   m_eflag(flag_factory_exchange)
 {
 
    construct();
@@ -76,6 +85,37 @@ static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const cha
 
 }
 
+
+PFN_factory_exchange static_setup::get_factory_exchange(const char* pszName)
+{
+
+   if (::is_null(pszName))
+   {
+
+      return nullptr;
+
+   }
+
+   auto psetup = s_psetupList;
+
+   while (psetup != nullptr)
+   {
+
+      if (psetup->m_eflag == flag_factory_exchange && !stricmp(pszName, psetup->m_pszName))
+      {
+
+         return psetup->m_pfnFactoryExchange;
+
+      }
+
+      psetup = psetup->m_ppropertysetupNext;
+
+   }
+
+   return nullptr;
+
+
+}
 
 static_setup* static_setup::get_last(::static_setup::enum_flag eflag, const char* pszName)
 {

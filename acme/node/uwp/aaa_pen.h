@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -33,8 +33,8 @@ namespace uwp
       bool destroy();
 
       virtual ~pen();
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
    };
 
-} // namespace uwp
+} // namespace universal_windows

@@ -17,10 +17,10 @@ namespace hellobase
       m_pimage1,
       m_pimage2,
       
-      m_fontDrawStatus(e_create)
+      m_pfontDrawStatus(e_create)
    {
       m_prender = nullptr;
-      m_fontDrawStatus->create_pixel_font("Arial", 20, 400);
+      m_pfontDrawStatus->create_pixel_font("Arial", 20, 400);
       m_colorDrawStatus = argb(255, 255, 255, 0);
 
 
@@ -66,7 +66,7 @@ namespace hellobase
       data_get("cur_fps", v);
 
       m_dFps = v.get_double();
-auto m_millisRoll = ::millis::now();
+auto m_durationRoll = ::duration::now();
 
    }
 
@@ -132,7 +132,7 @@ auto m_millisRoll = ::millis::now();
 
       int xOffset;
 
-      xOffset = int (m_pimageTime->width() * m_dFps * (double)(m_millisRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
+      xOffset = int (m_pimageTime->width() * m_dFps * (double)(m_durationRoll->elapsed()) / 1000->0); // x = v->t; f=fps  1920 * 1FPS * t
 
       xOffset %= m_pimageTime->width();
 
@@ -180,7 +180,7 @@ auto m_millisRoll = ::millis::now();
 
       pdcParam->set_font(f);
 
-      pdcParam->TextOutA(0, 0, __str(m_dwaFrame.get_size()));*/
+      pdcParam->TextOutA(0, 0, __string(m_dwaFrame.get_size()));*/
 
 
       size_i32 s = m_pimageTime->get_size();
@@ -194,12 +194,12 @@ auto m_millisRoll = ::millis::now();
       //pdcScreen->Draw3dRect(200,200,100,100,argb(255,0,255,0),argb(255,0,0,255));
       //u64 endTime = get_nanos();
 
-      //u64 micros = (endTime - startTime) / 1000;
+      //u64 microsecond = (endTime - startTime) / 1000;
 
       //char sz[512];
 
-      //::output_debug_string("view:");
-      //::ansi_from_u64(sz, micros, 10);
+      //::output_debug_string("impact:");
+      //::ansi_from_u64(sz, microsecond, 10);
       //::output_debug_string(sz);
       //::output_debug_string(", ");
 
@@ -209,24 +209,28 @@ auto m_millisRoll = ::millis::now();
 
       //d->get_graphics()->BitBlt(rectangleClient, pimage->g());
 
-      //d.save_to_file(pacmedir->system() / "obs.png");
+      //d.save_to_file(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "obs.png");
 
 
-      //pdcParam->set_font(m_fontDrawStatus);
+      //pdcParam->set_font(m_pfontDrawStatus);
 
       //pdcParam->set_text_color(m_colorDrawStatus);
 
       //string str1;
-      //str1 = "FPS: " + __str((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
+      //str1 = "FPS: " + __string((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
       //m_yDrawStatus = 10;
       //pdcParam->TextOutA(10, m_yDrawStatus, str1);
-      //m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+      //m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //if (m_prender != nullptr)
       //{
       //
-      //   str1 = "Render FPS: " + __str((int) m_prender->m_dRenderFps);
+      //   str1 = "Render FPS: " + __string((int) m_prender->m_dRenderFps);
       //   pdcParam->TextOutA(10, m_yDrawStatus, str1);
-      //   m_yDrawStatus += m_fontDrawStatus->m_dFontSize;
+      //   m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;
       //}
 
 
@@ -365,9 +369,9 @@ auto m_millisRoll = ::millis::now();
 
             }
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(0.5, argb(84, 0, 0, 0));
+            ppen->create_solid(0.5, argb(84, 0, 0, 0));
 
             pgraphics->SelectObject(pen);
 

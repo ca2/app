@@ -14,7 +14,7 @@ namespace datetime
    visual::visual()
    {
 
-      ::datetime::time time = ::datetime::time::get_current_time();
+      ::datetime::time time = ::datetime::time::now();
       
       m_iYear = time.GetYear();
 
@@ -57,7 +57,7 @@ namespace datetime
       {
 
          // pszSchema can be ignored if the object has only one implemented schema
-         ::datetime::time timeNow = ::datetime::time::get_current_time();
+         ::datetime::time timeNow = ::datetime::time::now();
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
 
@@ -80,7 +80,7 @@ namespace datetime
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
          int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
-         rectangle_i32 rectDay;
+         rectangle_i32 rectangleDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
          if (pfile->m_strOptions.find("<no-week-bar-title>") < 0)
@@ -124,21 +124,25 @@ namespace datetime
             {
                time_t w;   
                
+               auto psystem = m_psystem;
+
+               auto pdatetime = psystem->datetime();
+
                if (pfile->m_strOptions.find("<monday-first>") >= 0)
                {
-                  auto psystem = m_psystem;
-
-                  auto pdatetime = psystem->datetime();
-
+                  
                   w = atoi(pdatetime->strftime("%V", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+
                }
                else
                {
-                  w = atoi(::datetime::time(iYear, iMonth, iDay, 0, 0, 0).Format("%U"));
+
+                  w = atoi(pdatetime->strftime("%U", (time_t)::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
+
                }
 
                pfile->raw_print("<td>");
-               pfile->raw_print(__str((int64_t)w));
+               pfile->raw_print(__string((int64_t)w));
                pfile->raw_print("</td>");
             }
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)

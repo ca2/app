@@ -29,7 +29,7 @@ namespace os
       manual_reset_event         m_eventReady;
 
 
-      ::rectangle_i32                     m_rectDesktop;
+      ::rectangle_i32                     m_rectangleDesktop;
 
       bool                       m_bNoDecorations;
 

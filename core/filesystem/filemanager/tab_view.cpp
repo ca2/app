@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 #include "aura/update.h"
 
 
@@ -55,7 +57,7 @@ namespace filemanager
                || pimpactdata->m_id == "new_folder")
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -80,34 +82,36 @@ namespace filemanager
 
          form * pformview = pdocument->get_typed_view < form >();
 
-         auto psubject = subject(BROWSE_ID);
+         ::subject subject(BROWSE_ID);
 
          if (pimpactdata->m_id == "new_folder")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/new_folder.html";
+            subject.payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            subject.payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            psubject->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
+            subject.payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
-         pformview->m_idCreator = pimpactdata->m_id;
+         subject.payload("creator") = pimpactdata->m_id;
 
-         pdocument->update_all_views(psubject);
+         pdocument->update_all_views(&subject);
 
          //psubject->m_pcontext = psubject->context(id_after_browse);
 
-         pdocument->update_all_views(psubject);
+         subject.m_id = id_after_browse;
+
+         pdocument->update_all_views(&subject);
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -115,7 +119,7 @@ namespace filemanager
       else if(pimpactdata->m_id == "filemanager::operation")
       {
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -158,7 +162,7 @@ namespace filemanager
 
          pfilemanagerdata->m_bTransparentBackground = true;
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = true;
 
@@ -192,7 +196,7 @@ namespace filemanager
          //__pointer(simple_frame_window) puserinteractionTopLevel;
          __pointer(document) pdocument = get_document();
 
-         create_view < view >(pimpactdata);
+         create_view < impact >(pimpactdata);
 
          auto pcontext = get_context();
 
@@ -211,7 +215,7 @@ namespace filemanager
 
             bool bPathIsDir = false;
 
-            thread_set(id_thread_resolve_alias);
+            task_flag().set(e_task_flag_resolve_alias);
 
             try
             {
@@ -224,7 +228,7 @@ namespace filemanager
 
             }
 
-            thread_unset(id_thread_resolve_alias);
+            task_flag().clear(e_task_flag_resolve_alias);
 
             if(bPathIsDir)
             {
@@ -272,12 +276,12 @@ namespace filemanager
 
 
 
-   void tab_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tab_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      impact::on_subject(psubject, pcontext);
+      impact::handle(psubject, pcontext);
 
-      ::user::tab_view::on_subject(psubject, pcontext);
+      ::user::tab_view::handle(psubject, pcontext);
 
       ////__update(::update)
       {

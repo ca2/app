@@ -22,11 +22,11 @@ namespace calculator
    
       
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
-      bool on_open_document(const ::payload & varFile) override;
+      bool on_open_document(const ::payload & payloadFile) override;
 
 
    };

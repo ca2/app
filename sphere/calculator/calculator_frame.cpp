@@ -25,7 +25,7 @@ namespace calculator
    void frame::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_bTimerOn = false;
 

@@ -71,7 +71,7 @@ namespace draw2d_opengl
 
       //((region *)this)->defer_update();
 
-      //plusplus::Rect rectangle_i32;
+      //plusplus::rectangle_i32 rectangle_i32;
 
       //((region *) this)->m_pregion->GetBounds(&rectangle, &plusplus::Graphics((HDC) nullptr));
 
@@ -110,11 +110,11 @@ namespace draw2d_opengl
       return true;
    }
    /*
-   bool region::RectInRegion(const ::rectangle_i32 & rectangle) const
+   bool region::rectInRegion(const ::rectangle_i32 & rectangle) const
    { 
-      //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rectangle); 
+      //ASSERT(get_os_data() != nullptr); return ::rectInRegion((HRGN)get_os_data(), rectangle); 
 
-      plusplus::RectF rectangle_f32((plusplus::REAL) rectangle.left, (plusplus::REAL) rectangle.top, (plusplus::REAL) (rectangle.right - rectangle.left), (plusplus::REAL) (rectangle.bottom - rectangle.top));
+      plusplus::rectF rectangle_f32((plusplus::REAL) rectangle.left, (plusplus::REAL) rectangle.top, (plusplus::REAL) (rectangle.right - rectangle.left), (plusplus::REAL) (rectangle.bottom - rectangle.top));
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
@@ -187,7 +187,7 @@ namespace draw2d_opengl
    //   //case type_combine:
    //   //   return get_combine();
    //   //default:
-   //   //   ::exception::throw_not_implemented();
+   //   //   throw interface_only_exception();
    //   //}
 
    //   return nullptr;
@@ -199,7 +199,7 @@ namespace draw2d_opengl
 
    //   plusplus::GraphicsPath path;
 
-   //   plusplus::RectF rectangle_i32;
+   //   plusplus::rectF rectangle_i32;
 
    //   rectangle.X      = (plusplus::REAL) m_x1;
    //   rectangle.Y      = (plusplus::REAL) m_y1;

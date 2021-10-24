@@ -7,6 +7,12 @@
 //
 #pragma once
 
+#define DECLARE_FACTORY_EXCHANGE(library) \
+extern "C" void library ## _factory_exchange(::factory_map* pfactorymap);
+
+#define SETUP_FACTORY_EXCHANGE(library) \
+static_setup      m_setup_ ## library{ &library ## _factory_exchange, #library}
+
 
 class node_data_exchange;
 
@@ -29,6 +35,7 @@ public:
       flag_multimedia = 8,
       flag_library = 16,
       flag_object_user = 32,
+      flag_factory_exchange = 64,
       flag_do_not_install = 4096,
 
    };
@@ -37,12 +44,14 @@ public:
    const char *                  m_pszName;
    enum_flag                        m_eflag;
    static_setup*                 m_ppropertysetupNext;
+   PFN_factory_exchange          m_pfnFactoryExchange;
 
 
    static static_setup *         s_psetupList;
 
 
    static_setup(::static_setup::enum_flag eflag, const char * pszName);
+   static_setup(PFN_factory_exchange pfnFactoryExchange, const char* pszName);
 
 
    void construct();
@@ -54,6 +63,7 @@ public:
 
    static static_setup* get_last(::static_setup::enum_flag eflag, const char* pszName = nullptr);
    static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
+   static PFN_factory_exchange get_factory_exchange(const char* pszName = nullptr);
 
    virtual ::matter * create_new_object();
    virtual ::matter* create_new_application();
@@ -124,5 +134,37 @@ __namespace_object_factory(SYSTEM,:: static_setup::flag_system)
 __namespace_object_factory(SESSION,:: static_setup::flag_session)
 
 
+
+
+
+
+template < typename APPLICATION >
+class static_application_factory :
+   public static_setup
+{
+public:
+
+
+   virtual ::matter* new_application_as_matter() override
+   {
+      auto papplication = new APPLICATION;
+#ifdef NO_IMAGING
+      papplication->m_bImaging = false;
+#endif
+
+      return papplication;
+
+   }
+
+
+   static_application_factory(const char* pszName = "") :
+      static_setup(flag_application, pszName)
+   {
+
+
+   }
+
+
+};
 
 

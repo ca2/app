@@ -357,7 +357,7 @@ namespace fs
    }
 
 
-   file_result set::get_file(const ::file::path & path, const ::file::e_open & eopen)
+   file_transport set::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       ::fs::data * pdata = path_data(path);

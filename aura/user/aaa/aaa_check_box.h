@@ -33,9 +33,9 @@ namespace user
 
 
       e_style              m_estyle;
-      millis                 m_millisAnimationStart;
+      ::duration                 m_durationAnimationStart;
       double               m_dPosition;
-      millis                 m_millisAnimationPeriod;
+      ::duration                 m_durationAnimationPeriod;
 
 
       check_box(e_style estyle = style_normal);
@@ -52,9 +52,9 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

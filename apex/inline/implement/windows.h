@@ -1,23 +1,27 @@
 // Created by camilo on 2021-04-02 01:58 BRT <3TBS_!!
 #pragma once
+
+
 #include "acme/primitive/collection/strdup_array.h"
 
-//void stage();
+
 class ::system* acme_system_init();
+
+
 void acme_system_term();
 
 
-
 CLASS_DECL_ACME void process_set_args(int argc, platform_char** argv);
+
 
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 {
 
    ::e_status estatus = ::success;
 
-   //process_set_args(argc, argv);
-
    string strAppId;
+
+#if !defined(_UWP)
 
 #ifdef _APP_ID
 
@@ -27,7 +31,9 @@ int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 
    strAppId = executable_get_app_id(nullptr);
 
-#endif;
+#endif
+
+#endif
 
    auto psystem = platform_create_system(strAppId);
 

@@ -23,22 +23,22 @@ payload::payload(const char * psz)
 }
 
 
-payload::payload(::matter * pmatter)
+payload::payload(::element * pelement)
 {
 
    m_etype = e_type_new;
 
-   operator = (pmatter);
+   operator = (pelement);
 
 }
 
 
-payload::payload(const ::matter & matter)
+payload::payload(const ::element & element)
 {
 
    m_etype = e_type_new;
 
-   operator = (matter);
+   operator = (element);
 
 }
 
@@ -258,12 +258,12 @@ payload::payload(const class ::payload & payload)
 }
 
 
-payload::payload(class ::payload * pvar)
+payload::payload(::payload * ppayload)
 {
 
    m_etype = e_type_new;
 
-   operator = (pvar);
+   operator = (ppayload);
 
 }
 
@@ -286,15 +286,6 @@ pack::pack(const ::std::initializer_list < pack >& list)
 
 }
 
-payload::payload(const class ::payload * pvar)
-{
-
-   m_etype = e_type_new;
-
-   operator = ( pvar);
-
-}
-
 
 payload::payload(const ::property & property)
 {
@@ -313,9 +304,9 @@ payload::payload(const ::routine & routine)
 
     set_type(e_type_routine, false);
 
-    m_pmatterRoutine = routine.m_p;
+    m_pelementRoutine = routine.m_p;
     
-    ::increment_reference_count(m_pmatterRoutine);
+    ::increment_reference_count(m_pelementRoutine);
 
 }
 
@@ -332,27 +323,6 @@ payload::payload(const ::routine & routine)
 
 
 payload::payload(::property * pproperty)
-{
-
-   m_etype = e_type_new;
-
-   if (::is_set(pproperty))
-   {
-
-      operator = (pproperty);
-
-   }
-   else
-   {
-
-      clear_data();
-
-   }
-
-}
-
-
-payload::payload(const ::property * pproperty)
 {
 
    m_etype = e_type_new;
@@ -402,8 +372,11 @@ payload::payload(::duration * pduration)
 
 payload::payload(const ::datetime::time & time)
 {
+   
    m_etype = e_type_time;
-   m_time = time.m_time;
+   
+   m_time = time.m_i;
+
 }
 
 
@@ -1152,28 +1125,28 @@ void payload::increment_reference_count()
    switch(m_etype)
    {
       case e_type_element:
-         m_p->increment_reference_count();
+         if(m_p) m_p->increment_reference_count();
          break;
       case e_type_string_array:
-         m_pstra->increment_reference_count();
+         if (m_pstra) m_pstra->increment_reference_count();
          break;
       case e_type_i32_array:
-         m_pia->increment_reference_count();
+         if (m_pia) m_pia->increment_reference_count();
          break;
       case e_type_payload_array:
-         m_ppayloada->increment_reference_count();
+         if (m_ppayloada) m_ppayloada->increment_reference_count();
          break;
       case e_type_property_set:
-         m_ppropertyset->increment_reference_count();
+         if (m_ppropertyset) m_ppropertyset->increment_reference_count();
          break;
       case e_type_i64_array:
-         m_p->increment_reference_count();
+         if (m_p) m_p->increment_reference_count();
          break;
       case e_type_memory:
-         m_pmemory->increment_reference_count();
+         if (m_pmemory) m_pmemory->increment_reference_count();
          break;
       case e_type_path:
-         m_ppath->increment_reference_count();
+         if (m_ppath) m_ppath->increment_reference_count();
          break;
       default:
          break;
@@ -1371,100 +1344,100 @@ class ::payload & payload::operator = (const ::id & id)
 }
 
 
-class ::payload & payload::operator = (const ::secs & secs)
-{
-
-   set_type(e_type_secs);
-
-   m_secs = secs;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::secs * psecs)
-{
-
-   set_type(e_type_psecs);
-
-   m_psecs = psecs;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::millis & millis)
-{
-
-   set_type(e_type_millis);
-
-   m_millis = millis;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::millis * pmillis)
-{
-
-   set_type(e_type_pmillis);
-
-   m_pmillis = pmillis;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::micros & micros)
-{
-
-   set_type(e_type_micros);
-
-   m_micros = micros;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::micros * pmicros)
-{
-
-   set_type(e_type_pmicros);
-
-   m_pmicros = pmicros;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (const ::nanos & nanos)
-{
-
-   set_type(e_type_nanos);
-
-   m_nanos = nanos;
-
-   return *this;
-
-}
-
-
-class ::payload & payload::operator = (::nanos * pnanos)
-{
-
-   set_type(e_type_pnanos);
-
-   m_pnanos = pnanos;
-
-   return *this;
-
-}
+//class ::payload & payload::operator = (const ::second & second)
+//{
+//
+//   set_type(e_type_secs);
+//
+//   m_secs = second;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::second * psecs)
+//{
+//
+//   set_type(e_type_psecs);
+//
+//   m_psecs = psecs;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::duration & duration)
+//{
+//
+//   set_type(e_type_millis);
+//
+//   m_millis = ::duration;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::duration * pmillis)
+//{
+//
+//   set_type(e_type_pmillis);
+//
+//   m_pmillis = pmillis;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::microsecond & microsecond)
+//{
+//
+//   set_type(e_type_micros);
+//
+//   m_micros = microsecond;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::microsecond * pmicros)
+//{
+//
+//   set_type(e_type_pmicros);
+//
+//   m_pmicros = pmicros;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (const ::nanosecond & nanosecond)
+//{
+//
+//   set_type(e_type_nanos);
+//
+//   m_nanos = nanosecond;
+//
+//   return *this;
+//
+//}
+//
+//
+//class ::payload & payload::operator = (::nanosecond * pnanos)
+//{
+//
+//   set_type(e_type_pnanos);
+//
+//   m_pnanos = pnanos;
+//
+//   return *this;
+//
+//}
 
 
 class ::payload & payload::operator = (const ::duration & duration)
@@ -1516,14 +1489,6 @@ class ::payload & payload::operator = (::duration * pduration)
    }
 
    return *this;
-
-}
-
-
-payload::operator ::string() const
-{
-
-   return this->string();
 
 }
 
@@ -1667,7 +1632,7 @@ bool payload::is_empty() const
       return m_pid->is_empty();
 
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -2165,19 +2130,23 @@ bool payload::strictly_different(bool b) const
 }
 
 
-string payload::to_recursive_string() const
+string payload::get_recursive_string() const
 {
+
    if(is_array())
    {
+
       ::string str;
+
       str += "array (";
+
       for(::i32 i = 0; i < array_get_count(); i++)
       {
          if(i > 0)
             str += " ";
-         str += __str(i);
+         str += __string(i);
          str += " => ";
-         str += at(i).to_recursive_string();
+         str += at(i).get_recursive_string();
          str += ";";
       }
       str += ")";
@@ -2213,11 +2182,11 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_i32)
       {
-         str = __str(m_i32);
+         str = __string(m_i32);
       }
       else if(m_etype == ::e_type_u32)
       {
-         str = __str( m_u32);
+         str = __string( m_u32);
       }
       else if(m_etype == ::e_type_i64)
       {
@@ -2225,11 +2194,11 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_u64)
       {
-         str = __str(m_u64);
+         str = __string(m_u64);
       }
       else if(m_etype == ::e_type_f64)
       {
-         str = __str(m_f64);
+         str = __string(m_f64);
       }
       else if(m_etype == ::e_type_id)
       {
@@ -2245,12 +2214,12 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_bool)
       {
-         str = __str((int)m_b);
+         str = __string((int)m_b);
       }
       else if (is_element_set())
       {
          
-         str = __str(*matter());
+         str = __string(*element());
 
       }
 
@@ -2719,6 +2688,28 @@ string & payload::as_string(const char * pszOnNull)
 }
 
 
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+long payload::get_long(long lDefault) const
+{
+   
+   return (long) this->i64(lDefault);
+   
+}
+
+
+unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
+{
+   
+   return (unsigned long) this->u64(ulDefault);
+   
+}
+
+
+#endif
+
 //
 //i64 & payload::as_i64()
 //{
@@ -2831,7 +2822,7 @@ string & payload::as_string(const char * pszOnNull)
 
    }
 
-   return m_pmatterRoutine;
+   return m_pelementRoutine;
 
 }
 
@@ -3511,7 +3502,7 @@ string_array payload::stra() const
          for (::index i = 0; i < c; i++)
          {
 
-            stra.add(at(i).to_string());
+            stra.add(at(i).get_string());
 
          }
 
@@ -3564,7 +3555,7 @@ string_array & payload::as_stra()
          for (::index i = 0; i < c; i++)
          {
 
-            pstra->add(at(i).to_string());
+            pstra->add(at(i).get_string());
 
          }
 
@@ -3839,16 +3830,22 @@ duration payload::duration() const
       return *m_pduration;
 
    }
+   else if(is_integer())
+   {
+
+      return INTEGRAL_SECOND(i64());
+
+   }
+   else if (is_floating())
+   {
+
+      return FLOATING_SECOND(f64());
+
+   }
    else
    {
 
-      return i64();
-
-  //    set_type(e_type_duration);
-//
-    //  m_duration.set_null();
-
-      return m_duration;
+      return FLOATING_SECOND(f64());
 
    }
 
@@ -4216,7 +4213,7 @@ property_set & payload::as_propset()
    if (m_etype != e_type_property)
    {
 
-      __throw(exception::exception("::payload is not a property (1)"));
+      __throw(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4232,7 +4229,7 @@ property & payload::as_property()
    if(m_etype != e_type_property)
    {
 
-      __throw(exception::exception("::payload is not a property (1)"));
+      __throw(error_wrong_state, "::payload is not a property (1)");
 
    }
 
@@ -4337,7 +4334,7 @@ string payload::implode(const char * pszGlue) const
 //      }
 //      else
 //      {
-//         __throw(::exception::exception("index out of bounds"));
+//         __throw(::exception("index out of bounds"));
 //      }
 //   }
 //}
@@ -4366,13 +4363,21 @@ string payload::implode(const char * pszGlue) const
       }
       else
       {
-         __throw(::exception::exception("index out of bounds"));
+
+         __throw(error_index_out_of_bounds, "index out of bounds");
+
+         return error_failed;
+
       }
+
    }
+
 }
+
 
 bool payload::array_contains(const char * psz, index find, ::count count) const
 {
+
    switch(m_etype)
    {
    case e_type_i32_array:
@@ -4459,7 +4464,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
    ::payload varRet(*this);
 
-   if (varRet.is_real())
+   if (varRet.is_floating())
    {
 
       if (::str::is_integer(str))
@@ -4505,7 +4510,7 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 }
 
 
-payload payload::operator + (const char * psz) const
+::payload payload::operator + (const char * psz) const
 {
    
    return *this + ::string(psz); 
@@ -4605,9 +4610,9 @@ payload payload::operator + (const char * psz) const
 //   switch(payload.m_etype)
 //   {
 //   case ::e_type_null:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   case ::e_type_empty:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   case ::e_type_i32:
 //      return (iptr) ul / payload.m_i32;
 //   case ::e_type_u32:
@@ -4631,7 +4636,7 @@ payload payload::operator + (const char * psz) const
 //   case ::e_type_property:
 //      return operator / (ul, *payload.m_pproperty);
 //   default:
-//      __throw(::exception::exception("division by zero"));
+//      __throw(::exception("division by zero"));
 //   }
 //
 //}
@@ -5051,11 +5056,15 @@ bool payload::is_scalar() const
    }
 }
 
-bool payload::is_real() const
+
+bool payload::is_floating() const
 {
+
    if(m_etype == e_type_f64 || m_etype == e_type_f32)
    {
+
       return true;
+
    }
    // simple, lazy, slow, and a bit incorrect
    // incorrect because atof and atoi returns partials results even if it
@@ -5853,7 +5862,7 @@ end:
 
 #if defined(LINUX) || defined(ANDROID)
 
-      f64 f64 = atof(strNumber);
+      ::f64 f64 = atof(strNumber);
 
 #else
 
@@ -6469,7 +6478,12 @@ bool payload::is_numeric() const
       case e_type_color:
          return true;
    default:
+   {
       __throw(error_not_implemented);
+
+      return false;
+
+   }
 
    };
 
@@ -6829,7 +6843,7 @@ bool payload::is_false() const
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
-      return !m_time.m_time;
+      return !m_time.m_i;
    case e_type_filetime:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -6837,11 +6851,11 @@ bool payload::is_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-         return ::is_null(m_pmatterRoutine);
+         return ::is_null(m_pelementRoutine);
    //case e_type_process:
      //    return !m_process;
 
-   // matter classes
+   // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -6862,25 +6876,66 @@ bool payload::is_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   case e_type_secs:
-      return !m_secs.m_i;
-   case e_type_psecs:
-      return !m_psecs || !m_psecs->m_i;
-   case e_type_millis:
-      return !m_millis.m_i;
-   case e_type_pmillis:
-      return !m_pmillis || !m_pmillis->m_i;
-   case e_type_micros:
-      return !m_micros.m_i;
-   case e_type_pmicros:
-      return !m_pmicros || !m_pmicros->m_i;
-   case e_type_nanos:
-      return !m_nanos.m_i;
-   case e_type_pnanos:
-      return !m_pnanos || !m_pnanos->m_i;
+   case e_type_integral_nanosecond:
+      return !m_integralnanosecond.m_i;
+   case e_type_pintegral_nanosecond:
+      return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+      case e_type_integral_microsecond:
+         return !m_integralmicrosecond.m_i;
+      case e_type_pintegral_microsecond:
+         return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+      case e_type_integral_millisecond:
+         return !m_integralmillisecond.m_i;
+      case e_type_pintegral_millisecond:
+         return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+      case e_type_integral_second:
+         return !m_integralsecond.m_i;
+      case e_type_pintegral_second:
+         return !m_pintegralsecond || !m_pintegralsecond->m_i;
+      case e_type_integral_minute:
+         return !m_integralminute.m_i;
+      case e_type_pintegral_minute:
+         return !m_pintegralminute || !m_pintegralminute->m_i;
+      case e_type_integral_hour:
+         return !m_integralhour.m_i;
+      case e_type_pintegral_hour:
+         return !m_pintegralhour || !m_pintegralhour->m_i;
+      case e_type_integral_day:
+         return !m_integralday.m_i;
+      case e_type_pintegral_day:
+         return !m_pintegralday || !m_pintegralday->m_i;
+      case e_type_floating_nanosecond:
+         return !m_floatingnanosecond.m_d;
+      case e_type_pfloating_nanosecond:
+         return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+         case e_type_floating_microsecond:
+            return !m_floatingmicrosecond.m_d;
+         case e_type_pfloating_microsecond:
+            return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+         case e_type_floating_millisecond:
+            return !m_floatingmillisecond.m_d;
+         case e_type_pfloating_millisecond:
+            return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+         case e_type_floating_second:
+            return !m_floatingsecond.m_d;
+         case e_type_pfloating_second:
+            return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+         case e_type_floating_minute:
+            return !m_floatingminute.m_d;
+         case e_type_pfloating_minute:
+            return !m_pfloatingminute || !m_pfloatingminute->m_d;
+         case e_type_floating_hour:
+            return !m_floatinghour.m_d;
+         case e_type_pfloating_hour:
+            return !m_pfloatinghour || !m_pfloatinghour->m_d;
+         case e_type_floating_day:
+            return !m_floatingday.m_d;
+         case e_type_pfloating_day:
+            return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
+      case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
       return !m_color.u32;
@@ -6974,7 +7029,7 @@ bool payload::is_set_false() const
    case e_type_pid:
       return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
    case e_type_time:
-      return !m_time.m_time;
+      return !m_time.m_i;
    case e_type_filetime:
       return !m_filetime;
    case e_type_payload_pointer:
@@ -6982,11 +7037,11 @@ bool payload::is_set_false() const
    case e_type_property:
       return m_pproperty || !*m_pproperty;
    case e_type_routine:
-      return ::is_null(m_pmatterRoutine);
+      return ::is_null(m_pelementRoutine);
    //case type_process:
    //   return !m_process;
 
-      // matter classes
+      // element classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7007,25 +7062,66 @@ bool payload::is_set_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
-   case e_type_secs:
-      return !m_secs.m_i;
-   case e_type_psecs:
-      return !m_psecs || !m_psecs->m_i;
-   case e_type_millis:
-      return !m_millis.m_i;
-   case e_type_pmillis:
-      return !m_pmillis || !m_pmillis->m_i;
-   case e_type_micros:
-      return !m_micros.m_i;
-   case e_type_pmicros:
-      return !m_pmicros || !m_pmicros->m_i;
-   case e_type_nanos:
-      return !m_nanos.m_i;
-   case e_type_pnanos:
-      return !m_pnanos || !m_pnanos->m_i;
+      case e_type_integral_nanosecond:
+         return !m_integralnanosecond.m_i;
+      case e_type_pintegral_nanosecond:
+         return !m_pintegralnanosecond || !m_pintegralnanosecond->m_i;
+         case e_type_integral_microsecond:
+            return !m_integralmicrosecond.m_i;
+         case e_type_pintegral_microsecond:
+            return !m_pintegralmicrosecond || !m_pintegralmicrosecond->m_i;
+         case e_type_integral_millisecond:
+            return !m_integralmillisecond.m_i;
+         case e_type_pintegral_millisecond:
+            return !m_pintegralmillisecond || !m_pintegralmillisecond->m_i;
+         case e_type_integral_second:
+            return !m_integralsecond.m_i;
+         case e_type_pintegral_second:
+            return !m_pintegralsecond || !m_pintegralsecond->m_i;
+         case e_type_integral_minute:
+            return !m_integralminute.m_i;
+         case e_type_pintegral_minute:
+            return !m_pintegralminute || !m_pintegralminute->m_i;
+         case e_type_integral_hour:
+            return !m_integralhour.m_i;
+         case e_type_pintegral_hour:
+            return !m_pintegralhour || !m_pintegralhour->m_i;
+         case e_type_integral_day:
+            return !m_integralday.m_i;
+         case e_type_pintegral_day:
+            return !m_pintegralday || !m_pintegralday->m_i;
+         case e_type_floating_nanosecond:
+            return !m_floatingnanosecond.m_d;
+         case e_type_pfloating_nanosecond:
+            return !m_pfloatingnanosecond || !m_pfloatingnanosecond->m_d;
+            case e_type_floating_microsecond:
+               return !m_floatingmicrosecond.m_d;
+            case e_type_pfloating_microsecond:
+               return !m_pfloatingmicrosecond || !m_pfloatingmicrosecond->m_d;
+            case e_type_floating_millisecond:
+               return !m_floatingmillisecond.m_d;
+            case e_type_pfloating_millisecond:
+               return !m_pfloatingmillisecond || !m_pfloatingmillisecond->m_d;
+            case e_type_floating_second:
+               return !m_floatingsecond.m_d;
+            case e_type_pfloating_second:
+               return !m_pfloatingsecond || !m_pfloatingsecond->m_d;
+            case e_type_floating_minute:
+               return !m_floatingminute.m_d;
+            case e_type_pfloating_minute:
+               return !m_pfloatingminute || !m_pfloatingminute->m_d;
+            case e_type_floating_hour:
+               return !m_floatinghour.m_d;
+            case e_type_pfloating_hour:
+               return !m_pfloatinghour || !m_pfloatinghour->m_d;
+            case e_type_floating_day:
+               return !m_floatingday.m_d;
+            case e_type_pfloating_day:
+               return !m_pfloatingday || !m_pfloatingday->m_d;
    case e_type_enum_command:
    case e_type_enum_status:
    case e_type_enum_check:
+      case e_type_enum_flag:
       return !m_i64;
    case e_type_color:
       return !m_color.u32;
@@ -7104,10 +7200,10 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::matter & o)
+::payload & payload::operator = (const ::element & o)
 {
 
-   _set_element((::matter *) &o);
+   _set_element((::element *) &o);
 
    return *this;
 
@@ -7245,8 +7341,6 @@ void unit_test_primitive_var_acme_block()
 //   return m_i8;
 //
 //}
-
-
 
 
 #define IMPLEMENT_PAYLOAD_NUMBER(NUMBERTYPE)     \
@@ -7420,9 +7514,9 @@ void payload::receive_response(const ::payload & payload)
 
    set_type(e_type_routine, false);
 
-   m_pmatterRoutine = routine.m_p;
+   m_pelementRoutine = routine.m_p;
 
-   ::increment_reference_count(m_pmatterRoutine);
+   ::increment_reference_count(m_pelementRoutine);
 
    return *this;
 
@@ -7442,7 +7536,7 @@ void payload::receive_response(const ::payload & payload)
 
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 void number_operator_payload_test()
 {

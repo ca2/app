@@ -19,7 +19,10 @@ namespace file
 
 
       set();
-      virtual ~set();
+      ~set() override;
+
+
+      ::e_status on_initialize_object() override;
 
 
       // reference

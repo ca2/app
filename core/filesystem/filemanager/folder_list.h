@@ -56,8 +56,8 @@ namespace filemanager
       folder_list ();
       virtual ~folder_list ();
 
-      virtual void install_message_routing(::channel * pchannel) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void install_message_routing(::channel * pchannel) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
@@ -66,8 +66,8 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(_001OnCancelMode);
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
 

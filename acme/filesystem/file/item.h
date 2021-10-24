@@ -11,10 +11,10 @@ namespace file
    public:
 
 
-      ::file::path               m_filepathUser;
-      ::file::path               m_filepathFinal;
-      enumeration < enum_flag >           m_flags;
-      string                     m_strName;
+      ::file::path                  m_filepathUser;
+      ::file::path                  m_filepathFinal;
+      enumeration < enum_flag >     m_flags;
+      string                        m_strName;
 
 
       item();

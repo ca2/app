@@ -30,10 +30,10 @@ namespace user
    }
 
 
-   ::user::impact * tree_data::get_data_bound_view(index iView)
+   ::user::primitive * tree_data::get_data_bound_view(index iView)
    {
 
-      return m_usertreeaBound[iView].cast < ::user::impact >();
+      return m_usertreeaBound[iView].cast < ::user::primitive >();
 
    }
 
@@ -303,13 +303,13 @@ namespace user
 
    }
 
-   void tree_data::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void tree_data::handle(::subject * psubject, ::context * pcontext)
    {
 
       for (auto& pusertree : m_usertreea)
       {
 
-         pusertree->on_subject(psubject, pcontext);
+         pusertree->handle(psubject, pcontext);
 
       }
 
@@ -357,7 +357,7 @@ namespace user
    void tree_data::on_merge_user_tree(::user::tree * pusertree)
    {
 
-      UNREFERENCED_PARAMETER(pusertree);
+      __UNREFERENCED_PARAMETER(pusertree);
 
    }
 
@@ -365,7 +365,7 @@ namespace user
    void tree_data::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      UNREFERENCED_PARAMETER(pusertree);
+      __UNREFERENCED_PARAMETER(pusertree);
 
    }
 

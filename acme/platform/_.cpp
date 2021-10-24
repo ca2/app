@@ -97,7 +97,7 @@ void gen_CrtErrorCheck(i32 i);
 
 void gen_CrtErrorCheck(i32 i)
 {
-   UNREFERENCED_PARAMETER(i);
+   __UNREFERENCED_PARAMETER(i);
 }
 
 
@@ -344,7 +344,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 
    string strType = get_debug_report_type_text(iType);
 
-   output_debug_string(strType + ": file: " + string(psz) + " line:" + __str(iLine) + strModule + strExtra);
+   output_debug_string(strType + ": file: " + string(psz) + " line:" + __string(iLine) + strModule + strExtra);
 
    return 1;
 
@@ -376,7 +376,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
    }
 
 
-   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __str(iLine) + strModule + strExtra);
+   output_debug_string(strType + ": file: " + string(pszFile) + " line:" + __string(iLine) + strModule + strExtra);
 
    return 1;
 

@@ -31,14 +31,14 @@ namespace app_net
    public:
 
 
-      string                  m_strUrl;
-      double                  m_dBreathPeriod;
-      double                  m_dStartTime;
-      double                  m_dPhaseShift;
-      ::write_text::font_pointer  m_pfont;
-      string                  m_strGet;
-      bool                    m_bGettingUrl;
-      millis                    m_millisStartGettingUrl;
+      string                        m_strUrl;
+      double                        m_dBreathPeriod;
+      ::duration                    m_durationStart;
+      double                        m_dPhaseShift;
+      ::write_text::font_pointer    m_pfont;
+      string                        m_strGet;
+      bool                          m_bGettingUrl;
+      ::duration                    m_durationStartGettingUrl;
 
 
       window();
@@ -49,12 +49,12 @@ namespace app_net
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item* pitem) override;
+      virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item* pitem) override;
 
 
       virtual void start_getting_url();
 
-      virtual bool on_click(const ::user::item& item) override;
+      virtual bool on_click(const ::item& item) override;
 
    };
 

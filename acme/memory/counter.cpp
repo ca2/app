@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 int g_iMemoryCounters = -1;
@@ -28,7 +29,7 @@ bool initialize_memory_counter(::matter* pmatter)
    if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
    {
 
-      g_iMemoryCounters = file_exists(pmatter->m_psystem->m_pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+      g_iMemoryCounters = pmatter->m_psystem->m_pacmefile->exists(pmatter->m_psystem->m_pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
 
       if (g_iMemoryCounters)
       {
@@ -64,7 +65,7 @@ bool initialize_memory_counter(::matter* pmatter)
 //
 //      ::file::path strModule = module_path_from_pid(get_current_process_id());
 //
-//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __str(get_current_process_id());
+//      string strBasePath = pmatter->m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __string(get_current_process_id());
 //
 //#endif
 //

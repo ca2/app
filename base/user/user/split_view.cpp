@@ -81,13 +81,15 @@ namespace user
          bOk = false;
 
          string strMessage;
-#if defined(APPLEOS) || defined(LINUX) || defined(ANDROID)
-         strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).name());
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+         strMessage.Format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).name());
 #else
-         strMessage.Format("split_view::on_create_impact failed to create views for split view %s", typeid(this).raw_name());
+         strMessage.Format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());
 #endif
 
-         message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
+         //message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
+
+         output_error_message(strMessage);
 
       }
 
@@ -112,7 +114,7 @@ namespace user
    }
 
 
-   void split_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void split_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }
@@ -122,7 +124,7 @@ namespace user
    {
       __pointer(::message::size) psize(pmessage);
       psize->previous();
-      //on_layout(::draw2d::graphics_pointer & pgraphics);
+      //on_layout(pgraphics);
    }
 
 
@@ -153,7 +155,7 @@ namespace user
    void split_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -215,7 +217,7 @@ namespace user
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
       pshowwindow->previous();
-      //on_layout(::draw2d::graphics_pointer & pgraphics);
+      //on_layout(pgraphics);
    }
 
 

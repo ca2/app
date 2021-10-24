@@ -4,7 +4,7 @@
 void install_sigchld_handler();
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -111,6 +111,8 @@ namespace process
 
 #endif
 
+      return false;
+
    }
 
 
@@ -150,13 +152,13 @@ namespace process
       if(dur.is_pos_infinity())
       {
 
-         m_millisTimeout.Null();
+         m_durationTimeout.Null();
 
       }
       else
       {
 
-         m_millisTimeout = (millis) dur.u32_millis();
+         m_durationTimeout = dur;
 
       }
 
@@ -215,7 +217,7 @@ namespace process
 
       }
 
-      m_millisStart.Now();
+      m_durationStart.Now();
 
       string strRead;
 
@@ -287,7 +289,7 @@ namespace process
    void department::process_thread::run_elevated()
    {
 
-      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_millisTimeout,m_pbPotentialTimeout);
+      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_durationTimeout,m_pbPotentialTimeout);
 
       m_result.add((::e_status    ) m_pprocess->m_exitstatus.m_iExitCode);
 
@@ -311,7 +313,7 @@ namespace process
    bool department::process_thread::retry()
    {
 
-      if(m_millisTimeout > 0 && m_millisStart.elapsed() > m_millisTimeout)
+      if(m_durationTimeout > 0_s && m_durationStart.elapsed() > m_durationTimeout)
       {
 
          if(m_pbPotentialTimeout != nullptr)
@@ -407,7 +409,7 @@ namespace process
    }
 
 
-} // namespace process
+} // namespace operating_system
 
 
 

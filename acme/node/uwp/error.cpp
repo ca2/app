@@ -1,10 +1,10 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 
 
 string get_error_message(::u32 dwError)
 {
 
-   return get_system_error_message(dwError);
+   return get_last_error_message(dwError);
 
 }

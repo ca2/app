@@ -1,7 +1,11 @@
 #pragma once
 
 
-#include "acme/os/ansios/_pthread.h"
+#ifdef PARALLELIZATION_PTHREAD
+
+#include "acme/node/operating_system/ansi/_pthread.h"
+
+#endif
 
 
 #if defined(HAVE_OPENSSL)

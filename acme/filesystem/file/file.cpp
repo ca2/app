@@ -49,8 +49,6 @@ namespace file
    file::file()
    {
 
-      m_millisErrorBlockTimeout = 0;
-
    }
 
 
@@ -64,10 +62,7 @@ namespace file
       m_path(path)
    {
 
-      m_millisErrorBlockTimeout = 0;
-
    }
-
 
 
    file::~file()
@@ -107,26 +102,37 @@ namespace file
    ::extended::status file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
-      UNREFERENCED_PARAMETER(path);
-      UNREFERENCED_PARAMETER(eopen);
+      auto pfile = __create <::file::file>();
 
-      return ::error_failed;
+      if (!pfile)
+      {
+
+         return ::move(pfile);
+
+      }
+
+      auto estatus = pfile->open(path, eopen);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::move(pfile);
 
    }
 
 
-   filesize file::seek(filesize lOff, ::file::e_seek nFrom)
+   filesize file::translate(filesize offset, ::enum_seek eseek)
    {
-      UNREFERENCED_PARAMETER(lOff);
-      UNREFERENCED_PARAMETER(nFrom);
+
+      __UNREFERENCED_PARAMETER(offset);
+
+      __UNREFERENCED_PARAMETER(eseek);
+
       return 0;
-   }
-
-
-   filesize file::set_position(filesize offset)
-   {
-
-      return seek(offset, ::file::seek_begin);
 
    }
 
@@ -134,9 +140,18 @@ namespace file
    int file::getc()
    {
 
-      __throw(error_interface_only);
+      byte byte = 0;
 
-      return -1;
+      auto iRead = read(&byte, 1);
+
+      if (iRead <= 0)
+      {
+
+         return -1;
+
+      }
+
+      return byte;
 
    }
 
@@ -144,7 +159,7 @@ namespace file
    int file::ungetc(int iChar)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return -1;
 
@@ -159,30 +174,6 @@ namespace file
    }
 
 
-   filesize file::seek_from_begin(filesize lPos)
-   {
-
-      return seek(lPos, ::file::seek_begin);
-
-   }
-
-
-   filesize file::seek_to_begin(filesize lPos)
-   {
-
-      return seek_from_begin(lPos);
-
-   }
-
-
-   filesize file::seek_begin(filesize lPos)
-   {
-
-      return seek_to_begin(lPos);
-
-   }
-
-
    bool file::has_write_mode()
    {
 
@@ -190,9 +181,50 @@ namespace file
 
    }
 
+
    filesize file::get_position() const
    {
-      return ((file *) this)->seek(0, ::file::seek_current);
+
+      return ((file *) this)->translate(0, ::e_seek_current);
+
+   }
+
+
+   filesize file::set_position(filesize position)
+   {
+
+      return ((file *) this)->translate(position, ::e_seek_set);
+
+   }
+
+
+   filesize file::increment_position(filesize offset)
+   {
+
+      return translate(offset, ::e_seek_current);
+
+   }
+
+
+   filesize file::decrement_position(filesize offset)
+   {
+
+      return translate(-offset, ::e_seek_current);
+
+   }
+
+
+   filesize file::seek_from_end(filesize offset)
+   {
+
+      return translate(offset, ::e_seek_from_end);
+
+   }
+
+
+   void file::abort()
+   {
+
    }
 
 
@@ -201,8 +233,11 @@ namespace file
       
    }
 
+
    void file::close()
    {
+
+
    }
 
 
@@ -212,7 +247,11 @@ namespace file
       unsigned char uch;
 
       if (read(&uch, 1) == 1)
+      {
+
          return uch;
+
+      }
 
       return EOF;
 
@@ -221,12 +260,16 @@ namespace file
 
    int file::peek()
    {
+
       unsigned char uch;
 
       if (read(&uch, 1) == 1)
       {
-         seek(-1, ::file::seek_current);
+
+         --position();
+
          return uch;
+
       }
 
       return EOF;
@@ -241,28 +284,52 @@ namespace file
 
       while (n > 0)
       {
+
          c = get();
+
          if (c == EOF)
          {
+
             break;
+
          }
          else if (c == '\n')
          {
+
             c = get();
+
             if (c != '\r' && c != EOF)
-               seek(-1, ::file::seek_current);
+            {
+
+               --position();
+
+            }
+
             break;
+
          }
          else if (c == '\r')
          {
+
             c = get();
+
             if (c != '\n' && c != EOF)
-               seek(-1, ::file::seek_current);
+            {
+
+               --position();
+
+            }
+
             break;
+
          }
+
          *sz = (char)c;
+
          sz++;
+
          n--;
+
       }
 
       return *this;
@@ -282,9 +349,10 @@ namespace file
    {
 
       memsize uRead;
-      memsize uiPos = 0;
-      u8 * buf = (u8 *) pdata;
 
+      memsize uiPos = 0;
+
+      u8 * buf = (u8 *) pdata;
 
       while(nCount > 0)
       {
@@ -299,6 +367,7 @@ namespace file
          }
 
          nCount   -= uRead;
+
          uiPos    += uRead;
 
       }
@@ -309,13 +378,11 @@ namespace file
 
 
    void file::write_from_hex(const void * pdata,memsize nCount)
-
    {
 
       memory memory;
 
       memory.from_hex((const char *) pdata, nCount);
-
 
       write(memory.get_data(),memory.get_size());
 
@@ -327,6 +394,7 @@ namespace file
 
    }
 
+
    void file::write(const memory_base & base)
    {
 
@@ -334,11 +402,12 @@ namespace file
 
    }
 
+
    void file::lock(filesize dwPos, filesize dwCount)
    {
 
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
+      __UNREFERENCED_PARAMETER(dwPos);
+      __UNREFERENCED_PARAMETER(dwCount);
 
    }
 
@@ -346,8 +415,8 @@ namespace file
    void file::unlock(filesize dwPos, filesize dwCount)
    {
 
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
+      __UNREFERENCED_PARAMETER(dwPos);
+      __UNREFERENCED_PARAMETER(dwCount);
 
    }
 
@@ -355,7 +424,7 @@ namespace file
    void file::set_size(filesize dwNewLen)
    {
 
-      UNREFERENCED_PARAMETER(dwNewLen);
+      __UNREFERENCED_PARAMETER(dwNewLen);
 
    }
 
@@ -391,7 +460,7 @@ namespace file
    bool file::get_status(file_status & rStatus) const
    {
 
-      UNREFERENCED_PARAMETER(rStatus);
+      __UNREFERENCED_PARAMETER(rStatus);
 
       return false;
 
@@ -412,6 +481,7 @@ namespace file
       return is_opened();
 
    }
+
 
    string file::get_location() const
    {
@@ -461,7 +531,7 @@ namespace file
 
       }
 
-      seek(-1, ::file::seek_current);
+      --position();
 
       return true;
 
@@ -478,7 +548,7 @@ namespace file
 
       }
 
-      seek(-1, ::file::seek_current);
+      --position();
 
       return true;
 
@@ -522,7 +592,7 @@ namespace file
    int file::put_character_back(int iCharacter)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return -1;
 
@@ -627,7 +697,7 @@ namespace file
       if ((iNew == i || ((char)iNew != '\n' && (char)iNew != '\r')) && iNew != EOF)
       {
 
-         seek(-1, seek_current);
+         --position();
 
       }
 
@@ -667,7 +737,7 @@ namespace file
 
       full_read(memory);
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return true;
 
@@ -713,7 +783,7 @@ namespace file
    void file::set_file_path(const ::file::path & path)
    {
 
-      UNREFERENCED_PARAMETER(path);
+      __UNREFERENCED_PARAMETER(path);
 
    }
 
@@ -766,10 +836,18 @@ namespace file
    }
 
 
+   filesize file::seek_to_begin()
+   {
+
+      return set_position(0);
+
+   }
+
+
    filesize file::seek_to_end()
    {
 
-      return seek(0, seek_end);
+      return translate(0, e_seek_from_end);
 
    }
 
@@ -894,7 +972,7 @@ namespace file
 
             __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + get_internal_data_size(), ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), pfileOut->get_internal_data_size() - get_internal_data_size());
             ::memcpy_dup(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), get_internal_data(), get_internal_data_size());
-            pfileOut->seek(get_internal_data_size(), seek_current);
+            pfileOut->position() += get_internal_data_size();
 
          }
          else
@@ -919,7 +997,7 @@ namespace file
       {
          __memmov(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position() + uiBufInc, ((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufInc);
          uRead = read(((u8 *) pfileOut->get_internal_data()) + pfileOut->get_position(), uiBufSize);
-         pfileOut->seek(uRead, seek_current);
+         pfileOut->position() += uRead;
          uiBufSize -= uRead;
          if(uiBufSize < uiBufMin)
          {
@@ -937,7 +1015,7 @@ namespace file
       memory buf;
       buf.set_size(uiBufMax);
       if(buf.get_data() == nullptr)
-         __throw(::exception::exception("no memory"));
+         __throw(error_no_memory, "no memory");
       try
       {
          while(true)
@@ -1020,7 +1098,7 @@ namespace file
    void file::write(const void *pdata, memsize nCount, memsize * dwWritten)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -1032,6 +1110,7 @@ namespace file
       write_file_from_begin(pfileIn, uiBufSize);
 
    }
+
 
    void file::write_file_from_begin(::file::file * pfileIn, memsize uiBufSize)
    {
@@ -1133,123 +1212,123 @@ namespace file
    /*
    void file::write (char ch)
    {
-      UNREFERENCED_PARAMETER(ch);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(ch);
+      throw ::interface_only_exception();
    }
 
    void file::write (uchar uch)
    {
-      UNREFERENCED_PARAMETER(uch);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(uch);
+      throw ::interface_only_exception();
    }
 
    void file::write (i16 sh)
    {
-      UNREFERENCED_PARAMETER(sh);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(sh);
+      throw ::interface_only_exception();
    }
 
    void file::write (u16 u)
    {
-      UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(u);
+      throw ::interface_only_exception();
    }
 
    void file::write (unichar wch)
    {
-      UNREFERENCED_PARAMETER(wch);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(wch);
+      throw ::interface_only_exception();
    }
 
    void file::write (bool b)
    {
-      UNREFERENCED_PARAMETER(b);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(b);
+      throw ::interface_only_exception();
    }
 
    void file::write (i32 i)
    {
-      UNREFERENCED_PARAMETER(i);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(i);
+      throw ::interface_only_exception();
    }
 
    void file::write (u32 u)
    {
-      UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(u);
+      throw ::interface_only_exception();
    }
 
    void file::write (i64 i)
    {
-      UNREFERENCED_PARAMETER(i);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(i);
+      throw ::interface_only_exception();
    }
 
    void file::write (u64 u)
    {
-      UNREFERENCED_PARAMETER(u);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(u);
+      throw ::interface_only_exception();
    }
 
    void file::write (float f)
    {
-      UNREFERENCED_PARAMETER(f);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(f);
+      throw ::interface_only_exception();
    }
 
    void file::write (double d)
    {
-      UNREFERENCED_PARAMETER(d);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(d);
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::rectangle_i32 & rectangle)
    {
-      UNREFERENCED_PARAMETER(pcrect);
+      __UNREFERENCED_PARAMETER(pcrect);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
    }
 
    void file::write (const size_i32 & & size)
    {
-      UNREFERENCED_PARAMETER(size);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(size);
+      throw ::interface_only_exception();
    }
 
    void file::write (::type info)
    {
-      UNREFERENCED_PARAMETER(info);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(info);
+      throw ::interface_only_exception();
    }
 
    void file::write (matter & matter)
    {
-      UNREFERENCED_PARAMETER(matter);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(matter);
+      throw ::interface_only_exception();
    }
 
    void file::write (const char * psz)
    {
-      UNREFERENCED_PARAMETER(psz);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(psz);
+      throw ::interface_only_exception();
    }
 
    void file::write (const id & id)
    {
-      UNREFERENCED_PARAMETER(id);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(id);
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::payload & payload)
    {
-      UNREFERENCED_PARAMETER(payload);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(payload);
+      throw ::interface_only_exception();
    }
 
    void file::write (const ::string & str)
    {
-      UNREFERENCED_PARAMETER(str);
-      ::exception::throw_interface_only();
+      __UNREFERENCED_PARAMETER(str);
+      throw ::interface_only_exception();
    }
    */
 
@@ -1292,7 +1371,7 @@ namespace file
     }
 
 
-   string file::to_string() const
+   string file::get_string() const
    {
 
       string str;
@@ -1347,6 +1426,19 @@ namespace file
       {
 
          payload.as_file_path() |= ::file::e_flag_bypass_cache;
+
+      }
+
+   }
+
+
+   void file::put_lines(const string_array& stra)
+   {
+
+      for (auto& strLine : stra)
+      {
+
+         println(strLine);
 
       }
 

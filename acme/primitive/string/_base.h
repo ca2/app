@@ -58,7 +58,7 @@ public:
    string_base(nullptr_t) { }
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) : string_base(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+   string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
@@ -88,10 +88,10 @@ public:
    string_base(wd16char wd16ch, strsize repeat = 1);
    string_base(wd32char wd32ch, strsize repeat = 1);
    
-#ifdef _UWP
-   string_base(Array <byte > ^ a);
-   string_base(Object ^ o);
-#endif
+//#ifdef _UWP
+   //string_base(Array <byte > ^ a);
+   //string_base(Object ^ o);
+//#endif
 
    //string_base(const ::payload & payload);
    //string_base(const property & property);
@@ -129,12 +129,12 @@ public:
 
    //inline operator const CHAR_TYPE* () const noexcept { return this->m_pdata; }
 
-#if defined(_UWP) 
-   inline operator String ^ () const { return ref new String(wd16string(*this)); }
-#endif
+//#if defined(_UWP) 
+   //inline operator String ^ () const { return ref new String(wd16string(*this)); }
+//#endif
 
-   auto to_string_base() const { return *this; }
-   const auto & to_string_base() { return *this; }
+   string_base to_string_base() const { return *this; }
+   const string_base & to_string_base() { return *this; }
 
    //string_base & operator = (const ansichar * pansichar);
    //string_base & operator = (const wd16char * pwd16char);
@@ -323,8 +323,12 @@ public:
          fork_string(size);
 
       }
+      else
+      {
 
-      this->metadata()->set_length(size);
+         this->metadata()->set_length(size);
+
+      }
 
       return this->m_pdata;
 
@@ -421,7 +425,7 @@ public:
 
       this->assign_natural_meta_data(pNew);
 
-      pNew->natural_dec_ref();
+      //pNew->natural_dec_ref();
 
       return pNew->get_data();
 
@@ -583,17 +587,17 @@ public:
    strsize replace(CHAR_TYPE chOld, CHAR_TYPE chNew, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    strsize replace(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    strsize replace_ci(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    ::count replace_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR1, raw_pointer_castable < TYPE_CHAR > PCHAR2 >
    ::count replace_ci_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    //::count utf8_replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
@@ -604,8 +608,10 @@ public:
    // erase all occurrences of character 'chRemove'
    strsize erase_character(CHAR_TYPE chRemove);
 
-   template < pointer_castable < TYPE_CHAR > PCHAR >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR >
    string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
+
+
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
@@ -740,6 +746,23 @@ public:
 
    }
 
+   inline bool begins(const CHAR_TYPE* psz) const;
+   inline bool ends(const CHAR_TYPE* psz) const;
+
+   inline bool begins_ci(const CHAR_TYPE* psz) const;
+   inline bool ends_ci(const CHAR_TYPE* psz) const;
+
+   inline bool begins_eat(const CHAR_TYPE* psz);
+   inline bool ends_eat(const CHAR_TYPE* psz);
+
+   inline bool begins_eat_ci(const CHAR_TYPE* psz);
+   inline bool ends_eat_ci(const CHAR_TYPE* psz);
+
+   inline string_base& ensure_begins(const CHAR_TYPE* psz);
+   inline string_base& ensure_begins_ci(const CHAR_TYPE* psz);
+
+   inline string_base& ensure_ends(const CHAR_TYPE* psz);
+   inline string_base& ensure_ends_ci(const CHAR_TYPE* psz);
 
    inline bool begins(const string_base& ansistr) const;
    inline bool ends(const string_base& ansistr) const;
@@ -804,7 +827,7 @@ public:
    string_base& trim(CHAR_TYPE chTarget);
 
    // erase all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
-   template < pointer_castable < TYPE_CHAR > PCHAR >
+   template < raw_pointer_castable < TYPE_CHAR > PCHAR >
    string_base & trim(PCHAR pcharTargets);
 
    // trimming anything (either side)
@@ -912,10 +935,10 @@ public:
 
 
    // set the string_base to the value of environment ::payload 'pszVar'
-   bool get_environment_variable(const CHAR_TYPE* pszVar);
+   //bool xxxget_environment_variable(const CHAR_TYPE* pszVar);
 
    // set the string_base to the value of environment ::payload 'pszVar'
-   bool getenv(const CHAR_TYPE* pszVar);
+   //bool xxxgetenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'
    //bool load_string(::matter* pobject, id id);
@@ -1043,11 +1066,9 @@ public:
 inline const ansichar* __c_str(const string& str) { return str.c_str(); }
 
 
-template < typename STRINGABLE >
-inline ::ansistring operator+(const char* pszLeft, const STRINGABLE& stringableRight);
+inline ::string operator+(const char* pszLeft, const ::string & strRight);
 
-template < typename WSTRINGABLE >
-inline ::wstring operator+(const widechar* pszLeft, const WSTRINGABLE& wstringableRight);
+inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight);
 
 
 

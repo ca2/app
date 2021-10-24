@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -22,11 +22,11 @@
 //unsigned char* SHA1(const unsigned char* d, size_t n, unsigned char* md);
 //void SHA1_Transform(SHA_CTX* c, const unsigned char* data);
 
-namespace str
-{
+// namespace str
+// {
 
 
-   CLASS_DECL_APEX void from(string & str, const MD5_CTX & ctx)
+   CLASS_DECL_APEX void to_string(string & str, const MD5_CTX & ctx)
    {
 
       unsigned char digest[MD5_DIGEST_LENGTH];
@@ -38,7 +38,7 @@ namespace str
    }
 
 
-   CLASS_DECL_APEX void from(string & str, const WHIRLPOOL_CTX & ctx)
+   CLASS_DECL_APEX void to_string(string & str, const WHIRLPOOL_CTX & ctx)
    {
 
       unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];
@@ -50,7 +50,7 @@ namespace str
    }
 
 
-} // namespace str
+// } // namespace str
 
 
 

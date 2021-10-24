@@ -161,7 +161,7 @@ namespace simpledb
 
             stritem.m_tick.Now();
 
-            stritem.m_memory.assign(getmemory.get_data(), getmemory.get_size());
+            stritem.m_memory.assign(getmemory.get_data(), (memsize) getmemory.get_size());
 
             pstorage->m_map[strKey] = stritem;
 
@@ -238,7 +238,7 @@ namespace simpledb
 
             ::datetime::time timeListing(pdatetime->from_gmt(ptextcontext, strListingTime));
 
-            if (timeListing.abs_diff(::datetime::now) > 5_s)
+            if (timeListing.abs_diff(e_now) > 5_s)
             {
 
                return false;

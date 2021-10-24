@@ -109,7 +109,7 @@ namespace acme
    }
 
 
-   file_result context::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+   file_transport context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
    {
 
       __pointer(::file::file) pfile;
@@ -123,7 +123,7 @@ namespace acme
 
       }
 
-      auto path = varFile.get_file_path();
+      auto path = payloadFile.get_file_path();
       
       estatus = pfile->open(path, eopen);
 
@@ -135,6 +135,14 @@ namespace acme
       }
 
       return pfile;
+
+   }
+
+
+   ::file::path context::defer_process_path(::file::path path)
+   {
+
+      return path;
 
    }
 

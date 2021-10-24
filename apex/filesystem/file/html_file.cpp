@@ -48,9 +48,9 @@ namespace html
    void file::printf(string str,...)
    {
 
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -58,9 +58,9 @@ namespace html
    void file::printstr(string str,...)
    {
 
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -82,9 +82,9 @@ namespace html
    void file::dprint(const char * pcsz)
    {
 
-      UNREFERENCED_PARAMETER(pcsz);
+      __UNREFERENCED_PARAMETER(pcsz);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 

@@ -45,18 +45,10 @@ property_object::~property_object()
 }
 
 
-//::property_object * property_object::_get_context_object()
-//{
-//
-//   return this;
-//
-//}
-
-
 void property_object::notify_on_destroy(::property_object * pcontextobjectFinish)
 {
 
-   if (m_bDestroying)
+   if (has(e_flag_destroying))
    {
 
       //finish(nullptr);
@@ -65,77 +57,6 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
    }
 
 }
-
-
-//void property_object::set_object(::object * pobject  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-//{
-//
-//   m_pobject.reset(pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-//
-//}
-
-
-//::e_status property_object::finish(::property_object * pcontextobjectFinish)
-//::e_status property_object::destroy()
-//{
-//
-//   //return ::matter::finish(pcontextobjectFinish);
-//
-//   auto estatus = ::material_object::destroy();
-//
-//   return estatus;
-//
-//}
-
-
-//::e_status property_object::on_finish()
-//{
-//
-//   auto estatus = material_object::on_finish();
-//
-//   return estatus;
-//
-//   //synchronous_lock synchronouslock(mutex());
-//
-//   //if (m_pnotifya)
-//   //{
-//
-//   //   auto pnotifya = m_pnotifya;
-//
-//   //   restart_notifya_loop:
-//
-//   //   for (auto pmatter : *pnotifya)
-//   //   {
-//
-//   //      if (pmatter && pmatter->m_bFinishing)
-//   //      {
-//
-//   //         synchronouslock.unlock();
-//
-//   //         sleep(10_ms);
-//
-//   //         auto estatus = pmatter->finish();
-//
-//   //         if (estatus == ::success)
-//   //         {
-//
-//   //            synchronouslock.lock();
-//
-//   //            pnotifya->erase(pmatter);
-//
-//   //            goto restart_notifya_loop;
-//
-//   //         }
-//
-//   //         synchronouslock.lock();
-//
-//   //      }
-//
-//   //   }
-//
-//   //}
-//   
-//}
 
 
 ::object * property_object::source_channel()
@@ -380,12 +301,12 @@ bool property_object::is_alive()
 void property_object::exchange(::stream & stream)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
 }
 
 
-::e_status property_object::handle_exception(const ::exception::exception& e)
+::e_status property_object::handle_exception(const ::exception& e)
 {
 
    return ::success;
@@ -394,7 +315,7 @@ void property_object::exchange(::stream & stream)
 
 
 
-void property_object::add_exception(const ::exception::exception & e)
+void property_object::add_exception(const ::exception & e)
 {
 
    m_estatus = error_exception;
@@ -441,6 +362,57 @@ stream & property_object::read(::stream & stream)
 
 }
 
+
+routine_array * property_object::routine_array(const ::id & id, bool bCreate)
+{
+
+   if (!bCreate)
+   {
+
+      auto passociation = m_pmapPropertyRoutine->plookup(id);
+
+      if (::is_null(passociation))
+      {
+
+         return nullptr;
+
+      }
+
+      return &passociation->m_element2;
+
+   }
+
+   m_psystem->__defer_construct_new(m_pmapPropertyRoutine);
+
+   return &m_pmapPropertyRoutine->operator[](id);
+
+}
+
+
+::e_status property_object::add_routine(const ::id & id, const ::routine & routine)
+{
+
+   if (!routine)
+   {
+
+      return error_invalid_argument;
+
+   }
+
+   auto proutinea = routine_array(id, true);
+   
+   if (!proutinea)
+   {
+
+      return error_resource;
+
+   }
+   
+   proutinea->add(routine);
+
+   return ::success;
+
+}
 
 
 //void debug_trait()
@@ -748,7 +720,7 @@ string property_object::get_text(const ::payload & payload, const ::id & id)
 //void property_object::to_string(const class string_exchange & str) const
 //{
 //
-//   str = typeid(*this).name();
+//   str = __type_name(this);
 //
 //}
 

@@ -72,7 +72,11 @@ namespace linux
 
       auto pacmedir = psystem->m_pacmedir;
 
-      ::file::path pathCa2AppModule = pacmedir->module();
+      ::file::path pathCa2AppModule =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->module();
 
       m_pathCa2Module = pathCa2AppModule;
 

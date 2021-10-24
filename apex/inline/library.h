@@ -10,7 +10,7 @@
 #ifdef WINDOWS
 
 
-#include "acme/os/windows_common/_c.h"
+//#include "acme/node/operating_system/windows_common/_c.h"
 
 
 #ifndef LIBRARY_MAIN_DEBUG_BOX
@@ -27,9 +27,9 @@
 #endif
 
 
-#ifdef _UWP
-[MTAThread]
-#endif
+//#ifdef _UWP
+//[MTAThread]
+//#endif
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 

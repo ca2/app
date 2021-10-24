@@ -2,7 +2,7 @@
 #include "core/user/user/_user.h"
 #include "axis/user/validate.h"
 #include "aura/update.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 
 namespace user
@@ -53,7 +53,7 @@ namespace user
 
 
 
-   bool form_list::on_right_click(const ::user::item & item)
+   bool form_list::on_right_click(const ::item & item)
    {
 
       if (!item.is_set())
@@ -76,16 +76,13 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
+               auto psubject = __new(::subject(e_subject_click));
 
-               ::user::control_event ev;
-
-               ev.m_puserinteraction = pinteraction;
-
-               ev.m_eevent = ::user::e_event_click;
+               psubject->m_puserelement = pinteraction;
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (lparam)&ev);
+               send_message(e_message_subject, 0, psubject);
 
             }
 
@@ -143,7 +140,7 @@ namespace user
 
 
 
-   bool form_list::on_click(const ::user::item & item)
+   bool form_list::on_click(const ::item & item)
    {
 
       if(!item.is_set())
@@ -166,15 +163,15 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               ::user::control_event ev;
+               auto psubject = __new(::subject);
 
-               ev.m_puserinteraction = pinteraction;
+               psubject->m_puserelement = pinteraction;
 
-               ev.m_eevent = ::user::e_event_click;
+               psubject->m_id = ::e_subject_click;
 
                m_itemControl = item;
 
-               send_message(e_message_event, 0, (lparam)& ev);
+               send_message(e_message_subject, 0, psubject);
 
             }
 
@@ -466,11 +463,11 @@ namespace user
       if(item.m_bOk)
       {
 
-         rectangle_f64 rectControl(item.m_rectSubItem);
+         rectangle_f64 rectangleControl(item.m_rectangleSubItem);
 
          auto pointViewport = get_viewport_offset();
 
-         rectControl.offset(pointViewport);
+         rectangleControl.offset(pointViewport);
 
          if (!bOnlySizeAndPosition)
          {
@@ -481,7 +478,7 @@ namespace user
 
          pinteraction->order_top();
 
-         pinteraction->place(rectControl);
+         pinteraction->place(rectangleControl);
 
          if (bOnlySizeAndPosition)
          {
@@ -645,7 +642,7 @@ break_click:;
       //if (pedit.is_set())
       //{
 
-      //   pedit->m_pfont = m_font;
+      //   pedit->m_pfont = m_pfont;
 
       //}
 
@@ -774,7 +771,7 @@ break_click:;
          if (echeck == ::check_checked)
          {
 
-            string str(pinteraction->m_setValue[::check_checked]);
+            string str(pinteraction->m_setValue[::check_checked].get_string());
 
             if(str.has_char())
             {
@@ -793,7 +790,7 @@ break_click:;
          else if (echeck == ::check_unchecked)
          {
 
-            string str (pinteraction->m_setValue[::check_unchecked]);
+            string str (pinteraction->m_setValue[::check_unchecked].get_string());
 
             if (str.has_char())
             {
@@ -812,7 +809,7 @@ break_click:;
          else
          {
 
-            string str(pinteraction->m_setValue[::check_tristate]);
+            string str(pinteraction->m_setValue[::check_tristate].get_string());
 
             if (str.has_char())
             {
@@ -831,11 +828,15 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pformlist = this;
+         //auto pformlist = this;
 
-         auto psubject = pformlist->subject(id_control_saved);
+         ::subject subject(id_control_saved);
 
-         pformlist->handle_subject(psubject);
+         subject.m_puserelement = pinteraction;
+
+         route(&subject);
+         
+         //pformlist->handle_subject(psubject);
 
          return true;
 
@@ -905,11 +906,15 @@ break_click:;
 
          _001SetItemText(&item);
 
-         auto pformlist = this;
+         //auto pformlist = this;
 
-         auto psubject = pformlist->subject(id_control_saved);
+         ::subject subject(id_control_saved);
 
-         pformlist->handle_subject(psubject);
+         subject.m_puserelement = pinteraction;
+
+         route(&subject);
+
+         //pformlist->handle_subject(psubject);
 
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
@@ -1035,16 +1040,16 @@ break_click:;
    bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id, lresult & iResult)
    {
 
-      UNREFERENCED_PARAMETER(pDesktopWnd);
-      UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(id);
-      UNREFERENCED_PARAMETER(iResult);
+      __UNREFERENCED_PARAMETER(pDesktopWnd);
+      __UNREFERENCED_PARAMETER(nHitTest);
+      __UNREFERENCED_PARAMETER(id);
+      __UNREFERENCED_PARAMETER(iResult);
       return false;
    }
 
    void form_list::_001OnNotify(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void form_list::_001OnTimer(::timer * ptimer)
@@ -1054,7 +1059,7 @@ break_click:;
 
    void form_list::_001OnMessageNotify(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // linux na verdade revamp
       /*
       lresult = user::NotifyRetContinue;
@@ -1170,7 +1175,7 @@ break_click:;
 
    void form_list::on_message_key_down(::message::message * pmessage)
    {
-      auto pkey = pmessage->m_pkey;
+      auto pkey = pmessage->m_union.m_pkey;
 
       if(pkey->m_ekey == ::user::e_key_return)
       {
@@ -1216,11 +1221,11 @@ break_click:;
             if(pinteraction == _001GetEditControl())
             {
 
-               ::rectangle_i32 rectWindow;
+               ::rectangle_i32 rectangleWindow;
                
-               pinteraction->get_window_rect(rectWindow);
+               pinteraction->get_window_rect(rectangleWindow);
 
-               return rectWindow.contains(point);
+               return rectangleWindow.contains(point);
 
             }
             else
@@ -1231,7 +1236,7 @@ break_click:;
             }
          }
       }
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
       ::rectangle_i32 rectangle;
       draw_list_item item(this);
 
@@ -1251,15 +1256,15 @@ break_click:;
 //      item.m_iOrder = _001MapSubItemToOrder(item.subitem_index());
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
-//      rectControl = item.m_rectSubItem;
-//      client_to_screen(rectControl);
-//      rectangle_i64 rectForm;
-//      get_window_rect(rectForm);
+//      rectangleControl = item.m_rectangleSubItem;
+//      client_to_screen(rectangleControl);
+//      rectangle_i64 rectangleForm;
+//      get_window_rect(rectangleForm);
 //      rectangle_i64 rectangleClient;
-//      rectangleClient.top = rectForm.top;
-//      rectangleClient.bottom = rectForm.bottom;
-//      rectangleClient.left = rectControl.left;
-//      rectangleClient.right = rectControl.right;
+//      rectangleClient.top = rectangleForm.top;
+//      rectangleClient.bottom = rectangleForm.bottom;
+//      rectangleClient.left = rectangleControl.left;
+//      rectangleClient.right = rectangleControl.right;
 //      return rectangleClient.contains(point) != false;
    }
 
@@ -1533,7 +1538,7 @@ break_click:;
 
       }
 
-      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangleControl;
 
       draw_list_item item(this);
 
@@ -1570,9 +1575,9 @@ break_click:;
 
       _001GetElementRect(&item,::user::mesh::element_sub_item);
 
-      rectControl = item.m_rectSubItem;
+      rectangleControl = item.m_rectangleSubItem;
 
-      ::rectangle_i32 rectangle(rectControl);
+      ::rectangle_i32 rectangle(rectangleControl);
 
       *prectangle = rectangle;
 
@@ -1865,13 +1870,13 @@ break_click:;
 
 
 
-   void form_list::on_control_event(::user::control_event * pevent)
+   void form_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (pevent->m_eevent == ::user::e_event_set_check)
+      if (psubject->m_id == ::e_subject_set_check)
       {
 
-         auto puserinteraction = pevent->m_puserinteraction;
+         auto puserinteraction = psubject->user_interaction();
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
@@ -1885,10 +1890,10 @@ break_click:;
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
+      else if (psubject->m_id == ::e_subject_after_change_cur_sel)
       {
 
-         if (m_pcontrolEdit == pevent->m_puserinteraction)
+         if (m_pcontrolEdit == psubject->user_interaction())
          {
 
             if (m_pcontrolEdit->has_function(::user::e_control_function_data_selection))
@@ -1896,14 +1901,14 @@ break_click:;
 
                _001SaveEdit(m_pcontrolEdit);
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_enter_key)
+      else if (psubject->m_id == ::e_subject_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1913,12 +1918,12 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_tab_key)
+      else if (psubject->m_id == ::e_subject_tab_key)
       {
 
          index iItem = 0;
@@ -1936,7 +1941,7 @@ break_click:;
 
             _001HideControl(m_pcontrolEdit);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
@@ -1964,15 +1969,15 @@ break_click:;
 
             _001PlaceControl(pinteraction, iItem);
 
-            pevent->m_bRet = true;
+            psubject->m_bRet = true;
 
          }
 
       }
-      else if (pevent->m_eevent == ::user::e_event_key_down)
+      else if (psubject->m_id == ::e_subject_key_down)
       {
 
-         SCAST_PTR(::message::key, pkey, pevent->m_actioncontext.m_pmessage.m_p);
+         SCAST_PTR(::message::key, pkey, psubject->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
                || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
@@ -2032,7 +2037,7 @@ break_click:;
                _001SaveEdit(m_pcontrolEdit);
                _001HideControl(m_pcontrolEdit);
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
@@ -2094,7 +2099,7 @@ break_click:;
 
                }
 
-               pevent->m_bRet = true;
+               psubject->m_bRet = true;
 
             }
 
@@ -2102,14 +2107,14 @@ break_click:;
 
       }
 
-      if (pevent->m_bRet)
+      if (psubject->m_bRet)
       {
 
          return;
 
       }
 
-      return form_mesh::on_control_event(pevent);
+      return form_mesh::handle(psubject, pcontext);
    }
 
 
@@ -2151,7 +2156,7 @@ break_click:;
 
             pinteraction->create_child(this);
 
-            pinteraction->add_control_event_handler(this);
+            pinteraction->add_handler(this);
 
             pinteraction->m_flagsfunction = pinteractionTemplate->m_flagsfunction;
 
@@ -2189,7 +2194,7 @@ break_click:;
       if (pdrawitem->m_pcolumn->m_id)
       {
 
-         auto rScreen = pdrawitem->m_rectSubItem;
+         auto rScreen = pdrawitem->m_rectangleSubItem;
 
          client_to_screen(rScreen);
 
@@ -2200,7 +2205,7 @@ break_click:;
 
             auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-            auto crBackHover = get_color(pstyle, ::user::e_element_background, ::user::e_state_hover);
+            auto crBackHover = get_color(pstyle, ::e_element_background, ::user::e_state_hover);
 
             if (!crBackHover.is_ok())
             {
@@ -2209,7 +2214,7 @@ break_click:;
 
             }
 
-            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectSubItem, crBackHover);
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectangleSubItem, crBackHover);
 
          }
 
@@ -2236,7 +2241,7 @@ break_click:;
          //            rectangle.right = 15;
          //            rectangle.bottom = 15;
 
-         //            rectangle.Align(::e_align_center, pdrawitem->m_rectSubItem);
+         //            rectangle.Align(::e_align_center, pdrawitem->m_rectangleSubItem);
 
          //            _001GetItemText(pdrawitem);
 
@@ -2285,24 +2290,24 @@ break_click:;
          if (pinteraction)
          {
 //
-//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectSubItem;
+//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
 //
 //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
 //
-            pinteraction->place(pdrawitem->m_rectSubItem);
+            pinteraction->place(pdrawitem->m_rectangleSubItem);
 
             pinteraction->display();
 
 //
             //client_to_screen(pdrawitem->m_rectangleWindow);
 
-            //::rectangle_i32 rectWindow;
+            //::rectangle_i32 rectangleWindow;
 
-            //pinteraction->get_window_rect(rectWindow);
+            //pinteraction->get_window_rect(rectangleWindow);
 
-            //screen_to_client(rectWindow);
+            //screen_to_client(rectangleWindow);
 
-            //if (rectWindow != pdrawitem->m_rectangleClient)
+            //if (rectangleWindow != pdrawitem->m_rectangleClient)
             {
 
                // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);

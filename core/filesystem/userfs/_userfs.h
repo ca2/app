@@ -1,7 +1,10 @@
 ﻿#pragma once
 
 
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 #include "const.h"
@@ -18,7 +21,7 @@
 #include "list.h"
 
 
-#include "main_view.h"
+#include "main_impact.h"
 
 #include "userfs.h"
 

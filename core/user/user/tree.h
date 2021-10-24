@@ -32,6 +32,7 @@ namespace user
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
+      ::size_i32                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
@@ -39,17 +40,17 @@ namespace user
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
-      ::draw2d::brush_pointer                   m_brushTextSelected;
-      ::draw2d::brush_pointer                   m_brushTextSelectedHighlight;
-      ::draw2d::brush_pointer                   m_brushTextHighlight;
-      ::draw2d::brush_pointer                   m_brushText;
-      ::write_text::font_pointer                m_fontTreeItem;
+      ::draw2d::brush_pointer                   m_pbrushTextSelected;
+      ::draw2d::brush_pointer                   m_pbrushTextSelectedHighlight;
+      ::draw2d::brush_pointer                   m_pbrushTextHighlight;
+      ::draw2d::brush_pointer                   m_pbrushText;
+      ::write_text::font_pointer                m_pfontTreeItem;
       status < ::color::color >          m_colorTreeBackground;
 
 
       bool                                      m_bHoverStart;
-      millis                                    m_millisHoverStart;
-      millis                                    m_millisHoverEnd;
+      ::duration                                    m_durationHoverStart;
+      ::duration                                    m_durationHoverEnd;
       byte                                      m_uchHoverAlpha;
       byte                                      m_uchHoverAlphaInit;
       manual_reset_event                        m_evExpand;
@@ -103,16 +104,16 @@ namespace user
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
       virtual bool _001GetItemElementRect(RECTANGLE_I32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
       virtual index _001GetIndentation();
 
 
       __pointer(::data::tree_item) _001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
 
-      virtual bool on_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
 
-      virtual bool on_right_click(const ::user::item & item) override;
+      virtual bool on_right_click(const ::item & item) override;
 
       virtual void perform_click();
 
@@ -178,7 +179,7 @@ namespace user
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -204,7 +205,7 @@ namespace user
       tree_window();
       virtual ~tree_window();
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
    };
 
    typedef show < tree > tree_view;

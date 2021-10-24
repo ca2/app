@@ -12,7 +12,7 @@ CLASS_DECL_ACME void __cdecl __clearerr_s(FILE * stream);
 #define C_RUNTIME_ERROR_CHECK(expr) ::c_runtime_error_check(expr)
 
 
-#if defined(LINUX) || defined(APPLEOS)
+#if defined(LINUX) || defined(__APPLE__)
 #include <wchar.h>
 #endif
 

@@ -53,41 +53,41 @@ namespace papaya
       bool contains_item(const CONTAINER & container, const TYPE & t);
 
 
-#ifdef _UWP
-
-      template < typename T, typename ITEM >
-      inline ::index find_first_item(::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
-      {
-
-         for (::u32 u = 0; u < ivectorview->Size; u++)
-         {
-
-            if (ivectorview->GetAt(u) == item)
-            {
-
-               return u;
-
-            }
-
-         }
-
-         return -1;
-
-      }
-
-
-      template < typename T, typename ITEM >
-      inline bool contains_item(::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
-      {
-
-         auto iFindFirst = find_first_item(ivectorview, item);
-
-         return iFindFirst >= 0;
-
-      }
-
-
-#endif
+//#ifdef _UWP
+//
+//      template < typename T, typename ITEM >
+//      inline ::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
+//      {
+//
+//         for (::u32 u = 0; u < ivectorview->Size; u++)
+//         {
+//
+//            if (ivectorview->GetAt(u) == item)
+//            {
+//
+//               return u;
+//
+//            }
+//
+//         }
+//
+//         return -1;
+//
+//      }
+//
+//
+//      template < typename T, typename ITEM >
+//      inline bool contains_item(::winrt::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
+//      {
+//
+//         auto iFindFirst = find_first_item(ivectorview, item);
+//
+//         return iFindFirst >= 0;
+//
+//      }
+//
+//
+//#endif
 
 
       template < class TINTERSECTION, class TDST, class TSRC >
@@ -476,8 +476,8 @@ namespace papaya
       template < typename TYPE >
       ::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a);
 
-      template < typename TYPE >
-      ::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a);
+      template < typename TYPE, typename INITIALIZER >
+      ::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a);
 
       template < typename Type, typename RawType, enum_type t_etypePayload >
       ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const Type & psz)

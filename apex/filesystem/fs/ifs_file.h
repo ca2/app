@@ -13,7 +13,7 @@ public:
    ::payload                                          m_varFile;
 
 
-   ifs_file(::payload varFile);
+   ifs_file(::payload payloadFile);
    virtual ~ifs_file();
 
    using ::sockets::http_batch_buffer::read;
@@ -23,7 +23,7 @@ public:
    virtual void write(const void * pdata, memsize nCount) override;
 
 
-   filesize seek(filesize lOff, ::file::e_seek  nFrom) override;
+   filesize translate(filesize offset, ::enum_seek eseek) override;
 
    virtual filesize get_size() const override;
 

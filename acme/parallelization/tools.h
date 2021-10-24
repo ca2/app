@@ -106,10 +106,10 @@ public:
    ::count                                m_cSpan;
    ::enum_task_op                       m_etaskop;
    __pointer(::task_tool)               m_ptool;
-   ::e_priority                           m_epriority;
+   ::enum_priority                           m_epriority;
 
 
-   task_group(::matter * pmatter, ::e_priority epriority);
+   task_group(::matter * pmatter, ::enum_priority epriority);
    virtual ~task_group();
 
 
@@ -122,10 +122,10 @@ public:
    ::count get_span() const { return m_cSpan; }
    bool nok() const { return is_empty(); };
 
-   bool prepare(::enum_task_op eop, ::count cIteration = 0);
+   ::e_status prepare(::enum_task_op eop, ::count cIteration = 0);
    virtual ::e_status set_ready_to_start();
-   bool wait();
-   bool process();
+   ::e_status wait() override;
+   virtual ::e_status process();
 
    bool add_predicate(::predicate_holder_base * ppred);
 
@@ -141,7 +141,7 @@ public:
 
 
 template < typename PRED >
-inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart = 0, ::e_priority epriority = ::priority_none);
+inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, index iStart = 0, ::enum_priority epriority = ::e_priority_none);
 
 
 
@@ -159,7 +159,7 @@ inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, inde
 
 
 
-using task_group_map = map < e_priority, __pointer_array(::task_group) >;
+using task_group_map = map < enum_priority, __pointer_array(::task_group) >;
 using task_tool_map = map < enum_task_tool, __pointer_array(::task_tool) >;
 
 

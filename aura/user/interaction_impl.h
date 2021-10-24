@@ -62,6 +62,8 @@ namespace user
    class thread;
 
 
+
+
    class CLASS_DECL_AURA interaction_impl:
       virtual public ::user::primitive_impl
    {
@@ -72,16 +74,16 @@ namespace user
       //HIMC                                    m_himc;
 #endif
       ::PLATFORM_NAMESPACE::interaction_impl *  m_pImpl2;
-      ::rectangle_i32                           m_rectWindowScreen;
-      ::rectangle_i32                           m_rectClientScreen;
+      ::rectangle_i32                           m_rectangleWindowScreen;
+      ::rectangle_i32                           m_rectangleClientScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
       bool                                      m_bEatSizeEvent;
       bool                                      m_bEatMoveEvent;
-      millis                                    m_millisLastExposureAddUp;
-      __composite(prodevian)                    m_pprodevian;
-      __composite(::user::thread)               m_puserthread;
+      ::duration                                    m_durationLastExposureAddUp;
+      __reference(prodevian)                    m_pprodevian;
+      __reference(::user::thread)               m_puserthread;
       __pointer_array(::matter)                 m_matteraProdevian;
       bool                                      m_bTransparentMouseEvents;
       bool                                      m_bOfflineRender;
@@ -97,8 +99,10 @@ namespace user
       ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;
 
-      ::rectangle_i32                           m_rectUpdateBuffer;
+      ::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
+
+      ::list < __pointer(::message::message) >  m_messagelist;
 
       bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;
@@ -134,22 +138,23 @@ namespace user
       __pointer(::user::interaction)            m_puserinteractionToKillFocus;
 
       bool                                      m_bPendingRedraw;
-      millis                                    m_millisLastRedraw;
+      ::duration                                    m_durationLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       
-      ::nanos                                   m_nanosDeviceDrawBeg;
-      ::nanos                                   m_nanosDeviceDrawEnd;
-      millis                                    m_millisLastDeviceDraw;
+      ::nanosecond                                   m_nanosDeviceDrawBeg;
+      ::nanosecond                                   m_nanosDeviceDrawEnd;
+      ::duration                                    m_durationLastDeviceDraw;
+
 
 
       interaction_impl();
-      virtual ~interaction_impl();
+      ~interaction_impl() override;
 
 
       
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void set_prodevian_fps(double dProdevianFps);
       virtual void set_nominal_fps(double dNominalFps);
@@ -162,7 +167,7 @@ namespace user
 
       virtual bool __windows_message_bypass(::windowing::window * pwindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void default_message_handler(::message::message * pusermessage) override;
 
@@ -179,13 +184,21 @@ namespace user
       virtual ::e_status update_graphics_resources();
 
 
+
+      void queue_message_handler(::message::message * pmessage) override;
+
+
+      void process_message();
+
+
+
       virtual ::e_status set_tool_window(bool bSet) override;
 
 
       bool create_host(::user::interaction * pinteraction) override;
 
       virtual ::color::color screen_pixel(int x, int y) const;
-      virtual ::e_status interaction_branch(const ::routine & routine) override;
+      virtual ::e_status interaction_post(const ::routine & routine) override;
 
       // call these from window
       //virtual ::e_status set_keyboard_focus();
@@ -205,7 +218,7 @@ namespace user
       virtual bool create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
-      virtual void set_destroying();
+      //virtual void set_destroying();
 
       virtual void _000OnMouseLeave(::message::message * pmessage) override;
       //virtual void _008OnMouse(::message::mouse * pmouse);
@@ -262,7 +275,7 @@ namespace user
 
       virtual ::e_status destroy() override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       DECLARE_MESSAGE_HANDLER(_002OnDraw);
 
@@ -431,11 +444,11 @@ namespace user
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+//      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 //
 //#else
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
 
 //#endif
 
@@ -460,11 +473,11 @@ namespace user
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags);
 
 
-#if(WINVER >= 0x0500)
-
-      virtual bool AnimateWindow(millis millis,u32 dwFlags);
-
-#endif
+//#if(WINVER >= 0x0500)
+//
+//      virtual bool AnimateWindow(const ::duration & duration,u32 dwFlags);
+//
+//#endif
 
 
 #if(_WIN32_WINNT >= 0x0501)
@@ -576,7 +589,7 @@ namespace user
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout);
 
 #endif   // WINVER >= 0x0500
 
@@ -624,6 +637,9 @@ namespace user
       virtual void message_handler(::message::message * pusermessage) override;
       //virtual lresult default_window_procedure() override;
       virtual void default_window_procedure(::message::message * pmessage);
+
+
+      virtual bool on_mouse_message(::message::mouse * pmouse);
 
 
       virtual void post_non_client_destroy() override;
@@ -702,7 +718,7 @@ namespace user
 
       virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
-      virtual ::user::primitive * get_keyboard_focus() override;
+      ::user::element * get_keyboard_focus() override;
       //virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status erase_keyboard_focus(::user::primitive * pprimitive) override;
       //virtual ::e_status clear_keyboard_focus() override;

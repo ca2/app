@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/app_core.h"
 #include "_linux.h"
-#include "acme/os/linux/gnome_gnome.h"
+#include "acme/node/operating_system/linux/gnome_gnome.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
@@ -495,7 +495,7 @@ namespace linux
                   keyPlugin.SetValue("Path", ::acme::get_system()->m_strCa2Module("npca2.dll"));
                   keyPlugin.SetValue("ProductName", "ca2 plugin for NPAPI");
                   keyPlugin.SetValue("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-                  keyPlugin.SetValue("Version", papplication->file_as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
+                  keyPlugin.SetValue("Version", papplication->m_psystem->m_pacmefile->as_string(pcontext->m_papexcontext->dir().ca2("appdata/x86/ca2_build.txt")));
 
                   registry::Key keyApplicationca2;
 
@@ -969,7 +969,7 @@ namespace linux
 
          pathDesktop /= str;
 
-         if(file_exists(pathDesktop))
+         if(m_psystem->m_pacmefile->exists(pathDesktop))
          {
 
             ::file::path pathTarget;

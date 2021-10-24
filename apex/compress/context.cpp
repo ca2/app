@@ -93,7 +93,7 @@ bool compress_context::gz(::file::file * pfileOut, ::file::file * pfileIn, int i
 bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -113,7 +113,7 @@ bool compress_context::unbz(::file::file* pfileOut, ::file::file* pfileIn)
 bool compress_context::bz(::file::file* pfileOut, ::file::file* pfileIn, int iBlockSize, int iVerbosity, int iWorkFactor)
 {
 
-   __throw(error_interface_only);
+   throw ::interface_only_exception();
 
    return false;
 
@@ -243,14 +243,14 @@ bool compress_context::uncompress(memory& memoryOut, const ::memory& memoryIn)
 bool compress_context::zip(const ::file::path & pszZip, const ::file::path & psz, ::application * pobject)
 {
 
-   INFO("compress_context::zip");
+   INFORMATION("compress_context::zip");
 
    zip::in_file infile;
 
    if (!infile.zip_open(pszZip, 0))
    {
 
-      ERR("Could not open zip file");
+      ERROR("Could not open zip file");
 
       return false;
 
@@ -293,10 +293,10 @@ bool compress_context::zip(const ::file::path & psz, ::application * pobject)
 }
 
 
-bool compress_context::unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed)
+bool compress_context::unzip(const ::payload & payloadFile, const ::file::path & pathZipFileCompressed)
 {
 
-   auto pfileTarget = m_pcontext->m_papexcontext->file().get_writer(varFile);
+   auto pfileTarget = m_pcontext->m_papexcontext->file().get_writer(payloadFile);
 
    if (!pfileTarget)
    {

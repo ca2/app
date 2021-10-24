@@ -14,7 +14,7 @@
 bool uwp_get_file_image(::image * pimage, const char * psz);
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -148,7 +148,11 @@ namespace uwp
 
       ::str::international::unicode_to_utf8(strPath, lpcszPath);
 
-      if (dir::is(strPath))
+      if (         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(strPath))
       {
             
          return folder_file_system;
@@ -412,7 +416,7 @@ namespace uwp
    }
 
    
-} // namespace uwp
+} // namespace universal_windows
 
 
 bool uwp_get_file_image(::image * pimage, const char * psz)

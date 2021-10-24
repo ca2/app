@@ -204,7 +204,7 @@
 //      inline bool begins(const ::id & id, const ::string & psz) const
 //      {
 //
-//         return m_pstr->begins(this, __str(id), psz);
+//         return m_pstr->begins(this, __string(id), psz);
 //
 //      }
 //

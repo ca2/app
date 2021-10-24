@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "nanosvg/nanosvg.h"
-#include "nanosvg/nanosvgrast.h"
+#include "third/nanosvg/nanosvg.h"
+#include "third/nanosvg/nanosvgrast.h"
 
 double get_default_screen_dpi();
 
@@ -36,12 +36,12 @@ bool nanosvg(::image * pimage, NSVGimage * psvgimage)
 
 #ifdef _UWP
 
-      u8 * point = (u8 *)pimage->colorref();
+      u8 * pcolorref = (u8 *)pimage->colorref();
 
       for (index iLine = 0; iLine < h; iLine++)
       {
 
-         u8 * pline = &point[iLine * iScan];
+         u8 * pline = &pcolorref[iLine * iScan];
 
          for (index x = 0; x < w; x++)
          {

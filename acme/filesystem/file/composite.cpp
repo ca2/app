@@ -59,10 +59,10 @@ namespace file
    }
 
 
-   filesize reference::seek(filesize lOff, ::file::e_seek  nFrom)
+   filesize reference::translate(filesize offset, ::enum_seek eseek)
    {
 
-      return m_pfile->seek(lOff, nFrom);
+      return m_pfile->translate(offset, eseek);
 
    }
 
@@ -95,6 +95,14 @@ namespace file
    {
 
       return m_pfile->unlock(dwPos, dwCount);
+
+   }
+
+
+   void reference::abort()
+   {
+
+      return m_pfile->abort();
 
    }
 

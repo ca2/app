@@ -33,10 +33,19 @@ namespace aura
 
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
       virtual ::e_status on_initialize_object() override;
+
+      virtual void dpi_os_initialize();
+
+      virtual void message_box_factory();
+
+
+      string system_options_html() override;
+
+
 
 //#ifdef LINUX
 
@@ -44,6 +53,11 @@ namespace aura
     //  virtual void appindicator_destroy(::linux::appindicator * pappindicator);
 
 //#endif
+
+
+      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier);
+
+      virtual ::image_pointer get_file_image(int iSize, const char * pszPath);
       
       virtual void defer_dock_application(bool bDock);
 
@@ -56,6 +70,15 @@ namespace aura
       //virtual void user_fork(const ::routine & routine) override;
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
+
+
+      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
+
+
+      void BeginWaitCursor();
+      void EndWaitCursor();
+      void RestoreWaitCursor();
+
 
 
    };

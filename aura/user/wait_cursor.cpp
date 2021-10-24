@@ -15,9 +15,9 @@ wait_cursor::wait_cursor(::object * pobject)
 
    }
 
-   __pointer(::aura::application) papplication = get_application();
+   auto pnode = m_psystem->m_pauranode;
 
-	papplication->BeginWaitCursor();
+   pnode->BeginWaitCursor();
 
 }
 
@@ -25,9 +25,9 @@ wait_cursor::wait_cursor(::object * pobject)
  wait_cursor::~wait_cursor()
 {
 
-    __pointer(::aura::application) papplication = get_application();
+    auto pnode = m_psystem->m_pauranode;
 
-    papplication->EndWaitCursor();
+    pnode->EndWaitCursor();
 
 }
 
@@ -35,9 +35,9 @@ wait_cursor::wait_cursor(::object * pobject)
 void wait_cursor::restore()
 {
 
-   __pointer(::aura::application) papplication = get_application();
+   auto pnode = m_psystem->m_pauranode;
 
-	papplication->RestoreWaitCursor();
+	pnode->RestoreWaitCursor();
 
 }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/user/_user.h"
 #include "aura/update.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 
 namespace user
@@ -20,12 +20,26 @@ namespace user
    }
 
 
-   void form_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void form_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      //::user::impact::handle(psubject, pcontext);
 
-      if (psubject->id() == id_browse)
+      form_window::handle(psubject, pcontext);
+
+      if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+      {
+
+         if (get_document())
+         {
+
+            //call_sync(get_document()->m_mapMethod["load"]);
+            get_document()->call_routines_with_id("load");
+
+         }
+
+      }
+      else if (psubject->id() == id_browse)
       {
 
          if (!psubject->payload(id_form).is_empty())
@@ -53,7 +67,7 @@ namespace user
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->on_subject(psubject, pcontext);
+         m_pcallback->handle(psubject, pcontext);
 
       }
 
@@ -63,14 +77,14 @@ namespace user
    bool form_view::Navigate(const ::string & pszUrl)
    {
 
-      UNREFERENCED_PARAMETER(pszUrl);
+      __UNREFERENCED_PARAMETER(pszUrl);
 
       return false;
 
    }
 
 
-   ::e_status form_view::open_document(const ::payload & varFile)
+   ::e_status form_view::open_document(const ::payload & payloadFile)
    {
 
       auto psystem = m_psystem->m_pbasesystem;
@@ -90,7 +104,7 @@ namespace user
 
       ::file::path pathHtml;
 
-      bool bHtml = psystem->m_phtml->defer_get_html(strHtml, pathHtml, this, varFile);
+      bool bHtml = psystem->m_phtml->defer_get_html(strHtml, pathHtml, this, payloadFile);
 
       bool bOk = true;
 
@@ -149,18 +163,22 @@ namespace user
       if(pformOld)
       {
 
-         __pointer(::user::form_view) pview = pformOld;
+//         __pointer(::user::form_view) pview = pformOld;
 
-         if (pview)
-         {
+         //if (pview)
+         //{
 
-            get_document()->erase_view(pview);
+         //   pview->set_finish();
 
-         }
+         //   //get_document()->erase_view(pview);
 
-         pformOld->destroy_window();
+         //}
 
-         pformOld.release();
+         //pformOld->destroy_window();
+
+         //pformOld.release();
+
+         pformOld->set_finish();
 
       }
 
@@ -284,25 +302,25 @@ namespace user
    }
 
 
-   void form_view::on_control_event(::user::control_event * pevent)
-   {
+   //void form_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      form_window::on_control_event(pevent);
+   //   form_window::handle(psubject, pcontext);
 
-      if (pevent->m_eevent == ::user::e_event_form_initialize && pevent->m_puserinteraction == this)
-      {
+   //   if (psubject->m_id == ::e_subject_form_initialize && psubject->user_interaction() == this)
+   //   {
 
-         if (get_document())
-         {
+   //      if (get_document())
+   //      {
 
-            //call_sync(get_document()->m_mapMethod["load"]);
-            get_document()->call_routine("load");
+   //         //call_sync(get_document()->m_mapMethod["load"]);
+   //         get_document()->call_routine("load");
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void form_view::set_need_load_form_data()

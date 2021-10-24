@@ -15,13 +15,13 @@ namespace prompt
    void form_callback::update(::user::form * pform, ::update & update)
    {
       
-      UNREFERENCED_PARAMETER(pform);
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(pform);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 
 
-   void form_callback::on_control_event(::user::control_event * pevent)
+   void form_callback::handle(::subject * psubject, ::context * pcontext)
    {
 
       __pointer(::user::interaction) pinteraction =  (this);
@@ -29,7 +29,7 @@ namespace prompt
       if(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
       {
 
-         return pinteraction->get_parent()->on_control_event(pevent);
+         return pinteraction->get_parent()->handle(psubject, pcontext);
 
       }
 

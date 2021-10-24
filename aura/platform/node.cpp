@@ -3,8 +3,9 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "aura/user/_user.h"
 #ifdef LINUX
-#include "aura/os/linux/x11.h"
+#include "aura/node/operating_system/linux/x11.h"
 #endif
 
 
@@ -39,6 +40,8 @@ namespace aura
 
       }
 
+      message_box_factory();
+
       m_psystem->m_pauranode = this;
 
       return estatus;
@@ -46,25 +49,57 @@ namespace aura
    }
 
 
-//#ifdef LINUX
-//
-//   ::linux::appindicator * node::appindicator_allocate()
-//   {
-//
-//      return nullptr;
-//
-//   }
-//
-//
-//   void node::appindicator_destroy(::linux::appindicator * pappindicator)
-//   {
-//
-//      //return nullptr;
-//
-//   }
-//
-//
-//#endif
+   void node::dpi_os_initialize()
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+
+   void node::message_box_factory()
+   {
+
+      create_factory < ::user::default_message_box, ::user::message_box >();
+
+   }
+
+
+   string node::system_options_html()
+   {
+
+      return ::apex::node::system_options_html();
+
+      //string strFooter__;
+
+      //strFooter__ += system_options_main_body();
+
+      //strFooter__ += ::apex::node::system_options_html();
+
+      //return strFooter__;
+
+   }
+
+
+   ::image_pointer node::get_file_image_by_type_identifier(int iSize, const char * pszTypeIdentifier)
+   {
+      
+      throw ::interface_only_exception();
+      
+      return nullptr;
+      
+   }
+
+
+   ::image_pointer node::get_file_image(int iSize, const char * pszPath)
+   {
+      
+      throw ::interface_only_exception();
+      
+      return nullptr;
+      
+   }
+
 
    void node::defer_dock_application(bool bDock)
    {
@@ -101,6 +136,38 @@ namespace aura
 //#endif
 //
 //   }
+
+   
+   //__pointer(::extended::sequence < ::conversation >) node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
+
+   //   auto pmessagebox = puserinteraction->__create < ::user::message_box >();
+
+   //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+
+   //   auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
+
+   //   return pextendedfuture;
+
+   //}
+
+
+   void node::BeginWaitCursor()
+   {
+
+   }
+
+
+   void node::EndWaitCursor()
+   {
+
+   }
+
+
+   void node::RestoreWaitCursor()
+   {
+
+   }
 
 
 

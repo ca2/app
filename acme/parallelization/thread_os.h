@@ -10,7 +10,7 @@ typedef THREAD_PROC * thread_proc;
 //CLASS_DECL_ACME htask_t create_thread(
 //thread_proc proc,
 //void * p,
-//::e_priority epriority = ::priority_normal,
+//::enum_priority epriority = ::e_priority_normal,
 //::u32 nStackSize = 0,
 //u32 uiCreateFlags = 0,
 //LPSECURITY_ATTRIBUTES psa = nullptr,
@@ -63,7 +63,7 @@ CLASS_DECL_ACME htask_t get_current_hthread();
 //CLASS_DECL_ACME void thread_set_fast_path(bool bFastPath = true);
 //CLASS_DECL_ACME bool thread_is_fast_path();
 //CLASS_DECL_ACME void thread_set_zip_is_dir(bool bZipIsDir = true);
-//CLASS_DECL_ACME bool thread_set(id_thread_zip_is_dir);
+//CLASS_DECL_ACME bool thread_set(e_task_flag_zip_is_dir);
 //CLASS_DECL_ACME void thread_set_is_timer(bool bIsTimer = true);
 //CLASS_DECL_ACME bool thread_is_timer();
 //CLASS_DECL_ACME void thread_set_resolve_alias(bool bResolveAlias = true);
@@ -135,34 +135,18 @@ CLASS_DECL_ACME bool task_get_run();
 
 #ifdef WINDOWS
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-inline synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite())
+inline ::e_status wait(synchronization_object * psync,const duration & duration = duration::infinite())
 {
    return psync->wait(duration);
 }
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
+::e_status wait(i32 numberOfItems, synchronization_object * psync, const duration & duration = duration::infinite(),bool waitForAll = false);
 
 #else
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (can be event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(synchronization_object * psync,const duration & duration = duration::infinite());
+::e_status wait(synchronization_object * psynchronizationobject,const duration & duration = duration::infinite());
 
-///  \brief    global function to wait on a matter item for a specified time
-///  \lparam    waitableItem item to wait for (item can be thread, event, socket, file, semaphore, ...)
-///  \lparam    duration time period to wait for item (default: infinite)
-///  \return   result of waiting action as defined in synchronization_result
-synchronization_result wait(size_t numberOfItems, synchronization_object ** psync, const duration& duration = duration::infinite(),bool waitForAll = false);
+::e_status wait(size_t numberOfItems, synchronization_object ** psynchronizationobject, const duration& duration = duration::infinite(),bool waitForAll = false);
 
 #endif
 

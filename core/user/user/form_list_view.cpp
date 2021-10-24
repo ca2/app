@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 #include "aura/update.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 
 namespace user
@@ -29,12 +29,12 @@ namespace user
    }
 
 
-   void form_list_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void form_list_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::form_view::on_subject(psubject, pcontext);
+      ::user::form_view::handle(psubject, pcontext);
 
-      ::user::list_view::on_subject(psubject, pcontext);
+      ::user::list_view::handle(psubject, pcontext);
 
       ////__update(::update)
       {
@@ -71,7 +71,7 @@ namespace user
 
          psubject->payload(id_form) = this;
 
-         m_pcallback->on_subject(psubject, pcontext);
+         m_pcallback->handle(psubject, pcontext);
 
       }
 
@@ -156,10 +156,10 @@ namespace user
    }
 
 
-   void form_list_view::route_command_message(::message::command * pcommand)
+   void form_list_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::user::impact::route_command_message(pcommand);
+      ::user::impact::route_command(pcommand);
 
    }
 
@@ -206,14 +206,14 @@ namespace user
    }
 
 
-   void form_list_view::on_control_event(::user::control_event * pevent)
-   {
+   //void form_list_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      form_view::on_control_event(pevent);
+   //   form_view::handle(psubject, pcontext);
 
-      list_view::on_control_event(pevent);
+   //   list_view::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    void form_list_view::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact) pviewDeactive)

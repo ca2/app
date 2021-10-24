@@ -24,22 +24,10 @@ RAND_METHOD rand_meth;
 extern "C" void crypto_initializer_locking_function(i32 mode, i32 n, const char* file, i32 line);
 extern "C" unsigned long crypto_initializer_id_function();
 
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-crypto_initializer_rand_seed(const void* buf, i32 num);
+extern "C" int crypto_initializer_rand_seed(const void* buf, i32 num);
 extern "C" i32 crypto_initializer_rand_bytes(uchar * buf, i32 num);
 extern "C" void crypto_initializer_rand_cleanup();
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-crypto_initializer_rand_add(const void* buf, int num, double entropy);
+extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entropy);
 extern "C" i32 crypto_initializer_rand_pseudorand(uchar * buf, i32 num);
 extern "C" i32 crypto_initializer_rand_status();
 
@@ -161,9 +149,9 @@ namespace crypto
 extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const char* file, i32 line)
 {
 
-   UNREFERENCED_PARAMETER(file);
+   __UNREFERENCED_PARAMETER(file);
 
-   UNREFERENCED_PARAMETER(line);
+   __UNREFERENCED_PARAMETER(line);
 
    synchronous_lock synchronouslock(::crypto::g_pmutexMap);
 
@@ -229,20 +217,12 @@ extern "C" unsigned long crypto_initializer_SSL_id_function()
 
 #if OPENSSL_API_COMPAT < 0x10100000L
 
-extern "C"
-#if defined(_UWP) && (!defined(RASPBIAN))
-void
-#else
-int
-#endif
-crypto_initializer_rand_seed(const void* buf, i32 num)
+
+extern "C" int crypto_initializer_rand_seed(const void* buf, i32 num)
 {
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
-#if defined(_UWP) && (!defined(RASPBIAN))
-#else
+   __UNREFERENCED_PARAMETER(buf);
+   __UNREFERENCED_PARAMETER(num);
    return 1;
-#endif
 }
 
 
@@ -262,21 +242,12 @@ extern "C" void crypto_initializer_rand_cleanup()
 }
 
 
-extern "C"
-#if defined(_UWP)
-void
-#else
-int
-#endif
-crypto_initializer_rand_add(const void* buf, int num, double entropy)
+extern "C" int crypto_initializer_rand_add(const void* buf, int num, double entropy)
 {
-   UNREFERENCED_PARAMETER(buf);
-   UNREFERENCED_PARAMETER(num);
-   UNREFERENCED_PARAMETER(entropy);
-#if defined(_UWP)
-#else
+   __UNREFERENCED_PARAMETER(buf);
+   __UNREFERENCED_PARAMETER(num);
+   __UNREFERENCED_PARAMETER(entropy);
    return 1;
-#endif
 }
 
 

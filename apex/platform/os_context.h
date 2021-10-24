@@ -134,7 +134,7 @@
 
       ::file::patha list_process_path();
 
-      //virtual ::icon_result load_icon(const ::payload & varFile);
+      //virtual ::icon_transport load_icon(const ::payload & payloadFile);
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 

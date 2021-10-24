@@ -7,14 +7,14 @@ class CLASS_DECL_ACME timer_event:
 public:
 
 
-   manual_reset_event         m_ev;
+   manual_reset_event         m_manualresetevent;
 
 
    timer_event();
-   virtual ~timer_event();
+   ~timer_event() override;
 
 
-   virtual bool wait(int millis);
+   virtual bool wait(const class ::wait & wait);
 
 
    virtual bool on_timer() override;

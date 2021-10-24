@@ -1,22 +1,19 @@
 #pragma once
 
 
-///class stream;
-
-
 namespace file
 {
 
 
-   enum e_buffer
+   enum enum_buffer
    {
-      buffer_read,
-      buffer_write,
-      buffer_commit,
-      buffer_check
+
+      e_buffer_read,
+      e_buffer_write,
+      e_buffer_commit,
+      e_buffer_check
+
    };
-
-
 
 
    class exception;
@@ -25,19 +22,9 @@ namespace file
    class file;
 
 
-   enum e_seek
-   {
-      seek_begin = 0x0,
-      seek_current = 0x1,
-      seek_end = 0x2,
-      beg = seek_begin,
-      cur = seek_current,
-      end = seek_end
-   };
-
-
    class CLASS_DECL_ACME file :
-      virtual public ::object
+      virtual public ::object,
+      virtual public streamable
    {
    public:
 
@@ -45,16 +32,16 @@ namespace file
       ::file::e_open             m_eopen;
       ::file::path               m_path;
       ::file::e_state            m_estate;
-      ::millis                   m_millisErrorBlockTimeout;
+      ::duration                 m_durationErrorBlockTimeout;
 
 
       file();
-      file(const ::file::path & path);
-      virtual ~file();
+      explicit file(const ::file::path & path);
+      ~file() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void* get_internal_data();
@@ -63,33 +50,35 @@ namespace file
       virtual bool set_internal_data_size(memsize c);
       virtual bool increase_internal_data_size(memsize c);
 
-      virtual filesize seek_to_end();
-
-
       virtual bool is_seekable();
 
-      virtual filesize seek_from_begin(filesize position);
-      virtual filesize seek(filesize offset, ::file::e_seek seekOrigin);
+      inline translatable & position() {return *this;}
       virtual filesize get_position() const;
-      virtual filesize set_position(filesize offset);
+      virtual filesize set_position(filesize position);
+      virtual filesize increment_position(filesize offset = 1);
+      virtual filesize decrement_position(filesize offset = 1);
+      virtual filesize seek_to_begin();
+      virtual filesize seek_to_end();
+      virtual filesize seek_from_end(filesize offset);
+      filesize translate(filesize offset, ::enum_seek eseek) override;
       virtual int getc();
       virtual int ungetc(int iChar);
 
-      inline filesize get_remaining_byte_count() { return get_size() - get_position(); }
+      inline filesize get_remaining_byte_count() const { return get_size() - get_position(); }
 
-      virtual memsize read(void* pdata, memsize nCount);
+      memsize read(void* pdata, memsize nCount) override;
 
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
       virtual ::filesize get_left() const;
 
-      string to_string() const override;
+      string get_string() const override;
 
       virtual void as_memory(memory_base & memory) const;
 
       virtual void write(const memory_base & memory);
 
-      virtual void write(const void* pdata, memsize nCount);
+      void write(const void* pdata, memsize nCount) override;
 
       virtual void write(const void* pdata, memsize nCount, memsize* dwWritten);
 
@@ -103,10 +92,10 @@ namespace file
       virtual void read_file(::file::file * pwriter, memsize uiBufferSize = 1024 * 1024);
 
 
+      void abort() override;
+      void flush() override;
+      void close() override;
 
-      virtual void close();
-
-      virtual void flush();
 
       virtual file & put(char ch);
 
@@ -167,10 +156,9 @@ namespace file
       ::file::fmtflags flags(::file::fmtflags flags);
 
 
-      virtual filesize seek_to_begin(filesize lPos = 0);
-      virtual filesize seek_begin(filesize lPos = 0);
-      virtual void set_size(filesize dwNewLen);
-      virtual filesize get_size() const;
+      //virtual filesize seek_begin(filesize lPos = 0);
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
       inline bool is_empty() const { return get_size() <= 0; }
       inline void clear() { set_size(0); }
 
@@ -185,6 +173,9 @@ namespace file
       virtual bool is_opened() const;
 
 
+      virtual void put_lines(const string_array& stra);
+
+
    };
 
    
@@ -195,7 +186,3 @@ namespace file
 
 
 
-
-
-
-//}

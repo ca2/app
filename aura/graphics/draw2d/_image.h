@@ -49,7 +49,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   //virtual bool load_image(::payload varFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
+//   //virtual bool load_image(::payload payloadFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   //virtual bool load_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 //
@@ -57,23 +57,23 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   //virtual bool load_matter_icon(string_array & straMatter, string strIcon)= 0;
 //
 //
-//   //virtual bool load_thumbnail(::payload varFile, int w, int h)= 0;
+//   //virtual bool load_thumbnail(::payload payloadFile, int w, int h)= 0;
 //
 //
-//   //virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) = 0;
-//   //virtual bool save_dib(::payload varFile) = 0;
+//   //virtual bool save_image(::payload payloadFile, ::save_image * psaveimage = nullptr) = 0;
+//   //virtual bool save_dib(::payload payloadFile) = 0;
 //
-//   virtual image get_image(::payload varFile, bool bSync = false) = 0;
+//   virtual image get_image(::payload payloadFile, bool bSync = false) = 0;
 //   virtual image matter_image(string strMatter, bool bSync = false) = 0;
-//   virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) = 0;
+//   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
-//   virtual image load_thumbnail(::payload varFile, int w, int h) = 0;
+//   virtual image load_thumbnail(::payload payloadFile, int w, int h) = 0;
 //   virtual image load_thumbnail(const ::string & pszPath) = 0;
 //   virtual image load_dib(const ::file::path & pathDib) = 0;
 //
 //
-//   virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) = 0;
+//   virtual bool save_image(::payload payloadFile, ::save_image * psaveimage = nullptr) = 0;
 //   virtual bool save_dib(const ::file::path & pathDib) = 0;
 //
 //
@@ -90,7 +90,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool _set_mipmap(::draw2d::e_mipmap emipmap)= 0;
 //
 //   virtual bool create_isotropic(::image * pimage)= 0;
-//   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority)= 0;
+//   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority)= 0;
 //
 //   virtual bool SetViewportOrg(const ::point_i32 & point)= 0;
 //   virtual bool set_font_factor(double dFactor)= 0;

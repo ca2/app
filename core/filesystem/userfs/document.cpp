@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
-#include "acme/const/id.h"
+#endif
+
+#include "acme/constant/id.h"
 
 
 namespace userfs
@@ -235,9 +238,13 @@ namespace userfs
 
          }
 
-         listingFolderUser.add(listingUser[i]);
+         auto pathFolderUser = listingUser[i];
 
-         listingFolderFinal.add(listingFinal[i]);
+         auto pathFolderFinal = listingFinal[i];
+
+         listingFolderUser.add(pathFolderUser);
+
+         listingFolderFinal.add(pathFolderFinal);
 
       }
 
@@ -256,13 +263,13 @@ namespace userfs
 
       }
 
-      auto psubject = subject(id_synchronize_path);
+      ::subject subject(id_synchronize_path);
 
-      psubject->m_pfileitem = pitem;
+      subject.m_pfileitem = pitem;
 
-      psubject->m_actioncontext = context + ::e_source_sync;
+      subject.m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(psubject);
+      update_all_views(&subject);
 
       return true;
 

@@ -1,17 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME bool demangle(string & str, const char * psz);
-CLASS_DECL_ACME bool demangle(string & str);
-
-namespace str
-{
-
-
-   CLASS_DECL_ACME string demangle(const char * psz);
-
-
-} // namespace str
+CLASS_DECL_ACME string demangle(const char * psz);
 
 
 class CLASS_DECL_ACME type
@@ -32,8 +22,6 @@ public:
       m_strName(pszTypeName)
    {
       
-      demangle(m_strName);
-
    }
 
 
@@ -59,7 +47,7 @@ public:
 
    }
 
-   type(const ::matter * pobject);
+   type(const ::element * pelement);
 
    template < typename BASE >
    type(const __pointer(BASE) & point);
@@ -68,7 +56,11 @@ public:
    type & operator = (const ::std::type_info & typeinfo)
    {
 
-      demangle(m_strName, typeinfo.name());
+      string strName = typeinfo.name();
+      
+      strName = demangle(strName);
+      
+      m_strName = strName;
 
       return *this;
 
@@ -96,9 +88,9 @@ public:
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-      string strName;
+      string strName = ::type(typeinfo).name();
 
-      demangle(strName, ::type(typeinfo).name());
+      strName = demangle(strName);
 
       return m_strName == strName;
 
@@ -139,25 +131,22 @@ public:
    }
 
 
-   bool operator == (const ::matter * pobject) const
+   bool operator == (const ::element * pelement) const
    {
 
-      return operator ==(::type(pobject));
+      return operator ==(::type(pelement));
 
    }
 
 
-   bool operator != (const ::matter* pobject) const
+   bool operator != (const ::element * pelement) const
    {
 
-      return !operator==(pobject);
+      return !operator==(pelement);
 
    }
-
-   //inline __pointer(matter) alloc(::matter * pobject) const;
 
    inline operator bool() const { return m_strName.has_char(); }
-
 
    inline operator const char * () const { return m_strName; }
 
@@ -169,34 +158,6 @@ public:
 };
 
 
-inline CLASS_DECL_ACME string get_demangle(const char * lpszName)
-{
-
-   string str(lpszName);
-
-   demangle(str);
-
-   return str;
-
-}
-
-
-template < typename T >
-inline string friendly_this_name(T const * pthis)
-{
-
-   string str = typeid(*pthis).name();
-
-   demangle(str);
-
-   return str;
-
-}
-
-
-#define THIS_FRIENDLY_NAME() friendly_this_name(this)
-
-
 template < typename TYPE >
 ::type ___type()
 {
@@ -206,5 +167,7 @@ template < typename TYPE >
 }
 
 
-
 #define __type(TYPE)  ___type<TYPE>()
+
+
+

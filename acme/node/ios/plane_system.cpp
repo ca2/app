@@ -113,11 +113,11 @@
 //
 //   pimpl->send_message(e_message_create, 0, (LPARAM) &cs);
 //
-//   ::rectangle_i32 rectMainScreen;
+//   ::rectangle_i32 rectangleMainScreen;
 //
-//   GetMainScreenRect(rectMainScreen);
+//   GetMainScreenRect(rectangleMainScreen);
 //
-//   pimpl->SetPlacement(rectMainScreen);
+//   pimpl->SetPlacement(rectangleMainScreen);
 //
 //   return window;
 //

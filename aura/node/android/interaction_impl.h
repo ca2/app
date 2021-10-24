@@ -27,15 +27,15 @@ namespace android
       virtual ~interaction_impl();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       //bool create_message_queue(::user::interaction * pinteraction, const ::string & pszName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
@@ -43,7 +43,7 @@ namespace android
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       void _002OnDraw(::image * pimage);
 
@@ -301,7 +301,7 @@ namespace android
 
 #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout);
+      virtual bool FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout);
 
 #endif   // WINVER >= 0x0500
 

@@ -8,11 +8,13 @@ class message_queue;
 /// a thread must be always allocated in the heap
 ///
 class CLASS_DECL_APEX thread :
-   virtual public task,
-   virtual public channel
-   , virtual public subject::context
+   virtual public ::task,
+   virtual public ::channel,
+   virtual public ::manager,
+   virtual public ::context,
+   virtual public ::source
 #ifdef WINDOWS
-   ,virtual public ::exception::translator
+   ,virtual public ::exception_translator
 #endif
 {
 public:
@@ -33,9 +35,9 @@ public:
 
 
 
-   bool                                               m_bBranchHandling : 1;
-   __composite(message_queue)                         m_pmq;
-   bool                                               m_bClosedMq;
+   //bool                                               m_bBranchHandling : 1;
+   __composite(message_queue)                         m_pmessagequeue;
+   bool                                               m_bClosedMessageQueue;
 
 
    MESSAGE                                            m_message;
@@ -57,10 +59,10 @@ public:
    __pointer(manual_reset_event)                      m_peventReady;
    __pointer(manual_reset_event)                      m_peventFinished;
 
-   e_id                                               m_idContextReference;
+   enum_id                                            m_idContextReference;
 
    bool                                               m_bAuraMessageQueue;
-   ::millis                                           m_millisHeartBeat;
+   ::duration                                           m_durationHeartBeat;
    bool                                               m_bReady;
    ::extended::status                                 m_result;
    __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
@@ -82,11 +84,11 @@ public:
    bool                                               m_bThreadClosed;
 
 
-   ::routine_array                                    m_routinea;
+   //::routine_array                                    m_routinea;
 
 
    __pointer(manual_reset_event)                      m_pevent1;
-   e_priority                                         m_epriority;
+   enum_priority                                         m_epriority;
 
 
    string                                             m_strDebug;
@@ -97,12 +99,12 @@ public:
    __pointer(::object)                                m_pobjectScript;
 
 
-#ifdef MACOS
-
-   array < CFRunLoopSourceRef >                       m_runloopsourcea;
-   CFRunLoopRef                                       m_runloop;
-
-#endif
+//#ifdef MACOS
+//
+//   array < CFRunLoopSourceRef >                       m_runloopsourcea;
+//   CFRunLoopRef                                       m_runloop;
+//
+//#endif
 
 #ifdef WINDOWS
 
@@ -133,11 +135,11 @@ public:
    void add_task(::object* pobjectTask) override;
 
 
-   inline message_queue* get_message_queue() { return m_pmq ? m_pmq : _get_mq(); }
-   message_queue* _get_mq();
+   inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue : _get_message_queue(); }
+   message_queue* _get_message_queue();
 
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   ::e_status get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    int_bool post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
@@ -155,15 +157,15 @@ public:
 
    // file related stuff
    file_info * get_file_info();
-   ::u32 get_file_sharing_violation_timeout_total_milliseconds();
-   ::duration set_file_sharing_violation_timeout(::duration duration);
+   ::duration get_file_sharing_violation_timeout();
+   ::duration set_file_sharing_violation_timeout(const ::duration & duration);
 
    virtual bool is_running() const override;
 
 
 //   virtual ::e_status branch(
 //      ::matter * pmatter,
-//      ::e_priority epriority = priority_normal,
+//      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,
 //      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
@@ -191,7 +193,7 @@ public:
 
    //static __pointer(thread) start(
    //   ::matter* pmatter,
-   //   ::e_priority epriority = priority_normal,
+   //   ::enum_priority epriority = e_priority_normal,
    //   u32 nStackSize = 0,
    //   u32 dwCreateFlags = 0);
 
@@ -209,9 +211,9 @@ public:
 
    //virtual synchronization_result wait(const duration & duration);
 
-   bool set_thread_priority(::e_priority epriority);
+   bool set_thread_priority(::enum_priority epriority);
 
-   ::e_priority thread_priority();
+   ::enum_priority thread_priority();
 
    //virtual void set_thread_run(bool bRun = true);
 
@@ -226,70 +228,59 @@ public:
    //inline bool command_value_is_true(const ::id& id) const;
 
 
-   ///virtual u32 ResumeThread();
    virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(const ::id & id, wparam wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_message(const ::id & id, wparam wParam = 0, lparam lParam = 0, const ::duration & durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(const ::id & id, wparam wParam, ::matter * pmatter);
+   virtual bool post_element(const ::id & id, wparam wParam, ::element * pelement);
 
-   virtual bool send_object(const ::id & id, wparam wParam, ::matter * pmatter, ::duration durationTimeout = ::duration::infinite());
-
-   virtual bool post_task(const ::routine & routine);
-   virtual bool send_task(const ::routine & routine, ::duration durationTimeout = ::duration::infinite());
-
-   template < typename PRED >
-   bool pred(PRED pred)
-   {
-      return post_runnable(__runnable(pred));
-   }
-
-   template < typename PRED >
-   bool post_predicate(PRED pred)
-   {
-      return post_object(e_message_system, e_system_message_method, __routine(pred));
-   }
+   virtual bool send_element(const ::id & id, wparam wParam, ::element * pelement, const ::duration & durationTimeout = ::duration::infinite());
 
 
-   bool send_routine(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   template < typename PREDICATE >
+   bool post_predicate(PREDICATE predicate)
    {
 
-      return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
+
+      return post_routine(__routine(predicate));
+
 
    }
 
+   //template < typename PRED >
+   //bool schedule_predicate(PRED pred)
+   //{
 
-   template < typename PRED >
-   bool schedule_predicate(PRED pred)
-   {
+   //   return post_predicate(pred);
 
-      return post_predicate(pred);
-
-   }
+   //}
 
 
-   bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
-   {
+   //bool sync_procedure(const ::routine & routine, ::duration durationTimeout = ::duration::infinite())
+   //{
 
-      if (this == ::get_task())
-      {
+   //   if (this == ::get_task())
+   //   {
 
-         routine();
+   //      routine();
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      return send_routine(routine, durationTimeout);
+   //   return send_routine(routine, durationTimeout);
 
-   }
+   //}
 
-   ::e_status post(const ::routine& routine) override;
+
+   //virtual ::e_status post_routine(const ::routine& routine) override;
+   //virtual ::e_status send_routine(const ::routine & routine, const ::duration & durationTimeout = ::duration::infinite());
+
 
    DECLARE_MESSAGE_HANDLER(on_message_branch);
 
 
-   //virtual bool final_handle_exceptionconst ::exception::exception & e;
+   //virtual bool final_handle_exceptionconst ::exception & e;
    //__pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
@@ -325,7 +316,7 @@ public:
    virtual bool is_idle_message();  // checks for special messages
 
    virtual ::e_status init_thread();
-   virtual ::e_status on_pre_run_thread();
+   //virtual ::e_status on_pre_run_task();
 
    virtual ::e_status run() override;
    virtual ::e_status main() override;
@@ -333,7 +324,7 @@ public:
    virtual void on_pos_run_thread();
    virtual void term_thread();
 
-   virtual void process_window_procedure_exception(const ::exception::exception & e, ::message::message * pmessage);
+   virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage);
 
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 
@@ -382,7 +373,7 @@ public:
    //virtual void unregister_from_required_threads();
    //virtual void close_dependent_threads(const ::duration & dur);
 
-   virtual bool pump_sleep(const millis & millis, synchronization_object * psync);
+   virtual bool pump_sleep(const class ::wait & wait, synchronization_object * psync);
 
    bool do_events() override;
    // virtual bool do_events(const duration& duration);
@@ -447,7 +438,7 @@ public:
 
    virtual e_status begin_thread(
    bool bSynchInitialization = false,
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -455,13 +446,13 @@ public:
    using object::branch;
 
    virtual ::e_status branch(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual ::e_status begin_synch(
-   ::e_priority epriority = ::priority_normal,
+   ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -473,7 +464,7 @@ public:
 
    virtual bool initialize_message_queue();
 
-   virtual void message_handler(::message::message * pmessage);
+   virtual void message_handler(::message::message * pmessage) override;
 
    virtual void do_request(::create * pcreate) override;
 
@@ -574,14 +565,14 @@ using id_thread_map = id_map < __pointer(thread) >;
 
 
 
-//CLASS_DECL_APEX bool apex_task_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool thread_pump_sleep(millis millis, synchronization_object* psync = nullptr);
-CLASS_DECL_APEX bool app_sleep(::application * papplication, millis millis);
+//CLASS_DECL_APEX bool apex_task_sleep(const ::duration & duration, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool thread_pump_sleep(const class ::wait & wait, synchronization_object* psync = nullptr);
+CLASS_DECL_APEX bool app_sleep(::application * papplication, const class ::wait & wait);
 
 
 
 template < typename PRED >
-inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
+inline ::e_status while_predicateicate_Sleep(int iTime, PRED pred)
 {
 
    iTime += 99;
@@ -591,25 +582,25 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
    for (index i = 0; i < iTime; i++)
    {
 
-      sleep(100_ms);
+      preempt(100_ms);
 
       if (!pred())
       {
 
-         return  ::e_synchronization_result_signaled_base;
+         return  ::signaled_base;
 
       }
 
       if (!::task_get_run())
       {
 
-         return ::e_synchronization_result_abandoned_base;
+         return ::abandoned_base;
 
       }
 
    }
 
-   return ::e_synchronization_result_timed_out;
+   return ::error_wait_timeout;
 
 }
 
@@ -617,9 +608,7 @@ inline ::synchronization_result while_predicateicate_Sleep(int iTime, PRED pred)
 CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 
-
-
 template < typename PRED >
-auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, e_priority), PRED pred, ::duration durationTimeout, e_priority epriority);
+auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class ::wait & wait, enum_priority epriority);
 
 

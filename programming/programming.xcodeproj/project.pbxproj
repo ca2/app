@@ -14,6 +14,7 @@
 		07B6577B190F3CA2002DAADE /* libios_programming.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_programming.dylib */; };
 		07B65781190F3CA2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B6577F190F3CA2002DAADE /* InfoPlist.strings */; };
 		07B65783190F3CA2002DAADE /* math_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B65782190F3CA2002DAADE /* math_iosTests.m */; };
+		9A32568E271F8CE0004A4955 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A32568B271F89FA004A4955 /* libaxis.dylib */; };
 		9A7EDCCD2670F06500BC7094 /* compiler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDC932670F06500BC7094 /* compiler.h */; };
 		9A7EDCCE2670F06500BC7094 /* compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDC942670F06500BC7094 /* compiler.cpp */; };
 		9A7EDCCF2670F06500BC7094 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDC952670F06500BC7094 /* _.h */; };
@@ -52,7 +53,6 @@
 		9A7EDCF62670F66800BC7094 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF52670F66800BC7094 /* libapex.dylib */; };
 		9A7EDCF82670F66800BC7094 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF72670F66800BC7094 /* libaqua.dylib */; };
 		9A7EDCFA2670F66800BC7094 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF92670F66800BC7094 /* libaura.dylib */; };
-		9A7EDCFB2670F66800BC7094 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDC482670E44600BC7094 /* libaxis.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,16 +63,16 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
-		9A7EDC472670E44600BC7094 /* PBXContainerItemProxy */ = {
+		9A32568A271F89FA004A4955 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A7EDC432670E44600BC7094 /* axis.xcodeproj */;
+			containerPortal = 9A325686271F89FA004A4955 /* axis.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9AE63E9B252A5B7800BED5B8;
 			remoteInfo = axis;
 		};
-		9A7EDC492670E45800BC7094 /* PBXContainerItemProxy */ = {
+		9A32568C271F8A19004A4955 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A7EDC432670E44600BC7094 /* axis.xcodeproj */;
+			containerPortal = 9A325686271F89FA004A4955 /* axis.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
 			remoteInfo = axis;
@@ -100,8 +100,8 @@
 		07B6577E190F3CA2002DAADE /* math_iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "math_iosTests-Info.plist"; sourceTree = "<group>"; };
 		07B65780190F3CA2002DAADE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07B65782190F3CA2002DAADE /* math_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = math_iosTests.m; sourceTree = "<group>"; };
+		9A325686271F89FA004A4955 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = ../axis/axis.xcodeproj; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libprogramming.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libprogramming.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A7EDC432670E44600BC7094 /* axis.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axis.xcodeproj; path = "/Users/camilo/solution/basis/source/app-core/resident_desktop/../../app/axis/axis.xcodeproj"; sourceTree = "<absolute>"; };
 		9A7EDC932670F06500BC7094 /* compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compiler.h; sourceTree = "<group>"; };
 		9A7EDC942670F06500BC7094 /* compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compiler.cpp; sourceTree = "<group>"; };
 		9A7EDC952670F06500BC7094 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -166,11 +166,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A32568E271F8CE0004A4955 /* libaxis.dylib in Frameworks */,
 				9A7EDCF42670F66800BC7094 /* libacme.dylib in Frameworks */,
 				9A7EDCF62670F66800BC7094 /* libapex.dylib in Frameworks */,
 				9A7EDCF82670F66800BC7094 /* libaqua.dylib in Frameworks */,
 				9A7EDCFA2670F66800BC7094 /* libaura.dylib in Frameworks */,
-				9A7EDCFB2670F66800BC7094 /* libaxis.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,10 +209,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9A325687271F89FA004A4955 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A32568B271F89FA004A4955 /* libaxis.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9A7EDC432670E44600BC7094 /* axis.xcodeproj */,
+				9A325686271F89FA004A4955 /* axis.xcodeproj */,
 				9A7EDC912670F06500BC7094 /* programming */,
 				07B6577C190F3CA2002DAADE /* math_iosTests */,
 				07B65765190F3CA2002DAADE /* Frameworks */,
@@ -226,14 +234,6 @@
 				9A574B9816AAB906000CC4EF /* libprogramming.dylib */,
 				07B65764190F3CA2002DAADE /* libios_programming.dylib */,
 				07B65773190F3CA2002DAADE /* math_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A7EDC442670E44600BC7094 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A7EDC482670E44600BC7094 /* libaxis.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,7 +382,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A7EDC4A2670E45800BC7094 /* PBXTargetDependency */,
+				9A32568D271F8A19004A4955 /* PBXTargetDependency */,
 			);
 			name = programming;
 			productName = ca2;
@@ -395,7 +395,7 @@
 		9A574B8F16AAB906000CC4EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					07B65772190F3CA2002DAADE = {
@@ -416,8 +416,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A7EDC442670E44600BC7094 /* Products */;
-					ProjectRef = 9A7EDC432670E44600BC7094 /* axis.xcodeproj */;
+					ProductGroup = 9A325687271F89FA004A4955 /* Products */;
+					ProjectRef = 9A325686271F89FA004A4955 /* axis.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -430,11 +430,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A7EDC482670E44600BC7094 /* libaxis.dylib */ = {
+		9A32568B271F89FA004A4955 /* libaxis.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libaxis.dylib;
-			remoteRef = 9A7EDC472670E44600BC7094 /* PBXContainerItemProxy */;
+			remoteRef = 9A32568A271F89FA004A4955 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -495,10 +495,10 @@
 			target = 07B65763190F3CA2002DAADE /* ios_programming */;
 			targetProxy = 07B65779190F3CA2002DAADE /* PBXContainerItemProxy */;
 		};
-		9A7EDC4A2670E45800BC7094 /* PBXTargetDependency */ = {
+		9A32568D271F8A19004A4955 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axis;
-			targetProxy = 9A7EDC492670E45800BC7094 /* PBXContainerItemProxy */;
+			targetProxy = 9A32568C271F8A19004A4955 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -700,7 +700,7 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/archive",
 					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/library/$(ARCHS)/$(CONFIGURATION)",
-					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(ARCHS)/$(CONFIGURATION)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
@@ -777,6 +777,7 @@
 		9A574B9D16AAB906000CC4EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				PLATFORM_MODIFIER = macos;
 			};
@@ -785,6 +786,7 @@
 		9A574B9E16AAB906000CC4EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				PLATFORM_MODIFIER = macos;
 			};

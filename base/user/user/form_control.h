@@ -37,7 +37,7 @@ namespace user
 
 
       virtual string get_path();
-      virtual ::e_status open_document(const ::payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & payloadFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
       virtual ::e_status open_html(const ::string & str) override;
@@ -80,9 +80,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData();
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool update_data(bool bSaveAndValidate) override;
       virtual void _001Update(::user::interaction * pinteraction);
       virtual void _001UpdateCheckBox(::user::interaction * pinteraction);
@@ -107,13 +107,13 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject = nullptr);
 
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
       //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
 
-      void on_control_event(::user::control_event * pevent) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
       void _001SetControlFactory();
 
 
@@ -124,19 +124,19 @@ namespace user
       //        ::user::form_window(::object * pobject);
       //    virtual ~::user::form_window();
 
-      //virtual void install_message_routing(::channel * pchannel);
+      //void install_message_routing(::channel * pchannel) override;
 
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
       //      ::user::form_window(::object * pobject);
 
-      //virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
-      //      virtual void on_control_event(::user::control_event * pevent);
+      //virtual void handle(::subject * psubject, ::context * pcontext) override;
+      //      virtual void handle(::subject * psubject, ::context * pcontext);
       //      DECLARE_MESSAGE_HANDLER(on_message_create);
       virtual void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(_001OnUser123);
-      //      virtual void install_message_routing(::channel * pchannel);
+      //      void install_message_routing(::channel * pchannel) override;
 
 
 //      virtual void soft_reload();
@@ -151,7 +151,7 @@ namespace user
 
 
 
-      //virtual bool open_document(const ::payload & varFile) override;
+      //virtual bool open_document(const ::payload & payloadFile) override;
 
 
    };

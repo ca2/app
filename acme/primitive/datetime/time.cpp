@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
+#include "acme/primitive/datetime/_string.h"
 
 
 ::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
@@ -13,7 +14,7 @@ namespace datetime
    const char * const szInvalidDateTime = "Invalid DateTime";
 
 
-   ::datetime::time time::get_current_time() noexcept
+   ::datetime::time time::now() noexcept
    {
 
 #ifdef WINDOWS
@@ -29,15 +30,14 @@ namespace datetime
    }
 
 
-
-
    time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST)
    {
+
+
 #pragma warning (push)
 #pragma warning (disable: 4127)  // conditional expression constant
-
-
 #pragma warning (pop)
+
 
       struct tm atm;
 
@@ -49,15 +49,17 @@ namespace datetime
       atm.tm_year = nYear - 1900;     // tm_year is 1900 based
       atm.tm_isdst = nDST;
 
+
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_i = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_i = mktime(&atm);
 
 #endif
+
 
       /*
       Remember that:
@@ -68,7 +70,7 @@ namespace datetime
       ENSURE( nMin >= 0 && nMin <= 59 );
       ENSURE( nSec >= 0 && nSec <= 59 );
       ASSUME(m_time != -1);   */    // indicates an illegal input time
-      if(m_time == -1)
+      if(m_i == -1)
       {
 
          __throw(error_invalid_argument);
@@ -96,22 +98,24 @@ namespace datetime
 
 #ifdef WINDOWS
 
-      m_time = _mktime64(&atm);
+      m_i = _mktime64(&atm);
 
 #else
 
-      m_time = mktime(&atm);
+      m_i = mktime(&atm);
 
 #endif
 
-      ASSUME(m_time != -1);       // indicates an illegal input time
+      ASSUME(m_i != -1);       // indicates an illegal input time
 
-      if(m_time == -1)
+      if (m_i == -1)
+      {
+
          __throw(error_invalid_argument);
 
+      }
+
    }
-
-
 
 
 #endif
@@ -122,7 +126,7 @@ namespace datetime
 
       //auto pnode = get_system()->node();
 
-      file_time_to_time(&m_time, &filetime.m_filetime);
+      file_time_to_time((time_t *)&m_i, &filetime.m_filetime);
 
    }
 
@@ -130,7 +134,7 @@ namespace datetime
    ::datetime::time & time::operator=(const time & time) noexcept
    {
 
-      m_time = time.m_time;
+      m_i = time.m_i;
 
       return *this;
 
@@ -140,7 +144,7 @@ namespace datetime
    ::datetime::time & time::operator+=( time_span span ) noexcept
    {
 
-      m_time += span.GetTimeSpan();
+      m_i += span.GetTimeSpan();
 
       return *this;
 
@@ -149,38 +153,30 @@ namespace datetime
 
    ::datetime::time & time::operator-=( time_span span ) noexcept
    {
-      m_time -= span.GetTimeSpan();
+
+      m_i -= span.GetTimeSpan();
 
       return *this;
+      
    }
 
-   ::datetime::time & time::operator+=(const  duration & duration ) noexcept
-   {
-      m_time += duration.GetTimeSpan();
-
-      return *this;
-   }
-
-   ::datetime::time & time::operator-=(const  duration & duration ) noexcept
-   {
-      m_time -= duration.GetTimeSpan();
-
-      return *this;
-   }
 
    ::datetime::time & time::operator+=( date_span span )
    {
-      UNREFERENCED_PARAMETER(span);
+
+      __UNREFERENCED_PARAMETER(span);
+
       __throw(error_not_implemented);
 
       return *this;
+
    }
 
 
    ::datetime::time& time::operator-=( date_span span )
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
 
@@ -192,9 +188,11 @@ namespace datetime
    ::datetime::time time::operator-( date_span span ) const
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
+
+      return 0;
 
    }
 
@@ -202,9 +200,11 @@ namespace datetime
    ::datetime::time time::operator+( date_span span ) const
    {
 
-       UNREFERENCED_PARAMETER(span);
+       __UNREFERENCED_PARAMETER(span);
 
       __throw(error_not_implemented);
+
+      return 0;
 
    }
 
@@ -219,7 +219,7 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _gmtime64_s(&tmTemp, &m_time);
+         errno_t err = _gmtime64_s(&tmTemp, &m_i);
 
          if (err != 0)
          {
@@ -234,7 +234,7 @@ namespace datetime
 
          struct tm * ptmTemp;
 
-         ptmTemp = gmtime(&m_time);
+         ptmTemp = gmtime((time_t *)&m_i);
 
          // gmtime can return nullptr
          if(ptmTemp == nullptr)
@@ -258,7 +258,6 @@ namespace datetime
          return nullptr;
 
       }
-
 
    }
 
@@ -288,7 +287,7 @@ namespace datetime
 
          struct tm tmTemp;
 
-         errno_t err = _localtime64_s(&tmTemp, &m_time);
+         errno_t err = _localtime64_s(&tmTemp, &m_i);
 
          if (err != 0)
          {
@@ -301,7 +300,7 @@ namespace datetime
 
 #else
 
-         return localtime_r(&m_time, ptm);
+         return localtime_r((time_t *)&m_i, ptm);
 
 #endif
 
@@ -316,278 +315,209 @@ namespace datetime
    }
 
 
-
-
-
    time_t time::get_time() const noexcept
    {
 
-       return( m_time );
+       return m_i;
 
    }
 
 
    i32 time::GetYear() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
+
    }
+
 
    i32 time::GetMonth() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_mon + 1 : 0;
+
    }
+
 
    i32 time::GetDay() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_mday : 0 ;
+
    }
+
 
    i32 time::GetHour() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_hour : -1 ;
+
    }
+
 
    i32 time::GetMinute() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_min : -1 ;
+
    }
+
 
    i32 time::GetSecond() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_sec : -1 ;
+
    }
+
 
    i32 time::GetDayOfWeek() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetLocalTm(&ttm);
+
       return ptm ? ptm->tm_wday + 1 : 0 ;
+
    }
+
 
    i32 time::GetGmtYear() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? (ptm->tm_year) + 1900 : 0 ;
+
    }
+
 
    i32 time::GetGmtMonth() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_mon + 1 : 0;
+
    }
+
 
    i32 time::GetGmtDay() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_mday : 0 ;
+
+      return ptm ? ptm->tm_mday : 0;
+
    }
+
 
    i32 time::GetGmtHour() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_hour : -1 ;
+
    }
+
 
    i32 time::GetGmtMinute() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
+
       return ptm ? ptm->tm_min : -1 ;
+
    }
+
 
    i32 time::GetGmtSecond() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_sec : -1 ;
+
+      return ptm ? ptm->tm_sec : -1;
+
    }
+
 
    i32 time::GetGmtDayOfWeek() const noexcept
    {
+
       struct tm ttm;
+
       struct tm * ptm;
 
       ptm = GetGmtTm(&ttm);
-      return ptm ? ptm->tm_wday + 1 : 0 ;
-   }
 
-
-   string time::Format(string & str, const ::string & strFormat) const
-   {
-
-#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-      struct tm* ptmTemp = localtime(&m_time);
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-         szBuffer[0] = '\0';
-      }
-
-      str.release_string_buffer();
-
-      return str;
-
-#elif defined(__APPLE__)
-
-#if __WORDSIZE != 64
-#pragma error "error: long should 8-byte on __APPLE__"
-#endif
-
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-      struct tm* ptmTemp = localtime(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-      str.release_string_buffer();
-
-      return str;
-
-#elif _SECURE_TEMPLATE
-
-      char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
-
-      struct tm ptmTemp;
-
-      errno_t err = _localtime64_s(&ptmTemp, &m_time);
-
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-
-      str.ReleaseBuffer();
-
-      return str;
-
-//#elif defined(ANDROID) || defined(SOLARIS)
-//
-//      struct tm* ptmTemp = localtime(&m_time);
-//
-//      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-//      {
-//
-//         szBuffer[0] = '\0';
-//
-//      }
-//
-#else
-
-      str = strFormat;
-
-      str.replace("%Y",__str(GetYear()));
-      str.replace("%m",::str::zero_padded(__str(GetMonth()), 2));
-      str.replace("%d",::str::zero_padded(__str(GetDay()),2));
-      str.replace("%H",::str::zero_padded(__str(GetHour()),2));
-      str.replace("%M",::str::zero_padded(__str(GetMinute()),2));
-      str.replace("%S",::str::zero_padded(__str(GetSecond()),2));
-
-      return str;
-
-#endif
-
-
+      return ptm ? ptm->tm_wday + 1 : 0;
 
    }
 
-
-   string time::FormatGmt(string & str, const ::string & strFormat) const
-   {
-
-      char szBuffer[maxTimeBufferSize];
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-      struct tm* ptmTemp = gmtime(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#elif _SECURE_TEMPLATE
-
-      struct tm ptmTemp;
-
-      errno_t err = _gmtime64_s(&ptmTemp, &m_time);
-
-      if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#else
-
-      struct tm* ptmTemp =_gmtime64(&m_time);
-
-      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
-      {
-
-         szBuffer[0] = '\0';
-
-      }
-
-#endif
-
-      str = szBuffer;
-
-      return szBuffer;
-
-   }
 
    time time::get_sunday() const
    {
@@ -603,12 +533,10 @@ namespace datetime
    }
 
 
-
-
    time_span time::elapsed() const
    {
 
-      return ::datetime::time::get_current_time() - *this;
+      return ::datetime::time::now() - *this;
 
    }
 
@@ -616,7 +544,7 @@ namespace datetime
    time_span time::abs_diff(const time & time) const
    {
 
-      return abs(time.m_time - m_time);
+      return INTEGRAL_SECOND(abs(time.m_i - m_i));
 
    }
 
@@ -648,6 +576,7 @@ namespace datetime
 
    }
 
+
    i64 time::GetDaySig() const noexcept
    {
 
@@ -674,6 +603,7 @@ namespace datetime
       return ptm ? ((ptm->tm_year * 500) + (ptm->tm_mon * 40) + ptm->tm_mday) : 0;
 
    }
+
 
 } // namespace datetime
 
@@ -709,7 +639,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time & time)
 stream & operator <<(stream & os, ::datetime::time & time)
 {
 
-   os.write((i64) time.m_time);
+   os.write((i64) time.m_i);
 
    return os;
 
@@ -784,7 +714,7 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 //}
 
 
-FILETIME __FILETIME(const ::datetime::time & time)
+CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time)
 {
 
    SYSTEMTIME systemtime = __SYSTEMTIME(time);
@@ -829,7 +759,7 @@ FILETIME __FILETIME(const ::datetime::time & time)
 //   if (!estatus)
 //   {
 //
-//      __throw(exception::exception(estatus));
+//      __throw(::exception(estatus));
 //
 //   }
 //
@@ -843,23 +773,166 @@ namespace datetime
 {
 
 
-   string time::Format(const ::string & strFormat)
-   {
-      string str;
-      Format(str, strFormat);
-      return str;
-   }
-
-
-   string time::FormatGmt(const ::string & strFormat)
-   {
-      string str;
-      FormatGmt(str, strFormat);
-      return str;
-   }
-
-
 } // namespace datetime
 
 
 
+
+
+
+string Format(const ::string & strFormat, const ::datetime::time & time)
+{
+
+   string str;
+
+#if defined(LINUX) || defined(ANDROID) || defined(SOLARIS)
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+   struct tm * ptmTemp = localtime(&time.m_i);
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+      szBuffer[0] = '\0';
+   }
+
+   str.release_string_buffer();
+
+   return str;
+
+#elif defined(__APPLE__)
+
+#if __WORDSIZE != 64
+#pragma error "error: long should 8-byte on __APPLE__"
+#endif
+
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+   struct tm * ptmTemp = localtime((time_t *)&time.m_i);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+   str.release_string_buffer();
+
+   return str;
+
+#elif _SECURE_TEMPLATE
+
+   char * szBuffer = str.get_string_buffer(maxTimeBufferSize);
+
+   struct tm ptmTemp;
+
+   errno_t err = _localtime64_s(&ptmTemp, &m_time);
+
+   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+
+   str.ReleaseBuffer();
+
+   return str;
+
+   //#elif defined(ANDROID) || defined(SOLARIS)
+   //
+   //      struct tm* ptmTemp = localtime(&m_time);
+   //
+   //      if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   //      {
+   //
+   //         szBuffer[0] = '\0';
+   //
+   //      }
+   //
+#else
+
+   str = strFormat;
+
+   str.replace("%Y", __string(time.GetYear()));
+   str.replace("%m", ::str::zero_padded(__string(time.GetMonth()), 2));
+   str.replace("%d", ::str::zero_padded(__string(time.GetDay()), 2));
+   str.replace("%H", ::str::zero_padded(__string(time.GetHour()), 2));
+   str.replace("%M", ::str::zero_padded(__string(time.GetMinute()), 2));
+   str.replace("%S", ::str::zero_padded(__string(time.GetSecond()), 2));
+
+   return str;
+
+#endif
+
+
+
+}
+
+
+string FormatGmt(const string & strFormat, const ::datetime::time & time)
+{
+
+   string str;
+
+   char szBuffer[maxTimeBufferSize];
+
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+
+   struct tm * ptmTemp = gmtime((time_t *)&time.m_i);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#elif _SECURE_TEMPLATE
+
+   struct tm ptmTemp;
+
+   errno_t err = _gmtime64_s(&ptmTemp, &m_time);
+
+   if (err != 0 || !_tcsftime(szBuffer, maxTimeBufferSize, strFormat, &ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#else
+
+   struct tm * ptmTemp = _gmtime64(&time.m_i);
+
+   if (ptmTemp == nullptr || !strftime(szBuffer, maxTimeBufferSize, strFormat, ptmTemp))
+   {
+
+      szBuffer[0] = '\0';
+
+   }
+
+#endif
+
+   str = szBuffer;
+
+   return szBuffer;
+
+}
+
+
+//
+//
+//string Format(const ::string & strFormat, const ::datetime::time & time)
+//{
+//   string str;
+//   str = Format(strFormat, time);
+//   return str;
+//}
+//
+//
+//string FormatGmt(const ::string & strFormat, const ::datetime::time & time)
+//{
+//   string str;
+//   str = FormatGmt(strFormat, time);
+//   return str;
+//}

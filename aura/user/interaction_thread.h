@@ -44,25 +44,26 @@ namespace user
 
 #endif
 
-      __pointer(interaction_impl)            m_pimpl;
-      __reference(prodevian)                 m_pprodevian;
-      oswindow                               m_oswindow;
+      __pointer(interaction_impl)                  m_pimpl;
+      //__reference(prodevian)                 m_pprodevian;
+      oswindow                                     m_oswindow;
 
-      manual_reset_event                     m_evApplyVisual;
-      //__pointer_array(::message::message)    m_messagebasea;
-      __pointer(::windowing::windowing)      m_pwindowing;
+      manual_reset_event                           m_evApplyVisual;
+      __pointer(::windowing::windowing)         m_pwindowing;
 
-
-      //bool                                 m_bCreateNativeWindowOnInteractionThread;
 
       thread();
-      virtual ~thread();
+      ~thread() override;
 
 
-#ifdef DEBUG
-      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+#ifdef _DEBUG
+
+
+      i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+
+
 #endif
 
 
@@ -76,9 +77,13 @@ namespace user
       virtual HRESULT initialize_tsf_thread();
 
 #endif
+
 #endif
+
+
       virtual ::e_status init_thread() override;
       virtual void term_thread() override;
+
 
 //#ifdef WINDOWS_DESKTOP
 //      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
@@ -97,6 +102,8 @@ namespace user
       ::e_status run() override;
 
       ::e_status destroy() override;
+
+      ::e_status set_finish() override;
 
       //::e_status destroy() override;
 

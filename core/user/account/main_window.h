@@ -17,7 +17,7 @@ namespace account
       __pointer(::account::style)            m_pstyle;
       __composite(login)                     m_plogin;
       bool                                   m_bFontopusSimpleUiLayout;
-      ::rectangle_i32                        m_rectParent;
+      ::rectangle_i32                        m_rectangleParent;
 
       main_window **                         m_psimpleuiDeferTranslate;
 

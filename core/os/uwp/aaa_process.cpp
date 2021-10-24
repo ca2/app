@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "uwp.h"
+//#include "universal_windows.h"
 //#include <Shellapi.h>
 //#include <string.h>
 
@@ -317,9 +317,9 @@ CLASS_DECL_CORE int ui_open_url(const ::string & pszUrl)
 
    string strUrl(pszUrl);
 
-   auto uri = ref new Windows::Foundation::Uri(strUrl);
+   auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
 
-   Windows::System::Launcher::LaunchUriAsync(uri);
+   ::winrt::Windows::System::Launcher::LaunchUriAsync(uri);
 
    return 0;
 

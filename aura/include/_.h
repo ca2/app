@@ -50,16 +50,16 @@ namespace aura
 #if defined _UWP
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
-   ref class directx_framework_view;
-   ref class directx_application_source;
+   //ref class directx_framework_view;
+   //ref class directx_application_source;
    class interaction_impl;
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 #endif
@@ -233,7 +233,7 @@ CLASS_DECL_AURA void aura_ref();
 //#define _ASSUME(cond)
 //#if defined(ANDROID)
 //#define ASSERT_VALID(cond)
-//#elif defined(APPLEOS)
+//#elif defined(__APPLE__)
 //#define ASSERT_VALID(cond)
 //#elif defined(LINUX)
 //#define ASSERT_VALID(cond)
@@ -395,12 +395,12 @@ CLASS_DECL_AURA void aura_ref();
 //
 //#ifdef __cplusplus
 //
-//#define MAKELONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //#define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //#else
 //
-//#define MAKELONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 //#define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
 //
 //#endif
@@ -498,17 +498,17 @@ CLASS_DECL_AURA void aura_ref();
 //
 //
 //
-//#if !defined(APPLEOS) && !defined(LINUX) && !defined(ANDROID)
+//#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID)
 //
 //int ftruncate(int file, filesize len);
 //
 //#endif
 //
 //
-//CLASS_DECL_AURA i32 get_os_thread_priority(::e_priority epriority);
-//CLASS_DECL_AURA i32 get_os_priority_class(::e_priority epriority);
-//CLASS_DECL_AURA ::e_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
-//CLASS_DECL_AURA ::e_priority get_os_class_scheduling_priority(i32 iCa2Priority);
+//CLASS_DECL_AURA i32 get_os_thread_priority(::enum_priority epriority);
+//CLASS_DECL_AURA i32 get_os_priority_class(::enum_priority epriority);
+//CLASS_DECL_AURA ::enum_priority get_os_thread_scheduling_priority(i32 iCa2Priority);
+//CLASS_DECL_AURA ::enum_priority get_os_class_scheduling_priority(i32 iCa2Priority);
 //
 //
 //
@@ -569,12 +569,12 @@ CLASS_DECL_AURA void aura_ref();
 //
 //#define __alog(...) __tracef(__VA_ARGS__)
 //
-//#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define INFORMATION(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //
-//#define TRACE(...) INFO(__VA_ARGS__)
+//#define TRACE(...) INFORMATION(__VA_ARGS__)
 //
 //
 //namespace aura
@@ -642,7 +642,7 @@ CLASS_DECL_AURA void aura_ref();
 //enum e_simple_command : ::i64;
 //enum e_message : ::i64;
 //enum e_impact : ::i64;
-//enum e_id : ::u64;
+//enum ::enum_id : ::u64;
 //enum enum_check: ::i32;
 //
 //template <typename TYPE>
@@ -943,8 +943,8 @@ using image_pointer = __pointer(::image);
 using icon_pointer = __pointer(::draw2d::icon);
 //
 //
-using image_result = __transport(::image);
-using icon_result = __transport(::draw2d::icon);
+using image_transport = __transport(::image);
+using icon_transport = __transport(::draw2d::icon);
 //
 //
 //class command_line;
@@ -1425,11 +1425,11 @@ namespace user
 
 
    //class create;
-   class control_event;
-   class item;
+   //class control_event;
+   //class item;
    class check;
 //   class system;
-   class command;
+   //class command;
    class interaction_impl;
    class primitive;
    class frame;
@@ -1453,7 +1453,7 @@ namespace user
 
    using style_pointer = __pointer(style);
 
-   using eflag = flags < enum_flag >;
+   using eflag = enumeration < enum_flag >;
 
 
 #if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
@@ -2283,7 +2283,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-//#ifdef APPLEOS
+//#ifdef __APPLE__
 //#undef err_none
 //#endif
 //
@@ -2435,7 +2435,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //using file_pointer = __pointer(::file::file);
 //
-//using file_result = __transport(::file::file);
+//using file_transport = __transport(::file::file);
 //
 //class stream;
 //class binary_stream;
@@ -2469,7 +2469,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/math/math_clip.h"
 //
 //
-//#include "aura/platform/millis.h"
+//#include "aura/platform/::duration.h"
 //
 //
 //#include "aura/primitive/datetime/duration.h"
@@ -2492,7 +2492,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-#include "aura/os/_.h"
+//#include "aura/node/operating_system/_.h"
 //
 //
 //class update;
@@ -2736,7 +2736,7 @@ namespace draw2d
 
 #include "aura/user/_.h"
 
-#include "aura/user/item.h"
+//#include "aura/user/item.h"
 
 #include "aura/platform/drawable.h"
 
@@ -2758,7 +2758,7 @@ namespace draw2d
 
 #include "aura/platform/theme.h"
 
-#include "aura/user/callback.h"
+//#include "aura/user/callback.h"
 
 #include "aura/filesystem/filemanager/callback.h"
 
@@ -2784,7 +2784,7 @@ namespace draw2d
 
 #include "aura/graphics/_impl.h"
 
-#include "aura/os/_impl.h"
+#include "aura/node/operating_system/_impl.h"
 
 #include "aura/platform/_impl.h"
 

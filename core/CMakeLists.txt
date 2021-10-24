@@ -86,14 +86,16 @@ list(APPEND library_source
    filesystem/filemanager/icon.h
    filesystem/filemanager/iconoverlayer.cpp
    filesystem/filemanager/iconoverlayer.h
+   filesystem/filemanager/impact_base.cpp
+   filesystem/filemanager/impact_base.h
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
    filesystem/filemanager/left_view.cpp
    filesystem/filemanager/left_view.h
    filesystem/filemanager/main_frame.cpp
    filesystem/filemanager/main_frame.h
-   filesystem/filemanager/main_view.cpp
-   filesystem/filemanager/main_view.h
+   filesystem/filemanager/main_impact.cpp
+   filesystem/filemanager/main_impact.h
    filesystem/filemanager/operation.cpp
    filesystem/filemanager/operation.h
    filesystem/filemanager/operation_child_frame.cpp
@@ -120,8 +122,8 @@ list(APPEND library_source
    filesystem/filemanager/tree.h
    filesystem/filemanager/update_hint.cpp
    filesystem/filemanager/update_hint.h
-   filesystem/filemanager/view.cpp
-   filesystem/filemanager/view.h
+   filesystem/filemanager/impact.cpp
+   filesystem/filemanager/impact.h
    filesystem/fs/_.h
    filesystem/fs/_fs.h
    filesystem/fs/ftp_file.cpp
@@ -147,8 +149,8 @@ list(APPEND library_source
    filesystem/userfs/list_item.h
    filesystem/userfs/list_item_array.cpp
    filesystem/userfs/list_item_array.h
-   filesystem/userfs/main_view.cpp
-   filesystem/userfs/main_view.h
+   filesystem/userfs/main_impact.cpp
+   filesystem/userfs/main_impact.h
    filesystem/userfs/tree.cpp
    filesystem/userfs/tree.h
    filesystem/userfs/userfs.cpp
@@ -235,8 +237,8 @@ list(APPEND library_source
    html/user/frame.cpp
    html/user/frame.h
    html/user/user.cpp
-   html/user/view.cpp
-   html/user/view.h
+   html/user/impact.cpp
+   html/user/impact.h
    include/_.cpp
    include/_.h
    include/_c.h
@@ -259,25 +261,25 @@ list(APPEND library_source
    inline/console.h
    inline/console_common.h
    inline/library.h
-   net/ftp/_.h
-   net/ftp/client_socket.cpp
-   net/ftp/client_socket.h
-   net/ftp/data_types.cpp
-   net/ftp/data_types.h
-   net/ftp/file.cpp
-   net/ftp/file.h
-   net/ftp/file_list_parser.cpp
-   net/ftp/file_list_parser.h
-   net/ftp/file_status.cpp
-   net/ftp/file_status.h
-   net/ftp/interface.h
-   net/ftp/output.cpp
-   net/ftp/output.h
-   net/ftp/output_stream.cpp
-   net/ftp/output_stream.h
-   net/ftp/transfer_notification.h
-   net/_.h
-   net/_impl.h
+   networking/ftp/_.h
+   networking/ftp/client_socket.cpp
+   networking/ftp/client_socket.h
+   networking/ftp/data_types.cpp
+   networking/ftp/data_types.h
+   networking/ftp/file.cpp
+   networking/ftp/file.h
+   networking/ftp/file_list_parser.cpp
+   networking/ftp/file_list_parser.h
+   networking/ftp/file_status.cpp
+   networking/ftp/file_status.h
+   networking/ftp/interface.h
+   networking/ftp/output.cpp
+   networking/ftp/output.h
+   networking/ftp/output_stream.cpp
+   networking/ftp/output_stream.h
+   networking/ftp/transfer_notification.h
+   networking/_.h
+   networking/_impl.h
    node/dummy/frame_window.cpp
    node/_.h
    node/_node.h
@@ -318,8 +320,8 @@ list(APPEND library_source
    user/account/account_simple_ui.cpp
    user/account/dialog.h
    user/account/login.h
-   user/account/view.cpp
-   user/account/view.h
+   user/account/impact.cpp
+   user/account/impact.h
    user/databaseuser/_.h
    user/databaseuser/_databaseuser.h
    user/databaseuser/key_mesh_data.cpp
@@ -621,53 +623,53 @@ endif ()
 
 if (UWP)
    list(APPEND core_source
-      #node/uwp/_.h
-      #node/uwp/_uwp.h
-      #node/uwp/shell_uwp.cpp
-      #node/uwp/shell_uwp.h
-      #os/uwp/_.h
-      #os/uwp/_os_metrowin.cpp
-      #os/uwp/_uwp.h
-      #os/uwp/_winrt.h
-      #os/uwp/application_system_run.cpp
-      #os/uwp/aura.cpp
-      #os/uwp/base_file.cpp
-      #os/uwp/base_file.h
-      #os/uwp/debug.cpp
-      #os/uwp/direct2d_tls.cpp
-      #os/uwp/dpi.cpp
-      #os/uwp/dummy_ipc.cpp
-      #os/uwp/exception_engine.cpp
-      #os/uwp/exception_engine.h
-      #os/uwp/file.cpp
-      #os/uwp/file_memory_map.cpp
-      #os/uwp/file_winrt.h
-      #os/uwp/gdi_winrt.h
-      #os/uwp/graphics.cpp
-      #os/uwp/host_interaction.h
-      #os/uwp/language.cpp
-      #os/uwp/launcher.cpp
-      #os/uwp/library.cpp
-      #os/uwp/lock.cpp
-      #os/uwp/main.cpp
-      #os/uwp/metrowin_metrowin.h
-      #os/uwp/multithreading.cpp
-      #os/uwp/multithreading.h
-      #os/uwp/multithreading_winrt.h
-      #os/uwp/os_message_box.cpp
-      #os/uwp/oswindow.h
-      #os/uwp/process.cpp
-      #os/uwp/process.h
-      #os/uwp/simple_app.cpp
-      #os/uwp/simple_hold_handle.h
-      #os/uwp/simple_shell_launcher.cpp
-      #os/uwp/simple_ui.h
-      #os/uwp/small_ipca_channel.cpp
-      #os/uwp/sockets.cpp
-      #os/uwp/sockets.h
-      #os/uwp/time.cpp
-      #os/uwp/user.cpp
-      #os/uwp/windowing.cpp
+      #node/universal_windows/_.h
+      #node/universal_windows/_uwp.h
+      #node/universal_windows/shell_uwp.cpp
+      #node/universal_windows/shell_uwp.h
+      #os/universal_windows/_.h
+      #os/universal_windows/_os_metrowin.cpp
+      #os/universal_windows/_uwp.h
+      #os/universal_windows/_winrt.h
+      #os/universal_windows/application_system_run.cpp
+      #os/universal_windows/aura.cpp
+      #os/universal_windows/base_file.cpp
+      #os/universal_windows/base_file.h
+      #os/universal_windows/debug.cpp
+      #os/universal_windows/direct2d_tls.cpp
+      #os/universal_windows/dpi.cpp
+      #os/universal_windows/dummy_ipc.cpp
+      #os/universal_windows/exception_engine.cpp
+      #os/universal_windows/exception_engine.h
+      #os/universal_windows/file.cpp
+      #os/universal_windows/file_memory_map.cpp
+      #os/universal_windows/file_winrt.h
+      #os/universal_windows/gdi_winrt.h
+      #os/universal_windows/graphics.cpp
+      #os/universal_windows/host_interaction.h
+      #os/universal_windows/language.cpp
+      #os/universal_windows/launcher.cpp
+      #os/universal_windows/library.cpp
+      #os/universal_windows/lock.cpp
+      #os/universal_windows/main.cpp
+      #os/universal_windows/metrowin_metrowin.h
+      #os/universal_windows/multithreading.cpp
+      #os/universal_windows/multithreading.h
+      #os/universal_windows/multithreading_winrt.h
+      #os/universal_windows/os_message_box.cpp
+      #os/universal_windows/oswindow.h
+      #os/universal_windows/process.cpp
+      #os/universal_windows/process.h
+      #os/universal_windows/simple_app.cpp
+      #os/universal_windows/simple_hold_handle.h
+      #os/universal_windows/simple_shell_launcher.cpp
+      #os/universal_windows/simple_ui.h
+      #os/universal_windows/small_ipca_channel.cpp
+      #os/universal_windows/sockets.cpp
+      #os/universal_windows/sockets.h
+      #os/universal_windows/time.cpp
+      #os/universal_windows/user.cpp
+      #os/universal_windows/windowing.cpp
 
       )
 endif ()
@@ -721,8 +723,8 @@ if (LINUX)
            #node/linux/util.cpp
 #      os/cairo/_.h
 #      os/cairo/_impl.h
-#      #os/cross/uwp/cross_metrowin_user.cpp
-#      #os/cross/uwp/metrowin_user.cpp
+#      #os/cross/universal_windows/cross_metrowin_user.cpp
+#      #os/cross/universal_windows/metrowin_user.cpp
 #      os/cross/windows/_.h
 #      os/cross/cross.h
 #      #os/gdk/aura_gdk.cpp

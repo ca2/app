@@ -58,7 +58,7 @@ bool microsecond_sleep::sleep(unsigned long usec)
 
    ::SetWaitableTimer(pthis->m_hTimer, &ft, 0, NULL, NULL, 0);
 
-   ::WaitForSingleObject(pthis->m_hTimer, U32_INFINITE_TIMEOUT);
+   ::WaitForSingleObject(pthis->m_hTimer, INFINITE);
 
    return true;
 

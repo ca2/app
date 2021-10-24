@@ -16,7 +16,7 @@ namespace userex
       virtual ~split_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual bool on_new_view_creator_data(::user::impact_data * pimpactdata);
@@ -26,7 +26,7 @@ namespace userex
       virtual void on_command(::message::command * pcommand) override;
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       bool create_pane(i32 iPane, bool bFixedSize, ::id id);
       virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;

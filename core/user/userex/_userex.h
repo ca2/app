@@ -11,6 +11,7 @@ namespace filemanager
 
 }
 
+
 namespace userex
 {
 
@@ -52,7 +53,7 @@ namespace userex
 
 #include "error_dialog.h"
 
-#include "core/filesystem/filemanager/impact.h"
+#include "core/filesystem/filemanager/impact_base.h"
 
 #include "pane_tab_view.h"
 #include "pane_split_view.h"

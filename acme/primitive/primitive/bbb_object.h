@@ -14,7 +14,7 @@ namespace user
 
 
 class CLASS_DECL_APEX object :
-   virtual public ::subject::manager
+   virtual public ::manager
 {
 protected:
 
@@ -36,7 +36,7 @@ public:
    virtual ~object();
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -85,7 +85,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
@@ -110,7 +110,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    virtual ::e_status initialize(::object * pobject) override;
    virtual ::e_status destroy() override;
@@ -145,7 +145,7 @@ public:
 
    virtual string get_text(const ::payload& payload, const ::id& id) override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
    virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    virtual void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -194,11 +194,11 @@ public:
 
    virtual void to_string(const string_exchange& str) const override;
 
-   //::image_result create_image();
-   //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_transport create_image();
+   //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
-   //::image_result matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+   //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
    //inline __transport(BASE_TYPE) __create();
@@ -318,11 +318,11 @@ public:
 
    virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::e_status handle_exception(const ::exception::exception& e);
+   virtual ::e_status handle_exception(const ::exception& e);
 
-   virtual ::e_status top_handle_exception(const ::exception::exception& e);
+   virtual ::e_status top_handle_exception(const ::exception& e);
 
-   virtual ::e_status process_exception(const ::exception::exception& e);
+   virtual ::e_status process_exception(const ::exception& e);
 
 
    ::object* parent_property_set_holder() const override;
@@ -352,9 +352,9 @@ public:
 
    void _001OnUpdate(::message::message* pmessage);
 
-   virtual ::e_status request_file(const ::payload& varFile);
+   virtual ::e_status request_file(const ::payload& payloadFile);
 
-   virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
+   virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
 
    virtual ::e_status request(arguments arguments);
 
@@ -396,8 +396,8 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -408,14 +408,14 @@ public:
    virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
-   //virtual ::image_result load_thumbnail(const char * pszPath);
-   //virtual ::image_result load_dib(const ::file::path & pathDib);
+   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const char * pszPath);
+   //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
 
 
@@ -535,7 +535,7 @@ public:
    inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
    ::thread_pointer begin(
-      ::e_priority epriority = ::priority_normal,
+      ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
@@ -545,16 +545,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
@@ -585,7 +585,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::enum_priority epriority = ::e_priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -604,20 +604,20 @@ public:
    ::thread_pointer start_below_normal(void (TYPE::* pfn)())
    {
 
-      return fork(pfn, ::priority_below_normal);
+      return fork(pfn, ::e_priority_below_normal);
 
    }
 
 
    //template < typename TYPE >
-   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), e_priority epriority);
+   //::e_status __construct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    template < typename TYPE >
    ::e_status __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
 
 
    template < typename TYPE >
-   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), e_priority epriority = priority_normal);
+   ::thread_pointer __start_thread(const ::id& id, void(TYPE::* pfn)(), enum_priority epriority = e_priority_normal);
 
 
    virtual matter* get_taskpool_container() override;

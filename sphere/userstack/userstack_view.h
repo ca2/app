@@ -5,7 +5,7 @@ namespace userstack
 {
 
 
-   class CLASS_DECL_SPHERE view :
+   class CLASS_DECL_SPHERE impact :
       virtual public ::user::show < ::user::interaction >
    {
    public:
@@ -39,21 +39,21 @@ namespace userstack
       oswindow                   m_oswindowBergedge;
 
 
-      ::write_text::font_pointer          m_font;
+      ::write_text::font_pointer          m_pfont;
       ::file::listing            m_straImagePath;
       string                     m_strCurrentImagePath;
       bool                       m_bDestroy;
-      rectangle_i32_array                 m_rectaUpdate;
-      millis                       m_millisLastUpdate;
+      rectangle_i32_array                 m_rectangleaUpdate;
+      ::duration                       m_durationLastUpdate;
       ::mutex                      m_mutexDraw;
 
 
-      view(::object * pobject);
-      virtual ~view();
+      impact(::object * pobject);
+      virtual ~impact();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -61,16 +61,16 @@ namespace userstack
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       ::user::document * get_document();
 
       void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
 
-      void on_hit_test(::user::item & item) override;
+      void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);

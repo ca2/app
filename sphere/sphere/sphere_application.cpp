@@ -401,7 +401,7 @@ namespace sphere
    }
 
 
-   ::user::document *  application::_001OpenDocumentFile(::payload varFile)
+   ::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
       //string strId = m_strId;
@@ -421,7 +421,7 @@ namespace sphere
       //   if(strId == "default_file_handler")
       //   {
 
-      //      return ::filehandler::application::_001OpenDocumentFile(varFile);
+      //      return ::filehandler::application::_001OpenDocumentFile(payloadFile);
 
       //   }
 
@@ -431,7 +431,7 @@ namespace sphere
 
       //}
 
-      //return ::asphere::application::_001OpenDocumentFile(varFile);
+      //return ::asphere::application::_001OpenDocumentFile(payloadFile);
 
       return nullptr;
 
@@ -575,7 +575,7 @@ namespace sphere
    //void department::OnFileManagerOpenFile(::filemanager::data * pdata, ::file::item_array & itema)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdata);
+   //   __UNREFERENCED_PARAMETER(pdata);
 
    //}
 
@@ -590,7 +590,7 @@ namespace sphere
    ::filemanager::data * pdata,
    ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
       if (itema.get_size() > 0)
       {
          return true;
@@ -605,7 +605,7 @@ namespace sphere
       //i32 iCount = 32; // todo: get from bergedge profile
 
       create_factory < ::userstack::document >();
-      create_factory < ::userstack::view >();
+      create_factory < ::userstack::impact >();
       create_factory < ::userstack::pane_view >();
       create_factory < ::userstack::frame >();
 
@@ -621,13 +621,13 @@ namespace sphere
 
    void application::launch_app(const ::string & psz)
    {
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
    }
 
    void application::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -845,7 +845,7 @@ namespace sphere
 
          //      ppane->set_title(pszTitle);
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 
@@ -972,10 +972,10 @@ namespace sphere
 
    }
 
-   void application::route_command_message(::message::command * pcommand)
+   void application::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::aura::application::route_command_message(pcommand);
+      ::aura::application::route_command(pcommand);
 
    }
 

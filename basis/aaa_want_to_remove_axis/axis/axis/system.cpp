@@ -96,7 +96,7 @@ namespace axis
       //if (m_peengine != nullptr)
       //{
 
-      //   m_peengine = new ::exception::engine(this);
+      //   m_peengine = new ::exception_engine(this);
 
       //}
 
@@ -199,7 +199,7 @@ namespace axis
    void system::term()
    {
 
-      //__wait_threading_count_except(this,::millis((5000) * 77));
+      //__wait_threading_count_except(this,::duration((5000) * 77));
 
       if (::ftp::command::info2::g_pTheOneAndOnly != nullptr)
       {
@@ -297,7 +297,7 @@ namespace axis
    void system::term_system()
    {
 
-//      __wait_threading_count(::millis((5000) * 8));
+//      __wait_threading_count(::duration((5000) * 8));
 
       //axis::application::term_application();
 

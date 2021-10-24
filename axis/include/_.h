@@ -12,22 +12,7 @@
 //
 //  c(s)t(s)<tb(s)!!
 //
-
-
 #pragma once
-
-
-//#undef System
-//#undef Sess
-//#undef App
-//
-//
-//#define System (psystem->m_paxissystem)
-//#define Sess(pcontextsession) (pcontextsession->m_paxissession)
-//#define App(pobject) (*pobject->get_app()->m_paxisapplication)
-
-
-#define __spin_namespace axis // back bone / four-letter "spin*" namespace name
 
 
 namespace axis
@@ -39,15 +24,11 @@ namespace axis
    class application;
    class user;
 
-   //inline system * get_system() { return ::axis::get_system()->layer(LAYERED_AXIS); }
-
 
 } // namespace axis
 
 
-
 #include "axis/account/_.h"
-
 
 
 #if defined(LINUX)
@@ -90,8 +71,7 @@ namespace axis
 //
 #endif
 
-#include "axis/net/_.h"
-
+#include "axis/networking/_.h"
 
 #include "axis/platform/openweather_city.h"
 
@@ -111,7 +91,7 @@ namespace axis
 
 #include "axis/platform/session.h"
 
-#include "axis/net/email_department.h"
+#include "axis/networking/email_department.h"
 
 #include "axis/html/html/_.h"
 
@@ -135,11 +115,7 @@ namespace axis
 
 
 
-
-
-
-#include "axis/net/_impl.h"
-
+#include "axis/networking/_impl.h"
 
 
 #include "axis/database/database/_impl.h"

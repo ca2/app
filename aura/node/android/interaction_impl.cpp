@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_android.h"
-#include "acme/os/cross.h"
+#include "acme/node/operating_system/cross.h"
 #include "aura/os/android/windowing.h"
 
 
@@ -42,7 +42,7 @@ namespace android
       //m_bEnabled           = true;
       m_pthreadDraw = nullptr;
 
-      //__zero(m_rectParentClient);
+      //__zero(m_rectangleParentClient);
       __zero(m_size);
       __zero(m_point);
 
@@ -62,7 +62,7 @@ namespace android
    //   m_bUpdateGraphics    = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   //__zero(m_rectParentClient);
+   //   //__zero(m_rectangleParentClient);
    //   __zero(m_size);
    //   __zero(m_point);
 
@@ -82,7 +82,7 @@ namespace android
    //   m_bIgnoreMoveEvent   = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   __zero(m_rectParentClient);
+   //   __zero(m_rectangleParentClient);
    //   __zero(m_size);
    //   __zero(m_point);
 
@@ -265,13 +265,14 @@ namespace android
 
       ENSURE_ARG(pusersystem->m_createstruct.lpszClass == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszClass));
 
+      m_puserinteraction->m_pimpl = this;
+
+      m_puserinteraction->m_pimplBase = this;
+
       if (pusersystem->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_bMessageWindow = true;
-
-         m_puserinteraction->m_pimpl = this;
-
 
          return true;
 
@@ -285,11 +286,11 @@ namespace android
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         ::rectangle_i32 rectCreate;
+         ::rectangle_i32 rectangleCreate;
 
-         pusersystem->get_rect(rectCreate);
+         pusersystem->get_rect(rectangleCreate);
 
-         m_puserinteraction->place(rectCreate);
+         m_puserinteraction->place(rectangleCreate);
 
          m_puserinteraction->display(e_display_full_screen);
 
@@ -404,8 +405,6 @@ namespace android
 
       }
 
-      m_puserinteraction->m_pimpl = this;
-
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       m_puserinteraction->m_bTaskStarted = true;
@@ -446,7 +445,7 @@ namespace android
 
    //   output_debug_string("android_interaction_impl on _create_window");
 
-   //   output_debug_string("android_interaction_impl initialize (width=" + __str(width(pinitialize->m_rectangle)) + ",height=" + __str(height(pinitialize->m_rectangle)) + ")");
+   //   output_debug_string("android_interaction_impl initialize (width=" + __string(width(pinitialize->m_rectangle)) + ",height=" + __string(height(pinitialize->m_rectangle)) + ")");
 
    //   return true;
 
@@ -567,23 +566,23 @@ namespace android
 
       m_bUpdateGraphics = false;
 
-      ::rectangle_i32 rectWindow;
+      ::rectangle_i32 rectangleWindow;
 
-      m_puserinteraction->get_window_rect(rectWindow);
+      m_puserinteraction->get_window_rect(rectangleWindow);
 
-      m_point = rectWindow.top_left();
+      m_point = rectangleWindow.top_left();
 
-      if (rectWindow.area() <= 0)
+      if (rectangleWindow.area() <= 0)
       {
 
          return;
 
       }
 
-      if(m_size != rectWindow.size())
+      if(m_size != rectangleWindow.size())
       {
 
-         m_size = rectWindow.size();
+         m_size = rectangleWindow.size();
 
       }
 
@@ -595,7 +594,7 @@ namespace android
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //::parallelization::post_quit_and_wait(m_pprodevian, seconds(10));
 
@@ -737,7 +736,7 @@ namespace android
 
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
@@ -828,8 +827,8 @@ namespace android
 
    bool interaction_impl::_EnableToolTips(bool bEnable,::u32 nFlag)
    {
-      UNREFERENCED_PARAMETER(bEnable);
-      UNREFERENCED_PARAMETER(nFlag);
+      __UNREFERENCED_PARAMETER(bEnable);
+      __UNREFERENCED_PARAMETER(nFlag);
       return false;
    }
 
@@ -848,13 +847,13 @@ namespace android
    //   return ::GetTitleBarInfo(((interaction_impl *) this)->get_handle(),pti) != false;
    //}
 
-   //bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
+   //bool interaction_impl::AnimateWindow(::duration ::duration,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::AnimateWindow(get_handle(),millis,dwFlags) != false;
+   //   return ::AnimateWindow(get_handle(),::duration,dwFlags) != false;
    //}
 
-   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
+   //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,::duration tickTimeout)
    //{
    //   ASSERT(::is_window(get_handle()));
    //   FLASHWINFO fwi;
@@ -879,7 +878,7 @@ namespace android
    //   ::draw2d::graphics * pDCSrc,POINT_I32 *pptSrc,color32_t crKey,BLENDFUNCTION *pblend,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return false;
    //   /*      return ::UpdateLayeredWindow(get_handle(), WIN_HDC(pDCDst), pptDst, psize,
    //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != false;*/
@@ -895,7 +894,7 @@ namespace android
    //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   //      return ::PrintWindow(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), nFlags) != false;
    //   return false;
    //}
@@ -915,9 +914,9 @@ namespace android
 
    void interaction_impl::WinHelp(uptr dwData,::u32 nCmd)
    {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_not_implemented();
+      __UNREFERENCED_PARAMETER(dwData);
+      __UNREFERENCED_PARAMETER(nCmd);
+      throw interface_only_exception();
 
       /*      application* pApp = ::aura::get_system();
       ASSERT_VALID(pApp);
@@ -937,13 +936,13 @@ namespace android
       /* trans   if (!::WinHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
       {
       // android ::aura::get_system()->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-      ::aura::get_system()->message_box("Failed to launch help");
+      ::aura::get_system()->output_error_message("Failed to launch help");
       }*/
    }
 
    //void interaction_impl::HtmlHelp(uptr dwData, ::u32 nCmd)
    //{
-   // ::exception::throw_not_implemented();
+   // throw interface_only_exception();
    /*
    application* pApp = ::aura::get_system();
    ASSERT_VALID(pApp);
@@ -965,7 +964,7 @@ namespace android
    /* trans   if (!::aura::HtmlHelp(NODE_WINDOW(pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
    {
    // android ::aura::get_system()->message_box(__IDP_FAILED_TO_LAUNCH_HELP);
-   ::aura::get_system()->message_box("Failed to launch help");
+   ::aura::get_system()->output_error_message("Failed to launch help");
    }*/
    //}
 
@@ -1007,9 +1006,9 @@ namespace android
 
    void interaction_impl::WinHelpInternal(uptr dwData,::u32 nCmd)
    {
-      UNREFERENCED_PARAMETER(dwData);
-      UNREFERENCED_PARAMETER(nCmd);
-      ::exception::throw_not_implemented();
+      __UNREFERENCED_PARAMETER(dwData);
+      __UNREFERENCED_PARAMETER(nCmd);
+      throw interface_only_exception();
       /*
       application* pApp = ::aura::get_system();
       ASSERT_VALID(pApp);
@@ -1031,10 +1030,10 @@ namespace android
 
 
 
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
       if (pcommand->m_bRet)
       {
@@ -1050,7 +1049,7 @@ namespace android
 
       channel * pcmdtarget = dynamic_cast <channel *> (this);
 
-      pcmdtarget->channel::route_command_message(pcommand);
+      pcmdtarget->channel::route_command(pcommand);
 
    }
 
@@ -1058,7 +1057,7 @@ namespace android
    void interaction_impl::_002OnDraw(::image * pimage)
    {
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
       //::CallWindowProc(*GetSuperWndProcAddr(), get_handle(), WM_PRINT, (WPARAM)((dynamic_cast<::android::graphics * >(pgraphics))->get_handle()), (LPARAM)(PRF_CHILDREN | PRF_CLIENT));
 
    }
@@ -1083,7 +1082,7 @@ namespace android
             pmessage->m_id == e_message_sys_char)
       {
 
-         auto pkey = pmessage->m_pkey;
+         auto pkey = pmessage->m_union.m_pkey;
 
          auto psession = get_session();
 
@@ -1140,14 +1139,14 @@ namespace android
       {
          //::rectangle_i32 rectangleClient;
          //::get_client_rect(get_handle(),rectangleClient);
-         //::rectangle_i32 rectWindow;
-         //::get_window_rect(get_handle(),rectWindow);
-         //::rectangle_i32 rectRegion;
+         //::rectangle_i32 rectangleWindow;
+         //::get_window_rect(get_handle(),rectangleWindow);
+         //::rectangle_i32 rectangleRegion;
          //HRGN hrgn = CreateRectRgn(0,0,0,0);
          //int regionType = ::GetWindowRgn(get_handle(),hrgn);
          //if(regionType != ERROR)
          //{
-         //   ::GetRgnBox(hrgn,rectRegion);
+         //   ::GetRgnBox(hrgn,rectangleRegion);
          //}
          //::DeleteObject(hrgn); /* finished with region */
          //WINDOWPLACEMENT wp;
@@ -1198,32 +1197,32 @@ namespace android
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
             pmouse->m_bTranslated = true;
-            rectangle_i32 rectWindow;
+            rectangle_i32 rectangleWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
-               rectWindow.Null();
-               //::rectangle_i32 rectWindow32;
-               //::get_window_rect(get_handle(), rectWindow32);
-               //::copy(rectWindow,rectWindow32);
+               rectangleWindow.Null();
+               //::rectangle_i32 rectangleWindow32;
+               //::get_window_rect(get_handle(), rectangleWindow32);
+               //::copy(rectangleWindow,rectangleWindow32);
             }
             else
             {
-               m_puserinteraction->get_window_rect(rectWindow);
+               m_puserinteraction->get_window_rect(rectangleWindow);
             }
             /*if(::aura::get_system()->get_monitor_count() > 0)
             {
             ::rectangle_i32 rcMonitor;
             ::aura::get_system()->get_monitor_rectangle(0,&rcMonitor);
-            if(rectWindow.left >= rcMonitor.left)
-            pmouse->m_point.x += (::i32)rectWindow.left;
-            if(rectWindow.top >= rcMonitor.top)
-            pmouse->m_point.y += (::i32)rectWindow.top;
+            if(rectangleWindow.left >= rcMonitor.left)
+            pmouse->m_point.x += (::i32)rectangleWindow.left;
+            if(rectangleWindow.top >= rcMonitor.top)
+            pmouse->m_point.y += (::i32)rectangleWindow.top;
             }
             else*/
-            //if(rectWindow.left >= 0)
-            pmouse->m_point.x += (::i32)rectWindow.left;
-            //if(rectWindow.top >= 0)
-            pmouse->m_point.y += (::i32)rectWindow.top;
+            //if(rectangleWindow.left >= 0)
+            pmouse->m_point.x += (::i32)rectangleWindow.left;
+            //if(rectangleWindow.top >= 0)
+            pmouse->m_point.y += (::i32)rectangleWindow.top;
          }
 
          if(pmessage->m_id == e_message_mouse_move)
@@ -1325,7 +1324,7 @@ namespace android
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pmessage->m_lparam.m_lparam);
+            m_puserinteraction->handle_event((::user::control_event *) pmessage->m_lparam.m_lparam);
 
          }
          return;
@@ -1349,7 +1348,7 @@ namespace android
 
    bool interaction_impl::OnCommand(::user::message * pusermessage)
    {
-      UNREFERENCED_PARAMETER(pusermessage);
+      __UNREFERENCED_PARAMETER(pusermessage);
       return false;
    }
 
@@ -1468,7 +1467,7 @@ namespace android
 
    //bool interaction_impl::GetScrollInfo(i32 nBar,LPSCROLLINFO lpScrollInfo,::u32 nMask)
    //{
-   //   UNREFERENCED_PARAMETER(nMask);
+   //   __UNREFERENCED_PARAMETER(nMask);
    //   ASSERT(lpScrollInfo != nullptr);
 
    //   oswindow oswindow = get_handle();
@@ -1645,7 +1644,7 @@ namespace android
 //
 //bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
 //{
-//   UNREFERENCED_PARAMETER(wparam);
+//   __UNREFERENCED_PARAMETER(wparam);
 //   // Note: reflected messages are send directly to interaction_impl::OnWndMsg
 //   //  and interaction_impl::_001OnCommand for speed and because these messages are not
 //   //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -1828,7 +1827,7 @@ namespace android
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       Default();
 
@@ -1849,7 +1848,7 @@ namespace android
          //   while (::task_get_run())
          //   {
 
-         // auto tickStart = ::millis::now();
+         // auto tickStart = ::duration::now();
 
          //      if (!m_puserinteraction->m_bLockWindowUpdate)
          //      {
@@ -1930,8 +1929,8 @@ namespace android
    //      m_event.ResetEvent();
    //      m_hwnd = hwnd;
    //      m_hdc = hdc;
-   //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::priority_normal);
-   //      if (m_event.wait(millis(tickTimeout)).timeout())
+   //      begin_thread( &print_window::s_print_window, (LPVOID) this, ::e_priority_normal);
+   //      if (m_event.wait(::duration(tickTimeout)).timeout())
    //      {
    //         TRACE("print_window::time_out");
    //      }
@@ -1966,12 +1965,12 @@ namespace android
       //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 
       //return;
-      ::rectangle_i32 rectUpdate;
-      m_puserinteraction->get_window_rect(rectUpdate);
+      ::rectangle_i32 rectangleUpdate;
+      m_puserinteraction->get_window_rect(rectangleUpdate);
       //      SetViewportOrgEx(hdc, 0, 0, nullptr);
-      ::rectangle_i32 rectPaint;
-      rectPaint = rectUpdate;
-      m_puserinteraction->screen_to_client(rectPaint);
+      ::rectangle_i32 rectanglePaint;
+      rectanglePaint = rectangleUpdate;
+      m_puserinteraction->screen_to_client(rectanglePaint);
       user::oswindow_array wndaApp;
 
 
@@ -1986,7 +1985,7 @@ namespace android
    void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2017,11 +2016,11 @@ namespace android
       //      rectx.bottom = size.cy;
       //      try
       //      {
-      //         ::rectangle_i32 rectWindow;
-      //         get_window_rect(rectWindow);
+      //         ::rectangle_i32 rectangleWindow;
+      //         get_window_rect(rectangleWindow);
       //
       //         ::image_pointer pimage(this);
-      //         if(!pimage = create_image(rectWindow.bottom_right()))
+      //         if(!pimage = create_image(rectangleWindow.bottom_right()))
       //            return;
       //
       //         ::draw2d::graphics_pointer & pgraphics = pimage->get_graphics();
@@ -2029,11 +2028,11 @@ namespace android
       //         if(pgraphics->get_handle() == nullptr)
       //            return;
       //
-      //         ::rectangle_i32 rectPaint;
-      //         ::rectangle_i32 rectUpdate;
-      //         rectUpdate = rectWindow;
-      //         rectPaint = rectWindow;
-      //         rectPaint.offset(-rectPaint.top_left());
+      //         ::rectangle_i32 rectanglePaint;
+      //         ::rectangle_i32 rectangleUpdate;
+      //         rectangleUpdate = rectangleWindow;
+      //         rectanglePaint = rectangleWindow;
+      //         rectanglePaint.offset(-rectanglePaint.top_left());
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(nullptr);
       //         if(m_puserinteraction != nullptr && m_puserinteraction != this)
       //         {
@@ -2047,14 +2046,14 @@ namespace android
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //         _000OnDraw(pgraphics);
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
-      //         //(dynamic_cast<::android::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+      //         //(dynamic_cast<::android::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(nullptr);
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //
       //         pgraphics->SelectClipRgn( nullptr);
-      //         pgraphics->BitBlt(rectPaint.left, rectPaint.top,
-      //            rectPaint.width(), rectPaint.height(),
-      //            pgraphics, rectUpdate.left, rectUpdate.top,
+      //         pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
+      //            rectanglePaint.width(), rectanglePaint.height(),
+      //            pgraphics, rectangleUpdate.left, rectangleUpdate.top,
       //            SRCCOPY);
       //
       //         pgraphics->text_out(0, 0, "Te Amo Carlinhos!!", 11);
@@ -2295,9 +2294,9 @@ namespace android
    void interaction_impl::UpdateDialogControls(channel* pTarget, bool bDisableIfNoHndler)
    {
 
-      //UNREFERENCED_PARAMETER(pTarget);
+      //__UNREFERENCED_PARAMETER(pTarget);
 
-      //UNREFERENCED_PARAMETER(bDisableIfNoHndler);
+      //__UNREFERENCED_PARAMETER(bDisableIfNoHndler);
 
       //::message::command state(this);
 
@@ -2389,35 +2388,35 @@ namespace android
 //
 //      //xdisplay d(m_oswindow->display());
 //
-//      ::rectangle_i32 rectScreen;
+//      ::rectangle_i32 rectangleScreen;
 //
-//      m_puserinteraction->best_monitor(rectScreen);
+//      m_puserinteraction->best_monitor(rectangleScreen);
 //
 //      int iPalaceGuard = 256;
 //
 //      if (nFlags & SWP_IGNOREPALACEGUARD)
 //         iPalaceGuard = 1;
 //
-//      if (x > rectScreen.right - iPalaceGuard)
-//         x = rectScreen.right - iPalaceGuard;
+//      if (x > rectangleScreen.right - iPalaceGuard)
+//         x = rectangleScreen.right - iPalaceGuard;
 //
 //      if (x < 0)
 //         x = 0;
 //
-//      if (y > rectScreen.bottom - iPalaceGuard)
-//         y = rectScreen.bottom - iPalaceGuard;
+//      if (y > rectangleScreen.bottom - iPalaceGuard)
+//         y = rectangleScreen.bottom - iPalaceGuard;
 //
 //      if (y < 0)
 //         y = 0;
 //
-//      if (cx > rectScreen.width())
-//         cx = rectScreen.width();
+//      if (cx > rectangleScreen.width())
+//         cx = rectangleScreen.width();
 //
 //      if (cx < iPalaceGuard)
 //         cx = iPalaceGuard;
 //
-//      if (cy > rectScreen.height())
-//         cy = rectScreen.height();
+//      if (cy > rectangleScreen.height())
+//         cy = rectangleScreen.height();
 //
 //      if (cy < iPalaceGuard)
 //         cy = iPalaceGuard;
@@ -2462,7 +2461,7 @@ namespace android
 //
 //      ::get_window_rect(get_handle(), rectangle);
 //
-//      ::copy(m_rectParentClient, rectangle);
+//      ::copy(m_rectangleParentClient, rectangle);
 //
 //      if ((nFlags & SWP_SHOWWINDOW))
 //      {
@@ -2494,19 +2493,19 @@ namespace android
    //bool interaction_impl::client_to_screen(RECTANGLE_I32 * lprect)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lprect->left += (::i32)rectWindow.left;
-   //   lprect->right += (::i32)rectWindow.left;
-   //   lprect->top += (::i32)rectWindow.top;
-   //   lprect->bottom += (::i32)rectWindow.top;
+   //   lprect->left += (::i32)rectangleWindow.left;
+   //   lprect->right += (::i32)rectangleWindow.left;
+   //   lprect->top += (::i32)rectangleWindow.top;
+   //   lprect->bottom += (::i32)rectangleWindow.top;
 
    //   return true;
 
@@ -2516,17 +2515,17 @@ namespace android
    //bool interaction_impl::client_to_screen(POINT_I32 * lppoint)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lppoint->x += (::i32)rectWindow.left;
-   //   lppoint->y += (::i32)rectWindow.top;
+   //   lppoint->x += (::i32)rectangleWindow.left;
+   //   lppoint->y += (::i32)rectangleWindow.top;
 
    //   return true;
 
@@ -2536,19 +2535,19 @@ namespace android
    //bool interaction_impl::client_to_screen(RECTANGLE_I64 * lprect)
    //{
 
-   //   ::rectangle_i32 rectWindow;
+   //   ::rectangle_i32 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lprect->left += rectWindow.left;
-   //   lprect->right += rectWindow.left;
-   //   lprect->top += rectWindow.top;
-   //   lprect->bottom += rectWindow.top;
+   //   lprect->left += rectangleWindow.left;
+   //   lprect->right += rectangleWindow.left;
+   //   lprect->top += rectangleWindow.top;
+   //   lprect->bottom += rectangleWindow.top;
 
    //   return true;
 
@@ -2558,17 +2557,17 @@ namespace android
    //bool interaction_impl::client_to_screen(POINT_I64 * lppoint)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lppoint->x += rectWindow.left;
-   //   lppoint->y += rectWindow.top;
+   //   lppoint->x += rectangleWindow.left;
+   //   lppoint->y += rectangleWindow.top;
 
    //   return true;
 
@@ -2578,19 +2577,19 @@ namespace android
    //bool interaction_impl::screen_to_client(RECTANGLE_I32 * lprect)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lprect->left -= (::i32)rectWindow.left;
-   //   lprect->right -= (::i32)rectWindow.left;
-   //   lprect->top -= (::i32)rectWindow.top;
-   //   lprect->bottom -= (::i32)rectWindow.top;
+   //   lprect->left -= (::i32)rectangleWindow.left;
+   //   lprect->right -= (::i32)rectangleWindow.left;
+   //   lprect->top -= (::i32)rectangleWindow.top;
+   //   lprect->bottom -= (::i32)rectangleWindow.top;
 
    //   return true;
 
@@ -2600,17 +2599,17 @@ namespace android
    //bool interaction_impl::screen_to_client(POINT_I32 * lppoint)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!m_puserinteraction->get_window_rect(rectWindow))
+   //   if(!m_puserinteraction->get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lppoint->x -= (::i32)rectWindow.left;
-   //   lppoint->y -= (::i32)rectWindow.top;
+   //   lppoint->x -= (::i32)rectangleWindow.left;
+   //   lppoint->y -= (::i32)rectangleWindow.top;
 
    //   return true;
 
@@ -2620,19 +2619,19 @@ namespace android
    //bool interaction_impl::screen_to_client(RECTANGLE_I64 * lprect)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lprect->left -= rectWindow.left;
-   //   lprect->right -= rectWindow.left;
-   //   lprect->top -= rectWindow.top;
-   //   lprect->bottom -= rectWindow.top;
+   //   lprect->left -= rectangleWindow.left;
+   //   lprect->right -= rectangleWindow.left;
+   //   lprect->top -= rectangleWindow.top;
+   //   lprect->bottom -= rectangleWindow.top;
 
    //   return true;
 
@@ -2642,17 +2641,17 @@ namespace android
    //bool interaction_impl::screen_to_client(POINT_I64 * lppoint)
    //{
 
-   //   ::rectangle_i64 rectWindow;
+   //   ::rectangle_i64 rectangleWindow;
 
-   //   if(!get_window_rect(rectWindow))
+   //   if(!get_window_rect(rectangleWindow))
    //   {
 
    //      return false;
 
    //   }
 
-   //   lppoint->x -= rectWindow.left;
-   //   lppoint->y -= rectWindow.top;
+   //   lppoint->x -= rectangleWindow.left;
+   //   lppoint->y -= rectangleWindow.top;
 
    //   return true;
 
@@ -2901,7 +2900,7 @@ namespace android
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
@@ -3026,8 +3025,8 @@ namespace android
    //i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
    //{
 
-   //   UNREFERENCED_PARAMETER(hRgn);
-   //   UNREFERENCED_PARAMETER(bRedraw);
+   //   __UNREFERENCED_PARAMETER(hRgn);
+   //   __UNREFERENCED_PARAMETER(bRedraw);
 
    //   //__throw(error_not_implemented);
 
@@ -3333,7 +3332,7 @@ namespace android
    }
 
 
-   //bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   if (!is_window_visible())
@@ -3397,7 +3396,7 @@ namespace android
    //   //return ::user::interaction_impl::SetTimer(uEvent, nElapse, lpfnTimer);
 
 
-   //   //UNREFERENCED_PARAMETER(lpfnTimer);
+   //   //__UNREFERENCED_PARAMETER(lpfnTimer);
 
    //   //m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
 
@@ -4050,9 +4049,9 @@ namespace android
 
    void interaction_impl::on_message_size(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
-      //size_i32 sizeRequest = m_puserinteraction->m_rectParentClientRequest.size();
+      //size_i32 sizeRequest = m_puserinteraction->m_rectangleParentClientRequest.size();
 
       //for (auto & pinteraction : m_puserinteraction->m_uiptraChild)
       //{
@@ -4504,7 +4503,7 @@ namespace android
 
 //void interaction_impl::on_delete(::object * pinteraction)
 //{
-//   UNREFERENCED_PARAMETER(pinteraction);
+//   __UNREFERENCED_PARAMETER(pinteraction);
 //}
 
 
@@ -4559,14 +4558,14 @@ namespace android
 
    void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
-      // graphics will be already set its view port to the interaction_impl for android - cairo with xlib
+      // graphics will be already set its impact port to the interaction_impl for android - cairo with xlib
 
       pgraphics->SetViewportOrg(::point_i32());
 
-      /*      rectangle_i64 rectWindow;
-      get_window_rect(rectWindow);
-      get_wnd()->screen_to_client(rectWindow);
-      pgraphics->SetViewportOrg(point_i32(rectWindow.top_left()));
+      /*      rectangle_i64 rectangleWindow;
+      get_window_rect(rectangleWindow);
+      get_wnd()->screen_to_client(rectangleWindow);
+      pgraphics->SetViewportOrg(point_i32(rectangleWindow.top_left()));
       pgraphics->SelectClipRgn(nullptr);
       */
 
@@ -4585,7 +4584,7 @@ namespace android
    //   else
    //   {
 
-   //      __throw(error_interface_only);
+   //      throw ::interface_only_exception();
 
    //   }
 

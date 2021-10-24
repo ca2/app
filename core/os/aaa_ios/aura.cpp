@@ -52,18 +52,6 @@
 
 
 
-//void output_debug_string(const ::string & psz)
-//{
-//
-//   output_debug_string(psz);
-//
-//}
-
-
-
-
-
-
 CLASS_DECL_CORE bool __node_aura_pre_init()
 {
 

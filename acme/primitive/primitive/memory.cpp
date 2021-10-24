@@ -14,7 +14,7 @@ memory::memory(memory && memory) :
 memory::memory(manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
 
@@ -24,7 +24,7 @@ memory::memory(manager * pmanager)
 memory::memory(const memory & s, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
    memory_base::operator   = (s);
@@ -35,7 +35,7 @@ memory::memory(const memory & s, manager * pmanager)
 memory::memory(const memory * ps, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
    memory_base::operator   = (*ps);
@@ -46,7 +46,7 @@ memory::memory(const memory * ps, manager * pmanager)
 memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
 
    m_memory.m_pprimitivememory      = this;
 
@@ -160,7 +160,7 @@ memory::memory(const char * psz)
 memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
 {
 
-   UNREFERENCED_PARAMETER(nAllocFlags);
+   __UNREFERENCED_PARAMETER(nAllocFlags);
    m_memory.m_pprimitivememory   = this;
    m_memory.m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)
@@ -261,13 +261,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
          if(m_bAligned)
          {
 
-            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine);
+            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine);
+            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + "="+ ::get_task()->m_strDebug + ", memory://"+m_strTag, m_iLine;
 
          }
 
@@ -278,13 +278,13 @@ byte * memory::impl_alloc(memsize dwAllocation)
          if(m_bAligned)
          {
 
-            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine);
+            return (byte *)aligned_memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://" + m_strTag, m_iLine;
 
          }
          else
          {
 
-            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + demangle(typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine);
+            return (byte *)memory_allocate_debug((size_t)dwAllocation, 723, "thread://" + typeid(*::get_task()).name()) + ", memory://"+m_strTag, m_iLine;
 
          }
 

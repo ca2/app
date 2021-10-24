@@ -51,7 +51,7 @@ namespace user
    void split_layout::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //__pointer(::message::show_window) pshowwindow(pmessage);
 
@@ -90,7 +90,7 @@ namespace user
       //for (i = 0; i < get_pane_count(); i++)
       //{
 
-      //   rectangle & rectPane = m_panea[i]->m_rect;
+      //   rectangle & rectanglePane = m_panea[i]->m_rect;
 
       //   pcomponent = m_panea.element_at(i);
 
@@ -110,11 +110,11 @@ namespace user
 
       //   }
 
-      //   rectangleClient = rectPane;
+      //   rectangleClient = rectanglePane;
 
       //   rectangleClient.deflate(m_cxBorder, m_cyBorder);
 
-      //   if (rectPane.area() <= 0 || !bIsWindowVisible)
+      //   if (rectanglePane.area() <= 0 || !bIsWindowVisible)
       //   {
 
       //      puserinteraction->display(e_display_none);
@@ -239,7 +239,7 @@ namespace user
 
       ::rectangle splitRect;
       CalcSplitBarRect(iIndex, &splitRect);
-      ::point pointCursor = pMsg->pt;
+      ::point_i32 pointCursor = pMsg->pt;
 
       if(pMsg->message == e_message_left_button_down)
 
@@ -479,7 +479,7 @@ namespace user
 
       }
 
-      ::rectangle rectBar;
+      ::rectangle rectangleBar;
 
       i32 i;
 
@@ -507,7 +507,7 @@ namespace user
 
          }
 
-         CalcSplitBarRect(i, &rectBar);
+         CalcSplitBarRect(i, &rectangleBar);
 
          uFlags = uBaseFlags;
 
@@ -517,7 +517,7 @@ namespace user
 
             puserinteraction->order(e_zorder_top);
 
-            puserinteraction->place(rectBar);
+            puserinteraction->place(rectangleBar);
 
             puserinteraction->display();
 
@@ -528,11 +528,11 @@ namespace user
       for(i = 0; i < get_pane_count(); i++)
       {
 
-         ::rectangle & rectPane = m_panea[i]->m_rect;
+         ::rectangle & rectanglePane = m_panea[i]->m_rect;
 
          ::rectangle & rectangleClient = m_panea[i]->m_rectangleClient;
 
-         CalcPaneRect(i,&rectPane);
+         CalcPaneRect(i,&rectanglePane);
 
          pcomponent = m_panea.element_at(i);
 
@@ -545,7 +545,7 @@ namespace user
 
          }
 
-         rectangleClient = rectPane;
+         rectangleClient = rectanglePane;
 
          rectangleClient.deflate(m_cxBorder,m_cyBorder);
 
@@ -1021,11 +1021,11 @@ namespace user
       else
       {
 
-         ::rectangle rectPane;
+         ::rectangle rectanglePane;
 
-         pcomponent->m_pholder->get_client_rect(rectPane);
+         pcomponent->m_pholder->get_client_rect(rectanglePane);
 
-         pcomponent->m_pholder = place_hold(puserinteraction, rectPane);
+         pcomponent->m_pholder = place_hold(puserinteraction, rectanglePane);
 
          if (pcomponent->m_pholder == nullptr)
          {
@@ -1048,9 +1048,9 @@ namespace user
    void split_layout::SetPaneFixedSize(index iIndex, SIZE32 * pSize)
    {
 
-      UNREFERENCED_PARAMETER(iIndex);
+      __UNREFERENCED_PARAMETER(iIndex);
 
-      UNREFERENCED_PARAMETER(pSize);
+      __UNREFERENCED_PARAMETER(pSize);
 
       ASSERT(iIndex >= 0);
 

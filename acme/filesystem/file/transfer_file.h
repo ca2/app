@@ -23,7 +23,7 @@ namespace file
       virtual ~transfer_file();
 
 
-      //      virtual filesize seek(filesize lOff, ::file::e_seek  nFrom);
+      //      virtual filesize seek(filesize lOff, ::enum_seek eseek);
       //    virtual filesize get_length() const;
 
 

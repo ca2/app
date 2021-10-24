@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME context :
-      virtual public ::object
+      virtual public ::task
    {
    public:
 
@@ -45,7 +45,7 @@ namespace acme
 
 
       context();
-      virtual ~context();
+      ~context() override;
 
 
       inline ::context_image* context_image() { return m_pcontextimage; }
@@ -60,9 +60,10 @@ namespace acme
       virtual ::payload file_payload(const ::payload & payloadFile);
 
 
-      ::file_result get_file(const ::payload& varFile, const ::file::e_open& eopen) override;
+      ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen) override;
 
 
+      virtual ::file::path defer_process_path(::file::path path);
 
 
    };

@@ -259,7 +259,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));
@@ -379,6 +379,22 @@ namespace user
       
       return m_pcontext ? m_pcontext->m_paurasession : nullptr; 
    
+   }
+
+
+   inline double interaction::screen_scaler() const
+   {
+
+      return m_pinteractionScaler->screen_scaler();
+
+   }
+
+
+   inline double interaction::font_scaler() const
+   {
+
+      return m_pinteractionScaler->font_scaler();
+
    }
 
 

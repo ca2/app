@@ -12,9 +12,9 @@ namespace primitive
       ::object(pobject)
    {
 
-      UNREFERENCED_PARAMETER(nGrowBytes);
+      __UNREFERENCED_PARAMETER(nGrowBytes);
 
-      UNREFERENCED_PARAMETER(nAllocFlags);
+      __UNREFERENCED_PARAMETER(nAllocFlags);
 
    }
 

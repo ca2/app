@@ -9,6 +9,10 @@ CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 #include "exception.h"
 
+#include "not_implemented.h"
+
+#include "interface_only.h"
+
 CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 
 //#include "base.h"
@@ -41,19 +45,19 @@ CLASS_DECL_ACME::e_status errno_to_status(i32 nErrno);
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::e_status os_error_to_status(DWORD dwError);
+CLASS_DECL_ACME ::e_status last_error_to_status(DWORD dwLastError);
 
 
 #endif
 
 
-namespace exception
-{
+//namespace exception
+//{
 
-   CLASS_DECL_ACME void throw_interface_only(const char * pszMessage = nullptr);
-   CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage = nullptr);
-
-}
+//   CLASS_DECL_ACME void throw_interface_only(const char * pszMessage = nullptr);
+//   CLASS_DECL_ACME void throw_not_implemented(const char * pszMessage = nullptr);
+//
+//}
 
 
 
@@ -78,15 +82,15 @@ namespace exception
 
 
 
-//#include "io.h"
-//#include "resource.h"
+#include "io.h"
+#include "resource.h"
 //#include "user.h"
 
 
 
 
 
-#include "hresult.h"
+//#include "hresult.h"
 
 
 
@@ -275,7 +279,7 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
    } while (0)
 
 #define __BEGIN_DESTRUCTOR try {
-#define __END_DESTRUCTOR   } catch (::exception::exception *pException) { EXCEPTION_IN_DTOR(pException); }
+#define __END_DESTRUCTOR   } catch (::exception *pException) { EXCEPTION_IN_DTOR(pException); }
 
 
 

@@ -7,20 +7,45 @@
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
    virtual public ::object,
-   virtual public ::image_drawer
+   virtual public ::image_drawer,
+   virtual public ::image_source_interface
 {
 public:
 
 
+   struct CLASS_DECL_AURA load_options
+   {
+   public:
+
+
+      bool sync = true;
+      bool cache = true;
+      bool helper_maps = false;
+      synchronization_object * psync;
+
+
+   };
+
+
+
+
    memory                              m_memoryMap;
-   ::rectangle_i32                              m_rectTag;
+   ::rectangle_i32                     m_rectangleTag;
 
 
    image();
    ~image() override;
 
 
+   using image_meta::clear;
+   using object::clear;
+
+
    virtual void defer_update_image();
+
+
+   virtual __pointer(::image) get_image(const ::size_i32 & size);
+   virtual __pointer(::image) get_image(::i32 cx, ::i32 cy);
 
 
    inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::object::is_ok()); }
@@ -42,7 +67,7 @@ public:
 
    
    virtual bool create_isotropic(::image * pimage);
-   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority);
+   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority);
 
 
    virtual bool SetViewportOrg(const ::point_i32 & point);
@@ -63,11 +88,12 @@ public:
    ::size_i32 get_image_drawer_size() const override;
 
 
-   inline ::image * get_image(const concrete < ::size_i32 > &) { return this; }
+   ::image_pointer image_source_image(const concrete < ::size_i32 > &) override;
 
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 &, const ::size_f64 &, enum_image_selection) const { return get_size(); }
-   inline concrete < ::size_i32 > size(const ::size_f64 &, enum_image_selection ) const { return get_size(); }
+   concrete < ::size_i32 > image_source_size(const ::size_f64 &, enum_image_selection) const override;
+   concrete < ::size_i32 > image_source_size() const override;
    using image_meta::size;
    
    inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
@@ -98,7 +124,7 @@ public:
    virtual bool blend2(const ::point_i32 & pointDst, ::image * imageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA);
    virtual bool fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size);
    virtual bool fork_blend(const ::point_i32 & pointDst, ::image * imageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA);
-   virtual bool bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle);
+   //virtual bool bitmap_blend(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle);
 
    virtual bool color_blend(::color32_t color32, byte bAlpha);
    virtual bool BitBlt(::image * pimage, i32 op);
@@ -114,7 +140,7 @@ public:
    virtual bool unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-   virtual bool map(bool bApplyAlphaTransform = true);
+   virtual bool _map(bool bApplyAlphaTransform = true);
    virtual bool _unmap();
 
    virtual bool set_mapped();
@@ -207,16 +233,18 @@ public:
 
    virtual bool create_thumbnail(const ::string & pszPath);
 
-
+   virtual ::e_status create_ex(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
    virtual ::e_status create(::draw2d::graphics* pgraphics);
-   virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
-   inline ::e_status preserve(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
+   virtual ::e_status create(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   using ::object::initialize;
+   virtual ::e_status initialize(const ::size_i32 & size, ::color32_t * pcolorref, int iScan, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG);
+   inline ::e_status preserve(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1)
    {
 
-      return create(size, eobjectCreate, iGoodStride, true);
+      return create(size, eflagCreate, iGoodStride, true);
 
    }
-   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
 
 
    virtual bool host(const ::pixmap * ppixmap);
@@ -238,22 +266,22 @@ public:
    virtual bool DivideA(i32 iDivide);
 
    
-   using image_drawer::stretch;
-   virtual bool stretch(::image * pimage);
+   //using image_drawer::stretch;
+   virtual bool stretch_image(::image * pimage);
 
 
    //virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
-   virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
+   //virtual bool copy(const ::image * pimage, enum_flag eflagCreate = e_flag_success);
    //virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size_i32 & size);
    //virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics* pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size);
    //using image_drawer::draw;
-   virtual bool _draw_raw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc = ::point_i32());
-   virtual bool blend(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc, byte bA);
+   virtual bool _draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc = ::point_i32());
+   virtual bool blend(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc, byte bA);
    //virtual bool blend(const ::point_i32 & pointDst, ::image * piml, const ::point_i32 & pointSrc, const ::size_i32 & size);
-   virtual bool draw_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::rectangle_i32 & rectSrc);
+   virtual bool draw_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::rectangle_i32 & rectangleSource);
 
    //virtual bool to(::draw2d::graphics* pgraphics);
    //virtual bool to(::draw2d::graphics* pgraphics, const ::point_i32 & point);
@@ -311,8 +339,9 @@ public:
 
    virtual bool lighten(double dRate);
 
-   virtual bool copy_from(::image * pimage, i32 x = 0, i32 y = 0);
-   virtual bool copy_to(::image * pimage, i32 x = 0, i32 y = 0);
+   virtual bool copy_from(::image * pimage, const ::point_i32 & point, enum_flag eflagCreate = e_flag_success);
+   virtual bool copy_from(::image * pimage, enum_flag eflagCreate = e_flag_success);
+   //virtual bool copy_to(::image * pimage, const ::point_i32 & point = nullptr);
 
    virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32);
 
@@ -353,8 +382,8 @@ public:
    virtual bool invert_rgb();
 
 
-   //virtual ::e_status     create_image(int cx, int cy, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
-   //virtual ::e_status     create_image(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(int cx, int cy, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
 
@@ -374,7 +403,7 @@ public:
    ::stream & read(::stream & stream) override;
 
    
-   ::matter * clone() const override;
+   ::element * clone() const override;
 
 
    inline int line(int line);
@@ -467,7 +496,7 @@ public:
 ////
 //
 //
-//inline ::image_result __create_image()
+//inline ::image_transport __create_image()
 //{
 //
 //   return ::__create<::image>();
@@ -482,11 +511,11 @@ public:
 // //
 // //
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 // //
 // //
 // template < typename COMPOSER >
-// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
 //::e_status __construct(::image_pointer & pimage);
@@ -494,10 +523,10 @@ public:
 inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource);
 //
 //
-inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false);
 //
 //
-inline ::e_status __preserve(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+inline ::e_status __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1);
 //
 //
 //

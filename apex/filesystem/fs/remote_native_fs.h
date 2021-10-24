@@ -18,8 +18,8 @@ namespace fs
       bool                                m_bInitialized;
 
 
-      file_path_map < millis >              m_mapdirLast;
-      file_path_map < millis >              m_mapfileLast;
+      file_path_map < ::duration >              m_mapdirLast;
+      file_path_map < ::duration >              m_mapfileLast;
 
 
       remote_native(const char * pszRoot);
@@ -39,7 +39,7 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc) override;
 
-      virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
+      virtual file_transport get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
       virtual bool file_exists(const ::file::path & pszPath) override;
 

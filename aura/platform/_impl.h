@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
@@ -227,9 +227,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ::file::path path = memory_counter_path(pthis);
 //
-//      int i = atoi(file_as_string(path));
+//      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      file_put_contents(path, __str(i + 1));
+//      m_psystem->m_pacmefile->put_contents(path, __string(i + 1));
 //
 //   }
 //
@@ -247,9 +247,9 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      ::file::path path = memory_counter_path(pthis);
 //
-//      int i = atoi(file_as_string(path));
+//      int i = atoi(m_psystem->m_pacmefile->as_string(path));
 //
-//      file_put_contents(path, __str(i - 1));
+//      m_psystem->m_pacmefile->put_contents(path, __string(i - 1));
 //
 //   }
 //
@@ -707,10 +707,10 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 
 
 //template < typename PRED >
-//::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bAsync = false)
+//::image_pointer get_image(::object * pobject, const ::payload & payloadFile, bool bAsync = false)
 //{
 //
-//   ::file::path path = varFile.get_file_path();
+//   ::file::path path = payloadFile.get_file_path();
 //
 //   if (path.is_empty())
 //   {
@@ -732,7 +732,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //      synchronouslock.unlock();
 //
-//      psystem->m_pimaging->_load_image(pobject->get_context(), pimage, varFile, !bAsync, false);
+//      psystem->m_pimaging->_load_image(pobject->get_context(), pimage, payloadFile, !bAsync, false);
 //
 //   }
 //
@@ -752,10 +752,10 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //{
 //
 //
-//   inline void from(string & str, const millis & millis)
+//   inline void from(string & str, const ::duration & duration)
 //   {
 //
-//      str.Format(__prtick, millis.m_i);
+//      str.Format(__prtick, ::duration.m_i);
 //
 //   }
 //
@@ -782,7 +782,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //} // namespace str
 
 
-//inline void copy(void *, const void *) /* = 0 */ {__throw(error_interface_only); }
+//inline void copy(void *, const void *) /* = 0 */ {throw ::interface_only_exception(); }
 
 
 //namespace papaya
@@ -797,7 +797,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //      inline TYPE default_value()
 //      {
 //
-//         __throw(::exception::exception("template only exception"));
+//         __throw(::exception("template only exception"));
 //
 //      }
 //
@@ -853,7 +853,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //}
 
 
-//inline string __str(const ::e_display & edisplay) { return __str((::enum_display) edisplay); }
+//inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 //namespace aura
@@ -1043,7 +1043,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //   if (::is_null(pderived))
 //   {
 //
-//      __throw(::exception::exception(::error_wrong_type));
+//      __throw(::exception(::error_wrong_type));
 //
 //   }
 //
@@ -1076,7 +1076,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   c_derived * ptr = pca;
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 ////   ::id id = p->m_id;
 //   //char * pszType = nullptr;
@@ -1124,7 +1124,7 @@ inline stream & operator >> (stream & s, ::datetime::time & time);
 //
 //   }
 //
-//   //#ifdef DEBUG
+//   //#ifdef _DEBUG
 //   //
 //   //   try
 //   //   {

@@ -13,7 +13,7 @@ namespace datetime
       calendar::calendar()
       {
 
-         ::datetime::time time = ::datetime::time::get_current_time();
+         ::datetime::time time = ::datetime::time::now();
          m_iYear = time.GetYear();
          m_iMonth = time.GetMonth();
          m_bRange = false;
@@ -48,7 +48,7 @@ namespace datetime
       void calendar::_001OnDraw(::draw2d::graphics* pgraphics)
       {
 
-         UNREFERENCED_PARAMETER(pgraphics);
+         __UNREFERENCED_PARAMETER(pgraphics);
 
       }
 
@@ -66,9 +66,9 @@ namespace datetime
       void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect)
       {
 
-         UNREFERENCED_PARAMETER(iWeekDay);
-         UNREFERENCED_PARAMETER(iLine);
-         UNREFERENCED_PARAMETER(lprect);
+         __UNREFERENCED_PARAMETER(iWeekDay);
+         __UNREFERENCED_PARAMETER(iLine);
+         __UNREFERENCED_PARAMETER(lprect);
 
       }
 
@@ -76,8 +76,8 @@ namespace datetime
       void calendar::GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement)
       {
 
-         UNREFERENCED_PARAMETER(lprect);
-         UNREFERENCED_PARAMETER(eelement);
+         __UNREFERENCED_PARAMETER(lprect);
+         __UNREFERENCED_PARAMETER(eelement);
 
       }
 
@@ -120,8 +120,8 @@ namespace datetime
       void calendar::set_pos(point_i32 point, size_i32 sz)
       {
 
-         UNREFERENCED_PARAMETER(point);
-         UNREFERENCED_PARAMETER(sz);
+         __UNREFERENCED_PARAMETER(point);
+         __UNREFERENCED_PARAMETER(sz);
 
       }
 
@@ -129,7 +129,7 @@ namespace datetime
       void calendar::GetDateTime(const ::text::context* pcontext, string& strDateTime)
       {
 
-         ::datetime::time time = ::datetime::time::get_current_time();
+         ::datetime::time time = ::datetime::time::now();
          string strDate;
          string strWeekDay;
          string strTime;
@@ -266,12 +266,12 @@ namespace datetime
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
          ::datetime::time_span timespan(1, 0, 0, 0);
-         rectangle_i32 rectDay;
+         rectangle_i32 rectangleDay;
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
-            GetRectDay(time, rectDay);
-            if (rectDay.contains(point))
+            GetRectDay(time, rectangleDay);
+            if (rectangleDay.contains(point))
             {
                timeRet = time;
                return true;

@@ -12,7 +12,8 @@ namespace core
 
 
       application();
-      virtual ~application();
+      ~application() override;
+
 
       void common_construct();
 
@@ -23,8 +24,17 @@ namespace core
 
 
       virtual ::e_status initialize(::object * pobject) override;
-      virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
-      
+      __pointer(::progress::real) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
+
+
+      //virtual ::e_status prepare_impact_menu(::user::menu * pmenu);
+
+
+      virtual string prepare_impact_options();
+      virtual string prepare_impact_options_header();
+      virtual string prepare_impact_options_main_body();
+      virtual string prepare_impact_options_footer();
+
 
    };
 

@@ -21,7 +21,7 @@ namespace calculator
       virtual ~plain_edit_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void set_format(const string& strFormat) override;
       virtual void set_callback(callback* pcallback) override;
@@ -29,7 +29,7 @@ namespace calculator
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 

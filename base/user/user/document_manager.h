@@ -42,8 +42,8 @@ namespace user
       document_manager();
       virtual ~document_manager();
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void add_document_template(::user::impact_system * ptemplate);
       virtual void erase_document_template(::user::impact_system * ptemplate);
@@ -51,15 +51,15 @@ namespace user
       virtual ::user::impact_system * get_template(index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
-      virtual void request(::create * pcreate); // open named file
+      void request(::create * pcreate) override; // open named file
       virtual bool save_all_modified(); // save before exit
       virtual void pre_close_all_documents(); // pre close documents before exiting
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
       virtual ::count get_open_document_count();
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
+      void handle(::subject * psubject, ::context * pcontext) override;
 
-      virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       virtual bool OnDDECommand(char * pszCommand);
 

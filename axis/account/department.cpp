@@ -8,7 +8,7 @@
 #include "system_storage.h"
 #include "network_authenticator.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
-#include "acme/const/timer.h"
+#include "acme/constant/timer.h"
 
 
 namespace account
@@ -203,7 +203,7 @@ namespace account
 //
 //      string strRequestingServer = purl->get_server(pathUrl);
 //
-//      ::u32 dwGetFontopusBeg= ::millis::now();
+//      ::u32 dwGetFontopusBeg= ::duration::now();
 //
 //      string strGetFontopus;
 //
@@ -230,7 +230,7 @@ namespace account
 //      if(strRequestingServer == "ca2.software")
 //         return "ca2.software";
 //
-//      ::u32 dwGetFontopusEnd= ::millis::now();
+//      ::u32 dwGetFontopusEnd= ::duration::now();
 //
 //      TRACE("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //
@@ -349,7 +349,7 @@ namespace account
 
       }
 
-      m_ptaskpool->set_timer(e_timer_slow, one_minute());
+      m_ptaskpool->set_timer(e_timer_slow, minute());
 
       __pointer(::axis::session) psession = get_session();
 
@@ -365,11 +365,11 @@ namespace account
 
 #ifdef __DEBUG
 
-      return minutes(3);
+      return 3_minutes;
 
 #else // __DEBUG
 
-      return minutes(15);
+      return 15_minutes;
 
 #endif // !__DEBUG
 

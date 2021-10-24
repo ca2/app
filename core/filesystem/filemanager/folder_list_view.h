@@ -20,7 +20,7 @@ namespace filemanager
       virtual ~folder_list_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual void initialize(string strDataKeyModifier,bool bRecursive);
@@ -39,7 +39,7 @@ namespace filemanager
 
       virtual void GetSel(string_array & stra);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

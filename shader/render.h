@@ -24,8 +24,14 @@ namespace app_shader
       ::image_pointer                     m_pimage1;
       ::image_pointer                     m_pimage2;
       ::color::hls                               m_hlsText;
-      ::millis                              m_millisStart;
+      ::duration                              m_durationStart;
       ::gpu::enum_shader_source           m_eshadersource;
+      ::image_pointer                     m_pimageLabel;
+      string                              m_strLastLabel;
+      ::color::color                      m_colorLastLabelBackground;
+      ::image_pointer                     m_pimageError;
+      string                              m_strLastError;
+
 
       render();
       virtual ~render();
@@ -33,7 +39,7 @@ namespace app_shader
 
       virtual ::e_status initialize(::object * pobject) override;
 
-#ifdef DEBUG
+#ifdef _DEBUG
       virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
       virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 #endif
@@ -43,6 +49,10 @@ namespace app_shader
       virtual ::e_status _update_shader();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001OnDrawLabel(::draw2d::graphics_pointer & pgraphics);
+
+      virtual void _001OnDrawError(::draw2d::graphics_pointer & pgraphics);
 
       virtual void _001OnDraw1Through3(::draw2d::graphics_pointer & pgraphics);
 

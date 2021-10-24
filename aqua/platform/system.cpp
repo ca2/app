@@ -302,19 +302,24 @@ namespace aqua
    ::e_status system::defer_audio()
    {
 
-      if (!m_paudio)
+      if(m_bAudio.undefined() || m_bAudio.is_true())
       {
 
-         auto estatus = create_audio();
-
-         if (!estatus)
+         if (!m_paudio)
          {
+
+            auto estatus = create_audio();
+
+            if (!estatus)
+            {
+
+               return estatus;
+
+            }
 
             return estatus;
 
          }
-
-         return estatus;
 
       }
 

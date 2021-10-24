@@ -25,7 +25,7 @@ namespace experience
          virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
          virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-         virtual void install_message_routing(::channel * pchannel) override;
+         void install_message_routing(::channel * pchannel) override;
 
 
          DECLARE_MESSAGE_HANDLER(on_message_show_window);

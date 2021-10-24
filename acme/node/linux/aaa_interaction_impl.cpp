@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "acme/platform/app_core.h"
-#include "acme/os/linux/_linux.h"
+#include "acme/node/operating_system/linux/_linux.h"
 //!!!#include <X11/Xatom.h>
 ////#include "third/sn/sn.h"
 #include <gdk/gdkx.h>
@@ -55,7 +55,7 @@ void CLASS_DECL_ACME __pre_init_dialog(
 ::user::interaction * pWnd, RECT32 * pRectOld, ::u32* pdwStyleOld);
 
 void CLASS_DECL_ACME __post_init_dialog(
-::user::interaction * pWnd, const rectangle & rectOld, ::u32 dwStyleOld);
+::user::interaction * pWnd, const rectangle & rectangleOld, ::u32 dwStyleOld);
 LRESULT CALLBACK
 __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam);
 
@@ -352,7 +352,7 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
+            INFORMATION("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
             Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
@@ -363,11 +363,11 @@ namespace linux
                           | CWOverrideRedirect
                                           , &attr);
 
-            m_puserinteraction->layout().window() = ::point(INT_MIN, INT_MIN);
+            m_puserinteraction->layout().window() = ::point_i32(INT_MIN, INT_MIN);
 
             m_puserinteraction->layout().window() = ::size(INT_MIN, INT_MIN);
 
-            m_puserinteraction->screen_origin() = ::point(INT_MIN, INT_MIN);
+            m_puserinteraction->screen_origin() = ::point_i32(INT_MIN, INT_MIN);
 
    //         {
    //
@@ -383,11 +383,11 @@ namespace linux
    //
             {
 
-               m_puserinteraction->layout().sketch() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->layout().sketch() = ::point_i32(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
                m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-               m_puserinteraction->screen_origin() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+               m_puserinteraction->screen_origin() = ::point_i32(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
             }
 
@@ -424,7 +424,7 @@ namespace linux
                   if(dwLastError == 0x0000057e)
                   {
 
-                     ::acme::get_system()->message_box("cannot create a top-level child interaction_impl.");
+                     ::acme::get_system()->output_error_message("cannot create a top-level child interaction_impl.");
 
                   }
                   else
@@ -543,7 +543,7 @@ namespace linux
             if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
             {
 
-               INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
+               INFORMATION("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
 
             }
 
@@ -734,7 +734,7 @@ namespace linux
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_millisLastPlacementEvent.elapsed() < 40 || m_puserinteraction->layout().is_changing())
+      while(m_durationLastPlacementEvent.elapsed() < 40 || m_puserinteraction->layout().is_changing())
       {
 
          if(!task_sleep(10_ms))
@@ -760,7 +760,7 @@ namespace linux
       if (bMove)
       {
 
-         INFO("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
+         INFORMATION("linux::interaction_impl Window Manager Move (%d, %d)", m_pointLastMove.x, m_pointLastMove.y);
 
          m_puserinteraction->move_to(m_pointLastMove);
 
@@ -775,7 +775,7 @@ namespace linux
       if (bSize)
       {
 
-         INFO("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -888,7 +888,7 @@ namespace linux
       if(pshowwindow->m_bShow)
       {
 
-         INFO("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->layout().design().display().m_eenum));
+         INFORMATION("linux::interaction_impl::on_message_show_window VISIBLE edisplay=%s", __cstr(m_puserinteraction->layout().design().display().m_eenum));
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -956,7 +956,7 @@ namespace linux
    void interaction_impl::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       {
 
@@ -1178,33 +1178,33 @@ namespace linux
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
 
-   void interaction_impl::get_window_text(string & rectString)
+   void interaction_impl::get_window_text(string & rectangleString)
    {
 
-      rectString = m_strWindowText;
+      rectangleString = m_strWindowText;
 
    }
 
    /*
-      i32 interaction_impl::GetDlgItemText(i32 nID, string & rectString) const
+      i32 interaction_impl::GetDlgItemText(i32 nID, string & rectangleString) const
       {
          ASSERT(::is_window((oswindow) get_handle()));
-         rectString = "";    // is_empty without deallocating
+         rectangleString = "";    // is_empty without deallocating
 
          oswindow hWnd = ::GetDlgItem(get_handle(), nID);
          if (hWnd != nullptr)
          {
             i32 nLen = ::GetWindowTextLength(hWnd);
-            ::GetWindowText(hWnd, rectString.get_string_buffer(nLen), nLen+1);
-            rectString.ReleaseBuffer();
+            ::GetWindowText(hWnd, rectangleString.get_string_buffer(nLen), nLen+1);
+            rectangleString.ReleaseBuffer();
          }
 
-         return (i32)rectString.get_length();
+         return (i32)rectangleString.get_length();
       }
    */
 
@@ -1274,8 +1274,8 @@ namespace linux
 
 //   bool interaction_impl::_EnableToolTips(bool bEnable, ::u32 nFlag)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
-//      UNREFERENCED_PARAMETER(nFlag);
+//      __UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(nFlag);
 //      return false;
 //   }
 
@@ -1293,18 +1293,18 @@ namespace linux
 
 
 
-   void interaction_impl::route_command_message(::message::command * pcommand)
+   void interaction_impl::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      channel::route_command_message(pcommand);
+      channel::route_command(pcommand);
 
    }
 
 
-   void interaction_impl::on_control_event(::user::control_event * pevent)
+   void interaction_impl::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(pevent);
+      __UNREFERENCED_PARAMETER(pevent);
 
    }
 
@@ -1315,10 +1315,10 @@ namespace linux
 //   }
 //
 
-   millis     tickDebugmessage_handlerTime;
+   ::duration     tickDebugmessage_handlerTime;
    int      iDebugmessage_handlerTime;
-   millis     tickLastMouseMove;
-   millis     tickLastPaint;
+   ::duration     tickLastMouseMove;
+   ::duration     tickLastPaint;
 
 
    void interaction_impl::message_handler(::user::message * pusermessage)
@@ -1478,7 +1478,7 @@ namespace linux
 //         pusermessage->m_id == e_message_mouse_wheel)
       {
 
-         if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserPrimitiveOk)
+         if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
          {
 
             return;
@@ -1506,34 +1506,34 @@ namespace linux
          if(m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
          {
             pmouse->m_bTranslated = true;
-            ::rectangle rectWindow;
+            ::rectangle rectangleWindow;
             if(m_bScreenRelativeMouseMessagePosition)
             {
 
-               INFO("Screen Relative Mouse Message Position");
-               ::rectangle rectWindow32;
-               ::get_window_rect((oswindow) get_handle(), &rectWindow32);
-               ::copy(rectWindow, rectWindow32);
+               INFORMATION("Screen Relative Mouse Message Position");
+               ::rectangle rectangleWindow32;
+               ::get_window_rect((oswindow) get_handle(), &rectangleWindow32);
+               ::copy(rectangleWindow, rectangleWindow32);
             }
             else
             {
-               m_puserinteraction->get_window_rect(rectWindow);
+               m_puserinteraction->get_window_rect(rectangleWindow);
             }
             if(::acme::get_system()->get_monitor_count() > 0)
             {
                ::rectangle rcMonitor;
                ::acme::get_system()->get_monitor_rectangle(0, &rcMonitor);
-               if(rectWindow.left >= rcMonitor.left)
-                  pmouse->m_point.x += (::i32) rectWindow.left;
-               if(rectWindow.top >= rcMonitor.top)
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+               if(rectangleWindow.left >= rcMonitor.left)
+                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+               if(rectangleWindow.top >= rcMonitor.top)
+                  pmouse->m_point.y += (::i32) rectangleWindow.top;
             }
             else
             {
-               if(rectWindow.left >= 0)
-                  pmouse->m_point.x += (::i32) rectWindow.left;
-               if(rectWindow.top >= 0)
-                  pmouse->m_point.y += (::i32) rectWindow.top;
+               if(rectangleWindow.left >= 0)
+                  pmouse->m_point.x += (::i32) rectangleWindow.left;
+               if(rectangleWindow.top >= 0)
+                  pmouse->m_point.y += (::i32) rectangleWindow.top;
             }
          }
 
@@ -1608,13 +1608,13 @@ namespace linux
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
+            m_puserinteraction->handle_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
          else
          {
 
-            on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
+            handle_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
 
@@ -1650,8 +1650,8 @@ namespace linux
 //   bool interaction_impl::OnCommand(WPARAM wparam, LPARAM lparam)
 //   {
 //
-//      UNREFERENCED_PARAMETER(wparam);
-//      UNREFERENCED_PARAMETER(lparam);
+//      __UNREFERENCED_PARAMETER(wparam);
+//      __UNREFERENCED_PARAMETER(lparam);
 //
 //      return false;
 //
@@ -1824,7 +1824,7 @@ namespace linux
    /////////////////////////////////////////////////////////////////////////////
    // Scroll bar helpers
    //  hook for interaction_impl functions
-   //    only works for derived class (eg: ::view) that override 'GetScrollBarCtrl'
+   //    only works for derived class (eg: ::impact) that override 'GetScrollBarCtrl'
    // if the interaction_impl doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
@@ -1880,7 +1880,7 @@ namespace linux
       bool interaction_impl::GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask)
 
       {
-         UNREFERENCED_PARAMETER(nMask);
+         __UNREFERENCED_PARAMETER(nMask);
          ASSERT(pScrollInfo != nullptr);
 
 
@@ -2073,7 +2073,7 @@ namespace linux
 //   bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
 //
 //   {
-//      UNREFERENCED_PARAMETER(wparam);
+//      __UNREFERENCED_PARAMETER(wparam);
 //      // Note: reflected messages are send directly to interaction_impl::OnWndMsg
 //      //  and interaction_impl::_001OnCommand for speed and because these messages are not
 //      //  routed by normal _001OnCommand routing (they are only dispatched)
@@ -2263,7 +2263,7 @@ namespace linux
 ////            while (::task_get_run())
 ////            {
 ////
-//// auto tickStart = ::millis::now();
+//// auto tickStart = ::duration::now();
 ////
 ////               bool bUpdateScreen = false;
 ////
@@ -2338,7 +2338,7 @@ namespace linux
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2408,7 +2408,7 @@ namespace linux
 //         fork();
 //#undef timeout
 //
-//         if(m_event.wait(millis(tickTimeout)).timeout())
+//         if(m_event.wait(::duration(tickTimeout)).timeout())
 //         {
 //            TRACE("print_window::time_out");
 //         }
@@ -2443,12 +2443,12 @@ namespace linux
 //      //pgraphics->FillSolidRect(rectangleClient, 0x00000000);
 //
 //      //return;
-//      ::rectangle rectUpdate;
-//      m_puserinteraction->get_window_rect(rectUpdate);
+//      ::rectangle rectangleUpdate;
+//      m_puserinteraction->get_window_rect(rectangleUpdate);
 ////      SetViewportOrgEx(hdc, 0, 0, nullptr);
-//      ::rectangle rectPaint;
-//      rectPaint = rectUpdate;
-//      m_puserinteraction->screen_to_client(rectPaint);
+//      ::rectangle rectanglePaint;
+//      rectanglePaint = rectangleUpdate;
+//      m_puserinteraction->screen_to_client(rectanglePaint);
 //      user::oswindow_array wndaApp;
 //
 //
@@ -2468,7 +2468,7 @@ namespace linux
 //
 //   void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
 //   {
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //   }
 
 
@@ -2563,7 +2563,7 @@ namespace linux
 //      if(!(nFlags & SWP_NOMOVE))
 //      {
 //
-//         m_puserinteraction->m_pointRequest = ::point(x, y);
+//         m_puserinteraction->m_pointRequest = ::point_i32(x, y);
 //
 //      }
 //
@@ -2597,19 +2597,19 @@ namespace linux
 //   }
 
 
-//   ::point interaction_impl::client_screen_top_left()
+//   ::point_i32 interaction_impl::client_screen_top_left()
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
-//         return pointd(0.0,0.0);
+//         return point_f64(0.0,0.0);
 //
 //      }
 //
-//      return rectWindow.top_left();
+//      return rectangleWindow.top_left();
 //
 //   }
 //
@@ -2618,22 +2618,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   += (::i32) rectWindow.left;
+//      prect->left   += (::i32) rectangleWindow.left;
 
-//      prect->right  += (::i32) rectWindow.left;
+//      prect->right  += (::i32) rectangleWindow.left;
 
-//      prect->top    += (::i32) rectWindow.top;
+//      prect->top    += (::i32) rectangleWindow.top;
 
-//      prect->bottom += (::i32) rectWindow.top;
+//      prect->bottom += (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2645,18 +2645,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     += (::i32) rectWindow.left;
+//      ppoint->x     += (::i32) rectangleWindow.left;
 
-//      ppoint->y     += (::i32) rectWindow.top;
+//      ppoint->y     += (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2668,22 +2668,22 @@ namespace linux
 
 //   {
 //
-//      ::rectangle rectWindow;
+//      ::rectangle rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   += rectWindow.left;
+//      prect->left   += rectangleWindow.left;
 
-//      prect->right  += rectWindow.left;
+//      prect->right  += rectangleWindow.left;
 
-//      prect->top    += rectWindow.top;
+//      prect->top    += rectangleWindow.top;
 
-//      prect->bottom += rectWindow.top;
+//      prect->bottom += rectangleWindow.top;
 
 //
 //      return true;
@@ -2695,18 +2695,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     += rectWindow.left;
+//      ppoint->x     += rectangleWindow.left;
 
-//      ppoint->y     += rectWindow.top;
+//      ppoint->y     += rectangleWindow.top;
 
 //
 //      return true;
@@ -2718,22 +2718,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   -= (::i32) rectWindow.left;
+//      prect->left   -= (::i32) rectangleWindow.left;
 
-//      prect->right  -= (::i32) rectWindow.left;
+//      prect->right  -= (::i32) rectangleWindow.left;
 
-//      prect->top    -= (::i32) rectWindow.top;
+//      prect->top    -= (::i32) rectangleWindow.top;
 
-//      prect->bottom -= (::i32) rectWindow.top;
+//      prect->bottom -= (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2745,18 +2745,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     -= (::i32) rectWindow.left;
+//      ppoint->x     -= (::i32) rectangleWindow.left;
 
-//      ppoint->y     -= (::i32) rectWindow.top;
+//      ppoint->y     -= (::i32) rectangleWindow.top;
 
 //
 //      return true;
@@ -2768,22 +2768,22 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      prect->left   -= rectWindow.left;
+//      prect->left   -= rectangleWindow.left;
 
-//      prect->right  -= rectWindow.left;
+//      prect->right  -= rectangleWindow.left;
 
-//      prect->top    -= rectWindow.top;
+//      prect->top    -= rectangleWindow.top;
 
-//      prect->bottom -= rectWindow.top;
+//      prect->bottom -= rectangleWindow.top;
 
 //
 //      return true;
@@ -2795,18 +2795,18 @@ namespace linux
 
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rect64 rectangleWindow;
 //
-//      if(!get_window_rect(rectWindow))
+//      if(!get_window_rect(rectangleWindow))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ppoint->x     -= rectWindow.left;
+//      ppoint->x     -= rectangleWindow.left;
 
-//      ppoint->y     -= rectWindow.top;
+//      ppoint->y     -= rectangleWindow.top;
 
 //
 //      return true;
@@ -2899,7 +2899,7 @@ namespace linux
 //
 //         //}
 //
-//         rect64 r = m_puserinteraction->m_rectParentClient;
+//         rect64 r = m_puserinteraction->m_rectangleParentClient;
 //
 //         rectangle.offset(rectangle.top_left());
 //
@@ -3166,7 +3166,7 @@ namespace linux
    }
 
 
-//   bool interaction_impl::DragDetect(const ::point & point) const
+//   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
 //      __throw(error_not_implemented);
@@ -3223,7 +3223,7 @@ namespace linux
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      UNREFERENCED_PARAMETER(bRedraw);
+      __UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
@@ -3299,8 +3299,8 @@ namespace linux
 //   i32 interaction_impl::SetWindowRgn(HRGN hRgn, bool bRedraw)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hRgn);
-//      UNREFERENCED_PARAMETER(bRedraw);
+//      __UNREFERENCED_PARAMETER(hRgn);
+//      __UNREFERENCED_PARAMETER(bRedraw);
 //
 //      //__throw(error_not_implemented);
 //
@@ -3622,7 +3622,7 @@ namespace linux
 //   }
 //
 
-//   bool interaction_impl::RedrawWindow(const ::rectangle& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+//   bool interaction_impl::RedrawWindow(const ::rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
 //   {
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
@@ -3685,7 +3685,7 @@ namespace linux
 //      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
 //
 //
-////        UNREFERENCED_PARAMETER(pfnTimer);
+////        __UNREFERENCED_PARAMETER(pfnTimer);
 //
 ////
 ////        m_puserinteraction->get_application()->set_timer(m_puserinteraction, uEvent, nElapse);
@@ -4008,7 +4008,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //
@@ -4018,7 +4018,7 @@ namespace linux
 //
 //   }
 //
-//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
+//   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 //   {
 //
 //      __throw(error_not_implemented);
@@ -4075,7 +4075,7 @@ namespace linux
 //   }
 //
 //
-//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point & point)
+//   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4156,13 +4156,13 @@ namespace linux
 //   {
 //
 //      __s_throw(not_implemented());
-////      const ::point & point;
+////      const ::point_i32 & point;
 ////      ::GetcaretPos((POINT32 *)&point); return point;
 //
 //   }
 //
 //
-//   void PASCAL interaction_impl::SetCaretPos(const ::point & point)
+//   void PASCAL interaction_impl::SetCaretPos(const ::point_i32 & point)
 //   {
 //
 //      __s_throw(not_implemented());
@@ -4685,7 +4685,7 @@ namespace linux
 //
 //   void interaction_impl::on_delete(::matter * pinteraction)
 //   {
-//      UNREFERENCED_PARAMETER(pinteraction);
+//      __UNREFERENCED_PARAMETER(pinteraction);
 //   }
 //
 //
@@ -4719,7 +4719,7 @@ namespace linux
    void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SetViewportOrg(::point());
+      pgraphics->SetViewportOrg(::point_i32());
 
    }
 
@@ -4779,7 +4779,7 @@ namespace linux
 //      else
 //      {
 //
-//         __throw(error_interface_only);
+//         throw ::interface_only_exception();
 //
 //      }
 //

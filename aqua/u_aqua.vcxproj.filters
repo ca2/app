@@ -49,20 +49,11 @@
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{c8e5fab9-4774-4bfd-89ab-5975b4e50c93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{a1c652a7-51d6-4cd1-bb96-aa8158d7a5f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\uwp">
-      <UniqueIdentifier>{d9d75001-1c2f-4ccb-9071-0a13fbaf5dd6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\game">
       <UniqueIdentifier>{1c96d7ab-4bef-46d0-9dd0-e7409f70700b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{831b97b3-345f-4253-bd5c-ad9d4846927d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows_common">
-      <UniqueIdentifier>{0b57d7ad-244c-4488-819a-225dd8e05524}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\node">
       <UniqueIdentifier>{8c219d43-301a-4c7f-b462-6f6090651385}</UniqueIdentifier>
@@ -70,8 +61,14 @@
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{5b73ebc7-a907-4557-a0ab-d1203a860f28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\node\uwp">
+    <Filter Include="Source Files\node\universal_windows">
       <UniqueIdentifier>{13478262-ba65-49bc-9c9a-f6a0ea533f9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system">
+      <UniqueIdentifier>{c95a08dc-ba5e-4584-978a-949064d5424c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\universal_windows">
+      <UniqueIdentifier>{4fa89011-2e49-4621-b0ab-59970d3d6ee7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -188,12 +185,6 @@
     </ClCompile>
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows_common\media_foundation.cpp">
-      <Filter>Source Files\node\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\uwp\system.cpp">
-      <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -43,7 +43,7 @@ namespace hotplugin
       ::rectangle_i32                                 m_rectangle;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
-      millis m_millisEntryHallTextStart;
+      ::duration m_durationEntryHallTextStart;
       bool                                   m_bEntryHallTextStarted;
 
 

@@ -24,25 +24,26 @@ namespace file
 
 
       buffered_file(file_pointer pfile, memsize iBufferSize = 1024 * 128);
-      virtual ~buffered_file();
+      ~buffered_file() override;
 
 
-      virtual bool is_valid() const override;
-      virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;
-      virtual filesize get_position() const override;
-      virtual filesize get_size() const override;
+      bool is_valid() const override;
+      filesize translate(filesize offset, ::enum_seek eseek) override;
+      filesize get_position() const override;
+      filesize get_size() const override;
+
 
       using ::file::file::read;
-      virtual memsize read(void *pdata, memsize nCount) override;
+      memsize read(void *pdata, memsize nCount) override;
 
       using ::file::file::write;
-      virtual void write(const void * pdata, memsize nCount) override;
+      void write(const void * pdata, memsize nCount) override;
 
-      virtual int put_character_back(int iCharacterPutBack) override;
+      int put_character_back(int iCharacterPutBack) override;
 
-      virtual void flush() override;
-      virtual bool buffer(memsize uiGrow = 0);
-      virtual void set_size(filesize dwNewLen) override;
+      void flush() override;
+      bool buffer(memsize uiGrow = 0);
+      void set_size(filesize dwNewLen) override;
 
       virtual memsize get_buffer_size();
 

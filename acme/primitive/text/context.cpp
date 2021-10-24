@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "acme/id.h"
-#include "acme/const/idpool.h"
 #include "acme/platform/context.h"
 
 
@@ -396,7 +395,7 @@ namespace text
 
          stra2.erase_all();
 
-         id2 = string(id.m_psz) + "[" + __str(i) + "]";
+         id2 = string(id.m_psz) + "[" + __string(i) + "]";
 
          _get(stra2, pcontext, id2);
 

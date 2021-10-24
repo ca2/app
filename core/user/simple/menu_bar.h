@@ -54,7 +54,7 @@ public:
 //#endif
 
 
-   virtual void route_command_message(::message::command * pcommand) override;
+   void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
 
@@ -63,7 +63,7 @@ protected:
 
    //virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
-   virtual bool on_click(const ::user::item & item) override;
+   virtual bool on_click(const ::item & item) override;
    void _001OnDropDown(index iItem);
    //index _001GetHoverItem();
    //void _001Hover(const ::point_i32 & point);
@@ -110,7 +110,7 @@ protected:
 
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 
-   virtual void install_message_routing(::channel * pchannel) override;
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

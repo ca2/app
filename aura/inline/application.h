@@ -7,7 +7,7 @@
 
 #elif defined(_UWP)
 
-#include "apex/inline/application/uwp.h"
+#include "apex/inline/application/universal_windows.h"
 
 #elif defined(WINDOWS)
 

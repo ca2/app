@@ -81,9 +81,6 @@
     <Filter Include="Source Files\primitive\string">
       <UniqueIdentifier>{48b842bb-d6ab-4f7c-9d21-8c8541d95a90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -92,12 +89,6 @@
     </Filter>
     <Filter Include="Header Files\version">
       <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os">
-      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\windows">
-      <UniqueIdentifier>{7c9e8b3c-e264-4f20-9815-a48c293c2e0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\memory">
       <UniqueIdentifier>{a77de24b-5664-4133-bc41-2c67eb0ab597}</UniqueIdentifier>
@@ -113,15 +104,6 @@
     </Filter>
     <Filter Include="Source Files\include">
       <UniqueIdentifier>{8099a888-7e34-4494-9367-f8f06df947d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node">
-      <UniqueIdentifier>{8d083486-dfc2-424c-afff-3af7c44fc9da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\windows_common">
-      <UniqueIdentifier>{c2d7f5a1-76e1-4a24-8d82-47142e6e7821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node">
-      <UniqueIdentifier>{a6d92c38-1c42-49f8-b15a-2a56e421e205}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{6c63ec8b-0cad-40df-9485-b9a8fd37179b}</UniqueIdentifier>
@@ -141,9 +123,6 @@
     <Filter Include="Header Files\filesystem\filesystem">
       <UniqueIdentifier>{602198df-4001-470f-9b99-25c7896b16de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\os\windows_common">
-      <UniqueIdentifier>{52ca7eb0-c1c7-4e43-abec-e9b5ba44a8c5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{7ab1ad1c-4556-49dc-9f10-9f160a23fd40}</UniqueIdentifier>
     </Filter>
@@ -155,24 +134,6 @@
     </Filter>
     <Filter Include="Header Files\user">
       <UniqueIdentifier>{b9f8a6cf-32ca-4bb5-9a95-5986882e2cc6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows">
-      <UniqueIdentifier>{0340e17b-87ca-4077-82ec-28142c2d373a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\windows_common">
-      <UniqueIdentifier>{839bef16-eab1-45e2-86bc-46e5da228ba0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\ansios">
-      <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross">
-      <UniqueIdentifier>{8b77f358-a956-42ad-947b-a06ac9ef253f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\os\cross\windows">
-      <UniqueIdentifier>{9d106340-a0d8-4ebe-ae50-41e34a7295d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{ad1d685a-dd68-4fd5-89ec-431be5c48be7}</UniqueIdentifier>
@@ -198,21 +159,6 @@
     <Filter Include="Header Files\graphics\draw2d">
       <UniqueIdentifier>{0cb109af-b237-4a4d-981f-97a8743d5c2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\cross">
-      <UniqueIdentifier>{22ae8985-186b-49ef-a8ca-89910708a7d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\cross\windows">
-      <UniqueIdentifier>{6c9950b2-90f1-4e4b-a51f-46eec580dc43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\cross">
-      <UniqueIdentifier>{f777025a-e796-4f05-89ff-3979f8cdca46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\node\cross\windows">
-      <UniqueIdentifier>{6d39aee1-bca9-483c-876b-dca6baed1168}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\node\windows_common">
-      <UniqueIdentifier>{77e2d591-68ae-463a-a9ba-f6b32cf164fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive\promise_predicate">
       <UniqueIdentifier>{7608eaa1-ccb5-4c11-a897-cf0c4fce30c7}</UniqueIdentifier>
     </Filter>
@@ -227,9 +173,6 @@
     </Filter>
     <Filter Include="Header Files\primitive\collection">
       <UniqueIdentifier>{fa21be76-75d0-485c-984d-ccd11bea77d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive\text">
       <UniqueIdentifier>{545f16d0-41cd-47fa-a030-7e700a6a109d}</UniqueIdentifier>
@@ -246,12 +189,6 @@
     <Filter Include="Source Files\primitive\data">
       <UniqueIdentifier>{707a8342-df4c-4b08-bcde-bfe227b5b99c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\net">
-      <UniqueIdentifier>{7adb01cd-7e0a-4d4c-a96b-9f0fb54b9515}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\net">
-      <UniqueIdentifier>{498cf75a-61e7-4f40-9aca-b6956f291bc9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\exception">
       <UniqueIdentifier>{f5755d06-f5af-4ec2-bd4e-63cecdfc66a5}</UniqueIdentifier>
     </Filter>
@@ -267,6 +204,84 @@
     <Filter Include="Header Files\regular_expression">
       <UniqueIdentifier>{664d3dae-7929-49cb-a819-65ee6518069e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\networking">
+      <UniqueIdentifier>{7adb01cd-7e0a-4d4c-a96b-9f0fb54b9515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking">
+      <UniqueIdentifier>{498cf75a-61e7-4f40-9aca-b6956f291bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node">
+      <UniqueIdentifier>{2143d8b7-ada2-4e21-8d70-f05986ff23d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system">
+      <UniqueIdentifier>{994172a0-f0a4-46f4-bda5-2f31f319c237}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system\windows">
+      <UniqueIdentifier>{9f2ad250-ea08-4169-b025-c6902a2e3fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system\windows_common">
+      <UniqueIdentifier>{60cf0917-c1fd-4ff5-acb4-ad83cec550c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node">
+      <UniqueIdentifier>{a3052857-61d1-403c-9c1b-7f209075ac46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system">
+      <UniqueIdentifier>{d17eb1bb-baba-469e-9bcb-fefa2918c583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\ansi">
+      <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\windows">
+      <UniqueIdentifier>{dcf0b0df-388b-4f18-8433-eb40ffbf2136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\operating_system\windows_common">
+      <UniqueIdentifier>{c26364a6-c152-42d4-aa51-604b28f79049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\networking\sockets">
+      <UniqueIdentifier>{ac03c8a4-0251-4733-b21c-70d7d4ebb3bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets">
+      <UniqueIdentifier>{0ec62c58-cc39-40e4-80bb-d77c3eca3012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\operating_system\ansi">
+      <UniqueIdentifier>{b6713797-af08-4440-b4d1-631dd04e5514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{4ca6747d-48cf-4544-9523-a0a3bfe96729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subject">
+      <UniqueIdentifier>{216b7636-fcbb-4785-a0f8-f564db4e94e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\subject">
+      <UniqueIdentifier>{fac79683-8c74-4c33-b5a1-5548b9f726f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration">
+      <UniqueIdentifier>{8177ae06-3813-4278-9ac7-bce64a71d8b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\integral_duration">
+      <UniqueIdentifier>{0f869d69-05d3-464a-80d8-3d86518e9e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\floating_duration">
+      <UniqueIdentifier>{ec0c0b57-7dbe-412a-b7fd-ab46dba48376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\primitive\duration\duration">
+      <UniqueIdentifier>{2cbe4311-e05f-4365-b2d7-b56e10861e4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration">
+      <UniqueIdentifier>{c9b96c03-98bc-4996-81e2-5c78e5017706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\integral">
+      <UniqueIdentifier>{6d7ca4d1-5cb9-4ac5-87ce-5bc1c59723e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\duration">
+      <UniqueIdentifier>{77ba4a4d-9971-42bc-94b8-5d5170c9de31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\primitive\duration\floating">
+      <UniqueIdentifier>{67103b60-a7e1-463b-9626-3d6f73c5b71b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -278,31 +293,13 @@
     <ClInclude Include="primitive\api\api_rotate.h">
       <Filter>Header Files\primitive\api</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\application_bias.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\atomic.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\bit.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\cflag.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\collection.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\collection_file.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\command.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\edit.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\factory.h">
@@ -312,9 +309,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\id_space.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\interlocked_long.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h">
@@ -327,9 +321,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\malloc.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\math_math.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory.h">
@@ -380,9 +371,6 @@
     <ClInclude Include="primitive\primitive\property.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\primitive_update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\pointer2.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -393,9 +381,6 @@
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory_container.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\memory_c.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\memory_base.h">
@@ -704,9 +689,6 @@
     <ClInclude Include="primitive\datetime\date_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\duration.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
@@ -721,9 +703,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\text_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_property_set_composite_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\types.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
@@ -794,12 +773,6 @@
     <ClInclude Include="primitive\string\_c_trait_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\smillis.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\topic_text_string.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\_defer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -820,9 +793,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\_text_stream_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\enum_type.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\binary_stream.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -905,9 +875,6 @@
     <ClInclude Include="inline\_acid_app_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\impact_data.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -985,114 +952,6 @@
     </ClInclude>
     <ClInclude Include="memory\memory_allocator.h">
       <Filter>Header Files\memory</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_windows_impl.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\aaa_want_to_remove_process_env_reader.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\aaa_callstack.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\d2d1_1.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\dir.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\environment_variable.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\extract_icon.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\file.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\handle.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\implementation.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\internal.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\port_forward.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\print_job.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\printer.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\process.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\registry.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\shell1.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\simple_hold_handle.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\windowing.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\chronometer.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\acme.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\aura_gdk.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\binreloc.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\console.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\file.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\graphics.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\os_windowing2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\process.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\text.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\time.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windowing.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\winpr_input.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
@@ -1259,9 +1118,6 @@
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\api.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="inline\_console_old.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
@@ -1279,9 +1135,6 @@
     </ClInclude>
     <ClInclude Include="platform\object_type_counter.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\var.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="astr.h">
       <Filter>Header Files</Filter>
@@ -1328,50 +1181,14 @@
     <ClInclude Include="filesystem\filesystem\_impl.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filesystem\_.h">
+    <ClInclude Include="filesystem\filesystem\aaaa_.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
-    </ClInclude>
-    <ClInclude Include="os\thread.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_id_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\_.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_default_dll_impl.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_file_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_unicode_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\file.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\graphics.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\new_api.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="inline\application_common.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\thread.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\thread.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_command_line.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="platform\acme_str_pool.h">
       <Filter>Header Files\platform</Filter>
@@ -1387,24 +1204,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\file\aaa_edit_file.h">
       <Filter>Header Files\filesystem\file</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_want_to_remove_pointer1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\promise1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\future.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pred_method.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\pred_future.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\process_data.h">
-      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\_defer.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -1463,27 +1262,6 @@
     <ClInclude Include="primitive\geometry2d\_collection_contains.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\promise.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\_context_object_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\aaa_update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\update.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\change.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\source.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\action.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\object_reference_count_debug_impl.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1505,29 +1283,20 @@
     <ClInclude Include="platform\timer_item.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\nano_timer.h">
+    <ClInclude Include="platform\nanosecond_timer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\timer_task.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\function_pointer.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="platform\system.h">
       <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\procedure.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\filetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\aaa_windows.h">
-      <Filter>Header Files\os\cross\windows</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\_.h">
       <Filter>Header Files\parallelization</Filter>
@@ -1586,9 +1355,6 @@
     <ClInclude Include="parallelization\socket_event.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\sync.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
     <ClInclude Include="parallelization\task.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
@@ -1631,36 +1397,6 @@
     <ClInclude Include="user\os_colors.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_c.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_error.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\aaa_want_to_remove_windows_common_file.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\bstring.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\comptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\cotaskptr.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\parallelization.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\variant.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\prop_variant.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="platform\trace.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1691,18 +1427,6 @@
     <ClInclude Include="graphics\draw2d\opacity.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\micros.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\millis.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\nanos.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\datetime\secs.h">
-      <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\_payload_impl.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1730,80 +1454,20 @@
     <ClInclude Include="primitive\geometry2d\rectangle_i32_array.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows_common\_geometry2.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_graphics2d.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows_common\condition.h">
-      <Filter>Header Files\node\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows_common\critical_section.h">
-      <Filter>Header Files\node\windows_common</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\bits.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\_datetime.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\_impl.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\_c.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\utils.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_2.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\_2.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="node\_node2.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows_common\_windows_common.h">
-      <Filter>Header Files\node\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows_common\_windows_common.h">
-      <Filter>Header Files\os\windows_common</Filter>
-    </ClInclude>
-    <ClInclude Include="node\cross\windows\file_memory_map.h">
-      <Filter>Header Files\node\cross\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\itemidlist.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\mutex.h">
-      <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\condition_variable.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\micro_duration.h">
       <Filter>Header Files\primitive\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="os\microsecond_sleep.h">
-      <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\material_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
@@ -1973,9 +1637,6 @@
     <ClInclude Include="primitive\subject\subject.h">
       <Filter>Header Files\primitive\subject</Filter>
     </ClInclude>
-    <ClInclude Include="platform\future.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\node.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2074,9 +1735,6 @@
     </ClInclude>
     <ClInclude Include="primitive\collection\runnable_array.h">
       <Filter>Source Files\primitive\collection</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\layered.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\common.h">
       <Filter>Header Files\primitive\collection</Filter>
@@ -2330,63 +1988,6 @@
     <ClInclude Include="platform\acme_main_data.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="const\code_page.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\character_set.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\future.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\GLOBAL_ID.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\message.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\routine.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="platform\library.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -2410,9 +2011,6 @@
     </ClInclude>
     <ClInclude Include="parallelization\cleanup_task.h">
       <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\primitive\text.h">
-      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\text\translator.h">
       <Filter>Header Files\primitive\text</Filter>
@@ -2524,18 +2122,6 @@
     </ClInclude>
     <ClInclude Include="primitive\text\context.h">
       <Filter>Header Files\primitive\text</Filter>
-    </ClInclude>
-    <ClInclude Include="net\url.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\url_department.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\url_domain.h">
-      <Filter>Header Files\net</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_.h">
-      <Filter>Header Files\net</Filter>
     </ClInclude>
     <ClInclude Include="exception\aaa_assert.h">
       <Filter>Header Files\exception</Filter>
@@ -2717,15 +2303,6 @@
     <ClInclude Include="regular_expression\topic.h">
       <Filter>Header Files\regular_expression</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\exception_engine.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="const\activate.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\button_state.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="exception\file.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2776,6 +2353,390 @@
     </ClInclude>
     <ClInclude Include="memory\_.h">
       <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\acme_file.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_path.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\_.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\url.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\url_department.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\url_domain.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows_common\parallelization.h">
+      <Filter>Header Files\node\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows_common\api.h">
+      <Filter>Header Files\node\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows_common\_windows_common.h">
+      <Filter>Header Files\node\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows_common\_.h">
+      <Filter>Header Files\node\operating_system\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\process.h">
+      <Filter>Header Files\node\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\_windows.h">
+      <Filter>Header Files\node\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\windows\_.h">
+      <Filter>Header Files\node\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\winpr_input.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\user.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\time.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\text.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\process.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\parallelization.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\os_windowing2.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\microsecond_sleep.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\graphics.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\file.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\cross.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\console.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\chronometer.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\argcargv.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\aaa_c2.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_user.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_operating_system.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_impl.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_const_console.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_application.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_aaa_c.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="node\operating_system\_.h">
+      <Filter>Header Files\node\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\trace_interface.h">
+      <Filter>Header Files\networking\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_constant.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\activate.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\button_state.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\character_set.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\check.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\code_page.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\context.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\cursor.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\filesystem.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\future.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\GLOBAL_ID.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\id.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\impact.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\message.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\parallelization.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\routine.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\simple_command.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\source.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\status.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\status_range_authentication.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\thread.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\timer.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\referenceable.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\translatable.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\streamable.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\sequence.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\subject.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\item.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="subject\handler.h">
+      <Filter>Header Files\subject</Filter>
+    </ClInclude>
+    <ClInclude Include="user\check.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\element.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\text.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\theme_colors.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\interface_only.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\not_implemented.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_forward_declaration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\wait.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\tracer.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\_.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\day.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\hour.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\duration.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\microsecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\millisecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\minute.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\nanosecond.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\second.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\_.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\_impl.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\day.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\duration.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\hour.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\microsecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\millisecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\minute.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\nanosecond.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\duration\second.h">
+      <Filter>Header Files\primitive\duration\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\_.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\day.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\duration.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\hour.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\microsecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\millisecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\minute.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\nanosecond.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\floating\second.h">
+      <Filter>Header Files\primitive\duration\floating</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\integral\_impl.h">
+      <Filter>Header Files\primitive\duration\integral</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_struct.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\duration.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_enumeration.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\_mathematics.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\subject.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\keep_task_flag.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\keep_task_payload.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enum_bitset.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\bbb_object.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\element_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enumeration.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\enumeration1.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\id_array.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\interlocked.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\interlocked_count.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\object_meta.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\payload_type.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\set_bit.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\stick.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\system.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\plain_text_file_options.h">
+      <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2938,9 +2899,6 @@
     <ClCompile Include="filesystem\file\cpp.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\dir.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\dir2.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2971,9 +2929,6 @@
     <ClCompile Include="filesystem\file\serialize.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\stdio_file.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2986,9 +2941,6 @@
     <ClCompile Include="filesystem\file\var_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\_.cpp">
-      <Filter>Source Files\filesystem\file</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -2996,9 +2948,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\duration.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\mktime.cpp">
@@ -3127,60 +3076,6 @@
     <ClCompile Include="primitive\collection\string_array_base.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\ansi_file.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\application.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\debug.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\dir.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\environment_variable.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\internal.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\itemidlist.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\language.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\lock.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\main.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\message_loop.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\process.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\registry.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\simple_app.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\time.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\user.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\util.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\windowing.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="memory\allocate_mid_big.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -3213,39 +3108,6 @@
     </ClCompile>
     <ClCompile Include="memory\inline\heap_vld.cpp">
       <Filter>Source Files\memory\inline</Filter>
-    </ClCompile>
-    <ClCompile Include="os\console.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\debug.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\file.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\http.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\time.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windowing.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\_dll.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\base.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\bstring.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\com.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\unicode.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="exception\callstack.cpp">
       <Filter>Source Files\exception</Filter>
@@ -3300,24 +3162,6 @@
     </ClCompile>
     <ClCompile Include="compress\zip\zip.cpp">
       <Filter>Source Files\compress\zip</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\base.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_std.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\language.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\user.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\win.cpp">
-      <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="platform\static_start.cpp">
       <Filter>Source Files\platform</Filter>
@@ -3394,23 +3238,8 @@
     <ClCompile Include="memory\os_alloc\WindowsHeapAlloc.cpp">
       <Filter>Source Files\memory\os_alloc</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\datetime.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\exception_engine.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_raw.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\memory.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\api.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -3442,23 +3271,11 @@
     <ClCompile Include="compress\gz.cpp">
       <Filter>Source Files\compress</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\_.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\debug.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\circular_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="platform\text.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\extract_icon.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\colorref_array.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -3477,9 +3294,6 @@
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\shape.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\process.cpp">
-      <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\element_array.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3511,16 +3325,13 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\time.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\filetime_span.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="platform\nano_timer.cpp">
+    <ClCompile Include="platform\nanosecond_timer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
@@ -3565,15 +3376,6 @@
     <ClCompile Include="parallelization\waitable.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="os\parallelization.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\parallelization.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\parallelization.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="process\bidirectional_pipe.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
@@ -3588,9 +3390,6 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\estatus.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\secs.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -3610,72 +3409,6 @@
     <ClCompile Include="primitive\datetime\result.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\_wd16.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\_wd32.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\_ansi.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\file.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\windows.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\user.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\shared_memory.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\locale.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\error.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\datetime.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\crt_debug.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\crt.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\ansios_message_loop.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\aaa_want_to_remove_windows_message_loop.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\aaa_want_to_remote_cross_windows_nt.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\aaa_thread_local_storage.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\file.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\file.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\dir.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\cross\windows\time.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\networking.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
-    <ClCompile Include="node\cross\windows\os_usleep.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="parallelization\condition_variable.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
@@ -3683,9 +3416,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\micros.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\message_queue.cpp">
@@ -3769,31 +3499,19 @@
     <ClCompile Include="platform\routine_array.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\future.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\serial.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="exception\exit.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\aaa_not_installed.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\parsing.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\hresult.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\linked_property.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\collection\rectangle_array.cpp">
-      <Filter>Source Files\primitive\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\collection\stringa.cpp">
       <Filter>Source Files\primitive\collection</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\property_object.cpp">
@@ -3816,9 +3534,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\acme_path.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\library.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="memory\counter.cpp">
       <Filter>Source Files\memory</Filter>
@@ -3886,18 +3601,6 @@
     <ClCompile Include="primitive\text\context.cpp">
       <Filter>Source Files\primitive\text</Filter>
     </ClCompile>
-    <ClCompile Include="net\url.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_department.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\url_domain.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
-    <ClCompile Include="net\top_level_domain_list.cpp">
-      <Filter>Source Files\net</Filter>
-    </ClCompile>
     <ClCompile Include="exception\extended_status.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3921,12 +3624,6 @@
     </ClCompile>
     <ClCompile Include="exception\translator.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="os\argcargv.cpp">
-      <Filter>Source Files\os</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\exception_engine.cpp">
-      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="primitive\geometry2d\rectangle.cpp">
       <Filter>Source Files\primitive\geometry2d</Filter>
@@ -3970,6 +3667,192 @@
     <ClCompile Include="memory\memory_management.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\acme_file.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_path.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\top_level_domain_list.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\url.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\url_department.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\url_domain.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\_.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\argcargv.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\chronometer.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\console.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\debug.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\file.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\http.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\parallelization.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\time.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windowing.cpp">
+      <Filter>Source Files\node\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\api.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\dll.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\parallelization.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\time.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\unicode.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows_common\windows_common.cpp">
+      <Filter>Source Files\node\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\library.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\parallelization.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\process.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\windows\windows.cpp">
+      <Filter>Source Files\node\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\base.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\datetime.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\debug.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\exception_engine.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\file.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\file_raw.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\file_std.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\language.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\memory.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\process.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\user.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="node\operating_system\ansi\win.cpp">
+      <Filter>Source Files\node\operating_system\ansi</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\trace_interface.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\stdio_file.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\install_mutex.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="no_precompiled_header_sample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\element.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\streamable.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\file\streamable_composite.cpp">
+      <Filter>Source Files\filesystem\file</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\routine.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\sequence.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\handler.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\item.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="subject\subject.cpp">
+      <Filter>Source Files\subject</Filter>
+    </ClCompile>
+    <ClCompile Include="user\check.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\element.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\text.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\interface_only.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\not_implemented.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\io.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\resource.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\duration.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\microsecond.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\second.cpp">
+      <Filter>Source Files\primitive\duration\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\collection\string_array.cpp">
+      <Filter>Source Files\primitive\collection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">
@@ -4007,9 +3890,6 @@
     </None>
     <None Include="acme.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="primitive\primitive\block.inl">
-      <Filter>Header Files\primitive\primitive</Filter>
     </None>
     <None Include="exception\_.inl">
       <Filter>Header Files\exception</Filter>

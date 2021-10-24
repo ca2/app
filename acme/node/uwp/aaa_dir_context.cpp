@@ -1,9 +1,9 @@
 ﻿#include "framework.h"
 #include "acme/xml/_.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -107,7 +107,11 @@ namespace uwp
 
       mk(m_pdirsystem->m_strTimeFolder / "time");
 
-      m_pdirsystem->m_pathHome = pacmedir->roaming() / "home";
+      m_pdirsystem->m_pathHome =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->roaming() / "home";
 
       //nodeos_set_home(m_pdirsystem->m_pathHome);
 
@@ -350,7 +354,7 @@ namespace uwp
          return true; // assume empty string is root_ones directory
       }
 
-      if(thread_is_set(id_thread_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
+      if(task_flag().is_set(e_task_flag_zip_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
       {
 
          return true;
@@ -417,8 +421,8 @@ namespace uwp
    ::file::path dir_context::time_square(const ::string & strPrefix, const ::string & strSuffix)
    {
 
-      UNREFERENCED_PARAMETER(strPrefix);
-      UNREFERENCED_PARAMETER(strSuffix);
+      __UNREFERENCED_PARAMETER(strPrefix);
+      __UNREFERENCED_PARAMETER(strSuffix);
       return time() / "time";
 
    }
@@ -528,7 +532,7 @@ namespace uwp
 
                }
 
-               string strError = get_system_error_message(dwError);
+               string strError = get_last_error_message(dwError);
 
                TRACE("dir_context::mk CreateDirectoryW last error(%d)=%s", dwError, strError);
 
@@ -616,7 +620,7 @@ try1:;
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::datetime::time time;
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\",time.GetYear(),time.GetMonth(),time.GetDay(),time.GetHour(),time.GetMinute(),time.GetSecond());
          str += strFormat;
          if(strDir[2] == '\\')
@@ -637,7 +641,7 @@ try1:;
    ::file::path dir_context::appdata()
    {
 
-      return ::file::path(::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin());
+      return ::file::path(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin());
 
    }
 
@@ -645,7 +649,7 @@ try1:;
    //::file::path dir_context::usersystemappdata(const ::string & strPrefix)
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return appdata() / strPrefix;
 
@@ -680,7 +684,7 @@ try1:;
    //::file::path dir_context::default_os_user_path_prefix()
    //{
 
-   //   UNREFERENCED_PARAMETER(pobject);
+   //   __UNREFERENCED_PARAMETER(pobject);
 
    //   return "CurrentUser";
 
@@ -762,7 +766,7 @@ try1:;
    ::file::path dir_context::commonappdata()
    {
 
-      return ::file::path(string(::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin()))/ "commonappdata";
+      return ::file::path(string(::winrt::Windows::Storage::ApplicationData::Current->LocalFolder->Path->Begin()))/ "commonappdata";
 
    }
 
@@ -811,7 +815,7 @@ try1:;
 
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

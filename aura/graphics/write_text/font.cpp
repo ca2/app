@@ -69,7 +69,6 @@ namespace write_text
    font::font()
    {
 
-      //m_strFontFamilyName;
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
       m_eunitFontSize = ::draw2d::unit_point;
@@ -100,9 +99,9 @@ namespace write_text
    void font::dump(dump_context & dumpcontext) const
    {
 
-      UNREFERENCED_PARAMETER(dumpcontext);
+      __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -162,22 +161,22 @@ namespace write_text
    }
 
 
-   font & font::operator = (const font & fontSrc)
+   font & font::operator = (const font & pfontSrc)
    {
 
-      if (this != &fontSrc)
+      if (this != &pfontSrc)
       {
 
-         m_strFontFamilyName = fontSrc.m_strFontFamilyName;
-         m_dFontSize = fontSrc.m_dFontSize;
-         m_dFontWidth = fontSrc.m_dFontWidth;
-         m_eunitFontSize = fontSrc.m_eunitFontSize;
-         m_iFontWeight = fontSrc.m_iFontWeight;
-         m_bItalic = fontSrc.m_bItalic;
-         m_bUnderline = fontSrc.m_bUnderline;
-         m_bStrikeout = fontSrc.m_bStrikeout;
-         m_echaracterseta = fontSrc.m_echaracterseta;
-         m_echaracterset = fontSrc.m_echaracterset;
+         m_strFontFamilyName = pfontSrc.m_strFontFamilyName;
+         m_dFontSize = pfontSrc.m_dFontSize;
+         m_dFontWidth = pfontSrc.m_dFontWidth;
+         m_eunitFontSize = pfontSrc.m_eunitFontSize;
+         m_iFontWeight = pfontSrc.m_iFontWeight;
+         m_bItalic = pfontSrc.m_bItalic;
+         m_bUnderline = pfontSrc.m_bUnderline;
+         m_bStrikeout = pfontSrc.m_bStrikeout;
+         m_echaracterseta = pfontSrc.m_echaracterseta;
+         m_echaracterset = pfontSrc.m_echaracterset;
          set_modified();
 
       }
@@ -450,8 +449,8 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rectangle rectOffset(rectangle);
-//      //      const ::point & pointOffset(rectOffset.top_left());
+//      //      ::rectangle rectangleOffset(rectangle);
+//      //      const ::point_i32 & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
 
@@ -506,8 +505,8 @@ namespace write_text
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rectangle rectOffset(rectangle);
-//      //      ::point pointOffset;
+//      //      const ::rectangle rectangleOffset(rectangle);
+//      //      ::point_i32 pointOffset;
 //      //
 //      //
 //      //      glyph * pglyph;
@@ -520,7 +519,7 @@ namespace write_text
 //      //         if(pglyph != nullptr)
 
 //      //         {
-//      //            pointOffset = rectOffset.top_left();
+//      //            pointOffset = rectangleOffset.top_left();
 //      //            pointOffset.x += (long) ((piCharsPositions[iOffset + i] - lpiCharsPositions[iOffset]) * dRateX);
 
 //      //            pglyph->DrawGlyph(
@@ -571,9 +570,9 @@ namespace write_text
 //   {
 //
 //
-//      UNREFERENCED_PARAMETER(piCharsPositions);
+//      __UNREFERENCED_PARAMETER(piCharsPositions);
 
-//      UNREFERENCED_PARAMETER(iCharsPositions);
+//      __UNREFERENCED_PARAMETER(iCharsPositions);
 //      SetDC(pgraphics);
 //      SelectFont();
 //

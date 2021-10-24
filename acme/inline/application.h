@@ -7,7 +7,7 @@
 
 #elif defined(_UWP)
 
-#include "application/uwp.h"
+#include "application/universal_windows.h"
 
 #elif defined(WINDOWS)
 

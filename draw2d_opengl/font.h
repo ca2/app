@@ -25,10 +25,10 @@ namespace draw2d_opengl
       virtual ~font();
 
 
-      virtual void construct(const ::write_text::font & fontParam);
+      virtual void construct(const ::write_text::font & pfontParam);
 
       
-      virtual void dump(dump_context & dumpcontext) const;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual bool create(::draw2d::graphics* pgraphics, i8 iCreate) override;

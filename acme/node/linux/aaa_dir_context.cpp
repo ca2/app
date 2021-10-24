@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "acme/xml/_.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 #include "_linux.h"
 #undef USE_MISC
 
@@ -32,7 +32,7 @@ inline bool linux_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = file_as_string(path);
+   string strDirs = m_psystem->m_pacmefile->as_string(path);
 
    string_array stra;
 
@@ -363,7 +363,11 @@ namespace linux
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->is(path))
       {
 
          return true;
@@ -410,7 +414,7 @@ namespace linux
          return true; // assume empty string is root_ones directory
       }
 
-      if(thread_is_set(id_thread_zip_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_zip_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
       {
 
          return true;
@@ -646,7 +650,7 @@ namespace linux
          str += "\\trash_that_is_not_trash\\";
          string strFormat;
          ::datetime::time time;
-         time = ::datetime::time::get_current_time();
+         time = ::datetime::time::now();
          strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
          str += strFormat;
          if(strDir[2] == '\\')

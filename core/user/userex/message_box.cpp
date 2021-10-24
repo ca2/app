@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 
 
 namespace userex
@@ -28,14 +31,14 @@ namespace userex
       //   
       //}
          
-//      if(set.has_property("message_box_timeout_ms"))
+//      if(set.has_property("message_box_timeout"))
       {
          
-  //       m_millisDelay = set["message_box_timeout_ms"].i64();
+  //       m_durationDelay = set["message_box_timeout"].i64();
          
       }
 
-      m_millisDelay = fetch_property("message_box_timeout_ms")->millis();
+      m_durationDelay = fetch_property("message_box_timeout")->duration();
       
       wait_message_dialog::on_show(pszMatter);
       
@@ -49,7 +52,7 @@ namespace userex
    }
 
 
-   void message_box::on_timer_soft_reload(millis tickTimeout)
+   void message_box::on_timer_soft_reload(::duration tickTimeout)
    {
       
       wait_message_dialog::on_timer_soft_reload(tickTimeout);

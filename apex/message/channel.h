@@ -2,22 +2,22 @@
 
 
 class CLASS_DECL_APEX channel :
-   virtual public ::subject::manager
+   virtual public ::object
 {
 public:
 
 
-   static __pointer(::mutex)                    s_pmutexChannel;
-   __pointer(::channel)                         m_pchannel;
-   id_array                                     m_idaHandledCommands;
-   ::message::handler_map                       m_handlermap;
-   ::message::handler_map                       m_handlermapNew;
-   bool                                         m_bNewChannel;
-   ::routine_map                                m_routinemap;
+   static __pointer(::mutex)                       s_pmutexChannel;
+   __pointer(::channel)                            m_pchannel;
+   id_array                                        m_idaHandledCommands;
+   ::message::dispatcher_map                       m_dispatchermap;
+   ::message::dispatcher_map                       m_dispatchermapNew;
+   bool                                            m_bNewChannel;
+   ::routine_map                                   m_routinemap;
 
 
    channel();
-   virtual ~channel();
+   ~channel() override;
 
 
    void channel_common_construct();
@@ -30,122 +30,93 @@ public:
 
    virtual ::e_status destroy() override;
 
-   virtual void erase_receiver(::object * preceiver);
+   virtual void erase_handler(::matter * pmatter);
 
-   virtual void transfer_receiver(::message::handler_map & handlermap, ::object * preceiver);
+   virtual void transfer_handler(::message::dispatcher_map & dispatchermap, ::matter * pmatter);
 
    virtual void erase_all_routes();
 
-//   template < typename RECEIVER, typename MESSAGE >
-//   ::message::typed_route < MESSAGE > & get_typed_route(const ::id & id, RECEIVER * preceiverDerived);
+   //template < typename RECEIVER >
+   //bool add_message_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
 
-   template < typename RECEIVER >
-   bool add_handler(const ::id & id, RECEIVER * preceiver, void (RECEIVER:: * phandler)(::message::message * pmessage));
-   template < typename RECEIVER >
-   bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
-   {
+   //template < typename RECEIVER >
+   //bool add_message_handler(::i64 iMessage, RECEIVER* preceiver, void (RECEIVER::* phandler)(::message::message* pmessage))
+   //{
 
-      return add_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
+      //return add_message_handler((const ::id&)(::enum_message)iMessage, preceiver, phandler);
 
-   }
+   //}
 
-   template < typename MESSAGE_PRED >
-   //bool add_handler(const ::id & id, ::object * preceiver, void * phandler, MESSAGE_PRED pred);
-   bool add_handler(const ::id & id, MESSAGE_PRED pred);
-
-   bool _add_handler(const ::id & id, ::object * preceiver, void * phandler, const ::message::handler & handler);
+   //template < typename MESSAGE_PRED >
+   //bool add_message_handler(const ::id & id, MESSAGE_PRED pred);
 
 
    virtual void route_message(::message::message * pmessage);
 
    virtual __pointer(::message::message) get_message(MESSAGE * pmessage);
-   //virtual __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam, const ::point_i32& point);
+
    virtual __pointer(::message::message) get_message(const ::id& id, wparam wparam, lparam lparam);
 
-   ///virtual __pointer(::user::message) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
+
+   ::e_status id_notify(const ::id & id, ::matter * pmatter);
 
 
-//#ifdef LINUX
-//
-//   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * puserinteraction = nullptr);
-//
-//#endif
+   //template < class T >
+   //void add_command_prober(const ::id & id, void (T:: * pfn)(::message::message *))
+   //{
 
-    ::e_status id_notify(const ::id & id, ::matter * pmatter);
+   //   add_command_prober(id, dynamic_cast <T *> (this), pfn);
+
+   //}
 
 
-   template < class T >
-   void connect_command_probe(const ::id & id, void (T:: * pfn)(::message::message *))
+   ::matter * add_message_handler(const ::id & id, const ::message::dispatcher & dispatcher);
+
+
+   template < typename T1, typename T2 >
+   ::matter * add_message_handler(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      connect_command_probe(id, dynamic_cast <T *> (this), pfn);
+      return add_message_handler(id, { p, pfn });
 
    }
 
 
-   template < class T >
-   void connect_command(const ::id & id, void (T:: * pfn)(::message::message *))
+   ::matter * add_command_prober(const ::id & id, const ::message::dispatcher & dispatcher)
    {
 
-      connect_command(id, dynamic_cast <T *> (this), pfn);
+      return add_message_handler(id.compounded(::id::e_type_command_probe), dispatcher);
 
    }
 
 
-   template < class T >
-   void connect_command_probe(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
+   template < typename T1, typename T2 >
+   ::matter * add_command_prober(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      add_handler(id.compounded(::id::e_type_command_probe), p, pfn);
+      return add_command_prober(id, { p, pfn });
 
    }
 
 
-   template < class T >
-   void connect_command(const ::id & id, T * p, void (T:: * pfn)(::message::message *))
+   ::matter * add_command_handler(const ::id & id, const ::message::dispatcher & dispatcher)
    {
 
-      add_handler(id.compounded(::id::e_type_command), p, pfn);
+      return add_message_handler(id.compounded(::id::e_type_command), dispatcher);
 
    }
 
 
-   template < typename MESSAGE_PRED >
-   void connect_command_predicate(const ::id & id, MESSAGE_PRED pred)
+   template < typename T1, typename T2 >
+   ::matter * add_command_handler(const ::id & id, T1 * p, void (T2:: * pfn)(::message::message *))
    {
 
-      _add_handler(id.compounded(::id::e_type_command), nullptr, nullptr, __handler(pred));
+      return add_command_handler(id, { p, pfn });
 
    }
-
-
-//   template < typename RECEIVER, typename MESSAGE_PRED >
-//   void add_update_route_predicate(RECEIVER * preceiver, const ::id & id, MESSAGE_PRED pred)
-//   {
-//
-//      add_route(id.compounded(::id::e_type_update), preceiver) = pred;
-//
-//   }
-
-   
-   virtual void on_property_changed(property* pproperty, const ::action_context& actioncontext) override;
 
 
    void default_toggle_check_handling(const ::id& id);
-
-
-//   template < typename RECEIVER >
-//   void add_update_route(RECEIVER * preceiver, const ::id & id)
-//   {
-//
-//      m_routinemap[id].add(__routine([preceiver, id]()
-//        {
-//
-//            preceiver->process_subject(id, preceiver);
-//
-//        });
-//
-//   }
 
    
    void _001SendCommand(::message::command * pmessage);
@@ -157,19 +128,12 @@ public:
    virtual void on_command_probe(::message::command * pcommand);
 
 
-   virtual void route_command_message(::message::command * pcommand);
+   virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false);
 
 
-   virtual void on_command_message(::message::command* pcommand);
-
-
-   void BeginWaitCursor();
-   void EndWaitCursor();
-   void RestoreWaitCursor();       // call after messagebox
-
-
-   virtual ::e_status handle(::message::command * pcommand);
-
+   virtual void command_handler(::message::command * pcommand);
+   virtual void message_handler(::message::message * pcommand);
+  
 
 };
 

@@ -44,14 +44,18 @@ namespace aura
 
 #else
 
-      ::file::path pathTrace = pacmedir->system() / "trace.txt";
+      ::file::path pathTrace =          auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "trace.txt";
 
 #ifdef __DEBUG
 
-      if (!file_exists(pathTrace))
+      if (!m_psystem->m_pacmefile->exists(pathTrace))
       {
 
-         ::file_put_contents(pathTrace, "yes");
+         ::m_psystem->m_pacmefile->put_contents(pathTrace, "yes");
 
       }
 
@@ -175,7 +179,11 @@ namespace aura
 
       m_bInitialized = true;
 
-      if (file_is_true_dup(pacmedir->system() / "log.txt"))
+      if (file_is_true_dup(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "log.txt"))
       {
 
          m_bLog = true;
@@ -244,7 +252,7 @@ namespace aura
             str += "File : ";
             str += pszFileName;
             str += "\r\nLine : ";
-            str += __str(iLine);
+            str += __string(iLine);
             str += "\r\n";
 
             string strCaption;
@@ -254,7 +262,7 @@ namespace aura
             output_debug_string(wstring(str));
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
-               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__str(iLine)+"\"";
+               string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__string(iLine)+"\"";
                ::system(strCmdLine);
                exit(0);
             }
@@ -383,7 +391,7 @@ namespace aura
       time = time.get_current_time();
       time.Format(strPre, "%Y-%m-%d %H:%M:%S");
       string strTick;
-      i64 uiTotalMillis= ::millis::now() - ::first_millis();
+      i64 uiTotalMillis= ::duration::now() - ::first_millis();
       i64 uiMillis = uiTotalMillis % 1000;
       i64 uiTotalSeconds = uiTotalMillis / 1000;
       i64 uiSeconds = uiTotalSeconds % 60;
@@ -439,7 +447,7 @@ namespace aura
 
          strMiddle += "\""+ string(pszFile) + "\"";
 
-         strMiddle += "(" + __str(iLine) + "): ";
+         strMiddle += "(" + __string(iLine) + "): ";
 
       }
 
@@ -472,7 +480,11 @@ namespace aura
          try
          {
 
-            ::dir::mk(::dir::name(m_strLogPath));
+                     auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->create(::file_path_folder(m_strLogPath));
 
             if (!(m_pfile = fopen(m_strLogPath, "at")))
             {
@@ -545,7 +557,11 @@ namespace aura
 
                   sleep(1_s);
 
-                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && file_exists(pacmedir->system() / "logviewer.txt"))
+                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "logviewer.txt"))
                   {
 
                      call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_normal, false);
@@ -590,7 +606,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
             }
 
          }
-         catch(::exception::exception &)
+         catch(::exception &)
          {
 
             // Ignore exception here because this class/function is used for debugging

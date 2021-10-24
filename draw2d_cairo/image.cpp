@@ -94,7 +94,7 @@ namespace draw2d_cairo
 //   }
 
 
-   ::e_status image::create(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size_i32 & size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set()
@@ -115,9 +115,9 @@ namespace draw2d_cairo
 
       }
 
-      auto pbitmap = ::__create < ::draw2d::bitmap >();
+      auto pbitmap = __create < ::draw2d::bitmap >();
 
-      auto pgraphics = ::__create < ::draw2d::graphics >();
+      auto pgraphics = __create < ::draw2d::graphics >();
 
       if(pbitmap.is_null() || pgraphics.is_null())
       {
@@ -146,6 +146,8 @@ namespace draw2d_cairo
 
       if(bPreserve)
       {
+
+         map();
 
          if (::is_set(m_pcolorrefRaw))
          {
@@ -181,7 +183,7 @@ namespace draw2d_cairo
 
       _unmap();
 
-      m_eobject = eobjectCreate;
+      set(eflagCreate);
 
       return true;
 
@@ -218,10 +220,20 @@ namespace draw2d_cairo
 
       if(!create(size))
       {
+
          return false;
+
       }
 
-      g()->stretch(size, pgraphics);
+      image_source imagesource(pgraphics);
+
+      rectangle_f64 rectangle(size);
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      g()->draw(imagedrawing);
 
       return true;
 
@@ -257,9 +269,18 @@ namespace draw2d_cairo
 //
 //   }
 
-   bool image::_draw_raw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc)
+   bool image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc)
    {
-      return g()->draw(rectDst, pimage, pointSrc);
+
+      rectangle_f64 rectangle(rectangleTarget);
+
+      image_source imagesource(pimage, ::rectangle_f64(pointSrc, rectangle.size()));
+
+      image_drawing_options imagedrawingoptions(rectangle);
+
+      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+      return g()->draw(imagedrawing);
 //      ::draw2d::bitmap_pointer bitmap;
 //      bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 //      auto estatus = pgraphics->set(bitmap);
@@ -441,7 +462,7 @@ namespace draw2d_cairo
    //}
 
 
-   bool image::map(bool bApplyAlphaTransform)
+   bool image::_map(bool bApplyAlphaTransform)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -596,93 +617,97 @@ namespace draw2d_cairo
    ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
    {
 
-      if (!create({cx, cy}))
-      {
+      __throw(todo);
 
-         return false;
+      return error_not_implemented;
 
-      }
-
-      if (cx <= 0 || cy <= 0)
-      {
-
-         return false;
-
-      }
-
-      // White blend image_impl
-      auto pimage1 = create_image({cx, cy});
-
-      if (!pimage1)
-      {
-
-         return false;
-
-      }
-
-      pimage1->set_rgb(255, 255, 255);
-
-      pimage1->g()->stretch(::size_i32(cx, cy), picon);
-
-      // Black blend image_impl
-      auto pimage2 = create_image({cx, cy});
-
-      if (!pimage2)
-      {
-
-         return false;
-
-      }
-
-      pimage2->fill(0, 0, 0, 0);
-
-      pimage2->g()->stretch(::size_i32(cx, cy), picon);
-
-      // Mask image_impl
-      auto pimageM = create_image({cx, cy});
-
-      if (!pimageM)
-      {
-
-         return false;
-
-      }
-
-      pimageM->g()->stretch(::size_i32(cx, cy), picon);
-
-      byte * r1=(byte*)pimage1->colorref();
-      byte * r2=(byte*)pimage2->get_data();
-      byte * srcM=(byte*)pimageM->colorref();
-      byte * dest=(byte*)m_pcolorref1;
-      i32 iSize = cx*cy;
-
-      byte b;
-      byte bMax;
-      while ( iSize-- > 0)
-      {
-         if(srcM[0] == 255)
-         {
-            bMax = 0;
-         }
-         else
-         {
-            bMax = 0;
-            b =(byte)(r1[0]  - r2[0]);
-            bMax = maximum(b, bMax);
-            b =(byte)(r1[1]  - r2[1]);
-            bMax = maximum(b, bMax);
-            b =(byte)(r1[2]  - r2[2]);
-            bMax = maximum(b, bMax);
-            bMax = 255 - bMax;
-         }
-         dest[0]  =  bMax;
-         dest[1]  =  bMax;
-         dest[2]  =  bMax;
-         dest     += 4;
-         srcM     += 4;
-         r1       += 4;
-         r2       += 4;
-      }
+//      if (!create({cx, cy}))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (cx <= 0 || cy <= 0)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      // White blend image_impl
+//      auto pimage1 = create_image({cx, cy});
+//
+//      if (!pimage1)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      pimage1->set_rgb(255, 255, 255);
+//
+//      pimage1->g()->stretch(::size_i32(cx, cy), picon);
+//
+//      // Black blend image_impl
+//      auto pimage2 = create_image({cx, cy});
+//
+//      if (!pimage2)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      pimage2->fill(0, 0, 0, 0);
+//
+//      pimage2->g()->stretch(::size_i32(cx, cy), picon);
+//
+//      // Mask image_impl
+//      auto pimageM = create_image({cx, cy});
+//
+//      if (!pimageM)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      pimageM->g()->stretch(::size_i32(cx, cy), picon);
+//
+//      byte * r1=(byte*)pimage1->colorref();
+//      byte * r2=(byte*)pimage2->get_data();
+//      byte * srcM=(byte*)pimageM->colorref();
+//      byte * dest=(byte*)m_pcolorref1;
+//      i32 iSize = cx*cy;
+//
+//      byte b;
+//      byte bMax;
+//      while ( iSize-- > 0)
+//      {
+//         if(srcM[0] == 255)
+//         {
+//            bMax = 0;
+//         }
+//         else
+//         {
+//            bMax = 0;
+//            b =(byte)(r1[0]  - r2[0]);
+//            bMax = maximum(b, bMax);
+//            b =(byte)(r1[1]  - r2[1]);
+//            bMax = maximum(b, bMax);
+//            b =(byte)(r1[2]  - r2[2]);
+//            bMax = maximum(b, bMax);
+//            bMax = 255 - bMax;
+//         }
+//         dest[0]  =  bMax;
+//         dest[1]  =  bMax;
+//         dest[2]  =  bMax;
+//         dest     += 4;
+//         srcM     += 4;
+//         r1       += 4;
+//         r2       += 4;
+//      }
 
       return true;
 
@@ -718,15 +743,15 @@ namespace draw2d_cairo
 //   bool image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      rectangle_i64 rectWindow;
+//      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectangleWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
 //      map(true);
 //
-//      ::rectangle_i32 rectangle(rectWindow);
+//      ::rectangle_i32 rectangle(rectangleWindow);
 //
 //      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
@@ -762,13 +787,13 @@ namespace draw2d_cairo
 //      try
 //      {
 //
-//         ::rectangle_i32 rectWindow;
+//         ::rectangle_i32 rectangleWindow;
 //
-//         puserinteraction->get_window_rect(rectWindow);
+//         puserinteraction->get_window_rect(rectangleWindow);
 //
 //         ::image_pointer pimage1(this);
 //
-//         if (!pimage1->create(rectWindow.bottom_right()))
+//         if (!pimage1->create(rectangleWindow.bottom_right()))
 //         {
 //
 //            return false;
@@ -784,25 +809,25 @@ namespace draw2d_cairo
 //
 //         }
 //
-//         ::rectangle_i32 rectPaint;
-//         ::rectangle_i32 rectUpdate;
-//         rectUpdate = rectWindow;
-//         rectPaint = rectWindow;
-//         rectPaint.offset(-rectPaint.top_left());
+//         ::rectangle_i32 rectanglePaint;
+//         ::rectangle_i32 rectangleUpdate;
+//         rectangleUpdate = rectangleWindow;
+//         rectanglePaint = rectangleWindow;
+//         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics-> SetViewportOrg(::point_i32());
 //         puserinteraction->_000OnDraw(pimage1->g());
 //         m_spgraphics->SetViewportOrg(::point_i32());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics->SetViewportOrg(::point_i32());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
-//         m_spgraphics->BitBlt(rectPaint.left, rectPaint.top,
-//                              rectPaint.width(), rectPaint.height(),
-//                              pgraphics, rectUpdate.left, rectUpdate.top,
+//         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
+//                              rectanglePaint.width(), rectanglePaint.height(),
+//                              pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //                              SRCCOPY);
 //
 //      }
@@ -847,15 +872,15 @@ namespace draw2d_cairo
 ////   {
 ////
 ////
-////      rectangle_i64 rectWindow;
+////      rectangle_i64 rectangleWindow;
 ////
-////      puserinteraction->get_window_rect(rectWindow);
+////      puserinteraction->get_window_rect(rectangleWindow);
 ////
 ////      m_spgraphics->SetViewportOrg(0, 0);
 ////
 ////      map(true);
 ////
-////      ::rectangle_i32 rectangle(rectWindow);
+////      ::rectangle_i32 rectangle(rectangleWindow);
 ////
 //////      papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
@@ -892,15 +917,15 @@ namespace draw2d_cairo
 //   {
 //
 //
-//      rectangle_i64 rectWindow;
+//      rectangle_i64 rectangleWindow;
 //
-//      puserinteraction->get_window_rect(rectWindow);
+//      puserinteraction->get_window_rect(rectangleWindow);
 //
 //      m_spgraphics->SetViewportOrg(0, 0);
 //
 //      map(false);
 //
-//      ::rectangle_i32 rectangle(rectWindow);
+//      ::rectangle_i32 rectangle(rectangleWindow);
 //
 //      //papplication->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //

@@ -1,5 +1,5 @@
 #include "framework.h"
-#ifdef LINUX
+#if defined(LINUX) || defined(__APPLE__)
 #include <unistd.h>
 #endif
 
@@ -20,7 +20,7 @@
    string os_context::get_command_line()
    {
 
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
 
       return "";
 
@@ -29,64 +29,64 @@
 
    bool os_context::shutdown(bool bIfPowerOff)
    {
-      UNREFERENCED_PARAMETER(bIfPowerOff);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(bIfPowerOff);
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    bool os_context::reboot()
    {
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    void os_context::terminate_processes_by_title(const ::string & lpszName)
    {
-      UNREFERENCED_PARAMETER(lpszName);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(lpszName);
+      throw interface_only_exception("this is an interface");
    }
 
    bool os_context::get_pid_by_path(const ::string & lpszName, u32 & dwPid)
    {
-      UNREFERENCED_PARAMETER(lpszName);
-      UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(dwPid);
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    bool os_context::get_pid_by_title(const ::string & lpszName, u32 & dwPid)
    {
-      UNREFERENCED_PARAMETER(lpszName);
-      UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(lpszName);
+      __UNREFERENCED_PARAMETER(dwPid);
+      throw interface_only_exception("this is an interface");
       return false;
    }
 
    int os_context::get_pid()
    {
-      __throw(error_interface_only, "this is an interface");
+      throw interface_only_exception("this is an interface");
       return -1;
    }
 
    ::file::path os_context::get_process_path(u32 dwPid)
    {
-      UNREFERENCED_PARAMETER(dwPid);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(dwPid);
+      throw interface_only_exception("this is an interface");
       return "";
    }
 
    void os_context::get_all_processes(u32_array & dwa )
    {
-      UNREFERENCED_PARAMETER(dwa);
-      __throw(error_interface_only, "this is an interface");
+      __UNREFERENCED_PARAMETER(dwa);
+      throw interface_only_exception("this is an interface");
    }
 
 //#ifdef WINDOWS
 //
 //   ::file::path os_context::get_module_path(HMODULE hmodule)
 //   {
-//      UNREFERENCED_PARAMETER(hmodule);
-//      __throw(error_interface_only, "this is an interface");
+//      __UNREFERENCED_PARAMETER(hmodule);
+//      throw interface_only_exception("this is an interface");
 //   }
 //
 //#endif
@@ -126,8 +126,8 @@
    bool os_context::local_machine_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszKey);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       return false;
 
@@ -136,8 +136,8 @@
    bool os_context::local_machine_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszKey);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       return false;
 
@@ -146,8 +146,8 @@
    bool os_context::current_user_set_run(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszKey);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       return false;
 
@@ -156,8 +156,8 @@
    bool os_context::current_user_set_run_once(const ::string & pszKey, const ::string & pszCommand, bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(pszKey);
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszKey);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       return false;
 
@@ -173,8 +173,8 @@
    bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & pszExtension)
    {
 
-      UNREFERENCED_PARAMETER(straKey);
-      UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(straKey);
+      __UNREFERENCED_PARAMETER(pszExtension);
 
       return false;
 
@@ -183,8 +183,8 @@
    bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & pszExtension)
    {
 
-      UNREFERENCED_PARAMETER(straCommand);
-      UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(straCommand);
+      __UNREFERENCED_PARAMETER(pszExtension);
 
       return false;
 
@@ -194,9 +194,9 @@
    bool os_context::file_association_set_default_icon(const ::string & pszExtension, const ::string & pszExtensionNamingClass, const ::string & pszIconPath)
    {
 
-      UNREFERENCED_PARAMETER(pszExtension);
-      UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      UNREFERENCED_PARAMETER(pszIconPath);
+      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
+      __UNREFERENCED_PARAMETER(pszIconPath);
 
       return false;
 
@@ -206,10 +206,10 @@
    bool os_context::file_association_set_shell_open_command(const ::string & pszExtension, const ::string & pszExtensionNamingClass,  const ::string & pszCommand, const ::string & pszParam)
    {
 
-      UNREFERENCED_PARAMETER(pszExtension);
-      UNREFERENCED_PARAMETER(pszExtensionNamingClass);
-      UNREFERENCED_PARAMETER(pszCommand);
-      UNREFERENCED_PARAMETER(pszParam);
+      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(pszExtensionNamingClass);
+      __UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszParam);
 
       return false;
 
@@ -219,10 +219,10 @@
    bool os_context::file_association_get_shell_open_command(const ::string & pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
 
-      UNREFERENCED_PARAMETER(pszExtension);
-      UNREFERENCED_PARAMETER(strExtensionNamingClass);
-      UNREFERENCED_PARAMETER(strCommand);
-      UNREFERENCED_PARAMETER(strParam);
+      __UNREFERENCED_PARAMETER(pszExtension);
+      __UNREFERENCED_PARAMETER(strExtensionNamingClass);
+      __UNREFERENCED_PARAMETER(strCommand);
+      __UNREFERENCED_PARAMETER(strParam);
 
       return false;
 
@@ -257,7 +257,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -270,7 +270,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -283,7 +283,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -296,7 +296,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -309,7 +309,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -322,7 +322,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -335,7 +335,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -348,7 +348,7 @@
    {
 
 
-      ::exception::throw_not_implemented();
+      throw interface_only_exception();
 
 
       return false;
@@ -380,7 +380,7 @@
 
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -568,9 +568,9 @@
    bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      UNREFERENCED_PARAMETER(strId);
-      UNREFERENCED_PARAMETER(path);
-      UNREFERENCED_PARAMETER(strParam);
+      __UNREFERENCED_PARAMETER(strId);
+      __UNREFERENCED_PARAMETER(path);
+      __UNREFERENCED_PARAMETER(strParam);
 
       return false;
 
@@ -588,8 +588,8 @@
    bool os_context::add_default_program(string_array & straExtension, string_array & straMimeType)
    {
 
-      UNREFERENCED_PARAMETER(straExtension);
-      UNREFERENCED_PARAMETER(straMimeType);
+      __UNREFERENCED_PARAMETER(straExtension);
+      __UNREFERENCED_PARAMETER(straMimeType);
 
       return false;
 
@@ -623,7 +623,7 @@
    void os_context::on_process_command(::create * pcommand)
    {
 
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -631,7 +631,7 @@
    bool os_context::browse_file_open(property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -641,7 +641,7 @@
    bool os_context::browse_file_save(property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -651,7 +651,7 @@
    bool os_context::browse_folder(property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -660,7 +660,7 @@
    bool os_context::browse_file_or_folder(property_set & set)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return false;
 
@@ -688,7 +688,7 @@
    }
 
 
-   //::icon_result os_context::load_icon(const ::payload & varFile)
+   //::icon_transport os_context::load_icon(const ::payload & payloadFile)
    //{
 
 

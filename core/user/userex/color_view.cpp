@@ -1,11 +1,17 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
+#endif
+
 #include "aura/update.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#include "aura/os/windows_common/graphics.h"
+#endif
+
+#include "aura/node/operating_system/windows_common/graphics.h"
 
 
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(color32) colorref_get_a_value(color32)
 //#define COLORREF_get_r_value(color32) colorref_get_r_value(color32)
@@ -127,7 +133,7 @@ namespace visual
       double dL = 0.5;
 
       double dS = 1.0 - IMAGE_Y(j, h) / h;
-//#if defined(APPLEOS)
+//#if defined(__APPLE__)
 //      dS = 1.0 - dS;
 //#endif
 
@@ -158,8 +164,16 @@ namespace visual
 
    void color_with_shade_of_grey(::color::color & color, double i, double j, double dw, double dh)
    {
+      
+#ifdef MACOS
 
+      image_color_with_shade_of_grey(color.red, color.green, color.blue, i, dh - j -1, dw, dh);
+      
+#else
+      
       image_color_with_shade_of_grey(color.red, color.green, color.blue, i, j, dw, dh);
+      
+#endif
 
    }
 
@@ -294,7 +308,7 @@ namespace visual
       {
          double dL = 1.0 - ((double) j / dh);
 
-#if defined(APPLEOS)
+#if defined(__APPLE__)
          dL = 1.0 - dL;
 #endif
 
@@ -393,29 +407,29 @@ namespace userex
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::on_message_left_button_up);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::on_message_show_window);
 
-      m_pimageTemplate = create_image({2048,  2048});
+      m_pimageTemplate = m_pcontext->context_image()->create_image({2048,  2048});
 
       ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
-      m_pimageLuminance = create_image({100,  100});
+      m_pimageLuminance = m_pcontext->context_image()->create_image({100,  100});
 
    }
 
 
-   void color_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void color_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::user::impact::on_subject(psubject, pcontext);
+      ::user::impact::handle(psubject, pcontext);
 
    }
 
 
-   void color_view::on_control_event(::user::control_event * pevent)
-   {
+   //void color_view::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::user::impact::on_control_event(pevent);
+   //   ::user::impact::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    void color_view::on_message_create(::message::message * pmessage)
@@ -425,11 +439,11 @@ namespace userex
 
       //m_pimageBeam->fill(0);
 
-      //::draw2d::pen_pointer pen(e_create);
+      //auto ppen = __create < ::draw2d::pen > ();
 
-      //pen->create_solid(1.0, argb(255, 255, 255, 255));
+      //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
-      //m_pimageBeam->g()->set(pen);
+      //m_pimageBeam->g()->set(ppen);
 
       //m_pimageBeam->g()->DrawEllipse(rectangle_i32_dimension(0, 0, 32, 32));
 
@@ -456,7 +470,7 @@ namespace userex
    void color_view::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::show_window) pshowwindow(pmessage);
 
    }
@@ -493,28 +507,28 @@ namespace userex
    void color_view::on_mouse(const ::point_i32 & point)
    {
 
-      if (point.y >= m_rectColors.bottom)
+      if (point.y >= m_rectangleColors.bottom)
       {
 
          return;
 
       }
 
-      if (point.x < m_rectColors.left)
+      if (point.x < m_rectangleColors.left)
       {
 
          return;
 
       }
 
-      if (point.y < m_rectColors.top)
+      if (point.y < m_rectangleColors.top)
       {
 
          return;
 
       }
 
-      int iColorsLeft = m_rectColors.left;
+      int iColorsLeft = m_rectangleColors.left;
 
       int iColorsWidth = m_pimage->width();
 
@@ -525,7 +539,7 @@ namespace userex
 
          int x = point.x - iColorsLeft;
 
-         int y = point.y - m_rectColors.top;
+         int y = point.y - m_rectangleColors.top;
 
          m_pointMouseColorBeam = point;
 
@@ -535,7 +549,7 @@ namespace userex
 
          visual::color_with_shade_of_grey(color,
             x, y,
-            iColorsWidth, m_rectColors.height());
+            iColorsWidth, m_rectangleColors.height());
 
          ::color::hls hls;
 
@@ -547,20 +561,18 @@ namespace userex
 
          rebuild_luminance();
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_id = m_idView;
+            subject.m_puserelement = this;
 
-            ev.m_puserinteraction = this;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_actioncontext = ::e_source_user;
-
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -569,27 +581,25 @@ namespace userex
          post_redraw();
 
       }
-      else if (point.x < m_rectColors.center().x + m_rectColors.width() / 8)
+      else if (point.x < m_rectangleColors.center().x + m_rectangleColors.width() / 8)
       {
 
-         auto pointLuminance = point - ::size_i32(m_rectColors.center().x, m_rectColors.top);
+         auto pointLuminance = point - ::size_i32(m_rectangleColors.center().x, m_rectangleColors.top);
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
          
-         if(has_control_event_handler())
+         if(has_handler())
          {
 
-            ::user::control_event ev;
+            ::subject subject;
 
-            ev.m_eevent = ::user::e_event_after_change_cur_hover;
+            subject.m_id = ::e_subject_after_change_cur_hover;
 
-            ev.m_id = m_idView;
+            subject.m_puserelement = this;
 
-            ev.m_puserinteraction = this;
+            subject.m_actioncontext = ::e_source_user;
 
-            ev.m_actioncontext = ::e_source_user;
-
-            route_control_event(&ev);
+            route(&subject);
                
          }
 
@@ -605,8 +615,6 @@ namespace userex
    void color_view::rebuild_luminance()
    {
 
-      ::draw2d::device_lock devicelock(this);
-
       ::visual::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
 
    }
@@ -621,17 +629,17 @@ namespace userex
 
       size_f64 sizeBeam(dSize,dSize);
 
-      rectangle_f64 rectOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
+      rectangle_f64 rectangleOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
 
-      rectangle_f64 rectInner(rectOuter);
+      rectangle_f64 rectangleInner(rectangleOuter);
 
-      rectInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
+      rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
-      br->create_solid(argb(255, 0, 0, 0));
+      pbrush->create_solid(argb(255, 0, 0, 0));
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
       double dHalfTriBase = dSize / 8.0;
 
@@ -639,9 +647,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectOuter.left, point.y - dHalfTriBase));
-         pointa.add(point_f64(rectInner.left, point.y));
-         pointa.add(point_f64(rectOuter.left, point.y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.left, point.y - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.left, point.y));
+         pointa.add(point_f64(rectangleOuter.left, point.y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -651,9 +659,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(point.x - dHalfTriBase, rectOuter.top));
-         pointa.add(point_f64(point.x, rectInner.top));
-         pointa.add(point_f64(point.x + dHalfTriBase, rectOuter.top));
+         pointa.add(point_f64(point.x - dHalfTriBase, rectangleOuter.top));
+         pointa.add(point_f64(point.x, rectangleInner.top));
+         pointa.add(point_f64(point.x + dHalfTriBase, rectangleOuter.top));
 
          pgraphics->fill_polygon(pointa);
 
@@ -663,9 +671,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectOuter.right, point.y - dHalfTriBase));
-         pointa.add(point_f64(rectInner.right, point.y));
-         pointa.add(point_f64(rectOuter.right, point.y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.right, point.y - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.right, point.y));
+         pointa.add(point_f64(rectangleOuter.right, point.y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -675,9 +683,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(point.x - dHalfTriBase, rectOuter.bottom));
-         pointa.add(point_f64(point.x, rectInner.bottom));
-         pointa.add(point_f64(point.x + dHalfTriBase, rectOuter.bottom));
+         pointa.add(point_f64(point.x - dHalfTriBase, rectangleOuter.bottom));
+         pointa.add(point_f64(point.x, rectangleInner.bottom));
+         pointa.add(point_f64(point.x + dHalfTriBase, rectangleOuter.bottom));
 
          pgraphics->fill_polygon(pointa);
 
@@ -686,24 +694,24 @@ namespace userex
    }
 
 
-   void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectW, int yParam)
+   void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
    {
 
       double y = yParam;
 
       double dSize = 17.0;
 
-      rectangle_f64 rectInner(rectW);
+      rectangle_f64 rectangleInner(rectangleW);
 
-      rectangle_f64 rectOuter(rectInner);
+      rectangle_f64 rectangleOuter(rectangleInner);
 
-      rectOuter.inflate(dSize / 2.0, dSize / 2.0);
+      rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-      ::draw2d::brush_pointer br(e_create);
+      auto pbrush = __create < ::draw2d::brush > ();
 
-      br->create_solid(argb(255, 0, 0, 0));
+      pbrush->create_solid(argb(255, 0, 0, 0));
 
-      pgraphics->set(br);
+      pgraphics->set(pbrush);
 
       double dHalfTriBase = dSize / 8.0;
 
@@ -711,9 +719,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectOuter.left, y - dHalfTriBase));
-         pointa.add(point_f64(rectInner.left, y));
-         pointa.add(point_f64(rectOuter.left, y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.left, y - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.left, y));
+         pointa.add(point_f64(rectangleOuter.left, y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -723,9 +731,9 @@ namespace userex
 
          point_f64_array pointa;
 
-         pointa.add(point_f64(rectOuter.right, y - dHalfTriBase));
-         pointa.add(point_f64(rectInner.right, y));
-         pointa.add(point_f64(rectOuter.right, y + dHalfTriBase));
+         pointa.add(point_f64(rectangleOuter.right, y - dHalfTriBase));
+         pointa.add(point_f64(rectangleInner.right, y));
+         pointa.add(point_f64(rectangleOuter.right, y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -743,9 +751,9 @@ namespace userex
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::rectangle_i32 r1;
+      ::rectangle_i32 rTarget;
 
-      r1.top_left() = m_rectColors.top_left();
+      rTarget.top_left() = m_rectangleColors.top_left();
 
       if (!m_pimage)
       {
@@ -754,13 +762,23 @@ namespace userex
 
       }
 
-      r1.set_size(m_pimage->get_size());
+      rTarget.set_size(m_pimage->get_size());
 
-      ::rectangle_i32 r2 = m_pimage->rectangle();
+      ::rectangle_i32 rSource = m_pimage->rectangle();
 
       ::rectangle_i32 rCursor;
 
-      pgraphics->stretch(r1, m_pimage, r2);
+      {
+
+         image_source imagesource(m_pimage, rSource);
+
+         image_drawing_options imagedrawingoptions(rTarget);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+      }
 
       ::point_i32 point;
 
@@ -773,35 +791,45 @@ namespace userex
       else
       {
 
-         point.x = (::i32)(r1.left + r1.width() * m_hls.m_dH);
+         point.x = (::i32)(rTarget.left + rTarget.width() * m_hls.m_dH);
 
-         point.y = (::i32)(r1.top + r1.height() * (1.0 - m_hls.m_dS));
+         point.y = (::i32)(rTarget.top + rTarget.height() * (1.0 - m_hls.m_dS));
 
       }
 
       draw_beam(pgraphics, point);
 
-      ::rectangle_i32 rectLum1;
+      ::rectangle_i32 rectangleLum1;
 
-      rectLum1.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width()-1, 0);
+      rectangleLum1.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width()-1, 0);
 
-      rectLum1.set_size(m_pimageLuminance->get_size());
+      rectangleLum1.set_size(m_pimageLuminance->get_size());
 
-      r2 = m_pimageLuminance->rectangle();
+      rSource = m_pimageLuminance->rectangle();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
+      {
 
-      r1.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+         image_source imagesource(m_pimageLuminance);
 
-      r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
+         image_drawing_options imagedrawingoptions(rectangleLum1);
 
-      pgraphics->fill_rectangle(r1, get_color());
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-      int y = (int) (rectLum1.top + (1.0 - m_hls.m_dL)  * rectLum1.height());
+         pgraphics->draw(imagedrawing);
 
-      draw_level(pgraphics, rectLum1, y);
+      }
+
+      rTarget.top_left() = m_rectangleColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+
+      rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
+
+      pgraphics->fill_rectangle(rTarget, get_color());
+
+      int y = (int) (rectangleLum1.top + (1.0 - m_hls.m_dL)  * rectangleLum1.height());
+
+      draw_level(pgraphics, rectangleLum1, y);
 
    }
 
@@ -809,7 +837,7 @@ namespace userex
    void color_view::on_message_left_button_down(::message::message * pmessage)
    {
       
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       ::point_i32 point = pmouse->m_point;
 
@@ -829,7 +857,7 @@ namespace userex
    void color_view::on_message_left_button_up(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       
       ::point_i32 point = pmouse->m_point;
       
@@ -849,20 +877,18 @@ namespace userex
 
       m_bLButtonPressed = false;
       
-      if(has_control_event_handler())
+      if(has_handler())
       {
 
-         ::user::control_event ev;
+         ::subject subject;
 
-         ev.m_eevent = ::user::e_event_after_change_cur_sel;
+         subject.m_id = ::e_subject_after_change_cur_sel;
 
-         ev.m_id = m_idView;
+         subject.m_puserelement = this;
 
-         ev.m_puserinteraction = this;
+         subject.m_actioncontext = ::e_source_user;
 
-         ev.m_actioncontext = ::e_source_user;
-
-         route_control_event(&ev);
+         route(&subject);
             
       }
 
@@ -872,7 +898,7 @@ namespace userex
    void color_view::on_message_mouse_move(::message::message * pmessage)
    {
       
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       if (m_bLButtonPressed)
       {
@@ -906,27 +932,37 @@ namespace userex
 
       }
 
-      ::rectangle_i32 rectColors;
+      ::rectangle_i32 rectangleColors;
 
-      get_client_rect(rectColors);
+      get_client_rect(rectangleColors);
 
       if(!m_bCompact)
       {
 
-         rectColors.left = rectangleClient.center().x;
-         rectColors.bottom = rectangleClient.center().y;
+         rectangleColors.left = rectangleClient.center().x;
+         rectangleColors.bottom = rectangleClient.center().y;
 
-         rectColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
+         rectangleColors.deflate(rectangleClient.width() / 16, rectangleClient.height() / 16);
 
       }
 
-      m_rectColors = rectColors;
+      m_rectangleColors = rectangleColors;
 
-      m_pimage = create_image({m_rectColors.width() / 2,  m_rectColors.height()});
+      m_pimage = m_pcontext->context_image()->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
 
-      m_pimage->g()->stretch(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
+      {
 
-      m_pimageLuminance = create_image({m_rectColors.width() / 8,  m_rectColors.height()});
+         image_source imagesource(m_pimageTemplate);
+
+         image_drawing_options imagedrawingoptions(m_pimage->rectangle());
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         m_pimage->g()->draw(imagedrawing);
+
+      }
+
+      m_pimageLuminance = m_pcontext->context_image()->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
 
       rebuild_luminance();
 

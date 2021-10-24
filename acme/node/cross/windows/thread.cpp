@@ -16,10 +16,10 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
+CLASS_DECL_ACME bool __simple_task_sleep(::duration ::duration)
 {
 
-   auto i = millis.m_i;
+   auto i = ::duration.m_i;
 
    while (i > 300)
    {
@@ -44,7 +44,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 
    }
 
-   sleep((::millis) i);
+   sleep((::duration) i);
 
    return ::task_get_run();
 
@@ -71,10 +71,10 @@ CLASS_DECL_ACME bool __simple_task_sleep(synchronization_object* psync)
 }
 
 
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* psync)
+CLASS_DECL_ACME bool __simple_task_sleep(::duration ::duration, synchronization_object* psync)
 {
 
-   auto i = millis.m_i;
+   auto i = ::duration.m_i;
 
    while (i > 300)
    {
@@ -104,7 +104,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 
    }
 
-   if (psync->wait(::millis(i)).succeeded())
+   if (psync->wait(::duration(i)).succeeded())
    {
 
       return true;
@@ -116,13 +116,13 @@ CLASS_DECL_ACME bool __simple_task_sleep(millis millis, synchronization_object* 
 }
 
 
-CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psync)
+CLASS_DECL_ACME bool acme_task_sleep(::duration ::duration, synchronization_object* psync)
 {
 
    if (::is_null(psync))
    {
 
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(::duration) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep();
@@ -131,7 +131,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
       else
       {
 
-         return __simple_task_sleep(millis);
+         return __simple_task_sleep(::duration);
 
       }
 
@@ -139,7 +139,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
    else
    {
 
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
+      if (__os(::duration) == U32_INFINITE_TIMEOUT)
       {
 
          return __simple_task_sleep(psync);
@@ -148,7 +148,7 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
       else
       {
 
-         return __simple_task_sleep(millis, psync);
+         return __simple_task_sleep(::duration, psync);
 
       }
 
@@ -158,10 +158,10 @@ CLASS_DECL_ACME bool acme_task_sleep(millis millis, synchronization_object* psyn
 
 //PFN_task_sleep g_pfnThreadSleep = acme_task_sleep;
 
-//CLASS_DECL_ACME bool tas_sleep(millis millis, synchronization_object* psync)
+//CLASS_DECL_ACME bool tas_sleep(::duration ::duration, synchronization_object* psync)
 //{
 //
-//   return g_pfnThreadSleep(millis, psync);
+//   return g_pfnThreadSleep(::duration, psync);
 //
 //}
 

@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_impl.h"
+#endif
+
 
 
 namespace html
@@ -120,9 +123,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rectangle_i32 rectWindow;
-         //m_pbutton->get_window_rect(rectWindow);
-         //m_pbutton->GetWindow()->screen_to_client(rectWindow);
+         //::rectangle_i32 rectangleWindow;
+         //m_pbutton->get_window_rect(rectangleWindow);
+         //m_pbutton->GetWindow()->screen_to_client(rectangleWindow);
          //auto pointPreviousViewportOrg = pgraphics->GetViewportOrg();
          //pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
          m_pbutton->_000CallOnDraw(pgraphics);
@@ -134,7 +137,7 @@ namespace html
       void input_button::on_change_layout(html_data * pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pbutton->place(m_box);
 

@@ -46,7 +46,7 @@ string object_name(matter* p)
    if (i < 16)
    {
 
-      return __str(i);
+      return __string(i);
 
    }
 
@@ -76,7 +76,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
       try
       {
 
-         string strType = type_name();
+         string strType = __type_name(this);
 
          if (strType == "pacman::game")
          {
@@ -174,12 +174,12 @@ void matter::check_pending_releases()
    if (m_pobjrefdbg->m_itema.has_element())
    {
 
-      ::output_debug_string("\nThere are pending releases (m_countReference=" + __str(m_countReference) + "):\n");
+      ::output_debug_string("\nThere are pending releases (m_countReference=" + __string(m_countReference) + "):\n");
 
       try
       {
 
-         ::output_debug_string("For " + __str(typeid(*this).name()) + "(" + string(debug_note()) + ")\n");
+         ::output_debug_string("For " + __type_name() + "(" + string(debug_note()) + ")\n");
 
       }
       catch (...)
@@ -201,7 +201,7 @@ void matter::check_pending_releases()
          try
          {
 
-            ::output_debug_string(::str::pad(__str(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(__str(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
+            ::output_debug_string(::str::pad(__string(iIndex), 4, " ", ::str::pad_left) + ": " + ::str::pad(__string(iStep), 4, " ", ::str::pad_left) + ": " + str + "\n");
 
          }
          catch (...)

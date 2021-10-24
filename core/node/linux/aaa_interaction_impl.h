@@ -23,14 +23,14 @@ namespace linux
       bool                          m_bEnabled;
 
       //::task_pointer         m_pthreadDraw;
-      ::rect64                      m_rectLastPos;
-      millis                        m_millisLastPos;
+      ::rect64                      m_rectangleLastPos;
+      ::duration                        m_durationLastPos;
 
-      ::point                       m_pointLastMove;
+      ::point_i32                       m_pointLastMove;
       bool                          m_bMoveEvent;
       ::size                        m_sizeLastSize;
       bool                          m_bSizeEvent;
-      ::millis                      m_millisLastPlacementEvent;
+      ::duration                      m_durationLastPlacementEvent;
 
 
       interaction_impl();
@@ -41,15 +41,15 @@ namespace linux
       void linux_interaction_impl_common_construct();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       //virtual void on_delete(::object * poc);
 
       //static const MESSAGE* PASCAL GetCurrentMessage();
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
@@ -64,9 +64,9 @@ namespace linux
 
       virtual oswindow get_handle() const override;
 
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       DECLARE_MESSAGE_HANDLER(_001OnEraseBkgnd);
       DECLARE_MESSAGE_HANDLER(on_message_move);
@@ -181,7 +181,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::point & point) const;
+//      bool DragDetect(const ::point_i32 & point) const;
 
 
 
@@ -229,7 +229,7 @@ namespace linux
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::point client_screen_top_left() override;
+      //virtual ::point_i32 client_screen_top_left() override;
 
 //      virtual bool client_to_screen(RECT32 * prect);
 
@@ -302,7 +302,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rectangle& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle& rectangleUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -317,7 +317,7 @@ namespace linux
 //
 //#if(WINVER >= 0x0500)
 //
-//      virtual bool AnimateWindow(::u32 millis, ::u32 dwFlags);
+//      virtual bool AnimateWindow(::u32 ::duration, ::u32 dwFlags);
 //
 //#endif   // WINVER >= 0x0500
 //
@@ -404,7 +404,7 @@ namespace linux
 
       //virtual i32 GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const;
 
-      //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
+      //virtual i32 GetChildByIdText(i32 nID, string & rectangleString) const;
 //      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
 //      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
 //      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
@@ -419,7 +419,7 @@ namespace linux
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
 //                                const ::rectangle & rectangleClient = nullptr,
-//                                const ::rectangle & rectClip = nullptr);
+//                                const ::rectangle & rectangleClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
@@ -441,8 +441,8 @@ namespace linux
 
 //      virtual i32 GetScrollLimit(i32 nBar);
 //
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, ::u32 nFlags);
+//      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
+//      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
 //      static::user::interaction * PASCAL FindWindow(const ::string & pszClassName, const ::string & pszWindowName);
 //
 //      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & pszWindow);
@@ -457,7 +457,7 @@ namespace linux
 //      virtual ::user::interaction * get_parent();
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
-//      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
+//      static::user::interaction * PASCAL oswindowFromPoint(const ::point_i32 & point);
 
 
       //virtual i32 message_box(const ::string & pszText, const ::string & pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;

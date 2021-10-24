@@ -79,17 +79,17 @@ public:
 
    inline ::image_pointer frame(iptr i) const;
 
-   virtual image get_image(::payload varFile, bool bSync = false) override;
+   virtual image get_image(::payload payloadFile, bool bSync = false) override;
    virtual image matter_image(string strMatter, bool bSync = false) override;
-   virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) override;
+   virtual image load_image(::payload payloadFile, bool bCreateHelperMaps = false) override;
    virtual image load_matter_image(const ::string & pszMatter, bool bCache = true, bool bCreateHelperMaps = false) override;
    virtual image load_matter_icon(string_array & straMatter, string strIcon) override;
-   virtual image load_thumbnail(::payload varFile, int w, int h) override;
+   virtual image load_thumbnail(::payload payloadFile, int w, int h) override;
    virtual image load_thumbnail(const ::string & pszPath) override;
    virtual image load_dib(const ::file::path & pathDib) override;
 
 
-   virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) override;
+   virtual bool save_image(::payload payloadFile, ::save_image * psaveimage = nullptr) override;
    virtual bool save_dib(const ::file::path & pathDib) override;
 
 
@@ -106,9 +106,9 @@ public:
 
    //virtual bool add_next(double dRate)
    virtual bool create_isotropic(::image * pimage) override;
-   virtual bool create_isotropic(double_array & daRate, ::e_priority epriority) override;
+   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority) override;
 
-   virtual bool SetViewportOrg(const ::point & point) override;
+   virtual bool SetViewportOrg(const ::point_i32 & point) override;
    virtual bool set_font_factor(double dFactor) override;
    virtual bool set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode) override;
 
@@ -130,14 +130,14 @@ public:
    virtual bool blend(::image * pimage, ::image * pimageRate) override;
    virtual bool Blend(::image * pimage, ::image * pimageA, i32 A) override;
    virtual bool Blend(::image * pimage, ::image * pimageA) override;
-   virtual bool blend(const ::point & pointDst, ::image * pimageSrc, const ::point & pointSrc, ::image * pimageAlf, const ::point & pointDstAlf, const ::size & size) override;
-   virtual bool precision_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size) override;
-   virtual bool precision_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
-   virtual bool blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size) override;
-   virtual bool blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
-   virtual bool blend2(const ::point & pointDst, ::image * pimageSrc, const ::point & pointSrc, const ::size & size, byte bA) override;
-   virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size) override;
-   virtual bool fork_blend(const ::point & pointDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
+   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, ::image * pimageAlf, const ::point_i32 & pointDstAlf, const ::size & size) override;
+   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size) override;
+   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size, byte bA) override;
+   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size) override;
+   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size, byte bA) override;
+   virtual bool blend2(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size & size, byte bA) override;
+   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size) override;
+   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size & size, byte bA) override;
    virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle) override;
 
    virtual bool color_blend(color32_t color32, byte bAlpha) override;
@@ -175,8 +175,8 @@ public:
    virtual bool mult_alpha_fast() override;
    virtual bool div_alpha() override;
 
-   virtual bool mult_alpha(const ::point & point, const ::size & size) override;
-   virtual bool div_alpha(const ::point & point, const ::size & size) override;
+   virtual bool mult_alpha(const ::point_i32 & point, const ::size & size) override;
+   virtual bool div_alpha(const ::point_i32 & point, const ::size & size) override;
 
    virtual bool rotate(::image * pimage, const ::rectangle & rectangle, double dAngle, double dScale) override;
 
@@ -225,7 +225,7 @@ public:
    virtual bool gradient_vertical_fill(color32_t clr1, color32_t clr2) override;
 
    virtual u32 GetPixel(i32 x, i32 y) override;
-   inline u32 GetPixel(const ::point & point) { return GetPixel(point.x, point.y); }
+   inline u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x, point.y); }
    virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask) override;
    virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel) override;
    virtual bool transparent_color(::color::color color) override;
@@ -261,19 +261,19 @@ public:
    virtual bool to(::image * pimage) const override;
    virtual bool from(const ::image * pimage) override;
    virtual bool from(::draw2d::graphics_pointer & pgraphics) override;
-   virtual bool from(const ::point & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::point & pointSrc, const ::size & size) override;
-   virtual bool from(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size) override;
-   virtual bool from(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size, byte bA) override;
-   //virtual bool blend(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size)
-   virtual bool from_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::point & pointSrc, const ::size & size) override;
+   virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointSrc, const ::size & size) override;
+   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size & size) override;
+   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size & size, byte bA) override;
+   //virtual bool blend(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size & size)
+   virtual bool from_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size & size) override;
 
    virtual bool to(::draw2d::graphics_pointer & pgraphics) override;
-   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point) override;
+   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point) override;
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::size & size) override;
-   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point, const ::size & size) override;
+   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point, const ::size & size) override;
    virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::rectangle & rectangle) override;
 
-   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
+   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point, const ::size & size, const ::point_i32 & pointSrc) override;
 
 
    virtual bool pixelate(i32 iSize) override;
@@ -387,8 +387,8 @@ public:
 
    inline ::size size() const;
 
-   inline ::rectangle rectangle(const ::point & point = nullptr);
-   inline const ::rectangle rectangle(const ::point & point = nullptr) const;
+   inline ::rectangle rectangle(const ::point_i32 & point = nullptr);
+   inline const ::rectangle rectangle(const ::point_i32 & point = nullptr) const;
 
 
    inline color32_t pixel(int x, int y);
@@ -447,7 +447,7 @@ public:
    inline void set_nok() { m_pimpl->set_nok(); }
 
 
-   inline bool create_image(::object * pobject, const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   inline bool create_image(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
    inline bool has_flag(e_object eobject) const { return m_pimpl && m_pimpl->has_flag(eobject); }
@@ -539,7 +539,7 @@ class CLASS_DECL_AURA work_image :
 public:
 
 
-   ::rectangle       m_rectMap;
+   ::rectangle       m_rectangleMap;
 
 
    work_image(::object * pobject, const ::size & size);
@@ -551,7 +551,7 @@ public:
 };
 
 
-inline bool image::create_image(::object * pobject, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+inline bool image::create_image(const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 {
 
    if (m_pimpl.is_null())

@@ -1,15 +1,11 @@
 #pragma once
 
 
-//namespace acme
-//{
-
-
 class CLASS_DECL_ACME system :
    virtual public ::acme::context,
    virtual public ::acme_main_data,
-   //virtual public ::subject::manager,
-   virtual public ::task
+   //virtual public ::manager,
+   virtual public ::task //,  virtual public ::logger
    //, public layered < system >
 {
 public:
@@ -23,6 +19,7 @@ public:
    //::bred::system *              m_pbredsystem;
    //::core::system *              m_pcoresystem;
    
+   //bool                             m_bOnInitializeWindowObject;
    
    bool                             m_bPostedInitialRequest;
 
@@ -32,10 +29,14 @@ public:
 
    __composite(::apex::system)                  m_psystemParent;
 
-   __pointer(::trace::log)                      m_ptracelog;
+   //__pointer(::trace::log)                      m_ptracelog;
+
+   string_map < string_map < PFN_factory_exchange > > m_mapFactoryExchange;
 
 
-   string_map < __pointer(::factory_map) >* m_pfactorymapsquare;
+
+
+   __pointer(string_map < __pointer(::factory_map) > )                         m_pfactorymapsquare;
    __pointer(string_map < __pointer(::regular_expression::context) >)          m_pmapRegularExpressionContext;
 
 #ifdef MACOS
@@ -65,7 +66,7 @@ public:
    //__pointer(::acme::node)                         m_pnode;
 
 
-   ::millis                                           m_millisFileListingCache;
+   ::duration                                           m_durationFileListingCache;
    critical_section                                   m_csEnumText;
    string_map < i64_map < string > >                  m_mapEnumToText;
    string_map < string_map < i64 > >                  m_mapTextToEnum;
@@ -80,6 +81,7 @@ public:
 
    __pointer(class ::acme::node)                      m_pnode;
    __composite(class ::acme_dir)                      m_pacmedir;
+   __composite(class ::acme_file)                     m_pacmefile;
    __composite(class ::acme_path)                     m_pacmepath;
    //__pointer(::parallelization::cleanup_task)         m_pcleanuptask;
    __composite(geometry::geometry)                    m_pgeometry;
@@ -98,7 +100,7 @@ public:
    void os_construct();
 
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
 
    i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
@@ -130,14 +132,18 @@ public:
 
    inline ::url::department* url() { return m_purldepartment; }
 
-   inline class ::trace::log& log() { return *m_ptracelog; }
+   //inline class ::trace::log& log() { return *m_ptracelog; }
 
    virtual ::e_status defer_audio();
 
    virtual ::e_status init1();
 
+   //virtual logger & log() { return *m_plogger; }
 
    virtual void TermSystem();
+
+
+   virtual void erase_from_any_hook(::matter * pmatter);
 
 
    virtual ::e_status create_os_node();
@@ -178,7 +184,7 @@ public:
 
 #elif defined(_UWP)
 
-   ::e_status system_construct(Array < String^ >^ refstra);
+   ::e_status system_construct(const ::string_array & stra);
 
 #elif defined(ANDROID)
 
@@ -201,6 +207,9 @@ public:
    virtual ::e_status process_init();
 
 
+   virtual ::e_status call_init_system();
+
+
    virtual ::e_status init_system();
 
 
@@ -211,17 +220,23 @@ public:
 
 
    virtual ::e_status system_main();
-   //virtual ::e_status run_system();
+
+
+   ::e_status on_pre_run_task() override;
+
+
    ::e_status main() override;
+
 
    virtual ::e_status end();
 
+
    virtual ::e_status on_end();
 
-   //using ::subject::manager::on_subject;
-   //virtual void on_subject(::subject::subject * psubject) override;
+   //using ::manager::on_subject;
+   //virtual void on_subject(::subject * psubject) override;
 
-   virtual ::millis get_update_poll_time(const ::id& id);
+   virtual ::duration get_update_poll_time(const ::id& id);
 
    virtual ::acme::library* on_get_library(const ::string &pszLibrary);
 
@@ -240,12 +255,12 @@ public:
    virtual ::e_status open_url(string strUrl, string strProfile, string strTarget);
 
 
-   void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
+   //void __tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const override;
 
 
-   //virtual ::e_status main_user_async(const ::routine & routine, ::e_priority epriority = priority_normal);
+   //virtual ::e_status main_user_async(const ::routine & routine, ::enum_priority epriority = e_priority_normal);
 
-   //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+   //virtual ::e_status main_user_sync(const ::routine & routine, const ::duration & duration = one_minute(), enum_priority epriority = e_priority_normal);
 
 
    ::task* get_task(itask_t itask);
@@ -265,8 +280,11 @@ public:
 #endif
 
 
-   virtual __pointer(::extended::future < ::conversation >) _message_box(::object* pobject, const ::string &pszText, const ::string &pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
+
+   //virtual ::e_status on_initialize_window_object();
+   //virtual ::e_status _on_initialize_window_object();
 
 
    template < typename ENUM >
@@ -337,7 +355,7 @@ public:
    }
 
    template < typename PRED >
-   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::e_priority epriority)
+   inline ::count fork_count_end(::property_object* pobject, ::count iCount, PRED pred, index iStart, ::enum_priority epriority)
    {
 
       if (iCount <= 0)
@@ -406,7 +424,7 @@ public:
    }
 
 
-   ::task_group* task_group(::e_priority epriority = ::priority_none);
+   ::task_group* task_group(::enum_priority epriority = ::e_priority_none);
 
    ::task_tool* task_tool(::enum_task_tool etool);
 
@@ -446,7 +464,9 @@ public:
    virtual ::e_status on_open_untitled_file();
    
    virtual ::e_status on_open_file(const ::string &pszFile);
-   
+
+
+
 
 };
 

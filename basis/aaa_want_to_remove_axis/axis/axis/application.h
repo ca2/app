@@ -49,8 +49,8 @@ namespace axis
       virtual ::e_status     initialize(::object * pobject) override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       //virtual bool app_data_get(const ::id & id, stream & os) override;
@@ -171,7 +171,7 @@ namespace axis
 
 
 
-      virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -219,12 +219,12 @@ namespace axis
 
       virtual void on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object* pHint);
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
 
-      virtual bool on_open_document(::user::document * pdocument, ::payload varFile);
-      virtual bool on_save_document(::user::document * pdocument, ::payload varFile);
+      virtual bool on_open_document(::user::document * pdocument, ::payload payloadFile);
+      virtual bool on_save_document(::user::document * pdocument, ::payload payloadFile);
 
 
 

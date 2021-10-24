@@ -49,7 +49,7 @@ public:
    flags < ENUM > & operator = (const flags < ENUM >  & f);
    bool operator == (const flags < ENUM >  & f);
    bool operator != (const flags < ENUM >  & f);
-   bool operator == (const ENUM e) { return m_ia.get_size() == 1 && (ENUM) m_ia.element_at(0) == e; }
+   bool operator == (const ENUM e) { return ::is_set(this) && m_ia.get_size() == 1 && (ENUM) m_ia.element_at(0) == e; }
 
    flags < ENUM > & operator |= (ENUM eenum)
    {
@@ -72,7 +72,7 @@ public:
 
    operator bool()
    {
-      return m_ia.has_elements();
+      return ::is_set(this) && m_ia.has_elements();
    }
 
 
@@ -139,7 +139,7 @@ bool flags < ENUM > ::erase(ENUM eenum)
 template < class ENUM >
 bool flags < ENUM > ::has(ENUM eenum) const
 {
-   return m_ia.has((::i64)eenum);
+   return ::is_set(this) && m_ia.has((::i64)eenum);
 }
 
 
@@ -199,13 +199,13 @@ flags < ENUM > & flags < ENUM > ::operator = (const flags < ENUM > & f)
 template < class ENUM >
 bool flags < ENUM > ::operator == (const flags < ENUM > & f)
 {
-   return m_ia == f.m_ia;
+   return ::is_set(this) && m_ia == f.m_ia;
 }
 
 template < class ENUM >
 bool flags < ENUM > ::operator != (const flags < ENUM > & f)
 {
-   return m_ia != f.m_ia;
+   return ::is_set(this) && m_ia != f.m_ia;
 }
 
 template < class ENUM >

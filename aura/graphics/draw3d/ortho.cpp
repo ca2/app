@@ -16,7 +16,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
       double zmin = locationa[0].z;
       double zmax = locationa[0].z;
@@ -114,6 +114,7 @@ namespace draw3d
       index iMax;
 
       i = 0;
+
       int_array ia;
 
       while(point1.get_count() > 0)
@@ -126,7 +127,9 @@ namespace draw3d
 
             if((locationa[point1[j]].z + locationa[point2[j]].z) >(locationa[point1[iMax]].z + locationa[point2[iMax]].z))
             {
+               
                iMax = j;
+
             }
 
          }
@@ -135,40 +138,44 @@ namespace draw3d
          {
 
             ia.add_unique(point1[iMax]);
+
             ia.add_unique(point2[iMax]);
 
             double r = (locationa[point1[iMax]].z + locationa[point2[iMax]].z) * d;
 
             ::color::color ca;
 
-            double dPeriod = (5000) * 11;
+            auto period = 55000 / 2; // milliseconds
 
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls((double) (get_integral_millisecond().m_i % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+
+               ca.set_hls((double) (get_integral_millisecond().m_i % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+
             }
 
             ::color::color clr = ca.get_rgb();
 
 
-            pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
+            ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
             if(i < 6)
             {
-               pen->m_epen = ::draw2d::e_pen_dot;
+               ppen->m_epen = ::draw2d::e_pen_dot;
             }
             else
             {
-               pen->m_epen = ::draw2d::e_pen_solid;
+               ppen->m_epen = ::draw2d::e_pen_solid;
             }
 
-            m_pdc->set(pen);
+            m_pdc->set(ppen);
 
-            m_pdc->draw_line(__pointd(locationa[point1[iMax]]), __pointd(locationa[point2[iMax]]));
+            m_pdc->draw_line(__pointd(locationa[point1[iMax]].cxy()), __pointd(locationa[point2[iMax]].cxy()));
 
          }
 
@@ -179,7 +186,7 @@ namespace draw3d
       }
 
 
-      //pen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
+      //ppen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(ppen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);
@@ -227,7 +234,7 @@ namespace draw3d
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::pen_pointer pen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
       double zmin = 1000000.0;
       double zmax = -1000000.0;
@@ -302,31 +309,34 @@ namespace draw3d
 
             ::color::color ca;
 
-            double dPeriod = (5000) * 11;
+            auto period = 50_s;
 
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               
+               ca.set_hls(::duration::now() + period / 2, 0.84 - r / 2.0, 1.0 - r);
+
             }
 
             ::color::color clr = ca.get_rgb();
 
 
-            /*pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
+            /*ppen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
             if(i < 6)
             {
-            pen->m_etype = ::draw2d::e_pen_dot;
+            ppen->m_etype = ::draw2d::e_pen_dot;
             }
             else
             {
-            pen->m_etype = ::draw2d::e_pen_solid;
+            ppen->m_etype = ::draw2d::e_pen_solid;
             }
-            m_pdc->set(pen);*/
+            m_pdc->set(ppen);*/
 
             pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
 
@@ -347,7 +357,7 @@ namespace draw3d
       }
 
 
-      //pen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
+      //ppen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(ppen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);

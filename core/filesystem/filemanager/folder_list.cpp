@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -53,7 +55,7 @@ namespace filemanager
    void folder_list::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
 
       index iItem;
 
@@ -76,7 +78,7 @@ namespace filemanager
 
    void folder_list::_001OnCancelMode(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       // trans   ::user::impact::OnCancelMode();
 
       // TODO: add your message handler code here
@@ -274,9 +276,9 @@ namespace filemanager
 //   void folder_list::FolderArray::clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST piidlPreserve2)
 //
 //   {
-//      UNREFERENCED_PARAMETER(piidlPreserve1);
+//      __UNREFERENCED_PARAMETER(piidlPreserve1);
 //
-//      UNREFERENCED_PARAMETER(piidlPreserve2);
+//      __UNREFERENCED_PARAMETER(piidlPreserve2);
 //
 //      //Folder folder;
 //
@@ -390,10 +392,10 @@ namespace filemanager
 
 
 
-   void folder_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void folder_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
       if (psubject->id() == INITIALIZE_ID)
       {

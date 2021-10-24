@@ -234,11 +234,11 @@ namespace draw2d
    i32                           iCharsPositions,
    i32                           iOffset)
    {
-      UNREFERENCED_PARAMETER(dRateX);
-      UNREFERENCED_PARAMETER(dHeight);
-      UNREFERENCED_PARAMETER(iOffset);
-      UNREFERENCED_PARAMETER(iCharsPositions);
-      UNREFERENCED_PARAMETER(piCharsPositions);
+      __UNREFERENCED_PARAMETER(dRateX);
+      __UNREFERENCED_PARAMETER(dHeight);
+      __UNREFERENCED_PARAMETER(iOffset);
+      __UNREFERENCED_PARAMETER(iCharsPositions);
+      __UNREFERENCED_PARAMETER(piCharsPositions);
 
 
       pgraphics->text_out(pcrect.left, pcrect.top, psz);

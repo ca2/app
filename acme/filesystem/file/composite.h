@@ -17,44 +17,45 @@ namespace file
 
       reference();
       reference(file * pfile);
-      virtual ~reference();
+      ~reference() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
-
-
-
-      virtual filesize get_position() const override;
-      virtual bool get_status(file_status& rStatus) const override;
-      virtual ::file::path get_file_path() const override;
-      virtual void set_file_path(const ::file::path & path) override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
 
-      virtual ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
+      filesize get_position() const override;
+      bool get_status(file_status& rStatus) const override;
+      ::file::path get_file_path() const override;
+      void set_file_path(const ::file::path & path) override;
 
 
 
-
-      virtual filesize seek(filesize lOff, ::file::e_seek  nFrom) override;
-      virtual void set_size(filesize dwNewLen) override;
-      virtual filesize get_size() const override;
-
-      virtual void lock(filesize dwPos, filesize dwCount) override;
-      virtual void unlock(filesize dwPos, filesize dwCount) override;
-
-      virtual void flush() override;
-      virtual void close() override;
+      ::extended::status open(const ::file::path & path, const ::file::e_open & eopen) override;
 
 
-      virtual memsize read(void *pdata, memsize nCount) override;
+      filesize translate(filesize offset, ::enum_seek eseek) override;
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
 
-      virtual void write(const void * pdata, memsize nCount) override;
 
-      virtual ::string get_location() const override;
+      void lock(filesize dwPos, filesize dwCount) override;
+      void unlock(filesize dwPos, filesize dwCount) override;
 
-      virtual bool is_opened() const override;
+
+      void abort() override;
+      void flush() override;
+      void close() override;
+
+
+      memsize read(void *pdata, memsize nCount) override;
+
+      void write(const void * pdata, memsize nCount) override;
+
+      ::string get_location() const override;
+
+      bool is_opened() const override;
 
 
    };

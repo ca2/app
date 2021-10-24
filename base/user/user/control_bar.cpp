@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#include "aura/os/_user.h"
+#include "aura/node/operating_system/_user.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -24,19 +24,20 @@ namespace user
       //m_pData = nullptr;
 
       // set up some default border spacings
-      m_rectBorder.set(6, 1, 6, 1);
-      //m_rectBorder.left = m_rectBorder.right = 6;
+      m_rectangleBorder.set(6, 1, 6, 1);
+      //m_rectangleBorder.left = m_rectangleBorder.right = 6;
       m_cxDefaultGap = 2;
-      //m_rectBorder.top = m_rectBorder.bottom = 1;
+      //m_rectangleBorder.top = m_rectangleBorder.bottom = 1;
       m_bAutoDelete = false;
       m_nStateFlags = 0;
-      m_pDockSite = nullptr;
       m_pDockBar = nullptr;
       m_pDockContext = nullptr;
       m_dwStyle = 0;
       m_dwDockStyle = 0;
       m_nMRUWidth = 32767;
+
    }
+
 
    void control_bar::install_message_routing(::channel * pchannel)
    {
@@ -66,10 +67,10 @@ namespace user
       ASSERT(cxRight >= 0);
       ASSERT(cyBottom >= 0);
 
-      m_rectBorder.left = cxLeft;
-      m_rectBorder.top = cyTop;
-      m_rectBorder.right = cxRight;
-      m_rectBorder.bottom = cyBottom;
+      m_rectangleBorder.left = cxLeft;
+      m_rectangleBorder.top = cyTop;
+      m_rectangleBorder.right = cxRight;
+      m_rectangleBorder.bottom = cyBottom;
    }
 
 
@@ -176,8 +177,14 @@ namespace user
 
       ASSERT_VALID(this);
 
-      if (m_pDockSite != nullptr)
-         m_pDockSite->RemoveControlBar(this);
+      if (m_pframewindowDockSite)
+      {
+
+         m_pframewindowDockSite->erase_control_bar(this);
+
+         m_pframewindowDockSite.release();
+
+      }
 
       // free docking context
       /*   BaseDockContext* pDockContext = m_pDockContext;
@@ -229,16 +236,16 @@ namespace user
 #define ID_TIMER_WAIT   0xE000  // timer while waiting to show status
 #define ID_TIMER_CHECK  0xE001  // timer to check for removal of status
 
-   void control_bar::ResetTimer(::u32 nEvent, ::u32 nTime)
+   void control_bar::ResetTimer(::u32 nEvent, const ::duration & duration)
    {
       KillTimer(ID_TIMER_WAIT);
       KillTimer(ID_TIMER_CHECK);
-      VERIFY(SetTimer(nEvent,nTime,nullptr));
+      VERIFY(SetTimer(nEvent,duration,nullptr));
    }
 
    void control_bar::_001OnTimer(::timer * ptimer)
    {
-      UNREFERENCED_PARAMETER(ptimer);
+      __UNREFERENCED_PARAMETER(ptimer);
 //      ::u32 uEvent = ptimer->m_uEvent;
 #ifdef WINDOWS_DESKTOP
       auto psession = get_session();
@@ -414,7 +421,7 @@ namespace user
 
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      __pointer(::user::message) pmessage(pmessage);
       ASSERT_VALID(this);
 
@@ -424,7 +431,7 @@ namespace user
    void control_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 
-      //UNREFERENCED_PARAMETER(pmessage);
+      //__UNREFERENCED_PARAMETER(pmessage);
 
       //default_window_procedure(pmessage);
 
@@ -439,12 +446,12 @@ namespace user
 
       __pointer(::user::frame_window) pframe = get_parent();
 
-      if (pframe.is_set())
+      if (pframe)
       {
 
-         m_pDockSite = pframe;
+         m_pframewindowDockSite = pframe;
 
-         m_pDockSite->AddControlBar(this);
+         m_pframewindowDockSite->add_control_bar(this);
 
       }
 
@@ -454,12 +461,15 @@ namespace user
    void control_bar::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_pDockSite != nullptr)
+      if (m_pframewindowDockSite)
       {
-         m_pDockSite->RemoveControlBar(this);
-         m_pDockSite = nullptr;
+
+         m_pframewindowDockSite->erase_control_bar(this);
+
+         m_pframewindowDockSite.release();
+
       }
 
    }
@@ -512,22 +522,22 @@ namespace user
       /* trans   CWindowDC spgraphics(this);
          ::rectangle_i32 rectangleClient;
          get_client_rect(rectangleClient);
-         ::rectangle_i32 rectWindow;
-         get_window_rect(rectWindow);
-         screen_to_client(rectWindow);
-         rectangleClient.offset(-rectWindow.left, -rectWindow.top);
+         ::rectangle_i32 rectangleWindow;
+         get_window_rect(rectangleWindow);
+         screen_to_client(rectangleWindow);
+         rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
          spgraphics->ExcludeClipRect(rectangleClient);
 
          // draw borders in non-client area
-         rectWindow.offset(-rectWindow.left, -rectWindow.top);
-         DrawBorders(&spgraphics, rectWindow);
+         rectangleWindow.offset(-rectangleWindow.left, -rectangleWindow.top);
+         DrawBorders(&spgraphics, rectangleWindow);
 
          // erase parts not drawn
-         spgraphics->IntersectClipRect(rectWindow);
+         spgraphics->IntersectClipRect(rectangleWindow);
          SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
 
          // draw gripper in non-client area
-         DrawGripper(&spgraphics, rectWindow);*/
+         DrawGripper(&spgraphics, rectangleWindow);*/
    }
 
    void control_bar::EraseNonClient(::draw2d::graphics_pointer & pgraphics)
@@ -536,30 +546,30 @@ namespace user
       // get interaction_impl DC that is clipped to the non-client area
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);
-      ::rectangle_i32 rectWindow;
-      get_window_rect(rectWindow);
-      screen_to_client(rectWindow);
-      rectangleClient.offset(-rectWindow.left, -rectWindow.top);
+      ::rectangle_i32 rectangleWindow;
+      get_window_rect(rectangleWindow);
+      screen_to_client(rectangleWindow);
+      rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
       
       //pgraphics->exclude_clip();
       
       //pgraphics->ExcludeClipRect(rectangleClient);
 
       // draw borders in non-client area
-      rectWindow.offset(-rectWindow.left, -rectWindow.top);
-      DrawBorders(pgraphics, rectWindow);
+      rectangleWindow.offset(-rectangleWindow.left, -rectangleWindow.top);
+      DrawBorders(pgraphics, rectangleWindow);
 
       // erase parts not drawn
-      //pgraphics->IntersectClipRect(rectWindow);
+      //pgraphics->IntersectClipRect(rectangleWindow);
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rectangle = ::rectangle_f64_dimension(0, 0, rectWindow.width(), rectWindow.height());
+      auto rectangle = ::rectangle_f64_dimension(0, 0, rectangleWindow.width(), rectangleWindow.height());
 
       pgraphics->fill_rectangle(rectangle, argb(128, 192, 192, 187));
 
       // draw gripper in non-client area
-      DrawGripper(pgraphics, rectWindow);
+      DrawGripper(pgraphics, rectangleWindow);
 
    }
 
@@ -594,7 +604,7 @@ namespace user
 
    void control_bar::on_message_left_button_down(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       // only start dragging if clicked in "void" space
       if (m_pDockBar != nullptr )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_point, nullptr) == -1)
@@ -612,7 +622,7 @@ namespace user
 
    void control_bar::on_message_left_button_up(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_point);
@@ -622,7 +632,7 @@ namespace user
 
    void control_bar::on_message_mouse_move(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_point);
@@ -632,7 +642,7 @@ namespace user
 
    void control_bar::on_message_left_button_double_click(::message::message * pmessage)
    {
-      auto pmouse = pmessage->m_pmouse;
+      auto pmouse = pmessage->m_union.m_pmouse;
       pmouse->previous();
    }
 
@@ -666,7 +676,7 @@ namespace user
 //    }
 
 
-   void control_bar::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void control_bar::handle(::subject * psubject, ::context * pcontext)
    {
 
       // // update the indicators before becoming visible
@@ -807,6 +817,8 @@ namespace user
          auto pdraw2d = psystem->draw2d();
 
          auto pgraphics = pdraw2d->create_memory_graphics();
+
+         pgraphics->m_puserinteraction = this;
 
          ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
@@ -989,11 +1001,11 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
 
-            ::draw2d::pen_pointer pen(e_create);
+            auto ppen = __create < ::draw2d::pen > ();
 
-            pen->create_solid(1, clr);
+            ppen->create_solid(1, clr);
 
-            pgraphics->set(pen);
+            pgraphics->set(ppen);
             pgraphics->move_to(0, 7);
             pgraphics->line_to(7, 0);
 
@@ -1059,9 +1071,9 @@ namespace user
 
    void DrawGripperElement001(::draw2d::graphics_pointer & pgraphics, i32 ix, i32 iy)
    {
-      UNREFERENCED_PARAMETER(pgraphics);
-      UNREFERENCED_PARAMETER(ix);
-      UNREFERENCED_PARAMETER(iy);
+      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(ix);
+      __UNREFERENCED_PARAMETER(iy);
       /*      pgraphics->SetPixel(ix    , iy + 1, afxData.clrBtnHilite);
             pgraphics->SetPixel(ix + 1, iy + 1, afxData.clrBtnHilite);
             pgraphics->SetPixel(ix + 1, iy    , afxData.clrBtnHilite);
@@ -1081,15 +1093,15 @@ namespace user
          // draw the gripper in the border
          if (m_dwStyle & CBRS_ORIENT_HORZ)
          {
-            //pgraphics->draw3d_rect(rectangle.left+CX_BORDER_GRIPPER,
-            //   rectangle.top+m_rectBorder.top,
-            //   CX_GRIPPER, rectangle.height()-m_rectBorder.top-m_rectBorder.bottom,
+            //pgraphics->draw_inset_3d_rectangle(rectangle.left+CX_BORDER_GRIPPER,
+            //   rectangle.top+m_rectangleBorder.top,
+            //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
             //   afxData.clrBtnHilite, afxData.clrBtnShadow);
             i32 dx = CX_GRIPPER / 2;
             i32 dy = CY_GRIPPER / 2;
             i32 ix = rectangle.left + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top + m_rectBorder.top + dy / 2;
-            i32 cy = rectangle.bottom - m_rectBorder.top - m_rectBorder.bottom - dy * 3;
+            i32 iy = rectangle.top + m_rectangleBorder.top + dy / 2;
+            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - dy * 3;
 
             for(; iy < cy; iy += dy)
             {
@@ -1101,15 +1113,15 @@ namespace user
          }
          else
          {
-            //         pgraphics->draw3d_rect(rectangle.left+m_rectBorder.top,
+            //         pgraphics->draw_inset_3d_rectangle(rectangle.left+m_rectangleBorder.top,
             //            rectangle.top+CY_BORDER_GRIPPER,
-            //            rectangle.width()-m_rectBorder.top-m_rectBorder.bottom, CY_GRIPPER,
+            //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
             //            afxData.clrBtnHilite, afxData.clrBtnShadow);
             i32 dx = CX_GRIPPER / 2;
             i32 dy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + m_rectBorder.top + dx / 2;
+            i32 ix = rectangle.left + m_rectangleBorder.top + dx / 2;
             i32 iy = rectangle.top + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right - m_rectBorder.top - m_rectBorder.bottom - dx * 3;
+            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - dx * 3;
 
             for(; ix < cx; ix += dx)
             {
@@ -1144,19 +1156,19 @@ namespace user
       // insert_at the top and bottom.
       if (bHorz)
       {
-         rectangle.left += m_rectBorder.left;
-         rectangle.top += m_rectBorder.top;
-         rectangle.right -= m_rectBorder.right;
-         rectangle.bottom -= m_rectBorder.bottom;
+         rectangle.left += m_rectangleBorder.left;
+         rectangle.top += m_rectangleBorder.top;
+         rectangle.right -= m_rectangleBorder.right;
+         rectangle.bottom -= m_rectangleBorder.bottom;
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
             rectangle.left += CX_BORDER_GRIPPER+CX_GRIPPER+CX_BORDER_GRIPPER;
       }
       else
       {
-         rectangle.left += m_rectBorder.top;
-         rectangle.top += m_rectBorder.left;
-         rectangle.right -= m_rectBorder.bottom;
-         rectangle.bottom -= m_rectBorder.right;
+         rectangle.left += m_rectangleBorder.top;
+         rectangle.top += m_rectangleBorder.left;
+         rectangle.right -= m_rectangleBorder.bottom;
+         rectangle.bottom -= m_rectangleBorder.right;
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
             rectangle.top += CY_BORDER_GRIPPER+CY_GRIPPER+CY_BORDER_GRIPPER;
       }
@@ -1177,10 +1189,10 @@ namespace user
    {
       ::user::interaction::dump(dumpcontext);
 
-      dumpcontext << "\nm_cxLeftBorder = " << m_rectBorder.left;
-      dumpcontext << "\nm_cxRightBorder = " << m_rectBorder.right;
-      dumpcontext << "\nm_cyTopBorder = " << m_rectBorder.top;
-      dumpcontext << "\nm_cyBottomBorder = " << m_rectBorder.bottom;
+      dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
+      dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
+      dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
+      dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
       dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
       dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
 
@@ -1192,16 +1204,18 @@ namespace user
    __pointer(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      __pointer(::user::frame_window) pFrameWnd = (get_parent_frame());
+      __pointer(::user::frame_window) pframewindow = get_parent_frame();
 
-      if (pFrameWnd == nullptr)
-         pFrameWnd = m_pDockSite;
+      if (!pframewindow)
+      {
 
-      ASSERT(pFrameWnd != nullptr);
+         pframewindow = m_pframewindowDockSite;
 
-      ASSERT_KINDOF(::user::frame_window, pFrameWnd);
+      }
 
-      return (__pointer(::user::frame_window)) pFrameWnd;
+      ASSERT(pframewindow);
+
+      return pframewindow;
 
    }
 
@@ -1230,7 +1244,7 @@ namespace user
    ::rectangle_i32 control_bar::GetBorders()
    {
 
-      return m_rectBorder;
+      return m_rectangleBorder;
 
    }
 

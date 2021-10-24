@@ -56,15 +56,15 @@ namespace console
    void prompt_document::data_on_after_change(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
 
-   bool prompt_document::on_open_document(const ::payload & varFile)
+   bool prompt_document::on_open_document(const ::payload & payloadFile)
    {
 
-      string str = pcontext->m_papexcontext->file().as_string(varFile);
+      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
       //  m_prompt_document.load(str);
 
 

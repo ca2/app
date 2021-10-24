@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "task.h"
 #ifdef LINUX
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 #endif
 
 
@@ -210,9 +210,9 @@ bool task::on_get_thread_name(string & strThreadName)
    else
    {
 
-      //::task_set_name(type_name());
+      //::task_set_name(__type_name(this));
 
-      strThreadName = type_name();
+      strThreadName = __type_name(this);
 
    }
 
@@ -241,13 +241,13 @@ void task::init_task()
 
    }
 
-   if (string(type_name()).contains("synth_thread"))
+   if (__type_name(this).contains("synth_thread"))
    {
 
       output_debug_string("synth_thread thread::thread_proc");
 
    }
-   else if (string(type_name()).ends_ci("out"))
+   else if (__type_name(this).ends_ci("out"))
    {
 
       output_debug_string("synth_thread thread::out");
@@ -346,7 +346,7 @@ void task::term_task()
 
          }
 
-         m_id = pmatter->type_name();
+         m_id = __type_name(pmatter);
 
          task_set_name(m_id);
 
@@ -365,14 +365,14 @@ void task::term_task()
 
 ::e_status task::start(
    ::matter* pmatter,
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
 {
 
    m_pmatter = pmatter;
 
-   m_id = pmatter->type_name();
+   m_id = __type_name(pmatter);
 
    return begin_task(epriority, nStackSize, uCreateFlags);
 
@@ -380,7 +380,7 @@ void task::term_task()
 
 
 ::e_status task::begin_task(
-   ::e_priority epriority,
+   ::enum_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)
 {
@@ -391,13 +391,13 @@ void task::term_task()
       if (m_pmatter)
       {
 
-         m_id = m_pmatter->type_name();
+         m_id = __type_name(m_pmatter);
 
       }
       else
       {
 
-         m_id = type_name();
+         m_id = __type_name(this);
 
       }
 
@@ -484,7 +484,7 @@ void task::term_task()
 }
 
 
-::task_pointer task::launch(::matter * pmatter, ::e_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
+::task_pointer task::launch(::matter * pmatter, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags)
 {
 
    auto ptask = __new(task);
@@ -535,261 +535,261 @@ void task::kick_idle()
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task* task)
-{
+// CLASS_DECL_ACME bool __task_sleep(task* task)
+// {
 
-   while (task->task_get_run())
-   {
+//    while (task->task_get_run())
+//    {
 
-      sleep(100_ms);
+//       sleep(100_ms);
 
-   }
+//    }
 
-   return false;
+//    return false;
 
-}
+// }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
-{
+// CLASS_DECL_ACME bool __task_sleep(task* pthread, ::duration ::duration)
+// {
 
-   if (millis.m_i < 1000)
-   {
+//    if (::duration.m_i < 1000)
+//    {
 
-      if (!pthread->task_get_run())
-      {
+//       if (!pthread->task_get_run())
+//       {
 
-         return false;
+//          return false;
 
-      }
+//       }
 
-      sleep(millis);
+//       sleep(::duration);
 
-      return pthread->task_get_run();
+//       return pthread->task_get_run();
 
-   }
+//    }
 
-   auto iTenths = millis.m_i / 10;
+//    auto iTenths = ::duration.m_i / 10;
 
-   auto iMillis = millis.m_i % 10;
+//    auto iMillis = ::duration.m_i % 10;
 
-   try
-   {
+//    try
+//    {
 
-      __pointer(manual_reset_event) spev;
+//       __pointer(manual_reset_event) spev;
 
-      {
+//       {
 
-         synchronous_lock synchronouslock(pthread->mutex());
+//          synchronous_lock synchronouslock(pthread->mutex());
 
-         if (pthread->m_pevSleep.is_null())
-         {
+//          if (pthread->m_pevSleep.is_null())
+//          {
 
-            pthread->m_pevSleep = __new(manual_reset_event());
+//             pthread->m_pevSleep = __new(manual_reset_event());
 
-            pthread->m_pevSleep->ResetEvent();
+//             pthread->m_pevSleep->ResetEvent();
 
-         }
+//          }
 
-         spev = pthread->m_pevSleep;
+//          spev = pthread->m_pevSleep;
 
-      }
+//       }
 
-      if (!pthread->task_get_run())
-      {
+//       if (!pthread->task_get_run())
+//       {
 
-         return false;
+//          return false;
 
-      }
+//       }
 
-      //while(iTenths > 0)
-      //{
+//       //while(iTenths > 0)
+//       //{
 
-      pthread->m_pevSleep->wait(millis);
+//       pthread->m_pevSleep->wait(::duration);
 
-      if (!pthread->task_get_run())
-      {
+//       if (!pthread->task_get_run())
+//       {
 
-         return false;
+//          return false;
 
-      }
+//       }
 
-      //iTenths--;
+//       //iTenths--;
 
-   //}
+//    //}
 
-   }
-   catch (...)
-   {
+//    }
+//    catch (...)
+//    {
 
-   }
+//    }
 
-   return pthread->task_get_run();
+//    return pthread->task_get_run();
 
-}
+// }
 
 
-CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync)
-{
+// CLASS_DECL_ACME bool __task_sleep(::task* pthread, synchronization_object* psync)
+// {
 
-   try
-   {
+//    try
+//    {
 
-      while (pthread->task_get_run())
-      {
+//       while (pthread->task_get_run())
+//       {
 
-         if (psync->wait(100).succeeded())
-         {
+//          if (psync->wait(100).succeeded())
+//          {
 
-            break;
+//             break;
 
-         }
+//          }
 
-      }
+//       }
 
-   }
-   catch (...)
-   {
+//    }
+//    catch (...)
+//    {
 
-   }
+//    }
 
-   return pthread->task_get_run();
+//    return pthread->task_get_run();
 
-}
+// }
 
 
-CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, synchronization_object* psync)
-{
+// CLASS_DECL_ACME bool __task_sleep(task* pthread, ::duration ::duration, synchronization_object* psync)
+// {
 
-   if (millis.m_i < 1000)
-   {
+//    if (::duration.m_i < 1000)
+//    {
 
-      if (!pthread->task_get_run())
-      {
+//       if (!pthread->task_get_run())
+//       {
 
-         return false;
+//          return false;
 
-      }
+//       }
 
-      psync->wait(millis);
+//       psync->wait(::duration);
 
-      return pthread->task_get_run();
+//       return pthread->task_get_run();
 
-   }
+//    }
 
-   auto iTenths = millis.m_i / 100;
+//    auto iTenths = ::duration.m_i / 100;
 
-   auto iMillis = millis.m_i % 100;
+//    auto iMillis = ::duration.m_i % 100;
 
-   try
-   {
+//    try
+//    {
 
-      {
+//       {
 
-         pthread->m_pevSleep->wait(100);
+//          pthread->m_pevSleep->wait(100);
 
-         if (!pthread->task_get_run())
-         {
+//          if (!pthread->task_get_run())
+//          {
 
-            return false;
+//             return false;
 
-         }
+//          }
 
-         iTenths--;
+//          iTenths--;
 
-      }
+//       }
 
-   }
-   catch (...)
-   {
+//    }
+//    catch (...)
+//    {
 
-   }
+//    }
 
-   return pthread->task_get_run();
+//    return pthread->task_get_run();
 
-}
+// }
 
 
-CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync)
-{
+// CLASS_DECL_ACME bool task_sleep(::duration ::duration, synchronization_object* psync)
+// {
 
-   auto pthread = ::get_task();
+//    auto pthread = ::get_task();
 
-   if (::is_null(pthread))
-   {
+//    if (::is_null(pthread))
+//    {
 
-      if (::is_null(psync))
-      {
+//       if (::is_null(psync))
+//       {
 
-         if (__os(millis) == U32_INFINITE_TIMEOUT)
-         {
+//          if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//          {
 
-         }
-         else
-         {
+//          }
+//          else
+//          {
 
-            ::sleep(millis);
+//             ::sleep(::duration);
 
-         }
+//          }
 
-      }
-      else
-      {
+//       }
+//       else
+//       {
 
-         if (__os(millis) == U32_INFINITE_TIMEOUT)
-         {
+//          if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//          {
 
-            return psync->lock();
+//             return psync->lock();
 
-         }
-         else
-         {
+//          }
+//          else
+//          {
 
-            return psync->lock(millis);
+//             return psync->lock(::duration);
 
-         }
+//          }
 
-      }
+//       }
 
-      return true;
+//       return true;
 
-   }
+//    }
 
-   if (::is_null(psync))
-   {
+//    if (::is_null(psync))
+//    {
 
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
+//       if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//       {
 
-         return __task_sleep(pthread);
+//          return __task_sleep(pthread);
 
-      }
-      else
-      {
+//       }
+//       else
+//       {
 
-         return __task_sleep(pthread, millis);
+//          return __task_sleep(pthread, ::duration);
 
-      }
+//       }
 
-   }
-   else
-   {
+//    }
+//    else
+//    {
 
-      if (__os(millis) == U32_INFINITE_TIMEOUT)
-      {
+//       if (__os(::duration) == U32_INFINITE_TIMEOUT)
+//       {
 
-         return __task_sleep(pthread, psync);
+//          return __task_sleep(pthread, psync);
 
-      }
-      else
-      {
+//       }
+//       else
+//       {
 
-         return __task_sleep(pthread, millis, psync);
+//          return __task_sleep(pthread, ::duration, psync);
 
-      }
+//       }
 
-   }
-}
+//    }
+// }
 
 
 

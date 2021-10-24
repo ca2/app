@@ -18,10 +18,10 @@ namespace userex
       virtual ~top_toggle_view();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       virtual bool keyboard_focus_is_focusable() const override;

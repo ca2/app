@@ -37,12 +37,12 @@ namespace user
 
 
       tree_data();
-      virtual ~tree_data();
+      ~tree_data() override;
 
 
 
-      virtual ::count           get_data_bound_view_count() const override;
-      virtual ::user::impact *  get_data_bound_view(index iView) override;
+      virtual ::count               get_data_bound_view_count() const override;
+      virtual ::user::primitive *   get_data_bound_view(index iView) override;
 
 
 
@@ -68,7 +68,7 @@ namespace user
       virtual bool      selection_set(::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
       virtual bool      selection_set(index iIndex,::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual void on_fill_children() override;
 

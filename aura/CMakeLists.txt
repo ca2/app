@@ -114,9 +114,12 @@ list(APPEND library_source
    graphics/draw2d/keep.cpp
    graphics/draw2d/keep.h
    graphics/draw2d/load_gif_frame.cpp
+   graphics/draw2d/lock.cpp
+   graphics/draw2d/lock.h
    graphics/draw2d/matrix.cpp
    graphics/draw2d/matrix.h
-   graphics/draw2d/nanosvg.cpp
+   graphics/draw2d/nano_svg.cpp
+   graphics/draw2d/nano_svg_rasterization.cpp
    graphics/draw2d/object.cpp
    graphics/draw2d/object.h
    graphics/draw2d/palette.cpp
@@ -228,42 +231,42 @@ list(APPEND library_source
    node/_.h
    node/_node.h
    node/serial.h
-   os/ansios/_.h
-   os/ansios/_ansios.h
-   os/ansios/_c.h
-   os/ansios/ansios_file.h
+   node/operating_system/ansi/_.h
+   node/operating_system/ansi/_ansi.h
+   node/operating_system/ansi/_c.h
+   node/operating_system/ansi/ansi_file.h
    #os/ansios/callstack.h
-   os/ansios/datetime_c.h
-   os/ansios/exception_engine.h
-   os/ansios/file.h
-   os/ansios/file_c.h
-   os/ansios/file_raw.h
-   os/ansios/parallelization.h
-   os/cairo/_.h
-   os/cairo/_impl.h
-   os/_.h
-   os/_application.cpp
-   os/_application.h
-   os/_c.h
-   os/_impl.h
-   os/_os2.h
-   os/_user.h
+   node/operating_system/ansi/datetime_c.h
+   node/operating_system/ansi/exception_engine.h
+   node/operating_system/ansi/file.h
+   node/operating_system/ansi/file_c.h
+   node/operating_system/ansi/file_raw.h
+   node/operating_system/ansi/parallelization.h
+   node/operating_system/cairo/_.h
+   node/operating_system/cairo/_impl.h
+   node/operating_system/_.h
+   node/operating_system/_application.cpp
+   node/operating_system/_application.h
+   #node/operating_system/_c.h
+   node/operating_system/_impl.h
+   node/operating_system/_operating_system.h
+   node/operating_system/_user.h
    #os/argcargv.cpp
    #os/binreloc.cpp
    #os/binreloc.h
-   os/chronometer.h
-   os/cross.h
-   os/file.h
-   os/graphics.h
-   os/http.cpp
-   os/os.h
-   os/os_windowing2.h
+   node/operating_system/chronometer.h
+   node/operating_system/cross.h
+   node/operating_system/file.h
+   node/operating_system/graphics.h
+   node/operating_system/http.cpp
+   node/operating_system/operating_system.h
+   #node/operating_system/os_windowing2.h
    #os/process.h
-   os/text.h
-   os/thread.cpp
-   os/time.h
-   os/windowing.cpp
-   os/windowing.h
+   node/operating_system/text.h
+   node/operating_system/thread.cpp
+   node/operating_system/time.h
+   node/operating_system/windowing.cpp
+   node/operating_system/windowing.h
    platform/_features.h
    platform/_impl.h
    platform/_platform.h
@@ -311,14 +314,10 @@ list(APPEND library_source
    user/button.h
    user/call_message_handler_task.cpp
    user/call_message_handler_task.h
-   user/callback.cpp
-   user/callback.h
    user/check_box.cpp
    user/check_box.h
    user/control_descriptor.cpp
    user/control_descriptor.h
-   user/control_event.cpp
-   user/control_event.h
    user/copydesk.cpp
    user/copydesk.h
    user/system.cpp
@@ -341,8 +340,8 @@ list(APPEND library_source
    user/interaction_prodevian.h
    user/interaction_thread.cpp
    user/interaction_thread.h
-   user/item.cpp
-   user/item.h
+   user/interaction_scaler.cpp
+   user/interaction_scaler.h
    user/key.cpp
    user/key.h
    user/keyboard.cpp
@@ -547,9 +546,9 @@ if (WIN32)
 else ()
 
    list(APPEND library_source
-      os/cross/windows/windowing.h
-      os/cross/_.h
-      os/cross/cross.h
+      node/operating_system/cross/windows/windowing.h
+      node/operating_system/cross/_.h
+      node/operating_system/cross/cross.h
       )
 
 endif ()
@@ -583,53 +582,53 @@ endif ()
 
 if (UWP)
    list(APPEND library_source
-      node/uwp/net/net_address.h
-      node/uwp/_.h
-      node/uwp/_uwp.h
-      node/uwp/application.cpp
-      node/uwp/buffer.h
-      node/uwp/copydesk.cpp
-      node/uwp/copydesk.h
-      node/uwp/directx.cpp
-      node/uwp/directx.h
-      node/uwp/directx_impact.cpp
-      node/uwp/directx_impact.h
-      node/uwp/directx_interaction.cpp
-      node/uwp/directx_interaction.h
-      node/uwp/error.cpp
-      node/uwp/factory_exchange.cpp
-      node/uwp/factory_exchange.h
-      node/uwp/graphics_buffer.cpp
-      node/uwp/interaction_impl.cpp
-      node/uwp/interaction_impl.h
-      node/uwp/timer.cpp
-      node/uwp/trace.cpp
-      node/uwp/util.cpp
-      os/uwp/_.h
-      os/uwp/_os_metrowin.cpp
-      os/uwp/_uwp.h
-      os/uwp/_winrt.h
-      os/uwp/application_system_run.cpp
-      os/uwp/aura.cpp
-      os/uwp/base_file.h
-      os/uwp/direct2d_tls.cpp
-      #os/uwp/dummy_ipc.cpp
-      os/uwp/file_winrt.h
-      os/uwp/gdi_winrt.h
-      os/uwp/graphics.cpp
-      os/uwp/host_interaction.h
-      os/uwp/lock.cpp
-      os/uwp/main.cpp
-      os/uwp/metrowin_metrowin.h
-      os/uwp/multithreading.h
-      os/uwp/multithreading_winrt.h
-      os/uwp/oswindow.h
-      #os/uwp/process.h
-      os/uwp/simple_hold_handle.h
-      os/uwp/simple_ui.h
-      os/uwp/sockets.h
-      os/uwp/user.cpp
-      os/uwp/windowing.cpp
+      node/universal_windows/net/net_address.h
+      node/universal_windows/_.h
+      node/universal_windows/_uwp.h
+      node/universal_windows/application.cpp
+      node/universal_windows/buffer.h
+      node/universal_windows/copydesk.cpp
+      node/universal_windows/copydesk.h
+      node/universal_windows/directx.cpp
+      node/universal_windows/directx.h
+      node/universal_windows/directx_impact.cpp
+      node/universal_windows/directx_impact.h
+      node/universal_windows/directx_interaction.cpp
+      node/universal_windows/directx_interaction.h
+      node/universal_windows/error.cpp
+      node/universal_windows/factory_exchange.cpp
+      node/universal_windows/factory_exchange.h
+      node/universal_windows/graphics_buffer.cpp
+      node/universal_windows/interaction_impl.cpp
+      node/universal_windows/interaction_impl.h
+      node/universal_windows/timer.cpp
+      node/universal_windows/trace.cpp
+      node/universal_windows/util.cpp
+      os/universal_windows/_.h
+      os/universal_windows/_os_metrowin.cpp
+      os/universal_windows/_uwp.h
+      os/universal_windows/_winrt.h
+      os/universal_windows/application_system_run.cpp
+      os/universal_windows/aura.cpp
+      os/universal_windows/base_file.h
+      os/universal_windows/direct2d_tls.cpp
+      #os/universal_windows/dummy_ipc.cpp
+      os/universal_windows/file_winrt.h
+      os/universal_windows/gdi_winrt.h
+      os/universal_windows/graphics.cpp
+      os/universal_windows/host_interaction.h
+      os/universal_windows/lock.cpp
+      os/universal_windows/main.cpp
+      os/universal_windows/metrowin_metrowin.h
+      os/universal_windows/multithreading.h
+      os/universal_windows/multithreading_winrt.h
+      os/universal_windows/oswindow.h
+      #os/universal_windows/process.h
+      os/universal_windows/simple_hold_handle.h
+      os/universal_windows/simple_ui.h
+      os/universal_windows/sockets.h
+      os/universal_windows/user.cpp
+      os/universal_windows/windowing.cpp
 
 
       )
@@ -637,8 +636,8 @@ if (UWP)
 else ()
 
    list(APPEND library_source
-      os/cross/uwp/cross_metrowin_user.cpp
-      os/cross/uwp/metrowin_user.cpp
+      #node/operating_system/cross/universal_windows/cross_metrowin_user.cpp
+      #node/operating_system/cross/universal_windows/metrowin_user.cpp
       )
 
 endif ()
@@ -692,64 +691,64 @@ if (LINUX)
       node/linux/system.cpp
       #os/gdk/aura_gdk.cpp
       #os/gdk/aura_gdk.h
-      os/linux/_.h
-      os/linux/_c.h
-      os/linux/_glib.h
-      os/linux/_linux.h
-      os/linux/_user.h
-      os/linux/appindicator.cpp
-      os/linux/appindicator.h
-      os/linux/application_system_run.cpp
-      os/linux/aura.cpp
-      os/linux/bloat_pad.h
-      os/linux/cross_win_file.cpp
-      os/linux/cross_win_file.h
-      os/linux/cross_win_gdi.cpp
-      os/linux/cross_win_gdi.h
-      os/linux/cross_win_gdi_internal.h
-      os/linux/debug.cpp
-      os/linux/debug.h
-      os/linux/desktop_file.cpp
-      os/linux/desktop_file.h
+      node/operating_system/linux/_.h
+      node/operating_system/linux/_c.h
+      node/operating_system/linux/_glib.h
+      node/operating_system/linux/_linux.h
+      node/operating_system/linux/_user.h
+      node/operating_system/linux/appindicator.cpp
+      node/operating_system/linux/appindicator.h
+      node/operating_system/linux/application_system_run.cpp
+      node/operating_system/linux/aura.cpp
+      node/operating_system/linux/bloat_pad.h
+      node/operating_system/linux/cross_win_file.cpp
+      node/operating_system/linux/cross_win_file.h
+      node/operating_system/linux/cross_win_gdi.cpp
+      node/operating_system/linux/cross_win_gdi.h
+      node/operating_system/linux/cross_win_gdi_internal.h
+      node/operating_system/linux/debug.cpp
+      node/operating_system/linux/debug.h
+      node/operating_system/linux/desktop_file.cpp
+      node/operating_system/linux/desktop_file.h
       #os/linux/exception_engine.cpp
       #os/linux/exception_engine.h
-      os/linux/file.cpp
-      os/linux/file.h
-      os/linux/graphics.cpp
-      os/linux/graphics.h
-      os/linux/graphics2.h
-      os/linux/language.cpp
+      node/operating_system/linux/file.cpp
+      node/operating_system/linux/file.h
+      node/operating_system/linux/graphics.cpp
+      node/operating_system/linux/graphics.h
+      node/operating_system/linux/graphics2.h
+      node/operating_system/linux/language.cpp
       #os/linux/launcher.cpp
-      os/linux/library.cpp
-      os/linux/linux.inl
-      os/linux/linux_linux.h
+      node/operating_system/linux/library.cpp
+      node/operating_system/linux/linux.inl
+      node/operating_system/linux/linux_linux.h
       #os/linux/list_serial_ports.cpp
-      os/linux/lock.cpp
-      os/linux/message_loop.cpp
+      #node/operating_system/linux/lock.cpp
+      node/operating_system/linux/message_loop.cpp
       #os/linux/monitor.cpp
-      os/linux/os.cpp
+      node/operating_system/linux/os.cpp
       #os/linux/osdisplay.cpp
       #os/linux/osdisplay.h
       #os/linux/oswindow.cpp
       #os/linux/oswindow.h
-      os/linux/parallelization.cpp
+      node/operating_system/linux/parallelization.cpp
       #os/linux/process.cpp
       #os/linux/process.h
       #os/linux/process_pid.cpp
-      os/linux/simple_app.cpp
-      os/linux/time.cpp
-      os/linux/user.cpp
-      os/linux/user.h
-      os/linux/user_private.h
-      os/linux/win_base.cpp
-      os/linux/window_cairo.h
+      node/operating_system/linux/simple_app.cpp
+      node/operating_system/linux/time.cpp
+      node/operating_system/linux/user.cpp
+      node/operating_system/linux/user.h
+      node/operating_system/linux/user_private.h
+      node/operating_system/linux/win_base.cpp
+      node/operating_system/linux/window_cairo.h
       #os/linux/window_xlib.cpp
       #os/linux/window_xlib.h
-      os/linux/windowing.cpp
+      node/operating_system/linux/windowing.cpp
       #os/linux/windowing_x11.cpp
       #os/linux/windowing_xcb.cpp
-      os/linux/windowing.h
-      os/linux/x11.h
+      node/operating_system/linux/windowing.h
+      node/operating_system/linux/x11.h
       #os/linux/xdisplay.cpp
       #os/linux/xdisplay.h
       #os/linux/xinerama.cpp
@@ -761,9 +760,7 @@ if (LINUX)
       #os/x11/x11_windowing.cpp
       #os/x11/x11_xrender.cpp
       ${windowing_source}
-
       )
-
 endif ()
 
 
@@ -1147,7 +1144,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${library_source} user/control_event_listener.h)
+add_library(aura SHARED ${library_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

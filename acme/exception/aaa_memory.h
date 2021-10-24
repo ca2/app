@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME memory_exception :
-   public ::exception::exception
+   public ::exception
 {
 public:
 
@@ -30,8 +30,8 @@ namespace std
       bad_alloc() :
          matter(this),
          ::callstack(this),
-         ::exception::exception(),
-         ::exception::exception(),
+         ::exception(),
+         ::exception(),
          memory_exception()
       {
 

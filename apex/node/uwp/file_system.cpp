@@ -2,7 +2,7 @@
 #include "_.h"
 
 
-namespace uwp
+namespace universal_windows
 {
 
 
@@ -18,7 +18,7 @@ namespace uwp
    }
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

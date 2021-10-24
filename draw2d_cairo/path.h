@@ -16,9 +16,10 @@ namespace draw2d_cairo
       ~path() override;
 
 
-      virtual bool create(::draw2d::graphics * pgraphics);
+      bool create(::draw2d::graphics * pgraphics);
       ::e_status destroy() override;
 
+      bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point) override;
 
 
    };

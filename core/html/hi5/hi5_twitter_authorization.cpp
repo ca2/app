@@ -1,8 +1,10 @@
 #include "framework.h"
 #include "core/html/html/_html.h"
 #include "core/html/impl/_impl.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
 #include "core/user/simple/_simple.h"
+#endif
 //#include "core/user/simple/_simple.h"
 
 //#include <openssl/rsa.h>
@@ -73,7 +75,7 @@ namespace hi5
          if(m_pviewAuth == nullptr)
             return "";
 
-         m_pviewAuth->SetTimer(8888, 484, nullptr);
+         m_pviewAuth->SetTimer(8888, 500_ms, nullptr);
          //m_ptabview->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
          m_ptabview->get_wnd()->RunModalLoop();
@@ -93,7 +95,7 @@ namespace hi5
 
          }
 
-         __pointer(::create) pcreate(e_create);
+         __pointer(::create) pcreate(e_create, this);
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -195,17 +197,17 @@ namespace hi5
       void authorization::display_main_frame()
       {
 
-         ::rectangle_i32 rectOpen;
+         ::rectangle_i32 rectangleOpen;
 
-         m_ptabview->get_parent_frame()->best_top_level_parent(rectOpen);
+         m_ptabview->get_parent_frame()->best_top_level_parent(rectangleOpen);
 
-         i32 iWidth = rectOpen.width();
+         i32 iWidth = rectangleOpen.width();
 
-         i32 iHeight = rectOpen.height();
+         i32 iHeight = rectangleOpen.height();
 
-         rectOpen.deflate(iWidth / 5, iHeight / 50);
+         rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 
-         rectOpen.top = iHeight * 2 / 3;
+         rectangleOpen.top = iHeight * 2 / 3;
 
          //__pointer(::user::frame_window) pframe = m_pviewAuth->get_parent_frame();
 
@@ -218,7 +220,7 @@ namespace hi5
 
          m_ptabview->get_parent_frame()->order_front();
 
-         m_ptabview->get_parent_frame()->place(rectOpen);
+         m_ptabview->get_parent_frame()->place(rectangleOpen);
 
          m_pviewAuth->get_parent_frame()->set_foreground_window();
 
@@ -292,13 +294,13 @@ namespace hi5
       }
 
 
-      void authorization::on_control_event( ::user::control_event * pevent)
+      void authorization::handle(::subject * psubject, ::context *pcontext)   
       {
 
-         if(pevent->m_eevent == ::user::e_event_click || pevent->m_eevent == ::user::e_event_enter_key)
+         if(psubject->m_id == ::e_subject_click || psubject->m_id == ::e_subject_enter_key)
          {
 
-            if(pevent->m_puserinteraction->m_id == "submit" || pevent->m_eevent == ::user::e_event_enter_key)
+            if(psubject->user_interaction()->m_id == "submit" || psubject->m_id == ::e_subject_enter_key)
             {
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");
@@ -316,7 +318,7 @@ namespace hi5
       }
 
 
-      bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element)
+      bool authorization::style_translucency(::user::enum_translucency & etranslucency, ::enum_element)
       {
 
          etranslucency = ::user::e_translucency_present;

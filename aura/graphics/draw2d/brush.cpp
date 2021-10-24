@@ -25,11 +25,11 @@ namespace draw2d
 //   bool brush::CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hPackedDIB);
+//      __UNREFERENCED_PARAMETER(hPackedDIB);
 //
-//      UNREFERENCED_PARAMETER(nUsage);
+//      __UNREFERENCED_PARAMETER(nUsage);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return false;
 //
@@ -57,9 +57,9 @@ namespace draw2d
    void brush::dump(dump_context & dumpcontext) const
    {
 
-      UNREFERENCED_PARAMETER(dumpcontext);
+      __UNREFERENCED_PARAMETER(dumpcontext);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -100,11 +100,11 @@ namespace draw2d
    bool brush::CreateHatchBrush(i32 nIndex, ::color::color color)
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
+      __UNREFERENCED_PARAMETER(nIndex);
 
-      UNREFERENCED_PARAMETER(color);
+      __UNREFERENCED_PARAMETER(color);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -114,9 +114,9 @@ namespace draw2d
 //   bool brush::CreateBrushIndirect(const LOGBRUSH* pLogBrush)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pLogBrush);
+//      __UNREFERENCED_PARAMETER(pLogBrush);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return false;
 //
@@ -145,11 +145,11 @@ namespace draw2d
    bool brush::CreateDIBPatternBrush(const void * pPackedDIB, ::u32 nUsage)
    {
 
-      UNREFERENCED_PARAMETER(pPackedDIB);
+      __UNREFERENCED_PARAMETER(pPackedDIB);
 
-      UNREFERENCED_PARAMETER(nUsage);
+      __UNREFERENCED_PARAMETER(nUsage);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -159,9 +159,9 @@ namespace draw2d
    bool brush::CreateSysColorBrush(i32 nIndex)
    {
 
-      UNREFERENCED_PARAMETER(nIndex);
+      __UNREFERENCED_PARAMETER(nIndex);
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return false;
 
@@ -171,9 +171,9 @@ namespace draw2d
 //   i32 brush::GetLogBrush(LOGBRUSH* pLogBrush)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pLogBrush);
+//      __UNREFERENCED_PARAMETER(pLogBrush);
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //      return 0;
 //
@@ -238,18 +238,18 @@ namespace draw2d
    }
 
 
-   brush & brush::operator = (const brush & brushSrc)
+   brush & brush::operator = (const brush & pbrushSrc)
    {
 
-      m_etype           = brushSrc.m_etype;
-      m_color           = brushSrc.m_color;
-      m_point1          = brushSrc.m_point1;
-      m_point2          = brushSrc.m_point2;
-      m_color1          = brushSrc.m_color1;
-      m_color2          = brushSrc.m_color2;
-      m_point           = brushSrc.m_point;
-      m_size            = brushSrc.m_size;
-      m_pimage          = brushSrc.m_pimage;
+      m_etype           = pbrushSrc.m_etype;
+      m_color           = pbrushSrc.m_color;
+      m_point1          = pbrushSrc.m_point1;
+      m_point2          = pbrushSrc.m_point2;
+      m_color1          = pbrushSrc.m_color1;
+      m_color2          = pbrushSrc.m_color2;
+      m_point           = pbrushSrc.m_point;
+      m_size            = pbrushSrc.m_size;
+      m_pimage          = pbrushSrc.m_pimage;
       set_modified();
 
       return *this;

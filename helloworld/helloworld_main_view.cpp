@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   main_view::main_view(::object * pobject):
+   main_impact::main_impact(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_view(pobject),
@@ -13,7 +13,7 @@ namespace helloworld
    {
 
       m_ptopview = nullptr;
-      m_pview    = nullptr;
+      m_pimpact    = nullptr;
       m_flagNonClient.add(non_client_background);
       m_flagNonClient.add(non_client_focus_rect);
 
@@ -21,13 +21,13 @@ namespace helloworld
    }
 
 
-   main_view::~main_view()
+   main_impact::~main_impact()
    {
 
    }
 
 
-   void main_view::assert_valid() const
+   void main_impact::assert_valid() const
    {
 
       ::user::split_view::assert_valid();
@@ -35,7 +35,7 @@ namespace helloworld
    }
 
 
-   void main_view::dump(dump_context & dumpcontext) const
+   void main_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_view::dump(dumpcontext);
@@ -43,13 +43,13 @@ namespace helloworld
    }
 
 
-   void main_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
-      ::user::split_view::on_subject(psubject, pcontext);
+      ::user::split_view::handle(psubject, pcontext);
    }
 
 
-   void main_view::on_create_split_impact()
+   void main_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -73,7 +73,7 @@ namespace helloworld
          if (m_ptopview == nullptr)
          {
 
-            message_box(nullptr, "Could not create folder edit view");
+            message_box(nullptr, "Could not create folder edit impact");
 
          }
 
@@ -93,11 +93,11 @@ namespace helloworld
 
       }
 
-      //m_pview = create_view < lite_view >();
+      //m_pimpact = create_view < lite_view >();
 
-      m_pview = create_view < view >(nullptr, get_pane_holder(iPane), "helloworld_view");
+      m_pimpact = create_view < impact >(nullptr, get_pane_holder(iPane), "helloworld_view");
 
-      if(m_pview == nullptr)
+      if(m_pimpact == nullptr)
       {
 
          message_box(nullptr,"Could not create file list ::user::impact");
@@ -111,18 +111,18 @@ namespace helloworld
 
          string strText;
 
-         m_pview->data_get("cur_text",strText);
+         m_pimpact->data_get("cur_text",strText);
 
          peditview->_001SetText(strText, ::e_source_initialize);
 
       }
 
-//      SetPane(iPane,m_pview,false);
+//      SetPane(iPane,m_pimpact,false);
 
    }
 
 
-   void main_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_view::_001OnNcDraw(pgraphics);
@@ -130,7 +130,7 @@ namespace helloworld
    }
 
 
-   void main_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_view::_001OnDraw(pgraphics);
@@ -138,19 +138,19 @@ namespace helloworld
    }
 
 
-   void main_view::on_control_event(::user::control_event * pevent)
+   void main_impact::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "helloworld_toggle")
+         if(psubject->user_element_id() == "helloworld_toggle")
          {
 
-            m_pview->m_prender->m_bLite = !m_pview->m_prender->m_bLite;
+            m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;
 
 
-            m_pview->on_layout(::draw2d::graphics_pointer & pgraphics);
+            m_pimpact->on_layout(pgraphics);
 
             return true;
 

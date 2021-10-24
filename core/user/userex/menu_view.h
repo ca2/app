@@ -10,12 +10,12 @@ public:
    menu_view();
 
 
-   void on_subject(::subject::subject * psubject, ::subject::context * pcontext);
-   virtual void on_control_event(::user::control_event * pevent);
+   void handle(::subject * psubject, ::context * pcontext) override;
+   //virtual void handle(::subject * psubject, ::context * pcontext);
    DECLARE_MESSAGE_HANDLER(on_message_create);
-   void _001OnTimer(::timer * ptimer);
+   void _001OnTimer(::timer * ptimer) override;
    //DECLARE_MESSAGE_HANDLER(_001OnUser123);
-   virtual void install_message_routing(::channel * pchannel);
+   void install_message_routing(::channel * pchannel) override;
 
 
 };

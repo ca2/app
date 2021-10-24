@@ -13,10 +13,10 @@ namespace opengl
 
 
       program();
-      virtual ~program();
+      ~program() override;
 
 
-      virtual ::e_status create_program(const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
+      ::e_status create_program(::object * pobject, const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
 
 
    };

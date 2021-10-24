@@ -1,9 +1,6 @@
 #pragma once
 
 
-CLASS_DECL_ACME __pointer(::mutex) open_mutex(const char * lpszName);
-
-
 class CLASS_DECL_ACME mutex :
    virtual public synchronization_object
 {
@@ -57,31 +54,31 @@ public:
 #elif defined(MUTEX_NAMED_VSEM)
    mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, i32 semid, bool bOwner = true);
 #endif
-   mutex(enum_create_new ecreatenew, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
+   mutex(::object * pobject, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
    mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
-   virtual ~mutex();
+   ~mutex() override;
 
 
 #ifndef WINDOWS
 
-   virtual bool lock();
+   virtual bool lock() override;
 
-   virtual bool lock(const duration & durationTimeout);
+   virtual bool lock(const class ::wait & wait) override;
 
-   virtual synchronization_result wait();
+   virtual ::e_status _wait() override;
 
-   virtual synchronization_result wait(const duration & durationTimeout);
+   virtual ::e_status _wait(const class ::wait & wait) override;
 
 #endif
 
    using synchronization_object::unlock;
-   virtual bool unlock();
+   virtual bool unlock() override;
 
 
    bool already_exists();
 
 
-   static __pointer(::mutex) open_mutex(const char * lpszName) {return ::open_mutex(lpszName);}
+   ///static __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
 
 
 };
@@ -94,66 +91,3 @@ CLASS_DECL_ACME void wait_until_mutex_does_not_exist(const char * lpszName);
 CLASS_DECL_ACME ::mutex * get_ui_destroyed_mutex();
 
 
-
-
-
-#ifdef WINDOWS_DESKTOP
-
-class security_attributes
-{
-public:
-
-   char sz[32]; // I hope it is enough to hold SECURITY_ATTRIBUTES;
-
-};
-
-
-class null_dacl_security_attributes
-{
-public:
-
-   security_attributes m_securityattributes;
-
-   security_attributes m_securitydescriptor;
-
-   null_dacl_security_attributes();
-
-};
-
-#endif
-
-
-
-namespace install
-{
-
-
-   class CLASS_DECL_ACME mutex :
-#ifdef WINDOWS_DESKTOP
-      public null_dacl_security_attributes,
-#endif
-      public ::mutex
-   {
-   public:
-
-      mutex(string strPlatform, string strSuffix = "");
-
-   };
-
-
-   class CLASS_DECL_ACME admin_mutex :
-#ifdef WINDOWS_DESKTOP
-      public null_dacl_security_attributes,
-#endif
-      public ::mutex
-   {
-   public:
-
-      admin_mutex(string strPlatform, string strSuffix = "");
-
-   };
-
-
-
-
-} // namespace install

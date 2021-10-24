@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -85,4 +85,4 @@ namespace uwp
 
 #endif
 
-} //  namespace uwp
+} //  namespace universal_windows

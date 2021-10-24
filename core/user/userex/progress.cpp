@@ -1,6 +1,9 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#include "acme/const/timer.h"
+#endif
+
+#include "acme/constant/timer.h"
 #include "core/user/userex/progress.h"
 
 namespace userex
@@ -14,7 +17,7 @@ namespace userex
       
       m_iStepCount = 0;
       m_pdocument = nullptr;
-      m_pview = nullptr;
+      m_pimpact = nullptr;
 
 
 
@@ -30,15 +33,15 @@ namespace userex
    void progress_control::set_progress_title(const ::string & pszTitle)
    {
 
-      m_pview->get_parent_frame()->set_window_text(pszTitle);
+      m_pimpact->get_parent_frame()->set_window_text(pszTitle);
 
    }
 
-#ifdef DEBUG
+#ifdef _DEBUG
    i64 progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
-      i64 i = ::progress_control::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      i64 i = ::progress::real::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
       //if (i == 1 && m_pthread.is_set())
       //{
@@ -67,13 +70,13 @@ namespace userex
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_application(), ::e_type_null, __visible(false).is_true());
 
-         m_pview = m_pdocument->get_typed_view<::userex::progress_view>();
+         m_pimpact = m_pdocument->get_typed_view<::userex::progress_view>();
 
       }
 
-      m_pview->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
+      m_pimpact->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
 
-      m_pview->m_pprogresscontrol = this;
+      m_pimpact->m_pprogressreal = this;
 
    }
 
@@ -101,16 +104,16 @@ namespace userex
    void progress_control::redraw()
    {
 
-      if (m_pview == nullptr)
+      if (m_pimpact == nullptr)
       {
 
          return;
 
       }
 
-      m_pview->set_need_redraw();
+      m_pimpact->set_need_redraw();
 
-      m_pview->post_redraw();
+      m_pimpact->post_redraw();
 
 
    }
@@ -223,7 +226,7 @@ namespace userex
    }
 
 
-   void progress_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void progress_view::handle(::subject * psubject, ::context * pcontext)
    {
 
    }
@@ -248,8 +251,7 @@ namespace userex
 
       }
 
-      SetTimer(e_timer_update_current_area, 300);
-
+      SetTimer(e_timer_update_current_area, 300_ms);
 
    }
 
@@ -317,7 +319,7 @@ namespace userex
 
       pgraphics->set_text_color(argb(255, 80, 80, 80));
 
-      pgraphics->draw_text(m_pprogresscontrol->m_strStatus, m_rectStatus, e_align_center);
+      pgraphics->draw_text(m_pprogressreal->m_strStatus, m_rectangleStatus, e_align_center);
 
    }
 
@@ -337,15 +339,15 @@ namespace userex
       int cxBorder = rectangleClient.width() / 16;
       int h = rectangleClient.height() / 4;
 
-      ::rectangle_i32 rectIndicator(rectangleClient);
+      ::rectangle_i32 rectangleIndicator(rectangleClient);
 
-      rectIndicator.deflate(cxBorder, h, cxBorder, h * 2);
+      rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 
-      m_rectStatus = rectangleClient;
+      m_rectangleStatus = rectangleClient;
 
-      m_rectStatus.deflate(cxBorder, h * 2, cxBorder, h);
+      m_rectangleStatus.deflate(cxBorder, h * 2, cxBorder, h);
 
-      m_pprogress->display_child(rectIndicator);
+      m_pprogress->display_child(rectangleIndicator);
 
    }
 

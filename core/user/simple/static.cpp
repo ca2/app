@@ -2,15 +2,14 @@
 #include "core/user/simple/_simple.h"
 
 
-simple_static::simple_static() :
-   m_brushBkg(e_create)
+simple_static::simple_static()
 {
    
    m_pimagelist = nullptr;
    
    m_bTransparent = false;
    
-   m_brushBkg->m_etype = ::draw2d::brush::e_type_null;
+   //m_pbrushBkg->m_etype = ::draw2d::brush::e_type_null;
 
 }
 
@@ -55,7 +54,15 @@ void simple_static::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if (picon != nullptr)
       {
 
-         pgraphics->draw(::rectangle_i32(::point_i32(), ::size_i32(this->get_client_size().get_minimum_dimension())), picon);
+         image_source imagesource(picon);
+
+         rectangle_f64 rectangle(::point_i32(), ::size_i32(this->get_client_size().get_minimum_dimension()));
+
+         image_drawing_options imagedrawingoptions(rectangle);
+
+         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
 
       }
 

@@ -112,8 +112,8 @@ namespace helloworld
 
       if(get_view_id() == ::helloworld::PaneViewHelloWorld
             || get_view_id() == ::helloworld::PaneViewHelloWorldSwitcher
-            || stra.contains(__str((int)::helloworld::PaneViewHelloWorld))
-            || stra.contains(__str((int)::helloworld::PaneViewHelloWorldSwitcher)))
+            || stra.contains(__string((int)::helloworld::PaneViewHelloWorld))
+            || stra.contains(__string((int)::helloworld::PaneViewHelloWorldSwitcher)))
       {
 
 
@@ -141,7 +141,7 @@ namespace helloworld
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_straTitle.implode(" ");
@@ -151,7 +151,7 @@ namespace helloworld
          {
 
             m_pviewLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pviewLastBilbo = dynamic_cast < view * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pviewLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
             m_pviewLast->set_need_layout();
             m_pviewdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_straTitle.implode(" ");
@@ -199,7 +199,7 @@ namespace helloworld
             for (auto & bilbo : m_pviewLastBilbo->m_prender->m_bilboa)
             {
 
-               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __str(i))));
+               m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __string(i))));
 
                m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
@@ -299,17 +299,17 @@ namespace helloworld
    }
 
 
-   void pane_view::on_control_event(::user::control_event * pevent)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && pevent->m_puserinteraction != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pview) == m_pdocMenu->get_view(0) && psubject->user_interaction() != nullptr)
       {
 
-         if(pevent->m_eevent == ::user::e_event_after_change_text)
+         if(psubject->m_id == ::e_subject_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puserinteraction->m_id == "roll_fps" && !pevent->m_context.is_source(::e_source_initialize)
-                  && !pevent->m_context.is_source(::e_source_database))
+            if(m_prollfps != nullptr && psubject->user_element_id() == "roll_fps" && !psubject->m_context.is_source(::e_source_initialize)
+                  && !psubject->m_context.is_source(::e_source_database))
             {
 
                try
@@ -340,7 +340,7 @@ namespace helloworld
 
                      }
                      m_pviewLast->m_dFps = d;
-                     m_pviewLast->m_dwRoll= ::millis::now();
+                     m_pviewLast->m_dwRoll= ::duration::now();
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
@@ -348,7 +348,7 @@ namespace helloworld
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
+                  //   m_prollspf->_001SetText(__string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -356,7 +356,7 @@ namespace helloworld
                }
 
             }
-            //else if(pevent->m_puserinteraction->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
+            //else if(psubject->user_element_id() == "roll_spf" && !psubject->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -371,8 +371,8 @@ namespace helloworld
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
-            //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
+            //         m_pflagview->m_dwRoll= ::duration::now();
+            //         m_prollfps->_001SetText(__string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -383,17 +383,17 @@ namespace helloworld
 
 
          }
-         else if (pevent->m_eevent == ::user::e_event_set_check && pevent->m_puserinteraction != nullptr)
+         else if (psubject->m_id == ::e_subject_set_check && psubject->user_interaction() != nullptr)
          {
 
-            string strCheck = pevent->m_puserinteraction->m_id;
+            string strCheck = psubject->user_element_id();
 
 
             if (::str::begins_eat_ci(strCheck, "bilbo"))
             {
 
-               if (pevent->m_puserinteraction != nullptr && !pevent->m_context.is_source(::e_source_initialize)
-                     && !pevent->m_context.is_source(::e_source_sync))
+               if (psubject->user_interaction() != nullptr && !psubject->m_context.is_source(::e_source_initialize)
+                     && !psubject->m_context.is_source(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);
@@ -401,7 +401,7 @@ namespace helloworld
                   if (m_pviewLastBilbo != nullptr)
                   {
 
-                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = pevent->m_puserinteraction->_001GetCheck() == ::check_checked;
+                     m_pviewLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = psubject->user_interaction()->_001GetCheck() == ::check_checked;
 
                      m_pviewLastBilbo->m_prender->defer_update_bilbo();
 
@@ -413,24 +413,24 @@ namespace helloworld
 
          }
 
-         //if(pevent->m_puserinteraction->m_id == "clockverse")
+         //if(psubject->user_element_id() == "clockverse")
          //   {
-         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_clockverse_country_time_zone_set_on_hover(psubject->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puserinteraction->m_id == "clockverse_auto")
+         //   else if(psubject->user_element_id() == "clockverse_auto")
          //   {
-         //      papplication->set_auto_launch_clockverse_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_clockverse_on_hover(psubject->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puserinteraction->m_id == "flag")
+         //   else if(psubject->user_element_id() == "flag")
          //   {
-         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
+         //      papplication->set_binding_flag_country_ca2_domain_image_on_hover(psubject->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
-         //   else if(pevent->m_puserinteraction->m_id == "flag_auto")
+         //   else if(psubject->user_element_id() == "flag_auto")
          //   {
-         //      papplication->set_auto_launch_flag_on_hover(pevent->m_puserinteraction->_001GetCheck() == ::check_checked);
+         //      papplication->set_auto_launch_flag_on_hover(psubject->user_interaction()->_001GetCheck() == ::check_checked);
          //      return true;
          //   }
          //}
@@ -506,7 +506,7 @@ namespace helloworld
    }
 
 
-   void pane_view::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void pane_view::handle(::subject * psubject, ::context * pcontext)
    {
 
       ::update * pupdate = dynamic_cast <::update *> (pupdate);
@@ -515,14 +515,14 @@ namespace helloworld
       {
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
-               && psubject->m_puserinteraction == m_pfontview
+               && psubject->user_interaction() == m_pfontview
                && m_pviewLast != nullptr)
          {
 
-            if(pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_sel)
+            if(pupdate->m_pusercontrolevent->m_eevent == ::e_subject_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_sel_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -531,22 +531,22 @@ namespace helloworld
 
                   m_pviewLast->m_strNewFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 
             }
-            else if (pupdate->m_pusercontrolevent->m_eevent == ::user::e_event_after_change_cur_hover)
+            else if (pupdate->m_pusercontrolevent->m_eevent == ::e_subject_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pview->get_cur_hover_face_name();
+               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {
 
                   m_pviewLast->m_strHoverFont = strFont;
 
-                  m_pviewLast->on_layout(::draw2d::graphics_pointer & pgraphics);
+                  m_pviewLast->on_layout(pgraphics);
 
                }
 
@@ -556,7 +556,7 @@ namespace helloworld
 
       }
 
-      ::userex::pane_tab_view::on_subject(psubject, pcontext);
+      ::userex::pane_tab_view::handle(psubject, pcontext);
 
    }
 

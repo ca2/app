@@ -1,5 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
 
 
 namespace filemanager
@@ -145,7 +147,7 @@ namespace filemanager
          /*if(m_netcfg.create(m_ptabview))
          {
             pimpactdata->m_pdocument = m_netcfg.m_pdocument;
-            pimpactdata->m_puserinteraction = m_netcfg.m_pview->get_parent_frame();
+            pimpactdata->m_puserinteraction = m_netcfg.m_pimpact->get_parent_frame();
          }*/
 
       }
@@ -175,13 +177,13 @@ namespace filemanager
       }
    }
 
-   void file_properties_form::on_control_event(::user::control_event * pevent)
+   void file_properties_form::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if(pevent->m_eevent == ::user::e_event_click)
+      if(psubject->m_id == ::e_subject_click)
       {
 
-         if(pevent->m_puserinteraction->m_id == "submit")
+         if(psubject->user_interaction()->m_id == "submit")
          {
 
          }

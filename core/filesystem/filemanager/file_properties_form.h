@@ -37,7 +37,7 @@ namespace filemanager
       
       void page2();
 
-      virtual void on_control_event(::user::control_event * pevent) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       
       //virtual ::form_property_set * get_form_property_set() override;
       

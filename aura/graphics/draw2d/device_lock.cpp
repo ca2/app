@@ -1,24 +1,16 @@
+// Refactoring device_lock by camilo by 2021-09-08 16:25 BRT <3ThomasBS__!!
 #include "framework.h"
-#include "aura/operating_system.h"
-
 
 
 namespace draw2d
 {
 
 
-   device_lock::device_lock(::user::interaction * pinteraction)
+   device_lock::device_lock(::matter * pmatter) :
+      m_pmatter(pmatter)
    {
 
-#ifdef _UWP
-
-      __pointer(::aura::system) psystem = m_psystem;
-
-      m_D2DMultithread = pdraw2d->direct2d()->m_d2dMultithread.Get();
-
-      m_D2DMultithread->Enter();
-
-#endif
+      m_pmatter->m_psystem->m_paurasystem->m_pdraw2d->lock_device();
 
    }
 
@@ -26,11 +18,7 @@ namespace draw2d
    device_lock::~device_lock()
    {
 
-#ifdef _UWP
-
-      m_D2DMultithread->Leave();
-
-#endif
+      m_pmatter->m_psystem->m_paurasystem->m_pdraw2d->unlock_device();
 
    }
 

@@ -30,7 +30,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFu
 //}
 
 
-void TRACELASTSTATUS()
+void matter::trace_last_status()
 {
 
    auto estatus = ::get_last_status();
@@ -44,10 +44,9 @@ void TRACELASTSTATUS()
 
    string strStatusMessage = ::get_status_message(estatus);
 
-   TRACE("Status Message :\n%s\n", strStatusMessage.c_str());
+   WARNING("Status Message :\n" << strStatusMessage << "\n");
 
 }
-
 
 
 extern "C"
@@ -132,7 +131,11 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
 //   {
 //
-//      g_iMemoryCounters = file_exists(pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+//      g_iMemoryCounters = m_psystem->m_pacmefile->exists(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
 //
 //      if (g_iMemoryCounters)
 //      {
@@ -161,13 +164,21 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //
 //#if defined(_UWP)
 //
-//      string strBasePath = pacmedir->system() / "memory_counters";
+//      string strBasePath =          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "memory_counters";
 //
 //#else
 //
 //      ::file::path strModule = module_path_from_pid(getpid());
 //
-//      string strBasePath = pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
+//      string strBasePath =          auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->system() / "memory_counters" / strModule.title() / __string(getpid());
 //
 //#endif
 //
@@ -186,9 +197,9 @@ simple_log::simple_log()
 
    m_bReallySimple = true;
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
-   //INFO("Starting Simple Alog");
+   //INFORMATION("Starting Simple Alog");
 
 #endif
 
@@ -198,12 +209,12 @@ simple_log::simple_log()
 simple_log::~simple_log()
 {
 
-   //INFO("Ending Simple Alog");
+   //INFORMATION("Ending Simple Alog");
 
 }
 
 
-void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) const
+void simple_log::print(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
    string str;
@@ -219,7 +230,7 @@ void simple_log::__tracea(enum_trace_level elevel, const char * pszFunction, con
    else
    {
 
-      str.Format("%c %s %d %s\n", trace_level_char(elevel), pszFunction, iLine, psz);
+      str.Format("%c %s %d %s\n", trace_level_char(etracelevel), pszFunction, iLine, psz);
 
    }
 
@@ -299,7 +310,7 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobject, enum_trace_level elevel
       if (iLine >= 1)
       {
 
-         strMessage += "(" + __str(iLine) + ")";
+         strMessage += "(" + __string(iLine) + ")";
 
       }
 
@@ -334,6 +345,33 @@ CLASS_DECL_ACME void __simple_tracev(::matter * pobject, enum_trace_level elevel
 
 }
 
+
+//thread_local __pointer(logger) logger::t_plogger;
+
+
+//logger * logger::create()
+//{
+//
+//   __construct(t_plogger);
+//
+//   return t_plogger.m_p;
+//
+//}
+//
+//
+//void logger::destroy()
+//{
+//
+//   ::release(t_plogger);
+//
+//}
+
+
+//void logger::print(enum_trace_level elevel, enum_trace_category, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+//{
+//
+//
+//}
 
 
 

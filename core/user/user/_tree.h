@@ -1,7 +1,9 @@
 ﻿#pragma once
 
 
-#include "core/filesystem/filemanager/_filemanager.h"
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 
 
 #include "core/user/user/_user.h"

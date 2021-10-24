@@ -25,7 +25,7 @@ namespace acme
    }
 
 
-   bool timer_array::create_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::create_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -41,7 +41,7 @@ namespace acme
 
       auto ptimer = __new(timer_task);
 
-      ptimer->initialize_timer(this, uEvent, pfnTimer, pvoidData, mutex());
+      ptimer->initialize_timer(pobject, this, uEvent, pfnTimer, pvoidData, mutex());
 
       ptimer->m_ptimercallback = this;
 
@@ -52,7 +52,7 @@ namespace acme
       try
       {
 
-         if(!ptimer->start(millis(millisEllapse),bPeriodic))
+         if(!ptimer->start(::duration(millisEllapse),bPeriodic))
          {
 
             bOk = false;
@@ -79,10 +79,10 @@ namespace acme
    }
 
 
-   bool timer_array::set_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
+   bool timer_array::set_timer(::object * pobject, uptr uEvent, ::duration millisEllapse, PFN_TIMER pfnTimer, bool bPeriodic, void * pvoidData)
    {
 
-      if (!create_timer(uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))
+      if (!create_timer(pobject, uEvent, millisEllapse, pfnTimer, bPeriodic, pvoidData))
       {
 
          return false;
@@ -242,7 +242,7 @@ namespace acme
 
                synchronous_lock synchronouslock(ptimer->mutex());
 
-               ptimer->m_eobject -= e_object_success;
+               ptimer->clear(e_flag_success);
 
                if(!ptimer->m_bHandling)
                {

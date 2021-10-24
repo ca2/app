@@ -1,8 +1,10 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_userfs.h"
+#endif
+#include "core/user/user/_tree.h"
 #include "aura/user/shell.h"
 #include "_data.h"
-#include "_userfs.h"
-#include "core/user/user/_tree.h"
 
 
 namespace userfs
@@ -78,7 +80,7 @@ namespace userfs
    string item::data_item_get_text(object * pobject) const
    {
 
-      UNREFERENCED_PARAMETER(pobject);
+      __UNREFERENCED_PARAMETER(pobject);
 
       return m_strName;
 
@@ -88,33 +90,33 @@ namespace userfs
    index item::data_item_get_image(object * pobject) const
    {
 
-      ::user::shell::e_file_attribute efileattribute;
+      ::user::shell::enum_file_attribute efileattribute;
 
       if (m_flags & ::file::e_flag_folder)
       {
 
-         efileattribute = ::user::shell::file_attribute_directory;
+         efileattribute = ::user::shell::e_file_attribute_directory;
 
       }
       else
       {
 
-         efileattribute = ::user::shell::file_attribute_normal;
+         efileattribute = ::user::shell::e_file_attribute_normal;
 
       }
 
-      ::user::shell::e_icon eicon;
+      ::user::shell::enum_icon eicon;
 
       if (m_ptree->is_selected(this))
       {
 
-         eicon = ::user::shell::icon_open;
+         eicon = ::user::shell::e_icon_open;
 
       }
       else
       {
 
-         eicon = ::user::shell::icon_normal;
+         eicon = ::user::shell::e_icon_normal;
 
       }
 
@@ -122,7 +124,29 @@ namespace userfs
 
       auto puser = psession->user();
 
-      return puser->shell()->get_file_image(m_filepathFinal, efileattribute, eicon);
+      auto pshell = puser->shell();
+
+      auto iImage = pshell->get_file_image(m_filepathUser, efileattribute, eicon);
+
+      if (iImage >= 0)
+      {
+
+         return iImage;
+
+      }
+
+      pshell->warn_when_ok(m_filepathUser, m_ptree->m_usertreea);
+
+      iImage = pshell->get_file_image(m_filepathFinal, efileattribute, eicon);
+
+      if(iImage < 0)
+      {
+
+         pshell->warn_when_ok(m_filepathFinal, m_ptree->m_usertreea);
+
+      }
+
+      return iImage;
 
    }
 

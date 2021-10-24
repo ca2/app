@@ -9,8 +9,8 @@ namespace user
 {
 
 
-   //message_box::message_box(const ::string & strMessageParam, const ::string & strTitle, const ::e_message_box & emessagebox) :
-   message_box::message_box() :
+   //default_message_box::message_box(const ::string & strMessageParam, const ::string & strTitle, const ::e_message_box & emessagebox) :
+   default_message_box::default_message_box() :
       m_strFontName("serif"),
       m_size(100, 40),
       m_bOsUserThemeColorModified(false),
@@ -28,10 +28,66 @@ namespace user
    }
 
 
-   ::e_status message_box::show(const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::extended::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   {
+
+      auto emessageboxType = emessagebox & e_message_box_type_mask;
+
+      switch (emessageboxType)
+      {
+      case e_message_box_ok_cancel:
+         add_button("OK", e_dialog_result_ok);
+         add_button("Cancel", e_dialog_result_cancel);
+         break;
+      case e_message_box_abort_retry_ignore:
+         add_button("Abort", e_dialog_result_abort);
+         add_button("Retry", e_dialog_result_retry);
+         add_button("Ignore", e_dialog_result_ignore);
+         break;
+      case e_message_box_yes_no_cancel:
+         add_button("Yes", e_dialog_result_yes);
+         add_button("No", e_dialog_result_no);
+         add_button("Cancel", e_dialog_result_cancel);
+         break;
+      case e_message_box_yes_no:
+         add_button("Yes", e_dialog_result_yes);
+         add_button("No", e_dialog_result_no);
+         break;
+      case e_message_box_retry_cancel:
+         add_button("Retry", e_dialog_result_retry);
+         add_button("Cancel", e_dialog_result_cancel);
+         break;
+      case e_message_box_cancel_try_continue:
+         add_button("Cancel", e_dialog_result_cancel);
+         add_button("Try", e_dialog_result_retry);
+         add_button("Continue", e_dialog_result_continue);
+         break;
+      default:
+         add_button("OK", e_dialog_result_ok);
+         break;
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::e_status default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
+   {
+
+      m_buttona.add(__new(::user::button(strTitle, edialogresult)));
+
+      return ::success;
+
+   }
+
+
+   __pointer(::extended::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
       ///acme_defer_os_init_windowing();
+
+      auto pfuture = this->sequence();
 
       string strMessage(strMessageParam);
 
@@ -45,48 +101,27 @@ namespace user
 
       m_stra.add_lines(strMessage);
 
-      auto emessageboxType = emessagebox & e_message_box_type_mask;
+      m_pbuttonClose = __new(::user::button("", e_dialog_result_close));
 
-      switch (emessageboxType)
-      {
-      case e_message_box_ok_cancel:
-         m_buttona.add(__new(::user::button("OK", e_dialog_result_ok)));
-         m_buttona.add(__new(::user::button("Cancel", e_dialog_result_cancel)));
-         break;
-      case e_message_box_abort_retry_ignore:
-         m_buttona.add(__new(::user::button("Abort", e_dialog_result_abort)));
-         m_buttona.add(__new(::user::button("Retry", e_dialog_result_retry)));
-         m_buttona.add(__new(::user::button("Ignore", e_dialog_result_ignore)));
-         break;
-      case e_message_box_yes_no_cancel:
-         m_buttona.add(__new(::user::button("Yes", e_dialog_result_yes)));
-         m_buttona.add(__new(::user::button("No", e_dialog_result_no)));
-         m_buttona.add(__new(::user::button("Cancel", e_dialog_result_cancel)));
-         break;
-      case e_message_box_yes_no:
-         m_buttona.add(__new(::user::button("Yes", e_dialog_result_yes)));
-         m_buttona.add(__new(::user::button("No", e_dialog_result_no)));
-         break;
-      case e_message_box_retry_cancel:
-         m_buttona.add(__new(::user::button("Retry", e_dialog_result_retry)));
-         m_buttona.add(__new(::user::button("Cancel", e_dialog_result_cancel)));
-         break;
-      case e_message_box_cancel_try_continue:
-         m_buttona.add(__new(::user::button("Cancel", e_dialog_result_cancel)));
-         m_buttona.add(__new(::user::button("Try", e_dialog_result_retry)));
-         m_buttona.add(__new(::user::button("Continue", e_dialog_result_continue)));
-         break;
-      default:
-         m_buttona.add(__new(::user::button("OK", e_dialog_result_ok)));
-         break;
-      }
+      m_pbuttonClose->set_button_style(::user::button::style_stock_icon);
+
+      m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
+
+      m_pbuttonClose->m_flagNonClient -= non_client_background;
+      m_pbuttonClose->m_flagNonClient -= non_client_focus_rect;
+
+      ::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
+
+      m_pbuttonClose->initialize(this);
+
+      m_pbuttonClose->add_handler(this);
 
       for (auto& pbutton : m_buttona)
       {
 
          pbutton->initialize(this);
 
-         pbutton->add_control_event_handler(this);
+         pbutton->add_handler(this);
 
       }
 
@@ -101,28 +136,30 @@ namespace user
       if (!estatus)
       {
 
-         return estatus;
+         pfuture->set_status(error_failed);
+
+         return pfuture;
 
       }
 
       do_show();
 
-      return estatus;
+      return pfuture;
 
    }
 
 
-   void message_box::install_message_routing(::channel * pchannel)
+   void default_message_box::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &message_box::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &default_message_box::on_message_create);
 
    }
 
 
-   i64 message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::user::interaction::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -130,7 +167,7 @@ namespace user
    }
 
 
-   i64 message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::user::interaction::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -138,7 +175,7 @@ namespace user
    }
 
 
-   i64 message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+   i64 default_message_box::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    {
 
       return ::user::interaction::release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
@@ -146,7 +183,7 @@ namespace user
    }
 
 
-   void message_box::common_construct()
+   void default_message_box::common_construct()
    {
 
       m_bFirstLayoutDone = false;
@@ -163,10 +200,12 @@ namespace user
    }
 
 
-   void message_box::on_message_create(::message::message * pmessage)
+   void default_message_box::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
+
+      m_pbuttonClose->create_child(this);
 
       for (auto & pbutton : m_buttona)
       {
@@ -180,17 +219,17 @@ namespace user
    }
 
 
-   message_box::~message_box()
+   default_message_box::~default_message_box()
    {
 
 
    }
 
 
-   void message_box::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void default_message_box::handle(::subject * psubject, ::context * pcontext)
    {
 
-      if (psubject->id() == id_os_user_theme)
+      if (psubject->id() == id_user_style_change)
       {
 
          m_bOsUserThemeColorModified = true;
@@ -198,11 +237,23 @@ namespace user
          invalidate();
 
       }
+      else if (psubject->m_id == ::e_subject_click)
+      {
+
+         m_edialogresult = (enum_dialog_result)psubject->m_puserelement->m_id.i64();
+
+         ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
+
+         set_finish();
+
+      }
+
+      ::user::interaction::handle(psubject, pcontext);
 
    }
 
 
-   void message_box::invalidate()
+   void default_message_box::invalidate()
    {
 
       m_bInvalidated = true;
@@ -210,7 +261,7 @@ namespace user
    }
 
 
-   void message_box::do_show()
+   void default_message_box::do_show()
    {
 
       set_need_layout();
@@ -222,7 +273,7 @@ namespace user
    }
 
 //
-//   void message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
+//   void default_message_box::on_layout(::draw2d::graphics_pointer & pgraphics)
 //   {
 //
 //      int iMaxWidth = 100;
@@ -301,7 +352,7 @@ namespace user
 //   }
 
 
-   void message_box::do_layout()
+   void default_message_box::do_layout()
    {
 
       ::draw2d::graphics_pointer pgraphics;
@@ -309,6 +360,12 @@ namespace user
       pgraphics.create(this);
 
       pgraphics->create_memory_graphics();
+
+      pgraphics->m_puserinteraction = this;
+
+      m_pinteractionScaler = __new(::user::interaction_scaler);
+
+      m_pinteractionScaler->on_display_change(this);
 
       int iMaxWidth = 100;
 
@@ -334,15 +391,15 @@ namespace user
 
       puser->windowing()->display()->get_main_monitor(rectangleMonitor);
 
-      int iButtonGroupWidth = (int) (iMaxWidth * 1.25 * m_buttona.get_count());
+      int iButtonGroupWidth = (int) ((iMaxWidth + 30 * screen_scaler()) * m_buttona.get_count());
 
-      int iWidth = maximum((int)(iButtonGroupWidth * 1.1), rectangleMonitor.width() / 2);
+      int iWidth = maximum((int)(iButtonGroupWidth + 20 * screen_scaler()), rectangleMonitor.width() / 2);
 
-      m_pstill->place({ 10, 10, iWidth - 20, 200 });
+      m_pstill->place({ 30 * screen_scaler(), 10 * screen_scaler(), iWidth - 60 * screen_scaler(), 200 * screen_scaler() });
 
       m_pstill->display();
 
-      int right = (int) (iWidth - 10);
+      int right = (int) (iWidth - 20);
 
       int iButton = (int) m_buttona.get_upper_bound();
 
@@ -351,16 +408,20 @@ namespace user
 
          auto pbutton = m_buttona[iButton];
 
-         pbutton->place({ right - iMaxWidth, 210, right, 280 });
+         pbutton->place({ right - iMaxWidth, 230 * screen_scaler(), right, 280 * screen_scaler() });
          pbutton->display();
-         right -= (int) (iMaxWidth * 1.25);
+         right -= (int) (iMaxWidth + 20 * screen_scaler());
          iButton--;
 
       }
 
       ::rectangle_i32 r;
 
-      r.set_dim(0, 0, iWidth, 300);
+      r.set_dim(0, 0, iWidth, (::i32) (300 * screen_scaler()));
+
+      m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
+
+      m_pbuttonClose->display();
 
       r.Align(e_align_horizontal_center, rectangleMonitor);
 
@@ -389,32 +450,32 @@ namespace user
    }
 
 
-   //bool message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
-   void message_box::on_control_event(::user::control_event * pevent)
+   ////bool default_message_box::process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+   //void default_message_box::handle(::subject * psubject, ::context * pcontext)
+   //{
+
+   //   if (psubject->m_id == ::e_subject_click)
+   //   {
+
+   //      m_edialogresult = (enum_dialog_result) psubject->m_puserelement->m_id.i64();
+
+   //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
+
+   //      set_finish();
+
+   //   }
+
+   //}
+
+
+   void default_message_box::close_window()
    {
 
-      if (pevent->m_eevent == ::user::e_event_click)
-      {
-
-         m_edialogresult = (enum_dialog_result) pevent->m_id.i64();
-
-         ::extended::asynchronous <::conversation>::future()->set_status(::success);
-
-         set_finish();
-
-      }
 
    }
 
 
-   void message_box::close_window()
-   {
-
-
-   }
-
-
-   bool message_box::on_click(int iResult)
+   bool default_message_box::on_click(int iResult)
    {
 
       m_iResult = iResult;
@@ -426,27 +487,47 @@ namespace user
    }
 
 
+   void default_message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::interaction::_001OnDraw(pgraphics);
+
+      rectangle_i32 rectangleClient;
+
+      get_client_rect(rectangleClient);
+
+      auto pstyle = get_style(pgraphics);
+
+      auto colorBorder = pstyle->get_color(this, e_element_border);
+
+      colorBorder.alpha = 100;
+
+      pgraphics->draw_inset_rectangle(rectangleClient, colorBorder);
+
+   }
+
+
 } // namespace user
-
-
 
 
 namespace aura
 {
 
 
-   __pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::future < ::conversation >) system::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto pmessagebox = pobject->__create_new < ::user::message_box >();
+   //   auto pnode = m_pnode->m_pauranode;
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
+   //   auto pfuture = pnode->_message_box(oswindow, strMessage, strTitle, emessagebox);
 
-      pmessagebox->show(pszMessage, pszTitle, emessagebox);
+   //   //auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::future();
 
-      return pfuture;
+   //   //pmessagebox->show(pszMessage, pszTitle, emessagebox);
 
-   }
+   //   return pfuture;
+
+   //}
 
 
 } // namespace aura

@@ -3,6 +3,7 @@
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 
 
 interprocess_intercommunication::interprocess_intercommunication() 
@@ -51,7 +52,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    run_property("on_create");
 
-   call_routine(CREATE_ROUTINE);
+   call_routines_with_id(CREATE_ROUTINE);
 
    estatus = __construct(m_prx);
 
@@ -62,7 +63,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 
    }
 
-   int iPid = m_pcontext->m_papexcontext->os().get_pid();
+   int iPid = m_pcontext->m_papexcontext->os_context()->get_pid();
 
    //defer_add_module(m_pcontext->m_papexcontext->file().module(), iPid);
 
@@ -157,7 +158,7 @@ bool interprocess_intercommunication::start(const ::string & strApp)
       if(ida.is_empty())
       {
 
-         branch(plauncher);
+         branch_task(plauncher);
 
          int iStep = 0;
 
@@ -197,7 +198,7 @@ started:
 
    }
 
-   string strKey = strApp + ":" + __str(idPid);
+   string strKey = strApp + ":" + __string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -214,7 +215,7 @@ started:
 bool interprocess_intercommunication::connect(const ::string & strApp, const ::id & idPid)
 {
 
-   string strKey = strApp + ":" + __str(idPid);
+   string strKey = strApp + ":" + __string(idPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -242,7 +243,7 @@ bool interprocess_intercommunication::connect(const ::string & strApp, const ::i
 ::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::id & iPid)
 {
 
-   string strKey = strApp + ":" + __str(iPid);
+   string strKey = strApp + ":" + __string(iPid);
 
    if(m_txmap[strKey].is_null())
    {
@@ -284,7 +285,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #else
 
-   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __str(idPid);
+   strKey = "::ca2::account::ccwarehouse::" + strApp + ":" + __string(idPid);
 
 #endif
 
@@ -292,7 +293,7 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #ifdef LINUX
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 #elif defined(__APPLE__)
 
@@ -308,13 +309,13 @@ string interprocess_intercommunication::key(const string &strApp, const ::id & i
 
 #ifdef MACOS
 
-   strKey += "/" + __str(idPid.i32());
+   strKey += "/" + __string(idPid.i32());
 
 #endif
 
 #else
 
-   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __str(idPid);
+   strKey = m_psystem->m_pacmedir->system() / "interprocess_intercommunication" / strApp / __string(idPid);
 
 
 #endif
@@ -338,32 +339,34 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, const ::string & pszMessage)
+void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage)
 {
 
-   string str(pszMessage);
+   INFORMATION("::interprocess_intercommunication::on_receive " << strMessage);
 
-   INFO("::interprocess_intercommunication::on_receive %s", pszMessage);
-
-   if(!::str::begins_eat(str, "call "))
+   if(!::str::begins_eat(strMessage, "call "))
    {
 
       return;
 
    }
 
-   ::i64 iCall = ::str::consume_natural(str);
+   ::i64 iCall = ::str::consume_natural(strMessage);
 
-   if(!::str::begins_eat(str, " from "))
+   if(!::str::begins_eat(strMessage, " from "))
    {
 
       return;
 
    }
 
-   string strFrom = ::str::consume_non_spaces(str);
+   string strAppFrom;
+   
+   strMessage.eat_before(strAppFrom, ":");
 
-   string strAppFrom = ::str::token(strFrom, ":");
+   string strAppPid;
+   
+   strMessage.eat_before(strAppPid, " ");
 
    if(strAppFrom.is_empty())
    {
@@ -372,16 +375,27 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    }
 
-   ::id idPidFrom = strFrom;
-
-   if(idPidFrom.is_empty() || (idPidFrom.is_integer() && idPidFrom.i64() == 0))
+   if (strAppPid.is_empty())
    {
 
       return;
 
    }
 
-   strsize iFind = str.find(":");
+#if !defined(_UWP)
+
+   auto iPid = atoll(strAppPid);
+
+   if(iPid == 0)
+   {
+
+      return;
+
+   }
+
+#endif
+
+   strsize iFind = strMessage.find(":");
 
    string str1;
 
@@ -403,13 +417,13 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
    if(iFind > 3)
    {
 
-      str1 = str.Left(iFind);
+      str1 = strMessage.Left(iFind);
 
    }
    else
    {
 
-      str1 = str;
+      str1 = strMessage;
 
    }
 
@@ -431,7 +445,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
    if(iFind >= 0)
    {
 
-      str1 = str.Mid(iFind + 1);
+      str1 = strMessage.Mid(iFind + 1);
 
       str1.trim();
 
@@ -460,9 +474,9 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       pcall->add_arg(varRet);
 
-      pcall->set_timeout(1_min);
+      pcall->set_timeout(1_minute);
 
-      pcall->post(idPidFrom);
+      pcall->post(strAppPid);
 
    }
 
@@ -602,7 +616,7 @@ id_array interprocess_intercommunication::get_pid(const ::string & strApp)
 
    pathModule /= strApp + ".module_list";
 
-   string strModuleList = file_as_string(pathModule);
+   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
    stra.add_lines(strModuleList);
 
@@ -702,7 +716,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    
    ::file::path pathPid = pnode->module_path_from_pid((::u32)idPid.i64());
 
-   string strModuleList = file_as_string(pathModule);
+   string strModuleList = m_psystem->m_pacmefile->as_string(pathModule);
 
    m_straModule.add_lines(strModuleList);
 
@@ -782,13 +796,13 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
    if (pathPid.has_char())
    {
 
-      strItem = pathPid + "|" + __str(idPid);
+      strItem = pathPid + "|" + __string(idPid);
 
    }
    else
    {
 
-      strItem = strModule + "|" + __str(idPid);
+      strItem = strModule + "|" + __string(idPid);
    }
 
 

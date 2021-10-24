@@ -6,7 +6,7 @@
 #ifdef PARALLELIZATION_PTHREAD
 
 
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 
 #endif
@@ -81,7 +81,7 @@ int_bool message_queue::post_message(const MESSAGE & message)
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    m_messagea.add(message);
 
@@ -92,29 +92,39 @@ int_bool message_queue::post_message(const MESSAGE & message)
 }
 
 
-int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
+void message_queue::kick_idle()
+{
+
+   _synchronous_lock synchronouslock(mutex());
+
+   m_bKickIdle = true;
+
+   m_eventNewMessage.set_event();
+
+}
+
+
+::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const ::duration & duration)
 {
 
    if (wMsgFilterMax == 0)
    {
 
-      wMsgFilterMax = (::u32)-1;
+      wMsgFilterMax = 0xffffffffu;
 
    }
 
-   ::i64 iMessage = -1;
-
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    while (true)
    {
 
-      for (i32 i = 0; i < m_messagea.get_count();)
+      for (::index i = 0; i < m_messagea.get_count();)
       {
 
-         auto & msg = m_messagea[i];
+         auto & message = m_messagea[i];
 
-         if (msg.m_id == e_message_quit)
+         if (message.m_id == e_message_quit)
          {
 
             m_bQuit = true;
@@ -126,31 +136,26 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
             // 2021-07-22 15:03 BRT quit message would be last message and empty message queue?
             m_messagea.erase_all();
 
-            break;
+            return status_quit;
 
          }
 
-         iMessage = msg.m_id.i64();
+         auto iMessage = message.m_id.i64();
 
-         if ((oswindow == nullptr || msg.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
+         if ((oswindow == nullptr || message.oswindow == oswindow) && iMessage >= wMsgFilterMin && iMessage <= wMsgFilterMax)
          {
 
-            *pMsg = msg;
+            *pmessage = message;
 
             m_messagea.erase_at(i);
 
-            return true;
+            m_bKickIdle = false;
+
+            return ::success;
 
          }
 
          i++;
-
-      }
-
-      if(m_bQuit)
-      {
-
-         return false;
 
       }
 
@@ -159,15 +164,7 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
 
          m_bKickIdle = false;
 
-         pMsg->oswindow = nullptr;
-         pMsg->m_id = (enum_message) WM_KICKIDLE;
-         pMsg->wParam = 0;
-         pMsg->lParam = 0;
-         pMsg->pt.x = INT_MIN;
-         pMsg->pt.y = INT_MIN;
-         pMsg->time = 0;
-
-         return true;
+         return status_kick_idle;
 
       }
 
@@ -178,13 +175,14 @@ int_bool message_queue::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMs
          if(!m_eventNewMessage.wait(duration).succeeded())
          {
 
-            return -1;
+            return error_wait_timeout;
 
          }
 
          synchronouslock.lock();
 
          m_eventNewMessage.ResetEvent();
+
 
       }
 
@@ -203,7 +201,7 @@ int_bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMs
 
    }
 
-   synchronous_lock synchronouslock(mutex());
+   _synchronous_lock synchronouslock(mutex());
 
    ::count count = m_messagea.get_count();
 

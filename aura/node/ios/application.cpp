@@ -29,9 +29,9 @@ namespace aura
 //      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
-//   ::user::document * application::_001OpenDocumentFile(::payload varFile)
+//   ::user::document * application::_001OpenDocumentFile(::payload payloadFile)
 //   {
-//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
+//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
 
@@ -45,7 +45,7 @@ namespace aura
 
 //   bool application::_001OnDDECommand(const ::string & pcsz)
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 //      return false;
 //   }
 //
@@ -383,7 +383,7 @@ namespace aura
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      UNREFERENCED_PARAMETER(bShow);
+//      __UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 //
@@ -418,7 +418,7 @@ namespace aura
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      UNREFERENCED_PARAMETER(bShow);
+//      __UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 
@@ -428,7 +428,7 @@ namespace aura
 //   void application::show_wait_cursor(bool bShow)
 //   {
 //
-//      UNREFERENCED_PARAMETER(bShow);
+//      __UNREFERENCED_PARAMETER(bShow);
 //
 //   }
 

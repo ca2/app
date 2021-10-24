@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_user.h"
 #include "aura/update.h"
-#include "acme/const/id.h"
+#include "acme/constant/id.h"
 
 
 html_document::html_document()
@@ -104,7 +104,7 @@ void html_document::dump(dump_context & dumpcontext) const
 void html_document::data_on_after_change(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -178,7 +178,7 @@ property_set * html_document::form_document_get_property_set()
 //}
 
 
-bool html_document::on_open_document(const ::payload & varFile)
+bool html_document::on_open_document(const ::payload & payloadFile)
 {
 
    auto phtmlform = get_typed_view < ::html_form >();
@@ -217,7 +217,7 @@ bool html_document::on_open_document(const ::payload & varFile)
    if (::is_null(phtmlform->get_form_callback()))
    {
 
-      auto pcallback = varFile["form_callback"].cast < ::user::form_callback >();
+      auto pcallback = payloadFile["form_callback"].cast < ::user::form_callback >();
 
       if (pcallback)
       {
@@ -228,7 +228,7 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    }
 
-   if(!phtmldata->open_document(varFile))
+   if(!phtmldata->open_document(payloadFile))
    {
 
       return false;
@@ -239,11 +239,11 @@ bool html_document::on_open_document(const ::payload & varFile)
 
    auto phtmldocument = this;
 
-   auto psubject = phtmldocument->subject(id_document_complete);
+   ::subject subject(id_document_complete);
 
-   psubject->payload(id_url) = varFile;
+   subject.payload(id_url) = payloadFile;
 
-   phtmldocument->update_all_views(psubject);
+   phtmldocument->update_all_views(&subject);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -399,10 +399,10 @@ void html_document::on_command(::message::command * pcommand)
 }
 
 
-bool html_document::open_document(const ::payload & varFile)
+bool html_document::open_document(const ::payload & payloadFile)
 {
 
-   return on_open_document(varFile) != false;
+   return on_open_document(payloadFile) != false;
 
 }
 

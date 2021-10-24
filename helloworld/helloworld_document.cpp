@@ -48,10 +48,10 @@ namespace helloworld
    }
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      view * pview = get_typed_view < view >();
+      impact * pview = get_typed_view < impact >();
 
       if(pview == nullptr)
       {
@@ -60,34 +60,34 @@ namespace helloworld
 
       }
 
-      string strPath = varFile.get_file_path();
+      string strPath = payloadFile.get_file_path();
 
-      varFile["url"] = strPath;
+      payloadFile["url"] = strPath;
 
-      varFile["http_set"]["raw_http"] = true;
-      varFile["http_set"]["disable_common_name_cert_check"] = true;
+      payloadFile["http_set"]["raw_http"] = true;
+      payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
       string str;
 
-/*      if(pview->m_prender->m_pimageImage->load_image(varFile))
+/*      if(pview->m_prender->m_pimageImage->load_image(payloadFile))
       {
 
-         get_typed_view < view >()->m_strImage = varFile["url"];
+         get_typed_view < impact >()->m_strImage = payloadFile["url"];
 
          {
 
-            synchronous_lock slText(get_typed_view < view >() != nullptr  ? &get_typed_view < view >()->m_mutexText : nullptr);
+            synchronous_lock slText(get_typed_view < impact >() != nullptr  ? &get_typed_view < impact >()->m_mutexText : nullptr);
 
-            get_typed_view < view >()->m_strHelloWorld = "image:" + get_typed_view < view >()->m_strImage + "," + get_typed_view < view >()->m_strHelloWorld;
+            get_typed_view < impact >()->m_strHelloWorld = "image:" + get_typed_view < impact >()->m_strImage + "," + get_typed_view < impact >()->m_strHelloWorld;
 
-            get_typed_view < view >()->set_need_layout(true);
+            get_typed_view < impact >()->set_need_layout(true);
 
          }
 
       }
       else if(get_typed_view < ::user::plain_edit_view >() != nullptr
-              && pcontext->m_papexcontext->file().exists(varFile)
-              && (str = pcontext->m_papexcontext->file().as_string(varFile)).has_char())
+              && pcontext->m_papexcontext->file().exists(payloadFile)
+              && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
       {
 
          get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);

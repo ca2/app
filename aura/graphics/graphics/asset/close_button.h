@@ -5,12 +5,12 @@ namespace user
 {
 
 
-   inline void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::user::item* pitem)
+   inline void draw_close_button(::draw2d::graphics_pointer& pgraphics, ::user::interaction * puserinteraction,  ::item* pitem)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::draw2d::pen_pointer ppen(e_create);
+      auto ppen = __create < ::draw2d::pen > ();
 
       ::draw2d::brush_pointer pbrush(e_create);
 
@@ -18,7 +18,7 @@ namespace user
 
       ::rectangle_f64 rectangle_f64(pitem->m_rectangle);
 
-      auto color = puserinteraction->get_color(pstyle, ::user::e_element_background);
+      auto color = puserinteraction->get_color(pstyle, ::e_element_background);
 
       ppen->create_solid(rectangle_f64.minimum_dimension() / 10.0, color);
 
@@ -26,7 +26,7 @@ namespace user
 
       pgraphics->set(pbrush);
 
-      if (puserinteraction->m_itemHover == ::user::e_element_close_button)
+      if (puserinteraction->m_itemHover == ::e_element_close_button)
       {
 
          color.m_iA = 180;

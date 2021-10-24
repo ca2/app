@@ -11,6 +11,9 @@ namespace base
    public:
 
 
+
+
+
 //      __pointer(::aura::application)                     m_papplicationStartup;
 //
 //      __composite(::aura::system)                        m_psystemParent;
@@ -98,7 +101,7 @@ namespace base
 //
 //      bool                                               m_bGudoNetCache;
 //
-//      __composite(::process::department)                 m_pprocess;
+//      __composite(::operating_system::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
 //      ::e_display                                         m_edisplay;
@@ -117,8 +120,8 @@ namespace base
 //      string                                             m_strInstallVersion;
 //      string                                             m_strInstallPlatform;
 //
-//      millis                                               m_millisMainStart;
-//      millis                                               m_millisAfterApplicationFirstRequest;
+//      ::duration                                               m_durationMainStart;
+//      ::duration                                               m_durationAfterApplicationFirstRequest;
 //
 //      ::mutex                                 m_spmutexOpenweatherCity;
 //
@@ -137,7 +140,7 @@ namespace base
 //
 //      string_array                                            m_straCommandLineAccumul;
 //      string_array                                            m_straCommandLineExtra;
-//      millis                                               m_millisCommandLineLast;
+//      ::duration                                               m_durationCommandLineLast;
 //      int                                                m_iCommandLineDelay;
 //      ::task_pointer                                m_pthreadCommandLine;
 //
@@ -156,8 +159,8 @@ namespace base
 //
 //#else
 //
-//      rectangle_i32_array                                         m_rectaMonitor;
-//      rectangle_i32_array                                         m_rectaWork;
+//      rectangle_i32_array                                         m_rectangleaMonitor;
+//      rectangle_i32_array                                         m_rectangleaWork;
 //
 //#endif
 //
@@ -242,7 +245,7 @@ namespace base
 //
 //#ifdef _UWP
 //
-//      Agile < Windows::UI::Core::CoreWindow >      m_window;
+//      Agile < ::winrt::Windows::UI::Core::CoreWindow >      m_window;
 //
 //#endif
 //
@@ -280,7 +283,7 @@ namespace base
 //      inline ::gpu::approach* gpu() { return m_pgpu.get(); };
 //      virtual ::e_status create_gpu();
 //
-//      ::task_group * task_group(::e_priority epriority = ::priority_none);
+//      ::task_group * task_group(::enum_priority epriority = ::e_priority_none);
 //
 //      ::task_tool * task_tool(::enum_task_tool etool);
 //
@@ -390,7 +393,7 @@ namespace base
 //
 //
 //      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
-//      //thread_tools * tools(::e_priority epriority);
+//      //thread_tools * tools(::enum_priority epriority);
 //      //thread_toolset * toolset(e_tool etool);
 //
 //      class ::user::window_map                     &  window_map();
@@ -409,7 +412,7 @@ namespace base
 //
 //
 //      ::aura::str                                  &  str();
-//      ::process::department                        &  process();
+//      ::operating_system::department                        &  process();
 //
 //
 //      ::xml::department                            &  xml();
@@ -530,10 +533,10 @@ namespace base
 //
 //      virtual ::e_status initialize_sockets();
 //
-//      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+//      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
 //      ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 //
-//      ::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bCache = true, bool bSync = false);
+//      ::image_pointer get_image(::object * pobject, const ::payload & payloadFile, bool bCache = true, bool bSync = false);
 //      ::image_pointer matter_image(::object * pobject, const ::string & strMatter, bool bCache = true, bool bSync = false);
 //
 //      virtual bool on_get_thread_name(string& strThreadName) override;
@@ -711,7 +714,7 @@ namespace base
 //
 //      virtual bool merge_accumulated_on_open_file(::create * pcreate);
 //
-//      virtual bool on_open_file(::payload varFile, string strExtra);
+//      virtual bool on_open_file(::payload payloadFile, string strExtra);
 //
 //      virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 //
@@ -890,7 +893,7 @@ namespace base
 //
 //
 //
-////      virtual bool wait_twf(millis tickTimeout = U32_INFINITE_TIMEOUT);
+////      virtual bool wait_twf(::duration tickTimeout = U32_INFINITE_TIMEOUT);
 //
 //
 //
@@ -910,7 +913,7 @@ namespace base
 //      //virtual ::e_status do_request(::create* pcommand) override;
 //
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      virtual void set_context(::context* pcontext) override;
 //      virtual void set_context_thread(::thread* pthread) override;
@@ -979,7 +982,7 @@ namespace base
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
 //      //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 //
-//      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+//      virtual void handle(::subject * psubject, ::context * pcontext) override;
 //
 //      // virtual void on_command_create(::create* pcreate);
 //

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-namespace uwp
+namespace universal_windows
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -38,8 +38,8 @@ namespace uwp
       native_buffer(StorageFile ^ file);
       virtual ~native_buffer();
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       operator StorageFile ^ () const;
 
@@ -50,7 +50,7 @@ namespace uwp
       virtual ::file::path get_file_path() const override;
       virtual void set_file_path(const ::file::path & pathNewName) override;
 
-      virtual ::extended::status open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::file::e_open & eopen);
+      virtual ::extended::status open(::winrt::Windows::Storage::StorageFolder ^ folder, const ::file::path & lpszfileName, const ::file::e_open & eopen);
       virtual ::extended::status open(const ::file::path & lpszfileName, const ::file::e_open & eopen) override;
 
       //virtual bool GetStatus(const ::file::path & lpszfileName,::file::file_status& rStatus);
@@ -60,7 +60,7 @@ namespace uwp
 
       //virtual __pointer(::file::file) Duplicate() const;
 
-      virtual filesize seek(filesize lOff,::file::e_seek nFrom) override;
+      virtual filesize seek(filesize lOff,::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
       virtual filesize get_size() const override;
 
@@ -82,7 +82,7 @@ namespace uwp
    };
 
 
-} // namespace uwp
+} // namespace universal_windows
 
 
 

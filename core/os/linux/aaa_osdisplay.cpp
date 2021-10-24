@@ -281,25 +281,25 @@ void enum_display_monitors(::aura::system * psystem)
 
       ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
 
-      psystem->m_rectaWork.set_size(iMonitorCount);
+      psystem->m_rectangleaWork.set_size(iMonitorCount);
 
-      psystem->m_rectaMonitor.set_size(iMonitorCount);
+      psystem->m_rectangleaMonitor.set_size(iMonitorCount);
 
       for(index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
       {
 
          GdkMonitor * pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
 
-         auto & rectWork = psystem->m_rectaWork[iMonitor];
+         auto & rectangleWork = psystem->m_rectangleaWork[iMonitor];
 
-         auto & rectMonitor = psystem->m_rectaMonitor[iMonitor];
+         auto & rectangleMonitor = psystem->m_rectangleaMonitor[iMonitor];
 
          if(pmonitor == nullptr)
          {
 
-            rectWork.Null();
+            rectangleWork.Null();
 
-            rectMonitor.Null();
+            rectangleMonitor.Null();
 
             continue;
 
@@ -311,13 +311,13 @@ void enum_display_monitors(::aura::system * psystem)
 
          gdk_monitor_get_workarea(pmonitor, &rectangle);
 
-         __copy(rectWork, rectangle);
+         __copy(rectangleWork, rectangle);
 
          __zero(rectangle);
 
          gdk_monitor_get_geometry(pmonitor, &rectangle);
 
-         __copy(rectMonitor, rectangle);
+         __copy(rectangleMonitor, rectangle);
 
       }
 

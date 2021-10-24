@@ -19,6 +19,7 @@ typedef unsigned char         byte;
 
 
 
+
 #ifdef __cplusplus
 
 template < typename TYPE, typename MINIMUM, typename MAXIMUM >

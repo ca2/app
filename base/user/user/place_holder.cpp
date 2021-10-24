@@ -38,6 +38,94 @@ namespace user
    }
 
 
+   bool place_holder::on_add_child(::user::interaction * puserinteractionChild)
+   {
+
+      if (m_puserinteractionpointeraChild)
+      {
+
+         if(m_puserinteractionpointeraChild->interaction_count() == 1
+         && m_puserinteractionpointeraChild->first_interaction() == puserinteractionChild)
+         {
+
+            return true;
+
+         }
+         else if (m_puserinteractionpointeraChild->interaction_count() == 1)
+         {
+
+            __pointer(::user::interaction) puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
+
+            puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+
+            m_puserinteractionpointeraChild->m_interactiona.set_at(0, puserinteractionChild);
+
+            if (puserinteractionOld)
+            {
+
+               puserinteractionOld->m_puserinteraction->m_puserinteractionParent.release();
+
+               __pointer(::user::interaction) puserinteractionParent = this;
+
+               auto pimpact = puserinteractionChild->cast < ::user::impact>();
+
+               if (pimpact)
+               {
+
+                  while (puserinteractionParent)
+                  {
+
+                     __pointer(::user::frame) pframe = puserinteractionParent;
+
+                     if (pframe)
+                     {
+
+                        if (pframe->get_active_view() == puserinteractionOld)
+                        {
+
+                           pframe->set_active_view(pimpact);
+
+                        }
+
+                     }
+
+                     puserinteractionParent = puserinteractionParent->get_parent();
+
+                  }
+
+               }
+
+
+               puserinteractionOld->set_finish();
+
+            }
+
+            return true;
+
+         }
+         else if(m_puserinteractionpointeraChild->interaction_count() > 1)
+         {
+
+            throw exception(error_wrong_state);
+
+         }
+
+      }
+
+      auto bOk = ::user::interaction::on_add_child(puserinteractionChild);
+
+      if(!bOk)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    bool place_holder::can_merge(::user::interaction * pinteraction)
    {
 
@@ -94,6 +182,45 @@ namespace user
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
       return puserinteractionpointeraChild->contains_interaction(pinteraction);
+
+   }
+
+   bool place_holder::is_this_visible(enum_layout elayout)
+   {
+
+      return ::user::interaction::is_this_visible(elayout);
+
+//      if (!m_pimpl)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if(!m_puserinteractionpointeraChild)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if(m_puserinteractionpointeraChild->interaction_count() != 1)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      auto puserinteraction = m_puserinteractionpointeraChild->first_interaction();
+//
+//      if(::is_null(puserinteraction))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return puserinteraction->is_this_visible();
 
    }
 
@@ -299,7 +426,7 @@ namespace user
    void place_holder::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -307,7 +434,7 @@ namespace user
    void place_holder::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -390,11 +517,11 @@ namespace user
    }
 
 
-   void place_holder::route_command_message(::message::command * pcommand)
+   void place_holder::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       // then pump through frame
-      ::user::interaction::route_command_message(pcommand);
+      ::user::interaction::route_command(pcommand);
 
       if(pcommand->m_bRet)
          return;
@@ -405,7 +532,7 @@ namespace user
       if (puiParent != nullptr)
       {
 
-         puiParent->route_command_message(pcommand);
+         puiParent->route_command(pcommand);
 
          if (pcommand->m_bRet)
          {

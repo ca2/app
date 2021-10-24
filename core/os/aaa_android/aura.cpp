@@ -16,7 +16,7 @@
 //CLASS_DECL_CORE ::u32 get_last_error()
 //{
 //
-//   millis t_tickLastError;
+//   ::duration t_tickLastError;
 //
 //}
 //
@@ -46,18 +46,6 @@ void sleep(::u32 dwMillis)
 }
 
 
-
-
-
-
-
-//void output_debug_string(const ::string & psz)
-//{
-//
-//   output_debug_string(psz);
-//
-//}
-//
 
 
 

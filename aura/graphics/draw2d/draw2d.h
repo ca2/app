@@ -30,7 +30,7 @@ namespace draw2d
 
 
       draw2d();
-      virtual ~draw2d();
+      ~draw2d() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -45,7 +45,7 @@ namespace draw2d
       virtual ::e_status destroy() override;
 
 
-      __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
+      __pointer(save_image) new_save_image(const ::payload& payloadFile, const ::payload& varOptions);
 
 
       virtual graphics_pointer create_graphics();
@@ -62,7 +62,7 @@ namespace draw2d
 
       
 
-      e_format file_extension_to_format(const ::payload & varFile);
+      e_format file_extension_to_format(const ::payload & payloadFile);
       e_format text_to_format(string str);
       
       virtual ::e_status initialize_write_text();
@@ -111,6 +111,10 @@ namespace draw2d
       virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, ::color::color crSpreadSetColor);
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
+
+
+      virtual ::e_status lock_device();
+      virtual ::e_status unlock_device();
 
 
    };

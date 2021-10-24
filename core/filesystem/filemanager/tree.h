@@ -7,7 +7,7 @@ namespace filemanager
 
    class CLASS_DECL_CORE tree :
       virtual public ::userfs::tree,
-      virtual public ::filemanager_impact
+      virtual public ::filemanager_impact_base
    {
    public:
 
@@ -50,6 +50,16 @@ namespace filemanager
       virtual ~tree();
 
 
+#ifdef _DEBUG
+
+
+      virtual i64 increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+      virtual i64 release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+
+
+#endif
+
       inline ::core::application* get_application() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
       inline ::core::session* get_session() const { return m_pcontext ? m_pcontext->m_pcoresession : nullptr; }
       inline ::core::system* get_system() const { return m_psystem ? m_psystem->m_pcoresystem : nullptr; }
@@ -58,8 +68,8 @@ namespace filemanager
       virtual ::e_status initialize_filemanager_tree(document * pdocument);
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
       virtual void _001InsertColumns() override;
 
@@ -102,7 +112,7 @@ namespace filemanager
 
       void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);

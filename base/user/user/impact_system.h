@@ -40,7 +40,7 @@ namespace user
       };
 
 
-      string                           m_strToolbar;
+      //::id                             m_idToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 
       ::user::interaction *            m_puserinteractionOwner;
@@ -59,14 +59,14 @@ namespace user
       //HMENU                 m_hMenuInPlaceServer;
       //HACCEL                m_hAccelInPlaceServer;
 
-      ::file::path                  m_strMatter;                 // IDR_ for frame/menu/accel as well
+      //::file::path                  m_strMatter;                 // IDR_ for frame/menu/accel as well
       //string                m_strServerMatter;           // IDR_ for OLE inplace frame/menu/accel
       //::u32                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //::u32                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
       ::type               m_typeDocument;         // class for creating new documents
       ::type               m_typeFrame;       // class for creating new frames
-      ::type               m_typeView;        // class for creating new views
+      ::type               m_typeImpact;        // class for creating new views
       //::type       m_pOleFrameClass;    // class for creating in-place frame
       //::type       m_pOleViewClass;     // class for creating in-place ::user::impact
 
@@ -74,12 +74,12 @@ namespace user
       // The ::user::document names sub-strings are represented as _one_ string:
       // windowTitle\ndocName\n ... (see DocStringIndex enum)
 
-      impact_system(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pViewClass);
-      virtual ~impact_system();
+      impact_system(const ::id & id, const ::type & typeDocument, const ::type & typeFrame, const ::type & typeImpact);
+      ~impact_system() override;
 
 
-      virtual void dump(dump_context &) const override;
-      virtual void assert_valid() const override;
+      void dump(dump_context &) const override;
+      void assert_valid() const override;
 
 
       virtual void load_template();
@@ -97,9 +97,9 @@ namespace user
       //   bool bCreateView);
 
       virtual void update_all_views(::user::impact * pimpact, const ::id & id);
-      virtual void update_all_views(::subject::subject * psubject);
+      virtual void update_all_views(::subject * psubject);
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 
@@ -118,7 +118,7 @@ namespace user
 
 
       virtual void on_idle();             // for all documents
-      virtual void route_command_message(::message::command * pcommand) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
       bool on_open_document(::user::document * pdocument, ::create * pcreate);

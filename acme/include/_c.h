@@ -44,3 +44,14 @@ CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, size_t l_len, con
 
 CLASS_DECL_ACME::u32 __u32_hash(const char* psz);
 
+// Contains a 64-bit value representing the number
+// of 100-nanosecond intervals since January 1, 1601 (UTC).
+typedef u64 filetime_t;
+
+
+#include "acme/constant/_constant.h"
+#include "acme/constant/_enumeration.h"
+#include "acme/primitive/duration/_struct.h"
+
+
+

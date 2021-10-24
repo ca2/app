@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
 #include "_data.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
+#endif
+
 #include "core/user/user/_tree.h"
 
 
@@ -32,7 +35,7 @@ namespace userfs
       }
 
 
-      create_factory <::userfs::main_view > ();
+      create_factory <::userfs::main_impact > ();
       create_factory <::userfs::tree > ();
       create_factory <::userfs::list > ();
       create_factory <::userfs::list_item > ();
@@ -78,7 +81,7 @@ namespace core
    ::e_status user::userfs_process_init()
    {
 
-      INFO("start");
+      INFORMATION("start");
 
       //m_puserfs = create_userfs();
 
@@ -87,7 +90,7 @@ namespace core
       if (!estatus)
       {
 
-         ERR(".1");
+         ERROR(".1");
 
          m_result.add(estatus);
 
@@ -99,7 +102,7 @@ namespace core
 
       //m_puserfs->construct(this);
 
-      INFO("ok");
+      INFORMATION("ok");
 
       return ::success;
 
@@ -109,7 +112,7 @@ namespace core
    ::e_status user::userfs_init1()
    {
 
-      INFO("start");
+      INFORMATION("start");
 
       auto estatus = m_puserfs->init1();
 
@@ -118,13 +121,13 @@ namespace core
 
          m_result.add(estatus);
 
-         ERR(".1");
+         ERROR(".1");
 
          return estatus;
 
       }
 
-      INFO("ok");
+      INFORMATION("ok");
 
       return ::success;
 

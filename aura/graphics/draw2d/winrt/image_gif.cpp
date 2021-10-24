@@ -1,7 +1,7 @@
 #ifdef _UWP
 
 
-CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp)
+CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp)
 {
 
    if (!defer_co_initialize_ex(true))
@@ -63,7 +63,7 @@ CLASS_DECL_AURA bool windows_load_image_from_file(::image * pimage, Windows::Sto
 }
 
 
-CLASS_DECL_AURA bool node_save_image(const ::image * pimage, Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp)
+CLASS_DECL_AURA bool node_save_image(const ::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::aura::application * papp)
 {
 
    if (!defer_co_initialize_ex(true))

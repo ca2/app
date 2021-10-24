@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "aura/update.h"
 #include "aura/user/menu_command.h"
 
@@ -41,18 +44,18 @@ namespace filemanager
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &file_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &file_list::_001OnKillFocus);
 
-      connect_command_probe("edit_copy", &file_list::_001OnUpdateEditCopy);
-      connect_command("edit_copy", &file_list::_001OnEditCopy);
-      connect_command_probe("trash_that_is_not_trash", &file_list::_001OnUpdateTrashThatIsNotTrash);
-      connect_command("trash_that_is_not_trash", &file_list::_001OnTrashThatIsNotTrash);
-      connect_command_probe("open_with", &file_list::_001OnUpdateOpenWith);
-      //connect_command_probe("spafy", &file_list::_001OnUpdateSpafy);
-      //connect_command("spafy", &file_list::_001OnSpafy);
-      //connect_command_probe("spafy2", &file_list::_001OnUpdateSpafy2);
-      //connect_command("spafy2", &file_list::_001OnSpafy2);
-      connect_command_probe("file_rename", &file_list::_001OnUpdateFileRename);
-      connect_command("file_rename", &file_list::_001OnFileRename);
-      connect_command("file_open", &file_list::_001OnFileOpen);
+      add_command_prober("edit_copy", this, &file_list::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", this, &file_list::_001OnEditCopy);
+      add_command_prober("trash_that_is_not_trash", this, &file_list::_001OnUpdateTrashThatIsNotTrash);
+      add_command_handler("trash_that_is_not_trash", this, &file_list::_001OnTrashThatIsNotTrash);
+      add_command_prober("open_with", this, &file_list::_001OnUpdateOpenWith);
+      //add_command_prober("spafy", &file_list::_001OnUpdateSpafy);
+      //add_command_handler("spafy", &file_list::_001OnSpafy);
+      //add_command_prober("spafy2", &file_list::_001OnUpdateSpafy2);
+      //add_command_handler("spafy2", &file_list::_001OnSpafy2);
+      add_command_prober("file_rename", this, &file_list::_001OnUpdateFileRename);
+      add_command_handler("file_rename", this, &file_list::_001OnFileRename);
+      add_command_handler("file_open", this, &file_list::_001OnFileOpen);
 
    }
 
@@ -74,7 +77,7 @@ namespace filemanager
 
 
 
-   bool file_list::on_click(const ::user::item & item)
+   bool file_list::on_click(const ::item & item)
    {
 
       if (item.m_iSubItem == m_iNameSubItem ||
@@ -100,7 +103,7 @@ namespace filemanager
    }
 
 
-   bool file_list::on_right_click(const ::user::item & item)
+   bool file_list::on_right_click(const ::item & item)
    {
 
       if(item.is_set())
@@ -244,7 +247,7 @@ namespace filemanager
 
    //         single_lock lock(get_application()->mutex());
 
-   //         if (!lock.lock(millis(2000)))
+   //         if (!lock.lock(::duration(2000)))
    //         {
 
    //            break;
@@ -332,7 +335,7 @@ namespace filemanager
    }
 
 
-   void file_list::route_command_message(::message::command * pcommand)
+   void file_list::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       auto itema = get_selected_items();
@@ -346,7 +349,7 @@ namespace filemanager
 
       }
 
-      ::user::impact::route_command_message(pcommand);
+      ::user::impact::route_command(pcommand);
 
    }
 
@@ -386,7 +389,7 @@ namespace filemanager
 
       }
 
-      filemanager_document()->on_file_manager_item_command(__str(pcommand->m_id), itema);
+      filemanager_document()->on_file_manager_item_command(__string(pcommand->m_id), itema);
 
    }
 
@@ -487,7 +490,7 @@ namespace filemanager
    void file_list::_001OnFileRename(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::range range;
 
@@ -510,7 +513,7 @@ namespace filemanager
    void file_list::_001OnFileOpen(::message::message* pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       _017OpenSelected(true, ::e_source_user);
 
@@ -553,13 +556,13 @@ namespace filemanager
    void file_list::_001OnEditCopy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
-      auto psession = get_session();
+      auto pwindow = window();
 
-      auto pcopydesk = psession->copydesk();
+      auto pcopydesk = pwindow->copydesk();
 
       pcopydesk->set_filea(patha, ::user::copydesk::op_copy);
 
@@ -587,7 +590,7 @@ namespace filemanager
    void file_list::_001OnTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
@@ -626,13 +629,13 @@ namespace filemanager
 
          ::file::path strPath = patha.first();
 
-         string strExt = strPath.extension();
+         string strExt = strPath.final_extension();
 
          string_array stra;
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->os().file_extension_get_open_with_list_keys(stra, strExt);
+         pcontext->m_papexcontext->os_context()->file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
 
@@ -759,7 +762,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->os().file_open(pathUser);
+         pcontext->m_papexcontext->os_context()->file_open(pathUser);
 
          pcommand->m_bRet = true;
 
@@ -785,7 +788,7 @@ namespace filemanager
    //void file_list::_001OnSpafy(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //   auto itema = get_selected_items();
 
@@ -823,7 +826,7 @@ namespace filemanager
    //      }
    //   }
 
-   //   ::datetime::time time = ::datetime::time::get_current_time();
+   //   ::datetime::time time = ::datetime::time::now();
 
    //   string strTime;
 
@@ -860,7 +863,7 @@ namespace filemanager
 
    //   __pointer(::userfs::list_data) pdata = fs_list();
    //
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //
    //   string_array stra;
    //
@@ -918,7 +921,7 @@ namespace filemanager
 
    //   }
 
-   //   ::datetime::time time = ::datetime::time::get_current_time();
+   //   ::datetime::time time = ::datetime::time::now();
 
    //   string strTime;
 
@@ -961,7 +964,7 @@ namespace filemanager
    //void file_list::schedule_file_size(const ::string & psz)
    //{
 
-   //   UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(psz);
 
    //   if (!is_window_visible())
    //   {
@@ -978,7 +981,7 @@ namespace filemanager
 
       //__pointer(::message::show_window) pshowwindow(pmessage);
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -1048,7 +1051,7 @@ namespace filemanager
       if (filemanager_data()->m_bSetBergedgeTopicFile)
       {
 
-         SetTimer(888888, 230, nullptr);
+         SetTimer(888888, 230_ms, nullptr);
 
       }
 
@@ -1451,10 +1454,10 @@ namespace filemanager
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
-   //      millis tickNow= ::millis::now();
-   //      if (tickNow - m_millisLastRedraw > 784)
+   //      ::duration tickNow= ::duration::now();
+   //      if (tickNow - m_durationLastRedraw > 784)
    //      {
-   //         m_millisLastRedraw = tickNow;
+   //         m_durationLastRedraw = tickNow;
    //         set_need_redraw();
    //      }
    //   }
@@ -1807,7 +1810,7 @@ namespace filemanager
    //void file_list::file_size_add_request(bool bClear)
    //{
 
-   //   UNREFERENCED_PARAMETER(bClear);
+   //   __UNREFERENCED_PARAMETER(bClear);
 
    //   db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 
@@ -1975,12 +1978,12 @@ namespace filemanager
    }
 
 
-   void file_list::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void file_list::handle(::subject * psubject, ::context * pcontext)
    {
 
-      ::filemanager_impact::on_subject(psubject, pcontext);
+      ::filemanager_impact_base::handle(psubject, pcontext);
 
-      ::userfs::list::on_subject(psubject, pcontext);
+      ::userfs::list::handle(psubject, pcontext);
 
       auto papplication = get_application();
 
@@ -2128,7 +2131,7 @@ namespace filemanager
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserprimitive;
+            __pointer(::user::interaction) puserinteractionParent = psubject->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 

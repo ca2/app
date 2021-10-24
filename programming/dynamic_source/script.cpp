@@ -26,8 +26,6 @@ namespace dynamic_source
 
       defer_create_mutex();
 
-      m_pfileError.create_new();
-
       m_streamError.m_p = m_pfileError;
 
    }
@@ -39,9 +37,31 @@ namespace dynamic_source
    }
 
 
+
+   ::e_status script::on_initialize_object()
+   {
+
+      auto estatus = ::object::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_pfileError.create_new(this);
+
+      return estatus;
+
+   }
+
+
    void script::run(script_instance * pinstance)
    {
+
       pinstance->run();
+
    }
 
 
@@ -92,7 +112,7 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      auto elapsed = m_millisLastVersionCheck.elapsed();
+      auto elapsed = m_durationLastVersionCheck.elapsed();
 
       if(elapsed < 5_s)
       {
@@ -101,7 +121,7 @@ namespace dynamic_source
 
       }
 
-      m_millisLastVersionCheck.Now();
+      m_durationLastVersionCheck.Now();
 
       synchronous_lock synchronouslock(mutex());
 
@@ -168,7 +188,7 @@ namespace dynamic_source
    bool ds_script::HasTimedOutLastBuild()
    {
       synchronous_lock synchronouslock(mutex());
-      return (m_millisLastBuildTime.elapsed()) >
+      return (m_durationLastBuildTime.elapsed()) >
              (m_pmanager->m_iBuildTimeWindow + __random(0, m_pmanager->m_iBuildTimeRandomWindow));
    }
 
@@ -329,7 +349,7 @@ namespace dynamic_source
 
          string strStagePath = m_pmanager->get_full_stage_path(m_strScriptPath);
 
-         ::file_copy_dup(strStagePath, m_strScriptPath, true);
+         m_psystem->m_pacmefile->copy(strStagePath, m_strScriptPath, true);
 
          m_plibrary->open(strStagePath, true);
 
@@ -356,7 +376,7 @@ namespace dynamic_source
 
             TRACE("Error Message Id: %d\n", dwMessageId);
 
-            string strError = get_system_error_message(dwMessageId);
+            string strError = last_error_message(dwMessageId);
 
             string str;
 
@@ -456,7 +476,7 @@ namespace dynamic_source
 
       pinstance->m_pscript2 = this;
 
-      pinstance->m_dwCreate = ::millis::now().u32();
+      pinstance->m_durationCreate.Now();
 
       if (m_bNew)
       {
@@ -492,7 +512,7 @@ namespace dynamic_source
       try
       {
 
-         ::parallelization::set_priority(::priority_highest);
+         ::parallelization::set_priority(::e_priority_highest);
 
       }
       catch (...)
@@ -512,7 +532,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            sleep((::millis)__random(2000, 4000));
+            sleep((::duration)__random(2._s, 4._s));
 
          }
 
@@ -529,7 +549,7 @@ namespace dynamic_source
          else
          {
 
-            TRACE("Retry(%d): %s\nError: %s\n", iRetry, m_strName.c_str(), str.c_str());
+            TRACE("Retry("<<iRetry<<"): "<<m_strName<<"\nError: " << str.c_str());
 
          }
 
@@ -554,7 +574,7 @@ namespace dynamic_source
 
       }
 
-      m_millisLastBuildTime= ::millis::now();
+      m_durationLastBuildTime= ::duration::now();
 
       //m_ft = get_filetime_set(m_strSourcePath);
 

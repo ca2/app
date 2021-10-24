@@ -68,7 +68,7 @@ public:
 
    ::e_status destroy() override;
 
-   string to_string() const override;
+   string get_string() const override;
 
    template < typename TYPE >
    void number_read(TYPE & t)
@@ -78,7 +78,7 @@ public:
 
       m_p->read_string(str);
 
-      ::str::to(t, str);
+      ::from_string(t, str);
 
    }
 
@@ -89,7 +89,7 @@ public:
 
       string str;
 
-      ::str::from(str, t);
+      ::to_string(str, t);
 
       m_p->println(str);
 
@@ -113,7 +113,7 @@ public:
 
       m_p->read_string(str);
 
-      ::str::to(t, str);
+      ::from_string(t, str);
 
    }
 
@@ -124,7 +124,7 @@ public:
 
       string str;
 
-      ::str::from(str, t);
+      ::to_string(str, t);
 
       m_p->print(str);
 
@@ -255,16 +255,16 @@ public:
 };
 
 
-namespace str
-{
+// namespace str
+// {
 
 
-   CLASS_DECL_ACME void from(string & str, const text_stream & strstream);
+   CLASS_DECL_ACME void to_string(string & str, const text_stream & strstream);
 
-   CLASS_DECL_ACME void from(string & str, const string_stream & strstream);
+   CLASS_DECL_ACME void to_string(string & str, const string_stream & strstream);
 
 
-} // namespace str
+// } // namespace str
 
 
 

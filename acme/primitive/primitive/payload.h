@@ -69,24 +69,44 @@ public:
       filetime_t                 m_filetime;
       id * m_pid;
       ::property * m_pproperty;
-      class secs                 m_secs;
-      class secs * m_psecs;
-      class millis               m_millis;
-      class millis * m_pmillis;
-      class micros               m_micros;
-      class micros * m_pmicros;
-      class nanos                m_nanos;
-      class nanos * m_pnanos;
+      integral_nanosecond        m_integralnanosecond;
+      integral_nanosecond *      m_pintegralnanosecond;
+      integral_microsecond       m_integralmicrosecond;
+      integral_microsecond *     m_pintegralmicrosecond;
+      integral_millisecond       m_integralmillisecond;
+      integral_millisecond *     m_pintegralmillisecond;
+      integral_second            m_integralsecond;
+      integral_second *          m_pintegralsecond;
+      integral_minute            m_integralminute;
+      integral_minute *          m_pintegralminute;
+      integral_hour              m_integralhour;
+      integral_hour *            m_pintegralhour;
+      integral_day               m_integralday;
+      integral_day *             m_pintegralday;
+      floating_nanosecond        m_floatingnanosecond;
+      floating_nanosecond *      m_pfloatingnanosecond;
+      floating_microsecond       m_floatingmicrosecond;
+      floating_microsecond *     m_pfloatingmicrosecond;
+      floating_millisecond       m_floatingmillisecond;
+      floating_millisecond *     m_pfloatingmillisecond;
+      floating_second            m_floatingsecond;
+      floating_second *          m_pfloatingsecond;
+      floating_minute            m_floatingminute;
+      floating_minute *          m_pfloatingminute;
+      floating_hour              m_floatinghour;
+      floating_hour *            m_pfloatinghour;
+      floating_day               m_floatingday;
+      floating_day *             m_pfloatingday;
       class duration             m_duration;
-      class duration * m_pduration;
-      ::e_status                 m_estatus;
+      class duration *           m_pduration;
+      ::enum_status              m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
       ::color::color             m_color;
       ::color::hls               m_hls;
 
 
-      ::matter * m_p;
+      ::element * m_p;
       ::string_array * m_pstra;
       ::int_array * m_pia;
       ::payload_array * m_ppayloada;
@@ -94,14 +114,11 @@ public:
       ::i64_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
-      ::matter * m_pmatterRoutine;
+      ::element * m_pelementRoutine;
       ::i64                      m_all[2];
       ::string                     m_str;
 
    };
-
-
-
 
 
    inline payload();
@@ -112,46 +129,42 @@ public:
    payload(::u32 u);
    payload(::i64 i);
    payload(::u64 u);
-#ifdef APPLEOS
+   payload(float f);
+   payload(double d);
+#ifdef __APPLE__
 #ifdef OS64BIT
    payload(long l);
 #endif
 #endif
    payload(::i32 * pi);
-   payload(::u32 * pi);
+   payload(::u32 * pu);
    payload(::i64 * pi);
-   payload(::u64 * pinteraction);
-   payload(float f);
-   payload(double d);
+   payload(::u64 * pu);
+   payload(bool * pb);
+   payload(::string * pstr);
+   payload(::payload * ppayload);
+   payload(::property * pproperty);
+   payload(::element * pobject);
+   payload(::duration * pduration);
    payload(const char * psz);
    payload(const ::string & str);
-   payload(const type & type);
-   payload(const id & id);
-   payload(bool * pb);
+   payload(const ::type & type);
+   payload(const ::id & id);
    payload(const ::datetime::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
-   payload(::string * pstr);
-   payload(payload * pvar);
-   payload(const payload * pvar);
-   payload(property * pproperty);
-   payload(::matter * pobject);
-   payload(const ::matter & matter);
-   //payload(::image * pimage);
+   payload(const ::element & element);
    payload(const ::file::path & path);
    payload(const ::string_array & payload);
-   payload(const int_array & payload);
-   payload(const payload_array & payload);
-   payload(const property_set & set);
-   payload(const payload & payload);
-   payload(const property & prop);
+   payload(const ::int_array & payload);
+   payload(const ::payload_array & payload);
+   payload(const ::property_set & set);
+   payload(const ::payload & payload);
    payload(const ::routine & routine);
-   //payload(const ::future & process);
-   payload(const property * pproperty);
-   payload(const class duration & duration);
-   payload(class duration * pduration);
+   payload(const ::property & prop);
+   payload(const ::duration & duration);
 
-   payload(const block & block)
+   payload(const ::block & block)
    {
       m_etype = e_type_new;
       operator = (block);
@@ -174,14 +187,14 @@ public:
    }
 
    template < typename BLOCK_TYPE >
-   payload(const memory_template < BLOCK_TYPE > & memorytemplate)
+   payload(const ::memory_template < BLOCK_TYPE > & memorytemplate)
    {
       m_etype = e_type_new;
       operator = (memorytemplate.block());
    }
 
    template < typename ENUM >
-   payload(const enumeration < ENUM > & eflag)
+   payload(const ::enumeration < ENUM > & eflag)
    {
       m_etype = e_type_new;
       operator = (eflag);
@@ -193,7 +206,6 @@ public:
       m_etype = e_type_new;
       operator = (eenum);
    }
-
 
    template < typename T >
    payload(const T & t)
@@ -226,7 +238,7 @@ public:
    void set_pointer(const __pointer(T) & p)
    {
 
-      operator[](__type_str(T)) = p;
+      operator[](__type_name < T >()) = p;
 
    }
 
@@ -234,15 +246,15 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(__type_str(T));
+      return has_property(__type_name < T >());
 
    }
 
    template < typename T >
-   property * find_pointer() const
+   ::property * find_pointer() const
    {
 
-      return find_property(__type_str(T));
+      return find_property(__type_name < T >());
 
    }
 
@@ -253,8 +265,7 @@ public:
 
    ::i64 release();
 
-   void _set_matter(::matter * pmatter);
-   void _set_element(::matter * pmatter);
+   void _set_element(::element * pelement);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
@@ -271,11 +282,10 @@ public:
 
    }
 
-   bool convert(const payload & payload);
+   bool convert(const ::payload & payload);
 
 
    bool                             get_bool(bool bDefault = false)     const;
-   //::i32                          i32(::i32 iDefault = 0)  const;
 
    template < typename ENUM >
    ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)i64(edefault); }
@@ -287,13 +297,10 @@ inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## De
 inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
 inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
 inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
-//inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); }
-//inline ::enum_ ## ENUMTYPE & operator as_e ## ENUMTYPE  () { return e ## ENUMTYPE(); }
-//inline ::e ## ENUMTYPE e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
-   //DECL_VAR_FLAG(status);
-   //DECL_VAR_FLAG(command);
-   //DECL_VAR_FLAG(check);
 #undef DECL_VAR_FLAG
+
+
+
 #define DECL_VAR_ENUM(ENUMTYPE) \
    inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
    inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
@@ -301,42 +308,30 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
    inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
    inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
-   //inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); }
-   //inline operator ::enum_ ## ENUMTYPE & () { return e ## ENUMTYPE(); }
    DECL_VAR_ENUM(status);
    DECL_VAR_ENUM(command);
    DECL_VAR_ENUM(check);
 #undef DECL_VAR_ENUM
 
-   //::future               get_process() const;
-   //::string                           to_r_::string() const;
-   //::string &                         get_ref_::string(const char * pszOnNull = nullptr);
-   //const ::string &                   get_ref_::string(const char * pszOnNull = nullptr) const;
 
-   inline ::secs & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
-   inline ::millis & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
-   inline ::micros & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
-   inline ::nanos & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
+   //inline ::second & as_secs() { if (get_type() != e_type_secs)set_type(e_type_secs); return m_secs; }
+   //inline ::duration & as_millis() { if (get_type() != e_type_millis)set_type(e_type_millis); return m_millis; }
+   //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
+   //inline ::nanosecond & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
 
 
    ::string & as_string(::string & str);
    ::id & as_id(const ::id & idDefault = nullptr);
 
-   class memory & as_memory();
+   ::memory & as_memory();
 
    ::string_array & as_stra();
-   int_array & as_ia();
-   i64_array & as_i64a();
-   payload_array & as_payloada();
-   class duration & as_duration();
-   property_set & as_propset();
-   property & as_property();
-
-
-   inline ::secs secs()  const { return duration().secs(); }
-   inline ::millis millis()  const { return duration().millis(); }
-   inline ::micros micros()  const { return duration().micros(); }
-   inline ::nanos nanos()  const { return duration().nanos(); }
+   ::int_array & as_ia();
+   ::i64_array & as_i64a();
+   ::payload_array & as_payloada();
+   ::duration & as_duration();
+   ::property_set & as_propset();
+   ::property & as_property();
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
@@ -364,8 +359,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    ::string string(const char * pszOnNull = nullptr) const;
-   ::string to_string() const;
-   ::string to_recursive_string() const;
+   ::string get_string() const;
+   ::string get_recursive_string() const;
    ::id id(const ::id & idDefault = nullptr)   const;
 
    ::memory memory() const;
@@ -380,7 +375,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    bool is_scalar() const;
    inline bool is_array() const;
-   bool is_real() const;
+   bool is_floating() const;
    bool is_integer() const;
    bool is_natural() const;
    bool is_boolean() const;
@@ -428,10 +423,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_property_false(const ::id & id) const;
 
 
-   bool begins(const ::string & strPrefix) const { return to_string().begins(strPrefix); }
-   bool ends(const ::string & strSuffix) const { return to_string().ends(strSuffix); }
-   bool begins_ci(const ::string & strPrefix) const { return to_string().begins_ci(strPrefix); }
-   bool ends_ci(const ::string & strSuffix) const { return to_string().ends_ci(strSuffix); }
+   bool begins(const ::string & strPrefix) const { return get_string().begins(strPrefix); }
+   bool ends(const ::string & strSuffix) const { return get_string().ends(strSuffix); }
+   bool begins_ci(const ::string & strPrefix) const { return get_string().begins_ci(strPrefix); }
+   bool ends_ci(const ::string & strSuffix) const { return get_string().ends_ci(strSuffix); }
 
    payload get_topic(const ::id & id) const;
    //payload defer_get(const ::id & id) const;
@@ -463,37 +458,44 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-   //bool get_bool() const;
-   //::i32 i32() const;
-   //::u32 u32() const;
-   //::i64 i64() const;
-   //::u64 u64() const;
-   //::e_status estatus() const;
-   //class secs secs() const;
-   //class millis millis() const;
-   //class micros micros() const;
-   //class nanos nanos() const;
-   //class duration duration() const;
+
+   operator bool() const;
+
+   operator ::i8() const;
+   operator ::u8() const;
+   operator ::i16() const;
+   operator ::u16() const;
+   operator ::i32() const;
+   operator ::u32() const;
+   operator ::i64() const;
+   operator ::u64() const;
+   
+#if defined(__APPLE__) || defined(RASBPIAN) || defined(ANDROID)
+   operator long() const;
+   operator unsigned long() const;
+#endif
+
+
+   
+   operator ::f32() const;
+   operator ::f64() const;
+   operator ::string() const;
+   operator ::memory() const;
+   operator ::file::path() const;
+
+
    ::filetime filetime() const;
    ::datetime::time datetime_time() const;
    ::color::color color() const;
    ::color::hls color_hls() const;
-   block block() const;
-   //operator block ();
-   //operator class millis() const;
+   ::block block() const;
 
 
    ::string & as_string(const char * pszOnNull = nullptr);
-   operator ::string() const;
 
-
-   //::memory & as_memory();
-   operator ::memory() const;
 
    ::file::path & as_file_path();
-   operator ::file::path() const;
 
-   //operator ::image * & ();
 
    ::filetime & as_filetime();
    ::datetime::time & as_datetime_time();
@@ -521,9 +523,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::f32 & as_f32();
    ::f64 & as_f64();
 
-   //::e_status & as_estatus();
-
-   //void get_string(char * psz) const;
 
    strsize get_length() const;
 
@@ -538,14 +537,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
    payload& operator = (const ::routine & routine);
-   //payload& operator = (const ::future & process);
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::matter * pmatter)
+   inline payload & operator = (::element * pelement)
    {
 
-      _set_element(pmatter);
+      _set_element(pelement);
 
       return *this;
 
@@ -586,7 +584,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   payload & operator = (const ::matter & o);
+   payload & operator = (const ::element & o);
 
    inline payload & operator = (const ::file::path & path)
    {
@@ -607,16 +605,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
       return operator =((::i64) eenum);
    }
 
-
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
    payload& operator = (const ::e_status & estatus)
    {
       return operator =(estatus.m_estatus);
    }
-
-   //inline payload & operator = (::image * pimage);
-
 
    payload & operator = (para_return & eret);
    payload & operator = (bool b);
@@ -657,31 +651,36 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const ::memory & memory);
    payload & operator = (const ::payload_array & payloada);
    payload & operator = (const ::property_set & propset);
-   //payload & operator = (const pair_set_interface & propset);
-   //payload & operator = (const str_str_interface & propset);
-//   payload & operator = (const ::string_composite & reference);
    payload & operator = (const ::id & id);
    payload & operator = (::id * pid);
-   payload & operator = (const ::secs & secs);
-   payload & operator = (class ::secs * pduration);
-   payload & operator = (const ::millis & millis);
-   payload & operator = (class ::millis * pmillis);
-   payload & operator = (const ::micros & micros);
-   payload & operator = (class ::micros * pmicros);
-   payload & operator = (const ::nanos & nanos);
-   payload & operator = (class ::nanos * pnanos);
+   //payload & operator = (const ::second & second);
+   //payload & operator = (class ::second * pduration);
+   //payload & operator = (const ::duration & duration);
+   //payload & operator = (class ::duration * pmillis);
+   //payload & operator = (const ::microsecond & microsecond);
+   //payload & operator = (class ::microsecond * pmicros);
+   //payload & operator = (const ::nanosecond & nanosecond);
+   //payload & operator = (class ::nanosecond * pnanos);
    payload & operator = (const ::duration & duration);
    payload & operator = (class ::duration * pduration);
    payload & operator = (const ::block & block);
 
-   template < class T >
-   void get_array(T & dsta) const
+   template < class ARRAY >
+   void get_array(ARRAY & array) const
    {
 
-      for(int i = 0; i < array_get_count(); i++)
+      auto count = this->array_get_count();
+
+      for(int i = 0; i < count; i++)
       {
 
-         dsta.add((typename T::BASE_TYPE) at(i));
+         ::payload payloadItem = at(i);
+
+         typename ARRAY::BASE_TYPE typeNewItem;
+
+         ::assign(typeNewItem, payloadItem);
+
+         array.add(typeNewItem);
 
       }
 
@@ -770,13 +769,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < class T >
    __pointer(T) cast();
 
-   ::matter * matter()
+   ::element * element()
    {
       if (m_etype == e_type_element) { return m_p; }
-      return cast < ::matter >();
+      return cast < ::element >();
    }
 
-   ::matter * matter() const { return ((payload *)this)->matter(); }
+   ::element * element() const { return ((payload *)this)->element(); }
 
    template < class T >
    T * cast() const
@@ -859,19 +858,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool operator > (::i32 i) const;
    bool operator > (bool b) const;
 
-   //payload & io(::stream & stream);
-
-   //inline payload & io(::stream& stream) const
-   //{
-     // stream.set_storing();
-      //return ((payload &)*this).io(stream);
-
-   //}
-
-   //template < typename TYPE >
-   //void exchange_from(const TYPE & t) { operator =(t); }
-
-   //void exchange_from(const ::matter & matter) { propset().exchange(matter); }
 
    ::string implode(const char * pszGlue) const;
    payload explode(const char * pszGlue,bool bAddEmpty = true) const;
@@ -931,7 +917,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::payload operator + (FLOATING f) const;
 
    ::payload operator + (const ::string & str) const;
-   inline ::payload operator + (const char * psz) const;
+   ::payload operator + (const char * psz) const;
 
    template < primitive_integral INTEGRAL >
    ::payload operator / (INTEGRAL i) const;
@@ -1034,15 +1020,24 @@ public:
    operator u32 & () { return m_payload.as_u32(); }
    operator i64 & () { return m_payload.as_i64(); }
    operator u64 & () { return m_payload.as_u64(); }
+   
+   
+#ifdef __APPLE__
+   
+   operator long & () { return m_payload.as_long(); }
+   operator unsigned long & () { return m_payload.as_unsigned_long(); }
+   
+#endif
+   
 
    operator f32 & () { return m_payload.as_f32(); }
    operator f64 & () { return m_payload.as_f64(); }
 
 
-   operator secs & () { return m_payload.as_secs(); }
-   operator millis & () { return m_payload.as_millis(); }
-   operator micros & () { return m_payload.as_micros(); }
-   operator nanos & () { return m_payload.as_nanos(); }
+   //operator second & () { return m_payload.as_secs(); }
+   //operator ::duration & () { return m_payload.as_millis(); }
+   //operator microsecond & () { return m_payload.as_micros(); }
+   //operator nanosecond & () { return m_payload.as_nanos(); }
 
    operator duration & () { return m_payload.as_duration(); }
    operator datetime::time & () { return m_payload.as_datetime_time(); }
@@ -1093,11 +1088,6 @@ public:
 
    operator f32 () const { return m_payload.f32(); }
    operator f64 ()const { return m_payload.f64(); }
-
-   operator secs ()const { return m_payload.secs(); }
-   operator millis ()const { return m_payload.millis(); }
-   operator micros () const { return m_payload.micros(); }
-   operator nanos ()const { return m_payload.nanos(); }
 
    operator duration ()const { return m_payload.duration(); }
    operator datetime::time ()const { return m_payload.datetime_time(); }
@@ -1262,34 +1252,34 @@ CLASS_DECL_ACME void var_skip_json(const char *& pszJson, const char * pszEnd);
 //}
 //
 //
-//inline payload::operator class secs() const
+//inline payload::operator class second() const
 //{
 //
-//   return secs();
+//   return second();
 //
 //}
 
 
-//inline payload::operator class millis() const
+//inline payload::operator class ::duration() const
 //{
 //
-//   return millis();
+//   return ::duration();
 //
 //}
 //
 //
-//inline payload::operator class micros() const
+//inline payload::operator class microsecond() const
 //{
 //
-//   return micros();
+//   return microsecond();
 //
 //}
 //
 //
-//inline payload::operator class nanos() const
+//inline payload::operator class nanosecond() const
 //{
 //
-//   return nanos();
+//   return nanosecond();
 //
 //}
 
@@ -1369,7 +1359,7 @@ inline ::string & payload::as_string(::string & str)
 
 }
 
-inline ::string payload::to_string() const
+inline ::string payload::get_string() const
 {
 
    return this->string();
@@ -1474,15 +1464,15 @@ inline void payload::set_string(const ::string & str)
 
 
 
-
 class CLASS_DECL_ACME payload_object :
-   virtual public matter
+   virtual public element
 {
 public:
 
    payload m_payload;
 
 };
+
 
 
 class CLASS_DECL_ACME pack :

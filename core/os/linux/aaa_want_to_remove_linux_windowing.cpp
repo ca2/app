@@ -7,8 +7,8 @@
 //!!!#include <X11/XKBlib.h>
 
 
-::point g_pointX11Cursor;
-::millis g_tickLastMouseMove;
+::point_i32 g_pointX11Cursor;
+::duration g_tickLastMouseMove;
 
 
 void oswindow_set_active_window(oswindow oswindow);
@@ -93,7 +93,7 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 
    }
 
-   INFO("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
+   INFORMATION("_c_XErrorHandler %d %s", perrorevent->error_code, pszError);
 
    return 0;
 
@@ -665,19 +665,19 @@ int_bool is_window_occluded(oswindow oswindow)
 
    string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rectangle rectTest;
+   ::rectangle rectangleTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rectangle rectHigher;
+      ::rectangle rectangleHigher;
 
-      if(x11_get_window_rect(display, windowa[iFind], rectHigher))
+      if(x11_get_window_rect(display, windowa[iFind], rectangleHigher))
       {
 
-         if(rectTest.intersect(rectHigher, rectangle))
+         if(rectangleTest.intersect(rectangleHigher, rectangle))
          {
 
             return true;
@@ -1334,7 +1334,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    draw2d::brush_pointer pen(e_create_new, pgraphics);
 
-   pen->create_solid(0);
+   ppen->create_solid(0);
 
    for(index i = 0; i < stra.get_count(); i++)
    {
@@ -2483,13 +2483,13 @@ bool x11_process_message(Display * pdisplay)
 
             pinteraction->m_pointMouseMove.y = e.xmotion.y_root;
 
-            if(pinteraction->m_millisMouseMovePeriod > 0)
+            if(pinteraction->m_durationMouseMovePeriod > 0)
             {
 
                ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction.m_pointMouseMove.x),
                (pinteraction->m_pointMouseMoveSkip.y - pinteraction.m_pointMouseMove.y));
 
-               if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
+               if(!pinteraction->m_durationMouseMoveSkip.timeout(pinteraction->m_durationMouseMovePeriod)
                && sizeDistance.cx * sizeDistance.cx + sizeDistance.cy * sizeDistance.cy < pinteraction->m_iMouseMoveSkipSquareDistance)
                {
 
@@ -2608,7 +2608,7 @@ bool x11_process_message(Display * pdisplay)
                if(pinteraction->layout().design().display() == ::e_display_iconic && !msg.hwnd->is_iconic())
                {
 
-                  //file_put_contents("/home/camilo/xxx.txt", "");
+                  //m_psystem->m_pacmefile->put_contents("/home/camilo/xxx.txt", "");
 
                   // 1111111111111111111111111111111111111111111
 
@@ -2706,7 +2706,7 @@ bool x11_process_message(Display * pdisplay)
 
             {
 
-               ::point point(e.xconfigure.x, e.xconfigure.y);
+               ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
                ::size size(e.xconfigure.width, e.xconfigure.height);
 
@@ -2911,7 +2911,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("B " + __str(wFocus));
+//            output_debug_string("B " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -2926,7 +2926,7 @@ bool x11_process_message(Display * pdisplay)
 //         else
 //         {
 //
-//            output_debug_string("D " + __str(wFocus));
+//            output_debug_string("D " + __string(wFocus));
 //
 //            g_windowFocus = wFocus;
 //
@@ -3457,7 +3457,7 @@ void wm_full_screen(oswindow w, const ::rectangle & rectangle)
 CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 {
 
-   UNREFERENCED_PARAMETER(bDock);
+   __UNREFERENCED_PARAMETER(bDock);
 
 }
 

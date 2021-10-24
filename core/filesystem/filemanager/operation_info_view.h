@@ -18,18 +18,18 @@ namespace filemanager
 
       operation_info_view();
 
-      void assert_valid() const;
-      void dump(dump_context & action_context) const;
+      void assert_valid() const override;
+      void dump(dump_context & action_context) const override;
 
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       __pointer(operation_document) get_document();
 
       void OnFileOperationStep(i32 iOperation,bool bFinal);
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
-      void _001OnTimer(::timer * ptimer);
-      virtual void install_message_routing(::channel * pchannel);
+      void _001OnTimer(::timer * ptimer) override;
+      void install_message_routing(::channel * pchannel) override;
 
    };
 

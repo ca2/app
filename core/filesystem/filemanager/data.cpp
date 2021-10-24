@@ -1,5 +1,8 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
+#endif
+
 #include "_data.h"
 #include "core/user/user/_tree.h"
 #include "aura/platform/static_start.h"
@@ -106,7 +109,7 @@ namespace filemanager
    }
 
 
-   bool data::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool data::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       m_pdocumentTopic = pdocument;
@@ -123,7 +126,7 @@ namespace filemanager
 
       }
 
-      return m_pdocument->do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return m_pdocument->do_prompt_file_name(payloadFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
    }
 
@@ -283,7 +286,7 @@ namespace filemanager
 
             string strId;
 
-            strId = m_datakey.m_strDataKey +".last_browse_folder." + __str(idMachine);
+            strId = m_datakey.m_strDataKey +".last_browse_folder." + __string(idMachine);
 
             if (!papplication->data_get({ m_datakey.m_bLocalData, strId }, strPath))
             {
@@ -305,7 +308,7 @@ namespace filemanager
 
       }
 
-      if (pszDefault != nullptr && strlen(pszDefault) > 0)
+    /*  if (pszDefault != nullptr && strlen(pszDefault) > 0)
       {
 
          strPath = pszDefault;
@@ -316,7 +319,7 @@ namespace filemanager
 
          strPath = pcontext->m_papexcontext->dir().desktop();
 
-      }
+      }*/
 
       return strPath;
 
@@ -368,7 +371,7 @@ namespace filemanager
 
          string strId;
 
-         strId = m_datakey.m_strDataKey+".last_browse_folder." + __str(idMachine);
+         strId = m_datakey.m_strDataKey+".last_browse_folder." + __string(idMachine);
 
          papplication->data_set({ m_datakey.m_bLocalData, strId }, strPath);
 
@@ -380,8 +383,6 @@ namespace filemanager
 
 
 } // namespace filemanager
-
-
 
 
 

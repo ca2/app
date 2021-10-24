@@ -12,7 +12,7 @@ namespace user
 
 
       bool                                m_bCaseSensitiveMatch;
-      ::millis                            m_millisKillFocus;
+      ::duration                            m_durationKillFocus;
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
@@ -21,14 +21,14 @@ namespace user
       int                                 m_iPadding;
       ::size_i32                          m_sizeFull;
       int                                 m_iMinListItemCount;
-      //::user::item                        m_itemLButtonDown;
+      //::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
       string_array                    m_straList;
       string_array                    m_straValue;
 
 
-      millis                                m_millisLastVisibilityChange;
+      ::duration                                m_durationLastVisibilityChange;
 
 
       list_box();
@@ -38,7 +38,7 @@ namespace user
       void user_combo_list_common_construct();
 
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -77,11 +77,11 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
 
 
-      virtual void on_hit_test(::user::item & item) override;
+      virtual void on_hit_test(::item & item) override;
 
 
-      virtual ::user::item current_item() override;
-      virtual ::user::item hover_item() override;
+      virtual ::item current_item() override;
+      virtual ::item hover_item() override;
 
 
       virtual bool keyboard_focus_is_focusable() const override;
@@ -91,7 +91,7 @@ namespace user
       virtual bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull);
+      void on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull);
 
 
       virtual void _on_show_window() override;
@@ -100,7 +100,7 @@ namespace user
       virtual bool on_set_owner(::user::primitive * pprimitive) override;
 
 
-      ::e_status set_current_item(const ::user::item & item, const ::action_context & context) override;
+      ::e_status set_current_item(const ::item & item, const ::action_context & context) override;
       virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
       virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
       virtual string get_current_item_string_value();
@@ -123,7 +123,7 @@ namespace user
       virtual void reset_content();
 
 
-      void on_control_event(::user::control_event * pevent) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

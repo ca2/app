@@ -1,7 +1,17 @@
 #pragma once
 
 
+//#include "wait.h"
+
+
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
+
+
+//inline void task_set(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] |= (1 << (etaskflag & 7)); }
+//inline void task_clear(enum_task_flag etaskflag) { t_byteaFlag[etaskflag >> 3] &= ~(1 << (etaskflag & 7)); }
+//inline bool task_flag().is_set(enum_task_flag etaskflag) { return t_byteaFlag[etaskflag >> 3] & (1 << (etaskflag & 7)); }
+//inline void task_set(enum_task_flag etaskflag, bool bSet) { if (bSet) task_set(etaskflag); else task_clear(etaskflag); }
+
 
 
 // LPVOID thread_data_get(thread_data_index dataindex);
@@ -26,16 +36,6 @@ CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 CLASS_DECL_ACME bool is_main_thread();
 
 
-#ifdef __APPLE__
-
-
-void ns_main_async(dispatch_block_t block);
-
-
-void ns_main_sync(dispatch_block_t block);
-
-
-#endif
 
 
 #if defined(ANDROID)
@@ -47,7 +47,7 @@ void ns_main_sync(dispatch_block_t block);
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(APPLEOS)
+#elif defined(__APPLE__)
 
 //#define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX
@@ -156,7 +156,7 @@ namespace parallelization
 {
 
 
-   CLASS_DECL_ACME bool set_priority(e_priority epriority);
+   CLASS_DECL_ACME bool set_priority(enum_priority epriority);
 
    CLASS_DECL_ACME i32 priority();
 
@@ -164,7 +164,7 @@ namespace parallelization
    //inline i32 get_priority_none()
    //{
 
-   //   return priority_none;
+   //   return e_priority_none;
 
    //}
 
@@ -172,7 +172,7 @@ namespace parallelization
    //inline i32 get_priority_normal()
    //{
 
-   //   return priority_normal;
+   //   return e_priority_normal;
 
    //}
 
@@ -182,6 +182,7 @@ namespace parallelization
 
 class sync_interface;
 class synchronous_lock;
+class _synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
@@ -229,6 +230,9 @@ class synchronous_lock;
 //#include "synch_index_iterator.h"
 
 
+CLASS_DECL_ACME __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName);
+
+
 #ifdef ___ENABLE_INLINES
 #define _AFXMT_INLINE inline
 #include "_impl.h"
@@ -237,7 +241,7 @@ class synchronous_lock;
 
 
 #include "manual_reset_event.h"
-
+#include "counter.h"
 
 //#include "acme/parallelization/sync_method.h"
 
@@ -332,20 +336,20 @@ CLASS_DECL_ACME void set_task(task * ptask OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PA
 CLASS_DECL_ACME void thread_release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS);
 
 
-//typedef bool task_sleep(millis millis, ::synchronization_object* psync);
+//typedef bool task_sleep(const ::duration & duration, ::synchronization_object* psync);
 //using PFN_task_sleep = task_sleep*;
 
-CLASS_DECL_ACME bool __simple_task_sleep();
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis);
-CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
-CLASS_DECL_ACME bool __simple_task_sleep(millis millis, ::synchronization_object* psync);
-CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
-//CLASS_DECL_ACME bool acme_task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
+//CLASS_DECL_ACME bool __simple_task_sleep();
+//CLASS_DECL_ACME bool __simple_task_sleep(const ::duration & duration);
+//CLASS_DECL_ACME bool __simple_task_sleep(::synchronization_object* psync);
+//CLASS_DECL_ACME bool __simple_task_sleep(const ::duration & duration, ::synchronization_object* psync);
+//CLASS_DECL_ACME bool task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object * psync = nullptr);
+//CLASS_DECL_ACME bool acme_task_sleep(const ::duration & duration = U32_INFINITE_TIMEOUT, ::synchronization_object* psync = nullptr);
 //CLASS_DECL_ACME void set_taskhread_sleep(PFN_task_sleep pfnThreadSleep);
 
-#ifdef _UWP
+#ifdef __cplusplus_winrt
 
-#include "acme/os/uwp/parallelization_winrt.h"
+#include "acme/node/operating_system/universal_windows/parallelization_winrt.h"
 
 #endif
 
@@ -375,15 +379,16 @@ CLASS_DECL_ACME void thread_name_abbreviate(string & strName, int len);
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task* task);
-
-CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis);
-
-CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
-
-CLASS_DECL_ACME bool __task_sleep(task* ptask, millis millis, synchronization_object* psync);
-
-CLASS_DECL_ACME bool task_sleep(millis millis, synchronization_object* psync);
+//CLASS_DECL_ACME bool __task_sleep(task* task);
+//
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration);
+//
+//CLASS_DECL_ACME bool __task_sleep(::task* ptask, synchronization_object* psync);
+//
+//CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration, synchronization_object* psync);
+//
+//CLASS_DECL_ACME bool task_sleep(const ::duration & duration, synchronization_object* psync);
+CLASS_DECL_ACME bool task_sleep(const class ::wait & wait);
 
 
 #include "synchronized_routine.h"

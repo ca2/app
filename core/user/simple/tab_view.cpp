@@ -93,7 +93,7 @@ void simple_tab_view::install_message_routing(::channel * pchannel)
 void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
    
    ::user::tab::on_message_left_button_up(pmessage);
    
@@ -110,7 +110,7 @@ void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
 void simple_tab_view::on_message_mouse_move(::message::message * pmessage)
 {
    
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
    
    ::user::tab::on_message_mouse_move(pmessage);
    
@@ -127,7 +127,7 @@ void simple_tab_view::on_message_mouse_move(::message::message * pmessage)
 void simple_tab_view::on_message_mouse_leave(::message::message * pmessage)
 {
 
-   auto pmouse = pmessage->m_pmouse;
+   auto pmouse = pmessage->m_union.m_pmouse;
 
    ::user::tab::on_message_mouse_leave(pmessage);
 

@@ -49,7 +49,7 @@ extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr i
 //                if (sNewProcesses == 0) {
 //                        if (sProcesses)
 //                                free(sProcesses);
-//                                __throw(::exception::exception("could not reallocate memory"));
+//                                __throw(::exception("could not reallocate memory"));
 //                }
 //                sProcesses = sNewProcesses;
 //                iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, nullptr, 0);
@@ -187,10 +187,10 @@ id_array app_get_pid(const ::string & psz)
 
    path1 = get_last_run_application_path_file(psz);
 
-   if(file_exists(path1))
+   if(m_psystem->m_pacmefile->exists(path1))
    {
 
-      path1 = file_as_string(path1);
+      path1 = m_psystem->m_pacmefile->as_string(path1);
 
    }
 
@@ -482,7 +482,7 @@ int get_process_pid(const ::string & csProcessName)
       {
          if (sProcesses)
             free(sProcesses);
-         throw ::exception::exception("could not reallocate memory");
+         throw ::exception("could not reallocate memory");
       }
       sProcesses = sNewProcesses;
       iRetCode = sysctl(aiNames, (u_int) iNamesLength, sProcesses, &iSize, nullptr, 0);

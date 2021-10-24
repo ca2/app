@@ -4,44 +4,68 @@
 namespace acme
 {
 
-   inline ::id id(const class ::payload& payload)
+
+   inline ::id id(const class ::payload & payload)
    {
-      return ::id((::string)(class ::payload &) payload);
+      
+      return ::id(payload.id());
+
    }
 
-   inline ::id id(const property& prop)
+   
+   inline ::id id(const ::property & property)
    {
-      return ::id((const string&)(property&)prop);
+      
+      return ::id(property);
+
    }
 
 
    inline ::id id(const ::std::type_info& info)
    {
+
 #ifdef WINDOWS
+
       return get_id_space()(info.name());
+
 #else
+
       return get_id_space()(info.name());
+
 #endif
+
    }
+
 
    inline ::id id(const char* psz)
    {
+
       return get_id_space()(psz);
+
    }
+
 
    inline ::id id(const string& str)
    {
+
       return get_id_space()(str);
+
    }
+
 
    inline ::id id(i64 i)
    {
+
       return get_id_space()(i);
+
    }
+
 
    inline id_space& id()
    {
+
       return get_id_space();
+
    }
 
 
@@ -165,6 +189,18 @@ inline id& id::operator = (NATURAL n)
 }
 
 
+inline id& id::operator = (const ::enum_id& eid)
+{
+
+   m_etype = e_type_id;
+
+   m_eid = eid;
+
+   return *this;
+
+}
+
+
 inline id& id::operator = (const ::enum_property& eproperty)
 {
 
@@ -220,6 +256,18 @@ inline id& id::operator = (const ::enum_message & emessage)
    m_etype = e_type_message;
 
    m_emessage = emessage;
+
+   return *this;
+
+}
+
+
+inline id& id::operator = (const ::enum_subject & esubject)
+{
+
+   m_etype = e_type_subject;
+
+   m_esubject = esubject;
 
    return *this;
 

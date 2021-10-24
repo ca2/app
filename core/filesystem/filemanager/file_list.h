@@ -16,7 +16,7 @@ namespace filemanager
       bool                                m_bFileSize;
       bool                                m_bShow;
       index                               m_iSizeSubItem;
-      millis                              m_millisLastFileSizeGet;
+      ::duration                              m_durationLastFileSizeGet;
 
 
       //map < icon_key,const icon_key &,icon,icon & > m_iconmap;
@@ -31,8 +31,8 @@ namespace filemanager
       virtual ~file_list();
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       virtual __pointer(::fs::data) fs_data() override;
@@ -48,8 +48,8 @@ namespace filemanager
 
       //void FileSize();
 
-      virtual void route_command_message(::message::command * pcommand) override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void on_command_probe(::message::command * pcommand) override;
@@ -93,12 +93,12 @@ namespace filemanager
       virtual void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual bool on_click(const ::user::item & item) override;
-      virtual bool on_right_click(const ::user::item & item) override;
+      virtual bool on_click(const ::item & item) override;
+      virtual bool on_right_click(const ::item & item) override;
 
       virtual void _001OnAfterSort() override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001InsertColumns() override;
 

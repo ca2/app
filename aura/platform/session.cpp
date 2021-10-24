@@ -2,7 +2,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 //#endif
-//#include "acme/const/id.h"
+//#include "acme/constant/id.h"
 //#include "apex/platform/app_core.h"
 #include "acme/platform/static_setup.h"
 //#include "apex/platform/str_context.h"
@@ -57,7 +57,7 @@ extern "C"
 
 #ifdef _UWP
 
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
 
 #elif defined(LINUX)
 
@@ -112,6 +112,41 @@ namespace aura
    }
 
 
+   ::e_status session::on_initialize_object()
+   {
+
+      auto estatus = ::aqua::session::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::aura::context::on_initialize_object();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      //estatus = ::user::style_base::on_initialize_object();
+
+      //if(!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      return estatus;
+
+   }
+
+
    ::e_status session::initialize(::object * pobject)
    {
 
@@ -147,20 +182,41 @@ namespace aura
    }
 
 
-   ::user::style* session::get_user_style()
-   {
+   //::e_status session::_on_initialize_window_object()
+   //{
 
-      return m_puserstyleDefault;
+   //   auto estatus = ::aqua::session::_on_initialize_window_object();
 
-   }
+   //   if (!estatus)
+   //   {
+
+   //      return estatus;
+
+   //   }
+
+   //   __compose_new(m_puserstyle);
+
+   //   m_puserstyle->default_style_construct();
+
+   //   return estatus;
 
 
-   bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
-   {
+   //}
 
-      return false;
+   //::user::style* session::get_user_style()
+   //{
 
-   }
+   //   return m_puserstyleDefault;
+
+   //}
+
+
+   //bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   //{
+
+   //   return false;
+
+   //}
 
 
    void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
@@ -189,7 +245,7 @@ namespace aura
    ::e_status session::process_init()
    {
 
-      INFO("aura::session::process_init");
+      INFORMATION("aura::session::process_init");
 
       auto estatus = ::apex::session::process_init();
 
@@ -206,7 +262,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFO("acme::str_context Failed to Allocate!!");
+      //   INFORMATION("acme::str_context Failed to Allocate!!");
 
       //   return estatus;
 
@@ -221,9 +277,9 @@ namespace aura
 
       }
 
-      INFO("acme::str_context Succeeded to Allocate!!");
+      INFORMATION("acme::str_context Succeeded to Allocate!!");
 
-      INFO("aura::session::process_init success");
+      INFORMATION("aura::session::process_init success");
 
       return ::success;
 
@@ -305,7 +361,7 @@ namespace aura
 
       string strId;
 
-      string strOriginalPathName(pcreate->m_pcommandline->m_varFile);
+      string strOriginalPathName(pcreate->m_pcommandline->m_varFile.get_string());
 
       ::file::path strPathName(strOriginalPathName);
 
@@ -344,7 +400,7 @@ namespace aura
       else
       {
 
-         string strExtension = strPathName.extension();
+         string strExtension = strPathName.final_extension();
 
          string_array straApp;
 
@@ -1447,19 +1503,6 @@ namespace aura
    }
 
 
-   ::user::copydesk * session::copydesk()
-   {
-
-      if (!m_pcopydesk)
-      {
-
-         __compose(m_pcopydesk);
-
-      }
-
-      return m_pcopydesk;
-
-   }
 
 
    //index session::get_main_workspace(RECTANGLE_I32 * prectangle)
@@ -1501,14 +1544,14 @@ namespace aura
 
    //      index iMainWorkspace = m_iMainWorkspace;
 
-   //      if (iMainWorkspace < 0 || iMainWorkspace >= m_rectaWorkspace.get_count())
+   //      if (iMainWorkspace < 0 || iMainWorkspace >= m_rectangleaWorkspace.get_count())
    //      {
 
    //         iMainWorkspace = 0;
 
    //      }
 
-   //      if (m_rectaWorkspace.get_count() <= 0)
+   //      if (m_rectangleaWorkspace.get_count() <= 0)
    //      {
 
    //         return -1;
@@ -1518,7 +1561,7 @@ namespace aura
    //      if(prectangle != nullptr)
    //      {
 
-   //         *prectangle = m_rectaWorkspace[iMainWorkspace];
+   //         *prectangle = m_rectangleaWorkspace[iMainWorkspace];
 
    //      }
 
@@ -1767,14 +1810,14 @@ namespace aura
 
       //}
 
-      INFO(".2");
+      INFORMATION(".2");
 
       auto psystem = get_system()->m_paurasystem;
 
       if (psystem->m_bUser)
       {
 
-         INFO("success");
+         INFORMATION("success");
 
          auto psetup = static_setup::get_first(::static_setup::flag_object_user);
 
@@ -1804,13 +1847,13 @@ namespace aura
 
             output_debug_string("\nFailed to __compose_new(m_puser)");
 
-            ERR(".4");
+            ERROR(".4");
 
             return false;
 
          }
 
-         INFO("end");
+         INFORMATION("end");
 
          if (!m_puser->init1())
          {
@@ -1839,85 +1882,87 @@ namespace aura
    ::e_status session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
-#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
-
       return ::success;
 
-#else
-
-      if(m_puserinteractionHost)
-      {
-
-         return ::success;
-
-      }
-
-      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
-
-      if(!puserinteraction)
-      {
-
-         return ::error_failed;
-
-      }
-
-      auto estatus = puserinteraction->initialize(get_context_system());
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      estatus = __refer(m_puserinteractionHost, puserinteraction);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      rectangle_i32 rectScreen(lpcrect);
-
-//      if(::is_null(lprect))
+//#if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
+//
+//      return ::success;
+//
+//#else
+//
+//      if(m_puserinteractionHost)
 //      {
 //
-//         get_main_monitor(rectScreen);
+//         return ::success;
 //
 //      }
-//      else
+//
+//      auto puserinteraction = ::PLATFORM_NAMESPACE::create_host_window();
+//
+//      if(!puserinteraction)
 //      {
 //
-//         rectScreen = *lprect;
+//         return ::error_failed;
 //
 //      }
-
-      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
-
-      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
-
-      if (!puserinteractionHost->create_window_ex(pcs))
-      {
-
-         return ::error_failed;
-
-      }
-
-//      puserinteraction->place(rectScreen);
 //
-//      puserinteraction->display(e_display_normal);
+//      auto estatus = puserinteraction->initialize(get_context_system());
 //
-//      puserinteraction->set_need_layout();
+//      if (!estatus)
+//      {
 //
-//      puserinteraction->set_need_redraw();
+//         return estatus;
 //
-//      puserinteraction->post_redraw();
-
-      return true;
-
-#endif
+//      }
+//
+//      estatus = __refer(m_puserinteractionHost, puserinteraction);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      rectangle_i32 rectangleScreen(lpcrect);
+//
+////      if(::is_null(lprect))
+////      {
+////
+////         get_main_monitor(rectangleScreen);
+////
+////      }
+////      else
+////      {
+////
+////         rectangleScreen = *lprect;
+////
+////      }
+//
+//      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen));
+//
+//      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
+//
+//      if (!puserinteractionHost->create_window_ex(pcs))
+//      {
+//
+//         return ::error_failed;
+//
+//      }
+//
+////      puserinteraction->place(rectangleScreen);
+////
+////      puserinteraction->display(e_display_normal);
+////
+////      puserinteraction->set_need_layout();
+////
+////      puserinteraction->set_need_redraw();
+////
+////      puserinteraction->post_redraw();
+//
+//      return true;
+//
+//#endif
 
    }
 
@@ -1934,7 +1979,7 @@ namespace aura
 
       }
 
-      INFO("aura::session::init2 .1");
+      INFORMATION("aura::session::init2 .1");
 
       //if (psystem->m_bUser)
       //{
@@ -1951,7 +1996,7 @@ namespace aura
      /* if (!InitializeLocalDataCentral())
       {
 
-         message_box("Could not initialize Local data central");
+         output_error_message("Could not initialize Local data central");
 
          return false;
 
@@ -1969,9 +2014,6 @@ namespace aura
 
       ::e_status estatus = ::apex::session::init();
 
-      __compose_new(m_puserstyleDefault);
-
-      m_puserstyleDefault->default_style_construct();
 
       //__pointer(::fs::set) pfsset = m_pfsdata;
 
@@ -2021,6 +2063,27 @@ namespace aura
    }
 
 
+   //::e_status session::ui_init()
+   //{
+
+   //   if (!m_bUiInit)
+   //   {
+
+   //      return ::success_none;
+
+   //   }
+
+   //   m_bUiInit = true;
+
+   //   __compose_new(m_puserstyleDefault);
+
+   //   m_puserstyleDefault->default_style_construct();
+
+   //   return ::success;
+
+   //}
+
+
    void session::term()
    {
 
@@ -2044,24 +2107,6 @@ namespace aura
 
       }
 
-
-      try
-      {
-
-         if (m_pcopydesk.is_set())
-         {
-
-            m_pcopydesk->destroy();
-
-            __release(m_pcopydesk);
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
 
       auto puser = m_puser;
 
@@ -2177,7 +2222,7 @@ namespace aura
    void session::launch_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2185,7 +2230,7 @@ namespace aura
    void session::install_app(const ::string & psz)
    {
 
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
 
    }
 
@@ -2235,7 +2280,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      return pcontext->m_papexcontext->os().is_remote_session();
+      return pcontext->m_papexcontext->os_context()->is_remote_session();
 
    }
 
@@ -2264,7 +2309,7 @@ namespace aura
       else
       {
 
-         __throw(::exception::exception("not expected enum_mouse value"));
+         throw unexpected_situation("not expected enum_mouse value");
 
       }
 
@@ -2274,7 +2319,7 @@ namespace aura
    bool session::open_file(::filemanager::data* pdata, ::file::item_array& itema)
    {
 
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
       if (itema.get_size() > 0)
       {
@@ -2367,7 +2412,7 @@ namespace aura
 
          //      ppane->m_istrTitleEx = pszTitle;
 
-         //      ppaneview->on_layout(::draw2d::graphics_pointer & pgraphics);
+         //      ppaneview->on_layout(pgraphics);
 
          //   }
 
@@ -2421,92 +2466,100 @@ namespace aura
    }
 
 
-   ::color::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
-   {
+   //::color::color session::get_color(const ::user::interaction * puserinteraction, ::enum_element eelement, ::user::enum_state estate) const
+   //{
 
-      if (eelement == ::user::e_element_background)
-      {
+   //   if (eelement == ::e_element_background)
+   //   {
 
-         ::color::color crBk;
+   //      ::color::color crBk;
 
-         if (is_dark_mode())
-         {
+   //      if (is_dark_mode())
+   //      {
 
-            crBk = argb(255, 0x40, 0x40, 0x40);
+   //         crBk = argb(255, 0x40, 0x40, 0x40);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            crBk = argb(255, 255, 255, 255);
+   //         crBk = argb(255, 255, 255, 255);
 
-         }
+   //      }
 
-         return crBk;
+   //      return crBk;
 
-      }
-      else if (eelement == ::user::e_element_face)
-      {
+   //   }
+   //   else if (eelement == ::e_element_face)
+   //   {
 
-         ::color::color crBk;
+   //      ::color::color crBk;
 
-         if (is_dark_mode())
-         {
+   //      if (is_dark_mode())
+   //      {
 
-            crBk = argb(255, 127, 127, 127);
+   //         crBk = argb(255, 127, 127, 127);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            crBk = argb(255, 192, 192, 192);
+   //         crBk = argb(255, 192, 192, 192);
 
-         }
+   //      }
 
-         return crBk;
+   //      return crBk;
 
-      }
-      else if (eelement == ::user::e_element_text)
-      {
+   //   }
+   //   else if (eelement == ::e_element_text)
+   //   {
 
-         ::color::color crText;
+   //      ::color::color crText;
 
-         if (is_dark_mode())
-         {
+   //      if (is_dark_mode())
+   //      {
 
-            crText = argb(255, 255, 255, 255);
+   //         crText = argb(255, 255, 255, 255);
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            crText = argb(255, 49, 50, 42);
+   //         crText = argb(255, 49, 50, 42);
 
-         }
+   //      }
 
-         return crText;
+   //      return crText;
 
-      }
+   //   }
 
-      return ::color::color();
+   //   return ::color::color();
 
-   }
-
-
-   bool session::get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
-   {
-
-      return false;
-
-   }
+   //}
 
 
-   bool session::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate) const
-   {
+   //bool session::get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
+
+
+   //bool session::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate) const
+   //{
+
+   //   return false;
+
+   //}
+
+
+   //::user::style * session::user_style()
+   //{
+
+   //   return m_puserstyle;
+
+   //}
 
 
    void session::on_instantiate_application(::application* papp)
@@ -2567,7 +2620,7 @@ namespace aura
    //   //         }
 
    //   //      }
-   //   //      catch (const ::exception::exception & e)
+   //   //      catch (const ::exception & e)
    //   //      {
 
    //   //         if (e.is < ::exit_exception>())
@@ -2585,7 +2638,7 @@ namespace aura
    //   //   }
 
    //   //}
-   //   //catch (const ::exception::exception & e)
+   //   //catch (const ::exception & e)
    //   //{
 
    //   //   if (e.is < ::exit_exception>())

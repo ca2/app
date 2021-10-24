@@ -8,7 +8,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_list :
-      virtual public ::subject::manager
+      virtual public ::manager
    {
    public:
 
@@ -50,9 +50,9 @@ namespace write_text
       string                                    m_strText;
       string                                    m_strTextLayout;
 
-      ::rectangle_i32                           m_rectMargin;
+      ::rectangle_i32                           m_rectangleMargin;
       int                                       m_iBaseSizeLayout;
-      millis                                    m_millisLastLayout;
+      ::duration                                    m_durationLastLayout;
       ::task_pointer                            m_pthreadLayout;
       bool                                      m_bLayoutWideStillIntersect;
       int_array                                 m_iaSize;
@@ -64,18 +64,18 @@ namespace write_text
 
 
       font_list();
-      virtual ~font_list();
+      ~font_list() override;
 
 
-      virtual ::e_status initialize_font_list(::user::interaction * puserinteraction);
+      ::e_status initialize(::object * pobject) override;
 
-      //virtual void on_subject(::subject::subject * psubject) override;
+      //virtual void on_subject(::subject * psubject) override;
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
-      //virtual void defer_enumerate_fonts(::subject::subject * psubject);
-      //virtual void enumerate_fonts(::subject::subject * psubject);
-      //virtual void sync_enumerate_fonts(::subject::subject * psubject);
+      //virtual void defer_enumerate_fonts(::subject * psubject);
+      //virtual void enumerate_fonts(::subject * psubject);
+      //virtual void sync_enumerate_fonts(::subject * psubject);
 
       virtual void update_extents();
       virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, index iBox);
@@ -97,9 +97,9 @@ namespace write_text
       //virtual void ensure_sel_visible();
 
 
-      virtual ::user::item hit_test(const ::point_i32& point);
-      virtual ::user::item hit_test_wide(const ::point_i32& point);
-      virtual ::user::item hit_test_single_column(const ::point_i32& point);
+      virtual ::item hit_test(const ::point_i32& point);
+      virtual ::item hit_test_wide(const ::point_i32& point);
+      virtual ::item hit_test_single_column(const ::point_i32& point);
       
       virtual bool get_box_rect(RECTANGLE_I32 * lprect, ::index i);
       virtual bool get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i);

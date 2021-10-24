@@ -4,7 +4,7 @@
 
 //#ifdef ANDROID
 //
-//#include "acme/os/android/_os_local.h"
+//#include "acme/node/operating_system/android/_os_local.h"
 //
 //#endif
 
@@ -170,12 +170,12 @@ e_status apex_main_data::on_system_construct()
 #elif defined(_UWP)
 
 
-void apex_main_data::system_construct(Array < String^ >^ refstra)
+::e_status apex_main_data::system_construct(const ::string_array & straParam)
 {
 
    //m_poslocal = nullptr;
 
-   string_array stra(refstra);
+   auto stra = straParam;
 
    m_argc = __argc;
 
@@ -191,7 +191,9 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 
    m_edisplay = e_display_default;
 
-   __zero(m_mainrunnera);
+   //__zero(m_mainrunnera);
+
+   return ::success;
 
 }
 

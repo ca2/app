@@ -263,7 +263,7 @@ namespace android
 
       // get the Windows version.
 
-      ::u32 dwWindowsMajorVersion =  (::u32)(LOBYTE(LOWORD(dwVersion)));
+      ::u32 dwWindowsMajorVersion =  (::u32)(__LOBYTE(LOWORD(dwVersion)));
       //   ::u32 dwWindowsMinorVersion =  (::u32)(HIBYTE(LOWORD(dwVersion)));
 
       // get the build number.
@@ -501,7 +501,7 @@ namespace android
    ::u32 cbFileInfo,
    ::u32 uFlags)
    {
-   UNREFERENCED_PARAMETER(cbFileInfo);
+   __UNREFERENCED_PARAMETER(cbFileInfo);
    string strPath;
    ::str::international::UnicodeToACP(strPath, pszPath);
    SHFILEINFOA shia;

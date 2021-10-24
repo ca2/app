@@ -171,7 +171,7 @@ namespace mathematics
 
          //   //int c = prime100k_count();
 
-         //   ::datetime::time time = ::datetime::time::get_current_time();
+         //   ::datetime::time time = ::datetime::time::now();
 
          //   int l = get_nanos() % c;
 
@@ -247,7 +247,7 @@ namespace mathematics
 //      void generate_random_bytes(void* p, memsize s)
 //      {
 //
-//         Windows::Storage::Streams::IBuffer^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(s);
+//         ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(s);
 //
 //         memory mem;
 //
@@ -318,8 +318,8 @@ namespace mathematics
    u64 math::gen_rand()
    {
 #if defined(_UWP)
-      u64 uiLo = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      u64 uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       return uiLo | (uiHi << 32);
 #else
       u64 u = 0;

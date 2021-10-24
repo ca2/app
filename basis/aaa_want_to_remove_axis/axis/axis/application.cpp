@@ -356,7 +356,7 @@ namespace axis
       try
       {
 
-      string strType = type_name();
+      string strType = __type_name(this);
 
       //if(::is_set(m_psystem))
       //{
@@ -580,7 +580,7 @@ resume_on_exception:
 
       //}
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
       //m_bAxisProcessInitialize = true;
 
@@ -622,7 +622,7 @@ resume_on_exception:
 
       //}
 
-      INFO("axis::application::init_instance .1");
+      INFORMATION("axis::application::init_instance .1");
 
       //m_bAxisInitializeInstance = true;
 
@@ -682,7 +682,7 @@ resume_on_exception:
 
       //m_bAxisInitializeInstanceResult = true;
 
-      INFO("axis::application::init_instance success");
+      INFORMATION("axis::application::init_instance success");
 
       return true;
 
@@ -711,7 +711,7 @@ resume_on_exception:
 
       //m_bAxisInitialize1Result = false;
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       if (!::aura::application::init1())
       {
@@ -782,7 +782,7 @@ resume_on_exception:
 
       if(!signal.m_bOk)
          return false;
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
       if(is_system())
       {
@@ -846,7 +846,7 @@ m_millisHeartBeat.Now();
          }
 #endif
       }
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
       //if(is_system() 
       //      && !m_varTopicQuery["app"].get_string().begins_ci("app-core/netnode")
@@ -856,11 +856,11 @@ m_millisHeartBeat.Now();
       //{
       //   pcontext->m_papexcontext->http().defer_auto_initialize_proxy_configuration();
       //}
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 //      m_bAxisInitializeResult = true;
 
-//      dappy(string(typeid(*this).name()) + " : initialize ok : " + __str(m_iErrorCode));
+//      dappy(__type_name(this) + " : initialize ok : " + __string(m_iErrorCode));
 
       return true;
 
@@ -1120,10 +1120,18 @@ m_millisHeartBeat.Now();
 
       string strRequestUrl;
 
-      if(file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if(m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+         auto pacmedir = psystem->m_pacmedir;
+
+pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -1160,15 +1168,15 @@ m_millisHeartBeat.Now();
    string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile["disable_ca2_sessid"] = true;
+      payloadFile["disable_ca2_sessid"] = true;
 
       string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      varFile["url"] = strMatter;
+      payloadFile["url"] = strMatter;
 
-      return pcontext->m_papexcontext->file().as_string(varFile);
+      return pcontext->m_papexcontext->file().as_string(payloadFile);
 
    }
 
@@ -1200,9 +1208,9 @@ m_millisHeartBeat.Now();
 
       //__pointer(::user::message) pusermessage(pmessage);
 
-      UNREFERENCED_PARAMETER(code);
+      __UNREFERENCED_PARAMETER(code);
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 
    }
@@ -1270,7 +1278,7 @@ m_millisHeartBeat.Now();
    void application::TermThread(HINSTANCE hInstTerm)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
    }
 
@@ -1280,7 +1288,7 @@ m_millisHeartBeat.Now();
    //string application::get_version()
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -1292,7 +1300,7 @@ m_millisHeartBeat.Now();
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -1301,18 +1309,18 @@ m_millisHeartBeat.Now();
    ::aura::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
    }
 
 
-   bool application::do_prompt_file_name(::payload & varFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(::payload & payloadFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
    {
 
-      UNREFERENCED_PARAMETER(varFile);
-      UNREFERENCED_PARAMETER(nIDSTitle);
+      __UNREFERENCED_PARAMETER(payloadFile);
+      __UNREFERENCED_PARAMETER(nIDSTitle);
 
       return false;
 
@@ -1467,7 +1475,7 @@ m_millisHeartBeat.Now();
          if (mutex.already_exists())
          {
 
-//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 
             return -35;
 
@@ -1511,27 +1519,27 @@ m_millisHeartBeat.Now();
 
 
 
-   void application::on_control_event(::user::control_event * pevent)
+   void application::handle(::subject * psubject, ::context * pcontext)
    {
 
    }
 
 
-   bool application::on_open_document(::user::document * pdocument,::payload varFile)
+   bool application::on_open_document(::user::document * pdocument,::payload payloadFile)
    {
 
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(payloadFile);
       return true;
 
    }
 
 
-   bool application::on_save_document(::user::document * pdocument,::payload varFile)
+   bool application::on_save_document(::user::document * pdocument,::payload payloadFile)
    {
 
-      UNREFERENCED_PARAMETER(pdocument);
-      UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(payloadFile);
       return true;
 
    }

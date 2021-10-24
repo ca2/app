@@ -4,14 +4,7 @@
 #include "exit_status.h"
 
 
-namespace process
-{
-
-
-   CLASS_DECL_ACME string app_id_to_app_name(string strId);
-
-
-} // namespace process
+//CLASS_DECL_ACME string app_id_to_app_name(string strId);
 
 
 #if !defined(_UWP)
@@ -33,7 +26,7 @@ CLASS_DECL_ACME i32 get_current_process_affinity_order();
 
 
 //CLASS_DECL_ACME string expand_env(string str);
-//CLASS_DECL_ACME string get_environment_variable(const char * pszEnvironmentVariable);
+//CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable);
 //CLASS_DECL_ACME string ca2_command_line();
 
 
@@ -87,16 +80,6 @@ CLASS_DECL_ACME string process_version_dir_name();
 //CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra);
 
 
-CLASS_DECL_ACME bool launch_application(::matter * pobject, const ::string & strAppId, const ::string & strParams, int iBitCount);
-
-
-
-CLASS_DECL_ACME bool shell_execute_async(const char * pszFile, const char * pszParams);
-CLASS_DECL_ACME bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
-
-CLASS_DECL_ACME bool root_execute_async(const char * pszFile, const char * pszParams);
-CLASS_DECL_ACME bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration durationTimeout = one_minute());
-
 
 //CLASS_DECL_ACME bool os_init_application();
 //CLASS_DECL_ACME void os_term_application();
@@ -137,6 +120,9 @@ CLASS_DECL_ACME int process_get_status();
 CLASS_DECL_ACME void process_set_status(int iStatus);
 CLASS_DECL_ACME int * process_get_pargc();
 CLASS_DECL_ACME int process_get_argc();
+
+
+CLASS_DECL_ACME bool set_process_priority(::enum_priority epriority);
 
 
 #include "pipe.h"

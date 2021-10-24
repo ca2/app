@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace filemanager
@@ -17,7 +17,7 @@ namespace filemanager
          class tree;
 
 
-         class CLASS_DECL_CORE view :
+         class CLASS_DECL_CORE impact :
             virtual public ::user::split_view
          {
          public:
@@ -30,11 +30,11 @@ namespace filemanager
             ::object *                    m_prequestinterface;
 
 
-            view();
-            virtual ~view();
+            impact();
+            ~impact() override;
 
 
-            void install_message_routing(::channel * pchannel);
+            void install_message_routing(::channel * pchannel) override;
 
             void open_file(i64 iFolder, const ::string & pszFileName, const ::string & pszExt);
 
@@ -45,8 +45,8 @@ namespace filemanager
 
             void set_request_interface(::object * prequestinterface);
 
-            virtual void assert_valid() const;
-            virtual void dump(dump_context & dumpcontext) const;
+            void assert_valid() const override;
+            void dump(dump_context & dumpcontext) const override;
 
             DECLARE_MESSAGE_HANDLER(on_request_response);
             DECLARE_MESSAGE_HANDLER(on_message_destroy);

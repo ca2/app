@@ -92,7 +92,7 @@ namespace aura
       m_pappParent = nullptr;
 
       m_bSimpleMessageLoop = false;
-      m_ethreadClose = thread_none;
+      m_ethreadcontextClose = e_thread_context_none;
 
       m_puiMainContainer = nullptr;
 
@@ -330,7 +330,7 @@ namespace aura
    }
 
 
-   ::object * application::parent_property_set_holder() const
+   ::property_object * application::parent_property_set_holder() const
    {
 
       return nullptr;
@@ -389,8 +389,8 @@ namespace aura
 
       ::application::install_message_routing(pchannel);
 
-      //connect_command("app_exit", &application::on_message_app_exit);
-      connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+      //add_command_handler("app_exit", &application::on_message_app_exit);
+      add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
    }
 
@@ -471,7 +471,7 @@ namespace aura
 
                      pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
-                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
+                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, ::move(m));
 
                   }
 
@@ -508,6 +508,9 @@ namespace aura
 
       }
 
+      m_bAttendedFirstRequest = true;
+
+      defer_process_activation_message();
       //return ::success;
 
    }
@@ -541,7 +544,7 @@ namespace aura
          //    __throw(exit_exception(esp->get_application(), ::exit_application));
 
          // }
-         catch (const ::exception::exception & e)
+         catch (const ::exception & e)
          {
 
             handle_exception(e);
@@ -551,10 +554,10 @@ namespace aura
          auto psystem = get_system()->m_paurasystem;
 
          // Verry Sory for the per request overhead here for the needed information of only first request
-         if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
+         if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
          {
 
-            psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+            psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
          }
 
@@ -955,7 +958,7 @@ namespace aura
 //
 //         path /= pszCommand;
 //
-//         if (file_exists(path))
+//         if (m_psystem->m_pacmefile->exists(path))
 //         {
 //
 //            return path;
@@ -1118,7 +1121,7 @@ namespace aura
 //   void application::TermThread(HINSTANCE hInstTerm)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 //
@@ -1130,7 +1133,7 @@ namespace aura
 
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return false;
 
@@ -1138,10 +1141,10 @@ namespace aura
 
 
 
-   /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
+   /*::user::document *  application::_001OpenDocumentFile(::payload payloadFile)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -1151,7 +1154,7 @@ namespace aura
    //void application::_001OnFileNew(::message::message * pmessage)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -1199,7 +1202,7 @@ namespace aura
    //void application::DoWaitCursor(i32 nCode) // 0 => restore, 1=> begin, -1=> end
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(nCode);
 
    //}
 
@@ -1245,7 +1248,7 @@ namespace aura
    //}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return ::thread::process_exception(pe);
@@ -1278,7 +1281,7 @@ namespace aura
    //      }
 
    //   }
-   //   catch (const ::exception::exception & e)
+   //   catch (const ::exception & e)
    //   {
 
    //      handle_exception(pe);
@@ -1301,9 +1304,9 @@ namespace aura
    //void application::term_thread()
    //{
 
-   //   INFO("aura::application::term_thread");
+   //   INFORMATION("aura::application::term_thread");
 
-   //   m_millisHeartBeat.Now();
+   //   m_durationHeartBeat.Now();
 
    //   try
    //   {
@@ -1324,12 +1327,12 @@ namespace aura
 //   ::e_status application::pre_run()
 //   {
 //
-//      INFO("aura::application::pre_run");
+//      INFORMATION("aura::application::pre_run");
 //
 //      try
 //      {
 //
-//         m_millisHeartBeat.Now();
+//         m_durationHeartBeat.Now();
 //
 //         if(!application_pre_run())
 //         {
@@ -1371,7 +1374,7 @@ namespace aura
 //
 //         }
 //
-//         m_millisHeartBeat.Now();
+//         m_durationHeartBeat.Now();
 //
 //         if (!os_native_bergedge_start())
 //         {
@@ -1382,12 +1385,12 @@ namespace aura
 //
 //         }
 //
-//         INFO("aura::application::pre_run success");
+//         INFORMATION("aura::application::pre_run success");
 //
 //         return true;
 //
 //      }
-//      catch (const ::exception::exception & e)
+//      catch (const ::exception & e)
 //      {
 //
 //         handle_exception(pe);
@@ -1396,7 +1399,7 @@ namespace aura
 //      catch (...)
 //      {
 //
-//         INFO("aura::application::pre_run exception.4");
+//         INFORMATION("aura::application::pre_run exception.4");
 //
 //      }
 //
@@ -1488,7 +1491,7 @@ namespace aura
 //            estatus = run();
 //
 //         }
-//         catch (const ::exception::exception & e)
+//         catch (const ::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -1539,12 +1542,12 @@ namespace aura
    void application::pos_run()
    {
 
-      INFO("aura::application::pos_run");
+      INFORMATION("aura::application::pos_run");
 
       try
       {
 
-         m_millisHeartBeat.Now();
+         m_durationHeartBeat.Now();
 
          application_pos_run();
 
@@ -1554,7 +1557,7 @@ namespace aura
       catch (...)
       {
 
-         INFO("aura::application::pos_run exception.4");
+         INFORMATION("aura::application::pos_run exception.4");
 
       }
 
@@ -1573,9 +1576,9 @@ namespace aura
 
       }
       
-      auto psubject = m_psystem->m_papexsystem->subject(id_app_activated);
+      auto psignal = m_psystem->m_papexsystem->get_signal(id_app_activated);
       
-      psubject->add_listener(this);
+      psignal->add_handler(this);
 
       return true;
 
@@ -1661,7 +1664,7 @@ namespace aura
 
       }
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       try
       {
@@ -1769,8 +1772,7 @@ retry_license:
 
       }
 
-      INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
-
+      INFORMATION("initial_check_directrix : ok (%s)%s\n\n", __type_name(this), m_strAppId.c_str());
 
       return true;
 
@@ -1871,10 +1873,10 @@ retry_license:
       }
 
 
-      INFO("axis::application::process_init");
+      INFORMATION("axis::application::process_init");
 
 
-      INFO("aura::application::process_init success");
+      INFORMATION("aura::application::process_init success");
 
 
       return true;
@@ -1905,18 +1907,18 @@ retry_license:
 //
 //      }
 //
-//      INFO("aura::application::init_application");
+//      INFORMATION("aura::application::init_application");
 //
 //      //m_bAuraInitializeInstance = true;
 //
 //      //m_bAuraInitializeInstanceResult = false;
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init1())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1926,12 +1928,12 @@ retry_license:
 //
 //      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init2())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1941,12 +1943,12 @@ retry_license:
 //
 //      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
 //      if (!init3())
 //      {
 //
-//         //dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//         //dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 //
 //         return false;
 //
@@ -1956,9 +1958,9 @@ retry_license:
 //
 //      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
-//      m_millisHeartBeat.Now();
+//      m_durationHeartBeat.Now();
 //
-//      //dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//      //dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 //
 //      try
 //      {
@@ -1966,7 +1968,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//            //dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 //
 //            return false;
 //
@@ -2037,9 +2039,26 @@ retry_license:
          if (!estatus)
          {
 
-            TRACE("context_image required but missing");
+            INFORMATION("ERROR: context_image required but missing.");
 
-            message_box("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+
+            return estatus;
+
+         }
+
+      }
+      else
+      {
+
+         estatus = __compose_new(m_pcontextimage);
+
+         if (!estatus)
+         {
+
+            INFORMATION("ERROR: context_image required but missing.");
+
+            //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
             return estatus;
 
@@ -2047,9 +2066,10 @@ retry_license:
 
       }
 
-      INFO("start");
 
-      m_millisHeartBeat.Now();
+      INFORMATION("start");
+
+      m_durationHeartBeat.Now();
 
       return ::success;
 
@@ -2889,7 +2909,7 @@ retry_license:
    ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    ////{
 
-   ////   UNREFERENCED_PARAMETER(durationTimeOut);
+   ////   __UNREFERENCED_PARAMETER(durationTimeOut);
 
    ////   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -2906,7 +2926,7 @@ retry_license:
    //string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -2958,8 +2978,8 @@ retry_license:
    //void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
@@ -2968,14 +2988,11 @@ retry_license:
    //void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
    //{
-   //   UNREFERENCED_PARAMETER(context);
-   //   UNREFERENCED_PARAMETER(pcsz);
+   //   __UNREFERENCED_PARAMETER(context);
+   //   __UNREFERENCED_PARAMETER(pcsz);
 
    //   //psystem->appa_load_string_table();
    //}
-
-
-
 
 
    //string application::get_locale_schema_dir()
@@ -3255,11 +3272,11 @@ retry_license:
    //}
 
 
-   //void application::play_audio(::payload varFile, bool bSynch)
+   //void application::play_audio(::payload payloadFile, bool bSynch)
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(bSynch);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   __UNREFERENCED_PARAMETER(bSynch);
 
    //}
 //
@@ -3350,7 +3367,7 @@ retry_license:
 //   }
 //
 //
-//   void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+//   void application::handle(::subject * psubject, ::context * pcontext)
 //   {
 //
 //
@@ -3442,12 +3459,12 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document_file(::payload varFile)
+   //bool application::on_open_document_file(::payload payloadFile)
    //{
 
-   //   request_file(varFile);
+   //   request_file(payloadFile);
 
-   //   return varFile["document"].cast < ::object > () != nullptr;
+   //   return payloadFile["document"].cast < ::object > () != nullptr;
 
    //}
 
@@ -3535,12 +3552,16 @@ retry_license:
 //
 //      int iRetry = 9;
 //
-//      while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
+//      while (!m_psystem->m_pacmefile->exists(utf8(wstr.c_str())) && iRetry > 0)
 //      {
 //
-//         dir::mk(dir::name(utf8(wstr.c_str())).c_str());
+//                  auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
 //
-//         file_put_contents(utf8(wstr.c_str()).c_str(), "");
+//pacmedir->create(::file_path_folder(utf8(wstr.c_str())).c_str());
+//
+//         m_psystem->m_pacmefile->put_contents(utf8(wstr.c_str()).c_str(), "");
 //
 //         iRetry--;
 //
@@ -3589,7 +3610,7 @@ retry_license:
 //
 //      string str = ::path::app_app_admin(strPlatform, strConfiguration);
 //
-//      if (!::file_exists(str))
+//      if (!::m_psystem->m_pacmefile->exists(str))
 //      {
 //
 //         return;
@@ -3640,7 +3661,7 @@ retry_license:
 //
 //      ::string strPath = wstr.c_str();
 //
-//      ::string strContents = file_as_string(strPath.c_str());
+//      ::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 //
 //      __throw(todo("xml"));
 //
@@ -3778,7 +3799,7 @@ retry_license:
 
          }
 
-         TRACE("::base::application::add_user_interaction ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+         INFORMATION("::base::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << __type_name(this));
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
@@ -3836,7 +3857,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            TRACE("::base::application::erase_user_interaction ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << __type_name(this));
 
          }
 
@@ -3850,7 +3871,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            TRACE("::base::application::erase_frame ::user::interaction = 0x%016x (%s) app=%s", puserinteraction, typeid(*puserinteraction).name(), typeid(*this).name());
+            INFORMATION("::base::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<__type_name(this));
 
          }
 
@@ -4034,7 +4055,7 @@ retry_license:
         if (pmsg->m_id == 126)
         {
 
-           TRACE("e_message_display_change");
+           INFORMATION("e_message_display_change");
 
         }
 
@@ -4347,7 +4368,7 @@ retry_license:
 
    ::id application::translate_property_id(const ::id & id)
    {
-
+      return ::aqua::application::translate_property_id(id);
       //if(!is_system())
       //{
 
@@ -4755,7 +4776,7 @@ retry_license:
    //}
 
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return aura::application::process_exception(e);
@@ -4796,7 +4817,7 @@ retry_license:
    //   try
    //   {
 
-   //      string strType = type_name();
+   //      string strType = __type_name(this);
 
    //      //if(::is_set(m_psystem))
    //      //{
@@ -4827,7 +4848,7 @@ retry_license:
    //         m_estatus = run();
 
    //      }
-   //      catch (const ::exception::exception & e)
+   //      catch (const ::exception & e)
    //      {
 
    //         if (handle_exception(pe))
@@ -4842,7 +4863,7 @@ retry_license:
    //      }
 
    //   }
-   //   catch (const ::exception::exception & e)
+   //   catch (const ::exception & e)
    //   {
 
    //   }
@@ -5100,15 +5121,18 @@ retry_license:
    {
 
       string strLocale;
+      
       string strSchema;
-      TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+
+      INFORMATION("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+      
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 
       auto pcontext = get_context();
 
       ::file::path strFile = dir().install() / strRelative;
 
-      ::file::path strUrl(::file::path_url);
+      ::file::path strUrl(::e_path_url);
 
       if (framework_is_basis())
       {
@@ -5202,10 +5226,10 @@ retry_license:
 
       string strRequestUrl;
 
-      if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+      if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
       {
 
-         strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+         strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
          pszRequestUrl = strRequestUrl;
 
@@ -5242,17 +5266,17 @@ retry_license:
    string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile["disable_ca2_sessid"] = true;
+      payloadFile["disable_ca2_sessid"] = true;
 
       auto pcontext = get_context();
 
       string strMatter = dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      varFile["url"] = strMatter;
+      payloadFile["url"] = strMatter;
 
-      return file().as_string(varFile);
+      return file().as_string(payloadFile);
 
    }
 
@@ -5284,9 +5308,9 @@ retry_license:
 
    //   //__pointer(::user::message) pusermessage(pmessage);
 
-   //   UNREFERENCED_PARAMETER(code);
+   //   __UNREFERENCED_PARAMETER(code);
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
 
    //}
@@ -5371,7 +5395,7 @@ retry_license:
    //void application::TermThread(HINSTANCE hInstTerm)
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //}
 
@@ -5381,7 +5405,7 @@ retry_license:
    //string application::get_version()
    //{
 
-   //   ::exception::throw_interface_only();
+   //   throw ::interface_only_exception();
 
    //   return "";
 
@@ -5393,7 +5417,7 @@ retry_license:
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -5402,7 +5426,7 @@ retry_license:
    ::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
    {
 
-      ::exception::throw_interface_only();
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -5433,11 +5457,11 @@ retry_license:
 
    }
 
-   //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
-   //   UNREFERENCED_PARAMETER(varFile);
-   //   UNREFERENCED_PARAMETER(nIDSTitle);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   __UNREFERENCED_PARAMETER(nIDSTitle);
 
    //   return false;
 
@@ -5542,7 +5566,7 @@ retry_license:
 //         if (::mutex.already_exists())
 //         {
 //
-//            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            //            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 //
 //            return -35;
 //
@@ -5586,27 +5610,27 @@ retry_license:
 //
 //
 
-   //void application::on_control_event(::user::control_event * pevent)
+   //void application::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //}
 
 
-   //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+   //bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(pdocument);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
 
 
-   //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+   //bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdocument);
-   //   UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(pdocument);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   return true;
 
    //}
@@ -5618,41 +5642,41 @@ retry_license:
 
    //}
 
-   //void application::on_control_event(::user::control_event* pevent)
+   //void application::handle(::subject * psubject, ::context * pcontext)
    //{
 
    //}
 
 
-   void application::on_notify_control_event(::user::control_event* pevent)
-   {
+   //void application::on_notify_control_event(::user::control_event* pevent)
+   //{
 
 
-   }
+   //}
 
 
-   void application::route_control_event(::user::control_event* pevent)
-   {
+   //void application::route(::subject * psubject, ::context * pcontext)
+   //{
 
-      on_control_event(pevent);
+   //   handle(psubject);
 
-      if (pevent->m_bRet)
-      {
+   //   if (psubject->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      on_notify_control_event(pevent);
+   //   on_notify_control_event(pevent);
 
-      if (pevent->m_bRet)
-      {
+   //   if (psubject->m_bRet)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-   }
+   //}
 
 
 
@@ -5869,7 +5893,7 @@ namespace aura
 
                ::message::command command(idCommand);
 
-               pinteraction->route_command_message(&command);
+               pinteraction->route_command(&command);
 
             }));
 
@@ -5885,7 +5909,7 @@ namespace aura
 
             auto puserinteractionMain = m_puserinteractionMain;
 
-            puserinteractionMain->route_command_message(&command);
+            puserinteractionMain->route_command(&command);
 
             if(command.m_bRet)
             {
@@ -5944,9 +5968,9 @@ namespace aura
    //lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
    //{
 
-   //   UNREFERENCED_PARAMETER(nCode);
-   //   UNREFERENCED_PARAMETER(wParam);
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(nCode);
+   //   __UNREFERENCED_PARAMETER(wParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
 
    //   return 0;
 
@@ -5956,9 +5980,9 @@ namespace aura
    bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
    {
 
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(pcszType);
-      UNREFERENCED_PARAMETER(pcszFilePath);
+      __UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(pcszType);
+      __UNREFERENCED_PARAMETER(pcszFilePath);
 
       return false;
 
@@ -5971,7 +5995,7 @@ namespace aura
 //   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 //   {
 //
-//      UNREFERENCED_PARAMETER(pmsg);
+//      __UNREFERENCED_PARAMETER(pmsg);
 //
 //
 //      return false;
@@ -5983,7 +6007,7 @@ namespace aura
 //   bool application::OnX11WindowMessage(void* pXevent) // XEvent *
 //   {
 //
-//      UNREFERENCED_PARAMETER(pXevent);
+//      __UNREFERENCED_PARAMETER(pXevent);
 //
 //      return false;
 //
@@ -5994,7 +6018,7 @@ namespace aura
    void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
 
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -6003,10 +6027,10 @@ namespace aura
 
    //{
 
-   //   UNREFERENCED_PARAMETER(nID);
-   //   UNREFERENCED_PARAMETER(pcszType);
+   //   __UNREFERENCED_PARAMETER(nID);
+   //   __UNREFERENCED_PARAMETER(pcszType);
 
-   //   UNREFERENCED_PARAMETER(storage);
+   //   __UNREFERENCED_PARAMETER(storage);
 
    //   return false;
 
@@ -6038,7 +6062,7 @@ namespace aura
 //
 //   void application::EnableModelessEx(bool bEnable)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -6064,7 +6088,7 @@ namespace aura
    }
 
 
-   void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
+   void application::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage)
    {
 
       ENSURE_ARG(pmessage != nullptr);
@@ -6112,10 +6136,24 @@ namespace aura
    }
 
 
-   void application::route_command_message(::message::command* pcommand)
+   void application::route_command(::message::command* pcommand, bool bRouteToKeyDescendant)
    {
 
-      ::thread::route_command_message(pcommand);
+      command_handler(pcommand);
+
+      if (pcommand->m_bRet)
+      {
+
+         return;
+
+      }
+
+      if (m_papexsession)
+      {
+
+         m_papexsession->route_command(pcommand, false);
+
+      }
 
    }
 
@@ -6502,7 +6540,7 @@ namespace aura
 
    /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
-   UNREFERENCED_PARAMETER(nMaxMRU);
+   __UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_VALID(this);
 
    // 0 by default means not set
@@ -6663,8 +6701,8 @@ namespace aura
    //
    //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6679,9 +6717,9 @@ namespace aura
    //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
-   //      UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(dwData);
    //
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //
    //      // return global cast help mode state to false (backward compatibility)
    //      m_bHelpMode = false;
@@ -6693,8 +6731,8 @@ namespace aura
    //
    //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
-   //      UNREFERENCED_PARAMETER(dwData);
-   //      UNREFERENCED_PARAMETER(nCmd);
+   //      __UNREFERENCED_PARAMETER(dwData);
+   //      __UNREFERENCED_PARAMETER(nCmd);
    //      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
@@ -6717,7 +6755,7 @@ namespace aura
 //   void application::DevModeChange(char * pDeviceName)
 //
 //   {
-//      UNREFERENCED_PARAMETER(pDeviceName);
+//      __UNREFERENCED_PARAMETER(pDeviceName);
 //
 //
 //#ifdef WINDOWS
@@ -6729,7 +6767,7 @@ namespace aura
 //   }
 //
 
-   //bool application::process_exception(const ::exception::exception & e)
+   //bool application::process_exception(const ::exception & e)
    //{
 
    //   return ::aura::application::on_run_exception(pexception))
@@ -6744,10 +6782,10 @@ namespace aura
    //}
 
 
-   //bool application::final_handle_exception(const ::exception::exception & e)
+   //bool application::final_handle_exception(const ::exception & e)
    //{
 
-   //   UNREFERENCED_PARAMETER(pexception);
+   //   __UNREFERENCED_PARAMETER(pexception);
 
    //   if (!is_system())
    //   {
@@ -6768,8 +6806,8 @@ namespace aura
 
    /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
    {
-   UNREFERENCED_PARAMETER(pszLink);
-   UNREFERENCED_PARAMETER(pszTarget);
+   __UNREFERENCED_PARAMETER(pszLink);
+   __UNREFERENCED_PARAMETER(pszTarget);
    return false;
    }
    */
@@ -6948,7 +6986,7 @@ namespace aura
 
    //void application::UpdatePrinterSelection(bool bForceDefaults)
    //{
-   //   UNREFERENCED_PARAMETER(bForceDefaults);
+   //   __UNREFERENCED_PARAMETER(bForceDefaults);
    //}
 
 
@@ -6963,10 +7001,10 @@ namespace aura
 //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
 //   {
 //
-//      UNREFERENCED_PARAMETER(hDevNames);
-//      UNREFERENCED_PARAMETER(hDevMode);
-//      UNREFERENCED_PARAMETER(bFreeOld);
-//      ::exception::throw_not_implemented();
+//      __UNREFERENCED_PARAMETER(hDevNames);
+//      __UNREFERENCED_PARAMETER(hDevMode);
+//      __UNREFERENCED_PARAMETER(bFreeOld);
+//      throw interface_only_exception();
 //
 //   }
 //
@@ -6976,7 +7014,7 @@ namespace aura
 
    //::draw2d::graphics* application::CreatePrinterDC()
    //{
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   return nullptr;
    //}
 
@@ -7079,7 +7117,7 @@ namespace aura
 //
 //   void application::DoEnableModeless(bool bEnable)
 //   {
-//      UNREFERENCED_PARAMETER(bEnable);
+//      __UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //      UNUSED(bEnable);
 //#endif
@@ -7165,9 +7203,9 @@ namespace aura
 
    void application::SetRegistryKey(::u32 nIDRegistryKey)
    {
-      //UNREFERENCED_PARAMETER(nIDRegistryKey);
+      //__UNREFERENCED_PARAMETER(nIDRegistryKey);
       //ASSERT(m_pszRegistryKey == nullptr);
-      //::exception::throw_not_implemented();
+      //throw interface_only_exception();
       ///*char szRegistryKey[256];
       //VERIFY(::aura::LoadString(nIDRegistryKey, szRegistryKey));
       //SetRegistryKey(szRegistryKey);*/
@@ -7579,7 +7617,7 @@ namespace aura
 
          auto puserinteractionMain = m_puserinteractionMain;
 
-         puserinteractionMain->m_puiThis->display(e_display_normal);
+         puserinteractionMain->display(e_display_normal);
 
       }
 
@@ -7658,13 +7696,13 @@ namespace aura
    void application::_001OnFileNew(::message::message* pmessage)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
       ::payload varQuery;
 
       varQuery["command"] = "new_file";
 
-      //request_file(varFile, varQuery);
+      //request_file(payloadFile, varQuery);
 
       pmessage->m_bRet = true;
 
@@ -7672,19 +7710,19 @@ namespace aura
 
 
 
-   //   bool application::on_open_document_file(::payload varFile)
+   //   bool application::on_open_document_file(::payload payloadFile)
    //   {
    //
-   //      return _001OpenDocumentFile(varFile);
+   //      return _001OpenDocumentFile(payloadFile);
    //
    //   }
 
-   //::user::document* application::_001OpenDocumentFile(::payload varFile)
+   //::user::document* application::_001OpenDocumentFile(::payload payloadFile)
    //{
 
-   //   request_file(varFile);
+   //   request_file(payloadFile);
 
-   //   return varFile["document"].cast < ::user::document >();
+   //   return payloadFile["document"].cast < ::user::document >();
 
    //}
 
@@ -7692,7 +7730,7 @@ namespace aura
    //bool application::_001OnDDECommand(const ::string & pcsz)
 
    //{
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
    //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -7712,7 +7750,7 @@ namespace aura
 
 //   ::user::interaction * application::get_desktop_window()
 //   {
-//#if defined(_UWP) || defined(APPLEOS)
+//#if defined(_UWP) || defined(__APPLE__)
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //
@@ -7786,7 +7824,7 @@ namespace aura
 
    //   aura::application::install_message_routing(pchannel);
 
-   //   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+   //   add_command_handler("switch_context_theme", &application::_001OnSwitchContextTheme);
 
    //}
 
@@ -7815,9 +7853,9 @@ namespace aura
    //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
    //{
    //
-   //   UNREFERENCED_PARAMETER(propertyset);
+   //   __UNREFERENCED_PARAMETER(propertyset);
    //
-   //   UNREFERENCED_PARAMETER(pszMatter);
+   //   __UNREFERENCED_PARAMETER(pszMatter);
    //
    //   return "";
 
@@ -8054,7 +8092,7 @@ namespace aura
    void application::on_application_signal(::message::message* pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -8078,9 +8116,9 @@ namespace aura
    i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
    {
 
-      UNREFERENCED_PARAMETER(pszMatter);
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(puie);
+      __UNREFERENCED_PARAMETER(pszMatter);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(puie);
 
       return 1;
 
@@ -8206,7 +8244,7 @@ namespace aura
    //oswindow application::get_ca2_app_wnd(const ::string & psz)
    //{
 
-   //   UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(psz);
 
    //   return nullptr;
 
@@ -8296,7 +8334,7 @@ namespace aura
    }
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
    {
 
    }
@@ -8421,7 +8459,7 @@ namespace aura
    }
 
 
-   void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
+   void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
    {
 
       string strMessage;
@@ -8434,7 +8472,9 @@ namespace aura
 
       auto puserinteractionMain = m_puserinteractionMain;
 
-      puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+      //puserinteractionMain->message_box(strMessage, nullptr, ::enum_message_box(iMessageFlags));
+
+      output_error_message(strMessage, pszTopic, iMessageFlags);
 
    }
 
@@ -8630,12 +8670,12 @@ namespace aura
    //   }
 
 
-      void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+      void application::handle(::subject * psubject, ::context * pcontext)
       {
 
-         ::aqua::application::on_subject(psubject, pcontext);
+         //::aqua::application::handle(psubject, pcontext);
 
-         //::user::form_callback::on_subject(psubject, pcontext);
+         //::user::form_callback::handle(psubject, pcontext);
 
          if(psubject->m_id == id_app_activated)
          {
@@ -8648,6 +8688,75 @@ namespace aura
             }
             
          }
+         if (psubject->m_id == ::e_subject_initialize_control)
+         {
+
+            auto puserinteraction = psubject->m_puserelement->cast<::user::interaction>();
+
+            if (puserinteraction->m_id == __id(system_startup_checkbox))
+            {
+
+               try
+               {
+                  __pointer(::user::check) pcheck = puserinteraction;
+
+                  if (pcheck.is_set())
+                  {
+
+                     auto pcontext = get_context();
+
+                     pcheck->_001SetCheck(
+                        os_context()->is_user_auto_start(get_executable_appid()),
+                        ::e_source_initialize);
+
+                  }
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+         else if (psubject->m_id == ::e_subject_set_check)
+         {
+
+            auto puserinteraction = psubject->user_interaction();
+
+            if (puserinteraction->m_id == __id(system_startup_checkbox)
+               && psubject->m_actioncontext.is_user_source())
+            {
+
+               try
+               {
+
+                  __pointer(::user::check) pcheck = puserinteraction;
+
+                  if (pcheck.is_set())
+                  {
+
+                     os_context()->register_user_auto_start(
+                        get_executable_appid(),
+                        get_executable_path(),
+                        pcheck->echeck() == ::check_checked);
+
+                  }
+
+                  psubject->m_bRet = true;
+
+                  return;
+
+               }
+               catch (...)
+               {
+
+               }
+
+            }
+
+         }
+
 
       }
 
@@ -8790,7 +8899,7 @@ namespace aura
       if(strRequestUrl.is_empty())
       {
 
-         string strIgnitionServer = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
+         string strIgnitionServer = m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt");
 
          if(::str::ends_ci(strIgnitionServer,".ca2.software"))
          {
@@ -8989,81 +9098,6 @@ namespace aura
    }
 
 
-   void application::on_control_event(::user::control_event* pevent)
-   {
-
-      if (pevent->m_eevent == ::user::e_event_initialize_control)
-      {
-
-         auto puserinteraction = pevent->m_puserinteraction;
-
-         if (puserinteraction->m_id == __id(system_startup_checkbox))
-         {
-
-            try
-            {
-               __pointer(::user::check) pcheck = puserinteraction;
-
-               if (pcheck.is_set())
-               {
-
-                  auto pcontext = get_context();
-
-                  pcheck->_001SetCheck(
-                     os().is_user_auto_start(get_executable_appid()),
-                     ::e_source_initialize);
-
-               }
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      else if (pevent->m_eevent == ::user::e_event_set_check)
-      {
-
-         auto puserinteraction = pevent->m_puserinteraction;
-
-         if (puserinteraction->m_id == __id(system_startup_checkbox)
-            && pevent->m_actioncontext.is_user_source())
-         {
-
-            try
-            {
-
-               __pointer(::user::check) pcheck = puserinteraction;
-
-               if (pcheck.is_set())
-               {
-
-                  os().register_user_auto_start(
-                     get_executable_appid(),
-                     get_executable_path(),
-                     pcheck->echeck() == ::check_checked);
-
-               }
-
-               pevent->m_bRet = true;
-
-               return;
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-
-   }
-
-
    ::user::interaction* application::create_menu_interaction()
    {
 
@@ -9175,7 +9209,7 @@ namespace aura
    }
 
 
-//   icon_result application::load_icon(const ::payload& varFile)
+//   icon_transport application::load_icon(const ::payload& payloadFile)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP

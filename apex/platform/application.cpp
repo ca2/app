@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "apex/operating_system.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -10,24 +9,17 @@
 #include "acme/platform/profiler.h"
 #include "apex/compress/zip/_.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/node.h"
+#include "acme/parallelization/install_mutex.h"
 
 
-#include "apex/node/_node.h"
+//#include "apex/node/_node.h"
 #include "node.h"
 //#include "apex/os/_os.h"
 
-#ifdef WINDOWS_DESKTOP
-
-int windows_desktop1_main(HINSTANCE hInstance, int nCmdShow);
-
-
-
-#include "apex/os/windows/_.h"
-
-#endif
 
 
 extern ::app_core * g_pappcore;
@@ -74,7 +66,7 @@ extern ::app_core * g_pappcore;
 //void ns_app_terminate();
 // 0x00010000 NSWorkspaceLaunchAsync
 // 0x00080000 NSWorkspaceLaunchNewInstance
-void ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags);
+void ns_launch_app(const char * psz, const char ** argv, int iFlags);
 #endif
 
 #if defined(LINUX)
@@ -87,7 +79,7 @@ void ns_launch_app(const ::string & psz, const ::string &* argv, int iFlags);
 //#include <X11/cursorfont.h>
 #include <sys/time.h>
 #include <link.h>
-#include "acme/os/ansios/_pthread.h"
+#include "acme/node/operating_system/ansi/_pthread.h"
 
 #endif
 #define _GNU_SOURCE
@@ -136,7 +128,7 @@ m_bSnLauncheeSetup = false;
 //m_pappParent = nullptr;
 m_bMessageThread = true;
 m_bSimpleMessageLoop = false;
-m_ethreadClose = thread_none;
+m_ethreadcontextClose = e_thread_context_none;
 
 //m_puiMainContainer = nullptr;
 
@@ -151,7 +143,7 @@ m_bInitializeDataCentral = false;
 
 m_bContextTheme = false;
 
-
+m_bAttendedFirstRequest = false;
 
 m_strLocale = "_std";
 m_strSchema = "_std";
@@ -208,7 +200,7 @@ m_bInterprocessIntercommunication = false;
 // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
 //::increment_reference_count(this);
 
-srand((u32) ::_get_nanos());
+srand((u32) get_integral_nanosecond().m_i);
 
 m_bService = false;
 
@@ -353,7 +345,7 @@ pnode->set_application_menu(m_papplicationmenu, this);
 }
 
 
-::object * application::parent_property_set_holder() const
+::property_object * application::parent_property_set_holder() const
 {
 
    return nullptr;
@@ -488,8 +480,8 @@ void application::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_close, pchannel, this, &application::on_message_close);
 
-   connect_command("app_exit", this, &application::on_message_app_exit);
-   connect_command("switch_context_theme", this, &application::_001OnSwitchContextTheme);
+   add_command_handler("app_exit", this, &application::on_message_app_exit );
+   add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
 
 }
 
@@ -532,67 +524,67 @@ return true;
 }
 
 
-string application::get_title()
+string application::title()
 {
 
-if(m_textAppTitle.get_text().has_char())
-{
+   if(m_textAppTitle.get_text().has_char())
+   {
 
-return m_textAppTitle.get_text();
+      return m_textAppTitle.get_text();
 
-}
+   }
 
-string_array stra;
+   string_array stra;
 
-stra.explode("/", m_strAppName);
+   stra.explode("/", m_strAppName);
 
-string strTitle;
+   string strTitle;
 
-if(stra.get_count() > 1)
-{
+   if(stra.get_count() > 1)
+   {
 
-strTitle = stra.implode("/", 1);
+      strTitle = stra.implode("/", 1);
 
-if(strTitle.length() > 0)
-{
+      if(strTitle.length() > 0)
+      {
 
-return strTitle;
+         return strTitle;
 
-}
+      }
 
-}
+   }
 
-if(m_strAppName.has_char())
-{
+   if(m_strAppName.has_char())
+   {
 
-return m_strAppName;
+      return m_strAppName;
 
-}
+   }
 
-stra.explode("/", m_strAppId);
+   stra.explode("/", m_strAppId);
 
-if(stra.get_count() > 1)
-{
+   if(stra.get_count() > 1)
+   {
 
-strTitle = stra.implode("/", 1);
+      strTitle = stra.implode("/", 1);
 
-if(strTitle.length() > 0)
-{
+      if(strTitle.length() > 0)
+      {
 
-return strTitle;
+         return strTitle;
 
-}
+      }
 
-}
+   }
 
-if(m_strAppId.has_char())
-{
+   if(m_strAppId.has_char())
+   {
 
-return m_strAppId;
+      return m_strAppId;
 
-}
+   }
 
-return m_pcontext->m_papexcontext->file().module().title();
+   return m_pcontext->m_papexcontext->file().module().title();
 
 }
 
@@ -829,7 +821,7 @@ do_request(pcreate);
 //    __throw(exit_exception(esp->get_application(), ::exit_application));
 
 // }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -837,10 +829,10 @@ handle_exception(e);
 }
 
 // Verry Sory for the per request overhead here for the needed information of only first request
-if (::is_set(psystem) && psystem->m_millisAfterApplicationFirstRequest == 0)
+if (::is_set(psystem) && psystem->m_durationAfterApplicationFirstRequest.is_null())
 {
 
-psystem->m_millisAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
+psystem->m_durationAfterApplicationFirstRequest.Now(); // cross your fingers that the first recorded is not 0, it will be cleaned up by other requests.
 
 }
 
@@ -1217,50 +1209,12 @@ return bIsUserService && bIsService;
 
 
 
-::file::path command_find_path(const ::string & pszCommand)
-{
-
-#ifdef _UWP
-
-return "";
-
-#else
-
-string strPath = getenv("PATH");
-
-string_array straPath;
-
-straPath.explode(":", strPath);
-
-for (auto & str : straPath)
-{
-
-::file::path path;
-
-path = str;
-
-path /= pszCommand;
-
-if (file_exists(path))
-{
-
-return path;
-
-}
-
-}
-
-return pszCommand;
-
-#endif
-
-}
 
 
 bool application::_001OnDDECommand(const ::string & str)
 {
 
-   ::exception::throw_interface_only();
+   throw ::interface_only_exception();
 
    return false;
 
@@ -1307,7 +1261,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-::e_status application::process_exception(const ::exception::exception & e)
+::e_status application::process_exception(const ::exception & e)
 {
 
    return ::thread::process_exception(e);
@@ -1315,10 +1269,10 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 }
 
 
-//bool application::final_handle_exception(const ::exception::exception & e)
+//bool application::final_handle_exception(const ::exception & e)
 //{
 
-//   UNREFERENCED_PARAMETER(pe);
+//   __UNREFERENCED_PARAMETER(pe);
 
 //   //linux      exit(-1);
 
@@ -1343,7 +1297,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //      return ::thread::main();
 //
 ////
-////      INFO("apex::application::main");
+////      INFORMATION("apex::application::main");
 ////
 ////      try
 ////      {
@@ -1355,14 +1309,14 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 //////         if(m_iErrorCode != 0)
 //////         {
 //////
-//////            dappy(string(typeid(*this).name()) + " : on_run failure : " + __str(m_iErrorCode));
+//////            dappy(__type_name(this) + " : on_run failure : " + __string(m_iErrorCode));
 //////
 //////            ::output_debug_string("application::main on_run termination failure\n");
 //////
 //////         }
 ////
 ////      }
-////      catch (const ::exception::exception & e)
+////      catch (const ::exception & e)
 ////      {
 ////
 ////         if (!handle_exception(e))
@@ -1375,7 +1329,7 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ////      catch (...)
 ////      {
 ////
-////         //dappy(string(typeid(*this).name()) + " : on_run general exception");
+////         //dappy(__type_name(this) + " : on_run general exception");
 ////
 ////      }
 ////
@@ -1387,33 +1341,33 @@ return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
 ::e_status application::init_thread()
 {
 
-try
-{
+   try
+   {
 
-if (!pre_run())
-{
+      if (!pre_run())
+      {
 
-return false;
+         return false;
 
-}
+      }
 
-}
-catch (const ::exception::exception & e)
-{
+   }
+   catch (const ::exception & e)
+   {
 
-handle_exception(e);
+      handle_exception(e);
 
-return false;
+      return false;
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-return false;
+      return false;
 
-}
+   }
 
-return true;
+   return true;
 
 }
 
@@ -1421,22 +1375,22 @@ return true;
 void application::term_thread()
 {
 
-INFO("apex::application::term_thread");
+   INFORMATION("apex::application::term_thread");
 
-m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
-try
-{
+   try
+   {
 
-pos_run();
+      pos_run();
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-}
+   }
 
-::thread::term_thread();
+   ::thread::term_thread();
 
 }
 
@@ -1444,85 +1398,85 @@ catch (...)
 ::e_status application::pre_run()
 {
 
-INFO("apex::application::pre_run");
+   INFORMATION("apex::application::pre_run");
 
-try
-{
+   try
+   {
 
-m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
-if(!application_pre_run())
-{
+      if(!application_pre_run())
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return false;
+         return false;
 
-}
+      }
 
-//    if(!check_install())
-//    {
+      //    if(!check_install())
+      //    {
 
-//       m_bReady = true;
+      //       m_bReady = true;
 
-//       return false;
+      //       return false;
 
-//    }
+      //    }
 
-//         if(!is_system() && !is_session())
-//         {
-//
-//            if(!is_installed())
-//            {
-//
-//
-//            }
-//
-//         }
+      //         if(!is_system() && !is_session())
+      //         {
+      //
+      //            if(!is_installed())
+      //            {
+      //
+      //
+      //            }
+      //
+      //         }
 
-//xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
+      //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
-auto estatus = on_before_launching();
+      auto estatus = on_before_launching();
 
-if(!estatus)
-{
+      if(!estatus)
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return estatus;
+         return estatus;
 
-}
+      }
 
-m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
-if (!os_native_bergedge_start())
-{
+      if (!os_native_bergedge_start())
+      {
 
-m_bReady = true;
+         m_bReady = true;
 
-return false;
+         return false;
 
-}
+      }
 
-INFO("apex::application::pre_run success");
+      INFORMATION("apex::application::pre_run success");
 
-return true;
+      return true;
 
-}
-catch (const ::exception::exception & e)
-{
+   }
+   catch (const ::exception & e)
+   {
 
-handle_exception(e);
+      handle_exception(e);
 
-}
-catch (...)
-{
+   }
+   catch (...)
+   {
 
-INFO("apex::application::pre_run exception.4");
+      INFORMATION("apex::application::pre_run exception.4");
 
-}
+   }
 
-return false;
+   return false;
 
 }
 
@@ -1610,7 +1564,7 @@ return false;
 //            estatus = run();
 //
 //         }
-//         catch (const ::exception::exception & e)
+//         catch (const ::exception & e)
 //         {
 //
 //            if (handle_exception(e))
@@ -1720,12 +1674,12 @@ synchronous_lock synchronouslock(mutex());
 void application::pos_run()
 {
 
-INFO("apex::application::pos_run");
+INFORMATION("apex::application::pos_run");
 
 try
 {
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 application_pos_run();
 
@@ -1735,7 +1689,7 @@ application_pos_run();
 catch (...)
 {
 
-INFO("apex::application::pos_run exception.4");
+INFORMATION("apex::application::pos_run exception.4");
 
 }
 
@@ -1779,7 +1733,7 @@ return estatus;
 
 }
 
-INFO("apex::application::init_application .1");
+INFORMATION("apex::application::init_application .1");
 
 bool bHandled = false;
 
@@ -1811,22 +1765,26 @@ strMessage = "Another instance of \"" + m_strAppName + "\" is already running (a
 
 //message_box(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
-message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
+//message_box(strMessage, m_strAppName, e_message_box_icon_asterisk);
 
-INFO("apex::application::init_application exit");
+output_debug_string(strMessage + m_strAppName);
 
-__throw(exit_exception(this));
+INFORMATION("apex::application::init_application exit");
+
+throw exit_exception(this);
 
 }
 
 }
 
-INFO("apex::application::init_application .2");
+INFORMATION("apex::application::init_application .2");
 
 if (m_pinterprocessintercommunication)
 {
 
-m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
+m_pinterprocessintercommunication->on_new_instance(
+   m_pcontext->m_papexcontext->file().module(),
+   m_pcontext->m_papexcontext->os_context()->get_pid());
 
 }
 
@@ -1878,7 +1836,7 @@ m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->f
 
 //m_bAxisInitializeInstanceResult = true;
 
-INFO("axis::application::init_instance success");
+INFORMATION("axis::application::init_instance success");
 
 auto estatus = create_impact_system();
 
@@ -2195,32 +2153,32 @@ void application::term_instance()
 
 ::e_status application::application_pre_run()
 {
+//
+//INFORMATION("apex::application::application_pre_run");
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//MSG msg;
+//
+//// Create Windows Message Queue
+//::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
+//
+//MESSAGE message;
+//
+//__copy(message, msg);
+//
+//auto psystem = m_psystem->m_papexsystem;
+//
+//if (!is_system() && is_true("SessionSynchronizedInput"))
+//{
+//
+//::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
+//
+//}
+//
+//#endif
 
-INFO("apex::application::application_pre_run");
-
-#ifdef WINDOWS_DESKTOP
-
-MSG msg;
-
-// Create Windows Message Queue
-::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
-
-MESSAGE message;
-
-__copy(message, msg);
-
-auto psystem = m_psystem->m_papexsystem;
-
-if (!is_system() && is_true("SessionSynchronizedInput"))
-{
-
-::AttachThreadInput(GetCurrentThreadId(), (u32)psystem->get_ithread(), true);
-
-}
-
-#endif
-
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 //try
 //{
@@ -2239,7 +2197,7 @@ m_millisHeartBeat.Now();
 //throw pe;
 //
 //}
-//catch (const ::exception::exception * pe)
+//catch (const ::exception * pe)
 //{
 //
 ////thisexc << 1 << m_iErrorCode;
@@ -2258,7 +2216,7 @@ m_millisHeartBeat.Now();
 //
 //}
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 ::e_status estatus = ::success;
 
@@ -2281,7 +2239,7 @@ catch (::exit_exception * pe)
 throw pe;
 
 }
-catch (const ::exception::exception * pe)
+catch (const ::exception * pe)
 {
 
 ::acme::del(pe);
@@ -2302,7 +2260,7 @@ return false;
 //
 //      psystem->install_progress_add_up();
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2315,7 +2273,7 @@ return false;
 }
 
 }
-catch (const ::exception::exception & e)
+catch (const ::exception & e)
 {
 
 handle_exception(e);
@@ -2330,7 +2288,7 @@ return false;
 
 }
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2375,7 +2333,7 @@ catch (const ::exit_exception & exception)
 __rethrow(exception);
 
 }
-catch(const ::exception::exception & e)
+catch(const ::exception & e)
 {
 
 m_result.add(e);
@@ -2425,7 +2383,7 @@ catch (...)
 
 }
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 try
 {
@@ -2497,55 +2455,61 @@ bool application::do_install()
 ::e_status application::on_before_launching()
 {
 
-string strLicense = get_license_id();
+   string strLicense = get_license_id();
 
-//::payload & varTopicQuey = psystem->m_varTopicQuery;
+   //::payload & varTopicQuey = psystem->m_varTopicQuery;
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-bool bHasInstall = psystem->is_true("install");
+   bool bHasInstall = psystem->is_true("install");
 
-bool bHasUninstall = psystem->is_true("uninstall");
+   bool bHasUninstall = psystem->is_true("uninstall");
 
-if (!(bHasInstall || bHasUninstall)
-&& m_bLicense
-&& strLicense.has_char())
-{
+   if (!(bHasInstall || bHasUninstall)
+   && m_bLicense
+   && strLicense.has_char())
+   {
 
-if (!assert_user_logged_in())
-{
-return false;
-}
+      if (!assert_user_logged_in())
+      {
 
-// call application's is_licensed function
-// because if delay is needed for authentication -
-// or either asking for authentication -
-// current application startup won't be
-// exited by timeout.
+         return false;
 
-i32 iRetry = 1;
+      }
 
-auto psession = get_session();
+      // call application's is_licensed function
+      // because if delay is needed for authentication -
+      // or either asking for authentication -
+      // current application startup won't be
+      // exited by timeout.
 
-retry_license:
+      i32 iRetry = 1;
 
-iRetry--;
+      auto psession = get_session();
 
-if (!psession->is_licensed(strLicense))
-{
+      retry_license:
 
-if (iRetry > 0)
-   goto retry_license;
+      iRetry--;
 
-return false;
+      if (!psession->is_licensed(strLicense))
+      {
 
-}
+         if (iRetry > 0)
+         {
 
-}
+            goto retry_license;
 
-INFO("initial_check_directrix : ok (%s)%s\n\n", typeid(*this).name(), m_strAppId.c_str());
+         }
 
-return true;
+         return false;
+
+      }
+
+   }
+
+   INFORMATION("initial_check_directrix : ok ("<< __type_name(this) <<")"<< m_strAppId);
+
+   return true;
 
 }
 
@@ -2630,56 +2594,6 @@ return bOk;
 }
 
 
-e_status application::enable_service()
-{
-
-auto estatus = m_psystem->m_papexsystem->os().enable_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-estatus = service_handler()->start_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-return estatus;
-
-}
-
-
-e_status application::disable_service()
-{
-
-auto estatus = service_handler()->stop_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-estatus = os().disable_service();
-
-if (!estatus)
-{
-
-return estatus;
-
-}
-
-return estatus;
-
-}
 
 
 bool application::system_add_app_install(const ::string & pszId, const ::string & pszBuild)
@@ -2709,7 +2623,7 @@ string_array straSchema;
 straLocale = payload("locale");
 straSchema = payload("schema");
 
-::file::path pathExe = m_psystem->m_pacmepath->app_module();
+::file::path pathExe = m_psystem->m_pacmefile->executable();
 
 straLocale.insert_at(0, strSystemLocale);
 straSchema.insert_at(0, strSystemSchema);
@@ -2895,65 +2809,6 @@ return nullptr;
 //}
 
 
-void application::on_service_request(::create * pcreate)
-{
-
-if (!is_service())
-{
-
-return;
-
-}
-
-if (pcreate->m_pcommandline->m_varQuery.has_property("create_service"))
-{
-
-enable_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("start_service"))
-{
-
-service_handler()->defer_service();
-
-service_handler()->start_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("stop_service"))
-{
-
-service_handler()->stop_service();
-
-}
-else if (pcreate->m_pcommandline->m_varQuery.has_property("erase_service"))
-{
-
-disable_service();
-
-}
-else if (has_property("service"))
-{
-
-service_handler()->defer_service();
-
-service_handler()->start_service();
-
-}
-else if (has_property("run"))
-{
-
-__compose(m_pservicehanlder)
-;
-
-service_handler()->defer_service();
-
-service_handler()->get_service()->run();
-
-}
-
-}
-
-
 //void application::on_update_matter_locator()
 //{
 
@@ -3038,7 +2893,7 @@ set_has_installer(!psystem->has_apex_application_factory());
 
 //}
 
-INFO("apex::application::process_init");
+INFORMATION("apex::application::process_init");
 
 m_bThreadToolsForIncreasedFps = psystem->m_bThreadToolsForIncreasedFps;
 
@@ -3069,7 +2924,7 @@ return false;
 
 //      m_bAuraProcessInitializeResult = true;
 
-INFO("apex::application::process_init success");
+INFORMATION("apex::application::process_init success");
 
 //create_factory < ::database::field_array >();
 //create_factory < ::database::row >();
@@ -3082,7 +2937,7 @@ INFO("apex::application::process_init success");
 
 //}
 
-INFO("axis::application::process_init");
+INFORMATION("axis::application::process_init");
 
 //m_bAxisProcessInitialize = true;
 
@@ -3107,7 +2962,7 @@ INFO("axis::application::process_init");
 
 //m_bAxisProcessInitializeResult = true;
 
-INFO("axis::application::process_init success");
+INFORMATION("axis::application::process_init success");
 
 //return true;
 
@@ -3116,13 +2971,13 @@ auto estatus = userfs_process_init();
 if(!estatus && estatus != error_not_implemented)
 {
 
-ERR(".2");
+ERROR(".2");
 
 return false;
 
 }
 
-INFO("success");
+INFORMATION("success");
 
 return true;
 
@@ -3203,14 +3058,14 @@ catch(...)
 
 auto psystem = get_system()->m_papexsystem;
 
-INFO("apex::application::init_application");
+INFORMATION("apex::application::init_application");
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init1())
 {
 
-//dappy(string(typeid(*this).name()) + " : init1 failure : " + __str(m_iErrorCode));
+//dappy(__type_name(this) + " : init1 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3220,12 +3075,12 @@ psystem->install_progress_add_up(); // 2
 
 //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init2())
 {
 
-//dappy(string(typeid(*this).name()) + " : init2 failure : " + __str(m_iErrorCode));
+//dappy(__type_name(this) + " : init2 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3235,12 +3090,12 @@ psystem->install_progress_add_up(); // 3
 
 //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (!init3())
 {
 
-//dappy(string(typeid(*this).name()) + " : init3 failure : " + __str(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3250,9 +3105,9 @@ psystem->install_progress_add_up(); // 4
 
 //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
-//dappy(string(typeid(*this).name()) + " : init3 ok : " + __str(m_iErrorCode));
+//dappy(__type_name(this) + " : init3 ok : " + __string(m_iErrorCode));
 
 try
 {
@@ -3260,7 +3115,7 @@ try
 if (!init())
 {
 
-//dappy(string(typeid(*this).name()) + " : initialize failure : " + __str(m_iErrorCode));
+//dappy(__type_name(this) + " : initialize failure : " + __string(m_iErrorCode));
 
 return false;
 
@@ -3312,174 +3167,139 @@ return nullptr;
 ::e_status application::init1()
 {
 
-auto estatus = initialize_context();
+   auto estatus = initialize_context();
 
-if (!estatus)
-{
+   if (!estatus)
+   {
 
-return estatus;
+      return estatus;
 
-}
+   }
 
-auto psystem = get_system()->m_papexsystem;
+   auto psystem = get_system()->m_papexsystem;
 
-estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
+   estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init1") );
 
-if (!estatus)
-{
+   if (!estatus)
+   {
 
-return estatus;
+      return estatus;
 
-}
+   }
 
-if (psystem)
-{
+   if (psystem)
+   {
 
-if (psystem->m_pintstringLanguageResourceMap != nullptr)
-{
+      if (psystem->m_pintstringLanguageResourceMap != nullptr)
+      {
 
-m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
+         m_puserlanguagemap->set_language_resource_map(psystem->m_pintstringLanguageResourceMap);
 
-}
+      }
 
-}
+   }
 
-if (psystem->m_bLocalization)
-{
+   if (psystem->m_bLocalization)
+   {
 
-string strLang = psystem->get_user_language();
+      string strLang = psystem->get_user_language();
 
-if (!m_puserlanguagemap->set_language(this, strLang))
-{
+      if (!m_puserlanguagemap->set_language(this, strLang))
+      {
 
-m_puserlanguagemap->set_default_language(this);
+         m_puserlanguagemap->set_default_language(this);
 
-}
+      }
 
-}
+   }
 
-m_millisHeartBeat.Now();
+   m_durationHeartBeat.Now();
 
-if (!notify_init1())
-{
+   if (!notify_init1())
+   {
 
-return ::error_failed;
+      return ::error_failed;
 
-}
+   }
 
-if (psystem->m_bLocalization)
-{
+   if (psystem->m_bLocalization)
+   {
 
-string strLocale;
+      string strLocale;
 
-string strSchema;
+      string strSchema;
 
-if (psystem->get_user_language().has_char())
-{
+      //if (psystem->get_user_language().has_char())
+      //{
 
-m_strLocale = psystem->get_user_language();
+         m_strLocale = psystem->get_user_language();
 
-m_strSchema = m_strLocale;
+         m_strSchema = m_strLocale;
 
-}
-else
-{
+      //}
 
-#ifdef _UWP
+      if (strLocale.is_empty())
+      {
 
-string_array stra;
+         strLocale = "_std";
 
-try
-{
+      }
 
-   stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
+      if (strSchema.is_empty())
+      {
 
-}
-catch (long)
-{
+         strSchema = strLocale;
 
-}
+      }
 
-strLocale = stra[0];
+      if (psystem->payload("locale").get_count() > 0)
+      {
 
-strSchema = stra[0];
+         strLocale = psystem->payload("locale").stra()[0];
 
-#elif defined(WINDOWS)
+      }
 
-LANGID langid = ::GetUserDefaultLangID();
+      if (psystem->payload("schema").get_count() > 0)
+      {
 
-string strIso = ::windows::langid_to_iso(langid);
+         strSchema = psystem->payload("schema").stra()[0];
 
-strLocale = strIso;
+      }
 
-strSchema = strIso;
+      if (get_application()->payload("locale").get_count() > 0)
+      {
 
-#endif
+         strLocale = get_application()->payload("locale").stra()[0];
 
-}
+      }
 
-if (strLocale.is_empty())
-{
+      if (get_application()->payload("schema").get_count() > 0)
+      {
 
-strLocale = "_std";
+         strSchema = get_application()->payload("schema").stra()[0];
 
-}
+      }
 
-if (strSchema.is_empty())
-{
+      set_locale(strLocale, ::e_source_database);
 
-strSchema = strLocale;
+      set_schema(strSchema, ::e_source_database);
 
-}
+   }
 
-if (psystem->payload("locale").get_count() > 0)
-{
+   if (!initialize_contextualized_theme())
+   {
 
-strLocale = psystem->payload("locale").stra()[0];
+      FATAL("Failed to initialize_contextualized_theme");
 
-}
+      return false;
 
-if (psystem->payload("schema").get_count() > 0)
-{
+   }
 
-strSchema = psystem->payload("schema").stra()[0];
+   INFORMATION("start");
 
-}
+   m_durationHeartBeat.Now();
 
-if (get_application()->payload("locale").get_count() > 0)
-{
-
-strLocale = get_application()->payload("locale").stra()[0];
-
-}
-
-if (get_application()->payload("schema").get_count() > 0)
-{
-
-strSchema = get_application()->payload("schema").stra()[0];
-
-}
-
-set_locale(strLocale, ::e_source_database);
-
-set_schema(strSchema, ::e_source_database);
-
-}
-
-if (!initialize_contextualized_theme())
-{
-
-FATAL("Failed to initialize_contextualized_theme");
-
-return false;
-
-}
-
-INFO("start");
-
-m_millisHeartBeat.Now();
-
-return ::success;
+   return ::success;
 
 }
 
@@ -3715,7 +3535,7 @@ __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATT
    if(!pexclusive)
    {
 
-      auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
+      auto pexclusiveNew = __new(::acme::exclusive(this, strId ADD_PARAM_SEC_ATTRS));
 
       __m_own(this, pexclusive, pexclusiveNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::get_exclusive") );
 
@@ -3752,60 +3572,27 @@ bool application::check_exclusive(bool & bHandled)
 
 #endif
 
-   bool bSetOk;
-
    bool bResourceException = false;
 
-   #ifdef WINDOWS_DESKTOP
+   auto psystem = m_psystem;
 
-   LPSECURITY_ATTRIBUTES psa = nullptr;
+   auto pnode = psystem->node();
 
-   bSetOk = false;
+   memory memorySecurityAttributes;
 
-   SECURITY_ATTRIBUTES MutexAttributes;
-   ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
-   MutexAttributes.nLength = sizeof(MutexAttributes);
-   MutexAttributes.bInheritHandle = false; // object uninheritable
-   // declare and initialize a security descriptor
-   SECURITY_DESCRIPTOR SD;
-   bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
-   if (bInitOk)
-   {
-   // give the security descriptor a Null Dacl
-   // done using the  "true, (PACL)nullptr" here
-   bSetOk = SetSecurityDescriptorDacl(&SD,
-                                   true,
-                                   (PACL)nullptr,
-                                   false) != false;
-   }
+   bool bSetOk = pnode->get_application_exclusivity_security_attributes(memorySecurityAttributes);
+
+   void * psaSecurityAttributes = memorySecurityAttributes.get_data();
 
    if (bSetOk)
    {
 
-   MutexAttributes.lpSecurityDescriptor = &SD;
-
-
-   psa = &MutexAttributes;
-
-
-   }
-
-   #else
-
-   bSetOk = true;
-
-   #endif
-
-
-      if (bSetOk)
-      {
-
-      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalExclusiveFail = exclusive_fails(get_global_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if(bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
       {
 
-      TRACE("A instance of the application:<br><br> - " + string(m_strAppName) + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+      INFORMATION("A instance of the application:<br><br> - " << m_strAppName << + "<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
 
       try
       {
@@ -3830,12 +3617,12 @@ bool application::check_exclusive(bool & bHandled)
       if (m_eexclusiveinstance == ExclusiveInstanceGlobalId)
       {
 
-      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bGlobalIdExclusiveFail = exclusive_fails(get_global_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if (bGlobalIdExclusiveFail)
       {
 
-         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same id.<br><br>Exiting this new instance.");
 
          try
          {
@@ -3859,7 +3646,7 @@ bool application::check_exclusive(bool & bHandled)
 
       }
 
-      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+      bool bLocalExclusiveFail = exclusive_fails(get_local_mutex_name()  INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
       if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
       {
@@ -3867,7 +3654,7 @@ bool application::check_exclusive(bool & bHandled)
       try
       {
 
-         TRACE("A instance of the application:<br><br>-" + string(m_strAppName) + "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
 
          if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, ""))
          {
@@ -3889,7 +3676,7 @@ bool application::check_exclusive(bool & bHandled)
    if (m_eexclusiveinstance == ExclusiveInstanceLocalId)
    {
 
-   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(&MutexAttributes));
+   bool bLocalIdExclusiveFail = exclusive_fails(get_local_id_mutex_name() INSERT_PARAM_SEC_ATTRS(psaSecurityAttributes));
 
    if (bLocalIdExclusiveFail)
    {
@@ -3898,7 +3685,7 @@ bool application::check_exclusive(bool & bHandled)
       {
 
          // Should in some way activate the other instance
-         TRACE("A instance of the application:<br><br>           - " + string(m_strAppName) + "with the id \"" + get_local_mutex_id() + "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
+         INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the id \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same id.<br><br>Exiting this new instance.");
 
          if(!on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id()))
          {
@@ -4115,7 +3902,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -4176,7 +3963,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -4407,7 +4194,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
 //{
 
-//   UNREFERENCED_PARAMETER(durationTimeOut);
+//   __UNREFERENCED_PARAMETER(durationTimeOut);
 
 //   return sync_message_box(puserinteractionOwner, payload, pszTitle, fuStyle);
 
@@ -4421,7 +4208,7 @@ void application::get_scalar_maximum(e_scalar escalar, i64 & i)
 string application::http_get_locale_schema(const ::string & pszUrl, const ::string & pszLocale, const ::string & pszSchema)
 {
 
-::exception::throw_interface_only();
+throw ::interface_only_exception();
 
 return "";
 
@@ -4470,8 +4257,8 @@ on_set_schema(m_strSchema, context);
 void application::on_set_locale(const string & pcsz, const ::action_context & context)
 
 {
-UNREFERENCED_PARAMETER(context);
-UNREFERENCED_PARAMETER(pcsz);
+__UNREFERENCED_PARAMETER(context);
+__UNREFERENCED_PARAMETER(pcsz);
 
 //psystem->appa_load_string_table();
 }
@@ -4480,8 +4267,8 @@ UNREFERENCED_PARAMETER(pcsz);
 void application::on_set_schema(const string & pcsz, const ::action_context & context)
 
 {
-UNREFERENCED_PARAMETER(context);
-UNREFERENCED_PARAMETER(pcsz);
+__UNREFERENCED_PARAMETER(context);
+__UNREFERENCED_PARAMETER(pcsz);
 
 //psystem->appa_load_string_table();
 }
@@ -4493,7 +4280,7 @@ UNREFERENCED_PARAMETER(pcsz);
 string application::get_locale_schema_dir()
 {
 
-return ::str::_001Concat(get_locale(), "/", get_schema());
+   return _001Concatenate(get_locale(), "/", get_schema());
 
 }
 
@@ -4501,7 +4288,7 @@ return ::str::_001Concat(get_locale(), "/", get_schema());
 string application::get_locale_schema_dir(const ::string & strLocale)
 {
 
-return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   return _001Concatenate(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
 
 }
 
@@ -4509,21 +4296,21 @@ return ::str::_001Concat(strLocale.is_empty() ? get_locale() : strLocale, "/", g
 void application::matter_locator_locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
 {
 
-if (strLocale.is_empty() || strSchema.is_empty())
-{
+   if (strLocale.is_empty() || strSchema.is_empty())
+   {
 
-return;
+      return;
 
-}
+   }
 
-for (auto & strMatterLocator : straMatterLocator)
-{
+   for (auto & strMatterLocator : straMatterLocator)
+   {
 
-string strLs = get_locale_schema_dir(strLocale, strSchema);
+      string strLs = get_locale_schema_dir(strLocale, strSchema);
 
-stra.add_unique(::file::path(strMatterLocator) / strLs);
+      stra.add_unique(::file::path(strMatterLocator) / strLs);
 
-}
+   }
 
 }
 
@@ -4572,7 +4359,7 @@ void application::locale_schema_matter(string_array & stra, const string_array &
 string application::get_locale_schema_dir(const ::string & strLocale, const ::string & strSchema)
 {
 
-return ::str::_001Concat(strLocale, "/", strSchema);
+   return _001Concatenate(strLocale, "/", strSchema);
 
 }
 
@@ -4580,25 +4367,24 @@ return ::str::_001Concat(strLocale, "/", strSchema);
 void application::fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema)
 {
 
-
-localeschema.m_idaLocale.erase_all();
-localeschema.m_idaSchema.erase_all();
-
-
-string strLocale(pszLocale);
-string strSchema(pszSchema);
+   localeschema.m_idaLocale.erase_all();
+   localeschema.m_idaSchema.erase_all();
 
 
-localeschema.m_idLocale = pszLocale;
-localeschema.m_idSchema = pszSchema;
+   string strLocale(pszLocale);
+   string strSchema(pszSchema);
 
 
-localeschema.add_locale_variant(strLocale, strSchema);
-localeschema.add_locale_variant(get_locale(), strSchema);
-localeschema.add_locale_variant(__id(std), strSchema);
-localeschema.add_locale_variant(__id(en), strSchema);
+   localeschema.m_idLocale = pszLocale;
+   localeschema.m_idSchema = pszSchema;
 
-localeschema.destroy();
+
+   localeschema.add_locale_variant(strLocale, strSchema);
+   localeschema.add_locale_variant(get_locale(), strSchema);
+   localeschema.add_locale_variant(__id(std), strSchema);
+   localeschema.add_locale_variant(__id(en), strSchema);
+
+   localeschema.destroy();
 
 }
 
@@ -4607,74 +4393,74 @@ void application::fill_locale_schema(::text::international::locale_schema & loca
 {
 
 
-localeschema.m_idaLocale.erase_all();
-localeschema.m_idaSchema.erase_all();
+   localeschema.m_idaLocale.erase_all();
+   localeschema.m_idaSchema.erase_all();
 
 
-//localeschema.m_bAddAlternateStyle = true;
+   //localeschema.m_bAddAlternateStyle = true;
 
 
-string_array straLocale;
-string_array straSchema;
+   string_array straLocale;
+   string_array straSchema;
 
-straLocale.add(get_locale());
-straSchema.add(get_schema());
-
-
-string_array stra;
-
-stra = payload("locale").stra();
-
-stra.erase_ci("_std");
-
-straLocale.add_unique(payload("locale").stra());
-
-stra.empty();
-
-stra = payload("schema").stra();
-
-stra.erase_ci("_std");
-
-straSchema.add_unique(payload("schema").stra());
-
-localeschema.m_idLocale = straLocale[0];
-localeschema.m_idSchema = straSchema[0];
-
-for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
-{
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
-
-}
-
-}
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
-
-}
-
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
-
-localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
-
-}
+   straLocale.add(get_locale());
+   straSchema.add(get_schema());
 
 
-for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
-{
+   string_array stra;
 
-localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+   stra = payload("locale").stra();
 
-}
+   stra.erase_ci("_std");
 
-localeschema.destroy();
+   straLocale.add_unique(payload("locale").stra());
+
+   stra.empty();
+
+   stra = payload("schema").stra();
+
+   stra.erase_ci("_std");
+
+   straSchema.add_unique(payload("schema").stra());
+
+   localeschema.m_idLocale = straLocale[0];
+   localeschema.m_idSchema = straSchema[0];
+
+   for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   {
+
+      for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      {
+
+         localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
+
+      }
+
+   }
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
+
+   }
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(__id(std), straSchema[iSchema]);
+
+   }
+
+
+   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   {
+
+      localeschema.add_locale_variant(__id(en), straSchema[iSchema]);
+
+   }
+
+   localeschema.destroy();
 
 }
 
@@ -4752,11 +4538,11 @@ return !is_session() && !is_system();
 //}
 
 
-//void application::play_audio(::payload varFile, bool bSynch)
+//void application::play_audio(::payload payloadFile, bool bSynch)
 //{
 
-//   UNREFERENCED_PARAMETER(varFile);
-//   UNREFERENCED_PARAMETER(bSynch);
+//   __UNREFERENCED_PARAMETER(payloadFile);
+//   __UNREFERENCED_PARAMETER(bSynch);
 
 //}
 
@@ -4817,7 +4603,7 @@ g_iCount++;
 if (g_iCount == 1)
 {
 
-m_pcontext->m_papexcontext->os().file_open(strFile);
+m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 
 }
 
@@ -4851,14 +4637,14 @@ m_pcontext->m_papexcontext->os().file_open(strFile);
 }
 
 
-void application::subject_handler(::subject::subject * psubject)
-{
+//void application::signal(::signal * psignal)
+//{
+//
+//
+//}
 
 
-}
-
-
-void application::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+void application::handle(::subject * psubject, ::context * pcontext)
 {
 
 
@@ -4946,12 +4732,12 @@ return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath,
 }
 
 
-bool application::on_open_document_file(::payload varFile)
+bool application::on_open_document_file(::payload payloadFile)
 {
 
-//request_file(varFile);
+//request_file(payloadFile);
 
-//return varFile["document"].cast < ::object > () != nullptr;
+//return payloadFile["document"].cast < ::object > () != nullptr;
 
 return false;
 
@@ -4979,146 +4765,28 @@ synchronous_lock synchronouslock(mutex());
 }
 
 
-bool application::register_spa_file_type()
+bool application::register_application_as_spa_file_type_handler()
 {
 
-#ifdef WINDOWS_DESKTOP
+   auto psystem = m_psystem;
 
-HKEY hkey;
+   auto pnode = psystem->node();
 
-wstring extension = L".spa";                     // file extension
-wstring desc = L"spafile";          // file type description
-wstring content_type = L"application/x-spa";
+   auto bOk= pnode->register_spa_file_type(m_strAppId);
 
-wstring app(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()));
+   if (!bOk)
+   {
 
-wstring icon(app);
+      return false;
 
-app = L"\"" + app + L"\"" + L" \"%1\"";
-icon = L"\"" + icon + L"\",107";
+   }
 
-wstring action = L"Open";
-
-wstring sub = L"\\shell\\";
-
-wstring path = L"spafile\\shell\\open\\command";
-
-
-// 1: Create subkey for extension -> HKEY_CLASSES_ROOT\.002
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, extension.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)desc.c_str(), ::u32 (desc.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-RegSetValueExW(hkey, L"ContentType", 0, REG_SZ, (byte*)content_type.c_str(), ::u32 (content_type.length() * sizeof(wchar_t))); // default vlaue is description of file extension
-RegCloseKey(hkey);
-
-
-
-// 2: Create Subkeys for action ( "Open with my program" )
-// HKEY_CLASSES_ROOT\.002\Shell\\open with my program\\command
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)app.c_str(), ::u32(app.length() * sizeof(wchar_t)));
-RegCloseKey(hkey);
-
-
-path = L"spafile\\DefaultIcon";
-
-if (RegCreateKeyExW(HKEY_CLASSES_ROOT, path.c_str(), 0, 0, 0, KEY_ALL_ACCESS, 0, &hkey, 0) != ERROR_SUCCESS)
-{
-output_debug_string("Could not create or open a registrty key\n");
-return 0;
-}
-RegSetValueExW(hkey, L"", 0, REG_SZ, (byte*)icon.c_str(), ::u32 (icon.length() * sizeof(wchar_t)));
-RegCloseKey(hkey);
-
-wstring wstr(m_psystem->m_pacmedir->stage(m_strAppId, process_platform_dir_name(), process_configuration_dir_name()) / "spa_register.txt");
-
-int iRetry = 9;
-
-while (!file_exists(utf8(wstr.c_str())) && iRetry > 0)
-{
-
-dir::mk(dir::name(utf8(wstr.c_str())).c_str());
-
-file_put_contents(utf8(wstr.c_str()).c_str(), "");
-
-iRetry--;
-
-sleep(100_ms);
-
-}
-
-#endif
-
-return true;
+   return true;
 
 }
 
 
-bool application::low_is_app_app_admin_running(string strPlatform, string strConfiguration)
-{
 
-::install::admin_mutex smutex(strPlatform);
-
-return smutex.already_exists();
-
-}
-
-
-void application::defer_start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-{
-
-if (low_is_app_app_admin_running(strPlatform, strConfiguration))
-{
-
-return;
-
-}
-
-start_program_files_app_app_admin(strPlatform, strConfiguration);
-
-}
-
-
-void application::start_program_files_app_app_admin(string strPlatform, string strConfiguration)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-SHELLEXECUTEINFOW sei = {};
-
-string str = m_psystem->m_pacmepath->app_app_admin(strPlatform, strConfiguration);
-
-if (!::file_exists(str))
-{
-
-return;
-
-}
-
-::install::admin_mutex mutexStartup("-startup");
-
-wstring wstr(str);
-
-sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-sei.fMask = SEE_MASK_NOASYNC | SEE_MASK_NOCLOSEPROCESS;
-sei.lpVerb = L"RunAs";
-
-sei.lpFile = wstr.c_str();
-
-::ShellExecuteExW(&sei);
-
-DWORD dwGetLastError = GetLastError();
-
-#endif
-
-}
 
 
 string application::get_app_id(string wstr)
@@ -5147,7 +4815,7 @@ return "";
 
 ::string strPath = wstr.c_str();
 
-::string strContents = file_as_string(strPath.c_str());
+::string strContents = m_psystem->m_pacmefile->as_string(strPath.c_str());
 
 __throw(todo, "xml");
 
@@ -5268,7 +4936,7 @@ bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam
 
 //}
 
-__throw(error_interface_only);
+throw ::interface_only_exception();
 
 return false;
 
@@ -5278,7 +4946,7 @@ return false;
 bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
 {
 
-__throw(error_interface_only);
+throw ::interface_only_exception();
 
 //__pointer(::user::interaction) puserinteraction;
 
@@ -5479,6 +5147,30 @@ void application::on_message_close(::message::message* pmessage)
 bool application::is_equal_file_path(const ::file::path & path1Param, const ::file::path & path2Param)
 {
 
+   if (path1Param.is_empty())
+   {
+
+      if (path2Param.is_empty())
+      {
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
+
+      }
+
+   }
+   else if (path2Param.is_empty())
+   {
+
+      return false;
+
+   }
+
    ::file::path path1;
 
    ::file::path path2;
@@ -5487,9 +5179,9 @@ bool application::is_equal_file_path(const ::file::path & path1Param, const ::fi
 
    path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
 
-   path1 = node_full_file_path(path1);
+   path1 = m_psystem->m_pacmepath->final(path1);
 
-   path2 = node_full_file_path(path2);
+   path2 = m_psystem->m_pacmepath->final(path2);
 
    return strcmp(path1, path2) == 0;
 
@@ -5636,6 +5328,20 @@ return m_psystem->m_pacmedir->config() / m_strAppName;
 
 ::id application::translate_property_id(const ::id & id)
 {
+
+   if (id == "hide_recycle_bin")
+   {
+
+      return id_hide_recycle_bin;
+
+   }
+   else if (id == "show_recycle_bin")
+   {
+
+      return id_show_recycle_bin;
+
+   }
+
 
 //if(!is_system())
 //{
@@ -6044,25 +5750,25 @@ bool application::can_close_application()
 void application::close_application()
 {
 
-#ifdef _UWP
-
-Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
-Windows::UI::Core::CoreDispatcherPriority::Normal,
-ref new Windows::UI::Core::DispatchedHandler([this]()
-{
-Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
-}));
-
-#else
+//#ifdef _UWP
+//
+//::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(
+//::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+//{
+//::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView()->TryConsolidateAsync();
+//}));
+//
+//#else
 
 set_finish();
 
-#endif
+//#endif
 
 }
 
 
-//bool application::process_exception(const ::exception::exception & e)
+//bool application::process_exception(const ::exception & e)
 //{
 
 //   return apex::application::process_exception(e);
@@ -6103,7 +5809,7 @@ m_bReady = true;
 try
 {
 
-string strType = type_name();
+   string strType = __type_name(this);
 
 //if(::is_set(m_psystem))
 //{
@@ -6134,7 +5840,7 @@ string strType = type_name();
       m_estatus = run();
 
    }
-   catch (const ::exception::exception & e)
+   catch (const ::exception & e)
    {
 
       if (handle_exception(e))
@@ -6149,7 +5855,7 @@ string strType = type_name();
       }
 
    }
-   catch (const ::exception::exception &)
+   catch (const ::exception &)
    {
 
    }
@@ -6343,7 +6049,7 @@ string strType = type_name();
 
 //   //}
 
-//   INFO("axis::application::process_init");
+//   INFORMATION("axis::application::process_init");
 
 //   //m_bAxisProcessInitialize = true;
 
@@ -6385,7 +6091,7 @@ string strType = type_name();
 
 //   //}
 
-//   INFO("axis::application::init_instance .1");
+//   INFORMATION("axis::application::init_instance .1");
 
 //   //m_bAxisInitializeInstance = true;
 
@@ -6445,7 +6151,7 @@ string strType = type_name();
 
 //   //m_bAxisInitializeInstanceResult = true;
 
-//   INFO("axis::application::init_instance success");
+//   INFORMATION("axis::application::init_instance success");
 
 //   return true;
 
@@ -6476,7 +6182,7 @@ string strType = type_name();
 
 //   //m_bAxisInitialize1Result = false;
 
-//   m_millisHeartBeat.Now();
+//   m_durationHeartBeat.Now();
 
 //   if (!::application::init1())
 //   {
@@ -6532,7 +6238,7 @@ string strType = type_name();
 ::e_status application::init()
 {
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 if (has_property("install"))
 {
@@ -6560,34 +6266,34 @@ return false;
 }
 else
 {
-#ifdef WINDOWS_DESKTOP
-// when this process is started in the context of a system account,
-// for example, this code ensure that the process will
-// impersonate a loggen on ::account::user
-HANDLE hprocess;
-HANDLE htoken;
-
-hprocess = ::GetCurrentProcess();
-
-if (!OpenProcessToken(
-hprocess,
-TOKEN_ALL_ACCESS,
-&htoken))
-return false;
-
-if (!ImpersonateLoggedOnUser(htoken))
-{
-TRACELASTERROR();
-return false;
+//#ifdef WINDOWS_DESKTOP
+//// when this process is started in the context of a system account,
+//// for example, this code ensure that the process will
+//// impersonate a loggen on ::account::user
+//HANDLE hprocess;
+//HANDLE htoken;
+//
+//hprocess = ::GetCurrentProcess();
+//
+//if (!OpenProcessToken(
+//hprocess,
+//TOKEN_ALL_ACCESS,
+//&htoken))
+//return false;
+//
+//if (!ImpersonateLoggedOnUser(htoken))
+//{
+//TRACELASTERROR();
+//return false;
+//}
+//#endif
 }
-#endif
-}
 
-m_millisHeartBeat.Now();
+m_durationHeartBeat.Now();
 
 ensure_app_interest();
 
-INFO(".2");
+INFORMATION(".2");
 
 if (is_true("install"))
 {
@@ -6600,7 +6306,7 @@ if (is_user_service())
 
 }
 
-ERR("1.1");
+ERROR("1.1");
 
 index i = applicationmenu().get_count();
 
@@ -6608,7 +6314,7 @@ applicationmenu().add_item(i++, _("Transparent Frame"), "transparent_frame");
 
 application_menu_update();
 
-INFO("success");
+INFORMATION("success");
 
 return true;
 
@@ -6626,7 +6332,88 @@ void application::term()
 bool application::is_running()
 {
 
-return is_alive();
+   return is_alive();
+
+}
+
+
+void application::add_activation_message(const ::string & strMessage)
+{
+
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      m_straActivationMessage.add(strMessage);
+
+   }
+
+   defer_process_activation_message();
+
+}
+
+
+bool application::has_activation_message() const
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   return m_straActivationMessage.has_element();
+
+}
+
+
+bool application::defer_process_activation_message()
+{
+
+   synchronous_lock synchronouslock(mutex());
+
+   if (!m_bAttendedFirstRequest)
+   {
+
+      return false;
+
+   }
+
+   if (m_straActivationMessage.is_empty())
+   {
+
+      return false;
+
+   }
+
+   auto pinterprocesscommunication = m_pinterprocessintercommunication;
+
+   if (::is_null(pinterprocesscommunication))
+   {
+
+      return false;
+
+   }
+
+   auto prx = pinterprocesscommunication->m_prx;
+
+   if (::is_null(prx))
+   {
+
+      return false;
+
+   }
+
+   do
+   {
+
+      auto strMessage = m_straActivationMessage.pick_first();
+
+      synchronouslock.unlock();
+
+      prx->on_interprocess_receive(::move(strMessage));
+
+      synchronouslock.lock();
+
+   } while (m_straActivationMessage.has_element());
+
+   return true;
 
 }
 
@@ -6690,10 +6477,10 @@ bool application::update_appmatter(__pointer(::sockets::http_session) & psession
 
 string strLocale;
 string strSchema;
-TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
+INFORMATION("update_appmatter(root="<< pszRoot <<", relative="<< pszRelative <<", locale="<< pszLocale <<", style="<< pszStyle <<")");
 ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
 ::file::path strFile = m_pcontext->m_papexcontext->dir().install() / strRelative;
-::file::path strUrl(::file::path_url);
+::file::path strUrl(::e_path_url);
 
 if (framework_is_basis())
 {
@@ -6785,10 +6572,10 @@ bool application::assert_user_logged_in()
 
    string strRequestUrl;
 
-   if (file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
+   if (m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt").has_char())
    {
 
-      strRequestUrl = "https://" + file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
+      strRequestUrl = "https://" + m_psystem->m_pacmefile->as_string(m_psystem->m_pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition";
 
    }
 
@@ -6823,15 +6610,15 @@ bool application::assert_user_logged_in()
 string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
 {
 
-::payload varFile;
+::payload payloadFile;
 
-varFile["disable_ca2_sessid"] = true;
+payloadFile["disable_ca2_sessid"] = true;
 
 string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-varFile["url"] = strMatter;
+payloadFile["url"] = strMatter;
 
-return m_pcontext->m_papexcontext->file().as_string(varFile);
+return m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
 }
 
@@ -6863,9 +6650,9 @@ return m_pcontext->m_papexcontext->file().as_string(varFile);
 
 //   //__pointer(::user::message) pusermessage(pmessage);
 
-//   UNREFERENCED_PARAMETER(code);
+//   __UNREFERENCED_PARAMETER(code);
 
-//   UNREFERENCED_PARAMETER(pmessage);
+//   __UNREFERENCED_PARAMETER(pmessage);
 
 
 //}
@@ -6951,7 +6738,7 @@ pnode->show_wait_cursor(true);
 //void application::TermThread(HINSTANCE hInstTerm)
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //}
 
@@ -6961,7 +6748,7 @@ pnode->show_wait_cursor(true);
 //string application::get_version()
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return "";
 
@@ -6973,7 +6760,7 @@ pnode->show_wait_cursor(true);
 //   void application::set_env_var(const string & payload,const string & value)
 //   {
 //
-//      ::exception::throw_interface_only();
+//      throw ::interface_only_exception();
 //
 //   }
 
@@ -6982,11 +6769,21 @@ pnode->show_wait_cursor(true);
 //::draw2d::printer * application::get_printer(const ::string & pszDeviceName)
 //{
 
-//   ::exception::throw_interface_only();
+//   throw ::interface_only_exception();
 
 //   return nullptr;
 
 //}
+
+
+__pointer(::progress::real) application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount)
+{
+
+   __throw(todo);
+
+   return nullptr;
+
+}
 
 
 ::e_status application::userfs_init1()
@@ -7013,11 +6810,11 @@ return"";
 
 }
 
-//bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+//bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
 //{
 
-//   UNREFERENCED_PARAMETER(varFile);
-//   UNREFERENCED_PARAMETER(nIDSTitle);
+//   __UNREFERENCED_PARAMETER(payloadFile);
+//   __UNREFERENCED_PARAMETER(nIDSTitle);
 
 //   return false;
 
@@ -7114,12 +6911,12 @@ return m_strAppId;
 
 {
 
-auto pmutex = __new(::install::mutex(process_platform_dir_name2()));
+auto pmutex = __new(::install::mutex(this, process_platform_dir_name2()));
 
 if (pmutex->already_exists())
 {
 
-//            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
+//            output_error_message("Could not launch spa installer. It is already running.", e_message_box_ok);
 
 return -35;
 
@@ -7144,7 +6941,7 @@ auto psystem = m_psystem;
 
 auto pnode = psystem->node();
 
-return pnode->call_sync(m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmepath->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
+return pnode->call_sync(m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedir->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_minute, set);
 
 #endif
 
@@ -7168,27 +6965,27 @@ return -1;
 
 
 
-//void application::on_control_event(::user::control_event * pevent)
+//void application::handle(::subject * psubject, ::context * pcontext)
 //{
 
 //}
 
 
-//bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
-//   UNREFERENCED_PARAMETER(pdocument);
-//   UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(pdocument);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
 
 
-//bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
-//   UNREFERENCED_PARAMETER(pdocument);
-//   UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(pdocument);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
@@ -7200,7 +6997,7 @@ return -1;
 
 //}
 
-//void application::on_control_event(::user::control_event* pevent)
+//void application::handle(::subject * psubject, ::context * pcontext)
 //{
 
 //}
@@ -7213,12 +7010,12 @@ return -1;
 //}
 
 
-//void application::route_control_event(::user::control_event* pevent)
+//void application::route(::subject * psubject, ::context * pcontext)
 //{
 
-//   on_control_event(pevent);
+//   handle(psubject, pcontext);
 
-//   if (pevent->m_bRet)
+//   if (psubject->m_bRet)
 //   {
 
 //      return;
@@ -7227,7 +7024,7 @@ return -1;
 
 //   on_notify_control_event(pevent);
 
-//   if (pevent->m_bRet)
+//   if (psubject->m_bRet)
 //   {
 
 //      return;
@@ -7466,9 +7263,9 @@ return m_datakey.m_bLocalData;
 //LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
 //{
 
-//   UNREFERENCED_PARAMETER(nCode);
-//   UNREFERENCED_PARAMETER(wParam);
-//   UNREFERENCED_PARAMETER(lParam);
+//   __UNREFERENCED_PARAMETER(nCode);
+//   __UNREFERENCED_PARAMETER(wParam);
+//   __UNREFERENCED_PARAMETER(lParam);
 
 //   return 0;
 
@@ -7478,9 +7275,9 @@ return m_datakey.m_bLocalData;
 //bool application::CreateFileFromRawResource(::u32 nID, const ::string & pcszType, const ::string & pcszFilePath)
 //{
 //
-//UNREFERENCED_PARAMETER(nID);
-//UNREFERENCED_PARAMETER(pcszType);
-//UNREFERENCED_PARAMETER(pcszFilePath);
+//__UNREFERENCED_PARAMETER(nID);
+//__UNREFERENCED_PARAMETER(pcszType);
+//__UNREFERENCED_PARAMETER(pcszFilePath);
 //
 //return false;
 //
@@ -7493,7 +7290,7 @@ return m_datakey.m_bLocalData;
 //
 //{
 //
-//UNREFERENCED_PARAMETER(pmsg);
+//__UNREFERENCED_PARAMETER(pmsg);
 //
 //
 //return false;
@@ -7505,7 +7302,7 @@ return m_datakey.m_bLocalData;
 //bool application::OnX11WindowMessage(void* pXevent) // XEvent *
 //{
 //
-//UNREFERENCED_PARAMETER(pXevent);
+//__UNREFERENCED_PARAMETER(pXevent);
 //
 //return false;
 //
@@ -7516,7 +7313,7 @@ return m_datakey.m_bLocalData;
 //void application::OnUpdateRecentFileMenu(::message::command* pcommand)
 //{
 //
-//UNREFERENCED_PARAMETER(pcommand);
+//__UNREFERENCED_PARAMETER(pcommand);
 //
 //}
 //
@@ -7525,10 +7322,10 @@ return m_datakey.m_bLocalData;
 //
 //{
 //
-//UNREFERENCED_PARAMETER(nID);
-//UNREFERENCED_PARAMETER(pcszType);
+//__UNREFERENCED_PARAMETER(nID);
+//__UNREFERENCED_PARAMETER(pcszType);
 //
-//UNREFERENCED_PARAMETER(storage);
+//__UNREFERENCED_PARAMETER(storage);
 //
 //return false;
 //
@@ -7560,7 +7357,7 @@ return m_datakey.m_bLocalData;
 //
 //void application::EnableModelessEx(bool bEnable)
 //{
-//UNREFERENCED_PARAMETER(bEnable);
+//__UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //UNUSED(bEnable);
 //#endif
@@ -7586,7 +7383,7 @@ return false;
 }
 
 
-void application::process_window_procedure_exception(const ::exception::exception & e, ::message::message* pmessage)
+void application::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage)
 {
 
 ENSURE_ARG(pmessage != nullptr);
@@ -7640,10 +7437,10 @@ report_error(e, e_message_box_icon_stop, nullptr);
 }
 
 
-void application::route_command_message(::message::command* pcommand)
+void application::route_command(::message::command * pcommand, bool bRouteKeyToDescedant)
 {
 
-::thread::route_command_message(pcommand);
+   ::thread::route_command(pcommand);
 
 }
 
@@ -8030,7 +7827,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
 {
-UNREFERENCED_PARAMETER(nMaxMRU);
+__UNREFERENCED_PARAMETER(nMaxMRU);
 ASSERT_VALID(this);
 
 // 0 by default means not set
@@ -8191,8 +7988,8 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //
 //   void application::WinHelp(uptr dwData, ::u32 nCmd)
 //   {
-//      UNREFERENCED_PARAMETER(dwData);
-//      UNREFERENCED_PARAMETER(nCmd);
+//      __UNREFERENCED_PARAMETER(dwData);
+//      __UNREFERENCED_PARAMETER(nCmd);
 //
 //      // return global cast help mode state to false (backward compatibility)
 //      m_bHelpMode = false;
@@ -8207,9 +8004,9 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
 //   {
 //
-//      UNREFERENCED_PARAMETER(dwData);
+//      __UNREFERENCED_PARAMETER(dwData);
 //
-//      UNREFERENCED_PARAMETER(nCmd);
+//      __UNREFERENCED_PARAMETER(nCmd);
 //
 //      // return global cast help mode state to false (backward compatibility)
 //      m_bHelpMode = false;
@@ -8221,8 +8018,8 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //
 //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
 //   {
-//      UNREFERENCED_PARAMETER(dwData);
-//      UNREFERENCED_PARAMETER(nCmd);
+//      __UNREFERENCED_PARAMETER(dwData);
+//      __UNREFERENCED_PARAMETER(nCmd);
 //      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
 //      //   ENSURE_VALID(pMainWnd);
 //
@@ -8245,7 +8042,7 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //void application::DevModeChange(char * pDeviceName)
 //
 //{
-//UNREFERENCED_PARAMETER(pDeviceName);
+//__UNREFERENCED_PARAMETER(pDeviceName);
 //
 //
 ////#ifdef WINDOWS
@@ -8257,7 +8054,7 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //}
 
 
-//bool application::process_exception(const ::exception::exception & e)
+//bool application::process_exception(const ::exception & e)
 //{
 
 //   return ::application::on_run_exception(pexception))
@@ -8272,10 +8069,10 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //}
 
 
-//bool application::final_handle_exception(const ::exception::exception & e)
+//bool application::final_handle_exception(const ::exception & e)
 //{
 
-//   UNREFERENCED_PARAMETER(pexception);
+//   __UNREFERENCED_PARAMETER(pexception);
 
 //   if (!is_system())
 //   {
@@ -8296,8 +8093,8 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 
 /*   bool application::open_link(const ::string & pszLink, const ::string & pszTarget)
 {
-UNREFERENCED_PARAMETER(pszLink);
-UNREFERENCED_PARAMETER(pszTarget);
+__UNREFERENCED_PARAMETER(pszLink);
+__UNREFERENCED_PARAMETER(pszTarget);
 return false;
 }
 */
@@ -8476,7 +8273,7 @@ return true;
 
 //void application::UpdatePrinterSelection(bool bForceDefaults)
 //{
-//UNREFERENCED_PARAMETER(bForceDefaults);
+//__UNREFERENCED_PARAMETER(bForceDefaults);
 //}
 
 
@@ -8489,10 +8286,10 @@ return true;
 //
 //   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
 //   {
-//      UNREFERENCED_PARAMETER(hDevNames);
-//      UNREFERENCED_PARAMETER(hDevMode);
-//      UNREFERENCED_PARAMETER(bFreeOld);
-//      ::exception::throw_not_implemented();
+//      __UNREFERENCED_PARAMETER(hDevNames);
+//      __UNREFERENCED_PARAMETER(hDevMode);
+//      __UNREFERENCED_PARAMETER(bFreeOld);
+//      throw interface_only_exception();
 //   }
 //
 //
@@ -8500,7 +8297,7 @@ return true;
 
 //::draw2d::graphics* application::CreatePrinterDC()
 //{
-//::exception::throw_not_implemented();
+//throw interface_only_exception();
 //return nullptr;
 //}
 
@@ -8601,7 +8398,7 @@ return true;
 //
 //void application::DoEnableModeless(bool bEnable)
 //{
-//UNREFERENCED_PARAMETER(bEnable);
+//__UNREFERENCED_PARAMETER(bEnable);
 //#ifdef ___NO_OLE_SUPPORT
 //UNUSED(bEnable);
 //#endif
@@ -8687,9 +8484,9 @@ return true;
 //
 //void application::SetRegistryKey(::u32 nIDRegistryKey)
 //{
-////UNREFERENCED_PARAMETER(nIDRegistryKey);
+////__UNREFERENCED_PARAMETER(nIDRegistryKey);
 ////ASSERT(m_pszRegistryKey == nullptr);
-////::exception::throw_not_implemented();
+////throw interface_only_exception();
 /////*char szRegistryKey[256];
 ////VERIFY(::apex::LoadString(nIDRegistryKey, szRegistryKey));
 ////SetRegistryKey(szRegistryKey);*/
@@ -9192,13 +8989,13 @@ return true;
 void application::_001OnFileNew(::message::message* pmessage)
 {
 
-::payload varFile;
+::payload payloadFile;
 
 ::payload varQuery;
 
 varQuery["command"] = "new_file";
 
-//request_file(varFile, varQuery);
+//request_file(payloadFile, varQuery);
 
 pmessage->m_bRet = true;
 
@@ -9206,19 +9003,19 @@ pmessage->m_bRet = true;
 
 
 
-//   bool application::on_open_document_file(::payload varFile)
+//   bool application::on_open_document_file(::payload payloadFile)
 //   {
 //
-//      return _001OpenDocumentFile(varFile);
+//      return _001OpenDocumentFile(payloadFile);
 //
 //   }
 
-//::user::document* application::_001OpenDocumentFile(::payload varFile)
+//::user::document* application::_001OpenDocumentFile(::payload payloadFile)
 //{
 
-//   request_file(varFile);
+//   request_file(payloadFile);
 
-//   return varFile["document"].cast < ::user::document >();
+//   return payloadFile["document"].cast < ::user::document >();
 
 //}
 
@@ -9226,7 +9023,7 @@ pmessage->m_bRet = true;
 //bool application::_001OnDDECommand(const ::string & pcsz)
 
 //{
-//   ::exception::throw_not_implemented();
+//   throw interface_only_exception();
 //   //return m_pimpl->_001OnDDECommand(pcsz);
 
 
@@ -9246,7 +9043,7 @@ pmessage->m_bRet = true;
 
 //   ::user::interaction * application::get_desktop_window()
 //   {
-//#if defined(_UWP) || defined(APPLEOS)
+//#if defined(_UWP) || defined(__APPLE__)
 //      __throw(todo);
 //      /*#elif defined(LINUX)
 //
@@ -9321,7 +9118,7 @@ pmessage->m_bRet = true;
 
 //   apex::application::install_message_routing(pchannel);
 
-//   connect_command("switch_context_theme", &application::_001OnSwitchContextTheme);
+//   add_command_handler("switch_context_theme", &application::_001OnSwitchContextTheme);
 
 //}
 
@@ -9350,9 +9147,9 @@ pmessage->m_bRet = true;
 //string application::sync_message_box(const string & pszMatter, property_set & propertyset)
 //{
 //
-//   UNREFERENCED_PARAMETER(propertyset);
+//   __UNREFERENCED_PARAMETER(propertyset);
 //
-//   UNREFERENCED_PARAMETER(pszMatter);
+//   __UNREFERENCED_PARAMETER(pszMatter);
 //
 //   return "";
 
@@ -9378,42 +9175,6 @@ pmessage->m_bRet = true;
 //}
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-bool Is_Vista_or_Later()
-{
-OSVERSIONINFOEX osvi;
-DWORDLONG dwlConditionMask = 0;
-byte op = VER_GREATER_EQUAL;
-
-// Initialize the OSVERSIONINFOEX structure.
-
-ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-osvi.dwMajorVersion = 6;
-//   osvi.dwMinorVersion = 1;
-//   osvi.wServicePackMajor = 0;
-//   osvi.wServicePackMinor = 0;
-
-// Initialize the condition mask.
-
-VER_SET_CONDITION(dwlConditionMask, VER_MAJORVERSION, op);
-//VER_SET_CONDITION( dwlConditionMask, VER_MINORVERSION, op );
-//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMAJOR, op );
-//VER_SET_CONDITION( dwlConditionMask, VER_SERVICEPACKMINOR, op );
-
-// Perform the test.
-
-return VerifyVersionInfo(
-&osvi,
-VER_MAJORVERSION | VER_MINORVERSION |
-VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-dwlConditionMask) != false;
-}
-
-
-#endif
 
 
 void application::pre_translate_message(::message::message * pmessage)
@@ -9601,7 +9362,7 @@ return true;
 void application::on_application_signal(::message::message* pmessage)
 {
 
-UNREFERENCED_PARAMETER(pmessage);
+__UNREFERENCED_PARAMETER(pmessage);
 
 }
 
@@ -9625,9 +9386,9 @@ UNREFERENCED_PARAMETER(pmessage);
 //i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
 //{
 
-//   UNREFERENCED_PARAMETER(pszMatter);
-//   UNREFERENCED_PARAMETER(point);
-//   UNREFERENCED_PARAMETER(puie);
+//   __UNREFERENCED_PARAMETER(pszMatter);
+//   __UNREFERENCED_PARAMETER(point);
+//   __UNREFERENCED_PARAMETER(puie);
 
 //   return 1;
 
@@ -9753,7 +9514,7 @@ psession->set_app_title(m_strAppName, pszTitle);
 //oswindow application::get_ca2_app_wnd(const ::string & psz)
 //{
 
-//   UNREFERENCED_PARAMETER(psz);
+//   __UNREFERENCED_PARAMETER(psz);
 
 //   return nullptr;
 
@@ -9913,10 +9674,10 @@ catch(const ::exit_exception & e)
 __throw(e);
 
 }
-catch(const const ::exception::exception & e)
+catch(const const ::exception & e)
 {
 
-if(!get_application()->on_run_exception((::exception::exception &) e))
+if(!get_application()->on_run_exception((::exception &) e))
 __throw(exit_exception());
 
 }
@@ -9954,7 +9715,7 @@ return papp;
 
 
 
-void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject)
+void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject)
 {
 
 
@@ -9969,7 +9730,7 @@ __pointer(::application) application::create_platform(::apex::session* psession)
 }
 
 
-void application::report_error(const ::exception::exception & e, int iMessageFlags, const ::string & pszTopic)
+void application::report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic)
 {
 
    string strMessage;
@@ -10034,6 +9795,8 @@ void application::process_message_filter(i32 code, ::message::message* pmessage)
 
    __throw(todo, "interaction");
 
+   return ::error_failed;
+
 }
 
 
@@ -10065,7 +9828,7 @@ string application::as_string(const ::payload & payload)
    if(path.has_char())
    {
 
-      if (::is_url(path) || ::file_exists(path))
+      if (::is_url(path) || m_psystem->m_pacmefile->exists(path))
       {
 
          return file().as_string(path);
@@ -10109,7 +9872,7 @@ void application::close(::apex::enum_end eend)
 
    }
 
-   m_ethreadClose = thread_application;
+   m_ethreadcontextClose = e_thread_context_application;
 
    if (eend == ::apex::e_end_app)
    {
@@ -10171,14 +9934,14 @@ void application::close(::apex::enum_end eend)
 }
 
 
-__pointer(::extended::future < ::conversation >) application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
-{
-
-   auto psystem = get_system()->m_papexsystem;
-
-   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
-
-}
+//__pointer(::extended::future < ::conversation >) application::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+//{
+//
+//   auto psystem = get_system()->m_papexsystem;
+//
+//   return psystem->_message_box(this, pszMessage, pszTitle, emessagebox);
+//
+//}
 
 
 string application::get_version()
@@ -10225,7 +9988,7 @@ string application::get_wm_class() const
 #endif
 
 
-void application_on_menu_action(void * pApplication, const ::string & pszCommand)
+void application_on_menu_action(void * pApplication, const char * pszCommand)
 {
    
    auto papplication = (::application *) pApplication;

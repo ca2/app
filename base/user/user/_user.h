@@ -87,12 +87,12 @@ namespace experience
 
 #elif defined(MACOS)
 
-#include "aura/os/macos/user.h"
+#include "aura/node/operating_system/macos/user.h"
 #include "aura/node/macos/user.h"
 
 #elif defined(LINUX)
 
-#include "aura/os/linux/user.h"
+#include "aura/node/operating_system/linux/user.h"
 
 #endif
 
@@ -521,7 +521,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-#include "acme/const/activate.h"
+#include "acme/constant/activate.h"
 #include "aura/message/user.h"
 #include "aura/message/timer.h"
 

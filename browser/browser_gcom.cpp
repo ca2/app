@@ -13,13 +13,13 @@ namespace browser
       if (papplication->m_varTopicQuery["hello_bk"].get_string().has_char())
       {
 
-         property_set varFile;
+         property_set payloadFile;
 
-         varFile["url"] = papplication->m_varTopicQuery["hello_bk"];
-         varFile["http_set"]["raw_http"] = true;
-         varFile["http_set"]["disable_common_name_cert_check"] = true;
+         payloadFile["url"] = papplication->m_varTopicQuery["hello_bk"];
+         payloadFile["http_set"]["raw_http"] = true;
+         payloadFile["http_set"]["disable_common_name_cert_check"] = true;
 
-/*         m_pimageBk = get_image(varFile);
+/*         m_pimageBk = get_image(payloadFile);
 
       }
 
@@ -76,10 +76,10 @@ namespace browser
    }
 
 
-   void gcom::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
+   void gcom::handle(::subject * psubject, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(psubject);
+      __UNREFERENCED_PARAMETER(psubject);
 
    }
 

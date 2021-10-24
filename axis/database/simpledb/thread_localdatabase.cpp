@@ -63,7 +63,7 @@ namespace simpledb
 
                synchronouslock.unlock();
 
-               ::sleep(300_ms);
+               ::preempt(300_ms);
 
                continue;
 

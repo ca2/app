@@ -57,7 +57,7 @@ bool __node_term_thread(::thread * pthread)
    //   if(pthread != nullptr)
    //   {
 
-   //      pthread->::exception::translator::detach();
+   //      pthread->::exception_translator::detach();
 
    //   }
 

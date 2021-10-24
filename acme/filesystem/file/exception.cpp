@@ -85,7 +85,7 @@ namespace file
       }
 
       exception::exception(const ::e_status& estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
-         ::exception::exception(estatus)
+         ::exception(estatus)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 
@@ -267,7 +267,7 @@ namespace file
 
       string strExtra;
 
-      strExtra = get_system_error_message(m_lOsError);
+      strExtra = get_last_error_message(m_lOsError);
 
       strMessage.Format("file error number: %d - %s - file: %s", m_cause, strExtra, strFileName);
 
@@ -279,7 +279,7 @@ namespace file
 
       //void exception::dump(dump_context& dumpcontext) const
       //{
-      //   UNREFERENCED_PARAMETER(dumpcontext);
+      //   __UNREFERENCED_PARAMETER(dumpcontext);
       //   //matter::dump(dumpcontext);
 
       //   /*   dumpcontext << "m_cause = ";
@@ -363,7 +363,7 @@ namespace file
       void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
       {
 
-         __throw(exception(estatus, lOsError, iErrNo, path, eopen));
+         throw exception(estatus, lOsError, iErrNo, path, eopen);
 
       }
 
@@ -371,7 +371,7 @@ namespace file
       void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path)
       {
 
-         throw_exception(estatus, lOsError, -1, path, e_null);
+         throw exception(estatus, lOsError, -1, path, e_null);
 
       }
 
@@ -379,7 +379,8 @@ namespace file
       void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path)
       {
 
-         throw_status(estatus, ::file::dos_to_os_error(lDOSError), path);
+         throw exception(estatus,
+                         0, ::file::dos_to_os_error(lDOSError), path);
 
       }
 

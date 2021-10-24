@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aqua/xml/_.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/const/id.h"
+//#include "acme/constant/id.h"
 //#include "aura/node/_node.h"
 //#include "acme/platform/profiler.h"
 #include "acme/platform/static_setup.h"
@@ -12,7 +12,7 @@
 #include "aura/const/idpool.h"
 #include "acme/filesystem/filesystem/acme_dir.h"
 //#ifdef _UWP
-//#include "aura/node/uwp/directx_application.h"
+//#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
 
@@ -153,20 +153,19 @@ namespace aura
 
       }
 
-      enable_trace_category(trace_category_windowing, true);
+      enable_trace_category(e_trace_category_windowing, true);
 
-      enable_trace_category(trace_category_prodevian, false);
-
+      enable_trace_category(e_trace_category_prodevian, false);
     
       m_pDraw2dFactoryExchange = nullptr;
 
       g_pmutexImage = new ::mutex();
 
-#ifndef WINDOWS
-
-      exception::translator::attach();
-
-#endif
+//#ifndef WINDOWS
+//
+//      exception_translator::attach();
+//
+//#endif
 
       m_bProdevianMouse = false;
 
@@ -183,7 +182,7 @@ namespace aura
 
          //xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
 
-         __throw(::exception::exception("failed to initialize log"));
+         throw ::exception(error_failed, "failed to initialize log");
 
       }
 
@@ -193,14 +192,14 @@ namespace aura
 
          ::file::path pathNoExceptionStackTrace = m_psystem->m_pacmedir->config() / "system/no_exception_stack_trace.txt";
 
-         if (file_exists(pathNoExceptionStackTrace))
+         if (m_psystem->m_pacmefile->exists(pathNoExceptionStackTrace))
          {
 
             bGlobalEnableStackTrace = false;
 
          }
 
-         ::exception::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
+         ::exception::exception_enable_stack_trace(bGlobalEnableStackTrace);
 
       }
  
@@ -210,7 +209,7 @@ namespace aura
 
       //m_purldepartment = nullptr;
 
-      m_millisAfterApplicationFirstRequest = 0;
+      m_durationAfterApplicationFirstRequest = 0_s;
 
 
 
@@ -634,6 +633,8 @@ namespace aura
       if (!estatus)
       {
 
+         output_debug_string("Fatal Error: Failed to do node factory exchange (system::node_factory_exchange).\n");
+
          return estatus;
 
       }
@@ -680,7 +681,7 @@ namespace aura
       //if (!create_session())
       //{
 
-      //   message_box("Failed to allocate Session!!");
+      //   output_error_message("Failed to allocate Session!!");
 
       //   return false;
 
@@ -691,7 +692,7 @@ namespace aura
       //if (!m_papplicationStartup)
       //{
 
-      //   message_box("Failed to allocate papplication!!");
+      //   output_error_message("Failed to allocate papplication!!");
 
       //   return false;
 
@@ -731,8 +732,8 @@ namespace aura
 
       //   iPid = ::get_current_process_id();
 
-      //   printf("%s", ("Process PID: " + __str(iPid) + "\n").c_str());
-      //   output_debug_string("Process PID: " + __str(iPid) + "\n");
+      //   printf("%s", ("Process PID: " + __string(iPid) + "\n").c_str());
+      //   output_debug_string("Process PID: " + __string(iPid) + "\n");
 
       //}
 
@@ -744,7 +745,7 @@ namespace aura
 //
 //         str = m_psystem->m_pacmedir->home() / ".profile";
 //
-//         if(!file_exists(str))
+//         if(!m_psystem->m_pacmefile->exists(str))
 //         {
 //
 //            str = m_psystem->m_pacmedir->home() / ".bashrc";
@@ -835,7 +836,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   throw exception::exception(estatus);
+      //   throw ::exception(estatus);
 
       //}
 
@@ -843,14 +844,14 @@ namespace aura
 
       //if (!m_pxml->init1())
       //{
-      //   __throw(::exception::exception("failed to construct system m_pxml->init1()"));
+      //   __throw(::exception("failed to construct system m_pxml->init1()"));
 
       //}
 
       //if (!m_pxml->init())
       //{
 
-      //   __throw(::exception::exception("failed to construct system m_pxml->initialize()"));
+      //   __throw(::exception("failed to construct system m_pxml->initialize()"));
 
       //}
 
@@ -882,9 +883,13 @@ namespace aura
 //
 //                  string str("installing or unstalling as root : getuid() %d", uid);
 //
-//                  ::dir::mk("/ca2core");
+//                           auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
 //
-//                  file_put_contents("/ca2core/teste.txt", str, str.length());
+//pacmedir->create("/ca2core");
+//
+//                  m_psystem->m_pacmefile->put_contents("/ca2core/teste.txt", str, str.length());
 //                  */
 //#endif
 //
@@ -973,7 +978,7 @@ namespace aura
       //if(!__compose(m_pfilesystem))
       //{
 
-      //   ERR("failed to initialize file-system");
+      //   ERROR("failed to initialize file-system");
 
       //   return false;
 
@@ -982,13 +987,13 @@ namespace aura
       //if(!__compose(m_pdirsystem))
       //{
 
-      //   ERR("failed to initialize dir-system");
+      //   ERROR("failed to initialize dir-system");
 
       //   return false;
 
       //}
 
-      //INFO("aura::session::process_init .3");
+      //INFORMATION("aura::session::process_init .3");
 
       //estatus = m_pfilesystem->init_system();
 
@@ -1024,7 +1029,7 @@ namespace aura
       //if (!m_ptrace->process_init())
       //{
 
-      //   WARN("failed to process_init ::aura::log trace");
+      //   WARNING("failed to process_init ::aura::log trace");
 
       //}
 
@@ -1074,7 +1079,7 @@ namespace aura
          if (!draw2d_factory_exchange(::factory::get_factory_map()))
          {
 
-            message_box("Failed to initialize draw2d library.");
+            output_debug_string("ERROR: Failed to initialize draw2d library.");
 
             estatus = error_failed;
 
@@ -1091,7 +1096,7 @@ namespace aura
       if (!estatus)
       {
 
-         TRACE("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.", e_message_box_ok);
+         INFORMATION("draw2d_factory_exchange has failed.\n\nSome reasons:\n   - No draw2d library present;\n   - Failure to open any suitable draw2d library.");
 
          return estatus;
 
@@ -1108,11 +1113,11 @@ namespace aura
             if(!estatus)
             {
 
-               WARN("Failed to initialize imaging library.");
+               WARNING("Failed to initialize imaging library.");
 
 #if !defined(MOBILE_PLATFORM)
 
-               message_box("Failed to initialize imaging library.");
+               output_error_message("Failed to initialize imaging library.");
 
 #endif
                // Non fatal? Missing images (if using images)?
@@ -1137,7 +1142,7 @@ namespace aura
       if (!estatus)
       {
 
-         TRACE("Couldn't construct new draw2d.");
+         INFORMATION("Couldn't construct new draw2d.");
 
          return false;
 
@@ -1148,7 +1153,7 @@ namespace aura
       if(!estatus)
       {
 
-         TRACE("Couldn't initialize draw2d (init1).");
+         INFORMATION("Couldn't initialize draw2d (init1).");
 
          return estatus;
 
@@ -1173,7 +1178,7 @@ namespace aura
 
       ::file::path path = m_psystem->m_pacmedir->config() / "system/draw2d.txt";
 
-      str = file_as_string(path);
+      str = m_psystem->m_pacmefile->as_string(path);
 
       if(str.has_char())
       {
@@ -1184,7 +1189,7 @@ namespace aura
 
       path = m_psystem->m_pacmedir->appdata() / "draw2d.txt";
 
-      str = file_as_string(path);
+      str = m_psystem->m_pacmefile->as_string(path);
 
       if(str.has_char())
       {
@@ -1556,7 +1561,7 @@ namespace aura
    ::e_status system::init()
    {
 
-      m_millisHeartBeat.Now();
+      m_durationHeartBeat.Now();
 
       __pointer(::aura::session) psession = get_session();
 
@@ -1601,7 +1606,7 @@ namespace aura
    ::e_status system::init1()
    {
 //
-//#ifdef DEBUG
+//#ifdef _DEBUG
 //
 //      ___compile_test_sort_array_21304528734();
 //
@@ -1693,7 +1698,15 @@ namespace aura
       //
       //         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
       //
-      //         bool bFileSystemMatter = ::dir::is(pathSide) || ::dir::is(pathLocal);
+      //         bool bFileSystemMatter =          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathSide) ||          auto psystem = m_psystem;
+//
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->is(pathLocal);
       //
       //         bMatterFromHttpCache = !bFileSystemMatter;
       //
@@ -1718,7 +1731,7 @@ namespace aura
       //
       //      //}
       //
-      //      INFO("start");
+      //      INFORMATION("start");
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -1739,7 +1752,7 @@ namespace aura
       //
       //#endif // LINUX
 
-      INFO("success");
+      INFORMATION("success");
 
 //      enum_display_monitors();
 
@@ -1836,7 +1849,7 @@ namespace aura
    void system::term2()
    {
 
-      ::aqua::system::term2();
+      //::aqua::system::term2();
 
       //for (int i = 0; i < m_serviceptra.get_size(); i++)
       //{
@@ -2210,9 +2223,9 @@ namespace aura
    //bool system::assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    //{
-   //   UNREFERENCED_PARAMETER(pszFileName);
+   //   __UNREFERENCED_PARAMETER(pszFileName);
 
-   //   UNREFERENCED_PARAMETER(iLine);
+   //   __UNREFERENCED_PARAMETER(iLine);
    //   return false;
    //}
 
@@ -2220,9 +2233,9 @@ namespace aura
    //bool system::on_assert_failed_line(const ::string & pszFileName,i32 iLine)
 
    //{
-   //   UNREFERENCED_PARAMETER(pszFileName);
+   //   __UNREFERENCED_PARAMETER(pszFileName);
 
-   //   UNREFERENCED_PARAMETER(iLine);
+   //   __UNREFERENCED_PARAMETER(iLine);
    //   return true;
    //}
 
@@ -2280,7 +2293,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += pobject->type_name();
+   //   //      strMessage += __type_name(pobject);
 
    //   //   }
    //   //   catch (...)
@@ -2377,7 +2390,7 @@ namespace aura
 //}
 
 
-   //::process::department & system::process()
+   //::operating_system::department & system::process()
    //{
 
    //   return *m_pprocess;
@@ -2428,7 +2441,7 @@ namespace aura
 //   void system::appa_load_string_table()
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 ////      for(i32 i = 0; i < appptra().get_size(); i++)
 //      //    {
@@ -2442,7 +2455,7 @@ namespace aura
 //   void system::appa_set_locale(const ::string & pszLocale, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 //      single_lock sl(mutex());
 //
@@ -2460,7 +2473,7 @@ namespace aura
 //   void system::appa_set_schema(const ::string & pszStyle, const ::action_context & context)
 //   {
 //
-//      //retry_single_lock rsl(mutex(),millis(100),millis(100));
+//      //retry_single_lock rsl(mutex(),::duration(100),::duration(100));
 //
 //      single_lock sl(mutex());
 //
@@ -2675,7 +2688,7 @@ namespace aura
    //string system::crypto_md5_text(const ::string & str)
    //{
 
-   //   ::exception::throw_not_implemented();
+   //   throw interface_only_exception();
 
    //   return "";
 
@@ -2685,7 +2698,7 @@ namespace aura
    //void system::install_progress_add_up(int iAddUp)
    //{
 
-   //   UNREFERENCED_PARAMETER(iAddUp);
+   //   __UNREFERENCED_PARAMETER(iAddUp);
 
    //}
 
@@ -2796,7 +2809,7 @@ namespace aura
 
    //   }
 
-   //   INFO("%s", ("::aura::system::on_request session = " + string(psession->type_name()) + "("+__str((iptr) psession)+")\n\n").c_str());
+   //   INFORMATION("%s", ("::aura::system::on_request session = " + string(__type_name(psession)) + "("+__string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -2913,7 +2926,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::output_debug_string("library("+__str(i)+") : " + strLibraryId+"\n\n");
+////            ::output_debug_string("library("+__string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -2932,7 +2945,7 @@ namespace aura
 ////         file = psession->file().get_file(pcontext->m_papexcontext->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 ////
 ////      }
-////      catch(::exception::exception &)
+////      catch(::exception &)
 ////      {
 ////
 ////         return false;
@@ -3075,7 +3088,7 @@ namespace aura
    //string system::url_encode(const ::string & str)
    //{
 
-   //   //__throw(error_interface_only);
+   //   //throw ::interface_only_exception();
 
    //   return url_encode(str);
 
@@ -3140,7 +3153,7 @@ namespace aura
 
    //   synchronous_lock synchronouslock(mutex());
 
-   //   m_millisCommandLineLast.Now();
+   //   m_durationCommandLineLast.Now();
 
    //   m_iCommandLineDelay = 1000;
 
@@ -3315,7 +3328,7 @@ namespace aura
    //}
 
 
-   //bool system::on_open_file(::payload varFile, string strExtra)
+   //bool system::on_open_file(::payload payloadFile, string strExtra)
    //{
 
    //   auto psession = get_session();
@@ -3340,7 +3353,7 @@ namespace aura
    //   if(papp != nullptr)
    //   {
 
-   //      if(varFile.is_empty())
+   //      if(payloadFile.is_empty())
    //      {
 
    //         papp->request({"app.exe : open_default " + strExtra});
@@ -3349,7 +3362,7 @@ namespace aura
    //      else
    //      {
 
-   //         papp->request({"app.exe \"" + varFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+   //         papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
    //      }
 
@@ -3399,7 +3412,7 @@ namespace aura
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
+//      ::winrt::Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -3529,7 +3542,7 @@ namespace aura
 
       synchronous_lock synchronouslock(mutex());
 
-      return m_rectaMonitor.get_count();
+      return m_rectangleaMonitor.get_count();
 
 #else
 
@@ -3580,7 +3593,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaMonitor[iMonitor];
+//      *prectangle = m_rectangleaMonitor[iMonitor];
 //
 //
 //#elif defined(__APPLE__)
@@ -3735,7 +3748,7 @@ namespace aura
 //
 //      }
 //
-//      *prectangle = m_rectaWork[iWorkspace];
+//      *prectangle = m_rectangleaWork[iWorkspace];
 //
 //
 //      return true;
@@ -3821,10 +3834,10 @@ namespace aura
 
 
 
-   ::image_pointer system::get_cache_image(::object * pobject, const ::payload & varFile)
+   ::image_pointer system::get_cache_image(::object * pobject, const ::payload & payloadFile)
    {
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       if (path.is_empty())
       {
@@ -3851,10 +3864,10 @@ namespace aura
    }
 
 
-   ::image_pointer system::get_image(::object * pobject, const ::payload & varFile, bool bCache, bool bSync)
+   ::image_pointer system::get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions)
    {
 
-      auto pimage = get_cache_image(pobject, varFile);
+      auto pimage = get_cache_image(pobject, payloadFile);
 
       if (!::is_ok(pimage))
       {
@@ -3863,7 +3876,7 @@ namespace aura
 
          auto pcontextimage = pcontext->context_image();
 
-         pcontextimage->_load_image(pimage, varFile, bSync);
+         pcontextimage->_load_image(pimage, payloadFile, loadoptions);
 
       }
 
@@ -3872,7 +3885,7 @@ namespace aura
    }
 
 
-   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, bool bCache, bool bSync)
+   ::image_pointer system::matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions)
    {
 
       string str(strMatter);
@@ -3884,112 +3897,9 @@ namespace aura
 
       }
 
-      return get_image(pobject, str, bSync);
+      return get_image(pobject, str, loadoptions);
 
    }
-
-
-   //string system::standalone_setting(string str)
-   //{
-
-   //   auto pcontext = get_context();
-
-   //   return file_as_string(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"));
-
-   //}
-
-
-   //bool system::set_standalone_setting(string str, string strSetting)
-   //{
-
-   //   auto pcontext = get_context();
-
-   //   return file_put_contents(pcontext->m_papexcontext->dir().standalone() / (str + ".txt"), strSetting);
-
-   //}
-
-
-//   void system::on_extra(string str)
-//   {
-//
-//      string strProtocol = url().get_protocol(str);
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      if (strProtocol == "ca2project")
-//      {
-//
-//         string strBase = url().get_server(str);
-//
-//         string strAppId = url().get_script(str);
-//
-//         ::str::begins_eat(strAppId, "/");
-//
-//         string strQuery = url().get_query(str);
-//
-//         string strMessage;
-//
-//         strMessage.Format("protocol: ca2project\nbase: %s\nAppId: %s\nquery: %s\n", strBase, strAppId, strQuery);
-//
-//         //message_box(strMessage, e_message_box_ok);
-//
-//         string strParams;
-//
-//         //strParams.Format("\"ca2project\" \"%s\" \"%s\" \"%s\"\n", strBase, strAppId, strQuery);
-//
-//         string strProj;
-//
-//         strProj = strAppId;
-//
-//         string_array stra;
-//
-//         stra.explode("/", strAppId);
-//
-//         strProj.replace_ci("-", "_");
-//         strProj.replace_ci("/", "_");
-//
-//         //strProj = "..\\..\\..\\" + stra[0] + "\\" + stra[1] + "\\" + stra[1] + ".vcxproj";
-//
-//         strParams.Format("\"openvsproject://%s\"", strProj);
-//
-//
-//         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
-//
-//      }
-//#elif defined MACOS
-//      if (strProtocol == "ca2project")
-//      {
-//
-//         string strBase = url().get_server(str);
-//
-//         string strScheme = url().get_script(str);
-//
-//         ::str::begins_eat(strScheme, "/");
-//
-//         if(strBase == "scheme")
-//         {
-//
-////         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
-//
-//            ::file::path pathScript = m_psystem->m_pacmedir->tool() / "papaya/script/xcode_set_active_scheme.scpt";
-//
-//            ::system("osascript \""+pathScript + "\" \"" + strScheme + "\"");
-//
-//         }
-//         else if(strBase == "archive")
-//         {
-//
-//            ::system("xcodebuild -scheme \"" + strScheme + "\" archive");
-//
-//         }
-//
-//      }
-//#endif
-//
-//   }
-//
-
-
 
 
    void system::on_initial_frame_position(::user::frame * pframe)
@@ -3998,26 +3908,26 @@ namespace aura
       if(has_property("client_only"))
       {
 
-#ifdef _UWP
-
-         //auto psession = get_session();
-
-         auto puserinteraction = __user_interaction(pframe);
-
-         __pointer(::uwp::interaction_impl) pimpl = puserinteraction->m_pimpl;
-
-         if (pimpl.is_set())
-         {
-
-            auto pframeworkview = pimpl->m_pframeworkview;
-
-            auto directx = pframeworkview->m_directx;
-
-            directx->UpdateForWindowSizeChange();
-
-         }
-
-#endif
+//#ifdef _UWP
+//
+//         //auto psession = get_session();
+//
+//         auto puserinteraction = __user_interaction(pframe);
+//
+//         __pointer(::universal_windows::interaction_impl) pimpl = puserinteraction->m_pimpl;
+//
+//         if (pimpl.is_set())
+//         {
+//
+//            auto pframeworkview = pimpl->m_pframeworkview;
+//
+//            auto directx = pframeworkview->m_directx;
+//
+//            directx->UpdateForWindowSizeChange();
+//
+//         }
+//
+//#endif
 
       }
 
@@ -4105,7 +4015,7 @@ namespace aura
 //
 //      }
 //
-//      ::datetime::time timeNow = ::datetime::time::get_current_time();
+//      ::datetime::time timeNow = ::datetime::time::now();
 //
 //      if (timeNow.GetMonth() == 12)
 //      {
@@ -4194,11 +4104,11 @@ namespace aura
 //
 //         string * pstrNew = new string(strUrl);
 //
-//         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref new Windows::UI::Core::DispatchedHandler([pstrNew]()
+//         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
+//            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
 //               {
 //
-//                  ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri(*pstrNew);
 //
 //                  delete pstrNew;
 //
@@ -4459,7 +4369,11 @@ namespace aura
 //
 //            }
 //
-//            strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//            strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //            call_async(path, strParam, pathDir, e_display_default, false);
 //
@@ -4473,7 +4387,11 @@ namespace aura
 //
 //         sa.add("--user-data-dir=" + pathProfile + "");
 //
-//         string strChrome = file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//         string strChrome = m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string_array sa2 = get_c_args_for_c(strChrome);
 //
@@ -4498,7 +4416,11 @@ namespace aura
 //
 //         strParam += "--user-data-dir=\"" + pathProfile + "\"";
 //
-//         strParam += " " + file_as_string(pacmedir->localconfig() / "app-core/commander/chrome.txt");
+//         strParam += " " + m_psystem->m_pacmefile->as_string(         auto psystem = m_psystem;
+
+//         auto pacmedir = psystem->m_pacmedir;
+//
+//pacmedir->localconfig() / "app-core/commander/chrome.txt");
 //
 //         string strCmd = path + " " + strParam;
 //
@@ -4804,6 +4726,8 @@ namespace aura
       if (!estatus)
       {
 
+         ERROR("gpu_opengl do_factory_exchange has failed");
+
          return estatus;
 
       }
@@ -4824,7 +4748,7 @@ namespace aura
 
 
 
-   //::task_group * system::task_group(::e_priority epriority)
+   //::task_group * system::task_group(::enum_priority epriority)
    //{
 
    //   //return nullptr;
@@ -4896,7 +4820,7 @@ namespace aura
 
    //   }
 
-   //   if (!m_toolmap[::priority_none]->select_toolset(pset))
+   //   if (!m_toolmap[::e_priority_none]->select_toolset(pset))
    //   {
 
    //      return nullptr;
@@ -4983,7 +4907,7 @@ namespace aura
    //void system::term()
    //{
 
-   //   //__wait_threading_count_except(this,::millis((5000) * 77));
+   //   //__wait_threading_count_except(this,::duration((5000) * 77));
 
    //   if (::ftp::command::info2::g_pTheOneAndOnly != nullptr)
    //   {
@@ -5174,7 +5098,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   strBuild = file_as_string(path);
+//   strBuild = m_psystem->m_pacmefile->as_string(path);
 //
 //   return strBuild.has_char();
 //
@@ -5188,7 +5112,7 @@ namespace aura
 //
 //   path = application_installer_folder(pathExe, strAppId, pszPlatform, pszConfiguration, pszLocale, pszSchema) / "installed.txt";
 //
-//   return file_put_contents(path, pszBuild);
+//   return m_psystem->m_pacmefile->put_contents(path, pszBuild);
 //
 //}
 //
@@ -5228,7 +5152,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   ::file::path path = ::file_as_string(pathFile);
+//   ::file::path path = ::m_psystem->m_pacmefile->as_string(pathFile);
 //
 //   return path;
 //
@@ -5242,7 +5166,7 @@ namespace aura
 //
 //   ::file::path pathFile = get_last_run_application_path_file(strAppId);
 //
-//   return file_put_contents(pathFile, path);
+//   return m_psystem->m_pacmefile->put_contents(pathFile, path);
 //
 //}
 //
@@ -5259,7 +5183,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 //#include "aura/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
-#include "aura/os/uwp/_uwp.h"
+//#include "aura/node/operating_system/universal_windows/_universal_windows.h"
 #endif
 
 
@@ -5450,7 +5374,7 @@ namespace aura
   //      if (!estatus)
   //      {
   //
-  //         throw ::exception::exception(estatus);
+  //         throw ::exception(estatus);
   //
   //      }
   //
@@ -5531,7 +5455,7 @@ namespace aura
    //void system::discard_to_factory(__pointer(object) pca)
    //{
 
-   //   UNREFERENCED_PARAMETER(pca);
+   //   __UNREFERENCED_PARAMETER(pca);
 
    //}
 
@@ -5673,7 +5597,7 @@ namespace aura
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 
-      __throw(error_interface_only);
+      throw ::interface_only_exception();
 
       return nullptr;
 
@@ -5705,7 +5629,7 @@ namespace aura
 //
 //      //}
 //
-//      INFO("start");
+//      INFORMATION("start");
 //
 //      //m_bProcessInitializeResult    = false;
 //
@@ -5725,7 +5649,7 @@ namespace aura
 //      //if (!::aura::application::process_init())
 //      //{
 //
-//      //   ERR(".1");
+//      //   ERROR(".1");
 //
 //      //   return false;
 //
@@ -5734,7 +5658,7 @@ namespace aura
 //      if (!::aura::system::process_init())
 //      {
 //
-//         ERR(".2");
+//         ERROR(".2");
 //
 //         return false;
 //
@@ -5761,7 +5685,7 @@ namespace aura
 //
 //      //m_bProcessInitializeResult = true;
 //
-//      INFO("success");
+//      INFORMATION("success");
 //
 //      return true;
 //
@@ -5771,7 +5695,7 @@ namespace aura
    //::e_status system::init()
    //{
    //   //
-   //   //#ifndef APPLEOS
+   //   //#ifndef __APPLE__
    //   //
    //   //      if(m_pparserfactory == nullptr)
    //   //      {
@@ -5969,7 +5893,7 @@ namespace aura
 //
 //
 //
-//      //__wait_threading_count(::millis((5000) * 8));
+//      //__wait_threading_count(::duration((5000) * 8));
 //
 //      //::parallelization::wait_threads(40_s);
 //
@@ -6366,47 +6290,47 @@ namespace aura
    //   }
 
 
-#ifdef _UWP
-
-
-   bool system::get_window_rect(RECTANGLE_I32* prectangle)
-   {
-
-      if (::is_null(get_session()))
-      {
-
-         return false;
-
-      }
-
-      try
-      {
-
-         if (::is_null(get_session()->m_puserinteractionHost))
-         {
-
-            return false;
-
-         }
-
-         auto puserinteractionHost = __user_interaction(get_session()->m_puserinteractionHost);
-
-         puserinteractionHost->get_window_rect(prectangle);
-
-      }
-      catch (...)
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-#endif
+//#ifdef _UWP
+//
+//
+//   bool system::get_window_rect(RECTANGLE_I32* prectangle)
+//   {
+//
+//      if (::is_null(get_session()))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      try
+//      {
+//
+//         if (::is_null(get_session()->m_puserinteractionHost))
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         auto puserinteractionHost = __user_interaction(get_session()->m_puserinteractionHost);
+//
+//         puserinteractionHost->get_window_rect(prectangle);
+//
+//      }
+//      catch (...)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
    //::e_status     system::do_request(::create* pcreate)
@@ -6522,7 +6446,7 @@ namespace aura
 
 
 
-//   void system::on_subject(::subject::subject * psubject)
+//   void system::on_subject(::subject * psubject)
 //   {
 //
 //
@@ -6531,7 +6455,7 @@ namespace aura
 //   }
 
 
-   void system::subject_handler(::subject::subject * psubject)
+   void system::handle(::subject * psubject, ::context * pcontext)
    {
 
       if (psubject->m_id == id_font_enumeration)
@@ -6540,28 +6464,23 @@ namespace aura
          draw2d()->write_text()->handle_font_enumeration(psubject);
 
       }
-      else if (psubject->m_id == id_os_dark_mode)
+      else if (psubject->m_id == id_user_color)
       {
 
-#ifdef _UWP
-
-         ::user::os_set_dark_mode_colors();
-
-#endif
 
       }
 
-      ::aqua::system::subject_handler(psubject);
+      ::aqua::system::handle(psubject, pcontext);
 
    }
 
 
-   void system::on_subject(::subject::subject * psubject, ::subject::context * pcontext)
-   {
+   //void system::handle(::subject * psubject, ::context * pcontext)
+   //{
 
-      ::aqua::system::on_subject(psubject, pcontext);
+   //   ::aqua::system::handle(psubject, pcontext);
 
-   }
+   //}
 
 
    ::e_status system::initialize_estamira()
@@ -6899,7 +6818,7 @@ namespace aura
    //}
 
 
-//   ::e_status system::main_user_async(const ::routine & routine, ::e_priority epriority)
+//   ::e_status system::main_user_async(const ::routine & routine, ::enum_priority epriority)
 //   {
 //
 //#ifdef _UWP
@@ -7017,6 +6936,13 @@ namespace aura
 
    //}
 
+
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
+
+   //   return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+
+   //}
 
 
    __namespace_system_factory(system);

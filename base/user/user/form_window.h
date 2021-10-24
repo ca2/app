@@ -18,7 +18,7 @@ namespace user
       virtual ~form_window();
 
       virtual string get_path() override;
-      virtual ::e_status open_document(const ::payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & payloadFile) override;
 
 
       //using ::user::interaction::_001IsPointInside;
@@ -55,9 +55,9 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_000OnPosCreate);
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
       virtual void _001InitializeFormPreData() override;
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext)  override;
+      virtual void handle(::subject * psubject, ::context * pcontext)  override;
       virtual void _001Update(interaction * pinteraction) override;
       virtual void _001UpdateCheckBox(interaction * pinteraction) override;
       virtual void _001UpdateComboBox(interaction * pinteraction) override;
@@ -81,7 +81,7 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject::subject * psubject = nullptr) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::subject * psubject = nullptr) override;
 
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
@@ -89,7 +89,7 @@ namespace user
 
       bool operator == (const interaction & interaction) const;
 
-      void on_control_event(::user::control_event * pevent) override;
+      //void handle(::subject * psubject, ::context * pcontext) override;
       void _001SetControlFactory();
 
 

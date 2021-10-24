@@ -80,7 +80,7 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 }
 
 
-bool simple_printer_list_view::on_click(const ::user::item & itemClick)
+bool simple_printer_list_view::on_click(const ::item & itemClick)
 {
 
    if (!itemClick.is_set())
@@ -102,7 +102,7 @@ bool simple_printer_list_view::on_click(const ::user::item & itemClick)
    auto papplication = get_application();
 
    pprinttask->m_pprinter = papplication->get_printer(item.m_strText);
-   pprinttask->m_pinteraction = m_pview;
+   pprinttask->m_pinteraction = m_pimpact;
 
    pprinttask->branch();
    

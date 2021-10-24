@@ -47,6 +47,27 @@ public:
    pointer_array(pointer_array && a) : BASE_ARRAY(::move(a)) { }
 
 
+   template < typename OTHER >
+   pointer_array(const pointer_array < OTHER > & a)
+   {
+
+      for(auto & p : a)
+      {
+
+         __pointer(T) pNew = p;
+
+         if(pNew)
+         {
+
+            add(pNew);
+
+         }
+
+      }
+
+   }
+
+
    pointer_array(const std::initializer_list < T * > & list)
    {
 
@@ -66,14 +87,7 @@ public:
 
       __pointer(T) & p = comparable_array < ___pointer < T >, const T* >::add_new();
 
-      p.create();
-
-      if (::is_set(pobject))
-      {
-
-         p->initialize(pobject);
-
-      }
+      pobject->__construct(p);
 
       return p;
 
@@ -88,25 +102,7 @@ public:
    }
 
    template < TEMPLATE_TYPE >
-   ::count set_size_create(::count nNewSize, ::count nGrowBy = -1, TEMPLATE_ARG)
-   {
-
-      ::index i = this->get_size();
-
-      comparable_array < ___pointer < T >, const T* > :: set_size(nNewSize);
-
-      ::count c = this->get_size();
-
-      for(; i < c; i++)
-      {
-
-         this->element_at(i).create();
-
-      }
-
-      return c;
-
-   }
+   ::count set_size_create(::object * pobject, ::count nNewSize, ::count nGrowBy = -1, TEMPLATE_ARG);
 
 
    template < class DERIVED >
@@ -165,6 +161,19 @@ public:
 
    }
 
+   inline ::index add_item(__pointer(T) && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   {
+
+      ::index nIndex = this->m_nSize;
+
+      this->allocate(nIndex + 1);
+
+      this->last() = ::move(p);
+
+      return nIndex;
+
+   }
+
    template < container_type CONTAINER >
    ::index add(const CONTAINER & a)
    {
@@ -174,10 +183,25 @@ public:
    }
 
 
-   ::index add(T * p)
+   //::index add(T * p)
+   //{
+
+   //   return this->add_item(p);
+
+   //}
+
+   ::index add(const __pointer(T) & p)
    {
 
       return this->add_item(p);
+
+   }
+
+
+   ::index add(__pointer(T) && p)
+   {
+
+      return this->add_item(::move(p));
 
    }
 
@@ -569,6 +593,18 @@ public:
 
    }
 
+   
+   __pointer(T) pop_first(::index n = 0)
+   {
+
+      auto p = ::move(this->comparable_array < ___pointer < T >, const T* >::first(n));
+      
+      this->comparable_array < ___pointer < T >, const T* >::erase_at(n);
+      
+      return p;
+
+   }
+
 
    ___pointer < T > & first_pointer(::index n = 0)
    {
@@ -788,9 +824,9 @@ public:
             if (p)
             {
 
-#ifdef DEBUG
+#ifdef _DEBUG
 
-               string strType = p->type_name();
+               string strType = __type_name(p);
 
 #endif
 

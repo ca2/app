@@ -15,21 +15,6 @@
 #endif
 
 
-#ifdef DEBUG
-#ifndef _DEBUG
-#define _DEBUG
-#endif
-#endif
-
-
-#ifdef _DEBUG
-#define __DEBUG
-#ifndef DEBUG
-#define DEBUG
-#endif
-#else
-#define NNDEBUG
-#endif
 
 #define CA2_AURA
 
@@ -57,8 +42,8 @@
 #include "__standard_type.h"
 
 
-typedef i64 memsize_storage;
-typedef i64 strsize_storage;
+typedef iptr memsize_storage;
+typedef iptr strsize_storage;
 
 
 typedef iptr memsize;
@@ -193,7 +178,7 @@ namespace aura
 
 //#include "aura/platform/struct.h"
 
-#include "aura/os/os.h"
+#include "aura/node/operating_system/operating_system.h"
 
 //#include "aura/memory/heap_c.h"
 //

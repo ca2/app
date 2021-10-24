@@ -7,6 +7,7 @@
 #include <openssl/md5.h>
 #include <openssl/err.h>
 #include <openssl/whrlpool.h>
+#include <openssl/pem.h>
 
 
 //namespace str
@@ -245,12 +246,12 @@ namespace crypto
 
 #elif defined(_UWP)
 
-      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
-         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
+      ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
+         ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_crypt_buffer());
+      ::winrt::Windows::Security::Cryptography::Core::CryptographicKey^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_crypt_buffer());
 
-      storageEncrypt.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, storageDecrypt.get_os_crypt_buffer(), iv.get_os_crypt_buffer()));
+      storageEncrypt.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, storageDecrypt.get_os_crypt_buffer(), iv.get_os_crypt_buffer()));
 
       return true;
 
@@ -429,12 +430,12 @@ namespace crypto
 
 #if defined(_UWP) && !defined(HAVE_OPENSSL)
 
-      ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
-         ::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
+      ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider^ cipher =
+         ::winrt::Windows::Security::Cryptography::Core::SymmetricKeyAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::SymmetricAlgorithmNames::AesEcb);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_crypt_buffer());
+      ::winrt::Windows::Security::Cryptography::Core::CryptographicKey^ cipherkey = cipher->CreateSymmetricKey(memSha1.get_os_crypt_buffer());
 
-      storageDecrypt.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(cipherkey, storageDecrypt.get_os_crypt_buffer(), iv.get_os_crypt_buffer()));
+      storageDecrypt.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(cipherkey, storageDecrypt.get_os_crypt_buffer(), iv.get_os_crypt_buffer()));
 
       return true;
 
@@ -718,7 +719,7 @@ namespace crypto
 
       i32 plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
 
-      strDecrypt = storageDecrypt.to_string();
+      strDecrypt = storageDecrypt.get_string();
 
       return plainlen;
 
@@ -860,7 +861,7 @@ namespace crypto
 //
 //#else
 //
-//      auto algorithm = ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
+//      auto algorithm = ::winrt::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::HashAlgorithmNames::Md5);
 //
 //      memMd5.set_os_buffer(algorithm->HashData(mem.get_os_buffer()));
 //
@@ -882,7 +883,7 @@ namespace crypto
 //
 //#else
 //
-//      auto algorithm = ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::HashAlgorithmNames::Sha1);
+//      auto algorithm = ::winrt::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::HashAlgorithmNames::Sha1);
 //
 //      memSha1.set_os_buffer(algorithm->HashData(mem.get_os_buffer()));
 //
@@ -904,7 +905,7 @@ namespace crypto
 //
 //#else
 //
-//      auto algorithm = ::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::HashAlgorithmNames::Sha256);
+//      auto algorithm = ::winrt::Windows::Security::Cryptography::Core::HashAlgorithmProvider::OpenAlgorithm(::winrt::Windows::Security::Cryptography::Core::HashAlgorithmNames::Sha256);
 //
 //      memSha256.set_os_buffer(algorithm->HashData(mem.get_os_buffer()));
 //
@@ -923,7 +924,7 @@ namespace crypto
    }
 
 
-   bool crypto::file_set(::payload varFile, const char* pszData, const char* pszSalt, ::application* papp)
+   bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;
@@ -935,7 +936,7 @@ namespace crypto
 
       }
 
-      if (!m_pcontext->m_papexcontext->file().put_contents(varFile, memoryEncrypt))
+      if (!m_pcontext->m_papexcontext->file().put_contents(payloadFile, memoryEncrypt))
       {
 
          return false;
@@ -947,18 +948,18 @@ namespace crypto
    }
 
 
-   ::e_status     crypto::file_get(::payload varFile, string& str, const char* pszSalt, ::application* papp)
+   ::e_status     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;
 
-      if (!m_pcontext->m_papexcontext->file().exists(varFile))
+      if (!m_pcontext->m_papexcontext->file().exists(payloadFile))
       {
          str.Empty();
          return success_not_found;
       }
 
-      if (!m_pcontext->m_papexcontext->file().as_memory(varFile, memoryEncrypt))
+      if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
       {
          return error_file;
       }
@@ -1160,9 +1161,9 @@ namespace crypto
    __pointer(::crypto::rsa) crypto::generate_rsa_key()
    {
 
-      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ provider =
-         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
-            ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+      ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ provider =
+         ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
+            ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
       return __new(::crypto::rsa(get_application(), provider->CreateKeyPair(1024)));
@@ -1172,7 +1173,7 @@ namespace crypto
    /*void crypto::free_rsa_key(__pointer(::crypto::rsa) prsa)
    {
 
-      UNREFERENCED_PARAMETER(prsa);
+      __UNREFERENCED_PARAMETER(prsa);
 
    }*/
 
@@ -1224,7 +1225,7 @@ namespace crypto
 //
 //
 //
-//      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+//      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 //
 //
 //
@@ -1344,7 +1345,7 @@ namespace crypto
 //
 //
 //
-//      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+//      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 //
 //
 //
@@ -1382,7 +1383,7 @@ namespace crypto
 //
 //
 //
-//      out.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
+//      out.set_os_crypt_buffer(::winrt::Windows::Security::Cryptography::Core::CryptographicEngine::Decrypt(m_prsa, in.get_os_crypt_buffer(), nullptr));
 //
 //
 //
@@ -1439,7 +1440,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1470,7 +1471,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1497,7 +1498,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1527,7 +1528,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1556,7 +1557,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1670,7 +1671,7 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
       }
 
@@ -1699,17 +1700,18 @@ namespace crypto
       if (i < 0 || i >(1024 * 1024))
       {
 
-         TRACE("%s", strError.c_str());
+         ERROR(strError);
 
-      }
+      } 
 
       string str;
 
-      str = memory.to_string();
+      str = memory.get_string();
 
       return str;
 
    }
+
 
    __pointer(::crypto::rsa) crypto::generate_rsa_key()
    {
@@ -1741,7 +1743,7 @@ namespace crypto
 
       }
 
-#if (defined(_UWP) && (!defined(RASPBIAN))) && (OPENSSL_API_COMPAT < 0x10100000L)
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
       char* hexN = BN_bn2hex(prsa->n);
       char* hexE = BN_bn2hex(prsa->e);
@@ -1804,17 +1806,9 @@ namespace crypto
    __pointer(rsa) crypto::read_priv_pem(const string& strFile)
    {
 
-#ifdef WINDOWS_DESKTOP
+      auto memory = m_psystem->m_pacmefile->as_memory(strFile);
 
-      FILE* pfile = ::_fsopen(strFile, "rb", _SH_DENYNO);
-
-#else
-
-      FILE* pfile = ::fopen(strFile, "rb");
-
-#endif
-
-      if (!pfile)
+      if (memory.is_empty())
       {
 
          return nullptr;
@@ -1825,9 +1819,11 @@ namespace crypto
 
       RSA*& prsa = popensslrsa->m_prsa;
 
-      PEM_read_RSAPrivateKey(pfile, &prsa, nullptr, nullptr);
+      auto pbio = BIO_new_mem_buf(memory.get_data(), (int) memory.get_size());
 
-      ::fclose(pfile);
+      PEM_read_bio_RSAPrivateKey(pbio, &prsa, nullptr, nullptr);
+
+      BIO_free(pbio);
 
       return popensslrsa;
 
@@ -1837,9 +1833,9 @@ namespace crypto
    __pointer(rsa) crypto::read_pub_pem(const string& strFile)
    {
 
-      FILE* pfile = ::fopen(strFile, "rb");
+      auto memory = m_psystem->m_pacmefile->as_memory(strFile);
 
-      if (!pfile)
+      if (memory.is_empty())
       {
 
          return nullptr;
@@ -1850,9 +1846,11 @@ namespace crypto
 
       RSA*& prsa = popensslrsa->m_prsa;
 
-      PEM_read_RSA_PUBKEY(pfile, &prsa, nullptr, nullptr);
+      auto pbio = BIO_new_mem_buf(memory.get_data(), (int) memory.get_size());
 
-      ::fclose(pfile);
+      PEM_read_bio_RSA_PUBKEY(pbio, &prsa, nullptr, nullptr);
+
+      BIO_free(pbio);
 
       return popensslrsa;
 

@@ -57,10 +57,10 @@ namespace user
       ealign                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
-      ::rectangle                              m_rectText;
+      ::rectangle                              m_rectangleText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
-      ::rectangle                              m_rectCheckBox;
+      ::rectangle                              m_rectangleCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -81,7 +81,7 @@ namespace user
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
-      virtual void install_message_routing(::channel * pchannel) override;
+      void install_message_routing(::channel * pchannel) override;
 
       virtual void _001OnButtonDrawPush(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics);
@@ -106,7 +106,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual void on_hit_test(::user::item & item) override;
+      //virtual void on_hit_test(::item & item) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -142,7 +142,7 @@ namespace user
       virtual color32_t get_button_text_color();
 
 
-      virtual void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      virtual void handle(::subject * psubject, ::context * pcontext) override;
 
 
    };

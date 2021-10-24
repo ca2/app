@@ -24,23 +24,29 @@ namespace windowing
       __pointer(::user::interaction_impl)       m_pimpl;
       string                                    m_strDebug;
       __pointer(::message_queue)                m_pmessagequeue;
-      millis                                    m_millisLastMouseMove;
+      ::duration                                m_durationLastMouseMove;
       __pointer(::windowing::window)            m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
       __pointer(::windowing::icon)              m_picon;
       __pointer(::windowing::windowing)         m_pwindowing;
+      __composite(::user::copydesk)             m_pcopydesk;
+
+
 
 
       window();
-      virtual ~window();
+      ~window() override;
 
 
       void user_common_construct();
 
 
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
+      ::e_status on_initialize_object() override;
+
+
+      void assert_valid() const override;
+      void dump(dump_context & dumpcontext) const override;
 
 
       inline ::aura::application* get_application() const;
@@ -48,7 +54,7 @@ namespace windowing
       inline ::aura::system* get_system() const;
 
 
-      virtual void install_message_routing(::channel * pchannel);
+      void install_message_routing(::channel * pchannel) override;
 
 
       virtual ::e_status create_window(::user::interaction_impl * pimpl);
@@ -63,12 +69,18 @@ namespace windowing
       virtual ::e_status bring_to_front();
 
 
+      virtual void graphics_lock();
+      virtual void graphics_unlock();
+
+
       virtual bool has_mouse_capture() const;
       virtual bool has_keyboard_focus() const;
 
       virtual ::color::color screen_pixel(int x, int y) const;
 
       virtual ::windowing::display * display();
+
+      virtual ::user::copydesk * copydesk();
 
       oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
       void set_oswindow(oswindow oswindow);
@@ -87,11 +99,13 @@ namespace windowing
 
       virtual ::e_status destroy_window();
 
+      ::e_status on_destroy() override;
+
       virtual ::e_status show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 
-      virtual void post_nc_destroy();
+      virtual void post_non_client_destroy();
 
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       
@@ -130,10 +144,11 @@ namespace windowing
 
 
 
-      virtual void message_handler(::message::message* pusermessage);
+      void message_handler(::message::message* pusermessage) override;
 
 
-      virtual void route_command_message(::message::command * pcommand);
+      void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
+
 
       virtual void present();
 
@@ -151,7 +166,7 @@ namespace windowing
 
       virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
 
-      virtual void get_window_text(string & rectString);
+      virtual void get_window_text(string & rectangleString);
       virtual strsize get_window_text_length();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -183,7 +198,7 @@ namespace windowing
       virtual void UnlockWindowUpdate();
 
 
-      virtual bool RedrawWindow(const ::rectangle_i32 & rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32 & rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
       // Window State Functions
       virtual bool is_this_enabled();
@@ -221,6 +236,9 @@ namespace windowing
 
 
       virtual ::e_status set_mouse_cursor(::windowing::cursor * pcursor);
+
+
+      virtual ::point_i32 get_mouse_cursor_position();
 
 
       virtual ::e_status set_tool_window(bool bSet);
@@ -268,6 +286,11 @@ namespace windowing
       virtual void window_show();
       
       virtual ::e_status frame_toggle_restore();
+
+      virtual ::e_status window_send(const ::routine & routine);
+      virtual ::e_status window_post(const ::routine & routine);
+
+      bool is_branch_current() const override;
 
 
    };

@@ -162,7 +162,7 @@ namespace acme
          if(m_plibrary == nullptr)
          {
 
-            ERR("acme::library::open");
+            ERROR("acme::library::open");
 
             return false;
 
@@ -174,13 +174,13 @@ namespace acme
       catch(...)
       {
 
-         ERR("acme::library::open Failed to open library %s with errors %s", (bCa2Path ? " (ca2 path)" : ""), m_strMessage.c_str());
+         ERROR("acme::library::open Failed to open library " << ( bCa2Path ? " (ca2 path)" : "") << " with errors " << m_strMessage);
 
          return false;
 
       }
 
-      INFO("acme::library::open success");
+      INFORMATION("acme::library::open success");
 
       if (m_strCa2Name.has_char())
       {
@@ -208,7 +208,7 @@ namespace acme
 
       }
 
-      ::exception::engine().reset();
+      ::exception_engine().reset();
 
       PFN_NEW_LIBRARY pfnNewAcmeLibrary = nullptr;
 
@@ -865,7 +865,7 @@ namespace acme
 
       synchronous_lock synchronouslock(&psystem->m_mutexLibrary);
 
-      UNREFERENCED_PARAMETER(ida);
+      __UNREFERENCED_PARAMETER(ida);
 
    }
 
@@ -980,7 +980,7 @@ namespace acme
       if (pfactorymap == nullptr)
       {
 
-         __construct_new(m_pfactorymap);
+         m_psystem->__construct_new(m_pfactorymap);
 
          pfactorymap = m_pfactorymap;
 

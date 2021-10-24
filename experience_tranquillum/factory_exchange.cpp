@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/application.h"
+#include "aura/library.h"
 //
 //
 //namespace experience
@@ -116,8 +116,8 @@ void experience_tranquillum_factory_exchange(::factory_map * pfactorymap)
    //create_factory < ::windows::stdio_file, ::file::text_file >();
    //create_factory < ::windows::file, ::file::file >();
    //pfactorymap->create_factory < ::windows::os_context, ::os_context >();
-   //pfactorymap->create_factory < ::windows::pipe, ::process::pipe >();
-   //pfactorymap->create_factory < ::windows::process, ::process::process >();
+   //pfactorymap->create_factory < ::windows::pipe, ::operating_system::pipe >();
+   //pfactorymap->create_factory < ::windows::process, ::operating_system::process >();
 
    ////create_factory < ::windows::console, ::console::console >();
    //pfactorymap->create_factory < ::windows::crypto, ::crypto::crypto >();

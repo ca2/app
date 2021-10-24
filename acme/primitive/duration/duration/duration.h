@@ -137,6 +137,8 @@ public:
    //static inline class ::duration first();
    static inline class ::duration now() { duration duration; duration.Now(); return duration; }
 
+   inline bool is_past() const { return now() > *this; }
+
    inline class ::duration & Now() { if (timespec_get((timespec *)this, TIME_UTC) != TIME_UTC) throw "timespec_get failed!!"; return *this; }
 
    inline class ::duration elapsed(const class ::duration & duration = now()) const { return duration - *this; }

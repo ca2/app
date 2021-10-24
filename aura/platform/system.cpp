@@ -6937,12 +6937,12 @@ namespace aura
    //}
 
 
-   __pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+   //   return m_pnode->message_box(puserinteraction, strMessage, strTitle, emessagebox);
 
-   }
+   //}
 
 
    __namespace_system_factory(system);

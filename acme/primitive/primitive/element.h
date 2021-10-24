@@ -173,3 +173,64 @@ public:
 
 
 
+
+#ifndef _DEBUG
+
+inline i64 element::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   auto c = ++m_countReference;
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+   add_ref_history(pReferer, pszObjRefDbg);
+
+#endif
+
+   return c;
+
+}
+
+
+inline i64 element::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   auto c = --m_countReference;
+
+#if OBJECT_REFERENCE_COUNT_DEBUG
+
+   if (c > 0)
+   {
+
+      dec_ref_history(pReferer, pszObjRefDbg);
+
+   }
+
+#endif
+
+   return c;
+
+}
+
+
+inline i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+{
+
+   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+
+   if (i == 0)
+   {
+
+      delete_this();
+
+   }
+
+   return i;
+
+}
+
+
+#endif
+
+
+

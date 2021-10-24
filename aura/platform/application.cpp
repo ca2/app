@@ -8706,7 +8706,7 @@ namespace aura
                      auto pcontext = get_context();
 
                      pcheck->_001SetCheck(
-                        os().is_user_auto_start(get_executable_appid()),
+                        os_context()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 
                   }
@@ -8736,7 +8736,7 @@ namespace aura
                   if (pcheck.is_set())
                   {
 
-                     os().register_user_auto_start(
+                     os_context()->register_user_auto_start(
                         get_executable_appid(),
                         get_executable_path(),
                         pcheck->echeck() == ::check_checked);

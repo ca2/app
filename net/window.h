@@ -31,13 +31,13 @@ namespace app_net
    public:
 
 
-      string                  m_strUrl;
-      double                  m_dBreathPeriod;
-      double                  m_dStartTime;
-      double                  m_dPhaseShift;
-      ::write_text::font_pointer  m_pfont;
-      string                  m_strGet;
-      bool                    m_bGettingUrl;
+      string                        m_strUrl;
+      double                        m_dBreathPeriod;
+      ::duration                    m_durationStart;
+      double                        m_dPhaseShift;
+      ::write_text::font_pointer    m_pfont;
+      string                        m_strGet;
+      bool                          m_bGettingUrl;
       ::duration                    m_durationStartGettingUrl;
 
 

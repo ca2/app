@@ -5,7 +5,7 @@
 #include "string_memory_allocate.h"
 
 
-class string_memory_allocator
+class CLASS_DECL_ACME string_memory_allocator
 {
 public:
 

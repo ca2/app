@@ -19,7 +19,7 @@ namespace apex
       __composite(::http::context)        m_phttp;
       __composite(::dir_context)          m_pdir;
       __composite(::file_context)         m_pfile;
-      __composite(::os_context)           m_pos;
+      __composite(::os_context)           m_poscontext;
 
 
       string                              m_strLocale;
@@ -73,7 +73,7 @@ namespace apex
       inline ::http::context& http() { return *m_phttp; }
       inline ::dir_context& dir() { return *m_pdir; }
       inline ::file_context& file() { return *m_pfile; }
-      inline ::os_context& os() { return *m_pos; };
+      inline ::os_context * os_context() { return m_poscontext; };
 
       ::handle::ini ini_from_path(::file::path& path);
 

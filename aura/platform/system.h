@@ -993,7 +993,7 @@ namespace aura
 
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
-      __pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
 

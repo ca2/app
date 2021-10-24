@@ -1778,6 +1778,11 @@ namespace user
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::item * pitem);
 
 
+      __pointer(::extended::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+
+
+
+
       // control member function BEGIN
       //
       //

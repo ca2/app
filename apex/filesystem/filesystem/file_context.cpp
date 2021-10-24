@@ -745,7 +745,7 @@ void file_context::_put_lines(::file::file *pfile, const string_array &stra)
 }
 
 
-void file_context::lines(string_array &stra, const ::payload &varFile)
+::e_status file_context::lines(string_array &stra, const ::payload &varFile, bool bAddEmpty)
 {
 
 
@@ -760,14 +760,14 @@ void file_context::lines(string_array &stra, const ::payload &varFile)
    catch (...)
    {
 
-      return;
+      return error_exception;
 
    }
 
    if (!pfile)
    {
 
-      return;
+      return pfile;
 
    }
 
@@ -776,9 +776,16 @@ void file_context::lines(string_array &stra, const ::payload &varFile)
    while (pfile->read_string(strLine))
    {
 
-      stra.add(strLine);
+      if (bAddEmpty || !strLine.is_empty())
+      {
+
+         stra.add(strLine);
+
+      }
 
    }
+
+   return ::success;
 
 }
 
@@ -2042,7 +2049,7 @@ bool
 file_context::resolve_link(::file::path &pathTarget, const string &strSource, string *pstrDirectory, string *pstrParams)
 {
 
-   return m_pcontext->m_papexcontext->os().resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
+   return m_pcontext->m_papexcontext->os_context()->resolve_link(pathTarget, strSource, pstrDirectory, pstrParams);
 
 }
 

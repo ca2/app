@@ -233,6 +233,9 @@
     <Filter Include="Source Files\subject">
       <UniqueIdentifier>{ca929163-f1bb-455e-951c-afc038c9aab3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\primitive\duration">
+      <UniqueIdentifier>{c384348a-f32f-4f3f-92ca-213fcf950467}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -787,9 +790,6 @@
     <ClCompile Include="platform\net.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\nano_timer.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -937,16 +937,10 @@
     <ClCompile Include="primitive\datetime\department.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\datetime\duration.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\filetime.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\filetime_span.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\micros.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\microsecond_sleep.cpp">
@@ -956,9 +950,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\result.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\secs.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\system_time.cpp">
@@ -1402,9 +1393,6 @@
     <ClCompile Include="parallelization\install_mutex.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\referenceable.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1451,6 +1439,21 @@
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="platform\options.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\duration.cpp">
+      <Filter>Source Files\primitive\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\microsecond.cpp">
+      <Filter>Source Files\primitive\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\duration\duration\second.cpp">
+      <Filter>Source Files\primitive\duration</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\element.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\nanosecond_timer.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

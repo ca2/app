@@ -138,18 +138,18 @@ namespace aura
 //   }
 
    
-   __pointer(::extended::sequence < ::conversation >) node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto pmessagebox = puserinteraction->__create < ::user::message_box >();
+   //   auto pmessagebox = puserinteraction->__create < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+   //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
-      auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
+   //   auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 
-      return pextendedfuture;
+   //   return pextendedfuture;
 
-   }
+   //}
 
 
    void node::BeginWaitCursor()

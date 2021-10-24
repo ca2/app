@@ -71,7 +71,7 @@ namespace experience
 
 
       frame();
-      virtual ~frame();
+      ~frame() override;
 
 
       inline ::base::application* get_application() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }

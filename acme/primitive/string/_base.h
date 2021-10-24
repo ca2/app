@@ -58,7 +58,7 @@ public:
    string_base(nullptr_t) { }
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) : string_base(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+   string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
@@ -133,8 +133,8 @@ public:
    //inline operator String ^ () const { return ref new String(wd16string(*this)); }
 //#endif
 
-   auto to_string_base() const { return *this; }
-   const auto & to_string_base() { return *this; }
+   string_base to_string_base() const { return *this; }
+   const string_base & to_string_base() { return *this; }
 
    //string_base & operator = (const ansichar * pansichar);
    //string_base & operator = (const wd16char * pwd16char);

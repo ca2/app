@@ -156,23 +156,23 @@ bool __node_acme_pos_term()
    if (id == id_user_color)
    {
 
-      return 500;
+      return 500_ms;
 
    }
    else if (id == id_os_font_change)
    {
 
-      return 0;
+      return 0_s;
 
    }
    else if (id == id_font_enumeration)
    {
 
-      return 0;
+      return 0_s;
 
    }
 
-   return 500;
+   return 500_ms;
 
 }
 

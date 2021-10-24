@@ -230,7 +230,7 @@ namespace file
    bool set::initialize_os_wallpaper(bool bAddSearch)
    {
 
-      if (!m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, bAddSearch))
+      if (!m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, bAddSearch))
       {
 
          return false;
@@ -245,14 +245,14 @@ namespace file
          if (!bAddSearch)
          {
 
-            m_pcontext->m_papexcontext->os().initialize_wallpaper_fileset(this, true);
+            m_pcontext->m_papexcontext->os_context()->initialize_wallpaper_fileset(this, true);
 
             ::file::set::refresh();
 
             if (m_listing.is_empty())
             {
 
-               m_pcontext->m_papexcontext->os().::os_context::initialize_wallpaper_fileset(this, bAddSearch);
+               m_pcontext->m_papexcontext->os_context()->::os_context::initialize_wallpaper_fileset(this, bAddSearch);
 
                ::file::set::refresh();
 

@@ -211,7 +211,7 @@ namespace apex
 
       }
 
-      estatus = __compose(m_pos);
+      estatus = __compose(m_poscontext);
 
       if (!estatus)
       {

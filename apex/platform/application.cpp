@@ -1782,7 +1782,9 @@ INFORMATION("apex::application::init_application .2");
 if (m_pinterprocessintercommunication)
 {
 
-m_pinterprocessintercommunication->on_new_instance(m_pcontext->m_papexcontext->file().module(), m_pcontext->m_papexcontext->os().get_pid());
+m_pinterprocessintercommunication->on_new_instance(
+   m_pcontext->m_papexcontext->file().module(),
+   m_pcontext->m_papexcontext->os_context()->get_pid());
 
 }
 
@@ -3900,7 +3902,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -3961,7 +3963,7 @@ auto pcall = m_pinterprocessintercommunication->create_call("application", "on_a
 
 pcall->add_arg(m_pcontext->m_papexcontext->file().module());
 
-pcall->add_arg(m_pcontext->m_papexcontext->os().get_pid());
+pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
 
 pcall->add_arg(psystem->command_line_text());
 
@@ -4601,7 +4603,7 @@ g_iCount++;
 if (g_iCount == 1)
 {
 
-m_pcontext->m_papexcontext->os().file_open(strFile);
+m_pcontext->m_papexcontext->os_context()->file_open(strFile);
 
 }
 

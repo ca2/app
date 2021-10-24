@@ -1604,7 +1604,7 @@ namespace apex
    {
 
 
-      return m_pcontext->m_papexcontext->os().is_remote_session();
+      return m_pcontext->m_papexcontext->os_context()->is_remote_session();
 
 
    }

@@ -51,18 +51,18 @@ namespace aura
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto pmessagebox = __create < ::user::message_box >();
+   //   auto pmessagebox = __create < ::user::message_box >();
 
-      auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
+   //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
-      auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
+   //   auto pextendedfuture = pmessagebox->show(puserinteraction, strMessage, strTitle, emessagebox);
 
-      return pextendedfuture;
+   //   return pextendedfuture;
 
-   }
+   //}
 
 
 //   ::file::path context::defer_make_file_system_url(string str)

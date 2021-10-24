@@ -492,22 +492,22 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
    }
 
 
-   __pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //{
 
-      auto psequence = __new(::sequence < ::conversation >);
+   //   auto psequence = __new(::sequence < ::conversation >);
 
-      psequence->set_status(error_interface_only);
+   //   psequence->set_status(error_interface_only);
 
-      //return presult;
+   //   //return presult;
 
-      //auto pprocess = __new(status < enum_dialog_result >);
+   //   //auto pprocess = __new(status < enum_dialog_result >);
 
-      //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
+   //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
-      return psequence;
+   //   return psequence;
 
-   }
+   //}
 
 
    //::e_status system::on_initialize_window_object()

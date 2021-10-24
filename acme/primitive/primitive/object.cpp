@@ -2529,16 +2529,16 @@ string object::get_text(const ::payload& payload, const ::id& id)
 }
 
 
-__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
-{
-
-   auto psystem = m_psystem;
-
-   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
-
-   return psequence;
-
-}
+//__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+//{
+//
+//   auto psystem = m_psystem;
+//
+//   auto psequence = psystem->message_box(puserinteraction, strMessage, strTitle, emessagebox);
+//
+//   return psequence;
+//
+//}
 
 
 //::e_status object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)

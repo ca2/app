@@ -75,7 +75,7 @@ namespace mysql
 
       ::payload get_insert_id();
 
-      virtual string error1(const ::string & pszPrefix = nullptr) override;
+      virtual string query_error(const ::string & pszPrefix = nullptr) override;
 
 
    };

@@ -70,8 +70,8 @@ namespace datetime
                continue;
             }
             GetRectDay(time,rectangleDay);
-            crBorder = rgb(184,184,177);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            crBorder = rgb(189,189,177);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",iDay);
@@ -87,9 +87,9 @@ namespace datetime
             GetRectDay(timeNow,rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
             pgraphics->fill_rectangle(rectangleDay,rgb(220,220,210));
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeNow.GetDay());
@@ -104,9 +104,9 @@ namespace datetime
             crBorder = rgb(240,120,52);
             GetRectDay(m_time,rectangleDay);
             rectangleDay.inflate(m_iColWidth / 10,m_iColWidth / 10);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(1,1);
-            pgraphics->draw_rectangle(rectangleDay,crBorder);
+            pgraphics->draw_inset_rectangle(rectangleDay,crBorder);
             rectangleDay.deflate(m_iColWidth / 5,m_iLineHeight / 5);
             string strDay;
             strDay.Format("%d",timeEmp.GetDay());

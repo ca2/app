@@ -48,13 +48,13 @@ namespace datetime
 
 
       scanner();
-      virtual ~scanner();
+      ~scanner() override;
 
 
       virtual ::e_status initialize_datetime_scanner(::text::context* ptextcontext);
 
 
-      void initialize(const ::string & psz);
+      void initialize_scanner(const ::string & strInput);
       void peek();
       void next();
       token * look_ahead();

@@ -330,9 +330,9 @@
 
 
 
-      //virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -739,7 +739,7 @@
 
       //virtual void throw_not_installed();
 
-      //virtual void play_audio(::payload varFile, bool bSynch = false);
+      //virtual void play_audio(::payload payloadFile, bool bSynch = false);
 
       virtual void post_critical_error_message(const ::string & pszMessage, bool bShowLog = true);
 
@@ -763,7 +763,7 @@
 
 
 
-      virtual bool on_open_document_file(::payload varFile);
+      virtual bool on_open_document_file(::payload payloadFile);
 
       virtual string get_app_id(string wstr);
 
@@ -1065,7 +1065,7 @@
       // registered with the doc manager.
       //i32 get_open_document_count();
 
-      //virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
 
       //void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -1126,8 +1126,8 @@
       //      virtual ::apex::file_system & file_system();
       //virtual bool _001OnDDECommand(const ::string & pcsz) override;
 
-      //user virtual ::user::document* _001OpenDocumentFile(::payload varFile);
-      //virtual bool on_open_document_file(::payload varFile) override;
+      //user virtual ::user::document* _001OpenDocumentFile(::payload payloadFile);
+      //virtual bool on_open_document_file(::payload payloadFile) override;
       //DECLARE_MESSAGE_HANDLER(_001OnFileNew) override;
 
 

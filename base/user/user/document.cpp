@@ -690,15 +690,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document::set_path_name(::payload varFile, bool bAddToMRU)
+   void document::set_path_name(::payload payloadFile, bool bAddToMRU)
    {
       __UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
-         strPathName = varFile.propset()["url"];
+         strPathName = payloadFile.propset()["url"];
       }
-      else if (varFile.cast < ::file::file>() != nullptr)
+      else if (payloadFile.cast < ::file::file>() != nullptr)
       {
 
          auto psystem = m_psystem->m_pbasesystem;
@@ -710,7 +710,7 @@ namespace user
       }
       else
       {
-         strPathName = varFile;
+         strPathName = payloadFile;
       }
       // store the path fully qualified
       //char szFullPath[_MAX_PATH];
@@ -833,12 +833,12 @@ namespace user
    }
 
 
-   bool document::open_document(const ::payload & varFile)
+   bool document::open_document(const ::payload & payloadFile)
    {
 
       delete_contents();
 
-      if (!on_open_document(varFile))
+      if (!on_open_document(payloadFile))
       {
 
          m_bNew = false;
@@ -857,9 +857,9 @@ namespace user
 
          m_bModified = false;
 
-         m_path = varFile;
+         m_path = payloadFile;
 
-         m_strTitle = varFile.get_file_path().name();
+         m_strTitle = payloadFile.get_file_path().name();
 
       }
 
@@ -929,9 +929,9 @@ namespace user
 
       __keep(m_pcreate, pcreate);
 
-      ::payload varFile = pcreate->get_file();
+      ::payload payloadFile = pcreate->get_file();
 
-      if (!open_document(varFile))
+      if (!open_document(payloadFile))
       {
 
          return false;
@@ -943,17 +943,17 @@ namespace user
    }
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
       auto pcontext = get_context();
 
-      auto preader = pcontext->m_papexcontext->file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto preader = pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
       {
 
-         report_load_exception(varFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(payloadFile, preader, "__IDP_FAILED_TO_OPEN_DOC");
 
          return false;
 
@@ -975,7 +975,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         report_load_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_load_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -996,21 +996,21 @@ namespace user
    }
 
 
-   bool document::on_save_document(const ::payload & varFile)
+   bool document::on_save_document(const ::payload & payloadFile)
    {
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
+      auto pwriter = pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
       if(!pwriter)
       {
 
-         ::file::path path = varFile.get_file_path();
+         ::file::path path = payloadFile.get_file_path();
 
          TRACE("Failed to save document : file path : %s", path.c_str());
 
-         //report_save_exception(varFile, pwriter, "__IDP_INVALID_FILENAME");
+         //report_save_exception(payloadFile, pwriter, "__IDP_INVALID_FILENAME");
 
          return false;
 
@@ -1032,7 +1032,7 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         report_save_exception(varFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
+         report_save_exception(payloadFile, exception, "__IDP_FAILED_TO_OPEN_DOC");
 
       }
 
@@ -1184,23 +1184,23 @@ namespace user
    }
 
 
-   void document::report_load_exception(const ::payload & varFile, file_transport presult, const ::string & pszDefault)
+   void document::report_load_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
    {
 
-      report_save_load_exception(varFile, presult, false, pszDefault);
+      report_save_load_exception(payloadFile, presult, false, pszDefault);
 
    }
 
 
-   void document::report_save_exception(const ::payload & varFile, file_transport presult, const ::string & pszDefault)
+   void document::report_save_exception(const ::payload & payloadFile, file_transport presult, const ::string & pszDefault)
    {
 
-      report_save_load_exception(varFile, presult, true, pszDefault);
+      report_save_load_exception(payloadFile, presult, true, pszDefault);
 
    }
 
 
-   void document::report_save_load_exception(const ::payload & varFile, file_transport presult, bool bSave, const ::string & pszDefault)
+   void document::report_save_load_exception(const ::payload & payloadFile, file_transport presult, bool bSave, const ::string & pszDefault)
    {
 
       try
@@ -1450,23 +1450,23 @@ namespace user
    }
 
 
-   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload varFile)
+   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload payloadFile)
    {
 
-      return on_open_document(varFile);
+      return on_open_document(payloadFile);
 
    }
 
 
-   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload varFile, bool bReplace)
+   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload payloadFile, bool bReplace)
    {
 
-      return do_save(varFile, bReplace);
+      return do_save(payloadFile, bReplace);
 
    }
 
 
-   bool document::do_save(::payload varFile, bool bReplace)
+   bool document::do_save(::payload payloadFile, bool bReplace)
    // Save the document_interface data to a file
    // pszPathName = path name where to save document_interface file
 
@@ -1478,7 +1478,7 @@ namespace user
    // if 'bReplace' is false will not machine path name (SaveCopyAs)
    {
 
-      ::payload newName = varFile;
+      ::payload newName = payloadFile;
 
       if (newName.is_empty())
       {
@@ -1526,7 +1526,7 @@ namespace user
       if (!on_save_document(newName))
       {
 
-         if (varFile.is_empty())
+         if (payloadFile.is_empty())
          {
 
             // be sure to delete the file
@@ -1807,11 +1807,11 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
    //   __UNREFERENCED_PARAMETER(pdata);
-   //   string strUrl(varFile);
+   //   string strUrl(payloadFile);
    //   if(::str::begins_eat(strUrl,"ext://"))
    //   {
    //      papplication->open_link(strUrl,"", pszTargetFrameName);

@@ -887,7 +887,7 @@ namespace crypto
    }
 
 
-   bool crypto::file_set(::payload varFile, const char* pszData, const char* pszSalt, ::application* papp)
+   bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;
@@ -899,7 +899,7 @@ namespace crypto
 
       }
 
-      if (!pcontext->m_papexcontext->file().put_contents(varFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file().put_contents(payloadFile, memoryEncrypt))
       {
 
          return false;
@@ -911,18 +911,18 @@ namespace crypto
    }
 
 
-   ::e_status     crypto::file_get(::payload varFile, string& str, const char* pszSalt, ::application* papp)
+   ::e_status     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
    {
 
       memory memoryEncrypt;
 
-      if (!pcontext->m_papexcontext->file().exists(varFile))
+      if (!pcontext->m_papexcontext->file().exists(payloadFile))
       {
          str.Empty();
          return success_not_found;
       }
 
-      if (!pcontext->m_papexcontext->file().as_memory(varFile, memoryEncrypt))
+      if (!pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
       {
          return error_file;
       }

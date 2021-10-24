@@ -371,7 +371,7 @@ i32 image_list::reserve_image(int iItem)
 //}
 
 
-//i32 image_list::add_icon(::payload varFile, int iItem)
+//i32 image_list::add_icon(::payload payloadFile, int iItem)
 //{
 //
 //   auto picon = __create < ::windowing::icon >();
@@ -383,7 +383,7 @@ i32 image_list::reserve_image(int iItem)
 //
 //   }
 //
-//   if (!picon->load_file(varFile))
+//   if (!picon->load_file(payloadFile))
 //   {
 //
 //      return -1;
@@ -394,7 +394,7 @@ i32 image_list::reserve_image(int iItem)
 ////
 ////   i32 iSize = minimum(m_size.cx, m_size.cy);
 ////
-////   ::file::path path = varFile.get_file_path();
+////   ::file::path path = payloadFile.get_file_path();
 ////
 ////   path = pcontext->m_papexcontext->defer_process_matter_path(path);
 ////
@@ -428,21 +428,21 @@ i32 image_list::reserve_image(int iItem)
 //}
 //
 
-//i32 image_list::add_file(::payload varFile, int iItem)
+//i32 image_list::add_file(::payload payloadFile, int iItem)
 //{
 //
 //   synchronous_lock synchronouslock(mutex());
 //
 //   iItem = reserve_image(iItem);
 //
-//   fork([this, varFile, iItem]()
+//   fork([this, payloadFile, iItem]()
 //      {
 //
 //         auto pcontext = m_pcontext->m_pauracontext;
 //
 //         auto pcontextimage = pcontext->context_image();
 //
-//         auto pimage = pcontextimage->load_image(varFile, true);
+//         auto pimage = pcontextimage->load_image(payloadFile, true);
 //
 //         if (!::is_ok(pimage))
 //         {

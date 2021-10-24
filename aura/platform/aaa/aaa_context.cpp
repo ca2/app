@@ -729,13 +729,13 @@ pacmedir->system() / path;
 
 
 
-file_pointer context::friendly_get_file(::payload varFile, ::u32 nOpenFlags)
+file_pointer context::friendly_get_file(::payload payloadFile, ::u32 nOpenFlags)
 {
 
    try
    {
 
-      return file().get_file(varFile, nOpenFlags);
+      return file().get_file(payloadFile, nOpenFlags);
 
    }
    catch (::file::exception& e)
@@ -1073,10 +1073,10 @@ void context::add_matter_locator(::aura::application * papp)
 
 
 
-::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
+::e_status context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(pcontext->m_papexcontext->file().get_reader(varFile));
+   binary_stream reader(pcontext->m_papexcontext->file().get_reader(payloadFile));
 
    read(reader);
 
@@ -1085,10 +1085,10 @@ void context::add_matter_locator(::aura::application * papp)
 }
 
 
-::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
+::e_status context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
-   binary_stream writer(pcontext->m_papexcontext->file().get_writer(varFile));
+   binary_stream writer(pcontext->m_papexcontext->file().get_writer(payloadFile));
 
    write(writer);
 

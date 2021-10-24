@@ -4538,10 +4538,10 @@ return !is_session() && !is_system();
 //}
 
 
-//void application::play_audio(::payload varFile, bool bSynch)
+//void application::play_audio(::payload payloadFile, bool bSynch)
 //{
 
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   __UNREFERENCED_PARAMETER(bSynch);
 
 //}
@@ -4732,12 +4732,12 @@ return m_pcontext->m_papexcontext->sys_get(::file::path(m_strAppName) / strPath,
 }
 
 
-bool application::on_open_document_file(::payload varFile)
+bool application::on_open_document_file(::payload payloadFile)
 {
 
-//request_file(varFile);
+//request_file(payloadFile);
 
-//return varFile["document"].cast < ::object > () != nullptr;
+//return payloadFile["document"].cast < ::object > () != nullptr;
 
 return false;
 
@@ -6610,15 +6610,15 @@ bool application::assert_user_logged_in()
 string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
 {
 
-::payload varFile;
+::payload payloadFile;
 
-varFile["disable_ca2_sessid"] = true;
+payloadFile["disable_ca2_sessid"] = true;
 
 string strMatter = m_pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-varFile["url"] = strMatter;
+payloadFile["url"] = strMatter;
 
-return m_pcontext->m_papexcontext->file().as_string(varFile);
+return m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
 }
 
@@ -6810,10 +6810,10 @@ return"";
 
 }
 
-//bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+//bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
 //{
 
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   __UNREFERENCED_PARAMETER(nIDSTitle);
 
 //   return false;
@@ -6971,21 +6971,21 @@ return -1;
 //}
 
 
-//bool application::on_open_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_open_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
 //   __UNREFERENCED_PARAMETER(pdocument);
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
 
 
-//bool application::on_save_document(::user::document * pdocument, ::payload varFile)
+//bool application::on_save_document(::user::document * pdocument, ::payload payloadFile)
 //{
 
 //   __UNREFERENCED_PARAMETER(pdocument);
-//   __UNREFERENCED_PARAMETER(varFile);
+//   __UNREFERENCED_PARAMETER(payloadFile);
 //   return true;
 
 //}
@@ -8989,13 +8989,13 @@ return true;
 void application::_001OnFileNew(::message::message* pmessage)
 {
 
-::payload varFile;
+::payload payloadFile;
 
 ::payload varQuery;
 
 varQuery["command"] = "new_file";
 
-//request_file(varFile, varQuery);
+//request_file(payloadFile, varQuery);
 
 pmessage->m_bRet = true;
 
@@ -9003,19 +9003,19 @@ pmessage->m_bRet = true;
 
 
 
-//   bool application::on_open_document_file(::payload varFile)
+//   bool application::on_open_document_file(::payload payloadFile)
 //   {
 //
-//      return _001OpenDocumentFile(varFile);
+//      return _001OpenDocumentFile(payloadFile);
 //
 //   }
 
-//::user::document* application::_001OpenDocumentFile(::payload varFile)
+//::user::document* application::_001OpenDocumentFile(::payload payloadFile)
 //{
 
-//   request_file(varFile);
+//   request_file(payloadFile);
 
-//   return varFile["document"].cast < ::user::document >();
+//   return payloadFile["document"].cast < ::user::document >();
 
 //}
 

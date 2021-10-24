@@ -68,10 +68,10 @@ namespace calculator
       __UNREFERENCED_PARAMETER(pmessage);
    }
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      string str = pcontext->m_papexcontext->file().as_string(varFile);
+      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
       update_all_views(nullptr, OPEN_DOCUMENT_UPDATE);
 

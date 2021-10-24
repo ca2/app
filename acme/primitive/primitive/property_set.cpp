@@ -482,20 +482,20 @@ bool property_set::is_empty(const id & idName) const
 }
 
 
-void property_set::_008ParseCommandLine(const char * pszCmdLineParam, ::payload & varFile)
+void property_set::_008ParseCommandLine(const char * pszCmdLineParam, ::payload & payloadFile)
 {
 
    string strApp;
 
-   _008Parse(false, pszCmdLineParam, varFile, strApp);
+   _008Parse(false, pszCmdLineParam, payloadFile, strApp);
 
 }
 
 
-void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload & varFile, string & strApp)
+void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload & payloadFile, string & strApp)
 {
 
-   _008Parse(true, pszCmdLineParam, varFile, strApp);
+   _008Parse(true, pszCmdLineParam, payloadFile, strApp);
 
 }
 
@@ -549,7 +549,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 }
 
 
-void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & varFile, string & strApp)
+void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & payloadFile, string & strApp)
 {
 
    if(pszCmdLine == nullptr)
@@ -588,7 +588,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & var
          for(; i < iFindColon; i++)
          {
 
-            varFile.stra().add(stra[i]);
+            payloadFile.stra().add(stra[i]);
 
          }
 
@@ -596,7 +596,7 @@ void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & var
       else
       {
 
-         varFile = stra[i];
+         payloadFile = stra[i];
 
          i++;
 

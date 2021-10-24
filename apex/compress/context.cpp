@@ -293,10 +293,10 @@ bool compress_context::zip(const ::file::path & psz, ::application * pobject)
 }
 
 
-bool compress_context::unzip(const ::payload & varFile, const ::file::path & pathZipFileCompressed)
+bool compress_context::unzip(const ::payload & payloadFile, const ::file::path & pathZipFileCompressed)
 {
 
-   auto pfileTarget = m_pcontext->m_papexcontext->file().get_writer(varFile);
+   auto pfileTarget = m_pcontext->m_papexcontext->file().get_writer(payloadFile);
 
    if (!pfileTarget)
    {

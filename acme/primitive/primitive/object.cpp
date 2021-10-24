@@ -717,20 +717,20 @@ void object::defer_update_object_id()
 //}
 
 
-//::e_status     object::request_file(const ::payload& varFile)
+//::e_status     object::request_file(const ::payload& payloadFile)
 //{
 //
-//   return request_file(varFile, e_type_new);
+//   return request_file(payloadFile, e_type_new);
 //
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
+//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   auto pcommandline = __create_new< command_line >();
 //
-//   pcommandline->m_varFile = varFile;
+//   pcommandline->m_varFile = payloadFile;
 //
 //   pcommandline->m_varQuery = varQuery;
 //
@@ -2365,10 +2365,10 @@ void object::install_message_routing(::channel* pchannel)
 //}
 
 
-::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return m_pcontext->get_file(varFile, eopen);
+   return m_pcontext->get_file(payloadFile, eopen);
 
 }
 
@@ -2717,7 +2717,7 @@ element* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) file_as(const ::payload& varFile);
+//__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 //
 //void object::add_routine(const ::id& idRoutine, const ::routine& routine)
@@ -2770,7 +2770,7 @@ element* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+//void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
 
 ::e_status object::initialize(::object* pobject)
@@ -3035,7 +3035,7 @@ element* object::get_taskpool_container()
 //::image_transport create_image();
 //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-//::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+//::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
@@ -3340,7 +3340,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile)
+//::e_status object::request_file(const ::payload& payloadFile)
 //{
 //
 //   return ::success;
@@ -3348,7 +3348,7 @@ element* object::get_taskpool_container()
 //}
 
 
-//::e_status object::request_file(const ::payload& varFile, ::payload varQuery)
+//::e_status object::request_file(const ::payload& payloadFile, ::payload varQuery)
 //{
 //
 //   return ::success;
@@ -3450,8 +3450,8 @@ element* object::get_taskpool_container()
 //}
 
 // ::user::document* open_document_file(::application* pappOnBehalfOf);
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 //
@@ -3481,12 +3481,12 @@ element* object::get_taskpool_container()
 
 
 //template < typename PRED >
-//::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+//::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-// ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+// ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-// ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+// ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
 // ::image_transport load_thumbnail(const char * pszPath);
 // ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -3638,22 +3638,22 @@ bool object::IsSerializable() const
 //    void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    // void to_string(string & str) const 
 
 
-//::file_transport object::get_file(const ::payload& varFile, const ::file::e_open& eopen)
+//::file_transport object::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
 //{
 //
 //   return nullptr;
 //
 //}
 
-//inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-//inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+//inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+//inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

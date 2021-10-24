@@ -10,7 +10,7 @@ namespace core
 {
 
 
-   bool user::do_prompt_file_name(::payload & varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool user::do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       if (::is_set(pdocument))
@@ -35,7 +35,7 @@ namespace core
 
                }
 
-               varFile = ppanetabview->filemanager_document()->m_strTopic;
+               payloadFile = ppanetabview->filemanager_document()->m_strTopic;
 
                return true;
 
@@ -45,7 +45,7 @@ namespace core
 
       }
 
-      return filemanager(impact_filemanager_main)->do_prompt_file_name(varFile, strTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
+      return filemanager(impact_filemanager_main)->do_prompt_file_name(payloadFile, strTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 
    }
 

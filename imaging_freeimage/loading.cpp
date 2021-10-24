@@ -2,7 +2,7 @@
 #include "_imaging_freeimage.h"
 
 
-CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & varFile);
+CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
 
 
 namespace imaging_freeimage
@@ -240,13 +240,13 @@ namespace imaging_freeimage
 
       memory memory;
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile = varFileParam;
+      payloadFile = varFileParam;
 
       {
 
-         auto tmp = varFile.get_file_path();
+         auto tmp = payloadFile.get_file_path();
 
          if (tmp.ends_ci(".gif"))
          {
@@ -257,13 +257,13 @@ namespace imaging_freeimage
 
       }
 
-      set_bypass_cache_if_empty(varFile);
+      set_bypass_cache_if_empty(payloadFile);
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      auto estatus = m_pcontext->m_papexcontext->file().as_memory(varFile, memory);
+      auto estatus = m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
 
       auto p1 = memory.get_data();
 
@@ -277,7 +277,7 @@ namespace imaging_freeimage
       }
 
 
-      //m_pcontext->m_papexcontext->file().non_empty_memory(varFile, *pmemory);
+      //m_pcontext->m_papexcontext->file().non_empty_memory(payloadFile, *pmemory);
 
       const char * psz = (const char *)memory.get_data();
 

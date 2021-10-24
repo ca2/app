@@ -567,10 +567,10 @@ namespace aura
 
       //virtual ::e_status initialize_sockets();
 
-      ::image_pointer get_cache_image(::object * pobject, const ::payload & varFile);
+      ::image_pointer get_cache_image(::object * pobject, const ::payload & payloadFile);
       ::image_pointer matter_cache_image(::object * pobject, const ::string & strMatter);
 
-      ::image_pointer get_image(::object * pobject, const ::payload & varFile, const ::image::load_options & loadoptions = ::image::load_options());
+      ::image_pointer get_image(::object * pobject, const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       ::image_pointer matter_image(::object * pobject, const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 
       //virtual bool on_get_thread_name(string& strThreadName) override;
@@ -749,7 +749,7 @@ namespace aura
 //
 //      virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
 //
-//      virtual bool on_open_file(::payload varFile, string strExtra) override;
+//      virtual bool on_open_file(::payload payloadFile, string strExtra) override;
 //
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 

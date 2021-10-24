@@ -1166,10 +1166,10 @@ namespace user
    }
 
 
-   ::e_status form_window::open_document(const ::payload & varFile)
+   ::e_status form_window::open_document(const ::payload & payloadFile)
    {
 
-      auto estatus = ::user::form_control::open_document(varFile);
+      auto estatus = ::user::form_control::open_document(payloadFile);
 
       if(!estatus)
       {
@@ -1354,11 +1354,11 @@ namespace user
    //}
 
 
-   //void form_window::on_before_navigate(::payload & varFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
+   //void form_window::on_before_navigate(::payload & payloadFile, u32 nFlags, const ::string & pszTargetFrameName, byte_array& baPostedData, const ::string & pszHeaders, bool* pbCancel)
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(nFlags);
    //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
 

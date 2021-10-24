@@ -667,20 +667,20 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request_file(const ::payload & varFile)
+::e_status     object::request_file(const ::payload & payloadFile)
 {
 
-   return request_file(varFile, e_type_new);
+   return request_file(payloadFile, e_type_new);
 
 }
 
 
-::e_status     object::request_file(const ::payload& varFile,::payload varQuery)
+::e_status     object::request_file(const ::payload& payloadFile,::payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
 
-   pcommandline->m_varFile = varFile;
+   pcommandline->m_varFile = payloadFile;
 
    pcommandline->m_varQuery = varQuery;
 
@@ -2111,10 +2111,10 @@ pacmedir->localconfig()));
 //}
 
 
-::file_transport object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+::file_transport object::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
 {
 
-   return pcontext->m_papexcontext->file().get_file(varFile, eopen);
+   return pcontext->m_papexcontext->file().get_file(payloadFile, eopen);
 
 }
 

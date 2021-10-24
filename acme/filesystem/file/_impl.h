@@ -593,10 +593,10 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void matter::save_to(const ::payload & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const ::payload & payloadFile, BASE_TYPE * pobject)
 //{
 //
-//   auto writer = m_pcontext->m_papexcontext->file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
+//   auto writer = m_pcontext->m_papexcontext->file().get_writer(payloadFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 //
 //   __save_object(writer, pobject);
 //

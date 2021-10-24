@@ -489,23 +489,23 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const ::payload & varFile)
+::e_status html_form::open_document(const ::payload & payloadFile)
 {
 
-   auto path = varFile.get_file_path();
+   auto path = payloadFile.get_file_path();
 
    auto psystem = m_psystem->m_paurasystem;
 
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::e_type_property_set && varFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
 
-         path = varFile.propset()["url"];
+         path = payloadFile.propset()["url"];
 
       }
-      else if (varFile.cast < ::file::file >() != nullptr)
+      else if (payloadFile.cast < ::file::file >() != nullptr)
       {
 
          auto psystem = m_psystem;
@@ -518,7 +518,7 @@ void html_form::set_need_load_form_data()
       else
       {
 
-         path = varFile;
+         path = payloadFile;
 
       }
 
@@ -526,7 +526,7 @@ void html_form::set_need_load_form_data()
 
    auto phtmldata = get_html_data();
 
-   if(!phtmldata->open_document(varFile))
+   if(!phtmldata->open_document(payloadFile))
    {
 
       return false;

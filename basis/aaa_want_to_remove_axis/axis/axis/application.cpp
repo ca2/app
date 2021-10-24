@@ -1168,15 +1168,15 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    string application::matter_as_string(const ::string & pszMatter, const ::string & pszMatter2)
    {
 
-      ::payload varFile;
+      ::payload payloadFile;
 
-      varFile["disable_ca2_sessid"] = true;
+      payloadFile["disable_ca2_sessid"] = true;
 
       string strMatter = pcontext->m_papexcontext->dir().matter(::file::path(pszMatter) / pszMatter2);
 
-      varFile["url"] = strMatter;
+      payloadFile["url"] = strMatter;
 
-      return pcontext->m_papexcontext->file().as_string(varFile);
+      return pcontext->m_papexcontext->file().as_string(payloadFile);
 
    }
 
@@ -1316,10 +1316,10 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    }
 
 
-   bool application::do_prompt_file_name(::payload & varFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
+   bool application::do_prompt_file_name(::payload & payloadFile,string nIDSTitle,u32 lFlags,bool bOpenFileDialog,::user::impact_system * ptemplate,::user::document * pdocument)
    {
 
-      __UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(payloadFile);
       __UNREFERENCED_PARAMETER(nIDSTitle);
 
       return false;
@@ -1525,21 +1525,21 @@ pacmedir->system() / "config\\system\\ignition_server.txt") + "/api/spaignition"
    }
 
 
-   bool application::on_open_document(::user::document * pdocument,::payload varFile)
+   bool application::on_open_document(::user::document * pdocument,::payload payloadFile)
    {
 
       __UNREFERENCED_PARAMETER(pdocument);
-      __UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(payloadFile);
       return true;
 
    }
 
 
-   bool application::on_save_document(::user::document * pdocument,::payload varFile)
+   bool application::on_save_document(::user::document * pdocument,::payload payloadFile)
    {
 
       __UNREFERENCED_PARAMETER(pdocument);
-      __UNREFERENCED_PARAMETER(varFile);
+      __UNREFERENCED_PARAMETER(payloadFile);
       return true;
 
    }

@@ -14,15 +14,15 @@ image_array::~image_array()
 }
 
 
-bool image_array::explode(::object * pobject, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
-   return explode(pobject, ::size_i32(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
+   return explode(pobject, ::size_i32(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
 
 }
 
 
-bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
    ::size_i32 size(sizeParam);
@@ -31,9 +31,9 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
    auto pcontextimage = pcontext->context_image();
 
-   auto pimageSource = pcontextimage->get_image(varFile);
+   auto pimageSource = pcontextimage->get_image(payloadFile);
 
-   //if (!imageSource.load_image(varFile, bCreateHelperMaps))
+   //if (!imageSource.load_image(payloadFile, bCreateHelperMaps))
    //{
 
    //   return false;

@@ -1665,26 +1665,52 @@ pacmedir->create("/ca2core");
 
       bool bMatterFromHttpCache = false;
 
-      if (m_iMatterFromHttpCache == -1)
+      bool bMatterFromResource = false;
+
+      auto pfile = m_papexsystem->file().create_resource_file("app/_matter/main/_std/_std/thomasborregaardsorensen.txt");
+
+      if (pfile)
       {
 
-         ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+         bMatterFromResource = true;
 
-         ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+      }
 
-         bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
+      if (bMatterFromResource)
+      {
 
-         bMatterFromHttpCache = !bFileSystemMatter;
+         m_pdirsystem->m_bMatterFromHttpCache = false;
+
+         m_pdirsystem->m_bMatterFromResource = true;
 
       }
       else
       {
 
-         bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+         if (m_iMatterFromHttpCache == -1)
+         {
+
+            ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+
+            ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+            bool bFileSystemMatter = m_pacmedir->is(pathSide) || m_pacmedir->is(pathLocal);
+
+            bMatterFromHttpCache = !bFileSystemMatter;
+
+         }
+         else
+         {
+
+            bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+         }
+
+         m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+         m_pdirsystem->m_bMatterFromResource = false;
 
       }
-
-      m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
 
       //estatus = create_html();
 
@@ -3811,7 +3837,7 @@ pacmedir->create("/ca2core");
    }
 
 
-   bool system::on_open_file(::payload varFile, string strExtra)
+   bool system::on_open_file(::payload payloadFile, string strExtra)
    {
 
       //auto psession = get_session();
@@ -3836,7 +3862,7 @@ pacmedir->create("/ca2core");
       //if(papp != nullptr)
       //{
 
-      //   if(varFile.is_empty())
+      //   if(payloadFile.is_empty())
       //   {
 
       //      papp->request({"app.exe : open_default " + strExtra});
@@ -3845,7 +3871,7 @@ pacmedir->create("/ca2core");
       //   else
       //   {
 
-      //      papp->request({"app.exe \"" + varFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
+      //      papp->request({"app.exe \"" + payloadFile.get_file_path() + "\" " + ::str::has_char(strExtra, " : ")});
 
       //   }
 
@@ -5973,11 +5999,11 @@ namespace apex
 //
 
 
-void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
-{
-
-   auto psystem = (class ::system *) pSystem;
-
-   psystem->system_id_update(iUpdate, iPayload);
-
-}
+//void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
+//{
+//
+//   auto psystem = (class ::system *) pSystem;
+//
+//   psystem->system_id_update(iUpdate, iPayload);
+//
+//}

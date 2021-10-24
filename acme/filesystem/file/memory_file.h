@@ -73,7 +73,7 @@ public:
 
    string get_string() const override;
 
-   //virtual void full_load(::payload varFile);
+   //virtual void full_load(::payload payloadFile);
 
    using ::file::file::get_internal_data;
    virtual void * get_internal_data() override;

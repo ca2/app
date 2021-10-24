@@ -7,8 +7,8 @@ namespace fs
 {
 
 
-   remote_native_file::remote_native_file(::payload varFile) :
-      m_varFile(varFile)
+   remote_native_file::remote_native_file(::payload payloadFile) :
+      m_varFile(payloadFile)
    {
 
    }

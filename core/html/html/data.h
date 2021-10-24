@@ -24,7 +24,7 @@ public:
    i64 decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
 
 
-   virtual bool open_document(const ::payload & varFile);
+   virtual bool open_document(const ::payload & payloadFile);
    virtual ::e_status     open_html(const ::string & str);
 
 

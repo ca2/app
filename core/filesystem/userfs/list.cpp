@@ -107,12 +107,12 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         ::payload varFile;
+         ::payload payloadFile;
          ::payload varQuery;
          if(iUItem == iLItem)
          {
 
-            varFile = fs_list_item(iLItem)->get_user_path();
+            payloadFile = fs_list_item(iLItem)->get_user_path();
 
          }
          else
@@ -127,11 +127,11 @@ namespace userfs
 
             }
 
-            varFile = stra;
+            payloadFile = stra;
 
          }
 
-         //get_document()->request_file(varFile, varQuery);
+         //get_document()->request_file(payloadFile, varQuery);
 
       }
 

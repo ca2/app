@@ -115,10 +115,10 @@ inline bool get_memory::get_base64(const ::string & str)
 
 
 //template < typename PRED >
-//inline ::image_transport matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_transport matter::get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred)
 //{
 //
-//   return get_system()->get_image(this, varFile, uTrait, pred);
+//   return get_system()->get_image(this, payloadFile, uTrait, pred);
 //
 //}
 
@@ -1584,74 +1584,74 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 }
 
 
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions)
+//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _load_from_file(pobject, varFile, *pvarOptions);
+//      return _load_from_file(pobject, payloadFile, *pvarOptions);
 //
 //   }
 //   else
 //   {
 //
-//      return _load_from_file(pobject, varFile, e_type_empty_argument);
+//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
+//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& payloadFile)
 //{
 //
-//   return _load_from_file(pobject, varFile, e_type_empty_argument);
+//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter * pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::matter * pobject)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _save_to_file(varFile, *pvarOptions, pobject);
+//      return _save_to_file(payloadFile, *pvarOptions, pobject);
 //
 //   }
 //   else
 //   {
 //
-//      return _save_to_file(varFile, e_type_empty_argument, pobject);
+//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::matter* pobject)
 //{
 //
-//   return _save_to_file(varFile, e_type_empty_argument, pobject);
+//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //}
 //
 //
 
 //
-//inline ::file_transport matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::e_open_read) ;
+//   return get_file(payloadFile, eopen | ::file::e_open_read) ;
 //
 //}
 //
 //
-//inline ::file_transport matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
+//inline ::file_transport matter::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
 //{
 //
-//   return get_file(varFile, eopen | ::file::e_open_write);
+//   return get_file(payloadFile, eopen | ::file::e_open_write);
 //
 //}
 
@@ -3276,72 +3276,72 @@ inline ::e_status object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_D
 //}
 //
 
-//inline ::e_status context::load_from_file(::element* pobject, const ::payload& varFile, const ::payload* pvarOptions)
+//inline ::e_status context::load_from_file(::element* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _load_from_file(pobject, varFile, *pvarOptions);
+//      return _load_from_file(pobject, payloadFile, *pvarOptions);
 //
 //   }
 //   else
 //   {
 //
-//      return _load_from_file(pobject, varFile, e_type_empty_argument);
+//      return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //   }
 //
 //}
 //
 //
-//inline ::e_status context::load_from_file(::element* pobject, const ::payload& varFile)
+//inline ::e_status context::load_from_file(::element* pobject, const ::payload& payloadFile)
 //{
 //
-//   return _load_from_file(pobject, varFile, e_type_empty_argument);
+//   return _load_from_file(pobject, payloadFile, e_type_empty_argument);
 //
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::element* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::payload* pvarOptions, const ::element* pobject)
 //{
 //
 //   if (pvarOptions)
 //   {
 //
-//      return _save_to_file(varFile, *pvarOptions, pobject);
+//      return _save_to_file(payloadFile, *pvarOptions, pobject);
 //
 //   }
 //   else
 //   {
 //
-//      return _save_to_file(varFile, e_type_empty_argument, pobject);
+//      return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //   }
 //
 //}
 //
 
-//inline ::e_status context::save_to_file(const ::payload& varFile, const ::element* pobject)
+//inline ::e_status context::save_to_file(const ::payload& payloadFile, const ::element* pobject)
 //{
 //
-//   return _save_to_file(varFile, e_type_empty_argument, pobject);
+//   return _save_to_file(payloadFile, e_type_empty_argument, pobject);
 //
 //}
 
 
-inline ::file_transport object::get_reader(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_reader(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return get_file(varFile, eopen | ::file::e_open_read);
+   return get_file(payloadFile, eopen | ::file::e_open_read);
 
 }
 
 
-inline ::file_transport object::get_writer(const ::payload& varFile, const ::file::e_open& eopen)
+inline ::file_transport object::get_writer(const ::payload& payloadFile, const ::file::e_open& eopen)
 {
 
-   return get_file(varFile, eopen | ::file::e_open_write);
+   return get_file(payloadFile, eopen | ::file::e_open_write);
 
 }
 

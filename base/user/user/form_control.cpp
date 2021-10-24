@@ -1253,7 +1253,7 @@ namespace user
    }
 
 
-   ::e_status form_control::open_document(const ::payload & varFile)
+   ::e_status form_control::open_document(const ::payload & payloadFile)
    {
 
       return true;
@@ -1528,11 +1528,11 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
 
    //{
 
-   //   __UNREFERENCED_PARAMETER(varFile);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
    //   __UNREFERENCED_PARAMETER(nFlags);
    //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
 

@@ -51,7 +51,7 @@ namespace filemanager
 
    }
 
-   bool document::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
 
       __UNREFERENCED_PARAMETER(nIDSTitle);
@@ -79,7 +79,7 @@ namespace filemanager
       pview->set_current_tab_by_id(1);
       pview->get_parent_frame()->set_need_redraw();
       pview->get_parent_frame()->RunModalLoop();
-      varFile = pdocument->m_strTopic;
+      payloadFile = pdocument->m_strTopic;
       pview->get_parent_frame()->destroy_window();
       return true;
 
@@ -253,7 +253,7 @@ namespace filemanager
       else if (pfilemanagerdata->m_pcallback != nullptr)
       {
 
-         //::payload varFile;
+         //::payload payloadFile;
 
          //::payload varQuery;
 
@@ -262,7 +262,7 @@ namespace filemanager
 
          //   {
 
-         //      //varFile = itema[0]->get_user_path();
+         //      //payloadFile = itema[0]->get_user_path();
 
          //      //varQuery["::filemanager::id"] = "filemanager::main::left";
 
@@ -272,7 +272,7 @@ namespace filemanager
 
          //   {
 
-         //      //varFile = itema[1]->get_user_path();
+         //      //payloadFile = itema[1]->get_user_path();
 
          //      //varQuery["::filemanager::id"] = "filemanager::main::right";
 
@@ -286,7 +286,7 @@ namespace filemanager
 
          //   {
 
-         //      //varFile = itema[0]->get_user_path();
+         //      //payloadFile = itema[0]->get_user_path();
 
          //      //varQuery["::filemanager::id"] = "filemanager::main::right";
 
@@ -296,7 +296,7 @@ namespace filemanager
 
          //   {
 
-         //      //varFile = itema[1]->get_user_path();
+         //      //payloadFile = itema[1]->get_user_path();
 
          //      //varQuery["::filemanager::id"] = "filemanager::main::left";
 
@@ -308,7 +308,7 @@ namespace filemanager
          //else
          //{
 
-         //   //varFile = itema.get_var_final_path();
+         //   //payloadFile = itema.get_var_final_path();
 
          //   //varQuery = itema.get_var_query();
 
@@ -615,10 +615,10 @@ namespace filemanager
 
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       path.trim();
 
@@ -635,7 +635,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      m_path = filemanager_project_entry(strManagerId, varFile.string(), pcontext);
+      m_path = filemanager_project_entry(strManagerId, payloadFile.string(), pcontext);
 
       defer_check_manager_id(strManagerId);
 

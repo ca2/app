@@ -482,6 +482,7 @@ namespace file
 
    }
 
+
    string file::get_location() const
    {
 
@@ -1425,6 +1426,19 @@ namespace file
       {
 
          payload.as_file_path() |= ::file::e_flag_bypass_cache;
+
+      }
+
+   }
+
+
+   void file::put_lines(const string_array& stra)
+   {
+
+      for (auto& strLine : stra)
+      {
+
+         println(strLine);
 
       }
 

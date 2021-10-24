@@ -44,10 +44,10 @@ namespace linux
    }
 
 
-   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+   file_transport file_context::get_file(const ::payload & payloadFile, const ::file::e_open & eopen)
    {
 
-      return ::file_context::get_file(varFile, eopen);
+      return ::file_context::get_file(payloadFile, eopen);
 
    }
 

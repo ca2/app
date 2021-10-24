@@ -121,12 +121,12 @@ namespace universal_windows
    }
 
 
-   file_transport file_context::get_file(const ::payload& varFile, const ::file::e_open & eopen)
+   file_transport file_context::get_file(const ::payload& payloadFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;
 
-      ::file::path path = varFile.get_file_path();
+      ::file::path path = payloadFile.get_file_path();
 
       string strPrefix;
 
@@ -152,7 +152,7 @@ namespace universal_windows
 
       }
 
-      spfile = ::file_context::get_file(varFile, eopen);
+      spfile = ::file_context::get_file(payloadFile, eopen);
 
       return spfile;
 

@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-//::image_transport con::get_image(const ::payload & varFile, bool bCache, bool bSync)
+//::image_transport con::get_image(const ::payload & payloadFile, bool bCache, bool bSync)
 //{
 //
-//   return pcontext->m_papexcontext->load_image(varFile, bCache, bSync);
+//   return pcontext->m_papexcontext->load_image(payloadFile, bCache, bSync);
 //
 //}
 //
@@ -17,12 +17,12 @@
 //}
 //
 //
-//::image_transport object::load_image(const ::payload & varFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
+//::image_transport object::load_image(const ::payload & payloadFile, bool bSync, bool bFromCache, bool bCreateHelperMaps)
 //{
 //
 //   {
 //
-//      auto pimage = varFile.image();
+//      auto pimage = payloadFile.image();
 //
 //      if (pimage)
 //      {
@@ -44,7 +44,7 @@
 //
 //   }
 //
-//   estatus = pcontext->m_papexcontext->_load_image(pimage, varFile, bSync, bCreateHelperMaps);
+//   estatus = pcontext->m_papexcontext->_load_image(pimage, payloadFile, bSync, bCreateHelperMaps);
 //
 //   if (!estatus && estatus != error_not_ready)
 //   {
@@ -112,7 +112,7 @@
 //}
 //
 //
-//::image_transport object::load_thumbnail(const ::payload & varFile, int w, int h)
+//::image_transport object::load_thumbnail(const ::payload & payloadFile, int w, int h)
 //{
 //
 //   auto pimage = create_image();
@@ -124,7 +124,7 @@
 //
 //   }
 //
-//   auto estatus = pcontext->m_papexcontext->_load_thumbnail(pimage, varFile, w, h);
+//   auto estatus = pcontext->m_papexcontext->_load_thumbnail(pimage, payloadFile, w, h);
 //
 //   if (!estatus)
 //   {

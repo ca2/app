@@ -60,7 +60,7 @@ namespace sphere
 
       virtual void on_request(::create * pcreate) override;
 
-      ::user::document * _001OpenDocumentFile(::payload varFile) override;
+      ::user::document * _001OpenDocumentFile(::payload payloadFile) override;
 
 
       virtual ::console::department * console();

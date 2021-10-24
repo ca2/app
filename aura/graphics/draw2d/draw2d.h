@@ -45,7 +45,7 @@ namespace draw2d
       virtual ::e_status destroy() override;
 
 
-      __pointer(save_image) new_save_image(const ::payload& varFile, const ::payload& varOptions);
+      __pointer(save_image) new_save_image(const ::payload& payloadFile, const ::payload& varOptions);
 
 
       virtual graphics_pointer create_graphics();
@@ -62,7 +62,7 @@ namespace draw2d
 
       
 
-      e_format file_extension_to_format(const ::payload & varFile);
+      e_format file_extension_to_format(const ::payload & payloadFile);
       e_format text_to_format(string str);
       
       virtual ::e_status initialize_write_text();

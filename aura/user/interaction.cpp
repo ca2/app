@@ -16317,6 +16317,14 @@ order(zorderParam);
    }
 
 
+   __pointer(::extended::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   {
+
+      return nullptr;
+
+   }
+
+
    bool interaction::has_text_input()
    {
 

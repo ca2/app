@@ -3287,7 +3287,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   throw ::interface_only_exception();

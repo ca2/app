@@ -44,20 +44,20 @@ namespace turboc
    }
 
 
-   bool document::on_open_document(const ::payload & varFile)
+   bool document::on_open_document(const ::payload & payloadFile)
    {
 
       impact * pview = get_typed_view < impact >();
 
-/*      if(pview->m_pimageImage->load_image(varFile))
+/*      if(pview->m_pimageImage->load_image(payloadFile))
       {
-         get_typed_view < impact >()->m_strImage = varFile;
+         get_typed_view < impact >()->m_strImage = payloadFile;
          get_typed_view < impact >()->m_strHelloMultiverse = "image:"+ get_typed_view < impact >()->m_strImage + ":" + get_typed_view < impact >()->m_strHelloMultiverse;
       }
       else if(get_typed_view < edit_view >() != NULL)
       {
 
-         string str = pcontext->m_papexcontext->file().as_string(varFile);
+         string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
          str = str.Left(84);
 

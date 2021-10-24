@@ -126,7 +126,7 @@ public:
    //virtual ::application* _get_application() override;
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    //virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
@@ -211,7 +211,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    
    virtual ::e_status initialize(::object * pobject) override;
@@ -344,7 +344,7 @@ public:
    //::image_transport create_image();
    //::image_transport create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_transport get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_transport get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
    //::image_transport matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
@@ -447,9 +447,9 @@ public:
 
    void _001OnUpdate(::message::message* pmessage);
 
-   //virtual ::e_status request_file(const ::payload& varFile);
+   //virtual ::e_status request_file(const ::payload& payloadFile);
 
-   //virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
+   //virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
 
    //virtual ::e_status request(arguments arguments);
 
@@ -496,8 +496,8 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -508,12 +508,12 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image_transport load_thumbnail(const char * pszPath);
    //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -655,16 +655,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   inline ::file_transport fully_shared_reader(const ::payload& varFile) { return get_reader(varFile, ::file::e_open_share_deny_none); }
+   inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   inline ::file_transport fully_shared_reader(const ::payload& payloadFile) { return get_reader(payloadFile, ::file::e_open_share_deny_none); }
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 
@@ -788,7 +788,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //__pointer(BASE_TYPE) file_as(const ::payload& varFile);
+   //__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
 
 
    //virtual void add_routine(const ::id& idRoutine, const ::routine& routine);
@@ -813,7 +813,7 @@ public:
 
 
    //template < typename BASE_TYPE >
-   //void save_to(const ::payload& varFile, BASE_TYPE* pobject);
+   //void save_to(const ::payload& payloadFile, BASE_TYPE* pobject);
 
    //virtual ::e_status initialize(::object * pobject) override;
    //virtual ::e_status destroy() override;
@@ -1033,9 +1033,9 @@ public:
 
    //void _001OnUpdate(::message::message* pmessage);
 
-   //virtual ::e_status request_file(const ::payload& varFile);
+   //virtual ::e_status request_file(const ::payload& payloadFile);
 
-   //virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
+   //virtual ::e_status request_file(const ::payload& payloadFile, ::payload varQuery);
 
    //virtual ::e_status request(arguments arguments);
 
@@ -1077,8 +1077,8 @@ public:
    //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
    //virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& varFile);
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -1089,12 +1089,12 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_transport get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_transport get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_transport load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_transport load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_transport load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_transport load_thumbnail(const ::payload & varFile, int w, int h);
+   //virtual ::image_transport load_thumbnail(const ::payload & payloadFile, int w, int h);
    //virtual ::image_transport load_thumbnail(const char * pszPath);
    //virtual ::image_transport load_dib(const ::file::path & pathDib);
 
@@ -1226,16 +1226,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   //virtual ::file_transport get_file(const ::payload& varFile, const ::file::e_open& eopen);
-   //inline ::file_transport get_reader(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary);
-   //inline ::file_transport get_writer(const ::payload& varFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   //virtual ::file_transport get_file(const ::payload& payloadFile, const ::file::e_open& eopen);
+   //inline ::file_transport get_reader(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary);
+   //inline ::file_transport get_writer(const ::payload& payloadFile, const ::file::e_open& eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

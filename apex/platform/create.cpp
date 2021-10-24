@@ -68,7 +68,7 @@ create::create()
 }
 
 
-::e_status create::initialize_create(string strAppId, ::payload varFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+::e_status create::initialize_create(string strAppId, ::payload payloadFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
 
    m_ewindowflag = ewindowflag;
@@ -93,7 +93,7 @@ create::create()
 
    }
    
-   m_pcommandline->m_varFile = varFile;
+   m_pcommandline->m_varFile = payloadFile;
 
    m_puserprimitiveParent = puiParent;
 

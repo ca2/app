@@ -20,7 +20,7 @@
 //      virtual HINSTANCE GetHinstance();
 //      bool _001OnDDECommand(const char * lpcsz);
 //      virtual void _001EnableShellOpen();
-//      ///virtual ::acme::document *  _001OpenDocumentFile(::payload varFile);
+//      ///virtual ::acme::document *  _001OpenDocumentFile(::payload payloadFile);
 //      virtual void _001OnFileNew();
 //
 //

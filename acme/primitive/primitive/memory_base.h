@@ -25,6 +25,7 @@ inline i32 msb(N n)
 
 
 class bstring_manager;
+class read_only_memory;
 class memory;
 class shared_memory;
 class virtual_memory;
@@ -61,6 +62,7 @@ public:
 
    e_memory                m_ememory;
 
+   read_only_memory *      m_preadonlymemory;
    memory *                m_pprimitivememory;
    shared_memory *         m_psharedmemory;
    virtual_memory *        m_pvirtualmemory;

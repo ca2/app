@@ -232,7 +232,7 @@ namespace core
       virtual ::e_status     initialize(::object * pobject) override;
 
 
-      virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      virtual bool do_prompt_file_name(::payload& payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual ::e_status initialize_userex();

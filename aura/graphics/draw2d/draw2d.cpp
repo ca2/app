@@ -148,10 +148,10 @@ namespace draw2d
 
 
 
-   e_format draw2d::file_extension_to_format(const ::payload & varFile)
+   e_format draw2d::file_extension_to_format(const ::payload & payloadFile)
    {
 
-      return text_to_format(varFile.get_file_path().final_extension());
+      return text_to_format(payloadFile.get_file_path().final_extension());
 
    }
 
@@ -238,7 +238,7 @@ namespace draw2d
    }
 
 
-   __pointer(save_image) draw2d::new_save_image(const ::payload& varFile, const ::payload& varOptions)
+   __pointer(save_image) draw2d::new_save_image(const ::payload& payloadFile, const ::payload& varOptions)
    {
 
       auto psaveimage = __new(save_image);
@@ -254,7 +254,7 @@ namespace draw2d
 
          __pointer(::aura::system) psystem = m_psystem;
 
-         eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+         eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 
       }
 

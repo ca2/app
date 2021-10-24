@@ -262,7 +262,7 @@ namespace filehandler
 
          psession->do_request(pcreate);
 
-         //varFile = pcreate->m_pcommandline->m_varFile;
+         //payloadFile = pcreate->m_pcommandline->m_varFile;
 
       }
 

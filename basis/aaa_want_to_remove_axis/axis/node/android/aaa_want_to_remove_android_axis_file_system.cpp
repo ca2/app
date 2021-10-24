@@ -95,12 +95,12 @@ namespace android
       //      return true;
       //   }
 
-      file_pointer file_system::get_file(::payload varFile, ::u32 nOpenFlags, ::extended::status * pfesp, ::aura::application * papp)
+      file_pointer file_system::get_file(::payload payloadFile, ::u32 nOpenFlags, ::extended::status * pfesp, ::aura::application * papp)
       {
 
          file_pointer spfile;
 
-         spfile = ::file::axis::system::get_file(varFile, nOpenFlags, pfesp, papp);
+         spfile = ::file::axis::system::get_file(payloadFile, nOpenFlags, pfesp, papp);
 
 
          if (spfile.is_set())
@@ -110,7 +110,7 @@ namespace android
 
          }
 
-         spfile = ::android::file_system::get_file(varFile, nOpenFlags, pfesp, papp);
+         spfile = ::android::file_system::get_file(payloadFile, nOpenFlags, pfesp, papp);
 
          if (spfile.is_set())
          {

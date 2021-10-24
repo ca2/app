@@ -8905,7 +8905,7 @@ save_image::save_image()
 }
 
 
-//save_image::save_image(::matter * pmatter, const ::payload & varFile, const ::payload & varOptions)
+//save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
 //   __pointer(::aura::system) psystem = m_psystem;
@@ -8917,7 +8917,7 @@ save_image::save_image()
 //
 //      __pointer(::aura::system) psystem = m_psystem;
 //
-//      eformat = pdraw2d->file_extension_to_format(varFile.get_file_path());
+//      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //
 //   }
 //

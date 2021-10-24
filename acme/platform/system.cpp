@@ -629,16 +629,21 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
+      string strLibrary = strComponent + "_" + strImplementation;
+
    #ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
 
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
          return ::error_failed;
 
       }
+
+//      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
       ::factory_map * pfactorymap = ::factory::get_factory_map();
 
@@ -982,10 +987,35 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       ::str::begins_eat_ci(strImplementation, strComponent);
 
-   #ifdef CUBE
+   //#ifdef CUBE
 
-      auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
+      //auto pfnFactoryExchange = m_mapFactoryExchange[strComponent][strImplementation];
 
+      //if (::is_null(pfnFactoryExchange))
+      //{
+
+      //   return ::error_failed;
+
+      //}
+
+#ifdef CUBE
+
+      synchronous_lock synchronouslock(&m_mutexContainerizedLibrary);
+
+      auto & plibrary = m_mapContainerizedLibrary[strComponent][strImplementation];
+
+      if (plibrary && plibrary->is_opened())
+      {
+
+         return plibrary;
+
+      }
+
+      string strLibrary = strComponent + "_" + strImplementation;
+
+      auto pfnFactoryExchange = ::static_setup::get_factory_exchange(strLibrary);
+
+      //if (::is_null(pfnFactoryExchange))
       if (::is_null(pfnFactoryExchange))
       {
 
@@ -993,11 +1023,17 @@ enum_dialog_result message_box_for_console(const char * psz, const char * pszTit
 
       }
 
-      ::factory_map * pfactorymap = ::factory::get_factory_map();
+      plibrary = __new(::acme::library);
 
-      pfnFactoryExchange(pfactorymap);
+      plibrary->initialize_matter(this);
 
-      return ::success;
+      __construct_new(plibrary->m_pfactorymap);
+
+      plibrary->m_pfactorymap->initialize_matter(this);
+
+      pfnFactoryExchange(plibrary->m_pfactorymap);
+
+      return plibrary;
 
    #else
 
